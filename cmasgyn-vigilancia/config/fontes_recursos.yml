@@ -1,0 +1,28 @@
+descricao: Códigos de fonte de recursos observados no Diário Oficial. Confirme cada
+  um contra a LOA ou o Quadro de Detalhamento de Despesas do exercício e preencha
+  'ente'. Enquanto estiver como 'a confirmar', o código não é classificado.
+codigos:
+  '2660':
+    ente: null
+    nome: null
+    observacoes: a confirmar na LOA/QDD
+  '1500':
+    ente: null
+    nome: null
+    observacoes: a confirmar na LOA/QDD
+  '2661':
+    ente: null
+    nome: null
+    observacoes: a confirmar na LOA/QDD
+  '2706':
+    ente: null
+    nome: null
+    observacoes: a confirmar na LOA/QDD
+  '1706':
+    ente: null
+    nome: null
+    observacoes: a confirmar na LOA/QDD
+  '1661':
+    ente: null
+    nome: null
+    observacoes: a confirmar na LOA/QDD

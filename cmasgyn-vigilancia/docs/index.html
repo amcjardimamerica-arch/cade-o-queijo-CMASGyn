@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CMASGyn · Vigilância documental</title>
+<meta name="description" content="Acervo e correição dos atos do Conselho Municipal de Assistência Social de Goiânia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --tinta:#14181F;        /* preto-tinta, levemente azulado */
+  --papel:#F2F3EF;        /* papel frio, não creme */
+  --verde:#177340;        /* verde institucional, extraído da folha de estilo do SILEG */
+  --selo:#8C1D18;         /* oxblood de carimbo, para severidade alta */
+  --ambar:#9A6410;        /* severidade média */
+  --grafite:#5A6270;
+  --linha:#D6D9D1;
+  --realce:#E8EAE3;
+  --r:3px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--papel);color:var(--tinta);
+  font:400 16px/1.55 "IBM Plex Sans",system-ui,sans-serif;
+  padding:0 0 6rem;
+}
+.env{max-width:1180px;margin:0 auto;padding:0 1.25rem}
+mono,.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+
+/* ---------- cabeçalho ---------- */
+header{border-bottom:1px solid var(--linha);padding:2.5rem 0 0}
+.eyebrow{
+  font:500 11px/1 "IBM Plex Mono",monospace;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--verde);margin-bottom:1rem
+}
+h1{
+  font:700 clamp(2rem,5.5vw,3.4rem)/1.02 "Zilla Slab",Georgia,serif;
+  letter-spacing:-.02em;margin-bottom:.4rem
+}
+h1 em{font-style:normal;color:var(--verde)}
+.sub{color:var(--grafite);max-width:62ch;font-size:15px}
+
+/* ---------- números ---------- */
+.numeros{display:flex;flex-wrap:wrap;gap:2.5rem;margin:2.25rem 0 1.5rem}
+.n b{display:block;font:500 2rem/1 "IBM Plex Mono",monospace;letter-spacing:-.02em}
+.n span{font:400 11px/1 "IBM Plex Mono",monospace;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--grafite);display:block;margin-top:.45rem}
+.n.alerta b{color:var(--selo)}
+
+/* ---------- FITA DE CORREIÇÃO (elemento-assinatura) ---------- */
+.fita-bloco{padding:1.25rem 0 2.25rem}
+.fita-rot{display:flex;justify-content:space-between;align-items:baseline;
+  font:400 11px/1 "IBM Plex Mono",monospace;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--grafite);margin-bottom:.6rem}
+.fita{display:flex;gap:1px;align-items:flex-end;height:46px;
+  border-bottom:1px solid var(--tinta);overflow:hidden}
+.tick{flex:1 1 auto;min-width:1px;background:var(--linha);height:38%;
+  transition:height .12s,background .12s}
+.tick.coletado{background:var(--verde);height:100%}
+.tick.sem_termos{background:var(--linha);height:34%}
+.tick.ausente_no_indice{background:var(--selo);height:100%}
+.tick.falha{background:var(--ambar);height:100%}
+.tick:hover{background:var(--tinta)}
+@media (prefers-reduced-motion:no-preference){
+  .tick{animation:sobe .5s cubic-bezier(.2,.8,.3,1) backwards}
+  @keyframes sobe{from{height:0}}
+}
+.legenda{display:flex;gap:1.4rem;flex-wrap:wrap;margin-top:.75rem;
+  font:400 12px/1 "IBM Plex Mono",monospace;color:var(--grafite)}
+.legenda i{display:inline-block;width:9px;height:9px;margin-right:.4rem;
+  vertical-align:-1px;font-style:normal}
+
+/* ---------- abas ---------- */
+nav.abas{display:flex;gap:0;border-bottom:1px solid var(--linha);
+  margin:2rem 0 1.5rem;overflow-x:auto}
+nav.abas button{
+  background:none;border:0;border-bottom:2px solid transparent;cursor:pointer;
+  padding:.7rem 1.1rem;font:500 13px/1 "IBM Plex Sans",sans-serif;
+  color:var(--grafite);white-space:nowrap
+}
+nav.abas button[aria-selected=true]{color:var(--tinta);border-bottom-color:var(--verde)}
+nav.abas button:focus-visible{outline:2px solid var(--verde);outline-offset:-2px}
+section[hidden]{display:none}
+
+/* ---------- filtros ---------- */
+.filtros{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.25rem}
+input,select{
+  font:400 14px "IBM Plex Sans",sans-serif;padding:.5rem .65rem;
+  border:1px solid var(--linha);border-radius:var(--r);background:#fff;color:var(--tinta)
+}
+input[type=search]{flex:1 1 260px}
+input:focus,select:focus{outline:2px solid var(--verde);outline-offset:1px;border-color:var(--verde)}
+
+/* ---------- tabela ---------- */
+.rolo{overflow-x:auto;border:1px solid var(--linha);border-radius:var(--r);background:#fff}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{
+  position:sticky;top:0;background:var(--realce);text-align:left;
+  font:500 11px/1 "IBM Plex Mono",monospace;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--grafite);
+  padding:.65rem .7rem;border-bottom:1px solid var(--linha);cursor:pointer;white-space:nowrap
+}
+th[aria-sort]{color:var(--tinta)}
+th[aria-sort=descending]::after{content:" ↓"}
+th[aria-sort=ascending]::after{content:" ↑"}
+td{padding:.6rem .7rem;border-bottom:1px solid var(--realce);vertical-align:top}
+tbody tr:hover{background:var(--realce)}
+td.num{font-family:"IBM Plex Mono",monospace;font-size:13px;text-align:right;white-space:nowrap}
+td.dig{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--grafite)}
+a{color:var(--verde);text-decoration:none;border-bottom:1px solid transparent}
+a:hover{border-bottom-color:var(--verde)}
+.marca{display:inline-block;font:500 10px/1 "IBM Plex Mono",monospace;
+  letter-spacing:.06em;text-transform:uppercase;padding:.25rem .4rem;
+  border:1px solid var(--linha);border-radius:var(--r);color:var(--grafite);margin-right:.25rem}
+.marca.cmas{border-color:var(--verde);color:var(--verde)}
+.marca.ata{border-color:var(--tinta);color:var(--tinta)}
+
+/* ---------- achados ---------- */
+.achado{background:#fff;border:1px solid var(--linha);border-left:3px solid var(--grafite);
+  border-radius:var(--r);padding:1rem 1.15rem;margin-bottom:.75rem}
+.achado.alta{border-left-color:var(--selo)}
+.achado.media{border-left-color:var(--ambar)}
+.achado h3{font:600 15px/1.3 "IBM Plex Sans",sans-serif;margin-bottom:.4rem}
+.achado p{font-size:14px;color:#2C333D;margin-bottom:.5rem}
+.meta{font:400 11px/1.5 "IBM Plex Mono",monospace;color:var(--grafite)}
+.sev{display:inline-block;font:500 10px/1 "IBM Plex Mono",monospace;
+  letter-spacing:.08em;text-transform:uppercase;padding:.28rem .45rem;
+  border-radius:var(--r);margin-right:.5rem;color:#fff;background:var(--grafite)}
+.sev.alta{background:var(--selo)}
+.sev.media{background:var(--ambar)}
+
+.vazio{padding:2.5rem 1rem;text-align:center;color:var(--grafite);
+  border:1px dashed var(--linha);border-radius:var(--r)}
+.barra{height:6px;background:var(--realce);border-radius:99px;overflow:hidden;min-width:90px}
+.barra i{display:block;height:100%;background:var(--verde)}
+footer{border-top:1px solid var(--linha);margin-top:3rem;padding-top:1.25rem;
+  font:400 12px/1.6 "IBM Plex Mono",monospace;color:var(--grafite)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="env">
+    <p class="eyebrow">AMC Jardim América · Controle social</p>
+    <h1>CMASGyn<br><em>vigilância documental</em></h1>
+    <p class="sub">Acervo do Diário Oficial de Goiânia e dos atos do Conselho Municipal
+      de Assistência Social, com verificação de conformidade e correição de cobertura.</p>
+
+    <div class="numeros" id="numeros"></div>
+
+    <div class="fita-bloco">
+      <div class="fita-rot">
+        <span>Fita de correição — um traço por dia útil</span>
+        <span id="fita-periodo"></span>
+      </div>
+      <div class="fita" id="fita" role="img" aria-label="Cobertura diária do período"></div>
+      <div class="legenda">
+        <span><i style="background:#177340"></i>edição coletada</span>
+        <span><i style="background:#D6D9D1"></i>sem menção aos termos</span>
+        <span><i style="background:#8C1D18"></i>lacuna — nada consta</span>
+        <span><i style="background:#9A6410"></i>falha técnica</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="env">
+  <nav class="abas" role="tablist">
+    <button role="tab" aria-selected="true" data-alvo="ed">Edições</button>
+    <button role="tab" aria-selected="false" data-alvo="ac">Achados</button>
+    <button role="tab" aria-selected="false" data-alvo="co">Conselheiros</button>
+    <button role="tab" aria-selected="false" data-alvo="pa">Padrão dos atos</button>
+    <button role="tab" aria-selected="false" data-alvo="sm">Publicou hoje?</button>
+    <button role="tab" aria-selected="false" data-alvo="tr">Trilha do dinheiro</button>
+    <button role="tab" aria-selected="false" data-alvo="bi">Biblioteca de atos</button>
+    <button role="tab" aria-selected="false" data-alvo="fi">Dinheiro</button>
+    <button role="tab" aria-selected="false" data-alvo="cb">Correição</button>
+  </nav>
+
+  <section id="ed">
+    <div class="filtros">
+      <input type="search" id="q" placeholder="Filtrar por nome, data ou termo…" aria-label="Filtrar edições">
+      <select id="ano" aria-label="Ano"><option value="">Todos os anos</option></select>
+      <select id="so" aria-label="Recorte">
+        <option value="">Todas as edições</option>
+        <option value="cmas">Só com menção ao CMASGyn</option>
+        <option value="ata">Só atas</option>
+        <option value="ocr">Só as que exigiram OCR</option>
+      </select>
+    </div>
+    <div class="rolo"><table id="tab">
+      <thead><tr>
+        <th data-c="data" aria-sort="descending">Data</th>
+        <th data-c="edicao">Edição</th>
+        <th data-c="mencoes_cmas">Menções</th>
+        <th data-c="termos">Termos</th>
+        <th data-c="caracteres">Caracteres</th>
+        <th data-c="mb">MB</th>
+        <th data-c="digest">Digest</th>
+        <th>Original</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table></div>
+    <p class="meta" id="contagem" style="margin-top:.75rem"></p>
+  </section>
+
+  <section id="ac" hidden></section>
+
+  <section id="co" hidden>
+    <p class="sub" style="margin-bottom:1.25rem">Conciliação entre quem consta presente
+      e quem assina as atas. Divergência positiva indica presença sem assinatura;
+      negativa, assinatura sem registro de presença.</p>
+    <div class="rolo"><table id="tabc">
+      <thead><tr><th>Conselheiro</th><th>Presenças</th><th>Assinaturas</th><th>Divergência</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </section>
+
+  <section id="pa" hidden></section>
+  <section id="bi" hidden>
+    <div class="filtros">
+      <input type="search" id="qb" placeholder="Filtrar por número, ementa ou classe…" aria-label="Filtrar atos">
+      <select id="sb" aria-label="Situação">
+        <option value="">Todas as situações</option>
+        <option value="PUBLICADO">Publicado por inteiro</option>
+        <option value="APENAS_CITADO">Apenas citado — não divulgado</option>
+        <option value="PRESUMIDO">Presumido por lacuna</option>
+      </select>
+      <select id="ab" aria-label="Ano"><option value="">Todos os anos</option></select>
+    </div>
+    <div id="bi-resumo"></div>
+    <div class="rolo"><table id="tabb">
+      <thead><tr><th>Ato</th><th>Situação</th><th>Ementa</th><th>Classes</th><th>Publicações</th><th>Citações</th></tr></thead>
+      <tbody></tbody></table></div>
+    <p class="meta" id="bi-contagem" style="margin-top:.75rem"></p>
+  </section>
+
+  <section id="sm" hidden></section>
+  <section id="tr" hidden></section>
+  <section id="fi" hidden></section>
+  <section id="cb" hidden></section>
+</main>
+
+<footer class="env">
+  <p>Dados extraídos do Diário Oficial do Município de Goiânia. Cada edição é
+     identificada pelo digest SHA-256 fixado na data da coleta; o arquivo assinado
+     permanece obtenível pela URL oficial registrada.</p>
+  <p style="margin-top:.5rem">Achados produzidos por rotina automatizada. Nenhuma peça
+     é protocolada sem revisão do advogado responsável.</p>
+  <p style="margin-top:.5rem" id="rodape-data"></p>
+</footer>
+
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s??'').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const nf = new Intl.NumberFormat('pt-BR');
+const dbr = d => d ? d.split('-').reverse().join('/') : '—';
+let D = null, ordem = {c:'data', dir:-1};
+
+fetch('dados.json').then(r=>r.json()).then(d=>{D=d; iniciar();})
+  .catch(()=>{ $('#numeros').innerHTML =
+    '<div class="vazio">Nenhum dado publicado ainda. Execute o fluxo de vigilância no repositório para gerar <span class="mono">docs/dados.json</span>.</div>'; });
+
+function iniciar(){
+  const r = D.resumo;
+  $('#numeros').innerHTML = [
+    ['edições no acervo', nf.format(r.edicoes), ''],
+    ['com menção ao CMASGyn', nf.format(r.com_mencao_cmas), ''],
+    ['atas identificadas', nf.format(r.atas), ''],
+    ['achados', nf.format(r.achados), ''],
+    ['severidade alta', nf.format(r.achados_altos), r.achados_altos ? 'alerta':''],
+    ['cobertura', r.cobertura + '%', ''],
+  ].map(([l,v,cl])=>`<div class="n ${cl}"><b>${v}</b><span>${l}</span></div>`).join('');
+
+  $('#fita-periodo').textContent = dbr(D.periodo[0]) + ' — ' + dbr(D.periodo[1]);
+  $('#fita').innerHTML = D.fita.map((f,i)=>
+    `<div class="tick ${f.situacao}" title="${dbr(f.data)} · ${f.situacao.replace(/_/g,' ')}" style="animation-delay:${Math.min(i*1.2,500)}ms"></div>`).join('');
+
+  const anos = [...new Set(D.edicoes.map(e=>e.ano))].sort((a,b)=>b-a);
+  $('#ano').insertAdjacentHTML('beforeend', anos.map(a=>`<option>${a}</option>`).join(''));
+
+  ['#q','#ano','#so'].forEach(s=>$(s).addEventListener('input', pintarTabela));
+  document.querySelectorAll('#tab th[data-c]').forEach(th=>th.addEventListener('click',()=>{
+    const c = th.dataset.c;
+    ordem = {c, dir: ordem.c===c ? -ordem.dir : -1};
+    document.querySelectorAll('#tab th').forEach(x=>x.removeAttribute('aria-sort'));
+    th.setAttribute('aria-sort', ordem.dir<0?'descending':'ascending');
+    pintarTabela();
+  }));
+  document.querySelectorAll('nav.abas button').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('nav.abas button').forEach(x=>x.setAttribute('aria-selected','false'));
+    b.setAttribute('aria-selected','true');
+    ['ed','ac','co','pa','sm','tr','bi','fi','cb'].forEach(id=>$('#'+id).hidden = (id!==b.dataset.alvo));
+  }));
+
+  pintarTabela(); pintarAchados(); pintarConselheiros(); pintarPadrao();
+  pintarBiblioteca(); pintarFinanceiro(); pintarSemaforo(); pintarTrilha(); pintarCorreicao();
+  $('#rodape-data').textContent = 'Gerado em ' + new Date(D.gerado_em).toLocaleString('pt-BR');
+}
+
+function pintarTabela(){
+  const q = $('#q').value.toLowerCase().trim();
+  const ano = $('#ano').value, so = $('#so').value;
+  let l = D.edicoes.filter(e=>{
+    if(ano && String(e.ano)!==ano) return false;
+    if(so==='cmas' && !e.mencoes_cmas) return false;
+    if(so==='ata' && !e.ata) return false;
+    if(so==='ocr' && !e.ocr) return false;
+    if(q && !(e.nome+' '+e.data+' '+e.termos.join(' ')).toLowerCase().includes(q)) return false;
+    return true;
+  });
+  l.sort((a,b)=>{
+    const x=a[ordem.c], y=b[ordem.c];
+    const v = (typeof x==='number'&&typeof y==='number') ? x-y : String(x).localeCompare(String(y),'pt-BR');
+    return v*ordem.dir;
+  });
+  $('#tab tbody').innerHTML = l.map(e=>`<tr>
+    <td class="num">${dbr(e.data)}</td>
+    <td class="num">${e.edicao??'—'}</td>
+    <td class="num">${e.mencoes_cmas||''}</td>
+    <td>${e.mencoes_cmas?'<span class="marca cmas">CMASGyn</span>':''}${e.ata?'<span class="marca ata">ata</span>':''}${e.termos.slice(0,2).map(t=>`<span class="marca">${esc(t.slice(0,26))}</span>`).join('')}</td>
+    <td class="num">${nf.format(e.caracteres||0)}</td>
+    <td class="num">${e.mb}</td>
+    <td class="dig">${esc(e.digest)}</td>
+    <td><a href="${esc(e.url)}" rel="noopener">PDF assinado</a></td>
+  </tr>`).join('') || '<tr><td colspan="8"><div class="vazio">Nenhuma edição atende ao filtro. Amplie o período ou limpe a busca.</div></td></tr>';
+  $('#contagem').textContent = `${nf.format(l.length)} de ${nf.format(D.edicoes.length)} edições`;
+}
+
+function pintarAchados(){
+  $('#ac').innerHTML = D.achados.length ? D.achados.map(a=>`
+    <article class="achado ${esc(a.severidade)}">
+      <h3><span class="sev ${esc(a.severidade)}">${esc(a.severidade)}</span>${esc(a.titulo)}</h3>
+      <p>${esc(a.detalhe)}</p>
+      <p class="meta">${esc(a.regra||'')}${a.documento?' · '+esc(a.documento):''}${a.data_ref?' · '+dbr(a.data_ref):''}${a.fundamento?'<br>'+esc(a.fundamento):''}</p>
+    </article>`).join('')
+    : '<div class="vazio">Nenhum achado registrado no período analisado.</div>';
+}
+
+function pintarConselheiros(){
+  const c = D.conselheiros||[];
+  $('#tabc tbody').innerHTML = c.length ? c.map(x=>`<tr>
+    <td>${esc(x.nome)}</td>
+    <td class="num">${x.presencas}</td>
+    <td class="num">${x.assinaturas}</td>
+    <td class="num" style="color:${x.divergencia?'var(--selo)':'inherit'}">${x.divergencia>0?'+':''}${x.divergencia}</td>
+  </tr>`).join('')
+  : `<tr><td colspan="4"><div class="vazio">Nenhuma ata do conselho foi localizada no acervo do Diário Oficial.
+     As atas costumam ser publicadas apenas no sítio do conselho — o que, por si, é um achado de transparência.</div></td></tr>`;
+}
+
+function pintarPadrao(){
+  const p = D.padrao||{};
+  const ad = p.aderencia_por_elemento||{};
+  const rot = {numero_e_ano:'Número e ano', ementa:'Ementa', formula_de_competencia:'Fórmula de competência',
+    base_legal_citada:'Base legal citada', clausula_de_vigencia:'Cláusula de vigência',
+    assinatura_da_presidencia:'Assinatura da presidência'};
+  const linhas = Object.entries(ad).map(([k,v])=>`<tr>
+    <td>${rot[k]||k}</td>
+    <td class="num">${Math.round(v*100)}%</td>
+    <td><div class="barra"><i style="width:${v*100}%"></i></div></td></tr>`).join('');
+  const lac = Object.entries(p.lacunas_de_numeracao||{});
+  $('#pa').innerHTML = `
+    <p class="sub" style="margin-bottom:1.25rem">Aderência dos atos ao padrão dominante,
+      medida sobre ${nf.format(p.documentos||0)} documento(s) com menção ao conselho.
+      Elemento presente em ao menos 70% dos atos é tido por dominante; ausência dele
+      configura desvio.</p>
+    <div class="rolo"><table><thead><tr><th>Elemento</th><th>Aderência</th><th></th></tr></thead>
+    <tbody>${linhas||'<tr><td colspan="3"><div class="vazio">Sem documentos suficientes.</div></td></tr>'}</tbody></table></div>
+    ${lac.length?`<h3 style="font:600 15px 'IBM Plex Sans';margin:1.75rem 0 .6rem">Lacunas na numeração</h3>
+      <p class="meta">${lac.map(([a,v])=>`<strong>${a}</strong>: ${v.join(', ')}`).join('<br>')}</p>`:''}
+    ${(p.resolucoes_cnas_citadas||[]).length?`<h3 style="font:600 15px 'IBM Plex Sans';margin:1.75rem 0 .6rem">Resoluções do CNAS mais invocadas</h3>
+      <p class="meta">${p.resolucoes_cnas_citadas.map(([n,c])=>esc(n)+' ('+c+')').join(' · ')}</p>`:''}`;
+}
+
+const brl = v => 'R$ ' + (v||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+const ROT_SIT={PUBLICADO:'publicado',APENAS_CITADO:'apenas citado',PRESUMIDO:'presumido'};
+
+function pintarBiblioteca(){
+  const b=D.biblioteca||{}, atos=D.atos||[];
+  if(!atos.length){ $('#bi').innerHTML='<div class="vazio">Biblioteca ainda não construída.</div>'; return; }
+  const anos=[...new Set(atos.map(a=>a.ano))].sort((x,y)=>y-x);
+  $('#ab').insertAdjacentHTML('beforeend',anos.map(a=>`<option>${a}</option>`).join(''));
+  $('#bi-resumo').innerHTML=`<div class="numeros" style="margin-top:0">
+    <div class="n"><b>${nf.format(b.total_atos||0)}</b><span>atos identificados</span></div>
+    <div class="n"><b>${nf.format((b.situacoes||{}).PUBLICADO||0)}</b><span>publicados por inteiro</span></div>
+    <div class="n alerta"><b>${nf.format(((b.situacoes||{}).APENAS_CITADO||0)+((b.situacoes||{}).PRESUMIDO||0))}</b><span>não divulgados</span></div>
+    <div class="n alerta"><b>${b.indice_de_publicidade||0}%</b><span>índice de publicidade</span></div>
+  </div>`;
+  const desenhar=()=>{
+    const q=$('#qb').value.toLowerCase().trim(), s=$('#sb').value, an=$('#ab').value;
+    const l=atos.filter(a=>(!s||a.situacao===s)&&(!an||String(a.ano)===an)&&
+      (!q||(a.chave+' '+(a.ementa||'')+' '+a.classes.join(' ')).toLowerCase().includes(q)));
+    $('#tabb tbody').innerHTML=l.map(a=>`<tr>
+      <td class="num">${esc(a.chave)}</td>
+      <td><span class="sev ${a.situacao==='PUBLICADO'?'':'alta'}">${ROT_SIT[a.situacao]||a.situacao}</span></td>
+      <td>${esc(a.ementa||'—')}</td>
+      <td>${a.classes.slice(0,3).map(c=>`<span class="marca">${esc(c.replace(/_/g,' '))}</span>`).join('')}</td>
+      <td class="num">${a.n_publicacoes}</td><td class="num">${a.n_citacoes}</td></tr>`).join('')
+      ||'<tr><td colspan="6"><div class="vazio">Nenhum ato atende ao filtro.</div></td></tr>';
+    $('#bi-contagem').textContent=`${nf.format(l.length)} de ${nf.format(atos.length)} atos`;
+  };
+  ['#qb','#sb','#ab'].forEach(x=>$(x).addEventListener('input',desenhar)); desenhar();
+}
+
+function pintarFinanceiro(){
+  const f=D.financeiro||{};
+  if(!f.linhas){ $('#fi').innerHTML='<div class="vazio">Conciliação financeira ainda não executada.</div>'; return; }
+  const ROT_ENTE={uniao:'União',estado:'Estado',municipio:'Município',
+    nao_classificado:'origem não identificável',multiplo:'marcadores concorrentes'};
+  const tab=(o,rot)=>`<div class="rolo"><table><thead><tr><th>${rot}</th><th>Linhas</th><th>Valor</th></tr></thead><tbody>${
+    Object.entries(o||{}).map(([k,v])=>`<tr><td>${esc(v.nome||v.rotulo||ROT_ENTE[k]||k)}${v.nome||v.rotulo?` <span class="mono" style="color:var(--grafite)">${esc(k)}</span>`:''}</td>
+      <td class="num">${v.linhas}</td><td class="num">${brl(v.valor)}</td></tr>`).join('')}</tbody></table></div>`;
+  $('#fi').innerHTML=`
+    <p class="sub" style="margin-bottom:1.25rem">Rastreamento em três eixos: de onde veio o dinheiro
+      (fonte de recursos), para onde foi (classificação funcional-programática) e como foi gasto
+      (natureza da despesa). O elemento 3350 é o que sai do Fundo e entra em entidade privada.</p>
+    <div class="numeros" style="margin-top:0">
+      <div class="n"><b>${brl(f.valor_total)}</b><span>em linhas localizadas</span></div>
+      <div class="n"><b>${brl(f.para_entidades_privadas)}</b><span>a entidades privadas</span></div>
+      <div class="n ${f.indice_rastreabilidade<60?'alerta':''}"><b>${f.indice_rastreabilidade}%</b><span>origem rastreável</span></div>
+      <div class="n"><b>${nf.format(f.linhas)}</b><span>linhas orçamentárias</span></div>
+    </div>
+    <h3 style="font:600 15px 'IBM Plex Sans';margin:1.75rem 0 .6rem">Por ente de origem</h3>${tab(f.por_ente,'Ente')}
+    <h3 style="font:600 15px 'IBM Plex Sans';margin:1.75rem 0 .6rem">Por ação orçamentária</h3>${tab(f.por_acao,'Dotação')}
+    <h3 style="font:600 15px 'IBM Plex Sans';margin:1.75rem 0 .6rem">Por natureza da despesa</h3>${tab(f.por_natureza,'Natureza')}
+    ${Object.keys(f.fontes_pendentes||{}).length?`<h3 style="font:600 15px 'IBM Plex Sans';margin:1.75rem 0 .6rem">Códigos de fonte a confirmar</h3>
+      <p class="meta">${Object.entries(f.fontes_pendentes).map(([c,n])=>`${esc(c)} (${n}×)`).join(' · ')}<br>
+      Confronte com o Quadro de Detalhamento de Despesas e preencha <span class="mono">config/fontes_recursos.yml</span>.</p>`:''}`;
+}
+
+function pintarSemaforo(){
+  const s=D.semaforo||{}, dias=s.dias||{}, r=s.resumo||{};
+  if(!Object.keys(dias).length){$('#sm').innerHTML='<div class="vazio">Semáforo ainda não apurado.</div>';return;}
+  const ROT={PUBLICOU:'publicou ato da pasta',SEM_ATO:'edição sem ato da pasta',
+    INEXISTENTE:'nenhuma edição disponível',INCONCLUSIVO:'consulta falhou',NAO_UTIL:'sem expediente'};
+  const COR={PUBLICOU:'var(--verde)',SEM_ATO:'var(--linha)',INEXISTENTE:'var(--selo)',
+    INCONCLUSIVO:'var(--ambar)',NAO_UTIL:'transparent'};
+  const ord=Object.entries(dias).sort((a,b)=>b[0].localeCompare(a[0]));
+  $('#sm').innerHTML=`
+    <p class="sub" style="margin-bottom:1.25rem">Um dia útil sem edição disponível para consulta
+      automatizada não é normalidade: ou não houve publicação, ou houve e não foi disponibilizada
+      em formato acessível. A série destes estados é a prova documental da intermitência.</p>
+    <div class="numeros" style="margin-top:0">
+      <div class="n"><b>${r.ultima_publicacao?dbr(r.ultima_publicacao):'—'}</b><span>última publicação da pasta</span></div>
+      <div class="n ${r.dias_desde_ultima>20?'alerta':''}"><b>${r.dias_desde_ultima??'—'}</b><span>dias desde então</span></div>
+      <div class="n ${r.inexistentes>=5?'alerta':''}"><b>${r.inexistentes||0}</b><span>dias úteis sem edição</span></div>
+      <div class="n"><b>${r.dias_uteis||0}</b><span>dias úteis apurados</span></div>
+    </div>
+    <div class="rolo"><table><thead><tr><th>Dia</th><th>Situação</th><th>Documentos</th></tr></thead><tbody>
+    ${ord.filter(([,v])=>v.util!==false).map(([d,v])=>`<tr>
+      <td class="num">${dbr(d)}</td>
+      <td><i style="display:inline-block;width:9px;height:9px;margin-right:.5rem;background:${COR[v.situacao]}"></i>${ROT[v.situacao]||v.situacao}</td>
+      <td class="dig">${(v.documentos||[]).join(' · ')||'—'}</td></tr>`).join('')}
+    </tbody></table></div>`;
+}
+
+function pintarTrilha(){
+  const t=D.trilha||{};
+  if(!t.eventos){$('#tr').innerHTML='<div class="vazio">Trilha ainda não mapeada.</div>';return;}
+  const ROT={repasse:'1 · Repasse da União e do Estado',orcamento:'2 · Dotação orçamentária',
+    credito:'3 · Créditos e remanejamentos',deliberacao:'4 · Deliberação do conselho',
+    vinculo:'5 · Contrato, termo ou convênio',empenho:'6 · Empenho, liquidação e pagamento',
+    entidade:'7 · Chegada à entidade executora'};
+  const max=Math.max(...Object.values(t.cobertura_das_estacoes||{1:1}));
+  $('#tr').innerHTML=`
+    <p class="sub" style="margin-bottom:1.25rem">Sete estações, na ordem em que o dinheiro anda.
+      Estação sem publicação é ruptura — e o trecho invisível é o mais grave, porque impede
+      tanto afirmar quanto negar a regularidade.</p>
+    <div class="numeros" style="margin-top:0">
+      <div class="n"><b>${t.integridade_da_trilha}%</b><span>estações observáveis</span></div>
+      <div class="n"><b>${nf.format(t.entidades_identificadas||0)}</b><span>entidades identificadas</span></div>
+      <div class="n"><b>${nf.format((t.contratos_localizados||[]).length)}</b><span>vínculos localizados</span></div>
+      <div class="n"><b>${nf.format(t.eventos)}</b><span>eventos rastreados</span></div>
+    </div>
+    <div class="rolo"><table><thead><tr><th>Estação</th><th>Publicações</th><th></th></tr></thead><tbody>
+      ${Object.entries(t.cobertura_das_estacoes||{}).map(([k,v])=>`<tr>
+        <td>${ROT[k]||k}</td><td class="num">${v}</td>
+        <td><div class="barra"><i style="width:${100*v/max}%;background:${v?'var(--verde)':'var(--selo)'}"></i></div></td></tr>`).join('')}
+    </tbody></table></div>
+    <h3 style="font:600 15px 'IBM Plex Sans';margin:1.75rem 0 .6rem">Entidades por valor associado</h3>
+    <p class="meta" style="margin-bottom:.6rem">${esc(t.nota_metodologica||'')}</p>
+    <div class="rolo"><table><thead><tr><th>CNPJ</th><th>Lançamentos</th><th>Valor associado</th><th>Vínculo formal</th><th>Período</th></tr></thead><tbody>
+      ${(t.entidades||[]).slice(0,60).map(e=>`<tr>
+        <td class="dig">${esc(e.cnpj)}</td><td class="num">${e.lancamentos}</td>
+        <td class="num">${brl(e.valor)}</td>
+        <td>${e.com_vinculo?`<span class="marca">${esc((e.contratos[0]||'').slice(0,26))}</span>`:'<span class="sev alta">ausente</span>'}</td>
+        <td class="num">${dbr(e.primeiro)} – ${dbr(e.ultimo)}</td></tr>`).join('')}
+    </tbody></table></div>
+    <h3 style="font:600 15px 'IBM Plex Sans';margin:1.75rem 0 .6rem">Catálogo de indícios de sobrepreço</h3>
+    <p class="meta">Indícios, jamais conclusões. Sobrepreço se demonstra por confronto com preço de
+      mercado em perícia, não por estatística sobre texto de Diário Oficial.</p>
+    <div class="rolo"><table><thead><tr><th>Código</th><th>Indício</th><th>Critério</th></tr></thead><tbody>
+      ${Object.entries(t.catalogo_de_indicios||{}).map(([k,v])=>`<tr>
+        <td class="num">${k}</td><td>${esc(v.titulo)}</td><td>${esc(v.descricao)}</td></tr>`).join('')}
+    </tbody></table></div>`;
+}
+
+function pintarCorreicao(){
+  const c = D.cobertura||{};
+  const rot = {coletado:'Edição coletada e indexada', sem_termos:'Edição sem menção aos termos',
+    ausente_no_indice:'Nada consta — lacuna', falha:'Erro técnico — reprocessar'};
+  $('#cb').innerHTML = `
+    <p class="sub" style="margin-bottom:1.25rem">Toda vigilância automatizada corre o risco
+      da falha silenciosa: o roteiro roda, nada encontra, e ninguém percebe que ele não
+      olhou. A correição fecha essa brecha, classificando cada dia útil do período.</p>
+    <div class="numeros" style="margin-top:0">
+      <div class="n"><b>${nf.format(c.dias_uteis||0)}</b><span>dias úteis</span></div>
+      <div class="n"><b>${c.indice_cobertura||0}%</b><span>índice de cobertura</span></div>
+      <div class="n ${(c.lacunas||[]).length?'alerta':''}"><b>${(c.lacunas||[]).length}</b><span>lacunas</span></div>
+    </div>
+    <div class="rolo"><table><thead><tr><th>Situação</th><th>Dias</th></tr></thead><tbody>
+      ${Object.entries(c.resumo||{}).map(([k,v])=>`<tr><td>${rot[k]||k}</td><td class="num">${v}</td></tr>`).join('')}
+    </tbody></table></div>
+    ${(c.lacunas||[]).length?`<h3 style="font:600 15px 'IBM Plex Sans';margin:1.75rem 0 .6rem">Dias a investigar</h3>
+      <p class="meta">${c.lacunas.slice(0,80).map(l=>dbr(l.data)).join(' · ')}</p>`
+      :'<p class="meta" style="margin-top:1rem">Nenhuma lacuna. Todos os dias úteis do período foram verificados.</p>'}`;
+}
+</script>
+</body>
+</html>

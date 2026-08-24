@@ -1,0 +1,84 @@
+# CORPUS NORMATIVO FIXO
+# Baixado e consolidado a cada 30 dias por src/corpus_build.py.
+# A rotina DIÁRIA jamais pesquisa norma nova: lê exclusivamente corpus/corpus.md.
+# Isso mantém o prefixo do prompt byte-idêntico e permite cache de 1 hora
+# a 10% do custo de entrada.
+
+versao_minima_dias: 30
+
+# Blocos na ordem de estabilidade (mais estável primeiro = melhor aproveitamento de cache)
+blocos:
+
+  constitucional:
+    - id: cf88
+      nome: "Constituição Federal de 1988"
+      url: "https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"
+      recortar_artigos: ["5", "6", "37", "70", "74", "194", "195", "203", "204", "227"]
+
+    - id: ce_go
+      nome: "Constituição do Estado de Goiás"
+      url: "CONFIRMAR"          # gravar URL na primeira execução
+      obrigatorio: false
+
+    - id: lom_goiania
+      nome: "Lei Orgânica do Município de Goiânia"
+      url: "CONFIRMAR"
+      obrigatorio: false
+
+  federal_leis:
+    - {id: l8742, nome: "Lei 8.742/1993 — LOAS", url: "https://www.planalto.gov.br/ccivil_03/leis/l8742.htm"}
+    - {id: l12435, nome: "Lei 12.435/2011", url: "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12435.htm"}
+    - {id: l12527, nome: "Lei 12.527/2011 — LAI", url: "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12527.htm"}
+    - {id: l13019, nome: "Lei 13.019/2014 — MROSC", url: "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l13019.htm"}
+    - {id: l13709, nome: "Lei 13.709/2018 — LGPD", url: "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm"}
+    - {id: l14129, nome: "Lei 14.129/2021 — Governo Digital", url: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14129.htm"}
+    - {id: l10836, nome: "Lei 10.836/2004 — Bolsa Família", url: "https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2004/lei/l10.836.htm"}
+    - {id: l14601, nome: "Lei 14.601/2023 — novo Bolsa Família", url: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/l14601.htm"}
+    - {id: l12058, nome: "Lei 12.058/2009 — IGD", url: "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2009/lei/l12058.htm"}
+    - {id: lc187, nome: "Lei Complementar 187/2021 — CEBAS", url: "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp187.htm"}
+    - {id: l8429, nome: "Lei 8.429/1992 — Improbidade", url: "https://www.planalto.gov.br/ccivil_03/leis/l8429.htm"}
+    - {id: l7347, nome: "Lei 7.347/1985 — Ação Civil Pública", url: "https://www.planalto.gov.br/ccivil_03/leis/l7347orig.htm"}
+    - {id: l4320, nome: "Lei 4.320/1964", url: "https://www.planalto.gov.br/ccivil_03/leis/l4320.htm"}
+    - {id: lc101, nome: "Lei Complementar 101/2000 — LRF", url: "https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp101.htm"}
+    - {id: l14133, nome: "Lei 14.133/2021 — Licitações", url: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14133.htm"}
+
+  federal_infralegal:
+    - {id: d11699, nome: "Decreto 11.699/2023", url: "CONFIRMAR", obrigatorio: false}
+    - {id: d6307, nome: "Decreto 6.307/2007 — benefícios eventuais", url: "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2007/decreto/d6307.htm"}
+    - {id: p1041_2024, nome: "Portaria MDS 1.041/2024 — IGD-M", url: "https://www.gov.br/mds/pt-br/acoes-e-programas/bolsa-familia/igd/portaria"}
+    - {id: p754_2010, nome: "Portaria MDS 754/2010", url: "CONFIRMAR", obrigatorio: false}
+
+  cnas:
+    - {id: r145_2004, nome: "Resolução CNAS 145/2004 — PNAS", url: "CONFIRMAR"}
+    - {id: r269_2006, nome: "Resolução CNAS 269/2006 — NOB-RH/SUAS", url: "CONFIRMAR"}
+    - {id: r109_2009, nome: "Resolução CNAS 109/2009 — Tipificação", url: "CONFIRMAR"}
+    - {id: r33_2012, nome: "Resolução CNAS 33/2012 — NOB/SUAS", url: "CONFIRMAR"}
+    - {id: r14_2014, nome: "Resolução CNAS 14/2014 — inscrição de entidades", url: "CONFIRMAR"}
+    - {id: r15_2016, nome: "Resolução CNAS 15/2016", url: "CONFIRMAR", obrigatorio: false}
+    - {id: r157_2021, nome: "Resolução CNAS 157 — Regimento Interno do CNAS", url: "CONFIRMAR", obrigatorio: false}
+    - {id: r182_2025, nome: "Resolução CNAS 182/2025 (revoga a 27/2011)", url: "CONFIRMAR"}
+    - {id: r202_2025, nome: "Resolução CNAS/MDS 202/2025 — conselhos, PBF, CadÚnico e IGD"
+       , url: "https://www.gov.br/participamaisbrasil/resolucao-cnas-mds-n-202-de-25-de-julho-de-2025"
+       , critico: true}
+    - {id: r213_2025, nome: "Resolução CNAS/MDS 213/2025 — benefícios eventuais", url: "CONFIRMAR", obrigatorio: false}
+    # A lista de resoluções vigentes é reconciliada mensalmente contra
+    # https://www.gov.br/participamaisbrasil/resolucoes12
+
+  estadual_go:
+    - {id: l18025, nome: "Lei estadual 18.025/2013 — LAI em Goiás", url: "CONFIRMAR"}
+    - {id: ceas_go, nome: "Lei de criação do CEAS-GO / SUAS estadual", url: "CONFIRMAR", obrigatorio: false}
+
+  municipal_goiania:
+    - {id: l7532_1995, nome: "Lei 7.532/1995 — cria o CMASGyn", url: "CONFIRMAR", critico: true}
+    - {id: l8248_2004, nome: "Lei 8.248/2004 — Lei de Parceria", url: "CONFIRMAR"}
+    - {id: ri_cmasgyn, nome: "Regimento Interno do CMASGyn"
+       , url: "https://cmasgyn.com.br/Resources/documentos/legislacao/regimento_interno.pdf"
+       , critico: true}
+    - {id: res068_2025, nome: "Resolução CMASGyn 068/2025 — LAI"
+       , url: "https://cmasgyn.com.br/Resources/documentos/resolucoes/resolucao_068_2025_LAI.pdf"}
+    - {id: lei_fmas, nome: "Lei do Fundo Municipal de Assistência Social", url: "CONFIRMAR"}
+    - {id: ppa_ldo_loa, nome: "PPA, LDO e LOA vigentes", url: "CONFIRMAR", critico: true}
+
+# Itens marcados CONFIRMAR são registrados em relatorios/corpus_pendencias.md
+# na primeira execução. O agente NÃO adivinha URL: ou baixa a fonte declarada,
+# ou reporta a lacuna.

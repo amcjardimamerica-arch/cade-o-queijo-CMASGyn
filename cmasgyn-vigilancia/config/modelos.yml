@@ -1,0 +1,107 @@
+# ROTEAMENTO DE MODELOS E ORÇAMENTO DE TOKENS
+#
+# Princípio: o trabalho sobe de nível apenas quando o nível anterior o aprova.
+# Um documento que a triagem descarta nunca chega à validação.
+
+niveis:
+
+  triagem:
+    modelo: "claude-haiku-4-5-20251001"
+    finalidade: "Decidir em uma palavra se o trecho interessa. Classificação binária."
+    max_tokens: 64
+    temperatura: 0
+    saida: "json_curto"
+    corpus_no_prompt: false      # triagem NÃO carrega o corpus
+    batch: true                  # 50% de desconto; não há urgência
+    proporcao_esperada: "100% dos trechos que passaram no filtro regex"
+
+  extracao:
+    modelo: "claude-sonnet-5"
+    finalidade: "Estruturar o documento aprovado: número, data, ementa, base legal, valores, entidades, CNPJ."
+    max_tokens: 1200
+    temperatura: 0
+    saida: "json_estruturado"
+    corpus_no_prompt: false      # extração é sintática, não precisa do corpus
+    batch: true
+    proporcao_esperada: "~15% dos trechos triados"
+
+  validacao:
+    modelo: "claude-opus-5"
+    finalidade: "Confronto jurídico do ato municipal com o corpus normativo. Pertinência temática, respaldo, padronização federal."
+    max_tokens: 3000
+    temperatura: 0
+    saida: "json_estruturado"
+    corpus_no_prompt: true       # aqui o corpus entra — e é cacheado
+    cache_ttl: "1h"
+    batch: false                 # queremos o resultado no mesmo dia
+    proporcao_esperada: "~3% dos trechos triados"
+
+  redacao:
+    modelo: "claude-opus-5"
+    finalidade: "Minutar ofício, pedido com base na Lei 12.527/2011 ou representação, a partir do achado já validado."
+    max_tokens: 4000
+    temperatura: 0.2
+    corpus_no_prompt: true
+    cache_ttl: "1h"
+    batch: false
+    acionamento: "manual"        # só roda quando o operador marca o achado
+
+# ---------------------------------------------------------------------------
+orcamento:
+  # Teto de consumo por janela de renovação do limite.
+  fracao_maxima_do_limite: 0.50
+
+  # Reserva por nível dentro desse teto (soma = 1.0)
+  rateio:
+    triagem: 0.15
+    extracao: 0.25
+    validacao: 0.50
+    redacao: 0.10
+
+  # Parada e retomada
+  parada:
+    ao_atingir_fracao: 0.50
+    gravar_estado_em: "estado/orcamento.json"
+    enfileirar_pendentes_em: "estado/fila_pendente.jsonl"
+  retomada:
+    # Lê os cabeçalhos anthropic-ratelimit-*-reset e retry-after da resposta 429
+    # e reagenda a execução para o instante da renovação + margem.
+    margem_segundos: 120
+    workflow: ".github/workflows/retomada.yml"
+    ordem: "peso_do_grupo_desc, severidade_desc, data_desc"
+
+# ---------------------------------------------------------------------------
+economia:
+  # Regras acumulativas. Cada uma corta consumo de forma independente.
+  R1_gate_regex: >
+    Nenhum caractere sobe ao modelo sem casar no léxico de config/termos.yml.
+  R2_recorte_de_janela: >
+    Envia-se apenas a janela em torno do acerto, nunca a página ou o documento inteiro.
+  R3_deduplicacao_por_hash: >
+    Documento cujo SHA-256 já consta em estado/analisados.json não é reanalisado.
+  R4_cache_de_corpus: >
+    O corpus normativo é prefixo estável marcado com cache_control ttl 1h.
+    Leitura de cache custa 10% da entrada e não conta no limite de tokens por minuto.
+    O corpus vai SEMPRE no início do prompt; o conteúdo variável, sempre depois.
+  R5_escalonamento: >
+    triagem (barato) -> extração (médio) -> validação (caro). Só sobe o aprovado.
+  R6_batch: >
+    Triagem e extração vão pela Batch API, com 50% de desconto. Só a validação
+    e a redação são síncronas.
+  R7_get_condicional: >
+    ETag e If-Modified-Since em toda requisição. HTTP 304 encerra o processamento
+    daquela fonte sem custo algum.
+  R8_saida_curta: >
+    Toda resposta é JSON com esquema fixo e max_tokens apertado. Proibido texto livre
+    nos níveis de triagem e extração.
+  R9_teto_de_50_por_cento: >
+    Interrompe ao atingir metade do limite da janela e retoma na renovação.
+  R10_retencao_30_dias: >
+    Edição do Diário Oficial sem acerto no léxico é apagada após 30 dias.
+    Só permanece o que referencia o CMASGyn, suas entidades ou o FMAS.
+  R11_ocr_condicional: >
+    OCR só quando a extração de texto nativo retorna menos de 200 caracteres por
+    página. OCR é a operação mais cara do fluxo em CPU.
+  R12_corpus_congelado: >
+    A rotina diária não pesquisa norma nova. Lê o corpus consolidado. Atualização
+    normativa é tarefa mensal separada.

@@ -1,0 +1,170 @@
+{
+  "dias": {
+    "2026-07-25": {
+      "situacao": "NAO_UTIL",
+      "util": false
+    },
+    "2026-07-26": {
+      "situacao": "NAO_UTIL",
+      "util": false
+    },
+    "2026-07-27": {
+      "situacao": "SEM_ATO",
+      "util": true,
+      "edicoes": 1,
+      "documentos": [
+        "do_20260727_000008828.pdf"
+      ]
+    },
+    "2026-07-28": {
+      "situacao": "PUBLICOU",
+      "util": true,
+      "edicoes": 1,
+      "documentos": [
+        "do_20260728_000008829.pdf"
+      ]
+    },
+    "2026-07-29": {
+      "situacao": "PUBLICOU",
+      "util": true,
+      "edicoes": 1,
+      "documentos": [
+        "do_20260729_000008830.pdf"
+      ]
+    },
+    "2026-07-30": {
+      "situacao": "INEXISTENTE",
+      "util": true,
+      "nota": "nenhuma edição indexada para o dia"
+    },
+    "2026-07-31": {
+      "situacao": "INEXISTENTE",
+      "util": true,
+      "nota": "nenhuma edição indexada para o dia"
+    },
+    "2026-08-01": {
+      "situacao": "NAO_UTIL",
+      "util": false
+    },
+    "2026-08-02": {
+      "situacao": "NAO_UTIL",
+      "util": false
+    },
+    "2026-08-03": {
+      "situacao": "INEXISTENTE",
+      "util": true,
+      "nota": "nenhuma edição indexada para o dia"
+    },
+    "2026-08-04": {
+      "situacao": "INEXISTENTE",
+      "util": true,
+      "nota": "nenhuma edição indexada para o dia"
+    },
+    "2026-08-05": {
+      "situacao": "INEXISTENTE",
+      "util": true,
+      "nota": "nenhuma edição indexada para o dia"
+    },
+    "2026-08-06": {
+      "situacao": "INEXISTENTE",
+      "util": true,
+      "nota": "nenhuma edição indexada para o dia"
+    },
+    "2026-08-07": {
+      "situacao": "INEXISTENTE",
+      "util": true,
+      "nota": "nenhuma edição indexada para o dia"
+    },
+    "2026-08-08": {
+      "situacao": "NAO_UTIL",
+      "util": false
+    },
+    "2026-08-09": {
+      "situacao": "NAO_UTIL",
+      "util": false
+    },
+    "2026-08-10": {
+      "situacao": "INEXISTENTE",
+      "util": true,
+      "nota": "nenhuma edição indexada para o dia"
+    },
+    "2026-08-11": {
+      "situacao": "INEXISTENTE",
+      "util": true,
+      "nota": "nenhuma edição indexada para o dia"
+    },
+    "2026-08-12": {
+      "situacao": "INEXISTENTE",
+      "util": true,
+      "nota": "nenhuma edição indexada para o dia"
+    },
+    "2026-08-13": {
+      "situacao": "INEXISTENTE",
+      "util": true,
+      "nota": "nenhuma edição indexada para o dia"
+    },
+    "2026-08-14": {
+      "situacao": "INEXISTENTE",
+      "util": true,
+      "nota": "nenhuma edição indexada para o dia"
+    },
+    "2026-08-15": {
+      "situacao": "NAO_UTIL",
+      "util": false
+    },
+    "2026-08-16": {
+      "situacao": "NAO_UTIL",
+      "util": false
+    },
+    "2026-08-17": {
+      "situacao": "INEXISTENTE",
+      "util": true,
+      "nota": "nenhuma edição indexada para o dia"
+    },
+    "2026-08-18": {
+      "situacao": "INEXISTENTE",
+      "util": true,
+      "nota": "nenhuma edição indexada para o dia"
+    },
+    "2026-08-19": {
+      "situacao": "INEXISTENTE",
+      "util": true,
+      "nota": "nenhuma edição indexada para o dia"
+    },
+    "2026-08-20": {
+      "situacao": "INEXISTENTE",
+      "util": true,
+      "nota": "nenhuma edição indexada para o dia"
+    },
+    "2026-08-21": {
+      "situacao": "INEXISTENTE",
+      "util": true,
+      "nota": "nenhuma edição indexada para o dia"
+    },
+    "2026-08-22": {
+      "situacao": "NAO_UTIL",
+      "util": false
+    },
+    "2026-08-23": {
+      "situacao": "NAO_UTIL",
+      "util": false
+    },
+    "2026-08-24": {
+      "situacao": "INEXISTENTE",
+      "util": true,
+      "nota": "nenhuma edição indexada para o dia"
+    }
+  },
+  "gerado_em": "2026-08-24T09:30:25.720558+00:00",
+  "resumo": {
+    "dias_uteis": 21,
+    "contagem": {
+      "SEM_ATO": 1,
+      "PUBLICOU": 2,
+      "INEXISTENTE": 18
+    },
+    "ultima_publicacao": "2026-07-29",
+    "dias_desde_ultima": 26,
+    "inexistentes": 18
+  }
+}
