@@ -1,0 +1,217 @@
+# Parecer diário — vigilância do CMASGyn
+
+**24/08/2026**
+
+Primeira apuração. Todo o quadro abaixo é linha de base.
+
+## Quadro
+
+| Indicador | Valor |
+|---|---|
+| edicoes | 183 |
+| com mencao cmas | 183 |
+| atas | 0 |
+| achados | 13 |
+| achados altos | 6 |
+| cobertura | 0 |
+| caracteres | 85046645 |
+| atos identificados | 236 |
+| indice publicidade | 6.36 |
+| valor rastreado | 53810573.26 |
+
+## Severidade alta
+
+### [PUB-01] Índice de publicidade dos atos do conselho em 6.36%
+
+**Matéria.** Publicidade dos atos deliberativos
+
+**Constatação.** De 236 atos identificados no triênio, apenas 15 tiveram texto integral localizado no Diário Oficial. Outros 54 são referidos por atos posteriores sem que seu inteiro teor jamais tenha sido publicado, e 167 ocupam número na sequência sem qualquer rastro público. Ato deliberativo que produz efeito sem publicação contraria o artigo 37, caput, da Constituição Federal e o dever de transparência ativa do artigo 8º da Lei 12.527/2011.
+
+**Análise.** A publicação não é formalidade acessória: é condição de eficácia do ato administrativo perante terceiros. Resolução que defere inscrição de entidade, aprova plano de aplicação ou homologa contas produz efeito jurídico imediato, e produzi-lo sem publicação compromete a própria oponibilidade do ato.
+
+**Fundamento.** Constituição Federal, artigo 37, caput; Lei 12.527/2011, artigo 8º; Lei 9.784/1999, artigo 26.
+
+**Ressalva.** O índice global é piso, não medida fechada: depende do classificador estrutural, que tem falso negativo conhecido. Use sempre o número da regra PUB-03, confirmado por duas vias independentes.
+
+**Encaminhamento.** Representação ao Ministério Público — Representação ao Ministério Público, com pedido de instauração de inquérito civil.
+
+---
+
+### [ATA-07] Nenhuma ata de plenária publicada no Diário Oficial no triênio
+
+**Matéria.** Ausência total de atas publicadas
+
+**Constatação.** Não se localizou, em três anos de edições, uma única ata de reunião plenária do conselho. Sem ata pública não há como aferir quórum, deliberação nem voto — o controle social fica impossibilitado de exercer-se sobre o próprio órgão de controle social.
+
+**Análise.** É o achado de maior alcance estrutural. Sem ata pública não se afere quórum, não se identifica quem deliberou, não se sabe se houve voto nominal. O controle social sobre o próprio órgão de controle social fica materialmente impossibilitado. E o efetivo funcionamento do conselho, que a lei erige em condição de repasse federal, torna-se afirmação sem lastro documental.
+
+**Fundamento.** Lei 8.742/1993, artigos 16 e 30; Constituição Federal, artigo 37, caput; Lei 12.527/2011, artigo 8º.
+
+**Encaminhamento.** Representação ao Ministério Público — Representação ao Ministério Público e comunicação ao Conselho Nacional de Assistência Social, dada a conexão com a condicionalidade do repasse.
+
+---
+
+### [SOB-06] 58 entidade(s) com valor sem vínculo formal identificável
+
+**Matéria.** Repasse sem vínculo formal identificável
+
+**Constatação.** A publicação associa valor a inscrição no cadastro nacional de pessoa jurídica sem indicar contrato, termo de fomento, de colaboração ou convênio correspondente. Sem o vínculo não se pode aferir objeto, prazo, meta nem prestação de contas.
+
+**Análise.** Valor associado a inscrição no cadastro de pessoa jurídica sem indicação de contrato, termo ou convênio impede aferir objeto, prazo, meta e prestação de contas. O instrumento é o que torna o repasse sindicável.
+
+**Fundamento.** Lei 13.019/2014, artigos 42 e 63; Lei 4.320/1964, artigo 63.
+
+**Ressalva.** A extração capta também o cadastro do próprio Município nos cabeçalhos das publicações. Triagem obrigatória antes de qualquer uso: confira se cada número corresponde a entidade privada.
+
+**Encaminhamento.** Pedido de acesso à informação — Pedido da relação de instrumentos com beneficiário, objeto, valor e vigência.
+
+---
+
+### [SOB-07] 79 publicação(ões) de vínculo sem menção a chamamento público
+
+**Matéria.** Parceria sem chamamento público
+
+**Constatação.** Termo de fomento ou colaboração publicado sem que a mesma publicação registre chamamento público, dispensa ou inexigibilidade. Os artigos 24, 30 e 31 da Lei 13.019/2014 exigem o procedimento ou a justificativa expressa de sua dispensa.
+
+**Análise.** Termo de fomento ou colaboração publicado sem registro de chamamento, dispensa ou inexigibilidade é publicação incompleta e impede aferir se houve competição. A regra é o chamamento; a exceção exige justificativa expressa.
+
+**Fundamento.** Lei 13.019/2014, artigos 24, 30 e 31.
+
+**Encaminhamento.** Pedido de acesso à informação — Pedido do procedimento de seleção adotado em cada instrumento.
+
+---
+
+### [PUB-03] 24 ato(s) do conselho sem publicação confirmada por duas vias independentes
+
+**Matéria.** Não publicação confirmada por dupla via
+
+**Constatação.** De 40 atos examinados, 24 não foram localizados nem pelo classificador estrutural sobre o acervo, nem por busca direta e cega no índice de texto integral do Diário Oficial. A concordância entre as duas vias foi de 60.0%. Ato deliberativo que produz efeito sem publicação contraria o artigo 37, caput, da Constituição Federal e o dever de transparência ativa do artigo 8º da Lei 12.527/2011.
+
+**Análise.** Este é o número utilizável em peça. Dois classificadores independentes — um estrutural sobre o acervo, outro de busca cega no índice de texto integral — convergiram na ausência de publicação. A convergência afasta a hipótese de defeito de um único método.
+
+**Fundamento.** Constituição Federal, artigo 37, caput; Lei 12.527/2011, artigo 8º, § 1º, incisos I e IV.
+
+**Ressalva.** Ainda assim, confira à mão uma amostra antes de protocolar. Convergência reduz o risco, não o elimina.
+
+**Encaminhamento.** Representação ao Ministério Público — Representação ao Ministério Público e comunicação ao Conselho Nacional.
+
+---
+
+### [PUB-06] 18 dia(s) útil(eis) sem qualquer edição indexada
+
+**Matéria.** Indisponibilidade da edição para consulta automatizada
+
+**Constatação.** Dia útil sem edição do Diário Oficial disponível para consulta automatizada. Ou não houve publicação, ou houve e não foi disponibilizada em formato acessível — hipóteses que o artigo 8º, § 3º, incisos III e VI, da Lei 12.527/2011 igualmente reprova.
+
+**Análise.** Duas hipóteses concorrem e os dados não as distinguem: ou não houve publicação, ou houve e não foi disponibilizada em formato acessível por sistema externo. A lei reprova as duas igualmente, o que torna a ambiguidade irrelevante para o dever, embora relevante para a peça.
+
+**Fundamento.** Lei 12.527/2011, artigo 8º, § 3º, incisos III e VI; Lei 14.129/2021, artigo 3º.
+
+**Encaminhamento.** Pedido de acesso à informação — Pedido de acesso à informação requerendo o endereço de acesso automatizado.
+
+---
+
+## Severidade média
+
+### [PUB-02] Exercício de 2024 com maioria de atos não publicados
+
+**Matéria.** Publicidade por exercício
+
+**Constatação.** Em 2024, 1 de 41 atos tiveram inteiro teor localizado. Os demais existem apenas por citação ou por lacuna de numeração.
+
+**Análise.** A distribuição temporal importa mais que o total. Exercício em que quase nenhum ato foi publicado, mas em que atos daquele ano são citados por atos posteriores, demonstra que o conselho deliberou e não deu publicidade — e não que deliberou pouco.
+
+**Fundamento.** Lei 12.527/2011, artigo 8º.
+
+**Encaminhamento.** Pedido de acesso à informação — Pedido de acesso à informação com pedido do inteiro teor dos atos do exercício.
+
+---
+
+### [PUB-02] Exercício de 2025 com maioria de atos não publicados
+
+**Matéria.** Publicidade por exercício
+
+**Constatação.** Em 2025, 11 de 159 atos tiveram inteiro teor localizado. Os demais existem apenas por citação ou por lacuna de numeração.
+
+**Análise.** A distribuição temporal importa mais que o total. Exercício em que quase nenhum ato foi publicado, mas em que atos daquele ano são citados por atos posteriores, demonstra que o conselho deliberou e não deu publicidade — e não que deliberou pouco.
+
+**Fundamento.** Lei 12.527/2011, artigo 8º.
+
+**Encaminhamento.** Pedido de acesso à informação — Pedido de acesso à informação com pedido do inteiro teor dos atos do exercício.
+
+---
+
+### [PUB-02] Exercício de 2026 com maioria de atos não publicados
+
+**Matéria.** Publicidade por exercício
+
+**Constatação.** Em 2026, 1 de 33 atos tiveram inteiro teor localizado. Os demais existem apenas por citação ou por lacuna de numeração.
+
+**Análise.** A distribuição temporal importa mais que o total. Exercício em que quase nenhum ato foi publicado, mas em que atos daquele ano são citados por atos posteriores, demonstra que o conselho deliberou e não deu publicidade — e não que deliberou pouco.
+
+**Fundamento.** Lei 12.527/2011, artigo 8º.
+
+**Encaminhamento.** Pedido de acesso à informação — Pedido de acesso à informação com pedido do inteiro teor dos atos do exercício.
+
+---
+
+### [FIN-03] Rastreabilidade da origem dos recursos em 17.57%
+
+**Matéria.** Rastreabilidade da origem dos recursos
+
+**Constatação.** De R$ 53.810.573,26 em linhas orçamentárias da função 08 localizadas nas publicações. apenas R$ 9.453.211,48 permitem identificar o ente de origem, Os atos publicados não indicam a fonte de recursos de forma legível. o que impede conciliar o que a União e o Estado repassaram com o que o Município executou,
+
+**Análise.** Não se trata de desvio: trata-se de opacidade, que é problema anterior e condição dele. Sem identificar qual verba é federal, não se afere o cumprimento do piso do Índice de Gestão Descentralizada destinado ao controle social. As duas coisas se conectam: a opacidade da fonte inviabiliza a fiscalização do percentual.
+
+**Fundamento.** Lei Complementar 101/2000, artigo 48-A, inciso I; Lei 4.320/1964, artigos 6º e 13.
+
+**Encaminhamento.** Pedido de acesso à informação — Pedido da tabela de correspondência entre códigos de fonte e origem federativa.
+
+---
+
+### [PUB-05] 26 dias sem ato da assistência social no Diário Oficial
+
+**Matéria.** Intermitência da publicação
+
+**Constatação.** A última publicação identificada da pasta é de 2026-07-29. Intervalo dessa ordem, num órgão que delibera mensalmente e executa orçamento continuamente, sugere que a publicação não acompanha a atividade.
+
+**Análise.** Órgão que delibera mensalmente e executa orçamento continuamente não atravessa semanas sem produzir ato publicável. Intervalo longo sugere que a publicação não acompanha a atividade — ou que a atividade cessou, hipótese que traz consequência própria quanto à condicionalidade dos repasses.
+
+**Fundamento.** Lei 12.527/2011, artigo 8º, § 3º, inciso VI; Lei 8.742/1993, artigo 30.
+
+**Encaminhamento.** Pedido de acesso à informação — Pedido de acesso à informação sobre atos do período e calendário de reuniões.
+
+---
+
+## Severidade baixa
+
+### [FIN-04] 6 código(s) de fonte de recursos sem correspondência
+
+**Matéria.** Códigos de fonte não mapeados
+
+**Constatação.** Códigos observados nas publicações e ainda não mapeados: 2660, 1500, 2661, 2706, 1706, 1661. Confirmar contra o Quadro de Detalhamento de Despesas do exercício e preencher config/fontes_recursos.yml.
+
+**Análise.** Código de fonte sem correspondência declarada impede a conciliação federativa. Não se presume a origem: ou o ente declara, ou o dado é inservível.
+
+**Fundamento.** Lei 4.320/1964, artigo 6º.
+
+**Encaminhamento.** Pedido de acesso à informação — Pedido do Quadro de Detalhamento de Despesas.
+
+---
+
+### [PUB-04] 16 ato(s) com divergência entre as vias de verificação
+
+**Matéria.** Divergência entre as vias de verificação
+
+**Constatação.** As duas vias discordaram quanto à publicação. Conferência manual necessária antes de qualquer uso do dado. A lista está em dados/verificacao_dupla.json, campo fila_de_conferencia_humana.
+
+**Análise.** Divergência não é achado contra o Município: é achado contra o próprio sistema, e existe para impedir que defeito de classificador se converta em acusação indevida. Cada item desta fila exige conferência humana.
+
+**Encaminhamento.** Conferência interna — Nenhuma. Conferência interna antes de qualquer uso.
+
+---
+
+
+Parecer produzido por rotina automatizada a partir de documento oficial coletado do Diário Oficial do Município de Goiânia. Constitui subsídio técnico, não peça processual: nada se protocola sem revisão do advogado responsável, na forma do artigo 32 da Lei 8.906/1994.
+
+Painel: https://amcjardimamerica-arch.github.io/cmasgyn-vigilancia/

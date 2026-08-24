@@ -1,0 +1,70 @@
+{
+  "data": "2026-08-24",
+  "achados": {
+    "afb41d374e18c0a1": {
+      "regra": "PUB-01",
+      "titulo": "Índice de publicidade dos atos do conselho em 6.36%",
+      "severidade": "alta"
+    },
+    "8e2c0d88e1947ee0": {
+      "regra": "ATA-07",
+      "titulo": "Nenhuma ata de plenária publicada no Diário Oficial no triênio",
+      "severidade": "alta"
+    },
+    "c75ec9e31eb99a84": {
+      "regra": "SOB-06",
+      "titulo": "58 entidade(s) com valor sem vínculo formal identificável",
+      "severidade": "alta"
+    },
+    "b3f827dcad65182e": {
+      "regra": "SOB-07",
+      "titulo": "79 publicação(ões) de vínculo sem menção a chamamento público",
+      "severidade": "alta"
+    },
+    "465503ba4d46a7ee": {
+      "regra": "PUB-03",
+      "titulo": "24 ato(s) do conselho sem publicação confirmada por duas vias independentes",
+      "severidade": "alta"
+    },
+    "45fce6c60e890ef3": {
+      "regra": "PUB-06",
+      "titulo": "18 dia(s) útil(eis) sem qualquer edição indexada",
+      "severidade": "alta"
+    },
+    "557cba62e87b19e1": {
+      "regra": "PUB-02",
+      "titulo": "Exercício de 2024 com maioria de atos não publicados",
+      "severidade": "media"
+    },
+    "78485849e5376bde": {
+      "regra": "PUB-02",
+      "titulo": "Exercício de 2025 com maioria de atos não publicados",
+      "severidade": "media"
+    },
+    "b401689bd3b72730": {
+      "regra": "PUB-02",
+      "titulo": "Exercício de 2026 com maioria de atos não publicados",
+      "severidade": "media"
+    },
+    "543439e1f6378401": {
+      "regra": "FIN-03",
+      "titulo": "Rastreabilidade da origem dos recursos em 17.57%",
+      "severidade": "media"
+    },
+    "68f14cfe5124e46d": {
+      "regra": "PUB-05",
+      "titulo": "26 dias sem ato da assistência social no Diário Oficial",
+      "severidade": "media"
+    },
+    "ee9b1a8866aa70b2": {
+      "regra": "FIN-04",
+      "titulo": "6 código(s) de fonte de recursos sem correspondência",
+      "severidade": "baixa"
+    },
+    "3de104eb32f8e054": {
+      "regra": "PUB-04",
+      "titulo": "16 ato(s) com divergência entre as vias de verificação",
+      "severidade": "baixa"
+    }
+  }
+}

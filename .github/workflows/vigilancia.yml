@@ -121,6 +121,18 @@ jobs:
         continue-on-error: true
         run: python src/consulta.py
 
+      - name: Parecer diário
+        id: parecer
+        continue-on-error: true
+        run: |
+          python src/parecer.py > /tmp/parecer.json
+          python - <<'EOF' >> "$GITHUB_OUTPUT"
+          import json
+          r = json.load(open('/tmp/parecer.json'))
+          for k, v in r.items():
+              print(f"{k}={v}")
+          EOF
+
       - name: Publicar no repositório
         continue-on-error: true
         run: |
@@ -179,12 +191,47 @@ jobs:
             echo "Painel: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
           } >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Abrir issue quando houver severidade alta
-        if: steps.painel.outputs.altos != '0'
+      # ---------------------------------------------------------------------
+      # Entrega. O parecer vai para um item no repositório, e o GitHub envia
+      # notificação por correio eletrônico a quem estiver atribuído. É por isso
+      # que o item é sempre atribuído ao dono do repositório: atribuição gera
+      # notificação mesmo para quem não acompanha o repositório.
+      # ---------------------------------------------------------------------
+      - name: Entregar o parecer
+        if: steps.parecer.outputs.notificar == 'True'
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          DATA=$(date -u +%F)
+          NOVOS="${{ steps.parecer.outputs.novos }}"
+          ALTOS="${{ steps.parecer.outputs.severidade_alta }}"
+          if [ "$NOVOS" -gt 0 ]; then
+            TITULO="Parecer $DATA — $NOVOS achado(s) novo(s), $ALTOS de severidade alta"
+          else
+            TITULO="Parecer $DATA — $ALTOS achado(s) de severidade alta"
+          fi
+          # O corpo do item é limitado; o parecer inteiro fica no repositório.
+          head -c 60000 relatorios/parecer_$DATA.md > /tmp/corpo.md
+          {
+            echo ""
+            echo "---"
+            echo ""
+            echo "Parecer completo: [relatorios/parecer_$DATA.md](../blob/main/relatorios/parecer_$DATA.md)"
+            echo "Documento de consulta: [docs/CONSULTA.md](../blob/main/docs/CONSULTA.md)"
+          } >> /tmp/corpo.md
+          gh label create "parecer" --color 1D76DB --description "Parecer diário" 2>/dev/null || true
+          gh label create "severidade-alta" --color B60205 2>/dev/null || true
+          ROTULOS="parecer"
+          [ "$ALTOS" != "0" ] && ROTULOS="parecer,severidade-alta"
           gh issue create \
-            --title "Achados de severidade alta — $(date -u +%F)" \
-            --body "$(cat relatorios/boletim_$(date -u +%F).md 2>/dev/null || cat relatorios/correicao.md)" \
-            --label "severidade-alta" || true
+            --title "$TITULO" \
+            --body-file /tmp/corpo.md \
+            --label "$ROTULOS" \
+            --assignee "${{ github.repository_owner }}"
+
+      - name: Sem novidade — apenas registrar
+        if: steps.parecer.outputs.notificar != 'True'
+        run: |
+          echo "Nada mudou desde a apuração anterior. Nenhuma notificação enviada." \
+            >> "$GITHUB_STEP_SUMMARY"
