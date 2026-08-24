@@ -1,0 +1,164 @@
+name: Vigilância CMASGyn
+
+on:
+  push:
+    branches: [main, master]      # roda sozinho assim que os arquivos chegam
+  schedule:
+    # 09:20 UTC = 06:20 em Goiânia, de segunda a sexta.
+    - cron: "20 9 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      dias:
+        description: "Dias retroativos a varrer"
+        default: "7"
+      recolher_historico:
+        description: "Continuar a colheita do acervo de 3 anos (sim/nao)"
+        default: "sim"
+
+concurrency:
+  group: vigilancia
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  issues: write
+  pages: write
+  id-token: write
+
+jobs:
+  vigiar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Diagnóstico de configuração
+        id: diag
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "## Diagnóstico de configuração" >> "$GITHUB_STEP_SUMMARY"
+          FALTA=0
+          if git push --dry-run origin HEAD 2>/dev/null; then
+            echo "- [x] Escrita no repositório: **liberada**" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "- [ ] Escrita no repositório: **BLOQUEADA**" >> "$GITHUB_STEP_SUMMARY"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "  Abra **Configurações (Settings) → Ações (Actions) → Geral (General)**," >> "$GITHUB_STEP_SUMMARY"
+            echo "  role até **Permissões de fluxo de trabalho (Workflow permissions)**," >> "$GITHUB_STEP_SUMMARY"
+            echo "  marque **Permissões de leitura e gravação (Read and write permissions)**" >> "$GITHUB_STEP_SUMMARY"
+            echo "  e a caixa de criar pull requests. Depois rode este fluxo de novo." >> "$GITHUB_STEP_SUMMARY"
+            FALTA=1
+          fi
+          if [ -n "${{ secrets.ANTHROPIC_API_KEY }}" ]; then
+            echo "- [x] Chave de API: presente (camada de parecer jurídico ativa)" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "- [x] Chave de API: ausente — **modo determinístico, custo zero**" >> "$GITHUB_STEP_SUMMARY"
+          fi
+          echo "falta=$FALTA" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12", cache: pip }
+
+      - name: Dependências
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ocrmypdf tesseract-ocr-por ghostscript
+          pip install -q -r requirements.txt
+
+      - name: Continuar a colheita do acervo histórico
+        if: github.event.inputs.recolher_historico != 'nao'
+        run: |
+          # Teto por execução para caber na janela de 55 minutos.
+          python src/historico.py dados/janela3anos.json 90 || true
+
+      - name: Varredura diária do Diário Oficial
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          LIMITE_TOKENS_JANELA: ${{ vars.LIMITE_TOKENS_JANELA }}
+          CONTATO_EMAIL: ${{ vars.CONTATO_EMAIL }}
+        run: |
+          # Sem chave de API o sistema roda por inteiro em modo determinístico.
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::notice::Sem chave de API — executando somente as regras determinísticas (custo zero)."
+            export MODO_DETERMINISTICO=1
+          fi
+          python src/run_diario.py || true
+
+      - name: Semáforo diário de publicação
+        run: python src/publicacao_diaria.py 45 || true
+
+      - name: Extração com proveniência
+        run: python src/extracao.py assistencia_social || true
+
+      - name: Biblioteca de atos
+        run: python src/biblioteca.py || true
+
+      - name: Verificação dupla da publicidade
+        run: python src/verificacao_dupla.py 120 || true
+
+      - name: Conciliação financeira e trilha do dinheiro
+        run: |
+          python src/financeiro.py || true
+          python src/trilha.py || true
+
+      - name: Bateria de testes
+        run: python testes.py || echo "::warning::algum teste falhou; ver registro"
+
+      - name: Indexar no banco de busca local
+        run: python src/busca_local.py indexar
+
+      - name: Correição e painel
+        id: painel
+        run: |
+          python src/painel.py | tee /tmp/resumo.json
+          echo "altos=$(python -c "import json;print(json.load(open('/tmp/resumo.json'))['achados_altos'])")" >> "$GITHUB_OUTPUT"
+
+      - name: Publicar no repositório
+        continue-on-error: true
+        run: |
+          git config user.name "vigilancia-bot"
+          git config user.email "actions@github.com"
+          git add -A acervo estado dados docs relatorios config/termos_entidades.yml 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "vigilância $(date -u +%F)"
+          git pull --rebase --autostash || true
+          git push
+
+      - name: Habilitar o GitHub Pages automaticamente
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: docs }
+      - id: deploy
+        uses: actions/deploy-pages@v4
+
+      - name: Resumo da execução
+        if: always()
+        run: |
+          {
+            echo ""
+            echo "## Resultado"
+            if [ -f /tmp/resumo.json ]; then
+              python - <<'EOF'
+          import json
+          r = json.load(open('/tmp/resumo.json'))
+          print(f"| Indicador | Valor |")
+          print(f"|---|---|")
+          for k, v in r.items():
+              print(f"| {k.replace('_',' ')} | {v} |")
+          EOF
+            fi
+            echo ""
+            echo "Painel: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Abrir issue quando houver severidade alta
+        if: steps.painel.outputs.altos != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue create \
+            --title "Achados de severidade alta — $(date -u +%F)" \
+            --body "$(cat relatorios/boletim_$(date -u +%F).md 2>/dev/null || cat relatorios/correicao.md)" \
+            --label "severidade-alta" || true

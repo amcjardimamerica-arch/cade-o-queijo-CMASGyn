@@ -1,0 +1,7338 @@
+{
+  "dominio": "assistencia_social",
+  "gerado_em": "2026-08-23T18:21:29.573382+00:00",
+  "total_atos": 236,
+  "situacoes": {
+    "APENAS_CITADO": 54,
+    "PRESUMIDO": 167,
+    "PUBLICADO": 15
+  },
+  "por_ano": {
+    "2021": {
+      "APENAS_CITADO": 1
+    },
+    "2023": {
+      "PUBLICADO": 2
+    },
+    "2024": {
+      "PUBLICADO": 1,
+      "PRESUMIDO": 38,
+      "APENAS_CITADO": 2
+    },
+    "2025": {
+      "APENAS_CITADO": 43,
+      "PUBLICADO": 11,
+      "PRESUMIDO": 105
+    },
+    "2026": {
+      "APENAS_CITADO": 8,
+      "PRESUMIDO": 24,
+      "PUBLICADO": 1
+    }
+  },
+  "indice_de_publicidade": 6.36,
+  "atos": [
+    {
+      "chave": "037/2026",
+      "numero": 37,
+      "ano": 2026,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20260512_000008776.pdf",
+          "data": "2026-05-12",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260512_000008776.pdf",
+          "sha256_edicao": "0cb825b750064679a169f8ff84d347670648a2045b0280d86b9f2d00b0959079",
+          "pagina": 1,
+          "trecho_id": "do_20260512_000008776#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2026-05-12"
+    },
+    {
+      "chave": "036/2026",
+      "numero": 36,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "035/2026",
+      "numero": 35,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "034/2026",
+      "numero": 34,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "033/2026",
+      "numero": 33,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "032/2026",
+      "numero": 32,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "031/2026",
+      "numero": 31,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "030/2026",
+      "numero": 30,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "029/2026",
+      "numero": 29,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "028/2026",
+      "numero": 28,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "027/2026",
+      "numero": 27,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "026/2026",
+      "numero": 26,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "025/2026",
+      "numero": 25,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "024/2026",
+      "numero": 24,
+      "ano": 2026,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20260302_000008731.pdf",
+          "data": "2026-03-02",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260302_000008731.pdf",
+          "sha256_edicao": "80e5ba0998493f685093c62120bbe9a26c1b569851146a41cee0fea073f04ded",
+          "pagina": 1,
+          "trecho_id": "do_20260302_000008731#03"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2026-03-02"
+    },
+    {
+      "chave": "023/2026",
+      "numero": 23,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "022/2026",
+      "numero": 22,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "021/2026",
+      "numero": 21,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "020/2026",
+      "numero": 20,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "019/2026",
+      "numero": 19,
+      "ano": 2026,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20260302_000008731.pdf",
+          "data": "2026-03-02",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260302_000008731.pdf",
+          "sha256_edicao": "80e5ba0998493f685093c62120bbe9a26c1b569851146a41cee0fea073f04ded",
+          "pagina": 1,
+          "trecho_id": "do_20260302_000008731#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2026-03-02"
+    },
+    {
+      "chave": "018/2026",
+      "numero": 18,
+      "ano": 2026,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20260302_000008731.pdf",
+          "data": "2026-03-02",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260302_000008731.pdf",
+          "sha256_edicao": "80e5ba0998493f685093c62120bbe9a26c1b569851146a41cee0fea073f04ded",
+          "pagina": 1,
+          "trecho_id": "do_20260302_000008731#03"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2026-03-02"
+    },
+    {
+      "chave": "017/2026",
+      "numero": 17,
+      "ano": 2026,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20260205_000008716.pdf",
+          "data": "2026-02-05",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260205_000008716.pdf",
+          "sha256_edicao": "2d781f49b0b6da0bc85ae353d92c6fb311d92faa1429025bab440e8e7e1f6d66",
+          "pagina": 1,
+          "trecho_id": "do_20260205_000008716#02"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2026-02-05"
+    },
+    {
+      "chave": "016/2026",
+      "numero": 16,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "015/2026",
+      "numero": 15,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "014/2026",
+      "numero": 14,
+      "ano": 2026,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20260130_000008712.pdf",
+          "data": "2026-01-30",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260130_000008712.pdf",
+          "sha256_edicao": "3f9e20994d3c4bb9ba136ad51619ec9b94efed3faf5f5c285b3f1148d5423326",
+          "pagina": 1,
+          "trecho_id": "do_20260130_000008712#01"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2026-01-30"
+    },
+    {
+      "chave": "013/2026",
+      "numero": 13,
+      "ano": 2026,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20260129_000008711.pdf",
+          "data": "2026-01-29",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260129_000008711.pdf",
+          "sha256_edicao": "09f57e5f53037d19e5547298fb14e498951024b54109b0a268cc8e6f294329c4",
+          "pagina": 1,
+          "trecho_id": "do_20260129_000008711#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2026-01-29"
+    },
+    {
+      "chave": "012/2026",
+      "numero": 12,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "011/2026",
+      "numero": 11,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "010/2026",
+      "numero": 10,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "009/2026",
+      "numero": 9,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "008/2026",
+      "numero": 8,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "007/2026",
+      "numero": 7,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "006/2026",
+      "numero": 6,
+      "ano": 2026,
+      "situacao": "PUBLICADO",
+      "ementa": "Dispõe sobre a adequação do critério de ﬁnanciamento dos serviços de acolhimento ins4tucional previsto no item 10",
+      "classes": [
+        "composicao_do_conselho",
+        "regimento",
+        "servico_socioassistencial"
+      ],
+      "publicacoes": [
+        {
+          "edicao": "do_20260406_000008753.pdf",
+          "data": "2026-04-06",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260406_000008753.pdf",
+          "sha256_edicao": "74850ac85eb009dfdfbd1cb7ac54343dddaad5d42ef3d8b37f3512fe53807d7d",
+          "pagina": 1,
+          "trecho_id": "do_20260406_000008753#01"
+        }
+      ],
+      "citacoes": [
+        {
+          "edicao": "do_20260427_000008766.pdf",
+          "data": "2026-04-27",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260427_000008766.pdf",
+          "sha256_edicao": "e1b8cebcc95282cb5dc9e3f595dabb5616e1c44de71755ae9bf404ecf8de01a6",
+          "pagina": 1,
+          "trecho_id": "do_20260427_000008766#01"
+        },
+        {
+          "edicao": "do_20260427_000008766.pdf",
+          "data": "2026-04-27",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260427_000008766.pdf",
+          "sha256_edicao": "e1b8cebcc95282cb5dc9e3f595dabb5616e1c44de71755ae9bf404ecf8de01a6",
+          "pagina": 1,
+          "trecho_id": "do_20260427_000008766#01"
+        }
+      ],
+      "n_publicacoes": 1,
+      "n_citacoes": 2,
+      "primeira_aparicao": "2026-04-06"
+    },
+    {
+      "chave": "005/2026",
+      "numero": 5,
+      "ano": 2026,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20260302_000008731.pdf",
+          "data": "2026-03-02",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260302_000008731.pdf",
+          "sha256_edicao": "80e5ba0998493f685093c62120bbe9a26c1b569851146a41cee0fea073f04ded",
+          "pagina": 1,
+          "trecho_id": "do_20260302_000008731#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2026-03-02"
+    },
+    {
+      "chave": "163/2025",
+      "numero": 163,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20260113_000008699.pdf",
+          "data": "2026-01-13",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260113_000008699.pdf",
+          "sha256_edicao": "58ab2e68e4e5df5ba7827a4104d6636d640abf7cf94597c63028a760a64bd982",
+          "pagina": 1,
+          "trecho_id": "do_20260113_000008699#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2026-01-13"
+    },
+    {
+      "chave": "162/2025",
+      "numero": 162,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": "Aprovação do Edital Chamamento Públic o Nº 001/2025, instaurado pela SEMASDH, que visa à celebração de parceria com as OSC’s para execução do serviço de acolhimento institucional de crianças e adolescentes",
+      "classes": [
+        "servico_socioassistencial"
+      ],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20260427_000008766.pdf",
+          "data": "2026-04-27",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260427_000008766.pdf",
+          "sha256_edicao": "e1b8cebcc95282cb5dc9e3f595dabb5616e1c44de71755ae9bf404ecf8de01a6",
+          "pagina": 1,
+          "trecho_id": "do_20260427_000008766#01"
+        },
+        {
+          "edicao": "do_20260427_000008766.pdf",
+          "data": "2026-04-27",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260427_000008766.pdf",
+          "sha256_edicao": "e1b8cebcc95282cb5dc9e3f595dabb5616e1c44de71755ae9bf404ecf8de01a6",
+          "pagina": 1,
+          "trecho_id": "do_20260427_000008766#01"
+        },
+        {
+          "edicao": "do_20260127_000008709.pdf",
+          "data": "2026-01-27",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260127_000008709.pdf",
+          "sha256_edicao": "fb4611bdf0a0b4fb2cd19ef1c5cdb586cf111ff8686423e42e12753fce688ac3",
+          "pagina": 1,
+          "trecho_id": "do_20260127_000008709#00"
+        },
+        {
+          "edicao": "do_20260113_000008699.pdf",
+          "data": "2026-01-13",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260113_000008699.pdf",
+          "sha256_edicao": "58ab2e68e4e5df5ba7827a4104d6636d640abf7cf94597c63028a760a64bd982",
+          "pagina": 1,
+          "trecho_id": "do_20260113_000008699#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 4,
+      "primeira_aparicao": "2026-01-13"
+    },
+    {
+      "chave": "161/2025",
+      "numero": 161,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20260114_000008700.pdf",
+          "data": "2026-01-14",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260114_000008700.pdf",
+          "sha256_edicao": "73dbd545ccea262067fac4ef8f0ab814483ac2d9c530331fd051724aeb025738",
+          "pagina": 1,
+          "trecho_id": "do_20260114_000008700#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2026-01-14"
+    },
+    {
+      "chave": "160/2025",
+      "numero": 160,
+      "ano": 2025,
+      "situacao": "PUBLICADO",
+      "ementa": "aprovação do projeto de lei Complementar nº 7608314, de 06 de agosto de 2025 que regulamenta a política de Benefícios Eventuais no âmbito do Município de Goiânia",
+      "classes": [
+        "composicao_do_conselho"
+      ],
+      "publicacoes": [
+        {
+          "edicao": "do_20260114_000008700.pdf",
+          "data": "2026-01-14",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260114_000008700.pdf",
+          "sha256_edicao": "73dbd545ccea262067fac4ef8f0ab814483ac2d9c530331fd051724aeb025738",
+          "pagina": 1,
+          "trecho_id": "do_20260114_000008700#00"
+        }
+      ],
+      "citacoes": [],
+      "n_publicacoes": 1,
+      "n_citacoes": 0,
+      "primeira_aparicao": "2026-01-14"
+    },
+    {
+      "chave": "159/2025",
+      "numero": 159,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251212_000008682.pdf",
+          "data": "2025-12-12",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251212_000008682.pdf",
+          "sha256_edicao": "d0c667c575520e3976ff1a834490fc80f202c43433f7cad0f8b7d52f65163c52",
+          "pagina": 1,
+          "trecho_id": "do_20251212_000008682#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-12-12"
+    },
+    {
+      "chave": "158/2025",
+      "numero": 158,
+      "ano": 2025,
+      "situacao": "PUBLICADO",
+      "ementa": "Dispõe sobre o deferimento do requerimento de alteração da oferta de Serviço de Convivência e Fortalecimento de Vínculos para Defesa e Garantia de Direitos da Associação Mahatma Gandhi",
+      "classes": [
+        "inscricao_de_entidade",
+        "orcamento",
+        "servico_socioassistencial"
+      ],
+      "publicacoes": [
+        {
+          "edicao": "do_20251217_000008685.pdf",
+          "data": "2025-12-17",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251217_000008685.pdf",
+          "sha256_edicao": "9b474a679c28d7ef987d692fa0a3eb26004908e17d856962490fcd4e22b27568",
+          "pagina": 1,
+          "trecho_id": "do_20251217_000008685#00"
+        }
+      ],
+      "citacoes": [],
+      "n_publicacoes": 1,
+      "n_citacoes": 0,
+      "primeira_aparicao": "2025-12-17"
+    },
+    {
+      "chave": "157/2025",
+      "numero": 157,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "156/2025",
+      "numero": 156,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251203_000008675.pdf",
+          "data": "2025-12-03",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251203_000008675.pdf",
+          "sha256_edicao": "60dde0df12149e4e980cc486ac77fde4a5f71f0ff08a037ab016dfd8d8cd0c97",
+          "pagina": 1,
+          "trecho_id": "do_20251203_000008675#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-12-03"
+    },
+    {
+      "chave": "155/2025",
+      "numero": 155,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251202_000008674_edi.pdf",
+          "data": "2025-12-02",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251202_000008674_edi.pdf",
+          "sha256_edicao": "2235b169cd0ec43343065a85db85016a5157c30d3ad7557b5e3211658fb1f543",
+          "pagina": 1,
+          "trecho_id": "do_20251202_000008674_edi#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-12-02"
+    },
+    {
+      "chave": "154/2025",
+      "numero": 154,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251202_000008674_edi.pdf",
+          "data": "2025-12-02",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251202_000008674_edi.pdf",
+          "sha256_edicao": "2235b169cd0ec43343065a85db85016a5157c30d3ad7557b5e3211658fb1f543",
+          "pagina": 1,
+          "trecho_id": "do_20251202_000008674_edi#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-12-02"
+    },
+    {
+      "chave": "153/2025",
+      "numero": 153,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251203_000008675.pdf",
+          "data": "2025-12-03",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251203_000008675.pdf",
+          "sha256_edicao": "60dde0df12149e4e980cc486ac77fde4a5f71f0ff08a037ab016dfd8d8cd0c97",
+          "pagina": 1,
+          "trecho_id": "do_20251203_000008675#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-12-03"
+    },
+    {
+      "chave": "152/2025",
+      "numero": 152,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "151/2025",
+      "numero": 151,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251204_000008676.pdf",
+          "data": "2025-12-04",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251204_000008676.pdf",
+          "sha256_edicao": "1ab3ab4ef39355d7f658a7b80da64884f3253c401efde0c66428631d4a46e5d4",
+          "pagina": 1,
+          "trecho_id": "do_20251204_000008676#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-12-04"
+    },
+    {
+      "chave": "150/2025",
+      "numero": 150,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "149/2025",
+      "numero": 149,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "148/2025",
+      "numero": 148,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "147/2025",
+      "numero": 147,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "146/2025",
+      "numero": 146,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "145/2025",
+      "numero": 145,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "144/2025",
+      "numero": 144,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "143/2025",
+      "numero": 143,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "142/2025",
+      "numero": 142,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251107_000008659.pdf",
+          "data": "2025-11-07",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251107_000008659.pdf",
+          "sha256_edicao": "455b18f92d38897afac09d142311dd3a2eebc697c9af08c473ee361e9fb85719",
+          "pagina": 1,
+          "trecho_id": "do_20251107_000008659#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-11-07"
+    },
+    {
+      "chave": "141/2025",
+      "numero": 141,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "140/2025",
+      "numero": 140,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251104_000008656.pdf",
+          "data": "2025-11-04",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251104_000008656.pdf",
+          "sha256_edicao": "861bf607d8a1e5f54ef1dfde27de857c436e312473d0e6303b15a600506fa7fc",
+          "pagina": 1,
+          "trecho_id": "do_20251104_000008656#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-11-04"
+    },
+    {
+      "chave": "139/2025",
+      "numero": 139,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251104_000008656.pdf",
+          "data": "2025-11-04",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251104_000008656.pdf",
+          "sha256_edicao": "861bf607d8a1e5f54ef1dfde27de857c436e312473d0e6303b15a600506fa7fc",
+          "pagina": 1,
+          "trecho_id": "do_20251104_000008656#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-11-04"
+    },
+    {
+      "chave": "138/2025",
+      "numero": 138,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "137/2025",
+      "numero": 137,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "136/2025",
+      "numero": 136,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "135/2025",
+      "numero": 135,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251217_000008685.pdf",
+          "data": "2025-12-17",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251217_000008685.pdf",
+          "sha256_edicao": "9b474a679c28d7ef987d692fa0a3eb26004908e17d856962490fcd4e22b27568",
+          "pagina": 1,
+          "trecho_id": "do_20251217_000008685#00"
+        },
+        {
+          "edicao": "do_20251107_000008659.pdf",
+          "data": "2025-11-07",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251107_000008659.pdf",
+          "sha256_edicao": "455b18f92d38897afac09d142311dd3a2eebc697c9af08c473ee361e9fb85719",
+          "pagina": 1,
+          "trecho_id": "do_20251107_000008659#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 2,
+      "primeira_aparicao": "2025-11-07"
+    },
+    {
+      "chave": "134/2025",
+      "numero": 134,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "133/2025",
+      "numero": 133,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251103_000008655_edi.pdf",
+          "data": "2025-11-03",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251103_000008655_edi.pdf",
+          "sha256_edicao": "929eb3dd56cc2b286e9c8fdb46ca181e4a48b8017365dcf2b622b2319719311c",
+          "pagina": 1,
+          "trecho_id": "do_20251103_000008655_edi#01"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-11-03"
+    },
+    {
+      "chave": "132/2025",
+      "numero": 132,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251212_000008682.pdf",
+          "data": "2025-12-12",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251212_000008682.pdf",
+          "sha256_edicao": "d0c667c575520e3976ff1a834490fc80f202c43433f7cad0f8b7d52f65163c52",
+          "pagina": 1,
+          "trecho_id": "do_20251212_000008682#00"
+        },
+        {
+          "edicao": "do_20251103_000008655_edi.pdf",
+          "data": "2025-11-03",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251103_000008655_edi.pdf",
+          "sha256_edicao": "929eb3dd56cc2b286e9c8fdb46ca181e4a48b8017365dcf2b622b2319719311c",
+          "pagina": 1,
+          "trecho_id": "do_20251103_000008655_edi#01"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 2,
+      "primeira_aparicao": "2025-11-03"
+    },
+    {
+      "chave": "131/2025",
+      "numero": 131,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251105_000008657.pdf",
+          "data": "2025-11-05",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251105_000008657.pdf",
+          "sha256_edicao": "73d8112664bda399a294a0fed2f6b19ed64f9b0bc2383dda8efe366d799af0ca",
+          "pagina": 1,
+          "trecho_id": "do_20251105_000008657#00"
+        },
+        {
+          "edicao": "do_20251031_000008654.pdf",
+          "data": "2025-10-31",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251031_000008654.pdf",
+          "sha256_edicao": "a342f281f98fed09931537a78959bba61e61ace82e0e4db89508027ff728e1b3",
+          "pagina": 1,
+          "trecho_id": "do_20251031_000008654#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 2,
+      "primeira_aparicao": "2025-10-31"
+    },
+    {
+      "chave": "130/2025",
+      "numero": 130,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251031_000008654.pdf",
+          "data": "2025-10-31",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251031_000008654.pdf",
+          "sha256_edicao": "a342f281f98fed09931537a78959bba61e61ace82e0e4db89508027ff728e1b3",
+          "pagina": 1,
+          "trecho_id": "do_20251031_000008654#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-10-31"
+    },
+    {
+      "chave": "129/2025",
+      "numero": 129,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "128/2025",
+      "numero": 128,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "127/2025",
+      "numero": 127,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "126/2025",
+      "numero": 126,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "125/2025",
+      "numero": 125,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "124/2025",
+      "numero": 124,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "123/2025",
+      "numero": 123,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "122/2025",
+      "numero": 122,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "121/2025",
+      "numero": 121,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251002_000008635.pdf",
+          "data": "2025-10-02",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251002_000008635.pdf",
+          "sha256_edicao": "48f60081c7aa9ec37022bf554d680938f0fd25e45a8a969076f7dd892b2ebb90",
+          "pagina": 1,
+          "trecho_id": "do_20251002_000008635#01"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-10-02"
+    },
+    {
+      "chave": "120/2025",
+      "numero": 120,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251002_000008635.pdf",
+          "data": "2025-10-02",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251002_000008635.pdf",
+          "sha256_edicao": "48f60081c7aa9ec37022bf554d680938f0fd25e45a8a969076f7dd892b2ebb90",
+          "pagina": 1,
+          "trecho_id": "do_20251002_000008635#01"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-10-02"
+    },
+    {
+      "chave": "119/2025",
+      "numero": 119,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251216_000008684.pdf",
+          "data": "2025-12-16",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251216_000008684.pdf",
+          "sha256_edicao": "f5c2a1481054c8c7674db8afd7302d74e646d6598176303f1c08bcbc03272be3",
+          "pagina": 1,
+          "trecho_id": "do_20251216_000008684#00"
+        },
+        {
+          "edicao": "do_20251030_000008653.pdf",
+          "data": "2025-10-30",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251030_000008653.pdf",
+          "sha256_edicao": "c4ee8d780bdbaf6e5a76a8b0d2b9fd1880ec5f4d9909bae475d5887c73e860ff",
+          "pagina": 1,
+          "trecho_id": "do_20251030_000008653#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 2,
+      "primeira_aparicao": "2025-10-30"
+    },
+    {
+      "chave": "118/2025",
+      "numero": 118,
+      "ano": 2025,
+      "situacao": "PUBLICADO",
+      "ementa": "Dispõe sobre o deferimento do requerimento de inscrição junto ao CMASGyn, do Instituto Bem Viver e do Fórum do Terceiro Setor",
+      "classes": [
+        "inscricao_de_entidade",
+        "orcamento"
+      ],
+      "publicacoes": [
+        {
+          "edicao": "do_20251029_000008652.pdf",
+          "data": "2025-10-29",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251029_000008652.pdf",
+          "sha256_edicao": "f29a17396464e87cc26d79808aaec0db9f5a688eebf9244ac201baf734c3d3ac",
+          "pagina": 1,
+          "trecho_id": "do_20251029_000008652#00"
+        }
+      ],
+      "citacoes": [],
+      "n_publicacoes": 1,
+      "n_citacoes": 0,
+      "primeira_aparicao": "2025-10-29"
+    },
+    {
+      "chave": "117/2025",
+      "numero": 117,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "116/2025",
+      "numero": 116,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "115/2025",
+      "numero": 115,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250926_000008631.pdf",
+          "data": "2025-09-26",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250926_000008631.pdf",
+          "sha256_edicao": "5d78c8b2a9e79f15496beb732702a20df5bf26930e7580b51f32228b71ea9ed7",
+          "pagina": 1,
+          "trecho_id": "do_20250926_000008631#01"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-09-26"
+    },
+    {
+      "chave": "114/2025",
+      "numero": 114,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250926_000008631.pdf",
+          "data": "2025-09-26",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250926_000008631.pdf",
+          "sha256_edicao": "5d78c8b2a9e79f15496beb732702a20df5bf26930e7580b51f32228b71ea9ed7",
+          "pagina": 1,
+          "trecho_id": "do_20250926_000008631#01"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-09-26"
+    },
+    {
+      "chave": "113/2025",
+      "numero": 113,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "112/2025",
+      "numero": 112,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250924_000008629.pdf",
+          "data": "2025-09-24",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250924_000008629.pdf",
+          "sha256_edicao": "e9e865376176ded880f241252e48f5411994a687e4228caf8b30fa5a78cfaf63",
+          "pagina": 1,
+          "trecho_id": "do_20250924_000008629#01"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-09-24"
+    },
+    {
+      "chave": "111/2025",
+      "numero": 111,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250924_000008629.pdf",
+          "data": "2025-09-24",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250924_000008629.pdf",
+          "sha256_edicao": "e9e865376176ded880f241252e48f5411994a687e4228caf8b30fa5a78cfaf63",
+          "pagina": 1,
+          "trecho_id": "do_20250924_000008629#01"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-09-24"
+    },
+    {
+      "chave": "110/2025",
+      "numero": 110,
+      "ano": 2025,
+      "situacao": "PUBLICADO",
+      "ementa": "Dispõe sobre a nomeação da Comissão Eleitoral para o processo de eleição da Sociedade Civil e indicação governamental para mandato representativo do CMASGyn – Biênio 2025/2027",
+      "classes": [
+        "composicao_do_conselho",
+        "regimento"
+      ],
+      "publicacoes": [
+        {
+          "edicao": "do_20251029_000008652.pdf",
+          "data": "2025-10-29",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251029_000008652.pdf",
+          "sha256_edicao": "f29a17396464e87cc26d79808aaec0db9f5a688eebf9244ac201baf734c3d3ac",
+          "pagina": 1,
+          "trecho_id": "do_20251029_000008652#00"
+        }
+      ],
+      "citacoes": [],
+      "n_publicacoes": 1,
+      "n_citacoes": 0,
+      "primeira_aparicao": "2025-10-29"
+    },
+    {
+      "chave": "109/2025",
+      "numero": 109,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "108/2025",
+      "numero": 108,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "107/2025",
+      "numero": 107,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250909_000008618.pdf",
+          "data": "2025-09-09",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250909_000008618.pdf",
+          "sha256_edicao": "29ecd50b520a87e36a026b829bbdb6b552625b104f686fdfd84cdac9dbc84ca5",
+          "pagina": 1,
+          "trecho_id": "do_20250909_000008618#01"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-09-09"
+    },
+    {
+      "chave": "106/2025",
+      "numero": 106,
+      "ano": 2025,
+      "situacao": "PUBLICADO",
+      "ementa": "Dispõe sobre a segunda aprovação em bloco das documentações entregues pelas Organizações da Sociedade Civil – OSCs para Atualização de Inscrição anual de 2025 junto ao CMASGyn",
+      "classes": [
+        "composicao_do_conselho",
+        "inscricao_de_entidade",
+        "orcamento",
+        "servico_socioassistencial"
+      ],
+      "publicacoes": [
+        {
+          "edicao": "do_20250909_000008618.pdf",
+          "data": "2025-09-09",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250909_000008618.pdf",
+          "sha256_edicao": "29ecd50b520a87e36a026b829bbdb6b552625b104f686fdfd84cdac9dbc84ca5",
+          "pagina": 1,
+          "trecho_id": "do_20250909_000008618#01"
+        },
+        {
+          "edicao": "do_20250909_000008618.pdf",
+          "data": "2025-09-09",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250909_000008618.pdf",
+          "sha256_edicao": "29ecd50b520a87e36a026b829bbdb6b552625b104f686fdfd84cdac9dbc84ca5",
+          "pagina": 1,
+          "trecho_id": "do_20250909_000008618#01"
+        }
+      ],
+      "citacoes": [],
+      "n_publicacoes": 2,
+      "n_citacoes": 0,
+      "primeira_aparicao": "2025-09-09"
+    },
+    {
+      "chave": "105/2025",
+      "numero": 105,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "104/2025",
+      "numero": 104,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "103/2025",
+      "numero": 103,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "102/2025",
+      "numero": 102,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "101/2025",
+      "numero": 101,
+      "ano": 2025,
+      "situacao": "PUBLICADO",
+      "ementa": "Dispõe sobre a aprovação em bloco das documentações entregues pelas Organizações da Sociedade Civil – OSCs para Atualização de Inscrição anual de 2025 junto ao CMASGyn",
+      "classes": [
+        "inscricao_de_entidade",
+        "orcamento"
+      ],
+      "publicacoes": [
+        {
+          "edicao": "do_20250903_000008614.pdf",
+          "data": "2025-09-03",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250903_000008614.pdf",
+          "sha256_edicao": "627fe74f76fc1d98873e27b0ee622c00862713ce38020d57e6cffcd9dc47bda0",
+          "pagina": 1,
+          "trecho_id": "do_20250903_000008614#00"
+        }
+      ],
+      "citacoes": [],
+      "n_publicacoes": 1,
+      "n_citacoes": 0,
+      "primeira_aparicao": "2025-09-03"
+    },
+    {
+      "chave": "100/2025",
+      "numero": 100,
+      "ano": 2025,
+      "situacao": "PUBLICADO",
+      "ementa": "Dispõe sobre o deferimento do requerimento de inscrição no CMASGyn, do Centro de Atividades Integradas – CEI do Instituto Cidadão de Educação, Saúde, Cultura, Esporte e Lazer – INCESC",
+      "classes": [
+        "inscricao_de_entidade",
+        "orcamento"
+      ],
+      "publicacoes": [
+        {
+          "edicao": "do_20251021_000008648.pdf",
+          "data": "2025-10-21",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251021_000008648.pdf",
+          "sha256_edicao": "519a6f1156aaeca8b589d7c2e754bea7219d91b9f2af10f9a1631a34e2f69f75",
+          "pagina": 1,
+          "trecho_id": "do_20251021_000008648#00"
+        }
+      ],
+      "citacoes": [
+        {
+          "edicao": "do_20251031_000008654.pdf",
+          "data": "2025-10-31",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251031_000008654.pdf",
+          "sha256_edicao": "a342f281f98fed09931537a78959bba61e61ace82e0e4db89508027ff728e1b3",
+          "pagina": 1,
+          "trecho_id": "do_20251031_000008654#00"
+        },
+        {
+          "edicao": "do_20251031_000008654.pdf",
+          "data": "2025-10-31",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251031_000008654.pdf",
+          "sha256_edicao": "a342f281f98fed09931537a78959bba61e61ace82e0e4db89508027ff728e1b3",
+          "pagina": 1,
+          "trecho_id": "do_20251031_000008654#00"
+        }
+      ],
+      "n_publicacoes": 1,
+      "n_citacoes": 2,
+      "primeira_aparicao": "2025-10-21"
+    },
+    {
+      "chave": "099/2025",
+      "numero": 99,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "098/2025",
+      "numero": 98,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "097/2025",
+      "numero": 97,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "096/2025",
+      "numero": 96,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "095/2025",
+      "numero": 95,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "094/2025",
+      "numero": 94,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "093/2025",
+      "numero": 93,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "092/2025",
+      "numero": 92,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "091/2025",
+      "numero": 91,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "090/2025",
+      "numero": 90,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "089/2025",
+      "numero": 89,
+      "ano": 2025,
+      "situacao": "PUBLICADO",
+      "ementa": "Dispõe sobre a eleição do/ a Presidente e do/ a Vice-Presidente da Comissão Eleitoral para a coordenação do processo de eleição da sociedade civil e indicação governamental para a composição do mandato representativo do CMASGyn para o biênio 2025/2027",
+      "classes": [
+        "composicao_do_conselho",
+        "regimento"
+      ],
+      "publicacoes": [
+        {
+          "edicao": "do_20250829_000008611_edi.pdf",
+          "data": "2025-08-29",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250829_000008611_edi.pdf",
+          "sha256_edicao": "2467e5f01c114ca6d121e75de472d27ff63adda6b5ae1736e1aa2168a1910e11",
+          "pagina": 1,
+          "trecho_id": "do_20250829_000008611_edi#00"
+        }
+      ],
+      "citacoes": [],
+      "n_publicacoes": 1,
+      "n_citacoes": 0,
+      "primeira_aparicao": "2025-08-29"
+    },
+    {
+      "chave": "088/2025",
+      "numero": 88,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "087/2025",
+      "numero": 87,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250826_000008608.pdf",
+          "data": "2025-08-26",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250826_000008608.pdf",
+          "sha256_edicao": "5ea2ba0d1abc02a62226d26d5211c3b294ba48c314e711aa449386a00e4d5d4e",
+          "pagina": 1,
+          "trecho_id": "do_20250826_000008608#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-08-26"
+    },
+    {
+      "chave": "086/2025",
+      "numero": 86,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250826_000008608.pdf",
+          "data": "2025-08-26",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250826_000008608.pdf",
+          "sha256_edicao": "5ea2ba0d1abc02a62226d26d5211c3b294ba48c314e711aa449386a00e4d5d4e",
+          "pagina": 1,
+          "trecho_id": "do_20250826_000008608#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-08-26"
+    },
+    {
+      "chave": "085/2025",
+      "numero": 85,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "084/2025",
+      "numero": 84,
+      "ano": 2025,
+      "situacao": "PUBLICADO",
+      "ementa": "Dispõe sobre a nomeação da Comissão Eleitoral para o processo de eleição da sociedade civil e indicação governamental para mandato representativo do CMASGyn – Biênio 2025/2027",
+      "classes": [
+        "composicao_do_conselho",
+        "regimento"
+      ],
+      "publicacoes": [
+        {
+          "edicao": "do_20250829_000008611_edi.pdf",
+          "data": "2025-08-29",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250829_000008611_edi.pdf",
+          "sha256_edicao": "2467e5f01c114ca6d121e75de472d27ff63adda6b5ae1736e1aa2168a1910e11",
+          "pagina": 1,
+          "trecho_id": "do_20250829_000008611_edi#00"
+        }
+      ],
+      "citacoes": [
+        {
+          "edicao": "do_20251029_000008652.pdf",
+          "data": "2025-10-29",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251029_000008652.pdf",
+          "sha256_edicao": "f29a17396464e87cc26d79808aaec0db9f5a688eebf9244ac201baf734c3d3ac",
+          "pagina": 1,
+          "trecho_id": "do_20251029_000008652#00"
+        }
+      ],
+      "n_publicacoes": 1,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-08-29"
+    },
+    {
+      "chave": "083/2025",
+      "numero": 83,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "082/2025",
+      "numero": 82,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250827_000008609.pdf",
+          "data": "2025-08-27",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250827_000008609.pdf",
+          "sha256_edicao": "0947cfa746e2fe0a853f4102d3526e26be17d737dcab1742e02949662526aa69",
+          "pagina": 1,
+          "trecho_id": "do_20250827_000008609#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-08-27"
+    },
+    {
+      "chave": "081/2025",
+      "numero": 81,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250827_000008609.pdf",
+          "data": "2025-08-27",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250827_000008609.pdf",
+          "sha256_edicao": "0947cfa746e2fe0a853f4102d3526e26be17d737dcab1742e02949662526aa69",
+          "pagina": 1,
+          "trecho_id": "do_20250827_000008609#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-08-27"
+    },
+    {
+      "chave": "080/2025",
+      "numero": 80,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "079/2025",
+      "numero": 79,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250820_000008604.pdf",
+          "data": "2025-08-20",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250820_000008604.pdf",
+          "sha256_edicao": "51658f2f9314c2e0b8410fdb427945f5216213dc573f186ac5a5baa36a6d177f",
+          "pagina": 1,
+          "trecho_id": "do_20250820_000008604#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-08-20"
+    },
+    {
+      "chave": "078/2025",
+      "numero": 78,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "077/2025",
+      "numero": 77,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "076/2025",
+      "numero": 76,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "075/2025",
+      "numero": 75,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "074/2025",
+      "numero": 74,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "073/2025",
+      "numero": 73,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "072/2025",
+      "numero": 72,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251126_000008670.pdf",
+          "data": "2025-11-26",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251126_000008670.pdf",
+          "sha256_edicao": "fb6dd3cd08433321f6e38fb8d994ba6e60c8748f1ea25ad5faf35b250b411252",
+          "pagina": 1,
+          "trecho_id": "do_20251126_000008670#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-11-26"
+    },
+    {
+      "chave": "071/2025",
+      "numero": 71,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "070/2025",
+      "numero": 70,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "069/2025",
+      "numero": 69,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250805_000008593.pdf",
+          "data": "2025-08-05",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250805_000008593.pdf",
+          "sha256_edicao": "c8b523124228b3ec5d0fee9e3447c68feb818aa5fb0adcf14238437e55fff32b",
+          "pagina": 1,
+          "trecho_id": "do_20250805_000008593#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-08-05"
+    },
+    {
+      "chave": "068/2025",
+      "numero": 68,
+      "ano": 2025,
+      "situacao": "PUBLICADO",
+      "ementa": "dispõe sobre o acesso à informação de interesse público no âmbito do Conselho, es tabelecendo diretrizes para a transparência e o tratamento de dados sob sua guarda",
+      "classes": [],
+      "publicacoes": [
+        {
+          "edicao": "do_20260302_000008731.pdf",
+          "data": "2026-03-02",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260302_000008731.pdf",
+          "sha256_edicao": "80e5ba0998493f685093c62120bbe9a26c1b569851146a41cee0fea073f04ded",
+          "pagina": 1,
+          "trecho_id": "do_20260302_000008731#03"
+        }
+      ],
+      "citacoes": [],
+      "n_publicacoes": 1,
+      "n_citacoes": 0,
+      "primeira_aparicao": "2026-03-02"
+    },
+    {
+      "chave": "067/2025",
+      "numero": 67,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "066/2025",
+      "numero": 66,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "065/2025",
+      "numero": 65,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "064/2025",
+      "numero": 64,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "063/2025",
+      "numero": 63,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "062/2025",
+      "numero": 62,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "061/2025",
+      "numero": 61,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "060/2025",
+      "numero": 60,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "059/2025",
+      "numero": 59,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "058/2025",
+      "numero": 58,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "057/2025",
+      "numero": 57,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "056/2025",
+      "numero": 56,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250718_000008581.pdf",
+          "data": "2025-07-18",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250718_000008581.pdf",
+          "sha256_edicao": "1aa1626aa2f314917fa4482625e6e192792768369d8ffc1ec3023a6a32fae76d",
+          "pagina": 1,
+          "trecho_id": "do_20250718_000008581#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-07-18"
+    },
+    {
+      "chave": "055/2025",
+      "numero": 55,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250718_000008581.pdf",
+          "data": "2025-07-18",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250718_000008581.pdf",
+          "sha256_edicao": "1aa1626aa2f314917fa4482625e6e192792768369d8ffc1ec3023a6a32fae76d",
+          "pagina": 1,
+          "trecho_id": "do_20250718_000008581#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-07-18"
+    },
+    {
+      "chave": "054/2025",
+      "numero": 54,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250717_000008580.pdf",
+          "data": "2025-07-17",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250717_000008580.pdf",
+          "sha256_edicao": "f2835e9ee879ab40582b4482763e2a81c5813efbeb6747c1ffea74c88b61c51e",
+          "pagina": 1,
+          "trecho_id": "do_20250717_000008580#01"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-07-17"
+    },
+    {
+      "chave": "053/2025",
+      "numero": 53,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250716_000008579.pdf",
+          "data": "2025-07-16",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250716_000008579.pdf",
+          "sha256_edicao": "57f600d94ecb8a48ffee0b397efd39e2d12ae86a3cd29bbb9a084c1c2656674e",
+          "pagina": 1,
+          "trecho_id": "do_20250716_000008579#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-07-16"
+    },
+    {
+      "chave": "052/2025",
+      "numero": 52,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "051/2025",
+      "numero": 51,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "050/2025",
+      "numero": 50,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "049/2025",
+      "numero": 49,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "048/2025",
+      "numero": 48,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250715_000008578.pdf",
+          "data": "2025-07-15",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250715_000008578.pdf",
+          "sha256_edicao": "8668f2250efcc84a75fc3453f0b94aaef4ab602ad95a86d82879329c92ee41f4",
+          "pagina": 1,
+          "trecho_id": "do_20250715_000008578#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-07-15"
+    },
+    {
+      "chave": "047/2025",
+      "numero": 47,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250715_000008578.pdf",
+          "data": "2025-07-15",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250715_000008578.pdf",
+          "sha256_edicao": "8668f2250efcc84a75fc3453f0b94aaef4ab602ad95a86d82879329c92ee41f4",
+          "pagina": 1,
+          "trecho_id": "do_20250715_000008578#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-07-15"
+    },
+    {
+      "chave": "046/2025",
+      "numero": 46,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250714_000008577.pdf",
+          "data": "2025-07-14",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250714_000008577.pdf",
+          "sha256_edicao": "ad5077deaa8a6a09354af1b679f6802c34633574ed32404b01515127e6581875",
+          "pagina": 1,
+          "trecho_id": "do_20250714_000008577#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-07-14"
+    },
+    {
+      "chave": "045/2025",
+      "numero": 45,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250710_000008575.pdf",
+          "data": "2025-07-10",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250710_000008575.pdf",
+          "sha256_edicao": "942f8809403dee609779da043c29e8f4a9d6aaf3f7e1f025ee64768947cfa80d",
+          "pagina": 1,
+          "trecho_id": "do_20250710_000008575#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-07-10"
+    },
+    {
+      "chave": "044/2025",
+      "numero": 44,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "043/2025",
+      "numero": 43,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "042/2025",
+      "numero": 42,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "041/2025",
+      "numero": 41,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "040/2025",
+      "numero": 40,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "039/2025",
+      "numero": 39,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "038/2025",
+      "numero": 38,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "037/2025",
+      "numero": 37,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "036/2025",
+      "numero": 36,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "035/2025",
+      "numero": 35,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "034/2025",
+      "numero": 34,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "033/2025",
+      "numero": 33,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "032/2025",
+      "numero": 32,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "031/2025",
+      "numero": 31,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20260107_000008695.pdf",
+          "data": "2026-01-07",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260107_000008695.pdf",
+          "sha256_edicao": "7eae45fb4fecdb0256d69ef219f76727c72f0310f46fbd59bd0ba840279a7ee2",
+          "pagina": 1,
+          "trecho_id": "do_20260107_000008695#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2026-01-07"
+    },
+    {
+      "chave": "030/2025",
+      "numero": 30,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "029/2025",
+      "numero": 29,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "028/2025",
+      "numero": 28,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "027/2025",
+      "numero": 27,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "026/2025",
+      "numero": 26,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "025/2025",
+      "numero": 25,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "024/2025",
+      "numero": 24,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "023/2025",
+      "numero": 23,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "022/2025",
+      "numero": 22,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "021/2025",
+      "numero": 21,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "020/2025",
+      "numero": 20,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "019/2025",
+      "numero": 19,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "018/2025",
+      "numero": 18,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "017/2025",
+      "numero": 17,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "016/2025",
+      "numero": 16,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "015/2025",
+      "numero": 15,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251126_000008670.pdf",
+          "data": "2025-11-26",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251126_000008670.pdf",
+          "sha256_edicao": "fb6dd3cd08433321f6e38fb8d994ba6e60c8748f1ea25ad5faf35b250b411252",
+          "pagina": 1,
+          "trecho_id": "do_20251126_000008670#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-11-26"
+    },
+    {
+      "chave": "014/2025",
+      "numero": 14,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "013/2025",
+      "numero": 13,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "012/2025",
+      "numero": 12,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "011/2025",
+      "numero": 11,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "010/2025",
+      "numero": 10,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "009/2025",
+      "numero": 9,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251119_000008667.pdf",
+          "data": "2025-11-19",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251119_000008667.pdf",
+          "sha256_edicao": "75ee7b16f005738657f510863026b5b90814a8653bf609ec9a2d2361b7984675",
+          "pagina": 1,
+          "trecho_id": "do_20251119_000008667#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-11-19"
+    },
+    {
+      "chave": "008/2025",
+      "numero": 8,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "007/2025",
+      "numero": 7,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "006/2025",
+      "numero": 6,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "005/2025",
+      "numero": 5,
+      "ano": 2025,
+      "situacao": "PUBLICADO",
+      "ementa": "dispõe sobre a formação da comissão eleitoral para deﬂagrar o processo eleitoral da escolha da mesa diretora",
+      "classes": [
+        "composicao_do_conselho",
+        "regimento"
+      ],
+      "publicacoes": [
+        {
+          "edicao": "do_20251029_000008652.pdf",
+          "data": "2025-10-29",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251029_000008652.pdf",
+          "sha256_edicao": "f29a17396464e87cc26d79808aaec0db9f5a688eebf9244ac201baf734c3d3ac",
+          "pagina": 1,
+          "trecho_id": "do_20251029_000008652#00"
+        },
+        {
+          "edicao": "do_20250919_000008626.pdf",
+          "data": "2025-09-19",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250919_000008626.pdf",
+          "sha256_edicao": "bf4872e278d6103115bc3c51d840f7f9d1f25aab6d4b11c576531db5c7d53014",
+          "pagina": 1,
+          "trecho_id": "do_20250919_000008626#00"
+        }
+      ],
+      "citacoes": [],
+      "n_publicacoes": 2,
+      "n_citacoes": 0,
+      "primeira_aparicao": "2025-09-19"
+    },
+    {
+      "chave": "154/2024",
+      "numero": 154,
+      "ano": 2024,
+      "situacao": "PUBLICADO",
+      "ementa": "dispõe sobre a prorrogação do mandato dos atuais conselheiros, bem como reconduz e empossa a Mesa Diretora do Conselho Municipal de Assistência Social de Goiânia – CMASGyn, eleita para a gestão do biênio 2024-2025",
+      "classes": [
+        "composicao_do_conselho",
+        "regimento"
+      ],
+      "publicacoes": [
+        {
+          "edicao": "do_20250717_000008580.pdf",
+          "data": "2025-07-17",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250717_000008580.pdf",
+          "sha256_edicao": "f2835e9ee879ab40582b4482763e2a81c5813efbeb6747c1ffea74c88b61c51e",
+          "pagina": 1,
+          "trecho_id": "do_20250717_000008580#01"
+        },
+        {
+          "edicao": "do_20250717_000008580.pdf",
+          "data": "2025-07-17",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250717_000008580.pdf",
+          "sha256_edicao": "f2835e9ee879ab40582b4482763e2a81c5813efbeb6747c1ffea74c88b61c51e",
+          "pagina": 1,
+          "trecho_id": "do_20250717_000008580#01"
+        }
+      ],
+      "citacoes": [],
+      "n_publicacoes": 2,
+      "n_citacoes": 0,
+      "primeira_aparicao": "2025-07-17"
+    },
+    {
+      "chave": "153/2024",
+      "numero": 153,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "152/2024",
+      "numero": 152,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "151/2024",
+      "numero": 151,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "150/2024",
+      "numero": 150,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "149/2024",
+      "numero": 149,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "148/2024",
+      "numero": 148,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "147/2024",
+      "numero": 147,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "146/2024",
+      "numero": 146,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "145/2024",
+      "numero": 145,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "144/2024",
+      "numero": 144,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "143/2024",
+      "numero": 143,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "142/2024",
+      "numero": 142,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "141/2024",
+      "numero": 141,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "140/2024",
+      "numero": 140,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "139/2024",
+      "numero": 139,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "138/2024",
+      "numero": 138,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "137/2024",
+      "numero": 137,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "136/2024",
+      "numero": 136,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "135/2024",
+      "numero": 135,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "134/2024",
+      "numero": 134,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "133/2024",
+      "numero": 133,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "132/2024",
+      "numero": 132,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "131/2024",
+      "numero": 131,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "130/2024",
+      "numero": 130,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "129/2024",
+      "numero": 129,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "128/2024",
+      "numero": 128,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "127/2024",
+      "numero": 127,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "126/2024",
+      "numero": 126,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "125/2024",
+      "numero": 125,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "124/2024",
+      "numero": 124,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "123/2024",
+      "numero": 123,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "122/2024",
+      "numero": 122,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "121/2024",
+      "numero": 121,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "120/2024",
+      "numero": 120,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "119/2024",
+      "numero": 119,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "118/2024",
+      "numero": 118,
+      "ano": 2024,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250722_000008583.pdf",
+          "data": "2025-07-22",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250722_000008583.pdf",
+          "sha256_edicao": "9f72f1db5ad071717da680479d0544cf27fff655ece2b0f9f8798230bd8b3383",
+          "pagina": 1,
+          "trecho_id": "do_20250722_000008583#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-07-22"
+    },
+    {
+      "chave": "117/2024",
+      "numero": 117,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "116/2024",
+      "numero": 116,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "115/2024",
+      "numero": 115,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "114/2024",
+      "numero": 114,
+      "ano": 2024,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250722_000008583.pdf",
+          "data": "2025-07-22",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250722_000008583.pdf",
+          "sha256_edicao": "9f72f1db5ad071717da680479d0544cf27fff655ece2b0f9f8798230bd8b3383",
+          "pagina": 1,
+          "trecho_id": "do_20250722_000008583#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-07-22"
+    },
+    {
+      "chave": "076/2023",
+      "numero": 76,
+      "ano": 2023,
+      "situacao": "PUBLICADO",
+      "ementa": "Dispõe sobre a protocolização dos processos de inscrição das entidades no CMASGyn",
+      "classes": [
+        "composicao_do_conselho",
+        "inscricao_de_entidade"
+      ],
+      "publicacoes": [
+        {
+          "edicao": "do_20260302_000008731.pdf",
+          "data": "2026-03-02",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260302_000008731.pdf",
+          "sha256_edicao": "80e5ba0998493f685093c62120bbe9a26c1b569851146a41cee0fea073f04ded",
+          "pagina": 1,
+          "trecho_id": "do_20260302_000008731#00"
+        }
+      ],
+      "citacoes": [],
+      "n_publicacoes": 1,
+      "n_citacoes": 0,
+      "primeira_aparicao": "2026-03-02"
+    },
+    {
+      "chave": "075/2023",
+      "numero": 75,
+      "ano": 2023,
+      "situacao": "PUBLICADO",
+      "ementa": "Dispõe sobre o acréscimo de critérios para Inscrição e atualização de inscrição das entidades socioassistenciais no CMASGyn – alterando os artigos 1º e 2º da Resolução CMASGyn nº 38/2014",
+      "classes": [
+        "composicao_do_conselho",
+        "inscricao_de_entidade"
+      ],
+      "publicacoes": [
+        {
+          "edicao": "do_20260302_000008731.pdf",
+          "data": "2026-03-02",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260302_000008731.pdf",
+          "sha256_edicao": "80e5ba0998493f685093c62120bbe9a26c1b569851146a41cee0fea073f04ded",
+          "pagina": 1,
+          "trecho_id": "do_20260302_000008731#00"
+        }
+      ],
+      "citacoes": [],
+      "n_publicacoes": 1,
+      "n_citacoes": 0,
+      "primeira_aparicao": "2026-03-02"
+    },
+    {
+      "chave": "078/2021",
+      "numero": 78,
+      "ano": 2021,
+      "situacao": "APENAS_CITADO",
+      "ementa": "Criança e do Adolescente (CMDCA) no disposto no art",
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20260406_000008753.pdf",
+          "data": "2026-04-06",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260406_000008753.pdf",
+          "sha256_edicao": "74850ac85eb009dfdfbd1cb7ac54343dddaad5d42ef3d8b37f3512fe53807d7d",
+          "pagina": 1,
+          "trecho_id": "do_20260406_000008753#02"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2026-04-06"
+    }
+  ],
+  "nao_divulgados": [
+    {
+      "chave": "037/2026",
+      "numero": 37,
+      "ano": 2026,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20260512_000008776.pdf",
+          "data": "2026-05-12",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260512_000008776.pdf",
+          "sha256_edicao": "0cb825b750064679a169f8ff84d347670648a2045b0280d86b9f2d00b0959079",
+          "pagina": 1,
+          "trecho_id": "do_20260512_000008776#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2026-05-12"
+    },
+    {
+      "chave": "036/2026",
+      "numero": 36,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "035/2026",
+      "numero": 35,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "034/2026",
+      "numero": 34,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "033/2026",
+      "numero": 33,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "032/2026",
+      "numero": 32,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "031/2026",
+      "numero": 31,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "030/2026",
+      "numero": 30,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "029/2026",
+      "numero": 29,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "028/2026",
+      "numero": 28,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "027/2026",
+      "numero": 27,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "026/2026",
+      "numero": 26,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "025/2026",
+      "numero": 25,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "024/2026",
+      "numero": 24,
+      "ano": 2026,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20260302_000008731.pdf",
+          "data": "2026-03-02",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260302_000008731.pdf",
+          "sha256_edicao": "80e5ba0998493f685093c62120bbe9a26c1b569851146a41cee0fea073f04ded",
+          "pagina": 1,
+          "trecho_id": "do_20260302_000008731#03"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2026-03-02"
+    },
+    {
+      "chave": "023/2026",
+      "numero": 23,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "022/2026",
+      "numero": 22,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "021/2026",
+      "numero": 21,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "020/2026",
+      "numero": 20,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "019/2026",
+      "numero": 19,
+      "ano": 2026,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20260302_000008731.pdf",
+          "data": "2026-03-02",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260302_000008731.pdf",
+          "sha256_edicao": "80e5ba0998493f685093c62120bbe9a26c1b569851146a41cee0fea073f04ded",
+          "pagina": 1,
+          "trecho_id": "do_20260302_000008731#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2026-03-02"
+    },
+    {
+      "chave": "018/2026",
+      "numero": 18,
+      "ano": 2026,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20260302_000008731.pdf",
+          "data": "2026-03-02",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260302_000008731.pdf",
+          "sha256_edicao": "80e5ba0998493f685093c62120bbe9a26c1b569851146a41cee0fea073f04ded",
+          "pagina": 1,
+          "trecho_id": "do_20260302_000008731#03"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2026-03-02"
+    },
+    {
+      "chave": "017/2026",
+      "numero": 17,
+      "ano": 2026,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20260205_000008716.pdf",
+          "data": "2026-02-05",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260205_000008716.pdf",
+          "sha256_edicao": "2d781f49b0b6da0bc85ae353d92c6fb311d92faa1429025bab440e8e7e1f6d66",
+          "pagina": 1,
+          "trecho_id": "do_20260205_000008716#02"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2026-02-05"
+    },
+    {
+      "chave": "016/2026",
+      "numero": 16,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "015/2026",
+      "numero": 15,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "014/2026",
+      "numero": 14,
+      "ano": 2026,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20260130_000008712.pdf",
+          "data": "2026-01-30",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260130_000008712.pdf",
+          "sha256_edicao": "3f9e20994d3c4bb9ba136ad51619ec9b94efed3faf5f5c285b3f1148d5423326",
+          "pagina": 1,
+          "trecho_id": "do_20260130_000008712#01"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2026-01-30"
+    },
+    {
+      "chave": "013/2026",
+      "numero": 13,
+      "ano": 2026,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20260129_000008711.pdf",
+          "data": "2026-01-29",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260129_000008711.pdf",
+          "sha256_edicao": "09f57e5f53037d19e5547298fb14e498951024b54109b0a268cc8e6f294329c4",
+          "pagina": 1,
+          "trecho_id": "do_20260129_000008711#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2026-01-29"
+    },
+    {
+      "chave": "012/2026",
+      "numero": 12,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "011/2026",
+      "numero": 11,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "010/2026",
+      "numero": 10,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "009/2026",
+      "numero": 9,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "008/2026",
+      "numero": 8,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "007/2026",
+      "numero": 7,
+      "ano": 2026,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "005/2026",
+      "numero": 5,
+      "ano": 2026,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20260302_000008731.pdf",
+          "data": "2026-03-02",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260302_000008731.pdf",
+          "sha256_edicao": "80e5ba0998493f685093c62120bbe9a26c1b569851146a41cee0fea073f04ded",
+          "pagina": 1,
+          "trecho_id": "do_20260302_000008731#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2026-03-02"
+    },
+    {
+      "chave": "163/2025",
+      "numero": 163,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20260113_000008699.pdf",
+          "data": "2026-01-13",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260113_000008699.pdf",
+          "sha256_edicao": "58ab2e68e4e5df5ba7827a4104d6636d640abf7cf94597c63028a760a64bd982",
+          "pagina": 1,
+          "trecho_id": "do_20260113_000008699#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2026-01-13"
+    },
+    {
+      "chave": "162/2025",
+      "numero": 162,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": "Aprovação do Edital Chamamento Públic o Nº 001/2025, instaurado pela SEMASDH, que visa à celebração de parceria com as OSC’s para execução do serviço de acolhimento institucional de crianças e adolescentes",
+      "classes": [
+        "servico_socioassistencial"
+      ],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20260427_000008766.pdf",
+          "data": "2026-04-27",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260427_000008766.pdf",
+          "sha256_edicao": "e1b8cebcc95282cb5dc9e3f595dabb5616e1c44de71755ae9bf404ecf8de01a6",
+          "pagina": 1,
+          "trecho_id": "do_20260427_000008766#01"
+        },
+        {
+          "edicao": "do_20260427_000008766.pdf",
+          "data": "2026-04-27",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260427_000008766.pdf",
+          "sha256_edicao": "e1b8cebcc95282cb5dc9e3f595dabb5616e1c44de71755ae9bf404ecf8de01a6",
+          "pagina": 1,
+          "trecho_id": "do_20260427_000008766#01"
+        },
+        {
+          "edicao": "do_20260127_000008709.pdf",
+          "data": "2026-01-27",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260127_000008709.pdf",
+          "sha256_edicao": "fb4611bdf0a0b4fb2cd19ef1c5cdb586cf111ff8686423e42e12753fce688ac3",
+          "pagina": 1,
+          "trecho_id": "do_20260127_000008709#00"
+        },
+        {
+          "edicao": "do_20260113_000008699.pdf",
+          "data": "2026-01-13",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260113_000008699.pdf",
+          "sha256_edicao": "58ab2e68e4e5df5ba7827a4104d6636d640abf7cf94597c63028a760a64bd982",
+          "pagina": 1,
+          "trecho_id": "do_20260113_000008699#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 4,
+      "primeira_aparicao": "2026-01-13"
+    },
+    {
+      "chave": "161/2025",
+      "numero": 161,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20260114_000008700.pdf",
+          "data": "2026-01-14",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260114_000008700.pdf",
+          "sha256_edicao": "73dbd545ccea262067fac4ef8f0ab814483ac2d9c530331fd051724aeb025738",
+          "pagina": 1,
+          "trecho_id": "do_20260114_000008700#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2026-01-14"
+    },
+    {
+      "chave": "159/2025",
+      "numero": 159,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251212_000008682.pdf",
+          "data": "2025-12-12",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251212_000008682.pdf",
+          "sha256_edicao": "d0c667c575520e3976ff1a834490fc80f202c43433f7cad0f8b7d52f65163c52",
+          "pagina": 1,
+          "trecho_id": "do_20251212_000008682#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-12-12"
+    },
+    {
+      "chave": "157/2025",
+      "numero": 157,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "156/2025",
+      "numero": 156,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251203_000008675.pdf",
+          "data": "2025-12-03",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251203_000008675.pdf",
+          "sha256_edicao": "60dde0df12149e4e980cc486ac77fde4a5f71f0ff08a037ab016dfd8d8cd0c97",
+          "pagina": 1,
+          "trecho_id": "do_20251203_000008675#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-12-03"
+    },
+    {
+      "chave": "155/2025",
+      "numero": 155,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251202_000008674_edi.pdf",
+          "data": "2025-12-02",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251202_000008674_edi.pdf",
+          "sha256_edicao": "2235b169cd0ec43343065a85db85016a5157c30d3ad7557b5e3211658fb1f543",
+          "pagina": 1,
+          "trecho_id": "do_20251202_000008674_edi#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-12-02"
+    },
+    {
+      "chave": "154/2025",
+      "numero": 154,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251202_000008674_edi.pdf",
+          "data": "2025-12-02",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251202_000008674_edi.pdf",
+          "sha256_edicao": "2235b169cd0ec43343065a85db85016a5157c30d3ad7557b5e3211658fb1f543",
+          "pagina": 1,
+          "trecho_id": "do_20251202_000008674_edi#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-12-02"
+    },
+    {
+      "chave": "153/2025",
+      "numero": 153,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251203_000008675.pdf",
+          "data": "2025-12-03",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251203_000008675.pdf",
+          "sha256_edicao": "60dde0df12149e4e980cc486ac77fde4a5f71f0ff08a037ab016dfd8d8cd0c97",
+          "pagina": 1,
+          "trecho_id": "do_20251203_000008675#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-12-03"
+    },
+    {
+      "chave": "152/2025",
+      "numero": 152,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "151/2025",
+      "numero": 151,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251204_000008676.pdf",
+          "data": "2025-12-04",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251204_000008676.pdf",
+          "sha256_edicao": "1ab3ab4ef39355d7f658a7b80da64884f3253c401efde0c66428631d4a46e5d4",
+          "pagina": 1,
+          "trecho_id": "do_20251204_000008676#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-12-04"
+    },
+    {
+      "chave": "150/2025",
+      "numero": 150,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "149/2025",
+      "numero": 149,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "148/2025",
+      "numero": 148,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "147/2025",
+      "numero": 147,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "146/2025",
+      "numero": 146,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "145/2025",
+      "numero": 145,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "144/2025",
+      "numero": 144,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "143/2025",
+      "numero": 143,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "142/2025",
+      "numero": 142,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251107_000008659.pdf",
+          "data": "2025-11-07",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251107_000008659.pdf",
+          "sha256_edicao": "455b18f92d38897afac09d142311dd3a2eebc697c9af08c473ee361e9fb85719",
+          "pagina": 1,
+          "trecho_id": "do_20251107_000008659#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-11-07"
+    },
+    {
+      "chave": "141/2025",
+      "numero": 141,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "140/2025",
+      "numero": 140,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251104_000008656.pdf",
+          "data": "2025-11-04",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251104_000008656.pdf",
+          "sha256_edicao": "861bf607d8a1e5f54ef1dfde27de857c436e312473d0e6303b15a600506fa7fc",
+          "pagina": 1,
+          "trecho_id": "do_20251104_000008656#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-11-04"
+    },
+    {
+      "chave": "139/2025",
+      "numero": 139,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251104_000008656.pdf",
+          "data": "2025-11-04",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251104_000008656.pdf",
+          "sha256_edicao": "861bf607d8a1e5f54ef1dfde27de857c436e312473d0e6303b15a600506fa7fc",
+          "pagina": 1,
+          "trecho_id": "do_20251104_000008656#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-11-04"
+    },
+    {
+      "chave": "138/2025",
+      "numero": 138,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "137/2025",
+      "numero": 137,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "136/2025",
+      "numero": 136,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "135/2025",
+      "numero": 135,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251217_000008685.pdf",
+          "data": "2025-12-17",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251217_000008685.pdf",
+          "sha256_edicao": "9b474a679c28d7ef987d692fa0a3eb26004908e17d856962490fcd4e22b27568",
+          "pagina": 1,
+          "trecho_id": "do_20251217_000008685#00"
+        },
+        {
+          "edicao": "do_20251107_000008659.pdf",
+          "data": "2025-11-07",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251107_000008659.pdf",
+          "sha256_edicao": "455b18f92d38897afac09d142311dd3a2eebc697c9af08c473ee361e9fb85719",
+          "pagina": 1,
+          "trecho_id": "do_20251107_000008659#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 2,
+      "primeira_aparicao": "2025-11-07"
+    },
+    {
+      "chave": "134/2025",
+      "numero": 134,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "133/2025",
+      "numero": 133,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251103_000008655_edi.pdf",
+          "data": "2025-11-03",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251103_000008655_edi.pdf",
+          "sha256_edicao": "929eb3dd56cc2b286e9c8fdb46ca181e4a48b8017365dcf2b622b2319719311c",
+          "pagina": 1,
+          "trecho_id": "do_20251103_000008655_edi#01"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-11-03"
+    },
+    {
+      "chave": "132/2025",
+      "numero": 132,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251212_000008682.pdf",
+          "data": "2025-12-12",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251212_000008682.pdf",
+          "sha256_edicao": "d0c667c575520e3976ff1a834490fc80f202c43433f7cad0f8b7d52f65163c52",
+          "pagina": 1,
+          "trecho_id": "do_20251212_000008682#00"
+        },
+        {
+          "edicao": "do_20251103_000008655_edi.pdf",
+          "data": "2025-11-03",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251103_000008655_edi.pdf",
+          "sha256_edicao": "929eb3dd56cc2b286e9c8fdb46ca181e4a48b8017365dcf2b622b2319719311c",
+          "pagina": 1,
+          "trecho_id": "do_20251103_000008655_edi#01"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 2,
+      "primeira_aparicao": "2025-11-03"
+    },
+    {
+      "chave": "131/2025",
+      "numero": 131,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251105_000008657.pdf",
+          "data": "2025-11-05",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251105_000008657.pdf",
+          "sha256_edicao": "73d8112664bda399a294a0fed2f6b19ed64f9b0bc2383dda8efe366d799af0ca",
+          "pagina": 1,
+          "trecho_id": "do_20251105_000008657#00"
+        },
+        {
+          "edicao": "do_20251031_000008654.pdf",
+          "data": "2025-10-31",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251031_000008654.pdf",
+          "sha256_edicao": "a342f281f98fed09931537a78959bba61e61ace82e0e4db89508027ff728e1b3",
+          "pagina": 1,
+          "trecho_id": "do_20251031_000008654#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 2,
+      "primeira_aparicao": "2025-10-31"
+    },
+    {
+      "chave": "130/2025",
+      "numero": 130,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251031_000008654.pdf",
+          "data": "2025-10-31",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251031_000008654.pdf",
+          "sha256_edicao": "a342f281f98fed09931537a78959bba61e61ace82e0e4db89508027ff728e1b3",
+          "pagina": 1,
+          "trecho_id": "do_20251031_000008654#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-10-31"
+    },
+    {
+      "chave": "129/2025",
+      "numero": 129,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "128/2025",
+      "numero": 128,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "127/2025",
+      "numero": 127,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "126/2025",
+      "numero": 126,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "125/2025",
+      "numero": 125,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "124/2025",
+      "numero": 124,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "123/2025",
+      "numero": 123,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "122/2025",
+      "numero": 122,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "121/2025",
+      "numero": 121,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251002_000008635.pdf",
+          "data": "2025-10-02",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251002_000008635.pdf",
+          "sha256_edicao": "48f60081c7aa9ec37022bf554d680938f0fd25e45a8a969076f7dd892b2ebb90",
+          "pagina": 1,
+          "trecho_id": "do_20251002_000008635#01"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-10-02"
+    },
+    {
+      "chave": "120/2025",
+      "numero": 120,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251002_000008635.pdf",
+          "data": "2025-10-02",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251002_000008635.pdf",
+          "sha256_edicao": "48f60081c7aa9ec37022bf554d680938f0fd25e45a8a969076f7dd892b2ebb90",
+          "pagina": 1,
+          "trecho_id": "do_20251002_000008635#01"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-10-02"
+    },
+    {
+      "chave": "119/2025",
+      "numero": 119,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251216_000008684.pdf",
+          "data": "2025-12-16",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251216_000008684.pdf",
+          "sha256_edicao": "f5c2a1481054c8c7674db8afd7302d74e646d6598176303f1c08bcbc03272be3",
+          "pagina": 1,
+          "trecho_id": "do_20251216_000008684#00"
+        },
+        {
+          "edicao": "do_20251030_000008653.pdf",
+          "data": "2025-10-30",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251030_000008653.pdf",
+          "sha256_edicao": "c4ee8d780bdbaf6e5a76a8b0d2b9fd1880ec5f4d9909bae475d5887c73e860ff",
+          "pagina": 1,
+          "trecho_id": "do_20251030_000008653#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 2,
+      "primeira_aparicao": "2025-10-30"
+    },
+    {
+      "chave": "117/2025",
+      "numero": 117,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "116/2025",
+      "numero": 116,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "115/2025",
+      "numero": 115,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250926_000008631.pdf",
+          "data": "2025-09-26",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250926_000008631.pdf",
+          "sha256_edicao": "5d78c8b2a9e79f15496beb732702a20df5bf26930e7580b51f32228b71ea9ed7",
+          "pagina": 1,
+          "trecho_id": "do_20250926_000008631#01"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-09-26"
+    },
+    {
+      "chave": "114/2025",
+      "numero": 114,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250926_000008631.pdf",
+          "data": "2025-09-26",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250926_000008631.pdf",
+          "sha256_edicao": "5d78c8b2a9e79f15496beb732702a20df5bf26930e7580b51f32228b71ea9ed7",
+          "pagina": 1,
+          "trecho_id": "do_20250926_000008631#01"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-09-26"
+    },
+    {
+      "chave": "113/2025",
+      "numero": 113,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "112/2025",
+      "numero": 112,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250924_000008629.pdf",
+          "data": "2025-09-24",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250924_000008629.pdf",
+          "sha256_edicao": "e9e865376176ded880f241252e48f5411994a687e4228caf8b30fa5a78cfaf63",
+          "pagina": 1,
+          "trecho_id": "do_20250924_000008629#01"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-09-24"
+    },
+    {
+      "chave": "111/2025",
+      "numero": 111,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250924_000008629.pdf",
+          "data": "2025-09-24",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250924_000008629.pdf",
+          "sha256_edicao": "e9e865376176ded880f241252e48f5411994a687e4228caf8b30fa5a78cfaf63",
+          "pagina": 1,
+          "trecho_id": "do_20250924_000008629#01"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-09-24"
+    },
+    {
+      "chave": "109/2025",
+      "numero": 109,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "108/2025",
+      "numero": 108,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "107/2025",
+      "numero": 107,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250909_000008618.pdf",
+          "data": "2025-09-09",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250909_000008618.pdf",
+          "sha256_edicao": "29ecd50b520a87e36a026b829bbdb6b552625b104f686fdfd84cdac9dbc84ca5",
+          "pagina": 1,
+          "trecho_id": "do_20250909_000008618#01"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-09-09"
+    },
+    {
+      "chave": "105/2025",
+      "numero": 105,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "104/2025",
+      "numero": 104,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "103/2025",
+      "numero": 103,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "102/2025",
+      "numero": 102,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "099/2025",
+      "numero": 99,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "098/2025",
+      "numero": 98,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "097/2025",
+      "numero": 97,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "096/2025",
+      "numero": 96,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "095/2025",
+      "numero": 95,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "094/2025",
+      "numero": 94,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "093/2025",
+      "numero": 93,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "092/2025",
+      "numero": 92,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "091/2025",
+      "numero": 91,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "090/2025",
+      "numero": 90,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "088/2025",
+      "numero": 88,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "087/2025",
+      "numero": 87,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250826_000008608.pdf",
+          "data": "2025-08-26",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250826_000008608.pdf",
+          "sha256_edicao": "5ea2ba0d1abc02a62226d26d5211c3b294ba48c314e711aa449386a00e4d5d4e",
+          "pagina": 1,
+          "trecho_id": "do_20250826_000008608#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-08-26"
+    },
+    {
+      "chave": "086/2025",
+      "numero": 86,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250826_000008608.pdf",
+          "data": "2025-08-26",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250826_000008608.pdf",
+          "sha256_edicao": "5ea2ba0d1abc02a62226d26d5211c3b294ba48c314e711aa449386a00e4d5d4e",
+          "pagina": 1,
+          "trecho_id": "do_20250826_000008608#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-08-26"
+    },
+    {
+      "chave": "085/2025",
+      "numero": 85,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "083/2025",
+      "numero": 83,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "082/2025",
+      "numero": 82,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250827_000008609.pdf",
+          "data": "2025-08-27",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250827_000008609.pdf",
+          "sha256_edicao": "0947cfa746e2fe0a853f4102d3526e26be17d737dcab1742e02949662526aa69",
+          "pagina": 1,
+          "trecho_id": "do_20250827_000008609#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-08-27"
+    },
+    {
+      "chave": "081/2025",
+      "numero": 81,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250827_000008609.pdf",
+          "data": "2025-08-27",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250827_000008609.pdf",
+          "sha256_edicao": "0947cfa746e2fe0a853f4102d3526e26be17d737dcab1742e02949662526aa69",
+          "pagina": 1,
+          "trecho_id": "do_20250827_000008609#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-08-27"
+    },
+    {
+      "chave": "080/2025",
+      "numero": 80,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "079/2025",
+      "numero": 79,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250820_000008604.pdf",
+          "data": "2025-08-20",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250820_000008604.pdf",
+          "sha256_edicao": "51658f2f9314c2e0b8410fdb427945f5216213dc573f186ac5a5baa36a6d177f",
+          "pagina": 1,
+          "trecho_id": "do_20250820_000008604#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-08-20"
+    },
+    {
+      "chave": "078/2025",
+      "numero": 78,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "077/2025",
+      "numero": 77,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "076/2025",
+      "numero": 76,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "075/2025",
+      "numero": 75,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "074/2025",
+      "numero": 74,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "073/2025",
+      "numero": 73,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "072/2025",
+      "numero": 72,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251126_000008670.pdf",
+          "data": "2025-11-26",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251126_000008670.pdf",
+          "sha256_edicao": "fb6dd3cd08433321f6e38fb8d994ba6e60c8748f1ea25ad5faf35b250b411252",
+          "pagina": 1,
+          "trecho_id": "do_20251126_000008670#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-11-26"
+    },
+    {
+      "chave": "071/2025",
+      "numero": 71,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "070/2025",
+      "numero": 70,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "069/2025",
+      "numero": 69,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250805_000008593.pdf",
+          "data": "2025-08-05",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250805_000008593.pdf",
+          "sha256_edicao": "c8b523124228b3ec5d0fee9e3447c68feb818aa5fb0adcf14238437e55fff32b",
+          "pagina": 1,
+          "trecho_id": "do_20250805_000008593#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-08-05"
+    },
+    {
+      "chave": "067/2025",
+      "numero": 67,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "066/2025",
+      "numero": 66,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "065/2025",
+      "numero": 65,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "064/2025",
+      "numero": 64,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "063/2025",
+      "numero": 63,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "062/2025",
+      "numero": 62,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "061/2025",
+      "numero": 61,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "060/2025",
+      "numero": 60,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "059/2025",
+      "numero": 59,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "058/2025",
+      "numero": 58,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "057/2025",
+      "numero": 57,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "056/2025",
+      "numero": 56,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250718_000008581.pdf",
+          "data": "2025-07-18",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250718_000008581.pdf",
+          "sha256_edicao": "1aa1626aa2f314917fa4482625e6e192792768369d8ffc1ec3023a6a32fae76d",
+          "pagina": 1,
+          "trecho_id": "do_20250718_000008581#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-07-18"
+    },
+    {
+      "chave": "055/2025",
+      "numero": 55,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250718_000008581.pdf",
+          "data": "2025-07-18",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250718_000008581.pdf",
+          "sha256_edicao": "1aa1626aa2f314917fa4482625e6e192792768369d8ffc1ec3023a6a32fae76d",
+          "pagina": 1,
+          "trecho_id": "do_20250718_000008581#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-07-18"
+    },
+    {
+      "chave": "054/2025",
+      "numero": 54,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250717_000008580.pdf",
+          "data": "2025-07-17",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250717_000008580.pdf",
+          "sha256_edicao": "f2835e9ee879ab40582b4482763e2a81c5813efbeb6747c1ffea74c88b61c51e",
+          "pagina": 1,
+          "trecho_id": "do_20250717_000008580#01"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-07-17"
+    },
+    {
+      "chave": "053/2025",
+      "numero": 53,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250716_000008579.pdf",
+          "data": "2025-07-16",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250716_000008579.pdf",
+          "sha256_edicao": "57f600d94ecb8a48ffee0b397efd39e2d12ae86a3cd29bbb9a084c1c2656674e",
+          "pagina": 1,
+          "trecho_id": "do_20250716_000008579#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-07-16"
+    },
+    {
+      "chave": "052/2025",
+      "numero": 52,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "051/2025",
+      "numero": 51,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "050/2025",
+      "numero": 50,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "049/2025",
+      "numero": 49,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "048/2025",
+      "numero": 48,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250715_000008578.pdf",
+          "data": "2025-07-15",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250715_000008578.pdf",
+          "sha256_edicao": "8668f2250efcc84a75fc3453f0b94aaef4ab602ad95a86d82879329c92ee41f4",
+          "pagina": 1,
+          "trecho_id": "do_20250715_000008578#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-07-15"
+    },
+    {
+      "chave": "047/2025",
+      "numero": 47,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250715_000008578.pdf",
+          "data": "2025-07-15",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250715_000008578.pdf",
+          "sha256_edicao": "8668f2250efcc84a75fc3453f0b94aaef4ab602ad95a86d82879329c92ee41f4",
+          "pagina": 1,
+          "trecho_id": "do_20250715_000008578#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-07-15"
+    },
+    {
+      "chave": "046/2025",
+      "numero": 46,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250714_000008577.pdf",
+          "data": "2025-07-14",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250714_000008577.pdf",
+          "sha256_edicao": "ad5077deaa8a6a09354af1b679f6802c34633574ed32404b01515127e6581875",
+          "pagina": 1,
+          "trecho_id": "do_20250714_000008577#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-07-14"
+    },
+    {
+      "chave": "045/2025",
+      "numero": 45,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250710_000008575.pdf",
+          "data": "2025-07-10",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250710_000008575.pdf",
+          "sha256_edicao": "942f8809403dee609779da043c29e8f4a9d6aaf3f7e1f025ee64768947cfa80d",
+          "pagina": 1,
+          "trecho_id": "do_20250710_000008575#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-07-10"
+    },
+    {
+      "chave": "044/2025",
+      "numero": 44,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "043/2025",
+      "numero": 43,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "042/2025",
+      "numero": 42,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "041/2025",
+      "numero": 41,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "040/2025",
+      "numero": 40,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "039/2025",
+      "numero": 39,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "038/2025",
+      "numero": 38,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "037/2025",
+      "numero": 37,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "036/2025",
+      "numero": 36,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "035/2025",
+      "numero": 35,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "034/2025",
+      "numero": 34,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "033/2025",
+      "numero": 33,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "032/2025",
+      "numero": 32,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "031/2025",
+      "numero": 31,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20260107_000008695.pdf",
+          "data": "2026-01-07",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260107_000008695.pdf",
+          "sha256_edicao": "7eae45fb4fecdb0256d69ef219f76727c72f0310f46fbd59bd0ba840279a7ee2",
+          "pagina": 1,
+          "trecho_id": "do_20260107_000008695#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2026-01-07"
+    },
+    {
+      "chave": "030/2025",
+      "numero": 30,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "029/2025",
+      "numero": 29,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "028/2025",
+      "numero": 28,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "027/2025",
+      "numero": 27,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "026/2025",
+      "numero": 26,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "025/2025",
+      "numero": 25,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "024/2025",
+      "numero": 24,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "023/2025",
+      "numero": 23,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "022/2025",
+      "numero": 22,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "021/2025",
+      "numero": 21,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "020/2025",
+      "numero": 20,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "019/2025",
+      "numero": 19,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "018/2025",
+      "numero": 18,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "017/2025",
+      "numero": 17,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "016/2025",
+      "numero": 16,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "015/2025",
+      "numero": 15,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251126_000008670.pdf",
+          "data": "2025-11-26",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251126_000008670.pdf",
+          "sha256_edicao": "fb6dd3cd08433321f6e38fb8d994ba6e60c8748f1ea25ad5faf35b250b411252",
+          "pagina": 1,
+          "trecho_id": "do_20251126_000008670#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-11-26"
+    },
+    {
+      "chave": "014/2025",
+      "numero": 14,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "013/2025",
+      "numero": 13,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "012/2025",
+      "numero": 12,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "011/2025",
+      "numero": 11,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "010/2025",
+      "numero": 10,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "009/2025",
+      "numero": 9,
+      "ano": 2025,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20251119_000008667.pdf",
+          "data": "2025-11-19",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20251119_000008667.pdf",
+          "sha256_edicao": "75ee7b16f005738657f510863026b5b90814a8653bf609ec9a2d2361b7984675",
+          "pagina": 1,
+          "trecho_id": "do_20251119_000008667#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-11-19"
+    },
+    {
+      "chave": "008/2025",
+      "numero": 8,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "007/2025",
+      "numero": 7,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "006/2025",
+      "numero": 6,
+      "ano": 2025,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "153/2024",
+      "numero": 153,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "152/2024",
+      "numero": 152,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "151/2024",
+      "numero": 151,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "150/2024",
+      "numero": 150,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "149/2024",
+      "numero": 149,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "148/2024",
+      "numero": 148,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "147/2024",
+      "numero": 147,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "146/2024",
+      "numero": 146,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "145/2024",
+      "numero": 145,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "144/2024",
+      "numero": 144,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "143/2024",
+      "numero": 143,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "142/2024",
+      "numero": 142,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "141/2024",
+      "numero": 141,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "140/2024",
+      "numero": 140,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "139/2024",
+      "numero": 139,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "138/2024",
+      "numero": 138,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "137/2024",
+      "numero": 137,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "136/2024",
+      "numero": 136,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "135/2024",
+      "numero": 135,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "134/2024",
+      "numero": 134,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "133/2024",
+      "numero": 133,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "132/2024",
+      "numero": 132,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "131/2024",
+      "numero": 131,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "130/2024",
+      "numero": 130,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "129/2024",
+      "numero": 129,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "128/2024",
+      "numero": 128,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "127/2024",
+      "numero": 127,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "126/2024",
+      "numero": 126,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "125/2024",
+      "numero": 125,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "124/2024",
+      "numero": 124,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "123/2024",
+      "numero": 123,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "122/2024",
+      "numero": 122,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "121/2024",
+      "numero": 121,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "120/2024",
+      "numero": 120,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "119/2024",
+      "numero": 119,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "118/2024",
+      "numero": 118,
+      "ano": 2024,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250722_000008583.pdf",
+          "data": "2025-07-22",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250722_000008583.pdf",
+          "sha256_edicao": "9f72f1db5ad071717da680479d0544cf27fff655ece2b0f9f8798230bd8b3383",
+          "pagina": 1,
+          "trecho_id": "do_20250722_000008583#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-07-22"
+    },
+    {
+      "chave": "117/2024",
+      "numero": 117,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "116/2024",
+      "numero": 116,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "115/2024",
+      "numero": 115,
+      "ano": 2024,
+      "situacao": "PRESUMIDO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [],
+      "n_publicacoes": 0,
+      "n_citacoes": 0,
+      "primeira_aparicao": null
+    },
+    {
+      "chave": "114/2024",
+      "numero": 114,
+      "ano": 2024,
+      "situacao": "APENAS_CITADO",
+      "ementa": null,
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20250722_000008583.pdf",
+          "data": "2025-07-22",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20250722_000008583.pdf",
+          "sha256_edicao": "9f72f1db5ad071717da680479d0544cf27fff655ece2b0f9f8798230bd8b3383",
+          "pagina": 1,
+          "trecho_id": "do_20250722_000008583#00"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2025-07-22"
+    },
+    {
+      "chave": "078/2021",
+      "numero": 78,
+      "ano": 2021,
+      "situacao": "APENAS_CITADO",
+      "ementa": "Criança e do Adolescente (CMDCA) no disposto no art",
+      "classes": [],
+      "publicacoes": [],
+      "citacoes": [
+        {
+          "edicao": "do_20260406_000008753.pdf",
+          "data": "2026-04-06",
+          "url": "http://sileg.goiania.go.gov.br/geral/do_20260406_000008753.pdf",
+          "sha256_edicao": "74850ac85eb009dfdfbd1cb7ac54343dddaad5d42ef3d8b37f3512fe53807d7d",
+          "pagina": 1,
+          "trecho_id": "do_20260406_000008753#02"
+        }
+      ],
+      "n_publicacoes": 0,
+      "n_citacoes": 1,
+      "primeira_aparicao": "2026-04-06"
+    }
+  ],
+  "atas_localizadas": [],
+  "presumidos_por_lacuna": 167,
+  "classes_frequentes": [
+    [
+      "composicao_do_conselho",
+      10
+    ],
+    [
+      "inscricao_de_entidade",
+      7
+    ],
+    [
+      "regimento",
+      6
+    ],
+    [
+      "orcamento",
+      5
+    ],
+    [
+      "servico_socioassistencial",
+      4
+    ]
+  ]
+}

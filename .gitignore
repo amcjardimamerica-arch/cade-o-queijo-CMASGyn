@@ -1,0 +1,20 @@
+__pycache__/
+*.pyc
+.env
+
+# PDFs NUNCA entram no repositório. A prova é o par (SHA-256, URL oficial),
+# gravado em estado/historico_registro.json. O arquivo assinado permanece
+# obtenível na origem e sua integridade é aferível pelo digest.
+acervo/historico/pdf/
+acervo/dom/
+*.pdf
+*.ocr.pdf
+
+# Texto integral comprimido: fica local para o banco de busca, fora do repositório.
+# Quem clona reconstrói com `python src/historico.py`.
+acervo/historico/txt/
+acervo/historico/txt_gz/
+dados/cmasgyn.db*
+
+corpus/brutos/*.html
+estado/http_cache.json

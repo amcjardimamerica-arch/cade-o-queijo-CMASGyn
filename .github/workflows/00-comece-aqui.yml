@@ -1,0 +1,133 @@
+name: 00 · Comece aqui — verificação de prontidão
+
+# Roda sozinho no primeiro envio de arquivos e sempre que solicitado.
+# Não altera nada: apenas confere se o repositório está apto e diz, em
+# português e com precisão, o que ainda falta.
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  prontidao:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+
+      - name: Conferir arquivos essenciais
+        run: |
+          FALTA=0
+          {
+            echo "# Verificação de prontidão"
+            echo ""
+            echo "## Arquivos"
+            echo ""
+            echo "| Item | Situação |"
+            echo "|---|---|"
+          } >> "$GITHUB_STEP_SUMMARY"
+          for f in requirements.txt testes.py docs/index.html \
+                   src/historico.py src/extracao.py src/biblioteca.py \
+                   src/verificacao_dupla.py src/publicacao_diaria.py \
+                   src/financeiro.py src/trilha.py src/busca_local.py \
+                   config/dominios/assistencia_social.yml dados/janela3anos.json \
+                   documentos/Oficio_LAI_CMASGyn.docx; do
+            if [ -f "$f" ]; then
+              echo "| \`$f\` | presente |" >> "$GITHUB_STEP_SUMMARY"
+            else
+              echo "| \`$f\` | **AUSENTE** |" >> "$GITHUB_STEP_SUMMARY"
+              FALTA=1
+            fi
+          done
+          echo "ausentes=$FALTA" >> "$GITHUB_ENV"
+
+      - name: Conferir permissão de escrita
+        id: escrita
+        run: |
+          {
+            echo ""
+            echo "## Permissões"
+            echo ""
+          } >> "$GITHUB_STEP_SUMMARY"
+          if git push --dry-run origin HEAD >/dev/null 2>&1; then
+            echo "**Escrita no repositório: liberada.** Nada a fazer." >> "$GITHUB_STEP_SUMMARY"
+            echo "ok=1" >> "$GITHUB_OUTPUT"
+          else
+            {
+              echo "**Escrita no repositório: BLOQUEADA — esta é a única coisa que falta.**"
+              echo ""
+              echo "Sem ela o agente coleta, analisa e monta o painel, mas não consegue"
+              echo "gravar nada de volta, e todo o trabalho se perde ao fim da execução."
+              echo ""
+              echo "### O que fazer, uma vez só"
+              echo ""
+              echo "1. No repositório, clique em **Configurações** *(Settings)*."
+              echo "2. No menu da esquerda: **Ações** *(Actions)* → **Geral** *(General)*."
+              echo "3. Role até o fim, bloco **Permissões de fluxo de trabalho** *(Workflow permissions)*."
+              echo "4. Marque **Permissões de leitura e gravação** *(Read and write permissions)*."
+              echo "5. Marque também **Permitir que o GitHub Actions crie e aprove pull requests**."
+              echo "6. Clique em **Salvar** *(Save)*."
+              echo ""
+              echo "Feito isso, nada mais é preciso: o fluxo de vigilância roda sozinho."
+            } >> "$GITHUB_STEP_SUMMARY"
+            echo "ok=0" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Testar acesso às fontes públicas
+        run: |
+          pip install -q requests urllib3
+          python - <<'EOF' >> "$GITHUB_STEP_SUMMARY"
+          import requests, urllib3, json
+          urllib3.disable_warnings()
+          print("\n## Fontes públicas\n")
+          print("| Fonte | Situação |")
+          print("|---|---|")
+          try:
+              r = requests.get("https://sileg.goiania.go.gov.br/solr-4.1.0/select",
+                  params={"q":'attr_content:"CMASGyn"',"wt":"json","rows":1,"fl":"id"},
+                  timeout=60, verify=False)
+              n = r.json()["response"]["numFound"]
+              print(f"| Índice do Diário Oficial | responde — {n} documentos |")
+          except Exception as e:
+              print(f"| Índice do Diário Oficial | **falhou**: {type(e).__name__} |")
+          try:
+              r = requests.get("https://cmasgyn.com.br/Documentos", timeout=45, verify=False,
+                               headers={"User-Agent":"AMC-Jardim-America-Vigilancia/1.0"})
+              print(f"| Sítio do CMASGyn | HTTP {r.status_code} |")
+          except Exception as e:
+              print(f"| Sítio do CMASGyn | **falhou**: {type(e).__name__} |")
+          EOF
+
+      - name: Habilitar o Pages
+        continue-on-error: true
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Veredito
+        run: |
+          {
+            echo ""
+            echo "---"
+            echo ""
+            if [ "${{ steps.escrita.outputs.ok }}" = "1" ] && [ "$ausentes" = "0" ]; then
+              echo "## Tudo pronto"
+              echo ""
+              echo "O fluxo **Vigilância CMASGyn** já está rodando. O painel aparece em"
+              echo "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+              echo "assim que a primeira execução terminar."
+            else
+              echo "## Falta uma coisa"
+              echo ""
+              echo "Resolva o item marcado acima e rode este fluxo novamente em"
+              echo "**Ações** → **00 · Comece aqui** → **Executar fluxo de trabalho**."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -1,0 +1,113 @@
+# FONTES ESPECÍFICAS DE VIGILÂNCIA
+# Regra: nenhuma varredura geral da web. O agente só visita os endpoints abaixo.
+# Cada fonte tem cadência própria. `condicional: true` usa ETag/If-Modified-Since
+# para não rebaixar conteúdo inalterado (economia de banda e de tokens).
+
+defaults:
+  user_agent: "AMC-Jardim-America-Vigilancia/1.0 (+contato: SEU_EMAIL; monitoramento de transparencia sob Lei 12.527/2011)"
+  intervalo_segundos: 3.0        # espera entre requisições ao MESMO dominio
+  timeout: 45
+  tentativas: 3
+  respeitar_robots: true
+
+fontes:
+
+  # ---------- DIÁRIO OFICIAL DO MUNICÍPIO (núcleo da rotina diária) ----------
+  - id: dom_goiania
+    nome: "Diário Oficial do Município de Goiânia"
+    cadencia: diaria
+    tipo: dom
+    # O portal de consulta do DOM é o SILEG. O padrão de URL do PDF da edição
+    # deve ser fixado na primeira execução por src/descobrir.py, que grava
+    # o resultado em estado/dom_endpoint.json. NÃO inventar padrão de URL.
+    portal_consulta: "http://sileg.goiania.go.gov.br/"
+    pagina_institucional: "https://www.goiania.go.gov.br/casa-civil/diario-oficial/"
+    descoberta_pendente: true
+    condicional: true
+
+  # ---------- CMASGyn ----------
+  - id: cmasgyn_resolucoes
+    nome: "CMASGyn — Resoluções"
+    cadencia: diaria
+    tipo: html_lista
+    url: "https://cmasgyn.com.br/Documentos"
+    padrao_arquivo: "/Resources/documentos/resolucoes/"
+    condicional: true
+
+  - id: cmasgyn_plenarias
+    nome: "CMASGyn — Plenárias e atas"
+    cadencia: diaria
+    tipo: html_lista
+    url: "https://cmasgyn.com.br/Conselho/Plenarias"
+    condicional: true
+
+  - id: cmasgyn_entidades
+    nome: "CMASGyn — Entidades inscritas"
+    cadencia: semanal
+    tipo: html_lista
+    url: "https://cmasgyn.com.br/Conselho/Entidades"
+    alimenta_lexico: true          # nomes e CNPJ viram termos de gatilho
+    condicional: true
+
+  - id: cmasgyn_conselheiros
+    nome: "CMASGyn — Conselheiros"
+    cadencia: semanal
+    tipo: html_lista
+    url: "https://cmasgyn.com.br/Conselho/Conselheiros"
+    condicional: true
+
+  - id: cmasgyn_legislacao
+    nome: "CMASGyn — Legislação e regimento"
+    cadencia: mensal
+    tipo: html_lista
+    url: "https://cmasgyn.com.br/Documentos/Legislacao"
+    condicional: true
+
+  # ---------- PREFEITURA / TRANSPARÊNCIA ----------
+  - id: nucleogov_api
+    nome: "Portal do Cidadão — APIs de dados abertos"
+    cadencia: diaria
+    tipo: api_json
+    base: "https://goiania.nucleogov.com.br/api"
+    headers:
+      X-NucleoGov-Services: "true"
+    rotas:
+      - "/ouvidoria?acao=relatorio"
+    condicional: false
+
+  - id: transparencia_goiania
+    nome: "Portal da Transparência de Goiânia"
+    cadencia: semanal
+    tipo: html_lista
+    url: "https://www.goiania.go.gov.br/transparencia/"
+    condicional: true
+
+  - id: camara_goiania
+    nome: "Câmara Municipal de Goiânia — dados abertos"
+    cadencia: diaria
+    tipo: api_json
+    url: "https://www.goiania.go.leg.br/transparencia/dados-abertos"
+    condicional: true
+
+  # ---------- CONTROLE EXTERNO ----------
+  - id: tcm_go_doc
+    nome: "TCM-GO — Diário Oficial de Contas"
+    cadencia: diaria
+    tipo: html_lista
+    url: "https://www.tcm.go.gov.br/doc/"
+    condicional: true
+
+  # ---------- NORMATIVO FEDERAL (só cadência mensal; não entra na rotina diária) ----------
+  - id: cnas_resolucoes
+    nome: "CNAS — Resoluções (Participa + Brasil)"
+    cadencia: mensal
+    tipo: html_lista
+    url: "https://www.gov.br/participamaisbrasil/resolucoes12"
+    condicional: true
+
+  - id: mds_igd
+    nome: "MDS — Índice de Gestão Descentralizada"
+    cadencia: mensal
+    tipo: html_lista
+    url: "https://www.gov.br/mds/pt-br/acoes-e-programas/bolsa-familia/igd"
+    condicional: true
