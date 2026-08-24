@@ -68,8 +68,8 @@ def construir() -> dict:
             "mencoes_cmas": mencoes, "ata": eh_ata,
         })
 
-    achados_atas, painel_conselheiros = mod_atas.processar_lote(textos_ata)
-    padrao = mod_pad.analisar_acervo(textos_cmas)
+    achados_atas, painel_conselheiros = mod_atas.processar_lote(textos_ata[:400])
+    padrao = mod_pad.analisar_acervo(textos_cmas[:400])
 
     datas = [l["data"] for l in linhas] or [agora().date().isoformat()]
     ids = {f"_{d.replace('-', '')}_" for d in datas}
@@ -84,12 +84,21 @@ def construir() -> dict:
             "WHEN 'media' THEN 1 ELSE 2 END, data_ref DESC").fetchall()]
     c.close()
 
+    # As etapas anteriores do fluxo já produziram estes arquivos. Recomputar
+    # aqui duplicaria dezenas de minutos de processamento e estouraria a janela
+    # de execução. Lê-se o que existe; só se reconstrói o que faltar.
     try:
-        bib = mod_bib.construir("assistencia_social")
+        bib = ler_json(RAIZ / "dados" / "biblioteca_cmasgyn.json", {})
+        if not bib.get("total_atos"):
+            bib = mod_bib.construir("assistencia_social")
         dom = yaml.safe_load((RAIZ / "config" / "dominios" /
                               "assistencia_social.yml").read_text(encoding="utf-8"))
-        fin = mod_fin.conciliar(dom)
-        tri = mod_tri.mapear(dom)
+        fin = ler_json(RAIZ / "dados" / "financeiro.json", {})
+        if not fin.get("linhas"):
+            fin = mod_fin.conciliar(dom)
+        tri = ler_json(RAIZ / "dados" / "trilha_dinheiro.json", {})
+        if not tri.get("eventos"):
+            tri = mod_tri.mapear(dom)
         vd = ler_json(RAIZ / 'dados' / 'verificacao_dupla.json', {})
         pdz = ler_json(RAIZ / 'dados' / 'publicacao_diaria.json', {})
     except Exception as e:

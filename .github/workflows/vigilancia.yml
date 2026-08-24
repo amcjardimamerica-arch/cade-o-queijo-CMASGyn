@@ -70,7 +70,7 @@ jobs:
         if: github.event.inputs.recolher_historico != 'nao'
         run: |
           # Teto por execução para caber na janela de 55 minutos.
-          python src/historico.py dados/janela3anos.json 90 || true
+          timeout 900 python src/historico.py dados/janela3anos.json 70 || true
 
       - name: Varredura diária do Diário Oficial
         env:
@@ -86,7 +86,8 @@ jobs:
           python src/run_diario.py || true
 
       - name: Semáforo diário de publicação
-        run: python src/publicacao_diaria.py 45 || true
+        timeout-minutes: 8
+        run: timeout 420 python src/publicacao_diaria.py 45 || true
 
       - name: Extração com proveniência
         run: python src/extracao.py assistencia_social || true
@@ -95,7 +96,8 @@ jobs:
         run: python src/biblioteca.py || true
 
       - name: Verificação dupla da publicidade
-        run: python src/verificacao_dupla.py 120 || true
+        timeout-minutes: 12
+        run: timeout 660 python src/verificacao_dupla.py 120 || true
 
       - name: Conciliação financeira e trilha do dinheiro
         run: |
@@ -110,8 +112,9 @@ jobs:
 
       - name: Correição e painel
         id: painel
+        timeout-minutes: 12
         run: |
-          python src/painel.py | tee /tmp/resumo.json
+          timeout 660 python src/painel.py | tee /tmp/resumo.json || echo '{}' > /tmp/resumo.json
           echo "altos=$(python -c "import json;print(json.load(open('/tmp/resumo.json'))['achados_altos'])")" >> "$GITHUB_OUTPUT"
 
       - name: Publicar no repositório
