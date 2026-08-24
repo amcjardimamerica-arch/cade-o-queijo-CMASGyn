@@ -127,17 +127,36 @@ jobs:
           git pull --rebase --autostash || true
           git push
 
+      # O Pages exige repositório público ou plano pago. Em repositório privado
+      # no plano gratuito estas três etapas falham — e não devem, por isso,
+      # derrubar a execução: o trabalho de fiscalização já foi concluído acima.
       - name: Habilitar o GitHub Pages automaticamente
+        id: pages
+        continue-on-error: true
         uses: actions/configure-pages@v5
         with:
           enablement: true
       - uses: actions/upload-pages-artifact@v3
+        continue-on-error: true
+        if: steps.pages.outcome == 'success'
         with: { path: docs }
+
       - id: deploy
+        continue-on-error: true
+        if: steps.pages.outcome == 'success'
         uses: actions/deploy-pages@v4
+
+      # Painel sempre disponível para descarregar, haja Pages ou não.
+      - name: Painel como artefato descarregável
+        uses: actions/upload-artifact@v4
+        with:
+          name: painel-cmasgyn
+          path: docs
+          retention-days: 30
 
       - name: Resumo da execução
         if: always()
+        continue-on-error: true
         run: |
           {
             echo ""
