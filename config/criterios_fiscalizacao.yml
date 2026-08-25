@@ -1,0 +1,144 @@
+# Critérios verificáveis do sistema de vigilância SEMASDH/FMAS e CMASGyn.
+# A pontuação mede qualidade da prova. Ela nunca substitui as regras de bloqueio
+# nem autoriza, sozinha, uma conclusão definitiva de legalidade.
+
+versao: 1
+
+estados_de_coleta_diaria:
+  - PUBLICACAO_LOCALIZADA_COM_ATO
+  - PUBLICACAO_LOCALIZADA_SEM_ATO_RELEVANTE
+  - SEM_EDICAO_CONFIRMADA
+  - FONTE_INDISPONIVEL
+  - BUSCA_INCONCLUSIVA
+  - DIA_NAO_UTIL
+
+estados_de_conformidade:
+  - CONFORME_COM_PROVA
+  - INDICIO_DE_NAO_CONFORMIDADE
+  - INCONCLUSIVO_POR_DOCUMENTO_FALTANTE
+  - NAO_APLICAVEL
+
+regras_de_bloqueio:
+  - id: BQ-01
+    regra: "Sem íntegra, URL, data e hash do documento, a análise é INCONCLUSIVA."
+  - id: BQ-02
+    regra: "Falha de consulta não pode ser registrada como ausência de publicação."
+  - id: BQ-03
+    regra: "Ausência no repositório não prova ausência no órgão de origem."
+  - id: BQ-04
+    regra: "Dotação, crédito, empenho e liquidação não provam entrada ou saída bancária."
+  - id: BQ-05
+    regra: "Sem fonte, conta, favorecido/destino e documento de suporte, a regularidade financeira não é demonstrada."
+  - id: BQ-06
+    regra: "Conclusão automatizada é achado para revisão humana, não parecer jurídico definitivo."
+
+fiscalizacao_diaria_administrativa:
+  periodicidade: diaria
+  escopo:
+    orgaos: [SEMASDH, FMAS, CMASGyn]
+    fontes_minimas:
+      - "Diário Oficial do Município de Goiânia"
+      - "Sítio institucional do CMASGyn"
+      - "Portal da Transparência de Goiânia"
+  campos_obrigatorios_relatorio:
+    - data_da_apuracao
+    - estado_da_coleta
+    - publicacao_no_diario_oficial
+    - ato_relevante_encontrado
+    - edicao_data_pagina_url_sha256
+    - orgao_emissor
+    - tipo_numero_data_objeto_do_ato
+    - autoridade_signataria_e_competencia
+    - normas_citadas_e_vigencia
+    - confronto_com_corpus_normativo
+    - resultado_de_conformidade
+    - evidencias
+    - documentos_faltantes
+    - grau_de_confianca
+    - encaminhamento_sugerido
+  criterios_de_qualidade:
+    - {id: DQ-01, nome: "Disponibilidade e distinção de estados da fonte", peso: 10}
+    - {id: DQ-02, nome: "Proveniência: edição, página, URL e SHA-256", peso: 15}
+    - {id: DQ-03, nome: "Identificação e classificação completa do ato", peso: 10}
+    - {id: DQ-04, nome: "Competência da autoridade e do órgão", peso: 15}
+    - {id: DQ-05, nome: "Fundamentação em norma vigente e pertinente", peso: 15}
+    - {id: DQ-06, nome: "Motivação, finalidade e procedimento exigido", peso: 15}
+    - {id: DQ-07, nome: "Publicidade, prazo, integridade e acessibilidade", peso: 10}
+    - {id: DQ-08, nome: "Minimização de dados pessoais", peso: 5}
+    - {id: DQ-09, nome: "Reprodutibilidade e registro das limitações", peso: 5}
+  testes_de_fiscalizacao:
+    - competencia_legal
+    - forma_e_assinatura
+    - motivacao_expressa
+    - base_normativa_vigente
+    - coerencia_com_resolucoes_cnas
+    - procedimento_previo_exigido
+    - deliberacao_do_conselho_quando_exigida
+    - publicacao_e_eficacia
+    - sequencia_numerica_e_integridade
+    - prazos_e_quorum
+    - conflito_de_interesses_e_segregacao_de_funcoes
+    - protecao_de_dados_pessoais
+
+fiscalizacao_financeira_30_dias:
+  periodicidade: "janela móvel de 30 dias corridos"
+  data_de_corte: "UTC, registrada no relatório"
+  campos_obrigatorios_relatorio:
+    - periodo_inicial_e_final
+    - contas_e_fontes_cobertas
+    - entrada_de_valores_em_conta_da_semasdh_fmas
+    - fonte_de_cada_entrada
+    - saida_de_valores_da_conta_da_semasdh_fmas
+    - destino_de_cada_saida
+    - conciliacao_receita_empenho_liquidacao_pagamento_banco
+    - saldo_inicial_movimentos_saldo_final
+    - instrumento_e_processo_associado
+    - documentos_comprobatorios
+    - cobertura_documental_percentual
+    - inconformidades_e_pendencias
+  criterios_de_qualidade:
+    - {id: FQ-01, nome: "Cobertura de contas, fontes e período", peso: 10}
+    - {id: FQ-02, nome: "Conciliação do saldo inicial, movimentos e saldo final", peso: 15}
+    - {id: FQ-03, nome: "Identificação da origem e vinculação da receita", peso: 10}
+    - {id: FQ-04, nome: "Cadeia dotação-empenho-liquidação-pagamento-banco", peso: 20}
+    - {id: FQ-05, nome: "Destino, credor e objeto do gasto", peso: 10}
+    - {id: FQ-06, nome: "Licitação, contratação ou parceria correspondente", peso: 10}
+    - {id: FQ-07, nome: "Aprovação e controle social quando exigidos", peso: 10}
+    - {id: FQ-08, nome: "Documentos fiscais, entrega e ateste", peso: 10}
+    - {id: FQ-09, nome: "Transparência e minimização de dados pessoais", peso: 5}
+  testes_de_fiscalizacao:
+    - saldo_inicial_mais_entradas_menos_saidas_igual_saldo_final
+    - fonte_compativel_com_objeto
+    - conta_bancaria_especifica_quando_exigida
+    - despesa_prevista_no_plano_e_orcamento
+    - empenho_anterior_a_despesa
+    - liquidacao_com_prova_de_entrega
+    - pagamento_posterior_a_liquidacao
+    - favorecido_compativel_com_instrumento
+    - ausencia_de_duplicidade
+    - ausencia_de_fracionamento_aparente
+    - ausencia_de_concentracao_sem_justificativa
+    - licitacao_chamamento_dispensa_ou_inexigibilidade_documentada
+    - termo_contrato_vigente_e_fiscal_designado
+    - prestacao_de_contas_e_deliberacao_do_conselho
+    - saldo_e_reprogramacao_aprovados
+    - limites_e_destinacao_do_igd
+  privacidade:
+    pessoa_fisica: "exibir somente o primeiro nome; suprimir CPF, sobrenomes, endereço e dados bancários"
+    pessoa_juridica: "exibir razão social e CNPJ quando necessários ao controle do gasto público"
+
+medicao_transparencia_ativa:
+  formula: "itens obrigatorios disponíveis, atuais, íntegros e acessíveis / itens obrigatorios aplicáveis x 100"
+  estados_por_item:
+    - ATENDE
+    - ATENDE_PARCIALMENTE
+    - NAO_LOCALIZADO
+    - INACESSIVEL
+    - DESATUALIZADO
+    - NAO_APLICAVEL
+  regra: >
+    O denominador é o inventário aplicável ao órgão e ao período. Um item só
+    conta como atendido quando possui conteúdo, período, formato, URL, data de
+    atualização e acesso sem autenticação. "Não localizado" gera pedido de
+    informação; não autoriza afirmar que o documento não existe.
+
