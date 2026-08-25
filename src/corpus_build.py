@@ -69,6 +69,24 @@ def construir() -> dict:
         for item in itens:
             url = item.get("url", "")
             if not url or url == "CONFIRMAR":
+                # As Resoluções do CNAS são reconciliadas e arquivadas por
+                # cnas_corpus.py. Para as normas centrais declaradas no YAML,
+                # usa-se a cópia oficial local em vez de manter falsa pendência.
+                if bloco == "cnas":
+                    m = re.fullmatch(r"r(\d+)_(\d{4})", item["id"])
+                    local = (RAIZ / "corpus" / "cnas_vigentes" /
+                             f"resolucao_cnas_{int(m.group(1)):03d}_{m.group(2)}.txt") if m else None
+                    if local and local.exists():
+                        texto = local.read_text(encoding="utf-8")
+                        partes.append(f"\n\n## [{item['id']}] {item['nome']}\n"
+                                      f"Fonte: {local.relative_to(RAIZ)}\n\n{texto}\n")
+                        indice.append({
+                            "id": item["id"], "nome": item["nome"], "bloco": bloco,
+                            "url": f"arquivo:{local.relative_to(RAIZ)}",
+                            "sha256": sha256_bytes(local.read_bytes()),
+                            "caracteres": len(texto), "critico": item.get("critico", False),
+                        })
+                        continue
                 pendencias.append(f"- **{item['id']}** — {item['nome']} — URL a confirmar")
                 continue
 

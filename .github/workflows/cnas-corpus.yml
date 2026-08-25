@@ -1,0 +1,38 @@
+name: Arquivar Resoluções vigentes do CNAS
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/cnas_corpus.py"
+      - ".github/workflows/cnas-corpus.yml"
+  schedule:
+    - cron: "20 8 2 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: corpus-cnas
+  cancel-in-progress: false
+
+jobs:
+  arquivar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12", cache: pip }
+      - run: pip install -q -r requirements.txt
+      - name: Capturar textos e reconciliar vigência
+        run: python src/cnas_corpus.py
+      - name: Publicar acervo e inventário
+        run: |
+          git config user.name "vigilancia-bot"
+          git config user.email "actions@github.com"
+          git add corpus/cnas_vigentes corpus/cnas_manifesto.json docs/INVENTARIO_CNAS.md
+          git diff --cached --quiet || git commit -m "corpus: resoluções vigentes do CNAS"
+          git pull --rebase --autostash
+          git push

@@ -17,6 +17,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 import atas as mod_atas
 import biblioteca as mod_bib
 import financeiro as mod_fin
+import movimentacao_contas as mod_mov
 import trilha as mod_tri
 import verificacao_dupla as mod_vd
 import publicacao_diaria as mod_pd
@@ -96,6 +97,9 @@ def construir() -> dict:
         fin = ler_json(RAIZ / "dados" / "financeiro.json", {})
         if not fin.get("linhas"):
             fin = mod_fin.conciliar(dom)
+        mov = ler_json(RAIZ / "dados" / "movimentacao_contas.json", {})
+        if not mov.get("gerado_em"):
+            mov = mod_mov.apurar(dom)
         tri = ler_json(RAIZ / "dados" / "trilha_dinheiro.json", {})
         if not tri.get("eventos"):
             tri = mod_tri.mapear(dom)
@@ -103,7 +107,7 @@ def construir() -> dict:
         pdz = ler_json(RAIZ / 'dados' / 'publicacao_diaria.json', {})
     except Exception as e:
         log.error("Biblioteca ou financeiro falharam: %s", e)
-        bib, fin, tri, vd, pdz = {}, {}, {}, {}, {}
+        bib, fin, mov, tri, vd, pdz = {}, {}, {}, {}, {}, {}
 
     achados = (achados_bd + achados_atas
                + (mod_bib.achados(bib) if bib else [])
@@ -144,6 +148,13 @@ def construir() -> dict:
                         "indice_rastreabilidade", "para_entidades_privadas",
                         "por_ente", "por_ano", "por_acao", "por_natureza",
                         "fontes_pendentes")} if fin else {},
+        "movimentacao_contas": {k: mov.get(k) for k in
+                                 ("orgao", "escopo", "status",
+                                  "entrada_de_valores_em_conta_da_semasdh",
+                                  "saida_de_valores_da_conta_da_semasdh",
+                                  "quantidade_entradas", "quantidade_saidas",
+                                  "fontes_nao_identificadas", "destinos_nao_identificados",
+                                  "entradas", "saidas", "nota_metodologica")} if mov else {},
         "trilha": {k: tri.get(k) for k in
                    ("eventos", "cobertura_das_estacoes", "rupturas",
                     "integridade_da_trilha", "entidades", "entidades_identificadas",

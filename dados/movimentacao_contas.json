@@ -1,0 +1,15 @@
+{
+  "gerado_em": "2026-08-25T11:45:37.734576+00:00",
+  "orgao": "SEMASDH/FMAS",
+  "escopo": "movimentacao_bancaria_documentalmente_demonstrada",
+  "entrada_de_valores_em_conta_da_semasdh": 0,
+  "saida_de_valores_da_conta_da_semasdh": 0,
+  "entradas": [],
+  "saidas": [],
+  "quantidade_entradas": 0,
+  "quantidade_saidas": 0,
+  "fontes_nao_identificadas": 0,
+  "destinos_nao_identificados": 0,
+  "status": "NAO_DEMONSTRADO_NO_ACERVO",
+  "nota_metodologica": "Dotação, crédito adicional e empenho não são movimentação bancária. Os totais incluem somente trechos com marcador expresso de conta e de entrada ou saída. Pessoa física é exibida apenas pelo primeiro nome."
+}

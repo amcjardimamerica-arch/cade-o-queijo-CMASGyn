@@ -4,6 +4,11 @@ Agente de monitoramento do Conselho Municipal de Assistência Social de Goiânia
 e dos órgãos municipais correlatos. Coleta diária, verificação de conformidade
 contra corpus normativo congelado e produção de boletim de achados.
 
+O contexto, os critérios de prova e a separação entre SEMASDH/FMAS e CMASGyn
+estão consolidados em [`docs/CONTEXTO_PROJETO.md`](docs/CONTEXTO_PROJETO.md).
+O inventário das Resoluções nacionais vigentes do CNAS é atualizado em
+[`docs/INVENTARIO_CNAS.md`](docs/INVENTARIO_CNAS.md).
+
 > **Leia primeiro o arquivo [PERMISSOES.md](PERMISSOES.md).** O sistema não roda
 > sem as credenciais e as duas confirmações que só você pode dar.
 
@@ -48,7 +53,7 @@ operação, toda reedição retroativa de resolução ou ata fica documentada.
 
 ### Sobre o percentual do IGD
 
-Regra aplicada, com a antinomia registrada:
+Regra aplicada:
 
 - **Até 2025** — piso de 3%, conforme a Portaria MDS 1.041/2024, artigo 11,
   § 1º, e a Resolução CNAS 33/2012, artigo 121, inciso VII.
@@ -57,9 +62,9 @@ Regra aplicada, com a antinomia registrada:
   202/2025, que revogou a Resolução CNAS 15/2014. O descumprimento sujeita o
   ente ao bloqueio dos repasses.
 
-A Portaria MDS 1.041/2024 ainda enuncia 3%. A resolução do CNAS é posterior e
-específica. A antinomia está anotada em `config/regras.yml` e pode ser arguida
-conforme o interesse do caso.
+Não há antinomia: 3% é o piso legal inderrogável e a Resolução CNAS/MDS
+202/2025 exerce a competência regulamentar prevista na LOAS para elevar a
+destinação a 10% desde 2026.
 
 ---
 

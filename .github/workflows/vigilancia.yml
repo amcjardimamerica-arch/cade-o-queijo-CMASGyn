@@ -102,6 +102,7 @@ jobs:
       - name: Conciliação financeira e trilha do dinheiro
         run: |
           python src/financeiro.py || true
+          python src/movimentacao_contas.py || true
           python src/trilha.py || true
 
       - name: Bateria de testes

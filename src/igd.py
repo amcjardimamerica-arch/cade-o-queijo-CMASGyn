@@ -11,7 +11,8 @@ Regra jurídica aplicada:
   202/2025, que revogou a Resolução CNAS 15/2014. O descumprimento sujeita o
   ente ao bloqueio dos repasses.
 
-  Registre-se a antinomia: a Portaria MDS 1.041/2024 ainda enuncia 3%. Ao
+  Não há antinomia: o piso legal de 3% é mínimo inderrogável e a Resolução
+  CNAS/MDS 202/2025 exerce a competência regulamentar e eleva a destinação. Ao
   conselho e ao controle social interessa a norma superveniente do CNAS.
 
 O agente não presume o valor repassado. Se não houver publicação do plano de

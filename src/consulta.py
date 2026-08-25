@@ -19,6 +19,7 @@ def gerar() -> str:
     D = RAIZ / "dados"
     d = ler_json(RAIZ / "docs" / "dados.json", {})
     b, f = d.get("biblioteca", {}), d.get("financeiro", {})
+    m = d.get("movimentacao_contas", {})
     t, v = d.get("trilha", {}), d.get("verificacao", {})
     s = (d.get("semaforo") or {}).get("resumo", {})
     r = d.get("resumo", {})
@@ -48,6 +49,36 @@ def gerar() -> str:
          f"- Concordância entre as vias: **{v.get('concordancia',0)}%**", "",
          "> Use o número confirmado pelas duas vias em qualquer peça. O índice de",
          "> publicidade global é piso, não medida fechada.",
+         "", "## Movimentação da conta da SEMASDH/FMAS", "",
+         f"**Situação:** {m.get('status') or 'NÃO APURADA'}", "",
+         m.get('nota_metodologica') or (
+             "Dotação orçamentária não comprova entrada ou saída bancária. "
+             "Sem extrato ou pagamento identificável, a movimentação fica como não demonstrada."
+         ), "",
+         "### Entrada de valores em conta da SEMASDH", "",
+         "| Data | Valor | Indicação da fonte do recurso | Prova |", "|---|---:|---|---|",]
+
+    if m.get("entradas"):
+        for x in m["entradas"]:
+            L.append(f"| {x.get('data','—')} | {brl(x.get('valor'))} | "
+                     f"{x.get('fonte_recurso') or 'não identificada'} | "
+                     f"[edição/página]({x.get('url')}) |")
+    else:
+        L.append("| — | — | não demonstrada no acervo | — |")
+
+    L += ["", "### Saída de valores da conta da SEMASDH", "",
+          "| Data | Valor | Indicação do destino do recurso | Tipo | Prova |",
+          "|---|---:|---|---|---|"]
+    if m.get("saidas"):
+        for x in m["saidas"]:
+            L.append(f"| {x.get('data','—')} | {brl(x.get('valor'))} | "
+                     f"{x.get('destino_recurso') or 'não identificado'} | "
+                     f"{x.get('tipo_destino','—')} | [edição/página]({x.get('url')}) |")
+    else:
+        L.append("| — | — | não demonstrada no acervo | — | — |")
+
+    L += ["", "> Quando o beneficiário da saída é pessoa física, o relatório conserva",
+          "> somente o primeiro nome. CPF e demais nomes não são publicados.",
          "", "## Semáforo diário", "",
          f"- Última publicação da pasta: **{s.get('ultima_publicacao') or '—'}**",
          f"- Dias desde então: **{s.get('dias_desde_ultima')}**",
@@ -89,6 +120,7 @@ def gerar() -> str:
           f"| Biblioteca de atos | {BRUTO}/dados/biblioteca_cmasgyn.json |",
           f"| Verificação dupla | {BRUTO}/dados/verificacao_dupla.json |",
           f"| Conciliação financeira | {BRUTO}/dados/financeiro.json |",
+          f"| Movimentação da conta SEMASDH/FMAS | {BRUTO}/dados/movimentacao_contas.json |",
           f"| Trilha do dinheiro | {BRUTO}/dados/trilha_dinheiro.json |",
           f"| Semáforo diário | {BRUTO}/dados/publicacao_diaria.json |",
           f"| Registro das edições | {BRUTO}/estado/historico_registro.json |",

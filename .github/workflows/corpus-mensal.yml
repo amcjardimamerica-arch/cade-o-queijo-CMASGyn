@@ -23,7 +23,9 @@ jobs:
           pip install -q -r requirements.txt
 
       - name: Consolidar o corpus de leis
-        run: python src/corpus_build.py
+        run: |
+          python src/cnas_corpus.py
+          python src/corpus_build.py
 
       - name: Recalcular os critérios de qualidade
         run: python src/qualidade.py --reconstruir
@@ -39,6 +41,7 @@ jobs:
             a alteração do corpus muda a base de toda análise subsequente.
 
             - `corpus/manifesto.json` — índice, hashes e contagem
+            - `corpus/cnas_manifesto.json` — vigência e textos do CNAS
             - `relatorios/corpus_pendencias.md` — normas não incorporadas
             - `dados/criterios_qualidade.json` — critérios recalculados
           labels: corpus

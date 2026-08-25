@@ -197,10 +197,13 @@ DOUTRINA = {
 "IGD-01": {
  "materia": "Piso do Índice de Gestão Descentralizada",
  "analise": ("Desde janeiro de 2026 o piso é de dez por cento do valor repassado "
-   "mensalmente pelo IGD do SUAS e do Bolsa Família. Registre-se a antinomia: a "
-   "Portaria MDS 1.041/2024 ainda enuncia três por cento, mas a resolução do Conselho "
-   "Nacional é posterior e específica."),
- "fundamento": ["Resolução CNAS/MDS 202/2025, artigo 6º",
+   "mensalmente pelo IGD do SUAS e do Bolsa Família. O piso legal de três por cento "
+   "permanece como garantia mínima inderrogável; a Resolução CNAS/MDS 202/2025 "
+   "exerce a competência regulamentar prevista na LOAS e eleva a destinação. Não se "
+   "trata de antinomia entre os percentuais."),
+ "fundamento": ["Lei 8.742/1993, artigo 12-A, § 4º",
+                "Lei 14.601/2023, artigo 14, § 7º",
+                "Resolução CNAS/MDS 202/2025, artigo 6º",
                 "Portaria MDS 1.041/2024, artigo 11, § 1º"],
  "encaminhamento": "representacao_mp",
  "peca": "Representação, com pedido de apuração do bloqueio de repasse previsto na resolução.",

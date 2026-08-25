@@ -19,9 +19,9 @@ print("\n=== 1. INTEGRIDADE DO CÓDIGO ===")
 def imports():
     import util, filtro, cliente_http, orcamento, conformidade, igd, retencao
     import coleta_dom, coleta_cmasgyn, historico, extracao, biblioteca
-    import financeiro, trilha, verificacao_dupla, publicacao_diaria
+    import financeiro, movimentacao_contas, trilha, verificacao_dupla, publicacao_diaria
     import cobertura, padroes, qualidade, busca_local, atas, painel
-    return "22 módulos"
+    return "23 módulos"
 t("importação de todos os módulos", imports)
 
 def configs():
@@ -91,6 +91,15 @@ def fin():
     assert d.get('linhas')
     return f"{d['linhas']} linhas, R$ {d['valor_total']:,.2f}"
 t("conciliação financeira", fin)
+
+def privacidade_mov():
+    import movimentacao_contas as mc
+    texto = "Beneficiário: João da Silva CPF [CPF-SUPRIMIDO], pagamento efetuado"
+    assert mc.primeiro_nome_pessoa_fisica(texto) == "João"
+    assert mc.primeiro_nome_pessoa_fisica(
+        "Beneficiário: João da Silva CNPJ 12.345.678/0001-99") is None
+    return "pessoa física reduzida ao primeiro nome"
+t("minimização de beneficiário pessoa física", privacidade_mov)
 
 def tri():
     from util import ler_json

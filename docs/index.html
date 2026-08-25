@@ -408,13 +408,32 @@ function pintarBiblioteca(){
 
 function pintarFinanceiro(){
   const f=D.financeiro||{};
-  if(!f.linhas){ $('#fi').innerHTML='<div class="vazio">Conciliação financeira ainda não executada.</div>'; return; }
+  const m=D.movimentacao_contas||{};
+  if(!f.linhas && !m.status){ $('#fi').innerHTML='<div class="vazio">Conciliação financeira ainda não executada.</div>'; return; }
   const ROT_ENTE={uniao:'União',estado:'Estado',municipio:'Município',
     nao_classificado:'origem não identificável',multiplo:'marcadores concorrentes'};
   const tab=(o,rot)=>`<div class="rolo"><table><thead><tr><th>${rot}</th><th>Linhas</th><th>Valor</th></tr></thead><tbody>${
     Object.entries(o||{}).map(([k,v])=>`<tr><td>${esc(v.nome||v.rotulo||ROT_ENTE[k]||k)}${v.nome||v.rotulo?` <span class="mono" style="color:var(--grafite)">${esc(k)}</span>`:''}</td>
       <td class="num">${v.linhas}</td><td class="num">${brl(v.valor)}</td></tr>`).join('')}</tbody></table></div>`;
   $('#fi').innerHTML=`
+    <h3 style="font:600 17px 'IBM Plex Sans';margin:0 0 .6rem">Movimentação da conta da SEMASDH/FMAS</h3>
+    <p class="sub" style="margin-bottom:1rem">${esc(m.nota_metodologica||'Dotação não comprova movimentação bancária. Sem documento de conta, o valor fica como não demonstrado.')}</p>
+    <div class="numeros" style="margin-top:0">
+      <div class="n"><b>${brl(m.entrada_de_valores_em_conta_da_semasdh||0)}</b><span>entrada demonstrada em conta</span></div>
+      <div class="n"><b>${brl(m.saida_de_valores_da_conta_da_semasdh||0)}</b><span>saída demonstrada da conta</span></div>
+      <div class="n ${m.fontes_nao_identificadas?'alerta':''}"><b>${m.fontes_nao_identificadas||0}</b><span>fontes não identificadas</span></div>
+      <div class="n ${m.destinos_nao_identificados?'alerta':''}"><b>${m.destinos_nao_identificados||0}</b><span>destinos não identificados</span></div>
+    </div>
+    <h3 style="font:600 15px 'IBM Plex Sans';margin:1.75rem 0 .6rem">Entrada de valores em conta da SEMASDH · indicação da fonte</h3>
+    <div class="rolo"><table><thead><tr><th>Data</th><th>Valor</th><th>Fonte do recurso</th><th>Prova</th></tr></thead><tbody>
+      ${(m.entradas||[]).map(x=>`<tr><td class="num">${dbr(x.data)}</td><td class="num">${brl(x.valor)}</td><td>${esc(x.fonte_recurso||'não identificada')}</td><td><a href="${esc(x.url)}">edição/página</a></td></tr>`).join('')||'<tr><td colspan="4">Não demonstrada no acervo.</td></tr>'}
+    </tbody></table></div>
+    <h3 style="font:600 15px 'IBM Plex Sans';margin:1.75rem 0 .6rem">Saída de valores da conta da SEMASDH · indicação do destino</h3>
+    <div class="rolo"><table><thead><tr><th>Data</th><th>Valor</th><th>Destino do recurso</th><th>Prova</th></tr></thead><tbody>
+      ${(m.saidas||[]).map(x=>`<tr><td class="num">${dbr(x.data)}</td><td class="num">${brl(x.valor)}</td><td>${esc(x.destino_recurso||'não identificado')}</td><td><a href="${esc(x.url)}">edição/página</a></td></tr>`).join('')||'<tr><td colspan="4">Não demonstrada no acervo.</td></tr>'}
+    </tbody></table></div>
+    <p class="meta" style="margin:1rem 0 2rem">Beneficiário pessoa física: somente o primeiro nome é exibido.</p>
+    <h3 style="font:600 17px 'IBM Plex Sans';margin:0 0 .6rem">Execução orçamentária publicada</h3>
     <p class="sub" style="margin-bottom:1.25rem">Rastreamento em três eixos: de onde veio o dinheiro
       (fonte de recursos), para onde foi (classificação funcional-programática) e como foi gasto
       (natureza da despesa). O elemento 3350 é o que sai do Fundo e entra em entidade privada.</p>

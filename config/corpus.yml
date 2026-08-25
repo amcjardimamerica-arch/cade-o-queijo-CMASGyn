@@ -55,14 +55,15 @@ blocos:
     - {id: r33_2012, nome: "Resolução CNAS 33/2012 — NOB/SUAS", url: "CONFIRMAR"}
     - {id: r14_2014, nome: "Resolução CNAS 14/2014 — inscrição de entidades", url: "CONFIRMAR"}
     - {id: r15_2016, nome: "Resolução CNAS 15/2016", url: "CONFIRMAR", obrigatorio: false}
-    - {id: r157_2021, nome: "Resolução CNAS 157 — Regimento Interno do CNAS", url: "CONFIRMAR", obrigatorio: false}
+    - {id: r157_2024, nome: "Resolução CNAS 157/2024 — Regimento Interno do CNAS", url: "CONFIRMAR", obrigatorio: false}
     - {id: r182_2025, nome: "Resolução CNAS 182/2025 (revoga a 27/2011)", url: "CONFIRMAR"}
     - {id: r202_2025, nome: "Resolução CNAS/MDS 202/2025 — conselhos, PBF, CadÚnico e IGD"
-       , url: "https://www.gov.br/participamaisbrasil/resolucao-cnas-mds-n-202-de-25-de-julho-de-2025"
+       , url: "CONFIRMAR"
        , critico: true}
     - {id: r213_2025, nome: "Resolução CNAS/MDS 213/2025 — benefícios eventuais", url: "CONFIRMAR", obrigatorio: false}
-    # A lista de resoluções vigentes é reconciliada mensalmente contra
-    # https://www.gov.br/participamaisbrasil/resolucoes12
+    # A relação de vigentes e os textos integrais são reconciliados por
+    # src/cnas_corpus.py contra o Sistema de Regulação do SUAS. O endereço
+    # antigo do Participa + Brasil foi encerrado e não é mais usado como índice.
 
   estadual_go:
     - {id: l18025, nome: "Lei estadual 18.025/2013 — LAI em Goiás", url: "CONFIRMAR"}
