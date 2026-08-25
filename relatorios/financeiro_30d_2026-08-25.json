@@ -1,0 +1,25 @@
+{
+  "tipo": "fiscalizacao_financeira_30_dias",
+  "periodo_inicial": "2026-07-27",
+  "periodo_final": "2026-08-25",
+  "gerado_em": "2026-08-25T12:26:48.368703+00:00",
+  "orgao": "SEMASDH/FMAS",
+  "entrada_de_valores_em_conta_da_semasdh_fmas": 0,
+  "saida_de_valores_da_conta_da_semasdh_fmas": 0,
+  "entradas": [],
+  "saidas": [],
+  "fontes_nao_identificadas": 0,
+  "destinos_nao_identificados": 0,
+  "saldo_inicial": null,
+  "saldo_final": null,
+  "conciliacao_demonstrada": false,
+  "cobertura_documental_percentual": 0.0,
+  "resultado_de_conformidade": "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE",
+  "documentos_faltantes": [
+    "extratos com saldo inicial e saldo final de todas as contas do FMAS",
+    "extratos e comprovantes bancários do período",
+    "cadeia documental de empenho, liquidação e pagamento por saída",
+    "contratos, parcerias, notas fiscais, atestes e deliberações aplicáveis"
+  ],
+  "privacidade": "Pessoa física aparece somente pelo primeiro nome; CPF, sobrenomes, endereço e dados bancários são suprimidos."
+}

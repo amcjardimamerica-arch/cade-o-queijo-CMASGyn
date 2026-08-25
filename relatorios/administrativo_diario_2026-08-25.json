@@ -1,0 +1,16 @@
+{
+  "tipo": "fiscalizacao_administrativa_diaria",
+  "data_da_apuracao": "2026-08-25",
+  "gerado_em": "2026-08-25T12:28:08.241348+00:00",
+  "estado_da_coleta": "SEM_EDICAO_CONFIRMADA",
+  "publicacao_no_diario_oficial": "NAO",
+  "ato_relevante_encontrado": "NAO",
+  "edicoes_localizadas": 0,
+  "documentos": [],
+  "resultado_de_conformidade": "NAO_APLICAVEL",
+  "documentos_faltantes": [
+    "certidão ou confirmação oficial de inexistência de edição"
+  ],
+  "nota": "nenhuma edição indexada para o dia",
+  "regra_de_prova": "Falha da fonte não é ausência de publicação. Ato localizado só recebe conclusão de conformidade após confronto individual com o corpus vigente."
+}

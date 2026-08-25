@@ -89,6 +89,9 @@ jobs:
         timeout-minutes: 8
         run: timeout 420 python src/publicacao_diaria.py 45 || true
 
+      - name: Relatório administrativo diário, inclusive sem publicação
+        run: python src/relatorio_administrativo.py
+
       - name: Extração com proveniência
         run: python src/extracao.py assistencia_social || true
 

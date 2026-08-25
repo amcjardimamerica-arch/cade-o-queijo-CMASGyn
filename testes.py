@@ -21,7 +21,8 @@ def imports():
     import coleta_dom, coleta_cmasgyn, historico, extracao, biblioteca
     import financeiro, movimentacao_contas, trilha, verificacao_dupla, publicacao_diaria
     import cobertura, padroes, qualidade, busca_local, atas, painel
-    return "23 módulos"
+    import relatorio_administrativo, relatorio_financeiro_30d
+    return "25 módulos"
 t("importação de todos os módulos", imports)
 
 def configs():
@@ -100,6 +101,25 @@ def privacidade_mov():
         "Beneficiário: João da Silva CNPJ 12.345.678/0001-99") is None
     return "pessoa física reduzida ao primeiro nome"
 t("minimização de beneficiário pessoa física", privacidade_mov)
+
+def estados_diarios():
+    import relatorio_administrativo as ra
+    assert ra.normalizar_estado("PUBLICOU") == "PUBLICACAO_LOCALIZADA_COM_ATO"
+    assert ra.normalizar_estado("INCONCLUSIVO") == "BUSCA_INCONCLUSIVA"
+    assert ra.normalizar_estado(None) == "BUSCA_INCONCLUSIVA"
+    return "falha técnica não vira ausência de publicação"
+t("estados probatórios do relatório diário", estados_diarios)
+
+def janela_financeira():
+    from datetime import date
+    import relatorio_financeiro_30d as rf
+    regs = [{"data": "2026-08-01"}, {"data": "2026-08-02"},
+            {"data": "2026-08-31"}, {"data": "inválida"}]
+    r = rf.filtrar_periodo(regs, date(2026, 8, 2), date(2026, 8, 31))
+    assert [x["data"] for x in r] == ["2026-08-02", "2026-08-31"]
+    assert rf.vencido(date(2026, 8, 31), {"ultima_data_final": "2026-08-01"})
+    return "janela móvel e vencimento de 30 dias validados"
+t("fechamento financeiro de 30 dias", janela_financeira)
 
 def tri():
     from util import ler_json

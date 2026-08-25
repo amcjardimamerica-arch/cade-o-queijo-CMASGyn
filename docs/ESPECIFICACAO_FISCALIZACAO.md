@@ -83,11 +83,10 @@ de inexistência no órgão.
 | Dizer se houve publicação | Parcialmente atendido | semáforo precisa adotar todos os estados desta especificação no boletim principal |
 | Confrontar ato com leis | Parcialmente atendido | depende de corpus completo, vigente e com revogações verificadas |
 | Arquivar evidência com hash | Parcialmente atendido | há proveniência para parte do acervo, mas não cobertura documental integral |
-| Relatório financeiro a cada 30 dias | Não atendido como ciclo independente | conciliação atual roda diariamente sobre o acervo acumulado, sem janela e fechamento próprios |
+| Relatório financeiro a cada 30 dias | Implementado | workflow diário verifica o vencimento e fecha uma janela móvel somente após 30 dias |
 | Entrada, fonte, saída e destino | Implementação inicial | depende de extratos e comprovantes com marcadores bancários explícitos |
 | Privacidade de pessoa física | Implementação inicial | regra do primeiro nome precisa ser testada em todos os produtos públicos |
-| Medição de transparência ativa | Não atendido | faltava inventário com denominador, estados e evidências por item |
+| Medição de transparência ativa | Implementação inicial | inventário e fórmula existem; falta coletar e classificar cada evidência pública |
 
 Os critérios executáveis estão em `config/criterios_fiscalizacao.yml`. O
 inventário inicial de documentos está em `docs/CHECKLIST_TRANSPARENCIA_ATIVA.md`.
-

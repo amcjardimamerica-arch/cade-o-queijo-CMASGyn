@@ -1,0 +1,91 @@
+{
+  "projeto": "Vigilância automatizada SEMASDH/FMAS e CMASGyn",
+  "repositorio": "amcjardimamerica-arch/cmasgyn-vigilancia",
+  "data_consolidacao": "2026-08-25",
+  "idioma": "pt-BR",
+  "anexos_recebidos": [
+    "files.zip",
+    "files (1).zip"
+  ],
+  "seguranca": {
+    "credencial_recebida": true,
+    "credencial_incluida_neste_arquivo": false,
+    "providencia": "Revogar o token exposto e usar segredo ou conexão segura do GitHub."
+  },
+  "pedidos_do_usuario": [
+    {
+      "ordem": 1,
+      "tema": "continuidade_do_repositorio",
+      "requisitos": [
+        "compreender os anexos e o trabalho anterior",
+        "diagnosticar e arquivar a legislação",
+        "levantar e arquivar todas as resoluções nacionais vigentes do CNAS"
+      ]
+    },
+    {
+      "ordem": 2,
+      "tema": "relatorios_financeiros",
+      "requisitos": [
+        "entrada de valores em conta da SEMASDH",
+        "indicação da fonte do recurso",
+        "saída do valor da conta da SEMASDH",
+        "indicação do destino do recurso",
+        "pessoa física exibida somente pelo primeiro nome"
+      ]
+    },
+    {
+      "ordem": 3,
+      "tema": "fiscalizacao_continua",
+      "requisitos": [
+        "busca diária sobre SEMASDH, FMAS e CMASGyn",
+        "informar diariamente se houve publicação no Diário Oficial",
+        "validar atos contra o corpus normativo vigente",
+        "produzir relatório financeiro em janela de 30 dias",
+        "criar critérios de qualidade administrativos e financeiros",
+        "inventariar documentos faltantes para transparência ativa integral"
+      ]
+    },
+    {
+      "ordem": 4,
+      "tema": "implementacao_e_exportacao",
+      "requisitos": [
+        "implementar os critérios no GitHub",
+        "gerar um arquivo Markdown desta conversa",
+        "gerar um arquivo JSON desta conversa"
+      ]
+    }
+  ],
+  "decisoes_metodologicas": {
+    "ciclos": [
+      "fiscalização administrativa diária",
+      "fiscalização financeira em janela móvel de 30 dias"
+    ],
+    "estados_coleta_diaria": [
+      "PUBLICACAO_LOCALIZADA_COM_ATO",
+      "PUBLICACAO_LOCALIZADA_SEM_ATO_RELEVANTE",
+      "SEM_EDICAO_CONFIRMADA",
+      "FONTE_INDISPONIVEL",
+      "BUSCA_INCONCLUSIVA",
+      "DIA_NAO_UTIL"
+    ],
+    "estados_conformidade": [
+      "CONFORME_COM_PROVA",
+      "INDICIO_DE_NAO_CONFORMIDADE",
+      "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE",
+      "NAO_APLICAVEL"
+    ],
+    "regra_financeira": "Dotação, empenho e liquidação não comprovam movimentação bancária.",
+    "regra_ausencia": "Falha de consulta ou ausência no repositório não prova inexistência no órgão.",
+    "regra_revisao": "A conclusão automatizada não substitui revisão jurídica humana."
+  },
+  "implementacao": {
+    "criterios": "config/criterios_fiscalizacao.yml",
+    "especificacao": "docs/ESPECIFICACAO_FISCALIZACAO.md",
+    "checklist_transparencia": "docs/CHECKLIST_TRANSPARENCIA_ATIVA.md",
+    "relatorio_diario": "src/relatorio_administrativo.py",
+    "relatorio_financeiro_30d": "src/relatorio_financeiro_30d.py",
+    "workflow_financeiro": ".github/workflows/financeiro-30-dias.yml",
+    "corpus_cnas": "src/cnas_corpus.py",
+    "movimentacao_contas": "src/movimentacao_contas.py"
+  }
+}

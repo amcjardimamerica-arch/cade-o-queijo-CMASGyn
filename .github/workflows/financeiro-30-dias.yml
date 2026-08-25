@@ -1,0 +1,37 @@
+name: Fiscalização financeira a cada 30 dias
+
+on:
+  schedule:
+    # Verifica diariamente; o programa só fecha nova janela após 30 dias.
+    - cron: "10 11 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: financeiro-30-dias
+  cancel-in-progress: false
+
+jobs:
+  fechar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12", cache: pip}
+      - run: pip install -q -r requirements.txt
+      - name: Atualizar movimentos documentalmente demonstrados
+        run: python src/movimentacao_contas.py || true
+      - name: Gerar fechamento se completados 30 dias
+        run: python src/relatorio_financeiro_30d.py --somente-se-vencido
+      - name: Arquivar relatório
+        run: |
+          git config user.name "vigilancia-bot"
+          git config user.email "actions@github.com"
+          git add dados/movimentacao_contas.json estado/relatorio_financeiro_30d.json relatorios/financeiro_30d_*.md relatorios/financeiro_30d_*.json 2>/dev/null || true
+          git diff --cached --quiet && exit 0
+          git commit -m "fiscalização financeira: fechamento de 30 dias"
+          git pull --rebase --autostash
+          git push
