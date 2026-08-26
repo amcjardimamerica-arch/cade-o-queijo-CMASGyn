@@ -2,7 +2,7 @@ const fs=require('fs');
 const {Document,Packer,Paragraph,TextRun,ExternalHyperlink,HeadingLevel,AlignmentType,Table,TableRow,
  TableCell,WidthType,ShadingType,Footer,PageNumber,TableOfContents,PageBreak,
  FootnoteReferenceRun,convertInchesToTwip}=require('docx');
-const B='/home/claude/repo/';
+const B=require('path').resolve(__dirname,'..','..')+'/';
 const D=JSON.parse(fs.readFileSync(B+'relatorios/achados_consolidados_2026.json','utf8'));
 const FD=JSON.parse(fs.readFileSync(B+'config/fontes_e_destinos.json','utf8'));
 const NT=JSON.parse(fs.readFileSync(B+'dados/nivel_transparencia.json','utf8'));

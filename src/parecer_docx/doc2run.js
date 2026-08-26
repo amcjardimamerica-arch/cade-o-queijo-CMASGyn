@@ -83,8 +83,52 @@ for(const [k,v] of Object.entries(NT.blocos)){
 }
 c.push(new Paragraph({children:[new PageBreak()]}));
 
+// III-B FLUXO
+const FL=JSON.parse(fs.readFileSync(require('path').resolve(__dirname,'..','..','dados','fluxo_2026.json'),'utf8'));
+const TF=FL.totais, dTot=TF.despesa_comprovada+TF.despesa_sem_vinculo;
+c.push(H('IV — De Onde Veio, Onde Passou, Para Onde Foi',HeadingLevel.HEADING_1));
+c.push(P([R('Entraram '),R(brl(TF.fundo),{b:true}),R(' no Fundo. Destes, '),
+ R(brl(TF.fonte_comprovada),{b:true}),R(' têm ente de origem identificado e '),
+ R(brl(TF.fonte_nao_comprovada),{b:true}),R(' não têm. Do lado da saída, apenas '),
+ R(brl(dTot),{b:true}),R(' puderam ser atribuídos a um beneficiário — '),
+ R((100*dTot/TF.fundo).toFixed(1)+'%',{b:true}),
+ R(' do movimento do Fundo. Desse pouco, '),R(brl(TF.despesa_comprovada),{b:true}),
+ R(' têm contrato ou termo publicado e '),R(brl(TF.despesa_sem_vinculo),{b:true}),
+ R(' não têm. E fora do Fundo, sem passar pelo controle do Conselho, corre ainda '),
+ R(brl(TF.fora_do_fundo),{b:true}),R(' na unidade do Gabinete.')]));
+c.push(V());
+c.push(new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:60},
+ children:[R('Origem do dinheiro',{b:true,sz:20})]}));
+c.push(TAB(['Origem','Fonte','Valor','Comprovação'],FL.fontes.map(f=>
+ [f.nome,f.fonte,brl(f.valor),f.status==='comprovada'?'origem identificada':'origem não comprovada']),[3900,900,1900,1500]));
+c.push(V());
+c.push(new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:60},
+ children:[R('Por onde passa',{b:true,sz:20})]}));
+c.push(TAB(['Conta ou unidade','Valor','Situação'],FL.contas.map(x=>
+ [x.nome,brl(x.valor),x.status==='comprovada'?'dentro do Fundo':'fora do Fundo']),[4900,1900,1400]));
+c.push(V());
+c.push(new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:60},
+ children:[R('Despesas com vínculo jurídico publicado',{b:true,sz:20})]}));
+const dc=FL.despesas.filter(x=>x.tipo==='comprovada');
+c.push(TAB(['Data','Beneficiário','Valor','Contrato ou termo'],dc.map(x=>
+ [x.data.split('-').reverse().join('/'),x.cnpj,brl(x.valor),x.vinculo.join(' · ')]),[1200,2000,1700,3300]));
+c.push(V());
+c.push(new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:60},
+ children:[R('Despesas sem vínculo identificado',{b:true,sz:20})]}));
+const ds=FL.despesas.filter(x=>x.tipo==='sem_vinculo');
+c.push(TAB(['Data','Beneficiário','Valor','O que falta'],ds.map(x=>
+ [x.data.split('-').reverse().join('/'),x.cnpj,brl(x.valor),'Contrato, termo ou convênio']),[1200,2000,1700,3300]));
+c.push(V());
+c.push(P([R('Há ainda '),R(String(FL.fanout.lancamentos),{b:true}),
+ R(' lançamentos cujo valor não é atribuível a um beneficiário: a publicação lista várias inscrições e um único valor. Atribuir esse valor a cada inscrição multiplicaria o gasto. Permanecem sem destinatário conhecido até que os empenhos sejam publicados individualmente.')]));
+c.push(V());
+c.push(P([R('A versão interativa desta trilha, com o detalhe de cada contrato, está em '),
+ LINK('docs/fluxo_2026.html no repositório','https://github.com/amcjardimamerica-arch/cmasgyn-vigilancia/blob/main/docs/fluxo_2026.html'),
+ R('. Verde indica fonte comprovada; laranja, origem não comprovada; azul, despesa com vínculo; vermelho, despesa sem vínculo.')]));
+c.push(new Paragraph({children:[new PageBreak()]}));
+
 // IV IRREGULARIDADES
-c.push(H('IV — Irregularidades Apuradas',HeadingLevel.HEADING_1));
+c.push(H('V — Irregularidades Apuradas',HeadingLevel.HEADING_1));
 let at='';
 for(const a of D.achados){
  if(a.bloco!==at){at=a.bloco;c.push(H(BLOCO[a.bloco],HeadingLevel.HEADING_2));}
@@ -140,7 +184,7 @@ for(const a of D.achados){
 
 // V PROVIDENCIAS
 c.push(new Paragraph({children:[new PageBreak()]}));
-c.push(H('V — Providências',HeadingLevel.HEADING_1));
+c.push(H('VI — Providências',HeadingLevel.HEADING_1));
 [['Requerer os documentos faltantes','à Secretaria, com fundamento nos artigos 10 e 11 da Lei 12.527/2011. Prazo de resposta de vinte dias, prorrogável por dez.',FD.onde_deveria_estar.acesso_informacao],
  ['Representar ao Tribunal de Contas dos Municípios','quanto ao aporte próprio de nove mil reais, ao piso do Índice de Gestão Descentralizada e à interrupção da publicação oficial.',FD.onde_deveria_estar.tcmgo],
  ['Comunicar à Secretaria Nacional de Assistência Social','o descumprimento da condição de repasse, que autoriza a suspensão de R$ 8.250.000,00.',null],
@@ -149,7 +193,7 @@ c.push(H('V — Providências',HeadingLevel.HEADING_1));
  if(l){rr.push(R(' Canal: '));rr.push(LINK(l.nome,l.url));rr.push(R('.'));}
  c.push(P(rr));c.push(V());});
 
-c.push(H('VI — Ressalva',HeadingLevel.HEADING_1));
+c.push(H('VII — Ressalva',HeadingLevel.HEADING_1));
 c.push(P([R('Este parecer resulta de análise automatizada sobre acervo público, revisada quanto ao método. Não substitui a revisão do advogado constituído'),
  new FootnoteReferenceRun(N.l8906),R(', nem constitui peça processual antes dela.')]));
 
@@ -168,5 +212,5 @@ const doc=new Document({creator:'AMC Jardim América',title:'Parecer de Fiscaliz
   footers:{default:new Footer({children:[new Paragraph({alignment:AlignmentType.CENTER,
    children:[new TextRun({children:[PageNumber.CURRENT],font:F,size:18})]})]})},
   children:c}]});
-Packer.toBuffer(doc).then(b=>{fs.writeFileSync('/home/claude/out/Parecer_Fiscalizacao_2026.docx',b);
+Packer.toBuffer(doc).then(b=>{fs.writeFileSync(require('path').resolve(__dirname,'..','..','relatorios','Parecer_Fiscalizacao_2026.docx'),b);
  console.log('gerado',b.length,'bytes');});

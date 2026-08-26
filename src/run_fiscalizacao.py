@@ -18,6 +18,8 @@ ETAPAS = [
     ("critérios de qualidade", "src/qualidade.py"),
     ("verificação do exercício", "src/verifica_exercicio.py"),
     ("pessoal e diárias", "src/pessoal.py"),
+    ("modelo de fluxo", "src/monta_fluxo.py"),
+    ("trilha visual", "src/gera_fluxo_html.py"),
 ]
 
 def rodar(nome, script):
@@ -67,6 +69,11 @@ def main():
              "parecer_devido": True}
     (REL / "achados_consolidados_2026.json").write_text(
         json.dumps(saida, ensure_ascii=False, indent=1), encoding="utf-8")
+    # parecer em Word
+    r = subprocess.run(["node", "src/parecer_docx/doc2run.js"], cwd=RAIZ,
+                       capture_output=True, text=True)
+    print(f"  [{'ok' if r.returncode == 0 else 'FALHA'}] parecer em Word")
+
     print(f"  {len(achados)} achados — {dict(sev)}")
     print(f"  selos: {dict(selo)}")
     print(f"  PARECER DEVIDO. {len(docs)} documentos complementares a requisitar.")
