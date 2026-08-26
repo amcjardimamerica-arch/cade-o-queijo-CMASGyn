@@ -1,0 +1,105 @@
+# Critérios de fiscalização de pessoal e verbas além do salário
+# Bloco PES. Aplicado nos ciclos semanal e mensal.
+versao: "1.0"
+atualizado_em: "2026-08-26"
+
+naturezas:
+  vencimentos_e_vantagens_fixas: ["31901100", "31901101", "31900400"]
+  obrigacoes_patronais:          ["31901300", "31911300"]
+  contratacao_temporaria:        ["31900400"]
+  despesas_de_exercicios_anteriores: ["31909200"]
+  ressarcimento_pessoal_requisitado: ["31909600"]
+  # Verbas além do salário — exigem subitem de 10 dígitos para isolar
+  diarias_civil:                 ["33901400", "3390140001", "3390140002"]
+  diarias_militar:               ["33901500"]
+  ajuda_de_custo:                ["33901800", "31901600"]
+  auxilio_alimentacao:           ["33904600"]
+  auxilio_transporte:            ["33904900"]
+  indenizacoes_e_restituicoes:   ["33909300"]
+  sentencas_judiciais:           ["31909100"]
+  gratificacoes_e_funcoes:       ["31901100", "31911100"]
+  servico_extraordinario:        ["31901100"]
+
+busca_textual:
+  # A natureza truncada em 8 dígitos não isola diária. O texto do ato isola.
+  diarias: ["conceder diária", "diárias ao servidor", "diárias à servidora",
+            "em virtude de viagem", "afastamento do município", "deslocamento a serviço"]
+  vantagens: ["gratificação de função", "adicional noturno", "insalubridade",
+              "periculosidade", "hora extra", "serviço extraordinário",
+              "ajuda de custo", "verba indenizatória", "abono", "jeton"]
+  cessao: ["cedido", "cessão", "requisitado", "à disposição de"]
+
+regras:
+  - id: PES-01
+    pergunta: "A folha de pagamento é visível no acervo?"
+    metodo: "existência de natureza 31901100 (Vencimentos e vantagens fixas)"
+    vermelho_se: "nenhuma linha de 31901100"
+    norma: "Artigo 48-A inciso I da Lei Complementar 101/2000; Artigo 8 paragrafo 1 inciso III da Lei 12.527/2011"
+    severidade: alta
+
+  - id: PES-02
+    pergunta: "A despesa de pessoal respeita o teto de 30% sobre recursos do Tesouro?"
+    formula: "(grupo 31 + custeio administrativo, fonte Tesouro) / (receita FMAS fonte Tesouro)"
+    teto: 30
+    base: "somente recursos do Tesouro Municipal; recurso federal e estadual não entram no numerador nem no denominador"
+    norma: "Artigo 4 paragrafo unico da Lei municipal 7.531/1995, acrescido pela Lei Complementar municipal 273/2014"
+    severidade: alta
+
+  - id: PES-03
+    pergunta: "Cada diária tem ato de concessão publicado, com servidor, destino, período e finalidade?"
+    exige: ["nome do servidor", "matrícula", "destino", "data de ida e volta", "finalidade do deslocamento", "quantidade e valor"]
+    norma: "Artigo 37 caput da Constituicao Federal; Artigo 50 da Lei 9.784/1999"
+    vermelho_se: "concessão sem finalidade expressa ou sem período determinado"
+    severidade: media
+
+  - id: PES-04
+    pergunta: "Houve prestação de contas do deslocamento?"
+    exige: ["relatório de viagem", "comprovante de deslocamento", "devolução de diária não utilizada"]
+    norma: "Artigo 63 da Lei 4.320/1964 — liquidação exige verificação do direito adquirido"
+    severidade: media
+
+  - id: PES-05
+    pergunta: "Há concentração anômala de diárias no mesmo servidor?"
+    metodo: "contagem por matrícula na janela de 12 meses"
+    amarelo_se: "servidor acima de 12 concessões no período, ou acima de 40 diárias somadas"
+    selo_maximo: INDICIARIO
+    nota: "Concentração é indício. Irregularidade se demonstra pelo processo, nunca pela contagem."
+    severidade: media
+
+  - id: PES-06
+    pergunta: "Diária concedida em fim de semana, feriado ou período de recesso?"
+    metodo: "cruzar data de deslocamento com calendário"
+    selo_maximo: INDICIARIO
+    severidade: baixa
+
+  - id: PES-07
+    pergunta: "Recurso do IGD destinado ao Conselho custeou pessoal efetivo ou gratificação?"
+    norma: "Artigo 12-A paragrafo 4 parte final da Lei 8.742/1993"
+    vedacao: true
+    severidade: critica
+
+  - id: PES-08
+    pergunta: "Qual a proporção entre cargos efetivos e comissionados?"
+    amarelo_se: "comissionados acima de 30% do quadro"
+    vermelho_se: "cargo comissionado exercendo atribuição técnica permanente"
+    norma: "Artigo 37 incisos II e V da Constituicao Federal"
+    severidade: alta
+
+  - id: PES-09
+    pergunta: "As unidades têm equipe de referência mínima?"
+    unidades: ["CRAS", "CREAS", "Centro POP", "Unidade de Acolhimento"]
+    norma: "Resolucao CNAS 269/2006 (NOB-RH/SUAS) e Resolucao CNAS 17/2011"
+    severidade: alta
+    observacao: "texto integral das duas resoluções ainda ausente do corpus"
+
+  - id: PES-10
+    pergunta: "Servidor cedido tem ato de cessão publicado e ônus definido?"
+    exige: ["ato de cessão", "órgão cessionário", "ônus da remuneração", "prazo"]
+    norma: "Artigo 37 caput da Constituicao Federal"
+    severidade: media
+
+privacidade:
+  regra: "Em qualquer saída, pessoa física aparece apenas pelo PRIMEIRO NOME."
+  aplicar_em: extracao
+  nunca_gravar: ["nome completo", "CPF", "endereço residencial", "data de nascimento", "matrícula completa"]
+  pessoa_juridica: "razão social e inscrição completas — não minimizar empresa"

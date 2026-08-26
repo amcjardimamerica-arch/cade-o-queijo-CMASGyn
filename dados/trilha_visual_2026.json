@@ -1,0 +1,1950 @@
+{
+ "exercicio": 2026,
+ "entrada": {
+  "1.7.1.6.50.0.1": {
+   "descricao": "Assistencia Social - FNAS - Principal",
+   "fonte": "1660",
+   "valor": 8250000,
+   "ente": "UNIAO"
+  },
+  "1.7.1.7.52.0.1": {
+   "descricao": "Programas de Assistencia Social - Principal",
+   "fonte": "1665",
+   "valor": 3104000,
+   "ente": "ESTADO"
+  },
+  "1.7.2.9.51.0.1": {
+   "descricao": "Assistencia Social - Principal",
+   "fonte": "1661",
+   "valor": 6000000,
+   "ente": "ESTADO/TRANSFERENCIA"
+  },
+  "total_vinculado": 17354000
+ },
+ "fmas": {
+  "unidade": "3650",
+  "total": 23218000,
+  "tesouro": 9000,
+  "outras_fontes": 23209000,
+  "corrente": 21895000,
+  "capital": 1323000,
+  "receita_detalhada": {
+   "receitas_correntes": 22094000,
+   "receita_patrimonial": 2574000,
+   "transferencias_correntes": 19425000,
+   "outras_receitas_correntes": 95000,
+   "receitas_de_capital": 1115000,
+   "transferencias_de_capital": 1115000,
+   "tesouro_financiamento_royalties": 9000
+  }
+ },
+ "acoes": {
+  "3650.0824401082269": {
+   "nome": "MANUTENCAO DOS SERVICOS E DA REDE",
+   "valor": 19913000
+  },
+  "3650.0824401092268": {
+   "nome": "ACAO ACOLHER E CUIDAR",
+   "valor": 1569000
+  },
+  "3650.0824401082263": {
+   "nome": "CAPACITACAO CONTINUADA SUAS",
+   "valor": 970000
+  },
+  "3650.0824401082591": {
+   "nome": "MANUTENCAO DO CONSELHO MUNICIPAL DE ASSISTENCIA SOCIAL - CMASGYN",
+   "valor": 256000
+  },
+  "3650.2884600008003": {
+   "nome": "CONTRIBUICAO AO PASEP",
+   "valor": 510000
+  }
+ },
+ "unidades": {
+  "3601_gabinete_semasdh": {
+   "total": 81202000,
+   "corrente": 67221000,
+   "capital": 13981000,
+   "tesouro": 81202000,
+   "outras_fontes": 0
+  },
+  "3650_fmas": {
+   "total": 23218000,
+   "funcao_08": 22708000,
+   "outras_funcoes": 510000
+  },
+  "3651_fundo_crianca_adolescente": {
+   "total": 3050000,
+   "funcao_08": 3014000
+  },
+  "3652_fundo_idoso": {
+   "total": 2615000,
+   "funcao_08": 2584000,
+   "manutencao_do_conselho": 261000
+  }
+ },
+ "dias": {
+  "2026-01-07": [
+   {
+    "cnpj": "17.439.987/0001-48",
+    "valor": 300000.0,
+    "fan": false,
+    "n": 1,
+    "valor_pub": 300000.0,
+    "ed": "do_20260107_000008695.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "deliberacao"
+    ],
+    "obj": "provenientes de esferas governamentais distintas; Considerando que a organização interna dos ﬂuxos processuais constitui instrumento de aprimoramento da gestão administrativa, contribuindo para a cons",
+    "proc": [
+     "25.10.000005275-5"
+    ]
+   }
+  ],
+  "2026-01-22": [
+   {
+    "cnpj": "10.728.047/0001-20",
+    "valor": null,
+    "fan": true,
+    "n": 3,
+    "valor_pub": 500000.0,
+    "ed": "do_20260122_000008706.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "MENTOS EIRELI, CNPJ nº 21.297.758/0001-03, conforme consta nos autos do processo SEI nº 22.29.000013984-8; Considerando o Parecer n.º 266/2023 ( 1255773), da Advocacia Setorial, bem como Despacho n.º ",
+    "proc": [
+     "22.29.000013984-8"
+    ]
+   },
+   {
+    "cnpj": "21.297.758/0001-03",
+    "valor": null,
+    "fan": true,
+    "n": 3,
+    "valor_pub": 500000.0,
+    "ed": "do_20260122_000008706.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "MENTOS EIRELI, CNPJ nº 21.297.758/0001-03, conforme consta nos autos do processo SEI nº 22.29.000013984-8; Considerando o Parecer n.º 266/2023 ( 1255773), da Advocacia Setorial, bem como Despacho n.º ",
+    "proc": [
+     "22.29.000013984-8"
+    ]
+   }
+  ],
+  "2026-01-28": [
+   {
+    "cnpj": "11.308.531/0001-62",
+    "valor": null,
+    "fan": true,
+    "n": 10,
+    "valor_pub": 100000.0,
+    "ed": "do_20260128_000008710.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "ndar - - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 26.29.000002629-8 SEI Nº 9139228v1 Prefeitura de Goiânia Secretaria Municipal de Saúde Gabinete do Secretário EDITAL Nº 0",
+    "proc": [
+     "26.10.000000666-0"
+    ]
+   },
+   {
+    "cnpj": "21.478.711/0001-46",
+    "valor": null,
+    "fan": true,
+    "n": 10,
+    "valor_pub": 100000.0,
+    "ed": "do_20260128_000008710.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "ndar - - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 26.29.000002629-8 SEI Nº 9139228v1 Prefeitura de Goiânia Secretaria Municipal de Saúde Gabinete do Secretário EDITAL Nº 0",
+    "proc": [
+     "26.10.000000666-0"
+    ]
+   },
+   {
+    "cnpj": "31.301.487/0001-76",
+    "valor": null,
+    "fan": true,
+    "n": 10,
+    "valor_pub": 100000.0,
+    "ed": "do_20260128_000008710.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "ndar - - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 26.29.000002629-8 SEI Nº 9139228v1 Prefeitura de Goiânia Secretaria Municipal de Saúde Gabinete do Secretário EDITAL Nº 0",
+    "proc": [
+     "26.10.000000666-0"
+    ]
+   },
+   {
+    "cnpj": "33.904.884/0001-68",
+    "valor": null,
+    "fan": true,
+    "n": 10,
+    "valor_pub": 100000.0,
+    "ed": "do_20260128_000008710.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "ndar - - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 26.29.000002629-8 SEI Nº 9139228v1 Prefeitura de Goiânia Secretaria Municipal de Saúde Gabinete do Secretário EDITAL Nº 0",
+    "proc": [
+     "26.10.000000666-0"
+    ]
+   },
+   {
+    "cnpj": "44.504.200/0001-57",
+    "valor": null,
+    "fan": true,
+    "n": 10,
+    "valor_pub": 100000.0,
+    "ed": "do_20260128_000008710.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "ndar - - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 26.29.000002629-8 SEI Nº 9139228v1 Prefeitura de Goiânia Secretaria Municipal de Saúde Gabinete do Secretário EDITAL Nº 0",
+    "proc": [
+     "26.10.000000666-0"
+    ]
+   },
+   {
+    "cnpj": "50.096.813/0001-03",
+    "valor": null,
+    "fan": true,
+    "n": 10,
+    "valor_pub": 100000.0,
+    "ed": "do_20260128_000008710.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "ndar - - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 26.29.000002629-8 SEI Nº 9139228v1 Prefeitura de Goiânia Secretaria Municipal de Saúde Gabinete do Secretário EDITAL Nº 0",
+    "proc": [
+     "26.10.000000666-0"
+    ]
+   },
+   {
+    "cnpj": "51.568.203/0001-10",
+    "valor": null,
+    "fan": true,
+    "n": 10,
+    "valor_pub": 100000.0,
+    "ed": "do_20260128_000008710.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "ndar - - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 26.29.000002629-8 SEI Nº 9139228v1 Prefeitura de Goiânia Secretaria Municipal de Saúde Gabinete do Secretário EDITAL Nº 0",
+    "proc": [
+     "26.10.000000666-0"
+    ]
+   },
+   {
+    "cnpj": "58.449.578/0001-00",
+    "valor": null,
+    "fan": true,
+    "n": 10,
+    "valor_pub": 100000.0,
+    "ed": "do_20260128_000008710.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "ndar - - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 26.29.000002629-8 SEI Nº 9139228v1 Prefeitura de Goiânia Secretaria Municipal de Saúde Gabinete do Secretário EDITAL Nº 0",
+    "proc": [
+     "26.10.000000666-0"
+    ]
+   },
+   {
+    "cnpj": "62.008.789/0001-84",
+    "valor": null,
+    "fan": true,
+    "n": 10,
+    "valor_pub": 100000.0,
+    "ed": "do_20260128_000008710.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "ndar - - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 26.29.000002629-8 SEI Nº 9139228v1 Prefeitura de Goiânia Secretaria Municipal de Saúde Gabinete do Secretário EDITAL Nº 0",
+    "proc": [
+     "26.10.000000666-0"
+    ]
+   }
+  ],
+  "2026-01-29": [
+   {
+    "cnpj": "05.435.190/0001-93",
+    "valor": null,
+    "fan": true,
+    "n": 6,
+    "valor_pub": 11234250.0,
+    "ed": "do_20260129_000008711.pdf",
+    "contratos": [
+     "CONTRATO 03/2026"
+    ],
+    "dot": null,
+    "est": [
+     "repasse",
+     "deliberacao",
+     "vinculo"
+    ],
+    "obj": "o código veri ﬁcador 9128472 e o código CRC 0CC7CB5F. Avenida do Cerrado, nº 999, APM-09, Bloco D, 2º andar - - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 23.29.000005283-7 ",
+    "proc": [
+     "23.29.000005283-7"
+    ]
+   },
+   {
+    "cnpj": "05039050/0001-04",
+    "valor": null,
+    "fan": true,
+    "n": 6,
+    "valor_pub": 11234250.0,
+    "ed": "do_20260129_000008711.pdf",
+    "contratos": [
+     "CONTRATO 03/2026"
+    ],
+    "dot": null,
+    "est": [
+     "repasse",
+     "deliberacao",
+     "vinculo"
+    ],
+    "obj": "o código veri ﬁcador 9128472 e o código CRC 0CC7CB5F. Avenida do Cerrado, nº 999, APM-09, Bloco D, 2º andar - - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 23.29.000005283-7 ",
+    "proc": [
+     "23.29.000005283-7"
+    ]
+   },
+   {
+    "cnpj": "17.210.161/0001-02",
+    "valor": null,
+    "fan": true,
+    "n": 6,
+    "valor_pub": 11234250.0,
+    "ed": "do_20260129_000008711.pdf",
+    "contratos": [
+     "CONTRATO 03/2026"
+    ],
+    "dot": null,
+    "est": [
+     "repasse",
+     "deliberacao",
+     "vinculo"
+    ],
+    "obj": "o código veri ﬁcador 9128472 e o código CRC 0CC7CB5F. Avenida do Cerrado, nº 999, APM-09, Bloco D, 2º andar - - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 23.29.000005283-7 ",
+    "proc": [
+     "23.29.000005283-7"
+    ]
+   },
+   {
+    "cnpj": "19.189.081/0001-48",
+    "valor": null,
+    "fan": true,
+    "n": 6,
+    "valor_pub": 11234250.0,
+    "ed": "do_20260129_000008711.pdf",
+    "contratos": [
+     "CONTRATO 03/2026"
+    ],
+    "dot": null,
+    "est": [
+     "repasse",
+     "deliberacao",
+     "vinculo"
+    ],
+    "obj": "o código veri ﬁcador 9128472 e o código CRC 0CC7CB5F. Avenida do Cerrado, nº 999, APM-09, Bloco D, 2º andar - - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 23.29.000005283-7 ",
+    "proc": [
+     "23.29.000005283-7"
+    ]
+   },
+   {
+    "cnpj": "44.445.656/0001-93",
+    "valor": null,
+    "fan": true,
+    "n": 6,
+    "valor_pub": 11234250.0,
+    "ed": "do_20260129_000008711.pdf",
+    "contratos": [
+     "CONTRATO 03/2026"
+    ],
+    "dot": null,
+    "est": [
+     "repasse",
+     "deliberacao",
+     "vinculo"
+    ],
+    "obj": "o código veri ﬁcador 9128472 e o código CRC 0CC7CB5F. Avenida do Cerrado, nº 999, APM-09, Bloco D, 2º andar - - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 23.29.000005283-7 ",
+    "proc": [
+     "23.29.000005283-7"
+    ]
+   },
+   {
+    "cnpj": "57.806.431/0001-67",
+    "valor": null,
+    "fan": true,
+    "n": 6,
+    "valor_pub": 11234250.0,
+    "ed": "do_20260129_000008711.pdf",
+    "contratos": [
+     "CONTRATO 03/2026"
+    ],
+    "dot": null,
+    "est": [
+     "repasse",
+     "deliberacao",
+     "vinculo"
+    ],
+    "obj": "o código veri ﬁcador 9128472 e o código CRC 0CC7CB5F. Avenida do Cerrado, nº 999, APM-09, Bloco D, 2º andar - - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 23.29.000005283-7 ",
+    "proc": [
+     "23.29.000005283-7"
+    ]
+   }
+  ],
+  "2026-01-30": [
+   {
+    "cnpj": "24.809.360/0001-05",
+    "valor": null,
+    "fan": true,
+    "n": 2,
+    "valor_pub": 3975.0,
+    "ed": "do_20260130_000008712.pdf",
+    "contratos": [
+     "TERMO DE FOMENTO 112/2026"
+    ],
+    "dot": null,
+    "est": [
+     "repasse",
+     "orcamento",
+     "vinculo"
+    ],
+    "obj": "bem como os itens 16.1,II e 16.2.1.1 do Edital de Licitação Pregão Eletrônico nº 015/2021 SRP - SAÚDE. Considerando a inexecução contratual por parte da empresa RM HOSPITALAR LTDA, CNPJ nº 25.029.414/",
+    "proc": [
+     "22.29.000010470-0"
+    ]
+   },
+   {
+    "cnpj": "25.029.414/0001-74",
+    "valor": null,
+    "fan": true,
+    "n": 2,
+    "valor_pub": 3975.0,
+    "ed": "do_20260130_000008712.pdf",
+    "contratos": [
+     "TERMO DE FOMENTO 112/2026"
+    ],
+    "dot": null,
+    "est": [
+     "repasse",
+     "orcamento",
+     "vinculo"
+    ],
+    "obj": "bem como os itens 16.1,II e 16.2.1.1 do Edital de Licitação Pregão Eletrônico nº 015/2021 SRP - SAÚDE. Considerando a inexecução contratual por parte da empresa RM HOSPITALAR LTDA, CNPJ nº 25.029.414/",
+    "proc": [
+     "22.29.000010470-0"
+    ]
+   }
+  ],
+  "2026-02-02": [
+   {
+    "cnpj": "42.619.993/0001-24",
+    "valor": 46200.0,
+    "fan": false,
+    "n": 1,
+    "valor_pub": 46200.0,
+    "ed": "do_20260202_000008713.pdf",
+    "contratos": [
+     "TERMO DE FOMENTO 102/2026",
+     "Termo de Fomento 052/2023"
+    ],
+    "dot": null,
+    "est": [
+     "repasse",
+     "vinculo",
+     "entidade"
+    ],
+    "obj": "der a Secretaria Municipal de Políticas para as Mulheres, Assistência Social e Direitos Humanos - SEMASDH. A referida servidora deverá observar o disposto no artigo 6º da IN 02/2018-CGM. Art. 2º - E p",
+    "proc": [
+     "25.10.000007279-9"
+    ]
+   },
+   {
+    "cnpj": "03.647.755/0001-70",
+    "valor": 13586.1,
+    "fan": false,
+    "n": 1,
+    "valor_pub": 13586.1,
+    "ed": "do_20260202_000008713.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "vinculo",
+     "entidade"
+    ],
+    "obj": "DH. AUTORIZO por ser imprescindível a despesa para contratação da empresa VASCONCELOS INDÚSTRIA, COMÉRCIO, IMPORTAÇÃO E EXPORTAÇÃO LTDA, CNPJ: 03.647.755/0001-70, no valor total de R$ 13.586,10 (treze",
+    "proc": [
+     "25.10.000012299-0"
+    ]
+   }
+  ],
+  "2026-02-12": [
+   {
+    "cnpj": "10.331.475/0001-14",
+    "valor": null,
+    "fan": true,
+    "n": 2,
+    "valor_pub": 52440.0,
+    "ed": "do_20260212_000008721.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "vinculo"
+    ],
+    "obj": "apoio no artigo 75, II, da Lei 14.133, no valor de R$51.000,00 (cinquenta e um mil reais ), junto a empresa A. R COMERCIO ATACADISTA LTDA, incrita no CNPJ 58.572.556/0001-32, para suprir as necessidad",
+    "proc": [
+     "25.10.000007454-6"
+    ]
+   },
+   {
+    "cnpj": "58.572.556/0001-32",
+    "valor": null,
+    "fan": true,
+    "n": 2,
+    "valor_pub": 52440.0,
+    "ed": "do_20260212_000008721.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "vinculo"
+    ],
+    "obj": "apoio no artigo 75, II, da Lei 14.133, no valor de R$51.000,00 (cinquenta e um mil reais ), junto a empresa A. R COMERCIO ATACADISTA LTDA, incrita no CNPJ 58.572.556/0001-32, para suprir as necessidad",
+    "proc": [
+     "25.10.000007454-6"
+    ]
+   }
+  ],
+  "2026-03-06": [
+   {
+    "cnpj": "22.011.004/0001-08",
+    "valor": null,
+    "fan": false,
+    "n": 1,
+    "valor_pub": null,
+    "ed": "do_20260306_000008735.pdf",
+    "contratos": [
+     "TERMO DE FOMENTO 120/2026"
+    ],
+    "dot": null,
+    "est": [
+     "repasse",
+     "vinculo"
+    ],
+    "obj": "52, de 1º de maio de 1943; 2.5 Prova de inscrição no cadastro de contribuintes municipal, relativo ao domicílio ou sede do fornecedor, pertinente ao seu ramo de atividade e compatível com o objeto con",
+    "proc": [
+     "25.10.000003916-3"
+    ]
+   }
+  ],
+  "2026-03-26": [
+   {
+    "cnpj": "07.797.967/0001-95",
+    "valor": null,
+    "fan": true,
+    "n": 3,
+    "valor_pub": 857287.88,
+    "ed": "do_20260326_000008748.pdf",
+    "contratos": [
+     "Contrato 10/2023",
+     "TERMO DE FOMENTO 028/2026"
+    ],
+    "dot": null,
+    "est": [
+     "repasse",
+     "orcamento",
+     "vinculo"
+    ],
+    "obj": "e Políticas para as Mulheres, Assistência Social e Direitos Humanos - SEMASDH CONTRATADA: NP TECNOLOGIA E GESTÃO DE DADOS LTDA – CNPJ: 07.797.967/0001-95 OBJETO: Prorrogação do prazo de vigência do Co",
+    "proc": [
+     "25.10.000006415-0"
+    ]
+   },
+   {
+    "cnpj": "12.072.665/0001-90",
+    "valor": null,
+    "fan": true,
+    "n": 3,
+    "valor_pub": 857287.88,
+    "ed": "do_20260326_000008748.pdf",
+    "contratos": [
+     "Contrato 10/2023",
+     "TERMO DE FOMENTO 028/2026"
+    ],
+    "dot": null,
+    "est": [
+     "repasse",
+     "orcamento",
+     "vinculo"
+    ],
+    "obj": "e Políticas para as Mulheres, Assistência Social e Direitos Humanos - SEMASDH CONTRATADA: NP TECNOLOGIA E GESTÃO DE DADOS LTDA – CNPJ: 07.797.967/0001-95 OBJETO: Prorrogação do prazo de vigência do Co",
+    "proc": [
+     "25.10.000006415-0"
+    ]
+   },
+   {
+    "cnpj": "63.175.015/0001-00",
+    "valor": null,
+    "fan": true,
+    "n": 3,
+    "valor_pub": 857287.88,
+    "ed": "do_20260326_000008748.pdf",
+    "contratos": [
+     "Contrato 10/2023",
+     "TERMO DE FOMENTO 028/2026"
+    ],
+    "dot": null,
+    "est": [
+     "repasse",
+     "orcamento",
+     "vinculo"
+    ],
+    "obj": "e Políticas para as Mulheres, Assistência Social e Direitos Humanos - SEMASDH CONTRATADA: NP TECNOLOGIA E GESTÃO DE DADOS LTDA – CNPJ: 07.797.967/0001-95 OBJETO: Prorrogação do prazo de vigência do Co",
+    "proc": [
+     "25.10.000006415-0"
+    ]
+   }
+  ],
+  "2026-03-27": [
+   {
+    "cnpj": "12.072.665/0001-90",
+    "valor": null,
+    "fan": true,
+    "n": 2,
+    "valor_pub": 855914.24,
+    "ed": "do_20260327_000008749.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "vinculo"
+    ],
+    "obj": "funcionamento dos sistemas informatizados, comunicação interna, acesso à internet e operacionalização dos atendimentos realizados pelas unidades, contribuindo diretamente para a qualidade, e ﬁciência ",
+    "proc": [
+     "25.10.000003916-3"
+    ]
+   },
+   {
+    "cnpj": "24.120.157/0001-19",
+    "valor": null,
+    "fan": true,
+    "n": 2,
+    "valor_pub": 855914.24,
+    "ed": "do_20260327_000008749.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "vinculo"
+    ],
+    "obj": "funcionamento dos sistemas informatizados, comunicação interna, acesso à internet e operacionalização dos atendimentos realizados pelas unidades, contribuindo diretamente para a qualidade, e ﬁciência ",
+    "proc": [
+     "25.10.000003916-3"
+    ]
+   }
+  ],
+  "2026-04-06": [
+   {
+    "cnpj": "26.176.661/0001-66",
+    "valor": null,
+    "fan": true,
+    "n": 2,
+    "valor_pub": 250000.0,
+    "ed": "do_20260406_000008753.pdf",
+    "contratos": [
+     "TERMO DE FOMENTO 030/2026"
+    ],
+    "dot": null,
+    "est": [
+     "repasse",
+     "orcamento",
+     "vinculo"
+    ],
+    "obj": "ssistência Social e Direitos Humanos. FUNDAMENTO LEGAL: Este Termo de Aditamento decorre no exarado Processo BEE nº 30251, amparo legal no dispositivo no art. 62 § 3º, I da Lei Federal nº 8.666/93 e a",
+    "proc": [
+     "25.10.000002675-4"
+    ]
+   },
+   {
+    "cnpj": "51.621.518/0001-83",
+    "valor": null,
+    "fan": true,
+    "n": 2,
+    "valor_pub": 250000.0,
+    "ed": "do_20260406_000008753.pdf",
+    "contratos": [
+     "TERMO DE FOMENTO 030/2026"
+    ],
+    "dot": null,
+    "est": [
+     "repasse",
+     "orcamento",
+     "vinculo"
+    ],
+    "obj": "ssistência Social e Direitos Humanos. FUNDAMENTO LEGAL: Este Termo de Aditamento decorre no exarado Processo BEE nº 30251, amparo legal no dispositivo no art. 62 § 3º, I da Lei Federal nº 8.666/93 e a",
+    "proc": [
+     "25.10.000002675-4"
+    ]
+   }
+  ],
+  "2026-04-07": [
+   {
+    "cnpj": "23.376.753/0001-00",
+    "valor": null,
+    "fan": true,
+    "n": 2,
+    "valor_pub": 548390.0,
+    "ed": "do_20260407_000008754.pdf",
+    "contratos": [
+     "TERMO DE FOMENTO 023/2026",
+     "TERMO DE FOMENTO 024/2026"
+    ],
+    "dot": null,
+    "est": [
+     "repasse",
+     "vinculo"
+    ],
+    "obj": "I 26.10.000001520- 0 referente a contratação de empresa especializada na prestação de serviços gráﬁcos, compreendendo a confecção, impressão e fornecimento de materiais gráﬁcos diversos, tais como imp",
+    "proc": [
+     "25.10.000006377-3"
+    ]
+   },
+   {
+    "cnpj": "30.454.545/0001-39",
+    "valor": null,
+    "fan": true,
+    "n": 2,
+    "valor_pub": 548390.0,
+    "ed": "do_20260407_000008754.pdf",
+    "contratos": [
+     "TERMO DE FOMENTO 023/2026",
+     "TERMO DE FOMENTO 024/2026"
+    ],
+    "dot": null,
+    "est": [
+     "repasse",
+     "vinculo"
+    ],
+    "obj": "I 26.10.000001520- 0 referente a contratação de empresa especializada na prestação de serviços gráﬁcos, compreendendo a confecção, impressão e fornecimento de materiais gráﬁcos diversos, tais como imp",
+    "proc": [
+     "25.10.000006377-3"
+    ]
+   }
+  ],
+  "2026-04-10": [
+   {
+    "cnpj": "55.390.465/0001-98",
+    "valor": 257040.0,
+    "fan": false,
+    "n": 1,
+    "valor_pub": 257040.0,
+    "ed": "do_20260410_000008757.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "vinculo"
+    ],
+    "obj": "ndereço Rua 1105, Qd. 204, Lt. 23, Setor Pedro Ludovico, Goiânia, Goiás, objeto da matrícula n° R10/4.213, do 1º Cartório de Registro de Imóveis, de propriedade dos locadores, para abrigar as instalaç",
+    "proc": [
+     "26.10.000002282-7"
+    ]
+   }
+  ],
+  "2026-04-13": [
+   {
+    "cnpj": "33.931.327/0001-36",
+    "valor": 200000.0,
+    "fan": false,
+    "n": 1,
+    "valor_pub": 200000.0,
+    "ed": "do_20260413_000008758.pdf",
+    "contratos": [
+     "TERMO DE FOMENTO 017/2026"
+    ],
+    "dot": null,
+    "est": [
+     "repasse",
+     "vinculo"
+    ],
+    "obj": "s artigos 7º da IN 02/2018-CGM. Dê-se ciência, publique-se e cumpra-se. GABINETE DA SECRETÁRIA MUNICIPAL DE POLÍTICAS PARA AS MULHERES, ASSISTÊNCIA SOCIAL E DIREITOS HUMANOS, aos 10 dias do mês de abr",
+    "proc": [
+     "25.10.000006422-2"
+    ]
+   }
+  ],
+  "2026-04-29": [
+   {
+    "cnpj": "01.424.128/0001-45",
+    "valor": null,
+    "fan": true,
+    "n": 2,
+    "valor_pub": 266254.25,
+    "ed": "do_20260429_000008768.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "vinculo"
+    ],
+    "obj": "etário da Receita Federal do Brasil e da Procuradora-Geral da Fazenda Nacional. 2.3 Prova de regularidade com o Fundo de Garantia do Tempo de Serviço (FGTS); 2.4 Prova de inexistência de débitos inadi",
+    "proc": [
+     "26.10.000002468-4"
+    ]
+   },
+   {
+    "cnpj": "18.408.522/0001-92",
+    "valor": null,
+    "fan": true,
+    "n": 2,
+    "valor_pub": 266254.25,
+    "ed": "do_20260429_000008768.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "vinculo"
+    ],
+    "obj": "etário da Receita Federal do Brasil e da Procuradora-Geral da Fazenda Nacional. 2.3 Prova de regularidade com o Fundo de Garantia do Tempo de Serviço (FGTS); 2.4 Prova de inexistência de débitos inadi",
+    "proc": [
+     "26.10.000002468-4"
+    ]
+   },
+   {
+    "cnpj": "01.067.479/0001-46",
+    "valor": null,
+    "fan": false,
+    "n": 1,
+    "valor_pub": null,
+    "ed": "do_20260429_000008768.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "vinculo",
+     "entidade"
+    ],
+    "obj": "de inidoneidade, bem como outras restrições que inviabilizem a contratação com a Administração. 4. Encontra-se regular em seu dever de prestar contas, não possuindo pendências relativas à utilização d",
+    "proc": []
+   }
+  ],
+  "2026-05-06": [
+   {
+    "cnpj": "12.328.416/0001-12",
+    "valor": null,
+    "fan": true,
+    "n": 5,
+    "valor_pub": 400000.0,
+    "ed": "do_20260506_000008772.pdf",
+    "contratos": [
+     "Contrato 54/2023",
+     "TERMO DE FOMENTO 042/2026"
+    ],
+    "dot": null,
+    "est": [
+     "repasse",
+     "vinculo",
+     "entidade"
+    ],
+    "obj": "REIRA DA COSTA 92505609 ***.114.501-** MAURILIA RODRIGUES 92508312 ***.394.521-** MUNICÍPIO DE PIRES DO RIO 92508400 01.181.585/0001-56 ODEZIA DOS SANTOS SILVA 92510718 ***.506.051-** PAULO FERRAZ DE ",
+    "proc": [
+     "25.10.000011765-2"
+    ]
+   },
+   {
+    "cnpj": "13.059.859/0001-18",
+    "valor": null,
+    "fan": true,
+    "n": 5,
+    "valor_pub": 400000.0,
+    "ed": "do_20260506_000008772.pdf",
+    "contratos": [
+     "Contrato 54/2023",
+     "TERMO DE FOMENTO 042/2026"
+    ],
+    "dot": null,
+    "est": [
+     "repasse",
+     "vinculo",
+     "entidade"
+    ],
+    "obj": "REIRA DA COSTA 92505609 ***.114.501-** MAURILIA RODRIGUES 92508312 ***.394.521-** MUNICÍPIO DE PIRES DO RIO 92508400 01.181.585/0001-56 ODEZIA DOS SANTOS SILVA 92510718 ***.506.051-** PAULO FERRAZ DE ",
+    "proc": [
+     "25.10.000011765-2"
+    ]
+   },
+   {
+    "cnpj": "29.225.006/0001-49",
+    "valor": null,
+    "fan": true,
+    "n": 5,
+    "valor_pub": 400000.0,
+    "ed": "do_20260506_000008772.pdf",
+    "contratos": [
+     "Contrato 54/2023",
+     "TERMO DE FOMENTO 042/2026"
+    ],
+    "dot": null,
+    "est": [
+     "repasse",
+     "vinculo",
+     "entidade"
+    ],
+    "obj": "REIRA DA COSTA 92505609 ***.114.501-** MAURILIA RODRIGUES 92508312 ***.394.521-** MUNICÍPIO DE PIRES DO RIO 92508400 01.181.585/0001-56 ODEZIA DOS SANTOS SILVA 92510718 ***.506.051-** PAULO FERRAZ DE ",
+    "proc": [
+     "25.10.000011765-2"
+    ]
+   },
+   {
+    "cnpj": "40.432.544/0001-47",
+    "valor": null,
+    "fan": true,
+    "n": 5,
+    "valor_pub": 400000.0,
+    "ed": "do_20260506_000008772.pdf",
+    "contratos": [
+     "Contrato 54/2023",
+     "TERMO DE FOMENTO 042/2026"
+    ],
+    "dot": null,
+    "est": [
+     "repasse",
+     "vinculo",
+     "entidade"
+    ],
+    "obj": "REIRA DA COSTA 92505609 ***.114.501-** MAURILIA RODRIGUES 92508312 ***.394.521-** MUNICÍPIO DE PIRES DO RIO 92508400 01.181.585/0001-56 ODEZIA DOS SANTOS SILVA 92510718 ***.506.051-** PAULO FERRAZ DE ",
+    "proc": [
+     "25.10.000011765-2"
+    ]
+   }
+  ],
+  "2026-05-12": [
+   {
+    "cnpj": "00.097.394/0001-48",
+    "valor": null,
+    "fan": true,
+    "n": 24,
+    "valor_pub": 1500000.0,
+    "ed": "do_20260512_000008776.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "PM-09, Bloco D, 2º andar - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 25.29.000017104-7 SEI Nº 10155147v1 Prefeitura de Goiânia Secretaria Municipal de Políticas para as Mul",
+    "proc": [
+     "25.29.000017104-7"
+    ]
+   },
+   {
+    "cnpj": "01.240.688/0001-40",
+    "valor": null,
+    "fan": true,
+    "n": 24,
+    "valor_pub": 1500000.0,
+    "ed": "do_20260512_000008776.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "PM-09, Bloco D, 2º andar - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 25.29.000017104-7 SEI Nº 10155147v1 Prefeitura de Goiânia Secretaria Municipal de Políticas para as Mul",
+    "proc": [
+     "25.29.000017104-7"
+    ]
+   },
+   {
+    "cnpj": "01.269.083/0001-81",
+    "valor": null,
+    "fan": true,
+    "n": 24,
+    "valor_pub": 1500000.0,
+    "ed": "do_20260512_000008776.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "PM-09, Bloco D, 2º andar - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 25.29.000017104-7 SEI Nº 10155147v1 Prefeitura de Goiânia Secretaria Municipal de Políticas para as Mul",
+    "proc": [
+     "25.29.000017104-7"
+    ]
+   },
+   {
+    "cnpj": "01.287.416/0001-03",
+    "valor": null,
+    "fan": true,
+    "n": 24,
+    "valor_pub": 1500000.0,
+    "ed": "do_20260512_000008776.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "PM-09, Bloco D, 2º andar - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 25.29.000017104-7 SEI Nº 10155147v1 Prefeitura de Goiânia Secretaria Municipal de Políticas para as Mul",
+    "proc": [
+     "25.29.000017104-7"
+    ]
+   },
+   {
+    "cnpj": "01.639.913/0001-15",
+    "valor": null,
+    "fan": true,
+    "n": 24,
+    "valor_pub": 1500000.0,
+    "ed": "do_20260512_000008776.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "PM-09, Bloco D, 2º andar - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 25.29.000017104-7 SEI Nº 10155147v1 Prefeitura de Goiânia Secretaria Municipal de Políticas para as Mul",
+    "proc": [
+     "25.29.000017104-7"
+    ]
+   },
+   {
+    "cnpj": "01.720.501/0001-05",
+    "valor": null,
+    "fan": true,
+    "n": 24,
+    "valor_pub": 1500000.0,
+    "ed": "do_20260512_000008776.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "PM-09, Bloco D, 2º andar - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 25.29.000017104-7 SEI Nº 10155147v1 Prefeitura de Goiânia Secretaria Municipal de Políticas para as Mul",
+    "proc": [
+     "25.29.000017104-7"
+    ]
+   },
+   {
+    "cnpj": "02.105.435/0001-26",
+    "valor": null,
+    "fan": true,
+    "n": 24,
+    "valor_pub": 1500000.0,
+    "ed": "do_20260512_000008776.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "PM-09, Bloco D, 2º andar - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 25.29.000017104-7 SEI Nº 10155147v1 Prefeitura de Goiânia Secretaria Municipal de Políticas para as Mul",
+    "proc": [
+     "25.29.000017104-7"
+    ]
+   },
+   {
+    "cnpj": "02.398.669/0001-09",
+    "valor": null,
+    "fan": true,
+    "n": 24,
+    "valor_pub": 1500000.0,
+    "ed": "do_20260512_000008776.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "PM-09, Bloco D, 2º andar - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 25.29.000017104-7 SEI Nº 10155147v1 Prefeitura de Goiânia Secretaria Municipal de Políticas para as Mul",
+    "proc": [
+     "25.29.000017104-7"
+    ]
+   },
+   {
+    "cnpj": "02.917.870/0001-55",
+    "valor": null,
+    "fan": true,
+    "n": 24,
+    "valor_pub": 1500000.0,
+    "ed": "do_20260512_000008776.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "PM-09, Bloco D, 2º andar - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 25.29.000017104-7 SEI Nº 10155147v1 Prefeitura de Goiânia Secretaria Municipal de Políticas para as Mul",
+    "proc": [
+     "25.29.000017104-7"
+    ]
+   },
+   {
+    "cnpj": "05.039.050/0001-04",
+    "valor": null,
+    "fan": true,
+    "n": 24,
+    "valor_pub": 1500000.0,
+    "ed": "do_20260512_000008776.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "PM-09, Bloco D, 2º andar - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 25.29.000017104-7 SEI Nº 10155147v1 Prefeitura de Goiânia Secretaria Municipal de Políticas para as Mul",
+    "proc": [
+     "25.29.000017104-7"
+    ]
+   },
+   {
+    "cnpj": "07.118.381/0001-57",
+    "valor": null,
+    "fan": true,
+    "n": 24,
+    "valor_pub": 1500000.0,
+    "ed": "do_20260512_000008776.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "PM-09, Bloco D, 2º andar - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 25.29.000017104-7 SEI Nº 10155147v1 Prefeitura de Goiânia Secretaria Municipal de Políticas para as Mul",
+    "proc": [
+     "25.29.000017104-7"
+    ]
+   },
+   {
+    "cnpj": "07.295.905/0001-85",
+    "valor": null,
+    "fan": true,
+    "n": 24,
+    "valor_pub": 1500000.0,
+    "ed": "do_20260512_000008776.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "PM-09, Bloco D, 2º andar - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 25.29.000017104-7 SEI Nº 10155147v1 Prefeitura de Goiânia Secretaria Municipal de Políticas para as Mul",
+    "proc": [
+     "25.29.000017104-7"
+    ]
+   },
+   {
+    "cnpj": "10.728.047/0001-20",
+    "valor": null,
+    "fan": true,
+    "n": 24,
+    "valor_pub": 1500000.0,
+    "ed": "do_20260512_000008776.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "PM-09, Bloco D, 2º andar - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 25.29.000017104-7 SEI Nº 10155147v1 Prefeitura de Goiânia Secretaria Municipal de Políticas para as Mul",
+    "proc": [
+     "25.29.000017104-7"
+    ]
+   },
+   {
+    "cnpj": "11.308.531/0001-62",
+    "valor": null,
+    "fan": true,
+    "n": 24,
+    "valor_pub": 1500000.0,
+    "ed": "do_20260512_000008776.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "PM-09, Bloco D, 2º andar - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 25.29.000017104-7 SEI Nº 10155147v1 Prefeitura de Goiânia Secretaria Municipal de Políticas para as Mul",
+    "proc": [
+     "25.29.000017104-7"
+    ]
+   },
+   {
+    "cnpj": "11.879.956/0001-21",
+    "valor": null,
+    "fan": true,
+    "n": 24,
+    "valor_pub": 1500000.0,
+    "ed": "do_20260512_000008776.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "PM-09, Bloco D, 2º andar - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 25.29.000017104-7 SEI Nº 10155147v1 Prefeitura de Goiânia Secretaria Municipal de Políticas para as Mul",
+    "proc": [
+     "25.29.000017104-7"
+    ]
+   },
+   {
+    "cnpj": "12.922.582/0001-42",
+    "valor": null,
+    "fan": true,
+    "n": 24,
+    "valor_pub": 1500000.0,
+    "ed": "do_20260512_000008776.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "PM-09, Bloco D, 2º andar - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 25.29.000017104-7 SEI Nº 10155147v1 Prefeitura de Goiânia Secretaria Municipal de Políticas para as Mul",
+    "proc": [
+     "25.29.000017104-7"
+    ]
+   },
+   {
+    "cnpj": "15.341.457/0001-37",
+    "valor": null,
+    "fan": true,
+    "n": 24,
+    "valor_pub": 1500000.0,
+    "ed": "do_20260512_000008776.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "PM-09, Bloco D, 2º andar - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 25.29.000017104-7 SEI Nº 10155147v1 Prefeitura de Goiânia Secretaria Municipal de Políticas para as Mul",
+    "proc": [
+     "25.29.000017104-7"
+    ]
+   },
+   {
+    "cnpj": "17.439.987/0001-48",
+    "valor": null,
+    "fan": true,
+    "n": 24,
+    "valor_pub": 1500000.0,
+    "ed": "do_20260512_000008776.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "PM-09, Bloco D, 2º andar - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 25.29.000017104-7 SEI Nº 10155147v1 Prefeitura de Goiânia Secretaria Municipal de Políticas para as Mul",
+    "proc": [
+     "25.29.000017104-7"
+    ]
+   },
+   {
+    "cnpj": "20.923.500/0001-02",
+    "valor": null,
+    "fan": true,
+    "n": 24,
+    "valor_pub": 1500000.0,
+    "ed": "do_20260512_000008776.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "PM-09, Bloco D, 2º andar - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 25.29.000017104-7 SEI Nº 10155147v1 Prefeitura de Goiânia Secretaria Municipal de Políticas para as Mul",
+    "proc": [
+     "25.29.000017104-7"
+    ]
+   },
+   {
+    "cnpj": "24.809.360/0001-05",
+    "valor": null,
+    "fan": true,
+    "n": 24,
+    "valor_pub": 1500000.0,
+    "ed": "do_20260512_000008776.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "PM-09, Bloco D, 2º andar - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 25.29.000017104-7 SEI Nº 10155147v1 Prefeitura de Goiânia Secretaria Municipal de Políticas para as Mul",
+    "proc": [
+     "25.29.000017104-7"
+    ]
+   },
+   {
+    "cnpj": "25.006.149/0001-09",
+    "valor": null,
+    "fan": true,
+    "n": 24,
+    "valor_pub": 1500000.0,
+    "ed": "do_20260512_000008776.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "PM-09, Bloco D, 2º andar - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 25.29.000017104-7 SEI Nº 10155147v1 Prefeitura de Goiânia Secretaria Municipal de Políticas para as Mul",
+    "proc": [
+     "25.29.000017104-7"
+    ]
+   },
+   {
+    "cnpj": "37.880.499/0001-89",
+    "valor": null,
+    "fan": true,
+    "n": 24,
+    "valor_pub": 1500000.0,
+    "ed": "do_20260512_000008776.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "PM-09, Bloco D, 2º andar - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 25.29.000017104-7 SEI Nº 10155147v1 Prefeitura de Goiânia Secretaria Municipal de Políticas para as Mul",
+    "proc": [
+     "25.29.000017104-7"
+    ]
+   },
+   {
+    "cnpj": "37.942.521/0001-78",
+    "valor": null,
+    "fan": true,
+    "n": 24,
+    "valor_pub": 1500000.0,
+    "ed": "do_20260512_000008776.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "PM-09, Bloco D, 2º andar - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 25.29.000017104-7 SEI Nº 10155147v1 Prefeitura de Goiânia Secretaria Municipal de Políticas para as Mul",
+    "proc": [
+     "25.29.000017104-7"
+    ]
+   },
+   {
+    "cnpj": "86.840.378/0001-19",
+    "valor": null,
+    "fan": true,
+    "n": 24,
+    "valor_pub": 1500000.0,
+    "ed": "do_20260512_000008776.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "PM-09, Bloco D, 2º andar - Bairro Park Lozandes CEP 74884-900 Goiânia-GO Referência: Processo Nº 25.29.000017104-7 SEI Nº 10155147v1 Prefeitura de Goiânia Secretaria Municipal de Políticas para as Mul",
+    "proc": [
+     "25.29.000017104-7"
+    ]
+   }
+  ],
+  "2026-05-13": [
+   {
+    "cnpj": "60.746.948/0001-12",
+    "valor": null,
+    "fan": true,
+    "n": 2,
+    "valor_pub": 500000.0,
+    "ed": "do_20260513_000008777.pdf",
+    "contratos": [
+     "CONTRATO 007/2026",
+     "TERMO DE FOMENTO 041/2026"
+    ],
+    "dot": null,
+    "est": [
+     "repasse",
+     "vinculo"
+    ],
+    "obj": "/GERCON A Gerência do Contencioso Fiscal da Secretaria Municipal da Saúde do Município de Goiânia, sediada na Avenida Universitária, nº 644, Setor Leste Universitário, nesta Capital, no uso de suas at",
+    "proc": [
+     "25.10.000011768-7"
+    ]
+   },
+   {
+    "cnpj": "62.203.064/0001-47",
+    "valor": null,
+    "fan": true,
+    "n": 2,
+    "valor_pub": 500000.0,
+    "ed": "do_20260513_000008777.pdf",
+    "contratos": [
+     "CONTRATO 007/2026",
+     "TERMO DE FOMENTO 041/2026"
+    ],
+    "dot": null,
+    "est": [
+     "repasse",
+     "vinculo"
+    ],
+    "obj": "/GERCON A Gerência do Contencioso Fiscal da Secretaria Municipal da Saúde do Município de Goiânia, sediada na Avenida Universitária, nº 644, Setor Leste Universitário, nesta Capital, no uso de suas at",
+    "proc": [
+     "25.10.000011768-7"
+    ]
+   }
+  ],
+  "2026-05-19": [
+   {
+    "cnpj": "97.546.623/0001-04",
+    "valor": 69744.0,
+    "fan": false,
+    "n": 1,
+    "valor_pub": 69744.0,
+    "ed": "do_20260519_000008781.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "orcamento",
+     "vinculo"
+    ],
+    "obj": "o, mediante a apresentação de certidão negativa, nos termos do Título VII-A da Consolidação das Leis do Trabalho, aprovada pelo Decreto-Lei nº 5452, de 1º de maio de 1943 (CNDT) (válida); Relação nomi",
+    "proc": [
+     "25.10.000006395-1"
+    ]
+   }
+  ],
+  "2026-06-09": [
+   {
+    "cnpj": "15.649.514/0001-40",
+    "valor": 1054025.52,
+    "fan": false,
+    "n": 1,
+    "valor_pub": 1054025.52,
+    "ed": "do_20260609_000008794.pdf",
+    "contratos": [
+     "CONTRATO 08/2026",
+     "CONTRATO 61/2026"
+    ],
+    "dot": null,
+    "est": [
+     "orcamento",
+     "vinculo"
+    ],
+    "obj": "folders e demais materiais de comunicação visual FUNDAMENTO LEGAL I: Fundamentado em contratação direta por dispensa de licitação na forma do disposto no artigo 75, II, da Lei n° 14.133/21. VALORES DA",
+    "proc": [
+     "26.10.000001520-0"
+    ]
+   }
+  ],
+  "2026-06-10": [
+   {
+    "cnpj": "14.580.442/0001-69",
+    "valor": null,
+    "fan": false,
+    "n": 1,
+    "valor_pub": null,
+    "ed": "do_20260610_000008795.pdf",
+    "contratos": [
+     "CONTRATO 010/2025",
+     "Contrato 010/2025"
+    ],
+    "dot": null,
+    "est": [
+     "vinculo"
+    ],
+    "obj": "e da Procuradora-Geral da Fazenda Nacional. 2.3 Prova de regularidade com o Fundo de Garantia do Tempo de Serviço (FGTS); 2.4 Prova de inexistência de débitos inadimplidos perante a Justiça do Trabalh",
+    "proc": [
+     "26.10.000003497-"
+    ]
+   }
+  ],
+  "2026-06-17": [
+   {
+    "cnpj": "02.922.060/0001-97",
+    "valor": null,
+    "fan": true,
+    "n": 5,
+    "valor_pub": 203500.0,
+    "ed": "do_20260617_000008800.pdf",
+    "contratos": [
+     "TERMO DE FOMENTO 055/2025",
+     "Termo de Fomento 055/2025"
+    ],
+    "dot": null,
+    "est": [
+     "vinculo"
+    ],
+    "obj": "* Atividade de Convivência – Associação Comunitária Assistencial Cris Doando Amor (CNPJ: 50.793.466/0001-60); Art 3º Aprovar atualização de inscrição das seguintes instituições: * ILPI – Cabana Reside",
+    "proc": [
+     "24.10.000000458-5"
+    ]
+   },
+   {
+    "cnpj": "06.979.993/0001-71",
+    "valor": null,
+    "fan": true,
+    "n": 5,
+    "valor_pub": 203500.0,
+    "ed": "do_20260617_000008800.pdf",
+    "contratos": [
+     "TERMO DE FOMENTO 055/2025",
+     "Termo de Fomento 055/2025"
+    ],
+    "dot": null,
+    "est": [
+     "vinculo"
+    ],
+    "obj": "* Atividade de Convivência – Associação Comunitária Assistencial Cris Doando Amor (CNPJ: 50.793.466/0001-60); Art 3º Aprovar atualização de inscrição das seguintes instituições: * ILPI – Cabana Reside",
+    "proc": [
+     "24.10.000000458-5"
+    ]
+   },
+   {
+    "cnpj": "15.351.993/0001-13",
+    "valor": null,
+    "fan": true,
+    "n": 5,
+    "valor_pub": 203500.0,
+    "ed": "do_20260617_000008800.pdf",
+    "contratos": [
+     "TERMO DE FOMENTO 055/2025",
+     "Termo de Fomento 055/2025"
+    ],
+    "dot": null,
+    "est": [
+     "vinculo"
+    ],
+    "obj": "* Atividade de Convivência – Associação Comunitária Assistencial Cris Doando Amor (CNPJ: 50.793.466/0001-60); Art 3º Aprovar atualização de inscrição das seguintes instituições: * ILPI – Cabana Reside",
+    "proc": [
+     "24.10.000000458-5"
+    ]
+   },
+   {
+    "cnpj": "26.263.389/0001-51",
+    "valor": null,
+    "fan": true,
+    "n": 5,
+    "valor_pub": 203500.0,
+    "ed": "do_20260617_000008800.pdf",
+    "contratos": [
+     "TERMO DE FOMENTO 055/2025",
+     "Termo de Fomento 055/2025"
+    ],
+    "dot": null,
+    "est": [
+     "vinculo"
+    ],
+    "obj": "* Atividade de Convivência – Associação Comunitária Assistencial Cris Doando Amor (CNPJ: 50.793.466/0001-60); Art 3º Aprovar atualização de inscrição das seguintes instituições: * ILPI – Cabana Reside",
+    "proc": [
+     "24.10.000000458-5"
+    ]
+   },
+   {
+    "cnpj": "50.793.466/0001-60",
+    "valor": null,
+    "fan": true,
+    "n": 5,
+    "valor_pub": 203500.0,
+    "ed": "do_20260617_000008800.pdf",
+    "contratos": [
+     "TERMO DE FOMENTO 055/2025",
+     "Termo de Fomento 055/2025"
+    ],
+    "dot": null,
+    "est": [
+     "vinculo"
+    ],
+    "obj": "* Atividade de Convivência – Associação Comunitária Assistencial Cris Doando Amor (CNPJ: 50.793.466/0001-60); Art 3º Aprovar atualização de inscrição das seguintes instituições: * ILPI – Cabana Reside",
+    "proc": [
+     "24.10.000000458-5"
+    ]
+   }
+  ],
+  "2026-06-18": [
+   {
+    "cnpj": "14.846.043/0001-05",
+    "valor": null,
+    "fan": false,
+    "n": 1,
+    "valor_pub": null,
+    "ed": "do_20260618_000008801.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "vinculo"
+    ],
+    "obj": "ros e puriﬁcadores de água instalados nas unidades da Secretaria, a preservação das condições adequadas de higiene e saúde, bem como a continuidade dos serviços socioassistenciais prestados, a aquisiç",
+    "proc": [
+     "26.10.000005633-0"
+    ]
+   }
+  ],
+  "2026-07-01": [
+   {
+    "cnpj": "58.600.411/0001-06",
+    "valor": 55750.5,
+    "fan": false,
+    "n": 1,
+    "valor_pub": 55750.5,
+    "ed": "do_20260701_000008810.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "vinculo"
+    ],
+    "obj": "Constituir a Comissão de Seleção do Chamamento Público para Seleção de Organizações da Sociedade Civil para a implantação, manutenção e execução da Central de Interpretação de Libras – CIL. I – Eduard",
+    "proc": [
+     "26.10.000002186-3"
+    ]
+   }
+  ],
+  "2026-07-03": [
+   {
+    "cnpj": "44.728.295/0001-92",
+    "valor": 42250.0,
+    "fan": false,
+    "n": 1,
+    "valor_pub": 42250.0,
+    "ed": "do_20260703_000008812.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "vinculo"
+    ],
+    "obj": "das no Edital e seus anexos. TIPO DE LICITAÇÃO: Menor preço por item MODO DE DISPUTA: Aberto CÓDIGO UASG: 926995 PROCESSO SEI Nº: 26.29.000014378-2 LOCAL DA SESSÃO PÚBLICA: Portal de Compras do Govern",
+    "proc": [
+     "26.10.000003496-5"
+    ]
+   }
+  ],
+  "2026-07-06": [
+   {
+    "cnpj": "01.720.501/0001-05",
+    "valor": null,
+    "fan": true,
+    "n": 2,
+    "valor_pub": 250000.0,
+    "ed": "do_20260706_000008813.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "ados por intermédio do Decreto nº 13, de 01 de janeiro de 2025, conforme estabelece o Art. 8, inciso III, do Regimento Interno desta Secretaria, ora aprovado pelo Decreto Municipal nº 697, de 28 de ja",
+    "proc": [
+     "26.10.000006888-6"
+    ]
+   },
+   {
+    "cnpj": "17.439.987/0001-48",
+    "valor": null,
+    "fan": true,
+    "n": 2,
+    "valor_pub": 250000.0,
+    "ed": "do_20260706_000008813.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse",
+     "entidade"
+    ],
+    "obj": "ados por intermédio do Decreto nº 13, de 01 de janeiro de 2025, conforme estabelece o Art. 8, inciso III, do Regimento Interno desta Secretaria, ora aprovado pelo Decreto Municipal nº 697, de 28 de ja",
+    "proc": [
+     "26.10.000006888-6"
+    ]
+   }
+  ],
+  "2026-07-07": [
+   {
+    "cnpj": "04.369.147/0001-04",
+    "valor": 122384.42,
+    "fan": false,
+    "n": 1,
+    "valor_pub": 122384.42,
+    "ed": "do_20260707_000008814.pdf",
+    "contratos": [
+     "CONTRATO 065/2026",
+     "TERMO DE FOMENTO 055/2025"
+    ],
+    "dot": null,
+    "est": [
+     "repasse",
+     "orcamento",
+     "vinculo"
+    ],
+    "obj": "a dos Fundos Sociais, à unidade jurídica competente, ao controle interno municipal, ao Ministério Público do Estado de Goiás e, se pertinente, ao Juízo da Infância e Juventude Civil, responsável pela ",
+    "proc": [
+     "24.10.000000458-5"
+    ]
+   }
+  ],
+  "2026-07-28": [
+   {
+    "cnpj": "04.369.147/0001-04",
+    "valor": null,
+    "fan": true,
+    "n": 10,
+    "valor_pub": 263303.64,
+    "ed": "do_20260728_000008829.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "vinculo"
+    ],
+    "obj": "CURSO INSMART COMÉRCIO DE EQUIPAMENTOS LTDA 25.29.000041771-2 11.042.902/0001-07 RECURSO SUL ÁGUA EQUIPAMENTOS LTDA 26.29.000023572-5 46.344.050/0001-97 DEFESA PRÉVIA G.O MEDICAL LTDA 26.29.000023779-",
+    "proc": [
+     "26.10.000003644-5"
+    ]
+   },
+   {
+    "cnpj": "09.034.672/0001-92",
+    "valor": null,
+    "fan": true,
+    "n": 10,
+    "valor_pub": 263303.64,
+    "ed": "do_20260728_000008829.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "vinculo"
+    ],
+    "obj": "CURSO INSMART COMÉRCIO DE EQUIPAMENTOS LTDA 25.29.000041771-2 11.042.902/0001-07 RECURSO SUL ÁGUA EQUIPAMENTOS LTDA 26.29.000023572-5 46.344.050/0001-97 DEFESA PRÉVIA G.O MEDICAL LTDA 26.29.000023779-",
+    "proc": [
+     "26.10.000003644-5"
+    ]
+   },
+   {
+    "cnpj": "11.042.902/0001-07",
+    "valor": null,
+    "fan": true,
+    "n": 10,
+    "valor_pub": 263303.64,
+    "ed": "do_20260728_000008829.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "vinculo"
+    ],
+    "obj": "CURSO INSMART COMÉRCIO DE EQUIPAMENTOS LTDA 25.29.000041771-2 11.042.902/0001-07 RECURSO SUL ÁGUA EQUIPAMENTOS LTDA 26.29.000023572-5 46.344.050/0001-97 DEFESA PRÉVIA G.O MEDICAL LTDA 26.29.000023779-",
+    "proc": [
+     "26.10.000003644-5"
+    ]
+   },
+   {
+    "cnpj": "16.699.864/0001-83",
+    "valor": null,
+    "fan": true,
+    "n": 10,
+    "valor_pub": 263303.64,
+    "ed": "do_20260728_000008829.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "vinculo"
+    ],
+    "obj": "CURSO INSMART COMÉRCIO DE EQUIPAMENTOS LTDA 25.29.000041771-2 11.042.902/0001-07 RECURSO SUL ÁGUA EQUIPAMENTOS LTDA 26.29.000023572-5 46.344.050/0001-97 DEFESA PRÉVIA G.O MEDICAL LTDA 26.29.000023779-",
+    "proc": [
+     "26.10.000003644-5"
+    ]
+   },
+   {
+    "cnpj": "17.771.867/0001-43",
+    "valor": null,
+    "fan": true,
+    "n": 10,
+    "valor_pub": 263303.64,
+    "ed": "do_20260728_000008829.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "vinculo"
+    ],
+    "obj": "CURSO INSMART COMÉRCIO DE EQUIPAMENTOS LTDA 25.29.000041771-2 11.042.902/0001-07 RECURSO SUL ÁGUA EQUIPAMENTOS LTDA 26.29.000023572-5 46.344.050/0001-97 DEFESA PRÉVIA G.O MEDICAL LTDA 26.29.000023779-",
+    "proc": [
+     "26.10.000003644-5"
+    ]
+   },
+   {
+    "cnpj": "21.895.553/0001-20",
+    "valor": null,
+    "fan": true,
+    "n": 10,
+    "valor_pub": 263303.64,
+    "ed": "do_20260728_000008829.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "vinculo"
+    ],
+    "obj": "CURSO INSMART COMÉRCIO DE EQUIPAMENTOS LTDA 25.29.000041771-2 11.042.902/0001-07 RECURSO SUL ÁGUA EQUIPAMENTOS LTDA 26.29.000023572-5 46.344.050/0001-97 DEFESA PRÉVIA G.O MEDICAL LTDA 26.29.000023779-",
+    "proc": [
+     "26.10.000003644-5"
+    ]
+   },
+   {
+    "cnpj": "46.344.050/0001-97",
+    "valor": null,
+    "fan": true,
+    "n": 10,
+    "valor_pub": 263303.64,
+    "ed": "do_20260728_000008829.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "vinculo"
+    ],
+    "obj": "CURSO INSMART COMÉRCIO DE EQUIPAMENTOS LTDA 25.29.000041771-2 11.042.902/0001-07 RECURSO SUL ÁGUA EQUIPAMENTOS LTDA 26.29.000023572-5 46.344.050/0001-97 DEFESA PRÉVIA G.O MEDICAL LTDA 26.29.000023779-",
+    "proc": [
+     "26.10.000003644-5"
+    ]
+   },
+   {
+    "cnpj": "55.152.280/0001-45",
+    "valor": null,
+    "fan": true,
+    "n": 10,
+    "valor_pub": 263303.64,
+    "ed": "do_20260728_000008829.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "vinculo"
+    ],
+    "obj": "CURSO INSMART COMÉRCIO DE EQUIPAMENTOS LTDA 25.29.000041771-2 11.042.902/0001-07 RECURSO SUL ÁGUA EQUIPAMENTOS LTDA 26.29.000023572-5 46.344.050/0001-97 DEFESA PRÉVIA G.O MEDICAL LTDA 26.29.000023779-",
+    "proc": [
+     "26.10.000003644-5"
+    ]
+   },
+   {
+    "cnpj": "56.795.674/0001-84",
+    "valor": null,
+    "fan": true,
+    "n": 10,
+    "valor_pub": 263303.64,
+    "ed": "do_20260728_000008829.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "vinculo"
+    ],
+    "obj": "CURSO INSMART COMÉRCIO DE EQUIPAMENTOS LTDA 25.29.000041771-2 11.042.902/0001-07 RECURSO SUL ÁGUA EQUIPAMENTOS LTDA 26.29.000023572-5 46.344.050/0001-97 DEFESA PRÉVIA G.O MEDICAL LTDA 26.29.000023779-",
+    "proc": [
+     "26.10.000003644-5"
+    ]
+   },
+   {
+    "cnpj": "01.682.475/0001-78",
+    "valor": 200000.0,
+    "fan": false,
+    "n": 1,
+    "valor_pub": 200000.0,
+    "ed": "do_20260728_000008829.pdf",
+    "contratos": [],
+    "dot": null,
+    "est": [
+     "repasse"
+    ],
+    "obj": "erá utilizado para a produção de conteúdo jurídico acessível, com linguagem simples, voltado especialmente às pessoas em situação de vulnerabilidade. O podcast terá como ﬁnalidade esclarecer dúvidas d",
+    "proc": []
+   }
+  ]
+ },
+ "descartes": [
+  {
+   "data": "2026-04-10",
+   "cnpj": "00.136.446/0001-48",
+   "motivo": "triagem: NEFROCLINICA CLINICA DE DOENCAS RENAIS"
+  },
+  {
+   "data": "2026-04-10",
+   "cnpj": "01.393.989/0001-03",
+   "motivo": "triagem: não é entidade privada"
+  },
+  {
+   "data": "2026-01-22",
+   "cnpj": "01.393.989/0001-03",
+   "motivo": "triagem: não é entidade privada"
+  },
+  {
+   "data": "2026-05-06",
+   "cnpj": "01.181.585/0001-56",
+   "motivo": "triagem: MUNICIPIO DE PIRES DO RIO"
+  },
+  {
+   "data": "2026-02-27",
+   "cnpj": "02.430.968/0003-51",
+   "motivo": "dígito verificador inválido"
+  },
+  {
+   "data": "2026-07-28",
+   "cnpj": "01.393.989/0001-03",
+   "motivo": "triagem: não é entidade privada"
+  },
+  {
+   "data": "2026-01-28",
+   "cnpj": "15.124.498/0001-51",
+   "motivo": "dígito verificador inválido"
+  }
+ ],
+ "diarias": [
+  {
+   "primeiro_nome": "Murilo",
+   "destino": "Brasília/DF",
+   "data_do_ato": "2026-04-13",
+   "edicao": "do_20260413_000008758.pdf",
+   "processos": [
+    "25.21.000002298-1",
+    "26.10.000003243-1"
+   ],
+   "valor_da_diaria": null,
+   "nota": "valor não isolável: a natureza vem truncada em 8 dígitos e os valores da página não são atribuíveis a este ato"
+  }
+ ],
+ "resumo": {
+  "dias_com_movimento": 28,
+  "lancamentos": 93,
+  "com_valor_atribuivel": 15,
+  "nao_atribuivel_fanout": 78,
+  "cnpj_distintos": 85,
+  "descartados": 7
+ }
+}

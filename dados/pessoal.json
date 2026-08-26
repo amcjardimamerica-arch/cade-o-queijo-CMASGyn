@@ -1,0 +1,113 @@
+{
+ "achados": [
+  {
+   "regra": "PES-01",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Folha de pagamento invisível no acervo",
+   "detalhe": "Nenhuma linha de natureza 31901100 (Vencimentos e vantagens fixas). As rubricas do grupo 31 presentes são de exercícios anteriores e de ressarcimento de pessoal requisitado — não são a folha. Sem folha não se conta cargo, não se separa efetivo de comissionado e não se afere o teto de 30%.",
+   "norma": "Artigo 48-A inciso I da Lei Complementar 101/2000; Artigo 8 paragrafo 1 inciso III da Lei 12.527/2011",
+   "dados": {
+    "naturezas_de_folha_encontradas": [],
+    "grupo_31_presente": [
+     "31901300",
+     "31909200",
+     "31909600"
+    ]
+   }
+  },
+  {
+   "regra": "PES-03",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Concessão de diárias praticamente ausente do acervo",
+   "detalhe": "1 ato(s) de concessão localizado(s) em 161 eventos. Órgão com equipes volantes, conferências e reuniões regionais não concede uma diária por exercício. A ausência mede a publicidade, não a despesa.",
+   "norma": "Artigo 37 caput da Constituicao Federal; Artigo 50 da Lei 9.784/1999",
+   "dados": {
+    "atos_localizados": 1,
+    "eventos_examinados": 161
+   }
+  },
+  {
+   "regra": "PES-04",
+   "severidade": "media",
+   "selo": "CONFIRMADO",
+   "titulo": "Prestação de contas de deslocamento não localizada",
+   "detalhe": "Nenhum relatório de viagem, comprovante de deslocamento ou devolução de diária não utilizada consta do acervo. A liquidação exige verificação do direito adquirido pelo credor, com base em títulos e documentos comprobatórios.",
+   "norma": "Artigo 63 da Lei 4.320/1964",
+   "dados": {
+    "concessoes": 1,
+    "prestacoes": 0
+   }
+  },
+  {
+   "regra": "PES-07",
+   "severidade": "critica",
+   "selo": "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE",
+   "titulo": "Vedação do IGD quanto a pessoal não verificável",
+   "detalhe": "O Artigo 12-A paragrafo 4 parte final da Lei 8.742/1993 veda usar recurso do IGD destinado ao conselho para pagar pessoal efetivo e gratificações. Sem a folha por fonte de recurso, a vedação não se afere — nem para confirmar, nem para afastar.",
+   "norma": "Artigo 12-A paragrafo 4 da Lei 8.742/1993",
+   "dados": {
+    "documento_necessario": "folha de pagamento por competência, com fonte de recurso por servidor"
+   }
+  },
+  {
+   "regra": "PES-02",
+   "severidade": "alta",
+   "selo": "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE",
+   "titulo": "Teto de 30% para pessoal não aferível",
+   "detalhe": "Regra declarada e não avaliada. Documento necessário: receita do FMAS por fonte e despesa de pessoal custeada pelo Tesouro.",
+   "norma": "ver config/criterios_pessoal.yml",
+   "dados": {
+    "documento_necessario": "receita do FMAS por fonte e despesa de pessoal custeada pelo Tesouro"
+   }
+  },
+  {
+   "regra": "PES-08",
+   "severidade": "alta",
+   "selo": "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE",
+   "titulo": "Proporção entre efetivos e comissionados não aferível",
+   "detalhe": "Regra declarada e não avaliada. Documento necessário: relação nominal do quadro por competência, com forma de provimento.",
+   "norma": "ver config/criterios_pessoal.yml",
+   "dados": {
+    "documento_necessario": "relação nominal do quadro por competência, com forma de provimento"
+   }
+  },
+  {
+   "regra": "PES-09",
+   "severidade": "alta",
+   "selo": "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE",
+   "titulo": "Equipe de referência mínima não aferível",
+   "detalhe": "Regra declarada e não avaliada. Documento necessário: quadro de lotação por unidade (CRAS, CREAS, Centro POP).",
+   "norma": "ver config/criterios_pessoal.yml",
+   "dados": {
+    "documento_necessario": "quadro de lotação por unidade (CRAS, CREAS, Centro POP)"
+   }
+  }
+ ],
+ "diarias": [
+  {
+   "primeiro_nome": "Murilo",
+   "destino": "Brasília/DF",
+   "data_do_ato": "2026-04-13",
+   "edicao": "do_20260413_000008758.pdf",
+   "processos": [
+    "25.21.000002298-1",
+    "26.10.000003243-1"
+   ],
+   "valor_da_diaria": null,
+   "nota": "valor não isolável: a natureza vem truncada em 8 dígitos e os valores da página não são atribuíveis a este ato"
+  }
+ ],
+ "vantagens_mencionadas": [],
+ "cessoes": 1,
+ "resumo": {
+  "diarias": 1,
+  "vantagens": 0,
+  "achados": 7,
+  "por_selo": {
+   "CONFIRMADO": 3,
+   "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE": 4
+  }
+ }
+}

@@ -1,0 +1,470 @@
+{
+ "exercicio": 2026,
+ "gerado_em": "2026-08-26",
+ "achados": [
+  {
+   "bloco": "ADM",
+   "codigo": "PUB-01",
+   "severidade": "critica",
+   "selo": "CONFIRMADO",
+   "titulo": "Diario Oficial sem edicao desde 29/07/2026",
+   "detalhe": "Ultima publicacao: 2026-07-29 (26 dias corridos). Dos 21 dias uteis da janela, 18 sem edicao. Sondagem com controle exclui falha do coletor.",
+   "norma": "Artigo 37 caput da Constituicao Federal; Artigo 8 par.3 III e VI da Lei 12.527/2011; Artigo 10 par.2 da Lei municipal 9.009/2010",
+   "dados": {
+    "ultima": "2026-07-29",
+    "dias_sem_edicao": 18
+   },
+   "documentos_complementares": [
+    "Relação numerada e datada das edições do Diário Oficial publicadas entre 30/07/2026 e a data do protocolo, ou declaração de que não houve publicação",
+    "Ato administrativo que determinou a suspensão da publicação, se houver",
+    "Relação dos atos praticados no período, com data de assinatura e data de publicação"
+   ]
+  },
+  {
+   "bloco": "ADM",
+   "codigo": "PUB-02",
+   "severidade": "critica",
+   "selo": "CONFIRMADO",
+   "titulo": "Atos do Conselho sem publicacao, confirmado por dupla via",
+   "detalhe": "24 de 40 atos examinados nao foram localizados por nenhuma das duas vias independentes. Indice global de publicidade de 6,36% e piso indiciario; use o confirmado.",
+   "norma": "Artigo 10 par.2 da Lei municipal 9.009/2010",
+   "dados": {
+    "confirmados": 24,
+    "examinados": 40
+   },
+   "documentos_complementares": [
+    "Cópia integral das Resoluções do Conselho de 2024 a 2026, com indicação da edição e página do Diário Oficial",
+    "Livro de registro de Resoluções, com numeração sequencial",
+    "Declaração da Secretaria Executiva sobre os atos não publicados"
+   ]
+  },
+  {
+   "bloco": "FIN",
+   "codigo": "REC-01",
+   "severidade": "critica",
+   "selo": "CONFIRMADO",
+   "titulo": "Aporte proprio do Municipio no Fundo e simbolico",
+   "detalhe": "Tesouro Municipal em 2026: R$ 9.000,00 num Fundo de R$ 23.218.000,00 (0.039%). Em 2025 eram R$ 1.669.000,00 — queda de -99.46%. Orcamento municipal: R$ 10.842.253.000,00.",
+   "norma": "Artigo 30 paragrafo unico e Artigo 30-A da Lei 8.742/1993",
+   "dados": {
+    "tesouro_2026": 9000,
+    "tesouro_2025": 1669000,
+    "sancao": "suspensao do repasse federal de R$ 8.250.000,00"
+   },
+   "documentos_complementares": [
+    "Lei Orçamentária Anual de 2024, 2025 e 2026, com o Quadro de Detalhamento de Despesas",
+    "Demonstrativo de receita realizada do Fundo por fonte, mês a mês",
+    "Extratos mensais da conta especial do Fundo",
+    "Comprovação orçamentária de recursos próprios exigida pelo artigo 30, parágrafo único, da Lei 8.742/1993",
+    "Relatório Resumido da Execução Orçamentária dos seis bimestres"
+   ]
+  },
+  {
+   "bloco": "FIN",
+   "codigo": "DES-02",
+   "severidade": "critica",
+   "selo": "CONFIRMADO",
+   "titulo": "Execucao da despesa nao rastreavel",
+   "detalhe": "6 eventos de empenho em 161 — 3.73%. Empenhado, liquidado e pago sao inaferiveis.",
+   "norma": "Artigos 58, 62 e 63 da Lei 4.320/1964; Artigo 48-A inciso I da Lei Complementar 101/2000",
+   "dados": {},
+   "documentos_complementares": [
+    "Relação de empenhos, liquidações e pagamentos da função 08, exercícios 2024 a 2026",
+    "Notas de empenho, de liquidação e ordens bancárias",
+    "Extratos bancários do Fundo com identificação do favorecido de cada saída"
+   ]
+  },
+  {
+   "bloco": "FIN",
+   "codigo": "FMAS-01",
+   "severidade": "critica",
+   "selo": "CONFIRMADO",
+   "titulo": "Recurso do Tesouro custeia o que esta fora do controle do Conselho",
+   "detalhe": "Unidade 3601 (Gabinete): R$ 81.202.000,00, integralmente do Tesouro. Unidade 3650 (Fundo): R$ 23.218.000,00, dos quais R$ 9.000,00 do Tesouro. A dotacao do orgao deveria ser automaticamente transferida ao Fundo.",
+   "norma": "Artigos 2 par.1, 3 e 5 da Lei municipal 7.531/1995; Artigo 19 par.unico da Lei municipal 8.293/2004",
+   "dados": {},
+   "documentos_complementares": [
+    "Demonstrativo de execução da unidade orçamentária 3601, por função e subfunção",
+    "Comprovação das transferências automáticas ao Fundo previstas no artigo 2º, parágrafo 1º, da Lei municipal 7.531/1995",
+    "Ato de designação do gestor do Fundo, em conjunto com o Secretário Municipal de Finanças",
+    "Segregação da despesa de assistência social dentro da unidade 3601"
+   ]
+  },
+  {
+   "bloco": "FIN",
+   "codigo": "IGD-01",
+   "severidade": "critica",
+   "selo": "CONFIRMADO",
+   "titulo": "Piso de 10% do IGD ao controle social sem execucao",
+   "detalhe": "Base do IGD nos decretos de credito de 2026: R$ 706.707,15. Devido ao controle social: R$ 70.670,71. Executado: R$ 0,00. Percentual extraido do corpus, nao digitado.",
+   "norma": "Artigo 6 da Resolucao CNAS/MDS 202/2025; Artigo 12-A par.4 da Lei 8.742/1993; Artigo 14 par.7 da Lei 14.601/2023",
+   "dados": {
+    "base": 706707.15,
+    "devido": 70670.71,
+    "executado": 0,
+    "sancao": "bloqueio dos repasses ate comprovacao, Artigo 6 par.6"
+   },
+   "documentos_complementares": [
+    "Demonstrativo dos repasses do Índice de Gestão Descentralizada recebidos mês a mês, por bloco",
+    "Plano de aplicação do Índice deliberado pelo Conselho",
+    "Demonstrativo da aplicação do piso de dez por cento ao controle social, com empenho, liquidação e pagamento",
+    "Quadro de Detalhamento de Despesas com a dotação específica de fortalecimento do controle social",
+    "Extrato da conta específica do Índice"
+   ]
+  },
+  {
+   "bloco": "PES",
+   "codigo": "PES-07",
+   "severidade": "critica",
+   "selo": "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE",
+   "titulo": "Vedação do IGD quanto a pessoal não verificável",
+   "detalhe": "O Artigo 12-A paragrafo 4 parte final da Lei 8.742/1993 veda usar recurso do IGD destinado ao conselho para pagar pessoal efetivo e gratificações. Sem a folha por fonte de recurso, a vedação não se afere — nem para confirmar, nem para afastar.",
+   "norma": "Artigo 12-A paragrafo 4 da Lei 8.742/1993",
+   "dados": {
+    "documento_necessario": "folha de pagamento por competência, com fonte de recurso por servidor"
+   },
+   "documentos_complementares": [
+    "Folha de pagamento com identificação da fonte de recurso de cada servidor",
+    "Demonstrativo de aplicação do Índice de Gestão Descentralizada por elemento de despesa",
+    "Declaração de que nenhum servidor efetivo ou gratificação foi custeado com recurso do Índice destinado ao Conselho"
+   ]
+  },
+  {
+   "bloco": "ADM",
+   "codigo": "ATA-01",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Nenhuma ata de plenaria publicada",
+   "detalhe": "Zero atas no acervo. Sem ata publica nao se afere quorum, paridade, deliberacao nem voto. A ausencia impede tambem verificar a apreciacao previa de contratos.",
+   "norma": "Artigo 10 caput da Lei municipal 9.009/2010",
+   "dados": {},
+   "documentos_complementares": [
+    "Atas de todas as sessões ordinárias e extraordinárias de 2023 a 2026",
+    "Lista de presença de cada sessão, com segmento representado",
+    "Regimento Interno vigente"
+   ]
+  },
+  {
+   "bloco": "ADM",
+   "codigo": "CTA-01",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Apreciacao mensal das contas do Fundo sem registro",
+   "detalhe": "O Conselho deve apreciar MENSALMENTE as contas do Fundo. Em 8 competencias de 2026 nao ha uma unica resolucao ou ata de apreciacao.",
+   "norma": "Artigo 2 inciso IV alinea b da Lei municipal 9.009/2010",
+   "dados": {
+    "competencias_esperadas": 8,
+    "com_registro": 0
+   },
+   "documentos_complementares": [
+    "Balancetes mensais do Fundo de 2026",
+    "Atos de apreciação mensal das contas pelo Conselho, por competência",
+    "Pareceres da Comissão de Financiamento do Conselho"
+   ]
+  },
+  {
+   "bloco": "ADM",
+   "codigo": "CTA-02",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Prestacao de contas quadrimestral ao Conselho nao demonstrada",
+   "detalhe": "Criterio extraido do corpus: a cada 4 meses. Em 2026 seriam devidas 2 prestacoes (janeiro-abril e maio-agosto). Nenhuma localizada.",
+   "norma": "Artigo 6 par.5 da Resolucao CNAS/MDS 202/2025",
+   "dados": {
+    "periodicidade_meses": 4,
+    "devidas_2026": 2,
+    "apresentadas": 0
+   },
+   "documentos_complementares": [
+    "Prestações de contas quadrimestrais previstas no artigo 6º, parágrafo 5º, da Resolução CNAS/MDS 202/2025",
+    "Demonstrativo de monitoramento da execução dos recursos do Índice de Gestão Descentralizada",
+    "Demonstrativo de saldo em conta e do respectivo plano de reprogramação"
+   ]
+  },
+  {
+   "bloco": "ADM",
+   "codigo": "LEG-01",
+   "severidade": "alta",
+   "selo": "INDICIARIO",
+   "titulo": "Fundamento legal revogado invocado em 2026",
+   "detalhe": "1 ato(s) de 2026 mencionam a Lei 8.666/1993, revogada desde 30/12/2023. Termo de fomento rege-se pela Lei 13.019/2014, nunca por lei de licitacoes. Conferir o processo.",
+   "norma": "Artigo 193 inciso II da Lei 14.133/2021",
+   "dados": {
+    "ocorrencias": 1
+   },
+   "documentos_complementares": [
+    "Processo administrativo integral do termo aditivo",
+    "Instrumento original e todos os aditivos",
+    "Parecer jurídico que fundamentou o aditamento"
+   ]
+  },
+  {
+   "bloco": "FIN",
+   "codigo": "REC-02",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Transferencias sem ente de origem identificavel",
+   "detalhe": "Transferencias correntes de R$ 19.425.000,00 contra R$ 17.354.000,00 com fonte identificada. Diferenca de R$ 2.071.000,00 sem origem. Rastreabilidade global do acervo: 17.57%.",
+   "norma": "Artigos 6 e 13 da Lei 4.320/1964; Artigo 48-A da Lei Complementar 101/2000",
+   "dados": {
+    "sem_origem": 2071000
+   },
+   "documentos_complementares": [
+    "Quadro de Detalhamento de Despesas de 2026, com o mapa completo de fontes de recursos",
+    "Demonstrativo de receita por fonte e por ente de origem",
+    "Termos de repasse ou instrumentos de transferência do Estado"
+   ]
+  },
+  {
+   "bloco": "FIN",
+   "codigo": "DES-01",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Concentracao numa acao generica impede saber o destino",
+   "detalhe": "R$ 19.913.000,00 (85.8%) na acao 3650.0824401082269 'MANUTENCAO DOS SERVICOS E DA REDE', sem discriminacao por unidade, servico tipificado ou entidade.",
+   "norma": "Artigo 13 da Lei 4.320/1964",
+   "dados": {
+    "acao": "3650.0824401082269",
+    "valor": 19913000,
+    "percentual": 85.8
+   },
+   "documentos_complementares": [
+    "Detalhamento da ação 08.244.0108.2269 por subação, unidade e serviço tipificado",
+    "Plano Municipal de Assistência Social vigente",
+    "Demonstrativo de execução por unidade: cada CRAS, CREAS e Centro POP",
+    "Relação de entidades beneficiadas pela ação, com valor individual"
+   ]
+  },
+  {
+   "bloco": "FIN",
+   "codigo": "IGD-02",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Dotacao do Conselho desproporcional ao fundo que fiscaliza",
+   "detalhe": "CMASGyn: R$ 256.000,00 para fiscalizar R$ 23.218.000,00 (1.1%). Conselho do Idoso, mesma Secretaria: R$ 261.000,00 para R$ 2.615.000,00 (9.98%). Razao de 9.07x. A dotacao existe mas nao ha execucao publicada, nem identificacao como fortalecimento do controle social.",
+   "norma": "Artigo 8 da Lei municipal 9.009/2010; Artigo 6 par.4 da Resolucao CNAS/MDS 202/2025",
+   "dados": {},
+   "documentos_complementares": [
+    "Execução orçamentária da ação 08.244.0108.2591, por estágio",
+    "Plano de trabalho do Conselho para o exercício",
+    "Demonstrativo comparativo com a ação 08.244.0108.2592, do Conselho Municipal do Idoso",
+    "Atos de designação da Secretaria Executiva e do Corpo Técnico do Conselho"
+   ]
+  },
+  {
+   "bloco": "FIN",
+   "codigo": "EMD-01",
+   "severidade": "alta",
+   "selo": "INDICIARIO",
+   "titulo": "Canal de emendas rivaliza com a politica publica",
+   "detalhe": "938 emendas somando R$ 178.223.847,86. Em assistencia social: 65 emendas, R$ 7.490.691,78 — 26.3% de toda a funcao 08 (R$ 28.440.000,00). Emenda dispensa chamamento, mas nao dispensa plano de trabalho, prestacao de contas nem apreciacao previa do Conselho.",
+   "norma": "Artigos 29, 42 e 63 da Lei 13.019/2014; Artigo 2 inciso IX da Lei municipal 9.009/2010",
+   "dados": {
+    "emendas_as": 7490691.78,
+    "percentual_da_funcao": 26.3
+   },
+   "documentos_complementares": [
+    "Relação das emendas impositivas de 2026 destinadas à função 08, com autor, entidade e valor",
+    "Processos de execução de cada emenda",
+    "Planos de trabalho e prestações de contas das parcerias decorrentes",
+    "Atos de deliberação prévia do Conselho sobre cada parceria",
+    "Justificativa de dispensa de chamamento público publicada"
+   ]
+  },
+  {
+   "bloco": "PES",
+   "codigo": "PES-01",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Folha de pagamento invisível no acervo",
+   "detalhe": "Nenhuma linha de natureza 31901100 (Vencimentos e vantagens fixas). As rubricas do grupo 31 presentes são de exercícios anteriores e de ressarcimento de pessoal requisitado — não são a folha. Sem folha não se conta cargo, não se separa efetivo de comissionado e não se afere o teto de 30%.",
+   "norma": "Artigo 48-A inciso I da Lei Complementar 101/2000; Artigo 8 paragrafo 1 inciso III da Lei 12.527/2011",
+   "dados": {
+    "naturezas_de_folha_encontradas": [],
+    "grupo_31_presente": [
+     "31901300",
+     "31909200",
+     "31909600"
+    ]
+   },
+   "documentos_complementares": [
+    "Folha de pagamento por competência, de 2024 a 2026, com cargo, forma de provimento e valor bruto",
+    "Demonstrativo de despesa de pessoal por fonte de recursos",
+    "Relação de servidores lotados nas unidades de assistência social"
+   ]
+  },
+  {
+   "bloco": "PES",
+   "codigo": "PES-03",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Concessão de diárias praticamente ausente do acervo",
+   "detalhe": "1 ato(s) de concessão localizado(s) em 161 eventos. Órgão com equipes volantes, conferências e reuniões regionais não concede uma diária por exercício. A ausência mede a publicidade, não a despesa.",
+   "norma": "Artigo 37 caput da Constituicao Federal; Artigo 50 da Lei 9.784/1999",
+   "dados": {
+    "atos_localizados": 1,
+    "eventos_examinados": 161
+   },
+   "documentos_complementares": [
+    "Relação de todas as diárias concedidas em 2026, com servidor, matrícula, destino, período, finalidade, quantidade e valor",
+    "Atos de concessão publicados",
+    "Norma municipal que fixa o valor das diárias"
+   ]
+  },
+  {
+   "bloco": "PES",
+   "codigo": "PES-02",
+   "severidade": "alta",
+   "selo": "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE",
+   "titulo": "Teto de 30% para pessoal não aferível",
+   "detalhe": "Regra declarada e não avaliada. Documento necessário: receita do FMAS por fonte e despesa de pessoal custeada pelo Tesouro.",
+   "norma": "ver config/criterios_pessoal.yml",
+   "dados": {
+    "documento_necessario": "receita do FMAS por fonte e despesa de pessoal custeada pelo Tesouro"
+   },
+   "documentos_complementares": [
+    "Memória de cálculo do teto de trinta por cento previsto no artigo 4º, parágrafo único, da Lei municipal 7.531/1995",
+    "Demonstrativo de receita do Fundo oriunda do Tesouro Municipal",
+    "Demonstrativo de despesa de pessoal e custeio custeada por essa fonte"
+   ]
+  },
+  {
+   "bloco": "PES",
+   "codigo": "PES-08",
+   "severidade": "alta",
+   "selo": "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE",
+   "titulo": "Proporção entre efetivos e comissionados não aferível",
+   "detalhe": "Regra declarada e não avaliada. Documento necessário: relação nominal do quadro por competência, com forma de provimento.",
+   "norma": "ver config/criterios_pessoal.yml",
+   "dados": {
+    "documento_necessario": "relação nominal do quadro por competência, com forma de provimento"
+   },
+   "documentos_complementares": [
+    "Relação nominal do quadro, por competência, com forma de provimento",
+    "Estrutura de cargos em comissão e respectivas atribuições",
+    "Editais e homologações dos concursos vigentes"
+   ]
+  },
+  {
+   "bloco": "PES",
+   "codigo": "PES-09",
+   "severidade": "alta",
+   "selo": "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE",
+   "titulo": "Equipe de referência mínima não aferível",
+   "detalhe": "Regra declarada e não avaliada. Documento necessário: quadro de lotação por unidade (CRAS, CREAS, Centro POP).",
+   "norma": "ver config/criterios_pessoal.yml",
+   "dados": {
+    "documento_necessario": "quadro de lotação por unidade (CRAS, CREAS, Centro POP)"
+   },
+   "documentos_complementares": [
+    "Quadro de lotação por unidade, com formação profissional de cada integrante",
+    "Relação de unidades em funcionamento, com endereço e capacidade"
+   ]
+  },
+  {
+   "bloco": "SYS",
+   "codigo": "SYS-02",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Classificacao por natureza desalinhada do valor",
+   "detalhe": "68 registros de 2026 com natureza divergente do rotulo; 21 trocam de grupo economico, somando R$ 9.281.000,00. Bolsoes por natureza sao INDICIARIOS ate a correcao.",
+   "norma": "defeito de extracao",
+   "dados": {
+    "desalinhados": 68,
+    "troca_grupo": 21
+   },
+   "documentos_complementares": [
+    "Quadro de Detalhamento de Despesas em formato aberto e estruturado",
+    "Relação de despesas com natureza de dez dígitos, incluído o subitem"
+   ]
+  },
+  {
+   "bloco": "SYS",
+   "codigo": "SYS-03",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Soma de repasses excede o total da funcao",
+   "detalhe": "R$ 183.427.737,85 atribuidos a entidades contra R$ 53.810.573,26 de total rastreado — 3.41x. Impossivel. Causa: um valor de publicacao replicado por inscricao. Nao use a tabela de maiores valores sem triagem.",
+   "norma": "defeito de agregacao",
+   "dados": {
+    "razao": 3.41
+   },
+   "documentos_complementares": [
+    "Relação de repasses a entidades, por instrumento, com valor individualizado",
+    "Demonstrativo de execução por credor"
+   ]
+  },
+  {
+   "bloco": "FIN",
+   "codigo": "REC-03",
+   "severidade": "media",
+   "selo": "INDICIARIO",
+   "titulo": "Rendimento de aplicacao incompativel com execucao regular",
+   "detalhe": "Receita patrimonial de R$ 2.574.000,00 sobre Fundo de R$ 23.218.000,00 — 11.1%. Pressupoe saldo medio aplicado proximo do orcamento anual inteiro. Confirmado pelo outro lado: R$ 33.059.000,00 em creditos de 2026 abertos contra fontes de exercicios anteriores.",
+   "norma": "Artigo 43 paragrafo 1 inciso I da Lei 4.320/1964",
+   "dados": {
+    "rendimento": 2574000,
+    "creditos_superavit": 33059000.0
+   },
+   "documentos_complementares": [
+    "Balanço Patrimonial de 2025, com demonstrativo do superávit financeiro por fonte",
+    "Extratos de aplicação financeira do Fundo, mês a mês",
+    "Decretos de crédito adicional de 2026, com a respectiva fonte de recursos e memória de cálculo",
+    "Demonstrativo de saldo por fonte ao fim de cada exercício"
+   ]
+  },
+  {
+   "bloco": "PES",
+   "codigo": "PES-04",
+   "severidade": "media",
+   "selo": "CONFIRMADO",
+   "titulo": "Prestação de contas de deslocamento não localizada",
+   "detalhe": "Nenhum relatório de viagem, comprovante de deslocamento ou devolução de diária não utilizada consta do acervo. A liquidação exige verificação do direito adquirido pelo credor, com base em títulos e documentos comprobatórios.",
+   "norma": "Artigo 63 da Lei 4.320/1964",
+   "dados": {
+    "concessoes": 1,
+    "prestacoes": 0
+   },
+   "documentos_complementares": [
+    "Relatórios de viagem de cada deslocamento",
+    "Comprovantes de deslocamento e de hospedagem",
+    "Comprovantes de devolução de diárias não utilizadas"
+   ]
+  },
+  {
+   "bloco": "SYS",
+   "codigo": "SYS-05",
+   "severidade": "media",
+   "selo": "CONFIRMADO",
+   "titulo": "Lista de entidades contaminada",
+   "detalhe": "8 inscricoes na lista de entidades sao o proprio Municipio, outra Secretaria, outro ente federado ou materia de saude. Triagem obrigatoria antes de qualquer peca.",
+   "norma": "metodo",
+   "dados": {
+    "contaminadas": 8,
+    "exemplos": [
+     "01.393.989/0001-03",
+     "00.136.446/0001-48",
+     "01.612.092/0001-23",
+     "37.623.352/0001-03"
+    ]
+   },
+   "documentos_complementares": [
+    "Relação de entidades inscritas no Conselho, com inscrição vigente",
+    "Cadastro de credores da função 08"
+   ]
+  }
+ ],
+ "total": 25,
+ "por_severidade": {
+  "critica": 7,
+  "alta": 15,
+  "media": 3
+ },
+ "por_selo": {
+  "CONFIRMADO": 18,
+  "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE": 4,
+  "INDICIARIO": 3
+ },
+ "documentos_requisitados": 81,
+ "parecer_devido": true
+}
