@@ -1,0 +1,252 @@
+{
+ "exercicio": 2026,
+ "gerado_em": "2026-08-26",
+ "achados": [
+  {
+   "bloco": "ADM",
+   "codigo": "PUB-01",
+   "severidade": "critica",
+   "selo": "CONFIRMADO",
+   "titulo": "Diario Oficial sem edicao desde 29/07/2026",
+   "detalhe": "Ultima publicacao: 2026-07-29 (26 dias corridos). Dos 21 dias uteis da janela, 18 sem edicao. Sondagem com controle exclui falha do coletor.",
+   "norma": "Artigo 37 caput da Constituicao Federal; Artigo 8 par.3 III e VI da Lei 12.527/2011; Artigo 10 par.2 da Lei municipal 9.009/2010",
+   "dados": {
+    "ultima": "2026-07-29",
+    "dias_sem_edicao": 18
+   }
+  },
+  {
+   "bloco": "ADM",
+   "codigo": "PUB-02",
+   "severidade": "critica",
+   "selo": "CONFIRMADO",
+   "titulo": "Atos do Conselho sem publicacao, confirmado por dupla via",
+   "detalhe": "24 de 40 atos examinados nao foram localizados por nenhuma das duas vias independentes. Indice global de publicidade de 6,36% e piso indiciario; use o confirmado.",
+   "norma": "Artigo 10 par.2 da Lei municipal 9.009/2010",
+   "dados": {
+    "confirmados": 24,
+    "examinados": 40
+   }
+  },
+  {
+   "bloco": "ADM",
+   "codigo": "ATA-01",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Nenhuma ata de plenaria publicada",
+   "detalhe": "Zero atas no acervo. Sem ata publica nao se afere quorum, paridade, deliberacao nem voto. A ausencia impede tambem verificar a apreciacao previa de contratos.",
+   "norma": "Artigo 10 caput da Lei municipal 9.009/2010",
+   "dados": {}
+  },
+  {
+   "bloco": "ADM",
+   "codigo": "CTA-01",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Apreciacao mensal das contas do Fundo sem registro",
+   "detalhe": "O Conselho deve apreciar MENSALMENTE as contas do Fundo. Em 8 competencias de 2026 nao ha uma unica resolucao ou ata de apreciacao.",
+   "norma": "Artigo 2 inciso IV alinea b da Lei municipal 9.009/2010",
+   "dados": {
+    "competencias_esperadas": 8,
+    "com_registro": 0
+   }
+  },
+  {
+   "bloco": "ADM",
+   "codigo": "CTA-02",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Prestacao de contas quadrimestral ao Conselho nao demonstrada",
+   "detalhe": "Criterio extraido do corpus: a cada 4 meses. Em 2026 seriam devidas 2 prestacoes (janeiro-abril e maio-agosto). Nenhuma localizada.",
+   "norma": "Artigo 6 par.5 da Resolucao CNAS/MDS 202/2025",
+   "dados": {
+    "periodicidade_meses": 4,
+    "devidas_2026": 2,
+    "apresentadas": 0
+   }
+  },
+  {
+   "bloco": "ADM",
+   "codigo": "LEG-01",
+   "severidade": "alta",
+   "selo": "INDICIARIO",
+   "titulo": "Fundamento legal revogado invocado em 2026",
+   "detalhe": "1 ato(s) de 2026 mencionam a Lei 8.666/1993, revogada desde 30/12/2023. Termo de fomento rege-se pela Lei 13.019/2014, nunca por lei de licitacoes. Conferir o processo.",
+   "norma": "Artigo 193 inciso II da Lei 14.133/2021",
+   "dados": {
+    "ocorrencias": 1
+   }
+  },
+  {
+   "bloco": "FIN",
+   "codigo": "REC-01",
+   "severidade": "critica",
+   "selo": "CONFIRMADO",
+   "titulo": "Aporte proprio do Municipio no Fundo e simbolico",
+   "detalhe": "Tesouro Municipal em 2026: R$ 9.000,00 num Fundo de R$ 23.218.000,00 (0.039%). Em 2025 eram R$ 1.669.000,00 — queda de -99.46%. Orcamento municipal: R$ 10.842.253.000,00.",
+   "norma": "Artigo 30 paragrafo unico e Artigo 30-A da Lei 8.742/1993",
+   "dados": {
+    "tesouro_2026": 9000,
+    "tesouro_2025": 1669000,
+    "sancao": "suspensao do repasse federal de R$ 8.250.000,00"
+   }
+  },
+  {
+   "bloco": "FIN",
+   "codigo": "REC-02",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Transferencias sem ente de origem identificavel",
+   "detalhe": "Transferencias correntes de R$ 19.425.000,00 contra R$ 17.354.000,00 com fonte identificada. Diferenca de R$ 2.071.000,00 sem origem. Rastreabilidade global do acervo: 17.57%.",
+   "norma": "Artigos 6 e 13 da Lei 4.320/1964; Artigo 48-A da Lei Complementar 101/2000",
+   "dados": {
+    "sem_origem": 2071000
+   }
+  },
+  {
+   "bloco": "FIN",
+   "codigo": "REC-03",
+   "severidade": "media",
+   "selo": "INDICIARIO",
+   "titulo": "Rendimento de aplicacao incompativel com execucao regular",
+   "detalhe": "Receita patrimonial de R$ 2.574.000,00 sobre Fundo de R$ 23.218.000,00 — 11.1%. Pressupoe saldo medio aplicado proximo do orcamento anual inteiro. Confirmado pelo outro lado: R$ 33.059.000,00 em creditos de 2026 abertos contra fontes de exercicios anteriores.",
+   "norma": "Artigo 43 paragrafo 1 inciso I da Lei 4.320/1964",
+   "dados": {
+    "rendimento": 2574000,
+    "creditos_superavit": 33059000.0
+   }
+  },
+  {
+   "bloco": "FIN",
+   "codigo": "DES-01",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Concentracao numa acao generica impede saber o destino",
+   "detalhe": "R$ 19.913.000,00 (85.8%) na acao 3650.0824401082269 'MANUTENCAO DOS SERVICOS E DA REDE', sem discriminacao por unidade, servico tipificado ou entidade.",
+   "norma": "Artigo 13 da Lei 4.320/1964",
+   "dados": {
+    "acao": "3650.0824401082269",
+    "valor": 19913000,
+    "percentual": 85.8
+   }
+  },
+  {
+   "bloco": "FIN",
+   "codigo": "DES-02",
+   "severidade": "critica",
+   "selo": "CONFIRMADO",
+   "titulo": "Execucao da despesa nao rastreavel",
+   "detalhe": "6 eventos de empenho em 161 — 3.73%. Empenhado, liquidado e pago sao inaferiveis.",
+   "norma": "Artigos 58, 62 e 63 da Lei 4.320/1964; Artigo 48-A inciso I da Lei Complementar 101/2000",
+   "dados": {}
+  },
+  {
+   "bloco": "FIN",
+   "codigo": "FMAS-01",
+   "severidade": "critica",
+   "selo": "CONFIRMADO",
+   "titulo": "Recurso do Tesouro custeia o que esta fora do controle do Conselho",
+   "detalhe": "Unidade 3601 (Gabinete): R$ 81.202.000,00, integralmente do Tesouro. Unidade 3650 (Fundo): R$ 23.218.000,00, dos quais R$ 9.000,00 do Tesouro. A dotacao do orgao deveria ser automaticamente transferida ao Fundo.",
+   "norma": "Artigos 2 par.1, 3 e 5 da Lei municipal 7.531/1995; Artigo 19 par.unico da Lei municipal 8.293/2004",
+   "dados": {}
+  },
+  {
+   "bloco": "FIN",
+   "codigo": "IGD-01",
+   "severidade": "critica",
+   "selo": "CONFIRMADO",
+   "titulo": "Piso de 10% do IGD ao controle social sem execucao",
+   "detalhe": "Base do IGD nos decretos de credito de 2026: R$ 706.707,15. Devido ao controle social: R$ 70.670,71. Executado: R$ 0,00. Percentual extraido do corpus, nao digitado.",
+   "norma": "Artigo 6 da Resolucao CNAS/MDS 202/2025; Artigo 12-A par.4 da Lei 8.742/1993; Artigo 14 par.7 da Lei 14.601/2023",
+   "dados": {
+    "base": 706707.15,
+    "devido": 70670.71,
+    "executado": 0,
+    "sancao": "bloqueio dos repasses ate comprovacao, Artigo 6 par.6"
+   }
+  },
+  {
+   "bloco": "FIN",
+   "codigo": "IGD-02",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Dotacao do Conselho desproporcional ao fundo que fiscaliza",
+   "detalhe": "CMASGyn: R$ 256.000,00 para fiscalizar R$ 23.218.000,00 (1.1%). Conselho do Idoso, mesma Secretaria: R$ 261.000,00 para R$ 2.615.000,00 (9.98%). Razao de 9.07x. A dotacao existe mas nao ha execucao publicada, nem identificacao como fortalecimento do controle social.",
+   "norma": "Artigo 8 da Lei municipal 9.009/2010; Artigo 6 par.4 da Resolucao CNAS/MDS 202/2025",
+   "dados": {}
+  },
+  {
+   "bloco": "FIN",
+   "codigo": "EMD-01",
+   "severidade": "alta",
+   "selo": "INDICIARIO",
+   "titulo": "Canal de emendas rivaliza com a politica publica",
+   "detalhe": "938 emendas somando R$ 178.223.847,86. Em assistencia social: 65 emendas, R$ 7.490.691,78 — 26.3% de toda a funcao 08 (R$ 28.440.000,00). Emenda dispensa chamamento, mas nao dispensa plano de trabalho, prestacao de contas nem apreciacao previa do Conselho.",
+   "norma": "Artigos 29, 42 e 63 da Lei 13.019/2014; Artigo 2 inciso IX da Lei municipal 9.009/2010",
+   "dados": {
+    "emendas_as": 7490691.78,
+    "percentual_da_funcao": 26.3
+   }
+  },
+  {
+   "bloco": "SYS",
+   "codigo": "SYS-02",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Classificacao por natureza desalinhada do valor",
+   "detalhe": "68 registros de 2026 com natureza divergente do rotulo; 21 trocam de grupo economico, somando R$ 9.281.000,00. Bolsoes por natureza sao INDICIARIOS ate a correcao.",
+   "norma": "defeito de extracao",
+   "dados": {
+    "desalinhados": 68,
+    "troca_grupo": 21
+   }
+  },
+  {
+   "bloco": "SYS",
+   "codigo": "SYS-03",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Soma de repasses excede o total da funcao",
+   "detalhe": "R$ 183.427.737,85 atribuidos a entidades contra R$ 53.810.573,26 de total rastreado — 3.41x. Impossivel. Causa: um valor de publicacao replicado por inscricao. Nao use a tabela de maiores valores sem triagem.",
+   "norma": "defeito de agregacao",
+   "dados": {
+    "razao": 3.41
+   }
+  },
+  {
+   "bloco": "SYS",
+   "codigo": "SYS-05",
+   "severidade": "media",
+   "selo": "CONFIRMADO",
+   "titulo": "Lista de entidades contaminada",
+   "detalhe": "8 inscricoes na lista de entidades sao o proprio Municipio, outra Secretaria, outro ente federado ou materia de saude. Triagem obrigatoria antes de qualquer peca.",
+   "norma": "metodo",
+   "dados": {
+    "contaminadas": 8,
+    "exemplos": [
+     "01.393.989/0001-03",
+     "00.136.446/0001-48",
+     "01.612.092/0001-23",
+     "37.623.352/0001-03"
+    ]
+   }
+  }
+ ],
+ "resumo": {
+  "total": 18,
+  "por_severidade": {
+   "critica": 6,
+   "alta": 10,
+   "media": 2
+  },
+  "por_selo": {
+   "CONFIRMADO": 15,
+   "INDICIARIO": 3
+  },
+  "por_bloco": {
+   "ADM": 6,
+   "FIN": 9,
+   "SYS": 3
+  }
+ }
+}

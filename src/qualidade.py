@@ -26,7 +26,8 @@ SAIDA = RAIZ / "dados" / "criterios_qualidade.json"
 # --------------------------------------------------------------- extratores
 PADROES = {
     "percentual_igd_controle_social": {
-        "regex": r"(?:no\s+m[íi]nimo|pelo\s+menos)\s+(\d{1,3})\s*%[^.]{0,220}"
+        "regex": r"(?:no\s+m[íi]nimo|pelo\s+menos)\s+(\d{1,3})\s*%[^.]{0,240}"
+                 r"(?:IGD|[ÍIí]ndice\s+de\s+Gest[ãa]o\s+Descentralizada)[^.]{0,240}"
                  r"(?:controle\s+social|conselho[s]?\s+de\s+assist)",
         "tipo": "percentual",
         "descricao": "Piso do IGD destinado ao financiamento do controle social",
@@ -39,11 +40,13 @@ PADROES = {
     },
     "prazo_lai_dias": {
         "regex": r"prazo\s+n[ãa]o\s+superior\s+a\s+(\d{1,2})\s*\(\w+\)\s*dias",
+        "somente_em": r"12\.?527",
         "tipo": "inteiro",
         "descricao": "Prazo de resposta ao pedido de acesso à informação",
     },
     "prazo_prorrogacao_lai_dias": {
         "regex": r"prorrogado\s+por\s+mais\s+(\d{1,2})\s*\(\w+\)\s*dias",
+        "somente_em": r"12\.?527",
         "tipo": "inteiro",
         "descricao": "Prorrogação do prazo de resposta",
     },
@@ -122,6 +125,13 @@ def extrair() -> dict:
             antes = texto[:m.start()]
             titulo = re.findall(r"\n## \[([^\]]+)\] ([^\n]+)", antes)
             fonte = titulo[-1][1] if titulo else "não identificada"
+            ident = titulo[-1][0] if titulo else ""
+            # Recorte de norma: alguns critérios só valem na norma que os institui.
+            if cfg.get("somente_em") and not re.search(cfg["somente_em"], ident + " " + fonte, re.I):
+                continue
+            # Deliberação de conferência é demanda, não obrigação. Não vira critério.
+            if re.search(r"Delibera[çc][õo]es\s+da\s+\d+.{0,3}\s*Confer[êe]ncia", fonte, re.I):
+                continue
             achados.append({"valor": int(m.group(1)), "fonte": fonte,
                             "trecho": re.sub(r"\s+", " ", m.group(0))[:200]})
         if achados:

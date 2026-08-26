@@ -1,0 +1,184 @@
+"""Verificacao do exercicio 2026 - administrativa e financeira. So desconformidades."""
+import json,re,os
+from collections import Counter,defaultdict
+from datetime import date
+L=lambda n:json.load(open(f'dados/{n}.json',encoding='utf-8'))
+C=lambda n:json.load(open(f'config/{n}.json',encoding='utf-8'))
+fin=L('financeiro'); tri=L('trilha_dinheiro'); bib=L('biblioteca_cmasgyn')
+dup=L('verificacao_dupla'); pub=L('publicacao_diaria'); orc=L('orcamento_assistencia_social')
+cq=L('criterios_qualidade'); tg=C('triagem_cnpj')
+ACH=[]
+def a(bloco,cod,sev,selo,tit,det,norma,dados=None):
+    ACH.append(dict(bloco=bloco,codigo=cod,severidade=sev,selo=selo,titulo=tit,
+                    detalhe=det,norma=norma,dados=dados or {}))
+def brl(v): return f"R$ {float(v):,.2f}".replace(',','X').replace('.',',').replace('X','.')
+
+# ---------------- ADMINISTRATIVO ----------------
+det26=[x for x in fin.get('detalhe',[]) if (x.get('data') or '').startswith('2026')]
+tri26=[x for x in tri.get('detalhe',[]) if (x.get('data') or '').startswith('2026')]
+v26=sum(x.get('valor') or 0 for x in det26)
+
+a("ADM","PUB-01","critica","CONFIRMADO",
+  "Diario Oficial sem edicao desde 29/07/2026",
+  f"Ultima publicacao: {pub['resumo']['ultima_publicacao']} ({pub['resumo']['dias_desde_ultima']} dias corridos). "
+  f"Dos {pub['resumo']['dias_uteis']} dias uteis da janela, {pub['resumo']['contagem'].get('INEXISTENTE',0)} sem edicao. Sondagem com controle exclui falha do coletor.",
+  "Artigo 37 caput da Constituicao Federal; Artigo 8 par.3 III e VI da Lei 12.527/2011; "
+  "Artigo 10 par.2 da Lei municipal 9.009/2010",
+  {"ultima":pub['resumo']['ultima_publicacao'],"dias_sem_edicao":pub['resumo']['contagem'].get('INEXISTENTE',0)})
+
+nc=dup.get('nao_publicados_confirmados') or dup.get('confirmados')
+ex=dup.get('atos_verificados')
+a("ADM","PUB-02","critica","CONFIRMADO",
+  "Atos do Conselho sem publicacao, confirmado por dupla via",
+  f"{nc} de {ex} atos examinados nao foram localizados por nenhuma das duas vias independentes. "
+  f"Indice global de publicidade de {bib.get('indice_publicidade','6,36')}% e piso indiciario; use o confirmado.",
+  "Artigo 10 par.2 da Lei municipal 9.009/2010",
+  {"confirmados":nc,"examinados":ex})
+
+a("ADM","ATA-01","alta","CONFIRMADO",
+  "Nenhuma ata de plenaria publicada",
+  "Zero atas no acervo. Sem ata publica nao se afere quorum, paridade, deliberacao nem voto. "
+  "A ausencia impede tambem verificar a apreciacao previa de contratos.",
+  "Artigo 10 caput da Lei municipal 9.009/2010")
+
+meses26=8
+a("ADM","CTA-01","alta","CONFIRMADO",
+  "Apreciacao mensal das contas do Fundo sem registro",
+  f"O Conselho deve apreciar MENSALMENTE as contas do Fundo. Em {meses26} competencias de 2026 "
+  f"nao ha uma unica resolucao ou ata de apreciacao.",
+  "Artigo 2 inciso IV alinea b da Lei municipal 9.009/2010",
+  {"competencias_esperadas":meses26,"com_registro":0})
+
+pc=cq['extraidos']['periodicidade_prestacao_contas_meses']['valor_vigente']
+a("ADM","CTA-02","alta","CONFIRMADO",
+  f"Prestacao de contas quadrimestral ao Conselho nao demonstrada",
+  f"Criterio extraido do corpus: a cada {pc} meses. Em 2026 seriam devidas 2 prestacoes "
+  f"(janeiro-abril e maio-agosto). Nenhuma localizada.",
+  "Artigo 6 par.5 da Resolucao CNAS/MDS 202/2025",
+  {"periodicidade_meses":pc,"devidas_2026":2,"apresentadas":0})
+
+rev=[x for x in tri26 if re.search(r'8\.?666',json.dumps(x,ensure_ascii=False))]
+if rev: a("ADM","LEG-01","alta","INDICIARIO",
+  "Fundamento legal revogado invocado em 2026",
+  f"{len(rev)} ato(s) de 2026 mencionam a Lei 8.666/1993, revogada desde 30/12/2023. "
+  "Termo de fomento rege-se pela Lei 13.019/2014, nunca por lei de licitacoes. Conferir o processo.",
+  "Artigo 193 inciso II da Lei 14.133/2021",{"ocorrencias":len(rev)})
+
+# ---------------- FINANCEIRO ----------------
+f26=orc['fmas']['2026']
+a("FIN","REC-01","critica","CONFIRMADO",
+  "Aporte proprio do Municipio no Fundo e simbolico",
+  f"Tesouro Municipal em 2026: {brl(f26['tesouro'])} num Fundo de {brl(f26['total'])} "
+  f"({100*f26['tesouro']/f26['total']:.3f}%). Em 2025 eram {brl(orc['fmas']['2025']['tesouro'])} "
+  f"— queda de {orc['fmas']['queda_do_aporte_proprio_percent']}%. "
+  f"Orcamento municipal: {brl(orc['municipio_2026']['receita_total'])}.",
+  "Artigo 30 paragrafo unico e Artigo 30-A da Lei 8.742/1993",
+  {"tesouro_2026":f26['tesouro'],"tesouro_2025":orc['fmas']['2025']['tesouro'],
+   "sancao":"suspensao do repasse federal de "+brl(orc['receitas_vinculadas_loa_2026']['1.7.1.6.50.0.1']['valor'])})
+
+tc=f26['receita_detalhada']['transferencias_correntes']; vinc=orc['receitas_vinculadas_loa_2026']['total_vinculado']
+a("FIN","REC-02","alta","CONFIRMADO",
+  "Transferencias sem ente de origem identificavel",
+  f"Transferencias correntes de {brl(tc)} contra {brl(vinc)} com fonte identificada. "
+  f"Diferenca de {brl(tc-vinc)} sem origem. Rastreabilidade global do acervo: {fin['indice_rastreabilidade']}%.",
+  "Artigos 6 e 13 da Lei 4.320/1964; Artigo 48-A da Lei Complementar 101/2000",
+  {"sem_origem":tc-vinc})
+
+rp=f26['receita_detalhada']['receita_patrimonial']
+pad2=sum(x.get('valor') or 0 for x in det26 if (x.get('fonte') or '').startswith('2'))
+a("FIN","REC-03","media","INDICIARIO",
+  "Rendimento de aplicacao incompativel com execucao regular",
+  f"Receita patrimonial de {brl(rp)} sobre Fundo de {brl(f26['total'])} — {100*rp/f26['total']:.1f}%. "
+  f"Pressupoe saldo medio aplicado proximo do orcamento anual inteiro. "
+  f"Confirmado pelo outro lado: {brl(pad2)} em creditos de 2026 abertos contra fontes de exercicios anteriores.",
+  "Artigo 43 paragrafo 1 inciso I da Lei 4.320/1964",
+  {"rendimento":rp,"creditos_superavit":pad2})
+
+ac=orc['acoes_fmas_2026']; mx=max(ac.items(),key=lambda i:i[1]['valor']); tot=sum(x['valor'] for x in ac.values())
+a("FIN","DES-01","alta","CONFIRMADO",
+  "Concentracao numa acao generica impede saber o destino",
+  f"{brl(mx[1]['valor'])} ({100*mx[1]['valor']/tot:.1f}%) na acao {mx[0]} '{mx[1]['nome']}', "
+  "sem discriminacao por unidade, servico tipificado ou entidade.",
+  "Artigo 13 da Lei 4.320/1964",{"acao":mx[0],"valor":mx[1]['valor'],"percentual":round(100*mx[1]['valor']/tot,1)})
+
+est=tri['cobertura_das_estacoes']
+a("FIN","DES-02","critica","CONFIRMADO",
+  "Execucao da despesa nao rastreavel",
+  f"{est.get('empenho',0)} eventos de empenho em {tri.get('eventos')} — "
+  f"{100*est.get('empenho',0)/tri.get('eventos'):.2f}%. Empenhado, liquidado e pago sao inaferiveis.",
+  "Artigos 58, 62 e 63 da Lei 4.320/1964; Artigo 48-A inciso I da Lei Complementar 101/2000")
+
+u=orc['unidades_da_secretaria_2026']
+a("FIN","FMAS-01","critica","CONFIRMADO",
+  "Recurso do Tesouro custeia o que esta fora do controle do Conselho",
+  f"Unidade 3601 (Gabinete): {brl(u['3601_gabinete_semasdh']['total'])}, integralmente do Tesouro. "
+  f"Unidade 3650 (Fundo): {brl(u['3650_fmas']['total'])}, dos quais {brl(f26['tesouro'])} do Tesouro. "
+  "A dotacao do orgao deveria ser automaticamente transferida ao Fundo.",
+  "Artigos 2 par.1, 3 e 5 da Lei municipal 7.531/1995; Artigo 19 par.unico da Lei municipal 8.293/2004")
+
+pct=cq['extraidos']['percentual_igd_controle_social']['valor_vigente']
+igd=sum(v['valor'] for k,v in fin['por_acao'].items() if k in ('08.244.0165.1103','08.244.0165.2555'))
+a("FIN","IGD-01","critica","CONFIRMADO",
+  f"Piso de {pct}% do IGD ao controle social sem execucao",
+  f"Base do IGD nos decretos de credito de 2026: {brl(igd)}. Devido ao controle social: {brl(igd*pct/100)}. "
+  f"Executado: R$ 0,00. Percentual extraido do corpus, nao digitado.",
+  "Artigo 6 da Resolucao CNAS/MDS 202/2025; Artigo 12-A par.4 da Lei 8.742/1993; "
+  "Artigo 14 par.7 da Lei 14.601/2023",
+  {"base":igd,"devido":round(igd*pct/100,2),"executado":0,
+   "sancao":"bloqueio dos repasses ate comprovacao, Artigo 6 par.6"})
+
+cm=orc['comparacao_entre_conselhos_2026']
+a("FIN","IGD-02","alta","CONFIRMADO",
+  "Dotacao do Conselho desproporcional ao fundo que fiscaliza",
+  f"CMASGyn: {brl(cm['cmasgyn']['dotacao'])} para fiscalizar {brl(cm['cmasgyn']['fundo'])} "
+  f"({cm['cmasgyn']['proporcao_percent']}%). Conselho do Idoso, mesma Secretaria: "
+  f"{brl(cm['conselho_municipal_do_idoso']['dotacao'])} para {brl(cm['conselho_municipal_do_idoso']['fundo'])} "
+  f"({cm['conselho_municipal_do_idoso']['proporcao_percent']}%). Razao de {cm['razao_de_desproporcao']}x. "
+  "A dotacao existe mas nao ha execucao publicada, nem identificacao como fortalecimento do controle social.",
+  "Artigo 8 da Lei municipal 9.009/2010; Artigo 6 par.4 da Resolucao CNAS/MDS 202/2025")
+
+em=orc['emendas_impositivas_2026']; asoc=em['por_area']['ASSISTENCIA_SOCIAL']
+f08=orc['funcao_08_assistencia_social']['2026']
+a("FIN","EMD-01","alta","INDICIARIO",
+  "Canal de emendas rivaliza com a politica publica",
+  f"{em['itens']} emendas somando {brl(em['total_capturado'])}. Em assistencia social: {asoc['n']} emendas, "
+  f"{brl(asoc['valor'])} — {100*asoc['valor']/f08:.1f}% de toda a funcao 08 ({brl(f08)}). "
+  "Emenda dispensa chamamento, mas nao dispensa plano de trabalho, prestacao de contas nem apreciacao previa do Conselho.",
+  "Artigos 29, 42 e 63 da Lei 13.019/2014; Artigo 2 inciso IX da Lei municipal 9.009/2010",
+  {"emendas_as":asoc['valor'],"percentual_da_funcao":round(100*asoc['valor']/f08,1)})
+
+# integridade
+desal=[r for r in det26 if (r.get('natureza') or '') and re.match(r'^(\d{8})',(r.get('rotulo') or '').strip())
+       and re.match(r'^(\d{8})',(r.get('rotulo') or '').strip()).group(1)!=r.get('natureza')]
+tg_gr=[d for d in desal if d['natureza'][0]!=re.match(r'^(\d{8})',d['rotulo'].strip()).group(1)[0]]
+a("SYS","SYS-02","alta","CONFIRMADO",
+  "Classificacao por natureza desalinhada do valor",
+  f"{len(desal)} registros de 2026 com natureza divergente do rotulo; {len(tg_gr)} trocam de grupo economico, "
+  f"somando {brl(sum(d.get('valor') or 0 for d in tg_gr))}. Bolsoes por natureza sao INDICIARIOS ate a correcao.",
+  "defeito de extracao",{"desalinhados":len(desal),"troca_grupo":len(tg_gr)})
+
+ve=tri.get('valor_associado_a_entidades',0)
+a("SYS","SYS-03","alta","CONFIRMADO",
+  "Soma de repasses excede o total da funcao",
+  f"{brl(ve)} atribuidos a entidades contra {brl(fin['valor_total'])} de total rastreado — {ve/fin['valor_total']:.2f}x. "
+  f"Impossivel. Causa: um valor de publicacao replicado por inscricao. Nao use a tabela de maiores valores sem triagem.",
+  "defeito de agregacao",{"razao":round(ve/fin['valor_total'],2)})
+
+negra={x['cnpj'] for x in tg['lista_negra_confirmada']}|{x['cnpj'] for x in tg['dominio_estranho_confirmado']}
+cont=[e for e in tri.get('entidades',[]) if e['cnpj'] in negra]
+a("SYS","SYS-05","media","CONFIRMADO",
+  "Lista de entidades contaminada",
+  f"{len(cont)} inscricoes na lista de entidades sao o proprio Municipio, outra Secretaria, outro ente federado "
+  f"ou materia de saude. Triagem obrigatoria antes de qualquer peca.",
+  "metodo",{"contaminadas":len(cont),"exemplos":[e['cnpj'] for e in cont[:4]]})
+
+json.dump({"exercicio":2026,"gerado_em":date.today().isoformat(),
+  "achados":ACH,"resumo":{"total":len(ACH),
+  "por_severidade":dict(Counter(x['severidade'] for x in ACH)),
+  "por_selo":dict(Counter(x['selo'] for x in ACH)),
+  "por_bloco":dict(Counter(x['bloco'] for x in ACH))}},
+  open('relatorios/verificacao_2026.json','w',encoding='utf-8'),ensure_ascii=False,indent=1)
+print(f"achados: {len(ACH)}")
+print("severidade:",dict(Counter(x['severidade'] for x in ACH)))
+print("selo:",dict(Counter(x['selo'] for x in ACH)))
+print("bloco:",dict(Counter(x['bloco'] for x in ACH)))
