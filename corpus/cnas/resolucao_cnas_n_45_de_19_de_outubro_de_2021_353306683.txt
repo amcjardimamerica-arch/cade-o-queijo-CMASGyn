@@ -1,0 +1,200 @@
+# RESOLUÇÃO CNAS Nº 45, DE 19 DE OUTUBRO DE 2021
+# DOU 20/10/2021 Edicao 198 Secao 1 Pagina 35
+# fonte: https://www.in.gov.br/web/dou/-/resolucao-cnas-n-45-de-19-de-outubro-de-2021-353306683
+
+RESOLUÇÃO CNAS Nº 45, DE 19 DE OUTUBRO DE 2021
+ Dispõe sobre a aprovação do Relatório da Execução Orçamentária e Financeira do Fundo Nacional de Assistência Social (FNAS), 3° trimestre - exercício de 2021.
+ A Plenária do CONSELHO NACIONAL DE ASSISTÊNCIA SOCIAL (CNAS), em reunião ordinária realizada nos dias 04, 05, 06 e 07 de outubro de 2021, no uso da competência que lhe conferem os incisos VIII e XIV do artigo 18 da Lei n.º 8.742, de 7 de dezembro de 1993 - Lei Orgânica da Assistência Social (LOAS).
+ Considerando-se que, ano a ano, desde 2014, o orçamento referente à gestão e aos serviços, programas e projetos do Sistema Único de Assistência Social - SUAS vem sendo reduzido consideravelmente em relação ao apresentado pela Secretaria Nacional de Assistência Social - SNAS e aprovado pelo CNAS;
+ Considerando que a Política de Assistência Social é a responsável pela Proteção Social não contributiva a indivíduos e famílias em situação de vulnerabilidade e risco social, sendo executada por uma ampla rede de atendimento com capilaridade em todo o território Nacional;
+ Considerando que o Relatório de Execução Orçamentária e Financeira do Fundo Nacional de Assistência Social (FNAS), apresentado a esse Conselho Nacional de Assistência Social, refere-se ao demonstrativo contábil dessa execução e deve atender, de acordo com o Art.55 da NOB-SUAS, que trata das responsabilidades da União, e da Resolução CNAS n° 36, de 24 de maio de 2021, que dispõe sobre a aprovação dos parâmetros da Proposta Orçamentária para a Assistência Social, relativa ao orçamento 2022, às reais necessidades e demandas enfrentadas pela gestão, serviços, programas e projetos do SUAS;
+ Considerando que a aprovação do Relatório de Execução Orçamentaria e Financeira depende também de análise sobre a manutenção qualificada e suficiente das ações de gestão, projetos e serviços do SUAS, resolve:
+ Art. 1º - Aprovar o Relatório de Execução Orçamentária e Financeira do Fundo Nacional de Assistência Social (FNAS), exercício de 2021 - 3° trimestre, apresentado pela Diretoria Executiva do Fundo Nacional de Assistência Social (DEFNAS) do Ministério da Cidadania (MC), planilha anexa, com as seguintes RECOMENDAÇÕES:
+ I - Garantir a regularidade no repasse dos recursos ordinários do Fundo Nacional para os Fundos Municipais, Estaduais e do Distrito Federal - DF;
+ II - Garantir, por meio do cofinanciamento federal, as metas dos Blocos de Financiamento pactuados no âmbito do SUAS destinados aos serviços, programas e projetos, bem como da Gestão do SUAS.
+ Art. 2º - Esta Resolução entra em vigor uma semana após a data de sua publicação.
+ ALDENORA GOMES GONZÁLEZ
+ Presidente do Conselho
+ ANEXO
+ Ministério da Cidadania
+ Diretoria Executiva Do Fundo Nacional de Assistência Social
+ Coordenação Geral de Execução Orçamentária, Financeira e Contábil
+ Atualizado: 04/10/2021
+ 55.901 - FUNDO NACIONAL DE ASSISTÊNCIA SOCIAL
+ CÓD
+ ATIVIDADE/PROGRAMA
+ COMPONENTES
+ DOTAÇÃO INICIAL
+ DOTAÇÃO EMPENHADA
+ %
+ DOTAÇÃO PAGA
+ DOTAÇÃO INICIAL
+ CRÉDITO
+ TOTAL
+ (A)
+ (B)
+ C=(A+B)
+ ( D )
+ E = (D/C)
+ (F)
+ 5031
+ PROTEÇÃO SOCIAL NO ÂMBITO DO SISTEMA ÚNICO DE ASSISTÊNCIA SOCIAL
+ 1.843.054.188
+ -
+ 1.843.054.188
+ 889.218.932
+ 48%
+ 707.109.961
+ 219E
+ Ações de Proteção Social Básica
+ PBF / PBV
+ 636.637.738
+ 636.637.738
+ 425.606.404
+ 67%
+ 425.606.404
+ 219F
+ Ações de Proteção Social Especial
+ PFMC / PTMC / PAC /PVAC
+ 321.042.849
+ 321.042.849
+ 223.646.646
+ 70%
+ 217.009.611
+ 219G
+ Estruturação da Rede de Serviços do Sistema Único de Assistência Social (SUAS)
+ 779.318.910
+ 779.318.910
+ 175.471.816
+ 23%
+ 2583
+ Serviço de Processamento de Dados do BPC e da RMV
+ 49.000.000
+ 49.000.000
+ 16.688.618
+ 34%
+ 16.688.618
+ 2589
+ Avaliação e Operacionalização do BPC
+ 9.238.980
+ 9.238.980
+ 42.400
+ 0%
+ 42.280
+ 8893
+ Apoio à Organização, à Gestão e à Vigilância Social no Território, no âmbito do SUAS
+ IGDSUAS
+ 47.815.711
+ 47.815.711
+ 47.763.048
+ 100%
+ 47.763.048
+ TOTAL I (DISCRICIONÁRIAS)
+ 1.843.054.188
+ -
+ 1.843.054.188
+ 889.218.932
+ 48%
+ 707.109.961
+ 5028
+ INCLUSÃO SOCIAL POR MEIO DO BOLSA FAMÍLIA E DA ARTICULAÇÃO DE POLÍTICAS PÚBLICAS
+ 362.055.121
+ -
+ 362.055.121
+ 362.055.121
+ 100%
+ 362.055.121
+ 8446
+ Serv. De Apoio à Gestão Descentralizada ao Prog. Bolsa Família
+ IGDPBF
+ 362.055.121
+ -
+ 362.055.121
+ 362.055.121
+ 100%
+ 362.055.121
+ 5024
+ ATENÇÃO INTEGRAL À PRIMEIRA INFÂNCIA
+ 357.232.756
+ -
+ 357.232.756
+ 357.232.756
+ 100%
+ 191.053.129
+ 217M
+ Desenvolvimento Integral na Primeira Infância - Criança Feliz
+ 357.232.756
+ -
+ 357.232.756
+ 357.232.756
+ 100%
+ 191.053.129
+ TOTAL I I (DISCRICIONÁRIAS)
+ 719.287.877
+ -
+ 719.287.877
+ 719.287.877
+ 100%
+ 553.108.250
+ 0901
+ OPERAÇÕES ESPECIAIS: CUMPRIMENTO DE SENTENÇAS JUDICIAIS
+ 1.428.603.915
+ -
+ 1.428.603.915
+ 1.167.227.346
+ 82%
+ 1.100.212.138
+ 0005
+ Cumprimento de Sentença Judicial Transitada em Julgado (Precatórios) devida pela União, Autarquias, e Fundações Públicas
+ 231.642.318
+ 231.642.318
+ 230.103.372
+ 99%
+ 230.103.372
+ 0625
+ Cumprimento de Sentença Judicial Transitada em Julgado de Pequeno Valor devida pela União, Autarquias, e Fundações Públicas
+ 1.196.961.597
+ 1.196.961.597
+ 937.123.974
+ 78%
+ 870.108.766
+ 5031
+ PROTEÇÃO SOCIAL NO ÂMBITO DO SISTEMA ÚNICO DE ASSISTÊNCIA SOCIAL
+ 65.669.829.704
+ -
+ 65.669.829.704
+ 64.690.856.360
+ 99%
+ 47.317.313.798
+ 00H5
+ BPC/RMV à pessoa idosa
+ 28.665.039.243
+ 28.665.039.243
+ 28.238.573.085
+ 99%
+ 20.640.411.599
+ 00IN
+ BPC/RMV à pessoa com deficiência e invalidez
+ 37.004.790.461
+ 37.004.790.461
+ 36.452.283.275
+ 99%
+ 26.676.902.199
+ TOTAL III (BPC/RMV/SENTENÇAS)
+ 67.098.433.619
+ -
+ 67.098.433.619
+ 65.858.083.706
+ 98%
+ 48.417.525.936
+ TOTAL GERAL
+ 69.660.775.684
+ -
+ 69.660.775.684
+ 67.466.590.515
+ 97%
+ 49.677.744.147
+ FONTE: SIAFI
+ Este conteúdo não substitui o publicado na versão certificada.
+ Borda do rodapé 
+ Logo da Imprensa

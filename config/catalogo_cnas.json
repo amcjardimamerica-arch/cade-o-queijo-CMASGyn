@@ -1,0 +1,3586 @@
+{
+ "_meta": {
+  "versao": "3.0",
+  "levantado_em": "2026-08-25",
+  "total_catalogadas": 285,
+  "com_texto_integral": 268,
+  "fontes_vivas": [
+   "blogcnas.com (2023-2026)",
+   "gov.br/participamaisbrasil/blob/baixar/{id} (documento individual)"
+  ],
+  "fontes_mortas": {
+   "aplicacoes.mds.gov.br/snas/regulacao": "HTTP 503 - servidor fora do ar",
+   "gov.br/mds/pt-br/orgaos-colegiados/cnas": "HTTP 503",
+   "gov.br/mds/.../participacao-social/cnas": "HTTP 404 - endereco movido",
+   "gov.br/participamaisbrasil (indices)": "PLATAFORMA ENCERRADA - migrada para Brasil Participativo; paginas de indice retornam apenas casca, sem listagem",
+   "in.gov.br/consulta (DOU)": "HTTP 503",
+   "blog.mds.gov.br/redesuas": "HTTP 503"
+  },
+  "causa_raiz": "O Ministerio do Desenvolvimento Social migrou de plataforma. O Participa+Brasil foi encerrado e o novo endereco (Brasil Participativo) nao foi localizado. Os blobs individuais do Participa+Brasil ainda respondem, o que permitiu capturar a Resolucao 202/2025 pelo identificador direto 73611.",
+  "metodo_para_completar": "Para cada resolucao faltante, localizar o identificador do blob e baixar por gov.br/participamaisbrasil/blob/baixar/{id}. Alternativa: Diario Oficial da Uniao pela data de publicacao.",
+  "via_que_funcionou": {
+   "primaria": "Diario Oficial da Uniao - in.gov.br/consulta/-/buscar/dou com janelas de data e delta=50; texto integral em in.gov.br/web/dou/-/{urlTitle}",
+   "cobertura": "2016 a 2026 - o arquivo estruturado do DOU comeca em 2016 para este termo",
+   "secundaria": "gov.br/participamaisbrasil/blob/baixar/{id} - documento individual sobrevive ao encerramento da plataforma",
+   "terciaria_para_anteriores_a_2016": "pesquisa.in.gov.br/imprensa/servlet/INPDFViewer?jornal=1&pagina=N&data=DD/MM/AAAA - devolve o PDF da pagina do DOU; exige data e pagina exatas"
+  },
+  "fidelidade": "Texto literal extraido do corpo da materia do DOU, com cabecalho de data, edicao, secao, pagina e URL de origem. Sem resumo, sem interpretacao, sem alteracao."
+ },
+ "com_texto_integral": {
+  "resolucao_cit_n_18_de_6_de_dezembro_de_2024_609771891.txt": {
+   "titulo": "RESOLUÇÃO CIT Nº 18, DE 6 DE DEZEMBRO DE 2024",
+   "orgao": "CIT",
+   "numero": 18,
+   "ano": 2024,
+   "dou": {
+    "data": "30/01/2025",
+    "edicao": "21",
+    "pagina": "40"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cit-n-18-de-6-de-dezembro-de-2024-609771891",
+   "bytes": 56101
+  },
+  "resolucao_cnas_mds_n_236_de_14_de_maio_de_2026_705714977.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 236, DE 14 DE MAIO DE 2026",
+   "orgao": "CNAS/MDS",
+   "numero": 236,
+   "ano": 2026,
+   "dou": {
+    "data": "15/05/2026",
+    "edicao": "90",
+    "pagina": "30"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-236-de-14-de-maio-de-2026-705714977",
+   "bytes": 1297
+  },
+  "resolucao_n_23_de_15_de_julho_de_2019_196101860.txt": {
+   "titulo": "RESOLUÇÃO Nº 23, DE 15 DE JULHO DE 2019",
+   "orgao": "",
+   "numero": 23,
+   "ano": 2019,
+   "dou": {
+    "data": "16/07/2019",
+    "edicao": "135",
+    "pagina": "6"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-23-de-15-de-julho-de-2019-196101860",
+   "bytes": 1345
+  },
+  "resolucao_cnas_mds_n_228_de_19_de_marco_de_2026_694451420.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 228, DE 19 DE MARÇO DE 2026",
+   "orgao": "CNAS/MDS",
+   "numero": 228,
+   "ano": 2026,
+   "dou": {
+    "data": "20/03/2026",
+    "edicao": "54",
+    "pagina": "20"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-228-de-19-de-marco-de-2026-694451420",
+   "bytes": 9117
+  },
+  "resolucao_n_26_de_18_de_setembro_de_2019_217039533.txt": {
+   "titulo": "RESOLUÇÃO Nº 26, DE 18 DE SETEMBRO DE 2019",
+   "orgao": "",
+   "numero": 26,
+   "ano": 2019,
+   "dou": {
+    "data": "19/09/2019",
+    "edicao": "182",
+    "pagina": "13"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-26-de-18-de-setembro-de-2019-217039533",
+   "bytes": 6763
+  },
+  "resolucao_n_55_de_6_de_dezembro_de_2021_365046579.txt": {
+   "titulo": "RESOLUÇÃO Nº 55, DE 6 DE DEZEMBRO DE 2021",
+   "orgao": "",
+   "numero": 55,
+   "ano": 2021,
+   "dou": {
+    "data": "07/12/2021",
+    "edicao": "229",
+    "pagina": "17"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-55-de-6-de-dezembro-de-2021-365046579",
+   "bytes": 6098
+  },
+  "resolucao_cnas_mc_n_63_de_14_de_marco_de_2022_385780690.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 63, DE 14 DE MARÇO DE 2022",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "15/03/2022",
+    "edicao": "50",
+    "pagina": "43"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-63-de-14-de-marco-de-2022-385780690",
+   "bytes": 3525
+  },
+  "resolucao_cnas_mds_n_187_de_2_de_abril_de_2025_621890066.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 187, DE 2 DE ABRIL DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 187,
+   "ano": 2025,
+   "dou": {
+    "data": "03/04/2025",
+    "edicao": "64",
+    "pagina": "14"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-187-de-2-de-abril-de-2025-621890066",
+   "bytes": 4054
+  },
+  "resolucao_cnas_mds_n_99_de_4_de_marco_de_2023_475189105.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 99, DE 4 DE MARÇO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 99,
+   "ano": 2023,
+   "dou": {
+    "data": "05/04/2023",
+    "edicao": "66",
+    "pagina": "16"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-99-de-4-de-marco-de-2023-475189105",
+   "bytes": 13919
+  },
+  "resolucao_cit_n_31_de_25_de_novembro_de_2025_673561382.txt": {
+   "titulo": "RESOLUÇÃO CIT Nº 31, DE 25 DE NOVEMBRO DE 2025",
+   "orgao": "CIT",
+   "numero": 31,
+   "ano": 2025,
+   "dou": {
+    "data": "05/12/2025",
+    "edicao": "232",
+    "pagina": "124"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cit-n-31-de-25-de-novembro-de-2025-673561382",
+   "bytes": 16521
+  },
+  "resolucao_n_9_de_1_de_julho_de_2020_264666058.txt": {
+   "titulo": "RESOLUÇÃO  Nº 9, DE 1º DE JULHO DE 2020",
+   "orgao": "",
+   "numero": 9,
+   "ano": 2020,
+   "dou": {
+    "data": "02/07/2020",
+    "edicao": "125",
+    "pagina": "4"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-9-de-1-de-julho-de-2020-264666058",
+   "bytes": 7673
+  },
+  "resolucao_cnas_mds_n_94_de_13_de_fevereiro_de_2023_464439831.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 94, DE 13 DE FEVEREIRO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 94,
+   "ano": 2023,
+   "dou": {
+    "data": "14/02/2023",
+    "edicao": "32",
+    "pagina": "22"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-94-de-13-de-fevereiro-de-2023-464439831",
+   "bytes": 1238
+  },
+  "resolucao_cnas_mds_n_160_de_19_de_julho_de_2024_573486527.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 160, DE 19 DE JULHO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 160,
+   "ano": 2024,
+   "dou": {
+    "data": "22/07/2024",
+    "edicao": "139",
+    "pagina": "22"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-160-de-19-de-julho-de-2024-573486527",
+   "bytes": 12248
+  },
+  "resolucao_cnas_mds_n_111_de_25_de_julho_de_2023_498924274.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 111, DE 25 DE JULHO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 111,
+   "ano": 2023,
+   "dou": {
+    "data": "26/07/2023",
+    "edicao": "141",
+    "pagina": "33"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-111-de-25-de-julho-de-2023-498924274",
+   "bytes": 7026
+  },
+  "resolucao_n_1_de_3_de_marco_de_2016_22431733.txt": {
+   "titulo": "RESOLUÇÃO Nº 1, DE 3 DE MARÇO DE 2016",
+   "orgao": "",
+   "numero": 1,
+   "ano": 2016,
+   "dou": {
+    "data": "04/03/2016",
+    "edicao": "43",
+    "pagina": "57"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-1-de-3-de-marco-de-2016-22431733",
+   "bytes": 46467
+  },
+  "resolucao_cnas_mds_n_224_de_18_de_fevereiro_de_2026_687623092.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 224, DE 18 DE FEVEREIRO DE 2026",
+   "orgao": "CNAS/MDS",
+   "numero": 224,
+   "ano": 2026,
+   "dou": {
+    "data": "19/02/2026",
+    "edicao": "33",
+    "pagina": "17"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-224-de-18-de-fevereiro-de-2026-687623092",
+   "bytes": 9123
+  },
+  "resolucao_cnas_mc_n_43_de_21_de_setembro_de_2021_346384278.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 43, DE 21 DE SETEMBRO DE 2021",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "22/09/2021",
+    "edicao": "180",
+    "pagina": "8"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-43-de-21-de-setembro-de-2021-346384278",
+   "bytes": 3550
+  },
+  "resolucao_cnas_mds_n_124_de_31_de_outubro_de_2023_520206856.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 124, DE 31 DE OUTUBRO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 124,
+   "ano": 2023,
+   "dou": {
+    "data": "01/11/2023",
+    "edicao": "208",
+    "pagina": "13"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-124-de-31-de-outubro-de-2023-520206856",
+   "bytes": 1600
+  },
+  "resolucao_cnas_mds_n_214_de_28_de_outubro_de_2025_665145577.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 214, DE 28 DE OUTUBRO DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 214,
+   "ano": 2025,
+   "dou": {
+    "data": "29/10/2025",
+    "edicao": "206",
+    "pagina": "83"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-214-de-28-de-outubro-de-2025-665145577",
+   "bytes": 1627
+  },
+  "resolucao_cnas_mds_n_166_de_18_de_setembro_de_2024_585345281.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 166, DE 18 DE SETEMBRO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 166,
+   "ano": 2024,
+   "dou": {
+    "data": "19/09/2024",
+    "edicao": "182",
+    "pagina": "24"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-166-de-18-de-setembro-de-2024-585345281",
+   "bytes": 21611
+  },
+  "resolucao_cnas_mds_n_241_de_17_de_junho_de_2026_713269674.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 241, DE 17 DE JUNHO DE 2026",
+   "orgao": "CNAS/MDS",
+   "numero": 241,
+   "ano": 2026,
+   "dou": {
+    "data": "18/06/2026",
+    "edicao": "112",
+    "pagina": "24"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-241-de-17-de-junho-de-2026-713269674",
+   "bytes": 1510
+  },
+  "resolucao_n_20_de_12_de_dezembro_de_2017_995499.txt": {
+   "titulo": "RESOLUÇÃO Nº 20, DE 12 DE DEZEMBRO DE 2017",
+   "orgao": "",
+   "numero": 20,
+   "ano": 2017,
+   "dou": {
+    "data": "13/12/2017",
+    "edicao": "238",
+    "pagina": "6-7-97"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-20-de-12-de-dezembro-de-2017-995499",
+   "bytes": 23744
+  },
+  "resolucao_cit_n_16_de_26_de_novembro_de_2024_599913440.txt": {
+   "titulo": "RESOLUÇÃO CIT Nº 16, DE 26 DE NOVEMBRO DE 2024",
+   "orgao": "CIT",
+   "numero": 16,
+   "ano": 2024,
+   "dou": {
+    "data": "05/12/2024",
+    "edicao": "234",
+    "pagina": "30"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cit-n-16-de-26-de-novembro-de-2024-599913440",
+   "bytes": 2568
+  },
+  "resolucao_n_27_de_18_de_setembro_de_2019_217039767.txt": {
+   "titulo": "RESOLUÇÃO Nº 27, DE 18 DE SETEMBRO DE 2019",
+   "orgao": "",
+   "numero": 27,
+   "ano": 2019,
+   "dou": {
+    "data": "19/09/2019",
+    "edicao": "182",
+    "pagina": "13"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-27-de-18-de-setembro-de-2019-217039767",
+   "bytes": 6155
+  },
+  "resolucao_cnas_mc_n_64_de_12_de_maio_de_2022_399659240.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 64, DE 12 DE MAIO DE 2022",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "13/05/2022",
+    "edicao": "90",
+    "pagina": "11"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-64-de-12-de-maio-de-2022-399659240",
+   "bytes": 1720
+  },
+  "resolucao_n_33_de_25_de_setembro_de_2019_218264473.txt": {
+   "titulo": "RESOLUÇÃO Nº 33, DE 25 DE SETEMBRO DE 2019",
+   "orgao": "",
+   "numero": 33,
+   "ano": 2019,
+   "dou": {
+    "data": "26/09/2019",
+    "edicao": "187",
+    "pagina": "15"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-33-de-25-de-setembro-de-2019-218264473",
+   "bytes": 5340
+  },
+  "resolucao_cnas_mds_n_122_de_24_de_outubro_de_2023_518535507.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 122, DE 24 DE OUTUBRO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 122,
+   "ano": 2023,
+   "dou": {
+    "data": "25/10/2023",
+    "edicao": "203",
+    "pagina": "23"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-122-de-24-de-outubro-de-2023-518535507",
+   "bytes": 2098
+  },
+  "resolucao_cnas_mc_n_27_de_31_de_dezembro_de_2020_297156694.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 27, DE 31 DE DEZEMBRO DE 2020",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "04/01/2021",
+    "edicao": "1",
+    "pagina": "6"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas-mc-n-27-de-31-de-dezembro-de-2020-297156694",
+   "bytes": 6938
+  },
+  "resolucao_cnas_mc_n_26_de_23_de_dezembro_de_2020_296152066.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 26, DE 23 DE DEZEMBRO DE 2020",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "24/12/2020",
+    "edicao": "246",
+    "pagina": "49"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-26-de-23-de-dezembro-de-2020-296152066",
+   "bytes": 2479
+  },
+  "resolucao_cnas_mds_n_135_de_22_de_fevereiro_de_2024_544556128.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 135, DE 22 DE FEVEREIRO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 135,
+   "ano": 2024,
+   "dou": {
+    "data": "23/02/2024",
+    "edicao": "37",
+    "pagina": "26"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-135-de-22-de-fevereiro-de-2024-544556128",
+   "bytes": 1582
+  },
+  "resolucao_cnas_mc_n_36_de_24_de_maio_de_2021_321785687.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 36, DE 24 DE MAIO DE 2021",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "25/05/2021",
+    "edicao": "97",
+    "pagina": "31"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-36-de-24-de-maio-de-2021-321785687",
+   "bytes": 2836
+  },
+  "resolucao_cnas_mds_n_164_de_21_de_agosto_de_2024_579795864.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 164, DE 21 DE AGOSTO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 164,
+   "ano": 2024,
+   "dou": {
+    "data": "22/08/2024",
+    "edicao": "162",
+    "pagina": "34"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-164-de-21-de-agosto-de-2024-579795864",
+   "bytes": 5606
+  },
+  "resolucao_cit_n_30_de_6_de_outubro_de_2025_663069254.txt": {
+   "titulo": "RESOLUÇÃO CIT Nº 30, DE 6 DE OUTUBRO DE 2025",
+   "orgao": "CIT",
+   "numero": 30,
+   "ano": 2025,
+   "dou": {
+    "data": "16/10/2025",
+    "edicao": "198",
+    "pagina": "40"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cit-n-30-de-6-de-outubro-de-2025-663069254",
+   "bytes": 32621
+  },
+  "resolucao_cnas_n_119_de_4_de_agosto_de_2023_507754128.txt": {
+   "titulo": "RESOLUÇÃO CNAS Nº 119, DE 4 DE AGOSTO DE 2023",
+   "orgao": "CNAS",
+   "numero": 119,
+   "ano": 2023,
+   "dou": {
+    "data": "05/09/2023",
+    "edicao": "170",
+    "pagina": "15"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas-n-119-de-4-de-agosto-de-2023-507754128",
+   "bytes": 28254
+  },
+  "resolucao_cnas_mc_n_65_de_12_de_maio_de_2022_399659322.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 65, DE 12 DE MAIO DE 2022",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "13/05/2022",
+    "edicao": "90",
+    "pagina": "11"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-65-de-12-de-maio-de-2022-399659322",
+   "bytes": 1528
+  },
+  "resolucao_cit_n_35_de_25_de_novembro_de_2025_673578461.txt": {
+   "titulo": "RESOLUÇÃO CIT Nº 35, DE 25 DE NOVEMBRO DE 2025",
+   "orgao": "CIT",
+   "numero": 35,
+   "ano": 2025,
+   "dou": {
+    "data": "05/12/2025",
+    "edicao": "232",
+    "pagina": "126"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cit-n-35-de-25-de-novembro-de-2025-673578461",
+   "bytes": 39614
+  },
+  "resolucao_cnas_mds_n_155_de_16_de_maio_de_2024_560175067.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 155, DE 16 DE MAIO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 155,
+   "ano": 2024,
+   "dou": {
+    "data": "17/05/2024",
+    "edicao": "95",
+    "pagina": "45"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-155-de-16-de-maio-de-2024-560175067",
+   "bytes": 2749
+  },
+  "resolucao_cnas_mc_n_76_de_27_de_julho_de_2022_418329247.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 76, DE 27 DE JULHO DE 2022",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "28/07/2022",
+    "edicao": "142",
+    "pagina": "9"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-76-de-27-de-julho-de-2022-418329247",
+   "bytes": 2313
+  },
+  "resolucao_cnas_mc_n_29_de_11_de_marco_de_2021_307924073.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 29, DE 11 DE MARÇO DE 2021",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "12/03/2021",
+    "edicao": "48",
+    "pagina": "17"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-29-de-11-de-marco-de-2021-307924073",
+   "bytes": 4516
+  },
+  "resolucao_cnas_mds_n_216_de_17_de_novembro_de_2025_670190305.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 216, DE 17 DE NOVEMBRO DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 216,
+   "ano": 2025,
+   "dou": {
+    "data": "19/11/2025",
+    "edicao": "221",
+    "pagina": "69"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-216-de-17-de-novembro-de-2025-670190305",
+   "bytes": 3352
+  },
+  "resolucao_cnas_mds_n_131_de_22_de_novembro_de_2023_526265041.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 131, DE 22 DE NOVEMBRO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 131,
+   "ano": 2023,
+   "dou": {
+    "data": "28/11/2023",
+    "edicao": "225",
+    "pagina": "26"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-131-de-22-de-novembro-de-2023-526265041",
+   "bytes": 1484
+  },
+  "resolucao_cnas_mc_n_50_de_23_de_novembro_de_2021_362682581.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 50, DE 23 DE NOVEMBRO DE 2021(*)",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "26/11/2021",
+    "edicao": "222",
+    "pagina": "32"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-50-de-23-de-novembro-de-2021-*-362682581",
+   "bytes": 3713
+  },
+  "resolucao_cit_n_13_de_13_de_marco_de_2024_555182483.txt": {
+   "titulo": "RESOLUÇÃO CIT Nº 13, DE 13 DE MARÇO DE 2024",
+   "orgao": "CIT",
+   "numero": 13,
+   "ano": 2024,
+   "dou": {
+    "data": "19/04/2024",
+    "edicao": "76",
+    "pagina": "18"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cit-n-13-de-13-de-marco-de-2024-555182483",
+   "bytes": 3948
+  },
+  "resolucao_n_12_de_27_de_julho_de_2020_268915370.txt": {
+   "titulo": "RESOLUÇÃO Nº 12, DE 27 DE JULHO DE 2020",
+   "orgao": "",
+   "numero": 12,
+   "ano": 2020,
+   "dou": {
+    "data": "28/07/2020",
+    "edicao": "143",
+    "pagina": "4"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-12-de-27-de-julho-de-2020-268915370",
+   "bytes": 4594
+  },
+  "resolucao_cnas_mc_n_40_de_23_de_julho_de_2021_334055930.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 40, DE 23 DE JULHO DE 2021",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "26/07/2021",
+    "edicao": "139",
+    "pagina": "22"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-40-de-23-de-julho-de-2021-334055930",
+   "bytes": 6552
+  },
+  "resolucao_n_21_de_16_de_dezembro_de_2020_294900539.txt": {
+   "titulo": "RESOLUÇÃO Nº 21, DE 16 DE DEZEMBRO DE 2020",
+   "orgao": "",
+   "numero": 21,
+   "ano": 2020,
+   "dou": {
+    "data": "18/12/2020",
+    "edicao": "242",
+    "pagina": "9"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-21-de-16-de-dezembro-de-2020-294900539",
+   "bytes": 6898
+  },
+  "resolucao_n_16_de_11_de_julho_de_2018_31717187.txt": {
+   "titulo": "RESOLUÇÃO Nº 16, DE 11 DE JULHO DE 2018",
+   "orgao": "",
+   "numero": 16,
+   "ano": 2018,
+   "dou": {
+    "data": "17/07/2018",
+    "edicao": "136",
+    "pagina": "81"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-16-de-11-de-julho-de-2018-31717187",
+   "bytes": 3481
+  },
+  "resolucao_n_13_de_25_de_agosto_de_2017_19261688.txt": {
+   "titulo": "RESOLUÇÃO Nº 13, DE 25 DE AGOSTO DE 2017",
+   "orgao": "",
+   "numero": 13,
+   "ano": 2017,
+   "dou": {
+    "data": "28/08/2017",
+    "edicao": "165",
+    "pagina": "61"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-13-de-25-de-agosto-de-2017-19261688",
+   "bytes": 9098
+  },
+  "resolucao_n_187_de_23_de_maio_de_2017_20245088.txt": {
+   "titulo": "RESOLUÇÃO Nº 187, DE 23 DE MAIO DE 2017",
+   "orgao": "",
+   "numero": 187,
+   "ano": 2017,
+   "dou": {
+    "data": "30/05/2017",
+    "edicao": "102",
+    "pagina": "107"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-187-de-23-de-maio-de-2017-20245088",
+   "bytes": 26195
+  },
+  "resolucao_cnas_mds_n_110_de_20_de_julho_de_2023_497845119.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 110, DE 20 DE JULHO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 110,
+   "ano": 2023,
+   "dou": {
+    "data": "21/07/2023",
+    "edicao": "138",
+    "pagina": "18"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-110-de-20-de-julho-de-2023-497845119",
+   "bytes": 1337
+  },
+  "resolucao_n_36_de_10_de_outubro_de_2019_221811630.txt": {
+   "titulo": "RESOLUÇÃO Nº 36, DE 10 DE OUTUBRO DE 2019",
+   "orgao": "",
+   "numero": 36,
+   "ano": 2019,
+   "dou": {
+    "data": "15/10/2019",
+    "edicao": "200",
+    "pagina": "18"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-36-de-10-de-outubro-de-2019-221811630",
+   "bytes": 1621
+  },
+  "resolucao_cnas_mds_n_148_de_18_de_marco_de_2024_548839800.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 148, DE 18 DE MARÇO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 148,
+   "ano": 2024,
+   "dou": {
+    "data": "19/03/2024",
+    "edicao": "54",
+    "pagina": "25"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-148-de-18-de-marco-de-2024-548839800",
+   "bytes": 9053
+  },
+  "resolucao_cnas_mc_n_38_de_20_de_julho_de_2021_333272725.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 38, DE 20 DE JULHO DE 2021",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "21/07/2021",
+    "edicao": "136",
+    "pagina": "272"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-38-de-20-de-julho-de-2021-333272725",
+   "bytes": 4502
+  },
+  "resolucao_cnas_mds_n_129_de_21_de_novembro_de_2023_524565911.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 129, DE 21 DE NOVEMBRO de 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 129,
+   "ano": 2023,
+   "dou": {
+    "data": "22/11/2023",
+    "edicao": "221",
+    "pagina": "33"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-129-de-21-de-novembro-de-2023-524565911",
+   "bytes": 9271
+  },
+  "resolucao_n_11_de_18_de_julho_de_2016_23185432.txt": {
+   "titulo": "RESOLUÇÃO Nº 11, DE 18 DE JULHO DE 2016",
+   "orgao": "",
+   "numero": 11,
+   "ano": 2016,
+   "dou": {
+    "data": "19/07/2016",
+    "edicao": "137",
+    "pagina": "39"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-11-de-18-de-julho-de-2016-23185432",
+   "bytes": 4173
+  },
+  "resolucao_n_56_de_6_de_dezembro_de_2021_365043363.txt": {
+   "titulo": "RESOLUÇÃO Nº 56, DE 6 DE DEZEMBRO DE 2021",
+   "orgao": "",
+   "numero": 56,
+   "ano": 2021,
+   "dou": {
+    "data": "07/12/2021",
+    "edicao": "229",
+    "pagina": "17"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-56-de-6-de-dezembro-de-2021-365043363",
+   "bytes": 6317
+  },
+  "resolucao_cnas_mds_n_202_de_25_de_julho_de_2025_644465200.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 202, DE 25 DE JULHO DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 202,
+   "ano": 2025,
+   "dou": {
+    "data": "28/07/2025",
+    "edicao": "140",
+    "pagina": "87"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-202-de-25-de-julho-de-2025-644465200",
+   "bytes": 20198
+  },
+  "resolucao_n_38_de_21_de_novembro_de_2019_229459313.txt": {
+   "titulo": "RESOLUÇÃO Nº 38, DE 21 DE NOVEMBRO DE 2019",
+   "orgao": "",
+   "numero": 38,
+   "ano": 2019,
+   "dou": {
+    "data": "25/11/2019",
+    "edicao": "227",
+    "pagina": "4"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-38-de-21-de-novembro-de-2019-229459313",
+   "bytes": 56526
+  },
+  "resolucao_n_15_de_4_de_setembro_de_2020_276154428.txt": {
+   "titulo": "RESOLUÇÃO Nº 15, DE 4 DE SETEMBRO DE 2020",
+   "orgao": "",
+   "numero": 15,
+   "ano": 2020,
+   "dou": {
+    "data": "08/09/2020",
+    "edicao": "172",
+    "pagina": "4"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-15-de-4-de-setembro-de-2020-276154428",
+   "bytes": 5074
+  },
+  "resolucao_cnas_mds_n_132_de_27_de_novembro_de_2023_526277931.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 132, DE 27 DE NOVEMBRO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 132,
+   "ano": 2023,
+   "dou": {
+    "data": "28/11/2023",
+    "edicao": "225",
+    "pagina": "26"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-132-de-27-de-novembro-de-2023-526277931",
+   "bytes": 3644
+  },
+  "resolucao_cnas_mds_n_226_de_18_de_marco_de_2026_699577794.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 226, DE 18 DE MARÇO DE 2026 (*)",
+   "orgao": "CNAS/MDS",
+   "numero": 226,
+   "ano": 2026,
+   "dou": {
+    "data": "14/04/2026",
+    "edicao": "70",
+    "pagina": "56"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-226-de-18-de-marco-de-2026-*-699577794",
+   "bytes": 5292
+  },
+  "resolucao_n_12_de_19_de_julho_de_2017_19192150.txt": {
+   "titulo": "RESOLUÇÃO Nº 12, DE 19 DE JULHO DE 2017",
+   "orgao": "",
+   "numero": 12,
+   "ano": 2017,
+   "dou": {
+    "data": "24/07/2017",
+    "edicao": "140",
+    "pagina": "55"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-12-de-19-de-julho-de-2017-19192150",
+   "bytes": 3577
+  },
+  "resolucao_cnas_mds_n_162_30_de_julho_de_2024_575311526.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 162, 30 DE JULHO DE 2024",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "31/07/2024",
+    "edicao": "146",
+    "pagina": "26"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-162-30-de-julho-de-2024-575311526",
+   "bytes": 3645
+  },
+  "resolucao_cnas_mds_n_210_de_23_outubro_de_2025_664861041.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 210, DE 23 OUTUBRO DE 2025",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "24/10/2025",
+    "edicao": "204",
+    "pagina": "141"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-210-de-23-outubro-de-2025-664861041",
+   "bytes": 8123
+  },
+  "resolucao_cnas_mds_n_159_de_26_de_junho_de_2024_568659707.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 159, DE 26 DE JUNHO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 159,
+   "ano": 2024,
+   "dou": {
+    "data": "28/06/2024",
+    "edicao": "123",
+    "pagina": "41"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-159-de-26-de-junho-de-2024-568659707",
+   "bytes": 1346
+  },
+  "resolucao_cnas_mc_n_47_de_1_de_novembro_de_2021_356915957.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 47, DE 1º DE NOVEMBRO DE 2021",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "04/11/2021",
+    "edicao": "207",
+    "pagina": "251"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-47-de-1-de-novembro-de-2021-356915957",
+   "bytes": 8833
+  },
+  "resolucao_cnas_mc_n_92_de_23_de_dezembro_de_2022_453530839.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 92, DE 23 DE DEZEMBRO DE 2022",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "26/12/2022",
+    "edicao": "242",
+    "pagina": "16"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-92-de-23-de-dezembro-de-2022-453530839",
+   "bytes": 6598
+  },
+  "resolucao_n_41_de_24_de_dezembro_de_2019_235333905.txt": {
+   "titulo": "RESOLUÇÃO Nº 41, DE 24 DE DEZEMBRO DE 2019",
+   "orgao": "",
+   "numero": 41,
+   "ano": 2019,
+   "dou": {
+    "data": "26/12/2019",
+    "edicao": "249",
+    "pagina": "3"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-41-de-24-de-dezembro-de-2019-235333905",
+   "bytes": 7520
+  },
+  "resolucao_cnas_mds_n_134_de_15_de_dezembro_de_2023_531395532.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 134, DE 15 DE DEZEMBRO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 134,
+   "ano": 2023,
+   "dou": {
+    "data": "18/12/2023",
+    "edicao": "239",
+    "pagina": "64"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-134-de-15-de-dezembro-de-2023-531395532",
+   "bytes": 1633
+  },
+  "resolucao_cnas_mc_n_24_de_16_dezembro_de_2020_295222817.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 24, DE 16 DEZEMBRO DE 2020",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "21/12/2020",
+    "edicao": "243",
+    "pagina": "36"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-24-de-16-dezembro-de-2020-295222817",
+   "bytes": 6609
+  },
+  "resolucao_cit_n_38_de_30_de_abril_de_2026_703836265.txt": {
+   "titulo": "RESOLUÇÃO CIT Nº 38, DE 30 DE ABRIL DE 2026",
+   "orgao": "CIT",
+   "numero": 38,
+   "ano": 2026,
+   "dou": {
+    "data": "07/05/2026",
+    "edicao": "84",
+    "pagina": "60"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cit-n-38-de-30-de-abril-de-2026-703836265",
+   "bytes": 4493
+  },
+  "resolucao_cnas_mds_n_186_de_26_de_marco_de_2025_620743877.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 186, DE 26 DE MARÇO DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 186,
+   "ano": 2025,
+   "dou": {
+    "data": "28/03/2025",
+    "edicao": "60",
+    "pagina": "43"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-186-de-26-de-marco-de-2025-620743877",
+   "bytes": 1712
+  },
+  "resolucao_cnas_mc_n_88_de_1_de_dezembro_de_2022_447311826.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 88, DE 1º DE DEZEMBRO DE 2022",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "02/12/2022",
+    "edicao": "226",
+    "pagina": "40"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-88-de-1-de-dezembro-de-2022-447311826",
+   "bytes": 6080
+  },
+  "resolucao_cnas_mc_n_87_de_1_de_dezembro_de_2022_447311746.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 87, DE 1º DE DEZEMBRO DE 2022",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "02/12/2022",
+    "edicao": "226",
+    "pagina": "39"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-87-de-1-de-dezembro-de-2022-447311746",
+   "bytes": 6155
+  },
+  "resolucao_n_25_de_18_de_setembro_de_2019_217039390.txt": {
+   "titulo": "RESOLUÇÃO Nº 25, DE 18 DE SETEMBRO DE 2019",
+   "orgao": "",
+   "numero": 25,
+   "ano": 2019,
+   "dou": {
+    "data": "19/09/2019",
+    "edicao": "182",
+    "pagina": "12"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-25-de-18-de-setembro-de-2019-217039390",
+   "bytes": 6422
+  },
+  "resolucao_cnas_mds_n_182_de_13_de_fevereiro_de_2025_612642486.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 182, DE 13 DE FEVEREIRO DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 182,
+   "ano": 2025,
+   "dou": {
+    "data": "14/02/2025",
+    "edicao": "32",
+    "pagina": "19"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-182-de-13-de-fevereiro-de-2025-612642486",
+   "bytes": 35236
+  },
+  "resolucao_cnas_mc_n_39_de_20_de_julhode_2021_333251000.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 39, DE 20 DE JULHODE 2021",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "21/07/2021",
+    "edicao": "136",
+    "pagina": "272"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-39-de-20-de-julhode-2021-333251000",
+   "bytes": 4910
+  },
+  "resolucao_cnas_mc_n_46_de_20_de_outubro_de_2021_353770953.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 46, DE 20 DE OUTUBRO DE 2021",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "21/10/2021",
+    "edicao": "199",
+    "pagina": "22"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-46-de-20-de-outubro-de-2021-353770953",
+   "bytes": 57549
+  },
+  "resolucao_cnas_mds_n_209_de_23_de_outubro_de_2025_664881804.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 209, DE 23 DE Outubro DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 209,
+   "ano": 2025,
+   "dou": {
+    "data": "24/10/2025",
+    "edicao": "204",
+    "pagina": "136"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-209-de-23-de-outubro-de-2025-664881804",
+   "bytes": 43177
+  },
+  "resolucao_cnas_mds_n_222_de_10_de_fevereiro_de_2026_686544496.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 222, DE 10 DE FEVEREIRO DE 2026",
+   "orgao": "CNAS/MDS",
+   "numero": 222,
+   "ano": 2026,
+   "dou": {
+    "data": "11/02/2026",
+    "edicao": "29",
+    "pagina": "17"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-222-de-10-de-fevereiro-de-2026-686544496",
+   "bytes": 7308
+  },
+  "resolucao_n_42_de_26_de_dezembro_de_2019_235561121.txt": {
+   "titulo": "RESOLUÇÃO Nº 42, DE 26 DE DEZEMBRO DE 2019",
+   "orgao": "",
+   "numero": 42,
+   "ano": 2019,
+   "dou": {
+    "data": "27/12/2019",
+    "edicao": "250",
+    "pagina": "7"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-42-de-26-de-dezembro-de-2019-235561121",
+   "bytes": 1437
+  },
+  "resolucao_cnas_mc_n_32_de_19_de_abril_de_2021_314921780.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 32, DE 19 DE ABRIL DE 2021",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "20/04/2021",
+    "edicao": "73",
+    "pagina": "17"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-32-de-19-de-abril-de-2021-314921780",
+   "bytes": 3727
+  },
+  "resolucao_cnas_mds_n_157_de_22_de_maio_de_2024_561322542.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 157, DE 22 DE MAIO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 157,
+   "ano": 2024,
+   "dou": {
+    "data": "23/05/2024",
+    "edicao": "99",
+    "pagina": "15"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-157-de-22-de-maio-de-2024-561322542",
+   "bytes": 67316
+  },
+  "resolucao_cnas_mds_n_97_de_24_de_fevereiro_de_2023_466144610.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 97, DE 24 DE FEVEREIRO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 97,
+   "ano": 2023,
+   "dou": {
+    "data": "27/02/2023",
+    "edicao": "39",
+    "pagina": "17"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-97-de-24-de-fevereiro-de-2023-466144610",
+   "bytes": 5767
+  },
+  "resolucao_cnas_mds_n_177_de_17_de_dezembro_de_2024_602576379.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 177, DE 17 DE DEZEMBRO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 177,
+   "ano": 2024,
+   "dou": {
+    "data": "18/12/2024",
+    "edicao": "243",
+    "pagina": "29"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-177-de-17-de-dezembro-de-2024-602576379",
+   "bytes": 11942
+  },
+  "resolucao_cnas_mds_n_116_de_15_de_agosto_de_2023_503269694.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 116, DE 15 DE AGOSTO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 116,
+   "ano": 2023,
+   "dou": {
+    "data": "16/08/2023",
+    "edicao": "156",
+    "pagina": "22"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-116-de-15-de-agosto-de-2023-503269694",
+   "bytes": 1650
+  },
+  "resolucao_cnas_mc_n_90_de_21_de_dezembro_de_2022_452743225.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 90, DE 21 DE DEZEMBRO DE 2022",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "22/12/2022",
+    "edicao": "240",
+    "pagina": "74"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-90-de-21-de-dezembro-de-2022-452743225",
+   "bytes": 2978
+  },
+  "resolucao_cnas_mds_n_123_de_24_de_outubro_de_2023_518511762.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 123, DE 24 DE OUTUBRO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 123,
+   "ano": 2023,
+   "dou": {
+    "data": "25/10/2023",
+    "edicao": "203",
+    "pagina": "21"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-123-de-24-de-outubro-de-2023-518511762",
+   "bytes": 23506
+  },
+  "resolucao_cnas_mc_n_62_de_14_de_marco_de_2022_385681228.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 62, DE 14 DE MARÇO DE 2022",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "15/03/2022",
+    "edicao": "50",
+    "pagina": "43"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-62-de-14-de-marco-de-2022-385681228",
+   "bytes": 4539
+  },
+  "resolucao_cnas_mc_n_61_de_21_de_fevereiro_de_2022_381717107.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 61, DE 21 DE FEVEREIRO DE 2022",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "22/02/2022",
+    "edicao": "37",
+    "pagina": "6"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-61-de-21-de-fevereiro-de-2022-381717107",
+   "bytes": 5938
+  },
+  "res202_2025.txt": {
+   "titulo": "Publicado em: 28/07/2025 | Edição: 140 | Seção: 1 | Página: 87",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": null,
+   "fonte": null,
+   "bytes": 20242
+  },
+  "resolucao_cnas_mds_n_179_de_20_de_dezembro_de_2024_603346328.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 179, DE 20 DE DEZEMBRO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 179,
+   "ano": 2024,
+   "dou": {
+    "data": "23/12/2024",
+    "edicao": "246",
+    "pagina": "32"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-179-de-20-de-dezembro-de-2024-603346328",
+   "bytes": 1425
+  },
+  "resolucao_n_19_de_20_de_maio_de_2019_113230918.txt": {
+   "titulo": "RESOLUÇÃO Nº 19, DE 20 DE MAIO DE 2019",
+   "orgao": "",
+   "numero": 19,
+   "ano": 2019,
+   "dou": {
+    "data": "21/05/2019",
+    "edicao": "96",
+    "pagina": "16"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-19-de-20-de-maio-de-2019-113230918",
+   "bytes": 1419
+  },
+  "resolucao_cnas_mds_n_188_de_2_de_abril_de_2025_621888950.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 188, DE 2 DE ABRIL DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 188,
+   "ano": 2025,
+   "dou": {
+    "data": "03/04/2025",
+    "edicao": "64",
+    "pagina": "14"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-188-de-2-de-abril-de-2025-621888950",
+   "bytes": 9543
+  },
+  "resolucao_cnas_mds_n_204_de_15_de_agosto_de_2025_648875785.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 204, DE 15 DE AGOSTO DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 204,
+   "ano": 2025,
+   "dou": {
+    "data": "18/08/2025",
+    "edicao": "155",
+    "pagina": "23"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-204-de-15-de-agosto-de-2025-648875785",
+   "bytes": 11188
+  },
+  "resolucao_cnas_mds_n_132_de_29_de_abril_de_2026_702421370.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 132, DE 29 DE ABRIL DE 2026",
+   "orgao": "CNAS/MDS",
+   "numero": 132,
+   "ano": 2026,
+   "dou": {
+    "data": "30/04/2026",
+    "edicao": "80",
+    "pagina": "85"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-132-de-29-de-abril-de-2026-702421370",
+   "bytes": 3165
+  },
+  "resolucao_cnas_mds_n_226_de_18_de_marco_de_2026_693801182.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 226, DE 18 DE MARÇO DE 2026",
+   "orgao": "CNAS/MDS",
+   "numero": 226,
+   "ano": 2026,
+   "dou": {
+    "data": "19/03/2026",
+    "edicao": "53",
+    "pagina": "19"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-226-de-18-de-marco-de-2026-693801182",
+   "bytes": 1380
+  },
+  "resolucao_cnas_mds_n_120_de_27_de_setembro_de_2023_512982602.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 120, DE 27 DE SETEMBRO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 120,
+   "ano": 2023,
+   "dou": {
+    "data": "28/09/2023",
+    "edicao": "186",
+    "pagina": "10"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-120-de-27-de-setembro-de-2023-512982602",
+   "bytes": 1648
+  },
+  "resolucao_cnas_mds_n_121_de_28_de_setembro_de_2023_513367216.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 121, DE 28 DE SETEMBRO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 121,
+   "ano": 2023,
+   "dou": {
+    "data": "29/09/2023",
+    "edicao": "187",
+    "pagina": "54"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-121-de-28-de-setembro-de-2023-513367216",
+   "bytes": 1713
+  },
+  "resolucao_cnas_mds_n_108_de_18_de_julho_de_2023_497533586.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 108, DE 18 DE JULHO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 108,
+   "ano": 2023,
+   "dou": {
+    "data": "20/07/2023",
+    "edicao": "137",
+    "pagina": "15"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-108-de-18-de-julho-de-2023-497533586",
+   "bytes": 4647
+  },
+  "resolucao_cnas_mds_n_225_de_18_de_marco_de_2026_693801210.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 225, DE 18 DE MARÇO DE 2026",
+   "orgao": "CNAS/MDS",
+   "numero": 225,
+   "ano": 2026,
+   "dou": {
+    "data": "19/03/2026",
+    "edicao": "53",
+    "pagina": "19"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-225-de-18-de-marco-de-2026-693801210",
+   "bytes": 1278
+  },
+  "resolucao_cnas_mds_n_167_de_19_de_setembro_de_2024_585403961.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 167, DE 19 DE SETEMBRO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 167,
+   "ano": 2024,
+   "dou": {
+    "data": "20/09/2024",
+    "edicao": "183",
+    "pagina": "57"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-167-de-19-de-setembro-de-2024-585403961",
+   "bytes": 6895
+  },
+  "resolucao_cnas_mc_n_48_de_18_de_novembro_de_2021_360509770.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 48, DE 18 DE NOVEMBRO DE 2021",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "19/11/2021",
+    "edicao": "217",
+    "pagina": "61"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-48-de-18-de-novembro-de-2021-360509770",
+   "bytes": 5547
+  },
+  "resolucao_cnas_mds_n_170_de_15_de_outubro_de_2024_590495997.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 170, DE 15 DE OUTUBRO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 170,
+   "ano": 2024,
+   "dou": {
+    "data": "16/10/2024",
+    "edicao": "201",
+    "pagina": "28"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-170-de-15-de-outubro-de-2024-590495997",
+   "bytes": 4821
+  },
+  "resolucao_n_11_de_23_de_julho_de_2020_268436309.txt": {
+   "titulo": "RESOLUÇÃO Nº 11, DE 23 DE JULHO DE 2020",
+   "orgao": "",
+   "numero": 11,
+   "ano": 2020,
+   "dou": {
+    "data": "24/07/2020",
+    "edicao": "141",
+    "pagina": "5"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-11-de-23-de-julho-de-2020-268436309",
+   "bytes": 1705
+  },
+  "resolucao_cnas_mds_n_212_de_23_de_outubro_de_2025_664875639.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 212, DE 23 DE OUTUBRO DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 212,
+   "ano": 2025,
+   "dou": {
+    "data": "24/10/2025",
+    "edicao": "204",
+    "pagina": "141"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-212-de-23-de-outubro-de-2025-664875639",
+   "bytes": 4814
+  },
+  "resolucao_cnas_mc_n_37_de_16_de_junho_de_2021_326124001.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 37, DE 16 DE JUNHO DE 2021",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "17/06/2021",
+    "edicao": "112",
+    "pagina": "18"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-37-de-16-de-junho-de-2021-326124001",
+   "bytes": 4576
+  },
+  "resolucao_cnas_mc_n_78_de_29_de_julho_de_2022_419212033.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 78, DE 29 DE JULHO DE 2022",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "01/08/2022",
+    "edicao": "144",
+    "pagina": "68"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-78-de-29-de-julho-de-2022-419212033",
+   "bytes": 4648
+  },
+  "resolucao_cnas_mds_n_208_de_18_de_setembro_de_2025_657163284.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 208, DE 18 DE SETEMBRO DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 208,
+   "ano": 2025,
+   "dou": {
+    "data": "19/09/2025",
+    "edicao": "179",
+    "pagina": "50"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-208-de-18-de-setembro-de-2025-657163284",
+   "bytes": 2237
+  },
+  "resolucao_cit_n_15_de_21_de_agosto_de_2024_581174396.txt": {
+   "titulo": "RESOLUÇÃO CIT Nº 15, DE 21 DE agosto DE 2024",
+   "orgao": "CIT",
+   "numero": 15,
+   "ano": 2024,
+   "dou": {
+    "data": "29/08/2024",
+    "edicao": "167",
+    "pagina": "16"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cit-n-15-de-21-de-agosto-de-2024-581174396",
+   "bytes": 22068
+  },
+  "resolucao_cnas_mds_n_138_de_26_de_fevereiro_de_2024_545096845.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 138, DE 26 DE FEVEREIRO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 138,
+   "ano": 2024,
+   "dou": {
+    "data": "27/02/2024",
+    "edicao": "39",
+    "pagina": "24"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-138-de-26-de-fevereiro-de-2024-545096845",
+   "bytes": 6083
+  },
+  "resolucao_n_3_de_19_de_abril_de_2017_20172720.txt": {
+   "titulo": "RESOLUÇÃO Nº 3, DE 19 DE ABRIL DE 2017",
+   "orgao": "",
+   "numero": 3,
+   "ano": 2017,
+   "dou": {
+    "data": "20/04/2017",
+    "edicao": "76",
+    "pagina": "90"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-3-de-19-de-abril-de-2017-20172720",
+   "bytes": 4811
+  },
+  "resolucao_cnas_mds_n_127_de_20_de_novembro_de_2023_524535716.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 127, DE 20 DE NOVEMBRO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 127,
+   "ano": 2023,
+   "dou": {
+    "data": "21/11/2023",
+    "edicao": "220",
+    "pagina": "75"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-127-de-20-de-novembro-de-2023-524535716",
+   "bytes": 8074
+  },
+  "resolucao_cnas_mds_n_143_de_26_de_fevereiro_de_2024_545108316.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 143, DE 26 DE FEVEREIRO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 143,
+   "ano": 2024,
+   "dou": {
+    "data": "27/02/2024",
+    "edicao": "39",
+    "pagina": "26"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-143-de-26-de-fevereiro-de-2024-545108316",
+   "bytes": 5994
+  },
+  "resolucao_n_31_de_18_de_setembro_de_2019_217039672.txt": {
+   "titulo": "RESOLUÇÃO Nº 31, DE 18 DE SETEMBRO DE 2019",
+   "orgao": "",
+   "numero": 31,
+   "ano": 2019,
+   "dou": {
+    "data": "19/09/2019",
+    "edicao": "182",
+    "pagina": "15"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-31-de-18-de-setembro-de-2019-217039672",
+   "bytes": 6118
+  },
+  "resolucao_cnas_mds_n_125_de_3_de_novembro_de_2023_520895961.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 125, DE 3 DE NOVEMBRO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 125,
+   "ano": 2023,
+   "dou": {
+    "data": "06/11/2023",
+    "edicao": "210",
+    "pagina": "18"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-125-de-3-de-novembro-de-2023-520895961",
+   "bytes": 5046
+  },
+  "resolucao_n_22_de_15_de_julho_de_2019_196101821.txt": {
+   "titulo": "RESOLUÇÃO Nº 22, DE 15 DE JULHO DE 2019",
+   "orgao": "",
+   "numero": 22,
+   "ano": 2019,
+   "dou": {
+    "data": "16/07/2019",
+    "edicao": "135",
+    "pagina": "5"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-22-de-15-de-julho-de-2019-196101821",
+   "bytes": 3471
+  },
+  "resolucao_cnas_mc_n_41_de_11_de_agosto_de_2021_337790544.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 41, DE 11 DE AGOSTO DE 2021",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "12/08/2021",
+    "edicao": "152",
+    "pagina": "9"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-41-de-11-de-agosto-de-2021-337790544",
+   "bytes": 12962
+  },
+  "resolucao_cnas_mds_n_105_de_24_de_maio_de_2023_485610285.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 105, DE 24 DE MAIO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 105,
+   "ano": 2023,
+   "dou": {
+    "data": "25/05/2023",
+    "edicao": "99",
+    "pagina": "289"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-105-de-24-de-maio-de-2023-485610285",
+   "bytes": 1727
+  },
+  "resolucao_cnas_n_213_de_28_de_outubro_de_2025_665161180.txt": {
+   "titulo": "RESOLUÇÃO CNAS Nº 213, DE 28 DE OUTUBRO DE 2025",
+   "orgao": "CNAS",
+   "numero": 213,
+   "ano": 2025,
+   "dou": {
+    "data": "29/10/2025",
+    "edicao": "206",
+    "pagina": "81"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas-n-213-de-28-de-outubro-de-2025-665161180",
+   "bytes": 24109
+  },
+  "resolucao_n_6_de_22_de_maio_de_2017_20229340.txt": {
+   "titulo": "RESOLUÇÃO Nº 6, DE 22 DE MAIO DE 2017",
+   "orgao": "",
+   "numero": 6,
+   "ano": 2017,
+   "dou": {
+    "data": "23/05/2017",
+    "edicao": "97",
+    "pagina": "123"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-6-de-22-de-maio-de-2017-20229340",
+   "bytes": 1543
+  },
+  "resolucao_n_29_de_18_de_setembro_de_2019_217039542.txt": {
+   "titulo": "RESOLUÇÃO Nº 29, DE 18 DE SETEMBRO DE 2019",
+   "orgao": "",
+   "numero": 29,
+   "ano": 2019,
+   "dou": {
+    "data": "19/09/2019",
+    "edicao": "182",
+    "pagina": "14"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-29-de-18-de-setembro-de-2019-217039542",
+   "bytes": 5790
+  },
+  "resolucao_cnas_mds_n_156_de_17_de_maio_de_2024_560715864.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 156, DE 17 DE MAIO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 156,
+   "ano": 2024,
+   "dou": {
+    "data": "20/05/2024",
+    "edicao": "96",
+    "pagina": "22"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-156-de-17-de-maio-de-2024-560715864",
+   "bytes": 2810
+  },
+  "resolucao_n_13_de_27_de_julho_de_2020_268915378.txt": {
+   "titulo": "RESOLUÇÃO Nº 13, DE 27 DE JULHO DE 2020",
+   "orgao": "",
+   "numero": 13,
+   "ano": 2020,
+   "dou": {
+    "data": "28/07/2020",
+    "edicao": "143",
+    "pagina": "4"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-13-de-27-de-julho-de-2020-268915378",
+   "bytes": 7022
+  },
+  "resolucao_n_5_de_19_de_fevereiro_de_2019_64162476.txt": {
+   "titulo": "RESOLUÇÃO Nº 5, DE 19 DE FEVEREIRO DE 2019",
+   "orgao": "",
+   "numero": 5,
+   "ano": 2019,
+   "dou": {
+    "data": "20/02/2019",
+    "edicao": "36",
+    "pagina": "8"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-5-de-19-de-fevereiro-de-2019-64162476",
+   "bytes": 2090
+  },
+  "resolucao_cnas_mds_n_112_de_25_de_julho_de_2023_498927308.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 112, DE 25 DE JULHO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 112,
+   "ano": 2023,
+   "dou": {
+    "data": "26/07/2023",
+    "edicao": "141",
+    "pagina": "34"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-112-de-25-de-julho-de-2023-498927308",
+   "bytes": 5971
+  },
+  "resolucao_cnas_mc_n_59_de_14_de_fevereiro_de_2022_380129691.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 59, DE 14 DE FEVEREIRO DE 2022",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "15/02/2022",
+    "edicao": "32",
+    "pagina": "6"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-59-de-14-de-fevereiro-de-2022-380129691",
+   "bytes": 14710
+  },
+  "resolucao_cnas_mds_n_98_de_14_de_marco_de_2023_470045563.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 98, DE 14 DE MARÇO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 98,
+   "ano": 2023,
+   "dou": {
+    "data": "15/03/2023",
+    "edicao": "51",
+    "pagina": "11"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-98-de-14-de-marco-de-2023-470045563",
+   "bytes": 1648
+  },
+  "resolucao_cnas_mds_n_158_de_10_de_junho_de_2024_564828480.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 158, DE 10 DE JUNHO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 158,
+   "ano": 2024,
+   "dou": {
+    "data": "11/06/2024",
+    "edicao": "110",
+    "pagina": "92"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-158-de-10-de-junho-de-2024-564828480",
+   "bytes": 1414
+  },
+  "resolucao_cnas_mc_n_86_de_1_de_dezembro_de_2022_447312378.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 86, DE 1º DE DEZEMBRO DE 2022",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "02/12/2022",
+    "edicao": "226",
+    "pagina": "39"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-86-de-1-de-dezembro-de-2022-447312378",
+   "bytes": 6279
+  },
+  "resolucao_cnas_mds_n_141_de_26_de_fevereiro_de_2024_545094625.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 141, DE 26 DE FEVEREIRO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 141,
+   "ano": 2024,
+   "dou": {
+    "data": "27/02/2024",
+    "edicao": "39",
+    "pagina": "25"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-141-de-26-de-fevereiro-de-2024-545094625",
+   "bytes": 6418
+  },
+  "resolucao_cnas_mds_n_193_de_17_de_abril_de_2025_624930898.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 193, DE 17 DE ABRIL DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 193,
+   "ano": 2025,
+   "dou": {
+    "data": "22/04/2025",
+    "edicao": "75",
+    "pagina": "15"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-193-de-17-de-abril-de-2025-624930898",
+   "bytes": 4619
+  },
+  "resolucao_conjunta_cnas_mds_n_23_de_3_de_junho_de_2026_710475655.txt": {
+   "titulo": "RESOLUÇÃO CONJUNTA CNAS/MDS Nº 23, DE 3 DE JUNHO DE 2026",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "08/06/2026",
+    "edicao": "104",
+    "pagina": "168"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-conjunta-cnas/mds-n-23-de-3-de-junho-de-2026-710475655",
+   "bytes": 8104
+  },
+  "resolucao_cnas_mc_n_71_de_14_de_julho_de_2022_415419710.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 71, DE 14 de julho de 2022",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "15/07/2022",
+    "edicao": "133",
+    "pagina": "8"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-71-de-14-de-julho-de-2022-415419710",
+   "bytes": 5457
+  },
+  "resolucao_cnas_mc_n_28_de_25_de_fevereiro_de_2021_305372393.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 28, DE 25 DE FEVEREIRO DE 2021",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "26/02/2021",
+    "edicao": "38",
+    "pagina": "3"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-28-de-25-de-fevereiro-de-2021-305372393",
+   "bytes": 6246
+  },
+  "resolucao_cnas_mds_n_128_de_21_de_novembro_de_2023_525940824.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 128, DE 21 DE NOVEMBRO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 128,
+   "ano": 2023,
+   "dou": {
+    "data": "27/11/2023",
+    "edicao": "224",
+    "pagina": "26"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-128-de-21-de-novembro-de-2023-525940824",
+   "bytes": 1477
+  },
+  "resolucao_cnas_n_45_de_19_de_outubro_de_2021_353306683.txt": {
+   "titulo": "RESOLUÇÃO CNAS Nº 45, DE 19 DE OUTUBRO DE 2021",
+   "orgao": "CNAS",
+   "numero": 45,
+   "ano": 2021,
+   "dou": {
+    "data": "20/10/2021",
+    "edicao": "198",
+    "pagina": "35"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas-n-45-de-19-de-outubro-de-2021-353306683",
+   "bytes": 6191
+  },
+  "resolucao_cnas_mds_n_215_de_17_de_novembro_de_2025_670203788.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 215, DE 17 DE NOVEMBRO DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 215,
+   "ano": 2025,
+   "dou": {
+    "data": "19/11/2025",
+    "edicao": "221",
+    "pagina": "68"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-215-de-17-de-novembro-de-2025-670203788",
+   "bytes": 6788
+  },
+  "resolucao_n_30_de_18_de_setembro_de_2019_217039790.txt": {
+   "titulo": "RESOLUÇÃO Nº 30, DE 18 DE SETEMBRO DE 2019",
+   "orgao": "",
+   "numero": 30,
+   "ano": 2019,
+   "dou": {
+    "data": "19/09/2019",
+    "edicao": "182",
+    "pagina": "15"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-30-de-18-de-setembro-de-2019-217039790",
+   "bytes": 5179
+  },
+  "resolucao_cnas_mds_n_200_de_23_de_julho_de_2025_643895086.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 200, DE 23 DE JULHO DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 200,
+   "ano": 2025,
+   "dou": {
+    "data": "24/07/2025",
+    "edicao": "138",
+    "pagina": "38"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-200-de-23-de-julho-de-2025-643895086",
+   "bytes": 16027
+  },
+  "resolucao_cnas_mds_n_191_de_14_de_abril_de_2025_624300821.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 191, DE 14 DE ABRIL DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 191,
+   "ano": 2025,
+   "dou": {
+    "data": "15/04/2025",
+    "edicao": "72",
+    "pagina": "39"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-191-de-14-de-abril-de-2025-624300821",
+   "bytes": 1306
+  },
+  "resolucao_n_4_de_2_de_abril_de_2020_251067904.txt": {
+   "titulo": "RESOLUÇÃO Nº 4, DE 2 DE ABRIL DE 2020",
+   "orgao": "",
+   "numero": 4,
+   "ano": 2020,
+   "dou": {
+    "data": "03/04/2020",
+    "edicao": "65",
+    "pagina": "21"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-4-de-2-de-abril-de-2020-251067904",
+   "bytes": 3135
+  },
+  "resolucao_cnas_mds_n_104_de_18_de_maio_de_2023_484554350.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 104, DE 18 DE MAIO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 104,
+   "ano": 2023,
+   "dou": {
+    "data": "19/05/2023",
+    "edicao": "95",
+    "pagina": "252"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-104-de-18-de-maio-de-2023-484554350",
+   "bytes": 2981
+  },
+  "resolucao_cnas_mds_n_154_de_16_de_maio_de_2024_560175831.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 154, DE 16 DE MAIO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 154,
+   "ano": 2024,
+   "dou": {
+    "data": "17/05/2024",
+    "edicao": "95",
+    "pagina": "45"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-154-de-16-de-maio-de-2024-560175831",
+   "bytes": 5146
+  },
+  "resolucao_cnas_mds_n_221_de_28_de_novembro_de_2025_672012355.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 221, DE 28 DE NOVEMBRO DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 221,
+   "ano": 2025,
+   "dou": {
+    "data": "01/12/2025",
+    "edicao": "228",
+    "pagina": "68"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-221-de-28-de-novembro-de-2025-672012355",
+   "bytes": 4410
+  },
+  "resolucao_n_249_de_10_de_julho_de_2024_571720917.txt": {
+   "titulo": "RESOLUÇÃO Nº 249, DE 10 DE JULHO DE 2024",
+   "orgao": "",
+   "numero": 249,
+   "ano": 2024,
+   "dou": {
+    "data": "12/07/2024",
+    "edicao": "133",
+    "pagina": "78"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-249-de-10-de-julho-de-2024-571720917",
+   "bytes": 18416
+  },
+  "resolucao_cnas_mds_n_151_de_23_de_abril_de_2024_555715305.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 151, DE 23 DE ABRIL DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 151,
+   "ano": 2024,
+   "dou": {
+    "data": "24/04/2024",
+    "edicao": "79",
+    "pagina": "12"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-151-de-23-de-abril-de-2024-555715305",
+   "bytes": 6877
+  },
+  "resolucao_cnas_mds_n_238_de_22_de_maio_de_2026_707501779.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 238, DE 22 DE MAIO DE 2026",
+   "orgao": "CNAS/MDS",
+   "numero": 238,
+   "ano": 2026,
+   "dou": {
+    "data": "25/05/2026",
+    "edicao": "96",
+    "pagina": "26"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-238-de-22-de-maio-de-2026-707501779",
+   "bytes": 1707
+  },
+  "resolucao_n_40_de_20_de_dezembro_de_2019_234967583.txt": {
+   "titulo": "RESOLUÇÃO Nº 40, DE 20 DE DEZEMBRO DE 2019",
+   "orgao": "",
+   "numero": 40,
+   "ano": 2019,
+   "dou": {
+    "data": "23/12/2019",
+    "edicao": "247",
+    "pagina": "17"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-40-de-20-de-dezembro-de-2019-234967583",
+   "bytes": 2322
+  },
+  "resolucao_cnas_mds_n_152_de_23_de_abril_de_2024_555718360.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 152, DE 23 DE ABRIL DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 152,
+   "ano": 2024,
+   "dou": {
+    "data": "24/04/2024",
+    "edicao": "79",
+    "pagina": "12"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-152-de-23-de-abril-de-2024-555718360",
+   "bytes": 4447
+  },
+  "resolucao_cit_n_17_de_13_de_dezembro_de_2024_602959829.txt": {
+   "titulo": "RESOLUÇÃO CIT Nº 17, DE 13 DE DEZEMBRO DE 2024",
+   "orgao": "CIT",
+   "numero": 17,
+   "ano": 2024,
+   "dou": {
+    "data": "19/12/2024",
+    "edicao": "244",
+    "pagina": "95"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cit-n-17-de-13-de-dezembro-de-2024-602959829",
+   "bytes": 12275
+  },
+  "resolucao_cnas_mds_n_229_de_23_de_marco_de_2026_694793070.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 229, DE 23 DE MARÇO DE 2026",
+   "orgao": "CNAS/MDS",
+   "numero": 229,
+   "ano": 2026,
+   "dou": {
+    "data": "24/03/2026",
+    "edicao": "56",
+    "pagina": "42"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-229-de-23-de-marco-de-2026-694793070",
+   "bytes": 1654
+  },
+  "resolucao_n_1_de_12_de_novembro_de_2021_359449706.txt": {
+   "titulo": "RESOLUÇÃO Nº 1, DE 12 DE NOVEMBRO DE 2021",
+   "orgao": "",
+   "numero": 1,
+   "ano": 2021,
+   "dou": {
+    "data": "16/11/2021",
+    "edicao": "214",
+    "pagina": "7"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-1-de-12-de-novembro-de-2021-359449706",
+   "bytes": 15308
+  },
+  "resolucao_cnas_mc_n_22_de_17_dezembro_de_2020_295222741.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 22, DE 17 DEZEMBRO DE 2020",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "21/12/2020",
+    "edicao": "243",
+    "pagina": "35"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-22-de-17-dezembro-de-2020-295222741",
+   "bytes": 6489
+  },
+  "resolucao_cnas_mds_n_242_de_29_de_julho_de_2026_722123171.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 242, DE 29 DE JULHO DE 2026",
+   "orgao": "CNAS/MDS",
+   "numero": 242,
+   "ano": 2026,
+   "dou": {
+    "data": "30/07/2026",
+    "edicao": "142",
+    "pagina": "48"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-242-de-29-de-julho-de-2026-722123171",
+   "bytes": 6152
+  },
+  "resolucao_cnas_mds_n_30_de_26_de_marco_de_2026_696034494.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 30, DE 26 DE MARÇO DE 2026",
+   "orgao": "CNAS/MDS",
+   "numero": 30,
+   "ano": 2026,
+   "dou": {
+    "data": "27/03/2026",
+    "edicao": "59",
+    "pagina": "48"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-30-de-26-de-marco-de-2026-696034494",
+   "bytes": 1806
+  },
+  "resolucao_cnas_mds_n_237_de_15_de_maio_de_2026_706275432.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 237, DE 15 DE MAIO DE 2026",
+   "orgao": "CNAS/MDS",
+   "numero": 237,
+   "ano": 2026,
+   "dou": {
+    "data": "18/05/2026",
+    "edicao": "91",
+    "pagina": "41"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-237-de-15-de-maio-de-2026-706275432",
+   "bytes": 5515
+  },
+  "resolucao_n_9_de_19_de_julho_de_2017_19192139.txt": {
+   "titulo": "RESOLUÇÃO Nº 9, DE 19 DE JULHO DE 2017",
+   "orgao": "",
+   "numero": 9,
+   "ano": 2017,
+   "dou": {
+    "data": "24/07/2017",
+    "edicao": "140",
+    "pagina": "53"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-9-de-19-de-julho-de-2017-19192139",
+   "bytes": 10536
+  },
+  "resolucao_cnas_mds_n_175_de_11_de_dezembro_de_2024_601136792.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 175, DE 11 DE DEZEMBRO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 175,
+   "ano": 2024,
+   "dou": {
+    "data": "12/12/2024",
+    "edicao": "239",
+    "pagina": "78"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-175-de-11-de-dezembro-de-2024-601136792",
+   "bytes": 1656
+  },
+  "resolucao_cnas_mds_n_199_de_22_de_julho_de_2025_643590484.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 199, DE 22 DE JULHO DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 199,
+   "ano": 2025,
+   "dou": {
+    "data": "23/07/2025",
+    "edicao": "137",
+    "pagina": "46"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-199-de-22-de-julho-de-2025-643590484",
+   "bytes": 4621
+  },
+  "resolucao_cit_n_33_de_25_de_novembro_de_2025_673590076.txt": {
+   "titulo": "RESOLUÇÃO CIT Nº 33, DE 25 DE NOVEMBRO DE 2025",
+   "orgao": "CIT",
+   "numero": 33,
+   "ano": 2025,
+   "dou": {
+    "data": "05/12/2025",
+    "edicao": "232",
+    "pagina": "125"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cit-n-33-de-25-de-novembro-de-2025-673590076",
+   "bytes": 8825
+  },
+  "resolucao_n_53_de_6_de_dezembro_de_2021_365046415.txt": {
+   "titulo": "RESOLUÇÃO Nº 53, DE 6 DE DEZEMBRO DE 2021",
+   "orgao": "",
+   "numero": 53,
+   "ano": 2021,
+   "dou": {
+    "data": "07/12/2021",
+    "edicao": "229",
+    "pagina": "15"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-53-de-6-de-dezembro-de-2021-365046415",
+   "bytes": 6528
+  },
+  "resolucao_cnas_mc_n_79_de_29_de_julho_de_2022_418965068.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 79, DE 29 DE JULHO DE 2022",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "01/08/2022",
+    "edicao": "144",
+    "pagina": "68"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-79-de-29-de-julho-de-2022-418965068",
+   "bytes": 4890
+  },
+  "resolucao_n_51_de_6_de_dezembro_de_2021_364961828.txt": {
+   "titulo": "RESOLUÇÃO Nº 51, DE 6 DE DEZEMBRO DE 2021",
+   "orgao": "",
+   "numero": 51,
+   "ano": 2021,
+   "dou": {
+    "data": "07/12/2021",
+    "edicao": "229",
+    "pagina": "15"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-51-de-6-de-dezembro-de-2021-364961828",
+   "bytes": 6650
+  },
+  "resolucao_cnas_mc_n_75_de_25_de_julho_de_2022_417704946.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 75 DE 25 DE JULHO DE 2022",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "26/07/2022",
+    "edicao": "140",
+    "pagina": "2"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-75-de-25-de-julho-de-2022-417704946",
+   "bytes": 5516
+  },
+  "resolucao_cnas_mds_n_205_de_16_de_setembro_de_2025_656478972.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 205, DE 16 DE SETEMBRO DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 205,
+   "ano": 2025,
+   "dou": {
+    "data": "17/09/2025",
+    "edicao": "177",
+    "pagina": "29"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-205-de-16-de-setembro-de-2025-656478972",
+   "bytes": 12541
+  },
+  "resolucao_n_7_de_28_de_maio_de_2020_259142997.txt": {
+   "titulo": "RESOLUÇÃO Nº 7, DE 28 DE MAIO DE 2020",
+   "orgao": "",
+   "numero": 7,
+   "ano": 2020,
+   "dou": {
+    "data": "29/05/2020",
+    "edicao": "102",
+    "pagina": "163"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-7-de-28-de-maio-de-2020-259142997",
+   "bytes": 8104
+  },
+  "resolucao_cnas_mds_n_173_de_14_de_novembro_de_2024_596278742.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 173, DE 14 DE NOVEMBRO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 173,
+   "ano": 2024,
+   "dou": {
+    "data": "18/11/2024",
+    "edicao": "222",
+    "pagina": "20"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-173-de-14-de-novembro-de-2024-596278742",
+   "bytes": 3255
+  },
+  "resolucao_cnas_mc_n_66_de_12_de_maio_de_2022_399660910.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 66, DE 12 DE MAIO DE 2022",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "13/05/2022",
+    "edicao": "90",
+    "pagina": "11"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-66-de-12-de-maio-de-2022-399660910",
+   "bytes": 1565
+  },
+  "resolucao_cnas_mds_n_117_de_28_de_agosto_de_2023_506339338.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 117, DE 28 DE AGOSTO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 117,
+   "ano": 2023,
+   "dou": {
+    "data": "29/08/2023",
+    "edicao": "165",
+    "pagina": "22"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-117-de-28-de-agosto-de-2023-506339338",
+   "bytes": 11431
+  },
+  "resolucao_cnas_mds_n_194_de_13_de_maio_de_2025_629205386.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 194, DE 13 DE MAIO DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 194,
+   "ano": 2025,
+   "dou": {
+    "data": "14/05/2025",
+    "edicao": "89",
+    "pagina": "22"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-194-de-13-de-maio-de-2025-629205386",
+   "bytes": 13995
+  },
+  "resolucao_cnas_mc_n_30_de_12_de_marco_de_2021_308321790.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 30, DE 12 DE MARÇO DE 2021",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "15/03/2021",
+    "edicao": "49",
+    "pagina": "5"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-30-de-12-de-marco-de-2021-308321790",
+   "bytes": 5718
+  },
+  "resolucao_cnas_mds_n_163_de_19_de_agosto_de_2024_579799746.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 163, DE 19 DE AGOSTO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 163,
+   "ano": 2024,
+   "dou": {
+    "data": "22/08/2024",
+    "edicao": "162",
+    "pagina": "34"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-163-de-19-de-agosto-de-2024-579799746",
+   "bytes": 1934
+  },
+  "resolucao_n_28_de_18_de_setembro_de_2019_217039724.txt": {
+   "titulo": "RESOLUÇÃO Nº 28, DE 18 DE SETEMBRO DE 2019",
+   "orgao": "",
+   "numero": 28,
+   "ano": 2019,
+   "dou": {
+    "data": "19/09/2019",
+    "edicao": "182",
+    "pagina": "14"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-28-de-18-de-setembro-de-2019-217039724",
+   "bytes": 6040
+  },
+  "resolucao_cnas_mc_n_69_de_19_de_maio_de_2022_401482625.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 69, DE 19 DE MAIO DE 2022",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "20/05/2022",
+    "edicao": "95",
+    "pagina": "15"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-69-de-19-de-maio-de-2022-401482625",
+   "bytes": 4546
+  },
+  "resolucao_cnas_mds_n_161_de_24_de_julho_de_2024_574227989.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 161, DE 24 DE JULHO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 161,
+   "ano": 2024,
+   "dou": {
+    "data": "25/07/2024",
+    "edicao": "142",
+    "pagina": "10"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-161-de-24-de-julho-de-2024-574227989",
+   "bytes": 4774
+  },
+  "resolucao_cnas_mds_n_218_de_25_de_novembro_de_2025_671036324.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 218, de 25 DE NOVEMBRO DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 218,
+   "ano": 2025,
+   "dou": {
+    "data": "26/11/2025",
+    "edicao": "225",
+    "pagina": "74"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-218-de-25-de-novembro-de-2025-671036324",
+   "bytes": 22037
+  },
+  "resolucao_cnas_mds_n_219_de_25_de_novembro_de_2025_671043223.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 219, de 25 DE NOVEMBRO DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 219,
+   "ano": 2025,
+   "dou": {
+    "data": "26/11/2025",
+    "edicao": "225",
+    "pagina": "76"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-219-de-25-de-novembro-de-2025-671043223",
+   "bytes": 33137
+  },
+  "resolucao_cnas_mc_n_67_de_12_de_maio_de_2022_399660992.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 67, DE 12 DE MAIO DE 2022",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "13/05/2022",
+    "edicao": "90",
+    "pagina": "11"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-67-de-12-de-maio-de-2022-399660992",
+   "bytes": 1809
+  },
+  "resolucao_cit_n_34_de_25_de_novembro_de_2025_673569717.txt": {
+   "titulo": "RESOLUÇÃO CIT Nº 34, DE 25 DE NOVEMBRO DE 2025",
+   "orgao": "CIT",
+   "numero": 34,
+   "ano": 2025,
+   "dou": {
+    "data": "05/12/2025",
+    "edicao": "232",
+    "pagina": "125"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cit-n-34-de-25-de-novembro-de-2025-673569717",
+   "bytes": 8562
+  },
+  "resolucao_cnas_mc_n_34_de_28_de_abril_de_2021_316958994.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 34, DE 28 DE ABRIL DE 2021",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "29/04/2021",
+    "edicao": "79",
+    "pagina": "6"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-34-de-28-de-abril-de-2021-316958994",
+   "bytes": 4390
+  },
+  "resolucao_cnas_mds_n_137_de_26_de_fevereiro_de_2024_545103062.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 137, DE 26 DE FEVEREIRO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 137,
+   "ano": 2024,
+   "dou": {
+    "data": "27/02/2024",
+    "edicao": "39",
+    "pagina": "23"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-137-de-26-de-fevereiro-de-2024-545103062",
+   "bytes": 5605
+  },
+  "resolucao_cnas_mds_n_223_de_18_de_fevereiro_de_2026_687616494.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 223, DE 18 DE FEVEREIRO DE 2026",
+   "orgao": "CNAS/MDS",
+   "numero": 223,
+   "ano": 2026,
+   "dou": {
+    "data": "19/02/2026",
+    "edicao": "33",
+    "pagina": "15"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-223-de-18-de-fevereiro-de-2026-687616494",
+   "bytes": 18459
+  },
+  "resolucao_cnas_mds_n_227_de_19_de_marco_de_2026_694433720.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 227, DE 19 DE MARÇO DE 2026",
+   "orgao": "CNAS/MDS",
+   "numero": 227,
+   "ano": 2026,
+   "dou": {
+    "data": "20/03/2026",
+    "edicao": "54",
+    "pagina": "20"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-227-de-19-de-marco-de-2026-694433720",
+   "bytes": 3438
+  },
+  "resolucao_cnas_mc_n_74_de_25_de_julho_de_2022_417599645.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 74, DE 25 DE JULHO DE 2022",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "26/07/2022",
+    "edicao": "140",
+    "pagina": "2"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-74-de-25-de-julho-de-2022-417599645",
+   "bytes": 1973
+  },
+  "resolucao_cnas_mds_n_178_de_18_de_dezembro_de_2024_602932840.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 178, DE 18 DE DEZEMBRO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 178,
+   "ano": 2024,
+   "dou": {
+    "data": "19/12/2024",
+    "edicao": "244",
+    "pagina": "95"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-178-de-18-de-dezembro-de-2024-602932840",
+   "bytes": 2186
+  },
+  "resolucao_cnas_mc_n_81_de_11_de_outubro_de_2022_435499958.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 81, DE 11 DE OUTUBRO DE 2022",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "13/10/2022",
+    "edicao": "195",
+    "pagina": "6"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-81-de-11-de-outubro-de-2022-435499958",
+   "bytes": 12610
+  },
+  "resolucao_cnas_mc_n_49_de_23_de_novembro_de_2021_361603985.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 49, DE 23 DE NOVEMBRO DE 2021",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "24/11/2021",
+    "edicao": "220",
+    "pagina": "10"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-49-de-23-de-novembro-de-2021-361603985",
+   "bytes": 8650
+  },
+  "resolucao_n_1_de_7_de_fevereiro_de_2018_2985155.txt": {
+   "titulo": "RESOLUÇÃO Nº 1, DE 7 DE FEVEREIRO DE 2018",
+   "orgao": "",
+   "numero": 1,
+   "ano": 2018,
+   "dou": {
+    "data": "09/02/2018",
+    "edicao": "29",
+    "pagina": "65"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-1-de-7-de-fevereiro-de-2018-2985155",
+   "bytes": 1345
+  },
+  "resolucao_n_52_de_6_de_dezembro_de_2021_365046905.txt": {
+   "titulo": "RESOLUÇÃO Nº 52, DE 6 DE DEZEMBRO DE 2021",
+   "orgao": "",
+   "numero": 52,
+   "ano": 2021,
+   "dou": {
+    "data": "07/12/2021",
+    "edicao": "229",
+    "pagina": "15"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-52-de-6-de-dezembro-de-2021-365046905",
+   "bytes": 5870
+  },
+  "resolucao_cnas_mds_n_113_de_25_de_julho_de_2023_498924375.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 113, DE 25 DE JULHO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 113,
+   "ano": 2023,
+   "dou": {
+    "data": "26/07/2023",
+    "edicao": "141",
+    "pagina": "34"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-113-de-25-de-julho-de-2023-498924375",
+   "bytes": 5450
+  },
+  "resolucao_cnas_mc_n_93_de_26_de_dezembro_de_2022_453739576.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 93, DE 26 DE DEZEMBRO DE 2022",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "27/12/2022",
+    "edicao": "243",
+    "pagina": "18"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-93-de-26-de-dezembro-de-2022-453739576",
+   "bytes": 6199
+  },
+  "resolucao_cnas_mds_n_150_de_23_de_abril_de_2024_555715276.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 150, DE 23 DE ABRIL DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 150,
+   "ano": 2024,
+   "dou": {
+    "data": "24/04/2024",
+    "edicao": "79",
+    "pagina": "11"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-150-de-23-de-abril-de-2024-555715276",
+   "bytes": 2932
+  },
+  "resolucao_cnas_mds_n_96_de_15_de_fevereiro_de_2023_464663211.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 96, DE 15 DE FEVEREIRO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 96,
+   "ano": 2023,
+   "dou": {
+    "data": "16/02/2023",
+    "edicao": "34",
+    "pagina": "11"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-96-de-15-de-fevereiro-de-2023-464663211",
+   "bytes": 13199
+  },
+  "resolucao_cnas_mc_n_50_de_23_de_novembro_de_2021_361601866.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 50, DE 23 DE NOVEMBRO DE 2021",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "24/11/2021",
+    "edicao": "220",
+    "pagina": "10"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-50-de-23-de-novembro-de-2021-361601866",
+   "bytes": 3467
+  },
+  "resolucao_n_4_de_30_de_agosto_de_2023_507007022.txt": {
+   "titulo": "RESOLUÇÃO Nº 4, DE 30 DE AGOSTO DE 2023",
+   "orgao": "",
+   "numero": 4,
+   "ano": 2023,
+   "dou": {
+    "data": "01/09/2023",
+    "edicao": "168",
+    "pagina": "19"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-4-de-30-de-agosto-de-2023-507007022",
+   "bytes": 13849
+  },
+  "resolucao_cnas_mc_n_89_de_15_de_dezembro_de_2022_451028291.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 89, DE 15 DE DEZEMBRO DE 2022",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "16/12/2022",
+    "edicao": "236",
+    "pagina": "60"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-89-de-15-de-dezembro-de-2022-451028291",
+   "bytes": 3286
+  },
+  "resolucao_cnas_mds_n_136_de_22_de_fevereiro_de_2024_544563835.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 136, DE 22 DE FEVEREIRO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 136,
+   "ano": 2024,
+   "dou": {
+    "data": "23/02/2024",
+    "edicao": "37",
+    "pagina": "26"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-136-de-22-de-fevereiro-de-2024-544563835",
+   "bytes": 2122
+  },
+  "resolucao_n_54_de_6_de_dezembro_de_2021_365044007.txt": {
+   "titulo": "RESOLUÇÃO Nº 54, DE 6 DE DEZEMBRO DE 2021",
+   "orgao": "",
+   "numero": 54,
+   "ano": 2021,
+   "dou": {
+    "data": "07/12/2021",
+    "edicao": "229",
+    "pagina": "16"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-54-de-6-de-dezembro-de-2021-365044007",
+   "bytes": 6152
+  },
+  "resolucao_cit_n_29_de_6_de_outubro_de_2025_663085747.txt": {
+   "titulo": "RESOLUÇÃO CIT Nº 29, DE 6 DE OUTUBRO DE 2025",
+   "orgao": "CIT",
+   "numero": 29,
+   "ano": 2025,
+   "dou": {
+    "data": "16/10/2025",
+    "edicao": "198",
+    "pagina": "40"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cit-n-29-de-6-de-outubro-de-2025-663085747",
+   "bytes": 4965
+  },
+  "resolucao_cnas_mds_n_235_de_14_de_maio_de_2026_705703610.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 235, DE 14 DE MAIO DE 2026",
+   "orgao": "CNAS/MDS",
+   "numero": 235,
+   "ano": 2026,
+   "dou": {
+    "data": "15/05/2026",
+    "edicao": "90",
+    "pagina": "27"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-235-de-14-de-maio-de-2026-705703610",
+   "bytes": 43569
+  },
+  "resolucao_cnas_mds_n_133_de_4_de_dezembro_de_2023_527797416.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 133, DE 4 DE DEZEMBRO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 133,
+   "ano": 2023,
+   "dou": {
+    "data": "05/12/2023",
+    "edicao": "230",
+    "pagina": "53"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-133-de-4-de-dezembro-de-2023-527797416",
+   "bytes": 6069
+  },
+  "resolucao_cnas_mds_n_203_de_15_de_agosto_de_2025_648878759.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 203, DE 15 DE AGOSTO DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 203,
+   "ano": 2025,
+   "dou": {
+    "data": "18/08/2025",
+    "edicao": "155",
+    "pagina": "22"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-203-de-15-de-agosto-de-2025-648878759",
+   "bytes": 4151
+  },
+  "resolucao_cnas_mds_n_234_de_14_de_maio_de_2026_705701571.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 234, DE 14 DE MAIO DE 2026",
+   "orgao": "CNAS/MDS",
+   "numero": 234,
+   "ano": 2026,
+   "dou": {
+    "data": "15/05/2026",
+    "edicao": "90",
+    "pagina": "25"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-234-de-14-de-maio-de-2026-705701571",
+   "bytes": 33416
+  },
+  "resolucao_cnas_mds_n_31_de_26_de_marco_de_2026_696021706.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 31, DE 26 DE MARÇO DE 2026",
+   "orgao": "CNAS/MDS",
+   "numero": 31,
+   "ano": 2026,
+   "dou": {
+    "data": "27/03/2026",
+    "edicao": "59",
+    "pagina": "48"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-31-de-26-de-marco-de-2026-696021706",
+   "bytes": 23447
+  },
+  "resolucao_cnas_mds_n_196_de_19_de_maio_de_2025_630398392.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 196, DE 19 DE MAIO DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 196,
+   "ano": 2025,
+   "dou": {
+    "data": "20/05/2025",
+    "edicao": "93",
+    "pagina": "95"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-196-de-19-de-maio-de-2025-630398392",
+   "bytes": 2676
+  },
+  "resolucao_cnas_mc_n_70_de_15_de_junho_de_2022_408516988.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 70, DE 15 DE JUNHO DE 2022",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "20/06/2022",
+    "edicao": "114",
+    "pagina": "19"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-70-de-15-de-junho-de-2022-408516988",
+   "bytes": 1649
+  },
+  "resolucao_n_6_de_4_de_maio_de_2020_255166053.txt": {
+   "titulo": "RESOLUÇÃO Nº 6, DE 4 DE MAIO DE 2020",
+   "orgao": "",
+   "numero": 6,
+   "ano": 2020,
+   "dou": {
+    "data": "05/05/2020",
+    "edicao": "84",
+    "pagina": "13"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-6-de-4-de-maio-de-2020-255166053",
+   "bytes": 3005
+  },
+  "resolucao_n_32_de_19_de_setembro_de_2019_217284640.txt": {
+   "titulo": "RESOLUÇÃO Nº 32, DE 19 DE SETEMBRO DE 2019",
+   "orgao": "",
+   "numero": 32,
+   "ano": 2019,
+   "dou": {
+    "data": "20/09/2019",
+    "edicao": "183",
+    "pagina": "4"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-32-de-19-de-setembro-de-2019-217284640",
+   "bytes": 5549
+  },
+  "resolucao_cnas_mc_n_68_de_19_de_maio_de_2022_401482454.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 68, DE 19 DE MAIO DE 2022",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "20/05/2022",
+    "edicao": "95",
+    "pagina": "14"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-68-de-19-de-maio-de-2022-401482454",
+   "bytes": 2646
+  },
+  "resolucao_cnas_mds_n_206_de_17_de_setembro_de_2025_657147032.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 206, DE 17 DE SETEMBRO DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 206,
+   "ano": 2025,
+   "dou": {
+    "data": "19/09/2025",
+    "edicao": "179",
+    "pagina": "47"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-206-de-17-de-setembro-de-2025-657147032",
+   "bytes": 22152
+  },
+  "resolucao_n_17_de_18_de_setembro_de_2020_278468104.txt": {
+   "titulo": "RESOLUÇÃO Nº 17, DE 18 DE SETEMBRO DE 2020",
+   "orgao": "",
+   "numero": 17,
+   "ano": 2020,
+   "dou": {
+    "data": "21/09/2020",
+    "edicao": "181",
+    "pagina": "97"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-17-de-18-de-setembro-de-2020-278468104",
+   "bytes": 1678
+  },
+  "resolucao_n_19_de_6_de_novembro_de_2020_286953173.txt": {
+   "titulo": "RESOLUÇÃO Nº 19, DE 6 DE NOVEMBRO DE 2020",
+   "orgao": "",
+   "numero": 19,
+   "ano": 2020,
+   "dou": {
+    "data": "09/11/2020",
+    "edicao": "213",
+    "pagina": "8"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-19-de-6-de-novembro-de-2020-286953173",
+   "bytes": 7021
+  },
+  "resolucao_cit_n_25_de_31_de_julho_de_2025_646207357.txt": {
+   "titulo": "RESOLUÇÃO CIT Nº 25, DE 31 DE JULHO DE 2025",
+   "orgao": "CIT",
+   "numero": 25,
+   "ano": 2025,
+   "dou": {
+    "data": "05/08/2025",
+    "edicao": "146",
+    "pagina": "13"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cit-n-25-de-31-de-julho-de-2025-646207357",
+   "bytes": 10082
+  },
+  "resolucao_n_21_de_18_de_dezembro_de_2017_1122153_1122153.txt": {
+   "titulo": "RESOLUÇÃO Nº 21, DE 18 DE DEZEMBRO DE 2017",
+   "orgao": "",
+   "numero": 21,
+   "ano": 2017,
+   "dou": {
+    "data": "19/12/2017",
+    "edicao": "242",
+    "pagina": "17-174"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-21-de-18-de-dezembro-de-2017-1122153-1122153",
+   "bytes": 12480
+  },
+  "resolucao_cnas_mds_n_201_de_23_de_julho_de_2025_643879997.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 201, DE 23 DE JULHO DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 201,
+   "ano": 2025,
+   "dou": {
+    "data": "24/07/2025",
+    "edicao": "138",
+    "pagina": "39"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-201-de-23-de-julho-de-2025-643879997",
+   "bytes": 5281
+  },
+  "resolucao_n_18_de_3_de_novembro_de_2020_286049735.txt": {
+   "titulo": "RESOLUÇÃO Nº 18, DE 3 DE NOVEMBRO DE 2020",
+   "orgao": "",
+   "numero": 18,
+   "ano": 2020,
+   "dou": {
+    "data": "04/11/2020",
+    "edicao": "210",
+    "pagina": "5"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-18-de-3-de-novembro-de-2020-286049735",
+   "bytes": 3131
+  },
+  "resolucao_n_57_de_6_de_dezembro_de_2021_364960992.txt": {
+   "titulo": "RESOLUÇÃO Nº 57, DE 6 DE DEZEMBRO DE 2021",
+   "orgao": "",
+   "numero": 57,
+   "ano": 2021,
+   "dou": {
+    "data": "07/12/2021",
+    "edicao": "229",
+    "pagina": "17"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-57-de-6-de-dezembro-de-2021-364960992",
+   "bytes": 5864
+  },
+  "resolucao_cnas_mds_n_190_de_14_de_abril_de_2025_624252061.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 190, DE 14 DE ABRIL DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 190,
+   "ano": 2025,
+   "dou": {
+    "data": "15/04/2025",
+    "edicao": "72",
+    "pagina": "39"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-190-de-14-de-abril-de-2025-624252061",
+   "bytes": 1995
+  },
+  "resolucao_cnas_mc_n_85_de_1_de_dezembro_de_2022_447311664.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 85, DE 1º DE DEZEMBRO DE 2022",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "02/12/2022",
+    "edicao": "226",
+    "pagina": "39"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-85-de-1-de-dezembro-de-2022-447311664",
+   "bytes": 6932
+  },
+  "resolucao_cnas_mds_n_174_de_14_de_novembro_de_2024_596287280.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 174, DE 14 DE NOVEMBRO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 174,
+   "ano": 2024,
+   "dou": {
+    "data": "18/11/2024",
+    "edicao": "222",
+    "pagina": "20"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-174-de-14-de-novembro-de-2024-596287280",
+   "bytes": 2218
+  },
+  "resolucao_cnas_mds_n_171_de_24_de_outubro_de_2024_592448664.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 171, DE 24 DE OUTUBRO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 171,
+   "ano": 2024,
+   "dou": {
+    "data": "25/10/2024",
+    "edicao": "208",
+    "pagina": "13"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-171-de-24-de-outubro-de-2024-592448664",
+   "bytes": 6464
+  },
+  "resolucao_cnas_mc_n_23_de_16_dezembro_de_2020_295202856.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 23, DE 16 DEZEMBRO DE 2020",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "21/12/2020",
+    "edicao": "243",
+    "pagina": "36"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-23-de-16-dezembro-de-2020-295202856",
+   "bytes": 6905
+  },
+  "resolucao_cnas_mds_n_100_de_20_de_abril_de_2023_478592139.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 100, DE 20 DE ABRIL DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 100,
+   "ano": 2023,
+   "dou": {
+    "data": "24/04/2023",
+    "edicao": "77",
+    "pagina": "21"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-100-de-20-de-abril-de-2023-478592139",
+   "bytes": 29063
+  },
+  "resolucao_n_21_de_15_de_julho_de_2019_196101687.txt": {
+   "titulo": "RESOLUÇÃO Nº 21, DE 15 DE JULHO DE 2019",
+   "orgao": "",
+   "numero": 21,
+   "ano": 2019,
+   "dou": {
+    "data": "16/07/2019",
+    "edicao": "135",
+    "pagina": "5"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-21-de-15-de-julho-de-2019-196101687",
+   "bytes": 11749
+  },
+  "resolucao_cit_n_21_de_26_de_marco_de_2025_627662942.txt": {
+   "titulo": "RESOLUÇÃO CIT Nº 21, DE 26 DE MARÇO DE 2025",
+   "orgao": "CIT",
+   "numero": 21,
+   "ano": 2025,
+   "dou": {
+    "data": "07/05/2025",
+    "edicao": "84",
+    "pagina": "26"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cit-n-21-de-26-de-marco-de-2025-627662942",
+   "bytes": 10755
+  },
+  "resolucao_cnas_mds_n_109_de_19_de_julho_de_2023_497534337.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 109, DE 19 DE JULHO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 109,
+   "ano": 2023,
+   "dou": {
+    "data": "20/07/2023",
+    "edicao": "137",
+    "pagina": "16"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-109-de-19-de-julho-de-2023-497534337",
+   "bytes": 3701
+  },
+  "resolucao_cnas_mds_n_220_de_25_de_novembro_de_2025_671017875.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 220, DE 25 DE NOVEMBRO DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 220,
+   "ano": 2025,
+   "dou": {
+    "data": "26/11/2025",
+    "edicao": "225",
+    "pagina": "78"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-220-de-25-de-novembro-de-2025-671017875",
+   "bytes": 5506
+  },
+  "resolucao_cnas_mds_n_184_de_17_de_fevereiro_de_2025_613440087.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 184, DE 17 DE FEVEREIRO DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 184,
+   "ano": 2025,
+   "dou": {
+    "data": "19/02/2025",
+    "edicao": "35",
+    "pagina": "35"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-184-de-17-de-fevereiro-de-2025-613440087",
+   "bytes": 6177
+  },
+  "resolucao_n_20_de_20_de_maio_de_2019_113231219.txt": {
+   "titulo": "RESOLUÇÃO Nº 20, DE 20 DE MAIO DE 2019",
+   "orgao": "",
+   "numero": 20,
+   "ano": 2019,
+   "dou": {
+    "data": "21/05/2019",
+    "edicao": "96",
+    "pagina": "16"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-20-de-20-de-maio-de-2019-113231219",
+   "bytes": 1600
+  },
+  "resolucao_cnas_mds_n_217_de_18_de_novembro_de_2025_670203130.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 217, DE 18 DE NOVEMBRO DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 217,
+   "ano": 2025,
+   "dou": {
+    "data": "19/11/2025",
+    "edicao": "221",
+    "pagina": "69"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-217-de-18-de-novembro-de-2025-670203130",
+   "bytes": 1436
+  },
+  "resolucao_cnas_mds_n_183_de_17_de_fevereiro_de_2025_613432098.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 183, DE 17 DE FEVEREIRO DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 183,
+   "ano": 2025,
+   "dou": {
+    "data": "18/02/2025",
+    "edicao": "34",
+    "pagina": "25"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-183-de-17-de-fevereiro-de-2025-613432098",
+   "bytes": 5164
+  },
+  "resolucao_cnas_mds_n_197_de_16_de_junho_de_2025_636800976.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 197, DE 16 DE JUNHO DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 197,
+   "ano": 2025,
+   "dou": {
+    "data": "17/06/2025",
+    "edicao": "113",
+    "pagina": "67"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-197-de-16-de-junho-de-2025-636800976",
+   "bytes": 3479
+  },
+  "resolucao_cnas_mds_n_140_de_26_de_fevereiro_de_2024_545105604.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 140, DE 26 DE FEVEREIRO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 140,
+   "ano": 2024,
+   "dou": {
+    "data": "27/02/2024",
+    "edicao": "39",
+    "pagina": "24"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-140-de-26-de-fevereiro-de-2024-545105604",
+   "bytes": 5574
+  },
+  "resolucao_cnas_mds_n_107_de_29_de_junho_de_2023_493179629.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 107, DE 29 DE JUNHO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 107,
+   "ano": 2023,
+   "dou": {
+    "data": "30/06/2023",
+    "edicao": "123",
+    "pagina": "21"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-107-de-29-de-junho-de-2023-493179629",
+   "bytes": 1561
+  },
+  "resolucao_cit_n_12_de_13_de_marco_de_2024_555165152.txt": {
+   "titulo": "RESOLUÇÃO CIT Nº 12, DE 13 DE MARÇO DE 2024",
+   "orgao": "CIT",
+   "numero": 12,
+   "ano": 2024,
+   "dou": {
+    "data": "19/04/2024",
+    "edicao": "76",
+    "pagina": "18"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cit-n-12-de-13-de-marco-de-2024-555165152",
+   "bytes": 3382
+  },
+  "resolucao_n_7_de_18_de_maio_de_2016_22913652.txt": {
+   "titulo": "RESOLUÇÃO Nº 7, DE 18 DE MAIO DE 2016",
+   "orgao": "",
+   "numero": 7,
+   "ano": 2016,
+   "dou": {
+    "data": "20/05/2016",
+    "edicao": "96",
+    "pagina": "58"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-7-de-18-de-maio-de-2016-22913652",
+   "bytes": 137843
+  },
+  "resolucao_cnas_mds_n_243_de_6_de_agosto_de_2026_724094964.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 243, DE 6 DE AGOSTO DE 2026",
+   "orgao": "CNAS/MDS",
+   "numero": 243,
+   "ano": 2026,
+   "dou": {
+    "data": "07/08/2026",
+    "edicao": "148",
+    "pagina": "23"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-243-de-6-de-agosto-de-2026-724094964",
+   "bytes": 1559
+  },
+  "resolucao_n_20_de_20_de_novembro_de_2020_289544277.txt": {
+   "titulo": "RESOLUÇÃO Nº 20, DE 20 DE NOVEMBRO DE 2020",
+   "orgao": "",
+   "numero": 20,
+   "ano": 2020,
+   "dou": {
+    "data": "23/11/2020",
+    "edicao": "223",
+    "pagina": "3"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-20-de-20-de-novembro-de-2020-289544277",
+   "bytes": 12768
+  },
+  "resolucao_n_14_de_4_de_setembro_de_2020_276154089.txt": {
+   "titulo": "RESOLUÇÃO Nº 14, DE 4 DE SETEMBRO DE 2020",
+   "orgao": "",
+   "numero": 14,
+   "ano": 2020,
+   "dou": {
+    "data": "08/09/2020",
+    "edicao": "172",
+    "pagina": "3"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-14-de-4-de-setembro-de-2020-276154089",
+   "bytes": 5810
+  },
+  "resolucao_cnas_mds_n_142_de_26_de_fevereiro_de_2024_545100836.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 142, DE 26 DE FEVEREIRO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 142,
+   "ano": 2024,
+   "dou": {
+    "data": "27/02/2024",
+    "edicao": "39",
+    "pagina": "25"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-142-de-26-de-fevereiro-de-2024-545100836",
+   "bytes": 6034
+  },
+  "resolucao_n_35_de_10_de_outubro_de_2019_221564015.txt": {
+   "titulo": "RESOLUÇÃO Nº 35, DE 10 DE OUTUBRO DE 2019",
+   "orgao": "",
+   "numero": 35,
+   "ano": 2019,
+   "dou": {
+    "data": "14/10/2019",
+    "edicao": "199",
+    "pagina": "3"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-35-de-10-de-outubro-de-2019-221564015",
+   "bytes": 4330
+  },
+  "resolucao_cnas_mds_n_126_de_20_de_novembro_de_2023_524553649.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 126, DE 20 DE NOVEMBRO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 126,
+   "ano": 2023,
+   "dou": {
+    "data": "21/11/2023",
+    "edicao": "220",
+    "pagina": "71"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-126-de-20-de-novembro-de-2023-524553649",
+   "bytes": 59069
+  },
+  "resolucao_cnas_mds_n_95_de_13_de_fevereiro_de_2023_464443925.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 95, DE 13 DE FEVEREIRO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 95,
+   "ano": 2023,
+   "dou": {
+    "data": "14/02/2023",
+    "edicao": "32",
+    "pagina": "22"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-95-de-13-de-fevereiro-de-2023-464443925",
+   "bytes": 1750
+  },
+  "resolucao_n_40_de_13_de_outubro_de_2020_286409284.txt": {
+   "titulo": "RESOLUÇÃO Nº 40, DE 13 DE OUTUBRO DE 2020",
+   "orgao": "",
+   "numero": 40,
+   "ano": 2020,
+   "dou": {
+    "data": "05/11/2020",
+    "edicao": "211",
+    "pagina": "144"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-40-de-13-de-outubro-de-2020-286409284",
+   "bytes": 119764
+  },
+  "resolucao_cnas_n_147_de_1_de_marco_de_2024_546268108.txt": {
+   "titulo": "RESOLUÇÃO CNAS Nº 147, DE 1º DE MARÇO DE 2024",
+   "orgao": "CNAS",
+   "numero": 147,
+   "ano": 2024,
+   "dou": {
+    "data": "04/03/2024",
+    "edicao": "43",
+    "pagina": "20"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas-n-147-de-1-de-marco-de-2024-546268108",
+   "bytes": 1557
+  },
+  "resolucao_cnas_mds_n_118_de_25_de_setembro_de_2023_512126393.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 118, DE 25 DE SETEMBRO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 118,
+   "ano": 2023,
+   "dou": {
+    "data": "26/09/2023",
+    "edicao": "184",
+    "pagina": "25"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-118-de-25-de-setembro-de-2023-512126393",
+   "bytes": 2120
+  },
+  "resolucao_cnas_mds_n_101_de_2_de_maio_de_2023_480528903.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 101, DE 2 DE MAIO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 101,
+   "ano": 2023,
+   "dou": {
+    "data": "03/05/2023",
+    "edicao": "83",
+    "pagina": "20"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-101-de-2-de-maio-de-2023-480528903",
+   "bytes": 1889
+  },
+  "resolucao_n_10_de_20_de_julho_de_2020_267728515.txt": {
+   "titulo": "RESOLUÇÃO  Nº 10, DE 20 DE JULHO DE 2020",
+   "orgao": "",
+   "numero": 10,
+   "ano": 2020,
+   "dou": {
+    "data": "21/07/2020",
+    "edicao": "138",
+    "pagina": "8"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-10-de-20-de-julho-de-2020-267728515",
+   "bytes": 2149
+  },
+  "resolucao_n_4_de_19_de_fevereiro_de_2019_64160540.txt": {
+   "titulo": "RESOLUÇÃO Nº 4, DE 19 DE FEVEREIRO DE 2019",
+   "orgao": "",
+   "numero": 4,
+   "ano": 2019,
+   "dou": {
+    "data": "20/02/2019",
+    "edicao": "36",
+    "pagina": "7"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-4-de-19-de-fevereiro-de-2019-64160540",
+   "bytes": 1799
+  },
+  "resolucao_cnas_mds_n_139_de_26_de_fevereiro_de_2024_545095184.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 139, DE 26 DE FEVEREIRO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 139,
+   "ano": 2024,
+   "dou": {
+    "data": "27/02/2024",
+    "edicao": "39",
+    "pagina": "24"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-139-de-26-de-fevereiro-de-2024-545095184",
+   "bytes": 5943
+  },
+  "resolucao_n_11_de_4_de_junho_de_2018_17500752.txt": {
+   "titulo": "RESOLUÇÃO Nº 11, DE 4 DE JUNHO DE 2018",
+   "orgao": "",
+   "numero": 11,
+   "ano": 2018,
+   "dou": {
+    "data": "06/06/2018",
+    "edicao": "107",
+    "pagina": "68"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-11-de-4-de-junho-de-2018-17500752",
+   "bytes": 5181
+  },
+  "resolucao_cnas_mds_n_145_de_29_de_fevereiro_de_2024_546028351.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 145, de 29 DE FEVEREIRO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 145,
+   "ano": 2024,
+   "dou": {
+    "data": "01/03/2024",
+    "edicao": "42",
+    "pagina": "20"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-145-de-29-de-fevereiro-de-2024-546028351",
+   "bytes": 18365
+  },
+  "resolucao_cnas_mc_n_91_de_21_de_dezembro_de_2022_452768631.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 91, DE 21 DE DEZEMBRO DE 2022",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "22/12/2022",
+    "edicao": "240",
+    "pagina": "74"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-91-de-21-de-dezembro-de-2022-452768631",
+   "bytes": 6558
+  },
+  "resolucao_cnas_mds_n_130_de_27_de_novembro_de_2023_526279681.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 130, DE 27 DE NOVEMBRO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 130,
+   "ano": 2023,
+   "dou": {
+    "data": "28/11/2023",
+    "edicao": "225",
+    "pagina": "25"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-130-de-27-de-novembro-de-2023-526279681",
+   "bytes": 15421
+  },
+  "resolucao_cit_n_19_de_23_de_outubro_de_2024_613455017.txt": {
+   "titulo": "RESOLUÇÃO CIT Nº 19, DE 23 DE OUTUBRO DE 2024",
+   "orgao": "CIT",
+   "numero": 19,
+   "ano": 2024,
+   "dou": {
+    "data": "19/02/2025",
+    "edicao": "35",
+    "pagina": "34"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cit-n-19-de-23-de-outubro-de-2024-613455017",
+   "bytes": 5740
+  },
+  "resolucao_cnas_mds_n_233_de_7_de_maio_de_2026_704085604.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 233, DE 7 DE MAIO DE 2026",
+   "orgao": "CNAS/MDS",
+   "numero": 233,
+   "ano": 2026,
+   "dou": {
+    "data": "08/05/2026",
+    "edicao": "85",
+    "pagina": "93"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-233-de-7-de-maio-de-2026-704085604",
+   "bytes": 4035
+  },
+  "resolucao_cnas_mds_n_176_de_17_de_dezembro_de_2024_602580197.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 176, DE 17 DE DEZEMBRO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 176,
+   "ano": 2024,
+   "dou": {
+    "data": "18/12/2024",
+    "edicao": "243",
+    "pagina": "29"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-176-de-17-de-dezembro-de-2024-602580197",
+   "bytes": 2101
+  },
+  "resolucao_cnas_mc_n_25_de_16_dezembro_de_2020_295222893.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 25, DE 16 DEZEMBRO DE 2020",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "21/12/2020",
+    "edicao": "243",
+    "pagina": "37"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-25-de-16-dezembro-de-2020-295222893",
+   "bytes": 6001
+  },
+  "resolucao_cnas_mds_n_144_de_27_de_fevereiro_de_2024_545327676.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 144, DE 27 DE FEVEREIRO DE 2024",
+   "orgao": "CNAS/MDS",
+   "numero": 144,
+   "ano": 2024,
+   "dou": {
+    "data": "28/02/2024",
+    "edicao": "40",
+    "pagina": "20"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-144-de-27-de-fevereiro-de-2024-545327676",
+   "bytes": 5095
+  },
+  "resolucao_n_8_de_29_de_maio_de_2020_259635857.txt": {
+   "titulo": "RESOLUÇÃO  nº 8, DE 29 DE MAIO DE 2020",
+   "orgao": "",
+   "numero": 8,
+   "ano": 2020,
+   "dou": {
+    "data": "02/06/2020",
+    "edicao": "104",
+    "pagina": "5"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-8-de-29-de-maio-de-2020-259635857",
+   "bytes": 4464
+  },
+  "resolucao_cnas_mds_n_185_de_26_de_marco_de_2025_620751238.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 185, DE 26 DE MARÇO DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 185,
+   "ano": 2025,
+   "dou": {
+    "data": "28/03/2025",
+    "edicao": "60",
+    "pagina": "39"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-185-de-26-de-marco-de-2025-620751238",
+   "bytes": 43674
+  },
+  "resolucao_cnas_mds_n_207_de_18_de_setembro_de_2025_657166186.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 207, DE 18 DE SETEMBRO DE 2025",
+   "orgao": "CNAS/MDS",
+   "numero": 207,
+   "ano": 2025,
+   "dou": {
+    "data": "19/09/2025",
+    "edicao": "179",
+    "pagina": "49"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-207-de-18-de-setembro-de-2025-657166186",
+   "bytes": 8751
+  },
+  "resolucao_cnas_n_146_de_1_de_marco_de_2024_546246919.txt": {
+   "titulo": "RESOLUÇÃO CNAS Nº 146, DE 1º DE MARÇO DE 2024",
+   "orgao": "CNAS",
+   "numero": 146,
+   "ano": 2024,
+   "dou": {
+    "data": "04/03/2024",
+    "edicao": "43",
+    "pagina": "19"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas-n-146-de-1-de-marco-de-2024-546246919",
+   "bytes": 5587
+  },
+  "resolucao_n_26_de_18_de_dezembro_de_2018_55878295.txt": {
+   "titulo": "RESOLUÇÃO Nº 26, DE 18 DE DEZEMBRO DE 2018",
+   "orgao": "",
+   "numero": 26,
+   "ano": 2018,
+   "dou": {
+    "data": "19/12/2018",
+    "edicao": "243",
+    "pagina": "157"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-26-de-18-de-dezembro-de-2018-55878295",
+   "bytes": 7519
+  },
+  "resolucao_cnas_mds_n_102_de_2_de_maio_de_2023_480529731.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MDS Nº 102, DE 2 DE MAIO DE 2023",
+   "orgao": "CNAS/MDS",
+   "numero": 102,
+   "ano": 2023,
+   "dou": {
+    "data": "03/05/2023",
+    "edicao": "83",
+    "pagina": "20"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-102-de-2-de-maio-de-2023-480529731",
+   "bytes": 4569
+  },
+  "resolucao_cnas_mc_n_84_de_17_de_novembro_de_2022_444150974.txt": {
+   "titulo": "RESOLUÇÃO CNAS/MC Nº 84, DE 17 DE NOVEMBRO DE 2022",
+   "orgao": null,
+   "numero": null,
+   "ano": null,
+   "dou": {
+    "data": "18/11/2022",
+    "edicao": "217",
+    "pagina": "11"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-84-de-17-de-novembro-de-2022-444150974",
+   "bytes": 6852
+  },
+  "resolucao_n_6_de_4_de_novembro_de_2021_357331111.txt": {
+   "titulo": "RESOLUÇÃO Nº 6, DE 4 DE NOVEMBRO DE 2021",
+   "orgao": "",
+   "numero": 6,
+   "ano": 2021,
+   "dou": {
+    "data": "08/11/2021",
+    "edicao": "209",
+    "pagina": "6"
+   },
+   "fonte": "https://www.in.gov.br/web/dou/-/resolucao-n-6-de-4-de-novembro-de-2021-357331111",
+   "bytes": 2700
+  }
+ },
+ "catalogadas_sem_texto_historicas": {
+  "145/2004": {
+   "ementa": "Politica Nacional de Assistencia Social - PNAS",
+   "criticidade": "alta"
+  },
+  "130/2005": {
+   "ementa": "NOB/SUAS 2005 - substituida pela 33/2012",
+   "criticidade": "baixa"
+  },
+  "269/2006": {
+   "ementa": "NOB-RH/SUAS - equipes de referencia",
+   "criticidade": "alta",
+   "parametro": "SEM-PES-04"
+  },
+  "109/2009": {
+   "ementa": "Tipificacao Nacional dos Servicos Socioassistenciais",
+   "criticidade": "critica"
+  },
+  "17/2011": {
+   "ementa": "Profissionais de nivel superior nas equipes de referencia",
+   "criticidade": "alta",
+   "parametro": "SEM-PES-04"
+  },
+  "27/2011": {
+   "ementa": "Servicos e programas do SUAS por bloco de financiamento",
+   "criticidade": "alta"
+  },
+  "32/2011": {
+   "ementa": "Uso dos recursos do cofinanciamento federal",
+   "criticidade": "alta"
+  },
+  "33/2012": {
+   "ementa": "NOB/SUAS 2012 - artigo 121 VII previa 3% ao controle social, superado pela 202/2025",
+   "criticidade": "critica"
+  },
+  "18/2012": {
+   "ementa": "Expansao e qualificacao dos servicos",
+   "criticidade": "media"
+  },
+  "21/2013": {
+   "ementa": "Insercao de usuarios no CadUnico",
+   "criticidade": "media"
+  },
+  "14/2014": {
+   "ementa": "Parametros de inscricao de entidades nos Conselhos",
+   "criticidade": "critica",
+   "parametro": "CMAS-PROC-06"
+  },
+  "15/2014": {
+   "ementa": "REVOGADA pelo artigo 17 da Resolucao CNAS/MDS 202/2025",
+   "criticidade": "historica",
+   "situacao": "REVOGADA"
+  },
+  "18/2014": {
+   "ementa": "Beneficios eventuais no SUAS",
+   "criticidade": "alta"
+  },
+  "11/2015": {
+   "ementa": "Caracterizacao dos usuarios e representacao no Conselho",
+   "criticidade": "alta",
+   "parametro": "CMAS-CAB-07"
+  },
+  "9/2019": {
+   "ementa": "Ordenamento das ofertas do SUAS",
+   "criticidade": "media"
+  },
+  "6/2023": {
+   "ementa": "Reordenamento do cofinanciamento federal",
+   "criticidade": "alta"
+  },
+  "157/2023": {
+   "ementa": "Regimento Interno do CNAS - base da 202/2025",
+   "criticidade": "alta"
+  }
+ }
+}

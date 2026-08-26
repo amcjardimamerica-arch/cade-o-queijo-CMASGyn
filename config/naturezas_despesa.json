@@ -1,0 +1,42 @@
+{
+  "_meta": {
+    "regra_critica": "A extracao DEVE capturar 10 digitos (categoria+grupo+modalidade+elemento+SUBITEM). Truncar em 8 torna aluguel inatingivel.",
+    "defeito_ativo": "Em 24/08/2026 detectados 105 registros com natureza desalinhada do valor; 29 trocam de grupo economico; R$ 10.858.000,00 afetados; 20,18% do total."
+  },
+  "bolsoes": {
+    "PESSOAL": {
+      "padrao": "^31",
+      "subitens_de_folha": ["31901100", "31900400", "31901300", "31901600", "31901101"],
+      "teto_legal": {"percentual": 30, "base": "recursos do Tesouro Municipal", "norma": "Artigo 4, paragrafo unico, da Lei municipal 7.531/1995"}
+    },
+    "ALUGUEL_E_LOCACAO": {
+      "subitens": ["33903615", "33903641", "33903910", "33903944", "33903916"],
+      "busca_textual_obrigatoria": ["locac", "locatari", "locador", "aluguel", "imovel", "matricula n", "cartorio de registro de imoveis", "abrigar as instalacoes"],
+      "exige_para_conformidade": ["contrato de locacao vigente", "prazo", "valor mensal", "indice de reajuste", "laudo de avaliacao ou pesquisa de mercado"],
+      "norma": "Artigo 4, inciso IV, da Lei municipal 7.531/1995"
+    },
+    "ENTIDADES": {
+      "naturezas": ["33503900", "33504100", "33504300", "33508500", "44504100", "44504200"],
+      "nomes": {
+        "33503900": "Outros servicos de terceiros - pessoa juridica - instituicao privada sem fins lucrativos",
+        "33504100": "Contribuicoes a instituicao privada sem fins lucrativos",
+        "33504300": "Subvencoes sociais a instituicao privada sem fins lucrativos",
+        "33508500": "Subvencoes economicas",
+        "44504200": "Auxilios - instituicao privada sem fins lucrativos"
+      },
+      "canal_obrigatorio": "Artigo 5 da Lei municipal 7.531/1995 - somente por intermedio do FMAS e a entidade inscrita no Conselho"
+    },
+    "BENEFICIOS_EVENTUAIS": {
+      "naturezas": ["33903200", "33904800"],
+      "norma": "Artigo 15, inciso I, e artigo 22 da Lei 8.742/1993"
+    },
+    "CUSTEIO": {"padrao": "^33", "excetuando": ["33503900", "33504100", "33504300", "33508500"]},
+    "INVESTIMENTO": {"padrao": "^44"}
+  },
+  "gastos_fixos_recorrentes": {
+    "definicao": "Mesmo credor com pagamento em 3 ou mais competencias consecutivas e coeficiente de variacao do valor abaixo de 15%.",
+    "saida_obrigatoria": ["credor", "cnpj", "valor_mensal", "instrumento", "numero", "vigencia_inicio", "vigencia_fim", "objeto", "fundamento_legal"],
+    "vermelho_se": "recorrencia sem contrato, termo, convenio ou ata de registro de precos identificado",
+    "norma": "Artigo 62 da Lei 4.320/1964; artigo 48-A, inciso I, da Lei Complementar 101/2000"
+  }
+}

@@ -1,0 +1,223 @@
+# RESOLUÇÃO CNAS/MC Nº 34, DE 28 DE ABRIL DE 2021
+# DOU 29/04/2021 Edicao 79 Secao 1 Pagina 6
+# fonte: https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-34-de-28-de-abril-de-2021-316958994
+
+RESOLUÇÃO CNAS/MC Nº 34, DE 28 DE ABRIL DE 2021
+ Dispõe sobre a aprovação do Relatório da Execução Orçamentária e Financeira do Fundo Nacional de Assistência Social (FNAS), exercício de 2021 - 1º trimestre.
+ A Plenária do CONSELHO NACIONAL DE ASSISTÊNCIA SOCIAL (CNAS), em reunião ordinária realizada nos dias 12, 13, 14 e 15 de abril de 2021, no uso da competência que lhe conferem os incisos VIII e XIV do artigo 18 da Lei n.º 8.742, de 7 de dezembro de 1993 - Lei Orgânica da Assistência Social (LOAS), resolve:
+ Art. 1º- Aprovar o Relatório de Execução Orçamentária e Financeira do Fundo Nacional de Assistência Social (FNAS), exercício de 2021 - 1° trimestre, apresentado pela Diretoria Executiva do Fundo Nacional de Assistência Social (DEFNAS) do Ministério da Cidadania (MC), planilha anexa.
+ Art. 2º- Esta Resolução entra em vigor na data de sua publicação.
+ MIGUEL ÂNGELO GOMES OLIVEIRA
+ Presidente do Conselho
+ ANEXO
+ EXECUÇÃO ORÇAMENTÁRIA E FINANCEIRA/2021
+ Atualizado: 09/04/2021
+ 55.901 - FUNDO NACIONAL DE ASSISTÊNCIA SOCIAL
+ CÓD
+ ATIVIDADE/PROGRAMA
+ COMPONENTES
+ DOTAÇÃO RECEBIDA
+ DOTAÇÃO EMPENHADA
+ DOTAÇÃO PAGA
+ CRÉDITO RECEBIDO
+ EMENDAS
+ TOTAL
+ CRÉDITO RECEBIDO
+ EMENDAS
+ TOTAL
+ CRÉDITO RECEBIDO
+ EMENDAS
+ TOTAL
+ (A)
+ (B)
+ C=(A+B)
+ ( D )
+ (E)
+ (F) = D + E
+ (G)
+ (H)
+ (I)
+ 5031
+ PROTEÇÃO SOCIAL NO ÂMBITO DO SISTEMA ÚNICO DE ASSISTÊNCIA SOCIAL
+ 199.322.264
+ -
+ 199.322.264
+ 156.583.038
+ -
+ 156.583.038
+ 156.583.038
+ -
+ 156.583.038
+ 219E
+ Ações de Proteção Social Básica
+ PBF / PBV
+ 114.513.155
+ 114.513.155
+ 98.548.508
+ 98.548.508
+ 98.548.508
+ 98.548.508
+ 219F
+ Ações de Proteção Social Especial
+ PFMC / PTMC / PAC /PVAC
+ 84.809.109
+ 84.809.109
+ 58.034.530
+ 58.034.530
+ 58.034.530
+ 58.034.530
+ 219G
+ Estruturação da Rede de Serviços do Sistema Único de Assistência Social (SUAS)
+ -
+ -
+ -
+ 2583
+ Serviço de Processamento de Dados do BPC e da RMV
+ -
+ -
+ -
+ 2589
+ Avaliação e Operacionalização do BPC
+ -
+ -
+ -
+ TOTAL I (DISCRICIONÁRIAS)
+ 199.322.264
+ -
+ 199.322.264
+ 156.583.038
+ -
+ 156.583.038
+ 156.583.038
+ -
+ 156.583.038
+ 5028
+ INCLUSÃO SOCIAL POR MEIO DO BOLSA FAMÍLIA E DA ARTICULAÇÃO DE POLÍTICAS PÚBLICAS
+ 46.150.360
+ -
+ 46.150.360
+ 46.150.360
+ -
+ 46.150.360
+ 46.150.360
+ -
+ 46.150.360
+ 8446
+ Serv. De Apoio à Gestão Descentralizada ao Prog. Bolsa Família
+ IGDPBF
+ 46.150.360
+ -
+ 46.150.360
+ 46.150.360
+ -
+ 46.150.360
+ 46.150.360
+ -
+ 46.150.360
+ 5024
+ ATENÇÃO INTEGRAL À PRIMEIRA INFÂNCIA
+ 103.250.000
+ -
+ 103.250.000
+ 103.250.000
+ -
+ 103.250.000
+ -
+ -
+ -
+ 217M
+ Desenvolvimento Integral na Primeira Infância - Criança Feliz
+ 103.250.000
+ -
+ 103.250.000
+ 103.250.000
+ 103.250.000
+ -
+ -
+ TOTAL I I (DISCRICIONÁRIAS)
+ 348.722.624
+ -
+ 348.722.624
+ 305.983.398
+ -
+ 305.983.398
+ 202.733.398
+ -
+ 202.733.398
+ 0901
+ OPERAÇÕES ESPECIAIS: CUMPRIMENTO DE SENTENÇAS JUDICIAIS
+ 1.197.021.388
+ -
+ 1.197.021.388
+ 171.035.559
+ -
+ 171.035.559
+ 171.025.111
+ -
+ 171.025.111
+ 0005
+ Cumprimento de Sentença Judicial Transitada em Julgado (Precatórios) devida pela União, Autarquias, e Fundações Públicas
+ -
+ -
+ -
+ -
+ 0625
+ Cumprimento de Sentença Judicial Transitada em Julgado de Pequeno Valor devida pela União, Autarquias, e Fundações Públicas
+ 1.197.021.388
+ 1.197.021.388
+ 171.035.559
+ 171.035.559
+ 171.025.111
+ -
+ 171.025.111
+ 5031
+ PROTEÇÃO SOCIAL NO ÂMBITO DO SISTEMA ÚNICO DE ASSISTÊNCIA SOCIAL
+ 64.702.343.905
+ -
+ -
+ 64.694.415.665
+ -
+ -
+ 14.013.512.834
+ -
+ 14.013.512.834
+ 00H5
+ BPC/RMV à pessoa idosa
+ 28.245.608.749
+ 28.237.680.509
+ -
+ 6.098.073.785
+ -
+ 6.098.073.785
+ 00IN
+ BPC/RMV à pessoa com deficiência e invalidez
+ 36.456.735.156
+ 36.456.735.156
+ -
+ 7.915.439.048
+ -
+ 7.915.439.048
+ TOTAL III (BPC/RMV/SENTENÇAS)
+ 65.899.365.293
+ -
+ 1.197.021.388
+ 64.865.451.224
+ -
+ 171.035.559
+ 14.184.537.944
+ -
+ 14.184.537.944
+ TOTAL GERAL
+ 66.248.087.917
+ -
+ 1.545.744.012
+ 65.171.434.622
+ -
+ 477.018.957
+ 14.387.271.342
+ -
+ 14.387.271.342
+ Obs.: Este relatório reflete a execução orçamentária e financeira dos créditos descentralizados para outros órgãos.
+ Este conteúdo não substitui o publicado na versão certificada.
+ Borda do rodapé 
+ Logo da Imprensa

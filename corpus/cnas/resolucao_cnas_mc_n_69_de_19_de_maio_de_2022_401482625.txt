@@ -1,0 +1,221 @@
+# RESOLUÇÃO CNAS/MC Nº 69, DE 19 DE MAIO DE 2022
+# DOU 20/05/2022 Edicao 95 Secao 1 Pagina 15
+# fonte: https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-69-de-19-de-maio-de-2022-401482625
+
+RESOLUÇÃO CNAS/MC Nº 69, DE 19 DE MAIO DE 2022
+ Dispõe sobre a aprovação do Relatório da Execução Orçamentária e Financeira do Fundo Nacional de Assistência Social (FNAS), exercício de 2022 - 1º trimestre.
+ A Plenária do Conselho Nacional de Assistência Social (CNAS), em reunião ordinária realizada nos dias 9, 10, 11 e 12 de maio de 2022, no uso da competência que lhe conferem os incisos VIII e XIV do artigo 18 da Lei n.º 8.742, de 7 de dezembro de 1993 - Lei Orgânica da Assistência Social (LOAS), resolve:
+ Art. 1º- Aprovar o Relatório de Execução Orçamentária e Financeira do Fundo Nacional de Assistência Social (FNAS), exercício de 2022 - 1° trimestre, apresentado pela Diretoria Executiva do Fundo Nacional de Assistência Social (DEFNAS) do Ministério da Cidadania (MC), planilha anexa.
+ Art. 2º- Esta Resolução entra em vigor uma semana após a data de sua publicação.
+ ALDENORA GOMES GONZÁLEZ
+ Presidente do Conselho Em exercício
+ ANEXOEXECUÇÃO ORÇAMENTÁRIA E FINANCEIRA DO FUNDO NACIONAL DE ASSISTÊNCIA SOCIAL
+ REFERENTE AO PERÍODO DE JANEIRO A MARÇO 2022
+ Atualizado: 02/05/2022
+ 55.901 - FUNDO NACIONAL DE ASSISTÊNCIA SOCIAL
+ CÓD
+ ATIVIDADE/PROGRAMA
+ COMPONENTES
+ DOTAÇÃO INICIAL
+ DOTAÇÃO EMPENHADA
+ %
+ DOTAÇÃO PAGA
+ %
+ DOTAÇÃO INICIAL
+ CRÉDITO
+ DOTAÇÃO ATUAL
+ (A)
+ (B)
+ (C)
+ (D )
+ E = (D/C)
+ (F)
+ G = (F/D)
+ 5031
+ PROTEÇÃO SOCIAL NO ÂMBITO DO SISTEMA ÚNICO DE ASSISTÊNCIA SOCIAL
+ 2.625.810.617
+ -
+ 2.625.810.617
+ 575.852.849
+ 22%
+ 487.303.008
+ 85%
+ 219E
+ Ações de Proteção Social Básica
+ PBF / PBV
+ 638.552.040
+ 638.552.040
+ 163.211.891
+ 26%
+ 163.211.891
+ 100%
+ 219F
+ Ações de Proteção Social Especial
+ PFMC / PTMC / PAC /PVAC
+ 327.000.000
+ 327.000.000
+ 98.766.791
+ 30%
+ 76.200.165
+ 77%
+ 219G
+ Estruturação da Rede de Serviços do Sistema Único de Assistência Social (SUAS)*
+ 1.552.019.597
+ 1.552.019.597
+ 307.441.077
+ 20%
+ 247.109.337
+ 80%
+ 2583
+ Serviço de Processamento de Dados do BPC e da RMV
+ 49.000.000
+ 49.000.000
+ 325.198
+ 1%
+ 325.198
+ 100%
+ 2589
+ Avaliação e Operacionalização do BPC
+ 9.238.980
+ 9.238.980
+ 6.107.892
+ 66%
+ 456.417
+ 7%
+ 8893
+ Apoio à Organização, à Gestão e à Vigilância Social no Território, no âmbito do SUAS
+ IGDSUAS
+ 50.000.000
+ 50.000.000
+ -
+ 0%
+ -
+ TOTAL I (DISCRICIONÁRIAS)
+ 2.625.810.617
+ -
+ 2.625.810.617
+ 575.852.849
+ 22%
+ 487.303.008
+ 85%
+ 5028
+ INCLUSÃO SOCIAL POR MEIO DO AUXÍLIO BRASIL E DA ARTICULAÇÃO DE POLÍTICAS PÚBLICAS
+ 624.528.000
+ -
+ 624.528.000
+ 608.636.000
+ 97%
+ 46.610.694
+ 8%
+ 21DR
+ Serv. De Apoio à Gestão Descentralizada ao Prog. Auxílio Brasil
+ IGD PAB
+ 624.528.000
+ -
+ 624.528.000
+ 608.636.000
+ 97%
+ 46.610.694
+ 8%
+ 5024
+ ATENÇÃO INTEGRAL À PRIMEIRA INFÂNCIA
+ 451.716.644
+ -
+ 451.716.644
+ 425.085.414
+ 94%
+ 76.860.389
+ 18%
+ 217M
+ Desenvolvimento Integral na Primeira Infância - Criança Feliz
+ 451.716.644
+ 451.716.644
+ 425.085.414
+ 94%
+ 76.860.389
+ 18%
+ TOTAL I I (DISCRICIONÁRIAS)
+ 1.076.244.644
+ -
+ 1.076.244.644
+ 828.797.928
+ 77%
+ 123.471.083
+ 15%
+ 0901
+ OPERAÇÕES ESPECIAIS: CUMPRIMENTO DE SENTENÇAS JUDICIAIS
+ 1.635.036.521
+ -
+ 1.635.036.521
+ 439.858.113
+ 27%
+ 342.416.236
+ 78%
+ 0005
+ Cumprimento de Sentença Judicial Transitada em Julgado (Precatórios) devida pela União, Autarquias, e Fundações Públicas
+ 259.501.024
+ 259.501.024
+ -
+ 0%
+ -
+ 0625
+ Cumprimento de Sentença Judicial Transitada em Julgado de Pequeno Valor devida pela União, Autarquias, e Fundações Públicas
+ 1.375.535.497
+ 1.375.535.497
+ 439.858.113
+ 32%
+ 342.416.236
+ 78%
+ 5031
+ PROTEÇÃO SOCIAL NO ÂMBITO DO SISTEMA ÚNICO DE ASSISTÊNCIA SOCIAL
+ 74.726.184.159
+ -
+ 74.726.184.159
+ 71.989.613.198
+ 96%
+ 21.887.844.292
+ 30%
+ 00H5
+ BPC/RMV à pessoa idosa
+ 33.341.953.162
+ 33.341.953.162
+ 32.135.965.742
+ 96%
+ 9.699.731.630
+ 30%
+ 00IN
+ BPC/RMV à pessoa com deficiência e invalidez
+ 41.191.445.276
+ 41.191.445.276
+ 39.684.139.613
+ 96%
+ 12.187.971.269
+ 31%
+ 00TZ
+ Auxílio Inclusão as pessoas com deficiência
+ 192.785.721
+ 192.785.721
+ 169.507.843
+ 88%
+ 141.393
+ 0%
+ TOTAL III (BPC/RMV/SENTENÇAS)
+ 76.361.220.680
+ -
+ 76.361.220.680
+ 72.429.471.311
+ 95%
+ 22.230.260.528
+ 31%
+ TOTAL GERAL
+ 80.063.275.941
+ -
+ 80.063.275.941
+ 73.834.122.088
+ 92%
+ 22.841.034.619
+ 31%
+ FONTE: SIAFI
+ Este conteúdo não substitui o publicado na versão certificada.
+ Borda do rodapé 
+ Logo da Imprensa

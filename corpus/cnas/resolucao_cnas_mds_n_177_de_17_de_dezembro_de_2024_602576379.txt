@@ -1,0 +1,74 @@
+# RESOLUÇÃO CNAS/MDS Nº 177, DE 17 DE DEZEMBRO DE 2024
+# DOU 18/12/2024 Edicao 243 Secao 1 Pagina 29
+# fonte: https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-177-de-17-de-dezembro-de-2024-602576379
+
+RESOLUÇÃO CNAS/MDS Nº 177, DE 17 DE DEZEMBRO DE 2024
+ Dispõe sobre os critérios de transferências de recursos pelo Ministério do Desenvolvimento e Assistência Social, Família e Combate à Fome, no âmbito do Sistema Único de Assistência Social, alocados na Ação Orçamentária "219G - Estruturação da Rede de Serviços e Fortalecimento da Gestão do Sistema Único de Assistência Social - SUAS" e dá outras providências
+ O CONSELHO NACIONAL DE ASSISTÊNCIA SOCIAL - CNAS, no uso das competências que lhe confere o art. 18 da Lei nº 8.742, de 7 de dezembro de 1993, Lei Orgânica da Assistência Social - LOAS e na Portaria MC nº 580, de 31 de dezembro de 2020, resolve:
+ Art. 1º Aprovar os critérios de transferências de recursos pelo Ministério do Desenvolvimento e Assistência Social, Família e Combate à Fome - MDS, no âmbito do Sistema Único de Assistência Social - SUAS, alocados na Ação Orçamentária "219G - Estruturação da Rede de Serviços e Fortalecimento da Gestão do Sistema Único de Assistência Social - SUAS".
+ Art. 2º Os critérios nacionais contendo os valores máximos que poderão ser destinados aos entes subnacionais, a serem indicados nas programações, cujos recursos são oriundos da Ação Orçamentária 219G, considerará o porte dos Municípios, dos Estados e do Distrito Federal, no âmbito do SUAS.
+ § 1º As indicações realizadas no exercício deverão observar o limite máximo no valor a ser programado para cada ente federado, que será de:
+ I - R$ 1.000.000,00 para Municípios de pequeno porte I;
+ II - R$ 2.300.000,00 para Municípios de pequeno porte II;
+ III - R$ 4.100.000,00 para Municípios de médio porte;
+ IV - R$ 8.800.000,00 para Municípios de grande porte, exceto capitais dos Estados; e
+ V - R$ 22.700.000,00 para Capitais, metrópoles, Estados e Distrito Federal.
+ § 2º O limite de que trata o §1º considera a soma de todas as indicações nos Grupos de Natureza de Despesa - GND3 - custeio e GND4 - investimento.
+ § 3º O limite será verificado por ordem cronológica no momento da indicação de unidade ou delegação de recursos, e posteriormente no ato do cadastro da programação no Sistema EstruturaSUAS.
+ § 4º A indicação da unidade beneficiária ou sua delegação apenas será registrada se existir limite disponível, a ser apurado pela diferença entre o limite máximo e o valor já comprometido, respeitado o valor mínimo para programação.
+ § 5º O valor de indicação de unidade, delegação ou programação que for cancelado não será considerado para efeitos de cálculo do limite.
+ § 6º Das indicações para unidades referenciadas, 10% serão destinadas aos fundos de assistência social para gestão administrativa das parcerias.
+ § 7º Em caso de recursos direcionados para atendimento de situações de emergência e calamidade pública, a Secretaria Nacional de Assistência Social - SNAS poderá adotar limites diferentes do estipulado nos incisos I a V do §1º, a serem publicados em ato normativo específico.
+ § 8º Os recursos destinados a execução de obras, construções, ampliações ou reformas, e para à aquisição do MOBSUAS, de forma centralizada pelo MDS, não serão contabilizados nos tetos de que trata o caput, independente do instrumento utilizado.
+ Art. 3º Para transferência de recursos oriundos da Ação Orçamentária 219G, o valor mínimo por programação não poderá ser inferior a:
+ I - R$ 50.000,00 (cinquenta mil reais) para Municípios de pequeno porte I e pequeno porte II; e
+ II - R$ 100.000,00 (cem mil reais) para Municípios de médio porte, grande porte, metrópoles, Estados e o Distrito Federal.
+ Art. 4º A partir de 2026, os valores dos limites estipulados no art. 2º será atualizado, a cada dia 1º de janeiro, pelo Índice Nacional de Preços ao Consumidor Amplo Especial (IPCA-E) ou por índice que venha a substituí-lo.
+ Parágrafo único. A SNAS publicará anualmente os novos valores a serem adotados em ato normativo específico.
+ Art. 5º As entidades e organizações de assistência social só estarão aptas a receber recursos se forem reconhecidas e referenciadas ao SUAS, comprovando cumprir os seguintes requisitos:
+ I - Possuir o cadastro no Cadastro Nacional de Entidades de Assistência Social - CNEAS com o status de concluído há no mínimo 1 (um) ano, com a mesma oferta do serviço socioassistencial nacionalmente reconhecido declarada na inscrição do conselho de assistência social do Munícipio ou do Distrito Federal;
+ II - Possuir o cadastro no CNEAS atualizado há pelo menos 2 (dois) anos;
+ III - Possuir declaração da inscrição no respectivo conselho de assistência social do Município ou do Distrito Federal no ano vigente, detalhando a(s) oferta(s) realizadas.
+ §1º Para indicação de entidades e organizações de assistência social no EstruturaSUAS não será exigida certificação ou titulação concedida pelo Poder Público, a exemplo da Certificação de Entidades Beneficentes de Assistência Social - CEBAS.
+ §2º As ofertas de que trata o inciso I do caput deverão ser prestadas no território correspondente à circunscrição do ente federado beneficiado com a programação, devendo ser apresentadas as inscrições dos respectivos conselhos de assistência social em cada local de atuação.
+ §3º Para fins do disposto no inciso II do caput, devem estar atualizadas no CNEAS as seguintes informações da entidade ou organização de assistência social:
+ I - Informações cadastrais a respeito da entidade;
+ II - Questões gerais sobre gestão e monitoramento da entidade de assistência social;
+ III - Informações da oferta de serviços; e
+ IV - Parecer do gestor local após a visita.
+ §4º A declaração de que trata inciso III do caput deverá ser vinculada à programação no EstruturaSUAS.
+ Art. 6º No caso de a programação possuir unidade referenciada, o conselho de assistência social deverá avaliar os seguintes requisitos:
+ I - Se a unidade referenciada já possui parceria para prestação de serviços, a fim de evitar financiamento superior ao necessário para a oferta dos serviços socioassistenciais; e
+ II - Se a unidade referenciada atende aos requisitos da Resolução CNAS nº 21, de 24 de novembro de 2016.
+ Parágrafo único. O não atendimento ao inciso II do caput é motivo de reprovação da programação por parte do respectivo conselho de assistência social.
+ Art. 7º A avaliação das programações enviadas ao FNAS que contenham indicação de unidade referenciada, destinadas para GND3 ou GND4, irá considerar os seguintes critérios:
+ I - Compatibilidade com a Política Nacional de Assistência Social;
+ II - Possuir parecer conclusivo com a aprovação da programação pelo conselho de assistência social;
+ III - O valor mínimo da programação;
+ IV - Possuir a declaração de que trata o art. 5º, III; e
+ V - No caso de pleito, possuir justificativa da dispensa de chamamento público aprovado pelo respectivo conselho de assistência social, de acordo com a Resolução CNAS nº 21, de 24 de novembro de 2016.
+ Parágrafo único. O FNAS poderá solicitar documentação complementar para avaliação da programação.
+ Art. 8º A transferência de recursos financeiros para os entes federados será realizada quando:
+ I - Houver disponibilidade financeira de acordo com os limites estabelecidos pela Secretaria de Orçamento Federal do Ministério do Planejamento e Orçamento;
+ II - A programação estiver aprovada pelo ordenador de despesas do FNAS;
+ III - O conselho da assistência social apresentar seu parecer conclusivo sobre a programação; e
+ IV - O ente federado beneficiário cumprir os requisitos do art. 30 da Lei nº 8.742, de 7 de dezembro de 1993.
+ Art. 9º Nos casos de repasse na modalidade de incremento temporário para custeio dos serviços socioassistenciais, classificados no grupo de natureza de despesa - GND3, cujas programações prevejam a execução por unidade referenciada, os entes federados deverão observar a Lei nº 13.019, de 31 de julho de 2014, e demais normas que tratam sobre a formalização de instrumentos com entidades e organizações de assistência social.
+ §1º Os recursos destinados à unidade referenciada poderão ser utilizados para substituir a fonte de pagamento de parceria já existente com a unidade referenciada constante da programação, devendo observar a compatibilidade do recurso da programação com os prazos e valores a serem executados na parceria.
+ §2º Os recursos transferidos para as entidades e organizações de assistência social poderão ser utilizados para aquisição de recursos materiais, que não se enquadrem como despesas de capital, e de serviços destinados para a realização dos serviços socioassistenciais, inclusive com o pagamento dos colaboradores envolvidos diretamente com sua oferta.
+ §3º Os recursos da programação não poderão ser utilizados para custear despesas vinculadas ao gerenciamento administrativo e financeiro das entidades e organizações de assistência social, bem como do pagamento de remuneração aos seus dirigentes.
+ §4º O gestor da Política de Assistência Social do ente federado deverá transferir os recursos destinados ao incremento temporário, conforme estipulado no cronograma de desembolso, formalizado no instrumento da parceria.
+ §5º As transferências do órgão gestor da Política de Assistência Social às entidades e organizações de assistência social deverão ser iniciadas no prazo de até 180 (cento e oitenta) dias a contar do crédito na conta corrente específica da programação, podendo ser prorrogado uma única vez por igual período.
+ §6º O órgão gestor da Política de Assistência Social deverá encaminhar, por meio de ofício, a solicitação da prorrogação do prazo descrito no §5º, devidamente motivada, a ser objeto de avaliação pelo FNAS em até 30 (trinta) dias.
+ §7º A não observância do prazo contido no §5º acarretará a devolução obrigatória dos recursos ao FNAS por meio da Guia de Recolhimento da União - GRU.
+ Art. 10. Nos casos das programações destinadas para unidades referenciadas, cuja finalidade seja a aquisição de equipamentos, materiais permanentes e veículos, os entes federados deverão observar a Lei nº 13.019, de 31 de julho de 2014, e demais normas que tratam sobre a formalização de instrumentos com entidades e organizações de assistência social.
+ §1º O ente federativo poderá repassar o recurso para a entidade ou organização de assistência social realizar a aquisição dos equipamentos, materiais permanentes e veículos.
+ §2º A entidade ou organização de assistência social não poderá utilizar recursos próprios para complementar a aquisição dos equipamentos, materiais permanentes e veículos vinculados à programação.
+ §3º Caso o ente federado realize a aquisição de equipamentos, materiais permanentes e veículos com os recursos da programação, deverá realizar a cessão dos respectivos bens para uso por parte das entidades e organizações de assistência social.
+ §4º Verificadas impropriedades na execução dos recursos ou dos bens adquiridos por parte da entidade ou organização de assistência social, a Administração Pública poderá retomar os bens públicos em poder da entidade ou organização de assistência social parceira, qualquer que tenha sido a modalidade ou título que concedeu direitos de uso de tais bens.
+ Art. 11. Esta Resolução entra em vigor em 1º de janeiro de 2025.
+ EDGILSON TAVARES DE ARAÚJO
+ Presidente do Conselho
+ Este conteúdo não substitui o publicado na versão certificada.
+ Borda do rodapé 
+ Logo da Imprensa

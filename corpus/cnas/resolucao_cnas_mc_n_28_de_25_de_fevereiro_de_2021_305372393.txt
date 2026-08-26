@@ -1,0 +1,275 @@
+# RESOLUÇÃO CNAS/MC Nº 28, DE 25 DE FEVEREIRO DE 2021
+# DOU 26/02/2021 Edicao 38 Secao 1 Pagina 3
+# fonte: https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-28-de-25-de-fevereiro-de-2021-305372393
+
+RESOLUÇÃO CNAS/MC Nº 28, DE 25 DE FEVEREIRO DE 2021
+ Dispõe sobre a aprovação do Relatório Final da Execução Orçamentária e Financeira do Fundo Nacional de Assistência Social (FNAS), exercício de 2020.
+ A Plenária do CONSELHO NACIONAL DE ASSISTÊNCIA SOCIAL (CNAS), em reunião ordinária realizada nos dias 08, 09,10 e 11 de fevereiro de 2021, no uso da competência que lhe conferem os incisos VIII e XIV do artigo 18 da Lei n.º 8.742, de 7 de dezembro de 1993 - Lei Orgânica da Assistência Social (LOAS).
+ Considerando-se que ano a ano, desde 2014, o valor referente à gestão e aos serviços do Sistema Único de Assistência Social - SUAS vem sendo reduzido consideravelmente em relação ao apresentado pela Secretaria Nacional de Assistência Social - SNAS e aprovado pelo CNAS, resolve:
+ Art. 1º- Aprovar o Relatório Final da Execução Orçamentária e Financeira do Fundo Nacional de Assistência Social (FNAS), exercício de 2020, apresentado pela Diretoria Executiva do Fundo Nacional de Assistência Social (DEFNAS), do Ministério da Cidadania (MC), planilha anexa.
+ Art. 2°- Recomendar ao Ministério da Cidadania:
+ I - Que articule com o Ministério da Economia as medidas necessárias que assegurem a regularidade dos repasses para o exercício de 2021.
+ II - Que envide esforços necessários ao Projeto de Lei Orçamentária Anual - PLOA de 2021, conforme a Resolução CNAS n° 12, de 27 de julho de 2020, para a manutenção da rede de serviços, programas e projetos socioassistenciais e inclusão da dotação orçamentária referente ao IGD SUAS e ao AEPETI.
+ III - Que o indicativo de debate acerca de valores devidos relativos à totalidade do passivo, referente a rede de serviços, programas e projetos socioassistenciais, IGD-SUAS e AEPETI.
+ Art. 3º- Esta Resolução entra em vigor na data de sua publicação.
+ MIGUEL ÂNGELO GOMES OLIVEIRA
+ Presidente do Conselho
+ ANEXO
+ EXECUÇÃO ORÇAMENTÁRIA E FINANCEIRA/2020
+ Atualizado: 02/02/2021
+ 55.901 - FUNDO NACIONAL DE ASSISTÊNCIA SOCIAL
+ CÓD
+ ATIVIDADE/PROGRAMA
+ PISO/PROGRAMA/SERVIÇO
+ DOTAÇÃO APROVADA
+ DOTAÇÃO EMPENHADA
+ DOTAÇÃO PAGA
+ LEI + CRÉDITOS
+ EMENDAS
+ TOTAL
+ LEI + CRÉDITOS
+ EMENDAS
+ TOTAL
+ LEI + CRÉDITOS
+ EMENDAS
+ TOTAL
+ (A)
+ (B)
+ C=(A+B)
+ (D)
+ (E)
+ (F) = D + E
+ (G)
+ (H)
+ (I)
+ 5031
+ PROTEÇÃO SOCIAL NO ÂMBITO DO SISTEMA ÚNICO DE ASSISTÊNCIA SOCIAL
+ 4.107.849.347
+ 271.388.290
+ 4.379.237.637
+ 4.014.503.146
+ 271.111.529
+ 4.285.614.675
+ 3.860.320.977
+ 217.985.284
+ 4.078.306.262
+ 219E
+ Ações de Proteção Social Básica
+ PBF / PBV
+ 832.705.611
+ 81.751.485
+ 914.457.096
+ 832.693.435
+ 81.751.485
+ 914.444.921
+ 812.051.854
+ 81.751.485
+ 893.803.339
+ 219F
+ Ações de Proteção Social Especial
+ PFMC / PTMC / PAC /PVAC
+ 419.613.708
+ 41.100.743
+ 460.714.451
+ 419.613.708
+ 41.054.505
+ 460.668.213
+ 419.555.665
+ 41.054.505
+ 460.610.170
+ 219G
+ Estruturação da Rede de Serviços do Sistema Único de Assistência Social (SUAS)
+ 245.404.131
+ 114.965.318
+ 360.369.449
+ 244.668.510,00
+ 114.734.795,00
+ 359.403.305
+ 147.350.589
+ 61.608.550
+ 208.959.139
+ 2583
+ Serviço de Processamento de Dados do BPC e da RMV
+ 52.041.399
+ -
+ 52.041.399
+ 51.490.543
+ -
+ 51.490.543
+ 25.996.700
+ 25.996.700
+ 2589
+ Avaliação e Operacionalização do BPC
+ 8.084.498
+ -
+ 8.084.498
+ 4.972.569
+ -
+ 4.972.569
+ 3.206.656
+ -
+ 3.206.656
+ 21C0
+ Enfretamento da Emergência de Saúde (COVID SUAS)
+ 2.550.000.000
+ 33.570.744
+ 2.583.570.744
+ 2.461.064.380
+ 33.570.744
+ 2.494.635.124
+ 2.452.159.514
+ 33.570.744
+ 2.485.730.258
+ TOTAL I (DISCRICIONÁRIAS)
+ 4.107.849.347
+ 271.388.290
+ 4.379.237.637
+ 4.014.503.146
+ 271.111.529
+ 4.285.614.675
+ 3.860.320.977
+ 217.985.284
+ 4.078.306.262
+ 5028
+ INCLUSÃO SOCIAL POR MEIO DO BOLSA FAMÍLIA E DA ARTICULAÇÃO DE POLÍTICAS PÚBLICAS
+ -
+ -
+ -
+ 565.770.000
+ -
+ 565.770.000
+ 520.188.421
+ 3.190.454
+ 523.378.875
+ 8446
+ Serv. De Apoio à Gestão Descentralizada ao Prog. Bolsa Família
+ IGDPBF
+ -
+ -
+ -
+ 565.770.000
+ -
+ 565.770.000
+ 520.188.421
+ 523.378.875
+ 5024
+ ATENÇÃO INTEGRAL À PRIMEIRA INFÂNCIA
+ -
+ -
+ -
+ 394.258.454
+ 3.190.454
+ 397.448.908
+ 325.110.929
+ 3.190.454
+ 328.301.383
+ 217M
+ Desenvolvimento Integral na Primeira Infância - Criança Feliz
+ -
+ -
+ -
+ 394.258.454
+ 3.190.454
+ 397.448.908
+ 325.110.929
+ 3.190.454
+ 328.301.383
+ TOTAL I I (DISCRICIONÁRIAS)
+ 4.107.849.347
+ 271.388.290
+ 4.379.237.637
+ 4.974.531.600
+ 271.111.529
+ 5.248.833.583
+ 4.705.620.327
+ 221.175.738
+ 4.926.796.066
+ 0901
+ OPERAÇÕES ESPECIAIS: CUMPRIMENTO DE SENTENÇAS JUDICIAIS
+ 1.368.503.806
+ -
+ 1.368.503.806
+ 1.365.629.235
+ -
+ 1.365.629.235
+ 1.252.600.287
+ -
+ 1.252.600.287
+ 0005
+ Cumprimento de Sentença Judicial Transitada em Julgado (Precatórios) devida pela União, Autarquias, e Fundações Públicas
+ 209.160.091
+ -
+ 209.160.091
+ 209.051.032
+ -
+ 209.051.032
+ 209.051.032
+ -
+ 209.051.032
+ 0625
+ Cumprimento de Sentença Judicial Transitada em Julgado de Pequeno Valor devida pela União, Autarquias, e Fundações Públicas
+ 1.159.343.715
+ -
+ 1.159.343.715
+ 1.156.578.203
+ -
+ 1.156.578.203
+ 1.043.549.255
+ -
+ 1.043.549.255
+ 5031
+ PROTEÇÃO SOCIAL NO ÂMBITO DO SISTEMA ÚNICO DE ASSISTÊNCIA SOCIAL
+ 61.643.463.863
+ -
+ 61.643.463.863
+ 61.643.463.655
+ -
+ 61.643.463.655
+ 59.301.731.804
+ -
+ 59.301.731.804
+ 00H5
+ BPC/RMV à pessoa idosa
+ 27.056.300.507
+ -
+ 27.056.300.507
+ 27.056.300.299
+ -
+ 27.056.300.299
+ 26.011.024.277
+ 26.011.024.277
+ 00IN
+ BPC/RMV à pessoa com deficiência e invalidez
+ 34.587.163.356
+ -
+ 34.587.163.356
+ 34.587.163.356
+ -
+ 34.587.163.356
+ 33.290.707.527
+ -
+ 33.290.707.527
+ TOTAL III (BPC/RMV/SENTENÇAS)
+ 63.011.967.669
+ -
+ 63.011.967.669
+ 63.009.092.890
+ -
+ 63.009.092.890
+ 60.554.332.091
+ -
+ 60.554.332.091
+ TOTAL GERAL
+ 67.119.817.016
+ 271.388.290
+ 67.391.205.306
+ 67.983.624.490
+ 271.111.529
+ 68.257.926.473
+ 65.259.952.419
+ 221.175.738
+ 65.481.128.157
+ Obs.: Este relatório reflete a execução orçamentária e financeira dos créditos descentralizados para outros órgãos.
+ Este conteúdo não substitui o publicado na versão certificada.
+ Borda do rodapé 
+ Logo da Imprensa

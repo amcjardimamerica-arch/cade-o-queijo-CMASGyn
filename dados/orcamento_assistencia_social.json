@@ -1,0 +1,37 @@
+{
+ "_meta":{"fonte":"LOA 2026 Lei 11.590 e LOA 2025 Lei 11.315, anexos publicados no Diario Oficial Edicao 8697 de 09/01/2026 Extra e Edicao de 07/01/2025","extraido_em":"2026-08-25","selo":"CONFIRMADO - documento oficial publicado"},
+ "municipio_2026":{"receita_total":10842253000,"despesa_total":10842253000},
+ "funcao_08_assistencia_social":{
+   "2025":22878000,"2026":28440000,"variacao_percentual":24.31,
+   "participacao_no_orcamento_2026_percent":0.262,
+   "comparacao":{"saude":2280683000,"educacao":2334103000,"previdencia":1338958000,"transporte":942327000,"encargos_especiais":632654000,"urbanismo":92618000,"desporto_e_lazer":5710000}},
+ "fmas":{
+   "2025":{"unidade":"2850","total":18318000,"tesouro":1669000,"outras_fontes":16649000,"corrente":17164000,"capital":1154000},
+   "2026":{"unidade":"3650","total":23218000,"tesouro":9000,"outras_fontes":23209000,"corrente":21895000,"capital":1323000,
+     "receita_detalhada":{"receitas_correntes":22094000,"receita_patrimonial":2574000,"transferencias_correntes":19425000,"outras_receitas_correntes":95000,"receitas_de_capital":1115000,"transferencias_de_capital":1115000,"tesouro_financiamento_royalties":9000}},
+   "queda_do_aporte_proprio_percent":-99.46},
+ "receitas_vinculadas_loa_2026":{
+   "1.7.1.6.50.0.1":{"descricao":"Assistencia Social - FNAS - Principal","fonte":"1660","valor":8250000,"ente":"UNIAO"},
+   "1.7.1.7.52.0.1":{"descricao":"Programas de Assistencia Social - Principal","fonte":"1665","valor":3104000,"ente":"ESTADO"},
+   "1.7.2.9.51.0.1":{"descricao":"Assistencia Social - Principal","fonte":"1661","valor":6000000,"ente":"ESTADO/TRANSFERENCIA"},
+   "total_vinculado":17354000},
+ "acoes_fmas_2026":{
+   "3650.0824401082269":{"nome":"MANUTENCAO DOS SERVICOS E DA REDE","valor":19913000},
+   "3650.0824401092268":{"nome":"ACAO ACOLHER E CUIDAR","valor":1569000},
+   "3650.0824401082263":{"nome":"CAPACITACAO CONTINUADA SUAS","valor":970000},
+   "3650.0824401082591":{"nome":"MANUTENCAO DO CONSELHO MUNICIPAL DE ASSISTENCIA SOCIAL - CMASGYN","valor":256000},
+   "3650.2884600008003":{"nome":"CONTRIBUICAO AO PASEP","valor":510000}},
+ "unidades_da_secretaria_2026":{
+   "3601_gabinete_semasdh":{"total":81202000,"corrente":67221000,"capital":13981000,"tesouro":81202000,"outras_fontes":0},
+   "3650_fmas":{"total":23218000,"funcao_08":22708000,"outras_funcoes":510000},
+   "3651_fundo_crianca_adolescente":{"total":3050000,"funcao_08":3014000},
+   "3652_fundo_idoso":{"total":2615000,"funcao_08":2584000,"manutencao_do_conselho":261000}},
+ "comparacao_entre_conselhos_2026":{
+   "cmasgyn":{"dotacao":256000,"fundo":23218000,"proporcao_percent":1.10},
+   "conselho_municipal_do_idoso":{"dotacao":261000,"fundo":2615000,"proporcao_percent":9.98},
+   "razao_de_desproporcao":9.07},
+ "emendas_impositivas_2026":{
+   "total_capturado":178223847.86,"itens":938,
+   "por_area":{"SAUDE":{"n":307,"valor":77158841.14},"OUTRA":{"n":555,"valor":88203994.94},"ASSISTENCIA_SOCIAL":{"n":65,"valor":7490691.78},"AMBIGUA":{"n":11,"valor":5370320.00}},
+   "observacao":"Emendas de assistencia social somam R$ 7.490.691,78, valor que corresponde a 26,3% de toda a funcao 08 do Municipio (R$ 28.440.000). O canal parlamentar rivaliza com o canal da politica publica."}
+}

@@ -1,6 +1,9 @@
 # CORPUS NORMATIVO FIXO
 # Baixado e consolidado a cada 30 dias por src/corpus_build.py.
-# A rotina DIÁRIA jamais pesquisa norma nova: lê exclusivamente corpus/corpus.md.
+# A rotina JAMAIS pesquisa norma nova durante a análise: lê exclusivamente corpus/.
+# Estado em 25/08/2026: 268 resoluções do CNAS e da CIT com texto integral em
+# corpus/cnas/, colhidas do Diário Oficial da União. Índice de 547 matérias em
+# corpus/cnas/_indice_dou.json. Ver docs/CORPUS_LEGAL.md.
 # Isso mantém o prefixo do prompt byte-idêntico e permite cache de 1 hora
 # a 10% do custo de entrada.
 
@@ -43,20 +46,20 @@ blocos:
     - {id: l14133, nome: "Lei 14.133/2021 — Licitações", url: "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14133.htm"}
 
   federal_infralegal:
-    - {id: d11699, nome: "Decreto 11.699/2023", url: "CONFIRMAR", obrigatorio: false}
+    - {id: d11699, nome: "Decreto 11.699/2023", url: "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/decreto/d11699.htm", obrigatorio: false}
     - {id: d6307, nome: "Decreto 6.307/2007 — benefícios eventuais", url: "https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2007/decreto/d6307.htm"}
     - {id: p1041_2024, nome: "Portaria MDS 1.041/2024 — IGD-M", url: "https://www.gov.br/mds/pt-br/acoes-e-programas/bolsa-familia/igd/portaria"}
-    - {id: p754_2010, nome: "Portaria MDS 754/2010", url: "CONFIRMAR", obrigatorio: false}
+    - {id: p754_2010, nome: "Portaria MDS 754/2010", url: "DOU 2010 - usar pesquisa.in.gov.br", obrigatorio: false}
 
   cnas:
-    - {id: r145_2004, nome: "Resolução CNAS 145/2004 — PNAS", url: "CONFIRMAR"}
-    - {id: r269_2006, nome: "Resolução CNAS 269/2006 — NOB-RH/SUAS", url: "CONFIRMAR"}
-    - {id: r109_2009, nome: "Resolução CNAS 109/2009 — Tipificação", url: "CONFIRMAR"}
-    - {id: r33_2012, nome: "Resolução CNAS 33/2012 — NOB/SUAS", url: "CONFIRMAR"}
-    - {id: r14_2014, nome: "Resolução CNAS 14/2014 — inscrição de entidades", url: "CONFIRMAR"}
+    - {id: r145_2004, nome: "Resolução CNAS 145/2004 — PNAS", url: "DOU anterior a 2016 - usar pesquisa.in.gov.br/imprensa/servlet/INPDFViewer"}
+    - {id: r269_2006, nome: "Resolução CNAS 269/2006 — NOB-RH/SUAS", url: "DOU anterior a 2016 - usar pesquisa.in.gov.br/imprensa/servlet/INPDFViewer"}
+    - {id: r109_2009, nome: "Resolução CNAS 109/2009 — Tipificação", url: "DOU anterior a 2016 - usar pesquisa.in.gov.br/imprensa/servlet/INPDFViewer"}
+    - {id: r33_2012, nome: "Resolução CNAS 33/2012 — NOB/SUAS", url: "DOU anterior a 2016 - usar pesquisa.in.gov.br/imprensa/servlet/INPDFViewer"}
+    - {id: r14_2014, nome: "Resolução CNAS 14/2014 — inscrição de entidades", url: "DOU anterior a 2016 - usar pesquisa.in.gov.br/imprensa/servlet/INPDFViewer"}
     - {id: r15_2016, nome: "Resolução CNAS 15/2016", url: "CONFIRMAR", obrigatorio: false}
-    - {id: r157_2021, nome: "Resolução CNAS 157 — Regimento Interno do CNAS", url: "CONFIRMAR", obrigatorio: false}
-    - {id: r182_2025, nome: "Resolução CNAS 182/2025 (revoga a 27/2011)", url: "CONFIRMAR"}
+    - {id: r157_2021, nome: "Resolução CNAS 157 — Regimento Interno do CNAS", url: "corpus/cnas/ - colhido do DOU", obrigatorio: false}
+    - {id: r182_2025, nome: "Resolução CNAS 182/2025 (revoga a 27/2011)", url: "corpus/cnas/ - colhido do DOU"}
     - {id: r202_2025, nome: "Resolução CNAS/MDS 202/2025 — conselhos, PBF, CadÚnico e IGD"
        , url: "https://www.gov.br/participamaisbrasil/resolucao-cnas-mds-n-202-de-25-de-julho-de-2025"
        , critico: true}

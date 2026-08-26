@@ -1,0 +1,293 @@
+{
+ "_meta": {
+  "versao": "3.0",
+  "levantado_em": "2026-08-25",
+  "proxima_revisao": "2026-09-24",
+  "periodicidade_revisao": "mensal",
+  "escopo": "Assistencia social - Goiania/GO",
+  "regra": "As analises consultam APENAS este arquivo. Nenhuma busca externa de legislacao durante a rotina diaria.",
+  "correcoes_aplicadas": [
+   "Lei municipal 7.532/1995 REVOGADA pelo artigo 21 da Lei 9.009/2010. Norma vigente do CMASGyn e a Lei 9.009/2010.",
+   "IGD-PBF migrou da Lei 10.836/2004 para a Lei 14.601/2023 (Programa Bolsa Familia recriado).",
+   "Nao existe percentual constitucional minimo de impostos para assistencia social. Ver bloco destinacao_obrigatoria.",
+   "CONFIRMADO por leitura do texto: o Artigo 4 da Lei Complementar municipal 273/2014 acrescenta o paragrafo unico ao Artigo 4 da Lei 7.531/1995, com o teto de 30% para pessoal da SEMAS. A mesma Lei Complementar aplica teto identico a outros fundos municipais - nao confundir com o Fundo Municipal do Meio Ambiente.",
+   "NORMA NOVA localizada: Lei municipal 8.293/2004, Artigo 19, paragrafo unico, com redacao do Artigo 16 da Lei Complementar 273/2014 - a administracao do FMAS cabe ao orgao gestor EM CONJUNTO COM O SECRETARIO MUNICIPAL DE FINANCAS, sob orientacao e controle do CMASGyn."
+  ]
+ },
+ "constituicao_federal": {
+  "art_5_XXXIII": "Direito de receber dos orgaos publicos informacoes de interesse particular ou coletivo, prestadas no prazo da lei, sob pena de responsabilidade.",
+  "art_37_caput": "Legalidade, impessoalidade, moralidade, PUBLICIDADE e eficiencia.",
+  "art_165_par_9": "Lei complementar dispora sobre exercicio financeiro, vigencia, prazos, elaboracao e organizacao do PPA, LDO e LOA.",
+  "art_198_par_2_III": "Saude: minimo 15% da receita de impostos municipais. NAO se aplica a assistencia social.",
+  "art_203": "Assistencia social prestada a quem dela necessitar, independentemente de contribuicao.",
+  "art_204_I": "Descentralizacao politico-administrativa; coordenacao e normas gerais a esfera federal; coordenacao e execucao aos Estados, DF e Municipios.",
+  "art_204_II": "Participacao da populacao, por organizacoes representativas, na formulacao e no CONTROLE das acoes em todos os niveis.",
+  "art_204_par_unico": "Faculta aos ESTADOS e ao DF vincular ate 0,5% da receita tributaria liquida. NAO alcanca Municipios. Goiania NAO tem esse mecanismo.",
+  "art_212": "Educacao: minimo 25% da receita de impostos municipais. NAO se aplica a assistencia social."
+ },
+ "lei_8742_1993_loas": {
+  "art_12_A_caput": "Uniao apoia financeiramente o aprimoramento da gestao descentralizada por meio do Indice de Gestao Descentralizada (IGD) do SUAS.",
+  "art_12_A_par_2": "As transferencias do IGD-SUAS adotam a sistematica do IGD do Programa Bolsa Familia e sao efetivadas por procedimento integrado aquele indice.",
+  "art_12_A_par_4": "Para fortalecimento dos Conselhos de Assistencia Social, PERCENTUAL dos recursos transferidos devera ser gasto com apoio tecnico e operacional aos colegiados, na forma fixada pelo Ministerio, VEDADA a utilizacao para pagamento de pessoal efetivo e de gratificacoes de qualquer natureza a servidor publico.",
+  "art_15_I": "Compete aos Municipios destinar recursos financeiros para custeio de beneficios eventuais, mediante criterios do CMAS.",
+  "art_16": "Instancias deliberativas do sistema descentralizado e participativo, de carater permanente e composicao paritaria: CNAS, CEAS, CAS/DF e CMAS.",
+  "art_17": "Conselho Nacional de Assistencia Social - composicao, mandato, gratuidade.",
+  "art_18": "Competencias do CNAS - fundamento das Resolucoes.",
+  "art_28_caput": "O financiamento dos beneficios, servicos, programas e projetos far-se-a com recursos da Uniao, dos Estados, do DF e dos Municipios, das demais contribuicoes sociais previstas no artigo 195 da Constituicao, alem daqueles que compoem o Fundo Nacional de Assistencia Social.",
+  "art_28_par_1": "Cabe ao orgao da Administracao Publica responsavel pela coordenacao da Politica de Assistencia Social GERIR o Fundo de Assistencia Social sob ORIENTACAO E CONTROLE dos respectivos Conselhos.",
+  "art_30_caput": "E condicao para os repasses aos Municipios, Estados e DF a efetiva instituicao e funcionamento de: I - Conselho de Assistencia Social, de composicao paritaria entre governo e sociedade civil; II - Fundo de Assistencia Social, com orientacao e controle dos respectivos Conselhos; III - Plano de Assistencia Social.",
+  "art_30_par_unico": "E ainda condicao para transferencia de recursos do FNAS aos Municipios, Estados e DF a comprovacao orcamentaria dos recursos proprios destinados a Assistencia Social, alocados em seus respectivos Fundos.",
+  "uso_fiscalizatorio": "O artigo 30 e o principal instrumento: descumprimento autoriza SUSPENSAO de repasse federal. E o ponto de maxima alavancagem da fiscalizacao."
+ },
+ "lei_14601_2023_bolsa_familia": {
+  "art_14_par_2": "Apoio financeiro da Uniao aos entes para gestao e execucao descentralizada do Programa Bolsa Familia e do Cadastro Unico (IGD-PBF).",
+  "art_14_par_7": "Para fortalecimento das instancias de controle social, NO MINIMO 3% dos recursos transferidos para apoio financeiro as acoes de gestao e execucao descentralizada do Programa Bolsa Familia e do CadUnico serao destinados a atividades de apoio tecnico e operacional ao Conselho de Assistencia Social.",
+  "nota": "Substituiu a Lei 10.836/2004 como base do IGD-PBF. Piso legal de 3% e MINIMO, nao teto."
+ },
+ "resolucoes_cnas": {
+  "res_109_2009": "Tipificacao Nacional dos Servicos Socioassistenciais.",
+  "res_33_2012": "NOB/SUAS. Artigo 55 e 56: responsabilidades da Uniao e Blocos de Financiamento. Cofinanciamento federal pode ocorrer sem convenio desde que cumprido o artigo 30 da LOAS.",
+  "res_14_2014": "Parametros para inscricao de entidades e organizacoes de assistencia social e dos servicos, programas, projetos e beneficios nos Conselhos.",
+  "res_202_2025_art_6": "Piso de 10% do IGD destinado ao controle social, vigente desde janeiro de 2026.",
+  "portaria_mds_1041_2024_art_11_par_1": "3% do IGD ao controle social.",
+  "resolucao_da_antinomia": "NAO HA ANTINOMIA REAL. O artigo 12-A, paragrafo 4, da Lei 8.742/1993 e o artigo 14, paragrafo 7, da Lei 14.601/2023 fixam 3% como MINIMO e delegam ao Ministerio a fixacao do percentual. A Resolucao CNAS/MDS 202/2025 exerce essa delegacao elevando o piso a 10%. Norma posterior, mais especifica e mais protetiva do controle social. APLICA-SE 10% desde janeiro de 2026. Os 3% permanecem como piso legal absoluto e inderrogavel.",
+  "vedacao": "Artigo 12-A, paragrafo 4, da Lei 8.742/1993: os recursos do IGD destinados ao conselho NAO podem custear pessoal efetivo nem gratificacoes a servidor publico.",
+  "res_202_2025_texto_integral": {
+   "situacao": "TEXTO INTEGRAL NO CORPUS",
+   "publicacao": "DOU 28/07/2025, Edicao 140, Secao 1, Pagina 87",
+   "art_6_caput": "minimo 10% do valor repassado MENSALMENTE pelo IGD/SUAS e IGD/PBF ao controle social",
+   "art_6_par_2": "recursos devem ser explicitados no sistema de acompanhamento da execucao financeira a partir da apuracao de contas de 2026",
+   "art_6_par_4": "gestoes municipais DEVERAO INCLUIR NO QUADRO DE DETALHAMENTO DE DESPESAS dotacao orcamentaria especifica de fortalecimento do controle social a partir de 2026",
+   "art_6_par_5": "prestacao de contas a cada 4 meses ao respectivo conselho",
+   "art_6_par_6": "SANCAO: em caso de descumprimento o ente tera seus REPASSES BLOQUEADOS ate comprovar cumprimento",
+   "art_15": "as disposicoes do artigo 6 vigoram desde janeiro de 2026",
+   "art_17": "revoga a Resolucao CNAS 15/2014"
+  },
+  "corpus_cnas": "268 resolucoes com texto integral em corpus_txt/cnas/, colhidas do Diario Oficial da Uniao. Cobertura 2016-2026. Indice completo de 547 materias em corpus/cnas/indice_dou.json."
+ },
+ "transparencia_e_financas": {
+  "lei_12527_2011": {
+   "art_8_caput": "Dever de promover, independentemente de requerimento, divulgacao de informacoes de interesse coletivo ou geral.",
+   "art_8_par_1_II": "Registros de quaisquer repasses ou transferencias de recursos financeiros.",
+   "art_8_par_1_III": "Registros das despesas.",
+   "art_8_par_1_IV": "Informacoes sobre licitacoes, editais, resultados e contratos celebrados.",
+   "art_8_par_3_II": "Permitir gravacao de relatorios em diversos formatos eletronicos, inclusive abertos e nao proprietarios.",
+   "art_8_par_3_III": "Permitir acesso automatizado por sistemas externos em formatos abertos, estruturados e legiveis por maquina.",
+   "art_8_par_3_VI": "Manter atualizadas as informacoes disponiveis para acesso.",
+   "art_10_par_3": "Vedadas exigencias relativas aos motivos determinantes da solicitacao.",
+   "art_11_par_1": "Prazo de 20 dias para resposta.",
+   "art_11_par_2": "Prorrogacao por mais 10 dias, mediante justificativa expressa."
+  },
+  "lc_101_2000": {
+   "art_42": "Vedado contrair obrigacao nos ultimos dois quadrimestres do mandato sem disponibilidade de caixa.",
+   "art_48": "Transparencia da gestao fiscal: planos, orcamentos, prestacoes de contas, RREO e RGF sao instrumentos de transparencia com amplo acesso publico.",
+   "art_48_A_I": "Quanto a DESPESA: todos os atos praticados pelas unidades gestoras no decorrer da execucao, com no minimo numero do processo, bem fornecido ou servico prestado, pessoa fisica ou juridica beneficiaria e procedimento licitatorio realizado."
+  },
+  "lei_4320_1964": {
+   "art_6": "Todas as receitas e despesas constarao da Lei de Orcamento pelos seus totais, vedadas quaisquer deducoes.",
+   "art_13": "Discriminacao da despesa por categoria economica, grupo, modalidade e elemento.",
+   "art_43_par_1_I": "Superavit financeiro apurado em balanco patrimonial do exercicio anterior como recurso para abertura de credito adicional.",
+   "art_58": "Empenho e o ato que cria para o Estado obrigacao de pagamento.",
+   "art_62": "Pagamento so apos regular liquidacao.",
+   "art_63": "Liquidacao consiste na verificacao do direito adquirido pelo credor, tendo por base os titulos e documentos comprobatorios."
+  },
+  "lei_9784_1999": {
+   "art_22_par_1": "Atos do processo devem ser produzidos por escrito, com data, local e assinatura da autoridade responsavel.",
+   "art_26": "Intimacao dos interessados.",
+   "art_50": "Atos administrativos deverao ser motivados, com indicacao dos fatos e fundamentos juridicos."
+  }
+ },
+ "parcerias_e_contratos": {
+  "lei_13019_2014": {
+   "art_23": "Chamamento publico para selecao de organizacoes da sociedade civil.",
+   "art_24": "Realizacao de chamamento publico como regra, ressalvadas as hipoteses previstas em lei.",
+   "art_29": "Dispensa quando a parceria decorrer de emenda parlamentar - PORTANTO O ATO DEVE DIZE-LO EXPRESSAMENTE.",
+   "art_30": "Hipoteses de INEXIGIBILIDADE de chamamento publico.",
+   "art_31": "Inexigibilidade quando inviavel a competicao. Exige justificativa nos termos do artigo 32.",
+   "art_32": "A ausencia de chamamento sera justificada pelo administrador publico e a justificativa publicada no sitio oficial. Admite impugnacao em 5 dias.",
+   "art_42": "Conteudo obrigatorio do termo de fomento ou colaboracao, com plano de trabalho anexo.",
+   "art_63": "Prestacao de contas como regra de acompanhamento e fiscalizacao.",
+   "art_65": "Prestacao de contas relativa a execucao do termo com foco no cumprimento do objeto."
+  },
+  "lei_14133_2021": {
+   "art_75_I": "Dispensa para obras e servicos de engenharia ate o limite legal atualizado por decreto.",
+   "art_75_II": "Dispensa para outros servicos e compras ate o limite legal atualizado por decreto.",
+   "art_75_par_1": "Os valores serao DUPLICADOS para consorcios e autarquias e considerados em relacao ao exercicio financeiro e a natureza do objeto - VEDADO O FRACIONAMENTO.",
+   "art_125": "Acrescimos ou supressoes ate 25% do valor inicial atualizado; 50% para reforma de edificio ou equipamento.",
+   "art_193_II": "Revoga a Lei 8.666/1993 a partir de 30 de dezembro de 2023.",
+   "alerta": "Invocacao da Lei 8.666/1993 como fundamento de ato praticado apos 30/12/2023 e ACHADO. Termo de fomento nunca se rege pela lei de licitacoes: rege-se pela Lei 13.019/2014."
+  },
+  "lei_8429_1992": {
+   "art_10_caput": "Ato de improbidade que causa lesao ao erario por acao ou omissao dolosa.",
+   "art_11_caput": "Ato que atenta contra os principios da administracao publica.",
+   "uso": "Referencia para o parecer no papel de promotor. NAO se imputa improbidade a partir de indicio estatistico."
+  }
+ },
+ "municipal_goiania": {
+  "lei_7531_1995_fmas": {
+   "situacao": "VIGENTE. Alterada pela Lei 8.537/2007 e pela Lei Complementar 273/2014.",
+   "art_1": "Cria o Fundo Municipal de Assistencia Social - FMAS, instrumento de captacao e aplicacao de recursos.",
+   "art_2_receitas": {
+    "I": "Recursos provenientes da transferencia dos Fundos NACIONAL e ESTADUAL de Assistencia Social.",
+    "II": "Dotacoes orcamentarias do Municipio e recursos adicionais que a lei estabelecer no transcorrer de cada exercicio.",
+    "III": "Doacoes, auxilios, contribuicoes, subvencoes e transferencias de entidades nacionais e internacionais, governamentais e nao governamentais.",
+    "IV": "Receitas de aplicacoes financeiras de recursos do Fundo.",
+    "V": "Parcelas do produto de arrecadacao de outras receitas proprias oriundas de financiamentos de atividades economicas, prestacao de servicos e outras transferencias que o FMAS tenha direito a receber por forca de lei e de convenios.",
+    "VI": "Produto de convenios firmados com outras entidades financeiras.",
+    "VII": "Doacoes em especie feitas diretamente ao Fundo.",
+    "VIII": "Outras receitas que venham a ser legalmente instituidas."
+   },
+   "art_2_par_1": "A dotacao orcamentaria prevista para o orgao responsavel pela Assistencia Social sera AUTOMATICAMENTE TRANSFERIDA para a conta do FMAS, TAO LOGO sejam realizadas as receitas correspondentes.",
+   "art_2_par_2": "Os recursos do Fundo serao depositados em instituicoes financeiras oficiais, em CONTA ESPECIAL sob a denominacao Fundo Municipal de Assistencia Social - FMAS.",
+   "art_3": "O FMAS sera gerido pela Secretaria Municipal de Assistencia Social sob ORIENTACAO E CONTROLE do Conselho Municipal de Assistencia Social.",
+   "art_3_par_2": "O orcamento do FMAS integrara o orcamento da Secretaria.",
+   "art_4_aplicacoes": {
+    "I": "Financiamento total ou parcial de programas, projetos e servicos.",
+    "II": "Pagamento pela prestacao de servicos a entidades conveniadas de direito publico e privado.",
+    "III": "Aquisicao de material permanente e de consumo.",
+    "IV": "Construcao, reforma, ampliacao, aquisicao ou LOCACAO DE IMOVEIS para prestacao de servicos de assistencia social.",
+    "V": "Desenvolvimento e aperfeicoamento dos instrumentos de gestao, planejamento, administracao e controle.",
+    "VI": "Programas de capacitacao e aperfeicoamento de recursos humanos.",
+    "VII": "Pagamento dos beneficios eventuais, artigo 15, inciso I, da Lei 8.742/1993."
+   },
+   "art_4_par_unico": "TETO DE 30%: dos recursos DIRETAMENTE ARRECADADOS OU TRANSFERIDOS PELO TESOURO MUNICIPAL, ate 30% sera destinado ao pagamento de despesas com PESSOAL, inclusive encargos sociais, e custeio das atividades relacionadas as finalidades essenciais da Secretaria. Redacao acrescida pelo artigo 4 da Lei Complementar 273/2014.",
+   "art_5": "O repasse de recursos para entidades e organizacoes de assistencia social devidamente registradas sera efetivado por intermedio do FMAS."
+  },
+  "lei_9009_2010_cmasgyn": {
+   "situacao": "VIGENTE. Artigo 21 REVOGOU expressamente a Lei 7.532/1995, a Lei 7.547/1996 e a Lei 7.603/1996.",
+   "art_2_IV_b": "Compete ao CMASGyn APRECIAR MENSALMENTE as contas e os relatorios do FMASGyn.",
+   "art_2_V": "Estabelecer e FISCALIZAR a aplicacao dos criterios para a programacao e para execucoes financeiras e orcamentarias propostas pelo FMASGyn.",
+   "art_2_VI": "Acompanhar, avaliar e fiscalizar os servicos prestados por orgaos e entidades publicas e privadas do Municipio.",
+   "art_2_VII": "Aprovar criterios de qualidade para o funcionamento dos servicos.",
+   "art_2_VIII": "Aprovar criterios para celebracao de contratos e convenios entre setor publico e entidades.",
+   "art_2_IX": "APRECIAR PREVIAMENTE os contratos e convenios, na forma da Lei de Parceria 8.248/2004.",
+   "art_2_XIII": "Acompanhar e avaliar a gestao dos recursos, ganhos sociais e desempenho dos programas e projetos aprovados.",
+   "art_3": "Composicao paritaria entre entidades governamentais e sociedade civil. Governamentais: 3 da SEMAS (1 preferencialmente do FMAS), 1 Educacao, 1 Saude, 1 Habitacao, 1 Planejamento, 1 Financas, 1 Desenvolvimento Economico, 2 Governo Municipal, 1 previdencia federal, 1 assistencia estadual, 1 Cultura, 1 Conselhos Descentralizados. Sociedade civil: 1 trabalhadores, 1 Conselhos Descentralizados, 6 usuarios, 6 entidades prestadoras registradas, 1 capacitacao profissional.",
+   "art_6_I": "Presidencia e vice-presidencia paritarias, exercidas por conselheiros, EXCETO por representantes do orgao gestor, mandato de 1 ano, uma unica reconducao.",
+   "art_6_III": "Secretaria Executiva ocupada por profissional indicado pelo CMASGyn, CONTRATADO E DISPONIBILIZADO pelo orgao gestor, com gratificacao de funcao.",
+   "art_6_V": "Corpo Tecnico composto por profissionais indicados pelo CMASGyn, contratados e disponibilizados pelo orgao gestor.",
+   "art_7": "Funcionamento normatizado por Regimento Interno, tendo o PLENARIO como instancia de deliberacao maxima.",
+   "art_8": "O orgao gestor prestara o apoio TECNICO, ADMINISTRATIVO E FINANCEIRO necessarios ao funcionamento do CMASGyn.",
+   "art_10_caput": "TODAS as sessoes ordinarias e extraordinarias do CMASGyn SERAO PUBLICAS.",
+   "art_10_par_1": "O cronograma das sessoes ordinarias sera amplamente divulgado, apos aprovacao em plenaria.",
+   "art_10_par_2": "As RESOLUCOES do CMASGyn SERAO PUBLICADAS NO DIARIO OFICIAL DO MUNICIPIO.",
+   "art_12_XII_conferencia": "Convocacao ordinaria da Conferencia Municipal a cada 2 anos.",
+   "art_18": "As despesas correrao a conta de dotacoes orcamentarias proprias do Tesouro Municipal ou de outras fontes, desde que alocadas no FMAS."
+  },
+  "lei_8248_2004": "Lei de Parceria do Municipio de Goiania. Referida pelo artigo 2, inciso IX, da Lei 9.009/2010. CONFERIR RECEPCAO frente a Lei 13.019/2014.",
+  "lei_8537_2007_art_11": "Onde se le Fundacao Municipal de Desenvolvimento Comunitario - FUMDEC, leia-se Secretaria Municipal de Assistencia Social.",
+  "lc_273_2014_art_4": "CONFIRMADO no texto integral. Acrescenta o paragrafo unico ao Artigo 4 da Lei 7.531/1995: dos recursos diretamente arrecadados ou transferidos pelo Tesouro Municipal, ate 30% sera destinado ao pagamento de despesas com pessoal, inclusive encargos sociais, e custeio das atividades relacionadas as finalidades essenciais da Secretaria.",
+  "loa_2026": {
+   "projeto": "PL 614/2025, aprovado em 30/12/2025",
+   "receita_e_despesa_estimadas": "acima de R$ 10,8 bilhoes",
+   "emendas_impositivas": "aprox. R$ 185 milhoes, 37 vereadores",
+   "remanejamento_autorizado": "ate 23%",
+   "anexos_publicados": "Diario Oficial Edicao 8697, de 09/01/2026, Edicao Extra",
+   "pendente": "Numero da lei sancionada e Quadro de Detalhamento de Despesas - CONFIRMAR"
+  },
+  "lei_8293_2004": {
+   "situacao": "VIGENTE. Artigo 19 alterado pelo Artigo 16 da Lei Complementar 273/2014.",
+   "art_19_par_unico": "Cabe ao orgao gestor da Administracao Publica Municipal responsavel pela coordenacao da politica de Assistencia Social a administracao do Fundo Municipal de Assistencia Social EM CONJUNTO COM O SECRETARIO MUNICIPAL DE FINANCAS, sob a orientacao e controle do Conselho Municipal de Assistencia Social.",
+   "uso_fiscalizatorio": "Cria responsabilidade solidaria do Secretario de Financas pela administracao do FMAS. Amplia o polo passivo de qualquer representacao sobre gestao do Fundo."
+  }
+ },
+ "destinacao_obrigatoria": {
+  "_advertencia": "NAO EXISTE percentual constitucional minimo de receita de impostos vinculado a assistencia social. Saude tem 15% (artigo 198, paragrafo 2, inciso III) e educacao tem 25% (artigo 212). Assistencia social NAO tem equivalente. O artigo 204, paragrafo unico, da Constituicao autoriza vinculacao de ate 0,5% APENAS a Estados e ao Distrito Federal. Afirmar descumprimento de percentual de impostos em assistencia social e erro juridico que destroi a credibilidade da peca.",
+  "obrigacoes_reais_e_auditaveis": [
+   {
+    "id": "DEST-01",
+    "regra": "Toda dotacao orcamentaria do orgao de assistencia social deve ser AUTOMATICAMENTE transferida a conta do FMAS assim que realizada a receita.",
+    "norma": "Artigo 2, paragrafo 1, da Lei municipal 7.531/1995",
+    "tipo": "vinculacao integral de fluxo",
+    "como_medir": "Dotacao SEMASDH na LOA menos creditos ao FMAS. Diferenca positiva persistente = descumprimento.",
+    "consequencia": "Ilegalidade e potencial descumprimento do artigo 30, paragrafo unico, da Lei 8.742/1993."
+   },
+   {
+    "id": "DEST-02",
+    "regra": "Teto de 30% dos recursos diretamente arrecadados ou transferidos pelo Tesouro Municipal para despesa com pessoal e custeio das finalidades essenciais.",
+    "norma": "Artigo 4, paragrafo unico, da Lei municipal 7.531/1995, acrescido pela Lei Complementar 273/2014",
+    "tipo": "TETO, nao piso",
+    "como_medir": "(despesa grupo 31 + custeio administrativo, fonte Tesouro) dividido por (receita FMAS fonte Tesouro). Se maior que 30% = descumprimento.",
+    "base_de_calculo": "Somente recursos do Tesouro Municipal. Recursos federais e estaduais NAO entram no denominador nem no numerador."
+   },
+   {
+    "id": "DEST-03",
+    "regra": "Minimo de 3% do IGD-PBF ao apoio tecnico e operacional do Conselho.",
+    "norma": "Artigo 14, paragrafo 7, da Lei 14.601/2023",
+    "tipo": "PISO LEGAL absoluto",
+    "percentual": 3.0
+   },
+   {
+    "id": "DEST-04",
+    "regra": "Piso de 10% do IGD ao controle social desde janeiro de 2026.",
+    "norma": "Artigo 6 da Resolucao CNAS/MDS 202/2025, no exercicio da delegacao do artigo 12-A, paragrafo 4, da Lei 8.742/1993",
+    "tipo": "PISO ADMINISTRATIVO vigente",
+    "percentual": 10.0,
+    "vigencia_inicio": "2026-01-01"
+   },
+   {
+    "id": "DEST-05",
+    "regra": "Vedado usar recursos do IGD destinados ao conselho para pessoal efetivo e gratificacoes a servidor publico.",
+    "norma": "Artigo 12-A, paragrafo 4, parte final, da Lei 8.742/1993",
+    "tipo": "VEDACAO"
+   },
+   {
+    "id": "DEST-06",
+    "regra": "Comprovacao orcamentaria de recursos PROPRIOS do Municipio destinados a assistencia social, alocados no FMAS, como condicao de transferencia federal.",
+    "norma": "Artigo 30, paragrafo unico, da Lei 8.742/1993",
+    "tipo": "CONDICAO DE REPASSE",
+    "consequencia": "Descumprimento autoriza suspensao do repasse do FNAS. Maxima alavancagem fiscalizatoria."
+   },
+   {
+    "id": "DEST-07",
+    "regra": "Repasse a entidades socioassistenciais somente por intermedio do FMAS e somente a entidades inscritas no Conselho.",
+    "norma": "Artigo 5 da Lei municipal 7.531/1995 e Resolucao CNAS 14/2014",
+    "tipo": "CANAL OBRIGATORIO",
+    "como_medir": "Repasse a entidade cuja unidade orcamentaria nao seja o FMAS, ou a entidade sem inscricao vigente = achado."
+   }
+  ]
+ },
+ "fontes_receita_a_conciliar": {
+  "uniao_fnas": {
+   "blocos": [
+    "Protecao Social Basica",
+    "Protecao Social Especial Media Complexidade",
+    "Protecao Social Especial Alta Complexidade",
+    "Gestao do SUAS (IGD-SUAS)",
+    "Gestao do Programa Bolsa Familia (IGD-PBF)",
+    "Programa Primeira Infancia no SUAS",
+    "Beneficios Eventuais"
+   ],
+   "modalidade": "transferencia regular e automatica fundo a fundo, sem convenio, artigo 55, paragrafo unico, da Resolucao CNAS 33/2012",
+   "onde_consultar": "Consulta de Pagamentos do Fundo Nacional de Assistencia Social",
+   "periodicidade": "mensal"
+  },
+  "estado_feas": {
+   "modalidade": "cofinanciamento estadual fundo a fundo ou convenio",
+   "onde_consultar": "Portal da Transparencia do Estado de Goias e Fundo Estadual de Assistencia Social",
+   "periodicidade": "variavel"
+  },
+  "municipio_tesouro": {
+   "modalidade": "dotacao orcamentaria, artigo 2, inciso II, da Lei 7.531/1995",
+   "onde_consultar": "LOA, QDD e RREO bimestral",
+   "observacao": "E o denominador do teto de 30% do DEST-02"
+  },
+  "emendas_parlamentares_municipais": {
+   "modalidade": "emenda impositiva, artigo 29 da Lei 13.019/2014 dispensa chamamento MAS exige indicacao expressa",
+   "risco": "Principal vetor de repasse a entidade sem chamamento publico. Toda emenda deve ter deliberacao do CMASGyn e plano de trabalho."
+  },
+  "rendimentos_de_aplicacao": {
+   "norma": "Artigo 2, inciso IV, da Lei 7.531/1995",
+   "observacao": "Rendimento de recurso federal segue a fonte de origem e nao pode ser tratado como recurso livre."
+  }
+ },
+ "prazos_e_gatilhos": {
+  "lai_resposta": 20,
+  "lai_prorrogacao": 10,
+  "publicacao_resolucao_cmas": "imediata apos deliberacao, artigo 10, paragrafo 2, da Lei 9.009/2010",
+  "apreciacao_contas_fmas": "MENSAL, artigo 2, inciso IV, alinea b, da Lei 9.009/2010",
+  "rreo": "bimestral, artigo 48 da Lei Complementar 101/2000",
+  "rgf": "quadrimestral",
+  "conferencia_municipal": "bienal"
+ }
+}

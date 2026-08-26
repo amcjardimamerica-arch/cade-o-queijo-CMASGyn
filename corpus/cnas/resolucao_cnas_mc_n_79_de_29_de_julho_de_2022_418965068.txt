@@ -1,0 +1,223 @@
+# RESOLUÇÃO CNAS/MC Nº 79, DE 29 DE JULHO DE 2022
+# DOU 01/08/2022 Edicao 144 Secao 1 Pagina 68
+# fonte: https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-79-de-29-de-julho-de-2022-418965068
+
+RESOLUÇÃO CNAS/MC Nº 79, DE 29 DE JULHO DE 2022
+ Dispõe sobre a aprovação do Relatório da Execução Orçamentária e Financeira do Fundo Nacional de Assistência Social (FNAS), exercício de 2022 - 2º trimestre.
+ A Plenária do CONSELHO NACIONAL DE ASSISTÊNCIA SOCIAL (CNAS), em reunião ordinária realizada nos dias 18, 19, 20, 21 e 22 de julho de 2022, no uso da competência que lhe conferem os incisos VIII e XIV do artigo 18 da Lei n.º 8.742, de 7 de dezembro de 1993 - Lei Orgânica da Assistência Social (LOAS), resolve:
+ Art. 1º- Aprovar o Relatório de Execução Orçamentária e Financeira do Fundo Nacional de Assistência Social (FNAS), exercício de 2022 - 2° trimestre, apresentado pela Diretoria Executiva do Fundo Nacional de Assistência Social (DEFNAS) do Ministério da Cidadania (MC), planilha anexa.
+ Art. 2º- Esta Resolução entra em vigor uma semana após a data de sua publicação.
+ MARGARETH ALVES DALLARUVERA
+ Presidente do Conselho
+ ANEXO
+ Ministério da Cidadania
+ Secretaria Executiva
+ Secretaria de Gestão de Fundos e Transferências
+ Diretoria Executiva do Fundo Nacional de Assistência Social
+ Coordenação Geral de Execução Orçamentária, Financeira e Contábil
+ EXECUÇÃO ORÇAMENTÁRIA E FINANCEIRA DO FUNDO NACIONAL DE ASSISTÊNCIA SOCIAL
+ REFERENTE AO PERÍODO DE JANEIRO A JUNHO DE 2022
+ Atualizado: Siafi - 30/06/2022
+ 55.901 - FUNDO NACIONAL DE ASSISTÊNCIA SOCIAL
+ CÓD
+ ATIVIDADE/PROGRAMA
+ COMPONENTES
+ DOTAÇÃO INICIAL
+ DOTAÇÃO EMPENHADA
+ %
+ DOTAÇÃO PAGA
+ %
+ DOTAÇÃO INICIAL
+ CRÉDITO ADICIONAL
+ DOTAÇÃO ATUAL
+ (A)
+ (B)
+ ( C)
+ ( D )
+ E = (D/C)
+ (F)
+ G = (F/D)
+ 5031
+ PROTEÇÃO SOCIAL NO ÂMBITO DO SISTEMA ÚNICO DE ASSISTÊNCIA SOCIAL
+ 2.625.810.617
+ 653.717.577
+ 3.279.528.194
+ 1.593.569.214
+ 49%
+ 1.219.319.037
+ 77%
+ 219E
+ Ações de Proteção Social Básica
+ PBF / PBV
+ 638.552.040
+ 638.552.040
+ 271.989.813
+ 43%
+ 265.708.766
+ 98%
+ 219F
+ Ações de Proteção Social Especial
+ PFMC / PTMC / PAC /PVAC
+ 327.000.000
+ 327.000.000
+ 149.049.546
+ 46%
+ 132.721.736
+ 89%
+ 219G
+ Estruturação da Rede de Serviços do Sistema Único de Assistência Social (SUAS)*
+ 1.552.019.597
+ 653.717.577
+ 2.205.737.174
+ 1.136.515.991
+ 52%
+ 818.100.310
+ 72%
+ 2583
+ Serviço de Processamento de Dados do BPC e da RMV
+ 49.000.000
+ 49.000.000
+ 29.453.361
+ 60%
+ 1.463.678
+ 5%
+ 2589
+ Avaliação e Operacionalização do BPC
+ 9.238.980
+ 9.238.980
+ 6.560.502
+ 71%
+ 1.324.547
+ 20%
+ 8893
+ Apoio à Organização, à Gestão e à Vigilância Social no Território, no âmbito do SUAS
+ IGDSUAS
+ 50.000.000
+ 50.000.000
+ 0%
+ -
+ TOTAL I (DISCRICIONÁRIAS)
+ 2.625.810.617
+ 653.717.577
+ 3.279.528.194
+ 1.593.569.214
+ 49%
+ 1.219.319.037
+ 77%
+ 5028
+ INCLUSÃO SOCIAL POR MEIO DO AUXÍLIO BRASIL E DA ARTICULAÇÃO DE POLÍTICAS PÚBLICAS
+ 624.528.000
+ 624.528.000
+ 608.636.000
+ 97%
+ 131.056.694
+ 22%
+ 21DR
+ Serv. De Apoio à Gestão Descentralizada ao Prog. Auxílio Brasil
+ IGD PAB
+ 624.528.000
+ 624.528.000
+ 608.636.000
+ 97%
+ 131.056.694
+ 22%
+ 5024
+ ATENÇÃO INTEGRAL À PRIMEIRA INFÂNCIA
+ 451.716.644
+ 375.057.405
+ 366.787.284
+ 98%
+ 111.140.500
+ 30%
+ 217M
+ Desenvolvimento Integral na Primeira Infância - Criança Feliz
+ 451.716.644
+ 375.057.405
+ 366.787.284
+ 98%
+ 111.140.500
+ 30%
+ TOTAL I I (DISCRICIONÁRIAS)
+ 1.076.244.644
+ -14.020.718
+ 999.585.405
+ 828.797.928
+ 83%
+ 242.197.194
+ 29%
+ 0901
+ OPERAÇÕES ESPECIAIS: CUMPRIMENTO DE SENTENÇAS JUDICIAIS
+ 1.635.036.521
+ -14.020.718
+ 1.621.015.803
+ 769.621.333
+ 47%
+ 769.621.332
+ 100%
+ 0005
+ Cumprimento de Sentença Judicial Transitada em Julgado (Precatórios) devida pela União, Autarquias, e Fundações Públicas
+ 259.501.024
+ -14.020.718
+ 245.480.306
+ 0
+ 0%
+ -
+ 0625
+ Cumprimento de Sentença Judicial Transitada em Julgado de Pequeno Valor devida pela União, Autarquias, e Fundações Públicas
+ 1.375.535.497
+ 1.375.535.497
+ 769.621.333
+ 56%
+ 769.621.332
+ 100%
+ 5031
+ PROTEÇÃO SOCIAL NO ÂMBITO DO SISTEMA ÚNICO DE ASSISTÊNCIA SOCIAL
+ 74.726.184.159
+ 74.726.184.159
+ 74.670.018.704
+ 100%
+ 34.537.476.959
+ 46%
+ 00H5
+ BPC/RMV à pessoa idosa
+ 33.341.953.162
+ 33.341.953.162
+ 33.340.561.256
+ 100%
+ 15.332.436.548
+ 46%
+ 00IN
+ BPC/RMV à pessoa com deficiência e invalidez
+ 41.191.445.276
+ 41.191.445.276
+ 41.185.872.055
+ 100%
+ 19.204.826.485
+ 47%
+ 00TZ
+ Auxílio Inclusão as pessoas com deficiência
+ 192.785.721
+ 192.785.721
+ 143.585.393
+ 74%
+ 213.927
+ 0%
+ TOTAL III (BPC/RMV/SENTENÇAS)
+ 76.361.220.680
+ 76.347.199.962
+ 75.439.640.037
+ 99%
+ 35.307.098.292
+ 47%
+ TOTAL GERAL
+ 80.063.275.941
+ 639.696.859
+ 80.626.313.561
+ 77.862.007.179
+ 97%
+ 36.768.614.522
+ 47%
+ FONTE: SIAFI
+ Este conteúdo não substitui o publicado na versão certificada.
+ Borda do rodapé 
+ Logo da Imprensa

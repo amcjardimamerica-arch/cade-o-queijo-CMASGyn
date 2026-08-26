@@ -1,0 +1,115 @@
+# RESOLUÇÃO CNAS/MDS Nº 242, DE 29 DE JULHO DE 2026
+# DOU 30/07/2026 Edicao 142 Secao 1 Pagina 48
+# fonte: https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-242-de-29-de-julho-de-2026-722123171
+
+RESOLUÇÃO CNAS/MDS Nº 242, DE 29 DE JULHO DE 2026
+ Dispõe sobre a aprovação da Proposta Orçamentária da Assistência Social, exercício de 2027.
+ O Conselho Nacional de Assistência Social (CNAS), em reunião ordinária realizada nos dias 29 e 30 de julho de 2026, no uso das competências que lhe conferem os incisos VIII e XIV do artigo 18 da Lei n.º 8.742, de 7 de dezembro de 1993 (Lei Orgânica da Assistência Social -LOAS), e tendo em vista a Resolução CNAS/MDS nº 221, de 28 de novembro de 2025, que dispõe sobre o processo de elaboração, apreciação e aprovação do orçamento da Assistência Social, em especial do Fundo Nacional de Assistência Social (FNAS) e a Resolução CNAS/MDS nº 232, de 29 de abril de 2026, que dispõe sobre os parâmetros da Proposta Orçamentária para a Assistência Social, relativo ao orçamento para o exercício 2027, resolve:
+ Art. 1º Esta Resolução aprova a Proposta Orçamentária da Assistência Social, exercício de 2027, no valor total de R$ 165.459.476.265,00 (cento e sessenta e cinco bilhões, quatrocentos e cinquenta e nove milhões, quatrocentos e setenta e seis mil e duzentos e sessenta e cinco reais), sendo R$ 165.295.271.509,00 (cento e sessenta e cinco bilhões, duzentos e noventa e cinco milhões, duzentos e setenta e um mil, quinhentos e nove reais) do Fundo Nacional de Assistência Social (FNAS) e R$ 164.204.756,00 (cento e sessenta e quatro milhões, duzentos e quatro mil, setecentos e cinquenta e seis reais) da Administração Direta sob gestão da Secretaria Nacional de Assistência Social (SNAS), do Ministério do Desenvolvimento e Assistência Social, Família e Combate à Fome (MDS), conforme anexo, com as seguintes RECOMENDAÇÕES:
+ I - Que o Ministério do Desenvolvimento e Assistência Social, Família e Combate à Fome envide esforços, junto à área econômica, para garantir os recursos destinados ao financiamento das ações orçamentárias apresentadas no anexo, nos valores aprovados pelo Conselho Nacional de Assistência Social (CNAS); e
+ II - Buscar a garantia da regularidade no repasse dos recursos do fundo nacional para os fundos municipais, estaduais e do Distrito Federal.
+ Art. 2º Esta Resolução entra em vigor na data de sua publicação.
+ ALDENORA GOMES GONZÁLEZ
+ Presidente do Conselho
+ ANEXO
+ PROGRAMA 5131 - PROTEÇÃO SOCIAL PELO SISTEMA ÚNICO DE ASSISTÊNCIA SOCIAL
+ PROPOSTA UG FNAS
+ AÇÃO / DESCRIÇÃO
+ 2027 (R$)
+ 0005
+ Sentenças Judiciais Transitadas em Julgado (Precatórios)
+ 44.255.689,00
+ 00H5
+ Benefícios de Prestação Continuada (BPC) à Pessoa Idosa e (RMV) Por Idade
+ 61.714.272.337,00
+ 00IN
+ Benefícios de Prestação Continuada (BPC) Pessoa com Deficiência e (RMV) Por Invalidez
+ 86.897.369.495,00
+ 00TZ
+ Auxílio-Inclusão às Pessoas com Deficiência
+ 23.868.304,00
+ 00WU
+ Sentenças Judiciais Transitadas em Julgado (Precatórios)
+ 507.007.021,00
+ 0625
+ Sentenças Judiciais Transitadas em Julgado de Pequeno Valor
+ 8.229.194.120,00
+ 2583
+ Processamento de Dados
+ 37.003.798,00
+ Subtotal das ações obrigatórias ( A )
+ 157.452.970.764,00
+ 217M
+ Primeira Infância no SUAS - Criança Feliz
+ 877.304.112,00
+ Subtotal da ação 217M
+ 877.304.112,00
+ 219E
+ Cofinanciamento da Proteção Social Básica
+ 3.676.204.563,00
+ Subtotal da ação 219E
+ 3.676.204.563,00
+ 219F
+ Cofinanciamento da Proteção Social Especial de Média e Alta Complexidade (PO 0000 - Despesas Diversas)
+ 1.035.522.314,00
+ Cofinanciamento da Proteção Social Especial de Média e Alta Complexidade (PO 0004 - Programa de Erradicação do Trabalho Infantil)
+ 80.000.000,00
+ Subtotal da ação 219F
+ 1.115.522.314,00
+ 21H0
+ Proteção Socioassistencial em Situações de Calamidades Públicas e de Emergências (PO 0000 - Despesas Diversas)
+ 60.000.000,00
+ Proteção Socioassistencial em Situações de Calamidades Públicas e de Emergências (Ações Socioassistenciais a Imigrantes e Refugiados)
+ 45.080.000,00
+ Proteção Socioassistencial em Situações de Calamidades Públicas e de Emergências (PO: 0001 - El Ninõ - Ações de Enfrentamento)
+ 58.422.506,00
+ Proteção Socioassistencial em Situações de Calamidades Públicas e de Emergências (Acordo Rio Doce - Repasse a Municípios (Decreto nº 12.412/2025))
+ 15.360.000,00
+ Subtotal da ação 21H0
+ 178.862.506,00
+ 219G
+ Estruturação da Rede de Serviços e Fortalecimento da Gestão do Sistema Único de Assistência Social (SUAS) (Resultado Primário 2 - Discricionária)
+ 1.800.000.000,00
+ Subtotal da ação 219G
+ 1.800.000.000,00
+ 2589
+ Gestão, Administração e Operacionalização de Benefícios Socioassistenciais (Benefício De Prestação Continuada - BPC, Renda Mensal Vitalícia - RMV, Auxílio-Inclusão e Outros Benefícios)
+ 11.407.250,00
+ 8893
+ Organização em Âmbito Nacional da Gestão do Sistema Único de Assistência Social - SUAS
+ 170.000.000,00
+ 2589
+ BPC Na Escola
+ 13.000.000,00
+ Subtotal
+ 194.407.250,00
+ Subtotal das ações discricionárias ( B )
+ 7.842.300.745,00
+ FNAS ( A + B )
+ 165.295.271.509,00
+ 8893
+ Organização em Âmbito Nacional da Gestão do Sistema Único de Assistência Social - SUAS
+ 93.519.340,00
+ Subtotal da ação 8893
+ 93.519.340,00
+ 21H0
+ Proteção Socioassistencial em Emergências e Calamidades Públicas (PO 0000 - Despesas Diversas)
+ 40.555.200,00
+ Proteção Socioassistencial em Emergências e Calamidades Públicas (PO 0001 - El Ninõ - Ações de Resposta Direta da FORSUAS)
+ 9.612.000,00
+ Proteção Socioassistencial em Emergências e Calamidades Públicas (Acordo Rio Doce - Ações de Gestão e Resposta Direta da FORSUAS)
+ 1.920.000,00
+ Subtotal da ação 21H0
+ 52.087.200,00
+ 8249
+ Funcionamento dos Conselhos de Assistência Social
+ 18.598.216,00
+ Subtotal da ação 8249
+ 18.598.216,00
+ Subtotal (SNAS - Direta) ( C )
+ 164.204.756,00
+ Total Geral ( A + B + C )
+ 165.459.476.265,00
+ Este conteúdo não substitui o publicado na versão certificada.
+ Borda do rodapé 
+ Logo da Imprensa

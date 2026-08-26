@@ -1,0 +1,228 @@
+# RESOLUÇÃO CNAS/MDS Nº 170, DE 15 DE OUTUBRO DE 2024
+# DOU 16/10/2024 Edicao 201 Secao 1 Pagina 28
+# fonte: https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-170-de-15-de-outubro-de-2024-590495997
+
+RESOLUÇÃO CNAS/MDS Nº 170, DE 15 DE OUTUBRO DE 2024
+ Dispõe sobre a aprovação do Relatório da Execução Orçamentária e Financeira do Fundo Nacional de Assistência Social (FNAS), exercício de 2024 - 3º trimestre.
+ O CONSELHO NACIONAL DE ASSISTÊNCIA SOCIAL (CNAS), em reunião ordinária realizada nos dias 09 e 10 de outubro de 2024, no uso da competência que lhe conferem os incisos VIII e XIV do artigo 18 da Lei n.º 8.742, de 7 de dezembro de 1993 - Lei Orgânica da Assistência Social (LOAS), resolve:
+ Art. 1º- Aprovar o Relatório de Execução Orçamentária e Financeira do Fundo Nacional de Assistência Social (FNAS), exercício de 2024 - 3° trimestre, apresentado pela Diretoria Executiva do Fundo Nacional de Assistência Social (DEFNAS), da Secretaria Nacional de Assistência Social (SNAS), do Ministério do Desenvolvimento e Assistência Social, Família e Combate à Fome (MDS), planilha anexa.
+ Art. 2º Esta Resolução entra em vigor uma semana após a data de sua publicação.
+ EDGILSON TAVARES DE ARAÚJO
+ Presidente do Conselho
+ ANEXO
+ EXECUÇÃO ORÇAMENTÁRIA E FINANCEIRA DO FUNDO NACIONAL DE ASSISTÊNCIA SOCIAL
+ REFERENTE AO PERÍODO DE JANEIRO A SETEMBRO 2024
+ Atualizado: 03/10/2024
+ 55.901 - FUNDO NACIONAL DE ASSISTÊNCIA SOCIAL
+ CÓD
+ ATIVIDADE/PROGRAMA
+ COMPONENTES
+ DOTAÇÃO INICIAL
+ DOTAÇÃO EMPENHADA
+ %
+ DOTAÇÃO PAGA
+ %
+ DOTAÇÃO INICIAL
+ CRÉDITO
+ DOTAÇÃO ATUAL
+ (A)
+ (B)
+ ( C)
+ ( D )
+ E = (D/C)
+ (F)
+ G = (F/C)
+ 5031
+ PROTEÇÃO SOCIAL NO ÂMBITO DO SISTEMA ÚNICO DE ASSISTÊNCIA SOCIAL
+ 3.154.084.599
+ 62.635.117
+ 3.128.965.348
+ 2.186.419.632
+ 70%
+ 1.857.892.386
+ 59%
+ 219E
+ Ações de Proteção Social Básica
+ PBF / PBV
+ 1.147.148.001
+ (9.249.704)
+ 1.137.898.297
+ 803.521.013
+ 71%
+ 712.957.625
+ 63%
+ 219F
+ Ações de Proteção Social Especial
+ PFMC / PTMC / PAC /PVAC
+ 751.511.401
+ 49.518.394
+ 801.029.795
+ 458.393.322
+ 57%
+ 401.245.746
+ 50%
+ 219G
+ Estruturação da Rede de Serviços do Sistema Único de Assistência Social (SUAS)*
+ 818.438.859
+ 25.334.536
+ 843.773.395
+ 699.041.406
+ 83%
+ 560.616.731
+ 66%
+ 2583
+ Serviço de Processamento de Dados do BPC e da RMV
+ 44.310.679
+ (9.095.775)
+ 35.214.904
+ 8.648.373
+ 25%
+ 8.648.373
+ 25%
+ 2589
+ Avaliação e Operacionalização do BPC
+ 8.050.471
+ (652.334)
+ 7.398.137
+ 5.031.087
+ 68%
+ 4.563.033
+ 62%
+ 8893
+ Apoio à Organização, à Gestão e à Vigilância Social no Território, no âmbito do SUAS
+ IGDSUAS
+ 2.387.069
+ 6.780.000
+ 9.167.069
+ 7.270.000
+ 79%
+ 620.000
+ 7%
+ 217M
+ Desenvolvimento Integral na Primeira Infância - Criança Feliz
+ 382.238.119
+ (87.754.368)
+ 294.483.751
+ 204.514.431
+ 69%
+ 169.240.878
+ 57%
+ TOTAL I (DISCRICIONÁRIAS)
+ 3.154.084.599
+ 3.128.965.348
+ 2.186.419.632
+ 70%
+ 1.857.892.386
+ 59%
+ 5028
+ INCLUSÃO SOCIAL POR MEIO DO AUXÍLIO BRASIL E DA ARTICULAÇÃO DE POLÍTICAS PÚBLICAS
+ 877.058.000
+ -
+ 877.058.000
+ 873.058.000
+ 100%
+ 528.756.194
+ 60%
+ 00US
+ Serv. De Apoio à Gestão Descentralizada ao Programa Bolsa Família
+ IGD PBF
+ 877.058.000
+ 877.058.000
+ 873.058.000
+ 100%
+ 528.756.194
+ 60%
+ TOTAL I I (DISCRICIONÁRIAS)
+ 4.031.142.599
+ 4.006.023.348
+ 3.059.477.632
+ 76%
+ 2.386.648.580
+ 60%
+ 0901
+ OPERAÇÕES ESPECIAIS: CUMPRIMENTO DE SENTENÇAS JUDICIAIS
+ 3.296.939.465
+ 5.047.784.357
+ 3.600.008.816
+ 71%
+ 3.599.969.339
+ 71%
+ 0005
+ Cumprimento de Sentença Judicial Transitada em Julgado (Precatórios) devida pela União, Autarquias, e Fundações Públicas
+ 136.016.858
+ 147.861.750
+ 25.446.576
+ 17%
+ 25.446.576
+ 17%
+ 0625
+ Cumprimento de Sentença Judicial Transitada em Julgado de Pequeno Valor devida pela União, Autarquias, e Fundações Públicas
+ 3.160.922.607
+ 1.739.000.000
+ 4.899.922.607
+ 3.574.562.240
+ 73%
+ 3.574.522.763
+ 73%
+ 5031
+ PROTEÇÃO SOCIAL NO ÂMBITO DO SISTEMA ÚNICO DE ASSISTÊNCIA SOCIAL
+ 100.231.004.562
+ 100.230.453.304
+ 100.171.964.930
+ 100%
+ 74.286.076.146
+ 74%
+ 00H5
+ BPC/RMV à pessoa idosa
+ 45.349.074.290
+ -
+ 45.349.074.290
+ 45.337.091.000
+ 100%
+ 32.177.000.783
+ 71%
+ 00IN
+ BPC/RMV à pessoa com deficiência e invalidez
+ 54.839.102.648
+ -
+ 54.839.102.648
+ 54.795.023.054
+ 100%
+ 42.105.980.844
+ 77%
+ 00TZ
+ Auxílio Inclusão as pessoas com deficiência
+ 42.276.366
+ -
+ 42.276.366
+ 39.850.876
+ 94%
+ 3.094.519
+ 7%
+ 21DT
+ Operacionalização Auxílio a Deficientes
+ 551.258
+ (110.252)
+ 441.006
+ 0
+ 0%
+ 0
+ 0%
+ TOTAL III (BPC/RMV/SENTENÇAS)
+ 100.231.004.562
+ 100.230.894.310
+ 100.171.964.930
+ 100%
+ 74.286.076.146
+ 74%
+ TOTAL GERAL
+ 107.416.231.760
+ 107.365.883.006
+ 105.417.862.194
+ 98%
+ 78.530.617.112
+ 73%
+ FONTE: SIAFI
+ Este conteúdo não substitui o publicado na versão certificada.
+ Borda do rodapé 
+ Logo da Imprensa

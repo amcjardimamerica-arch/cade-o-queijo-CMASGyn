@@ -1,0 +1,88 @@
+# Cadência de fiscalização — substitui a rotina diária
+# Semanal administrativa · Mensal financeira · Mensal legal
+
+versao: "2.0"
+atualizado_em: "2026-08-25"
+
+ciclos:
+
+  semanal_administrativo:
+    quando: "segunda-feira, 09:00 UTC (06:00 Goiânia)"
+    cron: "0 9 * * 1"
+    janela: "os 7 dias corridos anteriores"
+    escopo:
+      - SEMASDH e Fundo Municipal de Assistência Social
+      - CMASGyn
+    coleta:
+      - Diário Oficial do Município, edição por edição da janela
+      - sítio próprio do CMASGyn
+    procura:
+      - licitações, dispensas e inexigibilidades
+      - contratos, termos de fomento, termos de colaboração, convênios e aditivos
+      - resoluções do CMASGyn
+      - atas de plenária
+      - atos de orientação, portarias, instruções normativas
+      - decretos de crédito adicional na função 08
+      - nomeações e exonerações na Secretaria e no Conselho
+    valida_contra:
+      - config/base_legal.json
+      - config/parametros_fiscalizacao.json
+    estados_de_coleta:
+      - PUBLICACAO_LOCALIZADA_COM_ATO
+      - PUBLICACAO_LOCALIZADA_SEM_ATO_RELEVANTE
+      - SEM_EDICAO_CONFIRMADA
+      - FONTE_INDISPONIVEL
+      - BUSCA_INCONCLUSIVA
+      - DIA_NAO_UTIL
+    saida: "dados/semanal/AAAA-Snn.json e docs/semanal/AAAA-Snn.md"
+    modelo_ia: haiku_para_triagem_sonnet_para_parecer
+
+  mensal_financeiro:
+    quando: "dia 1, 10:00 UTC"
+    cron: "0 10 1 * *"
+    janela: "mês civil anterior"
+    exige:
+      receita:
+        - valor recebido por competência
+        - fonte de recurso de cada entrada
+        - ente de origem (União, Estado, Município, emenda)
+        - cruzamento com a Lei Orçamentária Anual e a Lei de Diretrizes Orçamentárias
+      despesa:
+        - folha de pagamento com PRIMEIRO NOME apenas, cargo e valor
+        - entidade beneficiária, com contrato ou termo que valide o recebimento
+        - contratos mensais e despesas correntes discriminados
+        - estágios separados: empenho, liquidação, pagamento, movimentação bancária
+      destinacao_obrigatoria:
+        - "IGD-PBF e IGD-SUAS: 10% mensal ao CMASGyn, artigo 6º da Resolução CNAS/MDS 202/2025"
+        - "dotação específica no Quadro de Detalhamento de Despesas, artigo 6º, parágrafo 4º"
+        - "prestação de contas quadrimestral ao Conselho, artigo 6º, parágrafo 5º"
+        - "teto de 30% para pessoal, artigo 4º, parágrafo único, da Lei municipal 7.531/1995"
+        - "recursos próprios no Fundo, artigo 30, parágrafo único, da Lei 8.742/1993"
+      cmasgyn_individualizado:
+        - cada gasto do CMASGyn com recebedor final identificado
+        - amparo legal de cada gasto
+        - conferência contra a vedação do artigo 12-A, parágrafo 4º, da Lei 8.742/1993
+    saida: "dados/mensal/AAAA-MM.json e docs/mensal/AAAA-MM.md"
+    modelo_ia: opus_para_auditoria_e_parecer
+
+  mensal_legal:
+    quando: "dia 1, 08:00 UTC — antes do ciclo financeiro"
+    cron: "0 8 1 * *"
+    faz:
+      - rebaixa o corpus legal federal e municipal
+      - tenta capturar resoluções do CNAS ainda sem texto
+      - confere limites de dispensa da Lei 14.133/2021
+      - confere percentual vigente do IGD ao controle social
+      - abre tarefa com o que exigir conferência humana
+    saida: "corpus/, corpus_txt/, config/catalogo_cnas.json"
+    modelo_ia: haiku_para_captura_sem_parecer
+
+privacidade:
+  pessoa_fisica: "exibir apenas o primeiro nome, em qualquer relatório"
+  pessoa_juridica: "razão social e inscrição completas"
+
+regras_probatorias:
+  - "Dotação, empenho e liquidação não comprovam movimentação bancária."
+  - "Ausência no repositório não prova inexistência no órgão."
+  - "Todo achado carrega selo CONFIRMADO ou INDICIÁRIO."
+  - "Conclusão automatizada não substitui revisão jurídica humana."

@@ -1,0 +1,35 @@
+{
+  "_meta": {
+    "objetivo": "Impedir que o cadastro do proprio Municipio, de outros entes federados e de ruido numerico entre em lista de entidades privadas.",
+    "regra": "Nenhuma inscricao entra em dados/entidades.json sem passar por: validacao de digito verificador, normalizacao de formato, lista_negra e classificacao de dominio.",
+    "atualizado_em": "2026-08-24"
+  },
+  "lista_negra_confirmada": [
+    {"cnpj": "01.612.092/0001-23", "razao": "MUNICIPIO DE GOIANIA", "prova": "objeto da edicao do_20250815_000008601 - '...no CNPJ n.o 01.612.092/0001-23, atraves da SECRETARIA MUNICIPAL DE SAUDE'", "acao": "excluir de entidades"},
+    {"cnpj": "37.623.352/0001-03", "razao": "SECRETARIA MUNICIPAL DE SAUDE DE GOIANIA", "prova": "mesma edicao, texto expresso", "acao": "excluir de entidades"},
+    {"cnpj": "01.181.585/0001-56", "razao": "MUNICIPIO DE PIRES DO RIO", "prova": "objeto da edicao do_20260506_000008772 - 'MUNICIPIO DE PIRES DO RIO 92508400 01.181.585/0001-56'", "acao": "excluir de entidades"},
+    {"cnpj": "75.185.877/5185-87", "razao": "digito verificador invalido - ruido numerico", "acao": "excluir"},
+    {"cnpj": "13.574.594/1288-26", "razao": "ordem de filial 1288 atipica - verificar", "acao": "quarentena"},
+    {"cnpj": "16.010.431/0116-18", "razao": "ordem de filial 0116 - possivel matriz nacional, dominio a confirmar", "acao": "quarentena"}
+  ],
+  "dv_invalido_detectado": ["02.430.968/0003-51", "15.124.498/0001-51", "75.185.877/5185-87"],
+  "dominio_estranho_confirmado": [
+    {"cnpj": "00.136.446/0001-48", "razao_social": "NEFROCLINICA CLINICA DE DOENCAS RENAIS", "valor": 22040395.80, "dominio": "SAUDE", "acao": "excluir da funcao 08"},
+    {"cnpj": "01.393.989/0001-03", "valor": 22803699.44, "dominio": "a confirmar - aparece ao lado de fornecedores de saude", "acao": "quarentena"}
+  ],
+  "prefixos_a_excluir_por_natureza_de_ente": [
+    "qualquer inscricao cuja razao social contenha: MUNICIPIO, PREFEITURA, ESTADO DE, SECRETARIA MUNICIPAL, SECRETARIA DE ESTADO, FUNDO MUNICIPAL, FUNDO ESTADUAL, AUTARQUIA, INSTITUTO DE PREVIDENCIA, CAMARA MUNICIPAL, TRIBUNAL, UNIAO FEDERAL"
+  ],
+  "palavras_chave_de_dominio_estranho": {
+    "saude": ["clinica", "hospital", "hemo", "soro anti", "sensor de glicose", "termometro", "anvisa", "alvara sanitario", "odontolog", "imunizac", "ar comprimido medicinal"],
+    "meio_ambiente": ["preservacao e conservacao ambiental", "mudancas climaticas"],
+    "cemiterios": ["manutencao dos cemiterios"],
+    "educacao": ["cei ", "centro de educacao infantil", "secretaria municipal de educacao"]
+  },
+  "regra_de_fan_out": {
+    "descricao": "Publicacao com N inscricoes e 1 valor NAO gera N registros do valor cheio.",
+    "acao": "gerar 1 registro com campo valor_de_publicacao_nao_atribuido e lista de cnpjs candidatos",
+    "grupos_detectados_em_24_08_2026": 9,
+    "inflacao_estimada": 72337125.48
+  }
+}

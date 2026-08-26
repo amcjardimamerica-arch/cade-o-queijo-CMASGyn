@@ -1,0 +1,521 @@
+{
+ "gerado_em": "2026-08-25T08:48:33.408165",
+ "achados": [
+  {
+   "trilha": "SEMASDH",
+   "parametro": "SEM-REC-01",
+   "severidade": "critica",
+   "selo": "CONFIRMADO",
+   "titulo": "Nenhum dado de receita no acervo",
+   "detalhe": "O arquivo financeiro.json nao possui campo de receita. Sem receita nao ha como aferir superavit, deficit, cumprimento do teto de 30% do artigo 4, paragrafo unico, da Lei municipal 7.531/1995, nem a transferencia automatica ao FMAS do artigo 2, paragrafo 1, da mesma lei.",
+   "norma": "Artigos 6 e 13 da Lei 4.320/1964; artigo 48 da Lei Complementar 101/2000",
+   "valor": null
+  },
+  {
+   "trilha": "SEMASDH",
+   "parametro": "SEM-DES-03",
+   "severidade": "critica",
+   "selo": "CONFIRMADO",
+   "titulo": "Despesa efetivamente realizada nao rastreavel",
+   "detalhe": "Apenas 6 de 161 eventos alcancam a estacao de empenho e pagamento (3.73%). O Diario Oficial publica autorizacao, nao execucao.",
+   "norma": "Artigos 58, 62 e 63 da Lei 4.320/1964; artigo 48-A da Lei Complementar 101/2000",
+   "valor": null
+  },
+  {
+   "trilha": "SEMASDH",
+   "parametro": "SEM-PES-01",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Folha de pagamento invisivel no acervo",
+   "detalhe": "Nao ha natureza 31901100 (Vencimentos e vantagens fixas) em nenhuma das 133 linhas. As rubricas do grupo 31 presentes sao 31901300, 31909200 e 31909600, e ao menos duas delas estao desalinhadas: o rotulo aponta 33504100 e 33504300, transferencias a instituicao privada. Nao ha como contar cargos nem aferir o teto de 30%.",
+   "norma": "Artigo 4, paragrafo unico, da Lei municipal 7.531/1995",
+   "valor": {
+    "naturezas_de_folha_encontradas": [
+     "31901300"
+    ]
+   }
+  },
+  {
+   "trilha": "SEMASDH",
+   "parametro": "SEM-DES-06",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Aluguel matematicamente inatingivel",
+   "detalhe": "Todas as naturezas foram extraidas com 8 digitos. Locacao de imovel e subitem (33903615 pessoa fisica, 33903910 pessoa juridica). Sem os dois digitos finais nenhum filtro por codigo isola aluguel. Ha locacao identificavel por texto: edicao de 10/04/2026, R$ 257.040,00, imovel na Rua 1105, Quadra 204, Lote 23, Setor Pedro Ludovico, para o Complexo 24 Horas.",
+   "norma": "Artigo 13 da Lei 4.320/1964; artigo 4, inciso IV, da Lei municipal 7.531/1995",
+   "valor": {
+    "naturezas_com_10_digitos": 1
+   }
+  },
+  {
+   "trilha": "SEMASDH",
+   "parametro": "SEM-IGD-03",
+   "severidade": "critica",
+   "selo": "CONFIRMADO",
+   "titulo": "Piso de 10% do IGD ao controle social sem qualquer execucao identificavel",
+   "detalhe": "Base de dotacao do IGD localizada: R$ 706.707,15 (08.244.0165.1103 Modernizacao da Gestao do IGD SUAS e 08.244.0165.2555 IGD Bolsa Familia e CadUnico). Piso de 10% desde janeiro de 2026: R$ 70.670,72. Piso legal absoluto de 3%: R$ 21.201,21. Nenhum valor identificavel destinado ao CMASGyn.",
+   "norma": "Artigo 6 da Resolucao CNAS/MDS 202/2025; artigo 12-A, paragrafo 4, da Lei 8.742/1993; artigo 14, paragrafo 7, da Lei 14.601/2023",
+   "valor": {
+    "base": 706707.15,
+    "devido_10": 70670.72,
+    "devido_3": 21201.21,
+    "executado": 0
+   }
+  },
+  {
+   "trilha": "SEMASDH",
+   "parametro": "SEM-REC-05",
+   "severidade": "media",
+   "selo": "INDICIARIO",
+   "titulo": "Creditos abertos contra fontes de exercicios anteriores",
+   "detalhe": "Fontes com prefixo 2 observadas: 2660, 2661, 2706 em 78 lancamentos. No padrao da Secretaria do Tesouro Nacional o primeiro digito separa exercicio corrente (1) de exercicios anteriores (2). Se confirmado, sao creditos contra superavit financeiro, que exige superavit demonstrado. CONFIRMAR contra o Quadro de Detalhamento de Despesas antes de afirmar.",
+   "norma": "Artigo 43, paragrafo 1, inciso I, da Lei 4.320/1964",
+   "valor": null
+  },
+  {
+   "trilha": "SEMASDH",
+   "parametro": "SEM-REC-02",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Rastreabilidade da origem em 17.57%",
+   "detalhe": "De R$ 53.810.573,26 em linhas da funcao 08, apenas R$ 9.453.211,48 identificam o ente. Nenhuma linha atribuida ao Estado. Nenhuma ao Municipio.",
+   "norma": "Artigos 6 e 13 da Lei 4.320/1964; artigo 48-A da Lei Complementar 101/2000",
+   "valor": null
+  },
+  {
+   "trilha": "CMASGYN",
+   "parametro": "CMAS-ATO-01",
+   "severidade": "critica",
+   "selo": "CONFIRMADO",
+   "titulo": "Resolucoes do Conselho sem publicacao no Diario Oficial",
+   "detalhe": "O artigo 10, paragrafo 2, da Lei municipal 9.009/2010 determina de forma expressa e especifica que as Resolucoes do CMASGyn SERAO PUBLICADAS no Diario Oficial do Municipio. Esta e norma municipal propria, mais forte que o dever geral de transparencia. A publicacao e condicao de eficacia: o ato nao publicado nao produz efeitos perante terceiros, e ainda assim produziu efeito financeiro.",
+   "norma": "Artigo 10, paragrafo 2, da Lei municipal 9.009/2010; artigo 37, caput, da Constituicao Federal; artigo 8 da Lei 12.527/2011",
+   "valor": null
+  },
+  {
+   "trilha": "CMASGYN",
+   "parametro": "CMAS-ATO-02",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Nenhuma ata de plenaria publicada no trienio",
+   "detalhe": "O artigo 10, caput, da Lei municipal 9.009/2010 declara publicas TODAS as sessoes ordinarias e extraordinarias. Sem ata publica sao inaferiveis quorum, paridade, deliberacao e voto. A ausencia de ata impede tambem aferir o parametro CMAS-CAB-04.",
+   "norma": "Artigo 10 da Lei municipal 9.009/2010",
+   "valor": null
+  },
+  {
+   "trilha": "CMASGYN",
+   "parametro": "CMAS-PROC-05",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Apreciacao mensal das contas do FMAS sem registro publico",
+   "detalhe": "O artigo 2, inciso IV, alinea b, da Lei municipal 9.009/2010 impoe ao CMASGyn apreciar MENSALMENTE as contas e os relatorios do FMASGyn. Em tres anos de edicoes nao se localizou uma unica resolucao ou ata de apreciacao mensal de contas. Sao 36 competencias sem cumprimento demonstravel.",
+   "norma": "Artigo 2, inciso IV, alinea b, da Lei municipal 9.009/2010",
+   "valor": {
+    "competencias_esperadas": 36,
+    "competencias_com_registro": 0
+   }
+  },
+  {
+   "trilha": "CMASGYN",
+   "parametro": "CMAS-PROC-04",
+   "severidade": "alta",
+   "selo": "INDICIARIO",
+   "titulo": "Apreciacao previa de contratos e convenios nao demonstrada",
+   "detalhe": "O artigo 2, inciso IX, da Lei municipal 9.009/2010 exige apreciacao PREVIA dos contratos e convenios. O acervo registra 71 instrumentos e apenas 39 eventos de deliberacao. Confrontar data de resolucao contra data de assinatura exige as atas, que nao existem publicadas.",
+   "norma": "Artigo 2, inciso IX, da Lei municipal 9.009/2010",
+   "valor": null
+  }
+ ],
+ "trilha_semasdh": {
+  "A_RECEITA": {
+   "campos_de_receita_no_repositorio": 0,
+   "veredito": "AUSENTE. O repositorio nao contem receita. Nenhum parametro SEM-REC pode ser aferido.",
+   "impede": [
+    "SEM-REC-01",
+    "SEM-REC-02",
+    "SEM-REC-03",
+    "SEM-REC-04",
+    "SEM-REC-05",
+    "SEM-REC-06",
+    "DEST-01",
+    "DEST-02",
+    "DEST-06"
+   ]
+  },
+  "B_DESPESA": {
+   "dotacao_e_credito": 34,
+   "empenho_liquidacao_pagamento": 6,
+   "cobertura_execucao_percent": 3.73,
+   "veredito": "O acervo capta AUTORIZACAO, nao EXECUCAO. Empenhado, liquidado e pago sao inaferiveis."
+  },
+  "bolsoes_segundo_campo_natureza": {
+   "ENTIDADES": {
+    "valor": 15245189.42,
+    "linhas": 17
+   },
+   "CUSTEIO": {
+    "valor": 24750000.0,
+    "linhas": 88
+   },
+   "NAO_IDENTIFICADA": {
+    "valor": 9633383.84,
+    "linhas": 8
+   },
+   "PESSOAL": {
+    "valor": 3768000.0,
+    "linhas": 7
+   },
+   "INVESTIMENTO": {
+    "valor": 414000.0,
+    "linhas": 13
+   }
+  },
+  "bolsoes_alerta": "Estes bolsoes derivam do campo natureza, comprovadamente desalinhado. 29 registros trocam de grupo economico, R$ 10.858.000,00 afetados. Use como INDICIARIO.",
+  "E_IGD": {
+   "acoes": {
+    "08.244.0165.1103": 534081.0,
+    "08.244.0165.2555": 172626.15
+   },
+   "base_dotacao": 706707.15,
+   "piso_10_por_cento_res_202_2025": 70670.72,
+   "piso_3_por_cento_lei_14601_2023": 21201.21,
+   "dotacao_identificada_do_cmasgyn": 0,
+   "veredito": "Nenhuma dotacao, empenho ou despesa identificavel do CMASGyn no acervo."
+  },
+  "fontes_sem_mapeamento": {
+   "2660": 46,
+   "1500": 41,
+   "2661": 24,
+   "2706": 8,
+   "1706": 3,
+   "1661": 3
+  },
+  "D_CONTRATOS": {
+   "entidades_sem_vinculo_formal": 58,
+   "valor_sem_vinculo": 85279116.78,
+   "instrumentos_localizados": 71,
+   "alerta": "Lista contaminada. Ver triagem_cnpj.json antes de qualquer uso."
+  }
+ },
+ "trilha_cmasgyn": {
+  "publicidade": {
+   "atos_identificados": 236,
+   "confirmado_nao_publicado_duas_vias": 24,
+   "examinados_duas_vias": null,
+   "divergentes_pendentes": 16
+  }
+ },
+ "integridade_sistema": [
+  {
+   "id": "SYS-02",
+   "titulo": "Desalinhamento entre natureza e valor",
+   "registros_desalinhados": 105,
+   "com_troca_de_grupo_economico": 29,
+   "valor_afetado_por_troca_de_grupo": 10858000.0,
+   "percentual_do_total": 20.18,
+   "exemplos": [
+    {
+     "dotacao": "08.244.0108.2269",
+     "campo": "33903200",
+     "rotulo": "44903900",
+     "valor": 2110000.0,
+     "data": "2026-02-12",
+     "grupo_campo": "3",
+     "grupo_rotulo": "4",
+     "edicao": "do_20260212_000008721.pdf"
+    },
+    {
+     "dotacao": "08.244.0108.2269",
+     "campo": "33903900",
+     "rotulo": "44904000",
+     "valor": 2000000.0,
+     "data": "2026-02-12",
+     "grupo_campo": "3",
+     "grupo_rotulo": "4",
+     "edicao": "do_20260212_000008721.pdf"
+    },
+    {
+     "dotacao": "08.244.0108.2269",
+     "campo": "33904800",
+     "rotulo": "44905100",
+     "valor": 2000000.0,
+     "data": "2026-02-12",
+     "grupo_campo": "3",
+     "grupo_rotulo": "4",
+     "edicao": "do_20260212_000008721.pdf"
+    },
+    {
+     "dotacao": "08.244.0108.2269",
+     "campo": "33909200",
+     "rotulo": "44905200",
+     "valor": 1800000.0,
+     "data": "2026-02-12",
+     "grupo_campo": "3",
+     "grupo_rotulo": "4",
+     "edicao": "do_20260212_000008721.pdf"
+    },
+    {
+     "dotacao": "08.244.0165.2052",
+     "campo": "33903900",
+     "rotulo": "44905200",
+     "valor": 1570000.0,
+     "data": "2025-09-29",
+     "grupo_campo": "3",
+     "grupo_rotulo": "4",
+     "edicao": "do_20250929_000008632.pdf"
+    },
+    {
+     "dotacao": "08.244.0108.2269",
+     "campo": "33504100",
+     "rotulo": "44905200",
+     "valor": 900000.0,
+     "data": "2026-02-18",
+     "grupo_campo": "3",
+     "grupo_rotulo": "4",
+     "edicao": "do_20260218_000008723.pdf"
+    }
+   ]
+  },
+  {
+   "id": "SYS-03",
+   "titulo": "Soma de repasses excede o total da funcao",
+   "valor_associado_a_entidades": 183427737.85,
+   "valor_total_funcao_08": 53810573.26,
+   "razao": 3.41,
+   "veredito": "IMPOSSIVEL"
+  },
+  {
+   "id": "SYS-04",
+   "titulo": "Fan-out: mesmo valor replicado em multiplas inscricoes",
+   "grupos": 9,
+   "valor_inflado_estimado": 72337125.48,
+   "maiores": [
+    {
+     "valor": 11234250.0,
+     "n_cnpj": 5,
+     "cnpjs": [
+      "05.435.190/0001-93",
+      "17.210.161/0001-02",
+      "19.189.081/0001-48",
+      "44.445.656/0001-93",
+      "57.806.431/0001-67"
+     ]
+    },
+    {
+     "valor": 1500000.0,
+     "n_cnpj": 13,
+     "cnpjs": [
+      "01.240.688/0001-40",
+      "01.269.083/0001-81",
+      "01.287.416/0001-03",
+      "02.105.435/0001-26",
+      "02.917.870/0001-55",
+      "07.118.381/0001-57",
+      "07.295.905/0001-85",
+      "11.879.956/0001-21",
+      "15.341.457/0001-37",
+      "20.923.500/0001-02",
+      "25.006.149/0001-09",
+      "58.987.308/0001-52",
+      "86.840.378/0001-19"
+     ]
+    },
+    {
+     "valor": 250000.0,
+     "n_cnpj": 10,
+     "cnpjs": [
+      "01.163.981/0001-50",
+      "01.653.450/0001-46",
+      "06.922.950/0001-50",
+      "11.508.726/0001-56",
+      "26.176.661/0001-66",
+      "28.215.470/0001-91",
+      "37.408.630/0001-00",
+      "41.733.464/0001-94",
+      "47.968.031/0001-02",
+      "51.621.518/0001-83"
+     ]
+    },
+    {
+     "valor": 263303.64,
+     "n_cnpj": 8,
+     "cnpjs": [
+      "09.034.672/0001-92",
+      "11.042.902/0001-07",
+      "16.699.864/0001-83",
+      "17.771.867/0001-43",
+      "21.895.553/0001-20",
+      "46.344.050/0001-97",
+      "55.152.280/0001-45",
+      "56.795.674/0001-84"
+     ]
+    },
+    {
+     "valor": 400000.0,
+     "n_cnpj": 5,
+     "cnpjs": [
+      "01.181.585/0001-56",
+      "12.328.416/0001-12",
+      "13.059.859/0001-18",
+      "29.225.006/0001-49",
+      "40.432.544/0001-47"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "SYS-05",
+   "titulo": "Inscricoes invalidas ou duplicadas por formatacao",
+   "total_inscricoes": 127,
+   "digito_verificador_invalido": 3,
+   "lista_invalidas": [
+    "02.430.968/0003-51",
+    "15.124.498/0001-51",
+    "75.185.877/5185-87"
+   ],
+   "duplicadas_por_formatacao": {}
+  },
+  {
+   "id": "SYS-06",
+   "titulo": "Metrica de integridade da trilha nao alerta",
+   "declarado": 100.0,
+   "rupturas_declaradas": 0,
+   "eventos_com_empenho": 6,
+   "eventos_totais": 161,
+   "cobertura_real_estacao_6": 3.73,
+   "veredito": "metrica mede existencia de estacao, nao percurso do recurso"
+  }
+ ],
+ "padroes": [
+  {
+   "id": "PAD-01",
+   "nome": "Vinculo publicado sem mencao a chamamento publico",
+   "serie_anual": {
+    "2025": 17,
+    "2026": 16
+   },
+   "primeira": "2025",
+   "ultima": "2026",
+   "total": 33,
+   "tendencia": "estavel ou decrescente"
+  },
+  {
+   "id": "PAD-07",
+   "nome": "Fundamento legal revogado (Lei 8.666/1993 apos 30/12/2023)",
+   "serie_anual": {
+    "2026": 1
+   },
+   "primeira": "2026",
+   "ultima": "2026",
+   "total": 1,
+   "tendencia": "estavel ou decrescente"
+  },
+  {
+   "id": "PAD-02",
+   "nome": "Credito adicional contra fonte de exercicios anteriores",
+   "serie_anual": {
+    "2026": 33059000.0
+   },
+   "selo": "INDICIARIO"
+  }
+ ],
+ "lacunas": [
+  {
+   "id": "LAC-01",
+   "falta": "Receita mensal do FMAS por fonte",
+   "impede": [
+    "SEM-REC-01",
+    "DEST-01",
+    "DEST-02"
+   ],
+   "onde": "RREO bimestral e extrato da conta especial do FMAS",
+   "como": "Artigo 48 da Lei Complementar 101/2000 e pedido pela Lei 12.527/2011"
+  },
+  {
+   "id": "LAC-02",
+   "falta": "Empenho, liquidacao e pagamento por credor e competencia",
+   "impede": [
+    "SEM-DES-01",
+    "SEM-DES-02",
+    "SEM-DES-03",
+    "SEM-DES-10",
+    "SEM-CON-01"
+   ],
+   "onde": "Portal da Transparencia de Goiania",
+   "como": "Artigo 48-A, inciso I, da Lei Complementar 101/2000"
+  },
+  {
+   "id": "LAC-03",
+   "falta": "Repasses do FNAS por competencia e bloco",
+   "impede": [
+    "SEM-REC-03",
+    "SEM-IGD-01",
+    "SEM-IGD-02"
+   ],
+   "onde": "Consulta de Pagamentos do Fundo Nacional de Assistencia Social",
+   "como": "consulta publica"
+  },
+  {
+   "id": "LAC-04",
+   "falta": "Quadro de Detalhamento de Despesas 2026",
+   "impede": [
+    "mapeamento das 6 fontes pendentes",
+    "SEM-REC-05"
+   ],
+   "onde": "Anexo da LOA, Diario Oficial Edicao 8697 de 09/01/2026",
+   "como": "download direto"
+  },
+  {
+   "id": "LAC-05",
+   "falta": "Quadro de pessoal da SEMASDH com vinculo",
+   "impede": [
+    "SEM-PES-01",
+    "SEM-PES-02",
+    "SEM-PES-03"
+   ],
+   "onde": "Portal da Transparencia, folha de pagamento",
+   "como": "Artigo 8, paragrafo 1, inciso III, da Lei 12.527/2011"
+  },
+  {
+   "id": "LAC-06",
+   "falta": "Atas de plenaria do CMASGyn",
+   "impede": [
+    "CMAS-CAB-04",
+    "CMAS-PROC-04",
+    "CMAS-PROC-05"
+   ],
+   "onde": "Secretaria Executiva do CMASGyn",
+   "como": "Artigo 10 da Lei municipal 9.009/2010 e pedido pela Lei 12.527/2011"
+  },
+  {
+   "id": "LAC-07",
+   "falta": "Planos de trabalho e prestacoes de contas das parcerias",
+   "impede": [
+    "SEM-CON-03",
+    "SEM-CON-04"
+   ],
+   "onde": "SEMASDH",
+   "como": "Artigos 42 e 63 da Lei 13.019/2014"
+  },
+  {
+   "id": "LAC-08",
+   "falta": "Regimento Interno vigente do CMASGyn e decreto de nomeacao",
+   "impede": [
+    "CMAS-CAB-05",
+    "CMAS-CAB-06",
+    "CMAS-CAB-07"
+   ],
+   "onde": "SEMASDH e Gabinete do Prefeito",
+   "como": "Artigo 17 da Lei municipal 9.009/2010"
+  },
+  {
+   "id": "LAC-09",
+   "falta": "criterios_qualidade.json",
+   "impede": [
+    "aplicacao automatica dos parametros"
+   ],
+   "onde": "proprio repositorio",
+   "como": "gerar a partir de config/parametros_fiscalizacao.json"
+  }
+ ]
+}

@@ -1,0 +1,231 @@
+# RESOLUÇÃO CNAS/MC Nº 61, DE 21 DE FEVEREIRO DE 2022
+# DOU 22/02/2022 Edicao 37 Secao 1 Pagina 6
+# fonte: https://www.in.gov.br/web/dou/-/resolucao-cnas/mc-n-61-de-21-de-fevereiro-de-2022-381717107
+
+RESOLUÇÃO CNAS/MC Nº 61, DE 21 DE FEVEREIRO DE 2022
+ Dispõe sobre a aprovação do Relatório Final da Execução Orçamentária e Financeira do Fundo Nacional de Assistência Social (FNAS), exercício de 2021.
+ A Plenária do CONSELHO NACIONAL DE ASSISTÊNCIA SOCIAL (CNAS), em reunião ordinária realizada nos dias 07, 08, 09 e 10 de fevereiro de 2022, no uso da competência que lhe conferem os incisos VIII e XIV do artigo 18 da Lei n. º 8.742, de 7 de dezembro de 1993 - Lei Orgânica da Assistência Social (LOAS).
+ Considerando-se que ano a ano, desde 2014, o valor referente à gestão e aos serviços do Sistema Único de Assistência Social - SUAS vem sendo reduzido consideravelmente em relação ao apresentado pela Secretaria Nacional de Assistência Social - SNAS e aprovado pelo CNAS, resolve:
+ Art. 1º- Aprovar o Relatório Final da Execução Orçamentária e Financeira do Fundo Nacional de Assistência Social (FNAS), exercício de 2021, apresentado pela Diretoria Executiva do Fundo Nacional de Assistência Social (DEFNAS), do Ministério da Cidadania (MC), planilha anexa.
+ Parágrafo único: Este Conselho faz a ressalva de que os valores do orçamento de 2021 foram aquém dos definidos pela Resolução CNAS n° 12, de 27 de julho de 2020, não atendendo as demandas dos serviços da rede Socioassistencial.
+ Art. 2°- Recomendar ao Ministério da Cidadania que articule com o Ministério da Economia as medidas necessárias que assegurem a regularidade dos repasses e a totalidade dos valores para o exercício de 2022, previstos na Resolução CNAS n° 38, de 20 de julho de 2021.
+ Art. 3º- Esta Resolução entra em vigor uma semana após a data de sua publicação.
+ ALDENORA GOMES GONZÁLEZ
+ Vice-Presidente do Conselho
+ ANEXO
+ EXECUÇÃO ORÇAMENTÁRIA E FINANCEIRA DO FUNDO NACIONAL DE ASSISTÊNCIA SOCIAL
+ REFERENTE AO PERÍODO DE JANEIRO A DEZEMBRO DE 2021
+ Atualizado: 28/01
+ 55.901 - FUNDO NACIONAL DE ASSISTÊNCIA SOCIAL
+ CÓD
+ ATIVIDADE/PROGRAMA
+ COMPONENTES
+ DOTAÇÃO INICIAL
+ DOTAÇÃO EMPENHADA
+ %
+ DOTAÇÃO PAGA
+ %
+ DOTAÇÃO INICIAL
+ CRÉDITO
+ DOTAÇÃO ATUAL
+ (A)
+ (B)
+ ( C)
+ ( D )
+ E = (D/C)
+ (F)
+ G = (F/D)
+ 5031
+ PROTEÇÃO SOCIAL NO ÂMBITO DO SISTEMA ÚNICO DE ASSISTÊNCIA SOCIAL
+ 1.863.109.931
+ 917.671.192
+ 2.780.781.123
+ 2.162.464.485
+ 78%
+ 1.247.916.465
+ 58%
+ 219E
+ Ações de Proteção Social Básica
+ PBF / PBV
+ 648.552.041
+ 31.015.969
+ 679.568.010
+ 679.243.256
+ 100%
+ 670.274.634
+ 99%
+ 219F
+ Ações de Proteção Social Especial
+ PFMC / PTMC / PAC /PVAC
+ 327.000.000
+ 10.342.849
+ 337.342.849
+ 337.176.695
+ 100%
+ 336.531.709
+ 100%
+ 219G
+ Estruturação da Rede de Serviços do Sistema Único de Assistência Social (SUAS)*
+ 779.318.910
+ 884.502.841
+ 1.663.821.751
+ 1.046.770.955
+ 63%
+ 148.273.267
+ 14%
+ 2583
+ Serviço de Processamento de Dados do BPC e da RMV
+ 49.000.000
+ (3.346.429)
+ 45.653.571
+ 45.597.543
+ 100%
+ 40.071.538
+ 88%
+ 2589
+ Avaliação e Operacionalização do BPC
+ 9.238.980
+ (2.659.749)
+ 6.579.231
+ 5.912.988
+ 90%
+ 5.002.269
+ 85%
+ 8893
+ Apoio à Organização, à Gestão e à Vigilância Social no Território, no âmbito do SUAS
+ IGDSUAS
+ 50.000.000
+ (2.184.289)
+ 47.815.711
+ 47.763.048
+ 100%
+ 47.763.048
+ 100%
+ TOTAL I (DISCRICIONÁRIAS)
+ 1.863.109.931
+ 917.671.192
+ 2.780.781.123
+ 2.162.464.485
+ 78%
+ 1.247.916.465
+ 58%
+ 5028
+ INCLUSÃO SOCIAL POR MEIO DO BOLSA FAMÍLIA E DA ARTICULAÇÃO DE POLÍTICAS PÚBLICAS
+ 453.740.523
+ -
+ 453.740.523
+ 453.740.523
+ 100%
+ 453.740.523
+ 100%
+ 8446
+ Serv. De Apoio à Gestão Descentralizada ao Prog. Bolsa Família
+ IGDPBF
+ 453.740.523
+ -
+ 453.740.523
+ 453.740.523
+ 100%
+ 453.740.523
+ 100%
+ 5024
+ ATENÇÃO INTEGRAL À PRIMEIRA INFÂNCIA
+ 375.057.405
+ -
+ 375.057.405
+ 375.057.405
+ 100%
+ 288.185.445
+ 77%
+ 217M
+ Desenvolvimento Integral na Primeira Infância - Criança Feliz
+ 375.057.405
+ -
+ 375.057.405
+ 375.057.405
+ 100%
+ 288.185.445
+ 77%
+ TOTAL I I (DISCRICIONÁRIAS)
+ 828.797.928
+ -
+ 828.797.928
+ 828.797.928
+ 100%
+ 741.925.968
+ 90%
+ 0901
+ OPERAÇÕES ESPECIAIS: CUMPRIMENTO DE SENTENÇAS JUDICIAIS
+ 1.420.195.701
+ 288.077.120
+ 1.708.272.821
+ 1.707.955.226
+ 100%
+ 1.612.559.352
+ 94%
+ 0005
+ Cumprimento de Sentença Judicial Transitada em Julgado (Precatórios) devida pela União, Autarquias, e Fundações Públicas
+ 223.174.313
+ 7.136.911
+ 230.311.224
+ 229.995.777
+ 100%
+ 229.995.777
+ 100%
+ 0625
+ Cumprimento de Sentença Judicial Transitada em Julgado de Pequeno Valor devida pela União, Autarquias, e Fundações Públicas
+ 1.197.021.388
+ 280.940.209
+ 1.477.961.597
+ 1.477.959.449
+ 100%
+ 1.382.563.575
+ 94%
+ 5031
+ PROTEÇÃO SOCIAL NO ÂMBITO DO SISTEMA ÚNICO DE ASSISTÊNCIA SOCIAL
+ 64.702.343.905
+ 1.578.595.850
+ 66.280.939.755
+ 66.280.874.961
+ 100%
+ 63.635.365.000
+ 96%
+ 00H5
+ BPC/RMV à pessoa idosa
+ 28.245.608.749
+ 917.444.954
+ 29.163.053.703
+ 29.163.011.113
+ 100%
+ 27.952.968.358
+ 96%
+ 00IN
+ BPC/RMV à pessoa com deficiência e invalidez
+ 36.456.735.156
+ 661.150.896
+ 37.117.886.052
+ 37.117.863.848
+ 100%
+ 35.682.396.642
+ 96%
+ TOTAL III (BPC/RMV/SENTENÇAS)
+ 66.122.539.606
+ 1.866.672.970
+ 67.989.212.576
+ 67.988.830.187
+ 100%
+ 65.247.924.352
+ 96%
+ TOTAL GERAL
+ 68.814.447.465
+ 2.784.344.162
+ 71.598.791.627
+ 70.980.092.600
+ 99%
+ 65.625.207.433
+ 92%
+ FONTE: SIAFI
+ *A Medida Provisória nº 1.092, de 31 de dezembro de 2021, que abre crédito extraordinário, em favor do Ministério da Cidadania, no valor de R$ 700.000.000,00, sendo R$ 500.000.000,00 para a Ação 219G, foi publicada no último dia do exercício não havendo tempo hábil para execução. Entretanto, por se tratar de crédito extraordinário o valor da dotação foi reaberto no exercício de 2022 para execução.
+ Este conteúdo não substitui o publicado na versão certificada.
+ Borda do rodapé 
+ Logo da Imprensa

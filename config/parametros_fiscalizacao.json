@@ -1,0 +1,128 @@
+{
+  "_meta": {
+    "versao": "1.0",
+    "trilhas": ["SEMASDH", "CMASGYN"],
+    "regra_de_rigor": "Todo achado carrega selo CONFIRMADO (duas vias independentes) ou INDICIARIO (uma via). Indice global e piso. Sobrepreco exige pericia com preco de mercado.",
+    "severidade": ["critica", "alta", "media", "baixa"],
+    "semaforo": {"verde": "conforme", "amarelo": "indicio ou dado faltante", "vermelho": "desconformidade confirmada", "cinza": "sem dado - achado por omissao"}
+  },
+
+  "TRILHA_SEMASDH": {
+    "descricao": "Secretaria Municipal de Politicas para as Mulheres, Assistencia Social e Direitos Humanos e Fundo Municipal de Assistencia Social",
+    "unidade_orcamentaria_alvo": ["3650", "FMAS"],
+    "funcao": "08",
+    "subfuncoes": ["241", "242", "243", "244", "244"],
+
+    "A_RECEITA": [
+      {"id": "SEM-REC-01", "pergunta": "Quanto entrou no FMAS no mes, por fonte?", "norma": "Artigo 2 da Lei municipal 7.531/1995", "fonte_dado": "RREO / extrato FMAS / Consulta FNAS", "saida": "tabela mes x fonte x valor", "vermelho_se": "ausencia de qualquer publicacao de receita no mes"},
+      {"id": "SEM-REC-02", "pergunta": "O ente de origem esta identificado?", "norma": "Artigos 6 e 13 da Lei 4.320/1964; artigo 48-A da Lei Complementar 101/2000", "meta": 100, "vermelho_se": "rastreabilidade abaixo de 80%"},
+      {"id": "SEM-REC-03", "pergunta": "O que a Uniao repassou bate com o que o Municipio registrou?", "norma": "Artigo 30 da Lei 8.742/1993", "metodo": "conciliacao FNAS x FMAS por competencia", "vermelho_se": "divergencia superior a 1% ou parcela federal sem contrapartida de registro"},
+      {"id": "SEM-REC-04", "pergunta": "A dotacao da Secretaria foi automaticamente transferida ao FMAS?", "norma": "Artigo 2, paragrafo 1, da Lei municipal 7.531/1995", "referencia": "DEST-01", "vermelho_se": "dotacao executada fora da unidade FMAS"},
+      {"id": "SEM-REC-05", "pergunta": "Houve superavit ou deficit por fonte no mes?", "norma": "Artigo 43, paragrafo 1, inciso I, da Lei 4.320/1964", "metodo": "receita realizada menos despesa paga, por fonte, acumulado", "amarelo_se": "superavit de fonte federal superior a 2 competencias sem execucao", "nota": "Superavit de recurso federal parado e indicio de subexecucao, nao de economia."},
+      {"id": "SEM-REC-06", "pergunta": "Rendimento de aplicacao foi mantido na fonte de origem?", "norma": "Artigo 2, inciso IV, da Lei municipal 7.531/1995", "vermelho_se": "rendimento de fonte federal aplicado como recurso livre"}
+    ],
+
+    "B_DESPESA": [
+      {"id": "SEM-DES-01", "pergunta": "Empenhado no mes", "norma": "Artigo 58 da Lei 4.320/1964"},
+      {"id": "SEM-DES-02", "pergunta": "Liquidado no mes", "norma": "Artigo 63 da Lei 4.320/1964"},
+      {"id": "SEM-DES-03", "pergunta": "Pago no mes", "norma": "Artigo 62 da Lei 4.320/1964", "nota": "Os tres numeros sao distintos e nao se substituem. A distancia entre eles e objeto de fiscalizacao."},
+      {"id": "SEM-DES-04", "pergunta": "Natureza da despesa com 10 digitos, incluindo subitem?", "norma": "Artigo 13 da Lei 4.320/1964", "vermelho_se": "extracao truncada em 8 digitos", "motivo": "Sem subitem e matematicamente impossivel isolar aluguel."},
+      {"id": "SEM-DES-05", "bolsao": "PESSOAL", "naturezas": ["3190*", "3390*04", "3190*11", "3190*13", "3190*16"], "teto": {"percentual": 30, "base": "recursos do Tesouro Municipal", "norma": "Artigo 4, paragrafo unico, da Lei municipal 7.531/1995", "referencia": "DEST-02"}},
+      {"id": "SEM-DES-06", "bolsao": "ALUGUEL E LOCACAO", "subitens": ["33903615", "33903910", "33903641", "33903944"], "busca_textual": ["locac", "locatari", "locador", "aluguel", "imovel", "matricula do", "cartorio de registro de imoveis"], "norma": "Artigo 4, inciso IV, da Lei municipal 7.531/1995", "exige": "contrato de locacao vigente com prazo, valor mensal e indice de reajuste"},
+      {"id": "SEM-DES-07", "bolsao": "ENTIDADES", "naturezas": ["33503900", "33504100", "33504300", "33508500", "44504200"], "norma": "Artigo 5 da Lei municipal 7.531/1995; Lei 13.019/2014", "exige": "vinculo formal, chamamento ou justificativa, plano de trabalho, deliberacao do CMASGyn, inscricao vigente"},
+      {"id": "SEM-DES-08", "bolsao": "CUSTEIO", "naturezas": ["3390*"], "excetuando": ["33503900", "33504100", "33504300", "33508500"]},
+      {"id": "SEM-DES-09", "bolsao": "INVESTIMENTO", "naturezas": ["44*"]},
+      {"id": "SEM-DES-10", "pergunta": "Gastos fixos mensais recorrentes tem vinculo juridico identificado?", "metodo": "credor com pagamento em 3 ou mais competencias consecutivas e valor estavel", "saida": "tabela credor x valor mensal x contrato x vigencia", "vermelho_se": "recorrencia sem contrato, termo, convenio ou ata de registro de precos identificado"},
+      {"id": "SEM-DES-11", "pergunta": "Restos a pagar inscritos e pagos", "norma": "Artigo 42 da Lei Complementar 101/2000"}
+    ],
+
+    "C_PESSOAL": [
+      {"id": "SEM-PES-01", "pergunta": "Quantos cargos remunerados pela assistencia social por mes?", "fonte_dado": "folha publicada / portal da transparencia / anexo de pessoal", "saida": "efetivos x comissionados x contratos temporarios x terceirizados"},
+      {"id": "SEM-PES-02", "pergunta": "Proporcao entre concursados e comissionados", "norma": "Artigo 37, incisos II e V, da Constituicao Federal", "amarelo_se": "comissionados acima de 30% do quadro", "vermelho_se": "cargo comissionado exercendo atribuicao tecnica permanente, que exige concurso"},
+      {"id": "SEM-PES-03", "pergunta": "A despesa de pessoal respeita o teto de 30% do Tesouro?", "referencia": "DEST-02", "vermelho_se": "acima de 30%"},
+      {"id": "SEM-PES-04", "pergunta": "Ha equipe de referencia minima nas unidades (CRAS, CREAS, Centro POP)?", "norma": "Resolucao CNAS 17/2011 e NOB-RH/SUAS, Resolucao CNAS 269/2006", "vermelho_se": "unidade em funcionamento sem equipe minima"},
+      {"id": "SEM-PES-05", "pergunta": "Recurso do IGD destinado ao conselho custeou pessoal efetivo ou gratificacao?", "norma": "Artigo 12-A, paragrafo 4, parte final, da Lei 8.742/1993", "referencia": "DEST-05", "severidade": "critica"},
+      {"id": "SEM-PES-06", "pergunta": "Secretaria Executiva e Corpo Tecnico do CMASGyn foram contratados e disponibilizados?", "norma": "Artigo 6, incisos III e V, e artigo 8 da Lei municipal 9.009/2010", "cinza_se": "sem qualquer registro publico de designacao"}
+    ],
+
+    "D_CONTRATOS_E_PRECO": [
+      {"id": "SEM-CON-01", "pergunta": "Todo pagamento tem contrato, termo, convenio ou ata que o justifique?", "norma": "Artigo 62 da Lei 4.320/1964; artigo 48-A da Lei Complementar 101/2000", "vermelho_se": "pagamento sem vinculo identificavel"},
+      {"id": "SEM-CON-02", "pergunta": "Houve chamamento publico ou justificativa expressa de dispensa ou inexigibilidade?", "norma": "Artigos 24, 29, 30, 31 e 32 da Lei 13.019/2014", "vermelho_se": "parceria sem chamamento e sem justificativa publicada"},
+      {"id": "SEM-CON-03", "pergunta": "Plano de trabalho aprovado antes do repasse?", "norma": "Artigo 42 da Lei 13.019/2014"},
+      {"id": "SEM-CON-04", "pergunta": "Prestacao de contas apresentada e apreciada?", "norma": "Artigos 63 e 65 da Lei 13.019/2014"},
+      {"id": "SEM-CON-05", "pergunta": "Aditivo excede 25% do valor original?", "norma": "Artigo 125 da Lei 14.133/2021", "severidade": "alta"},
+      {"id": "SEM-CON-06", "pergunta": "Ha fracionamento para fugir de modalidade?", "norma": "Artigo 75, paragrafo 1, da Lei 14.133/2021", "metodo": "mesmo credor, mesmo objeto, janela de 12 meses, soma acima do limite de dispensa", "selo": "INDICIARIO", "nota": "Fracionamento se demonstra por processo, nao por soma de publicacoes."},
+      {"id": "SEM-CON-07", "pergunta": "Fundamento legal invocado esta vigente?", "norma": "Artigo 193, inciso II, da Lei 14.133/2021", "vermelho_se": "ato posterior a 30/12/2023 fundamentado na Lei 8.666/1993, ou termo de fomento fundamentado em lei de licitacoes"},
+      {"id": "SEM-CON-08", "pergunta": "O preco praticado e compativel com o mercado?", "metodo_permitido": ["Painel de Precos federal", "Banco de Precos em Saude quando aplicavel", "atas de registro de precos vigentes de outros entes", "pesquisa direta com tres fornecedores"], "metodo_vedado": "estatistica sobre texto de Diario Oficial", "selo_maximo_sem_pericia": "INDICIARIO", "regra": "Indicio de sobrepreco e indicio. Sobrepreco se demonstra por pericia com preco de mercado. Nenhuma peca afirma sobrepreco sem isso."},
+      {"id": "SEM-CON-09", "pergunta": "Mesmo objeto com valores dispares entre entidades?", "limiar": 40, "unidade": "percentual de diferenca", "selo": "INDICIARIO"},
+      {"id": "SEM-CON-10", "pergunta": "Concentracao de repasses em poucas entidades?", "metodo": "curva de Pareto; alerta se 20% das entidades absorvem mais de 80% do valor", "selo": "INDICIARIO"}
+    ],
+
+    "E_IGD_E_PROGRAMAS": [
+      {"id": "SEM-IGD-01", "pergunta": "Quanto o IGD-SUAS repassou no mes?", "acao_orcamentaria": "08.244.0165.1103", "fonte": "Consulta FNAS"},
+      {"id": "SEM-IGD-02", "pergunta": "Quanto o IGD-PBF/CadUnico repassou no mes?", "acao_orcamentaria": "08.244.0165.2555", "fonte": "Consulta FNAS"},
+      {"id": "SEM-IGD-03", "pergunta": "10% do IGD chegaram ao controle social?", "norma": "Artigo 6 da Resolucao CNAS/MDS 202/2025", "referencia": "DEST-04", "calculo": "base_igd * 0.10", "vigencia": "desde 2026-01-01", "severidade": "critica", "cinza_se": "nenhuma dotacao ou despesa identificavel do CMASGyn"},
+      {"id": "SEM-IGD-04", "pergunta": "3% do IGD-PBF, piso legal absoluto, foram observados?", "norma": "Artigo 14, paragrafo 7, da Lei 14.601/2023", "referencia": "DEST-03"},
+      {"id": "SEM-IGD-05", "pergunta": "O plano de uso do IGD foi deliberado pelo CMASGyn antes da execucao?", "norma": "Artigo 28, paragrafo 1, da Lei 8.742/1993; Resolucao CNAS 33/2012"},
+      {"id": "SEM-IGD-06", "pergunta": "Os recursos do IGD constam da LOA e do Plano Municipal de Assistencia Social?", "norma": "Artigo 30, inciso III, da Lei 8.742/1993"}
+    ]
+  },
+
+  "TRILHA_CMASGYN": {
+    "descricao": "Conselho Municipal de Assistencia Social de Goiania - controle sobre o proprio orgao de controle social",
+    "norma_matriz": "Lei municipal 9.009/2010",
+
+    "F_ATOS_E_PUBLICIDADE": [
+      {"id": "CMAS-ATO-01", "pergunta": "A resolucao foi publicada no Diario Oficial do Municipio?", "norma": "Artigo 10, paragrafo 2, da Lei municipal 9.009/2010; artigo 37, caput, da Constituicao Federal; artigo 8 da Lei 12.527/2011", "severidade": "critica", "nota": "Esta e a norma mais forte disponivel: obrigacao municipal expressa e especifica, nao apenas dever geral de transparencia."},
+      {"id": "CMAS-ATO-02", "pergunta": "A ata da sessao foi publicada?", "norma": "Artigo 10, caput, da Lei municipal 9.009/2010 - todas as sessoes SAO PUBLICAS", "severidade": "alta"},
+      {"id": "CMAS-ATO-03", "pergunta": "O cronograma das sessoes ordinarias foi divulgado apos aprovacao em plenaria?", "norma": "Artigo 10, paragrafo 1, da Lei municipal 9.009/2010"},
+      {"id": "CMAS-ATO-04", "pergunta": "Ha lacuna na sequencia de numeracao das resolucoes?", "metodo": "detectar numeros ausentes na serie anual", "selo": "INDICIARIO", "nota": "Lacuna de numeracao indica ato existente e nao publicado, mas nao prova conteudo."},
+      {"id": "CMAS-ATO-05", "pergunta": "Ato citado por ato posterior teve inteiro teor publicado?", "metodo": "verificacao dupla independente: classificador estrutural e busca cega no indice de texto integral", "selo": "CONFIRMADO quando as duas vias concordam"}
+    ],
+
+    "G_CABIMENTO_E_LEGITIMACAO": [
+      {"id": "CMAS-CAB-01", "pergunta": "A materia esta na competencia do CMASGyn?", "norma": "Artigo 2, incisos I a XIV, da Lei municipal 9.009/2010", "vermelho_se": "deliberacao sobre materia estranha a competencia legal"},
+      {"id": "CMAS-CAB-02", "pergunta": "O ato foi praticado pelo orgao competente do Conselho?", "norma": "Artigo 7 da Lei municipal 9.009/2010 - o PLENARIO e a instancia de deliberacao maxima", "vermelho_se": "materia de plenario decidida por presidencia, camara ou secretaria executiva"},
+      {"id": "CMAS-CAB-03", "pergunta": "Resolucao ad referendum foi submetida ao plenario seguinte?", "norma": "Artigo 7 da Lei municipal 9.009/2010 e Regimento Interno", "vermelho_se": "ad referendum sem ratificacao posterior publicada", "nota": "Ad referendum nao ratificado nao produz eficacia definitiva."},
+      {"id": "CMAS-CAB-04", "pergunta": "Havia quorum e paridade na sessao?", "norma": "Artigos 3 e 16 da Lei 8.742/1993; artigo 3 da Lei municipal 9.009/2010", "cinza_se": "ata nao publicada impede aferir", "nota": "Sem ata publica, quorum, deliberacao e voto sao inaferíveis. A ausencia de ata e, em si, o achado."},
+      {"id": "CMAS-CAB-05", "pergunta": "A presidencia e exercida por conselheiro que NAO representa o orgao gestor?", "norma": "Artigo 6, inciso I, da Lei municipal 9.009/2010", "severidade": "alta", "vermelho_se": "presidente ou vice vinculado a SEMASDH"},
+      {"id": "CMAS-CAB-06", "pergunta": "Mandato da mesa diretora respeita 1 ano com uma unica reconducao?", "norma": "Artigo 6, inciso I, da Lei municipal 9.009/2010"},
+      {"id": "CMAS-CAB-07", "pergunta": "A composicao paritaria esta integra e com mandatos vigentes?", "norma": "Artigo 3 da Lei municipal 9.009/2010", "metodo": "conferir decreto de nomeacao vigente contra os 14 assentos governamentais e 15 da sociedade civil"}
+    ],
+
+    "H_PROCEDIMENTO_E_EFICACIA": [
+      {"id": "CMAS-PROC-01", "pergunta": "O ato esta motivado, com fatos e fundamentos juridicos?", "norma": "Artigo 50 da Lei 9.784/1999", "vermelho_se": "deliberacao sem motivacao"},
+      {"id": "CMAS-PROC-02", "pergunta": "O ato tem data, local e assinatura da autoridade?", "norma": "Artigo 22, paragrafo 1, da Lei 9.784/1999"},
+      {"id": "CMAS-PROC-03", "pergunta": "O ato PRODUZ EFICACIA JURIDICA?", "teste": "cabimento + competencia + quorum + motivacao + PUBLICACAO. A publicacao e condicao de eficacia, nao de validade.", "regra": "Ato nao publicado existe e pode ser valido, mas NAO PRODUZ EFEITOS perante terceiros. Se produziu efeito financeiro sem publicacao, ha vicio autonomo.", "severidade": "critica"},
+      {"id": "CMAS-PROC-04", "pergunta": "Houve apreciacao PREVIA de contratos e convenios?", "norma": "Artigo 2, inciso IX, da Lei municipal 9.009/2010", "metodo": "data da deliberacao do CMASGyn anterior a data do termo", "vermelho_se": "deliberacao posterior a assinatura ou ausente", "severidade": "alta"},
+      {"id": "CMAS-PROC-05", "pergunta": "As contas e relatorios do FMAS foram apreciados MENSALMENTE?", "norma": "Artigo 2, inciso IV, alinea b, da Lei municipal 9.009/2010", "metodo": "uma resolucao ou ata de apreciacao por competencia mensal", "vermelho_se": "mes sem apreciacao registrada", "severidade": "alta"},
+      {"id": "CMAS-PROC-06", "pergunta": "Inscricao de entidade seguiu os parametros?", "norma": "Resolucao CNAS 14/2014 e artigo 3, paragrafo 3, da Lei municipal 9.009/2010"},
+      {"id": "CMAS-PROC-07", "pergunta": "A Conferencia Municipal bienal foi convocada?", "norma": "Artigo 2, inciso XII, da Lei municipal 9.009/2010"},
+      {"id": "CMAS-PROC-08", "pergunta": "O Conselho dispoe do apoio tecnico, administrativo e financeiro devido?", "norma": "Artigo 8 da Lei municipal 9.009/2010", "cruzar_com": "SEM-IGD-03"}
+    ]
+  },
+
+  "I_INTEGRIDADE_DO_PROPRIO_SISTEMA": [
+    {"id": "SYS-01", "regra": "Alerta se passarem 3 dias uteis sem edicao nova indexada", "motivo": "Coletor parado produz silencio, e silencio parece regularidade.", "severidade": "critica"},
+    {"id": "SYS-02", "regra": "Nenhum registro pode ter campo natureza iniciando em 33 com rotulo iniciando em 44, ou vice-versa", "motivo": "Desalinhamento natureza/valor detectado em 24/08/2026"},
+    {"id": "SYS-03", "regra": "Soma de repasses a entidades NAO pode exceder o total da funcao 08", "acao": "travar e sinalizar"},
+    {"id": "SYS-04", "regra": "Publicacao com N inscricoes e um valor gera 1 registro marcado valor_de_publicacao_nao_atribuido, nunca N registros do valor cheio"},
+    {"id": "SYS-05", "regra": "Inscricao deve passar por validacao de digito verificador e triagem antes de entrar em qualquer lista de entidades"},
+    {"id": "SYS-06", "regra": "Integridade da trilha e o percentual de eventos que completam da estacao 1 a 6, nao a existencia de ao menos um evento por estacao"},
+    {"id": "SYS-07", "regra": "Soma dos atos por exercicio deve igualar o total de atos identificados"}
+  ],
+
+  "J_PADRAO_E_REINCIDENCIA": {
+    "objetivo": "Identificar padrao na analise retroativa de 3 anos e verificar se ele se repete nas analises seguintes.",
+    "assinaturas_a_rastrear": [
+      {"id": "PAD-01", "nome": "Repasse a entidade sem chamamento por via de emenda parlamentar", "chave": "entidade + emenda + ausencia de chamamento"},
+      {"id": "PAD-02", "nome": "Credito adicional recorrente contra superavit financeiro", "chave": "fonte prefixo 2 + decreto de credito"},
+      {"id": "PAD-03", "nome": "Termo de fomento aditado sem publicacao do plano de trabalho", "chave": "aditivo + ausencia de plano"},
+      {"id": "PAD-04", "nome": "Mesma entidade em multiplos termos no mesmo exercicio", "chave": "CNPJ + contagem de instrumentos por ano"},
+      {"id": "PAD-05", "nome": "Deliberacao do conselho posterior ao ato administrativo", "chave": "data resolucao > data termo"},
+      {"id": "PAD-06", "nome": "Silencio de publicacao em janela superior a 15 dias", "chave": "gap de publicacao"},
+      {"id": "PAD-07", "nome": "Fundamento legal revogado", "chave": "mencao a Lei 8.666/1993 apos 30/12/2023"}
+    ],
+    "saida": "Para cada assinatura: primeira ocorrencia, ultima ocorrencia, frequencia, tendencia (crescente, estavel, decrescente) e se persiste apos o primeiro parecer."
+  }
+}

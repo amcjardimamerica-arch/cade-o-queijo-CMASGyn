@@ -1,0 +1,254 @@
+# RESOLUÇÃO CNAS/MDS Nº 226, DE 18 DE MARÇO DE 2026 (*)
+# DOU 14/04/2026 Edicao 70 Secao 1 Pagina 56
+# fonte: https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-226-de-18-de-marco-de-2026-*-699577794
+
+RESOLUÇÃO CNAS/MDS Nº 226, DE 18 DE MARÇO DE 2026 (*)
+ Dispõe sobre a aprovação do Relatório Final da Execução Orçamentária e Financeira do Fundo Nacional de Assistência Social (FNAS) referente ao exercício 2025.
+ O CONSELHO NACIONAL DE ASSISTÊNCIA SOCIAL (CNAS), em reunião ordinária realizada nos dias 12 e 13 de março de 2026, no uso de suas atribuições conferidas pelos incisos VIII e XIV, do artigo 18 da Lei n.º 8.742, de 7 de dezembro de 1993 - Lei Orgânica da Assistência Social (LOAS), resolve:
+ Art. 1º Esta Resolução aprova Relatório Final de Execução Orçamentária e Financeira do Fundo Nacional de Assistência Social (FNAS) referente ao exercício 2025, apresentado pela Diretoria Executiva do Fundo Nacional de Assistência Social (DEFNAS), da Secretaria Nacional de Assistência Social (SNAS), do Ministério do Desenvolvimento e Assistência Social, Família e Combate à Fome (MDS), conforme planilha anexa.
+ Art. 2º Esta resolução entra em vigor na data de sua publicação.
+ EDGILSON TAVARES DE ARAÚJO
+ Presidente do Conselho
+ ANEXO EXECUÇÃO ORÇAMENTÁRIA E FINANCEIRA DO FUNDO NACIONAL DE ASSISTÊNCIA SOCIAL
+ REFERENTE AO PERÍODO DE JANEIRO A DEZEMBRO DE 2025
+ Atualizado : 08/01/2026
+ 55.901 - FUNDO NACIONAL DE ASSISTÊNCIA SOCIAL
+ CÓD
+ ATIVIDADE/PROGRAMA
+ COMPONENTES
+ DOTAÇÃO INICIAL
+ DOTAÇÃO EMPENHADA
+ %
+ DOTAÇÃO PAGA
+ %
+ DOTAÇÃO INICIAL
+ CRÉDITO
+ CANCELA-
+ MENTOS
+ DOTAÇÃO ATUAL
+ (A)
+ (B)
+ (C)
+ ( D)
+ ( E)
+ F = (E/D)
+ (G)
+ H = (G/D)
+ 5131
+ PROTEÇÃO SOCIAL NO ÂMBITO DO SISTEMA ÚNICO DE ASSISTÊNCIA SOCIAL
+ 3.072.813.258
+ -
+ 3.493.615.910
+ 3.099.109.488
+ 89%
+ 3.099.109.488
+ 89%
+ 219E
+ Ações de Proteção Social Básica
+ PBF / PBV
+ 1.085.795.544
+ 112.042.933
+ 1.197.838.477
+ 1.195.795.505
+ 100%
+ 1.195.795.505
+ 100%
+ 219F
+ Ações de Proteção Social Especial
+ PFMC / PTMC / PAC /PVAC
+ 654.573.890
+ 33.548.909
+ 688.122.799
+ 670.395.096
+ 97%
+ 670.395.096
+ 97%
+ 219G
+ Estruturação da Rede de Serviços do Sistema Único de Assistência Social (SUAS)*
+ 926.779.483
+ 230.210.810
+ 1.156.990.293
+ 800.220.578
+ 69%
+ 800.220.578
+ 69%
+ 2583
+ Serviço de Processamento de Dados do BPC e da RMV
+ 42.822.845
+ -
+ 42.822.845
+ 30.125.499
+ 70%
+ 30.125.499
+ 70%
+ 2589
+ Avaliação e Operacionalização do BPC
+ 10.143.631
+ -
+ 10.143.631
+ 7.761.885
+ 77%
+ 7.761.885
+ 77%
+ 8893
+ Apoio à Organização, à Gestão e à Vigilância Social no Território, no âmbito do SUAS
+ 1.901.337
+ -
+ 1.901.337
+ 1.901.337
+ 0%
+ 1.901.337
+ 100%
+ 217M
+ Desenvolvimento Integral na Primeira Infância - Criança Feliz
+ 350.796.528
+ 45.000.000
+ 395.796.528
+ 392.909.588
+ 99%
+ 392.909.588
+ 99%
+ TOTAL I (DISCRICIONÁRIAS)
+ 3.072.813.258
+ -
+ 3.493.615.910
+ 3.099.109.488
+ 89%
+ 3.099.109.488
+ 89%
+ 5028
+ INCLUSÃO SOCIAL POR MEIO DO AUXÍLIO BRASIL E DA ARTICULAÇÃO DE POLÍTICAS PÚBLICAS
+ 877.058.000
+ -
+ 842.958.000
+ 760.515.645
+ 90%
+ 760.515.645
+ 90%
+ 00US
+ Serv. De Apoio à Gestão Descentralizada ao Programa Bolsa Família
+ IGD PBF
+ 877.058.000
+ 842.958.000
+ 760.515.645
+ 90%
+ 760.515.645
+ 90%
+ 5129
+ PRODUÇÃO DE DADOS E CONHECIMENTO PARA O APRIMORAMENTO DE POLÍTICAS PÚBLICAS
+ 4.616.484
+ -
+ -
+ 4.703.820
+ 658.520
+ 14%
+ 658.520
+ 14%
+ 6414
+ Sistema Nacional para Identificação e Seleção de Público-Alvo para os Programas Sociais do Governo Federal- Cadastro Único
+ PROCAD-SUAS
+ 4.616.484
+ 87.336
+ 4.703.820
+ 658.520
+ 14%
+ 658.520
+ 100%
+ TOTAL I I (DISCRICIONÁRIAS)
+ 881.674.484
+ 847.661.820
+ 761.174.165
+ 90%
+ 761.174.165
+ 90%
+ 0901
+ OPERAÇÕES ESPECIAIS: CUMPRIMENTO DE SENTENÇAS JUDICIAIS
+ 5.475.113.861
+ 5.776.773.232
+ 5.377.092.967
+ 93%
+ 5.377.092.967
+ 93%
+ 0005
+ Cumprimento de Sentença Judicial Transitada em Julgado (Precatórios) devida pela União, Autarquias, e Fundações Públicas
+ 97.159.382
+ -
+ 97.159.380
+ 97.159.380
+ 0%
+ 97.159.380
+ 100%
+ 00WU
+ Precatórios Excedentes
+ 298.279.659
+ (298.279.659)
+ -
+ -
+ -
+ 0%
+ -
+ 0%
+ 0625
+ Cumprimento de Sentença Judicial Transitada em Julgado de Pequeno Valor devida pela União, Autarquias, e Fundações Públicas
+ 5.079.674.820
+ 599.939.032
+ -
+ 5.679.613.852
+ 5.279.933.587
+ 93%
+ 5.279.933.587
+ 93%
+ 5131
+ PROTEÇÃO SOCIAL NO ÂMBITO DO SISTEMA ÚNICO DE ASSISTÊNCIA SOCIAL
+ 113.628.328.684
+ 121.716.396.418
+ 116.281.096.460
+ 96%
+ 116.281.096.460
+ 96%
+ 00H5
+ BPC/RMV à pessoa idosa
+ 49.817.485.442
+ 407.864.885
+ 50.225.350.327
+ 48.006.514.834
+ 96%
+ 48.006.514.834
+ 96%
+ 00IN
+ BPC/RMV à pessoa com deficiência e invalidez
+ 63.768.566.876
+ 7.712.939.344
+ 71.481.506.220
+ 68.265.970.622
+ 96%
+ 68.265.970.622
+ 96%
+ 00TZ
+ Auxílio Inclusão as pessoas com deficiência
+ 42.276.366
+ (32.736.495)
+ 9.539.871
+ 8.611.004
+ 90%
+ 8.611.004
+ 90%
+ TOTAL III (BPC/RMV/SENTENÇAS)
+ 119.103.442.545
+ 127.493.169.650
+ 121.658.189.427
+ 95%
+ 121.658.189.427
+ 95%
+ TOTAL GERAL
+ 123.057.930.287
+ 131.834.447.380
+ 125.518.473.080
+ 95%
+ 125.518.473.080
+ 95%
+ FONTE: SIAFI
+ Republicada por ter saído, no DOU de 19-3-2026, Seção 1, pág. 19, com incorreção do original.
+ Este conteúdo não substitui o publicado na versão certificada.
+ Borda do rodapé 
+ Logo da Imprensa

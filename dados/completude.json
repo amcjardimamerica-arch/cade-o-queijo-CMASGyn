@@ -1,0 +1,102 @@
+{
+ "gerado_em": "2026-08-25",
+ "blocos": {
+  "legislacao_federal": {
+   "completo": true,
+   "itens": 9,
+   "local": "corpus_txt/federal/",
+   "observacao": "Constituicao, LOAS, 14.601, 13.019, 14.133, 12.527, 4.320, LC 101, 9.784"
+  },
+  "legislacao_municipal": {
+   "completo": false,
+   "itens": 2,
+   "local": "corpus_txt/municipal/",
+   "faltam": [
+    "Lei 8.248/2004 Lei de Parceria",
+    "LC 273/2014",
+    "Lei 8.537/2007",
+    "LC 382/2025 reestruturacao da Secretaria"
+   ]
+  },
+  "orcamento": {
+   "completo": true,
+   "itens": 7,
+   "local": "corpus/orcamento/",
+   "conteudo": "LOA 2025 e 2026 com anexos; LDO 2024, 2025 e 2026",
+   "faltam": [
+    "LOA 2024",
+    "LDO 2023"
+   ]
+  },
+  "resolucoes_cnas": {
+   "completo": false,
+   "catalogadas": 20,
+   "texto_integral": 0,
+   "bloqueio": "portais do Ministerio responderam 503 e 404",
+   "critica": "Resolucao CNAS/MDS 202/2025 - fundamento do achado 6"
+  },
+  "resolucoes_cmasgyn": {
+   "completo": false,
+   "itens": 0,
+   "bloqueio": "nenhuma publicada ou localizavel",
+   "requerimento": "Requerimento 4"
+  },
+  "regimento_interno_cmasgyn": {
+   "completo": false,
+   "itens": 0,
+   "impede": [
+    "CMAS-CAB-02",
+    "CMAS-CAB-03",
+    "CMAS-CAB-04",
+    "CMAS-CAB-06"
+   ]
+  },
+  "atas_do_cmasgyn": {
+   "completo": false,
+   "itens": 0,
+   "periodo": "2023-2026",
+   "requerimento": "Requerimento 4"
+  },
+  "diario_oficial": {
+   "completo": false,
+   "ultima": "2026-07-29 ed 8830",
+   "lacuna": "19 dias uteis",
+   "causa": "ausencia de publicacao pelo Municipio, confirmada"
+  },
+  "receita_realizada": {
+   "completo": false,
+   "itens": 0,
+   "tem": "apenas receita ORCADA da LOA",
+   "falta": "receita REALIZADA mensal",
+   "onde": "RREO bimestral",
+   "requerimento": "Requerimento 1"
+  },
+  "execucao_da_despesa": {
+   "completo": false,
+   "eventos_com_empenho": 6,
+   "de": 161,
+   "percentual": 3.73,
+   "requerimento": "Requerimento 2"
+  },
+  "pessoal": {
+   "completo": false,
+   "itens": 0,
+   "impede": [
+    "SEM-PES-01",
+    "SEM-PES-02",
+    "SEM-PES-03",
+    "DEST-02"
+   ],
+   "requerimento": "Requerimento 3"
+  },
+  "contratos_vigentes": {
+   "completo": false,
+   "instrumentos_citados": 62,
+   "com_texto_integral": 0,
+   "requerimento": "Requerimento 6"
+  }
+ },
+ "completude_percent": 16.7,
+ "blocos_completos": 2,
+ "blocos_totais": 12
+}

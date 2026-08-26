@@ -1,0 +1,240 @@
+# RESOLUÇÃO CNAS Nº 146, DE 1º DE MARÇO DE 2024
+# DOU 04/03/2024 Edicao 43 Secao 1 Pagina 19
+# fonte: https://www.in.gov.br/web/dou/-/resolucao-cnas-n-146-de-1-de-marco-de-2024-546246919
+
+RESOLUÇÃO CNAS Nº 146, DE 1º DE MARÇO DE 2024
+ Dispõe sobre a aprovação do Relatório Final da Execução Orçamentária e Financeira do Fundo Nacional de Assistência Social (FNAS), exercício de 2023.
+ A PLENÁRIA DO CONSELHO NACIONAL DE ASSISTÊNCIA SOCIAL (CNAS), em reunião ordinária realizada nos dias 21 e 22 de fevereiro de 2024, no uso da competência que lhe conferem os incisos VIII e XIV do artigo 18 da Lei n. º 8.742, de 7 de dezembro de 1993 - Lei Orgânica da Assistência Social (LOAS), levando em consideração que ano a ano, desde 2014, o valor referente à gestão e aos serviços do Sistema Único de Assistência Social - SUAS vem sendo reduzido consideravelmente em relação ao apresentado pela Secretaria Nacional de Assistência Social - SNAS e aprovado pelo CNAS, resolve:
+ Art. 1º Aprovar o Relatório Final da Execução Orçamentária e Financeira do Fundo Nacional de Assistência Social (FNAS), exercício de 2023, apresentado pela Diretoria Executiva do Fundo Nacional de Assistência Social (DEFNAS), do Ministério do Desenvolvimento e Assistência Social, Família e Combate à Fome (MDS), planilha anexa, conforme a Lei nº 14.535, de 17 de janeiro de 2023 (Lei Orçamentária Anual - LOA 2023).
+ Art. 2° Recomendar ao Ministério do Desenvolvimento e Assistência Social, Família e Combate à Fome que articule com o Ministério do Planejamento e Orçamento as medidas necessárias que assegurem a regularidade dos repasses e a totalidade dos valores para o exercício de 2024, previstos na Resolução CNAS/MDS n° 109, de 19 de julho de 2023.
+ Art. 3º Esta Resolução entra em vigor uma semana após a data de sua publicação.
+ MARGARETH ALVES DALLARUVERA
+ Presidente do Conselho
+ ANEXO
+ EXECUÇÃO ORÇAMENTÁRIA E FINANCEIRA DO FUNDO NACIONAL DE ASSISTÊNCIA SOCIAL
+ REFERENTE AO PERÍODO DE JANEIRO A DEZEMBRO 2023
+ Atualizado: 02/02/2024
+ 55.901 - FUNDO NACIONAL DE ASSISTÊNCIA SOCIAL
+ CÓD
+ ATIVIDADE/PROGRAMA
+ COMPONENTES
+ DOTAÇÃO INICIAL
+ DOTAÇÃO EMPENHADA
+ %
+ DOTAÇÃO PAGA
+ %
+ DOTAÇÃO INICIAL
+ CRÉDITO
+ DOTAÇÃO ATUAL
+ (A)
+ (B)
+ (C)
+ ( D )
+ E = (D/C)
+ (F)
+ G = (F/D)
+ 5031
+ PROTEÇÃO SOCIAL NO ÂMBITO DO SISTEMA ÚNICO DE ASSISTÊNCIA SOCIAL
+ 4.670.291.035
+ -
+ 4.598.518.556
+ 4.733.732.263
+ 61%
+ 3.924.477.321
+ 83%
+ 219E
+ Ações de Proteção Social Básica
+ PBF / PBV
+ 1.232.277.602
+ 236.250.896
+ 1.468.528.498
+ 1.468.528.498
+ 100%
+ 1.460.425.020
+ 99%
+ 219F
+ Ações de Proteção Social Especial
+ PFMC / PTMC / PAC /PVAC
+ 816.600.000
+ (52.709.070)
+ 763.890.930
+ 763.640.930
+ 100%
+ 665.880.082
+ 87%
+ 219G
+ Estruturação da Rede de Serviços do Sistema Único de Assistência Social (SUAS)*
+ 2.561.376.484
+ (32.005.717)
+ 2.529.370.767
+ 2.453.725.617
+ 97%
+ 1.762.724.672
+ 72%
+ 2583
+ Serviço de Processamento de Dados do BPC e da RMV
+ 49.000.000
+ (6.560.211)
+ 42.439.789
+ 42.439.789
+ 100%
+ 30.284.916
+ 71%
+ 2589
+ Avaliação e Operacionalização do BPC
+ 8.536.949
+ (2.600.000)
+ 5.936.949
+ 5.397.430
+ 91%
+ 5.162.631
+ 96%
+ 8893
+ Apoio à Organização, à Gestão e à Vigilância Social no Território, no âmbito do SUAS
+ IGDSUAS
+ 2.500.000
+ -
+ 2.500.000
+ -
+ 0%
+ -
+ 0%
+ TOTAL I (DISCRICIONÁRIAS)
+ 4.670.291.035
+ -
+ 4.598.518.556
+ 4.733.732.263
+ 61%
+ 3.924.477.321
+ 83%
+ 5028
+ INCLUSÃO SOCIAL POR MEIO DO AUXÍLIO BRASIL E DA ARTICULAÇÃO DE POLÍTICAS PÚBLICAS
+ 779.142.000
+ -
+ 779.142.000
+ 779.142.000
+ 100%
+ 624.713.209
+ 80%
+ 00U7
+ Serv. De Apoio à Gestão Descentralizada ao Programa Bolsa Família
+ IGD PBF
+ 779.142.000
+ 779.142.000
+ 779.142.000
+ 100%
+ 624.713.209
+ 80%
+ 5024
+ ATENÇÃO INTEGRAL À PRIMEIRA INFÂNCIA
+ 430.501.500
+ 242.402.440
+ 430.501.500
+ 178%
+ 312.685.417
+ 73%
+ 217M
+ Desenvolvimento Integral na Primeira Infância - Criança Feliz
+ 430.501.500
+ -
+ 430.501.500
+ 430.501.500
+ 100%
+ 312.685.417
+ 73%
+ TOTAL I I (DISCRICIONÁRIAS)
+ 1.209.643.500
+ 1.209.643.500
+ 828.797.928
+ 69%
+ 937.398.626
+ 113%
+ 0901
+ OPERAÇÕES ESPECIAIS: CUMPRIMENTO DE SENTENÇAS JUDICIAIS
+ 3.427.054.512
+ 3.834.899.836
+ 3.834.878.150
+ 100%
+ 3.631.524.254
+ 95%
+ 0005
+ Cumprimento de Sentença Judicial Transitada em Julgado (Precatórios) devida pela União, Autarquias, e Fundações Públicas
+ 190.003.451
+ 407.845.324
+ 597.848.775
+ 597.848.768
+ 100%
+ 597.848.768
+ 100%
+ 0625
+ Cumprimento de Sentença Judicial Transitada em Julgado de Pequeno Valor devida pela União, Autarquias, e Fundações Públicas
+ 3.237.051.061
+ -
+ 3.237.051.061
+ 3.237.029.383
+ 100%
+ 3.033.675.486
+ 94%
+ 5031
+ PROTEÇÃO SOCIAL NO ÂMBITO DO SISTEMA ÚNICO DE ASSISTÊNCIA SOCIAL
+ 85.457.149.410
+ 90.316.541.636
+ 90.315.936.167
+ 100%
+ 85.531.425.250
+ 95%
+ 00H5
+ BPC/RMV à pessoa idosa
+ 38.370.623.836
+ 1.614.474.910
+ 39.985.098.746
+ 39.984.842.905
+ 100%
+ 38.003.928.695
+ 95%
+ 00IN
+ BPC/RMV à pessoa com deficiência e invalidez
+ 46.931.046.651
+ 3.383.699.159
+ 50.314.745.810
+ 50.314.396.182
+ 100%
+ 47.525.372.245
+ 94%
+ 00TZ
+ Auxílio Inclusão as pessoas com deficiência
+ 154.920.870
+ (138.223.790)
+ 16.697.080
+ 16.697.080
+ 100%
+ 2.124.311
+ 13%
+ 21DT
+ Operacionalização Auxílio a Deficientes
+ 558.053
+ -
+ 558.053
+ 0
+ 0%
+ 0
+ 0%
+ TOTAL III (BPC/RMV/SENTENÇAS)
+ 85.457.149.410
+ 90.317.099.689
+ 90.315.936.167
+ 100%
+ 85.531.425.250
+ 95%
+ TOTAL GERAL
+ 91.337.083.945
+ -
+ -
+ 95.878.466.359
+ 96%
+ 90.393.301.197
+ 94%
+ FONTE: SIAFI
+ Este conteúdo não substitui o publicado na versão certificada.
+ Borda do rodapé 
+ Logo da Imprensa

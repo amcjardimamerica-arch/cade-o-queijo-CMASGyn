@@ -1,0 +1,248 @@
+# RESOLUÇÃO CNAS/MDS Nº 237, DE 15 DE MAIO DE 2026
+# DOU 18/05/2026 Edicao 91 Secao 1 Pagina 41
+# fonte: https://www.in.gov.br/web/dou/-/resolucao-cnas/mds-n-237-de-15-de-maio-de-2026-706275432
+
+RESOLUÇÃO CNAS/MDS Nº 237, DE 15 DE MAIO DE 2026
+ Dispõe sobre a aprovação do Relatório da Execução Orçamentária e Financeira do Fundo Nacional de Assistência Social (FNAS), 1º Trimestre - Exercício 2026.
+ O CONSELHO NACIONAL DE ASSISTÊNCIA SOCIAL (CNAS), em reunião ordinária realizada nos dias 5 e 6 de maio de 2026, no uso da competência que lhe conferem os incisos VIII e XIV do artigo 18 da Lei n.º 8.742, de 7 de dezembro de 1993 - Lei Orgânica da Assistência Social (LOAS), resolve:
+ Art. 1º Aprovar o Relatório de Execução Orçamentária e Financeira do Fundo Nacional de Assistência Social (FNAS), 1º trimestre - Exercício 2026, apresentado pela Diretoria Executiva do Fundo Nacional de Assistência Social (DEFNAS), da Secretaria Nacional de Assistência Social (SNAS), do Ministério do Desenvolvimento e Assistência Social, Família e Combate à Fome (MDS), planilha anexa.
+ Art. 2º Esta Resolução entra em vigor na data de sua publicação.
+ EDGILSON TAVARES DE ARAÚJO
+ Presidente do Conselho
+ EXECUÇÃO ORÇAMENTÁRIA E FINANCEIRA DO FUNDO NACIONAL DE ASSISTÊNCIA SOCIAL
+ REFERENTE AO PERÍODO DE JANEIRO A MARÇO 2026
+ Atualizado: 05/05/2026
+ 55.901 - FUNDO NACIONAL DE ASSISTÊNCIA SOCIAL
+ AÇÃO
+ DESCRIÇÃO DA AÇÃO ORÇAMENTÁRIA
+ COMPONENTES
+ DOTAÇÃO INICIAL
+ DOTAÇÃO EMPENHADA
+ %
+ DOTAÇÃO PAGA
+ %
+ DOTAÇÃO INICIAL
+ CRÉDITO
+ REDUÇÃO
+ DOTAÇÃO ATUAL
+ (A)
+ (B)
+ (C)
+ ( D)
+ ( E)
+ F = (E/D)
+ (G)
+ H = (G/D)
+ PROGRAMA: 5131 - PROTEÇÃO SOCIAL NO ÂMBITO DO SISTEMA ÚNICO DE ASSISTÊNCIA SOCIAL
+ 219E
+ Cofinanciamento da Proteção Social Básica
+ PBF / PBV / SCFV / LANCHAS
+ 1.155.184.156
+ 2.042.933
+ -
+ 1.157.227.089
+ 288.796.027
+ 25%
+ 288.796.027
+ 25%
+ 219F
+ Cofinanciamento da Proteção Social Especial de Média e Alta Complexidade
+ PFMC / PTMC / PAC / PVAC / POP RUA
+ 668.340.212
+ 6.048.909
+ -
+ 674.389.121
+ 145.120.727
+ 22%
+ 145.020.727
+ 22%
+ 219G
+ Estruturação da Rede de Serviços e Fortalecimento da Gestão do Sistema Único de Assistência Social (SUAS)
+ 1.675.854.863
+ -
+ 329.825.201
+ 1.346.029.662
+ 391.098.996
+ 29%
+ 102.377.374
+ 8%
+ 2583
+ Processamento de Dados, Gestão de Informações E Desenvolvimento de Soluções Tecnológicas Digitais para Gestão de Benefícios Socioassistenciais (Benefício de Prestação Continuada - BPC, Renda Mensal Vitalícia - RMV, Auxílio-Inclusão e Outros Benefícios)
+ 39.685.554
+ -
+ -
+ 39.685.554
+ 39.685.554
+ 100%
+ 0
+ 0%
+ 2589
+ Gestão, Administração e Operacionalização de Benefícios Socioassistenciais (Benefício de Prestação Continuada - BPC, Renda Mensal Vitalícia - RMV, Auxílio-Inclusão e Outros Benefícios)
+ 8.540.918
+ -
+ -
+ 8.540.918
+ 741.240
+ 9%
+ 741.240
+ 9%
+ 8893
+ Apoio à Organização, à Gestão e à Vigilância Social no Território, no Âmbito do Sistema Único de Assistência Social - SUAS
+ 1.800.000
+ -
+ 131.871
+ 1.668.129
+ 0
+ 0%
+ 0
+ 0%
+ 217M
+ Primeira Infância No SUAS - Criança Feliz
+ 308.841.617
+ -
+ -
+ 308.841.617
+ 66.310.597
+ 21%
+ 66.310.597
+ 21%
+ SUBTOTAL I (PROGRAMA 5131 DISCRICIONÁRIAS)
+ 3.858.247.320
+ 8.091.842
+ 329.957.072
+ 3.536.382.090
+ 931.753.141
+ 26%
+ 603.245.965
+ 17%
+ 00H5
+ Benefícios de Prestação Continuada (BPC) à Pessoa Idosa e da Renda Mensal Vitalícia (RMV) Por Idade
+ 54.992.331.122
+ -
+ -
+ 54.992.331.122
+ 34.789.470.291
+ 63%
+ 11.242.085.735
+ 20%
+ 00IN
+ Benefícios de Prestação Continuada (BPC) à Pessoa com Deficiência e da Renda Mensal Vitalícia (RMV) Por Invalidez
+ 68.247.715.106
+ -
+ -
+ 68.247.715.106
+ 50.398.635.893
+ 74%
+ 16.033.033.642
+ 23%
+ 00TZ
+ Auxílio-Inclusão às Pessoas com Deficiência (Lei nº 14.176, de 22 de Junho de 2021)
+ 42.276.366
+ -
+ -
+ 42.276.366
+ 7.597.932
+ 18%
+ 2.578.847
+ 6%
+ SUBTOTAL II (PROGRAMA 5131 OBRIGATÓRIAS)
+ 123.282.322.594
+ -
+ -
+ 123.282.322.594
+ 85.195.704.116
+ 69%
+ 27.277.698.224
+ 22%
+ SUBTOTAL III (TOTAL DO PROGRAMA 5131)
+ 127.140.569.914
+ 8.091.842
+ 329.957.072
+ 126.818.704.684
+ 86.127.457.257
+ 68%
+ 27.880.944.189
+ 22%
+ PROGRAMA: 0901 - OPERAÇÕES ESPECIAIS: CUMPRIMENTO DE SENTENÇAS JUDICIAIS
+ 0005
+ Sentenças Judiciais Transitadas em Julgado (Precatórios)
+ 44.255.689
+ -
+ -
+ 44.255.689
+ -
+ 0%
+ -
+ 0%
+ 00WU
+ Precatórios Excedentes
+ 507.007.021
+ -
+ 507.007.021
+ -
+ -
+ 0%
+ -
+ 0%
+ 0625
+ Sentenças Judiciais Transitadas em Julgado de Pequeno Valor
+ 8.229.194.120
+ -
+ -
+ 8.229.194.120
+ -
+ 0%
+ -
+ 0%
+ SUBTOTAL IV (TOTAL DO PROGRAMA 0901)
+ 8.780.456.830
+ -
+ 507.007.021
+ 8.273.449.809
+ -
+ 0%
+ -
+ 0%
+ SUBTOTAL V (TOTAL DO PROGRAMA 5131 + 0901 DA UG DO FNAS)
+ 135.921.026.744
+ 8.091.842
+ 836.964.093
+ 135.092.154.493
+ 86.127.457.257
+ 64%
+ 27.880.944.189
+ 21%
+ PROGRAMA: 5128 - INCLUSÃO SOCIAL POR MEIO DO BROLSA FAMÍLIA E DA ARTICULAÇÃO DE POLÍTICAS PÚBLICAS
+ 00US
+ Apoio aos Entes Federados por meio do Índice de Gestão Descentralizada do Programa Bolsa Família e do Cadastro Único para Programas Sociais do Governo Federal - IGD
+ IGD PBF
+ 877.058.000
+ -
+ -
+ 877.058.000
+ 435.427.000
+ 50%
+ 129.192.500
+ 15%
+ SUBTOTAL VI (TOTAL DO PROGRAMA 5128)
+ 877.058.000
+ -
+ -
+ 877.058.000
+ 435.427.000
+ 50%
+ 129.192.500
+ 15%
+ TOTAL GERAL (SUBTOTAL V + VI )
+ 136.798.084.744
+ 8.091.842
+ 836.964.093
+ 135.969.212.493
+ 86.562.884.257
+ 64%
+ 28.010.136.689
+ 21%
+ FONTE: SIAFI
+ Este conteúdo não substitui o publicado na versão certificada.
+ Borda do rodapé 
+ Logo da Imprensa
