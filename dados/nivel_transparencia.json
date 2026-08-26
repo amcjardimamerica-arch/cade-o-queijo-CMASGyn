@@ -1,0 +1,98 @@
+{
+ "gerado_em": "2026-08-26",
+ "blocos": {
+  "Previsão orçamentária": {
+   "tem": [
+    "Lei Orçamentária 2025 e 2026 com anexos",
+    "Lei de Diretrizes 2024, 2025 e 2026",
+    "Receita do Fundo por natureza",
+    "Despesa por ação"
+   ],
+   "falta": [
+    "Quadro de Detalhamento de Despesas 2026",
+    "Mapa das fontes de recursos"
+   ],
+   "onde": "despesas_receitas",
+   "nivel": 66.7,
+   "itens": 6
+  },
+  "Receita realizada": {
+   "tem": [],
+   "falta": [
+    "Receita realizada mês a mês por fonte",
+    "Extratos da conta especial do Fundo",
+    "Relatório Resumido da Execução Orçamentária",
+    "Balanço Patrimonial 2025",
+    "Repasses do Fundo Nacional por competência"
+   ],
+   "onde": "responsabilidade_fiscal",
+   "nivel": 0.0,
+   "itens": 5
+  },
+  "Execução da despesa": {
+   "tem": [
+    "Decretos de crédito adicional",
+    "Extratos de contratos e termos"
+   ],
+   "falta": [
+    "Empenhos",
+    "Liquidações",
+    "Pagamentos",
+    "Ordens bancárias",
+    "Restos a pagar"
+   ],
+   "onde": "despesas_receitas",
+   "nivel": 28.6,
+   "itens": 7
+  },
+  "Pessoal e diárias": {
+   "tem": [
+    "Uma concessão de diária"
+   ],
+   "falta": [
+    "Folha de pagamento por competência",
+    "Quadro com forma de provimento",
+    "Relação de diárias",
+    "Relatórios de viagem",
+    "Equipe de referência por unidade"
+   ],
+   "onde": "recursos_humanos",
+   "nivel": 16.7,
+   "itens": 6
+  },
+  "Parcerias com entidades": {
+   "tem": [
+    "Extratos de termos de fomento e colaboração",
+    "Emendas impositivas da Lei Orçamentária"
+   ],
+   "falta": [
+    "Planos de trabalho",
+    "Prestações de contas",
+    "Editais de chamamento",
+    "Justificativas de dispensa"
+   ],
+   "onde": "despesas_receitas",
+   "nivel": 33.3,
+   "itens": 6
+  },
+  "Atos do Conselho": {
+   "tem": [
+    "Referências indiretas em atos posteriores"
+   ],
+   "falta": [
+    "Resoluções do triênio",
+    "Atas de plenária",
+    "Regimento Interno",
+    "Decreto de nomeação",
+    "Apreciação mensal das contas",
+    "Prestação quadrimestral"
+   ],
+   "onde": "sitio_conselho",
+   "nivel": 14.3,
+   "itens": 7
+  }
+ },
+ "documentos_disponiveis": 10,
+ "documentos_faltantes": 27,
+ "nivel_geral_percent": 27.0
+}

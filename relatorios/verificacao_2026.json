@@ -7,9 +7,9 @@
    "codigo": "PUB-01",
    "severidade": "critica",
    "selo": "CONFIRMADO",
-   "titulo": "Diario Oficial sem edicao desde 29/07/2026",
-   "detalhe": "Ultima publicacao: 2026-07-29 (26 dias corridos). Dos 21 dias uteis da janela, 18 sem edicao. Sondagem com controle exclui falha do coletor.",
-   "norma": "Artigo 37 caput da Constituicao Federal; Artigo 8 par.3 III e VI da Lei 12.527/2011; Artigo 10 par.2 da Lei municipal 9.009/2010",
+   "titulo": "Diário Oficial sem edição desde 29/07/2026",
+   "detalhe": "Última publicação: 2026-07-29 (26 dias corridos). Dos 21 dias úteis da janela, 18 sem edição. Sondagem com controle exclui falha do coletor.",
+   "norma": "Artigo 37, caput, da Constituicao Federal; Artigo 8º, § 3º, III e VI da Lei 12.527/2011; Artigo 10, § 2º, da Lei municipal 9.009/2010",
    "dados": {
     "ultima": "2026-07-29",
     "dias_sem_edicao": 18
@@ -20,9 +20,9 @@
    "codigo": "PUB-02",
    "severidade": "critica",
    "selo": "CONFIRMADO",
-   "titulo": "Atos do Conselho sem publicacao, confirmado por dupla via",
-   "detalhe": "24 de 40 atos examinados nao foram localizados por nenhuma das duas vias independentes. Indice global de publicidade de 6,36% e piso indiciario; use o confirmado.",
-   "norma": "Artigo 10 par.2 da Lei municipal 9.009/2010",
+   "titulo": "Atos do Conselho sem publicação, confirmado por dupla via",
+   "detalhe": "24 de 40 atos examinados não foram localizados por nenhuma das duas vias independentes. Índice global de publicidade de 6,36% é piso indiciário; use o confirmado.",
+   "norma": "Artigo 10, § 2º, da Lei municipal 9.009/2010",
    "dados": {
     "confirmados": 24,
     "examinados": 40
@@ -33,9 +33,9 @@
    "codigo": "ATA-01",
    "severidade": "alta",
    "selo": "CONFIRMADO",
-   "titulo": "Nenhuma ata de plenaria publicada",
-   "detalhe": "Zero atas no acervo. Sem ata publica nao se afere quorum, paridade, deliberacao nem voto. A ausencia impede tambem verificar a apreciacao previa de contratos.",
-   "norma": "Artigo 10 caput da Lei municipal 9.009/2010",
+   "titulo": "Nenhuma ata de plenária publicada",
+   "detalhe": "Zero atas no acervo. Sem ata pública não se afere quórum, paridade, deliberação nem voto. A ausência impede também verificar a apreciação prévia de contratos.",
+   "norma": "Artigo 10, caput, da Lei municipal 9.009/2010",
    "dados": {}
   },
   {
@@ -43,9 +43,9 @@
    "codigo": "CTA-01",
    "severidade": "alta",
    "selo": "CONFIRMADO",
-   "titulo": "Apreciacao mensal das contas do Fundo sem registro",
-   "detalhe": "O Conselho deve apreciar MENSALMENTE as contas do Fundo. Em 8 competencias de 2026 nao ha uma unica resolucao ou ata de apreciacao.",
-   "norma": "Artigo 2 inciso IV alinea b da Lei municipal 9.009/2010",
+   "titulo": "Apreciação mensal das contas do Fundo sem registro",
+   "detalhe": "O Conselho deve apreciar MENSALMENTE as contas do Fundo. Em 8 competências de 2026 não há uma única resolução ou ata de apreciação.",
+   "norma": "Artigo 2º, inciso IV, alínea b, da Lei municipal 9.009/2010",
    "dados": {
     "competencias_esperadas": 8,
     "com_registro": 0
@@ -56,9 +56,9 @@
    "codigo": "CTA-02",
    "severidade": "alta",
    "selo": "CONFIRMADO",
-   "titulo": "Prestacao de contas quadrimestral ao Conselho nao demonstrada",
-   "detalhe": "Criterio extraido do corpus: a cada 4 meses. Em 2026 seriam devidas 2 prestacoes (janeiro-abril e maio-agosto). Nenhuma localizada.",
-   "norma": "Artigo 6 par.5 da Resolucao CNAS/MDS 202/2025",
+   "titulo": "Prestação de contas quadrimestral ao Conselho não demonstrada",
+   "detalhe": "Critério extraído do corpus: a cada 4 meses. Em 2026 seriam devidas duas prestações (janeiro a abril e maio a agosto). Nenhuma localizada.",
+   "norma": "Artigo 6º, § 5º, da Resolução CNAS/MDS 202/2025",
    "dados": {
     "periodicidade_meses": 4,
     "devidas_2026": 2,
@@ -71,8 +71,8 @@
    "severidade": "alta",
    "selo": "INDICIARIO",
    "titulo": "Fundamento legal revogado invocado em 2026",
-   "detalhe": "1 ato(s) de 2026 mencionam a Lei 8.666/1993, revogada desde 30/12/2023. Termo de fomento rege-se pela Lei 13.019/2014, nunca por lei de licitacoes. Conferir o processo.",
-   "norma": "Artigo 193 inciso II da Lei 14.133/2021",
+   "detalhe": "1 ato(s) de 2026 mencionam a Lei 8.666/1993, revogada desde 30 de dezembro de 2023. Termo de fomento rege-se pela Lei 13.019/2014, nunca por lei de licitações. Conferir o processo.",
+   "norma": "Artigo 193, inciso II, da Lei 14.133/2021",
    "dados": {
     "ocorrencias": 1
    }
@@ -82,9 +82,9 @@
    "codigo": "REC-01",
    "severidade": "critica",
    "selo": "CONFIRMADO",
-   "titulo": "Aporte proprio do Municipio no Fundo e simbolico",
-   "detalhe": "Tesouro Municipal em 2026: R$ 9.000,00 num Fundo de R$ 23.218.000,00 (0.039%). Em 2025 eram R$ 1.669.000,00 — queda de -99.46%. Orcamento municipal: R$ 10.842.253.000,00.",
-   "norma": "Artigo 30 paragrafo unico e Artigo 30-A da Lei 8.742/1993",
+   "titulo": "Aporte próprio do Município no Fundo é simbólico",
+   "detalhe": "Tesouro Municipal em 2026: R$ 9.000,00 num Fundo de R$ 23.218.000,00 (0.039%). Em 2025 eram R$ 1.669.000,00 — queda de -99.46%. Orçamento municipal: R$ 10.842.253.000,00.",
+   "norma": "Artigo 30, parágrafo único, e Artigo 30-A da Lei 8.742/1993",
    "dados": {
     "tesouro_2026": 9000,
     "tesouro_2025": 1669000,
@@ -96,9 +96,9 @@
    "codigo": "REC-02",
    "severidade": "alta",
    "selo": "CONFIRMADO",
-   "titulo": "Transferencias sem ente de origem identificavel",
-   "detalhe": "Transferencias correntes de R$ 19.425.000,00 contra R$ 17.354.000,00 com fonte identificada. Diferenca de R$ 2.071.000,00 sem origem. Rastreabilidade global do acervo: 17.57%.",
-   "norma": "Artigos 6 e 13 da Lei 4.320/1964; Artigo 48-A da Lei Complementar 101/2000",
+   "titulo": "Transferências sem ente de origem identificável",
+   "detalhe": "Transferências correntes de R$ 19.425.000,00 contra R$ 17.354.000,00 com fonte identificada. Diferença de R$ 2.071.000,00 sem origem. Rastreabilidade global do acervo: 17.57%.",
+   "norma": "Artigos 6º e 13 da Lei 4.320/1964; Artigo 48-A da Lei Complementar 101/2000",
    "dados": {
     "sem_origem": 2071000
    }
@@ -108,9 +108,9 @@
    "codigo": "REC-03",
    "severidade": "media",
    "selo": "INDICIARIO",
-   "titulo": "Rendimento de aplicacao incompativel com execucao regular",
-   "detalhe": "Receita patrimonial de R$ 2.574.000,00 sobre Fundo de R$ 23.218.000,00 — 11.1%. Pressupoe saldo medio aplicado proximo do orcamento anual inteiro. Confirmado pelo outro lado: R$ 33.059.000,00 em creditos de 2026 abertos contra fontes de exercicios anteriores.",
-   "norma": "Artigo 43 paragrafo 1 inciso I da Lei 4.320/1964",
+   "titulo": "Rendimento de aplicação incompatível com execução regular",
+   "detalhe": "Receita patrimonial de R$ 2.574.000,00 sobre Fundo de R$ 23.218.000,00 — 11.1%. Pressupõe saldo médio aplicado próximo do orçamento anual inteiro. Confirmado pelo outro lado: R$ 33.059.000,00 em créditos de 2026 abertos contra fontes de exercícios anteriores.",
+   "norma": "Artigo 43, § 1º, inciso I, da Lei 4.320/1964",
    "dados": {
     "rendimento": 2574000,
     "creditos_superavit": 33059000.0
@@ -121,8 +121,8 @@
    "codigo": "DES-01",
    "severidade": "alta",
    "selo": "CONFIRMADO",
-   "titulo": "Concentracao numa acao generica impede saber o destino",
-   "detalhe": "R$ 19.913.000,00 (85.8%) na acao 3650.0824401082269 'MANUTENCAO DOS SERVICOS E DA REDE', sem discriminacao por unidade, servico tipificado ou entidade.",
+   "titulo": "Concentração numa ação genérica impede saber o destino",
+   "detalhe": "R$ 19.913.000,00 (85.8%) na acao 3650.0824401082269 'MANUTENCAO DOS SERVICOS E DA REDE', sem discriminação por unidade, serviço tipificado ou entidade.",
    "norma": "Artigo 13 da Lei 4.320/1964",
    "dados": {
     "acao": "3650.0824401082269",
@@ -135,9 +135,9 @@
    "codigo": "DES-02",
    "severidade": "critica",
    "selo": "CONFIRMADO",
-   "titulo": "Execucao da despesa nao rastreavel",
-   "detalhe": "6 eventos de empenho em 161 — 3.73%. Empenhado, liquidado e pago sao inaferiveis.",
-   "norma": "Artigos 58, 62 e 63 da Lei 4.320/1964; Artigo 48-A inciso I da Lei Complementar 101/2000",
+   "titulo": "Execução da despesa não rastreável",
+   "detalhe": "6 eventos de empenho em 161 — 3.73%. Empenhado, liquidado e pago são inaferíveis.",
+   "norma": "Artigos 58, 62 e 63 da Lei 4.320/1964; Artigo 48-A, inciso I, da Lei Complementar 101/2000",
    "dados": {}
   },
   {
@@ -145,9 +145,9 @@
    "codigo": "FMAS-01",
    "severidade": "critica",
    "selo": "CONFIRMADO",
-   "titulo": "Recurso do Tesouro custeia o que esta fora do controle do Conselho",
-   "detalhe": "Unidade 3601 (Gabinete): R$ 81.202.000,00, integralmente do Tesouro. Unidade 3650 (Fundo): R$ 23.218.000,00, dos quais R$ 9.000,00 do Tesouro. A dotacao do orgao deveria ser automaticamente transferida ao Fundo.",
-   "norma": "Artigos 2 par.1, 3 e 5 da Lei municipal 7.531/1995; Artigo 19 par.unico da Lei municipal 8.293/2004",
+   "titulo": "Recurso do Tesouro custeia o que está fora do controle do Conselho",
+   "detalhe": "Unidade 3601, do Gabinete: R$ 81.202.000,00, integralmente do Tesouro. Unidade 3650, do Fundo: R$ 23.218.000,00, dos quais R$ 9.000,00 do Tesouro. A dotação do órgão deveria ser automaticamente transferida ao Fundo.",
+   "norma": "Artigos 2º, § 1º, 3º e 5º da Lei municipal 7.531/1995; Artigo 19, parágrafo único, da Lei municipal 8.293/2004",
    "dados": {}
   },
   {
@@ -155,9 +155,9 @@
    "codigo": "IGD-01",
    "severidade": "critica",
    "selo": "CONFIRMADO",
-   "titulo": "Piso de 10% do IGD ao controle social sem execucao",
-   "detalhe": "Base do IGD nos decretos de credito de 2026: R$ 706.707,15. Devido ao controle social: R$ 70.670,71. Executado: R$ 0,00. Percentual extraido do corpus, nao digitado.",
-   "norma": "Artigo 6 da Resolucao CNAS/MDS 202/2025; Artigo 12-A par.4 da Lei 8.742/1993; Artigo 14 par.7 da Lei 14.601/2023",
+   "titulo": "Piso de 10% do Índice de Gestão Descentralizada ao controle social sem execução",
+   "detalhe": "Base do Índice de Gestão Descentralizada nos decretos de crédito de 2026: R$ 706.707,15. Devido ao controle social: R$ 70.670,71. Executado: R$ 0,00. Percentual extraido do corpus, nao digitado.",
+   "norma": "Artigo 6º da Resolução CNAS/MDS 202/2025; Artigo 12-A, § 4º, da Lei 8.742/1993; Artigo 14, § 7º, da Lei 14.601/2023",
    "dados": {
     "base": 706707.15,
     "devido": 70670.71,
@@ -170,9 +170,9 @@
    "codigo": "IGD-02",
    "severidade": "alta",
    "selo": "CONFIRMADO",
-   "titulo": "Dotacao do Conselho desproporcional ao fundo que fiscaliza",
-   "detalhe": "CMASGyn: R$ 256.000,00 para fiscalizar R$ 23.218.000,00 (1.1%). Conselho do Idoso, mesma Secretaria: R$ 261.000,00 para R$ 2.615.000,00 (9.98%). Razao de 9.07x. A dotacao existe mas nao ha execucao publicada, nem identificacao como fortalecimento do controle social.",
-   "norma": "Artigo 8 da Lei municipal 9.009/2010; Artigo 6 par.4 da Resolucao CNAS/MDS 202/2025",
+   "titulo": "Dotação do Conselho desproporcional ao fundo que fiscaliza",
+   "detalhe": "CMASGyn: R$ 256.000,00 para fiscalizar R$ 23.218.000,00 (1.1%). Conselho do Idoso, na mesma Secretaria: R$ 261.000,00 para R$ 2.615.000,00 (9.98%). Razão de 9.07 vezes. A dotação existe, mas não há execução publicada nem identificação como fortalecimento do controle social.",
+   "norma": "Artigo 8º da Lei municipal 9.009/2010; Artigo 6º, § 4º, da Resolução CNAS/MDS 202/2025",
    "dados": {}
   },
   {
@@ -180,9 +180,9 @@
    "codigo": "EMD-01",
    "severidade": "alta",
    "selo": "INDICIARIO",
-   "titulo": "Canal de emendas rivaliza com a politica publica",
-   "detalhe": "938 emendas somando R$ 178.223.847,86. Em assistencia social: 65 emendas, R$ 7.490.691,78 — 26.3% de toda a funcao 08 (R$ 28.440.000,00). Emenda dispensa chamamento, mas nao dispensa plano de trabalho, prestacao de contas nem apreciacao previa do Conselho.",
-   "norma": "Artigos 29, 42 e 63 da Lei 13.019/2014; Artigo 2 inciso IX da Lei municipal 9.009/2010",
+   "titulo": "Canal de emendas rivaliza com a política pública",
+   "detalhe": "938 emendas somando R$ 178.223.847,86. Em assistência social: 65 emendas, R$ 7.490.691,78 — 26.3% de toda a função 08, que é de R$ 28.440.000,00. Emenda dispensa chamamento, mas não dispensa plano de trabalho, prestação de contas nem apreciação prévia do Conselho.",
+   "norma": "Artigos 29, 42 e 63 da Lei 13.019/2014; Artigo 2º, inciso IX, da Lei municipal 9.009/2010",
    "dados": {
     "emendas_as": 7490691.78,
     "percentual_da_funcao": 26.3
@@ -193,8 +193,8 @@
    "codigo": "SYS-02",
    "severidade": "alta",
    "selo": "CONFIRMADO",
-   "titulo": "Classificacao por natureza desalinhada do valor",
-   "detalhe": "68 registros de 2026 com natureza divergente do rotulo; 21 trocam de grupo economico, somando R$ 9.281.000,00. Bolsoes por natureza sao INDICIARIOS ate a correcao.",
+   "titulo": "Classificação por natureza desalinhada do valor",
+   "detalhe": "68 registros de 2026 com natureza divergente do rótulo; 21 trocam de grupo econômico, somando R$ 9.281.000,00. Bolsões por natureza são indiciários até a correção.",
    "norma": "defeito de extracao",
    "dados": {
     "desalinhados": 68,
@@ -206,8 +206,8 @@
    "codigo": "SYS-03",
    "severidade": "alta",
    "selo": "CONFIRMADO",
-   "titulo": "Soma de repasses excede o total da funcao",
-   "detalhe": "R$ 183.427.737,85 atribuidos a entidades contra R$ 53.810.573,26 de total rastreado — 3.41x. Impossivel. Causa: um valor de publicacao replicado por inscricao. Nao use a tabela de maiores valores sem triagem.",
+   "titulo": "Soma de repasses excede o total da função",
+   "detalhe": "R$ 183.427.737,85 atribuídos a entidades contra R$ 53.810.573,26 de total rastreado — 3.41 vezes. Impossível. Causa: um valor de publicação replicado por inscrição. Não use a tabela de maiores valores sem triagem.",
    "norma": "defeito de agregacao",
    "dados": {
     "razao": 3.41
@@ -219,7 +219,7 @@
    "severidade": "media",
    "selo": "CONFIRMADO",
    "titulo": "Lista de entidades contaminada",
-   "detalhe": "8 inscricoes na lista de entidades sao o proprio Municipio, outra Secretaria, outro ente federado ou materia de saude. Triagem obrigatoria antes de qualquer peca.",
+   "detalhe": "8 inscrições na lista de entidades são o próprio Município, outra Secretaria, outro ente federado ou matéria de saúde. Triagem obrigatória antes de qualquer peça.",
    "norma": "metodo",
    "dados": {
     "contaminadas": 8,

@@ -1,0 +1,51 @@
+{
+ "_meta":{"descricao":"Para cada achado: onde o dado foi encontrado e onde deveria estar publicado. Todas as URLs verificadas em 26/08/2026.","versao":"1.0"},
+ "onde_encontrei":{
+  "loa2026":{"nome":"Lei Orçamentária Anual 11.590/2026, anexos","local":"Diário Oficial do Município, Edição 8697, de 09/01/2026, Edição Extra","url":"https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2026/lo_20260109_000011590_ane_000000001.pdf","status":"verificado"},
+  "loa2025":{"nome":"Lei Orçamentária Anual 11.315/2025, anexos","local":"Diário Oficial do Município, de 07/01/2025","url":"https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2025/lo_20250107_000011315_ane_000000001.pdf","status":"verificado"},
+  "ldo2026":{"nome":"Lei de Diretrizes Orçamentárias 11.589/2026","url":"https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2026/lo_20260109_000011589_ane_000000001.pdf","status":"verificado"},
+  "dom8830":{"nome":"Diário Oficial do Município, Edição 8830","local":"última edição publicada, 29/07/2026","url":"https://sileg.goiania.go.gov.br/geral/do_20260729_000008830.pdf","status":"verificado"},
+  "acervo":{"nome":"Acervo do Diário Oficial coletado","local":"161 eventos entre 2025 e 2026, com digest de cada edição","url":"https://github.com/amcjardimamerica-arch/cmasgyn-vigilancia/tree/main/dados","status":"verificado"},
+  "res202":{"nome":"Resolução CNAS/MDS 202/2025","local":"Diário Oficial da União de 28/07/2025, Edição 140, Seção 1, Página 87","url":"https://www.gov.br/participamaisbrasil/blob/baixar/73611","status":"verificado"},
+  "sitiocmas":{"nome":"Sítio próprio do Conselho","local":"sem documento posterior a dezembro de 2023","url":"https://cmasgyn.com.br/Documentos","status":"verificado - desatualizado"},
+  "lei7531":{"nome":"Lei municipal 7.531/1995","url":"https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/1995/lo_19951226_000007531.html","status":"verificado"},
+  "lei9009":{"nome":"Lei municipal 9.009/2010","url":"https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2010/lo_20101230_000009009.html","status":"verificado"}
+ },
+ "onde_deveria_estar":{
+  "despesas_receitas":{"nome":"Portal da Transparência, Despesas e Receitas","url":"https://www.goiania.go.gov.br/transparencia/?filtro_simplificado=categoria&categoria=49","norma":"Artigo 48-A da Lei Complementar 101/2000","status":"verificado"},
+  "acesso_informacao":{"nome":"Portal da Transparência, Acesso à Informação","url":"https://www.goiania.go.gov.br/transparencia/?filtro_simplificado=categoria&categoria=50","norma":"Artigo 8º da Lei 12.527/2011","status":"verificado"},
+  "responsabilidade_fiscal":{"nome":"Portal da Transparência, Responsabilidade Fiscal","url":"https://www.goiania.go.gov.br/transparencia/?filtro_simplificado=categoria&categoria=52","norma":"Artigo 48 da Lei Complementar 101/2000","status":"verificado"},
+  "recursos_humanos":{"nome":"Portal da Transparência, Recursos Humanos","url":"https://www.goiania.go.gov.br/transparencia/?filtro_simplificado=categoria&categoria=55","norma":"Artigo 8º, parágrafo 1º, inciso III, da Lei 12.527/2011","status":"verificado"},
+  "diario_oficial":{"nome":"Diário Oficial do Município","url":"https://www.goiania.go.gov.br/casa-civil/diario-oficial/","norma":"Artigo 37, caput, da Constituição Federal","status":"verificado"},
+  "sitio_conselho":{"nome":"Sítio do Conselho Municipal de Assistência Social","url":"https://cmasgyn.com.br/Documentos","norma":"Artigo 10 da Lei municipal 9.009/2010","status":"verificado - desatualizado desde dezembro de 2023"},
+  "tcmgo":{"nome":"Tribunal de Contas dos Municípios do Estado de Goiás","url":"https://www.tcmgo.tc.br","norma":"prestação de contas anual","status":"verificado"},
+  "financas":{"nome":"Secretaria Municipal de Finanças","url":"https://www.goiania.go.gov.br/sec/financas/","norma":"Artigo 48 da Lei Complementar 101/2000","status":"verificado"}
+ },
+ "por_achado":{
+  "PUB-01":{"encontrei":["dom8830","acervo"],"deveria":["diario_oficial"],"valor":null},
+  "PUB-02":{"encontrei":["acervo","sitiocmas"],"deveria":["diario_oficial","sitio_conselho"],"valor":null},
+  "ATA-01":{"encontrei":["sitiocmas"],"deveria":["sitio_conselho","acesso_informacao"],"valor":null},
+  "CTA-01":{"encontrei":["acervo"],"deveria":["sitio_conselho","responsabilidade_fiscal"],"valor":23218000},
+  "CTA-02":{"encontrei":["res202"],"deveria":["sitio_conselho"],"valor":706707.15},
+  "LEG-01":{"encontrei":["acervo"],"deveria":["despesas_receitas"],"valor":null},
+  "REC-01":{"encontrei":["loa2026","loa2025"],"deveria":["responsabilidade_fiscal","financas"],"valor":9000},
+  "REC-02":{"encontrei":["loa2026"],"deveria":["despesas_receitas"],"valor":2071000},
+  "REC-03":{"encontrei":["loa2026","acervo"],"deveria":["responsabilidade_fiscal"],"valor":2574000},
+  "DES-01":{"encontrei":["loa2026"],"deveria":["despesas_receitas"],"valor":19913000},
+  "DES-02":{"encontrei":["acervo"],"deveria":["despesas_receitas"],"valor":23218000},
+  "FMAS-01":{"encontrei":["loa2026","lei7531"],"deveria":["despesas_receitas","responsabilidade_fiscal"],"valor":81202000},
+  "IGD-01":{"encontrei":["loa2026","res202"],"deveria":["despesas_receitas","sitio_conselho"],"valor":70670.72},
+  "IGD-02":{"encontrei":["loa2026","lei9009"],"deveria":["despesas_receitas"],"valor":256000},
+  "EMD-01":{"encontrei":["loa2026"],"deveria":["despesas_receitas"],"valor":7490691.78},
+  "SYS-02":{"encontrei":["acervo"],"deveria":["despesas_receitas"],"valor":10858000},
+  "SYS-03":{"encontrei":["acervo"],"deveria":["despesas_receitas"],"valor":null},
+  "SYS-05":{"encontrei":["acervo"],"deveria":["despesas_receitas"],"valor":null},
+  "PES-01":{"encontrei":["acervo"],"deveria":["recursos_humanos"],"valor":null},
+  "PES-02":{"encontrei":["lei7531"],"deveria":["recursos_humanos","responsabilidade_fiscal"],"valor":2700},
+  "PES-03":{"encontrei":["acervo"],"deveria":["despesas_receitas","diario_oficial"],"valor":null},
+  "PES-04":{"encontrei":["acervo"],"deveria":["despesas_receitas"],"valor":null},
+  "PES-07":{"encontrei":["res202"],"deveria":["recursos_humanos"],"valor":70670.72},
+  "PES-08":{"encontrei":["acervo"],"deveria":["recursos_humanos"],"valor":null},
+  "PES-09":{"encontrei":["acervo"],"deveria":["recursos_humanos"],"valor":null}
+ }
+}
