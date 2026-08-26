@@ -1,9 +1,9 @@
 {
  "_meta": {
-  "versao": "3.0",
-  "levantado_em": "2026-08-25",
+  "versao": "3.1",
+  "levantado_em": "2026-08-26",
   "total_catalogadas": 285,
-  "com_texto_integral": 268,
+  "com_texto_integral": 269,
   "fontes_vivas": [
    "blogcnas.com (2023-2026)",
    "gov.br/participamaisbrasil/blob/baixar/{id} (documento individual)"
@@ -24,7 +24,70 @@
    "secundaria": "gov.br/participamaisbrasil/blob/baixar/{id} - documento individual sobrevive ao encerramento da plataforma",
    "terciaria_para_anteriores_a_2016": "pesquisa.in.gov.br/imprensa/servlet/INPDFViewer?jornal=1&pagina=N&data=DD/MM/AAAA - devolve o PDF da pagina do DOU; exige data e pagina exatas"
   },
-  "fidelidade": "Texto literal extraido do corpo da materia do DOU, com cabecalho de data, edicao, secao, pagina e URL de origem. Sem resumo, sem interpretacao, sem alteracao."
+  "fidelidade": "Texto literal extraido do corpo da materia do DOU, com cabecalho de data, edicao, secao, pagina e URL de origem. Sem resumo, sem interpretacao, sem alteracao.",
+  "vias_validadas": {
+   "1_dou_estruturado": {
+    "endpoint": "in.gov.br/consulta/-/buscar/dou com janelas de data e delta=50; texto em in.gov.br/web/dou/-/{slug}",
+    "cobertura": "2016 a 2026",
+    "situacao": "FUNCIONA",
+    "rendimento": "268 resolucoes"
+   },
+   "2_blob_participamaisbrasil": {
+    "endpoint": "gov.br/participamaisbrasil/blob/baixar/{id}",
+    "situacao": "FUNCIONA para id conhecido",
+    "limite": "o espaco de identificadores e um deposito geral de todos os colegiados; amostragem de 43 pontos entre 20.000 e 74.000 achou 5 PDFs, nenhum do CNAS. Enumeracao inviavel."
+   },
+   "3_dou_digitalizado": {
+    "endpoint": "pesquisa.in.gov.br/imprensa/servlet/INPDFViewer?jornal=1&pagina=N&data=DD/MM/AAAA",
+    "situacao": "DEVOLVE PDF",
+    "limite": "exige pagina exata; sem indice da edicao, exigiria varrer ~200 paginas por data"
+   },
+   "4_espelhos_institucionais": {
+    "exemplo": "cmas.jundiai.sp.gov.br",
+    "situacao": "FUNCIONA caso a caso",
+    "rendimento": "Resolucao 109/2009 com 56 paginas",
+    "metodo": "busca dirigida por norma, com conferencia de digest"
+   }
+  },
+  "faltantes_criticas": {
+   "33/2012": {
+    "tema": "NOB/SUAS",
+    "motivo": "anterior a 2016; espelhos testados devolveram 404 ou HTML"
+   },
+   "14/2014": {
+    "tema": "inscricao de entidades",
+    "motivo": "idem"
+   },
+   "269/2006": {
+    "tema": "NOB-RH/SUAS",
+    "motivo": "idem"
+   },
+   "145/2004": {
+    "tema": "Politica Nacional",
+    "motivo": "idem"
+   },
+   "17/2011": {
+    "tema": "equipes de referencia",
+    "motivo": "idem"
+   },
+   "27/2011": {
+    "tema": "blocos de financiamento",
+    "motivo": "idem"
+   },
+   "32/2011": {
+    "tema": "uso do cofinanciamento",
+    "motivo": "idem"
+   },
+   "18/2014": {
+    "tema": "beneficios eventuais",
+    "motivo": "idem"
+   },
+   "11/2015": {
+    "tema": "representacao de usuarios",
+    "motivo": "idem"
+   },
+   "_via_recomendada": "Busca dirigida em espelho institucional, norma a norma, com conferencia de sha256. Foi assim que a 109/2009 entrou. O ciclo mensal legal deve tentar automaticamente."
+  }
  },
  "com_texto_integral": {
   "resolucao_cit_n_18_de_6_de_dezembro_de_2024_609771891.txt": {

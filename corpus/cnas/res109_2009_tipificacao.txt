@@ -1,0 +1,1856 @@
+# RESOLUCAO CNAS No 109, DE 11 DE NOVEMBRO DE 2009
+# Aprova a Tipificacao Nacional de Servicos Socioassistenciais
+# fonte: https://cmas.jundiai.sp.gov.br/wp-content/uploads/2018/07/TIPIFICACAO-NACIONAL-DE-SERVICOS-SOCIOASSISTENCIAIS-RESOLUCAO-CNAS-109-DE-2009.pdf
+# sha256: 2004ee3585ac3cd2d9f14b46af764e67bfb4463f4526c28b53ce523b1243acb6
+# paginas: 56
+
+
+--- pagina 1 ---
+Tipifi cação Nacional de
+Serviços Socioassistenciais
+Reimpressão 2013
+
+--- pagina 2 ---
+EXPEDIENTE
+Presidenta da República Federativa do Brasil
+Dilma Rousseff
+Vice-Presidente da República Federativa do Brasil
+Michel Temer
+Ministra do Desenvolvimento Social e Combate à Fome
+Tereza Campello
+Secretário Executivo
+Marcelo Cardona Rocha
+Secretária Nacional de Assistência Social
+Denise Ratmann Arruda Colin
+Secretária Nacional de Segurança Alimentar e Nutricional
+Arnoldo Anacleto de Campos
+Secretário Nacional de Renda e Cidadania
+Luis Henrique da Silva de Paiva
+Secretário Nacional de Avaliação e Gestão da Informação
+Paulo de Martino Jannuzzi
+Secretário Extraordinário de Superação da Extrema Pobreza
+Tiago Falcão Silva
+SECRETARIA NACIONAL DE ASSISTÊNCIA SOCIAL
+Secretária Adjunta
+Valéria Maria de Massarani Gonelli
+Diretora de Gestão do Sistema Único de Assistência Social
+Simone Aparecida Albuquerque
+Diretora de Proteção Social Básica
+Léa Lucia Cecílio Braga
+Diretora de Proteção Social Especial
+Telma Maranho Gomes
+Diretora de Benefícios Assistenciais
+Maria José de Freitas
+Diretora de Rede Socioassistencial Privada do SUAS
+Carolina Gabas Stuchi
+Diretor Executivo do Fundo Nacional de Assistência Social
+Antonio José Gonçalves Henriques
+© 2013 Ministério do Desenvolvimento Social e Combate à Fome.
+Todos os direitos reservados.
+Qualquer parte desta publicação pode ser reproduzida, deste que
+citada a fonte.
+Secretaria Nacional de Assistência Social – SNAS
+Edifício Ômega, SEPN W3, Bloco B, 2º Andar, Sala 229 – CEP: 70.770-502
+– Brasília – DF.
+Telefone: (61) 2030-3119/3124
+www.mds.gov.br
+Fale no MDS: 0800 707-2003
+Solicite exemplares desta publicação pelo e-mail: capacitasuas@mds.gov.br
+
+--- pagina 3 ---
+Índice
+APRESENTAÇÃO ...................................................................................................................................4
+RESOLUÇÃO Nº 109, DE 11 DE NOVEMBRO DE 2009 ..........................................................................5
+1.MATRIZ PADRONIZADA PARA FICHAS DE SERVIÇOS SOCIOASSISTENCIAIS ......................................7
+2.QUADRO SÍNTESE ............................................................................................................................8
+SERVIÇOS DA PROTEÇÃO SOCIAL BÁSICA ............................................................................................9
+SERVIÇOS DA PROTEÇÃO SOCIAL ESPECIAL - MÉDIA COMPLEXIDADE ..............................................24
+SERVIÇOS DA PROTEÇÃO SOCIAL ESPECIAL - ALTA COMPLEXIDADE ..................................................39
+
+--- pagina 4 ---
+APRESENTAçãO
+Ao tempo em que se comemora os 25 anos do texto constitucional que demarca e inaugura os direi-
+tos sociais, materializados na chamada Constituição Cidadã, comemora-se os 20 anos de promulga-
+ção da Lei Orgânica da Assistência Social (LOAS) e sua expressiva alteração em 2011 pela Lei 12.435,
+que incorpora os avanços significativos advindos da implantação do Sistema Único da Assistência
+Social (SUAS) no país. É também tempo de celebrar os 8 anos de implantação do SUAS, erigido em
+consonância às diretrizes e princípios da Politica Nacional de Assistência Social (PNAS/2004), da
+Norma Operacional Básica do SUAS (NOB-SUAS/2012), que alterou o texto de 2005 e da Norma
+Operacional Básica de Recursos Humanos do SUAS (NOB-RH/2006).
+Neste cenário de conquistas, evidenciamos a aprovação pelo Conselho Nacional de Assistência So-
+cial (CNAS), por meio da Resolução nº 109, de 11 de novembro de 2009, da Tipificação Nacional dos
+Serviços Socioassistenciais. Esta normativa possibilitou a padronização em todo território nacional
+dos serviços de proteção social básica e especial, estabelecendo seus conteúdos essenciais, público
+a ser atendido, propósito de cada um deles e os resultados esperados para a garantia dos direitos
+socioassistenciais. Além das provisões, aquisições, condições e formas de acesso, unidades de re-
+ferência para a sua realização, período de funcionamento, abrangência, a articulação em rede, o
+impacto esperado e suas regulamentações específicas e gerais.
+A aprovação da Tipificação Nacional de Serviços Socioassistenciais representou uma importante
+conquista para a assistência social brasileira alcançando um novo patamar, estabelecendo tipologias
+que, sem dúvidas, corroboram para ressignificar a oferta e a garantia do direito socioassistencial.
+Denise Colin
+Secretária Nacional de Assistência Social
+4
+
+--- pagina 5 ---
+RESOLUçãO Nº 109, DE 11 DE NOVEMBRO DE 2009
+Aprova a Tipificação Nacional de Serviços Socioassistenciais.
+O Conselho Nacional de Assistência Social (CNAS), em reunião ordinária realizada nos dias 11 e
+12 de novembro de 2009, no uso da competência que lhe conferem os incisos II, V, IX e XIV do artigo
+18 da Lei n.º 8.742, de 7 de dezembro de 1993 – Lei Orgânica da Assistência Social (LOAS);
+Considerando a Resolução CNAS n.º 145, de 15 de outubro de 2004, que aprova a Política Nacio-
+nal de Assistência Social (PNAS);
+Considerando a Resolução CNAS n.º 130, de 15 de julho de 2005, que aprova a Norma Opera-
+cional Básica do Sistema Único de Assistência Social (NOB/SUAS);
+Considerando a Resolução CNAS n.º 269, de 13 de dezembro de 2006, que aprova a Norma Ope-
+racional Básica de Recursos Humanos do Sistema Único de Assistência Social (NOBRH/SUAS);
+Considerando a deliberação da VI Conferência Nacional de Assistência Social de “Tipificar e con-
+solidar a classificação nacional dos serviços socioassistenciais”;
+Considerando a meta prevista no Plano Decenal de Assistência Social, de estabelecer bases de
+padronização nacional dos serviços e equipamentos físicos do SUAS;
+Considerando o processo de Consulta Pública realizado no período de julho a setembro de 2009,
+coordenado pelo Ministério do Desenvolvimento Social e Combate à Fome (MDS);
+Considerando o processo de discussão e pactuação na Comissão Intergestores Tripartite (CIT) e
+discussão no âmbito do CNAS da Tipificação Nacional de Serviços Socioassistenciais;
+RESOLVE:
+Art. 1º. Aprovar a Tipificação Nacional de Serviços Socioassistenciais, conforme anexos, organiza-
+dos por níveis de complexidade do SUAS: Proteção Social Básica e Proteção Social Especial de Média
+e Alta Complexidade, de acordo com a disposição abaixo:
+I - Serviços de Proteção Social Básica:
+a) Serviço de Proteção e Atendimento Integral à Família (PAIF);
+b) Serviço de Convivência e Fortalecimento de Vínculos;
+c) Serviço de Proteção Social Básica no domicílio para pessoas com deficiência e idosas.
+II - Serviços de Proteção Social Especial de Média Complexidade:
+a) Serviço de Proteção e Atendimento Especializado a Famílias e Indivíduos (PAEFI);
+b) Serviço Especializado em Abordagem Social;
+c) Serviço de Proteção Social a Adolescentes em Cumprimento de Medida Socioeducativa de
+Liberdade Assistida (LA), e de Prestação de Serviços à Comunidade (PSC);
+5
+
+--- pagina 6 ---
+d) Serviço de Proteção Social Especial para Pessoas com Defi ciência, Idosas e suas Famílias;
+e) Serviço Especializado para Pessoas em Situação de Rua.
+III - Serviços de Proteção Social Especial de Alta Complexidade:
+a) Serviço de Acolhimento Insti tucional, nas seguintes modalidades:
+- abrigo insti tucional;
+- Casa-Lar;
+- Casa de Passagem;
+- Residência Inclusiva.
+b) Serviço de Acolhimento em República;
+c) Serviço de Acolhimento em Família Acolhedora;
+d) Serviço de Proteção em Situações de Calamidades Públicas e de Emergências.
+Art. 2º. Esta Resolução entra em vigor na data de sua publicação.
+MÁRCIA MARIA BIONDI PINHEIRO
+Presidente do Conselho
+6
+
+--- pagina 7 ---
+1. MATRIZ PADRONIZADA PARA
+FICHAS DE SERVIçOS SOCIOASSISTENCIAIS
+Termos utilizados para denominar o serviço de modo a evidenciar sua principal
+NOME DO SERVIçO
+função e os seus usuários.
+DESCRIçãO Conteúdo da oferta substantiva do serviço.
+Relação e detalhamento dos destinatários a quem se destinam as atenções. As
+USUÁRIOS situações identificadas em cada serviço constam de uma lista de vulnerabilida-
+des e riscos contida nesse documento.
+OBJETIVOS Propósitos do serviço e os resultados que dele se esperam.
+As ofertas do trabalho institucional, organizadas em quatro dimensões: ambien-
+te físico, recursos materiais, recursos humanos e trabalho social essencial ao ser-
+PROVISÕES
+viço. Organizados conforme cada serviço as provisões garantem determinadas
+aquisições aos cidadãos.
+Trata dos compromissos a serem cumpridos pelos gestores em todos os níveis,
+para que os serviços prestados no âmbito do SUAS produzam seguranças sociais
+aos seus usuários, conforme suas necessidades e a situação de vulnerabilidade e
+risco em que se encontram.
+AQUISIçÕES DOS
+USUÁRIOS Podem resultar em medidas da resolutividade e efetividade dos serviços, a
+serem aferidas pelos níveis de participação e satisfação dos usuários e pelas
+mudanças efetivas e duradouras em sua condição de vida, na perspectiva do
+fortalecimento de sua autonomia e cidadania. As aquisições específicas de cada
+serviço estão organizadas segundo as seguranças sociais que devem garantir.
+CONDIçÕES E FORMAS
+Procedência dos usuários e formas de encaminhamento.
+DE ACESSO
+UNIDADE Equipamento recomendado para a realização do serviço socioassistencial.
+PERÍODO DE
+Horários e dias da semana abertos ao funcionamento para o público.
+FUNCIONAMENTO
+ABRANGÊNCIA Referência territorializada da procedência dos usuários e do alcance do serviço.
+Sinaliza a completude da atenção hierarquizada em serviços de vigilância so-
+cial, defesa de direitos e proteção básica e especial de assistência social e dos
+ARTICULAçãO EM
+serviços de outras políticas públicas e de organizações privadas. Indica a cone-
+REDE
+xão de cada serviço com outros serviços, programas, projetos e organizações
+dos Poderes Executivo e Judiciário e organizações não governamentais.
+Trata dos resultados e dos impactos esperados de cada serviço e do conjunto dos
+IMPACTO SOCIAL serviços conectados em rede socioassistencial. Projeta expectativas que vão além
+ESPERADO das aquisições dos sujeitos que utilizam os serviços e avançam na direção de mu-
+danças positivas em relação a indicadores de vulnerabilidades e de riscos sociais.
+Remissão a leis, decretos, normas técnicas e planos nacionais que regulam be-
+REGULAMENTAçÕES nefícios e serviços socioassistenciais e atenções a segmentos específicos que de-
+mandam a proteção social de assistência social.
+7
+
+--- pagina 8 ---
+2. QUADRO SÍNTESE
+1. Serviço de Proteção e Atendimento Integral à Família
+(PAIF);
+PROTEçãO SOCIAL BÁSICA 2. Serviço de Convivência e Fortalecimento de Vínculos;
+3. Serviço de Proteção Social Básica no Domicílio para
+Pessoas com Deficiência e Idosas.
+1. Serviço de Proteção e Atendimento Especializado a Fa-
+mílias Indivíduos (PAEFI);
+2. Serviço Especializado em Abordagem Social;
+3. Serviço de proteção social a adolescentes em cumpri-
+Média
+mento de medida socioeducativa de Liberdade Assistida
+Complexidade
+(LA) e de Prestação de Serviços à Comunidade (PSC);
+4. Serviço de Proteção Social Especial para Pessoas com
+PROTEçãO SOCIAL Deficiência, Idosas e suas Famílias;
+ESPECIAL 5. Serviço Especializado para Pessoas em Situação de Rua.
+6. Serviço de Acolhimento Institucional;
+7. Serviço de Acolhimento em República;
+Alta
+8. Serviço de Acolhimento em Família Acolhedora;
+Complexidade
+9. Serviço de proteção em situações de calamidades pú-
+blicas e de emergências.
+8
+
+--- pagina 9 ---
+SERVIçOS DA PROTEçãO SOCIAL BÁSICA
+
+--- pagina 10 ---
+NOME DO SERVIçO: SERVIçO DE PROTEçãO E ATENDIMENTO INTEGRAL À FAMÍLIA - PAIF.
+DESCRIçãO: O Serviço de Proteção e Atendimento Integral à Família - PAIF consiste no trabalho social
+com famílias, de caráter continuado, com a finalidade de fortalecer a função protetiva das famílias,
+prevenir a ruptura dos seus vínculos, promover seu acesso e usufruto de direitos e contribuir na me-
+lhoria de sua qualidade de vida. Prevê o desenvolvimento de potencialidades e aquisições das famílias
+e o fortalecimento de vínculos familiares e comunitários, por meio de ações de caráter preventivo,
+protetivo e proativo. O trabalho social do PAIF deve utilizar-se também de ações nas áreas culturais
+para o cumprimento de seus objetivos, de modo a ampliar universo informacional e proporcionar no-
+vas vivências às famílias usuárias do serviço. As ações do PAIF não devem possuir caráter terapêutico.
+É serviço baseado no respeito à heterogeneidade dos arranjos familiares, aos valores, crenças e iden-
+tidades das famílias. Fundamenta-se no fortalecimento da cultura do diálogo, no combate a todas as
+formas de violência, de preconceito, de discriminação e de estigmatização nas relações familiares.
+Realiza ações com famílias que possuem pessoas que precisam de cuidado, com foco na troca de
+informações sobre questões relativas à primeira infância, a adolescência, à juventude, o envelhe-
+cimento e deficiências a fim de promover espaços para troca de experiências, expressão de difi-
+culdades e reconhecimento de possibilidades. Tem por princípios norteadores a universalidade e
+gratuidade de atendimento, cabendo exclusivamente à esfera estatal sua implementação. Serviço
+ofertado necessariamente no Centro de Referência de Assistência Social (CRAS).
+O atendimento às famílias residentes em territórios de baixa densidade demográfica, com espalha-
+mento ou dispersão populacional (áreas rurais, comunidades indígenas, quilombolas, calhas de rios,
+assentamentos, dentre outros) pode ser realizado por meio do estabelecimento de equipes volantes
+ou mediante a implantação de unidades de CRAS itinerantes.
+Todos os serviços da proteção social básica, desenvolvidos no território de abrangência do CRAS, em
+especial os Serviços de Convivência e Fortalecimento de Vínculos, bem como o Serviço de Proteção
+Social Básica no Domicílio para Pessoas com Deficiência e Idosas, devem ser a ele referenciados e
+manter articulação com o PAIF. É a partir do trabalho com famílias no serviço PAIF que se organizam
+os serviços referenciados ao CRAS. O referenciamento dos serviços socioassistenciais da proteção
+social básica ao CRAS possibilita a organização e hierarquização da rede socioassistencial no territó-
+rio, cumprindo a diretriz de descentralização da política de assistência social.
+A articulação dos serviços socioassistenciais do território com o PAIF garante o desenvolvimento do
+trabalho social com as famílias dos usuários desses serviços, permitindo identificar suas necessida-
+des e potencialidades dentro da perspectiva familiar, rompendo com o atendimento segmentado e
+descontextualizado das situações de vulnerabilidade social vivenciadas.
+O trabalho social com famílias, assim, apreende as origens, significados atribuídos e as possibi-
+lidades de enfrentamento das situações de vulnerabilidade vivenciadas por toda a família, con-
+tribuindo para sua proteção de forma integral, materializando a matricialidade sociofamiliar no
+âmbito do SUAS.
+10
+
+--- pagina 11 ---
+USUÁRIOS: Famílias em situação de vulnerabilidade social decorrente da pobreza, do precário ou
+nulo acesso aos serviços públicos, da fragilização de vínculos de pertencimento e sociabilidade e/ou
+qualquer outra situação de vulnerabilidade e risco social residentes nos territórios de abrangência
+dos CRAS, em especial:
+- Famílias beneficiárias de programas de transferência de renda e benefícios assistenciais;
+- Famílias que atendem os critérios de elegibilidade a tais programas ou benefícios, mas que ainda
+não foram contempladas;
+- Famílias em situação de vulnerabilidade em decorrência de dificuldades vivenciadas por algum
+de seus membros;
+- Pessoas com deficiência e/ou pessoas idosas que vivenciam situações de vulnerabilidade e risco social.
+OBJETIVOS:
+- Fortalecer a função protetiva da família, contribuindo na melhoria da sua qualidade de vida;
+- Prevenir a ruptura dos vínculos familiares e comunitários, possibilitando a superação de situa-
+ções de fragilidade social vivenciadas;
+- Promover aquisições sociais e materiais às famílias, potencializando o protagonismo e a autono-
+mia das famílias e comunidades;
+- Promover acessos a benefícios, programas de transferência de renda e serviços socioassisten-
+ciais, contribuindo para a inserção das famílias na rede de proteção social de assistência social;
+- Promover acesso aos demais serviços setoriais, contribuindo para o usufruto de direitos;
+- Apoiar famílias que possuem, dentre seus membros, indivíduos que necessitam de cuidados, por
+meio da promoção de espaços coletivos de escuta e troca de vivências familiares.
+PROVISÕES:
+AMBIENTE FÍSICO: Espaços destinados para recepção, sala(s) de atendimento individualizado, sala(s) de
+atividades coletivas e comunitárias, sala para atividades administrativas, instalações sanitárias, com ade-
+quada iluminação, ventilação, conservação, privacidade, salubridade, limpeza e acessibilidade em todos
+seus ambientes, de acordo com as normas da ABNT. O ambiente deve possuir outras características de
+acordo com a regulação específica do serviço e do Centro de Referência de Assistência Social (CRAS).
+RECURSOS MATERIAIS: Materiais permanentes e materiais de consumo necessários ao desenvolvi-
+mento do serviço, tais como: mobiliário, computadores, entre outros.
+MATERIAIS SOCIOEDUCATIVOS: Artigos pedagógicos, culturais e esportivos; Banco de Dados de
+usuários de benefícios e serviços socioassistenciais; Banco de Dados dos serviços socioassistenciais;
+Cadastro Único dos Programas Sociais; Cadastro de Beneficiários do BPC.
+RECURSOS HUMANOS: De acordo com a NOB-RH/SUAS.
+TRABALHO SOCIAL ESSENCIAL AO SERVIçO: Acolhida; estudo social; visita domiciliar; orientação e
+encaminhamentos; grupos de famílias; acompanhamento familiar; atividades comunitárias; cam-
+panhas socioeducativas; informação, comunicação e defesa de direitos; promoção ao acesso à do-
+cumentação pessoal; mobilização e fortalecimento de redes sociais de apoio; desenvolvimento do
+convívio familiar e comunitário; mobilização para a cidadania; conhecimento do território; cadas-
+tramento socioeconômico; elaboração de relatórios e/ou prontuários; notificação da ocorrência de
+situações de vulnerabilidade e risco social; busca ativa.
+11
+
+--- pagina 12 ---
+AQUISIçÕES DOS USUÁRIOS:
+SEGURANçA DE ACOLHIDA:
+- Ter acolhida suas demandas, interesses, necessidades e possibilidades;
+- Receber orientações e encaminhamentos, com o objetivo de aumentar o acesso a benefícios
+socioassistenciais e programas de transferência de renda, bem como aos demais direitos sociais,
+civis e políticos;
+- Ter acesso a ambiência acolhedora;
+- Ter assegurada sua privacidade.
+SEGURANçA DE CONVÍVIO FAMILIAR E COMUNITÁRIO:
+- Vivenciar experiências que contribuam para o estabelecimento e fortalecimento de vínculos fa-
+miliares e comunitários;
+- Vivenciar experiências de ampliação da capacidade protetiva e de superação de fragilidades sociais;
+- Ter acesso a serviços de qualidade, conforme demandas e necessidades.
+SEGURANçA DE DESENVOLVIMENTO DA AUTONOMIA:
+- Vivenciar experiências pautadas pelo respeito a si próprio e aos outros, fundamentadas em prin-
+cípios ético-políticos de defesa da cidadania e justiça social;
+- Vivenciar experiências potencializadoras da participação cidadã, tais como espaços de livre ex-
+pressão de opiniões, de reivindicação e avaliação das ações ofertadas, bem como de espaços de
+estímulo para a participação em fóruns, conselhos, movimentos sociais, organizações comunitá-
+rias e outros espaços de organização social;
+- Vivenciar experiências que contribuam para a construção de projetos individuais e coletivos, de-
+senvolvimento da autoestima, autonomia e sustentabilidade;
+- Vivenciar experiências que possibilitem o desenvolvimento de potencialidades e ampliação do
+universo informacional e cultural;
+- Ter reduzido o descumprimento de condicionalidades do Programa Bolsa Família (PBF);
+- Ter acesso a documentação civil;
+- Ter acesso a experiências de fortalecimento e extensão da cidadania;
+- Ter acesso a informações e encaminhamentos a políticas de emprego e renda e a programas de
+associativismo e cooperativismo.
+CONDIçÕES E FORMAS DE ACESSO:
+CONDIçÕES: Famílias territorialmente referenciadas aos CRAS, em especial: famílias em processo de
+reconstrução de autonomia; famílias em processo de reconstrução de vínculos; famílias com crian-
+ças, adolescentes, jovens e idosos inseridos em serviços socioassistenciais, territorialmente referen-
+ciadas ao CRAS; famílias com beneficiários do Benefício de Prestação Continuada; famílias inseridas
+em programas de transferência de renda.
+FORMAS DE ACESSO:
+- Por procura espontânea;
+- Por busca ativa;
+- Por encaminhamento da rede socioassistencial;
+- Por encaminhamento das demais políticas públicas.
+12
+
+--- pagina 13 ---
+UNIDADE: Centro de Referência de Assistência Social (CRAS).
+PERÍODO DE FUNCIONAMENTO: Período mínimo de 5 dias por semana, 8 horas diárias, sendo que a uni-
+dade deverá necessariamente funcionar no período diurno podendo eventualmente executar atividades
+complementares a noite, com possibilidade de funcionar em feriados e finais de semana.
+ABRANGÊNCIA: Municipal; e em metrópoles e municípios de médio e grande porte a abrangência
+corresponderá ao território de abrangência do CRAS, de acordo com a incidência da demanda.
+ARTICULAçãO EM REDE:
+- Serviços socioassistenciais de proteção social básica e proteção social especial;
+- Serviços públicos locais de educação, saúde, trabalho, cultura, esporte, segurança pública e ou-
+tros conforme necessidades;
+- Conselhos de políticas públicas e de defesa de direitos de segmentos específicos;
+- Instituições de ensino e pesquisa;
+- Serviços de enfrentamento à pobreza;
+- Programas e projetos de preparação para o trabalho e de inclusão produtiva; e
+- Redes sociais locais: associações de moradores, ONG’s, entre outros.
+IMPACTO SOCIAL ESPERADO:
+CONTRIBUIR PARA:
+- Redução da ocorrência de situações de vulnerabilidade social no território de abrangência do CRAS;
+- Prevenção da ocorrência de riscos sociais, seu agravamento ou reincidência no território de
+abrangência do CRAS;
+- Aumento de acessos a serviços socioassistenciais e setoriais;
+- Melhoria da qualidade de vida das famílias residentes no território de abrangência do CRAS.
+13
+
+--- pagina 14 ---
+NOME DO SERVIçO: SERVIçO DE CONVIVÊNCIA E FORTALECIMENTO DE VÍNCULOS.
+DESCRIçãO GERAL: Serviço realizado em grupos, organizado a partir de percursos, de modo a ga-
+rantir aquisições progressivas aos seus usuários, de acordo com o seu ciclo de vida, a fim de comple-
+mentar o trabalho social com famílias e prevenir a ocorrência de situações de risco social. Forma de
+intervenção social planejada que cria situações desafiadoras, estimula e orienta os usuários na cons-
+trução e reconstrução de suas histórias e vivências individuais e coletivas, na família e no território.
+Organiza-se de modo a ampliar trocas culturais e de vivências, desenvolver o sentimento de perten-
+ça e de identidade, fortalecer vínculos familiares e incentivar a socialização e a convivência comuni-
+tária. Possui caráter preventivo e proativo, pautado na defesa e afirmação dos direitos e no desen-
+volvimento de capacidades e potencialidades, com vistas ao alcance de alternativas emancipatórias
+para o enfrentamento da vulnerabilidade social.
+Deve prever o desenvolvimento de ações intergeracionais e a heterogeneidade na composição dos
+grupos por sexo, presença de pessoas com deficiência, etnia, raça, entre outros.
+Possui articulação com o Serviço de Proteção e Atendimento Integral à Família (PAIF), de modo a
+promover o atendimento das famílias dos usuários destes serviços, garantindo a matricialidade so-
+ciofamiliar da política de assistência social.
+DESCRIçãO ESPECÍFICA DO SERVIçO PARA CRIANçAS ATÉ 6 ANOS: Tem por foco o desenvolvimento
+de atividades com crianças, familiares e comunidade, para fortalecer vínculos e prevenir ocorrência
+de situações de exclusão social e de risco, em especial a violência doméstica e o trabalho infantil,
+sendo um serviço complementar e diretamente articulado ao PAIF.
+Pauta-se no reconhecimento da condição peculiar de dependência, de desenvolvimento desse ciclo
+de vida e pelo cumprimento dos direitos das crianças, numa concepção que faz do brincar, da experi-
+ência lúdica e da vivência artística uma forma privilegiada de expressão, interação e proteção social.
+Desenvolve atividades com crianças, inclusive com crianças com deficiência, seus grupos familiares,
+gestantes e nutrizes. Com as crianças, busca desenvolver atividades de convivência, estabelecimen-
+to e fortalecimento de vínculos e socialização centradas na brincadeira, com foco na garantia das
+seguranças de acolhida e convívio familiar e comunitário, por meio de experiências lúdicas, acesso
+a brinquedos favorecedores do desenvolvimento e da sociabilidade e momentos de brincadeiras
+fortalecedoras do convívio com familiares. Com as famílias, o serviço busca estabelecer discussões
+reflexivas, atividades direcionadas ao fortalecimento de vínculos e orientação sobre o cuidado com
+a criança pequena. Com famílias de crianças com deficiência inclui ações que envolvem grupos e
+organizações comunitárias para troca de informações acerca de direitos da pessoa com deficiência,
+potenciais das crianças, importância e possibilidades de ações inclusivas.
+Deve possibilitar meios para que as famílias expressem dificuldades, soluções encontradas e de-
+mandas, de modo a construir conjuntamente soluções e alternativas para as necessidades e os
+problemas enfrentados.
+DESCRIçãO ESPECÍFICA DO SERVIçO PARA CRIANçAS E ADOLESCENTES DE 6 A 15 ANOS: Tem por
+foco a constituição de espaço de convivência, formação para a participação e cidadania, desenvol-
+vimento do protagonismo e da autonomia das crianças e adolescentes, a partir dos interesses, de-
+mandas e potencialidades dessa faixa etária. As intervenções devem ser pautadas em experiências
+lúdicas, culturais e esportivas como formas de expressão, interação, aprendizagem, sociabilidade e
+proteção social. Inclui crianças e adolescentes com deficiência, retirados do trabalho infantil ou sub-
+metidos a outras violações, cujas atividades contribuem para re-significar vivências de isolamento
+e de violação de direitos, bem como propiciar experiências favorecedoras do desenvolvimento de
+sociabilidades e na prevenção de situações de risco social.
+14
+
+--- pagina 15 ---
+DESCRIçãO ESPECÍFICA DO SERVIçO PARA ADOLESCENTES E JOVENS DE 15 A 17 ANOS: Tem por
+foco o fortalecimento da convivência familiar e comunitária e contribui para o retorno ou permanên-
+cia dos adolescentes e jovens na escola, por meio do desenvolvimento de atividades que estimulem
+a convivência social, a participação cidadã e uma formação geral para o mundo do trabalho. As ativi-
+dades devem abordar as questões relevantes sobre a juventude, contribuindo para a construção de
+novos conhecimentos e formação de atitudes e valores que reflitam no desenvolvimento integral do
+jovem. As atividades também devem desenvolver habilidades gerais, tais como a capacidade comuni-
+cativa e a inclusão digital de modo a orientar o jovem para a escolha profissional, bem como realizar
+ações com foco na convivência social por meio da arte-cultura e esporte-lazer. As intervenções devem
+valorizar a pluralidade e a singularidade da condição juvenil e suas formas particulares de sociabilida-
+de; sensibilizar para os desafios da realidade social, cultural, ambiental e política de seu meio social;
+criar oportunidades de acesso a direitos; estimular práticas associativas e as diferentes formas de ex-
+pressão dos interesses, posicionamentos e visões de mundo de jovens no espaço público.
+DESCRIçãO ESPECÍFICA DO SERVIçO PARA IDOSOS: Tem por foco o desenvolvimento de atividades
+que contribuam no processo de envelhecimento saudável, no desenvolvimento da autonomia e de
+sociabilidades, no fortalecimento dos vínculos familiares e do convívio comunitário e na prevenção
+de situações de risco social. A intervenção social deve estar pautada nas características, interesses
+e demandas dessa faixa etária e considerar que a vivência em grupo, as experimentações artísticas,
+culturais, esportivas e de lazer e a valorização das experiências vividas constituem formas privilegia-
+das de expressão, interação e proteção social. Devem incluir vivências que valorizam suas experiên-
+cias e que estimulem e potencialize a condição de escolher e decidir.
+USUÁRIOS:
+CRIANçAS DE ATÉ 6 ANOS, EM ESPECIAL:
+- Crianças com deficiência, com prioridade para as beneficiárias do BPC;
+- Crianças cujas famílias são beneficiárias de programas de transferência de renda;
+- Crianças encaminhadas pelos serviços da proteção social especial: Programa de Erradicação do
+Trabalho Infantil (PETI); Serviço de Proteção e Atendimento Especializado a Famílias e Indivíduos;
+reconduzidas ao convívio familiar após medida protetiva de acolhimento; e outros;
+- Crianças residentes em territórios com ausência ou precariedade na oferta de serviços e oportu-
+nidades de convívio familiar e comunitário;
+- Crianças que vivenciam situações de fragilização de vínculos.
+CRIANçAS E ADOLESCENTES DE 6 A 15 ANOS, EM ESPECIAL:
+- Crianças encaminhadas pelos serviços da proteção social especial: Programa de Erradicação do
+Trabalho Infantil (PETI); Serviço de Proteção e Atendimento Especializado a Famílias e Indivíduos;
+reconduzidas ao convívio familiar após medida protetiva de acolhimento; e outros;
+- Crianças e adolescentes com deficiência, com prioridade para as beneficiárias do BPC;
+- Crianças e adolescentes cujas famílias são beneficiárias de programas de transferência de renda;
+- Crianças e adolescentes de famílias com precário acesso a renda e a serviços públicos e com difi-
+culdades para manter.
+ADOLESCENTES E JOVENS DE 15 A 17 ANOS, EM ESPECIAL:
+- Adolescentes e Jovens pertencentes às famílias beneficiárias de programas de transferência
+de renda;
+15
+
+--- pagina 16 ---
+- Adolescentes e Jovens egressos de medida socioeducativa de internação ou em cumprimento de
+outras medidas socioeducativas em meio aberto, conforme disposto na Lei nº 8.069, de 13 de
+julho de 1990 - Estatuto da Criança e do Adolescente;
+- Adolescentes e Jovens em cumprimento ou egressos de medida de proteção, conforme disposto
+na Lei nº 8.069, de 13 de julho de 1990 - Estatuto da Criança e do Adolescentes (ECA);
+- Adolescentes e Jovens do Programa de Erradicação do Trabalho Infantil (PETI) ou Adolescentes e Jo-
+vens egressos ou vinculados a programas de combate à violência e ao abuso e à exploração sexual;
+- Adolescentes e Jovens de famílias com perfil de renda de programas de transferência de renda;
+- Jovens com deficiência, em especial beneficiários do BPC;
+- Jovens fora da escola.
+IDOSOS(AS) COM IDADE IGUAL OU SUPERIOR A 60 ANOS, EM SITUAçãO DE VULNERABILIDADE
+SOCIAL, EM ESPECIAL:
+- Idosos beneficiários do Benefício de Prestação Continuada;
+- Idosos de famílias beneficiárias de programas de transferência de renda;
+- Idosos com vivências de isolamento por ausência de acesso a serviços e oportunidades de convívio fa-
+miliar e comunitário e cujas necessidades, interesses e disponibilidade indiquem a inclusão no serviço.
+OBJETIVOS GERAIS:
+- Complementar o trabalho social com família, prevenindo a ocorrência de situações de risco social
+e fortalecendo a convivência familiar e comunitária;
+- Prevenir a institucionalização e a segregação de crianças, adolescentes, jovens e idosos, em espe-
+cial, das pessoas com deficiência, assegurando o direito à convivência familiar e comunitária;
+- Promover acessos a benefícios e serviços socioassistenciais, fortalecendo a rede de proteção so-
+cial de assistência social nos territórios;
+- Promover acessos a serviços setoriais, em especial das políticas de educação, saúde, cultura, espor-
+te e lazer existentes no território, contribuindo para o usufruto dos usuários aos demais direitos;
+- Oportunizar o acesso às informações sobre direitos e sobre participação cidadã, estimulando o
+desenvolvimento do protagonismo dos usuários;
+- Possibilitar acessos a experiências e manifestações artísticas, culturais, esportivas e de lazer, com
+vistas ao desenvolvimento de novas sociabilidades;
+- Favorecer o desenvolvimento de atividades intergeracionais, propiciando trocas de experiências
+e vivências, fortalecendo o respeito, a solidariedade e os vínculos familiares e comunitários.
+OBJETIVOS ESPECÍFICOS PARA CRIANçAS DE ATÉ 6 ANOS:
+- Complementar as ações de proteção e desenvolvimento das crianças e o fortalecimento dos vín-
+culos familiares e sociais;
+- Assegurar espaços de convívio familiar e comunitário e o desenvolvimento de relações de afetivi-
+dade e sociabilidade;
+- Fortalecer a interação entre crianças do mesmo ciclo etário;
+- Valorizar a cultura de famílias e comunidades locais, pelo resgate de seus brinquedos e brincadei-
+ras e a promoção de vivências lúdicas;
+- Desenvolver estratégias para estimular e potencializar recursos de crianças com deficiência e o
+papel das famílias e comunidade no processo de proteção social;
+- Criar espaços de reflexão sobre o papel das famílias na proteção das crianças e no processo de
+desenvolvimento infantil.
+16
+
+--- pagina 17 ---
+OBJETIVOS ESPECÍFICOS PARA CRIANçAS E ADOLESCENTES DE 6 A 15 ANOS:
+- Complementar as ações da família e comunidade na proteção e desenvolvimento de crianças e
+adolescentes e no fortalecimento dos vínculos familiares e sociais;
+- Assegurar espaços de referência para o convívio grupal, comunitário e social e o desenvolvimento
+de relações de afetividade, solidariedade e respeito mútuo;
+- Possibilitar a ampliação do universo informacional, artístico e cultural das crianças e adolescen-
+tes, bem como estimular o desenvolvimento de potencialidades, habilidades, talentos e propiciar
+sua formação cidadã;
+- Estimular a participação na vida pública do território e desenvolver competências para a compre-
+ensão crítica da realidade social e do mundo contemporâneo;
+- Contribuir para a inserção, reinserção e permanência do jovem no sistema educacional.
+OBJETIVOS ESPECÍFICOS PARA ADOLESCENTES E JOVENS DE 15 A17 ANOS:
+- Complementar as ações da família, e comunidade na proteção e desenvolvimento de crianças e
+adolescentes e no fortalecimento dos vínculos familiares e sociais;
+- Assegurar espaços de referência para o convívio grupal, comunitário e social e o desenvolvimento
+de relações de afetividade, solidariedade e respeito mútuo;
+- Possibilitar a ampliação do universo informacional, artístico e cultural dos jovens, bem como estimular
+o desenvolvimento de potencialidades, habilidades, talentos e propiciar sua formação cidadã;
+- Propiciar vivências para o alcance de autonomia e protagonismo social;
+- Estimular a participação na vida pública do território e desenvolver competências para a compre-
+ensão crítica da realidade social e do mundo contemporâneo;
+- Possibilitar o reconhecimento do trabalho e da educação como direito de cidadania e desenvol-
+ver conhecimentos sobre o mundo do trabalho e competências específicas básicas;
+- Contribuir para a inserção, reinserção e permanência do jovem no sistema educacional.
+OBJETIVOS ESPECÍFICOS PARA IDOSOS:
+- Contribuir para um processo de envelhecimento ativo, saudável e autônomo;
+- Assegurar espaço de encontro para os idosos e encontros intergeracionais de modo a promover
+a sua convivência familiar e comunitária;
+- Detectar necessidades e motivações e desenvolver potencialidades e capacidades para novos
+projetos de vida;
+- Propiciar vivências que valorizam as experiências e que estimulem e potencializem a condição de esco-
+lher e decidir, contribuindo para o desenvolvimento da autonomia e protagonismo social dos usuários.
+PROVISÕES:
+AMBIENTE FÍSICO: Sala(s) de atendimento individualizado, sala(s) de atividades coletivas e comunitárias
+e instalações sanitárias, com adequada iluminação, ventilação, conservação, privacidade, salubridade,
+limpeza e acessibilidade em todos seus ambientes de acordo com as normas da ABNT. O ambiente físico
+ainda poderá possuir outras características de acordo com a regulação específica do serviço.
+RECURSOS MATERIAIS: Materiais permanentes e de consumo necessários ao desenvolvimento do
+serviço, tais como: mobiliário, computadores, entre outros.
+MATERIAIS SOCIOEDUCATIVOS: artigos pedagógicos, culturais e esportivos; banco de dados de
+usuários(as) de benefícios e serviços socioassistenciais; banco de dados dos serviços socioassisten-
+ciais; Cadastro Único dos Programas Sociais; Cadastro de Beneficiários do BPC.
+17
+
+--- pagina 18 ---
+RECURSOS HUMANOS: De acordo com a NOB-RH/SUAS.
+TRABALHO SOCIAL ESSENCIAL AO SERVIçO: Acolhida; orientação e encaminhamentos; grupos de
+convívio e fortalecimento de vínculos; informação, comunicação e defesa de direitos; fortalecimento
+da função protetiva da família; mobilização e fortalecimento de redes sociais de apoio; informação;
+banco de dados de usuários e organizações; elaboração de relatórios e/ou prontuários; desenvolvi-
+mento do convívio familiar e comunitário; mobilização para a cidadania.
+AQUISIçÕES DOS USUÁRIOS:
+SEGURANçA DE ACOLHIDA:
+- Ter acolhida suas demandas interesses, necessidades e possibilidades;
+- Receber orientações e encaminhamentos com o objetivo de aumentar o acesso a benefícios so-
+cioassistenciais e programas de transferência de renda, bem como aos demais direitos sociais,
+civis e políticos;
+- Ter acesso a ambiência acolhedora.
+SEGURANçA DE CONVÍVIO FAMILIAR E COMUNITÁRIO:
+- Vivenciar experiências que contribuam para o fortalecimento de vínculos familiares e comunitários;
+- Vivenciar experiências que possibilitem meios e oportunidades de conhecer o território e (re)
+significá-lo, de acordo com seus recursos e potencialidades;
+- Ter acesso a serviços, conforme demandas e necessidades.
+SEGURANçA DE DESENVOLVIMENTO DA AUTONOMIA:
+- Vivenciar experiências pautadas pelo respeito a si próprio e aos outros, fundamentadas em prin-
+cípios éticos de justiça e cidadania;
+- Vivenciar experiências que possibilitem o desenvolvimento de potencialidades e ampliação do
+universo informacional e cultural;
+- Vivenciar experiências potencializadoras da participação social, tais como espaços de livre ex-
+pressão de opiniões, de reivindicação e avaliação das ações ofertadas, bem como de espaços de
+estímulo para a participação em fóruns, conselhos, movimentos sociais, organizações comunitá-
+rias e outros espaços de organização social;
+- Vivenciar experiências que possibilitem o desenvolvimento de potencialidades e ampliação do
+universo informacional e cultural;
+- Vivenciar experiências que contribuam para a construção de projetos individuais e coletivos, de-
+senvolvimento da autoestima, autonomia e sustentabilidade;
+- Vivenciar experiências de fortalecimento e extensão da cidadania;
+- Vivenciar experiências para relacionar-se e conviver em grupo;
+- Vivenciar experiências para relacionar-se e conviver em grupo, administrar conflitos por meio do
+diálogo, compartilhando outros modos de pensar, agir, atuar;
+- Vivenciar experiências que possibilitem lidar de forma construtiva com potencialidades e limites;
+- Vivenciar experiências de desenvolvimento de projetos sociais e culturais no território e a opor-
+tunidades de fomento a produções artísticas;
+- Ter reduzido o descumprimento das condicionalidades do PBF;
+- Contribuir para o acesso a documentação civil;
+18
+
+--- pagina 19 ---
+- Ter acesso a ampliação da capacidade protetiva da família e a superação de suas dificuldades
+de convívio;
+- Ter acesso a informações sobre direitos sociais, civis e políticos e condições sobre o seu usufruto;
+- Ter acesso a atividades de lazer, esporte e manifestações artísticas e culturais do território e da cidade;
+- Ter acesso benefícios socioassistenciais e programas de transferência de renda;
+- Ter oportunidades de escolha e tomada de decisão;
+- Poder avaliar as atenções recebidas, expressar opiniões e reivindicações;
+- Apresentar níveis de satisfação positivos em relação ao serviço;
+- Ter acesso a experimentações no processo de formação e intercâmbios com grupos de outras
+localidades e faixa etária semelhante.
+ESPECÍFICOS:
+PARA ADOLESCENTES E JOVENS DE 15 A 17 ANOS: adquirir conhecimento e desenvolver capaci-
+dade para a vida profissional e o acesso ao trabalho.
+IDOSOS: Vivenciar experiências para o autoconhecimento e autocuidado.
+CONDIçÕES E FORMAS DE ACESSO:
+CONDIçÕES: Usuários territorialmente referenciados aos CRAS.
+FORMAS DE ACESSO:
+- Por procura espontânea;
+- Por busca ativa;
+- Por encaminhamento da rede socioassistencial;
+- Por encaminhamento das demais políticas públicas.
+UNIDADE:
+- Centro de Referência de Assistência Social (CRAS);
+- Centros da criança, adolescente, juventude e idosos, referenciados ao CRAS.
+PERÍODO DE FUNCIONAMENTO:
+PARA CRIANçAS DE ATÉ 6 ANOS: Atividades em dias úteis, feriados ou finais de semana, com frequ-
+ência sequenciada ou intercalada, de acordo com planejamento prévio, em turnos de até 1,5 diárias.
+PARA CRIANçAS E ADOLESCENTES DE 06 A 15 ANOS: Atividades em dias úteis, feriados ou finais
+de semana, em turnos diários de até quatro horas. No caso de crianças e adolescentes retiradas do
+trabalho infantil o serviço socioeducativo é, obrigatoriamente, de três horas diárias e constitui con-
+dicionalidade para a transferência de renda às famílias.
+PARA ADOLESCENTES E JOVENS DE 15 A 17 ANOS: Atividades em dias úteis, feriados ou finais de
+semana, em turnos de até 3 (três) horas, conforme regulamentação de serviços específicos, como
+por exemplo, o Projovem Adolescente, que prevê uma carga horária semanal de 12,5 horas.
+PARA IDOSOS: Atividades em dias úteis, feriados ou finais de semana, em horários programados,
+conforme demanda.
+19
+
+--- pagina 20 ---
+ABRANGÊNCIA: Municipal (corresponderá ao território de abrangência do CRAS, de acordo com a
+incidência da demanda).
+ARTICULAçãO EM REDE: Serviços socioassistenciais da proteção social básica e proteção social
+especial; Serviços públicos locais de educação, saúde (em especial, programas e serviços de reabili-
+tação), cultura, esporte e, meio-ambiente e outros conforme necessidades; Conselhos de políticas
+públicas e de defesa de direitos de segmentos específicos; Redes sociais; Instituições de ensino e
+pesquisa; Conselho Tutelar; Programas e projetos de desenvolvimento de talentos e capacidades.
+IMPACTO SOCIAL ESPERADO:
+CONTRIBUIR PARA:
+- Redução da ocorrência de situações de vulnerabilidade social;
+- Prevenção da ocorrência de riscos sociais, seu agravamento ou reincidência;
+- Aumento de acessos a serviços socioassistenciais e setoriais;
+- Ampliação do acesso aos direitos socioassistenciais;
+- Melhoria da qualidade de vida dos usuários e suas famílias.
+PARA ADOLESCENTES E JOVENS DE 15 A 17 ANOS:
+- Aumento no número de jovens que conheçam as instâncias de denúncia e recurso em casos de
+violação de seus direitos;
+- Aumento no número de jovens autônomos e participantes na vida familiar e comunitária, com
+plena informação sobre seus direitos e deveres;
+- Junto a outras políticas públicas, reduzir índices de: violência entre os jovens; uso/abuso de dro-
+gas; doenças sexualmente transmissíveis e gravidez precoce.
+PARA IDOSOS:
+- Melhoria da condição de sociabilidade de idosos;
+- Redução e Prevenção de situações de isolamento social e de institucionalização.
+20
+
+--- pagina 21 ---
+NOME DO SERVIçO: SERVIçO DE PROTEçãO SOCIAL BÁSICA NO DOMICÍLIO PARA PESSOAS COM
+DEFICIÊNCIA E IDOSAS.
+DESCRIçãO: O serviço tem por finalidade a prevenção de agravos que possam provocar o rompi-
+mento de vínculos familiares e sociais dos usuários. Visa a garantia de direitos, o desenvolvimento
+de mecanismos para a inclusão social, a equiparação de oportunidades e a participação e o desen-
+volvimento da autonomia das pessoas com deficiência e pessoas idosas, a partir de suas necessida-
+des e potencialidades individuais e sociais, prevenindo situações de risco, a exclusão e o isolamento.
+O serviço deve contribuir com a promoção do acesso de pessoas com deficiência e pessoas idosas
+aos serviços de convivência e fortalecimento de vínculos e a toda a rede socioassistencial, aos
+serviços de outras políticas públicas, entre elas educação, trabalho, saúde, transporte especial e
+programas de desenvolvimento de acessibilidade, serviços setoriais e de defesa de direitos e pro-
+gramas especializados de habilitação e reabilitação. Desenvolve ações extensivas aos familiares,
+de apoio, informação, orientação e encaminhamento, com foco na qualidade de vida, exercício da
+cidadania e inclusão na vida social, sempre ressaltando o caráter preventivo do serviço.
+O planejamento das ações deverá ser realizado pelos municípios e pelo Distrito Federal, de acordo
+com a territorialização e a identificação da demanda pelo serviço. Onde houver CRAS, o serviço será
+a ele referenciado. Naqueles locais onde não houver CRAS, o serviço será referenciado à equipe téc-
+nica da Proteção Social Básica, coordenada pelo órgão gestor.
+O trabalho realizado será sistematizado e planejado por meio da elaboração de um Plano de Desen-
+volvimento do Usuário - PDU: instrumento de observação, planejamento e acompanhamento das
+ações realizadas. No PDU serão identificados os objetivos a serem alcançados, as vulnerabilidades e
+as potencialidades do usuário.
+USUÁRIOS: Pessoas com deficiência e/ou pessoas idosas que vivenciam situação de vulnerabilidade
+social pela fragilização de vínculos familiares e sociais e/ou pela ausência de acesso a possibilidades
+de inserção, habilitação social e comunitária, em especial:
+- Beneficiários do Benefício de Prestação Continuada;
+- Membros de famílias beneficiárias de programas de transferência de renda.
+OBJETIVOS:
+- Prevenir agravos que possam desencadear rompimento de vínculos familiares e sociais;
+- Prevenir confinamento de idosos e/ou pessoas com deficiência;
+- Identificar situações de dependência;
+- Colaborar com redes inclusivas no território;
+- Prevenir o abrigamento institucional de pessoas com deficiência e/ou pessoas idosas com vistas
+a promover a sua inclusão social;
+- Sensibilizar grupos comunitários sobre direitos e necessidades de inclusão de pessoas com defi-
+ciência e pessoas idosas buscando a desconstrução de mitos e preconceitos;
+- Desenvolver estratégias para estimular e potencializar recursos das pessoas com deficiência e
+pessoas idosas, de suas famílias e da comunidade no processo de habilitação, reabilitação e in-
+clusão social;
+- Oferecer possibilidades de desenvolvimento de habilidades e potencialidades, a defesa de direi-
+tos e o estímulo a participação cidadã;
+- Incluir usuários e familiares no sistema de proteção social e serviços públicos, conforme necessida-
+21
+
+--- pagina 22 ---
+des, inclusive pela indicação de acesso a benefícios e programas de transferência de renda;
+- Contribuir para resgatar e preservar a integridade e a melhoria de qualidade de vida dos usuários;
+- Contribuir para a construção de contextos inclusivos.
+PROVISÕES:
+AMBIENTE FÍSICO: Não se aplica.
+RECURSOS MATERIAIS: Materiais permanentes e de consumo necessários ao desenvolvimento do
+serviço; Materiais pedagógicos, culturais e esportivos. Banco de dados de usuários de benefícios e
+serviços socioassistenciais; banco de dados dos serviços socioassistenciais; Cadastro Único dos Pro-
+gramas Sociais; Cadastro de Beneficiários do BPC.
+TRABALHO SOCIAL ESSENCIAL AO SERVIçO: Proteção social proativa; Acolhida; Visita fami-
+liar; Escuta; Encaminhamento para cadastramento socioeconômico; Orientação e encaminha-
+mentos; Orientação sociofamiliar; Desenvolvimento do convívio familiar, grupal e social; In-
+serção na rede de serviços socioassistenciais e demais políticas; Informação, comunicação e
+defesa de direitos; Fortalecimento da função protetiva da família; Elaboração de instrumento
+técnico de acompanhamento e desenvolvimento do usuário; Mobilização para a cidadania;
+Documentação pessoal.
+AQUISIçÕES DOS USUÁRIOS:
+SEGURANçA DE ACOLHIDA:
+- Ter sua identidade, integridade e história preservadas;
+- Ter acolhidas suas demandas, interesses, necessidades e possibilidades;
+- Receber orientações e encaminhamentos, com o objetivo de aumentar o acesso a benefícios so-
+cioassistenciais e programas de transferência de renda;
+- Garantir formas de acesso aos direitos sociais.
+SEGURANçA DE CONVÍVIO FAMILIAR E COMUNITÁRIO:
+- Vivenciar experiências que contribuam para o fortalecimento de vínculos familiares e comunitários;
+- Vivenciar experiências de ampliação da capacidade protetiva e de superação de fragilidades fami-
+liares e sociais;
+- Ter acesso a serviços, conforme necessidades e a experiências e ações de fortalecimento de vín-
+culos familiares e comunitários.
+SEGURANçA DE DESENVOLVIMENTO DE AUTONOMIA INDIVIDUAL, FAMILIAR E SOCIAL:
+- Vivenciar experiências que utilizem de recursos disponíveis pela comunidade, pela família e pelos
+demais serviços para potencializar a autonomia e possibilitar o desenvolvimento de estratégias
+que diminuam a dependência e promovam a inserção familiar e social;
+- Ter vivências de ações pautadas pelo respeito a si próprio e aos outros, fundamentadas em prin-
+cípios éticos de justiça e cidadania;
+- Dispor de atendimento interprofissional para:
+- Ser ouvido para expressar necessidades, interesses e possibilidades;
+- Poder avaliar as atenções recebidas, expressar opiniões, reivindicações e fazer suas pró-
+prias escolhas;
+22
+
+--- pagina 23 ---
+- Apresentar níveis de satisfação com relação ao serviço;
+- Construir projetos pessoais e desenvolver autoestima;
+- Ter acesso a serviços e ter indicação de acesso a benefícios sociais e programas de transferência
+de renda;
+- Acessar documentação civil;
+- Alcançar autonomia, independência e condições de bem estar;
+- Ser informado sobre acessos e direitos;
+- Ter oportunidades de participar de ações de defesa de direitos e da construção de políticas inclusivas.
+CONDIçÕES E FORMAS DE ACESSO:
+CONDIçÕES: Pessoas com deficiência e/ou pessoas idosas.
+FORMA DE ACESSO: Encaminhamentos realizados pelos CRAS ou pela equipe técnica de referência
+da Proteção Social Básica do município ou DF.
+UNIDADE: Domicílio do Usuário.
+PERÍODO DE FUNCIONAMENTO: Em dias úteis e quando a demanda for identificada no PDU.
+ABRANGÊNCIA: Municipal.
+ARTICULAçãO EM REDE:
+- Serviços socioassistenciais de proteção social básica e especial;
+- Serviços públicos de saúde, cultura, esporte, meio-ambiente, trabalho, habitação e outros, con-
+forme necessidade;
+- Conselhos de políticas públicas e de defesa de direitos de segmentos específicos;
+- Instituições de ensino e pesquisa;
+- Organizações e serviços especializados de saúde, habilitação e reabilitação;
+- Programas de educação especial;
+- Centros e grupos de convivência.
+IMPACTO SOCIAL ESPERADO:
+CONTRIBUIR PARA:
+- Prevenção da ocorrência de situações de risco social tais como o isolamento, situações de violên-
+cia e violações de direitos, e demais riscos identificados pelo trabalho de caráter preventivo junto
+aos usuários;
+- Redução e prevenção de situações de isolamento social e de abrigamento institucional;
+- Redução da ocorrência de riscos sociais, seu agravamento ou reincidência;
+- Famílias protegidas e orientadas;
+- Pessoas com deficiência e pessoas idosas inseridas em serviços e oportunidades;
+- Aumento de acessos a serviços socioassistenciais e setoriais;
+- Ampliação do acesso aos direitos socioassistenciais.
+23
+
+--- pagina 24 ---
+SERVIçOS DA PROTEçãO SOCIAL
+ESPECIAL - MÉDIA COMPLEXIDADE
+
+--- pagina 25 ---
+NOME DO SERVIçO: SERVIçO DE PROTEçãO E ATENDIMENTO ESPECIALIZADO A FAMÍLIAS E
+INDIVÍDUOS (PAEFI).
+DESCRIçãO: Serviço de apoio, orientação e acompanhamento a famílias com um ou mais
+de seus membros em situação de ameaça ou violação de direitos. Compreende atenções e
+orientações direcionadas para a promoção de direitos, a preservação e o fortalecimento de
+vínculos familiares, comunitários e sociais e para o fortalecimento da função protetiva das
+famílias diante do conjunto de condições que as vulnerabilizam e/ou as submetem a situações
+de risco pessoal e social.
+O atendimento fundamenta-se no respeito à heterogeneidade, potencialidades, valores,
+crenças e identidades das famílias. O serviço articula-se com as atividades e atenções pres-
+tadas às famílias nos demais serviços socioassistenciais, nas diversas políticas públicas e com
+os demais órgãos do Sistema de Garantia de Direitos. Deve garantir atendimento imediato e
+providências necessárias para a inclusão da família e seus membros em serviços socioassis-
+tenciais e/ou em programas de transferência de renda, de forma a qualificar a intervenção e
+restaurar o direito.
+USUÁRIOS: Famílias e indivíduos que vivenciam violações de direitos por ocorrência de:
+- Violência física, psicológica e negligência;
+- Violência sexual: abuso e/ou exploração sexual;
+- Afastamento do convívio familiar devido à aplicação de medida socioeducativa ou medida de
+proteção;
+- Tráfico de pessoas;
+- Situação de rua e mendicância;
+- Abandono;
+- Vivência de trabalho infantil;
+- Discriminação em decorrência da orientação sexual e/ou raça/etnia;
+- Outras formas de violação de direitos decorrentes de discriminações/submissões a situações que pro-
+vocam danos e agravos a sua condição de vida e os impedem de usufruir autonomia e bem estar;
+- Descumprimento de condicionalidades do PBF e do PETI em decorrência de violação de direitos.
+OBJETIVOS:
+- Contribuir para o fortalecimento da família no desempenho de sua função protetiva;
+- Processar a inclusão das famílias no sistema de proteção social e nos serviços públicos, conforme
+necessidades;
+- Contribuir para restaurar e preservar a integridade e as condições de autonomia dos usuários;
+- Contribuir para romper com padrões violadores de direitos no interior da família;
+- Contribuir para a reparação de danos e da incidência de violação de direitos;
+- Prevenir a reincidência de violações de direitos.
+PROVISÕES:
+AMBIENTE FÍSICO: Espaços destinados à recepção, atendimento individualizado com privacidade,
+atividades coletivas e comunitárias, atividades administrativas e espaço de convivência. Acessibili-
+dade de acordo com as normas da ABNT.
+25
+
+--- pagina 26 ---
+RECURSOS MATERIAIS: Materiais permanentes e de consumo para o desenvolvimento do serviço,
+tais como: mobiliário, computadores, linha telefônica, dentre outros.
+MATERIAIS SOCIOEDUCATIVOS: artigos pedagógicos, culturais e esportivos. Banco de Dados de
+usuários de benefícios e serviços socioassistenciais; Banco de Dados dos serviços socioassistenciais;
+Cadastro Único dos Programas Sociais; Cadastro de Beneficiários do BPC.
+RECURSOS HUMANOS: De acordo com a NOB/RH-SUAS.
+TRABALHO SOCIAL ESSENCIAL AO SERVIçO: Acolhida; escuta; estudo social; diagnóstico socioeco-
+nômico; monitoramento e avaliação do serviço; orientação e encaminhamentos para a rede de ser-
+viços locais; construção de plano individual e/ou familiar de atendimento; orientação sociofamiliar;
+atendimento psicossocial; orientação jurídico-social; referência e contrarreferência; informação,
+comunicação e defesa de direitos; apoio à família na sua função protetiva; acesso à documentação
+pessoal; mobilização, identificação da família extensa ou ampliada; articulação da rede de serviços
+socioassistenciais; articulação com os serviços de outras políticas públicas setoriais; articulação inte-
+rinstitucional com os demais órgãos do Sistema de Garantia de Direitos; mobilização para o exercício
+da cidadania; trabalho interdisciplinar; elaboração de relatórios e/ou prontuários; estímulo ao con-
+vívio familiar, grupal e social; mobilização e fortalecimento do convívio e de redes sociais de apoio.
+AQUISIçÕES DOS USUÁRIOS:
+SEGURANçA DE ACOLHIDA:
+- Ser acolhido em condições de dignidade em ambiente favorecedor da expressão e do diálogo;
+- Ser estimulado a expressar necessidades e interesses;
+- Ter reparados ou minimizados os danos por vivências de violações e riscos sociais;
+- Ter sua identidade, integridade e história de vida preservadas;
+- Ser orientado e ter garantida efetividade nos encaminhamentos.
+SEGURANçA DE CONVÍVIO OU VIVÊNCIA FAMILIAR, COMUNITÁRIA E SOCIAL:
+- Ter assegurado o convívio familiar, comunitário e social;
+- Ter acesso a serviços de outras políticas públicas setoriais, conforme necessidades.
+SEGURANçA DE DESENVOLVIMENTO DE AUTONOMIA INDIVIDUAL, FAMILIAR E SOCIAL:
+- Ter vivência de ações pautadas pelo respeito a si próprio e aos outros, fundamentadas em princí-
+pios éticos de justiça e cidadania;
+- Ter oportunidades de superar padrões violadores de relacionamento;
+- Poder construir projetos pessoais e sociais e desenvolver a autoestima;
+- Ter acesso à documentação civil;
+- Ser ouvido para expressar necessidades e interesses;
+- Poder avaliar as atenções recebidas, expressar opiniões e reivindicações;
+- Ter acesso a serviços do sistema de proteção social e indicação de acesso a benefícios sociais e
+programas de transferência de renda;
+- Alcançar autonomia, independência e condições de bem estar;
+- Ser informado sobre seus direitos e como acessá-los;
+- Ter ampliada a capacidade protetiva da família e a superação das situações de violação de direitos;
+- Vivenciar experiências que oportunize relacionar-se e conviver em grupo, administrar conflitos
+por meio do diálogo, compartilhando modos não violentos de pensar, agir e atuar;
+- Ter acesso a experiências que possibilitem lidar de forma construtiva com potencialidades e limites.
+26
+
+--- pagina 27 ---
+CONDIçÕES E FORMAS DE ACESSO:
+CONDIçÕES: Famílias e indivíduos que vivenciam violação de direitos.
+FORMAS DE ACESSO:
+- Por identificação e encaminhamento dos serviços de proteção e vigilância social;
+- Por encaminhamento de outros serviços socioassistenciais, das demais políticas públicas seto-
+riais, dos demais órgãos do Sistema de Garantia de Direitos e do Sistema de Segurança Pública;
+- Demanda espontânea.
+UNIDADE: Centro de Referência Especializado de Assistência Social (CREAS).
+PERÍODO DE FUNCIONAMENTO: Período mínimo de 5 (cinco) dias por semana, 8 (oito) horas diá-
+rias, com possibilidade de operar em feriados e finais de semana.
+ABRANGÊNCIA: Municipal e/ou Regional.
+ARTICULAçãO EM REDE:
+- Serviços socioassistenciais de Proteção Social Básica e Proteção Social Especial;
+- Serviços das políticas públicas setoriais;
+- Sociedade civil organizada;
+- Demais órgãos do Sistema de Garantia de Direitos;
+- Sistema de Segurança Pública;
+- Instituições de Ensino e Pesquisa;
+- Serviços, programas e projetos de instituições não governamentais e comunitárias.
+IMPACTO SOCIAL ESPERADO:
+CONTRIBUIR PARA:
+- Redução das violações dos direitos socioassistenciais, seus agravamentos ou reincidência;
+- Orientação e proteção social a Famílias e indivíduos;
+- Acesso a serviços socioassistenciais e das políticas públicas setoriais;
+- Identificação de situações de violação de direitos socioassistenciais;
+- Melhoria da qualidade de vida das famílias.
+NOME DO SERVIçO: SERVIçO ESPECIALIZADO EM ABORDAGEM SOCIAL.
+DESCRIçãO: Serviço ofertado, de forma continuada e programada, com a finalidade de assegurar traba-
+lho social de abordagem e busca ativa que identifique, nos territórios, a incidência de trabalho infantil,
+exploração sexual de crianças e adolescentes, situação de rua, dentre outras. Deverão ser consideradas
+praças, entroncamento de estradas, fronteiras, espaços públicos onde se realizam atividades laborais, lo-
+cais de intensa circulação de pessoas e existência de comércio, terminais de ônibus, trens, metrô e outros.
+O Serviço deve buscar a resolução de necessidades imediatas e promover a inserção na rede de
+serviços socioassistenciais e das demais políticas públicas na perspectiva da garantia dos direitos.
+USUÁRIOS: Crianças, adolescentes, jovens, adultos, idosos e famílias que utilizam espaços públicos
+como forma de moradia e/ou sobrevivência.
+27
+
+--- pagina 28 ---
+OBJETIVOS:
+- Construir o processo de saída das ruas e possibilitar condições de acesso à rede de serviços e a
+benefícios assistenciais;
+- Identificar famílias e indivíduos com direitos violados, a natureza das violações, as condições em
+que vivem, estratégias de sobrevivência, procedências, aspirações, desejos e relações estabeleci-
+das com as instituições;
+- Promover ações de sensibilização para divulgação do trabalho realizado, direitos e necessidades
+de inclusão social e estabelecimento de parcerias;
+- Promover ações para a reinserção familiar e comunitária.
+PROVISÕES:
+AMBIENTE FÍSICO: Espaço institucional destinado a atividades administrativas, de planejamento e
+reuniões de equipe.
+RECURSOS MATERIAIS: Materiais permanentes e de consumo necessários para a realização do ser-
+viço, tais como: telefone móvel e transporte para uso pela equipe e pelos usuários. Materiais peda-
+gógicos para desenvolvimento de atividades lúdicas e educativas.
+RECURSOS HUMANOS: De acordo com a NOB-RH/SUAS.
+TRABALHO SOCIAL ESSENCIAL AO SERVIçO: Proteção social proativa; conhecimento do território; infor-
+mação, comunicação e defesa de direitos; escuta; orientação e encaminhamentos sobre/para a rede de
+serviços locais com resolutividade; articulação da rede de serviços socioassistenciais; articulação com os
+serviços de políticas públicas setoriais; articulação interinstitucional com os demais órgãos do Sistema de
+Garantia de Direitos; geoprocessamento e georeferenciamento de informações; elaboração de relatórios.
+AQUISIçÕES DOS USUÁRIOS:
+SEGURANçA DE ACOLHIDA:
+- Ser acolhido nos serviços em condições de dignidade;
+- Ter reparados ou minimizados os danos por vivências de violência e abusos;
+- Ter sua identidade, integridade e história de vida preservadas.
+SEGURANçA DE CONVÍVIO OU VIVÊNCIA FAMILIAR, COMUNITÁRIA E SOCIAL:
+- Ter assegurado o convívio familiar, comunitário e/ou social;
+- Ter acesso a serviços socioassistenciais e das demais políticas públicas setoriais, conforme necessidades.
+CONDIçÕES E FORMAS DE ACESSO:
+CONDIçÕES: Famílias e/ou indivíduos que utilizam os espaços públicos como forma de moradia e/
+ou sobrevivência.
+FORMAS DE ACESSO: Por identificação da equipe do serviço.
+UNIDADE: Centro de Referência Especializado de Assistência Social (CREAS) ou Unidade Específica
+Referenciada ao CREAS.
+28
+
+--- pagina 29 ---
+PERÍODO DE FUNCIONAMENTO: Ininterrupto e/ou de acordo com a especificidade dos territórios.
+ABRANGÊNCIA: Municipal e/ou Regional.
+ARTICULAçãO EM REDE:
+- Serviços socioassistenciais de Proteção Social Básica e Proteção Social Especial;
+- Serviços de políticas públicas setoriais;
+- Sociedade civil organizada;
+- Demais órgãos do Sistema de Garantia de Direitos;
+- Instituições de Ensino e Pesquisa;
+- Serviços, programas e projetos de instituições não governamentais e comunitárias.
+IMPACTO SOCIAL ESPERADO:
+CONTRIBUIR PARA:
+- Redução das violações dos direitos socioassistenciais, seus agravamentos ou reincidência;
+- Proteção social a famílias e indivíduos;
+- Identificação de situações de violação de direitos;
+- Redução do número de pessoas em situação de rua.
+29
+
+--- pagina 30 ---
+NOME DO SERVIçO: SERVIçO DE PROTEçãO SOCIAL A ADOLESCENTES EM CUMPRIMENTO DE MEDIDA
+SOCIOEDUCATIVA DE LIBERDADE ASSISTIDA (LA) E DE PRESTAçãO DE SERVIçOS À COMUNIDADE (PSC).
+DESCRIçãO: O serviço tem por finalidade prover atenção socioassistencial e acompanhamento a
+adolescentes e jovens em cumprimento de medidas socioeducativas em meio aberto, determinadas
+judicialmente. Deve contribuir para o acesso a direitos e para a resignificação de valores na vida
+pessoal e social dos adolescentes e jovens. Para a oferta do serviço faz-se necessário a observância
+da responsabilização face ao ato infracional praticado, cujos direitos e obrigações devem ser assegu-
+rados de acordo com as legislações e normativas específicas para o cumprimento da medida.
+Na sua operacionalização é necessário a elaboração do Plano Individual de Atendimento (PlA) com
+a participação do adolescente e da família, devendo conter os objetivos e metas a serem alcançados
+durante o cumprimento da medida, perspectivas de vida futura, dentre outros aspectos a serem
+acrescidos, de acordo com as necessidades e interesses do adolescente.
+O acompanhamento social ao adolescente deve ser realizado de forma sistemática, com frequência
+mínima semanal que garanta o acompanhamento contínuo e possibilite o desenvolvimento do PIA.
+No acompanhamento da medida de Prestação de Serviços à Comunidade o serviço deverá identifi-
+car no município os locais para a prestação de serviços, a exemplo de: entidades sociais, programas
+comunitários, hospitais, escolas e outros serviços governamentais. A prestação dos serviços deverá
+se configurar em tarefas gratuitas e de interesse geral, com jornada máxima de oito horas semanais,
+sem prejuízo da escola ou do trabalho, no caso de adolescentes maiores de 16 anos ou na condição
+de aprendiz a partir dos 14 anos. A inserção do adolescente em qualquer dessas alternativas deve
+ser compatível com suas aptidões e favorecedora de seu desenvolvimento pessoal e social.
+USUÁRIOS: Adolescentes de 12 a 18 anos incompletos, ou jovens de 18 a 21 anos, em cumprimento de me-
+dida socioeducativa de Liberdade Assistida e de Prestação de Serviços à Comunidade, aplicada pela Justiça
+da Infância e da Juventude ou, na ausência desta, pela Vara Civil correspondente e suas famílias.
+OBJETIVOS:
+- Realizar acompanhamento social a adolescentes durante o cumprimento de medida socioeduca-
+tiva de Liberdade Assistida e de Prestação de Serviços à Comunidade e sua inserção em outros
+serviços e programas socioassistenciais e de políticas públicas setoriais;
+- Criar condições para a construção/reconstrução de projetos de vida que visem à ruptura com a
+prática de ato infracional;
+- Estabelecer contratos com o adolescente a partir das possibilidades e limites do trabalho a ser
+desenvolvido e normas que regulem o período de cumprimento da medida socioeducativa;
+- Contribuir para o estabelecimento da autoconfiança e a capacidade de reflexão sobre as possibi-
+lidades de construção de autonomias;
+- Possibilitar acessos e oportunidades para a ampliação do universo informacional e cultural e o
+desenvolvimento de habilidades e competências;
+- Fortalecer a convivência familiar e comunitária.
+PROVISÕES:
+AMBIENTE FÍSICO: Espaços destinados à recepção, sala de atendimento individualizado com privacida-
+de, para o desenvolvimento de atividades coletivas e comunitárias, atividades de convivência e ativida-
+des administrativas, com acessibilidade em todos seus ambientes, de acordo com as normas da ABNT.
+30
+
+--- pagina 31 ---
+RECURSOS MATERIAIS: Materiais permanentes e de consumo para o desenvolvimento do serviço,
+tais como: mobiliário, computadores, linha telefônica, dentre outros.
+MATERIAIS SOCIOEDUCATIVOS: pedagógicos, culturais e esportivos. Banco de Dados de usuários
+de benefícios e serviços socioassistenciais; Banco de Dados dos serviços socioassistenciais; Cadastro
+Único dos Programas Sociais; Cadastro de Beneficiários do BPC.
+RECURSOS HUMANOS: De acordo com a NOB-RH/SUAS.
+TRABALHO SOCIAL ESSENCIAL AO SERVIçO: Acolhida; escuta; estudo social; diagnóstico socioeconômi-
+co; referência e contrarreferência; trabalho interdisciplinar; articulação interinstitucional com os demais
+órgãos do sistema de garantia de direitos; produção de orientações técnicas e materiais informativos;
+monitoramento e avaliação do serviço; proteção social proativa; orientação e encaminhamentos para
+a rede de serviços locais; construção de plano individual e familiar de atendimento, considerando as
+especificidades da adolescência; orientação sociofamiliar; acesso a documentação pessoal; informação,
+comunicação e defesa de direitos; articulação da rede de serviços socioassistenciais; articulação com os
+serviços de políticas públicas setoriais; estímulo ao convívio familiar, grupal e social; mobilização para o
+exercício da cidadania; desenvolvimento de projetos sociais; elaboração de relatórios e/ou prontuários.
+AQUISIçÕES DOS USUÁRIOS:
+SEGURANçA DE ACOLHIDA:
+- Ser acolhido em condições de dignidade em ambiente favorecedor da expressão e do diálogo;
+- Ser estimulado a expressar necessidades e interesses.
+SEGURANçA DE CONVÍVIO OU VIVÊNCIA FAMILIAR, COMUNITÁRIA E SOCIAL:
+- Ter acesso a serviços socioassistenciais e das políticas públicas setoriais, conforme necessidades;
+- Ter assegurado o convívio familiar, comunitário e social.
+SEGURANçA DE DESENVOLVIMENTO DE AUTONOMIA INDIVIDUAL, FAMILIAR E SOCIAL:
+- Ter assegurado vivências pautadas pelo respeito a si próprio e aos outros, fundamentadas em
+princípios éticos de justiça e cidadania.
+- Ter acesso a:
+- Oportunidades que estimulem e ou fortaleçam a construção/reconstrução de seus projetos de vida;
+- Oportunidades de convívio e de desenvolvimento de potencialidades;
+- Informações sobre direitos sociais, civis e políticos e condições sobre o seu usufruto;
+- Oportunidades de escolha e tomada de decisão;
+- Experiências para relacionar-se e conviver em grupo, administrar conflitos por meio do diálo-
+go, compartilhando modos de pensar, agir e atuar coletivamente;
+- Experiências que possibilitem lidar de forma construtiva com potencialidades e limites;
+- Possibilidade de avaliar as atenções recebidas, expressar opiniões e participar na construção
+de regras e definição de responsabilidades.
+CONDIçÕES E FORMAS DE ACESSO:
+CONDIçÕES: Adolescentes e jovens que estão em cumprimento de medidas socioeducativas de Li-
+berdade Assistida e de Prestação de Serviços à Comunidade.
+31
+
+--- pagina 32 ---
+FORMAS DE ACESSO: Encaminhamento da Vara da Infância e da Juventude ou, na ausência desta,
+pela Vara Civil correspondente.
+UNIDADE: Centro de Referência Especializado de Assistência Social (CREAS).
+PERÍODO DE FUNCIONAMENTO: Dias úteis, com possibilidade de operar em feriados e finais de
+semana. Período mínimo de 5 (cinco) dias por semana, 8 (oito) horas diárias.
+ABRANGÊNCIA: Municipal e/ou Regional.
+ARTICULAçãO EM REDE:
+- Serviços socioassistenciais de Proteção Social Básica e Proteção Social Especial;
+- Serviços das políticas públicas setoriais;
+- Sociedade civil organizada;
+- Programas e projetos de preparação para o trabalho e de inclusão produtiva;
+- Demais órgãos do Sistema de Garantia de Direitos;
+- Serviços, programas e projetos de instituições não governamentais e comunitárias.
+IMPACTO SOCIAL ESPERADO:
+CONTRIBUIR PARA:
+- Vínculos familiares e comunitários fortalecidos;
+- Redução da reincidência da prática do ato infracional;
+- Redução do ciclo da violência e da prática do ato infracional.
+32
+
+--- pagina 33 ---
+NOME DO SERVIçO: SERVIçO DE PROTEçãO SOCIAL ESPECIAL PARA PESSOAS COM DEFICIÊNCIA,
+IDOSAS E SUAS FAMÍLIAS.
+DESCRIçãO: Serviço para a oferta de atendimento especializado a famílias com pessoas com defici-
+ência e idosos com algum grau de dependência, que tiveram suas limitações agravadas por violações
+de direitos, tais como: exploração da imagem, isolamento, confinamento, atitudes discriminatórias
+e preconceituosas no seio da família, falta de cuidados adequados por parte do cuidador, alto grau
+de estresse do cuidador, desvalorização da potencialidade/capacidade da pessoa, dentre outras que
+agravam a dependência e comprometem o desenvolvimento da autonomia.
+O serviço tem a finalidade de promover a autonomia, a inclusão social e a melhoria da qualidade
+de vida das pessoas participantes. Deve contar com equipe específica e habilitada para a prestação
+de serviços especializados a pessoas em situação de dependência que requeiram cuidados perma-
+nentes ou temporários. A ação da equipe será sempre pautada no reconhecimento do potencial
+da família e do cuidador, na aceitação e valorização da diversidade e na redução da sobrecarga do
+cuidador, decorrente da prestação de cuidados diários prolongados.
+As ações devem possibilitar a ampliação da rede de pessoas com quem a família do dependente con-
+vive e compartilha cultura, troca vivências e experiências. A partir da identificação das necessidades,
+deverá ser viabilizado o acesso a benefícios, programas de transferência de renda, serviços de polí-
+ticas públicas setoriais, atividades culturais e de lazer, sempre priorizando o incentivo à autonomia
+da dupla “cuidador e dependente”. Soma-se a isso o fato de que os profissionais da equipe poderão
+identificar demandas do dependente e/ou do cuidador e situações de violência e/ou violação de
+direitos e acionar os mecanismos necessários para resposta a tais condições.
+A intervenção será sempre voltada a diminuir a exclusão social tanto do dependente quanto do
+cuidador, a sobrecarga decorrente da situação de dependência/prestação de cuidados prolongados,
+bem como a interrupção e superação das violações de direitos que fragilizam a autonomia e inten-
+sificam o grau de dependência da pessoa com deficiência ou pessoa idosa.
+USUÁRIOS: Pessoas com deficiência e idosas com dependência, seus cuidadores e familiares.
+OBJETIVOS:
+- Promover a autonomia e a melhoria da qualidade de vida de pessoas com deficiência e idosas
+com dependência, seus cuidadores e suas famílias;
+- Desenvolver ações especializadas para a superação das situações violadoras de direitos que con-
+tribuem para a intensificação da dependência;
+- Prevenir o abrigamento e a segregação dos usuários do serviço, assegurando o direito à convivên-
+cia familiar e comunitária;
+- Promover acessos a benefícios, programas de transferência de renda e outros serviços socioassis-
+tenciais, das demais políticas públicas setoriais e do Sistema de Garantia de Direitos;
+- Promover apoio às famílias na tarefa de cuidar, diminuindo a sua sobrecarga de trabalho e utilizando meios
+de comunicar e cuidar que visem à autonomia dos envolvidos e não somente cuidados de manutenção;
+- Acompanhar o deslocamento, viabilizar o desenvolvimento do usuário e o acesso a serviços bási-
+cos, tais como: bancos, mercados, farmácias, etc., conforme necessidades;
+- Prevenir situações de sobrecarga e desgaste de vínculos provenientes da relação de prestação/
+demanda de cuidados permanentes/prolongados.
+33
+
+--- pagina 34 ---
+PROVISÕES:
+AMBIENTE FÍSICO: Espaço institucional destinado a atividades administrativas, de planejamento e
+reuniões de equipe.
+RECURSOS MATERIAIS: Transporte e materiais socioeducativos: pedagógicos, lúdicos, culturais e
+esportivos.
+RECURSOS HUMANOS: De acordo com a NOB-RH/SUAS.
+TRABALHO SOCIAL ESSENCIAL AO SERVIçO: Acolhida; escuta; informação, comunicação e defesa de di-
+reitos; articulação com os serviços de políticas públicas setoriais; articulação da rede de serviços socioas-
+sistenciais; articulação interinstitucional com o Sistema de Garantia de Direitos; atividades de convívio e
+de organização da vida cotidiana; orientação e encaminhamento para a rede de serviços locais; referência
+e contrarreferência; construção de plano individual e/ou familiar de atendimento; orientação sociofami-
+liar; estudo social; diagnóstico socioeconômico; cuidados pessoais; desenvolvimento do convívio familiar,
+grupal e social; acesso à documentação pessoal; apoio à família na sua função protetiva; mobilização de
+família extensa ou ampliada; mobilização e fortalecimento do convívio e de redes sociais de apoio; mobi-
+lização para o exercício da cidadania; elaboração de relatórios e/ou prontuários.
+AQUISIçÕES DOS USUÁRIOS:
+SEGURANçA DE ACOLHIDA:
+- Ter acolhida suas demandas, interesses, necessidades e possibilidades;
+- Garantir formas de acesso aos direitos sociais.
+SEGURANçA DE CONVÍVIO OU VIVÊNCIA FAMILIAR, COMUNITÁRIA E SOCIAL:
+- Vivenciar experiências que contribuam para o fortalecimento de vínculos familiares;
+- Vivenciar experiências de ampliação da capacidade protetiva e de superação de fragilidades e
+riscos na tarefa do cuidar;
+- Ter acesso a serviços socioassistenciais e das políticas públicas setoriais, conforme necessidades.
+SEGURANçA DE DESENVOLVIMENTO DA AUTONOMIA:
+- Vivenciar experiências que contribuam para a construção de projetos individuais e coletivos, de-
+senvolvimento da autoestima, autonomia, inserção e sustentabilidade;
+- Vivenciar experiências que possibilitem o desenvolvimento de potencialidades e ampliação do
+universo informacional e cultural;
+- Vivenciar experiências que utilizem de recursos disponíveis pela comunidade, família e recursos
+lúdicos para potencializar a autonomia e a criação de estratégias que diminuam os agravos decor-
+rentes da dependência e promovam a inserção familiar e social.
+CONDIçÕES E FORMAS DE ACESSO:
+CONDIçÕES: Pessoas com deficiência e idosas com dependência, seus cuidadores e familiares com
+vivência de violação de direitos que comprometam sua autonomia.
+34
+
+--- pagina 35 ---
+FORMAS DE ACESSO:
+- Demanda espontânea de membros da família e/ou da comunidade;
+- Busca ativa;
+- Por encaminhamento dos demais serviços socioassistenciais e das demais políticas públi-
+cas setoriais;
+- Por encaminhamento dos demais órgãos do Sistema de Garantia de Direitos.
+UNIDADE: Domicílio do usuário, centro-dia, Centro de Referência Especializado de Assistência Social
+(CREAS) ou Unidade Referenciada.
+PERÍODO DE FUNCIONAMENTO: Funcionamento conforme necessidade e/ou orientações técnicas
+planejadas em conjunto com as pessoas com deficiência e idosas com dependência atendidas, seus
+cuidadores e seus familiares.
+ABRANGÊNCIA: Municipal.
+ARTICULAçãO EM REDE:
+- Serviços socioassistenciais da proteção social básica e proteção social especial;
+- Serviços de políticas públicas setoriais;
+- Demais órgãos do Sistema de Garantia de Direitos;
+- Conselhos de políticas públicas e de defesa de direitos de segmentos específicos;
+- Serviços, programas e projetos de instituições não governamentais e comunitárias.
+IMPACTO SOCIAL ESPERADO:
+CONTRIBUIR PARA:
+- Acessos aos direitos socioassistenciais;
+- Redução e prevenção de situações de isolamento social e de abrigamento institucional;
+- Diminuição da sobrecarga dos cuidadores advinda da prestação continuada de cuidados a pesso-
+as com dependência;
+- Fortalecimento da convivência familiar e comunitária;
+- Melhoria da qualidade de vida familiar;
+- Redução dos agravos decorrentes de situações violadoras de direitos;
+- Proteção social e cuidados individuais e familiares voltados ao desenvolvimento de autonomias.
+35
+
+--- pagina 36 ---
+NOME DO SERVIçO: SERVIçO ESPECIALIZADO PARA PESSOAS EM SITUAçãO DE RUA.
+DESCRIçãO: Serviço ofertado para pessoas que utilizam as ruas como espaço de moradia e/ou so-
+brevivência. Tem a finalidade de assegurar atendimento e atividades direcionadas para o desenvolvi-
+mento de sociabilidades, na perspectiva de fortalecimento de vínculos interpessoais e/ou familiares
+que oportunizem a construção de novos projetos de vida.
+Oferece trabalho técnico para a análise das demandas dos usuários, orientação individual e grupal
+e encaminhamentos a outros serviços socioassistenciais e das demais políticas públicas que possam
+contribuir na construção da autonomia, da inserção social e da proteção às situações de violência.
+Deve promover o acesso a espaços de guarda de pertences, de higiene pessoal, de alimentação e provisão
+de documentação civil. Proporciona endereço institucional para utilização, como referência, do usuário.
+Nesse serviço deve-se realizar a alimentação de sistema de registro dos dados de pessoas em situa-
+ção de rua, permitindo a localização da/pela família, parentes e pessoas de referência, assim como
+um melhor acompanhamento do trabalho social.
+USUÁRIOS: Jovens, adultos, idosos e famílias que utilizam as ruas como espaço de moradia e/ou
+sobrevivência.
+OBJETIVOS:
+- Possibilitar condições de acolhida na rede socioassistencial;
+- Contribuir para a construção de novos projetos de vida, respeitando as escolhas dos usuários e as
+especificidades do atendimento;
+- Contribuir para restaurar e preservar a integridade e a autonomia da população em situação de rua;
+- Promover ações para a reinserção familiar e/ou comunitária.
+PROVISÕES:
+AMBIENTE FÍSICO: Espaço para a realização de atividades coletivas e/ou comunitárias, higiene pes-
+soal, alimentação e espaço para guarda de pertences, conforme a realidade local, com acessibilida-
+de em todos seus ambientes, de acordo com as normas da ABNT.
+RECURSOS MATERIAIS: Materiais permanentes e materiais de consumo necessários para o desen-
+volvimento do serviço, tais como: mobiliário, computadores, linha telefônica, armários para guardar
+pertences, alimentação, artigos de higiene. Materiais pedagógicos, culturais e esportivos. Banco de
+Dados de usuários(as) de benefícios e serviços socioassistenciais; Banco de Dados dos serviços so-
+cioassistenciais; Cadastro Único dos Programas Sociais; Cadastro de Beneficiários do BPC.
+RECURSOS HUMANOS: De acordo com a NOB-RH/SUAS.
+TRABALHO SOCIAL ESSENCIAL AO SERVIçO: Acolhida; escuta; estudo social; diagnóstico socioeconômi-
+co; Informação, comunicação e defesa de direitos; referência e contrarreferência; orientação e suporte
+para acesso à documentação pessoal; orientação e encaminhamentos para a rede de serviços locais;
+articulação da rede de serviços socioassistenciais; articulação com outros serviços de políticas públicas
+setoriais; articulação interinstitucional com os demais órgãos do Sistema de Garantia de Direitos; mobi-
+lização de família extensa ou ampliada; mobilização e fortalecimento do convívio e de redes sociais de
+apoio; mobilização para o exercício da cidadania; articulação com órgãos de capacitação e preparação
+para o trabalho; estímulo ao convívio familiar, grupal e social; elaboração de relatórios e/ou prontuários.
+36
+
+--- pagina 37 ---
+AQUISIçÕES DOS USUÁRIOS:
+SEGURANçA DE ACOLHIDA:
+- Ser acolhido nos serviços em condições de dignidade;
+- Ter reparados ou minimizados os danos por vivências de violências e abusos;
+- Ter sua identidade, integridade e história de vida preservadas;
+- Ter acesso à alimentação em padrões nutricionais adequados.
+SEGURANçA DE CONVÍVIO OU VIVÊNCIA FAMILIAR, COMUNITÁRIA E SOCIAL:
+- Ter assegurado o convívio familiar e/ou comunitário.
+- Ter acesso a serviços socioassistenciais e das demais políticas públicas setoriais, conforme necessidades.
+SEGURANçA DE DESENVOLVIMENTO DE AUTONOMIA INDIVIDUAL, FAMILIAR E SOCIAL:
+- Ter vivência pautada pelo respeito a si próprio e aos outros, fundamentadas em princípios éticos
+de justiça e cidadania;
+- Construir projetos pessoais e sociais e desenvolver a autoestima;
+- Ter acesso à documentação civil;
+- Alcançar autonomia e condições de bem estar;
+- Ser ouvido para expressar necessidades, interesses e possibilidades;
+- Ter acesso a serviços do sistema de proteção social e indicação de acesso a benefícios sociais e
+programas de transferência de renda;
+- Ser informado sobre direitos e como acessá-los;
+- Ter acesso a políticas públicas setoriais;
+- Fortalecer o convívio social e comunitário.
+CONDIçÕES E FORMAS DE ACESSO:
+CONDIçÕES: Famílias e indivíduos que utilizam as ruas como espaço de moradia e/ou sobrevivência.
+FORMAS DE ACESSO:
+- Encaminhamentos do Serviço Especializado em Abordagem Social, de outros serviços socioassisten-
+ciais, das demais políticas públicas setoriais e dos demais órgãos do Sistema de Garantia de Direitos;
+- Demanda espontânea.
+UNIDADE: Centro de Referência Especializado para População em Situação de Rua.
+PERÍODO DE FUNCIONAMENTO: Dias úteis, com possibilidade de funcionar em feriados, finais de
+semana e período noturno. Período mínimo de 5 dias por semana, 8 horas diárias.
+ABRANGÊNCIA: Municipal.
+ARTICULAçãO EM REDE:
+- Serviços socioassistenciais de Proteção Social Básica e Proteção Social Especial;
+- Serviços de políticas públicas setoriais;
+- Redes sociais locais;
+- Demais órgãos do Sistema de Garantia de Direitos;
+37
+
+--- pagina 38 ---
+- Sistema de Segurança Pública;
+- Instituições de Ensino e Pesquisa;
+- Serviços, programas e projetos de instituições não governamentais e comunitárias.
+IMPACTO SOCIAL ESPERADO:
+CONTRIBUIR PARA:
+- Redução das violações dos direitos socioassistenciais, seus agravamentos ou reincidência;
+- Proteção social às famílias e indivíduos;
+- Redução de danos provocados por situações violadoras de direitos;
+- Construção de novos projetos de vida.
+38
+
+--- pagina 39 ---
+SERVIçOS DA PROTEçãO SOCIAL
+ESPECIAL - ALTA COMPLEXIDADE
+
+--- pagina 40 ---
+NOME DO SERVIçO: SERVIçO DE ACOLHIMENTO INSTITUCIONAL.
+DESCRIçãO GERAL: Acolhimento em diferentes tipos de equipamentos, destinado a famílias e/ou
+indivíduos com vínculos familiares rompidos ou fragilizados, a fim de garantir proteção integral. A
+organização do serviço deverá garantir privacidade, o respeito aos costumes, às tradições e à diver-
+sidade de: ciclos de vida, arranjos familiares, raça/etnia, religião, gênero e orientação sexual.
+O atendimento prestado deve ser personalizado e em pequenos grupos e favorecer o convívio fami-
+liar e comunitário, bem como a utilização dos equipamentos e serviços disponíveis na comunidade
+local. As regras de gestão e de convivência deverão ser construídas de forma participativa e coletiva,
+a fim de assegurar a autonomia dos usuários, conforme perfis.
+Deve funcionar em unidade inserida na comunidade com características residenciais, ambiente aco-
+lhedor e estrutura física adequada, visando o desenvolvimento de relações mais próximas do am-
+biente familiar. As edificações devem ser organizadas de forma a atender aos requisitos previstos
+nos regulamentos existentes e às necessidades dos usuários, oferecendo condições de habitabilida-
+de, higiene, salubridade, segurança, acessibilidade e privacidade.
+DESCRIçãO ESPECÍFICA:
+PARA CRIANçAS E ADOLESCENTES:
+Acolhimento provisório e excepcional para crianças e adolescentes de ambos os sexos, inclusive
+crianças e adolescentes com deficiência, sob medida de proteção (Art. 98 do Estatuto da Criança e
+do Adolescente) e em situação de risco pessoal e social, cujas famílias ou responsáveis encontrem-
+-se temporariamente impossibilitados de cumprir sua função de cuidado e proteção. As unidades
+não devem distanciar-se excessivamente, do ponto de vista geográfico e socioeconômico, da comu-
+nidade de origem das crianças e adolescentes atendidos.
+Grupos de crianças e adolescentes com vínculos de parentesco – irmãos, primos, etc., devem ser
+atendidos na mesma unidade. O acolhimento será feito até que seja possível o retorno à família de
+origem (nuclear ou extensa) ou colocação em família substituta.
+O serviço deverá ser organizado em consonância com os princípios, diretrizes e orientações do Esta-
+tuto da Criança e do Adolescente e das “Orientações Técnicas: Serviços de Acolhimento para Crian-
+ças e Adolescentes”.
+O serviço de acolhimento institucional para crianças e adolescentes pode ser desenvolvido nas
+seguintes modalidades:
+1. Atendimento em unidade residencial onde uma pessoa ou casal trabalha como educador/cuida-
+dor residente, prestando cuidados a um grupo de até 10 crianças e/ou adolescentes;
+2. Atendimento em unidade institucional semelhante a uma residência, destinada ao atendimento
+de grupos de até 20 crianças e/ou adolescentes. Nessa unidade é indicado que os educadores/
+cuidadores trabalhem em turnos fixos diários, a fim de garantir estabilidade das tarefas de rotina
+diárias, referência e previsibilidade no contato com as crianças e adolescentes. Poderá contar
+com espaço específico para acolhimento imediato e emergencial, com profissionais preparados
+para receber a criança/adolescente, em qualquer horário do dia ou da noite, enquanto se realiza
+um estudo diagnóstico detalhado de cada situação para os encaminhamentos necessários.
+40
+
+--- pagina 41 ---
+PARA ADULTOS E FAMÍLIAS:
+Acolhimento provisório com estrutura para acolher com privacidade pessoas do mesmo sexo ou
+grupo familiar. É previsto para pessoas em situação de rua e desabrigo por abandono, migração e
+ausência de residência ou pessoas em trânsito e sem condições de autossustento.
+Deve estar distribuído no espaço urbano de forma democrática, respeitando o direito de perma-
+nência e usufruto da cidade com segurança, igualdade de condições e acesso aos serviços públicos.
+O atendimento a indivíduos refugiados ou em situação de tráfico de pessoas (sem ameaça de morte)
+poderá ser desenvolvido em local específico, a depender da incidência da demanda.
+O serviço de acolhimento institucional para adultos e famílias pode ser desenvolvido nas seguin-
+tes modalidades:
+1. Atendimento em unidade institucional semelhante a uma residência com o limite máximo de 50
+pessoas por unidade e de quatro pessoas por quarto;
+2. Atendimento em unidade institucional de passagem para a oferta de acolhimento imediato e
+emergencial, com profissionais preparados para receber os usuários em qualquer horário do dia
+ou da noite, enquanto se realiza um estudo diagnóstico detalhado de cada situação para os enca-
+minhamentos necessários.
+PARA MULHERES EM SITUAçãO DE VIOLÊNCIA:
+Acolhimento provisório para mulheres, acompanhadas ou não de seus filhos, em situação de risco
+de morte ou ameaças em razão da violência doméstica e familiar, causadora de lesão, sofrimento
+físico, sexual, psicológico ou dano moral.
+Deve ser desenvolvido em local sigiloso, com funcionamento em regime de co-gestão, que assegure a obri-
+gatoriedade de manter o sigilo quanto à identidade das usuárias. Em articulação com rede de serviços socio-
+assistenciais, das demais políticas públicas e do Sistema de Justiça, deve ser ofertado atendimento jurídico e
+psicológico para a usuárias e seu filhos e/ou dependente quando estiver sob sua responsabilidade.
+PARA JOVENS E ADULTOS COM DEFICIÊNCIA:
+Acolhimento destinado a jovens e adultos com deficiência, cujos vínculos familiares estejam rompi-
+dos ou fragilizados. É previsto para jovens e adultos com deficiência que não dispõem de condições
+de autosustentabilidade, de retaguarda familiar temporária ou permanente ou que estejam em pro-
+cesso de desligamento de instituições de longa permanência.
+Deve ser desenvolvido em Residências Inclusivas inseridas na comunidade, funcionar em locais com
+estrutura física adequada e ter a finalidade de favorecer a construção progressiva da autonomia, da
+inclusão social e comunitária e do desenvolvimento de capacidades adaptativas para a vida diária.
+PARA IDOSOS:
+Acolhimento para idosos com 60 anos ou mais, de ambos os sexos, independentes e/ou com diver-
+sos graus de dependência. A natureza do acolhimento deverá ser provisória e, excepcionalmente,
+de longa permanência quando esgotadas todas as possibilidades de autossustento e convívio com
+os familiares. É previsto para idosos que não dispõem de condições para permanecer com a família,
+41
+
+--- pagina 42 ---
+com vivência de situações de violência e negligência, em situação de rua e de abandono, com víncu-
+los familiares fragilizados ou rompidos.
+Idosos com vínculo de parentesco ou afinidade – casais, irmãos, amigos, etc., devem ser atendidos
+na mesma unidade. Preferencialmente, deve ser ofertado aos casais de idosos o compartilhamento
+do mesmo quarto. Idosos com deficiência devem ser incluídos nesse serviço, de modo a prevenir
+práticas segregacionistas e o isolamento desse segmento.
+O serviço de acolhimento institucional para idosos pode ser desenvolvido nas seguintes
+modalidades:
+1. Atendimento em unidade residencial onde grupos de até 10 idosos são acolhidos. Deve contar
+com pessoal habilitado, treinado e supervisionado por equipe técnica capacitada para auxiliar
+nas atividades da vida diária;
+2. Atendimento em unidade institucional com característica domiciliar que acolhe idosos com di-
+ferentes necessidades e graus de dependência. Deve assegurar a convivência com familiares,
+amigos e pessoas de referência de forma contínua, bem como o acesso às atividades culturais,
+educativas, lúdicas e de lazer na comunidade. A capacidade de atendimento das unidades deve
+seguir as normas da Vigilância Sanitária, devendo ser assegurado o atendimento de qualidade,
+personalizado, com até quatro idosos por quarto.
+USUÁRIOS: Crianças, adolescentes, jovens, adultos, pessoas com deficiência, idosos e famílias.
+OBJETIVOS GERAIS:
+- Acolher e garantir proteção integral;
+- Contribuir para a prevenção do agravamento de situações de negligência, violência e ruptura de vínculos;
+- Restabelecer vínculos familiares e/ou sociais;
+- Possibilitar a convivência comunitária;
+- Promover acesso à rede socioassistencial, aos demais órgãos do Sistema de Garantia de Direitos
+e às demais políticas públicas setoriais;
+- Favorecer o surgimento e o desenvolvimento de aptidões, capacidades e oportunidades para que
+os indivíduos façam escolhas com autonomia;
+- Promover o acesso a programações culturais, de lazer, de esporte e ocupacionais internas e ex-
+ternas, relacionando-as a interesses, vivências, desejos e possibilidades do público.
+OBJETIVOS ESPECÍFICOS:
+PARA CRIANçAS E ADOLESCENTES:
+- Preservar vínculos com a família de origem, salvo determinação judicial em contrário;
+- Desenvolver com os adolescentes condições para a independência e o auto-cuidado.
+PARA ADULTOS E FAMÍLIAS:
+- Desenvolver condições para a independência e o auto-cuidado;
+- Promover o acesso à rede de qualificação e requalificação profissional com vistas à inclusão produtiva.
+42
+
+--- pagina 43 ---
+PARA MULHERES EM SITUAçãO DE VIOLÊNCIA:
+- Proteger mulheres e prevenir a continuidade de situações de violência;
+- Propiciar condições de segurança física e emocional e o fortalecimento da autoestima;
+- Identificar situações de violência e suas causas e produzir dados para o sistema de vigilân-
+cia socioassistencial;
+- Possibilitar a construção de projetos pessoais visando à superação da situação de violência e o desen-
+volvimento de capacidades e oportunidades para o desenvolvimento de autonomia pessoal e social;
+- Promover o acesso à rede de qualificação e requalificação profissional com vistas à inclusão produtiva.
+PARA PESSOAS COM DEFICIÊNCIA:
+- Desenvolver capacidades adaptativas para a vida diária;
+- Promover a convivência mista entre os residentes de diversos graus de dependência;
+- Promover o acesso à rede de qualificação e requalificação profissional com vistas à inclusão produtiva.
+PARA IDOSOS:
+- Incentivar o desenvolvimento do protagonismo e de capacidades para a realização de atividades
+da vida diária;
+- Desenvolver condições para a independência e o auto-cuidado;
+- Promover o acesso a renda;
+- Promover a convivência mista entre os residentes de diversos graus de dependência.
+PROVISÕES:
+AMBIENTE FÍSICO: Espaço para moradia, endereço de referência, condições de repouso, espaço de
+estar e convívio, guarda de pertences, lavagem e secagem de roupas, banho e higiene pessoal, ves-
+tuário e pertences. Acessibilidade de acordo com as normas da ABNT.
+ESPECÍFICOS:
+PARA ADULTOS E FAMÍLIAS: Conforme a realidade local.
+RECURSOS MATERIAIS: Material permanente e material de consumo necessário para o desenvolvi-
+mento do serviço, tais como: mobiliário, computador, impressora, telefone, camas, colchões, roupa
+de cama e banho, utensílios para cozinha, alimentos, material de limpeza e higiene, vestuário, brin-
+quedos, entre outros. Materiais pedagógicos, culturais e esportivos. Banco de Dados de usuários de
+benefícios e serviços socioassistenciais; Banco de Dados dos serviços socioassistenciais; Cadastro
+Único dos Programas Sociais; Cadastro de Beneficiários do BPC.
+RECURSOS HUMANOS: De acordo com a NOB-RH/SUAS.
+ESPECÍFICOS:
+PARA CRIANçAS E ADOLESCENTES: De acordo com a NOB-RH/SUAS e o documento das “Orienta-
+ções Técnicas: Serviços de Acolhimento para Crianças e Adolescentes”.
+43
+
+--- pagina 44 ---
+TRABALHO SOCIAL ESSENCIAL AO SERVIçO: Acolhida/Recepção; escuta; desenvolvimento do
+convívio familiar, grupal e social; estudo Social; apoio à família na sua função protetiva; cuidados
+pessoais; orientação e encaminhamentos sobre/para a rede de serviços locais com resolutividade;
+construção de plano individual e/ou familiar de atendimento; orientação sociofamiliar; protocolos;
+acompanhamento e monitoramento dos encaminhamentos realizados; referência e contrarreferên-
+cia; elaboração de relatórios e/ou prontuários; trabalho interdisciplinar; diagnóstico socioeconômi-
+co; Informação, comunicação e defesa de direitos; orientação para acesso a documentação pessoal;
+atividades de convívio e de organização da vida cotidiana; inserção em projetos/programas de ca-
+pacitação e preparação para o trabalho; estímulo ao convívio familiar, grupal e social; mobilização,
+identificação da família extensa ou ampliada; mobilização para o exercício da cidadania; articula-
+ção da rede de serviços socioassistenciais; articulação com os serviços de outras políticas públicas
+setoriais e de defesa de direitos; articulação interinstitucional com os demais órgãos do Sistema
+de Garantia de Direitos; monitoramento e avaliação do serviço; organização de banco de dados e
+informações sobre o serviço, sobre organizações governamentais e não governamentais e sobre o
+Sistema de Garantia de Direitos.
+AQUISIçÕES DOS USUÁRIOS:
+SEGURANçA DE ACOLHIDA:
+- Ser acolhido em condições de dignidade;
+- Ter sua identidade, integridade e história de vida preservadas;
+- Ter acesso a espaço com padrões de qualidade quanto a: higiene, acessibilidade, habitabilidade,
+salubridade, segurança e conforto;
+- Ter acesso a alimentação em padrões nutricionais adequados e adaptados a necessidades específicas;
+- Ter acesso a ambiência acolhedora e espaços reservados a manutenção da privacidade do usuá-
+rio e guarda de pertences pessoais.
+ESPECÍFICAS:
+Para crianças e adolescentes: Ter ambiente e condições favoráveis ao processo de desenvolvimento
+peculiar da criança e do adolescente.
+Para mulheres em situação de violência: Ter o sigilo de sua identidade e localização preservados.
+SEGURANçA DE CONVÍVIO OU VIVÊNCIA FAMILIAR, COMUNITÁRIA E SOCIAL:
+- Ter acesso a benefícios, programas, outros serviços socioassistenciais e demais serviços públicos;
+- Ter assegurado o convívio familiar, comunitário e/ou social.
+SEGURANçA DE DESENVOLVIMENTO DE AUTONOMIA INDIVIDUAL, FAMILIAR E SOCIAL:
+- Ter endereço institucional para utilização como referência;
+- Ter vivências pautadas pelo respeito a si próprio e aos outros, fundamentadas em princípios éti-
+cos de justiça e cidadania;
+- Ter acesso a atividades, segundo suas necessidades, interesses e possibilidades;
+- Ter acompanhamento que possibilite o desenvolvimento de habilidades de autogestão, autossus-
+tentação e independência;
+- Ter respeitados os seus direitos de opinião e decisão;
+- Ter acesso a espaços próprios e personalizados;
+44
+
+--- pagina 45 ---
+- Ter acesso a documentação civil;
+- Obter orientações e informações sobre o serviço, direitos e como acessá-los;
+- Ser ouvido e expressar necessidades, interesses e possibilidades;
+- Desenvolver capacidades para autocuidados, construir projetos de vida e alcançar a autonomia;
+- Ter ampliada a capacidade protetiva da família e a superação de suas dificuldades;
+- Ser preparado para o desligamento do serviço;
+- Avaliar o serviço.
+ESPECÍFICAS:
+Para crianças e adolescentes: Garantir colocação em família substituta, sempre que houver a impos-
+sibilidade do reestabelecimento e/ou a preservação de vínculos com a família de origem.
+CONDIçÕES E FORMAS DE ACESSO:
+Crianças e Adolescentes:
+- Por determinação do Poder Judiciário;
+- Por requisição do Conselho Tutelar. Nesse caso, a autoridade competente deverá ser comunica-
+da, conforme previsto no Artigo 93 do Estatuto da Criança e do Adolescente.
+Adultos e famílias:
+- Por encaminhamento de agentes institucionais de Serviço Especializado em Abordagem Social;
+- Por encaminhamentos do CREAS ou demais serviços socioassistenciais, de outras políticas públi-
+cas setoriais e de defesa de direitos;
+- Demanda espontânea.
+Idosos, mulheres em situação de violência e pessoas com deficiência:
+- Por requisição de serviços de políticas públicas setoriais, CREAS, demais serviços socioassisten-
+ciais, Ministério Público ou Poder Judiciário.
+UNIDADE:
+Para crianças e adolescentes:
+- Casa-Lar;
+- Abrigo Institucional.
+Para adultos e famílias:
+- Abrigo institucional;
+- Casa de Passagem.
+Para mulheres em situação de violência:
+- Abrigo institucional.
+45
+
+--- pagina 46 ---
+Para jovens e adultos com deficiência:
+- Residências inclusivas.
+Para idosos:
+- Casa-Lar;
+- Abrigo Institucional (Instituição de Longa Permanência para Idosos - ILPI).
+PERÍODO DE FUNCIONAMENTO: Ininterrupto (24 horas).
+ABRANGÊNCIA:
+- Municipal;
+- Regional: Os serviços de acolhimento poderão ter abrangência correspondente a um pe-
+queno grupo de municípios com proximidade geográfica, quando a incidência da demanda
+e porte do município não justificarem a disponibilização do serviço no seu âmbito. Nas
+unidades para o atendimento a crianças e adolescentes, idosos e mulheres em situação
+de violência, o serviço também poderá ter abrangência regional por indicação técnica ou
+determinação judicial. No caso de acolhimento regional, fora do município de origem, para
+crianças, adolescentes e idosos, deverá ser viabilizado o transporte de familiares para visi-
+tas ou a locomoção do público atendido ao ambiente familiar, de modo que sejam preser-
+vados seus vínculos familiares.
+ARTICULAçãO EM REDE:
+- Demais serviços socioassistenciais e serviços de políticas públicas setoriais;
+- Programas e projetos de formação para o trabalho, de profissionalização e de inclusão produtiva;
+- Serviços, programas e projetos de instituições não governamentais e comunitárias;
+- Demais órgãos do Sistema de Garantia de Direitos.
+IMPACTO SOCIAL ESPERADO:
+CONTRIBUIR PARA:
+- Redução das violações dos direitos socioassistenciais, seus agravamentos ou reincidência;
+- Redução da presença de pessoas em situação de rua e de abandono;
+- Indivíduos e famílias protegidas;
+- Construção da autonomia;
+- Indivíduos e famílias incluídas em serviços e com acesso a oportunidades;
+- Rompimento do ciclo da violência doméstica e familiar.
+46
+
+--- pagina 47 ---
+NOME DO SERVIçO: SERVIçO DE ACOLHIMENTO EM REPÚBLICAS.
+DESCRIçãO: Serviço que oferece proteção, apoio e moradia subsidiada a grupos de pessoas maio-
+res de 18 anos em estado de abandono, situação de vulnerabilidade e risco pessoal e social, com
+vínculos familiares rompidos ou extremamente fragilizados e sem condições de moradia e autossus-
+tentação. O atendimento deve apoiar a construção e o fortalecimento de vínculos comunitários, a
+integração e participação social e o desenvolvimento da autonomia das pessoas atendidas. O serviço
+deve ser desenvolvido em sistema de autogestão ou cogestão, possibilitando gradual autonomia e
+independência de seus moradores. Deve contar com equipe técnica de referência para contribuir
+com a gestão coletiva da moradia (administração financeira e funcionamento) e para acompanha-
+mento psicossocial dos usuários e encaminhamento para outros serviços, programas e benefícios da
+rede socioassistencial e das demais políticas públicas.
+Sempre que possível, a definição dos moradores da república ocorrerá de forma participativa entre
+estes e a equipe técnica, de modo que, na composição dos grupos, sejam respeitados afinidades e
+vínculos previamente construídos. Assim como nos demais equipamentos da rede socioassistencial,
+as edificações utilizadas no serviço de república deverão respeitar as normas de acessibilidade, de
+maneira a possibilitar a inclusão de pessoas com deficiência.
+De acordo com a demanda local, devem ser desenvolvidos serviços de acolhimento em república
+para diferentes segmentos, os quais devem ser adaptados às demandas e necessidades específicas
+do público a que se destina.
+PARA JOVENS: destinada, prioritariamente, a jovens entre 18 e 21 anos após desligamento de ser-
+viços de acolhimento para crianças e adolescentes ou em outra situação que demande este serviço.
+Possui tempo de permanência limitado, podendo ser reavaliado e prorrogado em função do projeto
+individual formulado em conjunto com o profissional de referência. O atendimento deve apoiar a
+qualificação e inserção profissional e a construção de projeto de vida.
+As repúblicas para jovens devem ser organizadas em unidades femininas e unidades masculinas, garan-
+tindo-se, na rede, o atendimento a ambos os sexos, conforme demanda local, devendo ser dada a devida
+atenção à perspectiva de gênero no planejamento político-pedagógico do serviço.
+O serviço deverá ser organizado em consonância com os princípios, diretrizes e orientações constan-
+tes no documento “Orientações Técnicas: Serviços de Acolhimento para Crianças e Adolescentes”.
+PARA ADULTOS EM PROCESSO DE SAÍDA DAS RUAS: destinada a pessoas adultas com vivência de
+rua em fase de reinserção social, que estejam em processo de restabelecimento dos vínculos sociais
+e construção de autonomia. Possui tempo de permanência limitado, podendo ser reavaliado e pror-
+rogado em função do projeto individual formulado em conjunto com o profissional de referência.
+As repúblicas devem ser organizadas em unidades femininas e unidades masculinas. O atendimento
+deve apoiar a qualificação e inserção profissional e a construção de projeto de vida.
+PARA IDOSOS: destinada a idosos que tenham capacidade de gestão coletiva da moradia e condi-
+ções de desenvolver, de forma independente, as atividades da vida diária, mesmo que requeiram o
+uso de equipamentos de autoajuda.
+USUÁRIOS: Jovens entre 18 e 21 anos, adultos em processo de saída das ruas e idosos.
+47
+
+--- pagina 48 ---
+OBJETIVOS:
+- Proteger os usuários, preservando suas condições de autonomia e independência;
+- Preparar os usuários para o alcance da autossustentação;
+- Promover o restabelecimento de vínculos comunitários, familiares e/ou sociais;
+- Promover o acesso à rede de políticas públicas.
+PROVISÕES:
+AMBIENTE FÍSICO: Moradia subsidiada; endereço de referência; condições de repouso; espaço de es-
+tar e convívio; guarda de pertences; lavagem e secagem de roupas; banho e higiene pessoal; vestuário
+e pertences, com acessibilidade em todos seus ambientes, de acordo com as normas da ABNT.
+RECURSOS MATERIAIS: Material permanente e material de consumo necessário para o desenvolvi-
+mento do serviço, tais como: mobiliário, computador, impressora, telefone, camas, colchões, roupa
+de cama e banho, utensílios para cozinha, alimentos, material de limpeza e higiene, vestuário, brin-
+quedos, entre outros.
+RECURSOS HUMANOS: De acordo com a NOB-RH/SUAS.
+ESPECÍFICOS PARA JOVENS: De acordo com a NOB-RH/SUAS e com o documento “Orientações Téc-
+nicas: Serviços de Acolhimento para Crianças e Adolescentes”.
+TRABALHO SOCIAL ESSENCIAL AO SERVIçO: Acolhida/Recepção; escuta; construção de plano
+individual e/ou familiar de atendimento; desenvolvimento do convívio familiar, grupal e so-
+cial; estímulo ao convívio grupal e social; estudo Social; orientação e encaminhamentos para
+a rede de serviços locais; protocolos; acompanhamento e monitoramento dos encaminha-
+mentos realizados; referência e contrarreferência; elaboração de relatórios e/ou prontuários;
+trabalho interdisciplinar; diagnóstico socioeconômico; Informação, comunicação e defesa de
+direitos; orientação para acesso a documentação pessoal; atividades de convívio e de organi-
+zação da vida cotidiana; inserção em projetos/programas de capacitação e preparação para o
+trabalho; mobilização para o exercício da cidadania; articulação da rede de serviços socioas-
+sistenciais; articulação com os serviços de políticas públicas setoriais; articulação interinsti-
+tucional com os demais órgãos do Sistema de Garantia de Direitos.
+AQUISIçÕES DOS USUÁRIOS:
+SEGURANçA DE ACOLHIDA:
+- Ser acolhido em condições de dignidade;
+- Ter sua identidade, integridade e história de vida preservadas;
+- Ter acesso a espaço com padrões de qualidade quanto a: higiene, habitabilidade, salubridade,
+segurança e conforto para cuidados pessoais e repouso.
+SEGURANçA DE CONVÍVIO OU VIVÊNCIA FAMILIAR, COMUNITÁRIA E SOCIAL:
+- Ter assegurado o acesso a serviços socioassistenciais e das demais políticas públicas setoriais;
+- Ter assegurado o convívio comunitário e social.
+48
+
+--- pagina 49 ---
+SEGURANçA DE DESENVOLVIMENTO DE AUTONOMIA INDIVIDUAL, FAMILIAR E SOCIAL:
+- Ter acesso a documentação civil;
+- Poder construir projetos de vida e alcançar autonomia;
+- Ser informado sobre direitos, serviços, acessos e responsabilidades;
+- Fortalecer vínculos comunitários e de pertencimento;
+- Ter condições para desenvolver capacidades e fazer escolhas com independência e autonomia;
+- Obter orientações e informações sobre acessos e direitos.
+CONDIçÕES E FORMAS DE ACESSO:
+CONDIçÕES: Jovens entre 18 e 21 anos, adultos em processo de saída das ruas e idosos com condi-
+ções de desenvolver, de forma independente, as atividades da vida diária.
+FORMAS DE ACESSO:
+- Por encaminhamento de agentes institucionais do Serviço Especializado em Abordagem Social;
+- Por encaminhamentos do CREAS, demais serviços socioassistenciais e/ou de outras políti-
+cas públicas;
+- Demanda espontânea.
+UNIDADE: República.
+PERÍODO DE FUNCIONAMENTO: Ininterrupto (24 horas)
+ABRANGÊNCIA: Municipal ou regional.
+ARTICULAçãO EM REDE:
+- Demais serviços socioassistenciais e serviços de políticas públicas setoriais;
+- Programas e projetos de formação para o trabalho, de profissionalização e de inclusão pro-
+dutiva;
+- Serviços, programas e projetos de instituições não governamentais e comunitárias;
+- Demais órgãos do Sistema de Garantia de Direitos.
+IMPACTO SOCIAL ESPERADO:
+CONTRIBUIR PARA:
+- Redução da presença de jovens, adultos e idosos em situação de abandono, de vulnerabilidade,
+risco pessoal e social e sem condições de moradia;
+- Construção da autonomia.
+49
+
+--- pagina 50 ---
+NOME DO SERVIçO: SERVIçO DE ACOLHIMENTO EM FAMÍLIA ACOLHEDORA.
+DESCRIçãO: Serviço que organiza o acolhimento de crianças e adolescentes, afastados da família por me-
+dida de proteção, em residência de famílias acolhedoras cadastradas. É previsto até que seja possível o
+retorno à família de origem ou, na sua impossibilidade, o encaminhamento para adoção. O serviço é o
+responsável por selecionar, capacitar, cadastrar e acompanhar as famílias acolhedoras, bem como realizar o
+acompanhamento da criança e/ou adolescente acolhido e sua família de origem.
+O Serviço deverá ser organizado segundo os princípios, diretrizes e orientações do Estatuto da Crian-
+ça e do Adolescente e do documento “Orientações Técnicas: Serviços de Acolhimento para Crianças
+e Adolescentes”, sobretudo no que se refere à preservação e à reconstrução do vínculo com a família
+de origem, assim como à manutenção de crianças e adolescentes com vínculos de parentesco (ir-
+mãos, primos, etc.) numa mesma família. O atendimento também deve envolver o acompanhamen-
+to às famílias de origem, com vistas à reintegração familiar.
+O serviço é particularmente adequado ao atendimento de crianças e adolescentes cuja avaliação da
+equipe técnica indique possibilidade de retorno à família de origem, nuclear ou extensa.
+USUÁRIOS: Crianças e adolescentes, inclusive aqueles com deficiência, aos quais foi aplicada me-
+dida de proteção, por motivo de abandono ou violação de direitos, cujas famílias ou responsáveis
+encontrem-se temporariamente impossibilitados de cumprir sua função de cuidado e proteção.
+OBJETIVOS:
+- Promover o acolhimento familiar de crianças e adolescentes afastadas temporariamente de sua
+família de origem;
+- Acolher e dispensar cuidados individualizados em ambiente familiar;
+- Preservar vínculos com a família de origem, salvo determinação judicial em contrário;
+- Possibilitar a convivência comunitária e o acesso à rede de políticas públicas;
+- Apoiar o retorno da criança e do adolescente à família de origem.
+PROVISÕES:
+AMBIENTE FÍSICO:
+- Relativo à gestão do serviço: espaços físicos condizentes com as atividades da equipe técnica;
+- Relativo à residência da família acolhedora: espaço residencial com condições de habi-
+tabilidade.
+RECURSOS MATERIAIS: Veículo, material permanente e de consumo apropriado para o desenvolvi-
+mento do serviço.
+RECURSOS HUMANOS: De acordo com a NOB-RH/SUAS e com o documento “Orientações Técnicas:
+Serviços de Acolhimento para Crianças e Adolescentes”.
+TRABALHO SOCIAL ESSENCIAL AO SERVIçO: Seleção, preparação, cadastramento e acompanha-
+mento das famílias acolhedoras; orientação e encaminhamentos para a rede de serviços locais;
+construção do plano individual e familiar de atendimento; orientação sociofamiliar; informação,
+comunicação e defesa de direitos; apoio à família na sua função protetiva; providência de docu-
+mentação pessoal da criança/adolescente e família de origem; articulação da rede de serviços
+socioassistenciais; articulação com os serviços de políticas públicas setoriais e de defesa de direi-
+50
+
+--- pagina 51 ---
+tos; mobilização, identificação da família extensa ou ampliada; mobilização e fortalecimento do
+convívio e de redes sociais de apoio; articulação interinstitucional com demais órgãos do Sistema
+de Garantia de Direitos.
+AQUISIçÕES DOS USUÁRIOS:
+SEGURANçA DE ACOLHIDA:
+- Ser acolhido de forma singularizada;
+- Ter reparadas vivências de separação, rupturas e violação de direitos;
+- Ter sua identidade, integridade e história de vida preservadas;
+- Ter acesso a ambiente acolhedor e saudável;
+- Ter acesso a espaço com padrões de qualidade quanto a: higiene, habitabilidade, salubridade,
+segurança e conforto para cuidados pessoais, repouso e alimentação adequada;
+- Ter acesso a ambiente e condições favoráveis ao processo de desenvolvimento da criança e do
+adolescente.
+SEGURANçA DE CONVÍVIO OU VIVÊNCIA FAMILIAR, COMUNITÁRIA E SOCIAL:
+- Ter assegurado o convívio familiar, comunitário e social;
+- Ter acesso a serviços de políticas públicas setoriais, conforme necessidades.
+SEGURANçA DE DESENVOLVIMENTO DE AUTONOMIA INDIVIDUAL, FAMILIAR E SOCIAL:
+- Ter vivência de ações pautadas pelo respeito a si próprio e aos outros, fundamentadas em princí-
+pios éticos de justiça e cidadania;
+- Obter documentação civil;
+- Construir projetos de vida e alcançar autonomia;
+- Ter os vínculos familiares estabelecidos e/ou preservados, na impossibilidade, ser integrado em
+família substituta;
+- Ser informado sobre direitos e responsabilidades;
+- Manifestar suas opiniões e necessidades;
+- Ampliar a capacidade protetiva de sua família e a superação de suas dificuldades;
+- Ser preparado para o desligamento do serviço.
+CONDIçÕES E FORMAS DE ACESSO:
+CONDIçÕES: Crianças e adolescentes residentes no município onde se localizam a residência das
+famílias acolhedoras.
+FORMAS DE ACESSO: Por determinação do Poder Judiciário.
+UNIDADE: Unidade de referência da Proteção Social Especial e residência da Família Acolhedora.
+PERÍODO DE FUNCIONAMENTO: Ininterrupto (24 horas).
+51
+
+--- pagina 52 ---
+ABRANGÊNCIA:
+- Municipal;
+- Regional: No caso de municípios de pequeno porte que apresentem dificuldades para implantar e
+manter serviços de acolhimento para crianças e adolescentes – em virtude da pequena demanda
+e das condições de gestão – pode-se recorrer à implantação de um Serviço com Compartilhamen-
+to de Equipe (coordenação e equipe técnica). Nesse caso, o serviço deve ter famílias cadastradas
+em cada município atendido, de modo a viabilizar o acolhimento da criança ou adolescente no
+seu próprio município de origem. A estratégia de compartilhamento de equipe exigirá a previsão
+de veículos e combustível suficientes, de modo a permitir o deslocamento da equipe técnica do
+município-sede para os demais municípios atendidos, possibilitando: o desenvolvimento de suas
+ações no que diz respeito ao apoio, capacitação e acompanhamento das famílias acolhedoras;
+acompanhamento psicossocial das crianças e adolescentes atendidos e de suas famílias de ori-
+gem; articulação com a rede se serviços e o Sistema de Garantia de Direitos; e o exercício das
+demais atribuições que lhe sejam próprias.
+ARTICULAçãO EM REDE:
+- Órgãos do Sistema de Defesa de Direitos da Criança e do Adolescente;
+- Demais órgãos do Sistema de Garantia de Direitos;
+- Serviços socioassistenciais e serviços de políticas públicas setoriais;
+- Programas e projetos de formação para o trabalho e de profissionalização e inclusão produtiva;
+- Serviços, programas e projetos de instituições não governamentais e comunitárias.
+IMPACTO SOCIAL ESPERADO:
+CONTRIBUIR PARA:
+- Crianças e adolescentes protegidos por suas famílias e com seus direitos garantidos;
+- Redução das violações dos direitos socioassistenciais, seus agravamentos ou reincidência;
+- Desinstitucionalização de crianças e adolescentes.
+52
+
+--- pagina 53 ---
+NOME DO SERVIçO: SERVIçO DE PROTEçãO EM SITUAçÕES DE CALAMIDADES PÚBLICAS E
+DE EMERGÊNCIAS.
+DESCRIçãO: O serviço promove apoio e proteção à população atingida por situações de emergência
+e calamidade pública, com a oferta de alojamentos provisórios, atenções e provisões materiais, con-
+forme as necessidades detectadas.
+Assegura a realização de articulações e a participação em ações conjuntas de caráter intersetorial
+para a minimização dos danos ocasionados e o provimento das necessidades verificadas.
+USUÁRIOS:
+Famílias e Indivíduos:
+- Atingidos por situações de emergência e calamidade pública (incêndios, desabamentos, desliza-
+mentos, alagamentos, dentre outras) que tiveram perdas parciais ou totais de moradia, objetos
+ou utensílios pessoais, e se encontram temporária ou definitivamente desabrigados;
+- Removidos de áreas consideradas de risco, por prevenção ou determinação do Poder Judiciário.
+OBJETIVOS:
+- Assegurar acolhimento imediato em condições dignas e de segurança;
+- Manter alojamentos provisórios, quando necessário;
+- Identificar perdas e danos ocorridos e cadastrar a população atingida;
+- Articular a rede de políticas públicas e redes sociais de apoio para prover as necessidades detectadas;
+- Promover a inserção na rede socioassistencial e o acesso a benefícios eventuais.
+PROVISÕES:
+AMBIENTE FÍSICO: Alojamento provisório para repouso e restabelecimento pessoal, com condições
+de salubridade, instalações sanitárias para banho e higiene pessoal, com privacidade individual e/ou
+familiar; espaço para realização de refeições; espaço para estar e convívio, com acessibilidade em
+todos seus ambientes, de acordo com as normas da ABNT.
+RECURSOS MATERIAIS: Materiais de consumo para o desenvolvimento do serviço: alimentos, ar-
+tigos de higiene, cobertores, dentre outros. Estrutura para guarda de pertences e de documentos.
+RECURSOS HUMANOS: De acordo com a NOB-RH/SUAS.
+TRABALHO SOCIAL ESSENCIAL AO SERVIçO: Proteção social proativa; escuta; orientação e enca-
+minhamentos para a rede de serviços locais; orientação sociofamiliar; referência e contrarreferên-
+cia; informação, comunicação e defesa de direitos; acesso à documentação pessoal; articulação
+da rede de serviços socioassistenciais; articulação com os serviços de políticas públicas setoriais e
+de defesa de direitos; mobilização de família extensa ou ampliada; mobilização para o exercício da
+cidadania; atividades de convívio e de organização da vida cotidiana; diagnóstico socioeconômico;
+provisão de benefícios eventuais.
+53
+
+--- pagina 54 ---
+AQUISIçÕES DOS USUÁRIOS:
+SEGURANçA DE SOBREVIVÊNCIA A RISCOS CIRCUNSTANCIAIS:
+- Ser socorrido em situações de emergência e de calamidade pública.
+SEGURANçA DE ACOLHIDA:
+- Ter acesso a provisões para necessidades básicas;
+- Ter acesso a espaço provisório de acolhida para cuidados pessoais, repouso e alimentação ou
+dispor de condições para acessar outras alternativas de acolhimento.
+SEGURANçA DE CONVÍVIO OU VIVÊNCIA FAMILIAR, COMUNITÁRIA E SOCIAL:
+- Ter acesso a serviços e ações intersetoriais para a solução da situação enfrentada, em relação a
+abrigo, alimentação, saúde e moradia, dentre outras necessidades.
+CONDIçÕES E FORMAS DE ACESSO:
+CONDIçÕES: Famílias e indivíduos atingidos por situações de emergência e calamidade pública.
+FORMAS DE ACESSO: Por notificação de órgãos da administração pública municipal, da Defesa Civil
+e pela identificação da presença nas ruas.
+UNIDADE: Unidades referenciadas ao órgão gestor da Assistência Social.
+PERÍODO DE FUNCIONAMENTO: Na ocorrência das situações de emergência e de calamidades pú-
+blicas, mediante a mobilização de equipe de prontidão escalonada pelo regime de plantão, a ser
+acionada em qualquer horário e dia da semana.
+ABRANGÊNCIA: Municipal.
+ARTICULAçãO EM REDE:
+- Órgão da Defesa Civil;
+- Órgãos e serviços públicos municipais, distrital, estaduais e federal;
+- Organizações não governamentais e redes sociais de apoio.
+IMPACTO SOCIAL ESPERADO:
+CONTRIBUIR PARA:
+- Minimização de danos;
+- Proteção social a indivíduos e famílias;
+- Reconstrução das condições de vida familiar e comunitária.
+54
+
+--- pagina 56 ---
+0800 707 2003 www.mds.gov.br
