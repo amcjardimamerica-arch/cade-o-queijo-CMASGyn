@@ -1,0 +1,42 @@
+{
+ "ldo_2024_lei_11026_anexos.pdf": {
+  "sha256": "f1747b8181f74c2e5e05b1e3bfa374481ff0854a5625b52bddb20c29a4abbdbc",
+  "url": "https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2023/lo_20230815_000011026_ane_000000001.pdf",
+  "bytes_pdf": 3193632,
+  "paginas": 83,
+  "texto": "corpus/orcamento/ldo_2024_lei_11026_anexos.txt",
+  "bytes_txt": 224269
+ },
+ "ldo_2025_lei_11230_anexos.pdf": {
+  "sha256": "4088d061dcb05df047a24ba9f20f0a172f651182cdafad1aafa7763da7ec9976",
+  "url": "https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2024/lo_20240725_000011230_ane_000000001.pdf",
+  "bytes_pdf": 2144662,
+  "paginas": 66,
+  "texto": "corpus/orcamento/ldo_2025_lei_11230_anexos.txt",
+  "bytes_txt": 173904
+ },
+ "ldo_2026_lei_11589_anexos.pdf": {
+  "sha256": "d6304ffaad082ad1fa5945a4fbfdecb82ea225eb0d44a2ffbd20b9bc150359c6",
+  "url": "https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2026/lo_20260109_000011589_ane_000000001.pdf",
+  "bytes_pdf": 1677942,
+  "paginas": 62,
+  "texto": "corpus/orcamento/ldo_2026_lei_11589_anexos.txt",
+  "bytes_txt": 161697
+ },
+ "loa_2025_lei_11315_anexos.pdf": {
+  "sha256": "7eb9c0fde5596d92987ba685753cf97ee37bae047fb5c23380f5ae62a5e960fa",
+  "url": "https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2025/lo_20250107_000011315_ane_000000001.pdf",
+  "bytes_pdf": 2363402,
+  "paginas": 213,
+  "texto": "corpus/orcamento/loa_2025_lei_11315_anexos.txt",
+  "bytes_txt": 855425
+ },
+ "loa_2026_lei_11590_anexos.pdf": {
+  "sha256": "d1fc32c8deef66cd6e8085143b0de7071b08e9c2eaa50e2f4d54e5935ab9c7bc",
+  "url": "https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2026/lo_20260109_000011590_ane_000000001.pdf",
+  "bytes_pdf": 3759777,
+  "paginas": 220,
+  "texto": "corpus/orcamento/loa_2026_lei_11590_anexos.txt",
+  "bytes_txt": 901308
+ }
+}

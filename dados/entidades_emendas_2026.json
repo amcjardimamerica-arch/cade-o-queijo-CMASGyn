@@ -1,0 +1,376 @@
+{
+ "NAO_IDENTIFICADA": {
+  "valor": 2840000.0,
+  "n": 9,
+  "vereadores": [
+   "Aava Santiago",
+   "Daniela da Gilka",
+   "Henrique Alves",
+   "Oséias Varão",
+   "Thialu Guiotti",
+   "William do Armazém"
+  ]
+ },
+ "Associação Tio Cleobaldo": {
+  "valor": 100000.0,
+  "n": 1,
+  "vereadores": [
+   "Aava Santiago"
+  ]
+ },
+ "Centro de": {
+  "valor": 537475.2,
+  "n": 4,
+  "vereadores": [
+   "Coronel Urzêda",
+   "Daniela da Gilka",
+   "Heyler Leão"
+  ]
+ },
+ "Casa Juvenil Vida Nova voltados ao fo": {
+  "valor": 250000.0,
+  "n": 1,
+  "vereadores": [
+   "Coronel Urzêda"
+  ]
+ },
+ "Abrigo dos Idosos São Vicente de Paulo de Goiânia voltados a": {
+  "valor": 150000.0,
+  "n": 1,
+  "vereadores": [
+   "Coronel Urzêda"
+  ]
+ },
+ "Associação Semente da Vida - P": {
+  "valor": 100000.0,
+  "n": 1,
+  "vereadores": [
+   "Coronel Urzêda"
+  ]
+ },
+ "Associação dos Idosos do Ja": {
+  "valor": 60000.0,
+  "n": 1,
+  "vereadores": [
+   "Coronel Urzêda"
+  ]
+ },
+ "Centro de T": {
+  "valor": 150000.0,
+  "n": 1,
+  "vereadores": [
+   "Coronel Urzêda"
+  ]
+ },
+ "Associação de Pais, Mest": {
+  "valor": 100000.0,
+  "n": 1,
+  "vereadores": [
+   "Coronel Urzêda"
+  ]
+ },
+ "Associação Comunitá": {
+  "valor": 51608.29,
+  "n": 1,
+  "vereadores": [
+   "Coronel Urzêda"
+  ]
+ },
+ "Associação de Pais e Amigos dos Excepcionais de Goiânia - AP": {
+  "valor": 60000.0,
+  "n": 1,
+  "vereadores": [
+   "Coronel Urzêda"
+  ]
+ },
+ "Instituto Base - Instituto B": {
+  "valor": 1550000.0,
+  "n": 2,
+  "vereadores": [
+   "Daniela da Gilka",
+   "Geverson Abel"
+  ]
+ },
+ "Instituto Social": {
+  "valor": 150000.0,
+  "n": 1,
+  "vereadores": [
+   "Daniela da Gilka"
+  ]
+ },
+ "Associação Ama": {
+  "valor": 50000.0,
+  "n": 1,
+  "vereadores": [
+   "Daniela da Gilka"
+  ]
+ },
+ "Associação Celso Junio": {
+  "valor": 40000.0,
+  "n": 1,
+  "vereadores": [
+   "Daniela da Gilka"
+  ]
+ },
+ "Associação Vida Nova Fabiano de C": {
+  "valor": 50000.0,
+  "n": 1,
+  "vereadores": [
+   "Daniela da Gilka"
+  ]
+ },
+ "Associação Goiana de Atualização e": {
+  "valor": 250000.0,
+  "n": 1,
+  "vereadores": [
+   "Daniela da Gilka"
+  ]
+ },
+ "Centro de t": {
+  "valor": 150000.0,
+  "n": 1,
+  "vereadores": [
+   "Daniela da Gilka"
+  ]
+ },
+ "Grupo pela Vidda de Goiânia em benefício especialmente de pe": {
+  "valor": 70000.0,
+  "n": 1,
+  "vereadores": [
+   "Daniela da Gilka"
+  ]
+ },
+ "Lar das C": {
+  "valor": 40000.0,
+  "n": 1,
+  "vereadores": [
+   "Daniela da Gilka"
+  ]
+ },
+ "Centro de Atividades Integ": {
+  "valor": 400000.0,
+  "n": 1,
+  "vereadores": [
+   "Dr. Gustavo"
+  ]
+ },
+ "Associação de Educação Cultu": {
+  "valor": 50000.0,
+  "n": 1,
+  "vereadores": [
+   "Fabrício Rosa"
+  ]
+ },
+ "Instituto pa": {
+  "valor": 20000.0,
+  "n": 1,
+  "vereadores": [
+   "Fabrício Rosa"
+  ]
+ },
+ "Federação Quilombola\" - Coo": {
+  "valor": 20000.0,
+  "n": 1,
+  "vereadores": [
+   "Fabrício Rosa"
+  ]
+ },
+ "Obras Sociais do Cent": {
+  "valor": 250000.0,
+  "n": 1,
+  "vereadores": [
+   "Romário Policarpo"
+  ]
+ },
+ "Centro de Assistência Social - Mat": {
+  "valor": 150000.0,
+  "n": 1,
+  "vereadores": [
+   "Romário Policarpo"
+  ]
+ },
+ "Núcleo de A": {
+  "valor": 150000.0,
+  "n": 1,
+  "vereadores": [
+   "Igor Franco"
+  ]
+ },
+ "Grupo pela Vidda de Goiânia pa": {
+  "valor": 400000.0,
+  "n": 1,
+  "vereadores": [
+   "Isaías Ribeiro"
+  ]
+ },
+ "Associação Educacional Abençoa": {
+  "valor": 200000.0,
+  "n": 1,
+  "vereadores": [
+   "Isaías Ribeiro"
+  ]
+ },
+ "SOCIEDADE GOIANA DE CULTU": {
+  "valor": 100000.0,
+  "n": 1,
+  "vereadores": [
+   "Katia Maria"
+  ]
+ },
+ "INSTITUTO AMA": {
+  "valor": 70000.0,
+  "n": 1,
+  "vereadores": [
+   "Katia Maria"
+  ]
+ },
+ "CENTRO DE": {
+  "valor": 200000.0,
+  "n": 7,
+  "vereadores": [
+   "Katia Maria",
+   "Rose Cruvinel"
+  ]
+ },
+ "ASSOCIAÇÃO S.O.S. VIDAS": {
+  "valor": 2001608.29,
+  "n": 5,
+  "vereadores": [
+   "Lucas Vergílio"
+  ]
+ },
+ "INSTITUTO AD CIDADE DE AMO": {
+  "valor": 300000.0,
+  "n": 1,
+  "vereadores": [
+   "Lucas Vergílio"
+  ]
+ },
+ "ASSOCIAÇÃO SE": {
+  "valor": 200000.0,
+  "n": 2,
+  "vereadores": [
+   "Lucas Vergílio",
+   "Sanches da Federal"
+  ]
+ },
+ "ASSOCIAÇÃO MAÇÔNICA DE ASSISTÊNCIA SOCIAL DO ESTADO DE GOIÁS": {
+  "valor": 250000.0,
+  "n": 1,
+  "vereadores": [
+   "Major Vitor Hugo"
+  ]
+ },
+ "ASSOCIAÇÃO UNIDOS PA": {
+  "valor": 60000.0,
+  "n": 1,
+  "vereadores": [
+   "Oséias Varão"
+  ]
+ },
+ "ASSOCIAÇÃO DOS IDOSOS DO JA": {
+  "valor": 50000.0,
+  "n": 1,
+  "vereadores": [
+   "Oséias Varão"
+  ]
+ },
+ "Associação Tio Cleobaldo com vistas a assegu": {
+  "valor": 30000.0,
+  "n": 1,
+  "vereadores": [
+   "Prof. Edward"
+  ]
+ },
+ "Centro Espí": {
+  "valor": 30000.0,
+  "n": 1,
+  "vereadores": [
+   "Prof. Edward"
+  ]
+ },
+ "ASSOCIAÇÃO BENEFICENTE C": {
+  "valor": 100000.0,
+  "n": 1,
+  "vereadores": [
+   "Rose Cruvinel"
+  ]
+ },
+ "INSTITUTO INOVAÇÃO pa": {
+  "valor": 30000.0,
+  "n": 1,
+  "vereadores": [
+   "Sanches da Federal"
+  ]
+ },
+ "ASSOCIAÇÃO BENEFICENTE MINISTÉ": {
+  "valor": 70000.0,
+  "n": 1,
+  "vereadores": [
+   "Thialu Guiotti"
+  ]
+ },
+ "INSTITUTO BASE- INSTITUTO B": {
+  "valor": 500320.0,
+  "n": 1,
+  "vereadores": [
+   "Tião Peixoto"
+  ]
+ },
+ "GRUPO AMO": {
+  "valor": 40000.0,
+  "n": 1,
+  "vereadores": [
+   "Welton Lemos"
+  ]
+ },
+ "ASSOCIAÇÃO EBENÉZE": {
+  "valor": 50000.0,
+  "n": 2,
+  "vereadores": [
+   "Welton Lemos"
+  ]
+ },
+ "CASA DE APOIO E P": {
+  "valor": 50000.0,
+  "n": 1,
+  "vereadores": [
+   "Welton Lemos"
+  ]
+ },
+ "ASSOCIAÇÃO METODISTA ASSISTENCIAL DE EDUCAÇÃO INFANTIL - AMA": {
+  "valor": 40000.0,
+  "n": 1,
+  "vereadores": [
+   "Welton Lemos"
+  ]
+ },
+ "CENTRO DE O": {
+  "valor": 200000.0,
+  "n": 1,
+  "vereadores": [
+   "Willian Veloso"
+  ]
+ },
+ "ASSOCIAÇÃO DE MO": {
+  "valor": 20000.0,
+  "n": 1,
+  "vereadores": [
+   "Willian Veloso"
+  ]
+ },
+ "ASSOCIAÇÃO GOIANA DE ATUALIZAÇÃO E": {
+  "valor": 30000.0,
+  "n": 1,
+  "vereadores": [
+   "Willian Veloso"
+  ]
+ },
+ "FEDERAÇÃO NACIONAL DAS COMUNIDADES TE": {
+  "valor": 50000.0,
+  "n": 1,
+  "vereadores": [
+   "Willian Veloso"
+  ]
+ }
+}
