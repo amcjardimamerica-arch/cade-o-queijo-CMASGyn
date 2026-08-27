@@ -1,8 +1,8 @@
 {
-  "gerado_em": "2026-08-27T21:46:15.915958+00:00",
-  "corpus_sha256": "81917b1362eeba74d1040b238e38503d6e98427f29b28ce2608468d027b4b4de",
-  "corpus_gerado_em": "2026-08-26T00:43:28.743829+00:00",
-  "normas_no_corpus": 291,
+  "gerado_em": "2026-08-27T22:27:05.510368+00:00",
+  "corpus_sha256": "4025e63c87a12e6a8440a3ea0621f66e58626bc3860566acd8923b7d06fa2b0d",
+  "corpus_gerado_em": "2026-08-27T22:27:03.004037+00:00",
+  "normas_no_corpus": 17,
   "extraidos": {
     "percentual_igd_controle_social": {
       "regex": "(?:no\\s+m[íi]nimo|pelo\\s+menos)\\s+(\\d{1,3})\\s*%[^.]{0,240}(?:IGD|[ÍIí]ndice\\s+de\\s+Gest[ãa]o\\s+Descentralizada)[^.]{0,240}(?:controle\\s+social|conselho[s]?\\s+de\\s+assist)",
@@ -11,12 +11,7 @@
       "ocorrencias": [
         {
           "valor": 10,
-          "fonte": "RES202 2025",
-          "trecho": "no mínimo 10% do valor repassado mensalmente pelo Índice de Gestão Descentralizada do Sistema Único da Assistência Social - IGD/SUAS e do Índice de Gestão Descentralizada do Programa Bolsa Família - I"
-        },
-        {
-          "valor": 10,
-          "fonte": "RESOLUÇÃO CNAS/MDS Nº 202, DE 25 DE JULHO DE 2025",
+          "fonte": "Resolução CNAS/MDS 202/2025 — piso de 10% ao controle social",
           "trecho": "no mínimo 10% do valor repassado mensalmente pelo Índice de Gestão Descentralizada do Sistema Único da Assistência Social - IGD/SUAS e do Índice de Gestão Descentralizada do Programa Bolsa Família - I"
         }
       ],
@@ -30,12 +25,7 @@
       "ocorrencias": [
         {
           "valor": 4,
-          "fonte": "RES202 2025",
-          "trecho": "prestação de contas a cada 4 meses"
-        },
-        {
-          "valor": 4,
-          "fonte": "RESOLUÇÃO CNAS/MDS Nº 202, DE 25 DE JULHO DE 2025",
+          "fonte": "Resolução CNAS/MDS 202/2025 — piso de 10% ao controle social",
           "trecho": "prestação de contas a cada 4 meses"
         }
       ],
@@ -47,14 +37,8 @@
       "somente_em": "12\\.?527",
       "tipo": "inteiro",
       "descricao": "Prazo de resposta ao pedido de acesso à informação",
-      "ocorrencias": [
-        {
-          "valor": 20,
-          "fonte": "LEI 12527 2011",
-          "trecho": "prazo não superior a 20 (vinte) dias"
-        }
-      ],
-      "valor_vigente": 20,
+      "ocorrencias": [],
+      "valor_vigente": null,
       "conflito": false
     },
     "prazo_prorrogacao_lai_dias": {
@@ -62,62 +46,24 @@
       "somente_em": "12\\.?527",
       "tipo": "inteiro",
       "descricao": "Prorrogação do prazo de resposta",
-      "ocorrencias": [
-        {
-          "valor": 10,
-          "fonte": "LEI 12527 2011",
-          "trecho": "prorrogado por mais 10 (dez) dias"
-        }
-      ],
-      "valor_vigente": 10,
+      "ocorrencias": [],
+      "valor_vigente": null,
       "conflito": false
     },
     "prazo_recurso_lai_dias": {
       "regex": "recurso[^.]{0,120}?prazo\\s+de\\s+(\\d{1,2})\\s*\\(\\w+\\)\\s*dias",
       "tipo": "inteiro",
       "descricao": "Prazo recursal em pedido de acesso à informação",
-      "ocorrencias": [
-        {
-          "valor": 60,
-          "fonte": "CONSTITUICAO FEDERAL",
-          "trecho": "recursos não tenham sido reclamados por prazo superior a 20 (vinte) anos serão encerradas após o prazo de 60 (sessenta) dias"
-        },
-        {
-          "valor": 10,
-          "fonte": "LEI 12527 2011",
-          "trecho": "recurso contra a decisão no prazo de 10 (dez) dias"
-        },
-        {
-          "valor": 5,
-          "fonte": "LEI 12527 2011",
-          "trecho": "recurso será dirigido à autoridade hierarquicamente superior à que exarou a decisão impugnada, que deverá se manifestar no prazo de 5 (cinco) dias"
-        },
-        {
-          "valor": 3,
-          "fonte": "LEI 14133 2021",
-          "trecho": "recurso, no prazo de 3 (três) dias"
-        },
-        {
-          "valor": 15,
-          "fonte": "LEI 14133 2021",
-          "trecho": "recurso no prazo de 15 (quinze) dias"
-        }
-      ],
-      "valor_vigente": 15,
-      "conflito": true
+      "ocorrencias": [],
+      "valor_vigente": null,
+      "conflito": false
     },
     "periodicidade_conferencia_anos": {
       "regex": "confer[êe]ncias?[^.]{0,160}?a\\s+cada\\s+(\\d)\\s*\\(\\w+\\)\\s*anos",
       "tipo": "inteiro",
       "descricao": "Periodicidade da conferência de assistência social",
-      "ocorrencias": [
-        {
-          "valor": 2,
-          "fonte": "RESOLUÇÃO CNAS/MDS Nº 157, DE 22 DE MAIO DE 2024",
-          "trecho": "conferência extraordinária ou conferências livres, com caráter consultivo ou deliberativo, no mínimo a cada 2 (dois) anos"
-        }
-      ],
-      "valor_vigente": 2,
+      "ocorrencias": [],
+      "valor_vigente": null,
       "conflito": false
     },
     "mandato_conselheiro_anos": {
@@ -126,71 +72,20 @@
       "descricao": "Duração do mandato de conselheiro",
       "ocorrencias": [
         {
-          "valor": 4,
-          "fonte": "CONSTITUICAO FEDERAL",
-          "trecho": "mandato de 4 (quatro) anos"
-        },
-        {
           "valor": 2,
-          "fonte": "CONSTITUICAO FEDERAL",
-          "trecho": "mandato de 2 (dois) anos"
-        },
-        {
-          "valor": 4,
-          "fonte": "CONSTITUICAO FEDERAL",
-          "trecho": "mandato do Presidente da República é de 4 (quatro) anos"
-        },
-        {
-          "valor": 2,
-          "fonte": "CONSTITUICAO FEDERAL",
-          "trecho": "mandato de 2 (dois) anos"
-        },
-        {
-          "valor": 2,
-          "fonte": "CONSTITUICAO FEDERAL",
-          "trecho": "mandato de 2 (dois) anos"
-        },
-        {
-          "valor": 2,
-          "fonte": "LEI 12527 2011",
-          "trecho": "mandato de 2 (dois) anos"
-        },
-        {
-          "valor": 2,
-          "fonte": "LEI 8742 1993 LOAS",
-          "trecho": "mandato de 2 (dois) anos"
-        },
-        {
-          "valor": 2,
-          "fonte": "LEI 9009 2010 CMASGYN",
+          "fonte": "Lei municipal 9.009/2010 — rege o CMASGyn; revogou a Lei 7.532/1995",
           "trecho": "mandato de 02 (dois) anos"
-        },
-        {
-          "valor": 2,
-          "fonte": "RESOLUÇÃO CNAS/MDS Nº 100, DE 20 DE ABRIL DE 2023",
-          "trecho": "mandato de 2 (dois) anos"
-        },
-        {
-          "valor": 2,
-          "fonte": "RESOLUÇÃO CNAS/MDS Nº 157, DE 22 DE MAIO DE 2024",
-          "trecho": "mandato de 2 (dois) anos"
         }
       ],
       "valor_vigente": 2,
-      "conflito": true
+      "conflito": false
     },
     "prazo_analise_inscricao_dias": {
       "regex": "(?:an[áa]lise|aprecia[çc][ãa]o)[^.]{0,140}?(?:prazo\\s+de|em\\s+at[ée])\\s+(\\d{1,3})\\s*\\(?\\w*\\)?\\s*dias",
       "tipo": "inteiro",
       "descricao": "Prazo para apreciação de pedido de inscrição de entidade",
-      "ocorrencias": [
-        {
-          "valor": 5,
-          "fonte": "LEI 12527 2011",
-          "trecho": "apreciação de pelo menos uma autoridade hierarquicamente superior àquela que exarou a decisão impugnada, que deliberará no prazo de 5 (cinco) dias"
-        }
-      ],
-      "valor_vigente": 5,
+      "ocorrencias": [],
+      "valor_vigente": null,
       "conflito": false
     }
   },
@@ -227,8 +122,5 @@
       "regra": "IGD-02"
     }
   },
-  "antinomias": [
-    "prazo_recurso_lai_dias",
-    "mandato_conselheiro_anos"
-  ]
+  "antinomias": []
 }

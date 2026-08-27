@@ -87,6 +87,12 @@
     "motivo": "idem"
    },
    "_via_recomendada": "Busca dirigida em espelho institucional, norma a norma, com conferencia de sha256. Foi assim que a 109/2009 entrou. O ciclo mensal legal deve tentar automaticamente."
+  },
+  "ultima_captura": {
+   "executado_em": "2026-08-27",
+   "novos": 0,
+   "falhas": 0,
+   "total_com_texto": 0
   }
  },
  "com_texto_integral": {
