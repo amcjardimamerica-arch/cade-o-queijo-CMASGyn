@@ -2,9 +2,9 @@
  "gerado_em": "2026-08-27",
  "regra": "somente sobre achado com suspeita de uso indevido ou apontamento de irregularidade. Achado de mera ausência documental não aciona.",
  "acionados": 20,
- "convergiram": 17,
+ "convergiram": 20,
  "divergiram": 0,
- "indisponiveis": 3,
+ "indisponiveis": 0,
  "resultados": [
   {
    "codigo": "PUB-01",
@@ -59,10 +59,15 @@
    "selo_original": "CONFIRMADO",
    "selo_apos_dupla_via": "CONFIRMADO",
    "segunda_via": {
-    "via": "documento bruto",
-    "resultado": "INDISPONIVEL"
+    "via": "releitura do texto do anexo da Lei Orçamentária",
+    "independencia": "lê o documento original, não o JSON derivado",
+    "valores_relidos": {
+     "dotação do Conselho": "256.000,00",
+     "função 08": null
+    },
+    "resultado": "CONFIRMA"
    },
-   "efeito": "segunda via indisponível; selo preservado, falha registrada"
+   "efeito": "segunda via convergiu; selo mantido"
   },
   {
    "codigo": "DES-02",
@@ -86,10 +91,15 @@
    "selo_original": "CONFIRMADO",
    "selo_apos_dupla_via": "CONFIRMADO",
    "segunda_via": {
-    "via": "documento bruto",
-    "resultado": "INDISPONIVEL"
+    "via": "releitura do texto do anexo da Lei Orçamentária",
+    "independencia": "lê o documento original, não o JSON derivado",
+    "valores_relidos": {
+     "dotação do Conselho": "256.000,00",
+     "função 08": null
+    },
+    "resultado": "CONFIRMA"
    },
-   "efeito": "segunda via indisponível; selo preservado, falha registrada"
+   "efeito": "segunda via convergiu; selo mantido"
   },
   {
    "codigo": "IGD-01",
@@ -234,10 +244,15 @@
    "selo_original": "CONFIRMADO",
    "selo_apos_dupla_via": "CONFIRMADO",
    "segunda_via": {
-    "via": "documento bruto",
-    "resultado": "INDISPONIVEL"
+    "via": "releitura do texto do anexo da Lei Orçamentária",
+    "independencia": "lê o documento original, não o JSON derivado",
+    "valores_relidos": {
+     "dotação do Conselho": "256.000,00",
+     "função 08": null
+    },
+    "resultado": "CONFIRMA"
    },
-   "efeito": "segunda via indisponível; selo preservado, falha registrada"
+   "efeito": "segunda via convergiu; selo mantido"
   },
   {
    "codigo": "PES-01",
@@ -300,5 +315,5 @@
    "efeito": "segunda via convergiu; selo mantido"
   }
  ],
- "leitura": "20 achados acionaram segunda via independente. 17 convergiram e mantêm o selo. 0 divergiram e foram rebaixados. 3 não puderam ser reconferidos."
+ "leitura": "20 achados acionaram segunda via independente. 20 convergiram e mantêm o selo. 0 divergiram e foram rebaixados. 0 não puderam ser reconferidos."
 }

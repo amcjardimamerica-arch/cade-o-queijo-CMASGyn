@@ -66,7 +66,7 @@ def via_aritmetica(a):
 
 def via_documento_bruto(a):
     """Relê o texto do anexo orçamentário, não o JSON derivado."""
-    p = RAIZ / "corpus_txt" / "orcamento" / "loa_2026_lei_11590_anexos.txt"
+    p = RAIZ / "corpus" / "orcamento" / "loa_2026_lei_11590_anexos.txt"
     if not p.exists(): return {"via": "documento bruto", "resultado": "INDISPONIVEL"}
     t = p.read_text(encoding="utf-8")
     achou = {}

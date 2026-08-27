@@ -1,0 +1,1859 @@
+{
+ "_meta": {
+  "titulo": "Vigilância CMASGyn e SEMASDH — Goiânia",
+  "exportado_em": "2026-08-27",
+  "origem": "Claude Opus 5",
+  "finalidade": "Continuar a investigação em outra conta ou outro chat, sem perda de estado",
+  "repositorio": "https://github.com/amcjardimamerica-arch/cmasgyn-vigilancia",
+  "branch": "main",
+  "commits": 21,
+  "ultimo_commit": "a75d221 corpus v2.0 com controle externo (TCM-GO, TCE-GO, MP-GO, MPF, CNMP) e 18 itens quebrados corrigidos; padroes de qualidade com niveis de prova,",
+  "arquivos_no_repositorio": 454,
+  "aviso_de_credencial": "O token do GitHub usado nesta conversa foi exposto em texto claro e DEVE ser revogado. Este arquivo não contém credencial alguma. Gere um token novo, de escopo restrito, quando for retomar."
+ },
+ "papel": {
+  "funcao": "Assessor jurídico de fiscalização da assistência social de Goiânia, com o rigor de auditor de tribunal de contas e de promotor de justiça",
+  "cliente": "AMC Jardim América",
+  "trilhas": {
+   "SEMASDH": "Secretaria Municipal de Políticas para as Mulheres, Assistência Social e Direitos Humanos (antes SEMAS; mudou o nome, não a atribuição) e Fundo Municipal. Unidades 3601 e 3650.",
+   "CMASGYN": "Conselho Municipal de Assistência Social. Trilha de controle social. Nunca misturar com a de execução."
+  },
+  "regras_de_rigor": [
+   "Todo achado carrega selo CONFIRMADO, INDICIARIO ou INCONCLUSIVO_POR_DOCUMENTO_FALTANTE.",
+   "Índice global é piso; em peça, usar o confirmado por dupla via.",
+   "Sobrepreço só por perícia com preço de mercado, nunca por estatística sobre Diário Oficial.",
+   "Dotação e empenho não comprovam saída de dinheiro.",
+   "A extração de inscrições capta o cadastro do próprio Município; triagem antes de qualquer soma.",
+   "Dado faltante é achado, não silêncio.",
+   "Relatório traz apenas desconformidade; conformidade é omitida.",
+   "Pessoa física só pelo primeiro nome, minimizada na extração e não na exibição.",
+   "Citar artigo e lei por extenso; sem jurisprudência nem doutrina.",
+   "Nada é peça processual sem revisão do advogado — Artigo 32 da Lei 8.906/1994."
+  ]
+ },
+ "correcoes_juridicas_ja_aplicadas": [
+  {
+   "erro": "Lei municipal 7.532/1995 vigente",
+   "correto": "REVOGADA pelo Artigo 21 da Lei 9.009/2010. Reincidiu uma vez no config/corpus.yml e foi removida de novo. Vigiar."
+  },
+  {
+   "erro": "IGD-PBF na Lei 10.836/2004",
+   "correto": "Migrou para a Lei 14.601/2023, Artigo 14, § 7º."
+  },
+  {
+   "erro": "Antinomia entre 3% e 10% do IGD",
+   "correto": "Não há. A lei fixa piso de 3% e delega ao Ministério; a Resolução CNAS/MDS 202/2025 exerce a delegação elevando a 10% desde janeiro de 2026."
+  },
+  {
+   "erro": "Percentual constitucional de impostos para assistência social",
+   "correto": "NÃO EXISTE. Saúde 15% (Artigo 198, § 2º, III), educação 25% (Artigo 212). O Artigo 204, parágrafo único, alcança só Estados e Distrito Federal."
+  },
+  {
+   "erro": "LC 273/2014 seria só do Fundo do Meio Ambiente",
+   "correto": "O Artigo 4º alcança sim a Lei 7.531/1995 (teto de 30%). A mesma lei aplica teto idêntico a outros fundos, com redação quase igual — conferir artigo por artigo."
+  },
+  {
+   "erro": "Base do IGD pelos decretos de crédito",
+   "correto": "Subestima em 2,4 vezes. A base é o repasse efetivo da planilha do Fundo Nacional, competência a competência."
+  },
+  {
+   "erro": "Dotação do CMASGyn inexistente",
+   "correto": "Existe: ação 3650.0824401082.591, R$ 256.000. O que não existe é execução publicada."
+  }
+ ],
+ "achados": {
+  "total": 32,
+  "por_severidade": {
+   "critica": 8,
+   "alta": 19,
+   "media": 5
+  },
+  "por_selo": {
+   "CONFIRMADO": 24,
+   "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE": 5,
+   "INDICIARIO": 3
+  },
+  "documentos_requisitados": 101,
+  "lista": [
+   {
+    "bloco": "ADM",
+    "codigo": "PUB-01",
+    "severidade": "critica",
+    "selo": "CONFIRMADO",
+    "titulo": "Diário Oficial sem edição desde 29/07/2026",
+    "norma": "Artigo 37, caput, da Constituicao Federal; Artigo 8º, § 3º, III e VI da Lei 12.527/2011; Artigo 10, § 2º, da Lei municipal 9.009/2010"
+   },
+   {
+    "bloco": "ADM",
+    "codigo": "PUB-02",
+    "severidade": "critica",
+    "selo": "CONFIRMADO",
+    "titulo": "Atos do Conselho sem publicação, confirmado por dupla via",
+    "norma": "Artigo 10, § 2º, da Lei municipal 9.009/2010"
+   },
+   {
+    "bloco": "CMAS",
+    "codigo": "CMAS-FIN-05",
+    "severidade": "critica",
+    "selo": "CONFIRMADO",
+    "titulo": "Piso federal do Índice cumprido em 22,6%",
+    "norma": "Artigo 6º da Resolução CNAS/MDS 202/2025"
+   },
+   {
+    "bloco": "FIN",
+    "codigo": "REC-01",
+    "severidade": "critica",
+    "selo": "CONFIRMADO",
+    "titulo": "Aporte próprio do Município no Fundo é simbólico",
+    "norma": "Artigo 30, parágrafo único, e Artigo 30-A da Lei 8.742/1993"
+   },
+   {
+    "bloco": "FIN",
+    "codigo": "DES-02",
+    "severidade": "critica",
+    "selo": "CONFIRMADO",
+    "titulo": "Execução da despesa não rastreável",
+    "norma": "Artigos 58, 62 e 63 da Lei 4.320/1964; Artigo 48-A, inciso I, da Lei Complementar 101/2000"
+   },
+   {
+    "bloco": "FIN",
+    "codigo": "FMAS-01",
+    "severidade": "critica",
+    "selo": "CONFIRMADO",
+    "titulo": "Recurso do Tesouro custeia o que está fora do controle do Conselho",
+    "norma": "Artigos 2º, § 1º, 3º e 5º da Lei municipal 7.531/1995; Artigo 19, parágrafo único, da Lei municipal 8.293/2004"
+   },
+   {
+    "bloco": "FIN",
+    "codigo": "IGD-01",
+    "severidade": "critica",
+    "selo": "CONFIRMADO",
+    "titulo": "Piso de 10% do Índice de Gestão Descentralizada cumprido em apenas 9.5%",
+    "norma": "Artigo 6º da Resolução CNAS/MDS 202/2025; Artigo 12-A, § 4º, da Lei 8.742/1993; Artigo 14, § 7º, da Lei 14.601/2023"
+   },
+   {
+    "bloco": "PES",
+    "codigo": "PES-07",
+    "severidade": "critica",
+    "selo": "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE",
+    "titulo": "Vedação do IGD quanto a pessoal não verificável",
+    "norma": "Artigo 12-A paragrafo 4 da Lei 8.742/1993"
+   },
+   {
+    "bloco": "ADM",
+    "codigo": "ATA-01",
+    "severidade": "alta",
+    "selo": "CONFIRMADO",
+    "titulo": "Nenhuma ata de plenária publicada",
+    "norma": "Artigo 10, caput, da Lei municipal 9.009/2010"
+   },
+   {
+    "bloco": "ADM",
+    "codigo": "CTA-01",
+    "severidade": "alta",
+    "selo": "CONFIRMADO",
+    "titulo": "Apreciação mensal das contas do Fundo sem registro",
+    "norma": "Artigo 2º, inciso IV, alínea b, da Lei municipal 9.009/2010"
+   },
+   {
+    "bloco": "ADM",
+    "codigo": "CTA-02",
+    "severidade": "alta",
+    "selo": "CONFIRMADO",
+    "titulo": "Prestação de contas quadrimestral ao Conselho não demonstrada",
+    "norma": "Artigo 6º, § 5º, da Resolução CNAS/MDS 202/2025"
+   },
+   {
+    "bloco": "ADM",
+    "codigo": "LEG-01",
+    "severidade": "alta",
+    "selo": "INDICIARIO",
+    "titulo": "Fundamento legal revogado invocado em 2026",
+    "norma": "Artigo 193, inciso II, da Lei 14.133/2021"
+   },
+   {
+    "bloco": "CMAS",
+    "codigo": "CMAS-FIN-01",
+    "severidade": "alta",
+    "selo": "CONFIRMADO",
+    "titulo": "Conselho sem dotação de diárias e passagens",
+    "norma": "Artigo 8º e artigo 2º, incisos VI e XII, da Lei municipal 9.009/2010"
+   },
+   {
+    "bloco": "CMAS",
+    "codigo": "CMAS-FIN-02",
+    "severidade": "alta",
+    "selo": "CONFIRMADO",
+    "titulo": "Nenhum apoio financeiro direto ao conselheiro",
+    "norma": "Artigo 8º da Lei municipal 9.009/2010; artigo 3º quanto à paridade"
+   },
+   {
+    "bloco": "CMAS",
+    "codigo": "CMAS-FIN-04",
+    "severidade": "alta",
+    "selo": "CONFIRMADO",
+    "titulo": "Apoio técnico do Conselho depende integralmente do fiscalizado",
+    "norma": "Artigo 6º, incisos III e V, e artigo 8º da Lei municipal 9.009/2010"
+   },
+   {
+    "bloco": "CMAS",
+    "codigo": "CMAS-FIN-07",
+    "severidade": "alta",
+    "selo": "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE",
+    "titulo": "Execução da dotação do Conselho não publicada",
+    "norma": "Artigos 58, 62 e 63 da Lei 4.320/1964; artigo 48-A da Lei Complementar 101/2000"
+   },
+   {
+    "bloco": "FIN",
+    "codigo": "REC-02",
+    "severidade": "alta",
+    "selo": "CONFIRMADO",
+    "titulo": "Transferências sem ente de origem identificável",
+    "norma": "Artigos 6º e 13 da Lei 4.320/1964; Artigo 48-A da Lei Complementar 101/2000"
+   },
+   {
+    "bloco": "FIN",
+    "codigo": "DES-01",
+    "severidade": "alta",
+    "selo": "CONFIRMADO",
+    "titulo": "Concentração numa ação genérica impede saber o destino",
+    "norma": "Artigo 13 da Lei 4.320/1964"
+   },
+   {
+    "bloco": "FIN",
+    "codigo": "IGD-02",
+    "severidade": "alta",
+    "selo": "CONFIRMADO",
+    "titulo": "Dotação do Conselho desproporcional ao fundo que fiscaliza",
+    "norma": "Artigo 8º da Lei municipal 9.009/2010; Artigo 6º, § 4º, da Resolução CNAS/MDS 202/2025"
+   },
+   {
+    "bloco": "FIN",
+    "codigo": "EMD-01",
+    "severidade": "alta",
+    "selo": "INDICIARIO",
+    "titulo": "Canal de emendas rivaliza com a política pública",
+    "norma": "Artigos 29, 42 e 63 da Lei 13.019/2014; Artigo 2º, inciso IX, da Lei municipal 9.009/2010"
+   },
+   {
+    "bloco": "PES",
+    "codigo": "PES-01",
+    "severidade": "alta",
+    "selo": "CONFIRMADO",
+    "titulo": "Folha de pagamento invisível no acervo",
+    "norma": "Artigo 48-A inciso I da Lei Complementar 101/2000; Artigo 8 paragrafo 1 inciso III da Lei 12.527/2011"
+   },
+   {
+    "bloco": "PES",
+    "codigo": "PES-03",
+    "severidade": "alta",
+    "selo": "CONFIRMADO",
+    "titulo": "Concessão de diárias praticamente ausente do acervo",
+    "norma": "Artigo 37 caput da Constituicao Federal; Artigo 50 da Lei 9.784/1999"
+   },
+   {
+    "bloco": "PES",
+    "codigo": "PES-02",
+    "severidade": "alta",
+    "selo": "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE",
+    "titulo": "Teto de 30% para pessoal não aferível",
+    "norma": "ver config/criterios_pessoal.yml"
+   },
+   {
+    "bloco": "PES",
+    "codigo": "PES-08",
+    "severidade": "alta",
+    "selo": "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE",
+    "titulo": "Proporção entre efetivos e comissionados não aferível",
+    "norma": "ver config/criterios_pessoal.yml"
+   },
+   {
+    "bloco": "PES",
+    "codigo": "PES-09",
+    "severidade": "alta",
+    "selo": "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE",
+    "titulo": "Equipe de referência mínima não aferível",
+    "norma": "ver config/criterios_pessoal.yml"
+   },
+   {
+    "bloco": "SYS",
+    "codigo": "SYS-02",
+    "severidade": "alta",
+    "selo": "CONFIRMADO",
+    "titulo": "Classificação por natureza desalinhada do valor",
+    "norma": "defeito de extracao"
+   },
+   {
+    "bloco": "SYS",
+    "codigo": "SYS-03",
+    "severidade": "alta",
+    "selo": "CONFIRMADO",
+    "titulo": "Soma de repasses excede o total da função",
+    "norma": "defeito de agregacao"
+   },
+   {
+    "bloco": "CMAS",
+    "codigo": "CMAS-FIN-03",
+    "severidade": "media",
+    "selo": "CONFIRMADO",
+    "titulo": "3 rubricas do Conselho são dotação simbólica",
+    "norma": "Artigo 13 da Lei 4.320/1964"
+   },
+   {
+    "bloco": "CMAS",
+    "codigo": "CMAS-FIN-06",
+    "severidade": "media",
+    "selo": "CONFIRMADO",
+    "titulo": "Conselho ausente das metas e prioridades da Lei de Diretrizes",
+    "norma": "Artigo 165, § 2º, da Constituição Federal"
+   },
+   {
+    "bloco": "FIN",
+    "codigo": "REC-03",
+    "severidade": "media",
+    "selo": "INDICIARIO",
+    "titulo": "Rendimento de aplicação incompatível com execução regular",
+    "norma": "Artigo 43, § 1º, inciso I, da Lei 4.320/1964"
+   },
+   {
+    "bloco": "PES",
+    "codigo": "PES-04",
+    "severidade": "media",
+    "selo": "CONFIRMADO",
+    "titulo": "Prestação de contas de deslocamento não localizada",
+    "norma": "Artigo 63 da Lei 4.320/1964"
+   },
+   {
+    "bloco": "SYS",
+    "codigo": "SYS-05",
+    "severidade": "media",
+    "selo": "CONFIRMADO",
+    "titulo": "Lista de entidades contaminada",
+    "norma": "metodo"
+   }
+  ]
+ },
+ "numeros_centrais": {
+  "orcamento_municipal_2026": 10842253000,
+  "funcao_08_2026": 28440000,
+  "funcao_08_participacao_percent": 0.262,
+  "fundo_2026": 23218000,
+  "tesouro_no_fundo_2025": 1669000,
+  "tesouro_no_fundo_2026": 9000,
+  "queda_aporte_proprio_percent": -99.46,
+  "unidade_3601_fora_do_fundo": 81202000,
+  "ldo_meta_do_setor": 41265955.98,
+  "saldo_exercicios_anteriores_2026": 33059000,
+  "igd_base_repasse_efetivo": 1687502.57,
+  "igd_devido_10_por_cento": 168750.26,
+  "igd_reservado_fonte_federal": 16000,
+  "igd_cumprimento_percent": 9.5,
+  "igd_falta": 152750.26,
+  "cmasgyn_dotacao": 256000,
+  "cmasgyn_por_fonte": {
+   "1660": 16000,
+   "1661": 240000
+  },
+  "cmasgyn_proporcao_do_fundo_percent": 1.1,
+  "conselho_idoso_proporcao_percent": 9.98,
+  "repasses_federais_2024_2025": 29395626.18,
+  "atribuido_a_destinatario": 2360980.54,
+  "percentual_atribuido": 10.2,
+  "fanout_nao_atribuivel": 82,
+  "nivel_transparencia_percent": 27.0,
+  "diario_oficial_ultima_edicao": {
+   "numero": 8830,
+   "data": "2026-07-29",
+   "dias_uteis_sem_edicao": 18
+  }
+ },
+ "fluxo_2026": {
+  "fontes": [
+   {
+    "id": "f1",
+    "nome": "União — Fundo Nacional de Assistência Social",
+    "fonte": "1660",
+    "valor": 8250000,
+    "status": "comprovada",
+    "ente": "União"
+   },
+   {
+    "id": "f2",
+    "nome": "Estado — Assistência Social",
+    "fonte": "1661",
+    "valor": 6000000,
+    "status": "comprovada",
+    "ente": "Estado"
+   },
+   {
+    "id": "f3",
+    "nome": "Estado — Programas de Assistência Social",
+    "fonte": "1665",
+    "valor": 3104000,
+    "status": "comprovada",
+    "ente": "Estado"
+   },
+   {
+    "id": "f4",
+    "nome": "Rendimento de aplicação financeira",
+    "fonte": "própria",
+    "valor": 2574000,
+    "status": "comprovada",
+    "ente": "Fundo"
+   },
+   {
+    "id": "f5",
+    "nome": "Município — Tesouro Municipal",
+    "fonte": "tesouro",
+    "valor": 9000,
+    "status": "comprovada",
+    "ente": "Município"
+   },
+   {
+    "id": "f6",
+    "nome": "Transferências correntes sem fonte identificada",
+    "fonte": "—",
+    "valor": 2071000,
+    "status": "nao_comprovada",
+    "ente": "não identificado"
+   },
+   {
+    "id": "f7",
+    "nome": "Transferências de capital",
+    "fonte": "—",
+    "valor": 1115000,
+    "status": "nao_comprovada",
+    "ente": "não identificado"
+   },
+   {
+    "id": "f8",
+    "nome": "Outras receitas correntes",
+    "fonte": "—",
+    "valor": 95000,
+    "status": "nao_comprovada",
+    "ente": "não identificado"
+   }
+  ],
+  "contas": [
+   {
+    "id": "c1",
+    "nome": "Conta especial do Fundo Municipal de Assistência Social",
+    "valor": 23218000,
+    "unidade": "3650",
+    "status": "comprovada"
+   },
+   {
+    "id": "c2",
+    "nome": "Unidade orçamentária 3601 — Gabinete da Secretaria",
+    "valor": 81202000,
+    "unidade": "3601",
+    "status": "nao_comprovada"
+   }
+  ],
+  "acoes": [
+   {
+    "id": "3650.0824401082269",
+    "nome": "MANUTENCAO DOS SERVICOS E DA REDE",
+    "valor": 19913000,
+    "status": "nao_comprovada",
+    "falta": "Empenho, liquidação e pagamento; detalhamento por unidade e serviço"
+   },
+   {
+    "id": "3650.0824401092268",
+    "nome": "ACAO ACOLHER E CUIDAR",
+    "valor": 1569000,
+    "status": "nao_comprovada",
+    "falta": "Empenho, liquidação e pagamento; detalhamento por unidade e serviço"
+   },
+   {
+    "id": "3650.0824401082263",
+    "nome": "CAPACITACAO CONTINUADA SUAS",
+    "valor": 970000,
+    "status": "nao_comprovada",
+    "falta": "Empenho, liquidação e pagamento; detalhamento por unidade e serviço"
+   },
+   {
+    "id": "3650.2884600008003",
+    "nome": "CONTRIBUICAO AO PASEP",
+    "valor": 510000,
+    "status": "nao_comprovada",
+    "falta": "Empenho, liquidação e pagamento; detalhamento por unidade e serviço"
+   },
+   {
+    "id": "3650.0824401082591",
+    "nome": "MANUTENCAO DO CONSELHO MUNICIPAL DE ASSISTENCIA SOCIAL - CMASGYN",
+    "valor": 256000,
+    "status": "nao_comprovada",
+    "falta": "Empenho, liquidação e pagamento; detalhamento por unidade e serviço"
+   }
+  ],
+  "totais": {
+   "fonte_comprovada": 19937000,
+   "fonte_nao_comprovada": 3281000,
+   "despesa_comprovada": 1422609.94,
+   "despesa_sem_vinculo": 938370.6,
+   "fundo": 23218000,
+   "fora_do_fundo": 81202000
+  }
+ },
+ "destinatarios": [
+  {
+   "cnpj": "15.649.514/0001-40",
+   "razao_social": "FNS CONSTRUTORA E CONSULTORIA LTDA",
+   "nome_fantasia": "FNS CONSTRUTORA E CONSULTORIA",
+   "descricao": "15.649.514/0001-40 — FNS CONSTRUTORA E CONSULTORIA LTDA (nome fantasia: FNS CONSTRUTORA E CONSULTORIA)",
+   "natureza_juridica": "2062",
+   "sem_fins_lucrativos": false,
+   "atividade_economica": "Obras de terraplenagem",
+   "situacao_cadastral": "ATIVA",
+   "municipio": "GOIANIA",
+   "uf": "GO",
+   "valor_total_no_exercicio": 1054025.52,
+   "pagamentos": 1,
+   "competencias": [
+    "2026-06"
+   ],
+   "periodicidade": "ANUAL OU PONTUAL",
+   "criterio_periodicidade": "ocorrência única no exercício",
+   "valor_medio": 1054025.52,
+   "acumulado_mensal": [
+    {
+     "competencia": "2026-06",
+     "no_mes": 1054025.52,
+     "acumulado_no_ano": 1054025.52
+    }
+   ],
+   "instrumentos": [
+    "CONTRATO 08/2026",
+    "CONTRATO 61/2026",
+    "TERMO DE FOMENTO 008/2024"
+   ],
+   "tem_vinculo": true,
+   "finalidade": [
+    "folders e demais materiais de comunicação visual FUNDAMENTO LEGAL I: Fundamentado em contratação direta por dispensa de licitação na forma do disposto no artigo 75, II, d"
+   ],
+   "selo": "A_CONFERIR",
+   "ressalva": "Inscrição extraída da página do Diário Oficial. O vínculo com o instrumento só se confirma com o empenho individualizado.",
+   "alerta_incompatibilidade": "Instrumento de parceria com organização da sociedade civil celebrado com inscrição de natureza jurídica 2062, que não é entidade sem fins lucrativos. Ou a natureza jurídica mudou, ou a inscrição não é a beneficiária deste instrumento — a página do Diário reúne vários atos. Exige o processo para desempatar."
+  },
+  {
+   "cnpj": "17.439.987/0001-48",
+   "razao_social": "ASSOCIACAO DE SERVOS SAGRADA FAMILIA",
+   "nome_fantasia": "ASSOCIACAO DE SERVOS SAGRADA FAMILIA",
+   "descricao": "17.439.987/0001-48 — ASSOCIACAO DE SERVOS SAGRADA FAMILIA (nome fantasia: ASSOCIACAO DE SERVOS SAGRADA FAMILIA)",
+   "natureza_juridica": "3999",
+   "sem_fins_lucrativos": true,
+   "atividade_economica": "Atividades de associações de defesa de direitos sociais",
+   "situacao_cadastral": "ATIVA",
+   "municipio": "GOIANIA",
+   "uf": "GO",
+   "valor_total_no_exercicio": 300000.0,
+   "pagamentos": 1,
+   "competencias": [
+    "2026-01"
+   ],
+   "periodicidade": "ANUAL OU PONTUAL",
+   "criterio_periodicidade": "ocorrência única no exercício",
+   "valor_medio": 300000.0,
+   "acumulado_mensal": [
+    {
+     "competencia": "2026-01",
+     "no_mes": 300000.0,
+     "acumulado_no_ano": 300000.0
+    }
+   ],
+   "instrumentos": [],
+   "tem_vinculo": false,
+   "finalidade": [
+    "provenientes de esferas governamentais distintas; Considerando que a organização interna dos ﬂuxos processuais constitui instrumento de aprimoramento da gestão administra"
+   ],
+   "selo": "A_CONFERIR",
+   "ressalva": "Inscrição extraída da página do Diário Oficial. O vínculo com o instrumento só se confirma com o empenho individualizado.",
+   "alerta_incompatibilidade": null
+  },
+  {
+   "cnpj": "55.390.465/0001-98",
+   "razao_social": "CONSTRULUZ COMERCIO E IMPORTACAO DE MATERIAIS DE CONSTRUCAO E ILUMINACAO LTDA",
+   "nome_fantasia": "CONSTRULUZ",
+   "descricao": "55.390.465/0001-98 — CONSTRULUZ COMERCIO E IMPORTACAO DE MATERIAIS DE CONSTRUCAO E ILUMINACAO LTDA (nome fantasia: CONSTRULUZ)",
+   "natureza_juridica": "2062",
+   "sem_fins_lucrativos": false,
+   "atividade_economica": "Comércio varejista de materiais de construção em geral",
+   "situacao_cadastral": "ATIVA",
+   "municipio": "GOIANIA",
+   "uf": "GO",
+   "valor_total_no_exercicio": 257040.0,
+   "pagamentos": 1,
+   "competencias": [
+    "2026-04"
+   ],
+   "periodicidade": "ANUAL OU PONTUAL",
+   "criterio_periodicidade": "ocorrência única no exercício",
+   "valor_medio": 257040.0,
+   "acumulado_mensal": [
+    {
+     "competencia": "2026-04",
+     "no_mes": 257040.0,
+     "acumulado_no_ano": 257040.0
+    }
+   ],
+   "instrumentos": [],
+   "tem_vinculo": false,
+   "finalidade": [
+    "ndereço Rua 1105, Qd. 204, Lt. 23, Setor Pedro Ludovico, Goiânia, Goiás, objeto da matrícula n° R10/4.213, do 1º Cartório de Registro de Imóveis, de propriedade dos locad"
+   ],
+   "selo": "A_CONFERIR",
+   "ressalva": "Inscrição extraída da página do Diário Oficial. O vínculo com o instrumento só se confirma com o empenho individualizado.",
+   "alerta_incompatibilidade": null
+  },
+  {
+   "cnpj": "01.682.475/0001-78",
+   "razao_social": "CENTRO DE REABILITACAO SAO PAULO APOSTOLO CRESPA",
+   "nome_fantasia": "CRESPA",
+   "descricao": "01.682.475/0001-78 — CENTRO DE REABILITACAO SAO PAULO APOSTOLO CRESPA (nome fantasia: CRESPA)",
+   "natureza_juridica": "3999",
+   "sem_fins_lucrativos": true,
+   "atividade_economica": "Atividades de associações de defesa de direitos sociais",
+   "situacao_cadastral": "ATIVA",
+   "municipio": "GOIANIA",
+   "uf": "GO",
+   "valor_total_no_exercicio": 200000.0,
+   "pagamentos": 1,
+   "competencias": [
+    "2026-07"
+   ],
+   "periodicidade": "ANUAL OU PONTUAL",
+   "criterio_periodicidade": "ocorrência única no exercício",
+   "valor_medio": 200000.0,
+   "acumulado_mensal": [
+    {
+     "competencia": "2026-07",
+     "no_mes": 200000.0,
+     "acumulado_no_ano": 200000.0
+    }
+   ],
+   "instrumentos": [],
+   "tem_vinculo": false,
+   "finalidade": [
+    "erá utilizado para a produção de conteúdo jurídico acessível, com linguagem simples, voltado especialmente às pessoas em situação de vulnerabilidade. O podcast terá como "
+   ],
+   "selo": "A_CONFERIR",
+   "ressalva": "Inscrição extraída da página do Diário Oficial. O vínculo com o instrumento só se confirma com o empenho individualizado.",
+   "alerta_incompatibilidade": null
+  },
+  {
+   "cnpj": "33.931.327/0001-36",
+   "razao_social": "ESPLENDOR SERVICOS ADMINISTRATIVOS E COMERCIO DE FRIOS LTDA",
+   "nome_fantasia": "ESPLENDOR SERVICOS E COMERCIO",
+   "descricao": "33.931.327/0001-36 — ESPLENDOR SERVICOS ADMINISTRATIVOS E COMERCIO DE FRIOS LTDA (nome fantasia: ESPLENDOR SERVICOS E COMERCIO)",
+   "natureza_juridica": "2062",
+   "sem_fins_lucrativos": false,
+   "atividade_economica": "Serviços combinados de escritório e apoio administrativo",
+   "situacao_cadastral": "ATIVA",
+   "municipio": "BRASILIA",
+   "uf": "DF",
+   "valor_total_no_exercicio": 200000.0,
+   "pagamentos": 1,
+   "competencias": [
+    "2026-04"
+   ],
+   "periodicidade": "ANUAL OU PONTUAL",
+   "criterio_periodicidade": "ocorrência única no exercício",
+   "valor_medio": 200000.0,
+   "acumulado_mensal": [
+    {
+     "competencia": "2026-04",
+     "no_mes": 200000.0,
+     "acumulado_no_ano": 200000.0
+    }
+   ],
+   "instrumentos": [
+    "TERMO DE FOMENTO 017/2026"
+   ],
+   "tem_vinculo": true,
+   "finalidade": [
+    "s artigos 7º da IN 02/2018-CGM. Dê-se ciência, publique-se e cumpra-se. GABINETE DA SECRETÁRIA MUNICIPAL DE POLÍTICAS PARA AS MULHERES, ASSISTÊNCIA SOCIAL E DIREITOS HUMA"
+   ],
+   "selo": "A_CONFERIR",
+   "ressalva": "Inscrição extraída da página do Diário Oficial. O vínculo com o instrumento só se confirma com o empenho individualizado.",
+   "alerta_incompatibilidade": "Instrumento de parceria com organização da sociedade civil celebrado com inscrição de natureza jurídica 2062, que não é entidade sem fins lucrativos. Ou a natureza jurídica mudou, ou a inscrição não é a beneficiária deste instrumento — a página do Diário reúne vários atos. Exige o processo para desempatar."
+  },
+  {
+   "cnpj": "04.369.147/0001-04",
+   "razao_social": "ABA MED S.A.",
+   "nome_fantasia": "ABA MEDICAL",
+   "descricao": "04.369.147/0001-04 — ABA MED S.A. (nome fantasia: ABA MEDICAL)",
+   "natureza_juridica": "2054",
+   "sem_fins_lucrativos": false,
+   "atividade_economica": "Comércio atacadista de instrumentos e materiais para uso médico, cirúrgico, hospitalar e de laboratórios",
+   "situacao_cadastral": "ATIVA",
+   "municipio": "GOIANIA",
+   "uf": "GO",
+   "valor_total_no_exercicio": 122384.42,
+   "pagamentos": 1,
+   "competencias": [
+    "2026-07"
+   ],
+   "periodicidade": "ANUAL OU PONTUAL",
+   "criterio_periodicidade": "ocorrência única no exercício",
+   "valor_medio": 122384.42,
+   "acumulado_mensal": [
+    {
+     "competencia": "2026-07",
+     "no_mes": 122384.42,
+     "acumulado_no_ano": 122384.42
+    }
+   ],
+   "instrumentos": [
+    "CONTRATO 065/2026",
+    "TERMO DE FOMENTO 055/2025",
+    "Termo de Fomento 055/2025"
+   ],
+   "tem_vinculo": true,
+   "finalidade": [
+    "a dos Fundos Sociais, à unidade jurídica competente, ao controle interno municipal, ao Ministério Público do Estado de Goiás e, se pertinente, ao Juízo da Infância e Juve"
+   ],
+   "selo": "A_CONFERIR",
+   "ressalva": "Inscrição extraída da página do Diário Oficial. O vínculo com o instrumento só se confirma com o empenho individualizado.",
+   "alerta_incompatibilidade": "Instrumento de parceria com organização da sociedade civil celebrado com inscrição de natureza jurídica 2054, que não é entidade sem fins lucrativos. Ou a natureza jurídica mudou, ou a inscrição não é a beneficiária deste instrumento — a página do Diário reúne vários atos. Exige o processo para desempatar."
+  },
+  {
+   "cnpj": "97.546.623/0001-04",
+   "razao_social": "JR AGUAS LTDA",
+   "nome_fantasia": "JR AGUAS",
+   "descricao": "97.546.623/0001-04 — JR AGUAS LTDA (nome fantasia: JR AGUAS)",
+   "natureza_juridica": "2062",
+   "sem_fins_lucrativos": false,
+   "atividade_economica": "Comércio atacadista de água mineral",
+   "situacao_cadastral": "ATIVA",
+   "municipio": "GOIANIA",
+   "uf": "GO",
+   "valor_total_no_exercicio": 69744.0,
+   "pagamentos": 1,
+   "competencias": [
+    "2026-05"
+   ],
+   "periodicidade": "ANUAL OU PONTUAL",
+   "criterio_periodicidade": "ocorrência única no exercício",
+   "valor_medio": 69744.0,
+   "acumulado_mensal": [
+    {
+     "competencia": "2026-05",
+     "no_mes": 69744.0,
+     "acumulado_no_ano": 69744.0
+    }
+   ],
+   "instrumentos": [],
+   "tem_vinculo": false,
+   "finalidade": [
+    "o, mediante a apresentação de certidão negativa, nos termos do Título VII-A da Consolidação das Leis do Trabalho, aprovada pelo Decreto-Lei nº 5452, de 1º de maio de 1943"
+   ],
+   "selo": "A_CONFERIR",
+   "ressalva": "Inscrição extraída da página do Diário Oficial. O vínculo com o instrumento só se confirma com o empenho individualizado.",
+   "alerta_incompatibilidade": null
+  },
+  {
+   "cnpj": "58.600.411/0001-06",
+   "razao_social": "GUERRA COMERCIO E SERVICOS LTDA",
+   "nome_fantasia": null,
+   "descricao": "58.600.411/0001-06 — GUERRA COMERCIO E SERVICOS LTDA",
+   "natureza_juridica": "2062",
+   "sem_fins_lucrativos": false,
+   "atividade_economica": "Fabricação de letras, letreiros e placas de qualquer material, exceto luminosos",
+   "situacao_cadastral": "ATIVA",
+   "municipio": "BELO HORIZONTE",
+   "uf": "MG",
+   "valor_total_no_exercicio": 55750.5,
+   "pagamentos": 1,
+   "competencias": [
+    "2026-07"
+   ],
+   "periodicidade": "ANUAL OU PONTUAL",
+   "criterio_periodicidade": "ocorrência única no exercício",
+   "valor_medio": 55750.5,
+   "acumulado_mensal": [
+    {
+     "competencia": "2026-07",
+     "no_mes": 55750.5,
+     "acumulado_no_ano": 55750.5
+    }
+   ],
+   "instrumentos": [],
+   "tem_vinculo": false,
+   "finalidade": [
+    "Constituir a Comissão de Seleção do Chamamento Público para Seleção de Organizações da Sociedade Civil para a implantação, manutenção e execução da Central de Interpretaç"
+   ],
+   "selo": "A_CONFERIR",
+   "ressalva": "Inscrição extraída da página do Diário Oficial. O vínculo com o instrumento só se confirma com o empenho individualizado.",
+   "alerta_incompatibilidade": null
+  },
+  {
+   "cnpj": "42.619.993/0001-24",
+   "razao_social": "CAFE COLISEU LTDA",
+   "nome_fantasia": null,
+   "descricao": "42.619.993/0001-24 — CAFE COLISEU LTDA",
+   "natureza_juridica": "2062",
+   "sem_fins_lucrativos": false,
+   "atividade_economica": "Torrefação e moagem de café",
+   "situacao_cadastral": "ATIVA",
+   "municipio": "ERVALIA",
+   "uf": "MG",
+   "valor_total_no_exercicio": 46200.0,
+   "pagamentos": 1,
+   "competencias": [
+    "2026-02"
+   ],
+   "periodicidade": "ANUAL OU PONTUAL",
+   "criterio_periodicidade": "ocorrência única no exercício",
+   "valor_medio": 46200.0,
+   "acumulado_mensal": [
+    {
+     "competencia": "2026-02",
+     "no_mes": 46200.0,
+     "acumulado_no_ano": 46200.0
+    }
+   ],
+   "instrumentos": [
+    "TERMO DE FOMENTO 102/2026",
+    "Termo de Fomento 052/2023"
+   ],
+   "tem_vinculo": true,
+   "finalidade": [
+    "der a Secretaria Municipal de Políticas para as Mulheres, Assistência Social e Direitos Humanos - SEMASDH. A referida servidora deverá observar o disposto no artigo 6º da"
+   ],
+   "selo": "A_CONFERIR",
+   "ressalva": "Inscrição extraída da página do Diário Oficial. O vínculo com o instrumento só se confirma com o empenho individualizado.",
+   "alerta_incompatibilidade": "Instrumento de parceria com organização da sociedade civil celebrado com inscrição de natureza jurídica 2062, que não é entidade sem fins lucrativos. Ou a natureza jurídica mudou, ou a inscrição não é a beneficiária deste instrumento — a página do Diário reúne vários atos. Exige o processo para desempatar."
+  },
+  {
+   "cnpj": "44.728.295/0001-92",
+   "razao_social": "K R MARCONDES DISTRIBUIDORA",
+   "nome_fantasia": "2K DISTRIBUIDORA",
+   "descricao": "44.728.295/0001-92 — K R MARCONDES DISTRIBUIDORA (nome fantasia: 2K DISTRIBUIDORA)",
+   "natureza_juridica": "2135",
+   "sem_fins_lucrativos": false,
+   "atividade_economica": "Comércio atacadista de bebidas não especificadas anteriormente",
+   "situacao_cadastral": "ATIVA",
+   "municipio": "RIO AZUL",
+   "uf": "PR",
+   "valor_total_no_exercicio": 42250.0,
+   "pagamentos": 1,
+   "competencias": [
+    "2026-07"
+   ],
+   "periodicidade": "ANUAL OU PONTUAL",
+   "criterio_periodicidade": "ocorrência única no exercício",
+   "valor_medio": 42250.0,
+   "acumulado_mensal": [
+    {
+     "competencia": "2026-07",
+     "no_mes": 42250.0,
+     "acumulado_no_ano": 42250.0
+    }
+   ],
+   "instrumentos": [],
+   "tem_vinculo": false,
+   "finalidade": [
+    "das no Edital e seus anexos. TIPO DE LICITAÇÃO: Menor preço por item MODO DE DISPUTA: Aberto CÓDIGO UASG: 926995 PROCESSO SEI Nº: 26.29.000014378-2 LOCAL DA SESSÃO PÚBLIC"
+   ],
+   "selo": "A_CONFERIR",
+   "ressalva": "Inscrição extraída da página do Diário Oficial. O vínculo com o instrumento só se confirma com o empenho individualizado.",
+   "alerta_incompatibilidade": null
+  },
+  {
+   "cnpj": "03.647.755/0001-70",
+   "razao_social": "VASCONCELOS ALIMENTOS S.A.",
+   "nome_fantasia": "ARROZ VASCONCELOS",
+   "descricao": "03.647.755/0001-70 — VASCONCELOS ALIMENTOS S.A. (nome fantasia: ARROZ VASCONCELOS)",
+   "natureza_juridica": "2054",
+   "sem_fins_lucrativos": false,
+   "atividade_economica": "Beneficiamento de arroz",
+   "situacao_cadastral": "ATIVA",
+   "municipio": "ARAGUARI",
+   "uf": "MG",
+   "valor_total_no_exercicio": 13586.1,
+   "pagamentos": 1,
+   "competencias": [
+    "2026-02"
+   ],
+   "periodicidade": "ANUAL OU PONTUAL",
+   "criterio_periodicidade": "ocorrência única no exercício",
+   "valor_medio": 13586.1,
+   "acumulado_mensal": [
+    {
+     "competencia": "2026-02",
+     "no_mes": 13586.1,
+     "acumulado_no_ano": 13586.1
+    }
+   ],
+   "instrumentos": [],
+   "tem_vinculo": false,
+   "finalidade": [
+    "DH. AUTORIZO por ser imprescindível a despesa para contratação da empresa VASCONCELOS INDÚSTRIA, COMÉRCIO, IMPORTAÇÃO E EXPORTAÇÃO LTDA, CNPJ: 03.647.755/0001-70, no valo"
+   ],
+   "selo": "A_CONFERIR",
+   "ressalva": "Inscrição extraída da página do Diário Oficial. O vínculo com o instrumento só se confirma com o empenho individualizado.",
+   "alerta_incompatibilidade": null
+  }
+ ],
+ "cmasgyn": {
+  "acao": "3650.0824401082.591",
+  "denominacao": "Manutenção do Conselho Municipal de Assistência Social — CMASGyn",
+  "dotacao_total": 256000,
+  "por_fonte": {
+   "1660": 16000,
+   "1661": 240000
+  },
+  "rubricas": [
+   {
+    "natureza": "3.3.90.39.00",
+    "nome": "Outros serviços de terceiros — pessoa jurídica",
+    "valor": 131000,
+    "fontes": {
+     "1660": 1000,
+     "1661": 130000
+    },
+    "simbolica": false
+   },
+   {
+    "natureza": "3.3.90.30.00",
+    "nome": "Material de consumo",
+    "valor": 58000,
+    "fontes": {
+     "1660": 8000,
+     "1661": 50000
+    },
+    "simbolica": false
+   },
+   {
+    "natureza": "4.4.90.52.00",
+    "nome": "Equipamentos e material permanente",
+    "valor": 47000,
+    "fontes": {
+     "1660": 5000,
+     "1661": 42000
+    },
+    "simbolica": false
+   },
+   {
+    "natureza": "3.3.90.40.00",
+    "nome": "Serviços de tecnologia da informação",
+    "valor": 15000,
+    "fontes": {
+     "1661": 15000
+    },
+    "simbolica": false
+   },
+   {
+    "natureza": "3.3.90.36.00",
+    "nome": "Outros serviços de terceiros — pessoa física",
+    "valor": 2000,
+    "fontes": {
+     "1660": 1000,
+     "1661": 1000
+    },
+    "simbolica": true
+   },
+   {
+    "natureza": "3.3.90.92.00",
+    "nome": "Despesas de exercícios anteriores",
+    "valor": 2000,
+    "fontes": {
+     "1660": 1000,
+     "1661": 1000
+    },
+    "simbolica": true
+   },
+   {
+    "natureza": "4.4.90.51.00",
+    "nome": "Obras e instalações",
+    "valor": 1000,
+    "fontes": {
+     "1661": 1000
+    },
+    "simbolica": true
+   }
+  ],
+  "rubricas_ausentes_essenciais": [
+   {
+    "natureza": "3.3.90.14.00",
+    "nome": "Diárias — pessoal civil",
+    "rubrica": "Diárias",
+    "consequencia": "Sem dotação de diárias o conselheiro não participa de conferência estadual ou nacional, nem de reunião fora do Município. O artigo 2º, inciso XII, da Lei municipal 9.009/2010 impõe conferência a cada dois anos."
+   },
+   {
+    "natureza": "3.3.90.33.00",
+    "nome": "Passagens e despesas com locomoção",
+    "rubrica": "Passagens e locomoção",
+    "consequencia": "Sem passagens não há deslocamento, e sem deslocamento não há fiscalização in loco dos serviços, que o artigo 2º, inciso VI, da Lei municipal 9.009/2010 atribui ao Conselho."
+   },
+   {
+    "natureza": "3.3.90.48.00",
+    "nome": "Outros auxílios financeiros a pessoas físicas",
+    "rubrica": "Auxílio financeiro a pessoa física",
+    "consequencia": "É a rubrica por onde se custeia apoio ao conselheiro representante de usuário, que costuma ser quem tem menos meios próprios de comparecer. Sua ausência afeta desigualmente a paridade do artigo 3º."
+   },
+   {
+    "natureza": "3.3.90.35.00",
+    "nome": "Serviços de consultoria",
+    "rubrica": "Consultoria e assessoria técnica",
+    "consequencia": "O artigo 6º, inciso V, prevê Corpo Técnico. Sem esta rubrica na ação própria, o apoio técnico depende inteiramente do órgão gestor — que é justamente o fiscalizado."
+   },
+   {
+    "natureza": "3.1.90.11.00",
+    "nome": "Vencimentos e vantagens fixas",
+    "rubrica": "Vencimentos",
+    "consequencia": "O artigo 6º, inciso III, prevê Secretaria Executiva contratada e disponibilizada pelo órgão gestor. Não estando na ação do Conselho, a remuneração corre pela folha da Secretaria e não se afere aqui."
+   }
+  ],
+  "apoio_ao_conselheiro": {
+   "material": {
+    "valor": 58000,
+    "descricao": "Material de consumo — papel, expediente, copa",
+    "situacao": "previsto"
+   },
+   "estrutural": {
+    "valor": 63000,
+    "descricao": "Equipamentos, obras e tecnologia da informação",
+    "situacao": "previsto"
+   },
+   "servicos": {
+    "valor": 133000,
+    "descricao": "Serviços de terceiros, pessoa física e jurídica",
+    "situacao": "previsto"
+   },
+   "deslocamento": {
+    "valor": 0,
+    "descricao": "Diárias e passagens",
+    "situacao": "AUSENTE"
+   },
+   "apoio_financeiro_ao_conselheiro": {
+    "valor": 0,
+    "descricao": "Auxílio financeiro a pessoa física",
+    "situacao": "AUSENTE"
+   },
+   "apoio_tecnico_proprio": {
+    "valor": 0,
+    "descricao": "Consultoria e pessoal próprio",
+    "situacao": "AUSENTE"
+   }
+  },
+  "comparacao": {
+   "cmasgyn": {
+    "dotacao": 256000,
+    "fundo": 23218000,
+    "proporcao": 1.1
+   },
+   "conselho_do_idoso": {
+    "dotacao": 261000,
+    "fundo": 2615000,
+    "proporcao_percent": 9.98
+   }
+  }
+ },
+ "igd_por_competencia": [
+  {
+   "competencia": "2023-12",
+   "igd_repassado": 198130.01,
+   "devido_ao_controle_social": 19813.0,
+   "piso_legal_3": 5943.9,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+  },
+  {
+   "competencia": "2024-01",
+   "igd_repassado": 200702.52,
+   "devido_ao_controle_social": 20070.25,
+   "piso_legal_3": 6021.08,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+  },
+  {
+   "competencia": "2024-03",
+   "igd_repassado": 197722.47,
+   "devido_ao_controle_social": 19772.25,
+   "piso_legal_3": 5931.67,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+  },
+  {
+   "competencia": "2024-04",
+   "igd_repassado": 197102.96,
+   "devido_ao_controle_social": 19710.3,
+   "piso_legal_3": 5913.09,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+  },
+  {
+   "competencia": "2024-05",
+   "igd_repassado": 190344.85,
+   "devido_ao_controle_social": 19034.49,
+   "piso_legal_3": 5710.35,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+  },
+  {
+   "competencia": "2024-06",
+   "igd_repassado": 189820.35,
+   "devido_ao_controle_social": 18982.03,
+   "piso_legal_3": 5694.61,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+  },
+  {
+   "competencia": "2024-07",
+   "igd_repassado": 195105.42,
+   "devido_ao_controle_social": 19510.54,
+   "piso_legal_3": 5853.16,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+  },
+  {
+   "competencia": "2024-08",
+   "igd_repassado": 263063.08,
+   "devido_ao_controle_social": 26306.31,
+   "piso_legal_3": 7891.89,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+  },
+  {
+   "competencia": "2024-09",
+   "igd_repassado": 261677.6,
+   "devido_ao_controle_social": 26167.76,
+   "piso_legal_3": 7850.33,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+  },
+  {
+   "competencia": "2024-10",
+   "igd_repassado": 255124.87,
+   "devido_ao_controle_social": 25512.49,
+   "piso_legal_3": 7653.75,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+  },
+  {
+   "competencia": "2024-11",
+   "igd_repassado": 259376.45,
+   "devido_ao_controle_social": 25937.65,
+   "piso_legal_3": 7781.29,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+  },
+  {
+   "competencia": "2024-12",
+   "igd_repassado": 196178.42,
+   "devido_ao_controle_social": 19617.84,
+   "piso_legal_3": 5885.35,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+  },
+  {
+   "competencia": "2025-01",
+   "igd_repassado": 192787.1,
+   "devido_ao_controle_social": 19278.71,
+   "piso_legal_3": 5783.61,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+  },
+  {
+   "competencia": "2025-02",
+   "igd_repassado": 145670.03,
+   "devido_ao_controle_social": 14567.0,
+   "piso_legal_3": 4370.1,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+  },
+  {
+   "competencia": "2025-03",
+   "igd_repassado": 143818.02,
+   "devido_ao_controle_social": 14381.8,
+   "piso_legal_3": 4314.54,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+  },
+  {
+   "competencia": "2025-04",
+   "igd_repassado": 145126.26,
+   "devido_ao_controle_social": 14512.63,
+   "piso_legal_3": 4353.79,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+  },
+  {
+   "competencia": "2025-05",
+   "igd_repassado": 140639.74,
+   "devido_ao_controle_social": 14063.97,
+   "piso_legal_3": 4219.19,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+  },
+  {
+   "competencia": "2025-06",
+   "igd_repassado": 136716.53,
+   "devido_ao_controle_social": 13671.65,
+   "piso_legal_3": 4101.5,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+  },
+  {
+   "competencia": "2025-07",
+   "igd_repassado": 149163.45,
+   "devido_ao_controle_social": 14916.35,
+   "piso_legal_3": 4474.9,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+  },
+  {
+   "competencia": "2025-08",
+   "igd_repassado": 155113.88,
+   "devido_ao_controle_social": 15511.39,
+   "piso_legal_3": 4653.42,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+  },
+  {
+   "competencia": "2025-09",
+   "igd_repassado": 159044.89,
+   "devido_ao_controle_social": 15904.49,
+   "piso_legal_3": 4771.35,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+  },
+  {
+   "competencia": "2025-10",
+   "igd_repassado": 158643.58,
+   "devido_ao_controle_social": 15864.36,
+   "piso_legal_3": 4759.31,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+  },
+  {
+   "competencia": "2025-11",
+   "igd_repassado": 160779.09,
+   "devido_ao_controle_social": 16077.91,
+   "piso_legal_3": 4823.37,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+  }
+ ],
+ "repasses_por_bloco": {
+  "SIGTV": 7997821.0,
+  "BLOCO PSB": 5746502.1,
+  "ESTRUTURASUAS": 5150000.0,
+  "BLOCO IGDBF": 4291851.57,
+  "BLOCO PSE-MC": 4272210.49,
+  "BLOCO PSE-AC": 1934295.02,
+  "CRIANÇA FELIZ": 2026.0,
+  "BPC ESCOLA": 920.0
+ },
+ "categorias_despesa": {
+  "REPASSE_ENTIDADE": {
+   "n": 4,
+   "valor": 1422609.94,
+   "com_vinculo": 4
+  },
+  "NAO_CLASSIFICADA": {
+   "n": 5,
+   "valor": 667744.5,
+   "com_vinculo": 0
+  },
+  "CONTRATUAL_FIXA": {
+   "n": 2,
+   "valor": 270626.1,
+   "com_vinculo": 0
+  },
+  "PESSOAL": {
+   "n": 1,
+   "valor": 0.0,
+   "com_vinculo": 0
+  }
+ },
+ "tetos": [
+  {
+   "id": "LIM-02",
+   "nome": "Pessoal e custeio no Fundo, sobre recursos do Tesouro",
+   "base": 9000,
+   "teto": 2700.0,
+   "apurado": 0.0,
+   "aferivel": false,
+   "situacao": "INAFERÍVEL — a folha não está publicada",
+   "nota": "O Tesouro aporta 9,000.00 no Fundo. O teto de 30% resulta em 2,700.00. Qualquer despesa de pessoal do Fundo custeada pelo Tesouro acima disso rompe o limite. Sem a folha por fonte, não se afere."
+  },
+  {
+   "id": "LIM-04",
+   "nome": "Piso do Índice de Gestão Descentralizada ao controle social",
+   "base": 706707.15,
+   "teto": 70670.71500000001,
+   "apurado": 0.0,
+   "aferivel": true,
+   "situacao": "DESCUMPRIDO",
+   "nota": "Devido ao controle social: 70,670.72. Executado: R$ 0,00. A sanção do artigo 6º, § 6º, da Resolução CNAS/MDS 202/2025 é o bloqueio dos repasses."
+  },
+  {
+   "id": "LIM-01",
+   "nome": "Despesa total com pessoal do Município",
+   "base": null,
+   "teto": null,
+   "apurado": null,
+   "aferivel": false,
+   "situacao": "INAFERÍVEL — falta o Relatório de Gestão Fiscal",
+   "nota": "Limite de 54% da receita corrente líquida para o Executivo, com alerta prudencial em 51,3%."
+  },
+  {
+   "id": "LIM-03",
+   "nome": "Teto remuneratório municipal",
+   "base": null,
+   "teto": null,
+   "apurado": null,
+   "aferivel": false,
+   "situacao": "INAFERÍVEL — falta a folha e a lei do subsídio do Prefeito",
+   "nota": "Nenhuma remuneração pode superar o subsídio do Prefeito."
+  }
+ ],
+ "nivel_transparencia": {
+  "gerado_em": "2026-08-26",
+  "blocos": {
+   "Previsão orçamentária": {
+    "tem": [
+     "Lei Orçamentária 2025 e 2026 com anexos",
+     "Lei de Diretrizes 2024, 2025 e 2026",
+     "Receita do Fundo por natureza",
+     "Despesa por ação"
+    ],
+    "falta": [
+     "Quadro de Detalhamento de Despesas 2026",
+     "Mapa das fontes de recursos"
+    ],
+    "onde": "despesas_receitas",
+    "nivel": 66.7,
+    "itens": 6
+   },
+   "Receita realizada": {
+    "tem": [],
+    "falta": [
+     "Receita realizada mês a mês por fonte",
+     "Extratos da conta especial do Fundo",
+     "Relatório Resumido da Execução Orçamentária",
+     "Balanço Patrimonial 2025",
+     "Repasses do Fundo Nacional por competência"
+    ],
+    "onde": "responsabilidade_fiscal",
+    "nivel": 0.0,
+    "itens": 5
+   },
+   "Execução da despesa": {
+    "tem": [
+     "Decretos de crédito adicional",
+     "Extratos de contratos e termos"
+    ],
+    "falta": [
+     "Empenhos",
+     "Liquidações",
+     "Pagamentos",
+     "Ordens bancárias",
+     "Restos a pagar"
+    ],
+    "onde": "despesas_receitas",
+    "nivel": 28.6,
+    "itens": 7
+   },
+   "Pessoal e diárias": {
+    "tem": [
+     "Uma concessão de diária"
+    ],
+    "falta": [
+     "Folha de pagamento por competência",
+     "Quadro com forma de provimento",
+     "Relação de diárias",
+     "Relatórios de viagem",
+     "Equipe de referência por unidade"
+    ],
+    "onde": "recursos_humanos",
+    "nivel": 16.7,
+    "itens": 6
+   },
+   "Parcerias com entidades": {
+    "tem": [
+     "Extratos de termos de fomento e colaboração",
+     "Emendas impositivas da Lei Orçamentária"
+    ],
+    "falta": [
+     "Planos de trabalho",
+     "Prestações de contas",
+     "Editais de chamamento",
+     "Justificativas de dispensa"
+    ],
+    "onde": "despesas_receitas",
+    "nivel": 33.3,
+    "itens": 6
+   },
+   "Atos do Conselho": {
+    "tem": [
+     "Referências indiretas em atos posteriores"
+    ],
+    "falta": [
+     "Resoluções do triênio",
+     "Atas de plenária",
+     "Regimento Interno",
+     "Decreto de nomeação",
+     "Apreciação mensal das contas",
+     "Prestação quadrimestral"
+    ],
+    "onde": "sitio_conselho",
+    "nivel": 14.3,
+    "itens": 7
+   }
+  },
+  "documentos_disponiveis": 10,
+  "documentos_faltantes": 27,
+  "nivel_geral_percent": 27.0
+ },
+ "receita_mensal": {
+  "fontes": [
+   {
+    "fonte": "1660",
+    "nome": "União — Fundo Nacional de Assistência Social",
+    "anual": 8250000,
+    "regime": "fundo a fundo, parcela mensal",
+    "norma": "Artigo 30 da Lei 8.742/1993; Resolução CNAS 33/2012",
+    "esperado_mensal": 687500.0,
+    "contem_igd": true
+   },
+   {
+    "fonte": "1661",
+    "nome": "Estado — Assistência Social",
+    "anual": 6000000,
+    "regime": "transferência estadual",
+    "norma": "convênio ou repasse fundo a fundo estadual",
+    "esperado_mensal": 500000.0,
+    "contem_igd": false
+   },
+   {
+    "fonte": "1665",
+    "nome": "Estado — Programas de Assistência Social",
+    "anual": 3104000,
+    "regime": "transferência estadual",
+    "norma": "—",
+    "esperado_mensal": 258666.67,
+    "contem_igd": false
+   },
+   {
+    "fonte": "tesouro",
+    "nome": "Município — Tesouro Municipal",
+    "anual": 9000,
+    "regime": "programação financeira; transferência automática ao Fundo",
+    "norma": "Artigo 2º, § 1º, da Lei municipal 7.531/1995",
+    "esperado_mensal": 750.0,
+    "contem_igd": false
+   },
+   {
+    "fonte": "patrimonial",
+    "nome": "Rendimento de aplicação financeira",
+    "anual": 2574000,
+    "regime": "crédito mensal sobre saldo aplicado",
+    "norma": "Artigo 2º, inciso IV, da Lei municipal 7.531/1995",
+    "esperado_mensal": 214500.0,
+    "contem_igd": false
+   },
+   {
+    "fonte": "nao_identificada",
+    "nome": "Transferências correntes sem fonte declarada",
+    "anual": 2071000,
+    "regime": "indeterminado",
+    "norma": "—",
+    "esperado_mensal": 172583.33,
+    "contem_igd": false
+   },
+   {
+    "fonte": "capital",
+    "nome": "Transferências de capital",
+    "anual": 1115000,
+    "regime": "parcela única ou por etapa de projeto",
+    "norma": "—",
+    "esperado_mensal": null,
+    "contem_igd": false
+   }
+  ],
+  "ldo": {
+   "meta_financeira_do_setor": 41265955.98,
+   "setor": "Políticas Públicas para Mulher, Direitos Humanos e Assistência Social",
+   "fonte": "Lei de Diretrizes Orçamentárias 11.589/2026, Anexo III, Metas e Prioridades",
+   "acoes_na_meta": [
+    "Goiânia + direitos humanos",
+    "Rede + mulher",
+    "Manutenção dos serviços e da rede",
+    "Ação acolher e cuidar (primeira infância)",
+    "Manutenção dos cemitérios"
+   ],
+   "observacao": "A meta reúne três políticas distintas — mulher, direitos humanos e assistência social — e ainda inclui manutenção de cemitérios. Não é comparável diretamente com a função 08. A inclusão de cemitérios no setor da assistência social é do próprio Município, não erro de leitura.",
+   "cmasgyn_nas_metas": false,
+   "nota_cmasgyn": "O Conselho Municipal de Assistência Social não figura entre as metas e prioridades da Lei de Diretrizes Orçamentárias de 2026."
+  },
+  "conciliacao": {
+   "loa_funcao_08": 28440000,
+   "loa_fundo": 23218000,
+   "ldo_meta_setor": 41265955.98,
+   "diferenca_ldo_menos_funcao08": 12825955.98,
+   "leitura": "A meta da Lei de Diretrizes supera a função 08 da Lei Orçamentária em 12,825,955.98, porque agrega políticas de mulher e direitos humanos, além de cemitérios. Só o detalhamento por ação permite separar o que é assistência social."
+  },
+  "regime_de_entrada": {
+   "pergunta": "O dinheiro entra em parcela mensal ou é depósito único consumido ao longo do ano?",
+   "resposta": "Os dois regimes convivem, e é preciso separá-los.",
+   "parcela_mensal": [
+    "fonte 1660 — repasse federal fundo a fundo, regular e automático",
+    "fonte 1661 e 1665 — transferências estaduais",
+    "rendimento de aplicação, creditado mensalmente sobre o saldo"
+   ],
+   "saldo_acumulado": {
+    "descricao": "Superávit financeiro de exercícios anteriores, reaberto por decreto de crédito adicional. Não é entrada nova: é sobra do que não se gastou.",
+    "valor_2026": 33059000.0,
+    "norma": "Artigo 43, § 1º, inciso I, da Lei 4.320/1964",
+    "exige": "superávit apurado em Balanço Patrimonial do exercício anterior"
+   },
+   "indicio": "A receita patrimonial de 2,574,000.00 sobre um Fundo de 23,218,000.00 — 11.1% — pressupõe saldo médio aplicado próximo do orçamento anual inteiro. É o retrato de um fundo que acumula e não executa.",
+   "o_que_falta": "Extratos mensais da conta especial do Fundo e Relatório Resumido da Execução Orçamentária. Sem eles, não se distingue o que entrou do que sobrou."
+  },
+  "igd_mensal": {
+   "base_anual": 1687502.57,
+   "base_mensal_estimada": 140625.21,
+   "devido_mensal_ao_conselho": 14062.52,
+   "devido_anual": 168750.26,
+   "reservado_na_fonte_federal": 16000,
+   "competencias_com_demonstrativo": 0,
+   "norma": "Artigo 6º da Resolução CNAS/MDS 202/2025",
+   "leitura": "O piso incide sobre o repasse de cada mês. Estimando a base em doze parcelas, seriam 14,062.52 por competência. Nenhuma das doze tem demonstrativo publicado. A estimativa serve para dimensionar, não para acusar: o repasse real varia mês a mês e só a Consulta de Pagamentos do Fundo Nacional o revela."
+  },
+  "achado": "Nenhuma das doze competências de 2026 tem receita realizada publicada. A conciliação entre previsto e realizado é impossível com o que está público."
+ },
+ "pessoal_e_diarias": {
+  "resumo": {
+   "diarias": 1,
+   "vantagens": 0,
+   "achados": 7,
+   "por_selo": {
+    "CONFIRMADO": 3,
+    "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE": 4
+   }
+  },
+  "diarias": [
+   {
+    "primeiro_nome": "Murilo",
+    "destino": "Brasília/DF",
+    "data_do_ato": "2026-04-13",
+    "edicao": "do_20260413_000008758.pdf",
+    "processos": [
+     "25.21.000002298-1",
+     "26.10.000003243-1"
+    ],
+    "valor_da_diaria": null,
+    "nota": "valor não isolável: a natureza vem truncada em 8 dígitos e os valores da página não são atribuíveis a este ato"
+   }
+  ]
+ },
+ "dupla_etapa": {
+  "acionados": 20,
+  "convergiram": 20,
+  "divergiram": 0,
+  "indisponiveis": 0,
+  "regra": "somente sobre achado com suspeita de uso indevido ou apontamento de irregularidade. Achado de mera ausência documental não aciona.",
+  "leitura": "20 achados acionaram segunda via independente. 20 convergiram e mantêm o selo. 0 divergiram e foram rebaixados. 0 não puderam ser reconferidos."
+ },
+ "arquitetura": {
+  "workflows": {
+   "semanal-atos.yml": "segunda 09:00 UTC — atos administrativos da semana",
+   "mensal-contas-e-leis.yml": "dia 1º 07:00 UTC — legislação primeiro, contas depois, encadeados",
+   "publicar-painel.yml": "painel",
+   "retomada.yml": "de hora em hora, retoma fila interrompida",
+   "00-comece-aqui.yml": "verificação de prontidão"
+  },
+  "pipeline_run_fiscalizacao": [
+   "src/qualidade.py",
+   "src/verifica_exercicio.py",
+   "src/pessoal.py",
+   "src/coleta_federal.py",
+   "src/igd_controle_social.py",
+   "src/destinatarios.py",
+   "src/receita_mensal.py",
+   "src/cmasgyn_contas.py",
+   "src/monta_fluxo.py",
+   "src/gera_fluxo_html.py",
+   "src/categoriza.py",
+   "src/gera_trilha_didatica.py",
+   "src/gera_fluxograma.py",
+   "src/dupla_etapa.py",
+   "src/parecer_docx/doc2run.js"
+  ],
+  "config": [
+   "base_legal.json",
+   "cadencia.yml",
+   "catalogo_cnas.json",
+   "categorias_despesa.yml",
+   "corpus.yml",
+   "criterios_pessoal.yml",
+   "documentos_complementares.json",
+   "fontes.yml",
+   "fontes_e_destinos.json",
+   "fontes_recursos.yml",
+   "modelos.yml",
+   "naturezas_despesa.json",
+   "parametros_fiscalizacao.json",
+   "parametros_tcm.yml",
+   "portais.yml",
+   "qualidade_fontes.yml",
+   "regras.yml",
+   "termos.yml",
+   "triagem_cnpj.json"
+  ],
+  "modulos_src": [
+   "atas.py",
+   "biblioteca.py",
+   "busca_local.py",
+   "categoriza.py",
+   "cliente_http.py",
+   "cmasgyn_contas.py",
+   "cobertura.py",
+   "coleta_cmasgyn.py",
+   "coleta_dom.py",
+   "coleta_federal.py",
+   "conformidade.py",
+   "consulta.py",
+   "consulta_local.py",
+   "corpus_build.py",
+   "descobrir.py",
+   "destinatarios.py",
+   "dupla_etapa.py",
+   "extracao.py",
+   "filtro.py",
+   "financeiro.py",
+   "gera_fluxo_html.py",
+   "gera_fluxograma.py",
+   "gera_trilha_didatica.py",
+   "historico.py",
+   "igd.py",
+   "igd_controle_social.py",
+   "llm.py",
+   "monta_fluxo.py",
+   "orcamento.py",
+   "padroes.py",
+   "painel.py",
+   "parecer.py",
+   "pessoal.py",
+   "publicacao_diaria.py",
+   "qualidade.py",
+   "receita_mensal.py",
+   "retencao.py",
+   "roteador_ia.py",
+   "run_diario.py",
+   "run_fila.py",
+   "run_fiscalizacao.py",
+   "trilha.py",
+   "util.py",
+   "verifica_exercicio.py",
+   "verificacao_dupla.py"
+  ],
+  "scripts": [
+   "analisador.py",
+   "atualiza_corpus.py",
+   "captura_cnas.py",
+   "coletor.py",
+   "consulta_local.py",
+   "destilador.py",
+   "retroativo.py",
+   "roteador_ia.py"
+  ],
+  "saidas_html": [
+   "fluxo_2026.html",
+   "fluxograma_2026.html",
+   "index.html",
+   "trilha_2026.html",
+   "trilha_didatica_2026.html"
+  ],
+  "relatorios": [
+   ".gitkeep",
+   "Parecer_Fiscalizacao_2026.docx",
+   "achados_2026-08-23.json",
+   "achados_consolidados_2026.json",
+   "boletim_2026-08-23.md",
+   "dupla_etapa_2026.json",
+   "parecer_2026-08-24.md",
+   "verificacao_2026.json",
+   "verificacao_2026.md"
+  ]
+ },
+ "corpus_legal": {
+  "local": "corpus/ — arquivos .txt, um por norma",
+  "corpus_md": "corpus/corpus.md, montado por src/corpus_build.py a partir de config/corpus.yml",
+  "consulta_sem_rede": "scripts/consulta_local.py 'termo' [filtro]",
+  "contagem": {
+   "cnas": 271,
+   "federal": 9,
+   "municipal": 6,
+   "orcamento": 8,
+   "controle_externo": 1
+  },
+  "itens_no_corpus_yml": 48,
+  "com_url_testada": 41,
+  "pendentes": 0,
+  "faltam_texto_integral": [
+   "Resolução CNAS 33/2012",
+   "Resolução CNAS 14/2014",
+   "Resolução CNAS 269/2006",
+   "Resolução CNAS 145/2004",
+   "Resolução CNAS 17/2011",
+   "Resolução CNAS 27/2011",
+   "Resolução CNAS 32/2011",
+   "Resolução CNAS 18/2014",
+   "Resolução CNAS 11/2015",
+   "LOA 2024",
+   "LDO 2023",
+   "LC municipal 382/2025"
+  ],
+  "motivo": "O arquivo estruturado do Diário Oficial da União começa em 2016 para o termo de busca. Anteriores exigem busca dirigida em espelho institucional, com conferência de digest — foi assim que a Resolução 109/2009 entrou.",
+  "total_arquivos": 295
+ },
+ "fontes_de_dados": {
+  "federal": {
+   "repasses_fundo_a_fundo": {
+    "url": "https://fnas.mds.gov.br/extracao-dos-valores-repassados-fundo-a-fundo/",
+    "status": "FUNCIONA",
+    "traz": "município, bloco, programa, competência, valor, ordem bancária do SIAFI",
+    "usado_por": "src/coleta_federal.py",
+    "codigo_ibge_goiania": "520870"
+   },
+   "dou_busca": {
+    "url": "https://www.in.gov.br/consulta/-/buscar/dou",
+    "status": "FUNCIONA",
+    "metodo": "janelas de data com delta=50; a paginação é inoperante",
+    "texto": "https://www.in.gov.br/web/dou/-/{slug}"
+   },
+   "dou_antigo": {
+    "url": "https://pesquisa.in.gov.br/imprensa/servlet/INPDFViewer?jornal=1&pagina=N&data=DD/MM/AAAA",
+    "status": "DEVOLVE PDF",
+    "limite": "exige página exata"
+   },
+   "blob_participamaisbrasil": {
+    "url": "https://www.gov.br/participamaisbrasil/blob/baixar/{id}",
+    "status": "FUNCIONA para id conhecido",
+    "nota": "plataforma encerrada, mas os documentos individuais sobrevivem. Resolução 202/2025 no id 73611."
+   },
+   "mortos": [
+    "aplicacoes.mds.gov.br/snas/regulacao (503)",
+    "aplicacoes.mds.gov.br/sagi/FV/parcelas.php (503)",
+    "gov.br/mds/.../cnas/resolucoes (404)"
+   ]
+  },
+  "estadual": {
+   "transparencia_goias": "https://www.transparencia.go.gov.br",
+   "tce_go": "https://www.tce.go.gov.br",
+   "status": "FUNCIONAM, não explorados"
+  },
+  "municipal": {
+   "diario_oficial": {
+    "url": "https://sileg.goiania.go.gov.br/geral/do_AAAAMMDD_0000NNNNNN.pdf",
+    "status": "FUNCIONA",
+    "nota": "o PDF é endereçável direto; a página de listagem não serve"
+   },
+   "legislacao": "https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/{ano}/",
+   "transparencia": {
+    "url": "https://www.goiania.go.gov.br/transparencia/",
+    "categorias": {
+     "despesas_e_receitas": 49,
+     "acesso_a_informacao": 50,
+     "responsabilidade_fiscal": 52,
+     "recursos_humanos": 55
+    },
+    "limite": "páginas de item renderizadas por script"
+   },
+   "tcm_go": "https://www.tcmgo.tc.br/site/legislacao/",
+   "cmasgyn": "https://cmasgyn.com.br/Documentos"
+  },
+  "apoio": {
+   "cnpj": [
+    "https://brasilapi.com.br/api/cnpj/v1/{cnpj}",
+    "https://minhareceita.org/{cnpj}"
+   ],
+   "status": "FUNCIONA"
+  }
+ },
+ "pendencias": [
+  {
+   "id": "P1",
+   "o_que": "ANTHROPIC_API_KEY vazio nos secrets do repositório",
+   "efeito": "A camada de IA não roda. Os 32 achados saem só da camada determinística, que é 53% do desenho.",
+   "como": "console.anthropic.com > API Keys > Create Key. Depois: repositório > Settings > Secrets and variables > Actions > New repository secret, nome ANTHROPIC_API_KEY."
+  },
+  {
+   "id": "P2",
+   "o_que": "URL_TRANSPARENCIA e URL_FNAS não definidos",
+   "efeito": "Empenho, liquidação e pagamento continuam indisponíveis. Metade dos parâmetros fica inaferível.",
+   "como": "Abrir o Portal da Transparência de Goiânia, fazer uma consulta de despesa da unidade 3650 e copiar o endereço da barra."
+  },
+  {
+   "id": "P3",
+   "o_que": "Token do GitHub exposto na conversa de origem",
+   "efeito": "Credencial comprometida",
+   "como": "github.com/settings/tokens > Delete. Gerar novo com escopo restrito ao repositório, Contents e Actions em leitura e escrita."
+  },
+  {
+   "id": "P4",
+   "o_que": "Duas árvores paralelas de código: src/ (44 módulos, ligada) e scripts/ (8, quase toda órfã)",
+   "efeito": "Duplicação e risco de divergência",
+   "como": "Fundir. Os scripts úteis são captura_cnas.py, consulta_local.py e roteador_ia.py — os dois últimos já foram copiados para src/."
+  },
+  {
+   "id": "P5",
+   "o_que": "12 normas ainda sem texto integral",
+   "efeito": "Parâmetros que dependem delas usam enunciado catalogado, com selo indiciário",
+   "como": "Busca dirigida em espelho institucional, norma a norma, com conferência de sha256."
+  }
+ ],
+ "providencias_indicadas": [
+  {
+   "orgao": "Tribunal de Contas dos Municípios do Estado de Goiás",
+   "achados": [
+    "REC-01",
+    "FMAS-01",
+    "IGD-01",
+    "DES-02",
+    "PUB-01"
+   ],
+   "pedido": "representação com cautelar quanto à interrupção da publicação oficial"
+  },
+  {
+   "orgao": "Ministério Público do Estado de Goiás",
+   "achados": [
+    "REC-01",
+    "IGD-01",
+    "PUB-01"
+   ],
+   "fundamento": "Artigo 31 da Lei 8.742/1993"
+  },
+  {
+   "orgao": "Secretaria Nacional de Assistência Social",
+   "achados": [
+    "REC-01"
+   ],
+   "fundamento": "Artigos 30, parágrafo único, e 30-A da Lei 8.742/1993"
+  },
+  {
+   "orgao": "CMASGyn",
+   "achados": [
+    "IGD-01",
+    "IGD-02",
+    "CTA-01",
+    "CTA-02",
+    "CMAS-FIN-01 a 07"
+   ],
+   "fundamento": "Artigo 2º, incisos IV b, V e XIII, da Lei municipal 9.009/2010"
+  }
+ ],
+ "erros_a_nao_repetir": [
+  "Escrever código e não executar. O endereço do Diário Oficial esteve certo no coletor por dois turnos sem ninguém rodar.",
+  "Aceitar diagnóstico de terceiro sem controle. O repositório dizia que a fonte só devolvia tela de espera; era verdade para a listagem e irrelevante para o PDF.",
+  "Varredura concorrente sem caso de controle. A primeira sondagem em massa retornou zero por limite do servidor, inclusive para edições existentes.",
+  "Corrigir o resultado em vez da origem. Acentuação e documentos complementares foram corrigidos no JSON e se perderam na reexecução seguinte; a correção tem que ir ao script que gera.",
+  "Concluir que o dado não existe porque o endereço antigo caiu. O portal do Fundo Nacional mudou de endereço e publica planilha aberta; o antigo responde 503 há meses.",
+  "Somar total sem separar por fonte. O Conselho parece bem dotado com R$ 256.000; separando por fonte, o piso federal está cumprido em 9,5%."
+ ]
+}

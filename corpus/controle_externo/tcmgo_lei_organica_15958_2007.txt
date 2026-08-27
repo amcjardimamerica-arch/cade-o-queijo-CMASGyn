@@ -1,0 +1,1606 @@
+# LEI ESTADUAL 15.958, DE 18 DE JANEIRO DE 2007 — LEI ORGANICA DO TRIBUNAL DE CONTAS DOS MUNICIPIOS DO ESTADO DE GOIAS
+# Atualizada ate a Lei 21.216/2021, apos Acao Direta de Inconstitucionalidade
+# fonte: https://www.tcmgo.tc.br/site/wp-content/uploads/2022/09/Lei-15958-07-TCM-LEI-ORGANICA-Atualizada-ate-a-Lei-21216-21-Apos-ADI.pdf
+# sha256: 9275fcf3fcb2fdf8739696aeaa8fe41e5f5c76d715dd13283ecd5fb76cea622d
+# paginas: 37
+
+
+--- pagina 1 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+GOVERNO DO ESTADO DE GOIÁS
+Gabinete Civil da Governadoria
+Superintendência de Legislação.
+LEI Nº 15.958, DE 18 DE JANEIRO DE 2007.
+Dispõe sobre a Lei Orgânica do Tribunal de Contas dos
+Municípios do Estado de Goiás e dá outras providências.
+A ASSEMBLÉIA LEGISLATIVA DO ESTADO DE GOIÁS, nos termos do art. 10 da Constituição
+Estadual, decreta e eu sanciono a seguinte Lei:
+TÍTULO I
+NATUREZA, COMPETÊNCIA E JURISDIÇÃO
+CAPÍTULO I
+NATUREZA E COMPETÊNCIA
+Art. 1º Ao Tribunal de Contas dos Municípios, órgão de controle externo, compete, nos termos da
+Constituição Estadual e na forma estabelecida nesta Lei:
+I – apreciar e emitir parecer prévio nas contas anuais de governo prestadas pelo Chefe do Poder
+Executivo municipal;
+- Redação dada pela Lei nº 16.467, de 05-01-2009.
+I - apreciar e emitir parecer prévio nas contas prestadas pelos Prefeitos;
+II - exercer a fiscalização contábil, financeira, orçamentária, operacional e patrimonial das
+prefeituras e câmaras municipais e demais entidades instituídas e mantidas pelo Poder Público Municipal;
+III - julgar as contas:
+a) dos gestores e administradores, inclusive as do Presidente ou Mesas da Câmara Municipal e
+demais responsáveis por dinheiros, bens e valores públicos das administrações direta e indireta, incluídas as
+fundações e sociedades instituídas e mantidas pelo Poder Público Municipal;
+b) de qualquer pessoa física ou jurídica, pública ou privada, que utilize, arrecade, guarde,
+gerencie ou administre dinheiros, bens e valores públicos ou pelos quais os municípios respondam ou que, em
+nome destes, assuma obrigações de natureza pecuniária;
+c) daqueles que derem causa a perda, dano, extravio ou outra irregularidade que resulte em
+prejuízo ao Erário Municipal ou a seu patrimônio;
+IV - apreciar, para fins de registro, a legalidade dos atos relativos a admissão e contratação de
+pessoal e concessivos de aposentadorias e pensões;
+V - realizar, por iniciativa própria ou da Câmara Municipal, inspeções e auditorias de natureza
+contábil, financeira, orçamentária, operacional e patrimonial, nas unidades administrativas dos Poderes Legislativo e
+Executivo municipais e demais entidades instituídas e mantidas pelo erário municipal;
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 1/37
+
+--- pagina 2 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+VI - aplicar, aos responsáveis pela prática de ilegalidade de despesas, irregularidade de contas e
+atraso na prestação de contas, as sanções previstas nesta Lei, estabelecendo, entre outras cominações, imputação
+de multa, proporcional ao dano causado ao erário, quando for o caso;
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+VI - aplicar aos responsáveis pela prática de ilegalidade de despesas, irregularidades de contas,
+atraso na prestação de contas, as sanções previstas nesta lei, que estabelecerá, entre outras cominações,
+imputação de multa, inclusive proporcional ao dano causado ao erário;
+VII - encaminhar à Assembléia Legislativa, anualmente, até cento e vinte dias após o início do
+exercício financeiro, relatório das atividades desenvolvidas no exercício anterior;
+VIII - prestar à Assembléia Legislativa as informações requisitadas;
+IX - assinar prazo para que o Órgão ou entidade adote as providências necessárias ao exato
+cumprimento da lei, se verificada a ilegalidade;
+X - sustar a execução de ato impugnado por irregularidade, comunicando a decisão à Câmara
+Municipal, caso a autoridade municipal competente não adote tal providência;
+XI - comunicar à Câmara Municipal a falta de apresentação das contas de governo ou de gestão
+ao Tribunal, para que possam ser adotadas, por aquele Poder, as medidas legais aplicáveis à espécie;
+XII - prestar as informações solicitadas pela Câmara Municipal sobre a fiscalização contábil,
+financeira, orçamentária, operacional, patrimonial e sobre resultados de auditoria e inspeções realizadas;
+XIII - representar ao Poder ou órgão competente sobre irregularidades ou abusos apurados;
+XIV - editar atos administrativos de conteúdo normativo e de caráter geral, no âmbito de suas
+atribuições, para o completo desempenho ao controle externo, os quais deverão ser obedecidos pelos entes
+fiscalizados, sob pena da responsabilidade;
+XV - organizar seus serviços e prover-lhes os cargos na forma da lei;
+XVI - expedir normas sobre a organização dos processos que lhe devam ser submetidos à
+apreciação e julgamento;
+XVII - elaborar, alterar e dar interpretação ao seu Regimento Interno;
+XVIII - eleger seu Presidente, Vice-Presidente e Corregedor e dar-lhes posse;
+XIX - conceder licença, férias e outros afastamentos aos seus Conselheiros;
+XX - conceder licença, férias, aposentadoria, disponibilidade e outros afastamentos aos
+servidores de seu quadro de pessoal;
+XXI - propor à Assembléia Legislativa do Estado a criação, transformação e extinção de cargos,
+empregos e funções de seu Quadro de Pessoal, bem como a fixação da respectiva remuneração;
+XXII - encaminhar ao Poder Executivo suas propostas para o plano plurianual, lei de diretrizes
+orçamentárias e orçamento anual aprovadas pelo Tribunal Pleno, que somente poderão ser alteradas pelos órgãos
+técnicos competentes mediante comunicação ao Tribunal;
+XXIII - velar pelo exercício de atividades correcionais;
+XXIV - decidir sobre denúncia que lhe seja encaminhada por qualquer cidadão, partido político,
+associação ou sindicato, na forma estabelecida no Regimento Interno;
+XXV - decidir sobre consulta que lhe seja formulada por autoridade competente, a respeito de
+dúvida suscitada na aplicação de dispositivos legais e regulamentares concernentes à matéria de sua competência,
+na forma estabelecida no Regimento Interno;
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 2/37
+
+--- pagina 3 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+XXVI - disponibilizar para a Justiça Eleitoral a relação dos que tiverem suas contas relativas ao
+exercício de cargos ou funções públicas rejeitadas por irregularidade insanável e por decisão irrecorrível, para as
+eleições que se realizarem nos cinco anos seguintes, contados a partir da data da decisão.
+Art. 2° Para o desempenho de sua competência, ao Tribunal será encaminhado, pelas
+Prefeituras, Câmaras Municipais e demais entidades jurisdicionadas, em cada exercício, o rol dos gestores ou
+responsáveis e suas alterações, bem como outros documentos ou informações que considere necessários, na
+forma estabelecida no Regimento Interno.
+Art. 3° Ao Tribunal, no âmbito de sua competência e jurisdição, assiste o poder normativo e
+regulamentar, podendo, em conseqüência, expedir normas e regulamentos sobre matérias de suas atribuições e
+sobre a organização dos processos que lhe devem ser submetidos, obrigando ao seu cumprimento, sob pena de
+responsabilidade.
+CAPÍTULO II
+JURISDIÇÃO
+Art. 4° O Tribunal de Contas dos Municípios tem jurisdição própria e privativa em todos os
+municípios do Estado de Goiás, sobre as pessoas e matérias sujeitas à sua competência.
+Art. 5° A jurisdição do Tribunal abrange:
+I - qualquer pessoa física ou jurídica, pública ou privada, que utilize, arrecade, guarde, gerencie
+ou administre dinheiro, bens e valores públicos ou pelos quais o Município responda, ou que em nome deste,
+assuma obrigações de natureza pecuniária;
+II - aqueles que derem causa a perda, extravio ou outra irregularidade de que resulte dano ao
+erário municipal;
+III - os dirigentes ou liquidantes de empresas encampadas ou sob intervenção ou que de
+qualquer modo venham a integrar, provisória ou permanentemente, o patrimônio do Município ou de outra entidade
+pública municipal;
+IV - todos aqueles que devam prestar contas ou cujos atos estejam sujeitos à sua fiscalização
+por expressa disposição de lei;
+V - os responsáveis pela aplicação de qualquer recurso repassado pelo município, mediante
+convênio, acordo, termo de parceria, ajuste ou outros instrumentos congêneres;
+VI - os sucessores dos administradores e responsáveis a que se refere este artigo, até o limite do
+valor do patrimônio transferido;
+VII - os representantes do município ou do poder público na assembléia geral das empresas
+estatais e sociedades anônimas de cujo capital participem, solidariamente, com os membros do conselho fiscal e de
+administração, pela prática de atos de gestão ruinosa ou liberalidade à custa das respectivas sociedades.
+TÍTULO II
+DO EXERCÍCIO DA COMPETÊNCIA
+CAPÍTULO I
+DAS PRESTAÇÕES DE CONTAS
+Seção I
+Da Prestação de Contas do Prefeito Municipal
+Art. 6° Ao Tribunal de Contas dos Municípios compete, na forma estabelecida nesta Lei, apreciar
+as contas de governo, prestadas, anualmente, pelo Prefeito Municipal, emitindo parecer prévio, no prazo de
+sessenta dias a contar do seu recebimento.
+§ 1º O Prefeito deverá apresentar ao Tribunal, até sessenta dias após a abertura da sessão
+legislativa, as contas de governo do exercício financeiro anterior.
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 3/37
+
+--- pagina 4 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+§ 2º As contas de governo consistirão nos balanços gerais do município e no relatório do órgão
+de controle interno do Poder Executivo Municipal, contendo manifestação conclusiva acerca da conformidade da
+execução orçamentária e financeira no exercício com as metas fixadas no Plano Plurianual e com os dispositivos
+constitucionais e legais, em especial a Lei de Diretrizes Orçamentárias e a Lei Orçamentária Anual.
+§ 3º Ato normativo do Tribunal estabelecerá a forma e o conteúdo da prestação de contas de
+governo, inclusive por meios eletrônicos ou assemelhados.
+§ 4º As contas de governo prestadas pelo Prefeito deverão refletir a execução orçamentária e
+financeira do Município, sem prejuízo da apuração das responsabilidades individuais ou solidárias quando da
+apreciação e julgamento pelo Tribunal das contas de gestão.
+§ 5º O parecer prévio será:
+I - pela aprovação;
+II - pela aprovação com ressalva;
+III - pela rejeição.
+§ 6º O Tribunal disponibilizará à Câmara Municipal, após o trânsito em julgado, o processo de
+prestação de contas de governo, acompanhado do respectivo parecer prévio.
+§ 7º Para as contas de governo, considera-se como trânsito em julgado, no âmbito deste
+Tribunal, o parecer prévio sobre o qual não mais couber a interposição de recurso ordinário de que trata o art. 41
+desta Lei.
+§ 8º Na forma prevista no § 2º do art. 31 da Constituição Federal, o parecer prévio emitido pelo
+Tribunal somente deixará de prevalecer por decisão de 2/3 (dois terços) dos membros da Câmara Municipal.
+Art. 7° Havendo omissão no dever de prestar as contas de governo, o Tribunal determinará a
+instauração de tomada de contas especial, na forma estabelecida no Regimento Interno.
+Parágrafo único. O responsável pela prestação de contas de governo que tiver o seu mandato
+interrompido antes do término do exercício, deverá elaborar os balanços gerais da sua gestão e o relatório do órgão
+do controle interno, na forma a ser disciplinada por ato normativo do Tribunal.
+Seção II
+Dos Relatórios da Lei de Responsabilidade Fiscal
+Art. 8° Os relatórios de que tratam os arts. 52 e 54 da Lei de Responsabilidade Fiscal deverão
+ser encaminhados ao Tribunal nos seguintes prazos:
+I - o Relatório Resumido da Execução Orçamentária, em até quarenta e cinco dias após o
+encerramento do bimestre;
+II - o Relatório de Gestão Fiscal, em até quarenta e cinco dias após o encerramento do
+quadrimestre ou do semestre.
+Parágrafo único. Nos municípios com menos de cinqüenta mil habitantes, os Chefes dos Poderes
+Executivo e Legislativo deverão, no início dos respectivos mandatos, informar ao Tribunal sua opção acerca da
+periodicidade da divulgação do Relatório de Gestão Fiscal, nos termos do art. 63 da Lei de Responsabilidade Fiscal.
+Seção III
+Da Prestação de Contas dos Gestores Municipais
+Art. 9° Ao Tribunal compete, na forma estabelecida nesta Lei, julgar as contas de gestão,
+prestadas pelos administradores e responsáveis de que trata o inciso III do art. 1° desta Lei.
+Art. 10. As contas dos gestores referidos na alínea “a” do inciso III do art 1º, inclusive as contas
+de gestão do Chefe do Poder Executivo, quando ordenador de despesas, serão apresentadas na forma de
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 4/37
+
+--- pagina 5 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+balancetes mensais, no prazo de até quarenta e cinco dias após o término do respectivo período.
+- Redação dada pela Lei nº 16.467, de 05-01-2009.
+Art. 10. As contas dos gestores tratados na alínea "a" do inciso III do art. 1º serão apresentadas
+na forma de balancetes, no prazo de quarenta e cinco dias após o término do respectivo período de referência, na
+seguinte periodicidade:
+I - quadrimestral:
+- Revogado pela Lei nº 16.467, de 05-01-2009, art. 3º.
+a) as contas da Câmara Municipal;
+- Revogado pela Lei nº 16.467, de 05-01-2009, art. 3º.
+b) as contas das Autarquias, Fundações, Empresas Públicas, Sociedades de Economia Mista e
+Fundos, em especial, os da Educação, Saúde e Previdência;
+- Revogado pela Lei nº 16.467, de 05-01-2009, art. 3º.
+II - mensal:
+- Revogado pela Lei nº 16.467, de 05-01-2009, art. 3º.
+a) as contas dos demais gestores do Poder Executivo.
+- Revogado pela Lei nº 16.467, de 05-01-2009, art. 3º.
+§ 1º Ato normativo do Tribunal estabelecerá a forma e o conteúdo da prestação de contas de
+gestão, inclusive por meios eletrônicos, que também atenderá ao disposto no inciso XV do art. 77 da Constituição
+Estadual, no caso das contas tratadas no inciso II deste artigo.
+§ 2º O Tribunal de Contas, no exercício de sua competência, procederá à tomada de contas dos
+gestores, quando não apresentadas no prazo estabelecido no caput deste artigo.
+Art. 11. O julgamento será:
+I - pela regularidade das contas;
+II - pela regularidade das contas com ressalva;
+III - pela irregularidade das contas.
+§ 1º O julgamento das contas de gestão constantes do caput do art. 10 ocorrerá no balancete do
+mês de dezembro do exercício.
+- Redação dada pela Lei nº 16.467, de 05-01-2009.
+§ 1º O julgamento das contas de gestão tratadas na alínea “a” do inciso II do art. 10 ocorrerá no
+balancete do último quadrimestre do exercício.
+§ 2º No julgamento das contas serão definidas as responsabilidades individualizadas e solidárias
+do gestor, do contador e do assessor jurídico, relativamente aos atos e fatos que lhes competem, aplicadas as
+sanções cabíveis, quando for o caso, nos termos previstos no Regimento Interno.
+- Redação dada pela Lei nº 16.467, de 05-01-2009.
+§ 2º O Tribunal disponibilizará ao respectivo órgão, após o trânsito em julgado, o processo de
+prestação de contas de gestão, acompanhada do acórdão.
+§ 3º O Tribunal disponibilizará ao respectivo órgão, após o trânsito em julgado, o processo de
+prestação de contas de gestão, acompanhado do respectivo acórdão.
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 5/37
+
+--- pagina 6 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+- Redação dada pela Lei nº 16.467, de 05-01-2009.
+§ 3º Para as contas de gestão, considera-se como trânsito em julgado, no âmbito deste Tribunal,
+o acórdão sobre o qual não mais couber a interposição de recurso ordinário de que trata o art. 41 desta Lei.
+§ 4º Para as contas de gestão, considera-se como trânsito em julgado, no âmbito deste Tribunal,
+o acórdão sobre o qual não mais couber a interposição de recurso ordinário de que trata o art. 41 desta Lei.
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+§ 5º aplica-se o disposto no § 2º deste artigo, no que couber, nas prestações de contas de
+governo, contratos, convênios e demais processos sujeitos a análise e julgamento do Tribunal de Contas dos
+Municípios.
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+Art. 12. As contas de gestão serão consideradas:
+I - regulares, quando expressarem, de forma clara e objetiva, a exatidão dos demonstrativos
+contábeis, a legalidade, a legitimidade e a economicidade dos atos do responsável;
+II - regulares com ressalva, quando evidenciarem impropriedades ou qualquer outra falta de
+natureza formal, ou ainda a prática de ato ilegal, ilegítimo ou antieconômico que não seja de natureza grave e que
+não represente injustificado dano ao Erário;
+III - irregulares, quando comprovadas quaisquer das seguintes ocorrências:
+a) omissão no dever de prestar contas, observado o disposto no art. 17 desta Lei;
+b) prática de ato de gestão ilegal, ilegítimo ou antieconômico;
+c) infração a ato regulamentar, em especial, de natureza contábil, financeira, orçamentária,
+operacional e patrimonial;
+d) injustificado dano ao Erário, decorrente de ato ilegítimo ou antieconômico;
+e) desfalque, desvio de dinheiro, bens ou valores públicos.
+§ 1º O Tribunal poderá considerar irregulares as contas, no caso de descumprimento de
+determinação, de que o responsável tenha sido comunicado em processo de tomada ou prestação de contas.
+§ 2º Nas hipóteses do inciso III, à exceção da alínea "a", o Tribunal ao julgar irregulares as
+contas, poderá fixar a responsabilidade solidária:
+I - do agente público que praticou o ato irregular;
+II - do terceiro que, como contratante ou parte interessada na prática do mesmo ato, de qualquer
+modo haja concorrido para o cometimento do dano apurado.
+Art. 13. Verificada a regularidade com ressalvas ou a irregularidade nas contas, o Relator ou o
+Tribunal:
+I - definirá a responsabilidade individual ou solidária, pelo ato inquinado;
+II - se houver débito e/ou multa, ordenará a notificação do responsável, para, no prazo
+estabelecido no Regimento Interno, apresentar defesa ou recolher a quantia devida;
+III - adotará outras medidas cabíveis.
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 6/37
+
+--- pagina 7 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+§ 1º Rejeitada a defesa, o Tribunal julgará as contas, determinando, se for o caso, a instauração
+do processo de imputação de débito e/ou de multa.
+§ 2º Reconhecida pelo Tribunal a boa fé, a liquidação tempestiva do débito atualizado
+monetariamente sanará o processo, se outras irregularidades nas contas não forem observadas.
+§ 3º O responsável que não atender à notificação será considerado revel pelo Tribunal, para
+todos os efeitos, dando-se prosseguimento ao processo.
+Art. 14. Ao julgar as contas, o Tribunal decidirá, conforme o caso, sobre a responsabilidade civil
+dos gestores, para fins de Representação ao órgão ou poder competente.
+Seção IV
+Da Tomada de Contas
+Art. 15. Ocorrendo a omissão no dever de prestar contas da aplicação dos recursos repassados
+pelo município na forma definida nesta Lei, da ocorrência de desfalque ou desvio de dinheiro, bens ou valores
+públicos ou, ainda, da prática de qualquer ato ilegal, ilegítimo ou antieconômico de que resulte dano ao erário, a
+autoridade administrativa competente, sob pena de responsabilidade solidária, deverá imediatamente adotar
+providências com vistas à instauração da tomada de contas para apuração dos fatos, identificação dos responsáveis
+e quantificação do dano.
+§ 1º Não observado o disposto no caput deste artigo, o Tribunal determinará à autoridade
+administrativa a instauração de tomada de contas, fixando o prazo para cumprimento dessa decisão.
+§ 2º A tomada de contas, prevista no caput deste artigo e em seu § 1º, será, desde logo,
+encaminhada ao Tribunal para apreciação e julgamento, caso o dano causado ao Erário for de valor igual ou
+superior à quantia para esse efeito fixado pelo Tribunal em cada ano civil, na forma estabelecida no Regimento
+Interno.
+§ 3º Se o dano for de valor inferior à quantia referida no § 2º deste artigo, a tomada de contas
+será anexada ao processo da respectiva prestação de contas de gestão alusiva ao último período do exercício do
+administrador ou ordenador de despesa, para julgamento e apreciação em conjunto.
+Art. 16. O Tribunal disciplinará em ato normativo, com vista à racionalização e a simplificação do
+exame e do julgamento das tomadas de contas, os critérios de formalização dos respectivos processos.
+Seção V
+Da Tomada de Contas Especial
+Art. 17. Diante da omissão no dever de prestar contas da aplicação dos recursos do município o
+Tribunal instaurará o procedimento de tomada de contas especial, que deverá conter os elementos e prazos
+especificados no Regimento Interno, sem prejuízo de outras peças que permitam ajuizamento acerca da
+responsabilidade ou não pelo dano verificado.
+Art. 18. Instaurado o procedimento de tomada de contas especial, a apresentação de prestação
+de contas posterior não elidirá a irregularidade da omissão, podendo o débito ser afastado, caso a documentação
+apresentada esteja de acordo com as normas legais e regulamentares e demonstre a boa e regular aplicação dos
+recursos.
+CAPÍTULO II
+DA FISCALIZAÇÃO.
+Seção I
+Fiscalização Exercida por Iniciativa Própria
+Art. 19. O Tribunal exercerá a fiscalização contábil, financeira, orçamentária, operacional e
+patrimonial das unidades dos Poderes Municipais e das entidades da administração indireta, inclusive das
+fundações e sociedades instituídas e mantidas pelo Poder Público Municipal, na forma estabelecida no Regimento
+Interno, para verificar a legalidade, a legitimidade e a economicidade de atos, contratos, convênios, termos de
+parceria e outros ajustes, das aplicações das subvenções e renúncias de receitas, com vistas a assegurar a eficácia
+do controle que lhe compete e a instruir o julgamento de contas de gestão.
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 7/37
+
+--- pagina 8 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+Seção II
+Fiscalização Exercida por Iniciativa da Câmara Municipal.
+Art. 20. O Tribunal apreciará, em caráter prioritário, sob pena de responsabilidade, os pedidos
+de informação de auditorias e inspeções que lhes forem endereçados pelo Presidente da Câmara Municipal, quando
+por esta aprovados.
+Seção III
+Fiscalização e Registro de Atos de Admissão, Aposentadoria e Pensões
+Art. 21. Ao Tribunal compete apreciar, para fins de registro, a legalidade dos seguintes atos:
+I - admissão de pessoal, a qualquer título, na administração direta e indireta, incluídas as
+fundações e sociedades instituídas e mantidas pelo Poder Público Municipal, excetuadas as nomeações para cargo
+de provimento em comissão;
+II - concessão de aposentadoria e pensões, ressalvadas as melhorias posteriores que não
+alterem o fundamento legal do ato concessório.
+Parágrafo único. Os processos relativos aos atos a que se refere este artigo serão submetidos ao
+Tribunal pela autoridade responsável, no prazo e forma estabelecidos no Regimento Interno, sob pena de multa.
+Art. 22. Para o exercício da competência atribuída ao Tribunal, nos termos do inciso III do art. 71
+da Constituição Federal, a autoridade administrativa responsável por ato de admissão de pessoal ou de concessão
+de aposentadoria e pensão, a que se refere o art. 21, submeterá os dados e informações necessárias ao respectivo
+órgão de controle interno, que deverá emitir parecer sobre a legalidade dos referidos dados, para instruir o processo
+a ser encaminhado à apreciação do Tribunal.
+Art. 23. Quando o Tribunal considerar ilegal ato de admissão de pessoal, o órgão de origem
+deverá, observada a legislação pertinente, adotar as medidas regularizadoras cabíveis, fazendo cessar todo e
+qualquer pagamento decorrente do ato impugnado.
+§ 1º O responsável que injustificadamente deixar de adotar as medidas de que trata o caput, no
+prazo de quinze dias, contados da ciência da decisão deste Tribunal, ficará sujeito à multa e ao ressarcimento das
+quantias pagas após essa data.
+§ 2º Se houver indício de procedimento culposo ou doloso na admissão de pessoal, o Tribunal
+determinará a instauração ou conversão do processo em tomada de contas especial, para apurar responsabilidades
+e promover o ressarcimento das despesas irregularmente efetuadas.
+Art. 24. Quando o ato de concessão de aposentadoria ou pensão for considerado ilegal, o órgão
+de origem fará cessar o pagamento dos proventos ou benefícios no prazo de quinze dias, contados da ciência da
+decisão do Tribunal, sob pena de responsabilidade solidária da autoridade administrativa omissa.
+§ 1º Caso não seja suspenso o pagamento, ou havendo indício de procedimento culposo ou
+doloso na concessão de benefício sem fundamento legal, o Tribunal determinará a instauração ou a conversão do
+processo em tomada de contas especial, para apurar responsabilidades e promover o ressarcimento das despesas
+irregularmente efetuadas.
+§ 2º Recusado o registro do ato, por ser considerado ilegal, a autoridade administrativa
+responsável poderá emitir novo ato, se for o caso, escoimado das irregularidades verificadas.
+Seção IV
+Fiscalização e Registro de Atos, Contratos, Convênios,
+Termos de Parceria e outros Ajustes.
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 8/37
+
+--- pagina 9 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+Art. 25. Para assegurar a eficácia do controle e para instruir a apreciação e o julgamento das
+contas, o Tribunal efetuará a fiscalização dos atos de que resultem receita ou despesa praticados pelos
+responsáveis sujeitos à sua jurisdição, competindo-lhe, em especial:
+I - acompanhar, mediante o envio pelos órgãos das administrações direta e indireta, inclusive das
+fundações, fundos e sociedades instituídas e mantidas pelo Poder Público, e pela Câmara Municipal:
+a) as leis relativas ao plano plurianual, às diretrizes orçamentárias, ao orçamento anual e aos
+créditos adicionais;
+b) os editais de licitação, os contratos, inclusive administrativos, os convênios, os termos de
+parceria, acordos ou ajustes, ou outros instrumentos congêneres;
+II - realizar, por iniciativa própria, inspeções e auditorias;
+III - fiscalizar a aplicação de quaisquer recursos repassados pelo Município mediante lei,
+convênio, termos de parceria, acordo ou ajuste, ou outros instrumentos congêneres à outra entidade.
+§ 1º Os processos relativos aos atos a que se refere este artigo serão submetidos ao Tribunal
+pela autoridade responsável, no prazo e forma estabelecidos no Regimento Interno, sob pena de multa.
+§ 2º A fiscalização, o registro e as inspeções e auditorias de que trata esta Seção serão
+regulamentadas no Regimento Interno.
+§ 3º O Tribunal poderá comunicar às autoridades competentes do Poder Público Municipal o
+resultado das inspeções e auditorias que realizar, para as medidas saneadoras das impropriedades e faltas
+identificadas.
+Art. 26. Nenhum processo, documento ou informação poderá ser sonegado ao Tribunal em suas
+inspeções e auditorias, sob qualquer pretexto.
+§ 1º No caso de sonegação, o Tribunal assinará prazo para apresentação dos documentos,
+informações e esclarecimentos considerados necessários, comunicando o fato à autoridade competente para as
+medidas cabíveis.
+§ 2º VETADO.
+§ 3º - Vencido o prazo e não cumprida a exigência, o Tribunal aplicará as sanções previstas no
+art. 47-A, incisos XII e XIII, desta Lei, sem prejuízo de representar junto ao Ministério Público Estadual, para
+apreciação da responsabilidade criminal.
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+Art. 27. Ao proceder à fiscalização de que trata este Capítulo, o Relator ou o Tribunal:
+I - determinará as providências estabelecidas no Regimento Interno quando não apurada
+transgressão a ato regulamentar de natureza contábil, financeira, orçamentária, operacional e patrimonial ou for
+constatada tão-somente falta ou impropriedade de caráter formal;
+II - determinará a notificação do responsável para, no prazo estabelecido no Regimento Interno,
+apresentar razões de justificativa, caso seja verificada ocorrência de irregularidade quanto à ilegalidade,
+legitimidade ou economicidade.
+Parágrafo único. VETADO.
+Art. 27-A. Não elidido o fundamento da impugnação, o Tribunal aplicará ao responsável multa
+prevista no art. 47-A, incisos VIII e IX, desta Lei.
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+Art. 28. Verificada a ilegalidade do ato, convênio ou contrato, o Tribunal, na forma estabelecida
+no Regimento Interno, assinará prazo para que o responsável adote as providências necessárias ao exato
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 9/37
+
+--- pagina 10 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+cumprimento da lei, fazendo indicação expressa dos dispositivos a serem observados.
+§ 1º No caso de ato administrativo, o Tribunal, se não atendido:
+I - sustará a execução do ato impugnado;
+II - comunicará a decisão à Câmara Municipal;
+III - VETADO.
+IV – aplicará ao responsável multa prevista no art. 47-A, incluído pelo inciso X desta Lei.
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+§ 2º No caso de convênio, termo de parceria ou contrato, o Tribunal, se não atendido,
+comunicará o fato à Câmara Municipal, a que compete adotar o ato de sustação e solicitar ao Poder Executivo, de
+imediato, as medidas cabíveis.
+§ 3º Se a Câmara Municipal ou o Poder Executivo, no prazo de noventa dias não cumprir as
+medidas previstas no § 2º deste artigo, o Tribunal decidirá a respeito da sustação do convênio ou contrato.
+§ 4º Verificada a hipótese do § 3º deste artigo, e se decidir sustar o contrato, o Tribunal:
+I - determinará ao responsável que, no prazo de quinze dias, improrrogável, adote as medidas
+necessárias ao cumprimento da decisão;
+II - comunicará a decisão à Câmara Municipal e à autoridade competente do Poder Executivo.
+§ 5º No caso de ato, contrato ou convênio da Câmara Municipal, o Tribunal sustará a execução,
+comunicando o fato à Mesa Diretora.
+Art. 29. Se configurada a ocorrência de desfalque, desvio de bens ou outra irregularidade de que
+resulte dano ao erário, o Tribunal ordenará, desde logo, a conversão do processo em tomada de contas especial.
+Parágrafo único. Caso a tomada de contas especial envolva responsável por contas de gestão e
+de governo, deverá ser observado o disposto no art. 18 desta Lei.
+Seção V
+Outras Fiscalizações
+Art. 30. O Tribunal estabelecerá, no Regimento Interno, a forma de fiscalização:
+I - das transferências constitucionais e legais;
+II - da aplicação de quaisquer recursos repassados mediante convênio, acordo, termos de
+parceria, ajuste ou outros instrumentos congêneres;
+III - da aplicação de recursos transferidos sob as modalidades de subvenção, auxílio e
+contribuição;
+IV - da arrecadação da receita pública municipal;
+V - da renúncia de receitas;
+VI - do cumprimento, por parte dos órgãos e entidades do Município, das normas da Lei
+Complementar nº 101, de 04 de maio de 2000 - Lei de Responsabilidade Fiscal;
+VII - o acompanhamento, a fiscalização e a avaliação dos processos de desestatização
+realizados pela administração pública municipal, compreendendo as privatizações de empresas, incluindo as
+concessões, permissões e autorizações de serviço público, previstas no art. 175 da Constituição Federal e nas
+normas legais pertinentes;
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 10/37
+
+--- pagina 11 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+VIII - a fiscalização das declarações de bens e rendas apresentadas pelas autoridades e
+servidores públicos, nos termos da legislação em vigor;
+IX - outras fiscalizações determinadas em lei.
+CAPÍTULO III
+DA CONSULTA
+Art. 31. O Tribunal decidirá sobre consultas quanto à dúvida suscitada na aplicação de
+dispositivos legais e regulamentares concernentes à matéria de sua competência, que lhe forem formuladas pelas
+seguintes autoridades:
+I - Governador do Estado, Presidente da Assembléia Legislativa, Presidente de Tribunal, Prefeito
+ou Presidente da Câmara Municipal;
+II - Chefe do Ministério Público Estadual;
+III - Presidente de Comissão da Assembléia Legislativa ou da Câmara Municipal;
+IV - Secretário de Estado ou autoridades do Poder Executivo Estadual de nível hierárquico
+equivalente;
+§ 1º As consultas devem conter a indicação precisa do seu objeto, ser formuladas
+articuladamente e instruídas com parecer do órgão de assistência técnica ou jurídica da autoridade consulente.
+§ 2º Cumulativamente com os requisitos do § 1º deste artigo, as autoridades referidas nos incisos
+III e IV deverão demonstrar a pertinência temática da consulta às respectivas áreas de atribuição das instituições
+que representam.
+§ 3º A resposta à consulta a que se refere este artigo tem caráter normativo e constitui
+prejulgamento da tese, mas não do fato ou caso concreto.
+Art. 32. O relator ou o Tribunal não conhecerá de consulta que não atenda aos requisitos do art.
+31 ou verse apenas sobre caso concreto, devendo o processo ser arquivado após comunicação ao consulente.
+CAPÍTULO IV
+DA DENÚNCIA
+Art. 33. Qualquer cidadão, partido político, associação ou sindicato é parte legítima para
+denunciar irregularidades ou ilegalidades perante o Tribunal.
+Art. 34. A denúncia sobre matéria de competência do Tribunal deverá referir-se a administrador
+ou responsável sujeito à sua jurisdição, ser redigida em linguagem clara e objetiva, conter o nome legível do
+denunciante, sua qualificação e endereço, e estar acompanhada de indício concernente à irregularidade ou
+ilegalidade denunciada.
+§ 1º O Tribunal não conhecerá de denúncia que não observe os requisitos e formalidades
+prescritos no caput, devendo o respectivo processo ser arquivado, comunicando a decisão ao denunciante.
+§ 2º A denúncia que preencha os requisitos de admissibilidade será apurada em caráter sigiloso,
+até que se comprove a sua procedência, e só poderá ser arquivada pelo Tribunal depois de efetuadas as diligências
+pertinentes.
+§ 3º Quando necessário, no resguardo dos direitos e garantias individuais, o Tribunal dará
+tratamento sigiloso às denúncias formuladas, até decisão definitiva sobre a matéria.
+Art. 35. Ato normativo do Tribunal disporá sobre o procedimento a ser dado às denúncias.
+CAPÍTULO V
+DAS COMUNICAÇÕES
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 11/37
+
+--- pagina 12 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+Art. 36. A citação, a intimação ou a notificação far-se-á:
+- Redação dada pela Lei nº 21.216, de 29-12-2021.
+Art. 36. A citação, a intimação ou a notificação far-se-á:
+I – por meio eletrônico ou por qualquer outro meio, desde que, especificamente na citação, fique
+confirmada a entrega da comunicação ao destinatário ou seu procurador;
+- Redação dada pela Lei nº 21.216, de 29-12-2021.
+I – pelo correio, em caso de citação, mediante carta registrada com aviso de recebimento;
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+I - mediante ciência ao responsável ou ao interessado;
+II – por meio de publicação no Diário Oficial de Contas do TCM, exceto a citação;
+- Redação dada pela Lei nº 21.216, de 29-12-2021.
+II – por meio de publicação do ato ou decisão no Diário Oficial de Contas do TCM;
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+II - pelo correio, mediante carta registrada com aviso de recebimento;
+III – pelo correio, mediante carta registrada, no endereço indicado e/ou cadastrado no Tribunal e,
+no caso de citação, com aviso de recebimento que comprove a entrega, independente da assinatura ou rubrica ser
+de próprio punho do citado;
+- Redação dada pela Lei nº 21.216, de 29-12-2021.
+III - por edital publicado no Diário Oficial de Contas, quando o destinatário da citação, não for
+localizado;
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+III - por edital publicado no Diário Oficial do Estado, quando o destinatário da citação,
+comunicação de diligência ou notificação não for localizado;
+IV – pessoalmente, por servidor designado pelo Tribunal, a ser regulamentado por ato próprio;
+- Redação dada pela Lei nº 21.216, de 29-12-2021.
+IV - por meio eletrônico, e-mail, fac-símile, telegrama ou qualquer outra forma, desde que fique
+confirmada inequivocamente a entrega da comunicação ao destinatário.
+V – por edital publicado no Diário Oficial do Estado de Goiás, em caso de citação, quando o
+destinatário não for localizado;
+- Redação dada pela Lei nº 21.216, de 29-12-2021.
+V - mediante ciência da parte, inclusive ao procurador desta no caso de se achar presente em
+sessão da Câmara ou Tribunal Pleno .
+- Acrescido pela Lei nº 19.044, de 13-10-2015.
+VI – mediante ciência do destinatário ou de seu procurador.
+- Acrescido pela Lei nº 21.216, de 29-12-2021.
+§ 1º O meio a ser utilizado para comunicação dos atos processuais mencionados no caput deve
+ser, preferencialmente, aquele que oferecer maior celeridade.
+- Redação dada pela Lei nº 21.216, de 29-12-2021.
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 12/37
+
+--- pagina 13 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+§ 1º Supre a falta da citação, da comunicação da diligência ou da notificação o comparecimento
+espontâneo do responsável, devidamente registrado, desde que havido após a determinação do Tribunal ou do
+Relator dos atos de comunicação referidos.
+§ 2º O comparecimento espontâneo do responsável nos autos supre a falta ou a nulidade da
+citação, da intimação ou da notificação.
+- Redação dada pela Lei nº 21.216, de 29-12-2021.
+§ 2º O Regimento Interno do Tribunal disciplinará a elaboração, a expedição, os prazos e o
+controle de entrega das comunicações.
+§ 3º Quando o responsável for representado por procurador legalmente constituído, a
+comunicação deve ser a ele dirigida.
+- Redação dada pela Lei nº 21.216, de 29-12-2021.
+§ 3° A citação, a intimação ou a notificação, para o efeito previsto no inciso I deste artigo, far-se-
+á mediante carta registrada, com aviso de recebimento que comprove a entrega no endereço indicado pelo
+responsável, independente da assinatura ou rubrica ser de próprio punho do citado.
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+§ 3° A citação, para o efeito previsto no inciso II deste artigo, far-se-á mediante carta registrada,
+com aviso de recebimento que comprove a entrega de endereço indicado pelo responsável, independente da
+assinatura ou rubrica ser de próprio punho do citado.
+§ 4º Presumem-se válidas as comunicações mencionadas no caput, encaminhadas ao endereço
+constante do cadastro do Tribunal de Contas, ainda que não recebidas pessoalmente pelo destinatário, se houve
+mudança de endereço e não foi devidamente comunicada ao Tribunal, fluindo os prazos a partir da juntada aos
+autos do comprovante de entrega da comunicação no primitivo endereço.
+- Acrescido pela Lei nº 21.216, de 29-12-2021.
+§ 5º Os gestores públicos dos Poderes e órgãos jurisdicionados ao Tribunal de Contas dos
+Municípios deverão manter cadastro atualizado no Tribunal de seus endereços eletrônicos bem como de seus
+procuradores, para efeito de recebimento de citações, intimações e notificações.
+- Acrescido pela Lei nº 21.216, de 29-12-2021.
+§ 6º Havendo necessidade de enviar as comunicações mencionadas no caput deste artigo a
+responsáveis ou interessados que não estejam cadastrados no banco de dados do Tribunal de Contas, poderá ser
+consultado banco de dados de outros órgãos públicos para obtenção de seus endereços.
+- Acrescido pela Lei nº 21.216, de 29-12-2021.
+§ 7º O Tribunal disciplinará em ato próprio a elaboração de modelos de citações, intimações e
+notificações, forma de expedição, controle de entrega das comunicações e contagem de prazo, bem como dos
+meios eletrônicos citados no inciso I deste artigo.
+- Acrescido pela Lei nº 21.216, de 29-12-2021.
+CAPÍTULO VI
+DOS RECURSOS
+Art. 37. Nos processos relativos a julgamento de contas de gestão, contratos, convênios, termos
+de parceria e outros ajustes, ato de admissão, aposentadoria e pensões, será assegurada ampla defesa ao
+responsável e admitidos os recursos previstos nesta Lei.
+Parágrafo único. A parte poderá ainda promover sustentação oral, nos casos e formas previstos
+no Regimento Interno.
+Art. 38. Das decisões proferidas pelo Tribunal cabem os seguintes recursos:
+I - Embargos de Declaração;
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 13/37
+
+--- pagina 14 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+II - Embargos de Divergência;
+III - Recurso Ordinário;
+IV - Recurso de Revisão;
+- Revogado pela Lei nº 20.089, de 23-05-2018, art.4º, I.
+V - Reclamação;
+VI – Agravo.
+- Acrescido pela Lei nº 18.632, de 17-07-2014.
+Seção I
+Dos Embargos de Declaração
+Art. 39. Cabem Embargos de Declaração quando houver obscuridade, omissão ou contradição
+em acórdão ou resolução emitido pelo Tribunal.
+§ 1º Os Embargos de Declaração poderão ser opostos por escrito pela parte, pelos Conselheiros,
+Auditores, Auditores Substitutos ou Procuradores de Contas, dentro do prazo de dez dias, contados a partir da
+intimação da decisão recorrida, facultado ao Presidente do Tribunal o exame das excepcionalidades.
+§ 2º Os Embargos de Declaração suspendem os prazos para cumprimento do acórdão ou
+resolução embargados e para interposição dos demais recursos previstos nesta Lei.
+§ 3º Conforme o caso, poderá ser dado aos embargos de declaração efeito infringente.
+§ 4º Os Embargos de Declaração opostos no recurso de Agravo de que trata o art. 43-A desta
+Lei tem efeito suspensivo.
+- Declarado Inconstitucional pela ADI nº 0400397.46.2015
+- Acrescido pela Lei nº 18.632, de 17-07-2014.
+Seção II
+Dos Embargos de Divergência
+Art. 40. Cabem Embargos de Divergência contra decisão da Câmara que divergir de julgado por
+ela proferido, ou de outra Câmara ou do Tribunal Pleno, na aplicação do direito ao fato concreto.
+§ 1º A divergência será comprovada mediante a citação e juntada do julgado divergente, com a
+transcrição dos trechos que configurem o conflito, mencionando as circunstâncias que indicam a igualdade ou
+semelhança dos casos confrontados.
+§ 2º Não serve para comprovar a divergência o julgado já invocado para demonstrá-la, mas
+repelido como não conflitante no julgamento suscitado.
+§ 3º Os Embargos de Divergência serão opostos pela parte, no prazo de dez dias, contados da
+intimação da decisão embargada, suspendendo-se os demais prazos recursais.
+Seção III
+Do Recurso Ordinário
+Art. 41. De decisão de mérito proferida pelo Tribunal, cabe Recurso Ordinário, com efeito
+suspensivo, podendo ser formulado uma só vez e por escrito, pela parte ou pelo Ministério Público junto ao Tribunal,
+no prazo de 30 (trinta) dias, contados da publicação da decisão.
+- Redação dada pela Lei nº 19.990, de 22-01-2018.
+Art. 41. De decisão em processo de prestação ou tomada de contas, mesmo especial, de
+decisão de mérito proferida em processos sujeitos a registro cabe Recurso Ordinário, com efeito suspensivo,
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 14/37
+
+--- pagina 15 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+podendo ser formulado uma só vez e por escrito, pela parte ou pelo Ministério Público junto ao Tribunal, dentro do
+prazo de quinze dias, contados da intimação da decisão recorrida.
+Parágrafo único. As disposições deste artigo não se aplicam à medida cautelar de que trata o
+art. 53 e seguintes da Seção V do Capítulo VII desta Lei.
+- Acrescido pela Lei nº 18.632, de 17-07-2014.
+Seção IV
+Do Recurso de Revisão
+Art. 42. De decisão definitiva em processo de prestação ou tomada de contas, mesmo especial,
+de decisão de mérito proferida em processos sujeitos a registro cabe Recurso de Revisão ao Tribunal Pleno, de
+natureza similar à da ação rescisória, com efeito suspensivo , interposto uma só vez e por escrito pela parte, seus
+sucessores, ou pelo Ministério Público junto ao Tribunal, dentro do prazo de 2 (dois) anos, contados da intimação da
+decisão recorrida, e fundar-se-á:
+- Revogado pela Lei nº 19.990, de 22-01-2018, art. 2º.
+- Redação dada pela Lei nº 16.467, de 05-01-2009.
+- A expressão "com efeito suspensivo" foi suprimida pela ADI 447-4/200 - TJ/GO, vide RE 633.802-GO-STF
+Art. 42. De decisão definitiva em processo de prestação ou tomada de contas, mesmo especial,
+de decisão de mérito proferida em processos sujeitos a registro, cabe Recurso de Revisão ao Tribunal Pleno, de
+natureza similar à da ação rescisória, sem efeito suspensivo, interposto uma só vez e por escrito pela parte, seus
+sucessores, ou pelo Ministério Público junto ao Tribunal, dentro do prazo de dois anos, contados da intimação da
+decisão recorrida, e fundar-se-á:
+I - em erro de cálculo nas contas;
+- Revogado pela Lei nº 19.990, de 22-01-2018, art. 2º.
+II - em falsidade ou insuficiência de documentos em que se tenha fundamentado o acórdão
+recorrido;
+- Revogado pela Lei nº 19.990, de 22-01-2018, art. 2º.
+III - na superveniência de documentos novos com eficácia sobre a prova produzida;
+- Revogado pela Lei nº 19.990, de 22-01-2018, art. 2º.
+IV - na errônea identificação ou individualização do responsável.
+- Revogado pela Lei nº 19.990, de 22-01-2018, art. 2º.
+Parágrafo único. A decisão que der provimento a Recurso de Revisão ensejará a correção de
+todo e qualquer erro ou engano apurado.
+- Revogado pela Lei nº 19.990, de 22-01-2018, art. 2º.
+Seção V
+Da Reclamação
+Art. 43. Das decisões ou atos do Presidente, do Vice-Presidente, do Corregedor, do Relator
+caberá Reclamação para o Tribunal Pleno, no prazo de quinze dias, contados da ciência do ato reclamado.
+§ 1º São partes legítimas para reclamar ao Ministério Público junto ao Tribunal os interessados
+em qualquer processo, bem como, em matéria administrativa, os Conselheiros e os servidores do Tribunal.
+§ 2º O Tribunal só não conhecerá da reclamação intempestiva.
+§ 3º Não cabe interposição de recursos contra decisões proferidas pelo Tribunal Pleno nas
+Reclamações.
+Seção VI
+Do Agravo
+- Redação dada pela Lei nº 20.089, de 23-05-2018, art.2º.
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 15/37
+
+--- pagina 16 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+Seção VI
+- Acrescido pela Lei nº 18.632, de 17-07-2014.
+Art. 43-A. Das decisões do Relator ou do Tribunal Pleno em medida cautelar adotada com
+fundamento no art. 53 e seguintes da Seção V do Capítulo VII desta Lei, caberá Agravo, sem efeito suspensivo, no
+prazo de dez dias, contados na forma e nos termos previstos em ato próprio do Tribunal.
+- Acrescido pela Lei nº 18.632, de 17-07-2014.
+Parágrafo único. A critério do Presidente do Tribunal e atendidos os requisitos de norma interna,
+poderá ser conferido efeito suspensivo ao Agravo.
+- Acrescido pela Lei nº 18.632, de 17-07-2014.
+Seção VII
+Do Pedido de Revisão
+- Revogado pela Lei nº 20.089, de 23-05-2018, art.4º, II.
+- Acrescido pela Lei nº 19.990, de 22-01-2018.
+Art. 43-B. Da decisão definitiva de mérito, transitada em julgado, cabe Pedido de Revisão ao
+Tribunal Pleno, de natureza jurídica similar à de ação rescisória, interposto uma só vez e por escrito, pela parte,
+seus sucessores ou pelo Ministério Público, perante este Tribunal, dentro do prazo de 2 (dois) anos, contados do
+trânsito em julgado da decisão recorrida, e fundar-se- á:
+- Revogado pela Lei nº 20.089, de 23-05-2018, art.4º, II.
+- Acrescido pela Lei nº 19.990, de 22-01-2018.
+I - em erro de cálculo nas Contas;
+- Revogado pela Lei nº 20.089, de 23-05-2018, art.4º, II.
+- Acrescido pela Lei nº 19.990, de 22-01-2018.
+II - em falsidade ou insuficiência de documentos em que se tenha fundamentado o Acórdão
+recorrido;
+- Revogado pela Lei nº 20.089, de 23-05-2018, art.4º, II.
+- Acrescido pela Lei nº 19.990, de 22-01-2018.
+III - na superveniência de documentos novos com eficácia sobre a prova produzida;
+- Revogado pela Lei nº 20.089, de 23-05-2018, art.4º, II.
+- Acrescido pela Lei nº 19.990, de 22-01-2018.
+IV - na errônea identificação ou individualização do responsável.
+- Revogado pela Lei nº 20.089, de 23-05-2018, art.4º, II.
+- Acrescido pela Lei nº 19.990, de 22-01-2018.
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 16/37
+
+--- pagina 17 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+§ 1° A decisão que der provimento ao Pedido de Revisão ensejará a correção de todo e qualquer
+erro ou engano apurado, emitindo nova decisão de mérito.
+- Revogado pela Lei nº 20.089, de 23-05-2018, art.4º, II.
+- Acrescido pela Lei nº 19.990, de 22-01-2018.
+§ 2° O Pedido de Revisão de julgado será considerado pedido autônomo e não suspenderá a
+execução do julgado rescindendo.
+- Revogado pela Lei nº 20.089, de 23-05-2018, art.4º, II.
+- Acrescido pela Lei nº 19.990, de 22-01-2018.
+CAPÍTULO VI-A
+DOS MEIOS AUTÔNOMOS DE IMPUGNAÇÃO
+- Acrescido pela Lei nº 20.089, de 23-05-2018, art.1º.
+Seção I
+Do Pedido de Revisão
+- Acrescido pela Lei nº 20.089, de 23-05-2018, art.1º.
+Art. 43-C. Da decisão definitiva de mérito, transitada em julgado, cabe Pedido de Revisão ao
+Tribunal Pleno, de natureza jurídica similar à de ação rescisória, interposto uma só vez e por escrito, pela parte,
+seus sucessores ou pelo Ministério Público, perante este Tribunal, dentro do prazo de 2 (dois) anos, contados do
+trânsito em julgado da decisão recorrida, e fundar-se-á:
+- Acrescido pela Lei nº 20.089, de 23-05-2018, art.1º.
+I - em erro de cálculo nas Contas;
+- Acrescido pela Lei nº 20.089, de 23-05-2018, art.1º.
+II - em falsidade ou insuficiência de documentos em que se tenha fundamentado o Acórdão
+recorrido;
+- Acrescido pela Lei nº 20.089, de 23-05-2018, art.1º.
+III - na superveniência de documentos novos com eficácia sobre a prova produzida;
+- Acrescido pela Lei nº 20.089, de 23-05-2018, art.1º.
+IV - na errônea identificação ou individualização do responsável.
+- Acrescido pela Lei nº 20.089, de 23-05-2018, art.1º.
+§ 1° A decisão que der provimento ao Pedido de Revisão ensejará a correção de todo e qualquer
+erro ou engano apurado, emitindo nova decisão de mérito.
+- Acrescido pela Lei nº 20.089, de 23-05-2018, art.1º.
+§ 2° O Pedido de Revisão de julgado será considerado pedido autônomo e não suspenderá a
+execução do julgado rescindendo.
+- Acrescido pela Lei nº 20.089, de 23-05-2018, art.1º.
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 17/37
+
+--- pagina 18 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+CAPÍTULO VII
+DAS SANÇÕES E MEDIDAS CAUTELARES
+Seção I
+Das Disposições Gerais
+Art. 44. O Tribunal poderá aplicar aos administradores ou responsáveis que lhe são
+jurisdicionados as sanções e medidas cautelares prescritas nesta Lei, na forma estabelecida neste Capítulo.
+§ 1° Ficarão sujeitos às sanções e medidas cautelares, por responsabilidade solidária, na forma
+prevista no § 1º do art. 74 da Constituição Federal, os responsáveis pelo controle interno que, comprovadamente,
+tomarem conhecimento de irregularidade ou ilegalidade e delas deixarem de dar imediata ciência ao Tribunal.
+§ 2° As decisões do Tribunal de que resulte imputação de débito ou de multa terão eficácia de
+título executivo.
+Art. 44-A. O Tribunal poderá, para adequar os atos e procedimentos dos órgãos ou entidades
+sujeitos ao seu controle, mediante proposta de seus Conselheiros e aprovação pelo Tribunal Pleno, firmar Termo de
+Ajustamento de Gestão - TAG, a ser disciplinado em ato normativo próprio, cujo procedimento permitirá afastar a
+aplicação de penalidades ou sanções.
+- Acrescido pela Lei nº 19.990, de 22-01-2018.
+§ 1° É vedada a assinatura de Termo de Ajustamento de Gestão nos casos em que esteja
+previamente configurado o desvio de recursos públicos e nos casos de processos com decisão definitiva transitada
+em julgado.
+- Acrescido pela Lei nº 19.990, de 22-01-2018.
+§ 2° O não cumprimento das obrigações previstas no Termo de Ajustamento de Gestão pelas
+autoridades signatárias enseja sua automática rescisão.
+- Acrescido pela Lei nº 19.990, de 22-01-2018.
+Seção II
+Da Imputação de Débito
+Art. 45. Sempre que nos processos em tramitação no Tribunal for constatada situação geradora
+de dano ao erário municipal, imputável a qualquer agente público, o ato que o apreciar determinará a retirada, por
+cópia autêntica, das peças comprobatórias da lesão que serão autuadas em separado, sujeitando-se ao
+procedimento determinado no Regimento Interno.
+§ 1° A decisão do Tribunal de que resulte imputação de débito torna a dívida líquida, certa e
+exigível e tem eficácia de título executivo.
+§ 2° O imputado será notificado para, no prazo estabelecido no Regimento Interno, efetuar e
+comprovar o recolhimento do débito.
+§ 3° Comprovado o recolhimento integral, o Tribunal expedirá quitação do débito.
+§ 4° O responsável que não atender a notificação será considerado revel para todos os efeitos,
+dando-se prosseguimento ao processo, inclusive com a remessa ao Ministério Público.
+Art. 46. VETADO.
+Seção III
+Da Imputação de Multa
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 18/37
+
+--- pagina 19 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+Art. 47. VETADO.
+Art. 47-A. Sempre que nos processos em tramitação no Tribunal for constatada conduta sujeita a
+multa, tipificada nesta Lei, no ato que os julgar ou apreciar fará constar a qualificação do agente, o dispositivo legal
+violado, o resumo da conduta e o quantum da multa, no valor máximo de R$ 10.000,00 (dez mil reais), observando-
+se os percentuais seguintes, aos responsáveis por:
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+Art. 47-A. Sempre que nos processos em tramitação no Tribunal for constatada conduta sujeita a
+multa, tipificada nesta Lei, no ato que os julgar ou apreciar, será determinada a instauração do processo de
+imputação de multa, em que conste a qualificação do agente, o dispositivo legal violado, o resumo da conduta e o
+quantum da multa, no valor máximo de R$ 20.000,00 (vinte mil reais), observando-se os percentuais seguintes, aos
+responsáveis por:
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+I – contas apreciadas com parecer pela aprovação com ressalva, na forma do inciso II do § 5º do
+artigo 6º, de um a cinco por cento;
+- Revogado pela Lei nº 19.044, de 13-10-2015, art. 2º.
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+II – contas apreciadas com parecer pela sujeição, na forma do inciso III do § 5º do artigo 6º, de
+três a vinte por cento;
+- Revogado pela Lei nº 19.044, de 13-10-2015, art. 2º.
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+III - contas julgadas regulares com ressalvas, na forma do inciso II do art. 11, de um a dois e
+meio por cento;
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+III – contas julgadas regulares com ressalva, na forma do inciso II do artigo 11, de um a cinco por
+cento;
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+IV- contas julgadas irregulares, na forma do inciso III do art. 11, de um e meio a dez por cento;
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+IV – contas julgadas irregulares, na forma do inciso III do art. 11, de três a vinte por cento;
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+V - atrasar injustificadamente ou não enviar a prestação de contas de gestão ou de governo:
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+V – atrasar injustificadamente ou não enviar a prestação de contas de gestão ou de governo:
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 19/37
+
+--- pagina 20 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+a) um por cento para as contas com atraso de até um mês;
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+a) um por cento para as contas com atraso de até 15 dias;
+- Acrescida pela Lei nº 16.467, de 05-01-2009.
+b) dois por cento para as contas com atraso de mais de um mês até dois meses;
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+b) dois por cento para as contas com atraso de mais de 15 dias até um mês;
+- Acrescida pela Lei nº 16.467, de 05-01-2009.
+c) três por cento para as contas com atraso acima de dois meses;
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+c) quatro por cento para as contas com atraso de mais de um mês até dois meses;
+- Acrescida pela Lei nº 16.467, de 05-01-2009.
+d) seis por cento para as contas com atraso de mais de dois meses até três meses;
+- Acrescida pela Lei nº 16.467, de 05-01-2009.
+- Revogada pela Lei nº 19.044, de 13-10-2015, art. 2º.
+e) dez por cento para as contas com atraso de mais de três meses até quatro meses;
+- Acrescida pela Lei nº 16.467, de 05-01-2009.
+- Revogada pela Lei nº 19.044, de 13-10-2015, art. 2º.
+f) quinze por cento para as contas com atraso de mais de quatro meses até cinco meses;
+- Acrescida pela Lei nº 16.467, de 05-01-2009.
+- Revogada pela Lei nº 19.044, de 13-10-2015, art. 2º.
+g) vinte por cento para as contas com atraso acima de cinco meses;
+- Acrescida pela Lei nº 16.467, de 05-01-2009.
+- Revogada pela Lei nº 19.044, de 13-10-2015, art. 2º.
+VI - não promover a instauração de tomada de contas, nos termos do art. 15 desta Lei, de dois e
+meio a quinze por cento;
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+VI – não promover a instauração de tomada de contas, nos termos do art. 15 desta Lei, de cinco
+a trinta por cento;
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+VII – interpor Embargos junto ao Tribunal julgados manifestadamente protelatórios, de dois a
+quinze por cento;
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+- Revogado pela Lei nº 19.044, de 13-10-2015, art. 2º.
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 20/37
+
+--- pagina 21 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+VIII - praticar ato de gestão ilegal, ilegítimo ou antieconômico, de um a vinte e cinco por cento;
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+VIII – praticar ato de gestão ilegal, ilegítimo ou antieconômico, de um a cinquenta por cento;
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+IX - infringir ato regulamentar, em especial, de natureza contábil, financeira, orçamentária,
+operacional ou patrimonial, de dois a vinte e cinco por cento;
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+IX – infringir ato regulamentar, em especial, de natureza contábil, financeira, orçamentária,
+operacional ou patrimonial, de um a cinquenta por cento;
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+X - descumprir o prazo fixado, sem causa justificada, para providência determinada pelo Relator
+ou pelo Tribunal, de dois e meio a vinte e cinco por cento;
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+X – descumprir o prazo fixado, sem causa justificada, para providência determinada pelo Relator
+ou pelo Tribunal, de cinco a cinquenta por cento;
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+XI - obstruir o livre exercício das auditorias e inspeções determinadas, de vinte e cinco a
+cinquenta por cento;
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+XI – obstruir o livre exercício das auditorias e inspeções determinadas, de cinquenta a cem por
+cento, levando-se em conta o número de habitantes do município;
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+XII - sonegar processo, documento ou informação, em auditoria ou inspeção realizada pelo
+Tribunal, de dez a cinquenta por cento;
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+XII – sonegar processo, documento ou informação, em auditoria ou inspeção realizada pelo
+Tribunal, de vinte a cem por cento;
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+XIII - atrasar injustificadamente o encaminhamento de documentos e/ou informações solicitadas
+pelo Tribunal, de um a cinco por cento;
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+XIII – atrasar injustificadamente o encaminhamento de documentos e/ou informações solicitadas
+pelo Tribunal, de dois a dez por cento;
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 21/37
+
+--- pagina 22 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+XIV - descumprir ato normativo de caráter geral expedido pelo Tribunal, de um a vinte e cinco por
+cento;
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+XIV descumprir ato normativo de caráter geral expedido pelo Tribunal, de um a cinquenta por
+cento;
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+XV – deixar de enviar ao Tribunal o Relatório Resumido da Execução Orçamentária no prazo
+estabelecido no inciso I do artigo 8º desta Lei:
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+a) um por cento para as contas com atraso até um mês;
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+a) meio por cento para atraso de até um mês;
+- Acrescida pela Lei nº 16.467, de 05-01-2009.
+b) dois por cento para as contas com atraso de mais de um mês até dois meses;
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+b) um por cento para atraso de mais de um mês até dois meses;
+- Acrescida pela Lei nº 16.467, de 05-01-2009.
+c) três por cento para as contas acima de dois meses;
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+c) dois por cento para atraso de mais de dois meses até três meses;
+- Acrescida pela Lei nº 16.467, de 05-01-2009.
+d) quatro por cento para atraso de mais de três meses até quatro meses;
+- Acrescida pela Lei nº 16.467, de 05-01-2009.
+- Revogada pela Lei nº 19.044, de 13-10-2015, art. 2º.
+e) oito por cento para atraso de mais de quatro meses até cinco meses;
+- Acrescida pela Lei nº 16.467, de 05-01-2009.
+- Revogada pela Lei nº 19.044, de 13-10-2015, art. 2º.
+f) quinze por cento para atraso acima de cinco meses;
+- Acrescida pela Lei nº 16.467, de 05-01-2009.
+- Revogada pela Lei nº 19.044, de 13-10-2015, art. 2º.
+XVI - deixar de observar no processo licitatório, formalidade determinada em lei, podendo ser
+aplicada aos membros da Comissão de Licitação, ao Pregoeiro, ao emitente do parecer técnico ou jurídico e ao
+gestor, de um a vinte e cinco por cento;
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 22/37
+
+--- pagina 23 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+XVI – deixar de observar no processo licitatório, formalidade determinada em lei, podendo ser
+aplicada aos membros da Comissão de Licitação, ao Pregoeiro, ao emitente do parecer técnico ou jurídico e ao
+gestor, de um a cinquenta por cento;
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+XVII - deixar de encaminhar para registro os atos relativos ao concurso público e os expedientes
+de admissão de pessoal, aposentadoria e pensões, nos prazos previstos em ato normativo do Tribunal, recaindo na
+pessoa do agente público responsável ou diretor de instituto previdenciário, quando for o caso, por cada expediente
+não encaminhado, de um a um e meio por cento;
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+XVII – deixar de encaminhar para registro os atos relativos ao concurso público e os expedientes
+de admissão de pessoal, aposentadoria e pensões, nos prazos previstos em ato normativo do Tribunal, recaindo na
+pessoa do agente público responsável ou diretor de instituto previdenciário, quando for o caso, por cada expediente
+não encaminhado, de um a três por cento;
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+XVIII - deixar de reter ou não repassar recursos financeiros consignados a que esteja obrigado
+em virtude de lei, de dois e meio a vinte e cinco por cento;
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+XVIII – deixar de reter ou não repassar recursos financeiros consignados a que esteja obrigado
+em virtude de lei, de cinco a cinquenta por cento;
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+XIX - deixar de cumprir determinações expedidas por meio de atos normativos do Tribunal e/ou
+os procedimentos legais de natureza contábil, recaindo na pessoa do responsável pelo serviço de contabilidade, de
+um a vinte e cinco por cento;
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+XIX – deixar de cumprir determinações expedidas por meio de atos normativos do Tribunal e/ou
+os procedimentos legais de natureza contável, recaindo na pessoa do responsável pelo serviço de contabilidade, de
+um a cinquenta por cento;
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+XX - deixar de cumprir determinações expedidas por meio de atos normativos do Tribunal e/ou
+os procedimentos legais de natureza jurídica, recaindo na pessoa do responsável pelo serviço de assessoria
+jurídica, de um a vinte e cinco por cento;
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+XX – deixar de cumprir determinações expedidas por meio de atos normativos do Tribunal e/ou
+os procedimentos legais de natureza jurídica, recaindo na pessoa do responsável pelo serviço de assessoria
+jurídica, de um a cinquenta por cento;
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 23/37
+
+--- pagina 24 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+XXI - dispensar ou inexigir licitação fora das hipóteses previstas em lei, ou deixar de observar as
+formalidades legais pertinentes à dispensa ou inexigibilidade, de um a vinte e cinco por cento;
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+XXI – dispensar ou inexigir licitação fora das hipóteses previstas em lei, ou deixar de observar as
+formalidades legais pertinentes à dispensa ou a inexigibilidade, de um a cinquenta por cento;
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+XXII - fraudar o caráter competitivo do procedimento licitatório, de cinco a cinquenta por cento;
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+XXII – fraudar o caráter competitivo do procedimento licitatório, de dez a cem por cento;
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+XXIII - afastar ou procurar afastar licitante por meio de sonegação de documentos necessários
+para participação no certame, de cinco a cinquenta por cento.
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+XXIII – afastar ou procurar afastar licitante por meio de sonegação de documentos necessários
+para participação no certame, de dez a cem por cento.
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+§ 1º A multa de que trata o caput será atualizada, periodicamente, mediante ato normativo do
+Tribunal, com base na variação da inflação acumulada no período, pelo índice utilizado para atualização dos
+créditos tributários do Estado de Goiás.
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+§ 2º O percentual das multas previstas no item V será reduzido em cinquenta por cento para os
+gestores da administração indireta, regimes próprios de previdências e demais fundos de natureza contábil.
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+- Revogado pela Lei nº 19.044, de 13-10-2015, art. 2º.
+§ 3° O Tribunal poderá aplicar multa diária de vinte e cinco centésimo por cento do valor fixado
+no caput deste artigo ao responsável pelo não cumprimento de determinação expedida pelo Pleno.
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+§ 3º O Tribunal poderá aplicar multa diária de meio por cento do valor fixado no caput deste
+artigo ao responsável pelo não cumprimento de determinação expedida pelo Pleno.
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+§ 4º Será admitido o parcelamento da multa, em até vinte e quatro vezes, ao imputado que
+demonstrar a incompatibilidade de seu valor com os seus rendimentos, nos termos que dispuser o Regimento
+Interno.
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 24/37
+
+--- pagina 25 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+§ 5° O Tribunal deixará de imputar multa quando, na hipótese do inciso III deste artigo, a ressalva
+tiver natureza de alerta ou recomendação, bem como a falha for considerada insignificante.
+- Redação dada pela Lei nº 19.044, de 13-10-2015.
+§ 5º O Tribunal deixará de imputar multa quando, na hipótese dos incisos I e III deste artigo, a
+ressalva tiver natureza de alertar ou recomendação, bem como quando a falha for considerada insignificante.
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+Art. 48. VETADO.
+Art. 48-A. O débito decorrente de multa aplicada pelo Tribunal, nos termos do artigo anterior,
+quando pago após o seu vencimento, será atualizado monetariamente na data do efetivo pagamento, pelo índice
+utilizado pelo Governo Estadual para correção de seus créditos tributários.
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+Art. 48-B. As receitas resultantes da aplicação de multas serão aplicadas na realização de
+despesas necessárias a programas ou ações de capacitação técnica do corpo de servidores do Tribunal de Contas
+dos Municípios –TCM–, da Procuradoria-Geral de Contas junto ao TCM e dos Municípios, na aquisição de
+tecnologias de informática, na realização de concurso público, na aquisição de livros e outros materiais didáticos
+para uso dos servidores do TCM e/ou distribuição aos seus jurisdicionados, reparos e aquisição de bens de
+natureza permanente e ainda, na realização de outros atos de fiscalização em Município.
+- Acrescido pela Lei nº 19.044, de 13-10-2015.
+Art. 49. O Tribunal aplicará a multa prevista no art. 5° da Lei federal n° 10.028, de 19 de outubro
+de 2000, no valor de 30% dos vencimentos anuais do agente que praticar as seguintes infrações administrativas
+contra as leis de finanças públicas:
+I - deixar de divulgar ou de enviar ao Poder Legislativo e ao Tribunal o Relatório de Gestão
+Fiscal, nos prazos e condições estabelecidos nesta Lei;
+II - propor lei de diretrizes orçamentária anual que não contenha as metas fiscais, na forma da lei;
+III - deixar de expedir ato determinando a limitação de empenho e movimentação financeira, nos
+casos e condições estabelecidas nesta Lei;
+IV - deixar de ordenar ou de promover, na forma e nos prazos desta Lei, a execução de medida
+para a redução do montante da despesa total com pessoal que houver excedido o limite máximo de repartição por
+Poder.
+Art. 49-A. VETADO.
+- Acrescido pela Lei nº 18.757, de 06-01-2015.
+Seção IV
+Outras Sanções
+Art. 50. Sem prejuízo das sanções previstas nos arts. 45 e 47 desta Lei e das penalidades
+administrativas aplicáveis pelas autoridades competentes, por irregularidades constatadas pelo Tribunal, sempre
+que este, por maioria absoluta de seus membros, considerar grave a infração cometida, o responsável poderá ser
+declarado inabilitado, por um período que variará de cinco a oito anos, para o exercício de cargo em comissão ou
+função de confiança no âmbito da Administração Pública municipal.
+§ 1º O Tribunal deliberará primeiramente sobre a gravidade da infração.
+§ 2º Se considerada grave, por maioria absoluta de seus membros, o Tribunal decidirá sobre o
+período de inabilitação a que ficará sujeito o responsável.
+§ 3º Aplicada a sanção referida no caput, o Tribunal comunicará a decisão ao responsável e à
+autoridade competente para cumprimento dessa medida.
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 25/37
+
+--- pagina 26 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+Art. 51. Verificada a ocorrência de fraude comprovada à licitação, o Tribunal declarará a
+inidoneidade do licitante fraudador para participar, por até cinco anos, de licitação na Administração Pública
+municipal.
+Art. 52. O Tribunal manterá cadastro específico das sanções aplicadas com fundamento nos arts.
+45, 47-A e 50 desta Lei, observadas as prescrições legais a esse respeito.
+- Redação dada pela Lei nº 16.467, de 05-01-2009.
+Art. 52. O Tribunal manterá cadastro específico das sanções aplicadas com fundamento nos arts.
+45, 47 e 50 desta Lei, observadas as prescrições legais a esse respeito.
+Seção V
+Das Medidas Cautelares
+Art. 53. No início ou no curso de qualquer apuração, o Tribunal, de ofício, por sugestão das
+Secretarias de Controle Externo ou de equipe de fiscalização, ou a requerimento do Ministério Público junto ao
+Tribunal, poderá determinar, cautelarmente, o afastamento temporário do responsável, exceto os Chefes dos
+Poderes Executivo e Legislativo, se constatados indícios suficientes de que, prosseguindo no exercício de suas
+funções, possa retardar ou dificultar a realização de auditoria ou inspeção, causar novos danos ao erário ou
+inviabilizar o seu ressarcimento.
+- Redação dada pela Lei nº 17.288, de 19-04-2011.
+Art. 53. No início ou no curso de qualquer apuração, o Tribunal, de ofício, por sugestão das
+Auditorias ou de equipe de fiscalização, ou a requerimento do Ministério Público junto ao Tribunal, poderá
+determinar, cautelarmente, o afastamento temporário do responsável, se constatados indícios suficientes de que,
+prosseguindo no exercício de suas funções, possa retardar ou dificultar a realização de auditoria ou inspeção,
+causar novos danos ao erário ou inviabilizar o seu ressarcimento.
+Parágrafo único. Será solidariamente responsável a autoridade superior competente que, no
+prazo fixado pelo Tribunal, deixar de atender à determinação prevista no caput.
+Art. 54. Nas mesmas circunstâncias do art. 53, poderá o Tribunal, sem prejuízo das medidas
+previstas nos arts. 45, 47-A, 50 e 51, decretar, por prazo não superior a um ano, a indisponibilidade de bens do
+responsável, tantos quantos considerados bastantes para garantir o ressarcimento dos danos em apuração.
+- Redação dada pela Lei nº 16.467, de 05-01-2009.
+Art. 54. Nas mesmas circunstâncias do art. 53, poderá o Tribunal, sem prejuízo das medidas
+previstas nos arts. 45, 47, 50 e 51, decretar, por prazo não superior a um ano, a indisponibilidade de bens do
+responsável, tantos quantos considerados bastantes para garantir o ressarcimento dos danos em apuração.
+Art. 55. O Tribunal poderá solicitar, por intermédio do Ministério Público Estadual, à Procuradoria
+do Município ou, conforme o caso, aos dirigentes das entidades que lhes sejam jurisdicionadas, as medidas
+necessárias ao arresto dos bens dos responsáveis julgados em débito, devendo ser ouvido quanto à liberação dos
+bens arrestados e sua restituição.
+Art. 56. O Tribunal Pleno ou o relator, em caso de urgência, de fundado receio de grave lesão ao
+erário ou a direito alheio, ou de risco de ineficácia da decisão de mérito, poderá, de ofício ou mediante provocação,
+adotar medida cautelar, com ou sem a prévia oitiva da parte, determinando, entre outras providências, a suspensão
+do ato ou do procedimento impugnado, até que o Tribunal decida sobre o mérito da questão suscitada.
+§ 1º O despacho do Relator, de que trata o caput, será submetido ao Tribunal Pleno na primeira
+sessão subseqüente.
+§ 2º Se o Tribunal Pleno ou o relator entender que, antes de ser adotada a medida cautelar, deva
+o responsável ser ouvido, o prazo para a resposta será de até cinco dias úteis.
+§ 3º A decisão do Tribunal Pleno ou do relator que adotar a medida cautelar determinará também
+a oitiva da parte, para que se pronuncie em até quinze dias, ressalvada a hipótese do § 2º deste artigo.
+§ 4º Nas hipóteses de que trata este artigo, as devidas notificações e demais comunicações do
+Tribunal e, quando for o caso, a resposta do responsável ou interessado poderão ser encaminhadas por telegrama,
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 26/37
+
+--- pagina 27 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+fac-símile ou outro meio eletrônico, sempre com confirmação de recebimento, com posterior remessa do original, no
+prazo de até cinco dias, iniciando-se a contagem do prazo a partir da mencionada confirmação do recebimento.
+§ 5º A medida cautelar de que trata este artigo pode ser revista de ofício por quem a tiver
+adotado.
+CAPÍTULO VII-A
+DA PRESCRIÇÃO
+- Acrescido dada pela Lei nº 19.990, de 22-01-2018.
+Art. 56-A. Prescreve em 5 (cinco) anos a pretensão punitiva do Tribunal de Contas dos
+Municípios nos feitos de qualquer natureza a seu cargo.
+- Acrescido dada pela Lei nº 19.990, de 22-01-2018.
+§ 1° A prescrição será decretada de ofício, ou mediante provocação de qualquer interessado,
+considerando-se a data inicial para a contagem do prazo:
+- Acrescido dada pela Lei nº 19.990, de 22-01-2018.
+I - da autuação do feito no Tribunal, nos casos de Prestação e Tomada de Contas;
+- Acrescido dada pela Lei nº 19.990, de 22-01-2018.
+II - da autuação do feito no Tribunal, nos casos em que há obrigação formal de envio do mesmo,
+pelo jurisdicionado prevista em lei ou ato normativo;
+- Acrescido dada pela Lei nº 19.990, de 22-01-2018.
+III - da ciência do fato, nos demais casos.
+- Acrescido dada pela Lei nº 19.990, de 22-01-2018.
+§ 2° A prescrição deve ser reconhecida por decisão do Tribunal Pleno.
+- Acrescido dada pela Lei nº 19.990, de 22-01-2018.
+§ 3° A prescrição da pretensão punitiva não impede o exercício do controle externo pelo Tribunal
+para a apuração de dano ao erário.
+- Acrescido dada pela Lei nº 19.990, de 22-01-2018.
+Art. 56-B. Interrompem a prescrição:
+- Acrescido dada pela Lei nº 19.990, de 22-01-2018.
+I - a citação válida do responsável;
+- Acrescido dada pela Lei nº 19.990, de 22-01-2018.
+II - despacho ou decisão que determinar a realização de inspeção, instauração ou conversão em
+Tomada de Contas Especial;
+- Acrescido dada pela Lei nº 19.990, de 22-01-2018.
+III - despacho que receber denúncia ou representação;
+- Acrescido dada pela Lei nº 19.990, de 22-01-2018.
+IV - a interposição de recurso.
+- Acrescido dada pela Lei nº 19.990, de 22-01-2018.
+Art. 56-C. A contagem do prazo a que se refere o art. 56-A voltará a correr, por inteiro:
+- Acrescido dada pela Lei nº 19.990, de 22-01-2018.
+I - quando da ocorrência da primeira causa interruptiva da prescrição, dentre aquelas previstas
+nos incisos I a III do art. 56-B;
+- Acrescido dada pela Lei nº 19.990, de 22-01-2018.
+II - quando da interposição de recurso.
+- Acrescido dada pela Lei nº 19.990, de 22-01-2018.
+Art. 56-D. Suspende a prescrição da pretensão punitiva:
+- Acrescido pela Lei nº 21.216, de 29-12-2021.
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 27/37
+
+--- pagina 28 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+I – o despacho do Conselheiro Relator que determinar o sobrestamento do processo;
+- Acrescido pela Lei nº 21.216, de 29-12-2021.
+II – a assinatura de Termo de Ajustamento de Gestão, desde a data de celebração e enquanto
+perdurar o prazo para seu cumprimento;
+- Acrescido pela Lei nº 21.216, de 29-12-2021.
+III – o período em que o desenvolvimento regular do processo estiver impossibilitado em razão
+de seu desaparecimento, extravio ou destruição dos autos, no âmbito do Tribunal, desde a data do evento ou, se
+desconhecida esta, desde a data da determinação de reconstituição ou restauração destes.
+- Acrescido pela Lei nº 21.216, de 29-12-2021.
+§ 1º Nas hipóteses previstas nos incisos I e III do caput deste artigo a suspensão do prazo
+prescricional não excederá 180 (cento e oitenta) dias corridos.
+- Acrescido pela Lei nº 21.216, de 29-12-2021.
+§ 2º Findada a suspensão do prazo prescricional, retoma-se a contagem a partir da data que
+cessou a causa suspensiva.
+- Acrescido pela Lei nº 21.216, de 29-12-2021.
+CAPÍTULO VIII
+CONTROLE INTERNO
+Art. 57. Os Poderes Públicos Municipais manterão, de forma integrada, sistema de controle
+interno com a finalidade de:
+I - avaliar o cumprimento das metas previstas no plano plurianual, a execução dos programas de
+governo e dos orçamentos dos Municípios;
+II - comprovar a legalidade e avaliar os resultados quanto à eficácia, eficiência e economicidade
+da gestão orçamentária, financeira e patrimonial nos órgãos e entidades da administração direta e indireta
+municipal, bem como da aplicação de recursos públicos por entidades de direito privado;
+III - exercer o controle das operações de crédito, avais e garantias, bem como dos direitos e
+haveres do Município;
+IV - apoiar o controle externo no exercício de sua missão institucional.
+Art. 58. No apoio ao controle externo, os órgãos integrantes do sistema de controle interno
+deverão exercer, dentre outras, as seguintes atividades:
+I - organizar e executar, por iniciativa própria ou por determinação do Tribunal, programação de
+auditoria contábil, financeira, orçamentária, operacional e patrimonial nas unidades administrativas sob seu controle,
+e enviando ao Tribunal os respectivos relatórios, na forma estabelecida no Regimento Interno;
+II - realizar auditorias nas contas dos responsáveis sob seu controle, emitindo relatório,
+certificado de auditoria e parecer;
+III - alertar formalmente a autoridade administrativa competente, para que instaure Tomada de
+Contas, sempre que tiver conhecimento de quaisquer das ocorrências referidas no art. 12, inciso III, desta Lei;
+IV - certificar a regularidade das prestações de contas de gestão mensal ou quadrimestral, das
+contas de governo, dos atos e contratos sujeitos a registro, das admissões e contratações de pessoal, das
+concessões de aposentadoria e pensões, encaminhadas ao Tribunal, na forma que dispuser ato resolutivo da Corte
+de Contas.
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 28/37
+
+--- pagina 29 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+Art. 59. Os responsáveis pelo controle interno, ao tomarem conhecimento de qualquer
+irregularidade ou ilegalidade, dela darão ciência de imediato ao Tribunal, sob pena de responsabilidade solidária.
+§ 1º Na comunicação ao Tribunal, o dirigente do órgão de controle interno competente indicará
+as providências adotadas para:
+I - corrigir a ilegalidade ou irregularidade apurada;
+II - ressarcir o eventual dano causado ao Erário;
+III - evitar ocorrências semelhantes.
+§ 2º Verificada em inspeção ou auditoria, ou na apreciação e julgamento das contas,
+irregularidade ou ilegalidade que não tenha sido comunicada tempestivamente ao Tribunal, e comprovada a
+omissão, o dirigente do órgão de controle interno, na qualidade de responsável solidário, ficará sujeito às sanções
+previstas para a espécie nesta Lei.
+§ 3º A omissão ou falseamento de informação na escrituração ou nas demonstrações a qualquer
+título, sujeitará o titular da Contabilidade à responsabilidade solidária, por qualquer fato que venha provocar erros,
+danos ou prejuízos.
+Art. 60. O Prefeito Municipal ou qualquer outro ordenador de despesa emitirá sobre as contas e o
+parecer do controle interno, expresso e indelegável pronunciamento, no qual atestará haver tomado conhecimento
+das conclusões nele contidas.
+TÍTULO III
+DA ORGANIZAÇÃO DO TRIBUNAL
+CAPÍTULO I
+SEDE E COMPOSIÇÃO
+Art. 61. O Tribunal de Contas dos Municípios do Estado de Goiás tem sede na cidade de Goiânia
+e compõe-se de sete Conselheiros.
+Art. 62. O Conselheiro, em suas ausências e impedimentos por motivo de licença, férias, ou outro
+afastamento legal será substituído por Auditor, mediante convocação do Presidente do Tribunal, na forma do
+Regimento Interno ou ato normativo próprio.
+- Redação dada pela Lei nº 17.288, de 19-04-2011.
+Art. 62. O Conselheiro, em suas ausências e impedimentos por motivos de licença, férias ou
+outro afastamento legal será substituído por outro Conselheiro ou pelo Auditor, mediante convocação do Presidente
+do Tribunal, na forma do Regimento Interno.
+§ 1º O Auditor será convocado para substituir o Conselheiro, para efeito de quorum, sempre que
+o titular comunicar ao Presidente do Tribunal ou da Câmara respectiva, a impossibilidade de comparecimento à
+sessão.
+- Redação dada pela Lei nº 17.288, de 19-04-2011.
+§ 1º O Auditor poderá ser convocado para substituir o Conselheiro, para efeito de quorum,
+sempre que o titular comunicar ao Presidente do Tribunal ou da Câmara respectiva, a impossibilidade de
+comparecimento à sessão.
+§ 2º Em caso de vacância do cargo de Conselheiro, o Presidente do Tribunal convocará o Auditor
+para exercer as funções inerentes ao cargo vago até que ocorra novo provimento.
+- Redação dada pela Lei nº 17.288, de 19-04-2011.
+§ 2º Em caso de vacância do cargo de Conselheiro, o presidente do Tribunal poderá convocar o
+Auditor para exercer as funções inerentes ao cargo vago até novo provimento, observado o critério estabelecido no
+caput deste artigo.
+§ 3º Na impossibilidade de convocação de auditores, os Conselheiros poderão atuar em outra
+câmara de que não sejam membros efetivos, mediante designação do Presidente do Tribunal por solicitação de
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 29/37
+
+--- pagina 30 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+Presidente da Câmara.
+- Acrescido pela Lei nº 17.288, de 19-04-2011.
+Art. 63. Junto ao Tribunal funciona o Ministério Público, na forma estabelecida nesta Lei e no
+Regimento Interno.
+Art. 64. A estrutura administrativa do Tribunal de Contas dos Municípios será definida por lei,
+cujas atribuições e competências serão disciplinadas no Regimento Interno.
+CAPÍTULO II
+PLENO E CÂMARAS.
+Art. 65. O Pleno do Tribunal de Contas dos Municípios, dirigido por seu Presidente, terá a
+competência e o funcionamento regulados na forma estabelecida nesta Lei e no Regimento Interno.
+Art. 66. O Tribunal de Contas dos Municípios poderá dividir-se em Câmaras, mediante
+deliberação da maioria absoluta de seus Conselheiros titulares.
+Parágrafo único. A competência, o número, a composição, a presidência e o funcionamento das
+Câmaras serão regulados no Regimento Interno.
+Art. 67. O Tribunal fixará, no Regimento Interno, os períodos de funcionamento das sessões, do
+Pleno, das Câmaras e do recesso, sem interrupção dos serviços administrativos.
+CAPÍTULO III
+DA PRESIDÊNCIA, VICE-PRESIDÊNCIA, CORREGEDORIA E OUVIDORIA
+Seção I
+Da Eleição
+Art. 68. Os Conselheiros elegerão o Presidente, o Vice-Presidente, o Corregedor e o Ouvidor do
+Tribunal, para mandato de 2 (dois) anos, sendo permitida reeleição.
+- Redação dada pela Lei nº 19.990, de 22-01-2018.
+Art. 68. Os conselheiros elegerão o Presidente, o Vice-Presidente, o Corregedor e o Ouvidor do
+Tribunal, para mandato de 1 (um) ano, sendo permitida a reeleição.
+- Redação dada pela Lei n° 16.851, de 28-12-2009.
+Art. 68. Os Conselheiros elegerão o Presidente, Vice-Presidente, Corregedor e o Ouvidor do
+Tribunal para o mandato correspondente a um período de um ano, sendo permitida a reeleiçccedil;ão por mais um
+período.
+§ 1º A eleição realizar-se-á por escrutínio secreto em sessão ordinária, na 1ª quinzena do mês
+de dezembro ou, em caso de vaga eventual, na segunda sessão ordinária, após sua ocorrência, exigida a presença
+de, pelo menos, quatro Conselheiros titulares, inclusive o que presidir o ato.
+§ 2º O eleito para a vaga que ocorrer antes do término do mandato exercerá o cargo, no período
+restante.
+§ 3º Não se procederá à nova eleição, se a vaga ocorrer dentro dos noventa dias anteriores ao
+término do mandato.
+§ 4º Somente os Conselheiros titulares, ainda que em gozo de licença, férias, ou ausentes com
+causa justificada, poderão tomar parte nas eleições, na forma estabelecida no Regimento Interno.
+§ 5° A data da posse dos eleitos será definida no Regimento Interno.
+Seção II
+Do Presidente e do Vice-Presidente
+Art. 69. Compete ao Presidente, dentre outras atribuições estabelecidas no Regimento Interno:
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 30/37
+
+--- pagina 31 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+I - administrar o Tribunal;
+II - dar posse aos Conselheiros, Auditores, Procuradores de Contas, Procurador Geral de
+Contas, dirigentes de unidades e demais servidores do Tribunal;
+III - expedir atos de nomeação, promoção, demissão, exoneração, aposentadorias e outros
+relativos a provimento e vacância de cargos e funções do Tribunal, bem como praticar os demais atos concernentes
+à administração de pessoal, observadas as normas prescritas para os servidores públicos em geral;
+IV - autorizar despesas, diretamente ou por delegação, movimentar contas e praticar os demais
+atos relativos à administração financeira, necessários ao funcionamento do Tribunal, respeitadas as exigências
+legais.
+Art. 70. O Vice-Presidente, cujas atribuições serão estabelecidas no Regimento Interno,
+substituirá o Presidente em suas ausências ou impedimentos.
+§ 1° Na ausência ou impedimento do Vice-Presidente, o Presidente será substituído pelo
+Conselheiro mais antigo em exercício no cargo.
+§ 2° Serão fixadas no Regimento Interno, as demais atribuições do Vice-Presidente.
+Seção III
+Da Corregedoria
+Art. 71. A Corregedoria do Tribunal será dirigida pelo Conselheiro Corregedor, a quem compete:
+I - fiscalizar, em caso de aplicação de multa, o cumprimento da respectiva decisão quanto ao
+prazo para o seu recolhimento;
+II - inspecionar os serviços de contabilidade orçamentária, financeira, patrimonial do Tribunal;
+III - o acompanhamento permanente de processos no âmbito do Tribunal, verificando o fiel
+cumprimento dos prazos regimentais;
+IV - exercer as atividades de correição interna nas unidades administrativas do Tribunal;
+V - relatar os processos administrativos referentes a deveres dos servidores e Membros do
+Tribunal;
+VI - apreciar as representações relativas a atuação e a conduta dos servidores do Tribunal;
+VII - examinar e relatar ao Tribunal Pleno o processo sobre desempenho dos servidores
+submetidos a estágio probatório, opinando, fundamentalmente, por sua confirmação no cargo ou sua exoneração;
+VIII - fiscalizar as atividades funcionais dos servidores do Tribunal;
+IX - apresentar ao Pleno, anualmente, relatório de suas atividades.
+§ 1° O Conselheiro Corregedor, no exercício de suas atribuições, se constatar qualquer
+irregularidade, fará representação circunstanciada ao Presidente do Tribunal e este ao Pleno, conforme o caso, para
+as providências julgadas necessárias.
+§ 2° O Corregedor, em suas ausências e impedimentos, por motivo de licença, férias ou outro
+afastamento legal, será substituído pelo Conselheiro mais antigo em exercício no cargo.
+Seção IV
+Da Ouvidoria
+Art. 72. A Ouvidoria do Tribunal tem a finalidade de:
+I - contribuir para melhoria da gestão do Tribunal e dos órgãos e entidades a ele jurisdicionadas;
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 31/37
+
+--- pagina 32 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+II - atuar na defesa da legalidade, legitimidade, economicidade, moralidade, impessoalidade,
+publicidade, eficiência dos atos administrativos praticados por autoridades, servidores e administradores públicos,
+bem como dos demais princípios constitucionais aplicáveis à Administração Pública.
+Parágrafo único. As competências e normas de funcionamento da Ouvidoria serão estabelecidas
+no Regimento Interno.
+CAPÍTULO IV
+DOS CONSELHEIROS
+Art. 73. Os Conselheiros do Tribunal serão nomeados dentre brasileiros que satisfaçam os
+seguintes requisitos:
+I - ter mais de trinta e cinco e menos de sessenta e cinco anos de idade;
+II - idoneidade moral e reputação ilibada;
+III - notórios conhecimentos jurídicos, contábeis, econômicos e financeiros ou de administração
+pública;
+IV - contar mais de dez anos de exercício de função ou de efetiva atividade profissional que exija
+os conhecimentos mencionados no inciso III deste artigo.
+Art. 74. Os Conselheiros do Tribunal serão escolhidos:
+I - três pelo Governador do Estado, com aprovação da Assembléia Legislativa, sendo o primeiro
+deles de livre escolha e os outros dois alternadamente entre Auditores e membros do Ministério Público junto ao
+Tribunal, indicados em lista tríplice pelo Pleno, segundo os critérios de antigüidade e merecimento;
+II - quatro pela Assembléia Legislativa.
+Art. 75. Em caso de vacância, a competência para a escolha de Conselheiro do Tribunal será
+definida de modo que mantenha a composição mencionada no art. 74.
+Art. 76. Ocorrendo vaga de cargo de Conselheiro a ser provida por Auditor ou membro do
+Ministério Público junto ao Tribunal, o Presidente convocará sessão extraordinária para deliberar sobre a respectiva
+lista tríplice, dentro do prazo fixado no Regimento Interno.
+Art. 77. Os Conselheiros terão as mesmas garantias, prerrogativas, impedimentos, vencimentos
+e vantagens dos Desembargadores do Tribunal de Justiça e somente poderão aposentar-se com as vantagens do
+cargo quando o tiverem exercido efetivamente por mais de cinco anos e obedecidos os demais requisitos
+estabelecidos na Constituição Federal.
+Art. 78. É vedado ao Conselheiro do Tribunal:
+I - exercer, ainda que em disponibilidade, outro cargo ou função, salvo uma de magistério;
+II - exercer cargo técnico ou de direção de sociedade civil, associação ou fundação, de qualquer
+natureza ou finalidade, salvo de associação de classe, sem remuneração;
+III - exercer comissão remunerada ou não, inclusive em órgãos de controle da administração
+direta ou indireta, ou em concessionárias de serviço público;
+IV - exercer profissão liberal, emprego particular, comércio, ou participar de sociedade comercial,
+exceto como acionista ou cotista sem ingerência;
+V - celebrar contrato com pessoa jurídica de direito público, empresa pública, sociedade de
+economia mista, fundação, sociedade instituída e mantida pelo Poder Público ou empresa concessionária de serviço
+público, salvo quando o contrato obedecer a normas uniformes para todo e qualquer contrato;
+VI - dedicar-se à atividade político-partidária;
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 32/37
+
+--- pagina 33 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+VII - manifestar, por qualquer meio de comunicação, opinião sobre processo pendente de
+julgamento, seu ou de outrem, ou emitir juízo depreciativo sobre despachos, votos ou decisões do Tribunal,
+ressalvada a crítica nos autos, no exercício do magistério, em obras técnicas, em artigos, ensaios, ou outras
+publicações congêneres;
+VIII - atuar em processo de interesse próprio, de cônjuge, de parente consangüíneo ou afim, na
+linha reta ou na colateral, até o terceiro grau, ou de amigo íntimo ou inimigo capital, assim como em processo em
+que tenha funcionado como advogado, perito, representante do Ministério Público ou servidor da Secretaria do
+Tribunal ou do Controle Interno.
+Art. 79. Não podem ocupar, simultaneamente, cargo de Conselheiro parentes consangüíneos ou
+afins, na linha reta ou na colateral, até o terceiro grau.
+Parágrafo único. A incompatibilidade decorrente da restrição imposta no caput resolve-se:
+I - antes da posse, contra o último nomeado ou contra o mais moço, se nomeados na mesma
+data;
+II - depois da posse, contra o que lhe deu causa;
+III - se a ambos imputáveis, contra o que tiver menos tempo de exercício no Tribunal.
+Art. 80. A antigüidade do Conselheiro será determinada na seguinte ordem:
+I - pela posse;
+II - pela nomeação;
+III - pela idade.
+Art. 81. Os Conselheiros têm prazo de trinta dias, a partir da publicação do ato de nomeação no
+Diário Oficial do Estado, prorrogável por mais sessenta dias, no máximo, mediante solicitação escrita, para posse e
+exercício no cargo.
+Art. 82. Os Conselheiros tomam posse em sessão extraordinária do Tribunal Pleno, podendo
+fazê-lo perante o Presidente, em período de recesso.
+§ 1º Antes da posse, o Conselheiro apresentará o laudo médico de aprovação em inspeção de
+saúde e a declaração de bens e de acumulação de cargos, assim como provará a regularidade de sua situação
+militar e eleitoral.
+§ 2º No ato da posse, o Conselheiro prestará compromisso na forma do Regimento Interno.
+§ 3º Será lavrado pelo dirigente da unidade administrativa competente da Secretaria do Tribunal,
+em livro próprio, o termo de posse do Conselheiro.
+Art. 83. O Conselheiro do Tribunal de Contas será aposentado por ato do Governador do Estado.
+CAPÍTULO V
+DO AUDITOR
+Art. 84. Os Auditores, em número de 4 (quatro), também denominados Conselheiros-Substitutos,
+serão nomeados pelo Governador do Estado, dentre cidadãos que satisfaçam aos requisitos exigidos para o cargo
+de Conselheiro do Tribunal de Contas dos Municípios, mediante concurso público de provas e títulos, bem como
+avaliação psicológica, realizado perante o Tribunal e por esse homologado, observada a ordem de classificação.
+- Redação dada pela Lei nº 21.098, de 21-09-2021.
+Art. 84. Os Auditores, em número de 3 (três), também denominados Conselheiros-Substitutos,
+serão nomeados pelo Governador do Estado, dentre cidadãos que satisfaçam aos requisitos exigidos para o cargo
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 33/37
+
+--- pagina 34 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+de Conselheiro do Tribunal de Contas dos Municípios, mediante concurso público de provas e títulos, bem como
+avaliação psicológica, realizado perante o Tribunal e por esse homologado, observada a ordem de classificação.
+- Redação dada pela Lei nº 19.990, de 22-01-2018.
+Art. 84. Os Auditores, em número de três, também denominados Conselheiros-Substitutos, serão
+nomeados pelo Governador do Estado, dentre cidadãos que satisfaçam os requisitos exigidos para o cargo de
+Conselheiro do Tribunal de Contas dos Municípios, mediante concurso público de provas e títulos, realizado perante
+o Tribunal e por este homologado, observada a ordem de classificação.
+- Redação dada pela Lei nº 18.757, de 06-01-2015.
+Art. 84. Os Auditores, em número de quatro, também denominados Conselheiros-Substitutos,
+serão nomeados pelo Governador do Estado, dentre cidadãos que satisfaçam os requisitos exigidos para o cargo de
+Conselheiro do Tribunal de Contas dos Municípios, mediante concurso público de provas e títulos, realizado perante
+o Tribunal e por este homologado, observada a ordem de classificação.
+- Redação dada pela Lei nº 17.288, de 19-04-2011.
+Art. 84. Os Auditores, em número de sete, serão nomeados pelo Governador do Estado, dentre
+cidadãos que satisfaçam os requisitos exigidos para o cargo de Conselheiro do Tribunal de Contas dos Municípios,
+mediante concurso público de provas e títulos, realizado perante o Tribunal e por este homologado, observada a
+ordem de classificação.
+Parágrafo único. A nomenclatura do cargo de Auditor Técnico de Engenharia fica alterada para
+Auditor, dentro do quantitativo previsto no caput .
+- Redação dada pela Lei nº 21.098, de 21-09-2021.
+Parágrafo único. Dos atuais cinco cargos de Auditor, fica extinto um deles e o de Auditor Técnico
+de Engenharia quando vagar.
+- Redação dada pela Lei nº 18.757, de 06-01-2015.
+Parágrafo único. Dos atuais sete cargos de Auditor, três serão extintos na medida em que
+vagarem, sendo um deles o de Auditor Técnico de Engenharia.
+- Redação dada pela Lei nº 17.288, de 19-04-2011.
+Parágrafo único. Dentre os Auditores, um será o Auditor Técnico de Engenharia, que além do
+previsto no caput, deverá ser portador de diploma de curso superior nas áreas de Engenharia ou Arquitetura.
+Art. 85. O Auditor, quando em substituição a Conselheiro, terá os mesmos direitos, vencimentos
+e impedimentos do titular e, quando no exercício das demais atribuições da judicatura, as de Juiz de Direito de
+entrância final, prevista no Código de Organização Judiciária de Goiás.
+§ 1º O Auditor, quando não convocado para substituir Conselheiro, presidirá a instrução dos
+processos que lhe forem distribuídos, relatando-os com proposta de decisão a ser submetida à apreciação do
+Tribunal Pleno ou da Câmara para a qual estiver designado, na forma a ser regulamentada por ato próprio do
+Tribunal.
+- Acrescida pela Lei nº 17.288, de 19-04-2011.
+§ 2º O Auditor, na quantidade prevista no caput do art. 84, terá assento permanente no Tribunal
+Pleno, bem como na Câmara para a qual for designado anualmente para atuar.
+- Acrescida pela Lei nº 17.288, de 19-04-2011.
+Art. 86. Os Auditores tem prazo de trinta dias, a partir da publicação do ato de nomeação no
+Diário Oficial do Estado, prorrogável por mais sessenta dias, no máximo, mediante solicitação escrita, para posse e
+exercício no cargo.
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 34/37
+
+--- pagina 35 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+Art. 87. Nos afastamentos por motivo de férias, vacância, substituição de Conselheiro ou por
+outro motivo legal, o Auditor será substituído pelo Auditor Substituto.
+- Revogada pela Lei nº 17.288, de 19-04-2011.
+Art. 88. O Auditor, depois do estágio probatório e tendo alcançado o vitaliciamento, somente
+perderá o cargo em virtude de sentença judicial transitada em julgado.
+- Redação dada pela Lei nº 17.288, de 19-04-2011.
+Art. 88. O Auditor, depois de empossado, somente perderá o cargo em virtude de sentença
+judicial transitada em julgado.
+Parágrafo único. Aplicam-se ao Auditor as vedações previstas para Conselheiros.
+CAPÍTULO VI
+DOS SERVIÇOS AUXILIARES
+Art. 89. Aos serviços auxiliares incumbe a prestação de apoio técnico e a execução dos serviços
+administrativos do Tribunal.
+Parágrafo único. A organização, atribuições e normas de funcionamento dos serviços auxiliares
+serão estabelecidas no Regimento Interno.
+Art. 90. O regime jurídico dos servidores do Tribunal de contas dos Municípios é o Estatuto dos
+Servidores Públicos Civis do Estado de Goiás, cujos cargos serão criados por lei e dispostos em carreira.
+Parágrafo único. A revisão geral da remuneração dos servidores, assegurada no artigo 37, X, da
+Constituição da República, ocorrerá na data e no índice previsto na Lei estadual nº 14.698/04, de 19 de janeiro de
+2004.
+- Acrescido pela Lei nº 16.467, de 05-01-2009.
+CAPÍTULO VII
+DO MINISTÉRIO PÚBLICO JUNTO AO TRIBUNAL
+Art. 91. O Ministério Público junto ao Tribunal, ao qual se aplicam os princípios institucionais da
+unidade, da indivisibilidade e da independência funcional, compõe-se de 04 (quatro) Procuradores de Contas,
+nomeados pelo Governador do Estado, entre brasileiros, bacharéis em Direito, aprovados em concurso público de
+provas e títulos, realizado e homologado pelo Tribunal, observada a ordem de classificação.
+- Redação dada pela Lei nº 19.426, de 12 de agosto de 2016, art. 2º.
+Art. 91. O Ministério Público junto ao Tribunal, ao qual se aplicam os princípios institucionais da
+unidade, da indivisibilidade e da independência funcional, compõe-se de três Procuradores de Contas, nomeados
+pelo Governador do Estado, entre brasileiros, bacharéis em Direito, aprovados em concurso público de provas e
+títulos, realizado e homologado pelo Tribunal, observada a ordem de classificação.
+Parágrafo único. O Ministério Público junto ao Tribunal tem como órgão a Procuradoria Geral de
+Contas e por chefe o Procurador-Geral, que será nomeado pelo Governador, dentre os Procuradores de Contas e
+integrantes da carreira, para exercer o mandato de dois anos, indicados em lista tríplice pelo Plenário do Tribunal,
+permitida uma recondução.
+Art. 92. Os Procuradores de Contas e o Procurador-Geral tomam posse em sessão
+extraordinária do Tribunal, podendo fazê-lo perante o Presidente, em período de recesso.
+Parágrafo único. Em caso de vacância do cargo de Procurador-Geral, o Presidente do Tribunal
+encaminhará ao Governador do Estado a lista contendo os nomes de todos os integrantes da carreira do Ministério
+Público junto ao Tribunal, por ordem de antiguidade, para escolha e nomeação do novo Procurador-Geral.
+Art. 93. Em suas ausências e impedimentos por motivo de licença, férias ou outro afastamento
+legal, o Procurador-Geral será substituído pelo Procurador que escolher, fazendo o escolhido jus, nessas
+substituições, ao subsídio do cargo exercido.
+Art. 94. Compete aos Procuradores de Contas, em sua missão de guarda da lei e fiscal de sua
+execução, além de outras estabelecidas no Regimento Interno:
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 35/37
+
+--- pagina 36 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+I - promover a defesa da ordem jurídica, requerendo perante o Tribunal de Contas dos
+Municípios, as medidas de interesse da Justiça, da Administração e do Erário;
+II - comparecer às sessões do Tribunal e dizer de direito, verbalmente ou por escrito, em todos
+os assuntos sujeitos à decisão do Tribunal, sendo obrigatória sua audiência nos processos de tomada ou prestação
+de contas, nos concernentes aos atos de admissão de pessoal, contratos convênios e concessões de
+aposentadorias e pensões;
+III - interpor os recursos permitidos em lei;
+IV - promover junto à Procuradoria-Geral da Justiça e Procuradoria Geral do Estado, as medidas
+previstas nesta Lei, remetendo-lhes a documentação e instruções necessárias.
+§ 1° Compete ainda ao Procurador-Geral avocar, quando julgar necessário, processo que esteja
+sob exame de qualquer dos Procuradores de Contas.
+§ 2° Na oportunidade em que emitir seu parecer, o Ministério Público, mesmo que suscite
+questão preliminar, manifestar-se-á também quanto ao mérito, ante a eventualidade daquela não ser acolhida.
+Art. 95. O Procurador-Geral baixará as instruções que julgar necessárias, definindo as
+atribuições dos Procuradores de Contas.
+Art. 96. O Ministério Público contará com apoio administrativo e de pessoal do Tribunal, conforme
+organização estabelecida no Regimento Interno.
+Art. 97. Os Procuradores tem prazo de trinta dias, a partir da publicação do ato de nomeação no
+Diário Oficial do Estado, prorrogável por mais sessenta dias, no máximo, mediante solicitação escrita, para posse e
+exercício no cargo.
+Art. 98. Aos membros do Ministério Público junto ao Tribunal de Contas dos Municípios aplicam-
+se, subsidiariamente, no que couberem, as disposições da Lei Orgânica do Ministério Público Estadual, pertinentes
+a direitos, garantias, prerrogativas, vedações, regime disciplinar e forma de investidura no cargo.
+Parágrafo único. Aplicam-se aos Procuradores de Contas as vedações e restrições previstas
+para Conselheiro no art. 78.
+TÍTULO IV
+DISPOSIÇÕES GERAIS E TRANSITÓRIAS
+Art. 99. A título de racionalização administrativa e economia processual, e com o objetivo de
+evitar que o custo da cobrança seja superior ao valor do ressarcimento, o Tribunal poderá determinar, desde logo,
+nos termos de ato normativo, o arquivamento do processo, sem cancelamento do débito, a cujo pagamento
+continuará obrigado o devedor, para lhe ser dada quitação.
+Art. 100. O Tribunal poderá estabelecer, por ato resolutivo, a forma, o conteúdo e prazos para as
+prestações de contas e demais atos sujeitos à sua apreciação e registro, inclusive por meios magnéticos ou
+assemelhados.
+Art. 101. O informe TCM, o Diário Oficial de Contas e o site do Tribunal na Internet são os órgãos
+de divulgação oficial do Tribunal.
+- Redação dada pela Lei nº 19.990, de 22-01-2018.
+Art. 101. O Informe TCM e o site do Tribunal na Internet são os órgãos de divulgação oficial do
+Tribunal.
+Art. 102. O Regimento Interno do Tribunal será aprovado e alterado mediante resolução, por
+maioria absoluta de seus Conselheiros titulares.
+Art. 103. O Tribunal de Contas dos Municípios poderá firmar acordo ou convênios de cooperação
+com outros órgãos e entidades públicas ou privadas, objetivando aperfeiçoar a consecução de seus fins, na forma
+que dispuser o Regimento Interno.
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 36/37
+
+--- pagina 37 ---
+22/09/2022 16:01 Lei Ordinária Nº 15.958/2007 - Casa Civil do Estado de Goiás
+Art. 104. No julgamento das contas de qualquer pessoa física ou jurídica, pública ou privada, que
+utilize, gerencie ou administre dinheiros, bens e valores públicos ou pelos quais os municípios respondam, ou, em
+nome destes assuma obrigações de natureza pecuniária, aplicam-se o disposto nos arts. 11 a 14 desta Lei.
+Art. 104-A. Aplica-se ao Presidente, ao Vice-Presidente, ao Corregedor e ao Ouvidor do Tribunal,
+eleitos para o exercício de 2018, o mandato de 2 (dois) anos, a que se refere o caput do artigo 68.
+- Acrescido dada pela Lei nº 19.990, de 22-01-2018.
+Art. 105. VETADO.
+Art. 106. O não recolhimento das multas nos prazos e formas fixados resultará em impedimento
+para obtenção de certidões emitidas para fins de recebimento de transferências voluntárias.
+- Revogado pela Lei nº 19.044, de 13-10-2015, art. 2º.
+Art. 107. VETADO.
+Art. 108. Esta Lei entra em vigor sessenta dias após a sua publicação.
+PALÁCIO DO GOVERNO DO ESTADO DE GOIÁS, em Goiânia, 18 de janeiro de 2007, 119o da
+República.
+ALCIDES RODRIGUES FILHO
+(D.O. de 25-01-2007)
+Este texto não substitui o publicado no D.O. de 25-01-2007.
+https://legisla.casacivil.go.gov.br/pesquisa_legislacao/80070/lei-15958 37/37

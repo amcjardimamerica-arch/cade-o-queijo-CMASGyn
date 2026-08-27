@@ -156,7 +156,7 @@ def chamar(tarefa: str, conteudo: str, sistema: str = "", ancoras=None) -> str |
 # ── Economia estrutural, em ordem de impacto ────────────────────────────────
 ECONOMIA = {
   "1_corpus_congelado": {
-    "o_que": "O corpo legal é baixado uma vez por mês e lido de corpus_txt/. "
+    "o_que": "O corpo legal é baixado uma vez por mês e lido de corpus/. "
              "Nenhuma consulta de norma durante a análise.",
     "ganho": "elimina toda busca externa no ciclo semanal"},
   "2_prefixo_estavel": {
