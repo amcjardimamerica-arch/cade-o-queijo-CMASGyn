@@ -1,0 +1,258 @@
+{
+ "exercicio": 2026,
+ "acao": "3650.0824401082.591",
+ "denominacao": "Manutenção do Conselho Municipal de Assistência Social — CMASGyn",
+ "dotacao_total": 256000,
+ "por_fonte": {
+  "1660": 16000,
+  "1661": 240000
+ },
+ "rubricas": [
+  {
+   "natureza": "3.3.90.39.00",
+   "nome": "Outros serviços de terceiros — pessoa jurídica",
+   "valor": 131000,
+   "fontes": {
+    "1660": 1000,
+    "1661": 130000
+   },
+   "simbolica": false
+  },
+  {
+   "natureza": "3.3.90.30.00",
+   "nome": "Material de consumo",
+   "valor": 58000,
+   "fontes": {
+    "1660": 8000,
+    "1661": 50000
+   },
+   "simbolica": false
+  },
+  {
+   "natureza": "4.4.90.52.00",
+   "nome": "Equipamentos e material permanente",
+   "valor": 47000,
+   "fontes": {
+    "1660": 5000,
+    "1661": 42000
+   },
+   "simbolica": false
+  },
+  {
+   "natureza": "3.3.90.40.00",
+   "nome": "Serviços de tecnologia da informação",
+   "valor": 15000,
+   "fontes": {
+    "1661": 15000
+   },
+   "simbolica": false
+  },
+  {
+   "natureza": "3.3.90.36.00",
+   "nome": "Outros serviços de terceiros — pessoa física",
+   "valor": 2000,
+   "fontes": {
+    "1660": 1000,
+    "1661": 1000
+   },
+   "simbolica": true
+  },
+  {
+   "natureza": "3.3.90.92.00",
+   "nome": "Despesas de exercícios anteriores",
+   "valor": 2000,
+   "fontes": {
+    "1660": 1000,
+    "1661": 1000
+   },
+   "simbolica": true
+  },
+  {
+   "natureza": "4.4.90.51.00",
+   "nome": "Obras e instalações",
+   "valor": 1000,
+   "fontes": {
+    "1661": 1000
+   },
+   "simbolica": true
+  }
+ ],
+ "rubricas_ausentes_essenciais": [
+  {
+   "natureza": "3.3.90.14.00",
+   "nome": "Diárias — pessoal civil",
+   "rubrica": "Diárias",
+   "consequencia": "Sem dotação de diárias o conselheiro não participa de conferência estadual ou nacional, nem de reunião fora do Município. O artigo 2º, inciso XII, da Lei municipal 9.009/2010 impõe conferência a cada dois anos."
+  },
+  {
+   "natureza": "3.3.90.33.00",
+   "nome": "Passagens e despesas com locomoção",
+   "rubrica": "Passagens e locomoção",
+   "consequencia": "Sem passagens não há deslocamento, e sem deslocamento não há fiscalização in loco dos serviços, que o artigo 2º, inciso VI, da Lei municipal 9.009/2010 atribui ao Conselho."
+  },
+  {
+   "natureza": "3.3.90.48.00",
+   "nome": "Outros auxílios financeiros a pessoas físicas",
+   "rubrica": "Auxílio financeiro a pessoa física",
+   "consequencia": "É a rubrica por onde se custeia apoio ao conselheiro representante de usuário, que costuma ser quem tem menos meios próprios de comparecer. Sua ausência afeta desigualmente a paridade do artigo 3º."
+  },
+  {
+   "natureza": "3.3.90.35.00",
+   "nome": "Serviços de consultoria",
+   "rubrica": "Consultoria e assessoria técnica",
+   "consequencia": "O artigo 6º, inciso V, prevê Corpo Técnico. Sem esta rubrica na ação própria, o apoio técnico depende inteiramente do órgão gestor — que é justamente o fiscalizado."
+  },
+  {
+   "natureza": "3.1.90.11.00",
+   "nome": "Vencimentos e vantagens fixas",
+   "rubrica": "Vencimentos",
+   "consequencia": "O artigo 6º, inciso III, prevê Secretaria Executiva contratada e disponibilizada pelo órgão gestor. Não estando na ação do Conselho, a remuneração corre pela folha da Secretaria e não se afere aqui."
+  }
+ ],
+ "apoio_ao_conselheiro": {
+  "material": {
+   "valor": 58000,
+   "descricao": "Material de consumo — papel, expediente, copa",
+   "situacao": "previsto"
+  },
+  "estrutural": {
+   "valor": 63000,
+   "descricao": "Equipamentos, obras e tecnologia da informação",
+   "situacao": "previsto"
+  },
+  "servicos": {
+   "valor": 133000,
+   "descricao": "Serviços de terceiros, pessoa física e jurídica",
+   "situacao": "previsto"
+  },
+  "deslocamento": {
+   "valor": 0,
+   "descricao": "Diárias e passagens",
+   "situacao": "AUSENTE"
+  },
+  "apoio_financeiro_ao_conselheiro": {
+   "valor": 0,
+   "descricao": "Auxílio financeiro a pessoa física",
+   "situacao": "AUSENTE"
+  },
+  "apoio_tecnico_proprio": {
+   "valor": 0,
+   "descricao": "Consultoria e pessoal próprio",
+   "situacao": "AUSENTE"
+  }
+ },
+ "comparacao": {
+  "cmasgyn": {
+   "dotacao": 256000,
+   "fundo": 23218000,
+   "proporcao": 1.1
+  },
+  "conselho_do_idoso": {
+   "dotacao": 261000,
+   "fundo": 2615000,
+   "proporcao_percent": 9.98
+  }
+ },
+ "achados": [
+  {
+   "codigo": "CMAS-FIN-01",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Conselho sem dotação de diárias e passagens",
+   "detalhe": "A ação 3650.0824401082.591 não tem uma única linha de diárias (3.3.90.14) nem de passagens (3.3.90.33). O conselheiro não dispõe de meio orçamentário para participar de conferência fora do Município nem para fiscalizar serviços in loco. As duas atribuições estão na lei que criou o Conselho.",
+   "norma": "Artigo 8º e artigo 2º, incisos VI e XII, da Lei municipal 9.009/2010",
+   "dados": {
+    "diarias": 0,
+    "passagens": 0,
+    "total_da_acao": 256000
+   }
+  },
+  {
+   "codigo": "CMAS-FIN-02",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Nenhum apoio financeiro direto ao conselheiro",
+   "detalhe": "Não há dotação de auxílio financeiro a pessoa física (3.3.90.48), de auxílio alimentação (3.3.90.46) nem de auxílio transporte (3.3.90.49). O mandato de conselheiro é gratuito, o que é legítimo, mas gratuidade do mandato não dispensa o custeio da participação. A ausência pesa de modo desigual sobre o representante de usuário, que ocupa seis das quinze cadeiras da sociedade civil.",
+   "norma": "Artigo 8º da Lei municipal 9.009/2010; artigo 3º quanto à paridade",
+   "dados": {
+    "auxilio_pf": 0
+   }
+  },
+  {
+   "codigo": "CMAS-FIN-03",
+   "severidade": "media",
+   "selo": "CONFIRMADO",
+   "titulo": "3 rubricas do Conselho são dotação simbólica",
+   "detalhe": "3 de 7 rubricas têm valor de até R$ 2.000,00, somando 5,000.00. Dotação nesse patamar não custeia atividade: existe para permitir suplementação por decreto sem abrir nova linha orçamentária. Contabilmente a rubrica existe; na prática, não financia nada enquanto não for suplementada.",
+   "norma": "Artigo 13 da Lei 4.320/1964",
+   "dados": {
+    "rubricas_simbolicas": 3,
+    "valor": 5000,
+    "lista": [
+     "3.3.90.36.00",
+     "3.3.90.92.00",
+     "4.4.90.51.00"
+    ]
+   }
+  },
+  {
+   "codigo": "CMAS-FIN-04",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Apoio técnico do Conselho depende integralmente do fiscalizado",
+   "detalhe": "Não há dotação de consultoria (3.3.90.35) nem de pessoal próprio (3.1.90.11) na ação do Conselho. A Secretaria Executiva e o Corpo Técnico são contratados e disponibilizados pelo órgão gestor, na forma da lei. O desenho é legal, mas produz dependência: quem fornece a estrutura de fiscalização é quem está sendo fiscalizado. Sem os atos de designação, não se sabe sequer se existem.",
+   "norma": "Artigo 6º, incisos III e V, e artigo 8º da Lei municipal 9.009/2010",
+   "dados": {
+    "consultoria": 0,
+    "pessoal_proprio": 0
+   }
+  },
+  {
+   "codigo": "CMAS-FIN-05",
+   "severidade": "critica",
+   "selo": "CONFIRMADO",
+   "titulo": "Piso federal do Índice cumprido em 22,6%",
+   "detalhe": "Dos 256,000.00 da ação, apenas 16,000.00 vêm da fonte 1660, onde trafega o Índice de Gestão Descentralizada. O devido é 70,670.72. Os 240,000.00 de fonte estadual contam como outra fonte de financiamento, admitida na parte final do artigo 6º, mas não substituem o piso federal.",
+   "norma": "Artigo 6º da Resolução CNAS/MDS 202/2025",
+   "dados": {
+    "aplicado_na_fonte_do_indice": 16000,
+    "devido": 70670.72,
+    "diferenca": 54670.72,
+    "cumprimento_percentual": 22.6,
+    "situacao": "DESCUMPRIDO",
+    "leitura": "A ação do Conselho está dotada em 256,000.00, mas apenas 16,000.00 vêm da fonte federal onde o Índice trafega. O piso do artigo 6º exige 70,670.72. Faltam 54,670.72. Os 240,000.00 de fonte estadual contam como outra fonte de financiamento, prevista na parte final do artigo 6º, mas não substituem o piso federal."
+   }
+  },
+  {
+   "codigo": "CMAS-FIN-06",
+   "severidade": "media",
+   "selo": "CONFIRMADO",
+   "titulo": "Conselho ausente das metas e prioridades da Lei de Diretrizes",
+   "detalhe": "O Anexo III da Lei de Diretrizes Orçamentárias 11.589/2026 elenca, no setor de políticas para mulher, direitos humanos e assistência social, a meta de R$ 41.265.955,98, com cinco ações — inclusive manutenção de cemitérios. O Conselho não figura entre elas.",
+   "norma": "Artigo 165, § 2º, da Constituição Federal",
+   "dados": {
+    "meta_do_setor": 41265955.98
+   }
+  },
+  {
+   "codigo": "CMAS-FIN-07",
+   "severidade": "alta",
+   "selo": "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE",
+   "titulo": "Execução da dotação do Conselho não publicada",
+   "detalhe": "A dotação de 256,000.00 é previsão. Não há empenho, liquidação nem pagamento publicados para a ação. Não se sabe se o Conselho recebeu, gastou ou devolveu.",
+   "norma": "Artigos 58, 62 e 63 da Lei 4.320/1964; artigo 48-A da Lei Complementar 101/2000",
+   "dados": {
+    "documento_necessario": "Execução orçamentária da ação 3650.0824401082.591 por estágio"
+   }
+  }
+ ],
+ "documentos_para_conciliar": [
+  "Execução orçamentária da ação 3650.0824401082.591, por estágio e por rubrica",
+  "Atos de designação da Secretaria Executiva e do Corpo Técnico",
+  "Regimento Interno vigente",
+  "Decreto de nomeação dos conselheiros, com segmento e mandato",
+  "Atas de plenária de 2024 a 2026, com lista de presença por segmento",
+  "Prestação de contas quadrimestral do Índice, artigo 6º, § 5º",
+  "Demonstrativo de bens patrimoniados na sede do Conselho"
+ ]
+}

@@ -1,0 +1,372 @@
+{
+ "exercicio": 2026,
+ "fontes": [
+  {
+   "fonte": "1660",
+   "nome": "União — Fundo Nacional de Assistência Social",
+   "anual": 8250000,
+   "regime": "fundo a fundo, parcela mensal",
+   "norma": "Artigo 30 da Lei 8.742/1993; Resolução CNAS 33/2012",
+   "esperado_mensal": 687500.0,
+   "contem_igd": true
+  },
+  {
+   "fonte": "1661",
+   "nome": "Estado — Assistência Social",
+   "anual": 6000000,
+   "regime": "transferência estadual",
+   "norma": "convênio ou repasse fundo a fundo estadual",
+   "esperado_mensal": 500000.0,
+   "contem_igd": false
+  },
+  {
+   "fonte": "1665",
+   "nome": "Estado — Programas de Assistência Social",
+   "anual": 3104000,
+   "regime": "transferência estadual",
+   "norma": "—",
+   "esperado_mensal": 258666.67,
+   "contem_igd": false
+  },
+  {
+   "fonte": "tesouro",
+   "nome": "Município — Tesouro Municipal",
+   "anual": 9000,
+   "regime": "programação financeira; transferência automática ao Fundo",
+   "norma": "Artigo 2º, § 1º, da Lei municipal 7.531/1995",
+   "esperado_mensal": 750.0,
+   "contem_igd": false
+  },
+  {
+   "fonte": "patrimonial",
+   "nome": "Rendimento de aplicação financeira",
+   "anual": 2574000,
+   "regime": "crédito mensal sobre saldo aplicado",
+   "norma": "Artigo 2º, inciso IV, da Lei municipal 7.531/1995",
+   "esperado_mensal": 214500.0,
+   "contem_igd": false
+  },
+  {
+   "fonte": "nao_identificada",
+   "nome": "Transferências correntes sem fonte declarada",
+   "anual": 2071000,
+   "regime": "indeterminado",
+   "norma": "—",
+   "esperado_mensal": 172583.33,
+   "contem_igd": false
+  },
+  {
+   "fonte": "capital",
+   "nome": "Transferências de capital",
+   "anual": 1115000,
+   "regime": "parcela única ou por etapa de projeto",
+   "norma": "—",
+   "esperado_mensal": null,
+   "contem_igd": false
+  }
+ ],
+ "competencias": [
+  {
+   "competencia": "2026-01",
+   "mes": "janeiro",
+   "previsto_total": 1934833.33,
+   "previsto_por_fonte": {
+    "1660": 687500.0,
+    "1661": 500000.0,
+    "1665": 258666.67,
+    "tesouro": 750.0,
+    "patrimonial": 214500.0,
+    "nao_identificada": 172583.33
+   },
+   "igd": {
+    "base_mensal_estimada": 58892.26,
+    "devido_ao_conselho_10": 5889.23,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   "realizado": null,
+   "situacao": "NÃO PUBLICADO"
+  },
+  {
+   "competencia": "2026-02",
+   "mes": "fevereiro",
+   "previsto_total": 1934833.33,
+   "previsto_por_fonte": {
+    "1660": 687500.0,
+    "1661": 500000.0,
+    "1665": 258666.67,
+    "tesouro": 750.0,
+    "patrimonial": 214500.0,
+    "nao_identificada": 172583.33
+   },
+   "igd": {
+    "base_mensal_estimada": 58892.26,
+    "devido_ao_conselho_10": 5889.23,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   "realizado": null,
+   "situacao": "NÃO PUBLICADO"
+  },
+  {
+   "competencia": "2026-03",
+   "mes": "março",
+   "previsto_total": 1934833.33,
+   "previsto_por_fonte": {
+    "1660": 687500.0,
+    "1661": 500000.0,
+    "1665": 258666.67,
+    "tesouro": 750.0,
+    "patrimonial": 214500.0,
+    "nao_identificada": 172583.33
+   },
+   "igd": {
+    "base_mensal_estimada": 58892.26,
+    "devido_ao_conselho_10": 5889.23,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   "realizado": null,
+   "situacao": "NÃO PUBLICADO"
+  },
+  {
+   "competencia": "2026-04",
+   "mes": "abril",
+   "previsto_total": 1934833.33,
+   "previsto_por_fonte": {
+    "1660": 687500.0,
+    "1661": 500000.0,
+    "1665": 258666.67,
+    "tesouro": 750.0,
+    "patrimonial": 214500.0,
+    "nao_identificada": 172583.33
+   },
+   "igd": {
+    "base_mensal_estimada": 58892.26,
+    "devido_ao_conselho_10": 5889.23,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   "realizado": null,
+   "situacao": "NÃO PUBLICADO"
+  },
+  {
+   "competencia": "2026-05",
+   "mes": "maio",
+   "previsto_total": 1934833.33,
+   "previsto_por_fonte": {
+    "1660": 687500.0,
+    "1661": 500000.0,
+    "1665": 258666.67,
+    "tesouro": 750.0,
+    "patrimonial": 214500.0,
+    "nao_identificada": 172583.33
+   },
+   "igd": {
+    "base_mensal_estimada": 58892.26,
+    "devido_ao_conselho_10": 5889.23,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   "realizado": null,
+   "situacao": "NÃO PUBLICADO"
+  },
+  {
+   "competencia": "2026-06",
+   "mes": "junho",
+   "previsto_total": 1934833.33,
+   "previsto_por_fonte": {
+    "1660": 687500.0,
+    "1661": 500000.0,
+    "1665": 258666.67,
+    "tesouro": 750.0,
+    "patrimonial": 214500.0,
+    "nao_identificada": 172583.33
+   },
+   "igd": {
+    "base_mensal_estimada": 58892.26,
+    "devido_ao_conselho_10": 5889.23,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   "realizado": null,
+   "situacao": "NÃO PUBLICADO"
+  },
+  {
+   "competencia": "2026-07",
+   "mes": "julho",
+   "previsto_total": 1934833.33,
+   "previsto_por_fonte": {
+    "1660": 687500.0,
+    "1661": 500000.0,
+    "1665": 258666.67,
+    "tesouro": 750.0,
+    "patrimonial": 214500.0,
+    "nao_identificada": 172583.33
+   },
+   "igd": {
+    "base_mensal_estimada": 58892.26,
+    "devido_ao_conselho_10": 5889.23,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   "realizado": null,
+   "situacao": "NÃO PUBLICADO"
+  },
+  {
+   "competencia": "2026-08",
+   "mes": "agosto",
+   "previsto_total": 1934833.33,
+   "previsto_por_fonte": {
+    "1660": 687500.0,
+    "1661": 500000.0,
+    "1665": 258666.67,
+    "tesouro": 750.0,
+    "patrimonial": 214500.0,
+    "nao_identificada": 172583.33
+   },
+   "igd": {
+    "base_mensal_estimada": 58892.26,
+    "devido_ao_conselho_10": 5889.23,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   "realizado": null,
+   "situacao": "NÃO PUBLICADO"
+  },
+  {
+   "competencia": "2026-09",
+   "mes": "setembro",
+   "previsto_total": 1934833.33,
+   "previsto_por_fonte": {
+    "1660": 687500.0,
+    "1661": 500000.0,
+    "1665": 258666.67,
+    "tesouro": 750.0,
+    "patrimonial": 214500.0,
+    "nao_identificada": 172583.33
+   },
+   "igd": {
+    "base_mensal_estimada": 58892.26,
+    "devido_ao_conselho_10": 5889.23,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   "realizado": null,
+   "situacao": "NÃO PUBLICADO"
+  },
+  {
+   "competencia": "2026-10",
+   "mes": "outubro",
+   "previsto_total": 1934833.33,
+   "previsto_por_fonte": {
+    "1660": 687500.0,
+    "1661": 500000.0,
+    "1665": 258666.67,
+    "tesouro": 750.0,
+    "patrimonial": 214500.0,
+    "nao_identificada": 172583.33
+   },
+   "igd": {
+    "base_mensal_estimada": 58892.26,
+    "devido_ao_conselho_10": 5889.23,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   "realizado": null,
+   "situacao": "NÃO PUBLICADO"
+  },
+  {
+   "competencia": "2026-11",
+   "mes": "novembro",
+   "previsto_total": 1934833.33,
+   "previsto_por_fonte": {
+    "1660": 687500.0,
+    "1661": 500000.0,
+    "1665": 258666.67,
+    "tesouro": 750.0,
+    "patrimonial": 214500.0,
+    "nao_identificada": 172583.33
+   },
+   "igd": {
+    "base_mensal_estimada": 58892.26,
+    "devido_ao_conselho_10": 5889.23,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   "realizado": null,
+   "situacao": "NÃO PUBLICADO"
+  },
+  {
+   "competencia": "2026-12",
+   "mes": "dezembro",
+   "previsto_total": 1934833.33,
+   "previsto_por_fonte": {
+    "1660": 687500.0,
+    "1661": 500000.0,
+    "1665": 258666.67,
+    "tesouro": 750.0,
+    "patrimonial": 214500.0,
+    "nao_identificada": 172583.33
+   },
+   "igd": {
+    "base_mensal_estimada": 58892.26,
+    "devido_ao_conselho_10": 5889.23,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   "realizado": null,
+   "situacao": "NÃO PUBLICADO"
+  }
+ ],
+ "ldo": {
+  "meta_financeira_do_setor": 41265955.98,
+  "setor": "Políticas Públicas para Mulher, Direitos Humanos e Assistência Social",
+  "fonte": "Lei de Diretrizes Orçamentárias 11.589/2026, Anexo III, Metas e Prioridades",
+  "acoes_na_meta": [
+   "Goiânia + direitos humanos",
+   "Rede + mulher",
+   "Manutenção dos serviços e da rede",
+   "Ação acolher e cuidar (primeira infância)",
+   "Manutenção dos cemitérios"
+  ],
+  "observacao": "A meta reúne três políticas distintas — mulher, direitos humanos e assistência social — e ainda inclui manutenção de cemitérios. Não é comparável diretamente com a função 08. A inclusão de cemitérios no setor da assistência social é do próprio Município, não erro de leitura.",
+  "cmasgyn_nas_metas": false,
+  "nota_cmasgyn": "O Conselho Municipal de Assistência Social não figura entre as metas e prioridades da Lei de Diretrizes Orçamentárias de 2026."
+ },
+ "conciliacao": {
+  "loa_funcao_08": 28440000,
+  "loa_fundo": 23218000,
+  "ldo_meta_setor": 41265955.98,
+  "diferenca_ldo_menos_funcao08": 12825955.98,
+  "leitura": "A meta da Lei de Diretrizes supera a função 08 da Lei Orçamentária em 12,825,955.98, porque agrega políticas de mulher e direitos humanos, além de cemitérios. Só o detalhamento por ação permite separar o que é assistência social."
+ },
+ "regime_de_entrada": {
+  "pergunta": "O dinheiro entra em parcela mensal ou é depósito único consumido ao longo do ano?",
+  "resposta": "Os dois regimes convivem, e é preciso separá-los.",
+  "parcela_mensal": [
+   "fonte 1660 — repasse federal fundo a fundo, regular e automático",
+   "fonte 1661 e 1665 — transferências estaduais",
+   "rendimento de aplicação, creditado mensalmente sobre o saldo"
+  ],
+  "saldo_acumulado": {
+   "descricao": "Superávit financeiro de exercícios anteriores, reaberto por decreto de crédito adicional. Não é entrada nova: é sobra do que não se gastou.",
+   "valor_2026": 33059000.0,
+   "norma": "Artigo 43, § 1º, inciso I, da Lei 4.320/1964",
+   "exige": "superávit apurado em Balanço Patrimonial do exercício anterior"
+  },
+  "indicio": "A receita patrimonial de 2,574,000.00 sobre um Fundo de 23,218,000.00 — 11.1% — pressupõe saldo médio aplicado próximo do orçamento anual inteiro. É o retrato de um fundo que acumula e não executa.",
+  "o_que_falta": "Extratos mensais da conta especial do Fundo e Relatório Resumido da Execução Orçamentária. Sem eles, não se distingue o que entrou do que sobrou."
+ },
+ "igd_mensal": {
+  "base_anual": 706707.15,
+  "base_mensal_estimada": 58892.26,
+  "devido_mensal_ao_conselho": 5889.23,
+  "devido_anual": 70670.72,
+  "reservado_na_fonte_federal": 16000,
+  "competencias_com_demonstrativo": 0,
+  "norma": "Artigo 6º da Resolução CNAS/MDS 202/2025",
+  "leitura": "O piso incide sobre o repasse de cada mês. Estimando a base em doze parcelas, seriam 5,889.23 por competência. Nenhuma das doze tem demonstrativo publicado. A estimativa serve para dimensionar, não para acusar: o repasse real varia mês a mês e só a Consulta de Pagamentos do Fundo Nacional o revela."
+ },
+ "achado": "Nenhuma das doze competências de 2026 tem receita realizada publicada. A conciliação entre previsto e realizado é impossível com o que está público."
+}

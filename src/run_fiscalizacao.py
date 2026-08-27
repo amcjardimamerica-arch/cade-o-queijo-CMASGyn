@@ -19,6 +19,8 @@ ETAPAS = [
     ("verificação do exercício", "src/verifica_exercicio.py"),
     ("pessoal e diárias", "src/pessoal.py"),
     ("piso do IGD ao controle social", "src/igd_controle_social.py"),
+    ("receita mensal e conciliação", "src/receita_mensal.py"),
+    ("contas do Conselho", "src/cmasgyn_contas.py"),
     ("modelo de fluxo", "src/monta_fluxo.py"),
     ("trilha visual", "src/gera_fluxo_html.py"),
     ("categorias e tetos", "src/categoriza.py"),
@@ -35,7 +37,11 @@ def rodar(nome, script):
 def consolidar():
     v = json.loads((REL / "verificacao_2026.json").read_text(encoding="utf-8"))
     p = json.loads((DADOS / "pessoal.json").read_text(encoding="utf-8"))
-    todos = v["achados"] + [{"bloco": "PES", "codigo": a["regra"], **{k: a[k] for k in
+    cm = json.loads((RAIZ / "dados" / "cmasgyn_contas_2026.json").read_text(encoding="utf-8"))
+    todos = v["achados"] + [{"bloco": "CMAS", **{k: a[k] for k in
+        ("codigo", "severidade", "selo", "titulo", "detalhe", "norma")},
+        "dados": a.get("dados", {})} for a in cm["achados"]] + \
+        [{"bloco": "PES", "codigo": a["regra"], **{k: a[k] for k in
         ("severidade", "selo", "titulo", "detalhe", "norma")}, "dados": a.get("dados", {})}
         for a in p["achados"]]
     docs = json.loads((RAIZ / "config" / "documentos_complementares.json").read_text(encoding="utf-8"))

@@ -156,8 +156,62 @@ c.push(P([R('A versão didática desta trilha, feita para leitura por quem não 
  R('. Quatro estações: quem paga, onde o dinheiro fica, em que foi gasto e quem recebeu.')]));
 c.push(new Paragraph({children:[new PageBreak()]}));
 
+// III-D RECEITA MENSAL E CONSELHO
+const RM=JSON.parse(fs.readFileSync(require('path').resolve(__dirname,'..','..','dados','receita_mensal_2026.json'),'utf8'));
+const CM=JSON.parse(fs.readFileSync(require('path').resolve(__dirname,'..','..','dados','cmasgyn_contas_2026.json'),'utf8'));
+c.push(H('V — Receita Mensal e Conciliação com a Lei Orçamentária e a Lei de Diretrizes',HeadingLevel.HEADING_1));
+c.push(P([R('A Lei Orçamentária prevê '),R(brl(RM.conciliacao.loa_fundo),{b:true}),
+ R(' para o Fundo em 2026. A Lei de Diretrizes fixa meta de '),
+ R(brl(RM.conciliacao.ldo_meta_setor),{b:true}),
+ R(' para o setor, mas a meta reúne políticas de mulher e direitos humanos, e inclui manutenção de cemitérios — não é comparável diretamente com a função 08. Nenhuma das doze competências de 2026 tem receita realizada publicada, de modo que a conciliação entre previsto e realizado é impossível com o que está público.')]));
+c.push(V());
+c.push(new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:60},
+ children:[R('Previsão anual e parcela mensal esperada, por fonte',{b:true,sz:20})]}));
+c.push(TAB(['Fonte','Regime de entrada','Previsto no ano','Parcela mensal'],RM.fontes.map(f=>
+ [f.nome,f.regime,brl(f.anual),f.esperado_mensal?brl(f.esperado_mensal):'parcela única']),[2800,2400,1900,1600]));
+c.push(V());
+c.push(P([R('Parcela mensal ou depósito consumido? ',{b:true}),
+ R('Os dois regimes convivem. Os repasses federal e estadual entram em parcelas mensais, e o rendimento de aplicação é creditado mês a mês. Mas os decretos de crédito de 2026 reabriram '),
+ R(brl(RM.regime_de_entrada.saldo_acumulado.valor_2026),{b:true}),
+ R(' contra fontes de exercícios anteriores — valor superior ao orçamento anual inteiro do Fundo. Isso não é entrada nova: é sobra do que não se gastou. A receita patrimonial de '),
+ R(brl(23218000*0.1109),{b:true}),
+ R(' confirma pelo outro lado: rendimento nessa proporção pressupõe saldo médio aplicado próximo do orçamento anual. O retrato é de um fundo que acumula e não executa.')]));
+c.push(V());
+c.push(P([R('Piso mensal do Índice ao controle social. ',{b:true}),
+ R('Estimando a base do Índice em doze parcelas, seriam '),
+ R(brl(RM.igd_mensal.devido_mensal_ao_conselho),{b:true}),
+ R(' devidos por competência. Nenhuma das doze tem demonstrativo publicado. A estimativa dimensiona, não acusa: o repasse real varia mês a mês e só a Consulta de Pagamentos do Fundo Nacional o revela.')]));
+c.push(new Paragraph({children:[new PageBreak()]}));
+
+c.push(H('VI — Contas do Conselho Municipal de Assistência Social',HeadingLevel.HEADING_1));
+c.push(P([R('A ação 3650.0824401082.591 reserva '),R(brl(CM.dotacao_total),{b:true}),
+ R(' ao Conselho em 2026, sendo '),R(brl(CM.por_fonte['1660']||0),{b:true}),
+ R(' da fonte federal e '),R(brl(CM.por_fonte['1661']||0),{b:true}),
+ R(' da fonte estadual. Em proporção ao Fundo que fiscaliza, são '),
+ R(CM.comparacao.cmasgyn.proporcao+'%',{b:true}),
+ R(', contra '),R(CM.comparacao.conselho_do_idoso.proporcao_percent+'%',{b:true}),
+ R(' do Conselho Municipal do Idoso, na mesma Secretaria.')]));
+c.push(V());
+c.push(new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:60},
+ children:[R('Rubricas do Conselho',{b:true,sz:20})]}));
+c.push(TAB(['Natureza','Denominação','Valor'],CM.rubricas.map(r=>
+ [r.natureza,r.nome+(r.simbolica?' (dotação simbólica)':''),brl(r.valor)]),[1900,4800,2000]));
+c.push(V());
+c.push(new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:60},
+ children:[R('Apoio ao conselheiro para exercício da função',{b:true,sz:20})]}));
+const AP={material:'Material de consumo',estrutural:'Estrutura, equipamento e tecnologia',
+ servicos:'Serviços de terceiros',deslocamento:'Diárias e passagens',
+ apoio_financeiro_ao_conselheiro:'Auxílio financeiro ao conselheiro',
+ apoio_tecnico_proprio:'Consultoria e pessoal próprio'};
+c.push(TAB(['Espécie de apoio','Situação','Valor'],Object.entries(CM.apoio_ao_conselheiro).map(([k,v])=>
+ [AP[k]||k,v.situacao==='AUSENTE'?'AUSENTE':'previsto',brl(v.valor)]),[4200,2500,2000]));
+c.push(V());
+c.push(P([R('Leitura. ',{b:true}),
+ R('O Conselho tem material, equipamento e serviços. Não tem diárias, não tem passagens, não tem auxílio financeiro ao conselheiro e não tem pessoal ou consultoria própria. Sem diárias e passagens, o conselheiro não participa de conferência fora do Município nem fiscaliza serviço in loco — duas atribuições que a lei lhe dá. Sem auxílio a pessoa física, a participação pesa desigualmente sobre o representante de usuário, que ocupa seis das quinze cadeiras da sociedade civil. E sem pessoal próprio, o apoio técnico depende inteiramente do órgão gestor, que é o fiscalizado.')]));
+c.push(new Paragraph({children:[new PageBreak()]}));
+
 // IV IRREGULARIDADES
-c.push(H('V — Irregularidades Apuradas',HeadingLevel.HEADING_1));
+c.push(H('VII — Irregularidades Apuradas',HeadingLevel.HEADING_1));
 let at='';
 for(const a of D.achados){
  if(a.bloco!==at){at=a.bloco;c.push(H(BLOCO[a.bloco],HeadingLevel.HEADING_2));}
@@ -213,7 +267,7 @@ for(const a of D.achados){
 
 // V PROVIDENCIAS
 c.push(new Paragraph({children:[new PageBreak()]}));
-c.push(H('VI — Providências',HeadingLevel.HEADING_1));
+c.push(H('VIII — Providências',HeadingLevel.HEADING_1));
 [['Requerer os documentos faltantes','à Secretaria, com fundamento nos artigos 10 e 11 da Lei 12.527/2011. Prazo de resposta de vinte dias, prorrogável por dez.',FD.onde_deveria_estar.acesso_informacao],
  ['Representar ao Tribunal de Contas dos Municípios','quanto ao aporte próprio de nove mil reais, ao piso do Índice de Gestão Descentralizada e à interrupção da publicação oficial.',FD.onde_deveria_estar.tcmgo],
  ['Comunicar à Secretaria Nacional de Assistência Social','o descumprimento da condição de repasse, que autoriza a suspensão de R$ 8.250.000,00.',null],
@@ -222,7 +276,7 @@ c.push(H('VI — Providências',HeadingLevel.HEADING_1));
  if(l){rr.push(R(' Canal: '));rr.push(LINK(l.nome,l.url));rr.push(R('.'));}
  c.push(P(rr));c.push(V());});
 
-c.push(H('VII — Ressalva',HeadingLevel.HEADING_1));
+c.push(H('IX — Ressalva',HeadingLevel.HEADING_1));
 c.push(P([R('Este parecer resulta de análise automatizada sobre acervo público, revisada quanto ao método. Não substitui a revisão do advogado constituído'),
  new FootnoteReferenceRun(N.l8906),R(', nem constitui peça processual antes dela.')]));
 
