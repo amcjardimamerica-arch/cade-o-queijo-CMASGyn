@@ -1,0 +1,94 @@
+# Onde cada dado está declarado. Verificado em 27/08/2026.
+# Regra: só entra endereço testado. Portal que responde 503 fica registrado como
+# morto, com o substituto ao lado — para que ninguém conclua que o dado não existe.
+versao: "1.0"
+
+federal:
+  repasses_fundo_a_fundo:
+    nome: "Extração dos valores repassados — Fundo Nacional de Assistência Social"
+    url: "https://fnas.mds.gov.br/extracao-dos-valores-repassados-fundo-a-fundo/"
+    formato: "planilha por exercício, sem autenticação"
+    traz: [municipio, bloco, programa, competencia, valor, ordem_bancaria_siafi]
+    status: FUNCIONA
+    usado_por: src/coleta_federal.py
+    valor: "É o lado da União na conciliação. Traz o IGD competência a competência,
+             que é a base do piso de 10% do artigo 6º da Resolução CNAS/MDS 202/2025."
+  prestacao_de_contas:
+    nome: "Painel de preenchimento de prestação de contas"
+    url: "https://paineis.mds.gov.br/public/extensions/Preenchimento_de_Prestacao_de_Contas/"
+    status: A_TESTAR
+  cadsuas:
+    nome: "CadSUAS — consulta externa"
+    url: "https://aplicacoes.mds.gov.br/cadsuas/visualizarConsultaExterna.html"
+    traz: [orgao_gestor, fundo, conselho, composicao, unidades]
+    status: A_TESTAR
+    valor: "Confirma a composição do Conselho e a existência da Secretaria Executiva."
+  cneas:
+    nome: "Cadastro Nacional de Entidades de Assistência Social"
+    url: "https://aplicacoes.mds.gov.br/cneas/publico/xhtml/consultapublica/pesquisar.jsf"
+    traz: [entidade, inscricao_no_conselho, servicos_ofertados]
+    status: A_TESTAR
+    valor: "Confere se a entidade que recebe repasse está inscrita, como exige o
+             artigo 5º da Lei municipal 7.531/1995 e a Resolução CNAS 14/2014."
+  transparencia_federal:
+    nome: "Portal da Transparência da União — transferências"
+    url: "https://portaldatransparencia.gov.br/transferencias/consulta"
+    status: FUNCIONA
+  mortos:
+    - {url: "https://aplicacoes.mds.gov.br/sagi/FV/parcelas.php", erro: 503, substituto: repasses_fundo_a_fundo}
+    - {url: "https://aplicacoes.mds.gov.br/suaswebcons/restrito/execute.jsf", erro: 503, substituto: repasses_fundo_a_fundo}
+    - {url: "https://www.gov.br/participamaisbrasil", erro: "plataforma encerrada", substituto: "Diário Oficial da União"}
+
+estadual:
+  transparencia_goias:
+    nome: "Portal da Transparência do Estado de Goiás"
+    url: "https://www.transparencia.go.gov.br"
+    status: FUNCIONA
+    valor: "Cofinanciamento estadual — fontes 1661 e 1665, que somam R$ 9.104.000
+             na Lei Orçamentária de 2026 e não têm comprovação de origem no acervo."
+  goias_social:
+    nome: "Secretaria de Desenvolvimento Social de Goiás"
+    url: "https://goias.gov.br/social/"
+    status: FUNCIONA
+  tce_go:
+    nome: "Tribunal de Contas do Estado de Goiás"
+    url: "https://www.tce.go.gov.br"
+    status: FUNCIONA
+
+municipal:
+  transparencia:
+    nome: "Portal da Transparência de Goiânia"
+    url: "https://www.goiania.go.gov.br/transparencia/"
+    categorias:
+      despesas_e_receitas: "https://www.goiania.go.gov.br/transparencia/?filtro_simplificado=categoria&categoria=49"
+      acesso_a_informacao: "https://www.goiania.go.gov.br/transparencia/?filtro_simplificado=categoria&categoria=50"
+      responsabilidade_fiscal: "https://www.goiania.go.gov.br/transparencia/?filtro_simplificado=categoria&categoria=52"
+      recursos_humanos: "https://www.goiania.go.gov.br/transparencia/?filtro_simplificado=categoria&categoria=55"
+    status: FUNCIONA
+    limitacao: "As páginas de item são renderizadas por script; o endereço de consulta
+                não aparece no código da página. Exige captura manual do endereço."
+  diario_oficial:
+    nome: "Diário Oficial do Município"
+    url: "https://sileg.goiania.go.gov.br/geral/do_AAAAMMDD_0000NNNNNN.pdf"
+    status: FUNCIONA
+    nota: "O arquivo do PDF é endereçável direto. A página de listagem não serve."
+  legislacao:
+    url: "https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/{ano}/"
+    status: FUNCIONA
+  tcm_go:
+    nome: "Tribunal de Contas dos Municípios do Estado de Goiás"
+    url: "https://www.tcmgo.tc.br"
+    status: FUNCIONA
+  sitio_conselho:
+    nome: "Conselho Municipal de Assistência Social"
+    url: "https://cmasgyn.com.br/Documentos"
+    status: DESATUALIZADO
+    nota: "Sem documento posterior a dezembro de 2023."
+
+apoio:
+  cnpj:
+    enderecos:
+      - "https://brasilapi.com.br/api/cnpj/v1/{cnpj}"
+      - "https://minhareceita.org/{cnpj}"
+    status: FUNCIONA
+    traz: [razao_social, nome_fantasia, natureza_juridica, atividade, situacao]

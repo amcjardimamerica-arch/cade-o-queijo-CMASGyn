@@ -1,0 +1,5070 @@
+{
+ "fonte": {
+  "nome": "Fundo Nacional de Assistência Social — extração de repasses fundo a fundo",
+  "url": "https://fnas.mds.gov.br/extracao-dos-valores-repassados-fundo-a-fundo/",
+  "municipio": "Goiânia",
+  "codigo_ibge": "520870",
+  "campos": "bloco, programa, competência, valor e ordem bancária do SIAFI"
+ },
+ "anos": [
+  2024,
+  2025
+ ],
+ "repasses": 482,
+ "total_repassado": 29395626.18,
+ "por_bloco": {
+  "SIGTV": 7997821.0,
+  "BLOCO PSB": 5746502.1,
+  "ESTRUTURASUAS": 5150000.0,
+  "BLOCO IGDBF": 4291851.57,
+  "BLOCO PSE-MC": 4272210.49,
+  "BLOCO PSE-AC": 1934295.02,
+  "CRIANÇA FELIZ": 2026.0,
+  "BPC ESCOLA": 920.0
+ },
+ "por_competencia": {
+  "2023-11": 697821.0,
+  "2023-12": 2017735.38,
+  "2024-01": 726725.09,
+  "2024-02": 526022.57,
+  "2024-03": 723745.04,
+  "2024-04": 3323125.53,
+  "2024-05": 716367.42,
+  "2024-06": 715842.92,
+  "2024-07": 721127.99,
+  "2024-08": 789085.65,
+  "2024-09": 787700.17,
+  "2024-10": 482023.8,
+  "2024-11": 486275.38,
+  "2024-12": 3713915.87,
+  "2025-01": 714679.44,
+  "2025-02": 667510.08,
+  "2025-03": 653910.51,
+  "2025-04": 666545.81,
+  "2025-05": 662053.14,
+  "2025-06": 658129.92,
+  "2025-07": 2395367.93,
+  "2025-08": 1457063.57,
+  "2025-09": 1461194.58,
+  "2025-10": 660673.26,
+  "2025-11": 2466114.07,
+  "2025-12": 504870.06
+ },
+ "igd": {
+  "total": 4291851.57,
+  "por_programa": {
+   "ÍNDICE DE GESTÃO DESCENTRALIZADA - IGDBF": 4291851.57
+  },
+  "devido_ao_controle_social_10": 429185.16,
+  "competencias": [
+   {
+    "competencia": "2023-12",
+    "igd_repassado": 198130.01,
+    "devido_ao_controle_social": 19813.0,
+    "piso_legal_3": 5943.9,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   {
+    "competencia": "2024-01",
+    "igd_repassado": 200702.52,
+    "devido_ao_controle_social": 20070.25,
+    "piso_legal_3": 6021.08,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   {
+    "competencia": "2024-03",
+    "igd_repassado": 197722.47,
+    "devido_ao_controle_social": 19772.25,
+    "piso_legal_3": 5931.67,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   {
+    "competencia": "2024-04",
+    "igd_repassado": 197102.96,
+    "devido_ao_controle_social": 19710.3,
+    "piso_legal_3": 5913.09,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   {
+    "competencia": "2024-05",
+    "igd_repassado": 190344.85,
+    "devido_ao_controle_social": 19034.49,
+    "piso_legal_3": 5710.35,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   {
+    "competencia": "2024-06",
+    "igd_repassado": 189820.35,
+    "devido_ao_controle_social": 18982.03,
+    "piso_legal_3": 5694.61,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   {
+    "competencia": "2024-07",
+    "igd_repassado": 195105.42,
+    "devido_ao_controle_social": 19510.54,
+    "piso_legal_3": 5853.16,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   {
+    "competencia": "2024-08",
+    "igd_repassado": 263063.08,
+    "devido_ao_controle_social": 26306.31,
+    "piso_legal_3": 7891.89,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   {
+    "competencia": "2024-09",
+    "igd_repassado": 261677.6,
+    "devido_ao_controle_social": 26167.76,
+    "piso_legal_3": 7850.33,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   {
+    "competencia": "2024-10",
+    "igd_repassado": 255124.87,
+    "devido_ao_controle_social": 25512.49,
+    "piso_legal_3": 7653.75,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   {
+    "competencia": "2024-11",
+    "igd_repassado": 259376.45,
+    "devido_ao_controle_social": 25937.65,
+    "piso_legal_3": 7781.29,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   {
+    "competencia": "2024-12",
+    "igd_repassado": 196178.42,
+    "devido_ao_controle_social": 19617.84,
+    "piso_legal_3": 5885.35,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   {
+    "competencia": "2025-01",
+    "igd_repassado": 192787.1,
+    "devido_ao_controle_social": 19278.71,
+    "piso_legal_3": 5783.61,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   {
+    "competencia": "2025-02",
+    "igd_repassado": 145670.03,
+    "devido_ao_controle_social": 14567.0,
+    "piso_legal_3": 4370.1,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   {
+    "competencia": "2025-03",
+    "igd_repassado": 143818.02,
+    "devido_ao_controle_social": 14381.8,
+    "piso_legal_3": 4314.54,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   {
+    "competencia": "2025-04",
+    "igd_repassado": 145126.26,
+    "devido_ao_controle_social": 14512.63,
+    "piso_legal_3": 4353.79,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   {
+    "competencia": "2025-05",
+    "igd_repassado": 140639.74,
+    "devido_ao_controle_social": 14063.97,
+    "piso_legal_3": 4219.19,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   {
+    "competencia": "2025-06",
+    "igd_repassado": 136716.53,
+    "devido_ao_controle_social": 13671.65,
+    "piso_legal_3": 4101.5,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   {
+    "competencia": "2025-07",
+    "igd_repassado": 149163.45,
+    "devido_ao_controle_social": 14916.35,
+    "piso_legal_3": 4474.9,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   {
+    "competencia": "2025-08",
+    "igd_repassado": 155113.88,
+    "devido_ao_controle_social": 15511.39,
+    "piso_legal_3": 4653.42,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   {
+    "competencia": "2025-09",
+    "igd_repassado": 159044.89,
+    "devido_ao_controle_social": 15904.49,
+    "piso_legal_3": 4771.35,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   {
+    "competencia": "2025-10",
+    "igd_repassado": 158643.58,
+    "devido_ao_controle_social": 15864.36,
+    "piso_legal_3": 4759.31,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   },
+   {
+    "competencia": "2025-11",
+    "igd_repassado": 160779.09,
+    "devido_ao_controle_social": 16077.91,
+    "piso_legal_3": 4823.37,
+    "aplicado_publicado": null,
+    "situacao": "SEM DEMONSTRATIVO PUBLICADO"
+   }
+  ],
+  "norma": "Artigo 6º da Resolução CNAS/MDS 202/2025",
+  "nota": "O piso incide sobre o valor repassado em cada competência. Aplicar o percentual sobre o acumulado do ano não satisfaz a norma."
+ },
+ "detalhe": [
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2024-12",
+   "ano": "2024",
+   "mes": "12",
+   "valor": 300000.0,
+   "ordem_bancaria": "010029"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2024-12",
+   "ano": "2024",
+   "mes": "12",
+   "valor": 18322.95,
+   "ordem_bancaria": "010972"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2024-11",
+   "ano": "2024",
+   "mes": "11",
+   "valor": 18322.95,
+   "ordem_bancaria": "010419"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2024-12",
+   "ano": "2024",
+   "mes": "12",
+   "valor": 200000.0,
+   "ordem_bancaria": "011234"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2024-12",
+   "ano": "2024",
+   "mes": "12",
+   "valor": 10993.77,
+   "ordem_bancaria": "011213"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2024-09",
+   "ano": "2024",
+   "mes": "09",
+   "valor": 14400.0,
+   "ordem_bancaria": "008682"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2024-12",
+   "ano": "2024",
+   "mes": "12",
+   "valor": 20155.25,
+   "ordem_bancaria": "010978"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2024-09",
+   "ano": "2024",
+   "mes": "09",
+   "valor": 38235.34,
+   "ordem_bancaria": "008676"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2024-10",
+   "ano": "2024",
+   "mes": "10",
+   "valor": 17514.61,
+   "ordem_bancaria": "010195"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2024-11",
+   "ano": "2024",
+   "mes": "11",
+   "valor": 10993.77,
+   "ordem_bancaria": "010410"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2024-11",
+   "ano": "2024",
+   "mes": "11",
+   "valor": 3664.59,
+   "ordem_bancaria": "010413"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2024-11",
+   "ano": "2024",
+   "mes": "11",
+   "valor": 6596.26,
+   "ordem_bancaria": "010412"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2024-12",
+   "ano": "2024",
+   "mes": "12",
+   "valor": 17514.61,
+   "ordem_bancaria": "011256"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2024-10",
+   "ano": "2024",
+   "mes": "10",
+   "valor": 8428.56,
+   "ordem_bancaria": "010182"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2024-12",
+   "ano": "2024",
+   "mes": "12",
+   "valor": 200000.0,
+   "ordem_bancaria": "010028"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2024-12",
+   "ano": "2024",
+   "mes": "12",
+   "valor": 150000.0,
+   "ordem_bancaria": "010024"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2024-12",
+   "ano": "2024",
+   "mes": "12",
+   "valor": 450000.0,
+   "ordem_bancaria": "010030"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2024-12",
+   "ano": "2024",
+   "mes": "12",
+   "valor": 150000.0,
+   "ordem_bancaria": "010045"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2024-12",
+   "ano": "2024",
+   "mes": "12",
+   "valor": 300000.0,
+   "ordem_bancaria": "010023"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2024-09",
+   "ano": "2024",
+   "mes": "09",
+   "valor": 8000.0,
+   "ordem_bancaria": "008683"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2024-11",
+   "ano": "2024",
+   "mes": "11",
+   "valor": 23819.84,
+   "ordem_bancaria": "010461"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2024-11",
+   "ano": "2024",
+   "mes": "11",
+   "valor": 9161.48,
+   "ordem_bancaria": "010434"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2024-12",
+   "ano": "2024",
+   "mes": "12",
+   "valor": 6596.26,
+   "ordem_bancaria": "010979"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2024-12",
+   "ano": "2024",
+   "mes": "12",
+   "valor": 58380.3,
+   "ordem_bancaria": "010836"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2024-10",
+   "ano": "2024",
+   "mes": "10",
+   "valor": 23819.84,
+   "ordem_bancaria": "010196"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2024-05",
+   "ano": "2024",
+   "mes": "05",
+   "valor": 38235.34,
+   "ordem_bancaria": "006173"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2024-08",
+   "ano": "2024",
+   "mes": "08",
+   "valor": 20000.0,
+   "ordem_bancaria": "008236"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2024-08",
+   "ano": "2024",
+   "mes": "08",
+   "valor": 18400.0,
+   "ordem_bancaria": "008254"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2024-05",
+   "ano": "2024",
+   "mes": "05",
+   "valor": 8000.0,
+   "ordem_bancaria": "006159"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2024-05",
+   "ano": "2024",
+   "mes": "05",
+   "valor": 144000.0,
+   "ordem_bancaria": "006001"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2024-08",
+   "ano": "2024",
+   "mes": "08",
+   "valor": 44000.0,
+   "ordem_bancaria": "008253"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2024-05",
+   "ano": "2024",
+   "mes": "05",
+   "valor": 24000.0,
+   "ordem_bancaria": "006110"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2024-08",
+   "ano": "2024",
+   "mes": "08",
+   "valor": 8000.0,
+   "ordem_bancaria": "008238"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2024-07",
+   "ano": "2024",
+   "mes": "07",
+   "valor": 24000.0,
+   "ordem_bancaria": "007497"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2024-07",
+   "ano": "2024",
+   "mes": "07",
+   "valor": 52000.0,
+   "ordem_bancaria": "007522"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2024-05",
+   "ano": "2024",
+   "mes": "05",
+   "valor": 122987.23,
+   "ordem_bancaria": "006027"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2024-05",
+   "ano": "2024",
+   "mes": "05",
+   "valor": 40000.0,
+   "ordem_bancaria": "006160"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2024-07",
+   "ano": "2024",
+   "mes": "07",
+   "valor": 38235.34,
+   "ordem_bancaria": "007526"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2024-07",
+   "ano": "2024",
+   "mes": "07",
+   "valor": 18400.0,
+   "ordem_bancaria": "007500"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2024-06",
+   "ano": "2024",
+   "mes": "06",
+   "valor": 122987.23,
+   "ordem_bancaria": "007296"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2024-06",
+   "ano": "2024",
+   "mes": "06",
+   "valor": 24000.0,
+   "ordem_bancaria": "007018"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2024-06",
+   "ano": "2024",
+   "mes": "06",
+   "valor": 8000.0,
+   "ordem_bancaria": "007025"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2024-11",
+   "ano": "2024",
+   "mes": "11",
+   "valor": 49861.32,
+   "ordem_bancaria": "010659"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2024-10",
+   "ano": "2024",
+   "mes": "10",
+   "valor": 49861.32,
+   "ordem_bancaria": "010739"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2024-09",
+   "ano": "2024",
+   "mes": "09",
+   "valor": 144000.0,
+   "ordem_bancaria": "008940"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2024-08",
+   "ano": "2024",
+   "mes": "08",
+   "valor": 24000.0,
+   "ordem_bancaria": "008240"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2024-07",
+   "ano": "2024",
+   "mes": "07",
+   "valor": 14400.0,
+   "ordem_bancaria": "007489"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2024-08",
+   "ano": "2024",
+   "mes": "08",
+   "valor": 40000.0,
+   "ordem_bancaria": "008252"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2024-08",
+   "ano": "2024",
+   "mes": "08",
+   "valor": 122987.23,
+   "ordem_bancaria": "008132"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2024-08",
+   "ano": "2024",
+   "mes": "08",
+   "valor": 144000.0,
+   "ordem_bancaria": "008101"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2024-08",
+   "ano": "2024",
+   "mes": "08",
+   "valor": 14400.0,
+   "ordem_bancaria": "008237"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2024-07",
+   "ano": "2024",
+   "mes": "07",
+   "valor": 44000.0,
+   "ordem_bancaria": "007524"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2024-08",
+   "ano": "2024",
+   "mes": "08",
+   "valor": 52000.0,
+   "ordem_bancaria": "008239"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2024-11",
+   "ano": "2024",
+   "mes": "11",
+   "valor": 58380.3,
+   "ordem_bancaria": "010650"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2024-12",
+   "ano": "2024",
+   "mes": "12",
+   "valor": 49861.32,
+   "ordem_bancaria": "010799"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2024-09",
+   "ano": "2024",
+   "mes": "09",
+   "valor": 44000.0,
+   "ordem_bancaria": "008679"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2024-11",
+   "ano": "2024",
+   "mes": "11",
+   "valor": 20155.25,
+   "ordem_bancaria": "010455"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2024-11",
+   "ano": "2024",
+   "mes": "11",
+   "valor": 17514.61,
+   "ordem_bancaria": "010420"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2024-09",
+   "ano": "2024",
+   "mes": "09",
+   "valor": 52000.0,
+   "ordem_bancaria": "008680"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2024-09",
+   "ano": "2024",
+   "mes": "09",
+   "valor": 20000.0,
+   "ordem_bancaria": "008672"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2024-10",
+   "ano": "2024",
+   "mes": "10",
+   "valor": 58380.3,
+   "ordem_bancaria": "010714"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2024-09",
+   "ano": "2024",
+   "mes": "09",
+   "valor": 122987.23,
+   "ordem_bancaria": "008908"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2024-10",
+   "ano": "2024",
+   "mes": "10",
+   "valor": 10993.77,
+   "ordem_bancaria": "010185"
+  },
+  {
+   "tipo": "GESTÃO",
+   "bloco": "BLOCO IGDBF",
+   "programa": "ÍNDICE DE GESTÃO DESCENTRALIZADA - IGDBF",
+   "competencia": "2024-11",
+   "ano": "2024",
+   "mes": "11",
+   "valor": 259376.45,
+   "ordem_bancaria": "009223"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2024-10",
+   "ano": "2024",
+   "mes": "10",
+   "valor": 9161.48,
+   "ordem_bancaria": "010174"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2024-12",
+   "ano": "2024",
+   "mes": "12",
+   "valor": 8428.56,
+   "ordem_bancaria": "010977"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2024-10",
+   "ano": "2024",
+   "mes": "10",
+   "valor": 6596.26,
+   "ordem_bancaria": "010183"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2024-10",
+   "ano": "2024",
+   "mes": "10",
+   "valor": 3664.59,
+   "ordem_bancaria": "010186"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2024-09",
+   "ano": "2024",
+   "mes": "09",
+   "valor": 18400.0,
+   "ordem_bancaria": "008687"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2024-11",
+   "ano": "2024",
+   "mes": "11",
+   "valor": 8428.56,
+   "ordem_bancaria": "010417"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2024-09",
+   "ano": "2024",
+   "mes": "09",
+   "valor": 24000.0,
+   "ordem_bancaria": "008673"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2024-10",
+   "ano": "2024",
+   "mes": "10",
+   "valor": 20155.25,
+   "ordem_bancaria": "010197"
+  },
+  {
+   "tipo": "GESTÃO",
+   "bloco": "BLOCO IGDBF",
+   "programa": "ÍNDICE DE GESTÃO DESCENTRALIZADA - IGDBF",
+   "competencia": "2024-10",
+   "ano": "2024",
+   "mes": "10",
+   "valor": 255124.87,
+   "ordem_bancaria": "008529"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2024-12",
+   "ano": "2024",
+   "mes": "12",
+   "valor": 23819.84,
+   "ordem_bancaria": "010980"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2024-12",
+   "ano": "2024",
+   "mes": "12",
+   "valor": 300000.0,
+   "ordem_bancaria": "009329"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2024-12",
+   "ano": "2024",
+   "mes": "12",
+   "valor": 100000.0,
+   "ordem_bancaria": "009328"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2024-12",
+   "ano": "2024",
+   "mes": "12",
+   "valor": 100000.0,
+   "ordem_bancaria": "009333"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2024-12",
+   "ano": "2024",
+   "mes": "12",
+   "valor": 500000.0,
+   "ordem_bancaria": "009330"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2024-12",
+   "ano": "2024",
+   "mes": "12",
+   "valor": 100000.0,
+   "ordem_bancaria": "009341"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2024-12",
+   "ano": "2024",
+   "mes": "12",
+   "valor": 3664.59,
+   "ordem_bancaria": "011258"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2024-10",
+   "ano": "2024",
+   "mes": "10",
+   "valor": 18322.95,
+   "ordem_bancaria": "010184"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2024-09",
+   "ano": "2024",
+   "mes": "09",
+   "valor": 40000.0,
+   "ordem_bancaria": "008677"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - INVESTIMENTO - A PARTIR DE 2022",
+   "competencia": "2024-12",
+   "ano": "2024",
+   "mes": "12",
+   "valor": 150000.0,
+   "ordem_bancaria": "009446"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - INVESTIMENTO - A PARTIR DE 2022",
+   "competencia": "2024-12",
+   "ano": "2024",
+   "mes": "12",
+   "valor": 150000.0,
+   "ordem_bancaria": "009451"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2024-02",
+   "ano": "2024",
+   "mes": "02",
+   "valor": 24000.0,
+   "ordem_bancaria": "001451"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2024-01",
+   "ano": "2024",
+   "mes": "01",
+   "valor": 122987.23,
+   "ordem_bancaria": "000766"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2024-03",
+   "ano": "2024",
+   "mes": "03",
+   "valor": 18400.0,
+   "ordem_bancaria": "002077"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2024-01",
+   "ano": "2024",
+   "mes": "01",
+   "valor": 52000.0,
+   "ordem_bancaria": "000943"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2024-04",
+   "ano": "2024",
+   "mes": "04",
+   "valor": 122987.23,
+   "ordem_bancaria": "002887"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2024-02",
+   "ano": "2024",
+   "mes": "02",
+   "valor": 40000.0,
+   "ordem_bancaria": "001424"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2024-01",
+   "ano": "2024",
+   "mes": "01",
+   "valor": 44000.0,
+   "ordem_bancaria": "000907"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2024-01",
+   "ano": "2024",
+   "mes": "01",
+   "valor": 40000.0,
+   "ordem_bancaria": "000942"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2024-02",
+   "ano": "2024",
+   "mes": "02",
+   "valor": 20000.0,
+   "ordem_bancaria": "001442"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2024-01",
+   "ano": "2024",
+   "mes": "01",
+   "valor": 18400.0,
+   "ordem_bancaria": "000922"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2024-04",
+   "ano": "2024",
+   "mes": "04",
+   "valor": 100000.0,
+   "ordem_bancaria": "005253"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2024-04",
+   "ano": "2024",
+   "mes": "04",
+   "valor": 100000.0,
+   "ordem_bancaria": "005255"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2024-04",
+   "ano": "2024",
+   "mes": "04",
+   "valor": 100000.0,
+   "ordem_bancaria": "003596"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2024-01",
+   "ano": "2024",
+   "mes": "01",
+   "valor": 24000.0,
+   "ordem_bancaria": "000951"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2024-04",
+   "ano": "2024",
+   "mes": "04",
+   "valor": 100000.0,
+   "ordem_bancaria": "005257"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2024-04",
+   "ano": "2024",
+   "mes": "04",
+   "valor": 100000.0,
+   "ordem_bancaria": "003631"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2024-04",
+   "ano": "2024",
+   "mes": "04",
+   "valor": 300000.0,
+   "ordem_bancaria": "005250"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2024-04",
+   "ano": "2024",
+   "mes": "04",
+   "valor": 100000.0,
+   "ordem_bancaria": "003613"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2024-04",
+   "ano": "2024",
+   "mes": "04",
+   "valor": 100000.0,
+   "ordem_bancaria": "003614"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2024-02",
+   "ano": "2024",
+   "mes": "02",
+   "valor": 38235.34,
+   "ordem_bancaria": "001445"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2024-02",
+   "ano": "2024",
+   "mes": "02",
+   "valor": 52000.0,
+   "ordem_bancaria": "001437"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2024-03",
+   "ano": "2024",
+   "mes": "03",
+   "valor": 122987.23,
+   "ordem_bancaria": "002302"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2024-04",
+   "ano": "2024",
+   "mes": "04",
+   "valor": 100000.0,
+   "ordem_bancaria": "005251"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2024-04",
+   "ano": "2024",
+   "mes": "04",
+   "valor": 400000.0,
+   "ordem_bancaria": "005256"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2024-04",
+   "ano": "2024",
+   "mes": "04",
+   "valor": 200000.0,
+   "ordem_bancaria": "005249"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2024-02",
+   "ano": "2024",
+   "mes": "02",
+   "valor": 144000.0,
+   "ordem_bancaria": "001687"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2024-02",
+   "ano": "2024",
+   "mes": "02",
+   "valor": 8000.0,
+   "ordem_bancaria": "001460"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2024-01",
+   "ano": "2024",
+   "mes": "01",
+   "valor": 144000.0,
+   "ordem_bancaria": "000728"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2024-03",
+   "ano": "2024",
+   "mes": "03",
+   "valor": 20000.0,
+   "ordem_bancaria": "002075"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2024-05",
+   "ano": "2024",
+   "mes": "05",
+   "valor": 52000.0,
+   "ordem_bancaria": "006182"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2024-08",
+   "ano": "2024",
+   "mes": "08",
+   "valor": 38235.34,
+   "ordem_bancaria": "008244"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2024-07",
+   "ano": "2024",
+   "mes": "07",
+   "valor": 122987.23,
+   "ordem_bancaria": "007790"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2024-06",
+   "ano": "2024",
+   "mes": "06",
+   "valor": 18400.0,
+   "ordem_bancaria": "006997"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2024-06",
+   "ano": "2024",
+   "mes": "06",
+   "valor": 44000.0,
+   "ordem_bancaria": "007026"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2024-05",
+   "ano": "2024",
+   "mes": "05",
+   "valor": 14400.0,
+   "ordem_bancaria": "006166"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2024-07",
+   "ano": "2024",
+   "mes": "07",
+   "valor": 8000.0,
+   "ordem_bancaria": "007498"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2024-06",
+   "ano": "2024",
+   "mes": "06",
+   "valor": 38235.34,
+   "ordem_bancaria": "007023"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2024-06",
+   "ano": "2024",
+   "mes": "06",
+   "valor": 14400.0,
+   "ordem_bancaria": "007007"
+  },
+  {
+   "tipo": "GESTÃO",
+   "bloco": "BLOCO IGDBF",
+   "programa": "ÍNDICE DE GESTÃO DESCENTRALIZADA - IGDBF",
+   "competencia": "2024-08",
+   "ano": "2024",
+   "mes": "08",
+   "valor": 263063.08,
+   "ordem_bancaria": "007884"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2024-06",
+   "ano": "2024",
+   "mes": "06",
+   "valor": 52000.0,
+   "ordem_bancaria": "007022"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2024-06",
+   "ano": "2024",
+   "mes": "06",
+   "valor": 40000.0,
+   "ordem_bancaria": "007021"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2024-01",
+   "ano": "2024",
+   "mes": "01",
+   "valor": 38235.34,
+   "ordem_bancaria": "000939"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2024-07",
+   "ano": "2024",
+   "mes": "07",
+   "valor": 144000.0,
+   "ordem_bancaria": "007754"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2024-04",
+   "ano": "2024",
+   "mes": "04",
+   "valor": 200000.0,
+   "ordem_bancaria": "005258"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2024-04",
+   "ano": "2024",
+   "mes": "04",
+   "valor": 200000.0,
+   "ordem_bancaria": "005254"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2024-04",
+   "ano": "2024",
+   "mes": "04",
+   "valor": 100000.0,
+   "ordem_bancaria": "003616"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2024-04",
+   "ano": "2024",
+   "mes": "04",
+   "valor": 400000.0,
+   "ordem_bancaria": "005252"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2024-06",
+   "ano": "2024",
+   "mes": "06",
+   "valor": 144000.0,
+   "ordem_bancaria": "007248"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2024-05",
+   "ano": "2024",
+   "mes": "05",
+   "valor": 18400.0,
+   "ordem_bancaria": "006168"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2024-07",
+   "ano": "2024",
+   "mes": "07",
+   "valor": 40000.0,
+   "ordem_bancaria": "007491"
+  },
+  {
+   "tipo": "GESTÃO",
+   "bloco": "BLOCO IGDBF",
+   "programa": "ÍNDICE DE GESTÃO DESCENTRALIZADA - IGDBF",
+   "competencia": "2024-06",
+   "ano": "2024",
+   "mes": "06",
+   "valor": 189820.35,
+   "ordem_bancaria": "006892"
+  },
+  {
+   "tipo": "GESTÃO",
+   "bloco": "BLOCO IGDBF",
+   "programa": "ÍNDICE DE GESTÃO DESCENTRALIZADA - IGDBF",
+   "competencia": "2024-09",
+   "ano": "2024",
+   "mes": "09",
+   "valor": 261677.6,
+   "ordem_bancaria": "007926"
+  },
+  {
+   "tipo": "GESTÃO",
+   "bloco": "BLOCO IGDBF",
+   "programa": "ÍNDICE DE GESTÃO DESCENTRALIZADA - IGDBF",
+   "competencia": "2024-07",
+   "ano": "2024",
+   "mes": "07",
+   "valor": 195105.42,
+   "ordem_bancaria": "007361"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2024-05",
+   "ano": "2024",
+   "mes": "05",
+   "valor": 20000.0,
+   "ordem_bancaria": "006117"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2024-07",
+   "ano": "2024",
+   "mes": "07",
+   "valor": 20000.0,
+   "ordem_bancaria": "007490"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2024-05",
+   "ano": "2024",
+   "mes": "05",
+   "valor": 44000.0,
+   "ordem_bancaria": "006162"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2024-06",
+   "ano": "2024",
+   "mes": "06",
+   "valor": 20000.0,
+   "ordem_bancaria": "006998"
+  },
+  {
+   "tipo": "GESTÃO",
+   "bloco": "BLOCO IGDBF",
+   "programa": "ÍNDICE DE GESTÃO DESCENTRALIZADA - IGDBF",
+   "competencia": "2023-12",
+   "ano": "2023",
+   "mes": "12",
+   "valor": 198130.01,
+   "ordem_bancaria": "000576"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2023-12",
+   "ano": "2023",
+   "mes": "12",
+   "valor": 61930.64,
+   "ordem_bancaria": "000306"
+  },
+  {
+   "tipo": "PROGRAMAS",
+   "bloco": "BPC ESCOLA",
+   "programa": "BPC NA ESCOLA - QUESTIONÁRIO A SER APLICADO-BL",
+   "competencia": "2023-12",
+   "ano": "2023",
+   "mes": "12",
+   "valor": 40.0,
+   "ordem_bancaria": "000513"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS CUSTEIO - BANCADA EBA4",
+   "competencia": "2023-12",
+   "ano": "2023",
+   "mes": "12",
+   "valor": 500000.0,
+   "ordem_bancaria": "006527"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS CUSTEIO - BANCADA EBA4",
+   "competencia": "2023-12",
+   "ano": "2023",
+   "mes": "12",
+   "valor": 100000.0,
+   "ordem_bancaria": "006759"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS CUSTEIO - BANCADA EBA4",
+   "competencia": "2023-12",
+   "ano": "2023",
+   "mes": "12",
+   "valor": 200000.0,
+   "ordem_bancaria": "006748"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS CUSTEIO - BANCADA EBA4",
+   "competencia": "2023-12",
+   "ano": "2023",
+   "mes": "12",
+   "valor": 250000.0,
+   "ordem_bancaria": "006755"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2023-12",
+   "ano": "2023",
+   "mes": "12",
+   "valor": 200000.0,
+   "ordem_bancaria": "001216"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2023-12",
+   "ano": "2023",
+   "mes": "12",
+   "valor": 150000.0,
+   "ordem_bancaria": "001223"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - CUSTEIO - A PARTIR DE 2022",
+   "competencia": "2023-11",
+   "ano": "2023",
+   "mes": "11",
+   "valor": 697821.0,
+   "ordem_bancaria": "005771"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2023-12",
+   "ano": "2023",
+   "mes": "12",
+   "valor": 64788.9,
+   "ordem_bancaria": "000307"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2023-12",
+   "ano": "2023",
+   "mes": "12",
+   "valor": 12957.78,
+   "ordem_bancaria": "000312"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2023-12",
+   "ano": "2023",
+   "mes": "12",
+   "valor": 29802.9,
+   "ordem_bancaria": "000309"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2023-12",
+   "ano": "2023",
+   "mes": "12",
+   "valor": 38873.34,
+   "ordem_bancaria": "000294"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2023-12",
+   "ano": "2023",
+   "mes": "12",
+   "valor": 32394.45,
+   "ordem_bancaria": "000305"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2023-12",
+   "ano": "2023",
+   "mes": "12",
+   "valor": 84225.57,
+   "ordem_bancaria": "000313"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2023-12",
+   "ano": "2023",
+   "mes": "12",
+   "valor": 71267.79,
+   "ordem_bancaria": "000304"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2023-12",
+   "ano": "2023",
+   "mes": "12",
+   "valor": 23324.0,
+   "ordem_bancaria": "000303"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2024-04",
+   "ano": "2024",
+   "mes": "04",
+   "valor": 8000.0,
+   "ordem_bancaria": "002997"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2024-04",
+   "ano": "2024",
+   "mes": "04",
+   "valor": 144000.0,
+   "ordem_bancaria": "002835"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2024-03",
+   "ano": "2024",
+   "mes": "03",
+   "valor": 52000.0,
+   "ordem_bancaria": "002095"
+  },
+  {
+   "tipo": "GESTÃO",
+   "bloco": "BLOCO IGDBF",
+   "programa": "ÍNDICE DE GESTÃO DESCENTRALIZADA - IGDBF",
+   "competencia": "2024-04",
+   "ano": "2024",
+   "mes": "04",
+   "valor": 197102.96,
+   "ordem_bancaria": "003103"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2024-04",
+   "ano": "2024",
+   "mes": "04",
+   "valor": 44000.0,
+   "ordem_bancaria": "003003"
+  },
+  {
+   "tipo": "GESTÃO",
+   "bloco": "BLOCO IGDBF",
+   "programa": "ÍNDICE DE GESTÃO DESCENTRALIZADA - IGDBF",
+   "competencia": "2024-05",
+   "ano": "2024",
+   "mes": "05",
+   "valor": 190344.85,
+   "ordem_bancaria": "005117"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2024-02",
+   "ano": "2024",
+   "mes": "02",
+   "valor": 18400.0,
+   "ordem_bancaria": "001439"
+  },
+  {
+   "tipo": "GESTÃO",
+   "bloco": "BLOCO IGDBF",
+   "programa": "ÍNDICE DE GESTÃO DESCENTRALIZADA - IGDBF",
+   "competencia": "2024-01",
+   "ano": "2024",
+   "mes": "01",
+   "valor": 200702.52,
+   "ordem_bancaria": "001101"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2024-03",
+   "ano": "2024",
+   "mes": "03",
+   "valor": 24000.0,
+   "ordem_bancaria": "002086"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2024-03",
+   "ano": "2024",
+   "mes": "03",
+   "valor": 40000.0,
+   "ordem_bancaria": "002081"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2024-02",
+   "ano": "2024",
+   "mes": "02",
+   "valor": 44000.0,
+   "ordem_bancaria": "001431"
+  },
+  {
+   "tipo": "GESTÃO",
+   "bloco": "BLOCO IGDBF",
+   "programa": "ÍNDICE DE GESTÃO DESCENTRALIZADA - IGDBF",
+   "competencia": "2024-03",
+   "ano": "2024",
+   "mes": "03",
+   "valor": 197722.47,
+   "ordem_bancaria": "001993"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2024-04",
+   "ano": "2024",
+   "mes": "04",
+   "valor": 18400.0,
+   "ordem_bancaria": "003042"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2024-04",
+   "ano": "2024",
+   "mes": "04",
+   "valor": 40000.0,
+   "ordem_bancaria": "003008"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2024-04",
+   "ano": "2024",
+   "mes": "04",
+   "valor": 38235.34,
+   "ordem_bancaria": "003001"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2024-04",
+   "ano": "2024",
+   "mes": "04",
+   "valor": 52000.0,
+   "ordem_bancaria": "003041"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2024-03",
+   "ano": "2024",
+   "mes": "03",
+   "valor": 38235.34,
+   "ordem_bancaria": "002102"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2024-04",
+   "ano": "2024",
+   "mes": "04",
+   "valor": 14400.0,
+   "ordem_bancaria": "003010"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2024-04",
+   "ano": "2024",
+   "mes": "04",
+   "valor": 24000.0,
+   "ordem_bancaria": "003004"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2024-03",
+   "ano": "2024",
+   "mes": "03",
+   "valor": 8000.0,
+   "ordem_bancaria": "002121"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2024-03",
+   "ano": "2024",
+   "mes": "03",
+   "valor": 14400.0,
+   "ordem_bancaria": "002114"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2024-01",
+   "ano": "2024",
+   "mes": "01",
+   "valor": 20000.0,
+   "ordem_bancaria": "000885"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2024-01",
+   "ano": "2024",
+   "mes": "01",
+   "valor": 8000.0,
+   "ordem_bancaria": "000913"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2024-04",
+   "ano": "2024",
+   "mes": "04",
+   "valor": 20000.0,
+   "ordem_bancaria": "002999"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2024-02",
+   "ano": "2024",
+   "mes": "02",
+   "valor": 122987.23,
+   "ordem_bancaria": "001706"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2024-03",
+   "ano": "2024",
+   "mes": "03",
+   "valor": 144000.0,
+   "ordem_bancaria": "002356"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2024-03",
+   "ano": "2024",
+   "mes": "03",
+   "valor": 44000.0,
+   "ordem_bancaria": "002099"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2024-02",
+   "ano": "2024",
+   "mes": "02",
+   "valor": 14400.0,
+   "ordem_bancaria": "001428"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2024-01",
+   "ano": "2024",
+   "mes": "01",
+   "valor": 14400.0,
+   "ordem_bancaria": "000946"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2025-06",
+   "ano": "2025",
+   "mes": "06",
+   "valor": 2593.8,
+   "ordem_bancaria": "012783"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2025-11",
+   "ano": "2025",
+   "mes": "11",
+   "valor": 522.84,
+   "ordem_bancaria": "012495"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2025-12",
+   "ano": "2025",
+   "mes": "12",
+   "valor": 8284.42,
+   "ordem_bancaria": "012887"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2025-10",
+   "ano": "2025",
+   "mes": "10",
+   "valor": 9748.52,
+   "ordem_bancaria": "010784"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2025-08",
+   "ano": "2025",
+   "mes": "08",
+   "valor": 1356.66,
+   "ordem_bancaria": "012485"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2025-10",
+   "ano": "2025",
+   "mes": "10",
+   "valor": 8264.8,
+   "ordem_bancaria": "012504"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2025-01",
+   "ano": "2025",
+   "mes": "01",
+   "valor": 2614.55,
+   "ordem_bancaria": "012798"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2025-03",
+   "ano": "2025",
+   "mes": "03",
+   "valor": 13774.67,
+   "ordem_bancaria": "012541"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2025-06",
+   "ano": "2025",
+   "mes": "06",
+   "valor": 542.7,
+   "ordem_bancaria": "012761"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2025-09",
+   "ano": "2025",
+   "mes": "09",
+   "valor": 1356.66,
+   "ordem_bancaria": "012518"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2025-11",
+   "ano": "2025",
+   "mes": "11",
+   "valor": 8284.32,
+   "ordem_bancaria": "012751"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2025-04",
+   "ano": "2025",
+   "mes": "04",
+   "valor": 2984.65,
+   "ordem_bancaria": "012533"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2025-04",
+   "ano": "2025",
+   "mes": "04",
+   "valor": 6336.35,
+   "ordem_bancaria": "012839"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2025-01",
+   "ano": "2025",
+   "mes": "01",
+   "valor": 1188.43,
+   "ordem_bancaria": "012748"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2025-12",
+   "ano": "2025",
+   "mes": "12",
+   "valor": 1306.85,
+   "ordem_bancaria": "012857"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2025-08",
+   "ano": "2025",
+   "mes": "08",
+   "valor": 8264.8,
+   "ordem_bancaria": "012854"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2025-02",
+   "ano": "2025",
+   "mes": "02",
+   "valor": 2616.35,
+   "ordem_bancaria": "012526"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2025-08",
+   "ano": "2025",
+   "mes": "08",
+   "valor": 8264.8,
+   "ordem_bancaria": "012878"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2025-11",
+   "ano": "2025",
+   "mes": "11",
+   "valor": 941.12,
+   "ordem_bancaria": "012806"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2025-10",
+   "ano": "2025",
+   "mes": "10",
+   "valor": 6336.35,
+   "ordem_bancaria": "012836"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2025-10",
+   "ano": "2025",
+   "mes": "10",
+   "valor": 8264.8,
+   "ordem_bancaria": "012893"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2025-10",
+   "ano": "2025",
+   "mes": "10",
+   "valor": 2593.62,
+   "ordem_bancaria": "012834"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2025-11",
+   "ano": "2025",
+   "mes": "11",
+   "valor": 3398.47,
+   "ordem_bancaria": "012896"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2025-09",
+   "ano": "2025",
+   "mes": "09",
+   "valor": 2593.62,
+   "ordem_bancaria": "012543"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2025-08",
+   "ano": "2025",
+   "mes": "08",
+   "valor": 3527.31,
+   "ordem_bancaria": "012787"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2025-09",
+   "ano": "2025",
+   "mes": "09",
+   "valor": 8264.8,
+   "ordem_bancaria": "012801"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2025-09",
+   "ano": "2025",
+   "mes": "09",
+   "valor": 6336.35,
+   "ordem_bancaria": "012546"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2025-10",
+   "ano": "2025",
+   "mes": "10",
+   "valor": 3527.31,
+   "ordem_bancaria": "012882"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2025-10",
+   "ano": "2025",
+   "mes": "10",
+   "valor": 2984.65,
+   "ordem_bancaria": "012883"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2025-02",
+   "ano": "2025",
+   "mes": "02",
+   "valor": 2273.57,
+   "ordem_bancaria": "012810"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2025-01",
+   "ano": "2025",
+   "mes": "01",
+   "valor": 8331.05,
+   "ordem_bancaria": "012842"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2025-01",
+   "ano": "2025",
+   "mes": "01",
+   "valor": 2272.01,
+   "ordem_bancaria": "012873"
+  },
+  {
+   "tipo": "ESTRUTURASUAS",
+   "bloco": "ESTRUTURASUAS",
+   "programa": "ESTRUTURASUAS CUSTEIO - GND3 - A PARTIR DE 2025",
+   "competencia": "2025-11",
+   "ano": "2025",
+   "mes": "11",
+   "valor": 400000.0,
+   "ordem_bancaria": "009641"
+  },
+  {
+   "tipo": "ESTRUTURASUAS",
+   "bloco": "ESTRUTURASUAS",
+   "programa": "ESTRUTURASUAS CUSTEIO - GND3 - A PARTIR DE 2025",
+   "competencia": "2025-11",
+   "ano": "2025",
+   "mes": "11",
+   "valor": 400000.0,
+   "ordem_bancaria": "009659"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2025-07",
+   "ano": "2025",
+   "mes": "07",
+   "valor": 8227.0,
+   "ordem_bancaria": "012797"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2025-02",
+   "ano": "2025",
+   "mes": "02",
+   "valor": 8330.73,
+   "ordem_bancaria": "012746"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2025-07",
+   "ano": "2025",
+   "mes": "07",
+   "valor": 3776.89,
+   "ordem_bancaria": "012821"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2025-07",
+   "ano": "2025",
+   "mes": "07",
+   "valor": 18506.47,
+   "ordem_bancaria": "010822"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2025-12",
+   "ano": "2025",
+   "mes": "12",
+   "valor": 522.74,
+   "ordem_bancaria": "012484"
+  },
+  {
+   "tipo": "ESTRUTURASUAS",
+   "bloco": "ESTRUTURASUAS",
+   "programa": "ESTRUTURASUAS CUSTEIO - GND3 - A PARTIR DE 2025",
+   "competencia": "2025-08",
+   "ano": "2025",
+   "mes": "08",
+   "valor": 200000.0,
+   "ordem_bancaria": "009027"
+  },
+  {
+   "tipo": "ESTRUTURASUAS",
+   "bloco": "ESTRUTURASUAS",
+   "programa": "ESTRUTURASUAS CUSTEIO - GND3 - A PARTIR DE 2025",
+   "competencia": "2025-09",
+   "ano": "2025",
+   "mes": "09",
+   "valor": 800000.0,
+   "ordem_bancaria": "006856"
+  },
+  {
+   "tipo": "ESTRUTURASUAS",
+   "bloco": "ESTRUTURASUAS",
+   "programa": "ESTRUTURASUAS CUSTEIO - GND3 - A PARTIR DE 2025",
+   "competencia": "2025-08",
+   "ano": "2025",
+   "mes": "08",
+   "valor": 100000.0,
+   "ordem_bancaria": "006969"
+  },
+  {
+   "tipo": "ESTRUTURASUAS",
+   "bloco": "ESTRUTURASUAS",
+   "programa": "ESTRUTURASUAS CUSTEIO - GND3 - A PARTIR DE 2025",
+   "competencia": "2025-08",
+   "ano": "2025",
+   "mes": "08",
+   "valor": 200000.0,
+   "ordem_bancaria": "005087"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2025-11",
+   "ano": "2025",
+   "mes": "11",
+   "valor": 2875.63,
+   "ordem_bancaria": "012868"
+  },
+  {
+   "tipo": "ESTRUTURASUAS",
+   "bloco": "ESTRUTURASUAS",
+   "programa": "ESTRUTURASUAS INVESTIMENTO - GND4 - A PARTIR DE 2025",
+   "competencia": "2025-11",
+   "ano": "2025",
+   "mes": "11",
+   "valor": 500000.0,
+   "ordem_bancaria": "009644"
+  },
+  {
+   "tipo": "ESTRUTURASUAS",
+   "bloco": "ESTRUTURASUAS",
+   "programa": "ESTRUTURASUAS INVESTIMENTO - GND4 - A PARTIR DE 2025",
+   "competencia": "2025-11",
+   "ano": "2025",
+   "mes": "11",
+   "valor": 500000.0,
+   "ordem_bancaria": "009650"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2025-08",
+   "ano": "2025",
+   "mes": "08",
+   "valor": 2593.62,
+   "ordem_bancaria": "012869"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2025-12",
+   "ano": "2025",
+   "mes": "12",
+   "valor": 2498.4,
+   "ordem_bancaria": "012494"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2025-11",
+   "ano": "2025",
+   "mes": "11",
+   "valor": 2498.88,
+   "ordem_bancaria": "012439"
+  },
+  {
+   "tipo": "ESTRUTURASUAS",
+   "bloco": "ESTRUTURASUAS",
+   "programa": "ESTRUTURASUAS CUSTEIO - GND3 - A PARTIR DE 2025",
+   "competencia": "2025-07",
+   "ano": "2025",
+   "mes": "07",
+   "valor": 1500000.0,
+   "ordem_bancaria": "006965"
+  },
+  {
+   "tipo": "ESTRUTURASUAS",
+   "bloco": "ESTRUTURASUAS",
+   "programa": "ESTRUTURASUAS CUSTEIO - GND3 - A PARTIR DE 2025",
+   "competencia": "2025-08",
+   "ano": "2025",
+   "mes": "08",
+   "valor": 300000.0,
+   "ordem_bancaria": "004674"
+  },
+  {
+   "tipo": "ESTRUTURASUAS",
+   "bloco": "ESTRUTURASUAS",
+   "programa": "ESTRUTURASUAS CUSTEIO - GND3 - A PARTIR DE 2025",
+   "competencia": "2025-07",
+   "ano": "2025",
+   "mes": "07",
+   "valor": 250000.0,
+   "ordem_bancaria": "007934"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2025-09",
+   "ano": "2025",
+   "mes": "09",
+   "valor": 3527.31,
+   "ordem_bancaria": "012524"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2025-12",
+   "ano": "2025",
+   "mes": "12",
+   "valor": 3397.81,
+   "ordem_bancaria": "012530"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2025-11",
+   "ano": "2025",
+   "mes": "11",
+   "valor": 8284.32,
+   "ordem_bancaria": "012743"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2025-12",
+   "ano": "2025",
+   "mes": "12",
+   "valor": 2875.07,
+   "ordem_bancaria": "012823"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2025-11",
+   "ano": "2025",
+   "mes": "11",
+   "valor": 6351.31,
+   "ordem_bancaria": "012876"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2025-12",
+   "ano": "2025",
+   "mes": "12",
+   "valor": 6351.39,
+   "ordem_bancaria": "012791"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2025-12",
+   "ano": "2025",
+   "mes": "12",
+   "valor": 8284.42,
+   "ordem_bancaria": "012781"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2025-09",
+   "ano": "2025",
+   "mes": "09",
+   "valor": 2984.65,
+   "ordem_bancaria": "012870"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2025-09",
+   "ano": "2025",
+   "mes": "09",
+   "valor": 2936.21,
+   "ordem_bancaria": "010481"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2025-02",
+   "ano": "2025",
+   "mes": "02",
+   "valor": 6386.89,
+   "ordem_bancaria": "012745"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2025-05",
+   "ano": "2025",
+   "mes": "05",
+   "valor": 2593.8,
+   "ordem_bancaria": "012835"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2025-04",
+   "ano": "2025",
+   "mes": "04",
+   "valor": 1356.66,
+   "ordem_bancaria": "012444"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2025-06",
+   "ano": "2025",
+   "mes": "06",
+   "valor": 8264.77,
+   "ordem_bancaria": "012780"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2025-04",
+   "ano": "2025",
+   "mes": "04",
+   "valor": 542.66,
+   "ordem_bancaria": "012822"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2025-01",
+   "ano": "2025",
+   "mes": "01",
+   "valor": 6387.14,
+   "ordem_bancaria": "012500"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2025-06",
+   "ano": "2025",
+   "mes": "06",
+   "valor": 1356.76,
+   "ordem_bancaria": "012794"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2025-06",
+   "ano": "2025",
+   "mes": "06",
+   "valor": 2984.86,
+   "ordem_bancaria": "012557"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2025-02",
+   "ano": "2025",
+   "mes": "02",
+   "valor": 1189.25,
+   "ordem_bancaria": "012846"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2025-02",
+   "ano": "2025",
+   "mes": "02",
+   "valor": 3092.05,
+   "ordem_bancaria": "012817"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2025-05",
+   "ano": "2025",
+   "mes": "05",
+   "valor": 13774.61,
+   "ordem_bancaria": "012498"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2025-05",
+   "ano": "2025",
+   "mes": "05",
+   "valor": 976.86,
+   "ordem_bancaria": "012538"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2025-08",
+   "ano": "2025",
+   "mes": "08",
+   "valor": 976.79,
+   "ordem_bancaria": "012816"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2025-05",
+   "ano": "2025",
+   "mes": "05",
+   "valor": 1356.76,
+   "ordem_bancaria": "012849"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2025-06",
+   "ano": "2025",
+   "mes": "06",
+   "valor": 13774.61,
+   "ordem_bancaria": "012489"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2025-08",
+   "ano": "2025",
+   "mes": "08",
+   "valor": 18506.47,
+   "ordem_bancaria": "010779"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2025-11",
+   "ano": "2025",
+   "mes": "11",
+   "valor": 13314.94,
+   "ordem_bancaria": "010486"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2025-08",
+   "ano": "2025",
+   "mes": "08",
+   "valor": 542.66,
+   "ordem_bancaria": "012812"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2025-09",
+   "ano": "2025",
+   "mes": "09",
+   "valor": 542.66,
+   "ordem_bancaria": "012895"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2025-12",
+   "ano": "2025",
+   "mes": "12",
+   "valor": 940.93,
+   "ordem_bancaria": "012799"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2025-03",
+   "ano": "2025",
+   "mes": "03",
+   "valor": 3527.31,
+   "ordem_bancaria": "012837"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2025-03",
+   "ano": "2025",
+   "mes": "03",
+   "valor": 2593.62,
+   "ordem_bancaria": "012880"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2025-06",
+   "ano": "2025",
+   "mes": "06",
+   "valor": 3527.57,
+   "ordem_bancaria": "012848"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2025-09",
+   "ano": "2025",
+   "mes": "09",
+   "valor": 8264.8,
+   "ordem_bancaria": "012894"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2025-05",
+   "ano": "2025",
+   "mes": "05",
+   "valor": 8264.77,
+   "ordem_bancaria": "012874"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2025-04",
+   "ano": "2025",
+   "mes": "04",
+   "valor": 2593.62,
+   "ordem_bancaria": "012527"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2025-07",
+   "ano": "2025",
+   "mes": "07",
+   "valor": 2777.13,
+   "ordem_bancaria": "012832"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2025-06",
+   "ano": "2025",
+   "mes": "06",
+   "valor": 6336.32,
+   "ordem_bancaria": "012804"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2025-06",
+   "ano": "2025",
+   "mes": "06",
+   "valor": 976.86,
+   "ordem_bancaria": "012885"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2025-05",
+   "ano": "2025",
+   "mes": "05",
+   "valor": 6336.32,
+   "ordem_bancaria": "012840"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2025-11",
+   "ano": "2025",
+   "mes": "11",
+   "valor": 9748.52,
+   "ordem_bancaria": "010821"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2025-04",
+   "ano": "2025",
+   "mes": "04",
+   "valor": 13774.67,
+   "ordem_bancaria": "012539"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2025-05",
+   "ano": "2025",
+   "mes": "05",
+   "valor": 2984.86,
+   "ordem_bancaria": "012520"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2025-07",
+   "ano": "2025",
+   "mes": "07",
+   "valor": 1045.91,
+   "ordem_bancaria": "012553"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2025-04",
+   "ano": "2025",
+   "mes": "04",
+   "valor": 976.79,
+   "ordem_bancaria": "012741"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2025-03",
+   "ano": "2025",
+   "mes": "03",
+   "valor": 976.79,
+   "ordem_bancaria": "012547"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2025-09",
+   "ano": "2025",
+   "mes": "09",
+   "valor": 976.79,
+   "ordem_bancaria": "012844"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2025-05",
+   "ano": "2025",
+   "mes": "05",
+   "valor": 3527.57,
+   "ordem_bancaria": "012523"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2025-07",
+   "ano": "2025",
+   "mes": "07",
+   "valor": 1452.65,
+   "ordem_bancaria": "012802"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2025-05",
+   "ano": "2025",
+   "mes": "05",
+   "valor": 542.7,
+   "ordem_bancaria": "012818"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2025-02",
+   "ano": "2025",
+   "mes": "02",
+   "valor": 475.7,
+   "ordem_bancaria": "012476"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2025-03",
+   "ano": "2025",
+   "mes": "03",
+   "valor": 6336.35,
+   "ordem_bancaria": "012847"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2025-07",
+   "ano": "2025",
+   "mes": "07",
+   "valor": 6307.37,
+   "ordem_bancaria": "012871"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2025-04",
+   "ano": "2025",
+   "mes": "04",
+   "valor": 8264.8,
+   "ordem_bancaria": "012838"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2025-01",
+   "ano": "2025",
+   "mes": "01",
+   "valor": 475.37,
+   "ordem_bancaria": "012867"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2025-08",
+   "ano": "2025",
+   "mes": "08",
+   "valor": 6336.35,
+   "ordem_bancaria": "012813"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2025-03",
+   "ano": "2025",
+   "mes": "03",
+   "valor": 542.66,
+   "ordem_bancaria": "012872"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2025-07",
+   "ano": "2025",
+   "mes": "07",
+   "valor": 3195.83,
+   "ordem_bancaria": "012800"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2025-01",
+   "ano": "2025",
+   "mes": "01",
+   "valor": 3089.93,
+   "ordem_bancaria": "012808"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2025-02",
+   "ano": "2025",
+   "mes": "02",
+   "valor": 13884.54,
+   "ordem_bancaria": "012782"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2025-10",
+   "ano": "2025",
+   "mes": "10",
+   "valor": 1356.66,
+   "ordem_bancaria": "012536"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2025-01",
+   "ano": "2025",
+   "mes": "01",
+   "valor": 13885.08,
+   "ordem_bancaria": "012805"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2025-08",
+   "ano": "2025",
+   "mes": "08",
+   "valor": 2984.65,
+   "ordem_bancaria": "012477"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2025-04",
+   "ano": "2025",
+   "mes": "04",
+   "valor": 3527.31,
+   "ordem_bancaria": "012506"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2025-07",
+   "ano": "2025",
+   "mes": "07",
+   "valor": 8227.0,
+   "ordem_bancaria": "012534"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2025-03",
+   "ano": "2025",
+   "mes": "03",
+   "valor": 8264.8,
+   "ordem_bancaria": "012483"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2025-03",
+   "ano": "2025",
+   "mes": "03",
+   "valor": 2984.65,
+   "ordem_bancaria": "012770"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2025-07",
+   "ano": "2025",
+   "mes": "07",
+   "valor": 581.06,
+   "ordem_bancaria": "012897"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2025-01",
+   "ano": "2025",
+   "mes": "01",
+   "valor": 855.67,
+   "ordem_bancaria": "012447"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2025-03",
+   "ano": "2025",
+   "mes": "03",
+   "valor": 1356.66,
+   "ordem_bancaria": "012503"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2025-10",
+   "ano": "2025",
+   "mes": "10",
+   "valor": 976.79,
+   "ordem_bancaria": "012769"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2025-11",
+   "ano": "2025",
+   "mes": "11",
+   "valor": 1307.11,
+   "ordem_bancaria": "012491"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2025-10",
+   "ano": "2025",
+   "mes": "10",
+   "valor": 542.66,
+   "ordem_bancaria": "012824"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2025-10",
+   "ano": "2025",
+   "mes": "10",
+   "valor": 7000.0,
+   "ordem_bancaria": "007698"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2025-12",
+   "ano": "2025",
+   "mes": "12",
+   "valor": 7110.14,
+   "ordem_bancaria": "009999"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2025-09",
+   "ano": "2025",
+   "mes": "09",
+   "valor": 12600.0,
+   "ordem_bancaria": "006430"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2025-09",
+   "ano": "2025",
+   "mes": "09",
+   "valor": 21000.0,
+   "ordem_bancaria": "006404"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2025-12",
+   "ano": "2025",
+   "mes": "12",
+   "valor": 21330.42,
+   "ordem_bancaria": "010018"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2025-12",
+   "ano": "2025",
+   "mes": "12",
+   "valor": 123849.15,
+   "ordem_bancaria": "009818"
+  },
+  {
+   "tipo": "GESTÃO",
+   "bloco": "BLOCO IGDBF",
+   "programa": "ÍNDICE DE GESTÃO DESCENTRALIZADA - IGDBF",
+   "competencia": "2025-11",
+   "ano": "2025",
+   "mes": "11",
+   "valor": 160779.09,
+   "ordem_bancaria": "009573"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2025-12",
+   "ano": "2025",
+   "mes": "12",
+   "valor": 107443.24,
+   "ordem_bancaria": "010224"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2025-12",
+   "ano": "2025",
+   "mes": "12",
+   "valor": 33982.33,
+   "ordem_bancaria": "010028"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2025-09",
+   "ano": "2025",
+   "mes": "09",
+   "valor": 38500.0,
+   "ordem_bancaria": "006417"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2025-10",
+   "ano": "2025",
+   "mes": "10",
+   "valor": 16100.0,
+   "ordem_bancaria": "007715"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2025-11",
+   "ano": "2025",
+   "mes": "11",
+   "valor": 12797.24,
+   "ordem_bancaria": "008808"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2025-11",
+   "ano": "2025",
+   "mes": "11",
+   "valor": 21328.74,
+   "ordem_bancaria": "008790"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2025-11",
+   "ano": "2025",
+   "mes": "11",
+   "valor": 17773.95,
+   "ordem_bancaria": "008785"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2025-10",
+   "ano": "2025",
+   "mes": "10",
+   "valor": 107443.24,
+   "ordem_bancaria": "007583"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2025-09",
+   "ano": "2025",
+   "mes": "09",
+   "valor": 98685.3,
+   "ordem_bancaria": "006319"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2025-09",
+   "ano": "2025",
+   "mes": "09",
+   "valor": 17500.0,
+   "ordem_bancaria": "006428"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2025-09",
+   "ano": "2025",
+   "mes": "09",
+   "valor": 45500.0,
+   "ordem_bancaria": "006429"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2025-09",
+   "ano": "2025",
+   "mes": "09",
+   "valor": 21000.0,
+   "ordem_bancaria": "006448"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2025-09",
+   "ano": "2025",
+   "mes": "09",
+   "valor": 16100.0,
+   "ordem_bancaria": "006432"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2025-09",
+   "ano": "2025",
+   "mes": "09",
+   "valor": 134278.14,
+   "ordem_bancaria": "006264"
+  },
+  {
+   "tipo": "GESTÃO",
+   "bloco": "BLOCO IGDBF",
+   "programa": "ÍNDICE DE GESTÃO DESCENTRALIZADA - IGDBF",
+   "competencia": "2025-09",
+   "ano": "2025",
+   "mes": "09",
+   "valor": 159044.89,
+   "ordem_bancaria": "006713"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2025-11",
+   "ano": "2025",
+   "mes": "11",
+   "valor": 39102.68,
+   "ordem_bancaria": "008792"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2025-11",
+   "ano": "2025",
+   "mes": "11",
+   "valor": 33979.65,
+   "ordem_bancaria": "008788"
+  },
+  {
+   "tipo": "GESTÃO",
+   "bloco": "BLOCO IGDBF",
+   "programa": "ÍNDICE DE GESTÃO DESCENTRALIZADA - IGDBF",
+   "competencia": "2025-10",
+   "ano": "2025",
+   "mes": "10",
+   "valor": 158643.58,
+   "ordem_bancaria": "008259"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2025-11",
+   "ano": "2025",
+   "mes": "11",
+   "valor": 123899.41,
+   "ordem_bancaria": "008624"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2025-11",
+   "ano": "2025",
+   "mes": "11",
+   "valor": 7109.58,
+   "ordem_bancaria": "008789"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2025-11",
+   "ano": "2025",
+   "mes": "11",
+   "valor": 46212.26,
+   "ordem_bancaria": "008787"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2025-10",
+   "ano": "2025",
+   "mes": "10",
+   "valor": 45500.0,
+   "ordem_bancaria": "007699"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2025-10",
+   "ano": "2025",
+   "mes": "10",
+   "valor": 17500.0,
+   "ordem_bancaria": "007726"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2025-08",
+   "ano": "2025",
+   "mes": "08",
+   "valor": 98685.3,
+   "ordem_bancaria": "004720"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2025-10",
+   "ano": "2025",
+   "mes": "10",
+   "valor": 12600.0,
+   "ordem_bancaria": "007696"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2025-09",
+   "ano": "2025",
+   "mes": "09",
+   "valor": 33455.93,
+   "ordem_bancaria": "006416"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2025-04",
+   "ano": "2025",
+   "mes": "04",
+   "valor": 13898.95,
+   "ordem_bancaria": "010829"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2025-10",
+   "ano": "2025",
+   "mes": "10",
+   "valor": 126180.0,
+   "ordem_bancaria": "007563"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2025-11",
+   "ano": "2025",
+   "mes": "11",
+   "valor": 107443.24,
+   "ordem_bancaria": "008705"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2025-10",
+   "ano": "2025",
+   "mes": "10",
+   "valor": 21000.0,
+   "ordem_bancaria": "007716"
+  },
+  {
+   "tipo": "PROGRAMAS",
+   "bloco": "BPC ESCOLA",
+   "programa": "BPC NA ESCOLA - QUESTIONÁRIO A SER APLICADO-BL",
+   "competencia": "2025-11",
+   "ano": "2025",
+   "mes": "11",
+   "valor": 480.0,
+   "ordem_bancaria": "009512"
+  },
+  {
+   "tipo": "PROGRAMAS",
+   "bloco": "BPC ESCOLA",
+   "programa": "BPC NA ESCOLA - QUESTIONÁRIO A SER APLICADO-BL",
+   "competencia": "2025-10",
+   "ano": "2025",
+   "mes": "10",
+   "valor": 120.0,
+   "ordem_bancaria": "007842"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2025-11",
+   "ano": "2025",
+   "mes": "11",
+   "valor": 21328.74,
+   "ordem_bancaria": "008800"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2025-11",
+   "ano": "2025",
+   "mes": "11",
+   "valor": 16352.03,
+   "ordem_bancaria": "008763"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2025-10",
+   "ano": "2025",
+   "mes": "10",
+   "valor": 33455.93,
+   "ordem_bancaria": "007697"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2025-10",
+   "ano": "2025",
+   "mes": "10",
+   "valor": 38500.0,
+   "ordem_bancaria": "007717"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2025-12",
+   "ano": "2025",
+   "mes": "12",
+   "valor": 13365.21,
+   "ordem_bancaria": "010485"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2025-06",
+   "ano": "2025",
+   "mes": "06",
+   "valor": 13898.95,
+   "ordem_bancaria": "010823"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2025-02",
+   "ano": "2025",
+   "mes": "02",
+   "valor": 1882.03,
+   "ordem_bancaria": "010832"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2025-05",
+   "ano": "2025",
+   "mes": "05",
+   "valor": 13898.95,
+   "ordem_bancaria": "010820"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2025-02",
+   "ano": "2025",
+   "mes": "02",
+   "valor": 2439.03,
+   "ordem_bancaria": "010469"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2025-03",
+   "ano": "2025",
+   "mes": "03",
+   "valor": 18614.24,
+   "ordem_bancaria": "010490"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2025-04",
+   "ano": "2025",
+   "mes": "04",
+   "valor": 16273.63,
+   "ordem_bancaria": "010489"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2025-01",
+   "ano": "2025",
+   "mes": "01",
+   "valor": 2439.35,
+   "ordem_bancaria": "010494"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2025-06",
+   "ano": "2025",
+   "mes": "06",
+   "valor": 16273.63,
+   "ordem_bancaria": "010473"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2025-08",
+   "ano": "2025",
+   "mes": "08",
+   "valor": 2828.48,
+   "ordem_bancaria": "010482"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2025-10",
+   "ano": "2025",
+   "mes": "10",
+   "valor": 11034.35,
+   "ordem_bancaria": "010477"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2025-07",
+   "ano": "2025",
+   "mes": "07",
+   "valor": 10674.35,
+   "ordem_bancaria": "010504"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2025-05",
+   "ano": "2025",
+   "mes": "05",
+   "valor": 37503.21,
+   "ordem_bancaria": "010478"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2025-12",
+   "ano": "2025",
+   "mes": "12",
+   "valor": 9748.52,
+   "ordem_bancaria": "010792"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2025-09",
+   "ano": "2025",
+   "mes": "09",
+   "valor": 18506.47,
+   "ordem_bancaria": "010824"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2025-01",
+   "ano": "2025",
+   "mes": "01",
+   "valor": 1882.03,
+   "ordem_bancaria": "010788"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2025-02",
+   "ano": "2025",
+   "mes": "02",
+   "valor": 856.26,
+   "ordem_bancaria": "012549"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2025-03",
+   "ano": "2025",
+   "mes": "03",
+   "valor": 1882.03,
+   "ordem_bancaria": "010796"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2025-03",
+   "ano": "2025",
+   "mes": "03",
+   "valor": 12600.0,
+   "ordem_bancaria": "001596"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2025-03",
+   "ano": "2025",
+   "mes": "03",
+   "valor": 21000.0,
+   "ordem_bancaria": "001630"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2025-02",
+   "ano": "2025",
+   "mes": "02",
+   "valor": 134775.32,
+   "ordem_bancaria": "000855"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2025-04",
+   "ano": "2025",
+   "mes": "04",
+   "valor": 103292.81,
+   "ordem_bancaria": "002014"
+  },
+  {
+   "tipo": "GESTÃO",
+   "bloco": "BLOCO IGDBF",
+   "programa": "ÍNDICE DE GESTÃO DESCENTRALIZADA - IGDBF",
+   "competencia": "2025-06",
+   "ano": "2025",
+   "mes": "06",
+   "valor": 136716.53,
+   "ordem_bancaria": "003148"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2025-08",
+   "ano": "2025",
+   "mes": "08",
+   "valor": 134385.87,
+   "ordem_bancaria": "004751"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2025-08",
+   "ano": "2025",
+   "mes": "08",
+   "valor": 33455.93,
+   "ordem_bancaria": "004854"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2025-08",
+   "ano": "2025",
+   "mes": "08",
+   "valor": 45500.0,
+   "ordem_bancaria": "004841"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2025-08",
+   "ano": "2025",
+   "mes": "08",
+   "valor": 17500.0,
+   "ordem_bancaria": "004843"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2025-08",
+   "ano": "2025",
+   "mes": "08",
+   "valor": 21000.0,
+   "ordem_bancaria": "004813"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2025-08",
+   "ano": "2025",
+   "mes": "08",
+   "valor": 16100.0,
+   "ordem_bancaria": "004809"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2025-06",
+   "ano": "2025",
+   "mes": "06",
+   "valor": 103292.81,
+   "ordem_bancaria": "003189"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2025-05",
+   "ano": "2025",
+   "mes": "05",
+   "valor": 99711.15,
+   "ordem_bancaria": "002982"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2025-07",
+   "ano": "2025",
+   "mes": "07",
+   "valor": 37332.56,
+   "ordem_bancaria": "003938"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2025-06",
+   "ano": "2025",
+   "mes": "06",
+   "valor": 120940.72,
+   "ordem_bancaria": "003256"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2025-07",
+   "ano": "2025",
+   "mes": "07",
+   "valor": 20363.21,
+   "ordem_bancaria": "003922"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2025-07",
+   "ano": "2025",
+   "mes": "07",
+   "valor": 15611.8,
+   "ordem_bancaria": "003934"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2025-06",
+   "ano": "2025",
+   "mes": "06",
+   "valor": 12599.62,
+   "ordem_bancaria": "003353"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2025-06",
+   "ano": "2025",
+   "mes": "06",
+   "valor": 33454.91,
+   "ordem_bancaria": "003336"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2025-06",
+   "ano": "2025",
+   "mes": "06",
+   "valor": 38498.83,
+   "ordem_bancaria": "003354"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2025-06",
+   "ano": "2025",
+   "mes": "06",
+   "valor": 45498.61,
+   "ordem_bancaria": "003335"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2025-06",
+   "ano": "2025",
+   "mes": "06",
+   "valor": 17499.47,
+   "ordem_bancaria": "003355"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2025-06",
+   "ano": "2025",
+   "mes": "06",
+   "valor": 20999.36,
+   "ordem_bancaria": "003357"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2025-06",
+   "ano": "2025",
+   "mes": "06",
+   "valor": 34998.93,
+   "ordem_bancaria": "003358"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2025-05",
+   "ano": "2025",
+   "mes": "05",
+   "valor": 103292.81,
+   "ordem_bancaria": "002600"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2025-06",
+   "ano": "2025",
+   "mes": "06",
+   "valor": 6999.79,
+   "ordem_bancaria": "003337"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2025-05",
+   "ano": "2025",
+   "mes": "05",
+   "valor": 38498.83,
+   "ordem_bancaria": "002830"
+  },
+  {
+   "tipo": "GESTÃO",
+   "bloco": "BLOCO IGDBF",
+   "programa": "ÍNDICE DE GESTÃO DESCENTRALIZADA - IGDBF",
+   "competencia": "2025-07",
+   "ano": "2025",
+   "mes": "07",
+   "valor": 149163.45,
+   "ordem_bancaria": "003828"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2025-05",
+   "ano": "2025",
+   "mes": "05",
+   "valor": 20999.36,
+   "ordem_bancaria": "002848"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2025-05",
+   "ano": "2025",
+   "mes": "05",
+   "valor": 33454.91,
+   "ordem_bancaria": "002869"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2025-07",
+   "ano": "2025",
+   "mes": "07",
+   "valor": 6787.74,
+   "ordem_bancaria": "003936"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2025-07",
+   "ano": "2025",
+   "mes": "07",
+   "valor": 32441.44,
+   "ordem_bancaria": "003901"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2025-07",
+   "ano": "2025",
+   "mes": "07",
+   "valor": 20363.21,
+   "ordem_bancaria": "003916"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2025-05",
+   "ano": "2025",
+   "mes": "05",
+   "valor": 16099.51,
+   "ordem_bancaria": "002834"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2025-07",
+   "ano": "2025",
+   "mes": "07",
+   "valor": 98685.3,
+   "ordem_bancaria": "004186"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2025-07",
+   "ano": "2025",
+   "mes": "07",
+   "valor": 126540.0,
+   "ordem_bancaria": "004212"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2025-12",
+   "ano": "2025",
+   "mes": "12",
+   "valor": 17775.35,
+   "ordem_bancaria": "009998"
+  },
+  {
+   "tipo": "PROGRAMAS",
+   "bloco": "BPC ESCOLA",
+   "programa": "BPC NA ESCOLA - QUESTIONÁRIO A SER APLICADO-BL",
+   "competencia": "2025-09",
+   "ano": "2025",
+   "mes": "09",
+   "valor": 240.0,
+   "ordem_bancaria": "006185"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2025-12",
+   "ano": "2025",
+   "mes": "12",
+   "valor": 46215.91,
+   "ordem_bancaria": "009984"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2025-12",
+   "ano": "2025",
+   "mes": "12",
+   "valor": 16353.32,
+   "ordem_bancaria": "010004"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2025-12",
+   "ano": "2025",
+   "mes": "12",
+   "valor": 21330.42,
+   "ordem_bancaria": "010032"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2025-12",
+   "ano": "2025",
+   "mes": "12",
+   "valor": 39105.77,
+   "ordem_bancaria": "010019"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2025-05",
+   "ano": "2025",
+   "mes": "05",
+   "valor": 6999.79,
+   "ordem_bancaria": "002841"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2025-05",
+   "ano": "2025",
+   "mes": "05",
+   "valor": 34998.93,
+   "ordem_bancaria": "002836"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2025-07",
+   "ano": "2025",
+   "mes": "07",
+   "valor": 44120.29,
+   "ordem_bancaria": "003937"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2025-07",
+   "ano": "2025",
+   "mes": "07",
+   "valor": 16969.34,
+   "ordem_bancaria": "003914"
+  },
+  {
+   "tipo": "GESTÃO",
+   "bloco": "BLOCO IGDBF",
+   "programa": "ÍNDICE DE GESTÃO DESCENTRALIZADA - IGDBF",
+   "competencia": "2025-05",
+   "ano": "2025",
+   "mes": "05",
+   "valor": 140639.74,
+   "ordem_bancaria": "002476"
+  },
+  {
+   "tipo": "GESTÃO",
+   "bloco": "BLOCO IGDBF",
+   "programa": "ÍNDICE DE GESTÃO DESCENTRALIZADA - IGDBF",
+   "competencia": "2025-08",
+   "ano": "2025",
+   "mes": "08",
+   "valor": 155113.88,
+   "ordem_bancaria": "004311"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2025-06",
+   "ano": "2025",
+   "mes": "06",
+   "valor": 16099.51,
+   "ordem_bancaria": "003352"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2025-05",
+   "ano": "2025",
+   "mes": "05",
+   "valor": 12599.62,
+   "ordem_bancaria": "002840"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2025-07",
+   "ano": "2025",
+   "mes": "07",
+   "valor": 12217.93,
+   "ordem_bancaria": "003921"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2025-05",
+   "ano": "2025",
+   "mes": "05",
+   "valor": 45498.61,
+   "ordem_bancaria": "002831"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2025-12",
+   "ano": "2025",
+   "mes": "12",
+   "valor": 12798.25,
+   "ordem_bancaria": "010012"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2025-09",
+   "ano": "2025",
+   "mes": "09",
+   "valor": 7000.0,
+   "ordem_bancaria": "006431"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2025-10",
+   "ano": "2025",
+   "mes": "10",
+   "valor": 21000.0,
+   "ordem_bancaria": "007727"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2025-02",
+   "ano": "2025",
+   "mes": "02",
+   "valor": 103982.66,
+   "ordem_bancaria": "000825"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2025-04",
+   "ano": "2025",
+   "mes": "04",
+   "valor": 17500.0,
+   "ordem_bancaria": "002309"
+  },
+  {
+   "tipo": "PROGRAMAS",
+   "bloco": "CRIANÇA FELIZ",
+   "programa": "PROGRAMA PRIMEIRA INFANCIA NO SUAS - CALAMIDADES",
+   "competencia": "2025-02",
+   "ano": "2025",
+   "mes": "02",
+   "valor": 1013.0,
+   "ordem_bancaria": "002374"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2025-04",
+   "ano": "2025",
+   "mes": "04",
+   "valor": 120940.72,
+   "ordem_bancaria": "002221"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2025-02",
+   "ano": "2025",
+   "mes": "02",
+   "valor": 40536.08,
+   "ordem_bancaria": "000976"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2025-04",
+   "ano": "2025",
+   "mes": "04",
+   "valor": 33455.93,
+   "ordem_bancaria": "002308"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2025-04",
+   "ano": "2025",
+   "mes": "04",
+   "valor": 35000.0,
+   "ordem_bancaria": "002355"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2025-04",
+   "ano": "2025",
+   "mes": "04",
+   "valor": 16100.0,
+   "ordem_bancaria": "002298"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2025-02",
+   "ano": "2025",
+   "mes": "02",
+   "valor": 13266.35,
+   "ordem_bancaria": "000977"
+  },
+  {
+   "tipo": "PROGRAMAS",
+   "bloco": "CRIANÇA FELIZ",
+   "programa": "PROGRAMA PRIMEIRA INFANCIA NO SUAS - CALAMIDADES",
+   "competencia": "2025-01",
+   "ano": "2025",
+   "mes": "01",
+   "valor": 1013.0,
+   "ordem_bancaria": "002370"
+  },
+  {
+   "tipo": "GESTÃO",
+   "bloco": "BLOCO IGDBF",
+   "programa": "ÍNDICE DE GESTÃO DESCENTRALIZADA - IGDBF",
+   "competencia": "2024-12",
+   "ano": "2024",
+   "mes": "12",
+   "valor": 196178.42,
+   "ordem_bancaria": "000175"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2025-04",
+   "ano": "2025",
+   "mes": "04",
+   "valor": 7000.0,
+   "ordem_bancaria": "002302"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2025-04",
+   "ano": "2025",
+   "mes": "04",
+   "valor": 45500.0,
+   "ordem_bancaria": "002368"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2025-04",
+   "ano": "2025",
+   "mes": "04",
+   "valor": 21000.0,
+   "ordem_bancaria": "002306"
+  },
+  {
+   "tipo": "GESTÃO",
+   "bloco": "BLOCO IGDBF",
+   "programa": "ÍNDICE DE GESTÃO DESCENTRALIZADA - IGDBF",
+   "competencia": "2025-02",
+   "ano": "2025",
+   "mes": "02",
+   "valor": 145670.03,
+   "ordem_bancaria": "001214"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2025-02",
+   "ano": "2025",
+   "mes": "02",
+   "valor": 35225.25,
+   "ordem_bancaria": "000974"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2025-04",
+   "ano": "2025",
+   "mes": "04",
+   "valor": 12600.0,
+   "ordem_bancaria": "002367"
+  },
+  {
+   "tipo": "GESTÃO",
+   "bloco": "BLOCO IGDBF",
+   "programa": "ÍNDICE DE GESTÃO DESCENTRALIZADA - IGDBF",
+   "competencia": "2025-01",
+   "ano": "2025",
+   "mes": "01",
+   "valor": 192787.1,
+   "ordem_bancaria": "000689"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2025-02",
+   "ano": "2025",
+   "mes": "02",
+   "valor": 22110.59,
+   "ordem_bancaria": "000978"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2025-02",
+   "ano": "2025",
+   "mes": "02",
+   "valor": 16951.45,
+   "ordem_bancaria": "000975"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2025-02",
+   "ano": "2025",
+   "mes": "02",
+   "valor": 18425.49,
+   "ordem_bancaria": "000980"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2025-01",
+   "ano": "2025",
+   "mes": "01",
+   "valor": 13269.6,
+   "ordem_bancaria": "000438"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2025-03",
+   "ano": "2025",
+   "mes": "03",
+   "valor": 118600.12,
+   "ordem_bancaria": "001453"
+  },
+  {
+   "tipo": "GESTÃO",
+   "bloco": "BLOCO IGDBF",
+   "programa": "ÍNDICE DE GESTÃO DESCENTRALIZADA - IGDBF",
+   "competencia": "2025-03",
+   "ano": "2025",
+   "mes": "03",
+   "valor": 143818.02,
+   "ordem_bancaria": "001358"
+  },
+  {
+   "tipo": "SIGTV",
+   "bloco": "SIGTV",
+   "programa": "SIGTV - ESTRUTURAÇÃO DA REDE DE SERVIÇOS DO SUAS - INVESTIMENTO - A PARTIR DE 2022",
+   "competencia": "2024-12",
+   "ano": "2024",
+   "mes": "12",
+   "valor": 150000.0,
+   "ordem_bancaria": "000138"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2025-01",
+   "ano": "2025",
+   "mes": "01",
+   "valor": 35233.87,
+   "ordem_bancaria": "000429"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - PISO BÁSICO FIXO",
+   "competencia": "2025-01",
+   "ano": "2025",
+   "mes": "01",
+   "valor": 134775.0,
+   "ordem_bancaria": "000268"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2025-02",
+   "ano": "2025",
+   "mes": "02",
+   "valor": 36850.98,
+   "ordem_bancaria": "000989"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2025-01",
+   "ano": "2025",
+   "mes": "01",
+   "valor": 36860.0,
+   "ordem_bancaria": "000422"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2025-03",
+   "ano": "2025",
+   "mes": "03",
+   "valor": 17500.0,
+   "ordem_bancaria": "001614"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2025-04",
+   "ano": "2025",
+   "mes": "04",
+   "valor": 38500.0,
+   "ordem_bancaria": "002341"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2025-03",
+   "ano": "2025",
+   "mes": "03",
+   "valor": 103982.66,
+   "ordem_bancaria": "001509"
+  },
+  {
+   "tipo": "GESTÃO",
+   "bloco": "BLOCO IGDBF",
+   "programa": "ÍNDICE DE GESTÃO DESCENTRALIZADA - IGDBF",
+   "competencia": "2025-04",
+   "ano": "2025",
+   "mes": "04",
+   "valor": 145126.26,
+   "ordem_bancaria": "001944"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO DE TRANSIÇÃO DE MÉDIA COMPLEXIDADE",
+   "competencia": "2025-03",
+   "ano": "2025",
+   "mes": "03",
+   "valor": 33455.93,
+   "ordem_bancaria": "001615"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2025-02",
+   "ano": "2025",
+   "mes": "02",
+   "valor": 47906.28,
+   "ordem_bancaria": "000988"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2025-03",
+   "ano": "2025",
+   "mes": "03",
+   "valor": 16100.0,
+   "ordem_bancaria": "001605"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2025-01",
+   "ano": "2025",
+   "mes": "01",
+   "valor": 18430.0,
+   "ordem_bancaria": "000454"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2025-01",
+   "ano": "2025",
+   "mes": "01",
+   "valor": 7372.0,
+   "ordem_bancaria": "000451"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2025-01",
+   "ano": "2025",
+   "mes": "01",
+   "valor": 47918.0,
+   "ordem_bancaria": "000440"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2025-01",
+   "ano": "2025",
+   "mes": "01",
+   "valor": 22116.0,
+   "ordem_bancaria": "000428"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSB",
+   "programa": "COMPONENTE - SERVIÇO DE CONVIVÊNCIA E FORTALECIMENTO DE VINCULOS",
+   "competencia": "2025-01",
+   "ano": "2025",
+   "mes": "01",
+   "valor": 103982.66,
+   "ordem_bancaria": "000307"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - CENTRO POP-RUA",
+   "competencia": "2025-01",
+   "ano": "2025",
+   "mes": "01",
+   "valor": 16955.6,
+   "ordem_bancaria": "000419"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - POP DE RUA - SERVIÇO DE ACOLHIMENTO PARA ADULTOS E FAMÍLIAS",
+   "competencia": "2025-03",
+   "ano": "2025",
+   "mes": "03",
+   "valor": 35000.0,
+   "ordem_bancaria": "001642"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2025-02",
+   "ano": "2025",
+   "mes": "02",
+   "valor": 7370.2,
+   "ordem_bancaria": "000990"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2025-03",
+   "ano": "2025",
+   "mes": "03",
+   "valor": 7000.0,
+   "ordem_bancaria": "001613"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2025-01",
+   "ano": "2025",
+   "mes": "01",
+   "valor": 40546.0,
+   "ordem_bancaria": "000410"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE II - RESIDÊNCIA INCLUSIVA",
+   "competencia": "2025-08",
+   "ano": "2025",
+   "mes": "08",
+   "valor": 7000.0,
+   "ordem_bancaria": "004831"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2025-08",
+   "ano": "2025",
+   "mes": "08",
+   "valor": 38500.0,
+   "ordem_bancaria": "004829"
+  },
+  {
+   "tipo": "PROGRAMAS",
+   "bloco": "BPC ESCOLA",
+   "programa": "BPC NA ESCOLA - QUESTIONÁRIO A SER APLICADO-BL",
+   "competencia": "2025-08",
+   "ano": "2025",
+   "mes": "08",
+   "valor": 40.0,
+   "ordem_bancaria": "004295"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I - CRIANÇA\\ADOLESCENTE",
+   "competencia": "2025-05",
+   "ano": "2025",
+   "mes": "05",
+   "valor": 17499.47,
+   "ordem_bancaria": "002860"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - PAEFI",
+   "competencia": "2025-03",
+   "ano": "2025",
+   "mes": "03",
+   "valor": 45500.0,
+   "ordem_bancaria": "001620"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MEDIA COMPLEXIDADE - MSE",
+   "competencia": "2025-03",
+   "ano": "2025",
+   "mes": "03",
+   "valor": 38500.0,
+   "ordem_bancaria": "001607"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-MC",
+   "programa": "COMPONENTE - PISO FIXO DE MÉDIA COMPLEXIDADE - ABORDAGEM-SOCIAL",
+   "competencia": "2025-08",
+   "ano": "2025",
+   "mes": "08",
+   "valor": 21000.0,
+   "ordem_bancaria": "004851"
+  },
+  {
+   "tipo": "SERVIÇOS",
+   "bloco": "BLOCO PSE-AC",
+   "programa": "COMPONENTE - PISO DE ALTA COMPLEXIDADE I",
+   "competencia": "2025-08",
+   "ano": "2025",
+   "mes": "08",
+   "valor": 12600.0,
+   "ordem_bancaria": "004847"
+  }
+ ]
+}

@@ -19,3 +19,4 @@ dados/cmasgyn.db*
 corpus/brutos/*.html
 estado/http_cache.json
 node_modules/
+estado/fnas/*.xlsx

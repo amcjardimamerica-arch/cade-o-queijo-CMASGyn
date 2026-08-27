@@ -210,8 +210,58 @@ c.push(P([R('Leitura. ',{b:true}),
  R('O Conselho tem material, equipamento e serviços. Não tem diárias, não tem passagens, não tem auxílio financeiro ao conselheiro e não tem pessoal ou consultoria própria. Sem diárias e passagens, o conselheiro não participa de conferência fora do Município nem fiscaliza serviço in loco — duas atribuições que a lei lhe dá. Sem auxílio a pessoa física, a participação pesa desigualmente sobre o representante de usuário, que ocupa seis das quinze cadeiras da sociedade civil. E sem pessoal próprio, o apoio técnico depende inteiramente do órgão gestor, que é o fiscalizado.')]));
 c.push(new Paragraph({children:[new PageBreak()]}));
 
+// III-E REPASSES FEDERAIS E DESTINATARIOS
+const RF=JSON.parse(fs.readFileSync(require('path').resolve(__dirname,'..','..','dados','repasses_federais.json'),'utf8'));
+const DE=JSON.parse(fs.readFileSync(require('path').resolve(__dirname,'..','..','dados','destinatarios_2026.json'),'utf8'));
+c.push(H('VII — Repasse Federal e o Piso de Dez por Cento, Competência a Competência',HeadingLevel.HEADING_1));
+c.push(P([R('O lado da União foi obtido na planilha oficial de repasses fundo a fundo do Fundo Nacional de Assistência Social, que traz bloco, programa, competência, valor e a ordem bancária do SIAFI. Em 2024 e 2025 o Município recebeu '),
+ R(brl(RF.total_repassado),{b:true}),R(' em '),R(String(RF.repasses),{b:true}),
+ R(' repasses. Do Índice de Gestão Descentralizada vieram '),R(brl(RF.igd.total),{b:true}),
+ R(', o que torna devido ao controle social '),R(brl(RF.igd.devido_ao_controle_social_10),{b:true}),
+ R('. Nenhuma das '),R(String(RF.igd.competencias.length),{b:true}),
+ R(' competências tem demonstrativo de aplicação publicado.')]));
+c.push(V());
+c.push(P([R('O registro importa: os endereços antigos do Ministério respondem erro há meses. O dado existe, em planilha aberta e sem autenticação, em endereço novo. Quem procurar apenas pelos endereços antigos conclui, equivocadamente, que a informação não está disponível.')]));
+c.push(V());
+c.push(new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:60},
+ children:[R('Repasse federal por bloco',{b:true,sz:20})]}));
+c.push(TAB(['Bloco de financiamento','Valor repassado'],
+ Object.entries(RF.por_bloco).map(([k,v])=>[k,brl(v)]),[5600,3100]));
+c.push(V());
+c.push(new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:60},
+ children:[R('Piso de dez por cento, competência a competência',{b:true,sz:20})]}));
+c.push(TAB(['Competência','Índice repassado','Devido ao Conselho','Aplicado'],
+ RF.igd.competencias.map(x=>[x.competencia,brl(x.igd_repassado),
+  brl(x.devido_ao_controle_social),'sem demonstrativo']),[1800,2400,2400,2100]));
+c.push(V());
+c.push(P([R('O piso incide sobre o valor repassado em cada competência, não sobre o acumulado do ano. Aplicar o percentual apenas ao final do exercício não satisfaz a norma: descumpre-se em cada mês sem aplicação.')]));
+c.push(new Paragraph({children:[new PageBreak()]}));
+
+c.push(H('VIII — Destinatários dos Recursos',HeadingLevel.HEADING_1));
+c.push(P([R('Cada inscrição foi enriquecida com razão social, nome fantasia, natureza jurídica e atividade econômica, consultadas em base pública. São '),
+ R(String(DE.resumo.total),{b:true}),R(' destinatários, somando '),R(brl(DE.resumo.valor),{b:true}),
+ R(', dos quais '),R(String(DE.resumo.com_vinculo),{b:true}),
+ R(' têm instrumento publicado. Nenhum apresenta padrão de pagamento mensal: todos são ocorrência única no exercício, o que reflete a ausência de empenhos publicados, e não a inexistência de despesa continuada.')]));
+c.push(V());
+c.push(TAB(['Destinatário','Valor','Periodicidade','Instrumento'],
+ DE.destinatarios.map(x=>[
+  x.cnpj+' — '+(x.razao_social||'não consultada')+(x.nome_fantasia?' ('+x.nome_fantasia+')':''),
+  brl(x.valor_total_no_exercicio),x.periodicidade,
+  x.instrumentos.length?x.instrumentos.join(' · '):'sem vínculo']),[3200,1600,1700,2200]));
+c.push(V());
+if(DE.resumo.com_alerta){
+ c.push(P([R('Alerta de incompatibilidade. ',{b:true}),
+  R(String(DE.resumo.com_alerta)+' destinatários aparecem associados a termo de fomento ou de colaboração, mas têm natureza jurídica de sociedade empresária com fins lucrativos. Termo de fomento é instrumento de parceria com organização da sociedade civil. Duas leituras são possíveis, e só o processo administrativo desempata: ou o instrumento foi celebrado com quem não podia celebrá-lo, ou a inscrição não é a beneficiária daquele ato — a página do Diário reúne vários atos, e a extração captura todas as inscrições da página. Por isso cada vínculo nasce com selo a conferir.')]));
+ c.push(V());
+ c.push(TAB(['Destinatário','Natureza jurídica','Atividade econômica'],
+  DE.destinatarios.filter(x=>x.alerta_incompatibilidade).map(x=>
+  [(x.razao_social||x.cnpj),x.natureza_juridica||'—',(x.atividade_economica||'—')]),[3000,1700,4000]));
+ c.push(V());
+}
+c.push(new Paragraph({children:[new PageBreak()]}));
+
 // IV IRREGULARIDADES
-c.push(H('VII — Irregularidades Apuradas',HeadingLevel.HEADING_1));
+c.push(H('IX — Irregularidades Apuradas',HeadingLevel.HEADING_1));
 let at='';
 for(const a of D.achados){
  if(a.bloco!==at){at=a.bloco;c.push(H(BLOCO[a.bloco],HeadingLevel.HEADING_2));}
@@ -274,7 +324,7 @@ for(const a of D.achados){
 
 // V PROVIDENCIAS
 c.push(new Paragraph({children:[new PageBreak()]}));
-c.push(H('VIII — Providências',HeadingLevel.HEADING_1));
+c.push(H('X — Providências',HeadingLevel.HEADING_1));
 [['Requerer os documentos faltantes','à Secretaria, com fundamento nos artigos 10 e 11 da Lei 12.527/2011. Prazo de resposta de vinte dias, prorrogável por dez.',FD.onde_deveria_estar.acesso_informacao],
  ['Representar ao Tribunal de Contas dos Municípios','quanto ao aporte próprio de nove mil reais, ao piso do Índice de Gestão Descentralizada e à interrupção da publicação oficial.',FD.onde_deveria_estar.tcmgo],
  ['Comunicar à Secretaria Nacional de Assistência Social','o descumprimento da condição de repasse, que autoriza a suspensão de R$ 8.250.000,00.',null],
@@ -283,7 +333,7 @@ c.push(H('VIII — Providências',HeadingLevel.HEADING_1));
  if(l){rr.push(R(' Canal: '));rr.push(LINK(l.nome,l.url));rr.push(R('.'));}
  c.push(P(rr));c.push(V());});
 
-c.push(H('IX — Ressalva',HeadingLevel.HEADING_1));
+c.push(H('XI — Ressalva',HeadingLevel.HEADING_1));
 c.push(P([R('Este parecer resulta de análise automatizada sobre acervo público, revisada quanto ao método. Não substitui a revisão do advogado constituído'),
  new FootnoteReferenceRun(N.l8906),R(', nem constitui peça processual antes dela.')]));
 

@@ -6,24 +6,22 @@
  "piso_legal_absoluto": {
   "percentual": 3,
   "norma": "Artigo 14, § 7º, da Lei 14.601/2023",
-  "valor": 21201.21
+  "valor": 50625.08
  },
  "base_do_indice": {
   "acoes": {
-   "08.244.0165.1103": {
-    "nome": "IGD SUAS",
-    "valor": 534081.0
-   },
-   "08.244.0165.2555": {
-    "nome": "IGD Bolsa Família e CadÚnico",
-    "valor": 172626.15
+   "repasse_federal_2025": {
+    "nome": "Repasse efetivo do Índice, Fundo Nacional de Assistência Social",
+    "valor": 1687502.57,
+    "competencias": 11,
+    "exercicio": "2025"
    }
   },
-  "total": 706707.15,
-  "origem": "decretos de crédito adicional publicados no Diário Oficial",
-  "ressalva": "A base definitiva é o repasse efetivo do Fundo Nacional, por competência. Sem a Consulta de Pagamentos, usa-se a dotação como aproximação."
+  "total": 1687502.57,
+  "origem": "planilha oficial de repasses fundo a fundo do Fundo Nacional, exercício 2025, 11 competências, com ordem bancária do SIAFI",
+  "ressalva": "Base apurada sobre o repasse efetivo, competência a competência."
  },
- "devido_ao_controle_social": 70670.72,
+ "devido_ao_controle_social": 168750.26,
  "dotacao_do_conselho": {
   "acao": "3650.0824401082.591",
   "total": 256000,
@@ -98,96 +96,100 @@
  },
  "afericao": {
   "aplicado_na_fonte_do_indice": 16000,
-  "devido": 70670.72,
-  "diferenca": 54670.72,
-  "cumprimento_percentual": 22.6,
+  "devido": 168750.26,
+  "diferenca": 152750.26,
+  "cumprimento_percentual": 9.5,
   "situacao": "DESCUMPRIDO",
-  "leitura": "A ação do Conselho está dotada em 256,000.00, mas apenas 16,000.00 vêm da fonte federal onde o Índice trafega. O piso do artigo 6º exige 70,670.72. Faltam 54,670.72. Os 240,000.00 de fonte estadual contam como outra fonte de financiamento, prevista na parte final do artigo 6º, mas não substituem o piso federal."
+  "leitura": "A ação do Conselho está dotada em 256,000.00, mas apenas 16,000.00 vêm da fonte federal onde o Índice trafega. O piso do artigo 6º exige 168,750.26. Faltam 152,750.26. Os 240,000.00 de fonte estadual contam como outra fonte de financiamento, prevista na parte final do artigo 6º, mas não substituem o piso federal."
  },
  "mensal": [
   {
-   "competencia": "2026-01",
-   "base_mensal": 58892.26,
-   "devido_mensal": 5889.23,
+   "competencia": "2025-01",
+   "base_mensal": 192787.1,
+   "devido_mensal": 19278.71,
    "aplicado_publicado": null,
-   "situacao": "SEM DEMONSTRATIVO"
+   "situacao": "SEM DEMONSTRATIVO",
+   "origem": "repasse efetivo"
   },
   {
-   "competencia": "2026-02",
-   "base_mensal": 58892.26,
-   "devido_mensal": 5889.23,
+   "competencia": "2025-02",
+   "base_mensal": 145670.03,
+   "devido_mensal": 14567.0,
    "aplicado_publicado": null,
-   "situacao": "SEM DEMONSTRATIVO"
+   "situacao": "SEM DEMONSTRATIVO",
+   "origem": "repasse efetivo"
   },
   {
-   "competencia": "2026-03",
-   "base_mensal": 58892.26,
-   "devido_mensal": 5889.23,
+   "competencia": "2025-03",
+   "base_mensal": 143818.02,
+   "devido_mensal": 14381.8,
    "aplicado_publicado": null,
-   "situacao": "SEM DEMONSTRATIVO"
+   "situacao": "SEM DEMONSTRATIVO",
+   "origem": "repasse efetivo"
   },
   {
-   "competencia": "2026-04",
-   "base_mensal": 58892.26,
-   "devido_mensal": 5889.23,
+   "competencia": "2025-04",
+   "base_mensal": 145126.26,
+   "devido_mensal": 14512.63,
    "aplicado_publicado": null,
-   "situacao": "SEM DEMONSTRATIVO"
+   "situacao": "SEM DEMONSTRATIVO",
+   "origem": "repasse efetivo"
   },
   {
-   "competencia": "2026-05",
-   "base_mensal": 58892.26,
-   "devido_mensal": 5889.23,
+   "competencia": "2025-05",
+   "base_mensal": 140639.74,
+   "devido_mensal": 14063.97,
    "aplicado_publicado": null,
-   "situacao": "SEM DEMONSTRATIVO"
+   "situacao": "SEM DEMONSTRATIVO",
+   "origem": "repasse efetivo"
   },
   {
-   "competencia": "2026-06",
-   "base_mensal": 58892.26,
-   "devido_mensal": 5889.23,
+   "competencia": "2025-06",
+   "base_mensal": 136716.53,
+   "devido_mensal": 13671.65,
    "aplicado_publicado": null,
-   "situacao": "SEM DEMONSTRATIVO"
+   "situacao": "SEM DEMONSTRATIVO",
+   "origem": "repasse efetivo"
   },
   {
-   "competencia": "2026-07",
-   "base_mensal": 58892.26,
-   "devido_mensal": 5889.23,
+   "competencia": "2025-07",
+   "base_mensal": 149163.45,
+   "devido_mensal": 14916.35,
    "aplicado_publicado": null,
-   "situacao": "SEM DEMONSTRATIVO"
+   "situacao": "SEM DEMONSTRATIVO",
+   "origem": "repasse efetivo"
   },
   {
-   "competencia": "2026-08",
-   "base_mensal": 58892.26,
-   "devido_mensal": 5889.23,
+   "competencia": "2025-08",
+   "base_mensal": 155113.88,
+   "devido_mensal": 15511.39,
    "aplicado_publicado": null,
-   "situacao": "SEM DEMONSTRATIVO"
+   "situacao": "SEM DEMONSTRATIVO",
+   "origem": "repasse efetivo"
   },
   {
-   "competencia": "2026-09",
-   "base_mensal": 58892.26,
-   "devido_mensal": 5889.23,
+   "competencia": "2025-09",
+   "base_mensal": 159044.89,
+   "devido_mensal": 15904.49,
    "aplicado_publicado": null,
-   "situacao": "SEM DEMONSTRATIVO"
+   "situacao": "SEM DEMONSTRATIVO",
+   "origem": "repasse efetivo"
   },
   {
-   "competencia": "2026-10",
-   "base_mensal": 58892.26,
-   "devido_mensal": 5889.23,
+   "competencia": "2025-10",
+   "base_mensal": 158643.58,
+   "devido_mensal": 15864.36,
    "aplicado_publicado": null,
-   "situacao": "SEM DEMONSTRATIVO"
+   "situacao": "SEM DEMONSTRATIVO",
+   "origem": "repasse efetivo"
   },
   {
-   "competencia": "2026-11",
-   "base_mensal": 58892.26,
-   "devido_mensal": 5889.23,
+   "competencia": "2025-11",
+   "base_mensal": 160779.09,
+   "devido_mensal": 16077.91,
    "aplicado_publicado": null,
-   "situacao": "SEM DEMONSTRATIVO"
-  },
-  {
-   "competencia": "2026-12",
-   "base_mensal": 58892.26,
-   "devido_mensal": 5889.23,
-   "aplicado_publicado": null,
-   "situacao": "SEM DEMONSTRATIVO"
+   "situacao": "SEM DEMONSTRATIVO",
+   "origem": "repasse efetivo"
   }
  ],
  "documentos_para_conciliar": [

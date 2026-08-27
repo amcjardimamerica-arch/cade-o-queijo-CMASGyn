@@ -212,15 +212,15 @@
    "severidade": "critica",
    "selo": "CONFIRMADO",
    "titulo": "Piso federal do Índice cumprido em 22,6%",
-   "detalhe": "Dos R$ 256.000,00 da ação, apenas R$ 16.000,00 vêm da fonte 1660, onde trafega o Índice de Gestão Descentralizada. O devido é R$ 70.670,72. Os R$ 240.000,00 de fonte estadual contam como outra fonte de financiamento, admitida na parte final do artigo 6º, mas não substituem o piso federal.",
+   "detalhe": "Dos R$ 256.000,00 da ação, apenas R$ 16.000,00 vêm da fonte 1660, onde trafega o Índice de Gestão Descentralizada. O devido é R$ 168.750,26. Os R$ 240.000,00 de fonte estadual contam como outra fonte de financiamento, admitida na parte final do artigo 6º, mas não substituem o piso federal.",
    "norma": "Artigo 6º da Resolução CNAS/MDS 202/2025",
    "dados": {
     "aplicado_na_fonte_do_indice": 16000,
-    "devido": 70670.72,
-    "diferenca": 54670.72,
-    "cumprimento_percentual": 22.6,
+    "devido": 168750.26,
+    "diferenca": 152750.26,
+    "cumprimento_percentual": 9.5,
     "situacao": "DESCUMPRIDO",
-    "leitura": "A ação do Conselho está dotada em 256,000.00, mas apenas 16,000.00 vêm da fonte federal onde o Índice trafega. O piso do artigo 6º exige 70,670.72. Faltam 54,670.72. Os 240,000.00 de fonte estadual contam como outra fonte de financiamento, prevista na parte final do artigo 6º, mas não substituem o piso federal."
+    "leitura": "A ação do Conselho está dotada em 256,000.00, mas apenas 16,000.00 vêm da fonte federal onde o Índice trafega. O piso do artigo 6º exige 168,750.26. Faltam 152,750.26. Os 240,000.00 de fonte estadual contam como outra fonte de financiamento, prevista na parte final do artigo 6º, mas não substituem o piso federal."
    }
   },
   {

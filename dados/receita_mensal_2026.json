@@ -79,8 +79,8 @@
     "nao_identificada": 172583.33
    },
    "igd": {
-    "base_mensal_estimada": 58892.26,
-    "devido_ao_conselho_10": 5889.23,
+    "base_mensal_estimada": 140625.21,
+    "devido_ao_conselho_10": 14062.52,
     "aplicado_publicado": null,
     "situacao": "SEM DEMONSTRATIVO PUBLICADO"
    },
@@ -100,8 +100,8 @@
     "nao_identificada": 172583.33
    },
    "igd": {
-    "base_mensal_estimada": 58892.26,
-    "devido_ao_conselho_10": 5889.23,
+    "base_mensal_estimada": 140625.21,
+    "devido_ao_conselho_10": 14062.52,
     "aplicado_publicado": null,
     "situacao": "SEM DEMONSTRATIVO PUBLICADO"
    },
@@ -121,8 +121,8 @@
     "nao_identificada": 172583.33
    },
    "igd": {
-    "base_mensal_estimada": 58892.26,
-    "devido_ao_conselho_10": 5889.23,
+    "base_mensal_estimada": 140625.21,
+    "devido_ao_conselho_10": 14062.52,
     "aplicado_publicado": null,
     "situacao": "SEM DEMONSTRATIVO PUBLICADO"
    },
@@ -142,8 +142,8 @@
     "nao_identificada": 172583.33
    },
    "igd": {
-    "base_mensal_estimada": 58892.26,
-    "devido_ao_conselho_10": 5889.23,
+    "base_mensal_estimada": 140625.21,
+    "devido_ao_conselho_10": 14062.52,
     "aplicado_publicado": null,
     "situacao": "SEM DEMONSTRATIVO PUBLICADO"
    },
@@ -163,8 +163,8 @@
     "nao_identificada": 172583.33
    },
    "igd": {
-    "base_mensal_estimada": 58892.26,
-    "devido_ao_conselho_10": 5889.23,
+    "base_mensal_estimada": 140625.21,
+    "devido_ao_conselho_10": 14062.52,
     "aplicado_publicado": null,
     "situacao": "SEM DEMONSTRATIVO PUBLICADO"
    },
@@ -184,8 +184,8 @@
     "nao_identificada": 172583.33
    },
    "igd": {
-    "base_mensal_estimada": 58892.26,
-    "devido_ao_conselho_10": 5889.23,
+    "base_mensal_estimada": 140625.21,
+    "devido_ao_conselho_10": 14062.52,
     "aplicado_publicado": null,
     "situacao": "SEM DEMONSTRATIVO PUBLICADO"
    },
@@ -205,8 +205,8 @@
     "nao_identificada": 172583.33
    },
    "igd": {
-    "base_mensal_estimada": 58892.26,
-    "devido_ao_conselho_10": 5889.23,
+    "base_mensal_estimada": 140625.21,
+    "devido_ao_conselho_10": 14062.52,
     "aplicado_publicado": null,
     "situacao": "SEM DEMONSTRATIVO PUBLICADO"
    },
@@ -226,8 +226,8 @@
     "nao_identificada": 172583.33
    },
    "igd": {
-    "base_mensal_estimada": 58892.26,
-    "devido_ao_conselho_10": 5889.23,
+    "base_mensal_estimada": 140625.21,
+    "devido_ao_conselho_10": 14062.52,
     "aplicado_publicado": null,
     "situacao": "SEM DEMONSTRATIVO PUBLICADO"
    },
@@ -247,8 +247,8 @@
     "nao_identificada": 172583.33
    },
    "igd": {
-    "base_mensal_estimada": 58892.26,
-    "devido_ao_conselho_10": 5889.23,
+    "base_mensal_estimada": 140625.21,
+    "devido_ao_conselho_10": 14062.52,
     "aplicado_publicado": null,
     "situacao": "SEM DEMONSTRATIVO PUBLICADO"
    },
@@ -268,8 +268,8 @@
     "nao_identificada": 172583.33
    },
    "igd": {
-    "base_mensal_estimada": 58892.26,
-    "devido_ao_conselho_10": 5889.23,
+    "base_mensal_estimada": 140625.21,
+    "devido_ao_conselho_10": 14062.52,
     "aplicado_publicado": null,
     "situacao": "SEM DEMONSTRATIVO PUBLICADO"
    },
@@ -289,8 +289,8 @@
     "nao_identificada": 172583.33
    },
    "igd": {
-    "base_mensal_estimada": 58892.26,
-    "devido_ao_conselho_10": 5889.23,
+    "base_mensal_estimada": 140625.21,
+    "devido_ao_conselho_10": 14062.52,
     "aplicado_publicado": null,
     "situacao": "SEM DEMONSTRATIVO PUBLICADO"
    },
@@ -310,8 +310,8 @@
     "nao_identificada": 172583.33
    },
    "igd": {
-    "base_mensal_estimada": 58892.26,
-    "devido_ao_conselho_10": 5889.23,
+    "base_mensal_estimada": 140625.21,
+    "devido_ao_conselho_10": 14062.52,
     "aplicado_publicado": null,
     "situacao": "SEM DEMONSTRATIVO PUBLICADO"
    },
@@ -359,14 +359,14 @@
   "o_que_falta": "Extratos mensais da conta especial do Fundo e Relatório Resumido da Execução Orçamentária. Sem eles, não se distingue o que entrou do que sobrou."
  },
  "igd_mensal": {
-  "base_anual": 706707.15,
-  "base_mensal_estimada": 58892.26,
-  "devido_mensal_ao_conselho": 5889.23,
-  "devido_anual": 70670.72,
+  "base_anual": 1687502.57,
+  "base_mensal_estimada": 140625.21,
+  "devido_mensal_ao_conselho": 14062.52,
+  "devido_anual": 168750.26,
   "reservado_na_fonte_federal": 16000,
   "competencias_com_demonstrativo": 0,
   "norma": "Artigo 6º da Resolução CNAS/MDS 202/2025",
-  "leitura": "O piso incide sobre o repasse de cada mês. Estimando a base em doze parcelas, seriam 5,889.23 por competência. Nenhuma das doze tem demonstrativo publicado. A estimativa serve para dimensionar, não para acusar: o repasse real varia mês a mês e só a Consulta de Pagamentos do Fundo Nacional o revela."
+  "leitura": "O piso incide sobre o repasse de cada mês. Estimando a base em doze parcelas, seriam 14,062.52 por competência. Nenhuma das doze tem demonstrativo publicado. A estimativa serve para dimensionar, não para acusar: o repasse real varia mês a mês e só a Consulta de Pagamentos do Fundo Nacional o revela."
  },
  "achado": "Nenhuma das doze competências de 2026 tem receita realizada publicada. A conciliação entre previsto e realizado é impossível com o que está público."
 }

@@ -16,8 +16,20 @@ ciclos:
     coleta:
       - Diário Oficial do Município, edição por edição da janela
       - sítio próprio do CMASGyn
+      - repasses federais fundo a fundo, planilha do Fundo Nacional
+      - Portal da Transparência de Goiânia, categorias 49, 50, 52 e 55
+      - consulta de inscrição no cadastro nacional, para razão social e natureza jurídica
+    cruzamentos:
+      - repasse federal do Índice contra dotação do Conselho, por competência
+      - instrumento de parceria contra natureza jurídica do beneficiário
+      - pagamento recorrente contra contrato que o justifique
     procura:
       - licitações, dispensas e inexigibilidades
+      - despesas da ação 3650.0824401082.591, do Conselho Municipal
+      - empenho, liquidação e pagamento de rubrica do Conselho
+      - repasse do Índice de Gestão Descentralizada ao controle social, piso de 10%
+      - ato de designação da Secretaria Executiva e do Corpo Técnico do Conselho
+      - diárias e passagens concedidas a conselheiro
       - contratos, termos de fomento, termos de colaboração, convênios e aditivos
       - resoluções do CMASGyn
       - atas de plenária

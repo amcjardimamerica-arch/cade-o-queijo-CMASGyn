@@ -56,12 +56,32 @@ def main():
     fin = L("dados/financeiro.json")
     orc = L("dados/orcamento_assistencia_social.json")
 
-    # base do Índice, extraída dos decretos de crédito
-    base = {}
-    for a, nome in ACOES_IGD.items():
-        v = (fin["por_acao"].get(a) or {}).get("valor")
-        if v: base[a] = {"nome": nome, "valor": v}
-    base_total = sum(x["valor"] for x in base.values())
+    # base do Índice. Preferência absoluta pelo repasse federal efetivo, que vem
+    # da planilha oficial do Fundo Nacional. A dotação dos decretos de crédito é
+    # aproximação de último recurso e subestima em larga margem.
+    fed = None
+    try:
+        fed = L("dados/repasses_federais.json")
+    except Exception:
+        pass
+    if fed and fed["igd"]["total"]:
+        ult = max({c["competencia"][:4] for c in fed["igd"]["competencias"]})
+        comps = [c for c in fed["igd"]["competencias"] if c["competencia"].startswith(ult)]
+        base_total = round(sum(c["igd_repassado"] for c in comps), 2)
+        base = {"repasse_federal_" + ult: {
+            "nome": "Repasse efetivo do Índice, Fundo Nacional de Assistência Social",
+            "valor": base_total, "competencias": len(comps), "exercicio": ult}}
+        origem = ("planilha oficial de repasses fundo a fundo do Fundo Nacional, "
+                  f"exercício {ult}, {len(comps)} competências, com ordem bancária do SIAFI")
+        mensal_real = comps
+    else:
+        base = {}
+        for a, nome in ACOES_IGD.items():
+            v = (fin["por_acao"].get(a) or {}).get("valor")
+            if v: base[a] = {"nome": nome, "valor": v}
+        base_total = sum(x["valor"] for x in base.values())
+        origem = "decretos de crédito adicional publicados no Diário Oficial"
+        mensal_real = None
 
     # dotação do Conselho, por fonte
     linhas = qdd_conselho()
@@ -79,10 +99,16 @@ def main():
     falta = round(devido - federal, 2)
 
     # aferição mensal — o piso é sobre o repasse de cada mês
-    mensal = [{"competencia": f"2026-{m:02d}", "base_mensal": round(base_total/12, 2),
-               "devido_mensal": round(base_total/12*0.10, 2),
-               "aplicado_publicado": None,
-               "situacao": "SEM DEMONSTRATIVO"} for m in range(1, 13)]
+    if mensal_real:
+        mensal = [{"competencia": c["competencia"], "base_mensal": c["igd_repassado"],
+                   "devido_mensal": c["devido_ao_controle_social"],
+                   "aplicado_publicado": None, "situacao": "SEM DEMONSTRATIVO",
+                   "origem": "repasse efetivo"} for c in mensal_real]
+    else:
+        mensal = [{"competencia": f"2026-{m:02d}", "base_mensal": round(base_total/12, 2),
+                   "devido_mensal": round(base_total/12*0.10, 2),
+                   "aplicado_publicado": None, "situacao": "SEM DEMONSTRATIVO",
+                   "origem": "estimativa"} for m in range(1, 13)]
 
     saida = {
      "norma": "Artigo 6º da Resolução CNAS/MDS 202/2025",
@@ -93,9 +119,10 @@ def main():
      "piso_legal_absoluto": {"percentual": 3, "norma": "Artigo 14, § 7º, da Lei 14.601/2023",
                              "valor": piso_legal},
      "base_do_indice": {"acoes": base, "total": base_total,
-       "origem": "decretos de crédito adicional publicados no Diário Oficial",
-       "ressalva": "A base definitiva é o repasse efetivo do Fundo Nacional, por competência. "
-                   "Sem a Consulta de Pagamentos, usa-se a dotação como aproximação."},
+       "origem": origem,
+       "ressalva": ("Base apurada sobre o repasse efetivo, competência a competência."
+                    if mensal_real else
+                    "Base aproximada pela dotação. O repasse efetivo é maior.")},
      "devido_ao_controle_social": devido,
      "dotacao_do_conselho": {
        "acao": ACAO_CONSELHO, "total": dot_total,

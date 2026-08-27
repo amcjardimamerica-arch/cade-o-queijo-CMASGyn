@@ -1,0 +1,411 @@
+{
+ "exercicio": 2026,
+ "destinatarios": [
+  {
+   "cnpj": "15.649.514/0001-40",
+   "razao_social": "FNS CONSTRUTORA E CONSULTORIA LTDA",
+   "nome_fantasia": "FNS CONSTRUTORA E CONSULTORIA",
+   "descricao": "15.649.514/0001-40 — FNS CONSTRUTORA E CONSULTORIA LTDA (nome fantasia: FNS CONSTRUTORA E CONSULTORIA)",
+   "natureza_juridica": "2062",
+   "sem_fins_lucrativos": false,
+   "atividade_economica": "Obras de terraplenagem",
+   "situacao_cadastral": "ATIVA",
+   "municipio": "GOIANIA",
+   "uf": "GO",
+   "valor_total_no_exercicio": 1054025.52,
+   "pagamentos": 1,
+   "competencias": [
+    "2026-06"
+   ],
+   "periodicidade": "ANUAL OU PONTUAL",
+   "criterio_periodicidade": "ocorrência única no exercício",
+   "valor_medio": 1054025.52,
+   "acumulado_mensal": [
+    {
+     "competencia": "2026-06",
+     "no_mes": 1054025.52,
+     "acumulado_no_ano": 1054025.52
+    }
+   ],
+   "instrumentos": [
+    "CONTRATO 08/2026",
+    "CONTRATO 61/2026",
+    "TERMO DE FOMENTO 008/2024"
+   ],
+   "tem_vinculo": true,
+   "finalidade": [
+    "folders e demais materiais de comunicação visual FUNDAMENTO LEGAL I: Fundamentado em contratação direta por dispensa de licitação na forma do disposto no artigo 75, II, d"
+   ],
+   "selo": "A_CONFERIR",
+   "ressalva": "Inscrição extraída da página do Diário Oficial. O vínculo com o instrumento só se confirma com o empenho individualizado.",
+   "alerta_incompatibilidade": "Instrumento de parceria com organização da sociedade civil celebrado com inscrição de natureza jurídica 2062, que não é entidade sem fins lucrativos. Ou a natureza jurídica mudou, ou a inscrição não é a beneficiária deste instrumento — a página do Diário reúne vários atos. Exige o processo para desempatar."
+  },
+  {
+   "cnpj": "17.439.987/0001-48",
+   "razao_social": "ASSOCIACAO DE SERVOS SAGRADA FAMILIA",
+   "nome_fantasia": "ASSOCIACAO DE SERVOS SAGRADA FAMILIA",
+   "descricao": "17.439.987/0001-48 — ASSOCIACAO DE SERVOS SAGRADA FAMILIA (nome fantasia: ASSOCIACAO DE SERVOS SAGRADA FAMILIA)",
+   "natureza_juridica": "3999",
+   "sem_fins_lucrativos": true,
+   "atividade_economica": "Atividades de associações de defesa de direitos sociais",
+   "situacao_cadastral": "ATIVA",
+   "municipio": "GOIANIA",
+   "uf": "GO",
+   "valor_total_no_exercicio": 300000.0,
+   "pagamentos": 1,
+   "competencias": [
+    "2026-01"
+   ],
+   "periodicidade": "ANUAL OU PONTUAL",
+   "criterio_periodicidade": "ocorrência única no exercício",
+   "valor_medio": 300000.0,
+   "acumulado_mensal": [
+    {
+     "competencia": "2026-01",
+     "no_mes": 300000.0,
+     "acumulado_no_ano": 300000.0
+    }
+   ],
+   "instrumentos": [],
+   "tem_vinculo": false,
+   "finalidade": [
+    "provenientes de esferas governamentais distintas; Considerando que a organização interna dos ﬂuxos processuais constitui instrumento de aprimoramento da gestão administra"
+   ],
+   "selo": "A_CONFERIR",
+   "ressalva": "Inscrição extraída da página do Diário Oficial. O vínculo com o instrumento só se confirma com o empenho individualizado.",
+   "alerta_incompatibilidade": null
+  },
+  {
+   "cnpj": "55.390.465/0001-98",
+   "razao_social": "CONSTRULUZ COMERCIO E IMPORTACAO DE MATERIAIS DE CONSTRUCAO E ILUMINACAO LTDA",
+   "nome_fantasia": "CONSTRULUZ",
+   "descricao": "55.390.465/0001-98 — CONSTRULUZ COMERCIO E IMPORTACAO DE MATERIAIS DE CONSTRUCAO E ILUMINACAO LTDA (nome fantasia: CONSTRULUZ)",
+   "natureza_juridica": "2062",
+   "sem_fins_lucrativos": false,
+   "atividade_economica": "Comércio varejista de materiais de construção em geral",
+   "situacao_cadastral": "ATIVA",
+   "municipio": "GOIANIA",
+   "uf": "GO",
+   "valor_total_no_exercicio": 257040.0,
+   "pagamentos": 1,
+   "competencias": [
+    "2026-04"
+   ],
+   "periodicidade": "ANUAL OU PONTUAL",
+   "criterio_periodicidade": "ocorrência única no exercício",
+   "valor_medio": 257040.0,
+   "acumulado_mensal": [
+    {
+     "competencia": "2026-04",
+     "no_mes": 257040.0,
+     "acumulado_no_ano": 257040.0
+    }
+   ],
+   "instrumentos": [],
+   "tem_vinculo": false,
+   "finalidade": [
+    "ndereço Rua 1105, Qd. 204, Lt. 23, Setor Pedro Ludovico, Goiânia, Goiás, objeto da matrícula n° R10/4.213, do 1º Cartório de Registro de Imóveis, de propriedade dos locad"
+   ],
+   "selo": "A_CONFERIR",
+   "ressalva": "Inscrição extraída da página do Diário Oficial. O vínculo com o instrumento só se confirma com o empenho individualizado.",
+   "alerta_incompatibilidade": null
+  },
+  {
+   "cnpj": "01.682.475/0001-78",
+   "razao_social": "CENTRO DE REABILITACAO SAO PAULO APOSTOLO CRESPA",
+   "nome_fantasia": "CRESPA",
+   "descricao": "01.682.475/0001-78 — CENTRO DE REABILITACAO SAO PAULO APOSTOLO CRESPA (nome fantasia: CRESPA)",
+   "natureza_juridica": "3999",
+   "sem_fins_lucrativos": true,
+   "atividade_economica": "Atividades de associações de defesa de direitos sociais",
+   "situacao_cadastral": "ATIVA",
+   "municipio": "GOIANIA",
+   "uf": "GO",
+   "valor_total_no_exercicio": 200000.0,
+   "pagamentos": 1,
+   "competencias": [
+    "2026-07"
+   ],
+   "periodicidade": "ANUAL OU PONTUAL",
+   "criterio_periodicidade": "ocorrência única no exercício",
+   "valor_medio": 200000.0,
+   "acumulado_mensal": [
+    {
+     "competencia": "2026-07",
+     "no_mes": 200000.0,
+     "acumulado_no_ano": 200000.0
+    }
+   ],
+   "instrumentos": [],
+   "tem_vinculo": false,
+   "finalidade": [
+    "erá utilizado para a produção de conteúdo jurídico acessível, com linguagem simples, voltado especialmente às pessoas em situação de vulnerabilidade. O podcast terá como "
+   ],
+   "selo": "A_CONFERIR",
+   "ressalva": "Inscrição extraída da página do Diário Oficial. O vínculo com o instrumento só se confirma com o empenho individualizado.",
+   "alerta_incompatibilidade": null
+  },
+  {
+   "cnpj": "33.931.327/0001-36",
+   "razao_social": "ESPLENDOR SERVICOS ADMINISTRATIVOS E COMERCIO DE FRIOS LTDA",
+   "nome_fantasia": "ESPLENDOR SERVICOS E COMERCIO",
+   "descricao": "33.931.327/0001-36 — ESPLENDOR SERVICOS ADMINISTRATIVOS E COMERCIO DE FRIOS LTDA (nome fantasia: ESPLENDOR SERVICOS E COMERCIO)",
+   "natureza_juridica": "2062",
+   "sem_fins_lucrativos": false,
+   "atividade_economica": "Serviços combinados de escritório e apoio administrativo",
+   "situacao_cadastral": "ATIVA",
+   "municipio": "BRASILIA",
+   "uf": "DF",
+   "valor_total_no_exercicio": 200000.0,
+   "pagamentos": 1,
+   "competencias": [
+    "2026-04"
+   ],
+   "periodicidade": "ANUAL OU PONTUAL",
+   "criterio_periodicidade": "ocorrência única no exercício",
+   "valor_medio": 200000.0,
+   "acumulado_mensal": [
+    {
+     "competencia": "2026-04",
+     "no_mes": 200000.0,
+     "acumulado_no_ano": 200000.0
+    }
+   ],
+   "instrumentos": [
+    "TERMO DE FOMENTO 017/2026"
+   ],
+   "tem_vinculo": true,
+   "finalidade": [
+    "s artigos 7º da IN 02/2018-CGM. Dê-se ciência, publique-se e cumpra-se. GABINETE DA SECRETÁRIA MUNICIPAL DE POLÍTICAS PARA AS MULHERES, ASSISTÊNCIA SOCIAL E DIREITOS HUMA"
+   ],
+   "selo": "A_CONFERIR",
+   "ressalva": "Inscrição extraída da página do Diário Oficial. O vínculo com o instrumento só se confirma com o empenho individualizado.",
+   "alerta_incompatibilidade": "Instrumento de parceria com organização da sociedade civil celebrado com inscrição de natureza jurídica 2062, que não é entidade sem fins lucrativos. Ou a natureza jurídica mudou, ou a inscrição não é a beneficiária deste instrumento — a página do Diário reúne vários atos. Exige o processo para desempatar."
+  },
+  {
+   "cnpj": "04.369.147/0001-04",
+   "razao_social": "ABA MED S.A.",
+   "nome_fantasia": "ABA MEDICAL",
+   "descricao": "04.369.147/0001-04 — ABA MED S.A. (nome fantasia: ABA MEDICAL)",
+   "natureza_juridica": "2054",
+   "sem_fins_lucrativos": false,
+   "atividade_economica": "Comércio atacadista de instrumentos e materiais para uso médico, cirúrgico, hospitalar e de laboratórios",
+   "situacao_cadastral": "ATIVA",
+   "municipio": "GOIANIA",
+   "uf": "GO",
+   "valor_total_no_exercicio": 122384.42,
+   "pagamentos": 1,
+   "competencias": [
+    "2026-07"
+   ],
+   "periodicidade": "ANUAL OU PONTUAL",
+   "criterio_periodicidade": "ocorrência única no exercício",
+   "valor_medio": 122384.42,
+   "acumulado_mensal": [
+    {
+     "competencia": "2026-07",
+     "no_mes": 122384.42,
+     "acumulado_no_ano": 122384.42
+    }
+   ],
+   "instrumentos": [
+    "CONTRATO 065/2026",
+    "TERMO DE FOMENTO 055/2025",
+    "Termo de Fomento 055/2025"
+   ],
+   "tem_vinculo": true,
+   "finalidade": [
+    "a dos Fundos Sociais, à unidade jurídica competente, ao controle interno municipal, ao Ministério Público do Estado de Goiás e, se pertinente, ao Juízo da Infância e Juve"
+   ],
+   "selo": "A_CONFERIR",
+   "ressalva": "Inscrição extraída da página do Diário Oficial. O vínculo com o instrumento só se confirma com o empenho individualizado.",
+   "alerta_incompatibilidade": "Instrumento de parceria com organização da sociedade civil celebrado com inscrição de natureza jurídica 2054, que não é entidade sem fins lucrativos. Ou a natureza jurídica mudou, ou a inscrição não é a beneficiária deste instrumento — a página do Diário reúne vários atos. Exige o processo para desempatar."
+  },
+  {
+   "cnpj": "97.546.623/0001-04",
+   "razao_social": "JR AGUAS LTDA",
+   "nome_fantasia": "JR AGUAS",
+   "descricao": "97.546.623/0001-04 — JR AGUAS LTDA (nome fantasia: JR AGUAS)",
+   "natureza_juridica": "2062",
+   "sem_fins_lucrativos": false,
+   "atividade_economica": "Comércio atacadista de água mineral",
+   "situacao_cadastral": "ATIVA",
+   "municipio": "GOIANIA",
+   "uf": "GO",
+   "valor_total_no_exercicio": 69744.0,
+   "pagamentos": 1,
+   "competencias": [
+    "2026-05"
+   ],
+   "periodicidade": "ANUAL OU PONTUAL",
+   "criterio_periodicidade": "ocorrência única no exercício",
+   "valor_medio": 69744.0,
+   "acumulado_mensal": [
+    {
+     "competencia": "2026-05",
+     "no_mes": 69744.0,
+     "acumulado_no_ano": 69744.0
+    }
+   ],
+   "instrumentos": [],
+   "tem_vinculo": false,
+   "finalidade": [
+    "o, mediante a apresentação de certidão negativa, nos termos do Título VII-A da Consolidação das Leis do Trabalho, aprovada pelo Decreto-Lei nº 5452, de 1º de maio de 1943"
+   ],
+   "selo": "A_CONFERIR",
+   "ressalva": "Inscrição extraída da página do Diário Oficial. O vínculo com o instrumento só se confirma com o empenho individualizado.",
+   "alerta_incompatibilidade": null
+  },
+  {
+   "cnpj": "58.600.411/0001-06",
+   "razao_social": "GUERRA COMERCIO E SERVICOS LTDA",
+   "nome_fantasia": null,
+   "descricao": "58.600.411/0001-06 — GUERRA COMERCIO E SERVICOS LTDA",
+   "natureza_juridica": "2062",
+   "sem_fins_lucrativos": false,
+   "atividade_economica": "Fabricação de letras, letreiros e placas de qualquer material, exceto luminosos",
+   "situacao_cadastral": "ATIVA",
+   "municipio": "BELO HORIZONTE",
+   "uf": "MG",
+   "valor_total_no_exercicio": 55750.5,
+   "pagamentos": 1,
+   "competencias": [
+    "2026-07"
+   ],
+   "periodicidade": "ANUAL OU PONTUAL",
+   "criterio_periodicidade": "ocorrência única no exercício",
+   "valor_medio": 55750.5,
+   "acumulado_mensal": [
+    {
+     "competencia": "2026-07",
+     "no_mes": 55750.5,
+     "acumulado_no_ano": 55750.5
+    }
+   ],
+   "instrumentos": [],
+   "tem_vinculo": false,
+   "finalidade": [
+    "Constituir a Comissão de Seleção do Chamamento Público para Seleção de Organizações da Sociedade Civil para a implantação, manutenção e execução da Central de Interpretaç"
+   ],
+   "selo": "A_CONFERIR",
+   "ressalva": "Inscrição extraída da página do Diário Oficial. O vínculo com o instrumento só se confirma com o empenho individualizado.",
+   "alerta_incompatibilidade": null
+  },
+  {
+   "cnpj": "42.619.993/0001-24",
+   "razao_social": "CAFE COLISEU LTDA",
+   "nome_fantasia": null,
+   "descricao": "42.619.993/0001-24 — CAFE COLISEU LTDA",
+   "natureza_juridica": "2062",
+   "sem_fins_lucrativos": false,
+   "atividade_economica": "Torrefação e moagem de café",
+   "situacao_cadastral": "ATIVA",
+   "municipio": "ERVALIA",
+   "uf": "MG",
+   "valor_total_no_exercicio": 46200.0,
+   "pagamentos": 1,
+   "competencias": [
+    "2026-02"
+   ],
+   "periodicidade": "ANUAL OU PONTUAL",
+   "criterio_periodicidade": "ocorrência única no exercício",
+   "valor_medio": 46200.0,
+   "acumulado_mensal": [
+    {
+     "competencia": "2026-02",
+     "no_mes": 46200.0,
+     "acumulado_no_ano": 46200.0
+    }
+   ],
+   "instrumentos": [
+    "TERMO DE FOMENTO 102/2026",
+    "Termo de Fomento 052/2023"
+   ],
+   "tem_vinculo": true,
+   "finalidade": [
+    "der a Secretaria Municipal de Políticas para as Mulheres, Assistência Social e Direitos Humanos - SEMASDH. A referida servidora deverá observar o disposto no artigo 6º da"
+   ],
+   "selo": "A_CONFERIR",
+   "ressalva": "Inscrição extraída da página do Diário Oficial. O vínculo com o instrumento só se confirma com o empenho individualizado.",
+   "alerta_incompatibilidade": "Instrumento de parceria com organização da sociedade civil celebrado com inscrição de natureza jurídica 2062, que não é entidade sem fins lucrativos. Ou a natureza jurídica mudou, ou a inscrição não é a beneficiária deste instrumento — a página do Diário reúne vários atos. Exige o processo para desempatar."
+  },
+  {
+   "cnpj": "44.728.295/0001-92",
+   "razao_social": "K R MARCONDES DISTRIBUIDORA",
+   "nome_fantasia": "2K DISTRIBUIDORA",
+   "descricao": "44.728.295/0001-92 — K R MARCONDES DISTRIBUIDORA (nome fantasia: 2K DISTRIBUIDORA)",
+   "natureza_juridica": "2135",
+   "sem_fins_lucrativos": false,
+   "atividade_economica": "Comércio atacadista de bebidas não especificadas anteriormente",
+   "situacao_cadastral": "ATIVA",
+   "municipio": "RIO AZUL",
+   "uf": "PR",
+   "valor_total_no_exercicio": 42250.0,
+   "pagamentos": 1,
+   "competencias": [
+    "2026-07"
+   ],
+   "periodicidade": "ANUAL OU PONTUAL",
+   "criterio_periodicidade": "ocorrência única no exercício",
+   "valor_medio": 42250.0,
+   "acumulado_mensal": [
+    {
+     "competencia": "2026-07",
+     "no_mes": 42250.0,
+     "acumulado_no_ano": 42250.0
+    }
+   ],
+   "instrumentos": [],
+   "tem_vinculo": false,
+   "finalidade": [
+    "das no Edital e seus anexos. TIPO DE LICITAÇÃO: Menor preço por item MODO DE DISPUTA: Aberto CÓDIGO UASG: 926995 PROCESSO SEI Nº: 26.29.000014378-2 LOCAL DA SESSÃO PÚBLIC"
+   ],
+   "selo": "A_CONFERIR",
+   "ressalva": "Inscrição extraída da página do Diário Oficial. O vínculo com o instrumento só se confirma com o empenho individualizado.",
+   "alerta_incompatibilidade": null
+  },
+  {
+   "cnpj": "03.647.755/0001-70",
+   "razao_social": "VASCONCELOS ALIMENTOS S.A.",
+   "nome_fantasia": "ARROZ VASCONCELOS",
+   "descricao": "03.647.755/0001-70 — VASCONCELOS ALIMENTOS S.A. (nome fantasia: ARROZ VASCONCELOS)",
+   "natureza_juridica": "2054",
+   "sem_fins_lucrativos": false,
+   "atividade_economica": "Beneficiamento de arroz",
+   "situacao_cadastral": "ATIVA",
+   "municipio": "ARAGUARI",
+   "uf": "MG",
+   "valor_total_no_exercicio": 13586.1,
+   "pagamentos": 1,
+   "competencias": [
+    "2026-02"
+   ],
+   "periodicidade": "ANUAL OU PONTUAL",
+   "criterio_periodicidade": "ocorrência única no exercício",
+   "valor_medio": 13586.1,
+   "acumulado_mensal": [
+    {
+     "competencia": "2026-02",
+     "no_mes": 13586.1,
+     "acumulado_no_ano": 13586.1
+    }
+   ],
+   "instrumentos": [],
+   "tem_vinculo": false,
+   "finalidade": [
+    "DH. AUTORIZO por ser imprescindível a despesa para contratação da empresa VASCONCELOS INDÚSTRIA, COMÉRCIO, IMPORTAÇÃO E EXPORTAÇÃO LTDA, CNPJ: 03.647.755/0001-70, no valo"
+   ],
+   "selo": "A_CONFERIR",
+   "ressalva": "Inscrição extraída da página do Diário Oficial. O vínculo com o instrumento só se confirma com o empenho individualizado.",
+   "alerta_incompatibilidade": null
+  }
+ ],
+ "resumo": {
+  "total": 11,
+  "com_vinculo": 4,
+  "mensais": 0,
+  "pontuais": 11,
+  "com_alerta": 4,
+  "valor": 2360980.54
+ }
+}
