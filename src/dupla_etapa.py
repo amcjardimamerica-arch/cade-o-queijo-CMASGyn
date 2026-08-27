@@ -41,6 +41,12 @@ def via_federal_igd(a):
     except Exception:
         return {"via": "planilha federal", "resultado": "INDISPONIVEL"}
     comps = fed["igd"]["competencias"]
+    if not comps:
+        return {"via": "planilha de repasses do Fundo Nacional, competência a competência",
+                "independencia": "fonte federal, não deriva da extração do Diário Oficial",
+                "competencias_conferidas": 0,
+                "resultado": "INDISPONIVEL",
+                "nota": "a extração federal veio vazia — zero competência conferida não permite confirmar nem divergir; reexecutar com acesso a fnas.mds.gov.br"}
     devido = round(sum(c["devido_ao_controle_social"] for c in comps), 2)
     aplicado = igd["afericao"]["aplicado_na_fonte_do_indice"]
     return {"via": "planilha de repasses do Fundo Nacional, competência a competência",
