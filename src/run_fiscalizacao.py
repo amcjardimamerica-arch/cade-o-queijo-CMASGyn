@@ -27,6 +27,7 @@ ETAPAS = [
     ("trilha visual", "src/gera_fluxo_html.py"),
     ("categorias e tetos", "src/categoriza.py"),
     ("trilha didática", "src/gera_trilha_didatica.py"),
+    ("fluxograma", "src/gera_fluxograma.py"),
 ]
 
 def rodar(nome, script):
@@ -80,6 +81,11 @@ def main():
              "parecer_devido": True}
     (REL / "achados_consolidados_2026.json").write_text(
         json.dumps(saida, ensure_ascii=False, indent=1), encoding="utf-8")
+    # dupla etapa — só sobre suspeita
+    r = subprocess.run([sys.executable, "src/dupla_etapa.py"], cwd=RAIZ,
+                       capture_output=True, text=True)
+    print(f"  [{'ok' if r.returncode == 0 else 'FALHA'}] dupla etapa{r.stdout.rstrip()}")
+
     # parecer em Word
     r = subprocess.run(["node", "src/parecer_docx/doc2run.js"], cwd=RAIZ,
                        capture_output=True, text=True)

@@ -1,0 +1,34 @@
+name: Semanal — atos administrativos
+on:
+  schedule: [{cron: "0 9 * * 1"}]   # segunda, 06h em Goiânia
+  workflow_dispatch:
+permissions: {contents: write, issues: write}
+concurrency: {group: vigilancia, cancel-in-progress: false}
+jobs:
+  atos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.11", cache: pip}
+      - run: pip install --quiet -r requirements.txt
+      - name: Coletar a semana
+        run: python src/run_diario.py --janela 7 || true
+      - name: Extrair e classificar
+        run: |
+          python src/extracao.py assistencia_social || true
+          python src/biblioteca.py || true
+          python src/publicacao_diaria.py 10 || true
+      - name: Verificação dupla dos atos
+        run: python src/verificacao_dupla.py 40 || true
+      - name: Parecer dos atos da semana
+        env: {ANTHROPIC_API_KEY: "${{ secrets.ANTHROPIC_API_KEY }}"}
+        run: python src/parecer.py --ciclo semanal > /tmp/p.json || true
+      - name: Destilar
+        run: python src/consulta.py || true
+      - name: Publicar
+        run: |
+          git config user.name "vigilancia-bot"; git config user.email "bot@users.noreply.github.com"
+          git add -A dados docs relatorios estado || true
+          git diff --staged --quiet || git commit -m "atos $(date +%G-S%V)"
+          git push

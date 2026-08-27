@@ -1,0 +1,304 @@
+{
+ "gerado_em": "2026-08-27",
+ "regra": "somente sobre achado com suspeita de uso indevido ou apontamento de irregularidade. Achado de mera ausência documental não aciona.",
+ "acionados": 20,
+ "convergiram": 17,
+ "divergiram": 0,
+ "indisponiveis": 3,
+ "resultados": [
+  {
+   "codigo": "PUB-01",
+   "titulo": "Diário Oficial sem edição desde 29/07/2026",
+   "gatilho": "severidade crítica",
+   "selo_original": "CONFIRMADO",
+   "selo_apos_dupla_via": "CONFIRMADO",
+   "segunda_via": {
+    "via": "fechamento aritmético entre fontes, ações e total do Fundo",
+    "independencia": "não relê documento; testa a coerência interna",
+    "fontes_somam_o_fundo": true,
+    "acoes_somam_o_fundo": true,
+    "resultado": "CONFIRMA"
+   },
+   "efeito": "segunda via convergiu; selo mantido"
+  },
+  {
+   "codigo": "PUB-02",
+   "titulo": "Atos do Conselho sem publicação, confirmado por dupla via",
+   "gatilho": "severidade crítica",
+   "selo_original": "CONFIRMADO",
+   "selo_apos_dupla_via": "CONFIRMADO",
+   "segunda_via": {
+    "via": "fechamento aritmético entre fontes, ações e total do Fundo",
+    "independencia": "não relê documento; testa a coerência interna",
+    "fontes_somam_o_fundo": true,
+    "acoes_somam_o_fundo": true,
+    "resultado": "CONFIRMA"
+   },
+   "efeito": "segunda via convergiu; selo mantido"
+  },
+  {
+   "codigo": "CMAS-FIN-05",
+   "titulo": "Piso federal do Índice cumprido em 22,6%",
+   "gatilho": "severidade crítica",
+   "selo_original": "CONFIRMADO",
+   "selo_apos_dupla_via": "CONFIRMADO",
+   "segunda_via": {
+    "via": "planilha de repasses do Fundo Nacional, competência a competência",
+    "independencia": "fonte federal, não deriva da extração do Diário Oficial",
+    "devido_recalculado": 429185.17,
+    "aplicado": 16000,
+    "competencias_conferidas": 23,
+    "resultado": "CONFIRMA"
+   },
+   "efeito": "segunda via convergiu; selo mantido"
+  },
+  {
+   "codigo": "REC-01",
+   "titulo": "Aporte próprio do Município no Fundo é simbólico",
+   "gatilho": "severidade crítica",
+   "selo_original": "CONFIRMADO",
+   "selo_apos_dupla_via": "CONFIRMADO",
+   "segunda_via": {
+    "via": "documento bruto",
+    "resultado": "INDISPONIVEL"
+   },
+   "efeito": "segunda via indisponível; selo preservado, falha registrada"
+  },
+  {
+   "codigo": "DES-02",
+   "titulo": "Execução da despesa não rastreável",
+   "gatilho": "severidade crítica",
+   "selo_original": "CONFIRMADO",
+   "selo_apos_dupla_via": "CONFIRMADO",
+   "segunda_via": {
+    "via": "fechamento aritmético entre fontes, ações e total do Fundo",
+    "independencia": "não relê documento; testa a coerência interna",
+    "fontes_somam_o_fundo": true,
+    "acoes_somam_o_fundo": true,
+    "resultado": "CONFIRMA"
+   },
+   "efeito": "segunda via convergiu; selo mantido"
+  },
+  {
+   "codigo": "FMAS-01",
+   "titulo": "Recurso do Tesouro custeia o que está fora do controle do Conselho",
+   "gatilho": "severidade crítica",
+   "selo_original": "CONFIRMADO",
+   "selo_apos_dupla_via": "CONFIRMADO",
+   "segunda_via": {
+    "via": "documento bruto",
+    "resultado": "INDISPONIVEL"
+   },
+   "efeito": "segunda via indisponível; selo preservado, falha registrada"
+  },
+  {
+   "codigo": "IGD-01",
+   "titulo": "Piso de 10% do Índice de Gestão Descentralizada cumprido em apenas 9.5%",
+   "gatilho": "severidade crítica",
+   "selo_original": "CONFIRMADO",
+   "selo_apos_dupla_via": "CONFIRMADO",
+   "segunda_via": {
+    "via": "planilha de repasses do Fundo Nacional, competência a competência",
+    "independencia": "fonte federal, não deriva da extração do Diário Oficial",
+    "devido_recalculado": 429185.17,
+    "aplicado": 16000,
+    "competencias_conferidas": 23,
+    "resultado": "CONFIRMA"
+   },
+   "efeito": "segunda via convergiu; selo mantido"
+  },
+  {
+   "codigo": "ATA-01",
+   "titulo": "Nenhuma ata de plenária publicada",
+   "gatilho": "severidade alta com selo confirmado",
+   "selo_original": "CONFIRMADO",
+   "selo_apos_dupla_via": "CONFIRMADO",
+   "segunda_via": {
+    "via": "fechamento aritmético entre fontes, ações e total do Fundo",
+    "independencia": "não relê documento; testa a coerência interna",
+    "fontes_somam_o_fundo": true,
+    "acoes_somam_o_fundo": true,
+    "resultado": "CONFIRMA"
+   },
+   "efeito": "segunda via convergiu; selo mantido"
+  },
+  {
+   "codigo": "CTA-01",
+   "titulo": "Apreciação mensal das contas do Fundo sem registro",
+   "gatilho": "severidade alta com selo confirmado",
+   "selo_original": "CONFIRMADO",
+   "selo_apos_dupla_via": "CONFIRMADO",
+   "segunda_via": {
+    "via": "fechamento aritmético entre fontes, ações e total do Fundo",
+    "independencia": "não relê documento; testa a coerência interna",
+    "fontes_somam_o_fundo": true,
+    "acoes_somam_o_fundo": true,
+    "resultado": "CONFIRMA"
+   },
+   "efeito": "segunda via convergiu; selo mantido"
+  },
+  {
+   "codigo": "CTA-02",
+   "titulo": "Prestação de contas quadrimestral ao Conselho não demonstrada",
+   "gatilho": "severidade alta com selo confirmado",
+   "selo_original": "CONFIRMADO",
+   "selo_apos_dupla_via": "CONFIRMADO",
+   "segunda_via": {
+    "via": "fechamento aritmético entre fontes, ações e total do Fundo",
+    "independencia": "não relê documento; testa a coerência interna",
+    "fontes_somam_o_fundo": true,
+    "acoes_somam_o_fundo": true,
+    "resultado": "CONFIRMA"
+   },
+   "efeito": "segunda via convergiu; selo mantido"
+  },
+  {
+   "codigo": "CMAS-FIN-01",
+   "titulo": "Conselho sem dotação de diárias e passagens",
+   "gatilho": "severidade alta com selo confirmado",
+   "selo_original": "CONFIRMADO",
+   "selo_apos_dupla_via": "CONFIRMADO",
+   "segunda_via": {
+    "via": "fechamento aritmético entre fontes, ações e total do Fundo",
+    "independencia": "não relê documento; testa a coerência interna",
+    "fontes_somam_o_fundo": true,
+    "acoes_somam_o_fundo": true,
+    "resultado": "CONFIRMA"
+   },
+   "efeito": "segunda via convergiu; selo mantido"
+  },
+  {
+   "codigo": "CMAS-FIN-02",
+   "titulo": "Nenhum apoio financeiro direto ao conselheiro",
+   "gatilho": "severidade alta com selo confirmado",
+   "selo_original": "CONFIRMADO",
+   "selo_apos_dupla_via": "CONFIRMADO",
+   "segunda_via": {
+    "via": "fechamento aritmético entre fontes, ações e total do Fundo",
+    "independencia": "não relê documento; testa a coerência interna",
+    "fontes_somam_o_fundo": true,
+    "acoes_somam_o_fundo": true,
+    "resultado": "CONFIRMA"
+   },
+   "efeito": "segunda via convergiu; selo mantido"
+  },
+  {
+   "codigo": "CMAS-FIN-04",
+   "titulo": "Apoio técnico do Conselho depende integralmente do fiscalizado",
+   "gatilho": "severidade alta com selo confirmado",
+   "selo_original": "CONFIRMADO",
+   "selo_apos_dupla_via": "CONFIRMADO",
+   "segunda_via": {
+    "via": "fechamento aritmético entre fontes, ações e total do Fundo",
+    "independencia": "não relê documento; testa a coerência interna",
+    "fontes_somam_o_fundo": true,
+    "acoes_somam_o_fundo": true,
+    "resultado": "CONFIRMA"
+   },
+   "efeito": "segunda via convergiu; selo mantido"
+  },
+  {
+   "codigo": "REC-02",
+   "titulo": "Transferências sem ente de origem identificável",
+   "gatilho": "severidade alta com selo confirmado",
+   "selo_original": "CONFIRMADO",
+   "selo_apos_dupla_via": "CONFIRMADO",
+   "segunda_via": {
+    "via": "fechamento aritmético entre fontes, ações e total do Fundo",
+    "independencia": "não relê documento; testa a coerência interna",
+    "fontes_somam_o_fundo": true,
+    "acoes_somam_o_fundo": true,
+    "resultado": "CONFIRMA"
+   },
+   "efeito": "segunda via convergiu; selo mantido"
+  },
+  {
+   "codigo": "DES-01",
+   "titulo": "Concentração numa ação genérica impede saber o destino",
+   "gatilho": "severidade alta com selo confirmado",
+   "selo_original": "CONFIRMADO",
+   "selo_apos_dupla_via": "CONFIRMADO",
+   "segunda_via": {
+    "via": "fechamento aritmético entre fontes, ações e total do Fundo",
+    "independencia": "não relê documento; testa a coerência interna",
+    "fontes_somam_o_fundo": true,
+    "acoes_somam_o_fundo": true,
+    "resultado": "CONFIRMA"
+   },
+   "efeito": "segunda via convergiu; selo mantido"
+  },
+  {
+   "codigo": "IGD-02",
+   "titulo": "Dotação do Conselho desproporcional ao fundo que fiscaliza",
+   "gatilho": "severidade alta com selo confirmado",
+   "selo_original": "CONFIRMADO",
+   "selo_apos_dupla_via": "CONFIRMADO",
+   "segunda_via": {
+    "via": "documento bruto",
+    "resultado": "INDISPONIVEL"
+   },
+   "efeito": "segunda via indisponível; selo preservado, falha registrada"
+  },
+  {
+   "codigo": "PES-01",
+   "titulo": "Folha de pagamento invisível no acervo",
+   "gatilho": "severidade alta com selo confirmado",
+   "selo_original": "CONFIRMADO",
+   "selo_apos_dupla_via": "CONFIRMADO",
+   "segunda_via": {
+    "via": "fechamento aritmético entre fontes, ações e total do Fundo",
+    "independencia": "não relê documento; testa a coerência interna",
+    "fontes_somam_o_fundo": true,
+    "acoes_somam_o_fundo": true,
+    "resultado": "CONFIRMA"
+   },
+   "efeito": "segunda via convergiu; selo mantido"
+  },
+  {
+   "codigo": "PES-03",
+   "titulo": "Concessão de diárias praticamente ausente do acervo",
+   "gatilho": "severidade alta com selo confirmado",
+   "selo_original": "CONFIRMADO",
+   "selo_apos_dupla_via": "CONFIRMADO",
+   "segunda_via": {
+    "via": "fechamento aritmético entre fontes, ações e total do Fundo",
+    "independencia": "não relê documento; testa a coerência interna",
+    "fontes_somam_o_fundo": true,
+    "acoes_somam_o_fundo": true,
+    "resultado": "CONFIRMA"
+   },
+   "efeito": "segunda via convergiu; selo mantido"
+  },
+  {
+   "codigo": "SYS-02",
+   "titulo": "Classificação por natureza desalinhada do valor",
+   "gatilho": "severidade alta com selo confirmado",
+   "selo_original": "CONFIRMADO",
+   "selo_apos_dupla_via": "CONFIRMADO",
+   "segunda_via": {
+    "via": "fechamento aritmético entre fontes, ações e total do Fundo",
+    "independencia": "não relê documento; testa a coerência interna",
+    "fontes_somam_o_fundo": true,
+    "acoes_somam_o_fundo": true,
+    "resultado": "CONFIRMA"
+   },
+   "efeito": "segunda via convergiu; selo mantido"
+  },
+  {
+   "codigo": "SYS-03",
+   "titulo": "Soma de repasses excede o total da função",
+   "gatilho": "severidade alta com selo confirmado",
+   "selo_original": "CONFIRMADO",
+   "selo_apos_dupla_via": "CONFIRMADO",
+   "segunda_via": {
+    "via": "fechamento aritmético entre fontes, ações e total do Fundo",
+    "independencia": "não relê documento; testa a coerência interna",
+    "fontes_somam_o_fundo": true,
+    "acoes_somam_o_fundo": true,
+    "resultado": "CONFIRMA"
+   },
+   "efeito": "segunda via convergiu; selo mantido"
+  }
+ ],
+ "leitura": "20 achados acionaram segunda via independente. 17 convergiram e mantêm o selo. 0 divergiram e foram rebaixados. 3 não puderam ser reconferidos."
+}

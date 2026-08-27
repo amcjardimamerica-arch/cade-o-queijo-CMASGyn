@@ -1,0 +1,131 @@
+# Padrões de qualidade da fonte e da conciliação.
+# Nenhum valor entra em relatório sem passar por aqui.
+versao: "1.0"
+
+# ── Níveis de prova, do mais forte ao mais fraco ────────────────────────────
+niveis_de_prova:
+  A_ORDEM_BANCARIA:
+    peso: 5
+    descricao: "Ordem bancária do SIAFI ou extrato de conta. O dinheiro saiu."
+    fontes: [planilha_fnas, extrato_fmas]
+  B_EXECUCAO:
+    peso: 4
+    descricao: "Empenho, liquidação ou pagamento publicado com credor identificado."
+    fontes: [portal_transparencia_goiania, tcm_go_colare]
+  C_INSTRUMENTO:
+    peso: 3
+    descricao: "Contrato, termo ou convênio publicado, com número e vigência."
+    fontes: [diario_oficial_municipio]
+  D_AUTORIZACAO:
+    peso: 2
+    descricao: "Dotação ou crédito adicional. Autoriza gastar; não prova que gastou."
+    fontes: [loa, ldo, decreto_credito]
+  E_MENCAO:
+    peso: 1
+    descricao: "Citação em ato posterior, sem o ato original."
+    fontes: [diario_oficial_municipio]
+  F_AUSENCIA:
+    peso: 0
+    descricao: "Nada localizado. É achado, não conclusão de inexistência."
+
+regra_de_uso:
+  afirmar_pagamento: "exige nível A ou B. Nível D nunca sustenta afirmação de pagamento."
+  afirmar_vinculo: "exige nível C."
+  afirmar_irregularidade: "exige duas fontes de níveis distintos que convirjam."
+  selo_maximo_por_nivel: {A: CONFIRMADO, B: CONFIRMADO, C: CONFIRMADO, D: INDICIARIO, E: INDICIARIO, F: INCONCLUSIVO_POR_DOCUMENTO_FALTANTE}
+
+# ── Verificação de dupla etapa ──────────────────────────────────────────────
+dupla_etapa:
+  quando_roda: "somente sobre achado com suspeita de uso indevido ou apontamento de
+                irregularidade. Achado de mera ausência documental não aciona."
+  gatilhos:
+    - severidade critica
+    - severidade alta com selo CONFIRMADO
+    - divergência entre valor municipal e valor federal acima de 1 por cento
+    - instrumento de parceria com beneficiário de natureza jurídica incompatível
+    - pagamento sem vínculo acima de cinquenta mil reais
+    - recorrência de credor sem contrato
+    - rompimento de teto legal
+  etapa_1_independencia:
+    regra: "A segunda via não pode reusar a extração da primeira. Refaz do documento bruto."
+    metodo: [releitura do PDF original pelo digest, reconsulta da fonte oficial de outro nível]
+  etapa_2_convergencia:
+    concordam: "achado sobe a CONFIRMADO e entra no relatório"
+    divergem: "achado desce a INDICIARIO e vai para fila de conferência humana"
+    uma_via_falha: "achado permanece no selo original, com registro da falha"
+  saida: "relatorios/dupla_etapa_AAAA-MM.json — só existe se houve gatilho"
+
+# ── Cruzamento obrigatório entre níveis de governo ──────────────────────────
+cruzamentos:
+  - id: X-01
+    nome: "Repasse federal contra registro municipal"
+    lado_federal: {fonte: planilha_fnas, campo: valor, chave: competencia+bloco}
+    lado_municipal: {fonte: extrato_fmas, campo: credito, chave: competencia}
+    tolerancia_percentual: 1
+    severidade_se_divergir: alta
+  - id: X-02
+    nome: "Piso de 10% do Índice, competência a competência"
+    lado_federal: {fonte: planilha_fnas, filtro: "bloco contém IGD"}
+    lado_municipal: {fonte: qdd, filtro: "ação do Conselho, fonte federal"}
+    regra: "municipal deve ser maior ou igual a 10% do federal em cada competência"
+    norma: "Artigo 6º da Resolução CNAS/MDS 202/2025"
+    severidade_se_divergir: critica
+  - id: X-03
+    nome: "Cofinanciamento estadual contra registro municipal"
+    lado_estadual: {fonte: transparencia_goias}
+    lado_municipal: {fonte: loa, filtro: "fontes 1661 e 1665"}
+    severidade_se_divergir: alta
+  - id: X-04
+    nome: "Beneficiário contra cadastro nacional"
+    lado_a: {fonte: diario_oficial_municipio, campo: cnpj}
+    lado_b: {fonte: cadastro_cnpj, campo: natureza_juridica}
+    regra: "termo de fomento ou colaboração exige natureza jurídica sem fins lucrativos"
+    norma: "Artigo 2º, inciso I, da Lei 13.019/2014"
+  - id: X-05
+    nome: "Entidade contra inscrição no Conselho"
+    lado_a: {fonte: diario_oficial_municipio, campo: cnpj}
+    lado_b: {fonte: cneas, campo: inscricao}
+    norma: "Artigo 5º da Lei municipal 7.531/1995; Resolução CNAS 14/2014"
+  - id: X-06
+    nome: "Contas municipais contra julgamento do Tribunal"
+    lado_a: {fonte: prestacao_de_contas_municipal}
+    lado_b: {fonte: tcm_go_doc, campo: parecer_previo}
+    norma: "Lei estadual 15.958/2007"
+
+# ── Fechamento aritmético: nenhum valor pode sumir ──────────────────────────
+fechamentos:
+  - id: F-01
+    regra: "soma das fontes = total do Fundo"
+    acao_se_falhar: TRAVAR
+  - id: F-02
+    regra: "soma das ações = total do Fundo"
+    acao_se_falhar: TRAVAR
+  - id: F-03
+    regra: "soma dos repasses a entidades <= total da função 08"
+    acao_se_falhar: TRAVAR
+  - id: F-04
+    regra: "valor classificado + valor não classificado = valor total"
+    acao_se_falhar: TRAVAR
+    nota: "Impede rateio silencioso do que não se classifica."
+  - id: F-05
+    regra: "todo valor extraído aparece em exatamente um de: atribuído, fan-out, descartado na triagem"
+    acao_se_falhar: TRAVAR
+    nota: "É o fechamento que impede valor sumir entre etapas."
+
+# ── Qualidade da publicação no Diário e no portal ───────────────────────────
+padroes_publicacao:
+  diario_oficial:
+    - {id: P-01, exige: "edição diária em dia útil", norma: "Artigo 37, caput, da Constituição Federal"}
+    - {id: P-02, exige: "arquivo endereçável e legível por máquina", norma: "Artigo 8º, § 3º, inciso III, da Lei 12.527/2011"}
+    - {id: P-03, exige: "ato com data, número, valor e beneficiário no próprio texto"}
+    - {id: P-04, exige: "sequência de numeração sem lacuna"}
+  portal_transparencia:
+    - {id: P-05, exige: "despesa por estágio, com processo, credor e objeto", norma: "Artigo 48-A, inciso I, da Lei Complementar 101/2000"}
+    - {id: P-06, exige: "exportação em formato aberto", norma: "Artigo 8º, § 3º, inciso II, da Lei 12.527/2011"}
+    - {id: P-07, exige: "atualização em até um dia útil", norma: "Artigo 8º, § 3º, inciso VI"}
+    - {id: P-08, exige: "acesso sem autenticação", norma: "Artigo 10, § 1º, da Lei 12.527/2011"}
+    - {id: P-09, exige: "endereço estável e citável para cada consulta"}
+  conselho:
+    - {id: P-10, exige: "resolução publicada no Diário", norma: "Artigo 10, § 2º, da Lei municipal 9.009/2010"}
+    - {id: P-11, exige: "ata de cada sessão", norma: "Artigo 10, caput"}
+    - {id: P-12, exige: "prestação de contas quadrimestral", norma: "Artigo 6º, § 5º, da Resolução CNAS/MDS 202/2025"}
