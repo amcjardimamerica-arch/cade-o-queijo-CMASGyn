@@ -54,6 +54,9 @@ ESSENCIAIS = {
    "a remuneração corre pela folha da Secretaria e não se afere aqui."),
 }
 
+def brl(v):
+    return "R$ " + f"{float(v):,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+
 def main():
     igd = L("dados/igd_controle_social.json")
     orc = L("dados/orcamento_assistencia_social.json")
@@ -125,7 +128,7 @@ def main():
     a("CMAS-FIN-03","media","CONFIRMADO",
       f"{len(simbolicas)} rubricas do Conselho são dotação simbólica",
       f"{len(simbolicas)} de {len(rubricas)} rubricas têm valor de até R$ 2.000,00, somando "
-      f"{v_simb:,.2f}. Dotação nesse patamar não custeia atividade: existe para permitir "
+      f"{brl(v_simb)}. Dotação nesse patamar não custeia atividade: existe para permitir "
       "suplementação por decreto sem abrir nova linha orçamentária. Contabilmente a rubrica "
       "existe; na prática, não financia nada enquanto não for suplementada.",
       "Artigo 13 da Lei 4.320/1964",
@@ -144,11 +147,11 @@ def main():
 
     a("CMAS-FIN-05","critica","CONFIRMADO",
       "Piso federal do Índice cumprido em 22,6%",
-      f"Dos {total:,.2f} da ação, apenas "
-      f"{igd['dotacao_do_conselho']['federal_fonte_do_indice']:,.2f} vêm da fonte 1660, "
+      f"Dos {brl(total)} da ação, apenas "
+      f"{brl(igd['dotacao_do_conselho']['federal_fonte_do_indice'])} vêm da fonte 1660, "
       f"onde trafega o Índice de Gestão Descentralizada. O devido é "
-      f"{igd['devido_ao_controle_social']:,.2f}. "
-      f"Os {igd['dotacao_do_conselho']['estadual_outras_fontes']:,.2f} de fonte estadual "
+      f"{brl(igd['devido_ao_controle_social'])}. "
+      f"Os {brl(igd['dotacao_do_conselho']['estadual_outras_fontes'])} de fonte estadual "
       "contam como outra fonte de financiamento, admitida na parte final do artigo 6º, "
       "mas não substituem o piso federal.",
       "Artigo 6º da Resolução CNAS/MDS 202/2025",
@@ -165,7 +168,7 @@ def main():
 
     a("CMAS-FIN-07","alta","INCONCLUSIVO_POR_DOCUMENTO_FALTANTE",
       "Execução da dotação do Conselho não publicada",
-      f"A dotação de {total:,.2f} é previsão. Não há empenho, liquidação nem pagamento "
+      f"A dotação de {brl(total)} é previsão. Não há empenho, liquidação nem pagamento "
       "publicados para a ação. Não se sabe se o Conselho recebeu, gastou ou devolveu.",
       "Artigos 58, 62 e 63 da Lei 4.320/1964; artigo 48-A da Lei Complementar 101/2000",
       {"documento_necessario":"Execução orçamentária da ação 3650.0824401082.591 por estágio"})

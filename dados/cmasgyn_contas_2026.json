@@ -183,7 +183,7 @@
    "severidade": "media",
    "selo": "CONFIRMADO",
    "titulo": "3 rubricas do Conselho são dotação simbólica",
-   "detalhe": "3 de 7 rubricas têm valor de até R$ 2.000,00, somando 5,000.00. Dotação nesse patamar não custeia atividade: existe para permitir suplementação por decreto sem abrir nova linha orçamentária. Contabilmente a rubrica existe; na prática, não financia nada enquanto não for suplementada.",
+   "detalhe": "3 de 7 rubricas têm valor de até R$ 2.000,00, somando R$ 5.000,00. Dotação nesse patamar não custeia atividade: existe para permitir suplementação por decreto sem abrir nova linha orçamentária. Contabilmente a rubrica existe; na prática, não financia nada enquanto não for suplementada.",
    "norma": "Artigo 13 da Lei 4.320/1964",
    "dados": {
     "rubricas_simbolicas": 3,
@@ -212,7 +212,7 @@
    "severidade": "critica",
    "selo": "CONFIRMADO",
    "titulo": "Piso federal do Índice cumprido em 22,6%",
-   "detalhe": "Dos 256,000.00 da ação, apenas 16,000.00 vêm da fonte 1660, onde trafega o Índice de Gestão Descentralizada. O devido é 70,670.72. Os 240,000.00 de fonte estadual contam como outra fonte de financiamento, admitida na parte final do artigo 6º, mas não substituem o piso federal.",
+   "detalhe": "Dos R$ 256.000,00 da ação, apenas R$ 16.000,00 vêm da fonte 1660, onde trafega o Índice de Gestão Descentralizada. O devido é R$ 70.670,72. Os R$ 240.000,00 de fonte estadual contam como outra fonte de financiamento, admitida na parte final do artigo 6º, mas não substituem o piso federal.",
    "norma": "Artigo 6º da Resolução CNAS/MDS 202/2025",
    "dados": {
     "aplicado_na_fonte_do_indice": 16000,
@@ -239,7 +239,7 @@
    "severidade": "alta",
    "selo": "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE",
    "titulo": "Execução da dotação do Conselho não publicada",
-   "detalhe": "A dotação de 256,000.00 é previsão. Não há empenho, liquidação nem pagamento publicados para a ação. Não se sabe se o Conselho recebeu, gastou ou devolveu.",
+   "detalhe": "A dotação de R$ 256.000,00 é previsão. Não há empenho, liquidação nem pagamento publicados para a ação. Não se sabe se o Conselho recebeu, gastou ou devolveu.",
    "norma": "Artigos 58, 62 e 63 da Lei 4.320/1964; artigo 48-A da Lei Complementar 101/2000",
    "dados": {
     "documento_necessario": "Execução orçamentária da ação 3650.0824401082.591 por estágio"

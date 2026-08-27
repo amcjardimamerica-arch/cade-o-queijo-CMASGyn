@@ -226,6 +226,13 @@ for(const a of D.achados){
     a.codigo==='CTA-01'?'movimento do Fundo cujas contas deveriam ter sido apreciadas mensalmente':
     a.codigo==='CTA-02'?'base do Índice de Gestão Descentralizada sujeita a prestação quadrimestral':
     a.codigo==='PES-02'?'teto mensal de pessoal sobre a receita do Tesouro no Fundo':
+    a.codigo==='CMAS-FIN-01'?'nenhuma dotação de diárias ou passagens para o conselheiro':
+    a.codigo==='CMAS-FIN-02'?'nenhum auxílio financeiro, alimentação ou transporte ao conselheiro':
+    a.codigo==='CMAS-FIN-03'?'em rubricas de valor simbólico, que não custeiam atividade':
+    a.codigo==='CMAS-FIN-04'?'nenhuma dotação de consultoria ou pessoal próprio do Conselho':
+    a.codigo==='CMAS-FIN-05'?'devidos ao controle social pelo piso federal do Índice':
+    a.codigo==='CMAS-FIN-06'?'meta do setor na Lei de Diretrizes, sem o Conselho entre as ações':
+    a.codigo==='CMAS-FIN-07'?'dotação do Conselho, sem execução publicada':
     a.codigo==='REC-02'?'transferências recebidas sem identificação do ente de origem':
     a.codigo==='REC-03'?'rendimento de aplicação, indício de recurso parado sem execução':
     a.codigo==='DES-01'?'concentrados numa única ação genérica, sem detalhamento de destino':
