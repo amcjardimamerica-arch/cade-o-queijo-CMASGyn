@@ -1,0 +1,113 @@
+# Taxonomia de despesa da assistência social
+# Cinco categorias de primeiro nível, com subcategorias.
+# A natureza truncada em 8 dígitos não isola subitem: o texto do ato desempata.
+versao: "1.0"
+atualizado_em: "2026-08-26"
+
+categorias:
+
+  PESSOAL:
+    rotulo: "Gasto com pessoal"
+    cor: "#8c2f2f"
+    teto: LIM-02
+    subcategorias:
+      folha:
+        rotulo: "Folha de pagamento"
+        naturezas: ["31901100","31901101","31900400","31901300","31911300"]
+        exige: [primeiro_nome, cargo, forma_de_provimento, valor_bruto, fonte]
+        privacidade: "pessoa física apenas pelo primeiro nome, minimizada na extração"
+      diarias:
+        rotulo: "Diárias"
+        naturezas: ["33901400","33901500"]
+        subitem_necessario: true
+        texto: ["conceder diária","diárias ao servidor","diárias à servidora","em virtude de viagem"]
+        exige: [primeiro_nome, destino, periodo, finalidade, quantidade, valor]
+        exige_prestacao_contas: true
+      reembolso:
+        rotulo: "Reembolso e indenização"
+        naturezas: ["33909300","33901800","31901600"]
+        texto: ["ressarcimento","reembolso","indenização","restituição","ajuda de custo"]
+      outras_de_pessoal:
+        rotulo: "Outras despesas de pessoal"
+        naturezas: ["31909200","31909600","31909100","33904600","33904900"]
+        texto: ["gratificação de função","adicional noturno","insalubridade","periculosidade",
+                "hora extra","serviço extraordinário","abono","verba indenizatória"]
+        nota: "31909200 é despesa de exercícios anteriores e 31909600 é ressarcimento de
+               pessoal requisitado. Nenhuma das duas é a folha."
+
+  CONTRATUAL_FIXA:
+    rotulo: "Despesa contratual fixa"
+    cor: "#1c5a94"
+    definicao: "Mesmo credor em três ou mais competências consecutivas, com variação de valor
+                abaixo de quinze por cento."
+    subcategorias:
+      locacao:
+        rotulo: "Locação de imóvel"
+        naturezas: ["33903615","33903910","33903641"]
+        texto: ["locação","locatário","locador","aluguel","imóvel","abrigar as instalações"]
+        exige: [contrato, prazo, valor_mensal, indice_de_reajuste, laudo_de_avaliacao]
+        norma: "Artigo 4º, inciso IV, da Lei municipal 7.531/1995"
+      servicos_continuados:
+        rotulo: "Serviços continuados"
+        naturezas: ["33903700","33903900","33903300"]
+        texto: ["limpeza","vigilância","portaria","transporte","manutenção predial","telefonia"]
+      utilidades:
+        rotulo: "Água, energia e comunicação"
+        naturezas: ["33903900","33903000"]
+        texto: ["energia elétrica","água e esgoto","telefonia","internet"]
+      consumo:
+        rotulo: "Material de consumo"
+        naturezas: ["33903000"]
+
+  REPASSE_ENTIDADE:
+    rotulo: "Repasse a instituição"
+    cor: "#1f7a4d"
+    canal_obrigatorio: "por intermédio do Fundo, artigo 5º da Lei municipal 7.531/1995"
+    naturezas: ["33503900","33504100","33504300","33508500","44504100","44504200"]
+    exige: [instrumento, numero, vigencia, plano_de_trabalho, chamamento_ou_justificativa,
+            deliberacao_previa_do_conselho, inscricao_no_conselho, prestacao_de_contas]
+    normas: ["Artigos 24, 29, 30, 31, 32, 34, 42 e 63 da Lei 13.019/2014",
+             "Artigo 2º, inciso IX, da Lei municipal 9.009/2010",
+             "Resolução CNAS 14/2014"]
+    distinguir:
+      - instituicao_recebedora
+      - programa_ou_servico_financiado
+      - origem_do_recurso
+
+  PROGRAMA:
+    rotulo: "Programa e serviço socioassistencial"
+    cor: "#4c3b8f"
+    mapa_por_acao:
+      "08.244.0108.2269": "Manutenção dos serviços e da rede"
+      "08.244.0109.2268": "Ação Acolher e Cuidar"
+      "08.244.0108.2263": "Capacitação continuada do SUAS"
+      "08.244.0108.2591": "Manutenção do Conselho Municipal de Assistência Social"
+      "08.244.0165.1103": "Modernização da gestão do IGD SUAS"
+      "08.244.0165.2555": "Modernização da gestão do Bolsa Família e Cadastro Único"
+    servicos_tipificados:
+      - "Proteção Social Básica — CRAS, Serviço de Convivência"
+      - "Proteção Social Especial de Média Complexidade — CREAS, Centro POP"
+      - "Proteção Social Especial de Alta Complexidade — acolhimento institucional"
+      - "Benefícios eventuais"
+      - "Gestão do Programa Bolsa Família e do Cadastro Único"
+    norma: "Resolução CNAS 109/2009 — Tipificação Nacional"
+
+  INVESTIMENTO:
+    rotulo: "Investimento"
+    cor: "#b8690f"
+    naturezas: ["44*"]
+    subcategorias:
+      obras: {naturezas: ["44905100"]}
+      equipamentos: {naturezas: ["44905200"]}
+      material_permanente: {naturezas: ["44905200","44904000"]}
+
+regras_de_classificacao:
+  ordem:
+    - "1. Subitem de dez dígitos, quando existir — é o mais preciso"
+    - "2. Natureza de oito dígitos"
+    - "3. Texto do ato — desempata o que o código não isola"
+    - "4. Ação orçamentária — atribui o programa"
+  conflito: "Se código e texto divergirem, prevalece o texto e o registro é marcado
+             CLASSIFICACAO_DIVERGENTE para conferência humana."
+  sem_classificacao: "Registro que não cai em nenhuma categoria vai para NAO_CLASSIFICADA
+                      e aparece no relatório. Nunca é distribuído por rateio."

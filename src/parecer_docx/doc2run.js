@@ -64,7 +64,7 @@ c.push(P([R('Fora do Fundo, a unidade orçamentária 3601, do Gabinete da Secret
 c.push(V());
 
 // III NIVEL DE TRANSPARENCIA
-c.push(H('III — Nível de Transparência dos Dados',HeadingLevel.HEADING_1));
+c.push(H('II-B — Nível de Transparência dos Dados',HeadingLevel.HEADING_1));
 c.push(P([R('De '+(NT.documentos_disponiveis+NT.documentos_faltantes)+' documentos exigidos pela transparência ativa, '),
  R(NT.documentos_disponiveis+' estão públicos',{b:true}),R(' e '),
  R(NT.documentos_faltantes+' faltam',{b:true}),R('. Nível geral: '),
@@ -86,7 +86,7 @@ c.push(new Paragraph({children:[new PageBreak()]}));
 // III-B FLUXO
 const FL=JSON.parse(fs.readFileSync(require('path').resolve(__dirname,'..','..','dados','fluxo_2026.json'),'utf8'));
 const TF=FL.totais, dTot=TF.despesa_comprovada+TF.despesa_sem_vinculo;
-c.push(H('IV — De Onde Veio, Onde Passou, Para Onde Foi',HeadingLevel.HEADING_1));
+c.push(H('III — De Onde Veio, Onde Passou, Para Onde Foi',HeadingLevel.HEADING_1));
 c.push(P([R('Entraram '),R(brl(TF.fundo),{b:true}),R(' no Fundo. Destes, '),
  R(brl(TF.fonte_comprovada),{b:true}),R(' têm ente de origem identificado e '),
  R(brl(TF.fonte_nao_comprovada),{b:true}),R(' não têm. Do lado da saída, apenas '),
@@ -125,6 +125,35 @@ c.push(V());
 c.push(P([R('A versão interativa desta trilha, com o detalhe de cada contrato, está em '),
  LINK('docs/fluxo_2026.html no repositório','https://github.com/amcjardimamerica-arch/cmasgyn-vigilancia/blob/main/docs/fluxo_2026.html'),
  R('. Verde indica fonte comprovada; laranja, origem não comprovada; azul, despesa com vínculo; vermelho, despesa sem vínculo.')]));
+c.push(new Paragraph({children:[new PageBreak()]}));
+
+// III-C VISAO DO TRIBUNAL
+const CT=JSON.parse(fs.readFileSync(require('path').resolve(__dirname,'..','..','dados','categorias_2026.json'),'utf8'));
+c.push(H('IV — Parâmetros de Controle e Limites Legais',HeadingLevel.HEADING_1));
+c.push(P('Um julgador de contas verifica três coisas antes de examinar mérito: se há limite legal rompido, se as contas conciliam entre si, e se o ato administrativo seguiu o rito. Os quadros abaixo respondem às três.'));
+c.push(V());
+c.push(new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:60},
+ children:[R('Limites e tetos',{b:true,sz:20})]}));
+c.push(TAB(['Limite','Situação','Observação'],CT.tetos.map(t=>
+ [t.nome,t.situacao,t.teto?('Limite '+brl(t.teto)):'—']),[3400,3000,1800]));
+c.push(V());
+c.push(P([R('Um limite está descumprido e três são inaferíveis. ',{b:true}),
+ R('O piso de dez por cento do Índice de Gestão Descentralizada não registra execução. Os demais — despesa total com pessoal, teto de trinta por cento no Fundo e teto remuneratório — não podem ser calculados porque a folha de pagamento e o Relatório de Gestão Fiscal não estão públicos. Limite que não se afere não é limite cumprido: é limite sem controle.')]));
+c.push(V());
+c.push(new Paragraph({alignment:AlignmentType.CENTER,spacing:{after:60},
+ children:[R('Despesa por categoria',{b:true,sz:20})]}));
+const RC={PESSOAL:'Gasto com pessoal',CONTRATUAL_FIXA:'Contratos e serviços',
+ REPASSE_ENTIDADE:'Repasse a instituições',PROGRAMA:'Programas e serviços',
+ INVESTIMENTO:'Investimento',NAO_CLASSIFICADA:'Sem classificação'};
+c.push(TAB(['Categoria','Lançamentos','Com contrato','Valor'],
+ Object.entries(CT.resumo).sort((a,b)=>b[1].valor-a[1].valor).map(([k,v])=>
+ [RC[k]||k,String(v.n),String(v.com_vinculo),brl(v.valor)]),[3400,1500,1500,1800]));
+c.push(V());
+c.push(P([R('A categorização separa gasto com pessoal, contrato fixo, repasse a instituição, programa e investimento. Dentro de pessoal, distingue folha, diárias, reembolso e demais verbas. Nos repasses, distingue a instituição recebedora do programa financiado. Registros que a publicação não permite classificar ficam em categoria própria e aparecem no relatório — nunca são rateados entre as demais.')]));
+c.push(V());
+c.push(P([R('A versão didática desta trilha, feita para leitura por quem não é da área, está em '),
+ LINK('docs/trilha_didatica_2026.html','https://github.com/amcjardimamerica-arch/cmasgyn-vigilancia/blob/main/docs/trilha_didatica_2026.html'),
+ R('. Quatro estações: quem paga, onde o dinheiro fica, em que foi gasto e quem recebeu.')]));
 c.push(new Paragraph({children:[new PageBreak()]}));
 
 // IV IRREGULARIDADES

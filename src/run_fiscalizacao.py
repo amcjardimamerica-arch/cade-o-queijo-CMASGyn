@@ -20,6 +20,8 @@ ETAPAS = [
     ("pessoal e diárias", "src/pessoal.py"),
     ("modelo de fluxo", "src/monta_fluxo.py"),
     ("trilha visual", "src/gera_fluxo_html.py"),
+    ("categorias e tetos", "src/categoriza.py"),
+    ("trilha didática", "src/gera_trilha_didatica.py"),
 ]
 
 def rodar(nome, script):

@@ -1,0 +1,205 @@
+# Parâmetros de fiscalização — visão de julgador de Tribunal de Contas
+# Complementa config/parametros_fiscalizacao.json e config/criterios_pessoal.yml
+# Cada parâmetro traz: o que a lei manda, onde deve estar publicado, e o que temos.
+versao: "1.0"
+atualizado_em: "2026-08-26"
+
+# ─────────────────────────────────────────────────────────────
+# A · LIMITES E TETOS — o que nenhum ente pode ultrapassar
+# ─────────────────────────────────────────────────────────────
+limites:
+  - id: LIM-01
+    nome: Despesa total com pessoal do Município
+    limite: 60
+    unidade: percentual da receita corrente líquida
+    executivo: 54
+    alerta: 51.3    # 95% do limite do Executivo — limite prudencial
+    norma: "Artigos 19, 20 e 22, parágrafo único, da Lei Complementar 101/2000"
+    onde_publicado: Relatório de Gestão Fiscal quadrimestral
+    temos: false
+    documento_necessario: Relatório de Gestão Fiscal dos três quadrimestres
+
+  - id: LIM-02
+    nome: Pessoal e custeio no Fundo, sobre recursos do Tesouro
+    limite: 30
+    unidade: percentual dos recursos diretamente arrecadados ou transferidos pelo Tesouro
+    base_de_calculo: exclusivamente recursos do Tesouro Municipal
+    exclui_do_calculo: [recursos federais, recursos estaduais, rendimentos de fonte vinculada]
+    norma: "Artigo 4º, parágrafo único, da Lei municipal 7.531/1995, acrescido pela Lei Complementar municipal 273/2014"
+    onde_publicado: Relatório Resumido da Execução Orçamentária e demonstrativo do Fundo
+    temos: false
+    nota: "Em 2026 o Tesouro aporta R$ 9.000,00 no Fundo. O teto de 30% incide sobre R$ 9.000,00, resultando em R$ 2.700,00. Qualquer despesa de pessoal do Fundo custeada pelo Tesouro acima disso rompe o teto."
+
+  - id: LIM-03
+    nome: Teto remuneratório municipal
+    limite: subsídio do Prefeito
+    norma: "Artigo 37, inciso XI, da Constituição Federal"
+    onde_publicado: folha de pagamento e lei de fixação do subsídio
+    temos: false
+    documento_necessario: Lei de fixação do subsídio do Prefeito e folha de pagamento por servidor
+
+  - id: LIM-04
+    nome: Piso do Índice de Gestão Descentralizada ao controle social
+    limite: 10
+    unidade: percentual do repasse mensal
+    piso_legal_absoluto: 3
+    norma: "Artigo 6º da Resolução CNAS/MDS 202/2025; artigo 14, § 7º, da Lei 14.601/2023"
+    sancao: "Bloqueio dos repasses até a comprovação — artigo 6º, § 6º"
+    onde_publicado: Quadro de Detalhamento de Despesas e prestação de contas quadrimestral
+    temos: parcial
+    nota: "Dotação de R$ 256.000,00 existe na ação 08.244.0108.2591. Execução não publicada."
+
+  - id: LIM-05
+    nome: Acréscimo contratual
+    limite: 25
+    unidade: percentual do valor inicial atualizado
+    excecao: 50 para reforma de edifício ou equipamento
+    norma: "Artigo 125 da Lei 14.133/2021"
+    onde_publicado: extrato de termo aditivo
+    temos: parcial
+
+  - id: LIM-06
+    nome: Dispensa por valor
+    unidade: limite anual por objeto, atualizado por decreto
+    vedacao: fracionamento da despesa para fugir de modalidade
+    norma: "Artigo 75, § 1º, da Lei 14.133/2021"
+    metodo: somar por credor e objeto na janela de doze meses
+    selo_maximo: INDICIARIO
+    temos: parcial
+
+  - id: LIM-07
+    nome: Obrigação sem disponibilidade de caixa no fim de mandato
+    norma: "Artigo 42 da Lei Complementar 101/2000"
+    onde_publicado: Relatório de Gestão Fiscal e demonstrativo de restos a pagar
+    temos: false
+
+  - id: LIM-08
+    nome: Aumento de despesa de pessoal nos cento e oitenta dias finais de mandato
+    efeito: nulidade do ato
+    norma: "Artigo 21, parágrafo único, da Lei Complementar 101/2000"
+    temos: false
+
+# ─────────────────────────────────────────────────────────────
+# B · CONCILIAÇÃO — o que precisa fechar com o quê
+# ─────────────────────────────────────────────────────────────
+conciliacoes:
+  - id: CON-01
+    nome: Repasse federal declarado contra crédito no Fundo
+    lado_a: Consulta de Pagamentos do Fundo Nacional, por competência e bloco
+    lado_b: extrato da conta especial do Fundo
+    tolerancia: 0
+    temos: nenhum dos dois lados
+
+  - id: CON-02
+    nome: Dotação da Secretaria contra transferência ao Fundo
+    lado_a: Lei Orçamentária, unidade 3601
+    lado_b: créditos na conta do Fundo
+    norma: "Artigo 2º, § 1º, da Lei municipal 7.531/1995 — transferência automática"
+    temos: apenas o lado A
+
+  - id: CON-03
+    nome: Empenhado contra liquidado contra pago
+    norma: "Artigos 58, 62 e 63 da Lei 4.320/1964"
+    regra: "Os três são números distintos. Pago maior que liquidado é irregularidade."
+    temos: false
+
+  - id: CON-04
+    nome: Soma dos repasses a entidades contra total da função
+    regra: "A soma não pode exceder o total da função 08. Se exceder, há duplicação."
+    temos: true
+    situacao: "Excede em 3,41 vezes — duplicação confirmada"
+
+  - id: CON-05
+    nome: Receita realizada contra receita prevista, por fonte
+    norma: "Artigo 48 da Lei Complementar 101/2000"
+    temos: apenas prevista
+
+  - id: CON-06
+    nome: Saldo do exercício anterior contra crédito por superávit financeiro
+    norma: "Artigo 43, § 1º, inciso I, da Lei 4.320/1964"
+    regra: "Crédito por superávit exige superávit apurado em balanço patrimonial"
+    temos: false
+    situacao: "R$ 33.059.000,00 abertos contra fontes de exercícios anteriores em 2026"
+
+  - id: CON-07
+    nome: Rendimento de aplicação contra fonte de origem
+    regra: "Rendimento de recurso federal segue a fonte federal; não vira recurso livre"
+    norma: "Artigo 2º, inciso IV, da Lei municipal 7.531/1995"
+    temos: false
+    situacao: "R$ 2.574.000,00 de rendimento sem fonte discriminada"
+
+# ─────────────────────────────────────────────────────────────
+# C · ATOS E PROCEDIMENTO
+# ─────────────────────────────────────────────────────────────
+atos:
+  - id: ATO-01
+    nome: Ordem cronológica de pagamentos
+    norma: "Artigo 141 da Lei 14.133/2021"
+    onde_publicado: portal, por fonte e categoria contratual
+    temos: false
+
+  - id: ATO-02
+    nome: Regularidade fiscal e trabalhista da entidade parceira
+    norma: "Artigo 34 da Lei 13.019/2014"
+    exige: [certidões negativas, inscrição no conselho vigente, três anos de existência]
+    temos: false
+
+  - id: ATO-03
+    nome: Inscrição da entidade no Conselho como condição do repasse
+    norma: "Artigo 5º da Lei municipal 7.531/1995; Resolução CNAS 14/2014"
+    temos: false
+
+  - id: ATO-04
+    nome: Chamamento público ou justificativa publicada
+    norma: "Artigos 24, 29, 30, 31 e 32 da Lei 13.019/2014"
+    temos: parcial
+
+  - id: ATO-05
+    nome: Deliberação prévia do Conselho sobre contrato ou convênio
+    norma: "Artigo 2º, inciso IX, da Lei municipal 9.009/2010"
+    metodo: data da resolução anterior à data do instrumento
+    temos: false
+
+  - id: ATO-06
+    nome: Publicidade institucional em ano eleitoral
+    norma: "Artigo 73, inciso VI, alínea b, da Lei 9.504/1997"
+    temos: false
+    nota: "2026 é ano eleitoral. Despesa de comunicação visual de R$ 1.054.025,52 em junho merece conferência."
+
+  - id: ATO-07
+    nome: Contratação temporária por excepcional interesse público
+    norma: "Artigo 37, inciso IX, da Constituição Federal"
+    vedacao: substituir cargo efetivo permanente
+    temos: false
+
+  - id: ATO-08
+    nome: Acumulação remunerada de cargos
+    norma: "Artigo 37, inciso XVI, da Constituição Federal"
+    temos: false
+
+# ─────────────────────────────────────────────────────────────
+# D · EFETIVIDADE DA POLÍTICA
+# ─────────────────────────────────────────────────────────────
+efetividade:
+  - id: EFE-01
+    nome: Índice de execução orçamentária
+    formula: empenhado dividido por dotação atualizada
+    amarelo_se: abaixo de 70 por cento
+    nota: "Subexecução de recurso federal vinculado é irregularidade, não economia."
+    temos: false
+
+  - id: EFE-02
+    nome: Proporção entre serviços e gestão
+    regra: "Recurso de cofinanciamento destina-se ao serviço, não à máquina"
+    norma: "Resolução CNAS 33/2012"
+    temos: false
+
+  - id: EFE-03
+    nome: Cobertura das unidades por equipe de referência
+    norma: "Resolução CNAS 269/2006; Resolução CNAS 17/2011"
+    temos: false
+
+  - id: EFE-04
+    nome: Reprogramação de saldo acumulado
+    norma: "Artigo 6º, § 7º, da Resolução CNAS/MDS 202/2025"
+    temos: false
