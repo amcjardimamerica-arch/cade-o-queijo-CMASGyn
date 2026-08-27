@@ -152,7 +152,15 @@ document.addEventListener('click',e=>{
    <dt>Código da fonte</dt><dd>${f.fonte}</dd>
    ${f.prova?`<dt>Onde está a prova</dt><dd>${f.prova}</dd>`:''}
    ${f.falta?`<dt>Documento que falta</dt><dd>${f.falta}</dd>`:''}
-   ${f.alerta?`<dt>Observação</dt><dd>${f.alerta}</dd>`:''}</dl>`);}
+   ${f.alerta?`<dt>Observação</dt><dd>${f.alerta}</dd>`:''}
+   ${f.piso_controle_social?(()=>{const P=f.piso_controle_social;
+    return `<dt style="color:var(--verm)">Piso do artigo 6º da Resolução CNAS/MDS 202/2025</dt><dd>
+     <b>${P.percentual}%</b> do ${P.incide_sobre}.<br>
+     Base do Índice: ${brl(P.base_do_indice)}<br>
+     Devido ao Conselho: <b>${brl(P.devido)}</b><br>
+     Alocado nesta fonte: <b style="color:var(--verm)">${brl(P.aplicado_na_fonte)}</b><br>
+     Falta: <b style="color:var(--verm)">${brl(P.falta)}</b> — cumpre ${P.cumprimento}%<br>
+     <span style="color:var(--verm)">${P.sancao}</span></dd>`;})():''}</dl>`);}
  else if(t==='c'){const c=D.contas[i];
   balao(e,c.nome,`<span class="pill" style="color:var(--conta)">onde o dinheiro passa</span>
    <dl><dt>Valor</dt><dd>${brl(c.valor)}</dd>

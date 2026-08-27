@@ -1,0 +1,200 @@
+{
+ "norma": "Artigo 6º da Resolução CNAS/MDS 202/2025",
+ "texto": "no mínimo 10% do valor repassado mensalmente pelo IGD/SUAS e pelo IGD/PBF, destinados ao controle social, sem prejuízo de outras fontes de financiamento",
+ "vigencia": "desde janeiro de 2026, artigo 15",
+ "sancao": "bloqueio dos repasses até a comprovação, artigo 6º, § 6º",
+ "piso_legal_absoluto": {
+  "percentual": 3,
+  "norma": "Artigo 14, § 7º, da Lei 14.601/2023",
+  "valor": 21201.21
+ },
+ "base_do_indice": {
+  "acoes": {
+   "08.244.0165.1103": {
+    "nome": "IGD SUAS",
+    "valor": 534081.0
+   },
+   "08.244.0165.2555": {
+    "nome": "IGD Bolsa Família e CadÚnico",
+    "valor": 172626.15
+   }
+  },
+  "total": 706707.15,
+  "origem": "decretos de crédito adicional publicados no Diário Oficial",
+  "ressalva": "A base definitiva é o repasse efetivo do Fundo Nacional, por competência. Sem a Consulta de Pagamentos, usa-se a dotação como aproximação."
+ },
+ "devido_ao_controle_social": 70670.72,
+ "dotacao_do_conselho": {
+  "acao": "3650.0824401082.591",
+  "total": 256000,
+  "por_fonte": {
+   "1660": 16000,
+   "1661": 240000
+  },
+  "federal_fonte_do_indice": 16000,
+  "estadual_outras_fontes": 240000,
+  "detalhe": [
+   {
+    "natureza": "3.3.90.30.00",
+    "fonte": "1660",
+    "valor": 8000
+   },
+   {
+    "natureza": "3.3.90.30.00",
+    "fonte": "1661",
+    "valor": 50000
+   },
+   {
+    "natureza": "3.3.90.36.00",
+    "fonte": "1660",
+    "valor": 1000
+   },
+   {
+    "natureza": "3.3.90.36.00",
+    "fonte": "1661",
+    "valor": 1000
+   },
+   {
+    "natureza": "3.3.90.39.00",
+    "fonte": "1660",
+    "valor": 1000
+   },
+   {
+    "natureza": "3.3.90.39.00",
+    "fonte": "1661",
+    "valor": 130000
+   },
+   {
+    "natureza": "3.3.90.40.00",
+    "fonte": "1661",
+    "valor": 15000
+   },
+   {
+    "natureza": "3.3.90.92.00",
+    "fonte": "1660",
+    "valor": 1000
+   },
+   {
+    "natureza": "3.3.90.92.00",
+    "fonte": "1661",
+    "valor": 1000
+   },
+   {
+    "natureza": "4.4.90.51.00",
+    "fonte": "1661",
+    "valor": 1000
+   },
+   {
+    "natureza": "4.4.90.52.00",
+    "fonte": "1660",
+    "valor": 5000
+   },
+   {
+    "natureza": "4.4.90.52.00",
+    "fonte": "1661",
+    "valor": 42000
+   }
+  ]
+ },
+ "afericao": {
+  "aplicado_na_fonte_do_indice": 16000,
+  "devido": 70670.72,
+  "diferenca": 54670.72,
+  "cumprimento_percentual": 22.6,
+  "situacao": "DESCUMPRIDO",
+  "leitura": "A ação do Conselho está dotada em 256,000.00, mas apenas 16,000.00 vêm da fonte federal onde o Índice trafega. O piso do artigo 6º exige 70,670.72. Faltam 54,670.72. Os 240,000.00 de fonte estadual contam como outra fonte de financiamento, prevista na parte final do artigo 6º, mas não substituem o piso federal."
+ },
+ "mensal": [
+  {
+   "competencia": "2026-01",
+   "base_mensal": 58892.26,
+   "devido_mensal": 5889.23,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO"
+  },
+  {
+   "competencia": "2026-02",
+   "base_mensal": 58892.26,
+   "devido_mensal": 5889.23,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO"
+  },
+  {
+   "competencia": "2026-03",
+   "base_mensal": 58892.26,
+   "devido_mensal": 5889.23,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO"
+  },
+  {
+   "competencia": "2026-04",
+   "base_mensal": 58892.26,
+   "devido_mensal": 5889.23,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO"
+  },
+  {
+   "competencia": "2026-05",
+   "base_mensal": 58892.26,
+   "devido_mensal": 5889.23,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO"
+  },
+  {
+   "competencia": "2026-06",
+   "base_mensal": 58892.26,
+   "devido_mensal": 5889.23,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO"
+  },
+  {
+   "competencia": "2026-07",
+   "base_mensal": 58892.26,
+   "devido_mensal": 5889.23,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO"
+  },
+  {
+   "competencia": "2026-08",
+   "base_mensal": 58892.26,
+   "devido_mensal": 5889.23,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO"
+  },
+  {
+   "competencia": "2026-09",
+   "base_mensal": 58892.26,
+   "devido_mensal": 5889.23,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO"
+  },
+  {
+   "competencia": "2026-10",
+   "base_mensal": 58892.26,
+   "devido_mensal": 5889.23,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO"
+  },
+  {
+   "competencia": "2026-11",
+   "base_mensal": 58892.26,
+   "devido_mensal": 5889.23,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO"
+  },
+  {
+   "competencia": "2026-12",
+   "base_mensal": 58892.26,
+   "devido_mensal": 5889.23,
+   "aplicado_publicado": null,
+   "situacao": "SEM DEMONSTRATIVO"
+  }
+ ],
+ "documentos_para_conciliar": [
+  "Consulta de Pagamentos do Fundo Nacional, por competência e bloco",
+  "Extrato da conta específica do Índice de Gestão Descentralizada",
+  "Demonstrativo de aplicação no controle social, com empenho, liquidação e pagamento",
+  "Prestação de contas quadrimestral ao Conselho, artigo 6º, § 5º",
+  "Quadro de Detalhamento de Despesas com dotação identificada como fortalecimento do controle social, artigo 6º, § 4º"
+ ]
+}

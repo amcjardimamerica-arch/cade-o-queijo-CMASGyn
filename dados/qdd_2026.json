@@ -1,0 +1,2315 @@
+[
+ {
+  "unid": "0101",
+  "acao": "0101.0103100011.458",
+  "nome": "MODERNIZACAO OPERACIONAL DA CAMARA",
+  "natureza": "44903000",
+  "nat_fmt": "4.4.90.30.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "0101",
+  "acao": "0101.0103100012.001",
+  "nome": "ATIVIDADES LEGISLATIVAS",
+  "natureza": "32909200",
+  "nat_fmt": "3.2.90.92.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "0101",
+  "acao": "0101.0103100012.027",
+  "nome": "ICA",
+  "natureza": "33903500",
+  "nat_fmt": "3.3.90.35.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "0101",
+  "acao": "0101.0103100012.258",
+  "nome": "COTA PARA O EXERCICIO DA ATIVIDADE PARLAMENTAR-C",
+  "natureza": "33903500",
+  "nat_fmt": "3.3.90.35.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "0101",
+  "acao": "0101.0103100012.314",
+  "nome": "PESSOAL E ENCARGOS SOCIAIS DA CAMARA",
+  "natureza": "31901100",
+  "nat_fmt": "3.1.90.11.00",
+  "fonte": "1500",
+  "valor": 175000000
+ },
+ {
+  "unid": "0101",
+  "acao": "0101.2803100018.001",
+  "nome": "ENCARGOS E AMORTIZACAO DA DIVIDA INTERNA",
+  "natureza": "32912100",
+  "nat_fmt": "3.2.91.21.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "0101",
+  "acao": "0101.2884300008.001",
+  "nome": "ENCARGOS E AMORTIZACAO DA DIVIDA INTERNA",
+  "natureza": "32912200",
+  "nat_fmt": "3.2.91.22.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "1101",
+  "acao": "1101.0412200621.050",
+  "nome": "COORDENACAO, GESTAO E EXECUCAO DOS MUTIROES NOS ",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1500",
+  "valor": 100000
+ },
+ {
+  "unid": "1101",
+  "acao": "1101.0412200622.091",
+  "nome": "S MUNICIPAIS",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "1101",
+  "acao": "1101.0412200622.450",
+  "nome": "FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS",
+  "natureza": "31901100",
+  "nat_fmt": "3.1.90.11.00",
+  "fonte": "1500",
+  "valor": 20535000
+ },
+ {
+  "unid": "1101",
+  "acao": "1101.0412200622.451",
+  "nome": "ERACIONAL",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "1101",
+  "acao": "1101.1648201062.668",
+  "nome": "PROGRAMA MORAR NO CENTRO",
+  "natureza": "33903600",
+  "nat_fmt": "3.3.90.36.00",
+  "fonte": "1500",
+  "valor": 5997000
+ },
+ {
+  "unid": "1201",
+  "acao": "1201.0309200022.005",
+  "nome": "COORDENACAO DOS ASSUNTOS JURIDICOS DO MUNICIPIO",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1500",
+  "valor": 30000
+ },
+ {
+  "unid": "1201",
+  "acao": "1201.0412200622.450",
+  "nome": "FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS",
+  "natureza": "31901100",
+  "nat_fmt": "3.1.90.11.00",
+  "fonte": "1500",
+  "valor": 46212000
+ },
+ {
+  "unid": "1201",
+  "acao": "1201.0412200622.451",
+  "nome": "ERACIONAL",
+  "natureza": "33901400",
+  "nat_fmt": "3.3.90.14.00",
+  "fonte": "1500",
+  "valor": 8000
+ },
+ {
+  "unid": "1401",
+  "acao": "1401.0412200622.450",
+  "nome": "FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS",
+  "natureza": "31901100",
+  "nat_fmt": "3.1.90.11.00",
+  "fonte": "1500",
+  "valor": 5408000
+ },
+ {
+  "unid": "1401",
+  "acao": "1401.0412200622.451",
+  "nome": "ERACIONAL",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1500",
+  "valor": 12000
+ },
+ {
+  "unid": "1401",
+  "acao": "1401.0413100642.007",
+  "nome": "POLITICA DE COMUNICACAO SOCIAL DESENVOLVIDA",
+  "natureza": "33903500",
+  "nat_fmt": "3.3.90.35.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "1601",
+  "acao": "1601.0412200622.012",
+  "nome": "COORDENACAO DA POLITICA FINANCEIRA DO MUNICIPIO",
+  "natureza": "31909100",
+  "nat_fmt": "3.1.90.91.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "1601",
+  "acao": "1601.0412200622.090",
+  "nome": "GESTAO FISCAL, TRIBUTARIA E DIGITAL",
+  "natureza": "31909100",
+  "nat_fmt": "3.1.90.91.00",
+  "fonte": "1500",
+  "valor": 6000
+ },
+ {
+  "unid": "1601",
+  "acao": "1601.0412200622.450",
+  "nome": "FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS",
+  "natureza": "31901100",
+  "nat_fmt": "3.1.90.11.00",
+  "fonte": "1500",
+  "valor": 55345000
+ },
+ {
+  "unid": "1601",
+  "acao": "1601.0412200622.451",
+  "nome": "ERACIONAL",
+  "natureza": "31909100",
+  "nat_fmt": "3.1.90.91.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "1601",
+  "acao": "1601.0413100642.007",
+  "nome": "POLITICA DE COMUNICACAO SOCIAL DESENVOLVIDA",
+  "natureza": "31909100",
+  "nat_fmt": "3.1.90.91.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "1603",
+  "acao": "1603.0412300492.094",
+  "nome": "PAGAMENTO DE ENCARGOS BANCARIOS",
+  "natureza": "33903900",
+  "nat_fmt": "3.3.90.39.00",
+  "fonte": "1500",
+  "valor": 4195000
+ },
+ {
+  "unid": "1603",
+  "acao": "1603.0412300492.095",
+  "nome": "DIVERSOS ENCARGOS DO MUNICIPIO",
+  "natureza": "31901300",
+  "nat_fmt": "3.1.90.13.00",
+  "fonte": "1500",
+  "valor": 6000
+ },
+ {
+  "unid": "1603",
+  "acao": "1603.2884300008.001",
+  "nome": "ENCARGOS E AMORTIZACAO DA DIVIDA INTERNA",
+  "natureza": "32902100",
+  "nat_fmt": "3.2.90.21.00",
+  "fonte": "1500",
+  "valor": 165914000
+ },
+ {
+  "unid": "1603",
+  "acao": "1603.2884300008.002",
+  "nome": "ATENDIMENTO A PRECATORIO",
+  "natureza": "31909100",
+  "nat_fmt": "3.1.90.91.00",
+  "fonte": "1500",
+  "valor": 60120000
+ },
+ {
+  "unid": "1603",
+  "acao": "1603.2884400008.007",
+  "nome": "ENCARGOS E AMORTIZACAO DA DIVIDA EXTERNA",
+  "natureza": "32902100",
+  "nat_fmt": "3.2.90.21.00",
+  "fonte": "1500",
+  "valor": 7664000
+ },
+ {
+  "unid": "1603",
+  "acao": "1603.2884600008.003",
+  "nome": "CONTRIBUICAO AO PASEP",
+  "natureza": "33904700",
+  "nat_fmt": "3.3.90.47.00",
+  "fonte": "1500",
+  "valor": 46960000
+ },
+ {
+  "unid": "1603",
+  "acao": "1603.9999999999.999",
+  "nome": "RESERVA DE CONTINGENCIA",
+  "natureza": "99999999",
+  "nat_fmt": "9.9.99.99.99",
+  "fonte": "1500",
+  "valor": 16643000
+ },
+ {
+  "unid": "2001",
+  "acao": "2001.0412200622.450",
+  "nome": "FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS",
+  "natureza": "31901100",
+  "nat_fmt": "3.1.90.11.00",
+  "fonte": "1500",
+  "valor": 35683000
+ },
+ {
+  "unid": "2001",
+  "acao": "2001.0412200622.451",
+  "nome": "ERACIONAL",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "2001",
+  "acao": "2001.1339200742.743",
+  "nome": "APOIO AS ACOES CULTURAIS E FOLCLORICAS",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "3001",
+  "acao": "3001.0412200622.450",
+  "nome": "FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS",
+  "natureza": "31901100",
+  "nat_fmt": "3.1.90.11.00",
+  "fonte": "1500",
+  "valor": 32925000
+ },
+ {
+  "unid": "3001",
+  "acao": "3001.0412200622.451",
+  "nome": "ERACIONAL",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1500",
+  "valor": 45000
+ },
+ {
+  "unid": "3001",
+  "acao": "3001.0412400462.742",
+  "nome": "NCIA DA GESTAO",
+  "natureza": "33903900",
+  "nat_fmt": "3.3.90.39.00",
+  "fonte": "1500",
+  "valor": 294000
+ },
+ {
+  "unid": "3101",
+  "acao": "3101.0412200622.450",
+  "nome": "FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS",
+  "natureza": "31901100",
+  "nat_fmt": "3.1.90.11.00",
+  "fonte": "1500",
+  "valor": 13576000
+ },
+ {
+  "unid": "3101",
+  "acao": "3101.0412200622.451",
+  "nome": "ERACIONAL",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "3101",
+  "acao": "3101.0413100642.007",
+  "nome": "POLITICA DE COMUNICACAO SOCIAL DESENVOLVIDA",
+  "natureza": "33903900",
+  "nat_fmt": "3.3.90.39.00",
+  "fonte": "1500",
+  "valor": 540000
+ },
+ {
+  "unid": "3101",
+  "acao": "3101.1545100771.078",
+  "nome": "REQUALIFICACAO URBANA",
+  "natureza": "44905100",
+  "nat_fmt": "4.4.90.51.00",
+  "fonte": "1500",
+  "valor": 47000
+ },
+ {
+  "unid": "3601",
+  "acao": "3601.0412200622.450",
+  "nome": "FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS",
+  "natureza": "31901100",
+  "nat_fmt": "3.1.90.11.00",
+  "fonte": "1500",
+  "valor": 48204000
+ },
+ {
+  "unid": "3601",
+  "acao": "3601.0412200622.451",
+  "nome": "ERACIONAL",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "3601",
+  "acao": "3601.0413100642.007",
+  "nome": "POLITICA DE COMUNICACAO SOCIAL DESENVOLVIDA",
+  "natureza": "33903200",
+  "nat_fmt": "3.3.90.32.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "3601",
+  "acao": "3601.1442200442.262",
+  "nome": "GOIANIA + DIREITOS HUMANOS",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1500",
+  "valor": 80000
+ },
+ {
+  "unid": "3601",
+  "acao": "3601.1442201032.261",
+  "nome": "REDE + MULHER",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1500",
+  "valor": 80000
+ },
+ {
+  "unid": "3701",
+  "acao": "3701.0412200622.450",
+  "nome": "FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS",
+  "natureza": "31901100",
+  "nat_fmt": "3.1.90.11.00",
+  "fonte": "1500",
+  "valor": 10592000
+ },
+ {
+  "unid": "3701",
+  "acao": "3701.0412200622.451",
+  "nome": "ERACIONAL",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "3701",
+  "acao": "3701.0413100642.007",
+  "nome": "POLITICA DE COMUNICACAO SOCIAL DESENVOLVIDA",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "3701",
+  "acao": "3701.2266100751.048",
+  "nome": "CO",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "3701",
+  "acao": "3701.2369100751.047",
+  "nome": "CRIACAO E AMPLIACAO DE ARRANJOS PRODUTIVOS LOCAI",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "3701",
+  "acao": "3701.2369100752.039",
+  "nome": "APOIO A EXPANSAO COMERCIAL",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "3701",
+  "acao": "3701.2369100752.062",
+  "nome": "IMPLANTACAO DO SISTEMA DE INSPECAO PARA MAPEAMEN",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "3701",
+  "acao": "3701.2369100752.103",
+  "nome": "GOIANIA",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "3701",
+  "acao": "3701.2369100752.620",
+  "nome": "PROMOCAO DO DESENVOLVIMENTO COMUNITARIO",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "3701",
+  "acao": "3701.2369100752.622",
+  "nome": "LOCAL",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "5501",
+  "acao": "5501.0412200622.134",
+  "nome": "MANUTENCAO E REFORMAS EM PROPRIOS PUBLICOS",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "5501",
+  "acao": "5501.0412200622.136",
+  "nome": "ONAIS",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "5501",
+  "acao": "5501.0412200622.450",
+  "nome": "FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS",
+  "natureza": "31901100",
+  "nat_fmt": "3.1.90.11.00",
+  "fonte": "1500",
+  "valor": 60745000
+ },
+ {
+  "unid": "5501",
+  "acao": "5501.0412200622.451",
+  "nome": "ERACIONAL",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 2000
+ },
+ {
+  "unid": "5501",
+  "acao": "5501.0412200622.527",
+  "nome": "O",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "5501",
+  "acao": "5501.0412200622.528",
+  "nome": "COORDENACAO E ADMINISTRACAO DE MATERIAL E PATRIM",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "5501",
+  "acao": "5501.0412200622.530",
+  "nome": "ICIPIO",
+  "natureza": "33903900",
+  "nat_fmt": "3.3.90.39.00",
+  "fonte": "1500",
+  "valor": 87039000
+ },
+ {
+  "unid": "5701",
+  "acao": "5701.0412200071.474",
+  "nome": "CONSTRUCAO E REFORMAS E MANUT EM PROPRIOS PUBLIC",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "5701",
+  "acao": "5701.0412200622.450",
+  "nome": "FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS",
+  "natureza": "31900400",
+  "nat_fmt": "3.1.90.04.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "5701",
+  "acao": "5701.0412200622.451",
+  "nome": "ERACIONAL",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "5701",
+  "acao": "5701.0413100642.007",
+  "nome": "POLITICA DE COMUNICACAO SOCIAL DESENVOLVIDA",
+  "natureza": "33903900",
+  "nat_fmt": "3.3.90.39.00",
+  "fonte": "1500",
+  "valor": 100000
+ },
+ {
+  "unid": "5701",
+  "acao": "5701.1545200202.231",
+  "nome": "MINACAO PUBLICA",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "5701",
+  "acao": "5701.1545201101.057",
+  "nome": "AO - PARQUE LUMINOTECNICO",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "5701",
+  "acao": "5701.1581300221.480",
+  "nome": "CONSTRUCAO E ESTRUTURACAO DE PRACAS ESPORTIVAS",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "5701",
+  "acao": "5701.1751200202.753",
+  "nome": "LIMPEZA URBANA, GESTAO DE RESIDUOS E URBANIZACAO",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "5701",
+  "acao": "5701.2645100251.432",
+  "nome": "PAVIMENTACAO E CONSERVACAO DAS VIAS URBANAS",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "5701",
+  "acao": "5701.2645100251.434",
+  "nome": "PAVIMENTACAO E REURBANIZACAO DA AVENIDA GOIAS NO",
+  "natureza": "44903000",
+  "nat_fmt": "4.4.90.30.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "5701",
+  "acao": "5701.2645100251.440",
+  "nome": "PAVIMENTACAO E REURBANIZACAO DA AVENIDA LESTE/OE",
+  "natureza": "44903900",
+  "nat_fmt": "4.4.90.39.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "5701",
+  "acao": "5701.2645100251.444",
+  "nome": "REURBANIZACAO DA BACIA DO CORREGO BOTAFOGO",
+  "natureza": "44903900",
+  "nat_fmt": "4.4.90.39.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "5701",
+  "acao": "5701.2645100251.445",
+  "nome": "RECUPERACAO DO FUNDO DO VALE DO CORREGO CASCAVEL",
+  "natureza": "33903900",
+  "nat_fmt": "3.3.90.39.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "5701",
+  "acao": "5701.2645100251.549",
+  "nome": "CONSTRUCAO DE CICLOVIAS",
+  "natureza": "44905100",
+  "nat_fmt": "4.4.90.51.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "5701",
+  "acao": "5701.2645101101.060",
+  "nome": "CONSTRUINDO A GOIANIA DO FUTURO - CONSTRUCAO DE ",
+  "natureza": "33903900",
+  "nat_fmt": "3.3.90.39.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "5701",
+  "acao": "5701.2645301371.493",
+  "nome": "GOIAS.",
+  "natureza": "44903900",
+  "nat_fmt": "4.4.90.39.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "5701",
+  "acao": "5701.2645301371.494",
+  "nome": "NO MUNICIPIO DE GOIANIA",
+  "natureza": "44903900",
+  "nat_fmt": "4.4.90.39.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "5801",
+  "acao": "5801.0412200622.450",
+  "nome": "FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS",
+  "natureza": "31900400",
+  "nat_fmt": "3.1.90.04.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "5801",
+  "acao": "5801.0412200622.451",
+  "nome": "ERACIONAL",
+  "natureza": "31900400",
+  "nat_fmt": "3.1.90.04.00",
+  "fonte": "1752",
+  "valor": 1000
+ },
+ {
+  "unid": "5801",
+  "acao": "5801.2645200261.532",
+  "nome": "FISCALIZACAO, GESTAO DE TRANSITO E TRANSPORTE",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1752",
+  "valor": 720000
+ },
+ {
+  "unid": "5801",
+  "acao": "5801.2645200262.421",
+  "nome": "EDUCACAO PARA O TRANSITO",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1752",
+  "valor": 360000
+ },
+ {
+  "unid": "5801",
+  "acao": "5801.2645201002.139",
+  "nome": "IMPLANTACAO E REVITALIZACAO DE SINALIZACAO DE TR",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1752",
+  "valor": 6600000
+ },
+ {
+  "unid": "5801",
+  "acao": "5801.2645201372.138",
+  "nome": "SUBSIDIO AO TRANSPORTE COLETIVO DA REGIAO METROP",
+  "natureza": "33904500",
+  "nat_fmt": "3.3.90.45.00",
+  "fonte": "1500",
+  "valor": 241780000
+ },
+ {
+  "unid": "6901",
+  "acao": "6901.0412200622.450",
+  "nome": "FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS",
+  "natureza": "31901100",
+  "nat_fmt": "3.1.90.11.00",
+  "fonte": "1500",
+  "valor": 4236000
+ },
+ {
+  "unid": "6901",
+  "acao": "6901.0412200622.451",
+  "nome": "ERACIONAL",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "6901",
+  "acao": "6901.1545101281.077",
+  "nome": "IMPLANTACAO DO PARQUE LINEAR",
+  "natureza": "33903500",
+  "nat_fmt": "3.3.90.35.00",
+  "fonte": "1754",
+  "valor": 1000
+ },
+ {
+  "unid": "7001",
+  "acao": "7001.0412200622.276",
+  "nome": "MANUTENCAO E CONSERVACAO DA PEDREIRA E USINA DE ",
+  "natureza": "33901400",
+  "nat_fmt": "3.3.90.14.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "7001",
+  "acao": "7001.0412200622.450",
+  "nome": "FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS",
+  "natureza": "31901100",
+  "nat_fmt": "3.1.90.11.00",
+  "fonte": "1500",
+  "valor": 28375000
+ },
+ {
+  "unid": "7001",
+  "acao": "7001.0412200622.451",
+  "nome": "ERACIONAL",
+  "natureza": "33501800",
+  "nat_fmt": "3.3.50.18.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "7001",
+  "acao": "7001.0412200902.273",
+  "nome": "PROJETOS PARA POLITICAS PUBLICAS",
+  "natureza": "33501800",
+  "nat_fmt": "3.3.50.18.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "7001",
+  "acao": "7001.0412200902.777",
+  "nome": "INCUBACAO E POLITICAS PUBLICAS",
+  "natureza": "33501800",
+  "nat_fmt": "3.3.50.18.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "7001",
+  "acao": "7001.0824400102.713",
+  "nome": "MANUTENCAO DOS CEMITERIOS",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1500",
+  "valor": 70000
+ },
+ {
+  "unid": "7001",
+  "acao": "7001.2369100751.087",
+  "nome": "CONSTRUCAO E REFORMA DE MERCADOS, CEPAL E FEIRAS",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "7001",
+  "acao": "7001.2369100752.541",
+  "nome": "MANUTENCAO DOS MERCADOS, CEPAL E FEIRAS",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "7001",
+  "acao": "7001.2369100752.542",
+  "nome": "AUTOMACAO DAS FEIRAS E MERCADOS",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "7001",
+  "acao": "7001.2781300732.226",
+  "nome": "MANUTENCAO DAS ATIVIDADES DO PARQUE MUTIRAMA",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1500",
+  "valor": 70000
+ },
+ {
+  "unid": "7001",
+  "acao": "7001.2781300732.738",
+  "nome": "E MUSEU DE ORNITOLOGIA",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1500",
+  "valor": 3660000
+ },
+ {
+  "unid": "7001",
+  "acao": "7001.2781300732.739",
+  "nome": "S",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1500",
+  "valor": 12000
+ },
+ {
+  "unid": "7101",
+  "acao": "7101.0412200622.450",
+  "nome": "FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS",
+  "natureza": "31901100",
+  "nat_fmt": "3.1.90.11.00",
+  "fonte": "1500",
+  "valor": 37631000
+ },
+ {
+  "unid": "7101",
+  "acao": "7101.0412200622.451",
+  "nome": "ERACIONAL",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "7101",
+  "acao": "7101.0413100642.007",
+  "nome": "POLITICA DE COMUNICACAO SOCIAL DESENVOLVIDA",
+  "natureza": "33903900",
+  "nat_fmt": "3.3.90.39.00",
+  "fonte": "1500",
+  "valor": 500000
+ },
+ {
+  "unid": "7101",
+  "acao": "7101.1957200991.053",
+  "nome": "IMPLANTAR ESCRITORIO DE CIDADE INTELIGENTE",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "7101",
+  "acao": "7101.1957200991.054",
+  "nome": "A CRIATIVA E INOVACAO SOCIAL",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "7101",
+  "acao": "7101.1957200991.056",
+  "nome": "COES TECNOLOGICAS E DIGITAIS",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "7101",
+  "acao": "7101.1957200992.137",
+  "nome": "OVACAO",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "7101",
+  "acao": "7101.1957300991.055",
+  "nome": "PROMOCAO DA EDUCACAO DIGITAL E A CULTURA DE INOV",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "7201",
+  "acao": "7201.0412200622.450",
+  "nome": "FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS",
+  "natureza": "31900400",
+  "nat_fmt": "3.1.90.04.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "7201",
+  "acao": "7201.0412200622.451",
+  "nome": "ERACIONAL",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "7201",
+  "acao": "7201.0412201012.146",
+  "nome": "ORTE E LAZER",
+  "natureza": "33901400",
+  "nat_fmt": "3.3.90.14.00",
+  "fonte": "1500",
+  "valor": 5000
+ },
+ {
+  "unid": "7201",
+  "acao": "7201.2781201011.059",
+  "nome": "INFRAESTRUTURA ESPORTIVA E DE LAZER",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1500",
+  "valor": 100000
+ },
+ {
+  "unid": "7201",
+  "acao": "7201.2781201012.141",
+  "nome": "PROGRAMA DE APOIO AO ATLETA GOIANIENSE",
+  "natureza": "33904800",
+  "nat_fmt": "3.3.90.48.00",
+  "fonte": "1500",
+  "valor": 80000
+ },
+ {
+  "unid": "7201",
+  "acao": "7201.2781201012.143",
+  "nome": "PROMOCAO DE ATIVIDADES SISTEMATICAS DE ESPORTE E",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "7201",
+  "acao": "7201.2781201012.145",
+  "nome": "R",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1703",
+  "valor": 1000
+ },
+ {
+  "unid": "7401",
+  "acao": "7401.0412200622.450",
+  "nome": "FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS",
+  "natureza": "31901100",
+  "nat_fmt": "3.1.90.11.00",
+  "fonte": "1500",
+  "valor": 7388000
+ },
+ {
+  "unid": "7401",
+  "acao": "7401.0412200622.451",
+  "nome": "ERACIONAL",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "7501",
+  "acao": "7501.0412200622.450",
+  "nome": "FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS",
+  "natureza": "31901100",
+  "nat_fmt": "3.1.90.11.00",
+  "fonte": "1500",
+  "valor": 92468000
+ },
+ {
+  "unid": "7501",
+  "acao": "7501.0412200622.451",
+  "nome": "ERACIONAL",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 8000
+ },
+ {
+  "unid": "5101",
+  "acao": "5101.0412200622.450",
+  "nome": "FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS",
+  "natureza": "31901100",
+  "nat_fmt": "3.1.90.11.00",
+  "fonte": "1802",
+  "valor": 15102000
+ },
+ {
+  "unid": "5101",
+  "acao": "5101.0412200622.451",
+  "nome": "ERACIONAL",
+  "natureza": "33901400",
+  "nat_fmt": "3.3.90.14.00",
+  "fonte": "1802",
+  "valor": 70000
+ },
+ {
+  "unid": "5101",
+  "acao": "5101.2884600008.003",
+  "nome": "CONTRIBUICAO AO PASEP",
+  "natureza": "33904700",
+  "nat_fmt": "3.3.90.47.00",
+  "fonte": "1802",
+  "valor": 4905000
+ },
+ {
+  "unid": "5601",
+  "acao": "5601.0412200622.450",
+  "nome": "FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS",
+  "natureza": "31901100",
+  "nat_fmt": "3.1.90.11.00",
+  "fonte": "1500",
+  "valor": 35855000
+ },
+ {
+  "unid": "5601",
+  "acao": "5601.0412200622.451",
+  "nome": "ERACIONAL",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 2000
+ },
+ {
+  "unid": "5601",
+  "acao": "5601.1854100551.066",
+  "nome": "PROTECAO/PROMOCAO DO BEM ESTAR ANIMAL",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 2000
+ },
+ {
+  "unid": "5601",
+  "acao": "5601.1854100552.151",
+  "nome": "E BEM ESTAR ANIMAL",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "5601",
+  "acao": "5601.1854101022.149",
+  "nome": "UDANCAS CLIMATICAS",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 2000
+ },
+ {
+  "unid": "5601",
+  "acao": "5601.2884300008.001",
+  "nome": "ENCARGOS E AMORTIZACAO DA DIVIDA INTERNA",
+  "natureza": "32902100",
+  "nat_fmt": "3.2.90.21.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "5601",
+  "acao": "5601.2884600008.003",
+  "nome": "CONTRIBUICAO AO PASEP",
+  "natureza": "33904700",
+  "nat_fmt": "3.3.90.47.00",
+  "fonte": "1899",
+  "valor": 359000
+ },
+ {
+  "unid": "6201",
+  "acao": "6201.0412200622.450",
+  "nome": "FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS",
+  "natureza": "31901100",
+  "nat_fmt": "3.1.90.11.00",
+  "fonte": "1799",
+  "valor": 7735000
+ },
+ {
+  "unid": "6201",
+  "acao": "6201.0412201592.214",
+  "nome": "MUNICIPAIS",
+  "natureza": "33901300",
+  "nat_fmt": "3.3.90.13.00",
+  "fonte": "1799",
+  "valor": 1000
+ },
+ {
+  "unid": "6201",
+  "acao": "6201.2884300008.001",
+  "nome": "ENCARGOS E AMORTIZACAO DA DIVIDA INTERNA",
+  "natureza": "32902100",
+  "nat_fmt": "3.2.90.21.00",
+  "fonte": "1799",
+  "valor": 1000
+ },
+ {
+  "unid": "6201",
+  "acao": "6201.2884600008.003",
+  "nome": "CONTRIBUICAO AO PASEP",
+  "natureza": "33904700",
+  "nat_fmt": "3.3.90.47.00",
+  "fonte": "1799",
+  "valor": 2100000
+ },
+ {
+  "unid": "6202",
+  "acao": "6202.0412201592.215",
+  "nome": "MANUTENCAO DE ASSISTENCIA A SAUDE DOS SERV.MUNIC",
+  "natureza": "33901300",
+  "nat_fmt": "3.3.90.13.00",
+  "fonte": "1799",
+  "valor": 1800000
+ },
+ {
+  "unid": "6202",
+  "acao": "6202.2884300008.001",
+  "nome": "ENCARGOS E AMORTIZACAO DA DIVIDA INTERNA",
+  "natureza": "32902100",
+  "nat_fmt": "3.2.90.21.00",
+  "fonte": "1799",
+  "valor": 100000
+ },
+ {
+  "unid": "6301",
+  "acao": "6301.0412200622.450",
+  "nome": "FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS",
+  "natureza": "31900400",
+  "nat_fmt": "3.1.90.04.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "6301",
+  "acao": "6301.0412200622.451",
+  "nome": "ERACIONAL",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "6301",
+  "acao": "6301.0418100091.071",
+  "nome": "CONSTRUCAO DA SEDE DA AGCMG",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "6301",
+  "acao": "6301.0618100091.102",
+  "nome": "CONSTRUCAO DAS BASES COMUNITARIAS",
+  "natureza": "33900400",
+  "nat_fmt": "3.3.90.04.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "6301",
+  "acao": "6301.0618100091.509",
+  "nome": "VIDEOMONITORAMENTO",
+  "natureza": "33903900",
+  "nat_fmt": "3.3.90.39.00",
+  "fonte": "1500",
+  "valor": 28000
+ },
+ {
+  "unid": "6301",
+  "acao": "6301.0618100092.051",
+  "nome": "MULHER MAIS SEGURA",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1500",
+  "valor": 10000
+ },
+ {
+  "unid": "6301",
+  "acao": "6301.0618100092.131",
+  "nome": "ACOES DE POLITICAS SOBRE DROGAS",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1500",
+  "valor": 40000
+ },
+ {
+  "unid": "6301",
+  "acao": "6301.0618100092.132",
+  "nome": "ACOES DE SEGURANCA E FISCALIZACAO NO TRANSITO",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1500",
+  "valor": 10000
+ },
+ {
+  "unid": "6301",
+  "acao": "6301.0618100092.453",
+  "nome": "GOIANIA MAIS SEGURA",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1500",
+  "valor": 551000
+ },
+ {
+  "unid": "6301",
+  "acao": "6301.0618100092.772",
+  "nome": "IA",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1500",
+  "valor": 5000
+ },
+ {
+  "unid": "6301",
+  "acao": "6301.0618200092.736",
+  "nome": "ACOES DE PROTECAO E SEGURANCA DE DEFESA CIVIL",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1500",
+  "valor": 10000
+ },
+ {
+  "unid": "6301",
+  "acao": "6301.2884600008.003",
+  "nome": "CONTRIBUICAO AO PASEP",
+  "natureza": "33904700",
+  "nat_fmt": "3.3.90.47.00",
+  "fonte": "1500",
+  "valor": 2000
+ },
+ {
+  "unid": "6601",
+  "acao": "6601.0412200622.450",
+  "nome": "FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS",
+  "natureza": "31900300",
+  "nat_fmt": "3.1.90.03.00",
+  "fonte": "1500",
+  "valor": 12000
+ },
+ {
+  "unid": "6601",
+  "acao": "6601.0412200622.451",
+  "nome": "ERACIONAL",
+  "natureza": "32909100",
+  "nat_fmt": "3.2.90.91.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "6601",
+  "acao": "6601.0413100642.007",
+  "nome": "POLITICA DE COMUNICACAO SOCIAL DESENVOLVIDA",
+  "natureza": "33903900",
+  "nat_fmt": "3.3.90.39.00",
+  "fonte": "1500",
+  "valor": 1150000
+ },
+ {
+  "unid": "6601",
+  "acao": "6601.0469500852.122",
+  "nome": "OBSERVATORIO DE TURISMO DE GOIANIA",
+  "natureza": "33503100",
+  "nat_fmt": "3.3.50.31.00",
+  "fonte": "1500",
+  "valor": 24000
+ },
+ {
+  "unid": "6601",
+  "acao": "6601.2369500851.051",
+  "nome": "AMPLIACAO E MELHORIA DA SINALIZACAO TURISTICA UR",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "6601",
+  "acao": "6601.2369500851.065",
+  "nome": "IMPLANTACAO DE ATRATIVOS TURISTICOS",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "6601",
+  "acao": "6601.2369500851.067",
+  "nome": "GOIANIA COMO DESTINO TURISTICO INTELIGENTE",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "6601",
+  "acao": "6601.2369500852.121",
+  "nome": "PARTICIPACAO EM FEIRAS E EVENTOS",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "6601",
+  "acao": "6601.2369500852.123",
+  "nome": "GOIANIA + EVENTOS",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "6601",
+  "acao": "6601.2369500852.124",
+  "nome": "CONEXAO GOIANIA",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "6801",
+  "acao": "6801.0412200622.450",
+  "nome": "FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS",
+  "natureza": "31900400",
+  "nat_fmt": "3.1.90.04.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "6801",
+  "acao": "6801.0412200622.451",
+  "nome": "ERACIONAL",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "6801",
+  "acao": "6801.0412500622.101",
+  "nome": "S",
+  "natureza": "33903300",
+  "nat_fmt": "3.3.90.33.00",
+  "fonte": "1753",
+  "valor": 200000
+ },
+ {
+  "unid": "6801",
+  "acao": "6801.0413000622.102",
+  "nome": "IANIA ATRAVES DE REGULACAO, CONTROLE E FISCALIZA",
+  "natureza": "33903500",
+  "nat_fmt": "3.3.90.35.00",
+  "fonte": "1753",
+  "valor": 845000
+ },
+ {
+  "unid": "6801",
+  "acao": "6801.2884600008.003",
+  "nome": "CONTRIBUICAO AO PASEP",
+  "natureza": "33904700",
+  "nat_fmt": "3.3.90.47.00",
+  "fonte": "1753",
+  "valor": 250000
+ },
+ {
+  "unid": "8101",
+  "acao": "8101.0412201072.450",
+  "nome": "FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS",
+  "natureza": "31900400",
+  "nat_fmt": "3.1.90.04.00",
+  "fonte": "1500",
+  "valor": 83000
+ },
+ {
+  "unid": "8101",
+  "acao": "8101.0412201072.451",
+  "nome": "ERACIONAL",
+  "natureza": "32902100",
+  "nat_fmt": "3.2.90.21.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "8101",
+  "acao": "8101.1751201072.259",
+  "nome": "LIMPEZA URBANA E VALORIZACAO DOS ESPACOS PUBLICO",
+  "natureza": "33900800",
+  "nat_fmt": "3.3.90.08.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "8101",
+  "acao": "8101.1751201072.260",
+  "nome": "ATERRO SANITARIO",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "8101",
+  "acao": "8101.2884600008.003",
+  "nome": "CONTRIBUICAO AO PASEP",
+  "natureza": "33904700",
+  "nat_fmt": "3.3.90.47.00",
+  "fonte": "1500",
+  "valor": 151000
+ },
+ {
+  "unid": "1250",
+  "acao": "1250.1442200582.741",
+  "nome": "UMIDOR",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1759",
+  "valor": 1000
+ },
+ {
+  "unid": "1250",
+  "acao": "1250.2884600008.003",
+  "nome": "CONTRIBUICAO AO PASEP",
+  "natureza": "33904700",
+  "nat_fmt": "3.3.90.47.00",
+  "fonte": "1759",
+  "valor": 84000
+ },
+ {
+  "unid": "1750",
+  "acao": "1750.1212200642.007",
+  "nome": "POLITICA DE COMUNICACAO SOCIAL DESENVOLVIDA",
+  "natureza": "33903900",
+  "nat_fmt": "3.3.90.39.00",
+  "fonte": "1500",
+  "valor": 193120000
+ },
+ {
+  "unid": "1750",
+  "acao": "1750.1212200982.128",
+  "nome": "ACIONAL",
+  "natureza": "31900400",
+  "nat_fmt": "3.1.90.04.00",
+  "fonte": "1500",
+  "valor": 5000000
+ },
+ {
+  "unid": "1750",
+  "acao": "1750.1212200982.129",
+  "nome": "FORMACAO E VALORIZACAO DOS PROFISSIONAIS DA EDUC",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "1750",
+  "acao": "1750.1212200982.264",
+  "nome": "CACAO",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "1750",
+  "acao": "1750.1230600982.018",
+  "nome": "FORNECIMENTO DE MERENDA ESCOLAR PARA RME",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 12000000
+ },
+ {
+  "unid": "1750",
+  "acao": "1750.1236100981.073",
+  "nome": "LAS",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "1750",
+  "acao": "1750.1236100982.017",
+  "nome": "DAMENTAL",
+  "natureza": "31900400",
+  "nat_fmt": "3.1.90.04.00",
+  "fonte": "1500",
+  "valor": 115002000
+ },
+ {
+  "unid": "1750",
+  "acao": "1750.1236100982.125",
+  "nome": "EXPANDIR ESCOLAS EM TEMPO INTEGRAL",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "1750",
+  "acao": "1750.1236100982.726",
+  "nome": "DAMENTAL",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 16000000
+ },
+ {
+  "unid": "1750",
+  "acao": "1750.1236500651.074",
+  "nome": "DA EDUCACAO INFANTIL",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "1750",
+  "acao": "1750.1236500652.014",
+  "nome": "INFANTIL - CRECHE",
+  "natureza": "31900400",
+  "nat_fmt": "3.1.90.04.00",
+  "fonte": "1500",
+  "valor": 38742000
+ },
+ {
+  "unid": "1750",
+  "acao": "1750.1236500652.077",
+  "nome": "INFANTIL - PRE-ESCOLA",
+  "natureza": "31900400",
+  "nat_fmt": "3.1.90.04.00",
+  "fonte": "1500",
+  "valor": 45000000
+ },
+ {
+  "unid": "1750",
+  "acao": "1750.1236500652.778",
+  "nome": "AFIE - ED. INFANTIL",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 11000000
+ },
+ {
+  "unid": "1750",
+  "acao": "1750.1236600982.126",
+  "nome": "AFIE ? EDUCACAO DE JOVENS E ADULTOS",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000000
+ },
+ {
+  "unid": "1750",
+  "acao": "1750.1236600982.168",
+  "nome": "LTOS",
+  "natureza": "31900400",
+  "nat_fmt": "3.1.90.04.00",
+  "fonte": "1500",
+  "valor": 13038000
+ },
+ {
+  "unid": "1750",
+  "acao": "1750.1236700982.080",
+  "nome": "PECIAL",
+  "natureza": "31900400",
+  "nat_fmt": "3.1.90.04.00",
+  "fonte": "1500",
+  "valor": 6000000
+ },
+ {
+  "unid": "1750",
+  "acao": "1750.1236700982.127",
+  "nome": "IE ENSINO ESPECIAL",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 500000
+ },
+ {
+  "unid": "1750",
+  "acao": "1750.1281200982.130",
+  "nome": "DESPORTO EDUCACIONAL",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "1751",
+  "acao": "1751.1236101442.045",
+  "nome": "MANUTENCAO DO FUNDEB_- ENSINO FUNDAMENTAL",
+  "natureza": "31900400",
+  "nat_fmt": "3.1.90.04.00",
+  "fonte": "1540",
+  "valor": 35890000
+ },
+ {
+  "unid": "1751",
+  "acao": "1751.1236501442.083",
+  "nome": "MANUTENCAO DO FUNDEB - EDUCACAO INFANTIL - CRECH",
+  "natureza": "31900400",
+  "nat_fmt": "3.1.90.04.00",
+  "fonte": "1540",
+  "valor": 13000000
+ },
+ {
+  "unid": "1751",
+  "acao": "1751.1236501442.084",
+  "nome": "MANUTENCAO DO FUNDEB - EDUCACAO INFANTIL - PRE-E",
+  "natureza": "31900400",
+  "nat_fmt": "3.1.90.04.00",
+  "fonte": "1540",
+  "valor": 13000000
+ },
+ {
+  "unid": "1751",
+  "acao": "1751.1236601442.085",
+  "nome": "JA",
+  "natureza": "31900400",
+  "nat_fmt": "3.1.90.04.00",
+  "fonte": "1540",
+  "valor": 900000
+ },
+ {
+  "unid": "1751",
+  "acao": "1751.1236701442.086",
+  "nome": "MANUTENCAO DO FUNDEB - EDUCACAO ESPECIAL",
+  "natureza": "31900400",
+  "nat_fmt": "3.1.90.04.00",
+  "fonte": "1540",
+  "valor": 1506000
+ },
+ {
+  "unid": "2050",
+  "acao": "2050.1339200742.744",
+  "nome": "ERACIONAL DA E.L.A.",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "2050",
+  "acao": "2050.1339200742.745",
+  "nome": "ACOES CULTURAIS E FOLCLORICAS - INCENTIVO FISCAL",
+  "natureza": "33504300",
+  "nat_fmt": "3.3.50.43.00",
+  "fonte": "1500",
+  "valor": 3100000
+ },
+ {
+  "unid": "2050",
+  "acao": "2050.1339200742.746",
+  "nome": "AGENDA CULTURAL",
+  "natureza": "32909200",
+  "nat_fmt": "3.2.90.92.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "2050",
+  "acao": "2050.2884600008.003",
+  "nome": "CONTRIBUICAO AO PASEP",
+  "natureza": "33904700",
+  "nat_fmt": "3.3.90.47.00",
+  "fonte": "1759",
+  "valor": 10000
+ },
+ {
+  "unid": "2150",
+  "acao": "2150.1012200972.115",
+  "nome": "EM GOIANIA",
+  "natureza": "31900400",
+  "nat_fmt": "3.1.90.04.00",
+  "fonte": "1500",
+  "valor": 3000
+ },
+ {
+  "unid": "2150",
+  "acao": "2150.1012200972.116",
+  "nome": "OIANIA",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1500",
+  "valor": 2000
+ },
+ {
+  "unid": "2150",
+  "acao": "2150.1013100642.007",
+  "nome": "POLITICA DE COMUNICACAO SOCIAL DESENVOLVIDA",
+  "natureza": "33903900",
+  "nat_fmt": "3.3.90.39.00",
+  "fonte": "1500",
+  "valor": 12000000
+ },
+ {
+  "unid": "2150",
+  "acao": "2150.1030100682.111",
+  "nome": "FORTALECER A ATENCAO PRIMARIA A SAUDE",
+  "natureza": "31901100",
+  "nat_fmt": "3.1.90.11.00",
+  "fonte": "1600",
+  "valor": 1000
+ },
+ {
+  "unid": "2150",
+  "acao": "2150.1030200692.113",
+  "nome": "ADOS",
+  "natureza": "31901100",
+  "nat_fmt": "3.1.90.11.00",
+  "fonte": "1600",
+  "valor": 1000
+ },
+ {
+  "unid": "2150",
+  "acao": "2150.1030200692.114",
+  "nome": "RIAS DA SECRETARIA MUNICIPAL DE SAUDE",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1621",
+  "valor": 1000
+ },
+ {
+  "unid": "2150",
+  "acao": "2150.1030300872.117",
+  "nome": "ADE SAUDE",
+  "natureza": "32902100",
+  "nat_fmt": "3.2.90.21.00",
+  "fonte": "1500",
+  "valor": 2000
+ },
+ {
+  "unid": "2150",
+  "acao": "2150.1030500892.119",
+  "nome": "SEUS FATORES DE RISCO NO MUNICIPIO DE GOIANIA",
+  "natureza": "31901100",
+  "nat_fmt": "3.1.90.11.00",
+  "fonte": "1600",
+  "valor": 1000
+ },
+ {
+  "unid": "2150",
+  "acao": "2150.1030500892.120",
+  "nome": "A",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1753",
+  "valor": 1000
+ },
+ {
+  "unid": "2150",
+  "acao": "2150.2884600008.003",
+  "nome": "CONTRIBUICAO AO PASEP",
+  "natureza": "33904700",
+  "nat_fmt": "3.3.90.47.00",
+  "fonte": "1500",
+  "valor": 9000000
+ },
+ {
+  "unid": "3150",
+  "acao": "3150.0412200622.389",
+  "nome": "TRATIVO",
+  "natureza": "32902100",
+  "nat_fmt": "3.2.90.21.00",
+  "fonte": "1759",
+  "valor": 1000
+ },
+ {
+  "unid": "3150",
+  "acao": "3150.0412300042.229",
+  "nome": "NEJAMENTO URBANO",
+  "natureza": "33901400",
+  "nat_fmt": "3.3.90.14.00",
+  "fonte": "1759",
+  "valor": 1000
+ },
+ {
+  "unid": "3150",
+  "acao": "3150.0412700991.052",
+  "nome": "ELABORAR O PLANO DIRETOR DE CIDADE INTELIGENTE",
+  "natureza": "33901400",
+  "nat_fmt": "3.3.90.14.00",
+  "fonte": "1759",
+  "valor": 1000
+ },
+ {
+  "unid": "3150",
+  "acao": "3150.2884600008.003",
+  "nome": "CONTRIBUICAO AO PASEP",
+  "natureza": "33904700",
+  "nat_fmt": "3.3.90.47.00",
+  "fonte": "1759",
+  "valor": 200000
+ },
+ {
+  "unid": "3650",
+  "acao": "3650.0824401082.263",
+  "nome": "CAPACITACAO CONTINUADA SUAS",
+  "natureza": "33901400",
+  "nat_fmt": "3.3.90.14.00",
+  "fonte": "1660",
+  "valor": 1000
+ },
+ {
+  "unid": "3650",
+  "acao": "3650.0824401082.269",
+  "nome": "MANUTENCAO DOS SERVICOS E DA REDE",
+  "natureza": "31900400",
+  "nat_fmt": "3.1.90.04.00",
+  "fonte": "1500",
+  "valor": 1000
+ },
+ {
+  "unid": "3650",
+  "acao": "3650.0824401082.591",
+  "nome": "- CMASGYN",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1660",
+  "valor": 8000
+ },
+ {
+  "unid": "3650",
+  "acao": "3650.0824401092.268",
+  "nome": "ACAO ACOLHER E CUIDAR",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1660",
+  "valor": 230000
+ },
+ {
+  "unid": "3650",
+  "acao": "3650.2884600008.003",
+  "nome": "CONTRIBUICAO AO PASEP",
+  "natureza": "33904700",
+  "nat_fmt": "3.3.90.47.00",
+  "fonte": "1660",
+  "valor": 150000
+ },
+ {
+  "unid": "3651",
+  "acao": "3651.0824301082.269",
+  "nome": "MANUTENCAO DOS SERVICOS E DA REDE",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1759",
+  "valor": 1000
+ },
+ {
+  "unid": "3651",
+  "acao": "3651.0824401082.202",
+  "nome": "MANUTENCAO DO FUNDO MUNICIPAL DA CRIANCA E ADOLE",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1759",
+  "valor": 120000
+ },
+ {
+  "unid": "3651",
+  "acao": "3651.2884600008.003",
+  "nome": "CONTRIBUICAO AO PASEP",
+  "natureza": "33904700",
+  "nat_fmt": "3.3.90.47.00",
+  "fonte": "1759",
+  "valor": 35000
+ },
+ {
+  "unid": "3652",
+  "acao": "3652.0824101082.269",
+  "nome": "MANUTENCAO DOS SERVICOS E DA REDE",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1759",
+  "valor": 10000
+ },
+ {
+  "unid": "3652",
+  "acao": "3652.0824401082.592",
+  "nome": "MANUTENCAO DO CONSELHO MUNICIPAL DO IDOSO",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1759",
+  "valor": 150000
+ },
+ {
+  "unid": "3652",
+  "acao": "3652.2884600008.003",
+  "nome": "CONTRIBUICAO AO PASEP",
+  "natureza": "33904700",
+  "nat_fmt": "3.3.90.47.00",
+  "fonte": "1759",
+  "valor": 30000
+ },
+ {
+  "unid": "3751",
+  "acao": "3751.1112200661.049",
+  "nome": "IMPLANTACAO DA CASA DO TRABALHADOR (INVESTIMENTO",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1714",
+  "valor": 1000
+ },
+ {
+  "unid": "3751",
+  "acao": "3751.1112200662.093",
+  "nome": "CUSTEIO DA CASA DO TRABALHADOR (GESTAO E MANUTEN",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1714",
+  "valor": 4000
+ },
+ {
+  "unid": "3751",
+  "acao": "3751.1112200662.107",
+  "nome": "GESTAO E MANUTENCAO DA REDE DE ATENDIMENTO SINE",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1714",
+  "valor": 1000
+ },
+ {
+  "unid": "3751",
+  "acao": "3751.1112200662.108",
+  "nome": "ACOES E SEREVICOS DE ASSESSORAMENTO ESTATISTICO",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1714",
+  "valor": 4000
+ },
+ {
+  "unid": "3751",
+  "acao": "3751.1133300672.109",
+  "nome": "QUALIFICACAO SOCIAL E PROFISSIONAL",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1714",
+  "valor": 1000
+ },
+ {
+  "unid": "3751",
+  "acao": "3751.1133400672.105",
+  "nome": "FOMENTO A GERACAO DE EMPREGO E RENDA",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1714",
+  "valor": 4000
+ },
+ {
+  "unid": "3751",
+  "acao": "3751.2884600008.003",
+  "nome": "CONTRIBUICAO AO PASEP",
+  "natureza": "33904700",
+  "nat_fmt": "3.3.90.47.00",
+  "fonte": "1714",
+  "valor": 10000
+ },
+ {
+  "unid": "5150",
+  "acao": "5150.0912200632.251",
+  "nome": "TAXA ADMINISTRATIVA - FUNFIN",
+  "natureza": "33913900",
+  "nat_fmt": "3.3.91.39.00",
+  "fonte": "1801",
+  "valor": 11000000
+ },
+ {
+  "unid": "5150",
+  "acao": "5150.0927200632.249",
+  "nome": "RA-FUNFIN-PODER EXECUTIVO",
+  "natureza": "31900100",
+  "nat_fmt": "3.1.90.01.00",
+  "fonte": "1500",
+  "valor": 468008000
+ },
+ {
+  "unid": "5150",
+  "acao": "5150.0927200632.250",
+  "nome": "RA-FUNFIN-PODER LEGISLATIVO",
+  "natureza": "31900100",
+  "nat_fmt": "3.1.90.01.00",
+  "fonte": "1500",
+  "valor": 10000
+ },
+ {
+  "unid": "5151",
+  "acao": "5151.0912200632.254",
+  "nome": "TAXA ADMINISTRATIVA - FUNPREV",
+  "natureza": "33913900",
+  "nat_fmt": "3.3.91.39.00",
+  "fonte": "1800",
+  "valor": 1000
+ },
+ {
+  "unid": "5151",
+  "acao": "5151.0927200632.252",
+  "nome": "CIARIO-FUNPREV-PODER LEGISLATIVO",
+  "natureza": "31900100",
+  "nat_fmt": "3.1.90.01.00",
+  "fonte": "1800",
+  "valor": 600000
+ },
+ {
+  "unid": "5151",
+  "acao": "5151.0927200632.253",
+  "nome": "CIARIO-FUNPREV-PODER EXECUTIVO",
+  "natureza": "31900100",
+  "nat_fmt": "3.1.90.01.00",
+  "fonte": "1800",
+  "valor": 528987000
+ },
+ {
+  "unid": "5550",
+  "acao": "5550.0412800572.759",
+  "nome": "ADMINISTRACAO",
+  "natureza": "33501800",
+  "nat_fmt": "3.3.50.18.00",
+  "fonte": "1759",
+  "valor": 1000
+ },
+ {
+  "unid": "5550",
+  "acao": "5550.0412800622.216",
+  "nome": "CONCURSO PUBLICO E PROCESSO SELETIVO",
+  "natureza": "33903900",
+  "nat_fmt": "3.3.90.39.00",
+  "fonte": "1759",
+  "valor": 1000000
+ },
+ {
+  "unid": "5550",
+  "acao": "5550.2884600008.003",
+  "nome": "CONTRIBUICAO AO PASEP",
+  "natureza": "33904700",
+  "nat_fmt": "3.3.90.47.00",
+  "fonte": "1759",
+  "valor": 100000
+ },
+ {
+  "unid": "5650",
+  "acao": "5650.1854100532.064",
+  "nome": "AGENDA AMARELA - EDUCACAO AMBIENTAL",
+  "natureza": "32902100",
+  "nat_fmt": "3.2.90.21.00",
+  "fonte": "1759",
+  "valor": 1000
+ },
+ {
+  "unid": "5650",
+  "acao": "5650.1854100532.065",
+  "nome": "AGENDA AZUL - RECURSOS HIDRICOS",
+  "natureza": "32902100",
+  "nat_fmt": "3.2.90.21.00",
+  "fonte": "1759",
+  "valor": 1000
+ },
+ {
+  "unid": "5650",
+  "acao": "5650.1854100532.066",
+  "nome": "AGENDA BRANCA - GOVERNANCA E GESTAO",
+  "natureza": "32902100",
+  "nat_fmt": "3.2.90.21.00",
+  "fonte": "1759",
+  "valor": 1000
+ },
+ {
+  "unid": "5650",
+  "acao": "5650.1854100532.068",
+  "nome": "AGENDA MARROM - CONTROLE DA POLUICAO",
+  "natureza": "32902100",
+  "nat_fmt": "3.2.90.21.00",
+  "fonte": "1759",
+  "valor": 1000
+ },
+ {
+  "unid": "5650",
+  "acao": "5650.1854100532.074",
+  "nome": "AGENDA VERDE - BIODIVERSIDADE",
+  "natureza": "32902100",
+  "nat_fmt": "3.2.90.21.00",
+  "fonte": "1759",
+  "valor": 1000
+ },
+ {
+  "unid": "5650",
+  "acao": "5650.2884600008.003",
+  "nome": "CONTRIBUICAO AO PASEP",
+  "natureza": "33904700",
+  "nat_fmt": "3.3.90.47.00",
+  "fonte": "1759",
+  "valor": 230000
+ },
+ {
+  "unid": "6350",
+  "acao": "6350.0618100092.131",
+  "nome": "ACOES DE POLITICAS SOBRE DROGAS",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1759",
+  "valor": 1000
+ },
+ {
+  "unid": "6351",
+  "acao": "6351.0618100092.132",
+  "nome": "ACOES DE SEGURANCA E FISCALIZACAO NO TRANSITO",
+  "natureza": "33903000",
+  "nat_fmt": "3.3.90.30.00",
+  "fonte": "1759",
+  "valor": 1000
+ },
+ {
+  "unid": "6850",
+  "acao": "6850.1751200542.451",
+  "nome": "ERACIONAL",
+  "natureza": "33901400",
+  "nat_fmt": "3.3.90.14.00",
+  "fonte": "1759",
+  "valor": 10000
+ },
+ {
+  "unid": "6850",
+  "acao": "6850.1751200542.731",
+  "nome": "Controle e Melhoria dos servi os de saneamento b",
+  "natureza": "33901400",
+  "nat_fmt": "3.3.90.14.00",
+  "fonte": "1759",
+  "valor": 10000
+ },
+ {
+  "unid": "6850",
+  "acao": "6850.1751200542.732",
+  "nome": "Servi os de limpeza urbana e gest o de residuos",
+  "natureza": "33902700",
+  "nat_fmt": "3.3.90.27.00",
+  "fonte": "1759",
+  "valor": 1000
+ },
+ {
+  "unid": "6850",
+  "acao": "6850.1751200542.733",
+  "nome": "Sistema de drenagem urbana e de aguas pluviais",
+  "natureza": "33903100",
+  "nat_fmt": "3.3.90.31.00",
+  "fonte": "1759",
+  "valor": 3000
+ },
+ {
+  "unid": "6850",
+  "acao": "6850.2884600008.003",
+  "nome": "CONTRIBUICAO AO PASEP",
+  "natureza": "33904700",
+  "nat_fmt": "3.3.90.47.00",
+  "fonte": "1759",
+  "valor": 750000
+ },
+ {
+  "unid": "7450",
+  "acao": "7450.0412200622.451",
+  "nome": "ERACIONAL",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1759",
+  "valor": 28000
+ },
+ {
+  "unid": "7450",
+  "acao": "7450.1648201052.245",
+  "nome": "SUBSIDIO FINANCEIRO PARA MORADIA PROPRIA",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1759",
+  "valor": 1000
+ },
+ {
+  "unid": "7450",
+  "acao": "7450.1648201062.239",
+  "nome": "MORAR BEM - ALUGUEL SOCIAL",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1759",
+  "valor": 1000
+ },
+ {
+  "unid": "7450",
+  "acao": "7450.1648201062.242",
+  "nome": "MORAR BEM - CHEQUE MELHORIA",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1759",
+  "valor": 10000
+ },
+ {
+  "unid": "7450",
+  "acao": "7450.1648201062.243",
+  "nome": "MORAR BEM - RETROFITTING",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1759",
+  "valor": 20000
+ },
+ {
+  "unid": "7450",
+  "acao": "7450.1648201272.246",
+  "nome": "OVEIS DE AREAS CONSOLIDADAS",
+  "natureza": "33504100",
+  "nat_fmt": "3.3.50.41.00",
+  "fonte": "1759",
+  "valor": 1000
+ },
+ {
+  "unid": "7450",
+  "acao": "7450.2884600008.003",
+  "nome": "CONTRIBUICAO AO PASEP",
+  "natureza": "33904700",
+  "nat_fmt": "3.3.90.47.00",
+  "fonte": "1759",
+  "valor": 94000
+ }
+]

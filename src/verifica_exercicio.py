@@ -118,14 +118,33 @@ a("FIN","FMAS-01","critica","CONFIRMADO",
 
 pct=cq['extraidos']['percentual_igd_controle_social']['valor_vigente']
 igd=sum(v['valor'] for k,v in fin['por_acao'].items() if k in ('08.244.0165.1103','08.244.0165.2555'))
-a("FIN","IGD-01","critica","CONFIRMADO",
-  f"Piso de {pct}% do Índice de Gestão Descentralizada ao controle social sem execução",
-  f"Base do Índice de Gestão Descentralizada nos decretos de crédito de 2026: {brl(igd)}. Devido ao controle social: {brl(igd*pct/100)}. "
-  f"Executado: R$ 0,00. Percentual extraido do corpus, nao digitado.",
-  "Artigo 6º da Resolução CNAS/MDS 202/2025; Artigo 12-A, § 4º, da Lei 8.742/1993; "
-  "Artigo 14, § 7º, da Lei 14.601/2023",
-  {"base":igd,"devido":round(igd*pct/100,2),"executado":0,
-   "sancao":"bloqueio dos repasses ate comprovacao, Artigo 6 par.6"})
+igdf=json.load(open('dados/igd_controle_social.json',encoding='utf-8')) if os.path.exists('dados/igd_controle_social.json') else None
+if igdf:
+    A=igdf['afericao']; PF=igdf['dotacao_do_conselho']['por_fonte']
+    a("FIN","IGD-01","critica","CONFIRMADO",
+      f"Piso de 10% do Índice de Gestão Descentralizada cumprido em apenas {A['cumprimento_percentual']}%",
+      f"Base do Índice: {brl(igdf['base_do_indice']['total'])}. Devido ao controle social: "
+      f"{brl(igdf['devido_ao_controle_social'])}. O Quadro de Detalhamento de Despesas reserva ao Conselho "
+      f"{brl(igdf['dotacao_do_conselho']['total'])} na ação 3650.0824401082.591, mas apenas "
+      f"{brl(A['aplicado_na_fonte_do_indice'])} na fonte 1660, que é a fonte federal onde o Índice trafega; "
+      f"{brl(igdf['dotacao_do_conselho']['estadual_outras_fontes'])} vêm da fonte estadual 1661. "
+      f"Faltam {brl(A['diferenca'])}. O artigo 6º admite outras fontes de financiamento, mas elas não "
+      "substituem o piso federal. E o percentual incide sobre o repasse mensal, não sobre o total anual: "
+      "não há demonstrativo mensal publicado.",
+      "Artigo 6º da Resolução CNAS/MDS 202/2025; Artigo 12-A, § 4º, da Lei 8.742/1993; "
+      "Artigo 14, § 7º, da Lei 14.601/2023",
+      {"base":igdf['base_do_indice']['total'],"devido":igdf['devido_ao_controle_social'],
+       "na_fonte_do_indice":A['aplicado_na_fonte_do_indice'],"falta":A['diferenca'],
+       "por_fonte":PF,"sancao":"bloqueio dos repasses, artigo 6º, § 6º"})
+else:
+    a("FIN","IGD-01","critica","CONFIRMADO",
+      f"Piso de {pct}% do Índice de Gestão Descentralizada ao controle social sem execução",
+      f"Base do Índice de Gestão Descentralizada nos decretos de crédito de 2026: {brl(igd)}. Devido ao controle social: {brl(igd*pct/100)}. "
+      f"Executado: R$ 0,00. Percentual extraido do corpus, nao digitado.",
+      "Artigo 6º da Resolução CNAS/MDS 202/2025; Artigo 12-A, § 4º, da Lei 8.742/1993; "
+      "Artigo 14, § 7º, da Lei 14.601/2023",
+      {"base":igd,"devido":round(igd*pct/100,2),"executado":0,
+      "sancao":"bloqueio dos repasses ate comprovacao, Artigo 6 par.6"})
 
 cm=orc['comparacao_entre_conselhos_2026']
 a("FIN","IGD-02","alta","CONFIRMADO",

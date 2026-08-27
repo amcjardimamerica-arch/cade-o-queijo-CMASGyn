@@ -65,6 +65,25 @@ def main():
       "ente":"não identificado","prova":None,
       "falta":"Relatório Resumido da Execução Orçamentária"}]
 
+    # piso do artigo 6º da Resolução CNAS/MDS 202/2025, embutido na fonte federal
+    try:
+        igd = L("dados/igd_controle_social.json")
+        f1 = next(f for f in fontes if f["id"] == "f1")
+        f1["piso_controle_social"] = {
+            "norma": "Artigo 6º da Resolução CNAS/MDS 202/2025",
+            "percentual": 10,
+            "incide_sobre": "repasse mensal do IGD/SUAS e do IGD/PBF",
+            "base_do_indice": igd["base_do_indice"]["total"],
+            "devido": igd["devido_ao_controle_social"],
+            "aplicado_na_fonte": igd["afericao"]["aplicado_na_fonte_do_indice"],
+            "falta": igd["afericao"]["diferenca"],
+            "cumprimento": igd["afericao"]["cumprimento_percentual"],
+            "situacao": igd["afericao"]["situacao"],
+            "sancao": "bloqueio dos repasses até a comprovação, artigo 6º, § 6º"}
+        f1["alerta"] = igd["afericao"]["leitura"]
+    except Exception:
+        pass
+
     contas = [
      {"id":"c1","nome":"Conta especial do Fundo Municipal de Assistência Social",
       "valor":o["fmas"]["2026"]["total"],"unidade":"3650",

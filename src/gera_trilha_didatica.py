@@ -12,7 +12,8 @@ def main():
     L = lambda p: json.loads((RAIZ / p).read_text(encoding="utf-8"))
     dados = {"fluxo": L("dados/fluxo_2026.json"),
              "cat": L("dados/categorias_2026.json"),
-             "orc": L("dados/orcamento_assistencia_social.json")}
+             "orc": L("dados/orcamento_assistencia_social.json"),
+             "igd": L("dados/igd_controle_social.json")}
     html = TPL.replace("__D__", json.dumps(dados, ensure_ascii=False))
     (RAIZ / "docs" / "trilha_didatica_2026.html").write_text(html, encoding="utf-8")
     print(f"trilha_didatica_2026.html: {len(html)//1024}K")
@@ -106,6 +107,9 @@ o contrato, o beneficiário e a finalidade. Onde faltar documento, a caixa diz o
  só o primeiro, por proteção de dado pessoal.</div>
  <div id="e4"></div></div>
 
+<h2>O dinheiro que a lei manda ir para o Conselho</h2>
+<div class="est" id="igd"></div>
+
 <h2>Passou de algum limite?</h2>
 <div class="tetos" id="tt"></div>
 
@@ -158,6 +162,34 @@ el('e4').innerHTML=`<table><thead><tr><th>Quem recebeu</th><th>Quanto</th><th>Ti
  </tbody></table>
  <div class="mini" style="margin-top:10px">Há ainda <b>${F.fanout.lancamentos} pagamentos</b> em que a
  publicação junta vários beneficiários e um valor só. Não dá para saber quanto cada um recebeu.</div>`;
+// IGD
+const G=D.igd,A=G.afericao,PB=G.base_do_indice;
+el('igd').innerHTML=`
+ <div class="exp">Parte do dinheiro que o governo federal manda é para custear a gestão do
+ Bolsa Família e do Cadastro Único. Desse valor, <b>10% tem que ir para o Conselho</b> que
+ fiscaliza a assistência social. É regra de 2025, valendo desde janeiro de 2026.</div>
+ <div class="paga">
+  <div class="q gv"><div class="n">O governo federal mandou para gestão do programa</div>
+   <div class="v">${brl(PB.total)}</div><div class="s">base do cálculo</div></div>
+  <div class="q gv"><div class="n">Desse valor, deveria ir para o Conselho</div>
+   <div class="v">${brl(G.devido_ao_controle_social)}</div><div class="s">10% — o mínimo da lei</div></div>
+  <div class="q gl" style="border-left-color:var(--ilegal)">
+   <div class="n">Mas o orçamento reservou, nessa fonte</div>
+   <div class="v" style="color:var(--ilegal)">${brl(A.aplicado_na_fonte_do_indice)}</div>
+   <div class="s" style="color:var(--ilegal)">só ${A.cumprimento_percentual}% do devido</div></div>
+  <div class="q gl" style="border-left-color:var(--ilegal)">
+   <div class="n">Está faltando</div>
+   <div class="v" style="color:var(--ilegal)">${brl(A.diferenca)}</div>
+   <div class="s" style="color:var(--ilegal)">${A.situacao}</div></div>
+ </div>
+ <div class="alerta"><b>Por que os R$ 240.000 do Estado não resolvem.</b>
+ O Conselho tem R$ 256.000 no orçamento, mas R$ 240.000 vêm do governo estadual e só
+ R$ 16.000 vêm da fonte federal, que é onde esse dinheiro do programa circula. A regra dos
+ 10% fala do repasse federal. O dinheiro estadual é bem-vindo e conta como reforço, mas não
+ substitui o que a União manda reservar.<br><br>
+ <b>E a conta é mensal, não anual.</b> A lei diz "do valor repassado mensalmente". Quem aplica
+ tudo em dezembro descumpriu nos outros onze meses. Não existe demonstrativo mensal publicado.<br><br>
+ <b>O que acontece se não cumprir:</b> ${G.sancao}.</div>`;
 // tetos
 el('tt').innerHTML=C.tetos.map(t=>{
  const cls=t.situacao.startsWith('DESCUMPRIDO')?'d':'i';

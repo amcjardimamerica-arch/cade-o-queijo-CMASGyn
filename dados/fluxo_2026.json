@@ -8,7 +8,20 @@
    "valor": 8250000,
    "status": "comprovada",
    "ente": "União",
-   "prova": "Lei Orçamentária 11.590/2026, receita 1.7.1.6.50.0.1, fonte 1660"
+   "prova": "Lei Orçamentária 11.590/2026, receita 1.7.1.6.50.0.1, fonte 1660",
+   "piso_controle_social": {
+    "norma": "Artigo 6º da Resolução CNAS/MDS 202/2025",
+    "percentual": 10,
+    "incide_sobre": "repasse mensal do IGD/SUAS e do IGD/PBF",
+    "base_do_indice": 706707.15,
+    "devido": 70670.72,
+    "aplicado_na_fonte": 16000,
+    "falta": 54670.72,
+    "cumprimento": 22.6,
+    "situacao": "DESCUMPRIDO",
+    "sancao": "bloqueio dos repasses até a comprovação, artigo 6º, § 6º"
+   },
+   "alerta": "A ação do Conselho está dotada em 256,000.00, mas apenas 16,000.00 vêm da fonte federal onde o Índice trafega. O piso do artigo 6º exige 70,670.72. Faltam 54,670.72. Os 240,000.00 de fonte estadual contam como outra fonte de financiamento, prevista na parte final do artigo 6º, mas não substituem o piso federal."
   },
   {
    "id": "f2",

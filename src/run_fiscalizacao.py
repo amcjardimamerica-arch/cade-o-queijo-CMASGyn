@@ -18,6 +18,7 @@ ETAPAS = [
     ("critérios de qualidade", "src/qualidade.py"),
     ("verificação do exercício", "src/verifica_exercicio.py"),
     ("pessoal e diárias", "src/pessoal.py"),
+    ("piso do IGD ao controle social", "src/igd_controle_social.py"),
     ("modelo de fluxo", "src/monta_fluxo.py"),
     ("trilha visual", "src/gera_fluxo_html.py"),
     ("categorias e tetos", "src/categoriza.py"),
