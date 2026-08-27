@@ -12,12 +12,12 @@ Estou retomando uma investigação já avançada. O arquivo `estado_sistema.json
 
 ### Repositório
 
-`https://github.com/amcjardimamerica-arch/cmasgyn-vigilancia`, branch `main`, 454 arquivos, 21 commits. É público para leitura.
+`https://github.com/amcjardimamerica-arch/cade-o-queijo-CMASGyn`, branch `main`, 454 arquivos, 21 commits. É público para leitura. Chamava-se `cmasgyn-vigilancia` até 27/08/2026; o endereço antigo redireciona, mas use o novo.
 
 Para trabalhar, clone e leia:
 
 ```bash
-git clone https://github.com/amcjardimamerica-arch/cmasgyn-vigilancia repo && cd repo
+git clone https://github.com/amcjardimamerica-arch/cade-o-queijo-CMASGyn repo && cd repo
 python3 src/run_fiscalizacao.py          # roda as 15 etapas
 python3 scripts/consulta_local.py "Art. 30" lei_8742   # consulta a lei sem rede
 ```

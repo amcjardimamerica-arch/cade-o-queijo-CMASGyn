@@ -4,12 +4,13 @@
   "exportado_em": "2026-08-27",
   "origem": "Claude Opus 5",
   "finalidade": "Continuar a investigação em outra conta ou outro chat, sem perda de estado",
-  "repositorio": "https://github.com/amcjardimamerica-arch/cmasgyn-vigilancia",
+  "repositorio": "https://github.com/amcjardimamerica-arch/cade-o-queijo-CMASGyn",
   "branch": "main",
   "commits": 21,
   "ultimo_commit": "a75d221 corpus v2.0 com controle externo (TCM-GO, TCE-GO, MP-GO, MPF, CNMP) e 18 itens quebrados corrigidos; padroes de qualidade com niveis de prova,",
   "arquivos_no_repositorio": 454,
-  "aviso_de_credencial": "O token do GitHub usado nesta conversa foi exposto em texto claro e DEVE ser revogado. Este arquivo não contém credencial alguma. Gere um token novo, de escopo restrito, quando for retomar."
+  "aviso_de_credencial": "O token do GitHub usado nesta conversa foi exposto em texto claro e DEVE ser revogado. Este arquivo não contém credencial alguma. Gere um token novo, de escopo restrito, quando for retomar.",
+  "nome_anterior": "cmasgyn-vigilancia — renomeado para cade-o-queijo-CMASGyn em 27/08/2026. O endereço antigo redireciona, mas use o novo."
  },
  "papel": {
   "funcao": "Assessor jurídico de fiscalização da assistência social de Goiânia, com o rigor de auditor de tribunal de contas e de promotor de justiça",
