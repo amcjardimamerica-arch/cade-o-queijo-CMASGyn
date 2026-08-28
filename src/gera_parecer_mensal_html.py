@@ -143,6 +143,7 @@ padding:9px 12px;cursor:pointer;list-style:none;font:13px/1.45 Arial,sans-serif}
 .sem.azul{background:#1d4f8a;box-shadow:0 0 0 3px #1d4f8a33}
 .sem.laranja{background:#e07b00;box-shadow:0 0 0 3px #e07b0033}
 .sem.vermelho{background:#c1281f;box-shadow:0 0 0 3px #c1281f33}
+.sem.roxo{background:#6b3fa0;box-shadow:0 0 0 3px #6b3fa033}
 .plin .det{border-top:1px dashed var(--linha);padding:10px 12px;font:13px/1.6 Arial,sans-serif;background:#fbfaf7}
 .ficha{background:#fff;border:1px solid var(--linha);border-radius:6px;
 margin:0 0 16px;overflow:hidden;page-break-inside:avoid}
@@ -761,6 +762,163 @@ def prestacao_gabinete(comp, evs, nome_mes):
             f'{corpo_dot}</div></div>')
 
 
+NAT_NOME = {
+    "3.1.90.11": "Vencimentos e vantagens fixas — pessoal civil",
+    "3.1.90.13": "Obrigações patronais",
+    "3.1.90.92": "Despesas de exercícios anteriores — pessoal",
+    "3.1.90.96": "Ressarcimento de pessoal requisitado",
+    "3.3.90.14": "Diárias — civil",
+    "3.3.90.30": "Material de consumo",
+    "3.3.90.32": "Material, bem ou serviço para distribuição gratuita",
+    "3.3.90.39": "Outros serviços de terceiros — pessoa jurídica",
+    "3.3.50.41": "Contribuições a entidades privadas sem fins lucrativos",
+    "4.4.90.52": "Equipamentos e material permanente",
+}
+
+
+def prestacao_gabinete_completa(comp, evs, nome_mes, fluxo):
+    """Prestação de contas da conta 3601 no mesmo padrão da Parte I:
+    cada destinação do QDD pormenorizada em linha própria, com semáforo —
+    ROXO quando não existe informação publicada sobre a execução."""
+    gab = next(c for c in fluxo["contas"] if c["unidade"] == "3601")
+    try:
+        qdd = carrega("qdd_2026.json")
+    except FileNotFoundError:
+        qdd = []
+    acoes = {}
+    for r in qdd:
+        if str(r.get("unid", "")).startswith("3601"):
+            a = acoes.setdefault(r["acao"], {"v": 0.0, "nome": r["nome"],
+                                             "nats": {}, "fontes": set()})
+            a["v"] += r["valor"]
+            a["nats"][r.get("nat_fmt", "?")] = (
+                a["nats"].get(r.get("nat_fmt", "?"), 0) + r["valor"])
+            a["fontes"].add(str(r.get("fonte", "?")))
+    capturado = sum(a["v"] for a in acoes.values())
+    resto = max(gab["valor"] - capturado, 0)
+
+    def linha(titulo, sub, oq, sem, tip, det):
+        return (f'<details class="plin"><summary>'
+                f'<span class="quem"><b>{esc(titulo)}</b>{esc(sub)}</span>'
+                f'<span class="oq">{oq}</span>'
+                f'<span class="sem {sem}" data-tip="{esc(tip)}"></span>'
+                f'</summary><div class="det">{det}</div></details>')
+
+    linhas = []
+    for cod, a in sorted(acoes.items(), key=lambda kv: -kv[1]["v"]):
+        nats = "".join(
+            f'<span class="li"><b class="k">{k}</b>'
+            f'{NAT_NOME.get(k[:9], "natureza da despesa")} — {fmt(v)}</span>'
+            for k, v in sorted(a["nats"].items(), key=lambda x: -x[1]))
+        pess = a["nats"].get("3.1.90.11", 0)
+        alerta = ("<br><b>Atenção — pessoal:</b> esta destinação soma para o "
+                  "teto de 30% do Artigo 4º da Lei Complementar municipal "
+                  "273/2014, hoje inaferível pela invisibilidade da folha "
+                  "(achado PES-01/PES-02)." if pess else "")
+        tip = (f"SEM INFORMAÇÃO PUBLICADA: dotação de {fmt(a['v'])} e nenhum "
+               "empenho, liquidação ou pagamento identificável desta ação em "
+               "edição alguma do exercício — a dotação publicada no Diário "
+               "não carrega o código da unidade.")
+        det = (f'<b>Ação:</b> {cod} · <b>fontes:</b> '
+               f'{", ".join(sorted(a["fontes"]))}<br>'
+               f'<b>Detalhamento por natureza (QDD):</b>'
+               f'<div class="ev" style="--pt:#6b3fa0">{nats}</div>'
+               f'<b>Execução publicada em {nome_mes}:</b> nenhuma '
+               f'identificável.<br><b>O que falta e onde obter:</b> empenhos '
+               f'a débito da dotação {cod}, notas de liquidação e ordens de '
+               f'pagamento — Artigo 61, Artigo 63 e Artigo 64 da Lei '
+               f'4.320/1964; Artigo 48-A, inciso I, da Lei Complementar '
+               f'101/2000. Fonte: QDD integral ou portal da transparência '
+               f'(pendência P2).{alerta}')
+        linhas.append(linha(a["nome"].title(), f"ação {cod}",
+                            f'<b>{fmt(a["v"])}</b>dotado no QDD',
+                            "roxo", tip, det))
+    if resto > 0:
+        linhas.append(linha(
+            "Linhas do QDD ainda não capturadas",
+            f"{100*resto/gab['valor']:.0f}% da unidade",
+            f'<b>{fmt(resto)}</b>sem detalhamento capturado', "roxo",
+            "SEM INFORMAÇÃO PUBLICADA/CAPTURADA: parcela da unidade cujo "
+            "detalhamento do QDD ainda não foi extraído — lacuna de captura, "
+            "não conformidade.",
+            "Extração do QDD alcançou " + fmt(capturado) + " de "
+            + fmt(gab["valor"]) + ". Dado faltante é achado: o detalhamento "
+            "integral é exigível — Artigo 48-A, inciso I, da Lei "
+            "Complementar 101/2000."))
+    cab = ('<p class="explica">Cada destinação do Quadro de Detalhamento da '
+           'Despesa da unidade 3601, pormenorizada: passe o mouse no símbolo '
+           'para o estado da informação; clique na linha para naturezas, '
+           'fontes e o que falta. O símbolo ROXO marca ausência de '
+           'informação publicada.</p>'
+           '<p class="legenda"><span class="sem roxo" style="display:inline-'
+           'block;vertical-align:-3px"></span> sem informação publicada '
+           '— nenhuma execução identificável da destinação</p>')
+    return cab + '<div class="presta">' + "".join(linhas) + '</div>'
+
+
+def folha_gabinete_resumo(nome_mes):
+    """Resumo dirigido da folha do Gabinete: só o que interessa ao rigor —
+    adicionais, horas extras e pagamentos acima do teto municipal. Como a
+    folha é invisível (nenhuma linha 3.1.90.11 publicada, achado PES-01),
+    as três categorias saem em ROXO com a norma e o documento necessário."""
+    try:
+        fin = carrega("financeiro.json")
+        g31 = {k: v for k, v in fin.get("por_natureza", {}).items()
+               if k.startswith("319")}
+    except FileNotFoundError:
+        g31 = {}
+    cats = [
+        ("Adicionais e gratificações",
+         "adicionais noturno, de insalubridade, de periculosidade e "
+         "gratificações de qualquer espécie",
+         "folha analítica por competência com rubricas — Artigo 48-A, "
+         "inciso I, da Lei Complementar 101/2000; Artigo 8º, § 1º, "
+         "inciso III, da Lei 12.527/2011"),
+        ("Horas extras — serviço extraordinário",
+         "quantidade e valor de horas extraordinárias por servidor "
+         "(primeiro nome apenas, minimizado na extração)",
+         "folha analítica e atos de autorização do serviço extraordinário — "
+         "Artigo 48-A, inciso I, da Lei Complementar 101/2000"),
+        ("Pagamentos acima do teto municipal",
+         "remunerações que excedam o subsídio do Prefeito, teto no "
+         "Município",
+         "Artigo 37, inciso XI, da Constituição da República; conferência "
+         "exige a folha nominal com totais por servidor"),
+    ]
+    cards = []
+    for tit, escopo, norma in cats:
+        cards.append(
+            f'<details class="plin"><summary>'
+            f'<span class="quem"><b>{tit}</b>{escopo}</span>'
+            f'<span class="oq"><b>—</b>sem informação publicada</span>'
+            f'<span class="sem roxo" data-tip="SEM INFORMAÇÃO PUBLICADA: '
+            f'a folha da unidade não consta de nenhuma edição do exercício '
+            f'(achado PES-01) — impossível confirmar ou afastar."></span>'
+            f'</summary><div class="det"><b>O que seria conferido:</b> '
+            f'{escopo}.<br><b>Documento necessário e fundamento:</b> '
+            f'{norma}.</div></details>')
+    sobras = "".join(
+        f'<span class="li"><b class="k">{k[:1]}.{k[1]}.{k[2:4]}.{k[4:6]}</b>'
+        f'{NAT_NOME.get(f"{k[:1]}.{k[1]}.{k[2:4]}.{k[4:6]}", "rubrica do grupo de pessoal")} — '
+        f'{fmt(v["valor"])} em {v["linhas"]} linha(s)</span>'
+        for k, v in sorted(g31.items(), key=lambda x: -x[1]["valor"]))
+    nota = (f'<div class="estrutural" style="margin-top:10px"><b>O que o '
+            f'grupo de pessoal efetivamente publicou no exercício '
+            f'(nenhuma é a folha):</b><div class="ev" style="--pt:#6b3fa0">'
+            f'{sobras or "<span class=li>nada do grupo 31 publicado</span>"}'
+            f'</div>Dotação de folha do Gabinete no QDD: R$ 48.204.000 '
+            f'(3.1.90.11) — publicada como previsão, jamais como execução. '
+            f'A vedação de custear pessoal efetivo e gratificações com '
+            f'recurso do IGD do controle social (Artigo 12-A, § 4º, da Lei '
+            f'8.742/1993) também fica inaferível sem a folha por fonte '
+            f'(achado PES-07).</div>')
+    return ('<p class="explica">Resumo dirigido: apenas as informações de '
+            'salário que interessam ao controle — adicionais, horas extras '
+            'e pagamentos acima do teto municipal. Tudo em ROXO porque a '
+            'folha é invisível no acervo.</p>'
+            '<div class="presta">' + "".join(cards) + '</div>' + nota)
+
+
 def fluxo_estacoes_svg(previsto_total, est):
     ordem = [("dotacao", "Dotação"), ("empenho", "Empenho"),
              ("liquidacao", "Liquidação"), ("pagamento", "Pagamento")]
@@ -1343,6 +1501,12 @@ para o resumo de cada balão e seta, clique abaixo para os dados completos.</p>
 
 <h2><span data-tip="o que a conta 3601 publicou (ou omitiu) na competência">S2 · Prestação de contas mensal da conta 3601 — análise individual</span></h2>
 {prestacao_gabinete(comp, evs, v["mes"])}
+
+<h2><span data-tip="cada destinação do QDD da unidade 3601, pormenorizada, com o estado da informação em símbolo — roxo quando nada foi publicado">S3 · Prestação de contas por destinação do QDD — pormenorizada</span></h2>
+{prestacao_gabinete_completa(comp, evs, v["mes"], fluxo)}
+
+<h2><span data-tip="apenas adicionais, horas extras e pagamentos acima do teto municipal — o restante da folha não entra no resumo">S4 · Folha do Gabinete — resumo dirigido (adicionais, horas extras e teto)</span></h2>
+{folha_gabinete_resumo(v["mes"])}
 
 <h2>G6 · Condições estruturais que perduram na competência</h2>
 <div class="estrutural"><ul>{estruturais}</ul>
