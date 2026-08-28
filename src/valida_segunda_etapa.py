@@ -4,25 +4,29 @@ no ar, para que cada informação indisponível no Diário aponte um caminho
 concreto — e resolve a pendência P2 descobrindo o endereço vivo do portal
 da transparência. Camada 0: nenhuma chamada de modelo."""
 from __future__ import annotations
-import json, sys, urllib.request, ssl
+import json, sys
 from datetime import date
 from pathlib import Path
 import yaml
 
 RAIZ = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(RAIZ / "src"))
 CFG = yaml.safe_load((RAIZ / "config" / "segunda_etapa.yml").read_text())
-CTX = ssl.create_default_context(); CTX.check_hostname=False; CTX.verify_mode=ssl.CERT_NONE
-UA = {"User-Agent": "AMC-Jardim-America-Vigilancia/1.0"}
+import requests
+requests.packages.urllib3.disable_warnings()
+SESS = requests.Session()
+SESS.verify = False
+SESS.headers.update({"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) "
+                     "AMC-Jardim-America-Vigilancia/1.0",
+                     "Accept": "text/html,application/xhtml+xml,*/*;q=0.8"})
 
 
 def sonda(url):
     try:
-        req = urllib.request.Request(url, headers=UA, method="GET")
-        with urllib.request.urlopen(req, timeout=25, context=CTX) as r:
-            return r.status, r.geturl()
-    except urllib.error.HTTPError as e:
-        return e.code, url
-    except Exception:
+        r = SESS.get(url, timeout=30, allow_redirects=True)
+        return r.status_code, r.url
+    except Exception as e:
+        print(f"    [{type(e).__name__}] {url}", file=sys.stderr)
         return None, url
 
 
