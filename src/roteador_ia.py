@@ -23,6 +23,9 @@ MODELOS = {
     "haiku":  "claude-haiku-4-5-20251001",
     "sonnet": "claude-sonnet-4-6",
     "opus":   "claude-opus-4-6",
+    # nível de julgamento: modelos mais avançados, reservados a avaliação
+    # consolidada — nunca a triagem ou extração
+    "fable":  "claude-fable-5",
 }
 
 # ---------------------------------------------------------------------------
@@ -55,6 +58,10 @@ HAIKU = {
         "O texto trata de saúde, educação, meio ambiente ou cemitérios? Responda o domínio ou NENHUM.",
     "resumir_ementa":
         "Resuma o objeto em no máximo 20 palavras. Sem adjetivo.",
+    "triar_precedente_transparencia":
+        "O título trata de medida concreta (TAC, decisão, recomendação, condenação) "
+        "sobre transparência pública, Diário Oficial ou conselho de política pública? "
+        "Responda apenas ALTA, MEDIA ou BAIXA.",
     "extrair_linha_de_folha":
         "Extraia {primeiro_nome, cargo, valor, vinculo}. Apenas o PRIMEIRO NOME da pessoa. JSON puro.",
 }

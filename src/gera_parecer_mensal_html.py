@@ -417,6 +417,13 @@ def gera(comp):
     trilha = carrega("trilha_dinheiro.json")
     dest = carrega("destinatarios_2026.json")
     mapa_ent = {d["cnpj"]: d.get("razao_social") for d in dest["destinatarios"]}
+    # complemento cirúrgico da base oficial do CNPJ (Receita Federal)
+    try:
+        compl = carrega("cadastro_cnpj_complementar.json")
+        for c, d in compl.get("cadastros", {}).items():
+            mapa_ent.setdefault(c, d.get("razao_social"))
+    except FileNotFoundError:
+        pass
     comp_rec = next((c for c in receita["competencias"]
                      if c["competencia"] == comp), None)
     evs = [e for e in trilha["detalhe"]

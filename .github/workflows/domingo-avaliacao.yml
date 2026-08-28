@@ -1,0 +1,46 @@
+name: Domingo — avaliação das contas
+# 6h da manhã em Goiânia (UTC-3) = 9h UTC, todo domingo.
+# Todo domingo: avaliação do que foi lançado na semana.
+# Primeiro domingo após o fim do mês: consolidação da competência encerrada.
+# Levantamento determinístico; julgamento no modelo avançado (Fable 5,
+# fallback Opus). Sem chave, publica dossiê com AVALIACAO_PENDENTE_DE_MODELO.
+on:
+  schedule: [{cron: "0 9 * * 0"}]
+  workflow_dispatch:
+permissions: {contents: write}
+concurrency: {group: fiscalizacao, cancel-in-progress: false}
+jobs:
+  avaliar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install --quiet -r requirements.txt
+      - name: Enriquecer cadastro de CNPJs pendentes (camada 0)
+        run: python src/enriquece_cnpj.py --limite 60 || true
+      - name: Capturar precedentes de transparência (camada 0 + Haiku opcional)
+        env: {ANTHROPIC_API_KEY: "${{ secrets.ANTHROPIC_API_KEY }}"}
+        run: python scripts/captura_precedentes.py || true
+      - name: Verificação mensal da competência encerrada, se houver
+        run: |
+          python - <<'PY'
+          from datetime import date, timedelta
+          h = date.today()
+          if h.weekday() == 6 and h.day <= 7:
+              import subprocess, sys
+              c = f"{(h.replace(day=1)-timedelta(days=1)):%Y-%m}"
+              subprocess.run([sys.executable, "src/run_mensal.py", c])
+          PY
+      - name: Avaliação dominical (julgamento — modelo avançado)
+        env: {ANTHROPIC_API_KEY: "${{ secrets.ANTHROPIC_API_KEY }}"}
+        run: python src/avaliacao_dominical.py
+      - name: Publicar
+        run: |
+          git config user.name "vigilancia-bot"
+          git config user.email "vigilancia@users.noreply.github.com"
+          git add -A dados/cadastro_cnpj_complementar.json estado/cnpj.json \
+                     referencias/ relatorios/avaliacao_dominical/ \
+                     relatorios/mensal/ docs/mensal/ || true
+          git diff --cached --quiet || git commit -m "avaliação dominical $(date -u +%F)"
+          git push

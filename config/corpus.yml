@@ -35,6 +35,15 @@ blocos:
   - id: l12527
     nome: Lei 12.527/2011 — LAI
     url: https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2011/lei/l12527.htm
+  - id: lc131
+    nome: Lei Complementar 131/2009 — Lei da Transparência
+    url: https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp131.htm
+  - id: l9755
+    nome: Lei 9.755/1998 — página de contas públicas na internet
+    url: https://www.planalto.gov.br/ccivil_03/leis/l9755.htm
+  - id: l14129
+    nome: Lei 14.129/2021 — Governo Digital
+    url: https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/L14129.htm
   - id: l13019
     nome: Lei 13.019/2014 — MROSC
     url: https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l13019.htm
@@ -71,6 +80,9 @@ blocos:
   - id: l14133
     nome: Lei 14.133/2021 — Licitações
     url: https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14133.htm
+  - id: d10540
+    nome: Decreto 10.540/2020 — padrão mínimo do SIAFIC (transparência da execução)
+    url: https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/decreto/D10540.htm
   federal_infralegal:
   - id: d11699
     nome: Decreto 11.699/2023
@@ -112,6 +124,13 @@ blocos:
     obrigatorio: false
     local: CONFIRMAR
   municipal_goiania:
+  - id: ppa_goiania
+    nome: Plano Plurianual de Goiânia 2026-2029 — programas e metas da assistência social
+    url: null
+    obrigatorio: false
+    local: CONFIRMAR
+    nota: lei municipal do PPA vigente; obter no sítio da Câmara ou no Diário Oficial e
+      preencher a url — enquanto faltar, é documento requisitado, não silêncio
   - id: l7531_1995
     nome: Lei municipal 7.531/1995 — cria o Fundo Municipal de Assistência Social
     url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/1995/lo_19951226_000007531.html

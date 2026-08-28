@@ -1,0 +1,19 @@
+{
+ "cadastros": {},
+ "artefatos_de_extracao": [
+  {
+   "texto_extraido": "02.430.968/0003-51",
+   "motivo": "dígito verificador inválido — artefato do extrator; corrigir em src/extracao.py, não no dado"
+  },
+  {
+   "texto_extraido": "15.124.498/0001-51",
+   "motivo": "dígito verificador inválido — artefato do extrator; corrigir em src/extracao.py, não no dado"
+  },
+  {
+   "texto_extraido": "75185877518587",
+   "motivo": "dígito verificador inválido — artefato do extrator; corrigir em src/extracao.py, não no dado"
+  }
+ ],
+ "gerado_em": "2026-08-28",
+ "nota": "Complemento cirúrgico: só CNPJs citados na trilha sem razão social no cadastro principal. Zero tokens de IA."
+}
