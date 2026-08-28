@@ -149,10 +149,3 @@ retenção deixa lápide — data, endereço e hash —, de modo que se possa pr
 que naquela edição nada havia de relevante.
 
 ---
-
-## Limites
-
-Este sistema produz indícios e minutas. Não produz peças processuais nem
-juízos definitivos. O artigo 32 da Lei 8.906/1994 responsabiliza o advogado por
-dolo ou culpa no exercício profissional: **nenhum documento deve ser protocolado
-sem revisão humana**.
