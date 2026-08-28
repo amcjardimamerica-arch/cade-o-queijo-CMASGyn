@@ -1,8 +1,8 @@
 {
-  "gerado_em": "2026-08-27T22:27:37.338926+00:00",
-  "corpus_sha256": "4025e63c87a12e6a8440a3ea0621f66e58626bc3860566acd8923b7d06fa2b0d",
-  "corpus_gerado_em": "2026-08-27T22:27:03.004037+00:00",
-  "normas_no_corpus": 17,
+  "gerado_em": "2026-08-28T17:30:46.114495+00:00",
+  "corpus_sha256": "9e60d6543918267d3ecc5bdfe05984974ea9412bdf97a1f32b0f3697963714c8",
+  "corpus_gerado_em": "2026-08-28T17:30:28.975268+00:00",
+  "normas_no_corpus": 18,
   "extraidos": {
     "percentual_igd_controle_social": {
       "regex": "(?:no\\s+m[íi]nimo|pelo\\s+menos)\\s+(\\d{1,3})\\s*%[^.]{0,240}(?:IGD|[ÍIí]ndice\\s+de\\s+Gest[ãa]o\\s+Descentralizada)[^.]{0,240}(?:controle\\s+social|conselho[s]?\\s+de\\s+assist)",

@@ -1,9 +1,9 @@
 {
-  "gerado_em": "2026-08-27T22:27:03.004037+00:00",
-  "sha256": "4025e63c87a12e6a8440a3ea0621f66e58626bc3860566acd8923b7d06fa2b0d",
-  "caracteres": 2198431,
-  "tokens_estimados": 732810,
-  "normas": 17,
+  "gerado_em": "2026-08-28T17:30:28.975268+00:00",
+  "sha256": "9e60d6543918267d3ecc5bdfe05984974ea9412bdf97a1f32b0f3697963714c8",
+  "caracteres": 2199693,
+  "tokens_estimados": 733231,
+  "normas": 18,
   "indice": [
     {
       "id": "r202_2025",
@@ -96,6 +96,15 @@
       "critico": false
     },
     {
+      "id": "tcmgo_osc",
+      "nome": "Atos do TCM-GO sobre repasses a entidades do terceiro setor — controle e prestação de contas",
+      "bloco": "entidades_terceiro_setor",
+      "url": "https://www.tcmgo.tc.br/site/legislacao/atos-normativos-do-tcm/in/",
+      "sha256": "25d63d7457c0a88a32b37f12603ceec690cc35f1a1041dde89ac5975e29aca61",
+      "caracteres": 851,
+      "critico": false
+    },
+    {
       "id": "tcmgo_lo",
       "nome": "Lei estadual 15.958/2007 — Lei Orgânica do Tribunal de Contas dos Municípios de Goiás",
       "bloco": "controle_externo",
@@ -109,7 +118,7 @@
       "nome": "Instruções Normativas do TCM-GO — prestação de contas",
       "bloco": "controle_externo",
       "url": "https://www.tcmgo.tc.br/site/legislacao/atos-normativos-do-tcm/in/",
-      "sha256": "7ce0adb1c1ceaf5479364dcaa1cc4a83e9251018832b32e6886fde6b67b79ba5",
+      "sha256": "d4c2c260217c0dfb7f782e10d19d4d5b968438c12c199fb2fc6b86c21958879c",
       "caracteres": 851,
       "critico": false
     },
@@ -118,7 +127,7 @@
       "nome": "Decisões Normativas do TCM-GO",
       "bloco": "controle_externo",
       "url": "https://www.tcmgo.tc.br/site/legislacao/atos-normativos-do-tcm/dn/",
-      "sha256": "2cacb782af6fd50b09dfb83739855e3ad67b9c7490bfe2fd3717abe5fa512e36",
+      "sha256": "25967860e4230227f51ed262992fdfbf956efad11c1431fa4ecd93f2b8e2cad1",
       "caracteres": 846,
       "critico": false
     },
@@ -127,7 +136,7 @@
       "nome": "Diário Oficial de Contas do TCM-GO",
       "bloco": "controle_externo",
       "url": "https://www.tcm.go.gov.br/doc/",
-      "sha256": "1c2da04dd07f9cd98a61d1a1f6db7a6a5f23c239dcf060c506f29e9b1f7689fc",
+      "sha256": "c4889fad7cd10c1ec4d7aa88e467456e5266fcd44e2489dc26fb938d23957e66",
       "caracteres": 956,
       "critico": false
     },
@@ -136,8 +145,8 @@
       "nome": "Tribunal de Contas do Estado de Goiás",
       "bloco": "controle_externo",
       "url": "https://www.tce.go.gov.br",
-      "sha256": "8ead476cd9e0f1ffcb93cadea14a927813d122d13c633f58326a9944437467d1",
-      "caracteres": 2737,
+      "sha256": "fb8ad919a5671db4e9e8ff8a8b44edb054bf61f5262b06deff13f5214f803fd2",
+      "caracteres": 2780,
       "critico": false
     },
     {
@@ -145,7 +154,7 @@
       "nome": "Atos e normas do Conselho Nacional do Ministério Público",
       "bloco": "controle_externo",
       "url": "https://www.cnmp.mp.br/portal/atos-e-normas",
-      "sha256": "8c18c64e45b8c2bd9b3b4f4dd12e63d733fafd6ad6f15cb3f4a572507952ac22",
+      "sha256": "412c065707811400c001eee9649f699e95107822aef9f3493a984d3ba7ac9cca",
       "caracteres": 9643,
       "critico": false
     },
@@ -154,10 +163,10 @@
       "nome": "Ministério Público Federal",
       "bloco": "controle_externo",
       "url": "https://www.mpf.mp.br",
-      "sha256": "394ff098e0e36bd55ccafed2ac0a99e21925fce6236c90d099abcae8ac3de5cd",
-      "caracteres": 3304,
+      "sha256": "7abb5609c493d401a046d9f6bc96894d5bf89736b7cea8549575e2a1c83f6e73",
+      "caracteres": 3292,
       "critico": false
     }
   ],
-  "pendencias": 31
+  "pendencias": 41
 }

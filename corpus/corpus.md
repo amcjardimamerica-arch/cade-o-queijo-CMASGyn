@@ -1,5 +1,5 @@
 # CORPUS NORMATIVO — VIGILÂNCIA DO CMASGyn
-# Consolidado em 2026-08-27
+# Consolidado em 2026-08-28
 # Este bloco é prefixo estável de prompt. Não editar manualmente.
 
 
@@ -52419,6 +52419,175 @@ Assinado Digitalmente: www.goiania.go.gov.br
 
 
 ==============================================================================
+# BLOCO: ENTIDADES_TERCEIRO_SETOR
+==============================================================================
+
+
+## [tcmgo_osc] Atos do TCM-GO sobre repasses a entidades do terceiro setor — controle e prestação de contas
+Fonte: https://www.tcmgo.tc.br/site/legislacao/atos-normativos-do-tcm/in/
+
+Instruções Normativas/Resoluções Normativas do TCMGO - Tribunal de Contas dos Municípios do Estado de Goiás
+
+ 
+
+2026
+
+Acesse aqui
+
+2025
+
+Acesse aqui
+
+2024
+
+Acesse aqui
+
+2023
+
+Acesse aqui
+
+2022
+
+Acesse aqui
+
+2021
+
+Acesse aqui
+
+2020
+
+Acesse aqui
+
+2019
+
+Acesse aqui
+
+2018
+
+Acesse aqui
+
+2017
+
+Acesse aqui
+
+2016
+
+Acesse aqui
+
+2015
+
+Acesse aqui
+
+2014
+
+Acesse aqui
+
+2013
+
+Acesse aqui
+
+2012
+
+Acesse aqui
+
+2011
+
+Acesse aqui
+
+2010
+
+Acesse aqui
+
+2009
+
+Acesse aqui
+
+2008
+
+Acesse aqui
+
+2007
+
+Acesse aqui
+
+2006
+
+Acesse aqui
+
+2005
+
+Acesse aqui
+
+2004
+
+Acesse aqui
+
+2003
+
+Acesse aqui
+
+2002
+
+Acesse aqui
+
+2001
+
+Acesse aqui
+
+2000
+
+Acesse aqui
+
+1999
+
+Acesse aqui
+
+1998
+
+Acesse aqui
+
+1997
+
+Acesse aqui
+
+1996
+
+Acesse aqui
+
+1995
+
+Acesse aqui
+
+1994
+
+Acesse aqui
+
+1993
+
+Acesse aqui
+
+1992
+
+Acesse aqui
+
+1991
+
+Acesse aqui
+
+1990
+
+Acesse aqui
+
+1989
+
+Acesse aqui
+
+1988
+
+Acesse aqui
+
+
+==============================================================================
 # BLOCO: CONTROLE_EXTERNO
 ==============================================================================
 
@@ -52955,9 +53124,9 @@ Ciência e políticas públicas marcam programação da manhã do segundo dia do
 
 LER MAIS
 
-Falta de saneamento básico causa mais de 100 mil internações infantis por ano no Brasil
+III ENAPI destaca ações integradas para garantir direitos na primeira infância
 
- Impacto na primeira infância é tema de palestra no III ENAPI
+ Programação reuniu debates sobre saúde, educação, contato com a natureza e boas práticas dos Tribunais de Contas
  
 
 LER MAIS
@@ -53599,6 +53768,22 @@ Não achou? Use a página completa de serviços.
  Ver todos os serviços
  
 
+Criminal
+
+MPF e Receita Federal deflagram Operação Jogo de Sombras contra esquema envolvendo apostas esportivas
+
+São cumpridos seis mandados de busca e apreensão em Pernambuco, Paraíba e São Paulo para apurar indícios de sonegação fiscal, evasão de divisas e lavagem de dinheiro
+
+28/08/2026 | 08:00
+
+Criminal
+
+MPF obtém condenação por corrupção e lavagem de dinheiro em obra de hospital no Paraná
+
+Justiça Federal condenou dois réus a 11 anos de prisão e fixou reparação mínima de R$ 1,16 milhão
+
+28/08/2026 | 12:59
+
 Eleitoral
 
 MP Eleitoral contesta mais de 900 registros de candidatura nas Eleições 2026
@@ -53606,22 +53791,6 @@ MP Eleitoral contesta mais de 900 registros de candidatura nas Eleições 2026
 Casos de inelegibilidade, condenações por improbidade, suspeita de envolvimento com o crime organizado são alguns dos motivos apontados
 
 27/08/2026 | 09:00
-
-Criminal
-
-Para fortalecer combate ao crime organizado, MPF cria ofícios especiais e regionaliza atuação dos Gaecos
-
-Gaecos locais foram agrupados em oito núcleos regionais para otimizar recursos e ampliar o alcance das investigações
-
-26/08/2026 | 17:30
-
-Consumidor e Ordem Econômica
-
-MPF debate com mercado e especialistas os desafios da regulação de marketplaces
-
-Com apoio da FGV, Câmara de Consumidor e Ordem Econômica debate concorrência e pirataria no e-commerce e aponta próximos passos
-
-27/08/2026 | 09:51
 
 Serviço
 
@@ -53641,13 +53810,13 @@ Mais notícias +
 
 Mais notícias +
 
-Patrimônio Cultural
+Meio Ambiente
 
-Patrimônio Cultural: MPF firma acordo com Iphan para fiscalização de sítio arqueológico em obras do metrô de São Paulo
+MPF obtém decisão no TRF1 que obriga União e ICMBio a fixarem zonas de amortecimento em unidades de conservação
 
-Medida preserva área do Complexo Rapadura, na zona leste, que corria risco de danos irreversíveis com obras da Linha 2-Verde
+Tribunal confirmou prazo de cinco anos para delimitação das áreas de proteção
 
-27/08/2026 | 11:49
+27/08/2026 | 14:42
 
 Patrimônio Cultural
 
@@ -53657,13 +53826,13 @@ Patrimônio Cultural: MPF ajuíza ação contra concessionária por demolição 
 
 27/08/2026 | 14:21
 
-Indígenas
+Meio Ambiente
 
-MPF garante no TRF1 posse tradicional de 75 mil hectares para indígenas e anula títulos privados em Mato Grosso
+Justiça Federal acolhe pedido do MPF e determina medidas emergenciais para proteger peixe-boi Astro em Sergipe
 
-Tribunal acolheu parecer do MPF e confirmou a validade da demarcação da Terra Indígena Kayabi, em Apiacás
+Decisão estabelece fiscalização náutica, uso de protetores de hélice, educação ambiental e governança integrada nos estuários de Sergipe e da Bahia
 
-27/08/2026 | 13:25
+27/08/2026 | 15:43
 
 Oportunidade
 
