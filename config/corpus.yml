@@ -158,6 +158,26 @@ blocos:
   - id: loa_2025
     nome: Lei Orçamentária Anual 11.315/2025 — anexos
     url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2025/lo_20250107_000011315_ane_000000001.pdf
+  entidades_terceiro_setor:
+  - id: l13019_ref
+    nome: Lei 13.019/2014 — MROSC (referência cruzada do bloco federal_leis)
+    url: https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l13019.htm
+  - id: d8726
+    nome: Decreto 8.726/2016 — regulamento da Lei 13.019/2014
+    url: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2016/decreto/d8726.htm
+  - id: l9790
+    nome: Lei 9.790/1999 — OSCIP e termo de parceria
+    url: https://www.planalto.gov.br/ccivil_03/leis/l9790.htm
+  - id: d3100
+    nome: Decreto 3.100/1999 — regulamento da Lei 9.790/1999
+    url: https://www.planalto.gov.br/ccivil_03/decreto/d3100.htm
+  - id: l12101
+    nome: Lei 12.101/2009 — certificação de entidades beneficentes (CEBAS)
+    url: https://www.planalto.gov.br/ccivil_03/_ato2007-2010/2009/lei/l12101.htm
+  - id: tcmgo_osc
+    nome: Atos do TCM-GO sobre repasses a entidades do terceiro setor — controle e prestação de contas
+    url: https://www.tcmgo.tc.br/site/legislacao/atos-normativos-do-tcm/in/
+    nota: mesmo índice de Instruções Normativas; recorte pelas que tratam de parcerias com OSC
   controle_externo:
   - id: tcmgo_lo
     nome: Lei estadual 15.958/2007 — Lei Orgânica do Tribunal de Contas dos Municípios de Goiás

@@ -38,7 +38,7 @@ DADOS = RAIZ / "dados"
 REL = RAIZ / "relatorios" / "mensal"
 DOCS = RAIZ / "docs" / "mensal"
 sys.path.insert(0, str(RAIZ / "src"))
-from marca import cabecalho_html
+from marca import cabecalho_html, rodape_marca_html
 
 COR_SEV = {"critica": "#8c1d18", "alta": "#a85b00", "media": "#5c5c00"}
 ROTULO_SEV = {"critica": "CRÍTICA", "alta": "ALTA", "media": "MÉDIA"}
@@ -87,12 +87,12 @@ h2{font:700 13px/1.4 Arial,sans-serif;letter-spacing:.14em;text-transform:upperc
 border-bottom:1px solid var(--linha);padding-bottom:6px;margin:36px 0 12px}
 .explica{font:13px/1.6 Arial,sans-serif;color:var(--suave);margin:0 0 12px}
 [data-tip]{position:relative;cursor:help}
-[data-tip]:hover::after{content:attr(data-tip);position:absolute;left:0;bottom:calc(100% + 8px);
+[data-tip]:hover::after{content:attr(data-tip);position:absolute;left:0;top:calc(100% + 8px);
 z-index:9;background:#1c2733;color:#fff;font:12px/1.5 Arial,sans-serif;padding:8px 11px;
 border-radius:6px;width:max-content;max-width:340px;white-space:normal;
 box-shadow:0 4px 14px rgba(0,0,0,.25)}
-[data-tip]:hover::before{content:"";position:absolute;left:14px;bottom:100%;z-index:9;
-border:7px solid transparent;border-top-color:#1c2733;transform:translateY(1px)}
+[data-tip]:hover::before{content:"";position:absolute;left:14px;top:100%;z-index:9;
+border:7px solid transparent;border-bottom-color:#1c2733;transform:translateY(-1px)}
 details.dados{margin:8px 0 4px;font:13px/1.6 Arial,sans-serif}
 details.dados>summary{cursor:pointer;color:var(--azul);font-weight:700;list-style:none}
 details.dados>summary::before{content:"▸ ";transition:.15s}
@@ -166,6 +166,35 @@ font:12px/1.7 Arial,sans-serif;color:var(--suave)}
 .adv{background:#fff;border:1px solid var(--rubrica);color:var(--rubrica);
 font:700 12px/1.6 Arial,sans-serif;padding:10px 14px;border-radius:4px;margin-bottom:10px}
 a{color:var(--azul)}
+.fxg{display:grid;grid-template-columns:1fr 84px 1.05fr 84px 1fr;gap:0;align-items:start}
+.fxg .colrot{grid-column:1/6;display:grid;grid-template-columns:1fr 84px 1.05fr 84px 1fr;
+font:700 11px/1.4 Arial,sans-serif;letter-spacing:.1em;color:var(--suave);
+text-transform:uppercase;text-align:center;margin-bottom:8px}
+.qds{display:grid;gap:10px}
+.qd{background:#fff;border:2px solid var(--qc,#3a5f8a);border-radius:10px;overflow:hidden}
+.qd>summary{list-style:none;cursor:pointer;padding:9px 10px;min-height:78px;
+display:flex;flex-direction:column;justify-content:center;gap:2px}
+.qd>summary::-webkit-details-marker{display:none}
+.qd .nm{font:700 12px/1.25 Arial,sans-serif}
+.qd .vl{font:700 13px/1.2 Arial,sans-serif;color:var(--qc,#3a5f8a)}
+.qd .sub{font:10px/1.3 Arial,sans-serif;color:var(--suave);text-transform:uppercase;letter-spacing:.06em}
+.qd .abre{border-top:1px dashed var(--linha);background:#fbfaf7;
+padding:9px 11px;font:12px/1.55 Arial,sans-serif}
+.qd.central{border-width:3px;box-shadow:0 2px 10px rgba(29,79,138,.18)}
+.qd.central>summary{min-height:110px;text-align:center;align-items:center}
+.setacol svg{width:100%;height:100%}
+.cr-bloco{margin:14px 0 6px;font:700 12px/1.4 Arial,sans-serif;letter-spacing:.12em;
+text-transform:uppercase;color:#fff;background:var(--bc,#3a5f8a);display:inline-block;
+padding:6px 12px;border-radius:6px}
+.cr-etapa{font:700 11px/1.4 Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;
+color:var(--suave);border-bottom:1px dashed var(--linha);margin:12px 0 8px;padding-bottom:4px}
+.ev .li{display:block;font:13px/1.65 Arial,sans-serif;padding:1px 0;border-bottom:1px dotted #eee8de}
+.ev .li b.k{display:inline-block;min-width:150px;font:700 10px/1.6 Arial,sans-serif;
+letter-spacing:.1em;text-transform:uppercase;color:var(--suave)}
+.parecer-mini{background:#fdf6f5;border-left:4px solid #c1281f;padding:8px 11px;
+font:13px/1.55 Arial,sans-serif;margin-top:6px;border-radius:0 6px 6px 0}
+.orig{display:inline-block;font:700 10px/1 Arial,sans-serif;letter-spacing:.06em;
+padding:4px 8px;border-radius:4px;background:#eef2f7;color:#1d4f8a;margin:2px 4px 2px 0}
 @media print{body{background:#fff}.ficha,.ev,.plin{box-shadow:none}
 [data-tip]:hover::after,[data-tip]:hover::before{display:none}}
 """
@@ -218,32 +247,51 @@ def detalhes(rotulo, corpo_html):
 
 
 def mapa_entidades():
-    """CNPJ (por dígitos) -> razão social, unindo o cadastro principal e o
-    complemento cirúrgico da base oficial da Receita Federal."""
+    """CNPJ (dígitos) -> {nome, municipio, uf, sem_fins} — cadastro principal
+    unido ao complemento cirúrgico da base oficial da Receita Federal."""
     m = {}
-    dest = carrega("destinatarios_2026.json")
-    for d in dest["destinatarios"]:
-        if d.get("razao_social"):
-            m[digitos(d["cnpj"])] = d["razao_social"]
+
+    def poe(c, d):
+        n = digitos(c)
+        if d.get("razao_social") and n not in m:
+            m[n] = {"nome": d["razao_social"],
+                    "municipio": (d.get("municipio") or "").upper(),
+                    "uf": d.get("uf") or "",
+                    "sem_fins": d.get("sem_fins_lucrativos")}
+    for d in carrega("destinatarios_2026.json")["destinatarios"]:
+        poe(d["cnpj"], d)
     try:
-        compl = carrega("cadastro_cnpj_complementar.json")
-        for c, d in compl.get("cadastros", {}).items():
-            if d.get("razao_social"):
-                m.setdefault(digitos(c), d["razao_social"])
+        for c, d in carrega("cadastro_cnpj_complementar.json")["cadastros"].items():
+            poe(c, d)
     except FileNotFoundError:
         pass
     return m
 
 
+def nome_de(mapa, c):
+    d = mapa.get(digitos(c))
+    return d["nome"] if d else None
+
+
 def classifica_valor(evento):
-    """O rótulo do valor segue a estação alcançada no próprio evento:
-    repasse/liquidação/pagamento publicados > empenho > menção textual."""
+    """Rótulo do valor pela estação alcançada — com a trava do valor
+    coletivo: página que lista muitas entidades e cita um único valor
+    dominante não autoriza atribuição individual (foi assim que
+    R$ 1.500.000,00 de uma deliberação apareceu 'para' 24 entidades)."""
     ests = set(evento.get("estacoes") or [])
+    ncnpj = len(evento.get("cnpjs") or [])
+    vs = evento.get("valores") or []
+    if ncnpj > 3 and len([v for v in vs if v == max(vs)]) <= 2 and len(vs) < ncnpj:
+        return "valor coletivo da página/deliberação — atribuição individual indevida"
     if ests & DESPESA:
         return "repasse publicado"
     if "empenho" in ests:
         return "empenho publicado"
     return "menção textual"
+
+
+def valor_coletivo(evento) -> bool:
+    return classifica_valor(evento).startswith("valor coletivo")
 
 
 # ------------------------------------------------------ camadas visuais
@@ -375,122 +423,187 @@ def _seta(x1, y1, x2, y2, esp, cor, tip, tracejada=False):
             f'{px2:.0f},{py2:.0f}" fill="{cor}"/></g>')
 
 
+def _qd(cor, nome, valor, sub, tip, abre, central=False):
+    return (f'<details class="qd{" central" if central else ""}" '
+            f'style="--qc:{cor}"><summary data-tip="{esc(tip)}">'
+            f'<span class="nm">{esc(nome)}</span>'
+            f'<span class="vl">{fmt(valor) if valor is not None else ""}</span>'
+            f'<span class="sub">{esc(sub)}</span></summary>'
+            f'<div class="abre">{abre}</div></details>')
+
+
+def _setas_svg(ys_origem, y_destino, larguras, cores, tips, invertido=False):
+    H = max(max(ys_origem, default=0), y_destino) + 60
+    g = [f'<svg viewBox="0 0 84 {H:.0f}" preserveAspectRatio="none" '
+         f'style="height:{H:.0f}px">']
+    for y, w, c, tp in zip(ys_origem, larguras, cores, tips):
+        x1, x2 = (2, 74) if not invertido else (2, 74)
+        y1, y2 = (y, y_destino) if not invertido else (y_destino, y)
+        g.append(f'<g><title>{esc(tp)}</title>'
+                 f'<path d="M{x1},{y1:.0f} C 40,{y1:.0f} 44,{y2:.0f} '
+                 f'{x2},{y2:.0f}" fill="none" stroke="{c}" '
+                 f'stroke-width="{w:.0f}" opacity=".85"/>'
+                 f'<polygon points="82,{y2:.0f} 71,{y2-6:.0f} 71,{y2+6:.0f}" '
+                 f'fill="{c}"/></g>')
+    g.append('</svg>')
+    return "".join(g)
+
+
 def fluxograma_baloes(fluxo, evs_mes, mapa, comp):
-    """Fluxograma de balões: entradas (fontes) → conta do Fundo → saídas
-    (despesas publicadas do exercício). Raio proporcional à raiz do valor;
-    hover mostra o resumo, o clique abre os dados completos."""
+    """Balões QUADRADOS em três colunas alinhadas — entrada, Fundo, saída.
+    Cada quadrado: resumo no hover (data-tip) e dados completos no clique
+    (o próprio quadrado abre). Setas com espessura proporcional ao valor."""
     fontes = sorted(fluxo["fontes"], key=lambda f: -f["valor"])[:6]
     fundo = next(c for c in fluxo["contas"] if c["unidade"] == "3650")
     saidas = sorted(fluxo["despesas"], key=lambda d: -d["valor"])[:6]
-    W, H = 900, 460
     maxf = max(f["valor"] for f in fontes)
     maxs = max((d["valor"] for d in saidas), default=1)
-    g = [f'<svg viewBox="0 0 {W} {H}" role="img">']
-    n = len(fontes)
-    cx_f, cx_c, cx_s = 120, W / 2, W - 130
+    ALT, GAP = 82, 10
+    n = max(len(fontes), len(saidas))
+    y_meio = (n * (ALT + GAP)) / 2
+
+    col_f, ys_f, ws_f, cs_f, tp_f = [], [], [], [], []
     for i, f in enumerate(fontes):
-        y = 50 + i * (H - 90) / max(n - 1, 1)
-        r = 18 + 26 * math.sqrt(f["valor"] / maxf)
         cor = COR_FONTE.get(f.get("fonte"), "#4a7c59")
         if f.get("status") != "comprovada":
             cor = "#8a8a94"
-        tip = (f'{f["nome"]} — {fmt(f["valor"])} no exercício '
-               f'({f.get("status", "?")}). Prova: {f.get("prova", "—")}')
-        g.append(_balao(cx_f, y, r, cor, f.get("fonte", "?"), f["valor"], tip))
-        g.append(_seta(cx_f + r, y, cx_c - 92, H / 2,
-                       2 + 8 * f["valor"] / maxf, cor,
-                       f'entrada: {f["nome"]} → conta do Fundo — '
-                       f'{fmt(f["valor"])}'))
-    g.append(_balao(cx_c, H / 2, 88, "#1d4f8a", "Conta especial|do Fundo|un. 3650",
-                    fundo["valor"],
-                    f'{fundo["nome"]} — {fmt(fundo["valor"])}. {fundo["nota"]} '
-                    f'Falta: {fundo.get("falta", "—")}'))
-    ev_desp = sum(1 for e in evs_mes if DESPESA & set(e.get("estacoes") or []))
+        tip = (f'{f["nome"]}: {fmt(f["valor"])} no exercício '
+               f'({f.get("status", "?")}).')
+        abre = (f'<b>Prova documental:</b> {esc(f.get("prova", "—"))}.<br>'
+                f'<b>Ente:</b> {esc(f.get("ente", "—"))} · '
+                f'<b>fonte orçamentária:</b> {esc(f.get("fonte", "—"))}.'
+                + ('<br><b>Omissão legal:</b> fonte sem prova publicada — '
+                   'Artigo 48-A da Lei Complementar 101/2000.'
+                   if f.get("status") != "comprovada" else ""))
+        col_f.append(_qd(cor, f["nome"].split("—")[0].strip(), f["valor"],
+                         f'fonte {f.get("fonte", "?")} · '
+                         f'{f.get("status", "?")}', tip, abre))
+        ys_f.append(i * (ALT + GAP) + ALT / 2)
+        ws_f.append(2 + 9 * f["valor"] / maxf)
+        cs_f.append(cor)
+        tp_f.append(f'entrada: {f["nome"]} → conta do Fundo — {fmt(f["valor"])}')
+
+    abre_fundo = (f'{esc(fundo["nota"])}<br><b>O que falta:</b> '
+                  f'{esc(fundo.get("falta", "—"))} — Artigo 30, inciso II, '
+                  f'da Lei 8.742/1993.')
+    card_fundo = _qd("#1d4f8a", "Conta especial do Fundo — un. 3650",
+                     fundo["valor"], "onde o Conselho controla",
+                     f'{fundo["nome"]}: {fmt(fundo["valor"])}. Clique para os '
+                     f'dados completos.', abre_fundo, central=True)
+
+    col_s, ys_s, ws_s, cs_s, tp_s = [], [], [], [], []
     for i, d in enumerate(saidas):
-        y = 50 + i * (H - 90) / max(len(saidas) - 1, 1)
-        r = 14 + 22 * math.sqrt(d["valor"] / maxs)
-        nome = mapa.get(digitos(d.get("cnpj", "")), "")
-        rot = (nome.split()[0][:12] if nome else fmt_cnpj(d.get("cnpj", "?"))[:10])
+        nome = nome_de(mapa, d.get("cnpj", "")) or fmt_cnpj(d.get("cnpj", "?"))
         comprovada = d.get("tipo") == "comprovada"
         cor = "#1d4f2b" if comprovada else "#a85b00"
-        tip = (f'saída: {fmt_cnpj(d.get("cnpj", "?"))} — '
-               f'{nome or "razão social pendente"} — {fmt(d["valor"])} '
-               f'em {d.get("data", "?")}. Vínculo: '
-               f'{", ".join(d.get("vinculo") or ["nenhum publicado"])}. '
-               f'Objeto: {d.get("objeto", "—")}')
-        g.append(_seta(cx_c + 92, H / 2, cx_s - r - 4, y,
-                       2 + 8 * d["valor"] / maxs, cor, tip,
-                       tracejada=not comprovada))
-        g.append(_balao(cx_s, y, r, cor, rot, d["valor"], tip))
-    g.append(f'<text x="{cx_f}" y="24" text-anchor="middle" '
-             f'style="font:700 12px Arial;fill:#6b6660">ENTRADA — FONTES</text>'
-             f'<text x="{cx_c}" y="24" text-anchor="middle" '
-             f'style="font:700 12px Arial;fill:#6b6660">PASSAGEM PELO FUNDO</text>'
-             f'<text x="{cx_s}" y="24" text-anchor="middle" '
-             f'style="font:700 12px Arial;fill:#6b6660">SAÍDA — DESTINATÁRIOS</text>')
-    g.append('</svg>')
-    aviso = (f'<p class="legenda">balões e setas proporcionais ao valor; '
-             f'tracejado = sem vínculo publicado. No mês da competência, '
-             f'{ev_desp} evento(s) alcançaram estação de despesa — '
-             f'{"nenhuma saída do mês tem liquidação ou pagamento publicado" if ev_desp == 0 else "ver cronologia abaixo"}. '
-             f'Do total do Fundo, só {fmt(fluxo["totais"]["despesa_comprovada"])} '
-             f'de despesa comprovada no exercício.</p>')
-    linhas = "".join(
-        f'<tr><td>{fmt_cnpj(d.get("cnpj", "?"))}</td>'
-        f'<td>{esc(mapa.get(digitos(d.get("cnpj", "")), "razão social pendente"))}</td>'
-        f'<td>{d.get("data", "—")}</td>'
-        f'<td>{esc(", ".join(d.get("vinculo") or ["—"]))}</td>'
-        f'<td class="num">{fmt(d["valor"])}</td></tr>' for d in saidas)
-    tab = ('<table><tr><th>Inscrição</th><th>Razão social</th><th>Data</th>'
-           '<th>Vínculo publicado</th><th class="num">Valor</th></tr>'
-           + linhas + '</table>')
-    return "".join(g) + aviso + detalhes(
-        "Abrir dados completos das saídas do exercício", tab)
+        tip = (f'saída: {nome} — {fmt(d["valor"])} em {d.get("data", "?")}. '
+               f'Vínculo: {", ".join(d.get("vinculo") or ["nenhum publicado"])}.')
+        abre = (f'<b>Inscrição:</b> {fmt_cnpj(d.get("cnpj", "?"))}<br>'
+                f'<b>Vínculo publicado:</b> '
+                f'{esc(", ".join(d.get("vinculo") or ["nenhum"]))}<br>'
+                f'<b>Objeto:</b> {esc(d.get("objeto", "—"))}<br>'
+                f'<b>Processo:</b> {esc(d.get("processo", "—"))}'
+                + ('' if comprovada else '<br><b>Omissão legal:</b> despesa '
+                   'sem instrumento de vínculo publicado — Artigo 61 da Lei '
+                   '4.320/1964 e Artigo 38 da Lei 13.019/2014.'))
+        col_s.append(_qd(cor, nome[:46], d["valor"],
+                         "com vínculo" if comprovada else "sem vínculo "
+                         "publicado", tip, abre))
+        ys_s.append(i * (ALT + GAP) + ALT / 2)
+        ws_s.append(2 + 9 * d["valor"] / maxs)
+        cs_s.append(cor)
+        tp_s.append(f'Fundo → {nome}: {fmt(d["valor"])}')
+
+    setas1 = _setas_svg(ys_f, y_meio, ws_f, cs_f, tp_f)
+    setas2 = _setas_svg([y_meio] * len(ys_s), 0, ws_s, cs_s, tp_s)
+    # segunda coluna de setas: origem única no meio, destinos escalonados
+    g2 = [f'<svg viewBox="0 0 84 {max(ys_s, default=60)+60:.0f}" '
+          f'preserveAspectRatio="none" '
+          f'style="height:{max(ys_s, default=60)+60:.0f}px">']
+    for y, w, c, tp in zip(ys_s, ws_s, cs_s, tp_s):
+        g2.append(f'<g><title>{esc(tp)}</title>'
+                  f'<path d="M2,{y_meio:.0f} C 40,{y_meio:.0f} 44,{y:.0f} '
+                  f'74,{y:.0f}" fill="none" stroke="{c}" '
+                  f'stroke-width="{w:.0f}" opacity=".85"/>'
+                  f'<polygon points="82,{y:.0f} 71,{y-6:.0f} 71,{y+6:.0f}" '
+                  f'fill="{c}"/></g>')
+    g2.append('</svg>')
+    setas2 = "".join(g2)
+
+    ev_desp = sum(1 for e in evs_mes if DESPESA & set(e.get("estacoes") or []))
+    topo = ('<div class="colrot"><span>Entrada — fontes</span><span></span>'
+            '<span>Passagem pelo Fundo</span><span></span>'
+            '<span>Saída — destinatários</span></div>')
+    grade = (f'<div class="fxg">{topo}'
+             f'<div class="qds">{"".join(col_f)}</div>'
+             f'<div class="setacol">{setas1}</div>'
+             f'<div style="display:flex;align-items:center;'
+             f'min-height:{n*(ALT+GAP):.0f}px">{card_fundo}</div>'
+             f'<div class="setacol">{setas2}</div>'
+             f'<div class="qds">{"".join(col_s)}</div></div>')
+    aviso = (f'<p class="legenda">quadrados clicáveis; setas proporcionais '
+             f'ao valor. No mês, {ev_desp} evento(s) alcançaram estação de '
+             f'despesa. Despesa comprovada no exercício: '
+             f'{fmt(fluxo["totais"]["despesa_comprovada"])} de um Fundo de '
+             f'{fmt(fluxo["totais"]["fundo"])}.</p>')
+    return grade + aviso
 
 
 def fluxograma_duas_contas(fluxo):
-    """Conta do Fundo (3650) × conta do Gabinete da Secretaria (3601)."""
     fundo = next(c for c in fluxo["contas"] if c["unidade"] == "3650")
     gab = next(c for c in fluxo["contas"] if c["unidade"] == "3601")
-    tot = fundo["valor"] + gab["valor"]
-    rf = 34 + 52 * math.sqrt(fundo["valor"] / tot)
-    rg = 34 + 52 * math.sqrt(gab["valor"] / tot)
-    W, H = 900, 330
-    g = [f'<svg viewBox="0 0 {W} {H}" role="img">']
-    g.append(_balao(150, 110, 52, "#8c1d18", "Tesouro|Municipal", None,
-                    "Tesouro Municipal — fonte integral da unidade 3601 e de "
-                    "apenas R$ 9.000 do Fundo em 2026"))
-    g.append(_seta(202, 96, W/2 - rg - 8, 88, 2 + 10 * gab["valor"] / tot,
-                   "#8c1d18",
-                   f'Tesouro → Gabinete (3601): {fmt(gab["valor"])} correm '
-                   f'FORA do Fundo'))
-    g.append(_balao(W/2, 88, rg, "#a85b00", "Gabinete da|Secretaria|un. 3601",
-                    gab["valor"],
-                    f'{gab["nome"]} — {fmt(gab["valor"])}. {gab["nota"]}'))
-    g.append(_seta(202, 124, W/2 - rf - 8, 240, 2 + 10 * 9000 / tot, "#8c1d18",
-                   "Tesouro → Fundo: apenas R$ 9.000,00 em 2026 (queda de "
-                   "99,46% sobre 2025)"))
-    g.append(_balao(W/2, 240, rf, "#1d4f8a", "Conta especial|do Fundo|un. 3650",
-                    fundo["valor"],
-                    f'{fundo["nome"]} — {fmt(fundo["valor"])}. {fundo["nota"]}'))
-    g.append(_seta(W/2, 88 + rg, W/2, 240 - rf, 4, "#c1281f",
-                   "Transferência automática ao Fundo determinada pelo "
-                   "Artigo 2º, § 1º, da Lei municipal 7.531/1995 — NÃO "
-                   "localizada em publicação alguma do exercício",
-                   tracejada=True))
-    g.append(f'<text x="{W/2 + 20}" y="170" '
-             f'style="font:700 12px Arial;fill:#c1281f">transferência '
-             f'automática (Artigo 2º, § 1º, da Lei 7.531/1995): '
-             f'não publicada ✕</text>')
-    g.append(f'<text x="{W-250}" y="80" style="font:700 12px Arial;'
-             f'fill:#a85b00">⅘ do dinheiro da pasta</text>'
-             f'<text x="{W-250}" y="96" style="font:12px Arial;'
-             f'fill:#6b6660">fora do controle do Conselho</text>'
-             f'<text x="{W-250}" y="232" style="font:700 12px Arial;'
-             f'fill:#1d4f8a">onde o Conselho controla</text>'
-             f'<text x="{W-250}" y="248" style="font:12px Arial;'
-             f'fill:#6b6660">Artigo 30, inciso II, da Lei 8.742/1993</text>')
-    g.append('</svg>')
+    tes = _qd("#8c1d18", "Tesouro Municipal", None, "origem dos recursos",
+              "Fonte integral da unidade 3601 e de apenas R$ 9.000,00 do "
+              "Fundo em 2026 (queda de 99,46%).",
+              "<b>Para o Gabinete (3601):</b> " + fmt(gab["valor"]) +
+              " — fora do Fundo.<br><b>Para o Fundo (3650):</b> R$ 9.000,00 "
+              "no exercício.<br><b>Omissão legal:</b> a comprovação "
+              "orçamentária de recursos próprios no Fundo é condição do "
+              "repasse federal — Artigo 30, parágrafo único, da Lei "
+              "8.742/1993.")
+    g = _qd("#a85b00", "Gabinete da Secretaria — un. 3601", gab["valor"],
+            "⅘ do dinheiro da pasta, fora do controle do Conselho",
+            f'{gab["nome"]}: {fmt(gab["valor"])}, integralmente do Tesouro '
+            f'e fora do Fundo.',
+            esc(gab["nota"]) + "<br><b>Base:</b> " + esc(gab["base"]) +
+            "<br><b>Omissão legal:</b> recursos da assistência social devem "
+            "transitar pelo Fundo sob controle do Conselho — Artigo 30, "
+            "incisos I e II, da Lei 8.742/1993.")
+    f = _qd("#1d4f8a", "Conta especial do Fundo — un. 3650", fundo["valor"],
+            "onde o Conselho controla (Artigo 30, inciso II, da Lei "
+            "8.742/1993)",
+            f'{fundo["nome"]}: {fmt(fundo["valor"])}.',
+            esc(fundo["nota"]) + "<br><b>O que falta:</b> " +
+            esc(fundo.get("falta", "—")))
+    seta_gab = ('<svg viewBox="0 0 84 60" style="height:60px" '
+                'preserveAspectRatio="none"><g><title>Tesouro → Gabinete '
+                '(3601): ' + fmt(gab["valor"]) + ' correm FORA do Fundo</title>'
+                '<line x1="2" y1="30" x2="70" y2="30" stroke="#8c1d18" '
+                'stroke-width="12"/><polygon points="82,30 68,22 68,38" '
+                'fill="#8c1d18"/></g></svg>')
+    seta_fundo = ('<svg viewBox="0 0 84 60" style="height:60px" '
+                  'preserveAspectRatio="none"><g><title>Tesouro → Fundo: '
+                  'apenas R$ 9.000,00 em 2026</title>'
+                  '<line x1="2" y1="30" x2="70" y2="30" stroke="#8c1d18" '
+                  'stroke-width="2"/><polygon points="82,30 70,25 70,35" '
+                  'fill="#8c1d18"/></g></svg>')
+    seta_transf = ('<div style="text-align:center"><svg viewBox="0 0 60 96" '
+                   'style="height:96px"><g><title>Transferência automática '
+                   'ao Fundo — Artigo 2º, § 1º, da Lei municipal 7.531/1995 '
+                   '— NÃO localizada em publicação alguma do exercício'
+                   '</title><line x1="30" y1="4" x2="30" y2="78" '
+                   'stroke="#c1281f" stroke-width="5" '
+                   'stroke-dasharray="9 8"/><polygon points="30,92 22,78 '
+                   '38,78" fill="#c1281f"/></g></svg>'
+                   '<div style="font:700 12px Arial;color:#c1281f">'
+                   'transferência automática (Artigo 2º, § 1º, da Lei '
+                   '7.531/1995): não publicada ✕</div></div>')
+    grade = (f'<div class="fxg"><div class="qds" style="align-self:center">'
+             f'{tes}</div>'
+             f'<div class="setacol" style="align-self:center">{seta_gab}'
+             f'{seta_fundo}</div>'
+             f'<div class="qds">{g}{seta_transf}{f}</div>'
+             f'<div></div><div></div></div>')
     tab = (f'<table><tr><th>Conta</th><th>Unidade</th><th class="num">Valor '
            f'2026</th><th>Base legal</th><th>Situação</th></tr>'
            f'<tr><td>{esc(fundo["nome"])}</td><td>3650</td>'
@@ -498,13 +611,11 @@ def fluxograma_duas_contas(fluxo):
            f'<td>{esc(fundo["base"])}</td><td>{esc(fundo["status"])}</td></tr>'
            f'<tr class="ruim"><td>{esc(gab["nome"])}</td><td>3601</td>'
            f'<td class="num">{fmt(gab["valor"])}</td>'
-           f'<td>{esc(gab["base"])}</td><td>{esc(gab["status"])} — '
-           f'integralmente Tesouro, fora do Fundo</td></tr></table>')
-    return ("".join(g) +
-            '<p class="legenda">passe o mouse sobre balões e setas para o '
-            'resumo; a seta tracejada vermelha é a transferência que a lei '
-            'manda e não aparece publicada.</p>' +
-            detalhes("Abrir dados completos das duas contas", tab))
+           f'<td>{esc(gab["base"])}</td><td>fora do Fundo</td></tr></table>')
+    return (grade + '<p class="legenda">quadrados clicáveis; a seta '
+            'tracejada vermelha é a transferência que a lei manda e não '
+            'aparece publicada.</p>'
+            + detalhes("Abrir dados completos das duas contas", tab))
 
 
 def fluxo_estacoes_svg(previsto_total, est):
@@ -587,159 +698,305 @@ def calendario_html(comp, dados_pub):
             + detalhes("Abrir dados completos da circulação", f"<p>{lista}</p>"))
 
 
+ENTRADA_EST = {"repasse", "orcamento", "credito", "deliberacao"}
+ETAPAS_SAIDA = [("empenho", "1ª etapa — Empenho (Artigo 58 e Artigo 60 da "
+                 "Lei 4.320/1964)"),
+                ("liquidacao", "2ª etapa — Liquidação (Artigo 63 da Lei "
+                 "4.320/1964)"),
+                ("pagamento", "3ª etapa — Pagamento (Artigo 64 da Lei "
+                 "4.320/1964)")]
+
+
+def _ev_linhas(e, mapa):
+    ests = e.get("estacoes") or []
+    chips = "".join(
+        f'<span class="chip" style="background:{COR_EST.get(s, "#8a8a94")}" '
+        f'data-tip="estação {s}">{s}</span>' for s in ests)
+    val = max(e.get("valores") or [0])
+    rotv = classifica_valor(e)
+    url = e.get("url")
+    ed = e.get("edicao", "—")
+    linhas = [
+        f'<span class="li"><b class="k">Data</b>{e.get("data", "—")}</span>',
+        f'<span class="li"><b class="k">Edição do Diário</b>'
+        f'{f"<a href=\'{url}\'>{ed}</a>" if url else ed} · página '
+        f'{e.get("pagina", "—")}</span>',
+        f'<span class="li"><b class="k">Estações</b>{chips}</span>',
+    ]
+    if val:
+        linhas.append(f'<span class="li"><b class="k">Valor</b>{fmt(val)} — '
+                      f'<i>{rotv}</i></span>')
+    pareceres = []
+    for c in e.get("cnpjs") or []:
+        d = mapa.get(digitos(c))
+        nome = d["nome"] if d else None
+        rot = (f"{fmt_cnpj(c)} — {nome}" if nome
+               else f"{fmt_cnpj(c)} (cadastro em busca na base da Receita)")
+        extra = ""
+        if d and d["municipio"] and d["municipio"] != "GOIANIA":
+            if (nome or "").upper().startswith("MUNICIPIO DE"):
+                extra = " ⚠ ente público de outro município"
+                pareceres.append(
+                    f'<div class="parecer-mini"><b>Parecer sobre a saída '
+                    f'para {esc(nome.title())}:</b> valor do Fundo de '
+                    f'Goiânia associado a outro ente federado. '
+                    f'Transferência a outro Município é transferência '
+                    f'voluntária e exige convênio ou instrumento congênere '
+                    f'com publicação — Artigo 25 da Lei Complementar '
+                    f'101/2000 e Artigo 62 da Lei 4.320/1964. Nenhuma '
+                    f'justificativa ou convênio foi localizado nas edições '
+                    f'do exercício. Selo: INDICIÁRIO — a menção é de uma '
+                    f'via; o instrumento, se existir, não está publicado.'
+                    f'</div>')
+            else:
+                extra = (f" · sede em {d['municipio'].title()}/{d['uf']} — "
+                         f"aquisição de fornecedor de fora, não repasse "
+                         f"fundo a fundo")
+        linhas.append(f'<span class="li"><b class="k">Pessoa jurídica</b>'
+                      f'{rot}{extra}</span>')
+    cor = COR_EST.get(ests[0], "#8a8a94") if ests else "#8a8a94"
+    return (f'<div class="ev" style="--pt:{cor}">' + "".join(linhas)
+            + "".join(pareceres) + '</div>')
+
+
 def cronologia_html(evs, mapa):
     if not evs:
         return ('<p class="explica">Nenhum evento publicado na competência — '
                 'a ausência é, ela própria, o achado EXE-M do mês.</p>')
-    linhas = []
-    for e in sorted(evs, key=lambda x: (x.get("data", ""), x.get("pagina", 0))):
-        ests = e.get("estacoes") or []
-        cor = COR_EST.get(ests[0], "#8a8a94") if ests else "#8a8a94"
-        chips = "".join(
-            f'<span class="chip" style="background:'
-            f'{COR_EST.get(s, "#8a8a94")}" data-tip="estação {s} — '
-            f'{"comprova saída" if s in DESPESA else "não comprova saída de dinheiro"}">'
-            f'{s}</span>' for s in ests)
-        val = max(e.get("valores") or [0])
-        rotv = classifica_valor(e)
-        ents = ""
-        if e.get("cnpjs"):
-            nomes = []
-            for c in e["cnpjs"][:4]:
-                razao = mapa.get(digitos(c))
-                nomes.append(f"{fmt_cnpj(c)} — {razao}" if razao
-                             else f"{fmt_cnpj(c)} (cadastro em busca na base "
-                                  f"da Receita)")
-            ents = ('<div class="ent"><b>Pessoas jurídicas citadas:</b> '
-                    + "; ".join(nomes) + "</div>")
-        ed = e.get("edicao", "—")
-        url = e.get("url")
-        ed_html = f'<a href="{url}">{ed}</a>' if url else ed
-        vhtml = (f'<span class="val" data-tip="classificação pela estação '
-                 f'alcançada no próprio evento: {rotv}">{fmt(val)}'
-                 f'<small>{rotv}</small></span>' if val else "")
-        linhas.append(
-            f'<div class="ev" style="--pt:{cor}">{vhtml}'
-            f'<div class="qd"><b>{e.get("data", "—")}</b> · edição {ed_html} '
-            f'· página {e.get("pagina", "—")}</div>{chips}{ents}</div>')
-    return ('<p class="explica">Cada ponto é uma publicação do Diário que '
-            'toca dinheiro da assistência social. O valor à direita é '
-            'rotulado pela estação alcançada: só "repasse publicado" indica '
-            'saída; "menção textual" é associação no texto, não prova de '
-            'pagamento.</p><div class="crono">' + "".join(linhas) + "</div>")
+    evs = sorted(evs, key=lambda x: (x.get("data", ""), x.get("pagina", 0)))
+    entradas = [e for e in evs
+                if set(e.get("estacoes") or []) & ENTRADA_EST
+                and not set(e.get("estacoes") or []) & DESPESA
+                and "empenho" not in (e.get("estacoes") or [])]
+    saidas = [e for e in evs if e not in entradas]
+    partes = ['<p class="explica">Cada evento em ficha própria, uma '
+              'informação por linha, em ordem cronológica dentro de cada '
+              'bloco. Entradas e saídas separadas; a saída distingue as '
+              'três etapas legais da despesa pela data de cada uma.</p>']
+    partes.append('<div class="cr-bloco" style="--bc:#1d6f42">▼ ENTRADAS — '
+                  'recursos chegando (repasses, orçamento e créditos)</div>')
+    if entradas:
+        partes.append('<div class="crono">' +
+                      "".join(_ev_linhas(e, mapa) for e in entradas) +
+                      '</div>')
+    else:
+        partes.append('<p class="explica">Nenhuma entrada publicada no mês '
+                      '— a receita realizada segue sem demonstrativo '
+                      '(achado REC-M).</p>')
+    partes.append('<div class="cr-bloco" style="--bc:#8c1d18">▲ SAÍDAS — '
+                  'despesa e vinculações</div>')
+    usados = set()
+    for est, rotulo in ETAPAS_SAIDA:
+        bloco = [e for e in saidas if est in (e.get("estacoes") or [])]
+        if bloco:
+            partes.append(f'<div class="cr-etapa">{rotulo}</div>'
+                          '<div class="crono">' +
+                          "".join(_ev_linhas(e, mapa) for e in bloco) +
+                          '</div>')
+        else:
+            partes.append(f'<div class="cr-etapa">{rotulo} — <b style='
+                          f'"color:#8c1d18">nenhum evento no mês ✕</b></div>')
+        usados |= {id(e) for e in bloco}
+    resto = [e for e in saidas if id(e) not in usados]
+    if resto:
+        partes.append('<div class="cr-etapa">Atos preparatórios, dotações e '
+                      'vinculações (não comprovam saída de dinheiro)</div>'
+                      '<div class="crono">' +
+                      "".join(_ev_linhas(e, mapa) for e in resto) + '</div>')
+    return "".join(partes)
+
+
+def _origens(n, mapa, vinculos, coletivo_igual):
+    """Origem do recurso da entidade: emenda parlamentar (anexo da LOA),
+    instrumento da Lei 13.019/2014 ou deliberação coletiva do Conselho."""
+    tags, det = [], []
+    try:
+        em = carrega("entidades_emendas_2026.json")
+    except FileNotFoundError:
+        em = {}
+    nome = (mapa.get(n) or {}).get("nome", "")
+    import unicodedata
+    def nrm(s):
+        s = unicodedata.normalize("NFKD", s or "").encode("ascii", "ignore").decode()
+        return re.sub(r"[^A-Z0-9 ]", " ", s.upper()).strip()
+    for chave, info in em.items():
+        if chave == "NAO_IDENTIFICADA" or len(nrm(chave)) < 10:
+            continue
+        a, b = nrm(chave), nrm(nome)
+        if a and b and (b.startswith(a[:14]) or a[:14] in b or b[:14] in a):
+            tags.append('<span class="orig">EMENDA PARLAMENTAR</span>')
+            det.append(f"Emenda(s) parlamentar(es) na Lei Orçamentária: "
+                       f"{fmt(info['valor'])}, indicação de "
+                       f"{', '.join(info.get('vereadores', ['?']))}. Pela "
+                       f"origem em emenda, o chamamento público é "
+                       f"dispensável (Artigo 29 da Lei 13.019/2014), mas "
+                       f"termo, plano de trabalho e prestação de contas "
+                       f"continuam obrigatórios.")
+            break
+    v = vinculos.get(n)
+    if v:
+        instr = ", ".join(v.get("vinculo") or [])
+        up = instr.upper()
+        tipo = ("TERMO DE FOMENTO (Artigo 17 da Lei 13.019/2014)"
+                if "FOMENTO" in up else
+                "TERMO DE COLABORAÇÃO (Artigo 16 da Lei 13.019/2014)"
+                if "COLABORA" in up else
+                "ACORDO/TERMO DE COOPERAÇÃO (Artigo 2º, inciso VIII-A, da "
+                "Lei 13.019/2014)" if "COOPERA" in up else
+                "CONTRATO ADMINISTRATIVO (Lei 14.133/2021)"
+                if "CONTRATO" in up else "INSTRUMENTO NÃO CLASSIFICADO")
+        tags.append(f'<span class="orig">{tipo.split(" (")[0]}</span>')
+        det.append(f"Instrumento publicado: {instr} — regime: {tipo}.")
+    if n in coletivo_igual:
+        tags.append('<span class="orig">DELIBERAÇÃO COLETIVA CMAS</span>')
+        det.append("Consta da lista de 24 entidades da edição de 12/05/2026 "
+                   "associada ao valor coletivo de R$ 1.500.000,00 (e à "
+                   "deliberação de 04/11/2025). O valor é da deliberação, "
+                   "não repasse individual comprovado: rateado em partes "
+                   "iguais seriam R$ 62.500,00 por entidade, MAS nenhum "
+                   "critério de rateio foi publicado — o repasse individual "
+                   "permanece não demonstrado.")
+    if not tags:
+        tags.append('<span class="orig" style="background:#fdf1e7;'
+                    'color:#a85b00">ORIGEM NÃO PUBLICADA</span>')
+        det.append("Nenhuma origem localizada: nem emenda, nem instrumento "
+                   "da Lei 13.019/2014, nem deliberação — omissão que "
+                   "impede qualquer verificação de regularidade.")
+    checagem = ("<b>Checagem Lei 13.019/2014:</b> chamamento público — não "
+                "localizado; plano de trabalho (Artigo 22) — não localizado; "
+                "prestação de contas (Artigo 63 e seguintes) — não "
+                "localizada. Cumprimento INAFERÍVEL por documento faltante.")
+    return "".join(tags), "<br>".join(det) + "<br>" + checagem
 
 
 def prestacao_por_entidade(comp, evs, fluxo, mapa):
-    """Semáforo de verificação por entidade no mês:
-       verde   = duas vias independentes (estação de despesa no Diário E
-                 instrumento de vínculo publicado);
-       azul    = uma via;
-       laranja = apenas menção textual, nenhuma via de despesa;
-       vermelho = entidade do exercício totalmente omissa no mês."""
     vinculos = {digitos(d.get("cnpj", "")): d for d in fluxo["despesas"]}
-    exercicio = set(vinculos) | {
-        digitos(c) for e in [x for x in carrega("trilha_dinheiro.json")["detalhe"]]
-        for c in (e.get("cnpjs") or [])}
+    trilha_toda = carrega("trilha_dinheiro.json")["detalhe"]
+    exercicio = set(vinculos) | {digitos(c) for e in trilha_toda
+                                 for c in (e.get("cnpjs") or [])}
+    coletivo_igual = set()
+    for e in trilha_toda:
+        if valor_coletivo(e):
+            coletivo_igual |= {digitos(c) for c in (e.get("cnpjs") or [])}
     no_mes = {}
     for e in evs:
         ests = set(e.get("estacoes") or [])
         val = max(e.get("valores") or [0])
+        colet = valor_coletivo(e)
         for c in e.get("cnpjs") or []:
             n = digitos(c)
             r = no_mes.setdefault(n, {"despesa": False, "mencao": 0,
-                                      "valor": 0.0, "edicoes": set()})
+                                      "valor": 0.0, "coletivo": False,
+                                      "edicoes": set()})
             r["mencao"] += 1
             r["edicoes"].add(e.get("edicao", "?"))
+            if colet:
+                r["coletivo"] = True
+                continue
             if ests & DESPESA:
                 r["despesa"] = True
                 r["valor"] = max(r["valor"], val)
             elif not r["despesa"]:
                 r["valor"] = max(r["valor"], val)
-    linhas = []
 
     def linha(n, sem, tip, oq, det):
-        nome = mapa.get(n, "razão social pendente na base da Receita")
+        d = mapa.get(n)
+        nome = d["nome"] if d else ("razão social pendente — reconsulta "
+                                    "automática na base da Receita em curso")
+        tags, origem_det = _origens(n, mapa, vinculos, coletivo_igual)
         return (f'<details class="plin"><summary>'
-                f'<span class="quem"><b>{esc(nome)}</b>{fmt_cnpj(n)}</span>'
+                f'<span class="quem"><b>{esc(nome)}</b>{fmt_cnpj(n)}<br>'
+                f'{tags}</span>'
                 f'<span class="oq">{oq}</span>'
                 f'<span class="sem {sem}" data-tip="{esc(tip)}"></span>'
-                f'</summary><div class="det">{det}</div></details>')
+                f'</summary><div class="det"><b>Causa do valor:</b> {det}'
+                f'<br><br><b>Origem do recurso:</b><br>{origem_det}'
+                f'</div></details>')
 
     ordem = {"vermelho": 0, "laranja": 1, "azul": 2, "verde": 3}
     itens = []
     for n, r in no_mes.items():
         v = vinculos.get(n)
-        if r["despesa"] and v:
+        if r["coletivo"] and not r["despesa"] and not v:
+            sem, oq = "laranja", ('<b>R$ 1.500.000,00 (coletivo)</b>'
+                                  'valor da deliberação, não individual')
+            tip = ("VALOR COLETIVO: a página de 12/05/2026 lista 24 "
+                   "entidades e cita R$ 1.500.000,00 uma única vez — o "
+                   "valor é da deliberação; o repasse individual não está "
+                   "demonstrado em publicação alguma.")
+            det = ("o único valor da página (R$ 1.500.000,00) é coletivo; "
+                   f"a entidade aparece em {r['mencao']} menção(ões) — "
+                   f"edições {', '.join(sorted(r['edicoes']))} — sem "
+                   "qualquer repasse individual publicado.")
+        elif r["despesa"] and v:
             sem = "verde"
-            tip = ("VERIFICADO POR DUAS VIAS: (1ª) estação de despesa "
-                   f"publicada no Diário — edições {', '.join(sorted(r['edicoes']))}; "
-                   f"(2ª) instrumento de vínculo publicado — "
+            tip = ("VERIFICADO POR DUAS VIAS: (1ª) estação de despesa no "
+                   f"Diário — edições {', '.join(sorted(r['edicoes']))}; "
+                   f"(2ª) instrumento publicado — "
                    f"{', '.join(v.get('vinculo') or ['?'])}")
             oq = f'<b>{fmt(v["valor"])}</b>repasse com vínculo'
-            det = (f"Enviado no mês: {fmt(v['valor'])} em {v.get('data')}. "
-                   f"Objeto: {esc(v.get('objeto', '—'))}. Processo: "
-                   f"{esc(v.get('processo', '—'))}. Vias de verificação: "
-                   f"Diário Oficial (estação de despesa) e instrumento "
-                   f"{esc(', '.join(v.get('vinculo') or []))}.")
+            det = (f"repasse de {fmt(v['valor'])} em {v.get('data')}, "
+                   f"objeto {esc(v.get('objeto', '—'))}, processo "
+                   f"{esc(v.get('processo', '—'))}; confirmado pelas duas "
+                   f"vias do selo.")
         elif r["despesa"]:
             sem = "azul"
-            tip = ("VERIFICADO POR UMA VIA: estação de despesa publicada no "
-                   f"Diário — edições {', '.join(sorted(r['edicoes']))}. "
-                   "Sem instrumento de vínculo localizado; segunda via "
-                   "indisponível (portal da transparência — pendência P2).")
+            tip = ("VERIFICADO POR UMA VIA: estação de despesa no Diário — "
+                   f"edições {', '.join(sorted(r['edicoes']))}. Instrumento "
+                   "de vínculo não localizado; portal da transparência "
+                   "indisponível (pendência P2).")
             oq = f'<b>{fmt(r["valor"])}</b>repasse publicado, sem vínculo'
-            det = (f"Repasse publicado de {fmt(r['valor'])} sem contrato, "
-                   "convênio ou termo localizado. O que falta: extrato da "
-                   "conta especial e o instrumento de vínculo.")
+            det = (f"repasse publicado de {fmt(r['valor'])} sem contrato, "
+                   "convênio ou termo localizado.")
         elif v:
             sem = "azul"
-            tip = ("VERIFICADO POR UMA VIA: instrumento de vínculo publicado "
-                   f"({', '.join(v.get('vinculo') or ['?'])}); no mês, porém, "
-                   "só menção textual — nenhuma estação de despesa.")
+            tip = ("VERIFICADO POR UMA VIA: instrumento publicado "
+                   f"({', '.join(v.get('vinculo') or ['?'])}); no mês, só "
+                   "menção — nenhuma estação de despesa.")
             oq = f'<b>{fmt(r["valor"])}</b>menção; vínculo do exercício'
-            det = (f"Entidade com vínculo publicado no exercício "
-                   f"({esc(', '.join(v.get('vinculo') or []))}, "
-                   f"{fmt(v['valor'])}), mas o mês registra apenas menção "
-                   f"em {r['mencao']} evento(s), sem liquidação nem pagamento.")
+            det = (f"vínculo do exercício {esc(', '.join(v.get('vinculo') or []))} "
+                   f"({fmt(v['valor'])}); no mês, apenas {r['mencao']} "
+                   f"menção(ões).")
         else:
             sem = "laranja"
-            tip = (f"APENAS MENÇÃO: citada em {r['mencao']} evento(s) — "
-                   f"edições {', '.join(sorted(r['edicoes']))} — sem estação "
-                   "de despesa e sem instrumento de vínculo. O valor ao lado "
-                   "é associação textual, não repasse.")
+            tip = (f"APENAS MENÇÃO: {r['mencao']} evento(s) — edições "
+                   f"{', '.join(sorted(r['edicoes']))} — sem estação de "
+                   "despesa e sem instrumento. O valor é associação "
+                   "textual, não repasse.")
             oq = f'<b>{fmt(r["valor"])}</b>só menção textual'
-            det = ("Nenhuma via de verificação de repasse: a prestação de "
-                   "contas do mês é omissa quanto a esta entidade, embora o "
-                   "Diário a mencione.")
-        itens.append((ordem[sem], -r["valor"], linha(n, sem, tip, oq, det)))
-    omissas = sorted(exercicio - set(no_mes) - {""})
+            det = (f"a associação vem do texto da(s) edição(ões) "
+                   f"{', '.join(sorted(r['edicoes']))}; nenhuma via de "
+                   "verificação de repasse.")
+        itens.append((ordem[sem], -(r["valor"] or 0),
+                      linha(n, sem, tip, oq, det)))
     graves = []
-    for n in omissas:
+    for n in sorted(exercicio - set(no_mes) - {""}):
         v = vinculos.get(n)
         if not v:
-            continue  # menção esparsa no exercício sem vínculo: ruído
-        tip = ("TOTALMENTE OMISSO NO MÊS: entidade com vínculo publicado no "
-               f"exercício ({', '.join(v.get('vinculo') or ['?'])}, "
-               f"{fmt(v['valor'])}) e nenhum registro — nem menção — na "
-               "competência. Sem demonstrativo, o envio do mês é inaferível.")
+            continue
+        tip = ("TOTALMENTE OMISSO NO MÊS: entidade com vínculo no exercício "
+               f"({', '.join(v.get('vinculo') or ['?'])}, {fmt(v['valor'])}) "
+               "e nenhum registro na competência.")
         oq = '<b>—</b>nada publicado no mês'
-        det = (f"Vínculo do exercício: {esc(', '.join(v.get('vinculo') or []))} "
-               f"— {fmt(v['valor'])} em {v.get('data')}. No mês: nenhuma "
-               "publicação. O que falta: demonstrativo mensal de repasses e "
-               "extrato da conta especial (Artigo 48-A, inciso I, da Lei "
-               "Complementar 101/2000).")
+        det = (f"vínculo do exercício: "
+               f"{esc(', '.join(v.get('vinculo') or []))} — "
+               f"{fmt(v['valor'])} em {v.get('data')}; no mês, nenhuma "
+               "publicação. Falta o demonstrativo mensal — Artigo 48-A, "
+               "inciso I, da Lei Complementar 101/2000.")
         graves.append((0, -v["valor"], linha(n, "vermelho", tip, oq, det)))
     todos = [h for _, _, h in sorted(graves + itens)]
     if not todos:
-        return ('<p class="explica">Nenhuma entidade com vínculo no exercício '
-                'e nenhuma menção no mês.</p>')
-    return ('<p class="explica">O que consta como enviado a cada entidade na '
-            'competência, com o grau de verificação no símbolo à direita — '
-            'passe o mouse para ver ONDE foi verificado; clique na linha '
-            'para os dados completos.</p>'
-            '<p class="legenda"><span class="sem verde" style="display:inline-block;vertical-align:-3px"></span> duas vias independentes '
+        return ('<p class="explica">Nenhuma entidade com vínculo no '
+                'exercício e nenhuma menção no mês.</p>')
+    return ('<p class="explica">O que consta como enviado a cada entidade '
+            'na competência, com a ORIGEM do recurso (emenda parlamentar, '
+            'instrumento da Lei 13.019/2014 ou deliberação coletiva), a '
+            'checagem de cumprimento da Lei 13.019/2014 e a CAUSA de cada '
+            'valor. Símbolo à direita: passe o mouse para ver onde foi '
+            'verificado; clique para os dados completos.</p>'
+            '<p class="legenda"><span class="sem verde" style="display:inline-block;vertical-align:-3px"></span> duas vias '
             '<span class="sem azul" style="display:inline-block;vertical-align:-3px;margin-left:10px"></span> uma via '
-            '<span class="sem laranja" style="display:inline-block;vertical-align:-3px;margin-left:10px"></span> só menção '
+            '<span class="sem laranja" style="display:inline-block;vertical-align:-3px;margin-left:10px"></span> só menção/valor coletivo '
             '<span class="sem vermelho" style="display:inline-block;vertical-align:-3px;margin-left:10px"></span> totalmente omisso</p>'
             '<div class="presta">' + "".join(todos) + '</div>')
 
@@ -781,7 +1038,7 @@ def tabelas_dados_html(comp_receita, evs, fluxo, mapa):
         for n, r in sorted(por_ent.items(), key=lambda kv: -kv[1]["v"]):
             val, rot = rotulo(n, r)
             linhas += (f'<tr><td>{fmt_cnpj(n)}</td>'
-                       f'<td>{esc(mapa.get(n, "cadastro em busca na base da Receita"))}</td>'
+                       f'<td>{esc((mapa.get(n) or {}).get("nome", "cadastro em busca na base da Receita"))}</td>'
                        f'<td class="num">{r["n"]}</td>'
                        f'<td class="num" data-tip="{rot}">{val}<br>'
                        f'<small style="color:#6b6660">{rot}</small></td></tr>')
@@ -877,23 +1134,28 @@ def gera(comp):
 <div class="uma-frase"><small>Em uma frase</small>{frase}</div>
 <div class="placar">{placar}</div>
 
-<h2>1 · Linha do exercício — o mês no contexto de janeiro a julho</h2>
+<h2><span data-tip="série mensal do que foi publicado na trilha do dinheiro">1 · Linha do exercício — o mês no contexto de janeiro a julho</span></h2>
+{detalhes("Informações completas e omissões legais desta seção", "Parâmetros: eventos publicados, empenhos, liquidações/pagamentos por mês. Omissão legal permanente: nenhum mês exibe liquidação ou pagamento — Artigo 63 e Artigo 64 da Lei 4.320/1964; Artigo 48-A, inciso I, da Lei Complementar 101/2000.")}
 <p class="explica">O que foi publicado mês a mês na trilha do dinheiro; a
 faixa sombreada é a competência deste parecer. Passe o mouse nos pontos.</p>
 {linha_exercicio_svg(trilha, comp)}
 
-<h2>2 · Fluxograma do dinheiro — entrada, passagem pelo Fundo e saída</h2>
+<h2><span data-tip="entrada por fonte, passagem pela conta especial e saída por destinatário, no exercício">2 · Fluxograma do dinheiro — entrada, passagem pelo Fundo e saída</span></h2>
+{detalhes("Informações completas e omissões legais desta seção", "Parâmetros: comprovação documental de cada fonte e vínculo de cada saída. Omissões: extratos mensais da conta especial não publicados; despesa sem instrumento — Artigo 61 da Lei 4.320/1964 e Artigo 38 da Lei 13.019/2014.")}
 <p class="explica">Balões proporcionais ao valor do exercício; passe o mouse
 para o resumo de cada balão e seta, clique abaixo para os dados completos.</p>
 {fluxograma_baloes(fluxo, evs, mapa, comp)}
 
-<h2>3 · As duas contas — Fundo da assistência social × Gabinete da Secretaria</h2>
+<h2><span data-tip="separação entre a conta controlada pelo Conselho (3650) e a unidade do Gabinete (3601)">3 · As duas contas — Fundo da assistência social × Gabinete da Secretaria</span></h2>
+{detalhes("Informações completas e omissões legais desta seção", "Parâmetro: trânsito obrigatório pelo Fundo — Artigo 30 da Lei 8.742/1993 e Artigo 2º da Lei municipal 7.531/1995. Omissão: transferência automática do § 1º não localizada em publicação alguma.")}
 {fluxograma_duas_contas(fluxo)}
 
-<h2>4 · De onde veio — fontes previstas da competência</h2>
+<h2><span data-tip="composição prevista das fontes da competência">4 · De onde veio — fontes previstas da competência</span></h2>
+{detalhes("Informações completas e omissões legais desta seção", "Parâmetro: previsão por fonte na Lei Orçamentária 11.590/2026. Omissão: receita realizada do mês sem demonstrativo — Artigo 48 e Artigo 48-A da Lei Complementar 101/2000 (achado REC-M).")}
 <div class="grade2"><div>{pizza}</div>{legenda_pizza}</div>
 
-<h2>5 · Por onde passou — as quatro estações legais no mês</h2>
+<h2><span data-tip="as quatro estações legais da despesa no mês">5 · Por onde passou — as quatro estações legais no mês</span></h2>
+{detalhes("Informações completas e omissões legais desta seção", "Parâmetro: Artigo 58, Artigo 60, Artigo 62, Artigo 63 e Artigo 64 da Lei 4.320/1964. Omissão do mês: estações zeradas indicadas em vermelho no próprio fluxo.")}
 {fluxo_estacoes_svg(comp_rec["previsto_total"] if comp_rec else None,
                     v["execucao_do_mes"]["por_estacao"])}
 
@@ -927,7 +1189,8 @@ parecer consolidado anual e não são recontadas como achados mensais novos.</p>
  Pessoas físicas, quando referidas, aparecem apenas pelo primeiro nome,
  minimizadas na extração. Pessoas jurídicas mantêm razão social e inscrição
  completas. Metodologia e dados: repositório público da fiscalização.
-</footer></body></html>"""
+</footer>
+{rodape_marca_html()}</body></html>"""
     DOCS.mkdir(parents=True, exist_ok=True)
     destino = DOCS / f"parecer_{comp}.html"
     destino.write_text(html, encoding="utf-8")
@@ -958,7 +1221,8 @@ def indice():
 {cabecalho_html("Pareceres <b>mensais</b> — 2026")}
 {"".join(linhas)}
 <footer><div class="adv">Nada aqui é peça processual sem revisão de advogado —
-Artigo 32 da Lei 8.906/1994.</div></footer></body></html>"""
+Artigo 32 da Lei 8.906/1994.</div></footer>
+{rodape_marca_html()}</body></html>"""
     (DOCS / "index.html").write_text(html, encoding="utf-8")
 
 

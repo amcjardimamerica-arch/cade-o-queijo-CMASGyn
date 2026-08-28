@@ -13,7 +13,7 @@ LOGO_URI = "data:image/png;base64," + _B64
 def cabecalho_html(titulo_html: str, subtitulo: str = "") -> str:
     return f"""<header class="peca" style="display:flex;gap:18px;align-items:center">
  <img src="{LOGO_URI}" alt="Núcleo de Fiscalização — AMC Jardim América"
-  style="width:96px;height:auto;flex:none">
+  style="width:192px;height:auto;flex:none">
  <div>
   <div class="orgao">Núcleo de Fiscalização — A.M.C. Jardim América<br>
   Vigilância da assistência social — Município de Goiânia · trilhas
@@ -22,3 +22,9 @@ def cabecalho_html(titulo_html: str, subtitulo: str = "") -> str:
   {f'<div class="orgao">{subtitulo}</div>' if subtitulo else ''}
  </div>
 </header>"""
+
+
+def rodape_marca_html() -> str:
+    return (f'<div style="text-align:center;margin:34px 0 6px">'
+            f'<img src="{LOGO_URI}" alt="Núcleo de Fiscalização — '
+            f'AMC Jardim América" style="width:192px;height:auto"></div>')

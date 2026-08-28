@@ -153,18 +153,35 @@
       "situacao": "INEXISTENTE",
       "util": true,
       "nota": "nenhuma edição indexada para o dia"
+    },
+    "2026-08-25": {
+      "situacao": "INCONCLUSIVO",
+      "util": true
+    },
+    "2026-08-26": {
+      "situacao": "INCONCLUSIVO",
+      "util": true
+    },
+    "2026-08-27": {
+      "situacao": "INCONCLUSIVO",
+      "util": true
+    },
+    "2026-08-28": {
+      "situacao": "INCONCLUSIVO",
+      "util": true
     }
   },
-  "gerado_em": "2026-08-24T09:51:26.745244+00:00",
+  "gerado_em": "2026-08-28T12:33:21.623365+00:00",
   "resumo": {
-    "dias_uteis": 21,
+    "dias_uteis": 25,
     "contagem": {
       "SEM_ATO": 1,
       "PUBLICOU": 2,
-      "INEXISTENTE": 18
+      "INEXISTENTE": 18,
+      "INCONCLUSIVO": 4
     },
     "ultima_publicacao": "2026-07-29",
-    "dias_desde_ultima": 26,
+    "dias_desde_ultima": 30,
     "inexistentes": 18
   }
 }
