@@ -1,0 +1,67 @@
+{
+ "sondado_em": "2026-08-28",
+ "fontes": {
+  "portal_transparencia": {
+   "nome": "Portal da Transparência do Município de Goiânia",
+   "disponivel": false,
+   "url": "https://transparencia.goiania.go.gov.br",
+   "http": null
+  },
+  "esic": {
+   "nome": "e-SIC — Serviço de Informação ao Cidadão de Goiânia",
+   "disponivel": false,
+   "url": "https://esic.goiania.go.gov.br",
+   "http": null
+  },
+  "siconfi": {
+   "nome": "SICONFI/Tesouro Nacional — RREO, RGF e DCA do Município",
+   "disponivel": false,
+   "url": "https://siconfi.tesouro.gov.br",
+   "http": null
+  },
+  "tcmgo_doc": {
+   "nome": "Diário Oficial de Contas do TCM-GO",
+   "disponivel": false,
+   "url": "https://www.tcm.go.gov.br/doc/",
+   "http": null
+  },
+  "tcmgo_portal": {
+   "nome": "Portal do TCM-GO (prestações de contas dos jurisdicionados)",
+   "disponivel": false,
+   "url": "https://www.tcmgo.tc.br",
+   "http": null
+  },
+  "fnas": {
+   "nome": "Fundo Nacional de Assistência Social — repasses fundo a fundo",
+   "disponivel": false,
+   "url": "https://fnas.mds.gov.br/extracao-dos-valores-repassados-fundo-a-fundo/",
+   "http": null
+  }
+ },
+ "mapa": {
+  "folha_e_execucao_3601": [
+   "portal_transparencia",
+   "esic",
+   "siconfi",
+   "tcmgo_portal"
+  ],
+  "empenhos_por_dotacao": [
+   "portal_transparencia",
+   "tcmgo_portal",
+   "esic"
+  ],
+  "receita_realizada": [
+   "siconfi",
+   "portal_transparencia"
+  ],
+  "igd_demonstrativo": [
+   "fnas",
+   "portal_transparencia"
+  ],
+  "prestacao_entidades_13019": [
+   "portal_transparencia",
+   "esic",
+   "tcmgo_portal"
+  ]
+ }
+}

@@ -1179,11 +1179,13 @@ def prestacao_por_entidade(comp, evs, fluxo, mapa):
     for e in trilha_toda:
         if valor_coletivo(e):
             coletivo_igual |= {digitos(c) for c in (e.get("cnpjs") or [])}
+    coletivos_mes = [e for e in evs if valor_coletivo(e)]
     no_mes = {}
     for e in evs:
         ests = set(e.get("estacoes") or [])
         val = max(e.get("valores") or [0])
-        colet = valor_coletivo(e)
+        if valor_coletivo(e):
+            continue  # tratado em linha única consolidada, sem repetição
         for c in e.get("cnpjs") or []:
             n = digitos(c)
             r = no_mes.setdefault(n, {"despesa": False, "mencao": 0,
@@ -1191,9 +1193,6 @@ def prestacao_por_entidade(comp, evs, fluxo, mapa):
                                       "edicoes": set()})
             r["mencao"] += 1
             r["edicoes"].add(e.get("edicao", "?"))
-            if colet:
-                r["coletivo"] = True
-                continue
             if ests & DESPESA:
                 r["despesa"] = True
                 r["valor"] = max(r["valor"], val)
@@ -1218,18 +1217,7 @@ def prestacao_por_entidade(comp, evs, fluxo, mapa):
     itens = []
     for n, r in no_mes.items():
         v = vinculos.get(n)
-        if r["coletivo"] and not r["despesa"] and not v:
-            sem, oq = "laranja", ('<b>R$ 1.500.000,00 (coletivo)</b>'
-                                  'valor da deliberação, não individual')
-            tip = ("VALOR COLETIVO: a página de 12/05/2026 lista 24 "
-                   "entidades e cita R$ 1.500.000,00 uma única vez — o "
-                   "valor é da deliberação; o repasse individual não está "
-                   "demonstrado em publicação alguma.")
-            det = ("o único valor da página (R$ 1.500.000,00) é coletivo; "
-                   f"a entidade aparece em {r['mencao']} menção(ões) — "
-                   f"edições {', '.join(sorted(r['edicoes']))} — sem "
-                   "qualquer repasse individual publicado.")
-        elif r["despesa"] and v:
+        if r["despesa"] and v:
             sem = "verde"
             tip = ("VERIFICADO POR DUAS VIAS: (1ª) estação de despesa no "
                    f"Diário — edições {', '.join(sorted(r['edicoes']))}; "
@@ -1285,7 +1273,37 @@ def prestacao_por_entidade(comp, evs, fluxo, mapa):
                "publicação. Falta o demonstrativo mensal — Artigo 48-A, "
                "inciso I, da Lei Complementar 101/2000.")
         graves.append((0, -v["valor"], linha(n, "vermelho", tip, oq, det)))
-    todos = [h for _, _, h in sorted(graves + itens)]
+    consolidados = []
+    for e in coletivos_mes:
+        val = max(e.get("valores") or [0])
+        nomes = []
+        for c in e.get("cnpjs") or []:
+            d = mapa.get(digitos(c))
+            nomes.append(f"{(d['nome'] if d else 'razão social pendente')} "
+                         f"({fmt_cnpj(c)})")
+        nlist = "".join(f'<span class="li">{esc(x)}</span>' for x in nomes)
+        consolidados.append(
+            f'<details class="plin"><summary>'
+            f'<span class="quem"><b>ENVIO COLETIVO — deliberação de '
+            f'{e.get("data")}</b>edição {esc(e.get("edicao", "?"))} · '
+            f'{len(nomes)} entidades em conjunto</span>'
+            f'<span class="oq"><b>{fmt(val)}</b>valor único, coletivo</span>'
+            f'<span class="sem laranja" data-tip="SEM INDIVIDUALIZAÇÃO: a '
+            f'publicação traz um único valor para o conjunto de '
+            f'{len(nomes)} entidades. A ausência de individualização é, '
+            f'ela própria, desconformidade: a liquidação exige identificar '
+            f'o credor e o valor de cada um — Artigo 63, § 2º, da Lei '
+            f'4.320/1964."></span></summary>'
+            f'<div class="det"><b>Observação:</b> não existe '
+            f'individualização publicada — o valor é do conjunto e não se '
+            f'repete por entidade nesta análise. Rateio igualitário seria '
+            f'{fmt(val / max(len(nomes), 1))} por entidade, sem critério '
+            f'publicado que o sustente.<br><br>'
+            f'<b>Entidades alcançadas em conjunto:</b>'
+            f'<div class="ev" style="--pt:#e07b00">{nlist}</div>'
+            f'{bloco_segunda_etapa("prestacao_entidades_13019", "Validação em 2ª etapa do envio coletivo")}'
+            f'</div></details>')
+    todos = consolidados + [h for _, _, h in sorted(graves + itens)]
     if not todos:
         return ('<p class="explica">Nenhuma entidade com vínculo no '
                 'exercício e nenhuma menção no mês.</p>')
@@ -1355,15 +1373,59 @@ def tabelas_dados_html(comp_receita, evs, fluxo, mapa):
     return t1, t2
 
 
+def _seg_etapa():
+    try:
+        return json.loads((RAIZ / "relatorios" / "segunda_etapa.json")
+                          .read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        return None
+
+
+def bloco_segunda_etapa(chave_mapa, rotulo="Validação em 2ª etapa"):
+    """Para uma informação indisponível na 1ª via (Diário), lista as fontes
+    oficiais alternativas do mapa, com o estado da última sonda."""
+    se = _seg_etapa()
+    if not se:
+        return ""
+    fontes = se.get("mapa", {}).get(chave_mapa, [])
+    if not fontes:
+        return ""
+    linhas = []
+    for f in fontes:
+        d = se["fontes"].get(f, {})
+        if d.get("disponivel"):
+            est, cor = "fonte no ar — consultar", "#1d8a3a"
+        elif d.get("http") is None and se.get("sondado_em"):
+            est, cor = "fora do ar na última sonda", "#c1281f"
+        else:
+            est, cor = f'respondeu HTTP {d.get("http")}', "#a85b00"
+        linhas.append(
+            f'<span class="li"><b class="k" style="color:{cor}">●</b>'
+            f'<b>{esc(d.get("nome", f))}</b> — '
+            f'<a href="{d.get("url", "#")}">{esc(d.get("url", ""))}</a> '
+            f'<i>({est}, sonda de {se.get("sondado_em")})</i></span>')
+    return (f'<div class="camada falta"><b class="rot">{rotulo} — a mesma '
+            f'informação em outra fonte oficial</b>'
+            f'<div class="ev" style="--pt:#1d4f8a">{"".join(linhas)}</div>'
+            f'A confirmação por qualquer destas vias eleva o achado de '
+            f'INCONCLUSIVO/INDICIÁRIO a CONFIRMADO por dupla via.</div>')
+
+
+CHAVE_2E = {"REC": "receita_realizada", "IGD": "igd_demonstrativo",
+            "EXE": "empenhos_por_dotacao", "PUB": None, "CMAS": None}
+
+
 def ficha_html(a):
     sev = COR_SEV[a["severidade"]]
     selo = COR_SELO[a["selo"]]
     pref = a["codigo"].split("-")[0]
     falta = ""
     if a.get("impedimento"):
+        ch = CHAVE_2E.get(a["codigo"].split("-")[0])
         falta = (f'<div class="camada falta"><b class="rot">O que falta e '
                  f'onde obter</b>Fica impedido: {a["impedimento"]}. '
-                 f'Obter em: {a.get("onde_obter", "—")}.</div>')
+                 f'Obter em: {a.get("onde_obter", "—")}.</div>'
+                 + (bloco_segunda_etapa(ch) if ch else ""))
     return f"""<article class="ficha" style="--sev:{sev}">
  <div class="topo"><span class="ic">{ICONE.get(pref, "•")}</span>
   <span class="tit">{a["titulo"]}</span>
@@ -1483,6 +1545,7 @@ para o resumo de cada balão e seta, clique abaixo para os dados completos.</p>
 
 <h2>F4 · Prestação de contas mensal por entidade — omissões</h2>
 {prestacao_por_entidade(comp, evs, fluxo, mapa)}
+{bloco_segunda_etapa("prestacao_entidades_13019", "Validação em 2ª etapa das parcerias")}
 
 <h2>F5 · Demonstração de dados · piso do IGD na competência</h2>
 {t_igd}
@@ -1501,22 +1564,20 @@ para o resumo de cada balão e seta, clique abaixo para os dados completos.</p>
 
 <h2><span data-tip="o que a conta 3601 publicou (ou omitiu) na competência">S2 · Prestação de contas mensal da conta 3601 — análise individual</span></h2>
 {prestacao_gabinete(comp, evs, v["mes"])}
+{bloco_segunda_etapa("folha_e_execucao_3601", "Validação em 2ª etapa da conta 3601")}
 
 <h2><span data-tip="cada destinação do QDD da unidade 3601, pormenorizada, com o estado da informação em símbolo — roxo quando nada foi publicado">S3 · Prestação de contas por destinação do QDD — pormenorizada</span></h2>
 {prestacao_gabinete_completa(comp, evs, v["mes"], fluxo)}
 
 <h2><span data-tip="apenas adicionais, horas extras e pagamentos acima do teto municipal — o restante da folha não entra no resumo">S4 · Folha do Gabinete — resumo dirigido (adicionais, horas extras e teto)</span></h2>
 {folha_gabinete_resumo(v["mes"])}
+{bloco_segunda_etapa("folha_e_execucao_3601", "Validação em 2ª etapa da folha")}
 
 <h2>G6 · Condições estruturais que perduram na competência</h2>
 <div class="estrutural"><ul>{estruturais}</ul>
 <p style="margin-top:8px">Apuradas no exercício e vigentes no mês; constam do
 parecer consolidado anual e não são recontadas como achados mensais novos.</p></div>
 <footer>
- <div class="adv">Este documento é subsídio técnico de fiscalização. Nada aqui
- é peça processual sem revisão de advogado — Artigo 32 da Lei 8.906/1994.
- Indício de sobrepreço é indício: sobrepreço se demonstra por perícia com
- preço de mercado.</div>
  Pessoas físicas, quando referidas, aparecem apenas pelo primeiro nome,
  minimizadas na extração. Pessoas jurídicas mantêm razão social e inscrição
  completas. Metodologia e dados: repositório público da fiscalização.
@@ -1551,8 +1612,7 @@ def indice():
 <title>Pareceres mensais — 2026</title><style>{CSS}</style></head><body>
 {cabecalho_html("Pareceres <b>mensais</b> — 2026")}
 {"".join(linhas)}
-<footer><div class="adv">Nada aqui é peça processual sem revisão de advogado —
-Artigo 32 da Lei 8.906/1994.</div></footer>
+<footer></footer>
 {rodape_marca_html()}</body></html>"""
     (DOCS / "index.html").write_text(html, encoding="utf-8")
 

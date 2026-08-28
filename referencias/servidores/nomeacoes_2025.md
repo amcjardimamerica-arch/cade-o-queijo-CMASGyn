@@ -1,0 +1,58 @@
+# Servidores nomeados/exonerados — 2025 (56 atos)
+
+- **Como** — Designar — 2025-07-04, edição do_20250704_000008571.pdf
+- **Evanilce** — Nomear, Gerente De Gestão De Feiras Livres — 2025-07-04, edição do_20250704_000008571.pdf
+- **Murillo** — Nomear, Supervisor Administrativo Dos Centros De Referência De — 2025-07-04, edição do_20250704_000008571.pdf
+- **Rosa** — Nomear, Gerente De Gestão E Desenvolvimento — 2025-07-04, edição do_20250704_000008571.pdf
+- **Gisa** — Nomear, Gerente Contábil E De Prestação De — 2025-07-17, edição do_20250717_000008580.pdf
+- **Nayara** — Nomear, Assessora Técnica Ii — 2025-08-21, edição do_20250821_000008605.pdf
+- **Valdivino** — Nomear — 2025-08-21, edição do_20250821_000008605.pdf
+- **Valeria** — Designar, Con Fiança Ii — 2025-08-21, edição do_20250821_000008605.pdf
+- **Ana** — Nomear, Assessora Técnica I — 2025-08-22, edição do_20250822_000008606.pdf
+- **Cecilia** — Designar, Con Fiança Iv — 2025-08-22, edição do_20250822_000008606.pdf
+- **Daiane** — Dispensar, Con Fiança De Coordenadora Do Centro De Referência De — 2025-08-22, edição do_20250822_000008606.pdf
+- **João** — Designar, Con Fiança Iv — 2025-08-22, edição do_20250822_000008606.pdf
+- **Marina** — Dispensar, Con Fiança Iv — 2025-08-22, edição do_20250822_000008606.pdf
+- **Os** — Designar, Con Fiança I — 2025-08-22, edição do_20250822_000008606.pdf
+- **Robson** — Dispensar, Conﬁança Iv — 2025-08-22, edição do_20250822_000008606.pdf
+- **Os** — Nomear — 2025-09-03, edição do_20250903_000008614.pdf
+- **Debora** — Designar, Conﬁança De Coordenadora Geral De Unidade Tipo I E — 2025-09-09, edição do_20250909_000008618.pdf
+- **Victor** — Exonerar — 2025-09-09, edição do_20250909_000008618.pdf
+- **Denise** — Exonerar, Gerente De Lançamento E Fechamento Da Folha De — 2025-09-16, edição do_20250916_000008623.pdf
+- **Luseni** — Nomear — 2025-09-16, edição do_20250916_000008623.pdf
+- **Rosemar** — Exonerar, Diretora De Captação E Articulação — 2025-09-16, edição do_20250916_000008623.pdf
+- **Patricia** — Exonerar, Gerente De Proteção Social Básica — 2025-09-17, edição do_20250917_000008624.pdf
+- **Patricia** — Exonerar, Gerente De Programas Socioassistenciais — 2025-09-17, edição do_20250917_000008624.pdf
+- **Rodrigo** — Nomear, Assessor Especial — 2025-09-17, edição do_20250917_000008624.pdf
+- **Alex** — Exonerar, Assessor Técnico I — 2025-09-18, edição do_20250918_000008625.pdf
+- **Karlessandro** — Designar — 2025-09-18, edição do_20250918_000008625.pdf
+- **Renato** — Designar, Con Fianç A De Coordenador Do Centro De Referência De Assistên — 2025-09-18, edição do_20250918_000008625.pdf
+- **Adriana** — Nomear, Assessora Técnica I — 2025-09-26, edição do_20250926_000008631.pdf
+- **Fatima** — Nomear, Supervisora Administrativa Dos Centros — 2025-09-26, edição do_20250926_000008631.pdf
+- **Léia** — Nomear, Supervisora Administrativa Dos Centros De Referência De Assis — 2025-09-26, edição do_20250926_000008631.pdf
+- **Benedita** — Exonerar, Gerente De Proteção Social De Alta Complexidade — 2025-10-01, edição do_20251001_000008634.pdf
+- **Fabrícia** — Exonerar, Diretora De Proteção Social Especial — 2025-10-01, edição do_20251001_000008634.pdf
+- **Marcos** — Exonerar, Gerente De Proteção Social De Média Complexidade — 2025-10-01, edição do_20251001_000008634.pdf
+- **Paula** — Exonerar, Gerente De Atenção A Populações — 2025-10-01, edição do_20251001_000008634.pdf
+- **Virgínia** — Nomear, Gerente De Proteção Social De Alta Complexidade — 2025-10-01, edição do_20251001_000008634.pdf
+- **Andreia** — Exonerar, Supervisora Administrativa Dos Centros De Referência — 2025-10-03, edição do_20251003_000008636.pdf
+- **Eva** — Exonerar, Supervisora Administrativa Dos Centros De Referência De Assis — 2025-10-03, edição do_20251003_000008636.pdf
+- **Francineide** — Dispensar, Con Fiança V — 2025-10-03, edição do_20251003_000008636.pdf
+- **José** — Exonerar, Supervisor Administrativo Dos Centros De Referência De Assist — 2025-10-03, edição do_20251003_000008636.pdf
+- **Milaide** — Dispensar, Con Fiança De Coordenadora Técnica De Unidade Tipo Iv — 2025-10-03, edição do_20251003_000008636.pdf
+- **Paula** — Dispensar, Con Fiança De Coordenadora Do Centro De Referência De Assistên — 2025-10-03, edição do_20251003_000008636.pdf
+- **Pedro** — Exonerar, Superintendente De Desenvolvimento Econômico — 2025-10-03, edição do_20251003_000008636.pdf
+- **Saulo** — Exonerar, Chefe Da Advocacia Setorial — 2025-10-03, edição do_20251003_000008636.pdf
+- **Valdenor** — Exonerar, Gerente De Fomento De Apoio Ao Cooperativismo — 2025-10-03, edição do_20251003_000008636.pdf
+- **Avena** — Designar, Con Fiança I — 2025-10-10, edição do_20251010_000008641.pdf
+- **Colemar** — Dispensar, Con Fiança I — 2025-10-10, edição do_20251010_000008641.pdf
+- **Danillo** — Designar, Con Fiança I — 2025-10-10, edição do_20251010_000008641.pdf
+- **Girlene** — Designar, Con Fiança I — 2025-10-10, edição do_20251010_000008641.pdf
+- **Jeovany** — Dispensar — 2025-10-10, edição do_20251010_000008641.pdf
+- **Joice** — Nomear, Supervisora Administrativa Dos Centros De Referência De — 2025-10-10, edição do_20251010_000008641.pdf
+- **Giselly** — Designar, Con Fiança De Coordenadora Administrativa Do Distrito Sanitári — 2025-11-03, edição do_20251103_000008655_edi.pdf
+- **Clebielly** — Exonerar, Supervisora Administrativa Dos Centros De Referência — 2025-12-01, edição do_20251201_000008673.pdf
+- **Geslaine** — Dispensar, Con Fiança De Coordenadora Do Centro De Referência De — 2025-12-01, edição do_20251201_000008673.pdf
+- **Para** — Contratar — 2025-12-01, edição do_20251201_000008673.pdf
+- **Samantha** — Nomear, Gestora Do Portfólio De Projetos — 2025-12-01, edição do_20251201_000008673.pdf
+- **Sônia** — Nomear, Supervisora Administrativa Dos Centros De Referência De — 2025-12-01, edição do_20251201_000008673.pdf

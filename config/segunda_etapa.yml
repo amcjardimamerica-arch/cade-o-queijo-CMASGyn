@@ -1,0 +1,39 @@
+# Validação em 2ª etapa: para cada informação indisponível na 1ª via
+# (Diário Oficial), onde ela pode estar em fonte OFICIAL alternativa.
+# As URLs candidatas são sondadas por src/valida_segunda_etapa.py em
+# ambiente com rede; o estado da sonda acompanha cada citação no parecer.
+fontes:
+  portal_transparencia:
+    nome: Portal da Transparência do Município de Goiânia
+    candidatas:
+      - https://transparencia.goiania.go.gov.br
+      - https://www.goiania.go.gov.br/transparencia
+      - https://portaldatransparencia.goiania.go.gov.br
+      - https://www.goiania.go.gov.br/portal-da-transparencia
+  esic:
+    nome: e-SIC — Serviço de Informação ao Cidadão de Goiânia
+    candidatas:
+      - https://esic.goiania.go.gov.br
+      - https://www.goiania.go.gov.br/e-sic
+  siconfi:
+    nome: SICONFI/Tesouro Nacional — RREO, RGF e DCA do Município
+    candidatas:
+      - https://siconfi.tesouro.gov.br
+  tcmgo_doc:
+    nome: Diário Oficial de Contas do TCM-GO
+    candidatas:
+      - https://www.tcm.go.gov.br/doc/
+  tcmgo_portal:
+    nome: Portal do TCM-GO (prestações de contas dos jurisdicionados)
+    candidatas:
+      - https://www.tcmgo.tc.br
+  fnas:
+    nome: Fundo Nacional de Assistência Social — repasses fundo a fundo
+    candidatas:
+      - https://fnas.mds.gov.br/extracao-dos-valores-repassados-fundo-a-fundo/
+mapa:
+  folha_e_execucao_3601: [portal_transparencia, esic, siconfi, tcmgo_portal]
+  empenhos_por_dotacao: [portal_transparencia, tcmgo_portal, esic]
+  receita_realizada: [siconfi, portal_transparencia]
+  igd_demonstrativo: [fnas, portal_transparencia]
+  prestacao_entidades_13019: [portal_transparencia, esic, tcmgo_portal]

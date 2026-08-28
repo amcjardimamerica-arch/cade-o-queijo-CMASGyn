@@ -24,6 +24,10 @@ jobs:
       - name: Capturar precedentes de transparência (camada 0 + Haiku opcional)
         env: {ANTHROPIC_API_KEY: "${{ secrets.ANTHROPIC_API_KEY }}"}
         run: python scripts/captura_precedentes.py || true
+      - name: Sonda de 2ª etapa — fontes oficiais alternativas
+        run: python src/valida_segunda_etapa.py || true
+      - name: Servidores nomeados nas publicações (pasta própria, minimizado)
+        run: python scripts/captura_servidores.py || true
       - name: Verificação mensal da competência encerrada, se houver
         run: |
           python - <<'PY'

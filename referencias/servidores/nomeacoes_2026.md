@@ -1,0 +1,58 @@
+# Servidores nomeados/exonerados — 2026 (56 atos)
+
+- **Avena** — Dispensar, Con Fiança I — 2026-01-20, edição do_20260120_000008704.pdf
+- **Gilvania** — Exonerar, Gerente De Benefícios Sociais — 2026-01-20, edição do_20260120_000008704.pdf
+- **Henrique** — Dispensar, Con Fiança Iv — 2026-01-20, edição do_20260120_000008704.pdf
+- **Karla** — Designar, Conﬁança I — 2026-01-20, edição do_20260120_000008704.pdf
+- **Larissa** — Designar, Con Fiança De Coordenadora Do Centro De Referência Especializa — 2026-01-20, edição do_20260120_000008704.pdf
+- **Ronny** — Nomear, Gerente De Benefícios Sociais — 2026-01-20, edição do_20260120_000008704.pdf
+- **Marcia** — Nomear, Assessora Especial — 2026-01-30, edição do_20260130_000008712.pdf
+- **Como** — Designar — 2026-03-06, edição do_20260306_000008735.pdf
+- **Elisa** — Dispensar, Con Fiança Iv — 2026-03-06, edição do_20260306_000008735.pdf
+- **Patricia** — Exonerar, Gerente De Proteção Social Básica — 2026-03-06, edição do_20260306_000008735.pdf
+- **Valeria** — Dispensar, Con Fiança Ii — 2026-03-06, edição do_20260306_000008735.pdf
+- **Vanesa** — Designar, Con Fiança I — 2026-03-06, edição do_20260306_000008735.pdf
+- **Leia** — Exonerar, Supervisora Administrativa Dos Centros De Referência De — 2026-03-23, edição do_20260323_000008745.pdf
+- **Luciana** — Dispensar, Con Fiança De Coordenadora Geral De Unidade Tipo I E Ii — 2026-03-23, edição do_20260323_000008745.pdf
+- **Matheus** — Nomear, Supervisor Administrativo Dos Centros De Referência De Assist — 2026-03-23, edição do_20260323_000008745.pdf
+- **Osmar** — Nomear, Gerente De Assistência Técnica Rural E Fomento À Agricultura — 2026-03-23, edição do_20260323_000008745.pdf
+- **Em** — Designar — 2026-03-26, edição do_20260326_000008748.pdf
+- **Em** — Designar — 2026-03-27, edição do_20260327_000008749.pdf
+- **Os** — Designar — 2026-03-27, edição do_20260327_000008749.pdf
+- **Amanda** — Nomear, Secretária Executiva — 2026-04-01, edição do_20260401_000008752.pdf
+- **Juliany** — Nomear, Gerente De Proteção Social De Média Complexidade — 2026-04-01, edição do_20260401_000008752.pdf
+- **Paula** — Exonerar, Gerente De Proteção Social De — 2026-04-01, edição do_20260401_000008752.pdf
+- **Em** — Designar — 2026-04-07, edição do_20260407_000008754.pdf
+- **Em** — Designar — 2026-04-09, edição do_20260409_000008756.pdf
+- **Em** — Designar — 2026-04-10, edição do_20260410_000008757.pdf
+- **Em** — Designar — 2026-04-13, edição do_20260413_000008758.pdf
+- **Em** — Designar — 2026-04-17, edição do_20260417_000008762.pdf
+- **Em** — Designar — 2026-04-28, edição do_20260428_000008767.pdf
+- **Em** — Designar — 2026-04-29, edição do_20260429_000008768.pdf
+- **Ou** — Contratar — 2026-04-29, edição do_20260429_000008768.pdf
+- **Para** — Contratar — 2026-04-29, edição do_20260429_000008768.pdf
+- **Como** — Designar — 2026-05-05, edição do_20260505_000008771.pdf
+- **Como** — Designar — 2026-05-18, edição do_20260518_000008780.pdf
+- **Maria** — Designar, Con Fiança Iv — 2026-05-26, edição do_20260526_000008786.pdf
+- **João** — Nomear, Assessor Especial Técnico Iii — 2026-05-27, edição do_20260527_000008787.pdf
+- **Ludmilla** — Designar, Conﬁança V — 2026-05-27, edição do_20260527_000008787.pdf
+- **Paula** — Designar, Conﬁança De Coordenadora Do Centro De Referência De Assistênc — 2026-05-27, edição do_20260527_000008787.pdf
+- **Renato** — Dispensar, Conﬁança De Coordenador Do Centro De Referência De Assistênci — 2026-05-27, edição do_20260527_000008787.pdf
+- **Cinttia** — Dispensar, Representante Titular Das Entidades Prestadoras De — 2026-06-17, edição do_20260617_000008800.pdf
+- **Débora** — Dispensar — 2026-06-22, edição do_20260622_000008803.pdf
+- **Marcelo** — Nomear, Coordenador Geral De Unidade Tipo Iv — 2026-06-22, edição do_20260622_000008803.pdf
+- **Em** — Designar — 2026-07-03, edição do_20260703_000008812.pdf
+- **Para** — Designar — 2026-07-03, edição do_20260703_000008812.pdf
+- **Andreia** — Designar, Con Fiança De Coordenadora Do Centro De Referência De Assistên — 2026-07-24, edição do_20260724_000008827.pdf
+- **Carlos** — Designar, Conﬁança I — 2026-07-24, edição do_20260724_000008827.pdf
+- **Como** — Nomear — 2026-07-24, edição do_20260724_000008827.pdf
+- **Wellington** — Dispensar, Conﬁança De Coordenador Do Centro De Referência De Assistênci — 2026-07-24, edição do_20260724_000008827.pdf
+- **Aparecida** — Designar, Conﬁança I — 2026-07-28, edição do_20260728_000008829.pdf
+- **Aristoteles** — Dispensar, Con Fiança I — 2026-07-28, edição do_20260728_000008829.pdf
+- **Larissa** — Dispensar, Con Fiança De Coordenadora Do Centro De Referência Especializa — 2026-07-28, edição do_20260728_000008829.pdf
+- **Maria** — Dispensar, Con Fiança De Coordenadora Do Centro De Referência Especializa — 2026-07-28, edição do_20260728_000008829.pdf
+- **Paula** — Designar, Con Fiança De Coordenador Do Centro De Referência Especializad — 2026-07-28, edição do_20260728_000008829.pdf
+- **Pollyana** — Dispensar — 2026-07-28, edição do_20260728_000008829.pdf
+- **Renata** — Dispensar, Con Fiança Iii — 2026-07-28, edição do_20260728_000008829.pdf
+- **Rudimar** — Designar, Con Fiança De Coordenador Do Centro De Referência Especializad — 2026-07-28, edição do_20260728_000008829.pdf
+- **Valma** — Designar — 2026-07-28, edição do_20260728_000008829.pdf
