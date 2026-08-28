@@ -9,6 +9,7 @@ on:
     branches: [main, master]
   workflow_dispatch:
 
+concurrency: {group: fiscalizacao, cancel-in-progress: false}
 permissions:
   contents: read
   pages: write

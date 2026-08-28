@@ -1,0 +1,24 @@
+# Parâmetros de qualidade de pesquisa: só fonte oficial fundamenta dado.
+# Domínio fora desta lista gera achado QUAL-FONTE (não bloqueia a coleta:
+# o item fica marcado REQUER_CONFIRMACAO_FONTE_OFICIAL até conferência).
+dominios_oficiais:
+  - planalto.gov.br
+  - www.gov.br
+  - goiania.go.gov.br          # inclui sileg.goiania.go.gov.br
+  - go.gov.br                  # órgãos estaduais de Goiás
+  - tcmgo.tc.br
+  - tcm.go.gov.br
+  - tce.go.gov.br
+  - mpgo.mp.br
+  - mpf.mp.br
+  - cnmp.mp.br
+  - mds.gov.br                 # inclui fnas.mds.gov.br
+  - camara.leg.br
+  - senado.leg.br
+  - in.gov.br
+  - receita.economia.gov.br
+  - brasilapi.com.br           # redistribuidor dos dados abertos do CNPJ/RFB
+  - minhareceita.org           # idem
+regra: >
+  Precedente jornalístico direciona pesquisa e exige confirmação na fonte
+  oficial antes de qualquer uso; dado de parecer só nasce de domínio oficial.

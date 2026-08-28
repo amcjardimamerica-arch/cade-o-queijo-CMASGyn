@@ -9,6 +9,11 @@ import json
 from pathlib import Path
 RAIZ = Path(__file__).resolve().parent.parent
 
+import sys as _s; _s.path.insert(0, str(__import__("pathlib").Path(__file__).resolve().parent))
+from marca import LOGO_URI as _LOGO
+_FAIXA_MARCA = ('<div style="display:flex;gap:14px;align-items:center;max-width:1180px;margin:0 auto 6px;padding:10px 8px 0"><img src="' + _LOGO + '" alt="Núcleo de Fiscalização" style="width:72px;height:auto"><div style="font:700 11px/1.5 Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6b6660">Núcleo de Fiscalização — A.M.C. Jardim América<br>Vigilância da assistência social — Município de Goiânia</div></div>')
+
+
 def main():
     L = lambda p: json.loads((RAIZ / p).read_text(encoding="utf-8"))
     d = {"fluxo": L("dados/fluxo_2026.json"), "dest": L("dados/destinatarios_2026.json"),
@@ -69,7 +74,7 @@ border-radius:2px;border:1px solid currentColor}
 .aviso{border-left:5px solid var(--alerta);background:#fbeaea;padding:12px 15px;margin:12px 0;font-size:13.5px}
 .okbox{border-left:5px solid var(--ok);background:#eaf5ee;padding:12px 15px;margin:12px 0;font-size:13.5px}
 @media(max-width:900px){.grade{grid-template-columns:1fr}}
-</style></head><body><div class="w">
+</style></head><body>{_FAIXA_MARCA}<div class="w">
 <h1>Fluxograma do dinheiro</h1>
 <div class="lead">Assistência social de Goiânia, 2026. Cada origem tem uma cor, e a cor acompanha o
 dinheiro da pizza à seta e ao destino. Clique em qualquer fatia, seta ou caixa.</div>
@@ -252,6 +257,8 @@ document.addEventListener('click',e=>{
    return `<span class="cn">${x.cnpj||'—'}</span> ${dd&&dd.razao_social?dd.razao_social.slice(0,32):''} — ${brl(x.valor)}`;}).join('<br>')}</dd>`:''}</dl>`);}
 });
 </script></body></html>'''
+TPL = TPL.replace("{_FAIXA_MARCA}", _FAIXA_MARCA)
+
 
 if __name__ == "__main__":
     main()

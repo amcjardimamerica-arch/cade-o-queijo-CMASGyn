@@ -9,6 +9,11 @@ import json
 from pathlib import Path
 RAIZ = Path(__file__).resolve().parent.parent
 
+import sys as _s; _s.path.insert(0, str(__import__("pathlib").Path(__file__).resolve().parent))
+from marca import LOGO_URI as _LOGO
+_FAIXA_MARCA = ('<div style="display:flex;gap:14px;align-items:center;max-width:1180px;margin:0 auto 6px;padding:10px 8px 0"><img src="' + _LOGO + '" alt="Núcleo de Fiscalização" style="width:72px;height:auto"><div style="font:700 11px/1.5 Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6b6660">Núcleo de Fiscalização — A.M.C. Jardim América<br>Vigilância da assistência social — Município de Goiânia</div></div>')
+
+
 def brl(v):
     return "R$ " + f"{float(v):,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
 
@@ -69,7 +74,7 @@ td{padding:6px;border-bottom:1px dotted var(--linha)}
 td.n{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
 .cnpj{font-family:ui-monospace,Menlo,monospace;font-size:12px}
 @media(max-width:900px){.fluxo{grid-template-columns:1fr}.seta{transform:rotate(90deg);padding:4px 0}}
-</style></head><body><div class="w">
+</style></head><body>{_FAIXA_MARCA}<div class="w">
 <h1>De onde veio, onde passou, para onde foi</h1>
 <div class="sub">Fundo Municipal de Assistência Social de Goiânia · exercício 2026 · clique em qualquer caixa para ver a prova ou o que falta</div>
 
@@ -230,6 +235,8 @@ const tb=(arr,cor)=>`<table><thead><tr><th>Data</th><th>Beneficiário</th><th>Va
 el('tcom').innerHTML=tb(D.despesas.filter(x=>x.tipo==='comprovada'),'az');
 el('tsem').innerHTML=tb(D.despesas.filter(x=>x.tipo==='sem_vinculo'),'vm');
 </script></body></html>'''
+TEMPLATE = TEMPLATE.replace("{_FAIXA_MARCA}", _FAIXA_MARCA)
+
 
 if __name__ == "__main__":
     main()

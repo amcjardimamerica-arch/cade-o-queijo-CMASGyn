@@ -8,6 +8,11 @@ import json
 from pathlib import Path
 RAIZ = Path(__file__).resolve().parent.parent
 
+import sys as _s; _s.path.insert(0, str(__import__("pathlib").Path(__file__).resolve().parent))
+from marca import LOGO_URI as _LOGO
+_FAIXA_MARCA = ('<div style="display:flex;gap:14px;align-items:center;max-width:1180px;margin:0 auto 6px;padding:10px 8px 0"><img src="' + _LOGO + '" alt="Núcleo de Fiscalização" style="width:72px;height:auto"><div style="font:700 11px/1.5 Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#6b6660">Núcleo de Fiscalização — A.M.C. Jardim América<br>Vigilância da assistência social — Município de Goiânia</div></div>')
+
+
 def main():
     L = lambda p: json.loads((RAIZ / p).read_text(encoding="utf-8"))
     dados = {"fluxo": L("dados/fluxo_2026.json"),
@@ -80,7 +85,7 @@ border-radius:6px;padding:16px 18px;box-shadow:0 10px 34px rgba(0,0,0,.24);displ
 border-radius:5px;margin:20px 0}
 .frase b{color:#ffd98a}
 @media(max-width:760px){.big{font-size:28px}h1{font-size:23px}}
-</style></head><body><div class="w">
+</style></head><body>{_FAIXA_MARCA}<div class="w">
 <h1>Para onde foi o dinheiro da<br>assistência social de Goiânia</h1>
 <div class="lead">Exercício de 2026. Siga as quatro estações e clique em qualquer caixa para ver
 o contrato, o beneficiário e a finalidade. Onde faltar documento, a caixa diz o que falta.</div>
@@ -242,6 +247,8 @@ document.addEventListener('click',e=>{
    ${ex.length?`<dt>Exemplos</dt><dd>${ex.map(x=>`${x.cnpj||x.beneficiario_pf||'—'} — ${brl(x.valor)}`).join('<br>')}</dd>`:''}</dl>`);}
 });
 </script></body></html>'''
+TPL = TPL.replace("{_FAIXA_MARCA}", _FAIXA_MARCA)
+
 
 if __name__ == "__main__":
     main()
