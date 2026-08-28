@@ -80,7 +80,12 @@ def apurar(dias: int = 45) -> dict:
         n_ed, ids = _consulta(f"id:*{marca}*", s)
         time.sleep(0.4)
         if n_ed is None:
-            serie["dias"][iso] = {"situacao": "INCONCLUSIVO", "util": True}
+            # sonda falhou (rede, proxy, limite). Falha de coleta não é fato
+            # novo: nunca sobrescreve situação já apurada — apenas preenche
+            # dia ainda sem registro. Preserva o achado e mantém a função
+            # idempotente mesmo com a fonte inalcançável.
+            if iso not in serie["dias"]:
+                serie["dias"][iso] = {"situacao": "INCONCLUSIVO", "util": True}
             continue
         if not n_ed:
             serie["dias"][iso] = {"situacao": "INEXISTENTE", "util": True,

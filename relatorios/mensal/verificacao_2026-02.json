@@ -1,0 +1,181 @@
+{
+ "competencia": "2026-02",
+ "mes": "fevereiro",
+ "exercicio": 2026,
+ "gerado_em": "2026-08-27",
+ "parametros_aplicados": [
+  "REC-M",
+  "IGD-M",
+  "PUB-M",
+  "EXE-M",
+  "CMAS-M"
+ ],
+ "total_achados": 5,
+ "por_severidade": {
+  "critica": 2,
+  "alta": 2,
+  "media": 1
+ },
+ "por_selo": {
+  "CONFIRMADO": 3,
+  "INDICIARIO": 0,
+  "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE": 2
+ },
+ "execucao_do_mes": {
+  "eventos": 16,
+  "por_estacao": {
+   "dotacao": 0,
+   "empenho": 1,
+   "liquidacao": 0,
+   "pagamento": 0,
+   "vinculo": 7
+  }
+ },
+ "publicacao_do_mes": {
+  "dias_uteis": 18,
+  "dias_com_edicao": 9
+ },
+ "achados": [
+  {
+   "codigo": "IGD-M-2026-02",
+   "bloco": "CMAS",
+   "severidade": "critica",
+   "selo": "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE",
+   "titulo": "Piso de 10% do IGD ao controle social: aplicação de fevereiro de 2026 sem demonstrativo",
+   "detalhe": "Estimados R$ 140,625.21 de base na competência, o piso devido ao Conselho é de R$ 14,062.52. A norma incide competência a competência: aplicar o percentual sobre o acumulado do ano não a satisfaz. Nenhum demonstrativo de aplicação do mês foi publicado. A planilha do Fundo Nacional disponível alcança a competência 2025-11, de modo que o repasse efetivo de 2026 tampouco é conferível por via federal até a atualização da extração.",
+   "norma": "Artigo 6º da Resolução CNAS/MDS 202/2025; Artigo 14, § 7º, da Lei 14.601/2023",
+   "impedimento": "aferição do piso mensal de 10% na competência",
+   "onde_obter": "demonstrativo mensal do Fundo Municipal e extração de repasses do Fundo Nacional quando alcançar 2026",
+   "dados": {
+    "base_mensal_estimada": 140625.21,
+    "devido_ao_conselho_10": 14062.52,
+    "sancao": "bloqueio dos repasses até a comprovação — Artigo 6º, § 6º, da Resolução CNAS/MDS 202/2025"
+   }
+  },
+  {
+   "codigo": "EXE-M-2026-02",
+   "bloco": "SEMASDH",
+   "severidade": "critica",
+   "selo": "CONFIRMADO",
+   "titulo": "Execução sem liquidação nem pagamento publicados em fevereiro de 2026",
+   "detalhe": "O mês registra 16 eventos na trilha do dinheiro (1 com estação de empenho, 0 de dotação, 7 de vínculo), e nenhum evento de liquidação ou pagamento. Dotação e empenho não comprovam saída de dinheiro: sem os estágios do Artigo 63 e do Artigo 64 da Lei 4.320/1964 publicados, o destino efetivo dos recursos do mês permanece desconhecido.",
+   "norma": "Artigo 62, Artigo 63 e Artigo 64 da Lei 4.320/1964; Artigo 48-A, inciso I, da Lei Complementar 101/2000",
+   "dados": {
+    "eventos": 16,
+    "por_estacao": {
+     "dotacao": 0,
+     "empenho": 1,
+     "liquidacao": 0,
+     "pagamento": 0,
+     "vinculo": 7
+    },
+    "maior_valor_citado": 87664228.18
+   }
+  },
+  {
+   "codigo": "REC-M-2026-02",
+   "bloco": "SEMASDH",
+   "severidade": "alta",
+   "selo": "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE",
+   "titulo": "Receita realizada de fevereiro de 2026 não publicada",
+   "detalhe": "A previsão da competência é de R$ 1,934,833.33 somadas as fontes, mas nenhum demonstrativo de receita realizada do mês foi localizado em publicação oficial. Sem o realizado, a conciliação entre entrada e saída do Fundo fica impedida para a competência.",
+   "norma": "Artigo 48 e Artigo 48-A da Lei Complementar 101/2000; Artigo 8º, § 1º, da Lei 12.527/2011",
+   "impedimento": "conciliação receita×despesa da competência",
+   "onde_obter": "portal da transparência do Município ou SICONFI",
+   "dados": {
+    "previsto_total": 1934833.33,
+    "previsto_por_fonte": {
+     "1660": 687500.0,
+     "1661": 500000.0,
+     "1665": 258666.67,
+     "tesouro": 750.0,
+     "patrimonial": 214500.0,
+     "nao_identificada": 172583.33
+    }
+   }
+  },
+  {
+   "codigo": "PUB-M-2026-02",
+   "bloco": "SEMASDH",
+   "severidade": "alta",
+   "selo": "CONFIRMADO",
+   "titulo": "Diário Oficial: 9 de 18 dias úteis de fevereiro de 2026 sem edição localizada",
+   "detalhe": "O mês teve 18 dias úteis; localizaram-se edições em 9 dias. Dupla via: dias úteis sem edição no acervo e lacuna na numeração sequencial das edições vizinhas. Lacunas de numeração no mês: [{'entre': [8713, 8716], 'faltam': 2}, {'entre': [8716, 8718], 'faltam': 1}, {'entre': [8719, 8721], 'faltam': 1}, {'entre': [8721, 8723], 'faltam': 1}, {'entre': [8723, 8727], 'faltam': 3}, {'entre': [8728, 8730], 'faltam': 1}].",
+   "norma": "Artigo 37, caput, da Constituição da República — princípio da publicidade; Artigo 8º da Lei 12.527/2011",
+   "dados": {
+    "dias_uteis": 18,
+    "dias_com_edicao": 9,
+    "dias_uteis_sem_edicao": [
+     "2026-02-03",
+     "2026-02-04",
+     "2026-02-06",
+     "2026-02-11",
+     "2026-02-13",
+     "2026-02-19",
+     "2026-02-20",
+     "2026-02-23",
+     "2026-02-26"
+    ],
+    "lacunas_numeracao": [
+     {
+      "entre": [
+       8713,
+       8716
+      ],
+      "faltam": 2
+     },
+     {
+      "entre": [
+       8716,
+       8718
+      ],
+      "faltam": 1
+     },
+     {
+      "entre": [
+       8719,
+       8721
+      ],
+      "faltam": 1
+     },
+     {
+      "entre": [
+       8721,
+       8723
+      ],
+      "faltam": 1
+     },
+     {
+      "entre": [
+       8723,
+       8727
+      ],
+      "faltam": 3
+     },
+     {
+      "entre": [
+       8728,
+       8730
+      ],
+      "faltam": 1
+     }
+    ]
+   }
+  },
+  {
+   "codigo": "CMAS-M-2026-02",
+   "bloco": "CMAS",
+   "severidade": "media",
+   "selo": "CONFIRMADO",
+   "titulo": "1 resoluções do Conselho citadas em fevereiro de 2026 sem publicação da íntegra",
+   "detalhe": "Resoluções referidas em atos publicados no mês, cuja íntegra não consta de nenhuma edição do Diário nem do sítio do Conselho: 017/2026. Ato normativo de conselho de política pública é documento de interesse coletivo e sua íntegra é de divulgação obrigatória.",
+   "norma": "Artigo 8º, § 1º, inciso I, da Lei 12.527/2011; Artigo 37, caput, da Constituição da República",
+   "dados": {
+    "resolucoes": [
+     "017/2026"
+    ]
+   }
+  }
+ ],
+ "camada_ia": "nenhuma — verificação integralmente determinística"
+}
