@@ -42,7 +42,7 @@ jobs:
       - name: Fiscalização completa
         env:
           ANTHROPIC_API_KEY: "${{ secrets.ANTHROPIC_API_KEY }}"
-          URL_TRANSPARENCIA: "${{ secrets.URL_TRANSPARENCIA }}"
+          URL_TRANSPARENCIA: "${{ secrets.URL_TRANSPARENCIA || vars.URL_TRANSPARENCIA }}"
         run: python src/run_fiscalizacao.py | tee /tmp/saida.txt
       - name: Publicar
         run: |
