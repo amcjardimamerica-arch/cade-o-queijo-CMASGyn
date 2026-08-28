@@ -193,6 +193,10 @@ color:var(--suave);border-bottom:1px dashed var(--linha);margin:12px 0 8px;paddi
 letter-spacing:.1em;text-transform:uppercase;color:var(--suave)}
 .parecer-mini{background:#fdf6f5;border-left:4px solid #c1281f;padding:8px 11px;
 font:13px/1.55 Arial,sans-serif;margin-top:6px;border-radius:0 6px 6px 0}
+.parte{margin:44px 0 6px;padding:14px 18px;border-radius:8px;color:#fff;
+background:linear-gradient(100deg,var(--pc1,#1c2733),var(--pc2,#3a5f8a))}
+.parte .pt{font:700 11px/1.6 Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;opacity:.85}
+.parte .pn{font:400 22px/1.25 Georgia,serif}
 .orig{display:inline-block;font:700 10px/1 Arial,sans-serif;letter-spacing:.06em;
 padding:4px 8px;border-radius:4px;background:#eef2f7;color:#1d4f8a;margin:2px 4px 2px 0}
 @media print{body{background:#fff}.ficha,.ev,.plin{box-shadow:none}
@@ -616,6 +620,145 @@ def fluxograma_duas_contas(fluxo):
             'tracejada vermelha é a transferência que a lei manda e não '
             'aparece publicada.</p>'
             + detalhes("Abrir dados completos das duas contas", tab))
+
+
+def fluxograma_gabinete(fluxo):
+    """Fluxograma próprio da conta do Gabinete da Secretaria (un. 3601):
+    Tesouro → 3601 → destinações do QDD capturado, com a fatia ainda não
+    extraída explicitada como lacuna, não como silêncio."""
+    gab = next(c for c in fluxo["contas"] if c["unidade"] == "3601")
+    try:
+        qdd = carrega("qdd_2026.json")
+    except FileNotFoundError:
+        qdd = []
+    acoes = {}
+    for r in qdd:
+        if str(r.get("unid", "")).startswith("3601"):
+            a = acoes.setdefault(r["acao"], {"v": 0.0, "nome": r["nome"],
+                                             "nats": {}})
+            a["v"] += r["valor"]
+            a["nats"][r.get("nat_fmt", "?")] = (
+                a["nats"].get(r.get("nat_fmt", "?"), 0) + r["valor"])
+    capturado = sum(a["v"] for a in acoes.values())
+    resto = max(gab["valor"] - capturado, 0)
+    tes = _qd("#8c1d18", "Tesouro Municipal", gab["valor"],
+              "fonte integral da unidade 3601",
+              f"Toda a unidade 3601 é custeada pelo Tesouro: "
+              f"{fmt(gab['valor'])} na Lei Orçamentária 11.590/2026.",
+              esc(gab["nota"]) + "<br><b>Omissão legal:</b> por força do "
+              "Artigo 30, parágrafo único, da Lei 8.742/1993 e do Artigo 2º "
+              "da Lei municipal 7.531/1995, recursos da assistência social "
+              "devem transitar pelo Fundo sob controle do Conselho.")
+    card_gab = _qd("#a85b00", "Gabinete da Secretaria — un. 3601",
+                   gab["valor"], "execução FORA do Fundo",
+                   f'{gab["nome"]}: {fmt(gab["valor"])}, sem passagem pela '
+                   f'conta especial.',
+                   esc(gab["base"]) + "<br><b>Análise:</b> nenhum "
+                   "demonstrativo próprio da unidade foi publicado no "
+                   "exercício; a prestação de contas desta conta é, até "
+                   "aqui, integralmente omissa.", central=True)
+    col_s, ys, ws, cs, tp = [], [], [], [], []
+    ordenadas = sorted(acoes.items(), key=lambda kv: -kv[1]["v"])[:5]
+    maxv = max([a["v"] for _, a in ordenadas] + [resto, 1])
+    ALT, GAP = 82, 10
+    for i, (cod, a) in enumerate(ordenadas):
+        nats = ", ".join(f"{k} ({fmt(v)})" for k, v in
+                         sorted(a["nats"].items(), key=lambda x: -x[1]))
+        pessoal = a["nats"].get("3.1.90.11", 0)
+        obs = ("<br><b>Atenção:</b> despesa de pessoal — soma para o teto "
+               "de 30% do Artigo 4º da Lei Complementar municipal 273/2014."
+               if pessoal else "")
+        col_s.append(_qd("#5c5c00" if pessoal else "#3a5f8a",
+                         a["nome"].title()[:46], a["v"],
+                         f"ação {cod.split('.')[-1]}",
+                         f'{a["nome"].title()}: {fmt(a["v"])} '
+                         f'({100*a["v"]/gab["valor"]:.1f}% da unidade).',
+                         f"<b>Ação:</b> {cod}<br><b>Naturezas:</b> {nats}"
+                         + obs))
+        ys.append(i * (ALT + GAP) + ALT / 2)
+        ws.append(2 + 9 * a["v"] / maxv)
+        cs.append("#5c5c00" if pessoal else "#3a5f8a")
+        tp.append(f'3601 → {a["nome"].title()}: {fmt(a["v"])}')
+    if resto > 0:
+        i = len(col_s)
+        col_s.append(_qd("#8a8a94", "Linhas do QDD ainda não capturadas",
+                         resto, "lacuna de extração — não é conformidade",
+                         f"{fmt(resto)} da unidade 3601 ainda sem detalhe "
+                         f"capturado do Quadro de Detalhamento da Despesa.",
+                         "A extração do QDD publicado alcançou "
+                         f"{fmt(capturado)} de {fmt(gab['valor'])} "
+                         f"({100*capturado/gab['valor']:.0f}%). Dado "
+                         "faltante é achado: completar a captura é "
+                         "providência, e o detalhamento integral é "
+                         "exigível — Artigo 48-A, inciso I, da Lei "
+                         "Complementar 101/2000."))
+        ys.append(i * (ALT + GAP) + ALT / 2)
+        ws.append(2 + 9 * resto / maxv)
+        cs.append("#8a8a94")
+        tp.append(f'3601 → linhas não capturadas: {fmt(resto)}')
+    y_meio = (len(col_s) * (ALT + GAP)) / 2
+    g1 = (f'<svg viewBox="0 0 84 {max(y_meio*2,120):.0f}" '
+          f'preserveAspectRatio="none" style="height:'
+          f'{max(y_meio*2,120):.0f}px"><g><title>Tesouro → 3601: '
+          f'{fmt(gab["valor"])}</title>'
+          f'<line x1="2" y1="{y_meio:.0f}" x2="70" y2="{y_meio:.0f}" '
+          f'stroke="#8c1d18" stroke-width="12"/>'
+          f'<polygon points="82,{y_meio:.0f} 68,{y_meio-8:.0f} '
+          f'68,{y_meio+8:.0f}" fill="#8c1d18"/></g></svg>')
+    g2 = [f'<svg viewBox="0 0 84 {len(col_s)*(ALT+GAP):.0f}" '
+          f'preserveAspectRatio="none" '
+          f'style="height:{len(col_s)*(ALT+GAP):.0f}px">']
+    for y, w, c, tpp in zip(ys, ws, cs, tp):
+        g2.append(f'<g><title>{esc(tpp)}</title>'
+                  f'<path d="M2,{y_meio:.0f} C 40,{y_meio:.0f} 44,{y:.0f} '
+                  f'74,{y:.0f}" fill="none" stroke="{c}" '
+                  f'stroke-width="{w:.0f}" opacity=".85"/>'
+                  f'<polygon points="82,{y:.0f} 71,{y-6:.0f} 71,{y+6:.0f}" '
+                  f'fill="{c}"/></g>')
+    g2.append('</svg>')
+    topo = ('<div class="colrot"><span>Origem</span><span></span>'
+            '<span>Conta do Gabinete</span><span></span>'
+            '<span>Destinações do QDD</span></div>')
+    grade = (f'<div class="fxg">{topo}'
+             f'<div class="qds" style="align-self:center">{tes}</div>'
+             f'<div class="setacol" style="align-self:center">{g1}</div>'
+             f'<div style="display:flex;align-items:center;min-height:'
+             f'{len(col_s)*(ALT+GAP):.0f}px">{card_gab}</div>'
+             f'<div class="setacol">{"".join(g2)}</div>'
+             f'<div class="qds">{"".join(col_s)}</div></div>')
+    pess = sum(a["nats"].get("3.1.90.11", 0) for a in acoes.values())
+    aviso = (f'<p class="legenda">Do QDD capturado da unidade, '
+             f'{fmt(pess)} ({100*pess/max(capturado,1):.1f}%) é folha de '
+             f'pagamento — natureza 3.1.90.11 — a cruzar com o teto de 30% '
+             f'do Artigo 4º da Lei Complementar municipal 273/2014.</p>')
+    return grade + aviso
+
+
+def prestacao_gabinete(comp, evs, nome_mes):
+    """Prestação de contas mensal da conta 3601 — análise individual."""
+    dots = [e for e in evs if e.get("dotacao")]
+    linhas = []
+    for e in dots:
+        linhas.append(f'<span class="li"><b class="k">{e.get("data")}</b>'
+                      f'dotação funcional {esc(str(e.get("dotacao")))} — '
+                      f'edição {esc(e.get("edicao", "—"))}</span>')
+    corpo_dot = ("".join(linhas) if linhas else
+                 '<span class="li">nenhuma dotação citada em evento do mês'
+                 '</span>')
+    return (f'<div class="estrutural">'
+            f'<p><b>Demonstrativo próprio da unidade 3601 em {nome_mes}:</b> '
+            f'não publicado — a prestação de contas mensal desta conta é '
+            f'integralmente omissa (Artigo 48-A, inciso I, da Lei '
+            f'Complementar 101/2000). Selo: '
+            f'INCONCLUSIVO_POR_DOCUMENTO_FALTANTE.</p>'
+            f'<p style="margin-top:8px"><b>Opacidade que impede separar as '
+            f'contas:</b> as dotações publicadas no Diário vêm no formato '
+            f'funcional-programático (ex.: 08.244.0108.2263), sem o código '
+            f'da unidade orçamentária — pelo Diário é impossível atribuir '
+            f'cada despesa à conta 3650 ou 3601. A separação exige o QDD '
+            f'integral ou o portal da transparência (pendência P2). '
+            f'Dotações citadas no mês:</p><div class="ev" style="--pt:#a85b00">'
+            f'{corpo_dot}</div></div>')
 
 
 def fluxo_estacoes_svg(previsto_total, est):
@@ -1120,7 +1263,13 @@ def gera(comp):
                      'vermelha do Tesouro — R$ 750,00 mensais — é a expressão '
                      'mensal da queda de 99,46% do aporte próprio.</p></div>')
     t_igd, t_ent = tabelas_dados_html(comp_rec, evs, fluxo, mapa)
-    fichas = "".join(ficha_html(a) for a in v["achados"])
+    ger = {"REC", "PUB"}
+    fichas_gerais = "".join(ficha_html(a) for a in v["achados"]
+                            if a["codigo"].split("-")[0] in ger) or (
+        '<p class="explica">nenhuma desconformidade geral no mês.</p>')
+    fichas_fundo = "".join(ficha_html(a) for a in v["achados"]
+                           if a["codigo"].split("-")[0] not in ger) or (
+        '<p class="explica">nenhuma desconformidade específica no mês.</p>')
     estruturais = "".join(f"<li><b>{t}</b> — {d}</li>" for t, d in ESTRUTURAIS)
     titulo = f'Parecer de fiscalização — <b>{v["mes"]} de {v["exercicio"]}</b>'
     sub = (f'competência {comp} · gerado em {v["gerado_em"]} · camada de IA: '
@@ -1134,50 +1283,68 @@ def gera(comp):
 <div class="uma-frase"><small>Em uma frase</small>{frase}</div>
 <div class="placar">{placar}</div>
 
-<h2><span data-tip="série mensal do que foi publicado na trilha do dinheiro">1 · Linha do exercício — o mês no contexto de janeiro a julho</span></h2>
+<div class="parte" style="--pc1:#1c2733;--pc2:#3a5f8a"><div class="pt">Parte
+Geral</div><div class="pn">Recursos da assistência social — o que afeta as
+duas contas</div></div>
+
+<h2><span data-tip="série mensal do que foi publicado na trilha do dinheiro">G1 · Linha do exercício — o mês no contexto de janeiro a julho</span></h2>
 {detalhes("Informações completas e omissões legais desta seção", "Parâmetros: eventos publicados, empenhos, liquidações/pagamentos por mês. Omissão legal permanente: nenhum mês exibe liquidação ou pagamento — Artigo 63 e Artigo 64 da Lei 4.320/1964; Artigo 48-A, inciso I, da Lei Complementar 101/2000.")}
 <p class="explica">O que foi publicado mês a mês na trilha do dinheiro; a
 faixa sombreada é a competência deste parecer. Passe o mouse nos pontos.</p>
 {linha_exercicio_svg(trilha, comp)}
 
-<h2><span data-tip="entrada por fonte, passagem pela conta especial e saída por destinatário, no exercício">2 · Fluxograma do dinheiro — entrada, passagem pelo Fundo e saída</span></h2>
+<h2><span data-tip="separação entre a conta controlada pelo Conselho (3650) e a unidade do Gabinete (3601)">G2 · As duas contas — visão comparada — Fundo da assistência social × Gabinete da Secretaria</span></h2>
+{detalhes("Informações completas e omissões legais desta seção", "Parâmetro: trânsito obrigatório pelo Fundo — Artigo 30 da Lei 8.742/1993 e Artigo 2º da Lei municipal 7.531/1995. Omissão: transferência automática do § 1º não localizada em publicação alguma.")}
+{fluxograma_duas_contas(fluxo)}
+
+<h2><span data-tip="composição prevista das fontes da competência">G3 · De onde veio — fontes previstas da competência</span></h2>
+{detalhes("Informações completas e omissões legais desta seção", "Parâmetro: previsão por fonte na Lei Orçamentária 11.590/2026. Omissão: receita realizada do mês sem demonstrativo — Artigo 48 e Artigo 48-A da Lei Complementar 101/2000 (achado REC-M).")}
+<div class="grade2"><div>{pizza}</div>{legenda_pizza}</div>
+
+<h2>G4 · O Diário Oficial no mês</h2>
+{calendario_html(comp, pub)}
+
+<h2>G5 · Fichas de desconformidade — gerais (receita e publicidade)</h2>
+{fichas_gerais}
+
+<div class="parte" style="--pc1:#123524;--pc2:#1d6f42"><div class="pt">Parte I — Conta especial do Fundo (un. 3650)</div><div class="pn">Prestação de contas sob orientação e controle do CMASGyn — Artigo 30, inciso II, da Lei 8.742/1993</div></div>
+
+<h2><span data-tip="entrada por fonte, passagem pela conta especial e saída por destinatário, no exercício">F1 · Fluxograma da conta especial — entrada, passagem pelo Fundo e saída</span></h2>
 {detalhes("Informações completas e omissões legais desta seção", "Parâmetros: comprovação documental de cada fonte e vínculo de cada saída. Omissões: extratos mensais da conta especial não publicados; despesa sem instrumento — Artigo 61 da Lei 4.320/1964 e Artigo 38 da Lei 13.019/2014.")}
 <p class="explica">Balões proporcionais ao valor do exercício; passe o mouse
 para o resumo de cada balão e seta, clique abaixo para os dados completos.</p>
 {fluxograma_baloes(fluxo, evs, mapa, comp)}
 
-<h2><span data-tip="separação entre a conta controlada pelo Conselho (3650) e a unidade do Gabinete (3601)">3 · As duas contas — Fundo da assistência social × Gabinete da Secretaria</span></h2>
-{detalhes("Informações completas e omissões legais desta seção", "Parâmetro: trânsito obrigatório pelo Fundo — Artigo 30 da Lei 8.742/1993 e Artigo 2º da Lei municipal 7.531/1995. Omissão: transferência automática do § 1º não localizada em publicação alguma.")}
-{fluxograma_duas_contas(fluxo)}
-
-<h2><span data-tip="composição prevista das fontes da competência">4 · De onde veio — fontes previstas da competência</span></h2>
-{detalhes("Informações completas e omissões legais desta seção", "Parâmetro: previsão por fonte na Lei Orçamentária 11.590/2026. Omissão: receita realizada do mês sem demonstrativo — Artigo 48 e Artigo 48-A da Lei Complementar 101/2000 (achado REC-M).")}
-<div class="grade2"><div>{pizza}</div>{legenda_pizza}</div>
-
-<h2><span data-tip="as quatro estações legais da despesa no mês">5 · Por onde passou — as quatro estações legais no mês</span></h2>
+<h2><span data-tip="as quatro estações legais da despesa no mês">F2 · Por onde passou no Fundo — as quatro estações legais no mês</span></h2>
 {detalhes("Informações completas e omissões legais desta seção", "Parâmetro: Artigo 58, Artigo 60, Artigo 62, Artigo 63 e Artigo 64 da Lei 4.320/1964. Omissão do mês: estações zeradas indicadas em vermelho no próprio fluxo.")}
 {fluxo_estacoes_svg(comp_rec["previsto_total"] if comp_rec else None,
                     v["execucao_do_mes"]["por_estacao"])}
 
-<h2>6 · O Diário Oficial no mês</h2>
-{calendario_html(comp, pub)}
-
-<h2>7 · Cronologia — a trilha do dinheiro no mês, evento a evento</h2>
+<h2>F3 · Cronologia — a trilha do dinheiro no mês, evento a evento</h2>
 {cronologia_html(evs, mapa)}
 
-<h2>8 · Prestação de contas mensal por entidade — omissões</h2>
+<h2>F4 · Prestação de contas mensal por entidade — omissões</h2>
 {prestacao_por_entidade(comp, evs, fluxo, mapa)}
 
-<h2>9 · Demonstração de dados · piso do IGD na competência</h2>
+<h2>F5 · Demonstração de dados · piso do IGD na competência</h2>
 {t_igd}
 
-<h2>10 · Demonstração de dados · pessoas jurídicas citadas no mês</h2>
+<h2>F6 · Demonstração de dados · pessoas jurídicas citadas no mês</h2>
 {t_ent}
 
-<h2>11 · Fichas de desconformidade</h2>
-{fichas}
+<h2>F7 · Fichas de desconformidade — do Fundo e do controle social</h2>
+{fichas_fundo}
 
-<h2>12 · Condições estruturais que perduram na competência</h2>
+<div class="parte" style="--pc1:#4a2703;--pc2:#a85b00"><div class="pt">Parte II — Conta do Gabinete da Secretaria (un. 3601)</div><div class="pn">Prestação de contas e análise individual — execução fora do Fundo</div></div>
+
+<h2><span data-tip="destinações da unidade 3601 no Quadro de Detalhamento da Despesa, com a lacuna de extração explicitada">S1 · Fluxograma da conta do Gabinete — origem e destinações</span></h2>
+{detalhes("Informações completas e omissões legais desta seção", "Parâmetro: trânsito obrigatório pelo Fundo — Artigo 30, parágrafo único, da Lei 8.742/1993; Artigo 2º da Lei municipal 7.531/1995. Omissões: nenhum demonstrativo próprio da unidade publicado; QDD capturado parcialmente; folha de pagamento a cruzar com o teto de 30% do Artigo 4º da Lei Complementar municipal 273/2014.")}
+{fluxograma_gabinete(fluxo)}
+
+<h2><span data-tip="o que a conta 3601 publicou (ou omitiu) na competência">S2 · Prestação de contas mensal da conta 3601 — análise individual</span></h2>
+{prestacao_gabinete(comp, evs, v["mes"])}
+
+<h2>G6 · Condições estruturais que perduram na competência</h2>
 <div class="estrutural"><ul>{estruturais}</ul>
 <p style="margin-top:8px">Apuradas no exercício e vigentes no mês; constam do
 parecer consolidado anual e não são recontadas como achados mensais novos.</p></div>
