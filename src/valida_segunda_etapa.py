@@ -24,20 +24,27 @@ SESS.headers.update({"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) "
 def sonda(url):
     try:
         r = SESS.get(url, timeout=30, allow_redirects=True)
-        return r.status_code, r.url
+        return r.status_code, r.url, None
     except Exception as e:
-        print(f"    [{type(e).__name__}] {url}", file=sys.stderr)
-        return None, url
+        return None, url, f"{type(e).__name__}: {str(e)[:120]}"
 
 
 def main():
     saida = {"sondado_em": date.today().isoformat(), "fontes": {}}
+    # caso de controle: fonte sabidamente acessível deste mesmo ambiente
+    cc_code, _, cc_err = sonda("https://brasilapi.com.br/api/cnpj/v1/00000000000191")
+    saida["caso_de_controle"] = {"url": "brasilapi", "http": cc_code,
+                                 "erro": cc_err,
+                                 "valido": bool(cc_code and cc_code < 500)}
     for chave, f in CFG["fontes"].items():
         melhor = None
+        erros = []
         for u in f["candidatas"]:
-            code, final = sonda(u)
+            code, final, err = sonda(u)
             ok = code is not None and code < 400
-            print(f"  {chave}: {u} -> {code}")
+            print(f"  {chave}: {u} -> {code or err}")
+            if err:
+                erros.append(err)
             if ok and not melhor:
                 melhor = {"url": final, "http": code}
         saida["fontes"][chave] = {
@@ -45,6 +52,7 @@ def main():
             "disponivel": bool(melhor),
             "url": (melhor or {}).get("url", f["candidatas"][0]),
             "http": (melhor or {}).get("http"),
+            "erros": erros[:2] or None,
         }
     saida["mapa"] = CFG["mapa"]
     (RAIZ / "relatorios" / "segunda_etapa.json").write_text(
