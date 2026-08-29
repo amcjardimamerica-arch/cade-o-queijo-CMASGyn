@@ -41,6 +41,22 @@
    "http": 200,
    "erros": null
   },
+  "pncp": {
+   "nome": "Portal Nacional de Contratações Públicas — API de consulta",
+   "disponivel": true,
+   "url": "https://pncp.gov.br/api/consulta/v1/contratos?dataInicial=20260101&dataFinal=20260131&pagina=1",
+   "http": 200,
+   "erros": [
+    "ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
+   ]
+  },
+  "dados_gov": {
+   "nome": "dados.gov.br — conjuntos do Município de Goiânia",
+   "disponivel": true,
+   "url": "https://dados.gov.br/dados/conjuntos-dados?organizacao=goiania",
+   "http": 200,
+   "erros": null
+  },
   "fnas": {
    "nome": "Fundo Nacional de Assistência Social — repasses fundo a fundo",
    "disponivel": true,
@@ -60,6 +76,11 @@
    "portal_transparencia",
    "esic",
    "siconfi",
+   "tcmgo_portal"
+  ],
+  "contratacoes_publicas": [
+   "pncp",
+   "portal_transparencia",
    "tcmgo_portal"
   ],
   "empenhos_por_dotacao": [

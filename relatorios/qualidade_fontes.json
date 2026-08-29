@@ -5,6 +5,10 @@
    "url": "https://som.vc/)"
   },
   {
+   "arquivo": "pncp_contratos.json",
+   "url": "https://pncp.gov.br/api/consulta/v1/contratos"
+  },
+  {
    "arquivo": "trilha_dinheiro.json",
    "url": "https://w"
   }
