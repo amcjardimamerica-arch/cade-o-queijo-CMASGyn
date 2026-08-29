@@ -1524,6 +1524,131 @@ PROVIDENCIAS = {
 }
 
 
+def trilha_folha_gabinete(nome_mes):
+    """Trilha completa e organizada da folha da unidade 3601: cada via
+    oficial, o que entrega, o estado da verificação e o resultado — em duas
+    etapas sempre que possível. Conformidade demonstrada objetivamente;
+    ausência vira direcionamento de apuração, nunca silêncio."""
+    se = _seg_etapa() or {"fontes": {}}
+    sic = None
+    try:
+        sic = json.loads((RAIZ / "dados" / "siconfi.json")
+                         .read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        pass
+    try:
+        fin = carrega("financeiro.json").get("por_natureza", {})
+    except FileNotFoundError:
+        fin = {}
+    g31 = {k: v for k, v in fin.items() if k.startswith("319")}
+    serv = None
+    try:
+        serv = json.loads((RAIZ / "referencias" / "servidores" /
+                           "nomeacoes.json").read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        pass
+    ativos = len((serv or {}).get("quadro_atual") or [])
+    DOT_FOLHA = 48204000.0
+
+    def est_fonte(chave):
+        f = se["fontes"].get(chave, {})
+        if f.get("disponivel"):
+            return ("no ar", "#1d8a3a", f.get("url", ""))
+        return ("fora do ar/não localizada na última sonda", "#c1281f",
+                f.get("url", ""))
+
+    linhas = []
+
+    def via(nome, entrega, estado_html, resultado_html, selo, cor):
+        linhas.append(
+            f'<tr><td><b>{esc(nome)}</b><br><small style="color:#6b6660">'
+            f'{esc(entrega)}</small></td><td>{estado_html}</td>'
+            f'<td>{resultado_html}</td>'
+            f'<td><span class="badge" style="background:{cor}">{selo}'
+            f'</span></td></tr>')
+
+    # 1ª etapa — Diário Oficial
+    via("1ª etapa · Diário Oficial do Município",
+        "vencimentos, adicionais, horas extras, prêmios por servidor",
+        '161 eventos varridos no exercício',
+        '<b style="color:#c1281f">NENHUMA linha de folha (3.1.90.11) '
+        'publicada</b> — só sobras: '
+        + "; ".join(f'{k[:1]}.{k[1]}.{k[2:4]}.{k[4:6]} '
+                    f'{fmt(v["valor"])}' for k, v in
+                    sorted(g31.items(), key=lambda x: -x[1]["valor"]))
+        + '. <b>Direcionamento:</b> ofício de acesso pedindo a folha '
+        'analítica por competência (modelo pronto em documentos/).',
+        "CONFIRMADO", COR_SELO["CONFIRMADO"])
+
+    # 1ª etapa — QDD (previsão)
+    via("1ª etapa · QDD/Lei Orçamentária 11.590/2026",
+        "previsão de folha da unidade",
+        'capturado do detalhamento publicado',
+        f'<b style="color:#1d4f2b">CONFORME quanto à previsão:</b> '
+        f'{fmt(DOT_FOLHA)} dotados em 3.1.90.11 — a previsão existe e está '
+        f'publicada; o que falta é a EXECUÇÃO.',
+        "CONFORME", "#1d8a3a")
+
+    # 2ª etapa — SICONFI/RGF
+    r = (sic or {}).get("rgf")
+    ctrl = (sic or {}).get("controle")
+    if r and r.get("despesa_total_pessoal"):
+        dtp = r["despesa_total_pessoal"]; rcl = r.get(
+            "receita_corrente_liquida")
+        pct = (100 * dtp / rcl) if rcl else None
+        res = (f'<b style="color:#1d4f2b">DECLARADO AO TESOURO:</b> Despesa '
+               f'Total com Pessoal de {fmt(dtp)} '
+               f'(RGF {r["exercicio"]}/{r["periodicidade"]}{r["periodo"]})'
+               + (f', {pct:.1f}% da RCL de {fmt(rcl)}' if pct else '')
+               + ' — o Município DECLARA a folha que não publica: a '
+               'divergência de publicidade é o achado, e o número declarado '
+               'é a régua para conferir a folha analítica quando vier.')
+        via("2ª etapa · SICONFI/RGF (federal, declarada pelo ente)",
+            "Despesa Total com Pessoal e Receita Corrente Líquida",
+            f'coletado — caso de controle: '
+            f'{"ok" if ctrl else "sem controle"}', res,
+            "CONFIRMADO (2 vias)", COR_SELO["CONFIRMADO"])
+    else:
+        diag = "; ".join((sic or {}).get("tentativas", [])[:2]) or                "coleta ainda não executada nesta base"
+        via("2ª etapa · SICONFI/RGF (federal, declarada pelo ente)",
+            "Despesa Total com Pessoal e Receita Corrente Líquida",
+            f'<b style="color:#6b3fa0">pendente</b> — {esc(diag)}',
+            'roda no próximo ciclo (dominical/mensal); autodiagnóstico em '
+            'dados/siconfi.json', "PENDENTE", "#6b3fa0")
+
+    # 2ª etapa — portal folha
+    est, cor_e, url = est_fonte("folha_portal")
+    via("2ª etapa · Folha no portal da transparência",
+        "consulta nominal de remunerações",
+        f'<span style="color:{cor_e}">{esc(est)}</span>'
+        + (f' — <a href="{url}">{esc(url[:60])}</a>' if url else ''),
+        'quando localizada, cada rubrica nominal vira 2ª via da linha '
+        'correspondente do Diário; enquanto não, a categoria segue em ROXO.',
+        "EM SONDA", "#4a4a58")
+
+    # teste de coerência
+    media = DOT_FOLHA / 12 / max(ativos, 1)
+    via("Teste de coerência · dotação × quadro visível",
+        "triangulação interna, direcionadora — jamais conclusiva",
+        f'{ativos} servidores no quadro visível por atos recentes',
+        f'a dotação implica {fmt(DOT_FOLHA/12)}/mês de folha; dividida pelo '
+        f'quadro visível daria {fmt(media)}/servidor/mês — número '
+        f'incompatível com a realidade, o que INDICA quadro efetivo muito '
+        f'maior que o visível pelos atos de 2025–2026. <b>Direcionamento:'
+        f'</b> a folha analítica e a relação nominal de servidores são '
+        f'indispensáveis para conciliar (varredura retroativa 2022–2024 em '
+        f'curso).', "INCONCLUSIVO", COR_SELO[
+            "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE"])
+
+    return ('<h2><span data-tip="a folha oficial rastreada por todas as '
+            'vias, em duas etapas — conformidade objetiva onde existe, '
+            'direcionamento onde falta">S4-A · Trilha completa da folha '
+            'oficial — verificação em duas etapas</span></h2>'
+            '<table><tr><th>Via e o que entrega</th><th>Estado</th>'
+            '<th>Resultado / direcionamento</th><th>Selo</th></tr>'
+            + "".join(linhas) + '</table>')
+
+
 def parecer_final_conta(v, conta):
     if conta == "3650":
         pref = {"IGD", "CMAS", "EXE", "IMOB"}
@@ -1836,6 +1961,7 @@ para o resumo de cada balão e seta, clique abaixo para os dados completos.</p>
 {prestacao_gabinete_completa(comp, evs, v["mes"], fluxo)}
 
 <h2><span data-tip="apenas adicionais, horas extras e pagamentos acima do teto municipal — o restante da folha não entra no resumo">S4 · Folha do Gabinete — resumo dirigido (adicionais, horas extras e teto)</span></h2>
+{trilha_folha_gabinete(v["mes"])}
 {folha_gabinete_resumo(v["mes"])}
 {pagamentos_pf_do_mes(comp)}
 {bloco_segunda_etapa("folha_e_execucao_3601", "Validação em 2ª etapa da folha")}

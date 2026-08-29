@@ -23,6 +23,17 @@ fontes:
     nome: SICONFI/Tesouro Nacional — RREO, RGF e DCA do Município
     candidatas:
       - https://siconfi.tesouro.gov.br
+  siconfi_api:
+    nome: API pública do SICONFI — RGF com a Despesa Total com Pessoal declarada
+    candidatas:
+      - https://apidatatransparencia.tesouro.gov.br/ords/siconfi/tt/rgf?an_exercicio=2025&in_periodicidade=Q&nr_periodo=2&co_tipo_demonstrativo=RGF&co_esfera=M&co_poder=E&id_ente=5208707
+  folha_portal:
+    nome: Folha de pagamento no portal da transparência do Município
+    candidatas:
+      - https://www.goiania.go.gov.br/transparencia/folha-de-pagamento
+      - https://www.goiania.go.gov.br/transparencia/servidores
+      - https://www.goiania.go.gov.br/transparencia/pessoal
+      - https://www.goiania.go.gov.br/portaldatransparencia/servidores
   tcmgo_doc:
     nome: Diário Oficial de Contas do TCM-GO
     candidatas:
@@ -45,7 +56,7 @@ fontes:
     candidatas:
       - https://fnas.mds.gov.br/extracao-dos-valores-repassados-fundo-a-fundo/
 mapa:
-  folha_e_execucao_3601: [portal_transparencia, esic, siconfi, tcmgo_portal]
+  folha_e_execucao_3601: [folha_portal, siconfi_api, portal_transparencia, esic, tcmgo_portal]
   contratacoes_publicas: [pncp, portal_transparencia, tcmgo_portal]
   empenhos_por_dotacao: [portal_transparencia, tcmgo_portal, esic]
   receita_realizada: [siconfi, portal_transparencia]

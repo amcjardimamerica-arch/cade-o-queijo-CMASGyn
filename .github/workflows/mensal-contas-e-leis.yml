@@ -24,6 +24,8 @@ jobs:
         run: python src/coleta_pncp.py || true
       - name: Cruzamento societário e de parentesco (Trilha do Rato)
         run: python src/cruza_vinculos.py || true
+      - name: Via federal da folha — SICONFI/RGF (2ª etapa oficial)
+        run: python src/coleta_siconfi.py || true
       - name: Publicar corpus
         run: |
           git config user.name "vigilancia-bot"; git config user.email "bot@users.noreply.github.com"

@@ -49,6 +49,8 @@ jobs:
         run: python src/valida_fontes.py || true
       - name: Contrato de ciclo — artefatos obrigatórios presentes e válidos
         run: python src/valida_ciclo.py
+      - name: Via federal da folha — SICONFI/RGF (2ª etapa oficial)
+        run: python src/coleta_siconfi.py || true
       - name: Publicar
         run: |
           git config user.name "vigilancia-bot"
