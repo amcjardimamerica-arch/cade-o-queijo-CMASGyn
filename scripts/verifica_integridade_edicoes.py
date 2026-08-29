@@ -27,11 +27,29 @@ sys.path.insert(0, str(RAIZ / "src"))
 from cliente_http import ClienteHTTP  # cortês: robots, intervalo, condicional
 
 
-def ancoras() -> dict[str, dict]:
-    """edicao -> {sha256, url, data} a partir do acervo de trechos."""
-    m = {}
+def _fontes_de_ancoras():
+    """A âncora vem do HISTÓRICO GIT (imutável — é a cadeia de custódia),
+    com o working tree como reforço: passos anteriores do ciclo podem
+    reescrever o acervo, mas não reescrevem o commit."""
+    import io, subprocess
+    vistos = []
+    for rel in ["acervo/trechos/assistencia_social.jsonl.gz"]:
+        try:
+            raw = subprocess.run(["git", "show", f"HEAD:{rel}"], cwd=RAIZ,
+                                 capture_output=True, check=True).stdout
+            vistos.append(io.BytesIO(raw))
+        except Exception:
+            pass
     for arq in (RAIZ / "acervo" / "trechos").glob("*.jsonl.gz"):
-        for linha in gzip.open(arq, "rt", encoding="utf-8"):
+        vistos.append(arq.open("rb"))
+    return vistos
+
+
+def ancoras() -> dict[str, dict]:
+    """edicao -> {sha256, url, data}, do git HEAD e do working tree."""
+    m = {}
+    for fonte in _fontes_de_ancoras():
+        for linha in gzip.open(fonte, "rt", encoding="utf-8"):
             d = json.loads(linha)
             ed = d.get("edicao")
             if ed and d.get("sha256_edicao") and d.get("url_original"):
