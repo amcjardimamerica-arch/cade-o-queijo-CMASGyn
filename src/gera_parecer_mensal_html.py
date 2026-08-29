@@ -1199,6 +1199,12 @@ def prestacao_por_entidade(comp, evs, fluxo, mapa):
             elif not r["despesa"]:
                 r["valor"] = max(r["valor"], val)
 
+    _av = alertas_vinculo()["alertas"]
+    _al_por_cnpj = {}
+    for a in _av:
+        for c in ([a.get("cnpj")] if a.get("cnpj") else a.get("empresas", [])):
+            _al_por_cnpj.setdefault(digitos(c or ""), []).append(a)
+
     def linha(n, sem, tip, oq, det):
         d = mapa.get(n)
         nome = d["nome"] if d else ("razão social pendente — reconsulta "
@@ -1415,6 +1421,69 @@ CHAVE_2E = {"REC": "receita_realizada", "IGD": "igd_demonstrativo",
             "EXE": "empenhos_por_dotacao", "PUB": None, "CMAS": None}
 
 
+def casos_semelhantes(v):
+    """Top-3 precedentes da Trilha do Mato tematicamente próximos dos
+    achados do mês — inspiram providência, jamais fundamentam parecer."""
+    try:
+        prec = json.loads((RAIZ / "referencias" / "transparencia" /
+                           "precedentes.json").read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        return ""
+    temas = " ".join(a["titulo"] for a in v["achados"]).upper()
+    chaves = [("DIÁRIO OFICIAL", "diário"), ("TRANSPAR", "transpar"),
+              ("CONSELHO", "conselho"), ("IGD", "igd"),
+              ("PORTAL", "portal"), ("FUNDO", "fundo")]
+    ativos = [c for c, k in chaves if c in temas]
+    sel = []
+    for it in prec.get("itens", []):
+        tt = (it.get("titulo") or "").upper()
+        if any(c in tt for c in ativos):
+            sel.append(it)
+        if len(sel) == 3:
+            break
+    if not sel:
+        return ""
+    linhas = "".join(
+        f'<span class="li"><b class="k">{esc(i.get("fonte", "?"))}</b>'
+        f'<a href="{i.get("url", "#")}">{esc(i.get("titulo", ""))}</a> '
+        f'<i>({i.get("situacao", "")})</i></span>' for i in sel)
+    return ('<h2><span data-tip="Trilha do Mato: onde outros já acharam o '
+            'queijo escondido — inspira providência, nunca fundamenta">'
+            'Casos semelhantes em outros estados</span></h2>'
+            '<p class="explica">Precedentes capturados que tocam os temas '
+            'dos achados do mês; itens de imprensa exigem confirmação na '
+            'fonte oficial antes de qualquer uso.</p>'
+            f'<div class="ev" style="--pt:#4a7c59">{linhas}</div>')
+
+
+def alertas_vinculo():
+    try:
+        return json.loads((RAIZ / "referencias" / "vinculos" /
+                           "alertas.json").read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        return {"alertas": []}
+
+
+def pncp_da_entidade(cnpj_dig):
+    try:
+        p = json.loads((RAIZ / "dados" / "pncp_contratos.json")
+                       .read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        return ""
+    meus = [c for c in p.get("contratos", [])
+            if digitos(c.get("cnpj_fornecedor") or "") == cnpj_dig]
+    if not meus:
+        return ""
+    linhas = "".join(
+        f'<span class="li"><b class="k">{esc(c.get("modalidade") or "?")}</b>'
+        f'{esc((c.get("objeto") or "")[:110])} — {fmt(c.get("valor"))} '
+        f'(PNCP {esc(str(c.get("pncp_id")))})'
+        + (f'<br><i style="color:#a85b00">{esc(c["observacao_q2"])}</i>'
+           if c.get("observacao_q2") else "") + '</span>' for c in meus[:5])
+    return (f'<br><b>Contratações no PNCP (Lei 14.133/2021, Artigo 174):</b>'
+            f'<div class="ev" style="--pt:#3a5f8a">{linhas}</div>')
+
+
 def ficha_html(a):
     sev = COR_SEV[a["severidade"]]
     selo = COR_SELO[a["selo"]]
@@ -1436,7 +1505,11 @@ def ficha_html(a):
   <div class="camada"><b class="rot">O que se apurou</b>{a["detalhe"]}</div>
   {falta}
  </div>
- <div class="norma"><b>Fundamento:</b> {a["norma"]}</div>
+ <div class="norma"><b>Fundamento:</b> {a["norma"]}<br>
+ <b>Fonte e rastreio:</b> apuração determinística sobre publicações do
+ Diário Oficial ancoradas por sha256 no histórico do repositório (arquivo
+ relatorios/mensal/verificacao_da_competência); edições citadas nos dados do
+ achado. Reprodutível por terceiro a partir do hash.</div>
 </article>"""
 
 
@@ -1573,7 +1646,7 @@ para o resumo de cada balão e seta, clique abaixo para os dados completos.</p>
 {folha_gabinete_resumo(v["mes"])}
 {bloco_segunda_etapa("folha_e_execucao_3601", "Validação em 2ª etapa da folha")}
 
-<h2>G6 · Condições estruturais que perduram na competência</h2>
+{casos_semelhantes(v)}\n\n<h2>G6 · Condições estruturais que perduram na competência</h2>
 <div class="estrutural"><ul>{estruturais}</ul>
 <p style="margin-top:8px">Apuradas no exercício e vigentes no mês; constam do
 parecer consolidado anual e não são recontadas como achados mensais novos.</p></div>

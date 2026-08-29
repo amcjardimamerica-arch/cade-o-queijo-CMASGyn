@@ -10,6 +10,10 @@ fontes:
       - https://www.goiania.go.gov.br/transparencia
       - https://portaldatransparencia.goiania.go.gov.br
       - https://www.goiania.go.gov.br/portal-da-transparencia
+      - https://www.goiania.go.gov.br/transparencia
+      - https://www.goiania.go.gov.br/acesso-a-informacao
+      - https://dados.goiania.go.gov.br
+      - https://contaspublicas.goiania.go.gov.br
   esic:
     nome: e-SIC — Serviço de Informação ao Cidadão de Goiânia
     candidatas:
@@ -27,12 +31,22 @@ fontes:
     nome: Portal do TCM-GO (prestações de contas dos jurisdicionados)
     candidatas:
       - https://www.tcmgo.tc.br
+  pncp:
+    nome: Portal Nacional de Contratações Públicas — API de consulta
+    candidatas:
+      - https://pncp.gov.br/api/consulta/v1/contratos?dataInicial=20260101&dataFinal=20260131&pagina=1
+      - https://pncp.gov.br
+  dados_gov:
+    nome: dados.gov.br — conjuntos do Município de Goiânia
+    candidatas:
+      - https://dados.gov.br/dados/conjuntos-dados?organizacao=goiania
   fnas:
     nome: Fundo Nacional de Assistência Social — repasses fundo a fundo
     candidatas:
       - https://fnas.mds.gov.br/extracao-dos-valores-repassados-fundo-a-fundo/
 mapa:
   folha_e_execucao_3601: [portal_transparencia, esic, siconfi, tcmgo_portal]
+  contratacoes_publicas: [pncp, portal_transparencia, tcmgo_portal]
   empenhos_por_dotacao: [portal_transparencia, tcmgo_portal, esic]
   receita_realizada: [siconfi, portal_transparencia]
   igd_demonstrativo: [fnas, portal_transparencia]

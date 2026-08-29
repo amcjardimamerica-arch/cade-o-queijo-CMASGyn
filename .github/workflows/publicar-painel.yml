@@ -9,7 +9,7 @@ on:
     paths: ['docs/**']
   workflow_dispatch:
 
-concurrency: {group: fiscalizacao, cancel-in-progress: false}
+concurrency: {group: painel, cancel-in-progress: false}
 permissions:
   contents: read
   pages: write

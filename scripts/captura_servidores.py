@@ -2,8 +2,10 @@
 """Servidores nomeados nas publicações — pasta própria, separada.
 
 Varre o acervo local de trechos do Diário por atos de NOMEAR, EXONERAR,
-DESIGNAR e CONTRATAR, e registra: primeiro nome (pessoa física é
-minimizada NA EXTRAÇÃO, regra inegociável do projeto), ato, cargo quando
+DESIGNAR e CONTRATAR, e registra: NOME COMPLETO — ato de pessoal publicado em Diário Oficial é
+informação pública funcional (Artigo 37, caput e § 3º, da Constituição;
+Artigo 8º da Lei 12.527/2011), e a minimização a primeiro nome fica
+reservada às pessoas físicas SEM vínculo público. Registra ainda: ato, cargo quando
 declarado, data, edição, página e o ponteiro verificável (URL e sha256 da
 edição, onde o nome completo permanece no documento oficial).
 
@@ -56,7 +58,10 @@ def main():
                     continue
                 vistos.add(chave)
                 registros.append({
+                    "nome_completo": nome.title(),
                     "primeiro_nome": primeiro_nome(nome),
+                    "sobrenomes": [p.title() for p in nome.split()[1:]
+                                   if p not in PARTICULAS],
                     "ato": ato.title(),
                     "cargo": (mc.group(1).strip().title() if mc else None),
                     "data": d.get("data"),
@@ -69,11 +74,26 @@ def main():
     alvo = list(range(date.today().year - 4, date.today().year + 1))
     cobertos = sorted(a for a in anos if a.isdigit())
     faltam = [str(a) for a in alvo if str(a) not in cobertos]
+    # situação funcional consolidada: o ato mais recente por nome define
+    situacao = {}
+    for r in registros:  # já ordenados por data
+        situacao[r["nome_completo"]] = (
+            "DESLIGADO" if r["ato"] in ("Exonerar", "Dispensar")
+            else "ATIVO_OU_VINCULADO")
+    for r in registros:
+        r["situacao_atual"] = situacao[r["nome_completo"]]
+    ativos = sorted({n for n, s in situacao.items()
+                     if s == "ATIVO_OU_VINCULADO"})
     saida = {
         "gerado_em": date.today().isoformat(),
-        "minimizacao": ("pessoa física registrada apenas pelo primeiro nome, "
-                        "minimizada na extração; o nome completo permanece no "
-                        "documento oficial apontado por url e sha256"),
+        "regra_de_analise": ("DESLIGADOS ficam fora das análises atuais da "
+                             "secretaria; permanecem no histórico para "
+                             "cruzamentos retroativos"),
+        "quadro_atual": ativos,
+        "minimizacao": ("ato de pessoal é informação pública funcional — nome "
+                        "completo registrado com ponteiro sha256 à edição; "
+                        "pessoas sem vínculo público seguem minimizadas ao "
+                        "primeiro nome nas demais bases"),
         "alvo_anos": [str(a) for a in alvo],
         "anos_cobertos_pelo_acervo": cobertos,
         "anos_pendentes_de_varredura_retroativa": faltam,

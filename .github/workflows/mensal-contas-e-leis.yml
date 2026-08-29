@@ -18,6 +18,12 @@ jobs:
         run: python scripts/captura_cnas.py 2026 || true
       - name: Recalcular critérios extraídos das normas
         run: python src/qualidade.py --reconstruir || python src/qualidade.py
+      - name: Trilha do Mato — julgados e casos de outros estados (mensal)
+        run: python scripts/captura_precedentes.py || true
+      - name: Trilha do Queijo — contratações no PNCP
+        run: python src/coleta_pncp.py || true
+      - name: Cruzamento societário e de parentesco (Trilha do Rato)
+        run: python src/cruza_vinculos.py || true
       - name: Publicar corpus
         run: |
           git config user.name "vigilancia-bot"; git config user.email "bot@users.noreply.github.com"

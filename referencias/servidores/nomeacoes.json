@@ -1,6 +1,63 @@
 {
- "gerado_em": "2026-08-28",
- "minimizacao": "pessoa física registrada apenas pelo primeiro nome, minimizada na extração; o nome completo permanece no documento oficial apontado por url e sha256",
+ "gerado_em": "2026-08-29",
+ "regra_de_analise": "DESLIGADOS ficam fora das análises atuais da secretaria; permanecem no histórico para cruzamentos retroativos",
+ "quadro_atual": [
+  "Adriana Silva De Oliveira",
+  "Amanda Loos Agra",
+  "Ana Clara Morais Gomides Ferraz",
+  "Andreia Dias Costa",
+  "Aparecida Tertuliana Cintra Andrade",
+  "Carlos Eduardo Bernardes Lima",
+  "Cecilia Lima Da Silva",
+  "Como Fiscal",
+  "Como Fiscal Do Contrato",
+  "Como Gestores",
+  "Como Representantes Convidados Do Comitê Gestor Municipal",
+  "Danillo Augusto Pereira",
+  "Debora Rodrigues Medeiros Solidade",
+  "Em Conformidade Com",
+  "Evanilce Araújo De Queiroz",
+  "Fatima De Jesus Martins Bento",
+  "Girlene Lima De Sousa",
+  "Gisa Da Silva Quintilhano",
+  "Giselly Nunes Lucena Borges",
+  "Joice Barbosa De Almeida",
+  "João Paulo Cardoso Gomides",
+  "João Pedro Amaral Balduino",
+  "Juliany Galdino Moura",
+  "Karla Angelica De Almeida Lins Silva",
+  "Karlessandro Antônio Soares",
+  "Ludmilla Pereira De Amorim Silva",
+  "Luseni Carvalho Da Silva",
+  "Léia Fernandes Da Silva Araújo",
+  "Marcelo Nascimento Lataliza",
+  "Marcia Ribeiro De Alvarenga Marinho",
+  "Maria Nilce Batista De Moraes Carvalho",
+  "Matheus Lucas Iarenko França",
+  "Murillo De Araujo Lima",
+  "Nayara Rodrine De Araújo Godinho",
+  "Os Membros Que Irão Compor",
+  "Os Seguintes Membros Para Compor",
+  "Os Servidores Relacionados No Anexo",
+  "Osmar Andrade Junior",
+  "Ou Adquirir Com Recursos Da\nParceria",
+  "Para\nPrestação De Serviços",
+  "Para Atuar Como Fiscal Do Processo Sei",
+  "Para Prestação De Serviços",
+  "Paula Corrêa Azevedo",
+  "Paula Cristina Almeida Da Silva",
+  "Rodrigo Santana Santos",
+  "Ronny De Souza Esteves",
+  "Rosa Ilenes Damasceno Penteado",
+  "Rudimar Alves Pereira",
+  "Samantha Passos Barbosa",
+  "Sônia Márcia De Sena",
+  "Valdivino Eterno Silveira",
+  "Valma Karine Feitosa Braga",
+  "Vanesa Sousa Cavalcante Ferreira",
+  "Virgínia Gomes Paulino"
+ ],
+ "minimizacao": "ato de pessoal é informação pública funcional — nome completo registrado com ponteiro sha256 à edição; pessoas sem vínculo público seguem minimizadas ao primeiro nome nas demais bases",
  "alvo_anos": [
   "2022",
   "2023",
@@ -20,1124 +77,1854 @@
  "total": 112,
  "registros": [
   {
+   "nome_completo": "Como Gestores",
    "primeiro_nome": "Como",
+   "sobrenomes": [
+    "Gestores"
+   ],
    "ato": "Designar",
    "cargo": null,
    "data": "2025-07-04",
    "edicao": "do_20250704_000008571.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250704_000008571.pdf",
-   "sha256_edicao": "302c2115ab003865135b1c821ff94a2e0a089146803e958d8d58427d28d49b44"
+   "sha256_edicao": "302c2115ab003865135b1c821ff94a2e0a089146803e958d8d58427d28d49b44",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Evanilce Araújo De Queiroz",
    "primeiro_nome": "Evanilce",
+   "sobrenomes": [
+    "Araújo",
+    "Queiroz"
+   ],
    "ato": "Nomear",
    "cargo": "Gerente De Gestão De Feiras Livres",
    "data": "2025-07-04",
    "edicao": "do_20250704_000008571.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250704_000008571.pdf",
-   "sha256_edicao": "302c2115ab003865135b1c821ff94a2e0a089146803e958d8d58427d28d49b44"
+   "sha256_edicao": "302c2115ab003865135b1c821ff94a2e0a089146803e958d8d58427d28d49b44",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Murillo De Araujo Lima",
    "primeiro_nome": "Murillo",
+   "sobrenomes": [
+    "Araujo",
+    "Lima"
+   ],
    "ato": "Nomear",
    "cargo": "Supervisor Administrativo Dos Centros De Referência De",
    "data": "2025-07-04",
    "edicao": "do_20250704_000008571.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250704_000008571.pdf",
-   "sha256_edicao": "302c2115ab003865135b1c821ff94a2e0a089146803e958d8d58427d28d49b44"
+   "sha256_edicao": "302c2115ab003865135b1c821ff94a2e0a089146803e958d8d58427d28d49b44",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Rosa Ilenes Damasceno Penteado",
    "primeiro_nome": "Rosa",
+   "sobrenomes": [
+    "Ilenes",
+    "Damasceno",
+    "Penteado"
+   ],
    "ato": "Nomear",
    "cargo": "Gerente De Gestão E Desenvolvimento",
    "data": "2025-07-04",
    "edicao": "do_20250704_000008571.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250704_000008571.pdf",
-   "sha256_edicao": "302c2115ab003865135b1c821ff94a2e0a089146803e958d8d58427d28d49b44"
+   "sha256_edicao": "302c2115ab003865135b1c821ff94a2e0a089146803e958d8d58427d28d49b44",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Gisa Da Silva Quintilhano",
    "primeiro_nome": "Gisa",
+   "sobrenomes": [
+    "Silva",
+    "Quintilhano"
+   ],
    "ato": "Nomear",
    "cargo": "Gerente Contábil E De Prestação De",
    "data": "2025-07-17",
    "edicao": "do_20250717_000008580.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250717_000008580.pdf",
-   "sha256_edicao": "f2835e9ee879ab40582b4482763e2a81c5813efbeb6747c1ffea74c88b61c51e"
+   "sha256_edicao": "f2835e9ee879ab40582b4482763e2a81c5813efbeb6747c1ffea74c88b61c51e",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Nayara Rodrine De Araújo Godinho",
    "primeiro_nome": "Nayara",
+   "sobrenomes": [
+    "Rodrine",
+    "Araújo",
+    "Godinho"
+   ],
    "ato": "Nomear",
    "cargo": "Assessora Técnica Ii",
    "data": "2025-08-21",
    "edicao": "do_20250821_000008605.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250821_000008605.pdf",
-   "sha256_edicao": "4e81c2c20ba42de20d8c51580af5e70375cb62d9dd42ff69bf11b73363ea180b"
+   "sha256_edicao": "4e81c2c20ba42de20d8c51580af5e70375cb62d9dd42ff69bf11b73363ea180b",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Valdivino Eterno Silveira",
    "primeiro_nome": "Valdivino",
+   "sobrenomes": [
+    "Eterno",
+    "Silveira"
+   ],
    "ato": "Nomear",
    "cargo": null,
    "data": "2025-08-21",
    "edicao": "do_20250821_000008605.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250821_000008605.pdf",
-   "sha256_edicao": "4e81c2c20ba42de20d8c51580af5e70375cb62d9dd42ff69bf11b73363ea180b"
+   "sha256_edicao": "4e81c2c20ba42de20d8c51580af5e70375cb62d9dd42ff69bf11b73363ea180b",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Valeria Pacheco Ferreira",
    "primeiro_nome": "Valeria",
+   "sobrenomes": [
+    "Pacheco",
+    "Ferreira"
+   ],
    "ato": "Designar",
    "cargo": "Con Fiança Ii",
    "data": "2025-08-21",
    "edicao": "do_20250821_000008605.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250821_000008605.pdf",
-   "sha256_edicao": "4e81c2c20ba42de20d8c51580af5e70375cb62d9dd42ff69bf11b73363ea180b"
+   "sha256_edicao": "4e81c2c20ba42de20d8c51580af5e70375cb62d9dd42ff69bf11b73363ea180b",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Ana Clara Morais Gomides Ferraz",
    "primeiro_nome": "Ana",
+   "sobrenomes": [
+    "Clara",
+    "Morais",
+    "Gomides",
+    "Ferraz"
+   ],
    "ato": "Nomear",
    "cargo": "Assessora Técnica I",
    "data": "2025-08-22",
    "edicao": "do_20250822_000008606.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250822_000008606.pdf",
-   "sha256_edicao": "eb6dc37b9e75682c1499c4dbf7d7956a6add993ed7194f1f63c644734c2df184"
+   "sha256_edicao": "eb6dc37b9e75682c1499c4dbf7d7956a6add993ed7194f1f63c644734c2df184",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Cecilia Lima Da Silva",
    "primeiro_nome": "Cecilia",
+   "sobrenomes": [
+    "Lima",
+    "Silva"
+   ],
    "ato": "Designar",
    "cargo": "Con Fiança Iv",
    "data": "2025-08-22",
    "edicao": "do_20250822_000008606.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250822_000008606.pdf",
-   "sha256_edicao": "eb6dc37b9e75682c1499c4dbf7d7956a6add993ed7194f1f63c644734c2df184"
+   "sha256_edicao": "eb6dc37b9e75682c1499c4dbf7d7956a6add993ed7194f1f63c644734c2df184",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Daiane Rodrigues Damasceno",
    "primeiro_nome": "Daiane",
+   "sobrenomes": [
+    "Rodrigues",
+    "Damasceno"
+   ],
    "ato": "Dispensar",
    "cargo": "Con Fiança De Coordenadora Do Centro De Referência De",
    "data": "2025-08-22",
    "edicao": "do_20250822_000008606.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250822_000008606.pdf",
-   "sha256_edicao": "eb6dc37b9e75682c1499c4dbf7d7956a6add993ed7194f1f63c644734c2df184"
+   "sha256_edicao": "eb6dc37b9e75682c1499c4dbf7d7956a6add993ed7194f1f63c644734c2df184",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "João Pedro Amaral Balduino",
    "primeiro_nome": "João",
+   "sobrenomes": [
+    "Pedro",
+    "Amaral",
+    "Balduino"
+   ],
    "ato": "Designar",
    "cargo": "Con Fiança Iv",
    "data": "2025-08-22",
    "edicao": "do_20250822_000008606.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250822_000008606.pdf",
-   "sha256_edicao": "eb6dc37b9e75682c1499c4dbf7d7956a6add993ed7194f1f63c644734c2df184"
+   "sha256_edicao": "eb6dc37b9e75682c1499c4dbf7d7956a6add993ed7194f1f63c644734c2df184",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Marina Fernanda Dos Santos De Melo",
    "primeiro_nome": "Marina",
+   "sobrenomes": [
+    "Fernanda",
+    "Santos",
+    "Melo"
+   ],
    "ato": "Dispensar",
    "cargo": "Con Fiança Iv",
    "data": "2025-08-22",
    "edicao": "do_20250822_000008606.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250822_000008606.pdf",
-   "sha256_edicao": "eb6dc37b9e75682c1499c4dbf7d7956a6add993ed7194f1f63c644734c2df184"
+   "sha256_edicao": "eb6dc37b9e75682c1499c4dbf7d7956a6add993ed7194f1f63c644734c2df184",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Os Servidores Relacionados No Anexo",
    "primeiro_nome": "Os",
+   "sobrenomes": [
+    "Servidores",
+    "Relacionados",
+    "No",
+    "Anexo"
+   ],
    "ato": "Designar",
    "cargo": "Con Fiança I",
    "data": "2025-08-22",
    "edicao": "do_20250822_000008606.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250822_000008606.pdf",
-   "sha256_edicao": "eb6dc37b9e75682c1499c4dbf7d7956a6add993ed7194f1f63c644734c2df184"
+   "sha256_edicao": "eb6dc37b9e75682c1499c4dbf7d7956a6add993ed7194f1f63c644734c2df184",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Robson Dos Santos Almeida",
    "primeiro_nome": "Robson",
+   "sobrenomes": [
+    "Santos",
+    "Almeida"
+   ],
    "ato": "Dispensar",
    "cargo": "Conﬁança Iv",
    "data": "2025-08-22",
    "edicao": "do_20250822_000008606.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250822_000008606.pdf",
-   "sha256_edicao": "eb6dc37b9e75682c1499c4dbf7d7956a6add993ed7194f1f63c644734c2df184"
+   "sha256_edicao": "eb6dc37b9e75682c1499c4dbf7d7956a6add993ed7194f1f63c644734c2df184",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Os Membros Que Irão Compor",
    "primeiro_nome": "Os",
+   "sobrenomes": [
+    "Membros",
+    "Que",
+    "Irão",
+    "Compor"
+   ],
    "ato": "Nomear",
    "cargo": null,
    "data": "2025-09-03",
    "edicao": "do_20250903_000008614.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250903_000008614.pdf",
-   "sha256_edicao": "627fe74f76fc1d98873e27b0ee622c00862713ce38020d57e6cffcd9dc47bda0"
+   "sha256_edicao": "627fe74f76fc1d98873e27b0ee622c00862713ce38020d57e6cffcd9dc47bda0",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Debora Rodrigues Medeiros Solidade",
    "primeiro_nome": "Debora",
+   "sobrenomes": [
+    "Rodrigues",
+    "Medeiros",
+    "Solidade"
+   ],
    "ato": "Designar",
    "cargo": "Conﬁança De Coordenadora Geral De Unidade Tipo I E",
    "data": "2025-09-09",
    "edicao": "do_20250909_000008618.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250909_000008618.pdf",
-   "sha256_edicao": "29ecd50b520a87e36a026b829bbdb6b552625b104f686fdfd84cdac9dbc84ca5"
+   "sha256_edicao": "29ecd50b520a87e36a026b829bbdb6b552625b104f686fdfd84cdac9dbc84ca5",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Victor Hugo Rodrigues De Sousa",
    "primeiro_nome": "Victor",
+   "sobrenomes": [
+    "Hugo",
+    "Rodrigues",
+    "Sousa"
+   ],
    "ato": "Exonerar",
    "cargo": null,
    "data": "2025-09-09",
    "edicao": "do_20250909_000008618.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250909_000008618.pdf",
-   "sha256_edicao": "29ecd50b520a87e36a026b829bbdb6b552625b104f686fdfd84cdac9dbc84ca5"
+   "sha256_edicao": "29ecd50b520a87e36a026b829bbdb6b552625b104f686fdfd84cdac9dbc84ca5",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Denise Correia Matos Magalhães",
    "primeiro_nome": "Denise",
+   "sobrenomes": [
+    "Correia",
+    "Matos",
+    "Magalhães"
+   ],
    "ato": "Exonerar",
    "cargo": "Gerente De Lançamento E Fechamento Da Folha De",
    "data": "2025-09-16",
    "edicao": "do_20250916_000008623.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250916_000008623.pdf",
-   "sha256_edicao": "316ab41c925b9198a3d7e2e69ea6d194168d4840701cc2f9be4548cf94991160"
+   "sha256_edicao": "316ab41c925b9198a3d7e2e69ea6d194168d4840701cc2f9be4548cf94991160",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Luseni Carvalho Da Silva",
    "primeiro_nome": "Luseni",
+   "sobrenomes": [
+    "Carvalho",
+    "Silva"
+   ],
    "ato": "Nomear",
    "cargo": null,
    "data": "2025-09-16",
    "edicao": "do_20250916_000008623.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250916_000008623.pdf",
-   "sha256_edicao": "316ab41c925b9198a3d7e2e69ea6d194168d4840701cc2f9be4548cf94991160"
+   "sha256_edicao": "316ab41c925b9198a3d7e2e69ea6d194168d4840701cc2f9be4548cf94991160",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Rosemar Borges Da Silva Alcântara",
    "primeiro_nome": "Rosemar",
+   "sobrenomes": [
+    "Borges",
+    "Silva",
+    "Alcântara"
+   ],
    "ato": "Exonerar",
    "cargo": "Diretora De Captação E Articulação",
    "data": "2025-09-16",
    "edicao": "do_20250916_000008623.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250916_000008623.pdf",
-   "sha256_edicao": "316ab41c925b9198a3d7e2e69ea6d194168d4840701cc2f9be4548cf94991160"
+   "sha256_edicao": "316ab41c925b9198a3d7e2e69ea6d194168d4840701cc2f9be4548cf94991160",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Patricia Soares Borges Almeida",
    "primeiro_nome": "Patricia",
+   "sobrenomes": [
+    "Soares",
+    "Borges",
+    "Almeida"
+   ],
    "ato": "Exonerar",
    "cargo": "Gerente De Proteção Social Básica",
    "data": "2025-09-17",
    "edicao": "do_20250917_000008624.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250917_000008624.pdf",
-   "sha256_edicao": "3825af3337aa74231d3016b5f01f9008d8ce156f98a99154ef76ef33c4f8f244"
+   "sha256_edicao": "3825af3337aa74231d3016b5f01f9008d8ce156f98a99154ef76ef33c4f8f244",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Patricia Ferreira Neres Vieira",
    "primeiro_nome": "Patricia",
+   "sobrenomes": [
+    "Ferreira",
+    "Neres",
+    "Vieira"
+   ],
    "ato": "Exonerar",
    "cargo": "Gerente De Programas Socioassistenciais",
    "data": "2025-09-17",
    "edicao": "do_20250917_000008624.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250917_000008624.pdf",
-   "sha256_edicao": "3825af3337aa74231d3016b5f01f9008d8ce156f98a99154ef76ef33c4f8f244"
+   "sha256_edicao": "3825af3337aa74231d3016b5f01f9008d8ce156f98a99154ef76ef33c4f8f244",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Rodrigo Santana Santos",
    "primeiro_nome": "Rodrigo",
+   "sobrenomes": [
+    "Santana",
+    "Santos"
+   ],
    "ato": "Nomear",
    "cargo": "Assessor Especial",
    "data": "2025-09-17",
    "edicao": "do_20250917_000008624.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250917_000008624.pdf",
-   "sha256_edicao": "3825af3337aa74231d3016b5f01f9008d8ce156f98a99154ef76ef33c4f8f244"
+   "sha256_edicao": "3825af3337aa74231d3016b5f01f9008d8ce156f98a99154ef76ef33c4f8f244",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Alex Gomes Gontijo Matrícula",
    "primeiro_nome": "Alex",
+   "sobrenomes": [
+    "Gomes",
+    "Gontijo",
+    "Matrícula"
+   ],
    "ato": "Exonerar",
    "cargo": "Assessor Técnico I",
    "data": "2025-09-18",
    "edicao": "do_20250918_000008625.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250918_000008625.pdf",
-   "sha256_edicao": "e41b9a0fa7317d711923f8c06756f252589aacfc30990f5df7f94cf08bac9680"
+   "sha256_edicao": "e41b9a0fa7317d711923f8c06756f252589aacfc30990f5df7f94cf08bac9680",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Karlessandro Antônio Soares",
    "primeiro_nome": "Karlessandro",
+   "sobrenomes": [
+    "Antônio",
+    "Soares"
+   ],
    "ato": "Designar",
    "cargo": null,
    "data": "2025-09-18",
    "edicao": "do_20250918_000008625.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250918_000008625.pdf",
-   "sha256_edicao": "e41b9a0fa7317d711923f8c06756f252589aacfc30990f5df7f94cf08bac9680"
+   "sha256_edicao": "e41b9a0fa7317d711923f8c06756f252589aacfc30990f5df7f94cf08bac9680",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Renato Martins De Moura",
    "primeiro_nome": "Renato",
+   "sobrenomes": [
+    "Martins",
+    "Moura"
+   ],
    "ato": "Designar",
    "cargo": "Con Fianç A De Coordenador Do Centro De Referência De Assistên",
    "data": "2025-09-18",
    "edicao": "do_20250918_000008625.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250918_000008625.pdf",
-   "sha256_edicao": "e41b9a0fa7317d711923f8c06756f252589aacfc30990f5df7f94cf08bac9680"
+   "sha256_edicao": "e41b9a0fa7317d711923f8c06756f252589aacfc30990f5df7f94cf08bac9680",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Adriana Silva De Oliveira",
    "primeiro_nome": "Adriana",
+   "sobrenomes": [
+    "Silva",
+    "Oliveira"
+   ],
    "ato": "Nomear",
    "cargo": "Assessora Técnica I",
    "data": "2025-09-26",
    "edicao": "do_20250926_000008631.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250926_000008631.pdf",
-   "sha256_edicao": "5d78c8b2a9e79f15496beb732702a20df5bf26930e7580b51f32228b71ea9ed7"
+   "sha256_edicao": "5d78c8b2a9e79f15496beb732702a20df5bf26930e7580b51f32228b71ea9ed7",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Fatima De Jesus Martins Bento",
    "primeiro_nome": "Fatima",
+   "sobrenomes": [
+    "Jesus",
+    "Martins",
+    "Bento"
+   ],
    "ato": "Nomear",
    "cargo": "Supervisora Administrativa Dos Centros",
    "data": "2025-09-26",
    "edicao": "do_20250926_000008631.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250926_000008631.pdf",
-   "sha256_edicao": "5d78c8b2a9e79f15496beb732702a20df5bf26930e7580b51f32228b71ea9ed7"
+   "sha256_edicao": "5d78c8b2a9e79f15496beb732702a20df5bf26930e7580b51f32228b71ea9ed7",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Léia Fernandes Da Silva Araújo",
    "primeiro_nome": "Léia",
+   "sobrenomes": [
+    "Fernandes",
+    "Silva",
+    "Araújo"
+   ],
    "ato": "Nomear",
    "cargo": "Supervisora Administrativa Dos Centros De Referência De Assis",
    "data": "2025-09-26",
    "edicao": "do_20250926_000008631.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20250926_000008631.pdf",
-   "sha256_edicao": "5d78c8b2a9e79f15496beb732702a20df5bf26930e7580b51f32228b71ea9ed7"
+   "sha256_edicao": "5d78c8b2a9e79f15496beb732702a20df5bf26930e7580b51f32228b71ea9ed7",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Benedita Pereira De Medeiros França",
    "primeiro_nome": "Benedita",
+   "sobrenomes": [
+    "Pereira",
+    "Medeiros",
+    "França"
+   ],
    "ato": "Exonerar",
    "cargo": "Gerente De Proteção Social De Alta Complexidade",
    "data": "2025-10-01",
    "edicao": "do_20251001_000008634.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20251001_000008634.pdf",
-   "sha256_edicao": "ab80fd354bf64ec82631414fcbb7697727b158d6b783ca6659b4cdf30ff37a02"
+   "sha256_edicao": "ab80fd354bf64ec82631414fcbb7697727b158d6b783ca6659b4cdf30ff37a02",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Fabrícia Pereira Chagas",
    "primeiro_nome": "Fabrícia",
+   "sobrenomes": [
+    "Pereira",
+    "Chagas"
+   ],
    "ato": "Exonerar",
    "cargo": "Diretora De Proteção Social Especial",
    "data": "2025-10-01",
    "edicao": "do_20251001_000008634.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20251001_000008634.pdf",
-   "sha256_edicao": "ab80fd354bf64ec82631414fcbb7697727b158d6b783ca6659b4cdf30ff37a02"
+   "sha256_edicao": "ab80fd354bf64ec82631414fcbb7697727b158d6b783ca6659b4cdf30ff37a02",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Marcos Maria Do Prado",
    "primeiro_nome": "Marcos",
+   "sobrenomes": [
+    "Maria",
+    "Prado"
+   ],
    "ato": "Exonerar",
    "cargo": "Gerente De Proteção Social De Média Complexidade",
    "data": "2025-10-01",
    "edicao": "do_20251001_000008634.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20251001_000008634.pdf",
-   "sha256_edicao": "ab80fd354bf64ec82631414fcbb7697727b158d6b783ca6659b4cdf30ff37a02"
+   "sha256_edicao": "ab80fd354bf64ec82631414fcbb7697727b158d6b783ca6659b4cdf30ff37a02",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Paula Carvalho Camarano Câmara",
    "primeiro_nome": "Paula",
+   "sobrenomes": [
+    "Carvalho",
+    "Camarano",
+    "Câmara"
+   ],
    "ato": "Exonerar",
    "cargo": "Gerente De Atenção A Populações",
    "data": "2025-10-01",
    "edicao": "do_20251001_000008634.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20251001_000008634.pdf",
-   "sha256_edicao": "ab80fd354bf64ec82631414fcbb7697727b158d6b783ca6659b4cdf30ff37a02"
+   "sha256_edicao": "ab80fd354bf64ec82631414fcbb7697727b158d6b783ca6659b4cdf30ff37a02",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Virgínia Gomes Paulino",
    "primeiro_nome": "Virgínia",
+   "sobrenomes": [
+    "Gomes",
+    "Paulino"
+   ],
    "ato": "Nomear",
    "cargo": "Gerente De Proteção Social De Alta Complexidade",
    "data": "2025-10-01",
    "edicao": "do_20251001_000008634.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20251001_000008634.pdf",
-   "sha256_edicao": "ab80fd354bf64ec82631414fcbb7697727b158d6b783ca6659b4cdf30ff37a02"
+   "sha256_edicao": "ab80fd354bf64ec82631414fcbb7697727b158d6b783ca6659b4cdf30ff37a02",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Andreia Cruvinel Dos Santos Gomes",
    "primeiro_nome": "Andreia",
+   "sobrenomes": [
+    "Cruvinel",
+    "Santos",
+    "Gomes"
+   ],
    "ato": "Exonerar",
    "cargo": "Supervisora Administrativa Dos Centros De Referência",
    "data": "2025-10-03",
    "edicao": "do_20251003_000008636.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20251003_000008636.pdf",
-   "sha256_edicao": "9b6f2127942ea6b500c96bb764e19f493fb66e37e657a34c2eaf7e52690f808f"
+   "sha256_edicao": "9b6f2127942ea6b500c96bb764e19f493fb66e37e657a34c2eaf7e52690f808f",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Eva Pires De Carvalho",
    "primeiro_nome": "Eva",
+   "sobrenomes": [
+    "Pires",
+    "Carvalho"
+   ],
    "ato": "Exonerar",
    "cargo": "Supervisora Administrativa Dos Centros De Referência De Assis",
    "data": "2025-10-03",
    "edicao": "do_20251003_000008636.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20251003_000008636.pdf",
-   "sha256_edicao": "9b6f2127942ea6b500c96bb764e19f493fb66e37e657a34c2eaf7e52690f808f"
+   "sha256_edicao": "9b6f2127942ea6b500c96bb764e19f493fb66e37e657a34c2eaf7e52690f808f",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Francineide Rodrigues De Mesquita Santiago",
    "primeiro_nome": "Francineide",
+   "sobrenomes": [
+    "Rodrigues",
+    "Mesquita",
+    "Santiago"
+   ],
    "ato": "Dispensar",
    "cargo": "Con Fiança V",
    "data": "2025-10-03",
    "edicao": "do_20251003_000008636.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20251003_000008636.pdf",
-   "sha256_edicao": "9b6f2127942ea6b500c96bb764e19f493fb66e37e657a34c2eaf7e52690f808f"
+   "sha256_edicao": "9b6f2127942ea6b500c96bb764e19f493fb66e37e657a34c2eaf7e52690f808f",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "José Nilton Ribeiro De Sousa",
    "primeiro_nome": "José",
+   "sobrenomes": [
+    "Nilton",
+    "Ribeiro",
+    "Sousa"
+   ],
    "ato": "Exonerar",
    "cargo": "Supervisor Administrativo Dos Centros De Referência De Assist",
    "data": "2025-10-03",
    "edicao": "do_20251003_000008636.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20251003_000008636.pdf",
-   "sha256_edicao": "9b6f2127942ea6b500c96bb764e19f493fb66e37e657a34c2eaf7e52690f808f"
+   "sha256_edicao": "9b6f2127942ea6b500c96bb764e19f493fb66e37e657a34c2eaf7e52690f808f",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Milaide Clarice Lopes Rodrigues Fonseca",
    "primeiro_nome": "Milaide",
+   "sobrenomes": [
+    "Clarice",
+    "Lopes",
+    "Rodrigues",
+    "Fonseca"
+   ],
    "ato": "Dispensar",
    "cargo": "Con Fiança De Coordenadora Técnica De Unidade Tipo Iv",
    "data": "2025-10-03",
    "edicao": "do_20251003_000008636.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20251003_000008636.pdf",
-   "sha256_edicao": "9b6f2127942ea6b500c96bb764e19f493fb66e37e657a34c2eaf7e52690f808f"
+   "sha256_edicao": "9b6f2127942ea6b500c96bb764e19f493fb66e37e657a34c2eaf7e52690f808f",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Paula Cristina Almeida Da Silva",
    "primeiro_nome": "Paula",
+   "sobrenomes": [
+    "Cristina",
+    "Almeida",
+    "Silva"
+   ],
    "ato": "Dispensar",
    "cargo": "Con Fiança De Coordenadora Do Centro De Referência De Assistên",
    "data": "2025-10-03",
    "edicao": "do_20251003_000008636.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20251003_000008636.pdf",
-   "sha256_edicao": "9b6f2127942ea6b500c96bb764e19f493fb66e37e657a34c2eaf7e52690f808f"
+   "sha256_edicao": "9b6f2127942ea6b500c96bb764e19f493fb66e37e657a34c2eaf7e52690f808f",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Pedro Henrique Eneas Carrijo",
    "primeiro_nome": "Pedro",
+   "sobrenomes": [
+    "Henrique",
+    "Eneas",
+    "Carrijo"
+   ],
    "ato": "Exonerar",
    "cargo": "Superintendente De Desenvolvimento Econômico",
    "data": "2025-10-03",
    "edicao": "do_20251003_000008636.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20251003_000008636.pdf",
-   "sha256_edicao": "9b6f2127942ea6b500c96bb764e19f493fb66e37e657a34c2eaf7e52690f808f"
+   "sha256_edicao": "9b6f2127942ea6b500c96bb764e19f493fb66e37e657a34c2eaf7e52690f808f",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Saulo De Oliveira",
    "primeiro_nome": "Saulo",
+   "sobrenomes": [
+    "Oliveira"
+   ],
    "ato": "Exonerar",
    "cargo": "Chefe Da Advocacia Setorial",
    "data": "2025-10-03",
    "edicao": "do_20251003_000008636.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20251003_000008636.pdf",
-   "sha256_edicao": "9b6f2127942ea6b500c96bb764e19f493fb66e37e657a34c2eaf7e52690f808f"
+   "sha256_edicao": "9b6f2127942ea6b500c96bb764e19f493fb66e37e657a34c2eaf7e52690f808f",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Valdenor Cabral Dos Santos",
    "primeiro_nome": "Valdenor",
+   "sobrenomes": [
+    "Cabral",
+    "Santos"
+   ],
    "ato": "Exonerar",
    "cargo": "Gerente De Fomento De Apoio Ao Cooperativismo",
    "data": "2025-10-03",
    "edicao": "do_20251003_000008636.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20251003_000008636.pdf",
-   "sha256_edicao": "9b6f2127942ea6b500c96bb764e19f493fb66e37e657a34c2eaf7e52690f808f"
+   "sha256_edicao": "9b6f2127942ea6b500c96bb764e19f493fb66e37e657a34c2eaf7e52690f808f",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Avena De Sousa Borges",
    "primeiro_nome": "Avena",
+   "sobrenomes": [
+    "Sousa",
+    "Borges"
+   ],
    "ato": "Designar",
    "cargo": "Con Fiança I",
    "data": "2025-10-10",
    "edicao": "do_20251010_000008641.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20251010_000008641.pdf",
-   "sha256_edicao": "999c7232194b375096f5c46f566fe0cb9cd4b475f8f930188b964e874e2e817d"
+   "sha256_edicao": "999c7232194b375096f5c46f566fe0cb9cd4b475f8f930188b964e874e2e817d",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Colemar Ferreira Correa",
    "primeiro_nome": "Colemar",
+   "sobrenomes": [
+    "Ferreira",
+    "Correa"
+   ],
    "ato": "Dispensar",
    "cargo": "Con Fiança I",
    "data": "2025-10-10",
    "edicao": "do_20251010_000008641.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20251010_000008641.pdf",
-   "sha256_edicao": "999c7232194b375096f5c46f566fe0cb9cd4b475f8f930188b964e874e2e817d"
+   "sha256_edicao": "999c7232194b375096f5c46f566fe0cb9cd4b475f8f930188b964e874e2e817d",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Danillo Augusto Pereira",
    "primeiro_nome": "Danillo",
+   "sobrenomes": [
+    "Augusto",
+    "Pereira"
+   ],
    "ato": "Designar",
    "cargo": "Con Fiança I",
    "data": "2025-10-10",
    "edicao": "do_20251010_000008641.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20251010_000008641.pdf",
-   "sha256_edicao": "999c7232194b375096f5c46f566fe0cb9cd4b475f8f930188b964e874e2e817d"
+   "sha256_edicao": "999c7232194b375096f5c46f566fe0cb9cd4b475f8f930188b964e874e2e817d",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Girlene Lima De Sousa",
    "primeiro_nome": "Girlene",
+   "sobrenomes": [
+    "Lima",
+    "Sousa"
+   ],
    "ato": "Designar",
    "cargo": "Con Fiança I",
    "data": "2025-10-10",
    "edicao": "do_20251010_000008641.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20251010_000008641.pdf",
-   "sha256_edicao": "999c7232194b375096f5c46f566fe0cb9cd4b475f8f930188b964e874e2e817d"
+   "sha256_edicao": "999c7232194b375096f5c46f566fe0cb9cd4b475f8f930188b964e874e2e817d",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Jeovany César Garcia Da Silva",
    "primeiro_nome": "Jeovany",
+   "sobrenomes": [
+    "César",
+    "Garcia",
+    "Silva"
+   ],
    "ato": "Dispensar",
    "cargo": null,
    "data": "2025-10-10",
    "edicao": "do_20251010_000008641.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20251010_000008641.pdf",
-   "sha256_edicao": "999c7232194b375096f5c46f566fe0cb9cd4b475f8f930188b964e874e2e817d"
+   "sha256_edicao": "999c7232194b375096f5c46f566fe0cb9cd4b475f8f930188b964e874e2e817d",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Joice Barbosa De Almeida",
    "primeiro_nome": "Joice",
+   "sobrenomes": [
+    "Barbosa",
+    "Almeida"
+   ],
    "ato": "Nomear",
    "cargo": "Supervisora Administrativa Dos Centros De Referência De",
    "data": "2025-10-10",
    "edicao": "do_20251010_000008641.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20251010_000008641.pdf",
-   "sha256_edicao": "999c7232194b375096f5c46f566fe0cb9cd4b475f8f930188b964e874e2e817d"
+   "sha256_edicao": "999c7232194b375096f5c46f566fe0cb9cd4b475f8f930188b964e874e2e817d",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Giselly Nunes Lucena Borges",
    "primeiro_nome": "Giselly",
+   "sobrenomes": [
+    "Nunes",
+    "Lucena",
+    "Borges"
+   ],
    "ato": "Designar",
    "cargo": "Con Fiança De Coordenadora Administrativa Do Distrito Sanitári",
    "data": "2025-11-03",
    "edicao": "do_20251103_000008655_edi.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20251103_000008655_edi.pdf",
-   "sha256_edicao": "929eb3dd56cc2b286e9c8fdb46ca181e4a48b8017365dcf2b622b2319719311c"
+   "sha256_edicao": "929eb3dd56cc2b286e9c8fdb46ca181e4a48b8017365dcf2b622b2319719311c",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Clebielly Onézia Santos",
    "primeiro_nome": "Clebielly",
+   "sobrenomes": [
+    "Onézia",
+    "Santos"
+   ],
    "ato": "Exonerar",
    "cargo": "Supervisora Administrativa Dos Centros De Referência",
    "data": "2025-12-01",
    "edicao": "do_20251201_000008673.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20251201_000008673.pdf",
-   "sha256_edicao": "adb0bf5fafddf6794b33eed660bd6d8e98a33eb3be6f06db26e5caa18dc717f2"
+   "sha256_edicao": "adb0bf5fafddf6794b33eed660bd6d8e98a33eb3be6f06db26e5caa18dc717f2",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Geslaine Garcia Monteiro",
    "primeiro_nome": "Geslaine",
+   "sobrenomes": [
+    "Garcia",
+    "Monteiro"
+   ],
    "ato": "Dispensar",
    "cargo": "Con Fiança De Coordenadora Do Centro De Referência De",
    "data": "2025-12-01",
    "edicao": "do_20251201_000008673.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20251201_000008673.pdf",
-   "sha256_edicao": "adb0bf5fafddf6794b33eed660bd6d8e98a33eb3be6f06db26e5caa18dc717f2"
+   "sha256_edicao": "adb0bf5fafddf6794b33eed660bd6d8e98a33eb3be6f06db26e5caa18dc717f2",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Para\nPrestação De Serviços",
    "primeiro_nome": "Para",
+   "sobrenomes": [
+    "Prestação",
+    "Serviços"
+   ],
    "ato": "Contratar",
    "cargo": null,
    "data": "2025-12-01",
    "edicao": "do_20251201_000008673.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20251201_000008673.pdf",
-   "sha256_edicao": "adb0bf5fafddf6794b33eed660bd6d8e98a33eb3be6f06db26e5caa18dc717f2"
+   "sha256_edicao": "adb0bf5fafddf6794b33eed660bd6d8e98a33eb3be6f06db26e5caa18dc717f2",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Samantha Passos Barbosa",
    "primeiro_nome": "Samantha",
+   "sobrenomes": [
+    "Passos",
+    "Barbosa"
+   ],
    "ato": "Nomear",
    "cargo": "Gestora Do Portfólio De Projetos",
    "data": "2025-12-01",
    "edicao": "do_20251201_000008673.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20251201_000008673.pdf",
-   "sha256_edicao": "adb0bf5fafddf6794b33eed660bd6d8e98a33eb3be6f06db26e5caa18dc717f2"
+   "sha256_edicao": "adb0bf5fafddf6794b33eed660bd6d8e98a33eb3be6f06db26e5caa18dc717f2",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Sônia Márcia De Sena",
    "primeiro_nome": "Sônia",
+   "sobrenomes": [
+    "Márcia",
+    "Sena"
+   ],
    "ato": "Nomear",
    "cargo": "Supervisora Administrativa Dos Centros De Referência De",
    "data": "2025-12-01",
    "edicao": "do_20251201_000008673.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20251201_000008673.pdf",
-   "sha256_edicao": "adb0bf5fafddf6794b33eed660bd6d8e98a33eb3be6f06db26e5caa18dc717f2"
+   "sha256_edicao": "adb0bf5fafddf6794b33eed660bd6d8e98a33eb3be6f06db26e5caa18dc717f2",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Avena De Sousa Borges",
    "primeiro_nome": "Avena",
+   "sobrenomes": [
+    "Sousa",
+    "Borges"
+   ],
    "ato": "Dispensar",
    "cargo": "Con Fiança I",
    "data": "2026-01-20",
    "edicao": "do_20260120_000008704.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260120_000008704.pdf",
-   "sha256_edicao": "4c2e4198e68f8c49db12b46bbadb0d1df0cb7aab7444b4ee026e27205adf0279"
+   "sha256_edicao": "4c2e4198e68f8c49db12b46bbadb0d1df0cb7aab7444b4ee026e27205adf0279",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Gilvania Rodrigues Pains",
    "primeiro_nome": "Gilvania",
+   "sobrenomes": [
+    "Rodrigues",
+    "Pains"
+   ],
    "ato": "Exonerar",
    "cargo": "Gerente De Benefícios Sociais",
    "data": "2026-01-20",
    "edicao": "do_20260120_000008704.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260120_000008704.pdf",
-   "sha256_edicao": "4c2e4198e68f8c49db12b46bbadb0d1df0cb7aab7444b4ee026e27205adf0279"
+   "sha256_edicao": "4c2e4198e68f8c49db12b46bbadb0d1df0cb7aab7444b4ee026e27205adf0279",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Henrique Cardoso Santos",
    "primeiro_nome": "Henrique",
+   "sobrenomes": [
+    "Cardoso",
+    "Santos"
+   ],
    "ato": "Dispensar",
    "cargo": "Con Fiança Iv",
    "data": "2026-01-20",
    "edicao": "do_20260120_000008704.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260120_000008704.pdf",
-   "sha256_edicao": "4c2e4198e68f8c49db12b46bbadb0d1df0cb7aab7444b4ee026e27205adf0279"
+   "sha256_edicao": "4c2e4198e68f8c49db12b46bbadb0d1df0cb7aab7444b4ee026e27205adf0279",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Karla Angelica De Almeida Lins Silva",
    "primeiro_nome": "Karla",
+   "sobrenomes": [
+    "Angelica",
+    "Almeida",
+    "Lins",
+    "Silva"
+   ],
    "ato": "Designar",
    "cargo": "Conﬁança I",
    "data": "2026-01-20",
    "edicao": "do_20260120_000008704.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260120_000008704.pdf",
-   "sha256_edicao": "4c2e4198e68f8c49db12b46bbadb0d1df0cb7aab7444b4ee026e27205adf0279"
+   "sha256_edicao": "4c2e4198e68f8c49db12b46bbadb0d1df0cb7aab7444b4ee026e27205adf0279",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Larissa Escher Chagas",
    "primeiro_nome": "Larissa",
+   "sobrenomes": [
+    "Escher",
+    "Chagas"
+   ],
    "ato": "Designar",
    "cargo": "Con Fiança De Coordenadora Do Centro De Referência Especializa",
    "data": "2026-01-20",
    "edicao": "do_20260120_000008704.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260120_000008704.pdf",
-   "sha256_edicao": "4c2e4198e68f8c49db12b46bbadb0d1df0cb7aab7444b4ee026e27205adf0279"
+   "sha256_edicao": "4c2e4198e68f8c49db12b46bbadb0d1df0cb7aab7444b4ee026e27205adf0279",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Ronny De Souza Esteves",
    "primeiro_nome": "Ronny",
+   "sobrenomes": [
+    "Souza",
+    "Esteves"
+   ],
    "ato": "Nomear",
    "cargo": "Gerente De Benefícios Sociais",
    "data": "2026-01-20",
    "edicao": "do_20260120_000008704.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260120_000008704.pdf",
-   "sha256_edicao": "4c2e4198e68f8c49db12b46bbadb0d1df0cb7aab7444b4ee026e27205adf0279"
+   "sha256_edicao": "4c2e4198e68f8c49db12b46bbadb0d1df0cb7aab7444b4ee026e27205adf0279",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Marcia Ribeiro De Alvarenga Marinho",
    "primeiro_nome": "Marcia",
+   "sobrenomes": [
+    "Ribeiro",
+    "Alvarenga",
+    "Marinho"
+   ],
    "ato": "Nomear",
    "cargo": "Assessora Especial",
    "data": "2026-01-30",
    "edicao": "do_20260130_000008712.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260130_000008712.pdf",
-   "sha256_edicao": "3f9e20994d3c4bb9ba136ad51619ec9b94efed3faf5f5c285b3f1148d5423326"
+   "sha256_edicao": "3f9e20994d3c4bb9ba136ad51619ec9b94efed3faf5f5c285b3f1148d5423326",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Como Fiscal Do Contrato",
    "primeiro_nome": "Como",
+   "sobrenomes": [
+    "Fiscal",
+    "Contrato"
+   ],
    "ato": "Designar",
    "cargo": null,
    "data": "2026-03-06",
    "edicao": "do_20260306_000008735.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260306_000008735.pdf",
-   "sha256_edicao": "d472b3d02a55a0bcd3f176eeff329371d5e89372ba1054cc413ffda99334df51"
+   "sha256_edicao": "d472b3d02a55a0bcd3f176eeff329371d5e89372ba1054cc413ffda99334df51",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Elisa Nunes Da Silva Marques",
    "primeiro_nome": "Elisa",
+   "sobrenomes": [
+    "Nunes",
+    "Silva",
+    "Marques"
+   ],
    "ato": "Dispensar",
    "cargo": "Con Fiança Iv",
    "data": "2026-03-06",
    "edicao": "do_20260306_000008735.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260306_000008735.pdf",
-   "sha256_edicao": "d472b3d02a55a0bcd3f176eeff329371d5e89372ba1054cc413ffda99334df51"
+   "sha256_edicao": "d472b3d02a55a0bcd3f176eeff329371d5e89372ba1054cc413ffda99334df51",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Patricia Ferreira Neres Vieira",
    "primeiro_nome": "Patricia",
+   "sobrenomes": [
+    "Ferreira",
+    "Neres",
+    "Vieira"
+   ],
    "ato": "Exonerar",
    "cargo": "Gerente De Proteção Social Básica",
    "data": "2026-03-06",
    "edicao": "do_20260306_000008735.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260306_000008735.pdf",
-   "sha256_edicao": "d472b3d02a55a0bcd3f176eeff329371d5e89372ba1054cc413ffda99334df51"
+   "sha256_edicao": "d472b3d02a55a0bcd3f176eeff329371d5e89372ba1054cc413ffda99334df51",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Valeria Pacheco Ferreira",
    "primeiro_nome": "Valeria",
+   "sobrenomes": [
+    "Pacheco",
+    "Ferreira"
+   ],
    "ato": "Dispensar",
    "cargo": "Con Fiança Ii",
    "data": "2026-03-06",
    "edicao": "do_20260306_000008735.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260306_000008735.pdf",
-   "sha256_edicao": "d472b3d02a55a0bcd3f176eeff329371d5e89372ba1054cc413ffda99334df51"
+   "sha256_edicao": "d472b3d02a55a0bcd3f176eeff329371d5e89372ba1054cc413ffda99334df51",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Vanesa Sousa Cavalcante Ferreira",
    "primeiro_nome": "Vanesa",
+   "sobrenomes": [
+    "Sousa",
+    "Cavalcante",
+    "Ferreira"
+   ],
    "ato": "Designar",
    "cargo": "Con Fiança I",
    "data": "2026-03-06",
    "edicao": "do_20260306_000008735.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260306_000008735.pdf",
-   "sha256_edicao": "d472b3d02a55a0bcd3f176eeff329371d5e89372ba1054cc413ffda99334df51"
+   "sha256_edicao": "d472b3d02a55a0bcd3f176eeff329371d5e89372ba1054cc413ffda99334df51",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Leia Fernandes Da Silva Araujo",
    "primeiro_nome": "Leia",
+   "sobrenomes": [
+    "Fernandes",
+    "Silva",
+    "Araujo"
+   ],
    "ato": "Exonerar",
    "cargo": "Supervisora Administrativa Dos Centros De Referência De",
    "data": "2026-03-23",
    "edicao": "do_20260323_000008745.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260323_000008745.pdf",
-   "sha256_edicao": "7cd9a0d420f35d96388d15a9563251659a27e173a5cafa69532d5c6a9ad2527f"
+   "sha256_edicao": "7cd9a0d420f35d96388d15a9563251659a27e173a5cafa69532d5c6a9ad2527f",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Luciana Graciella Santos De Oliveira",
    "primeiro_nome": "Luciana",
+   "sobrenomes": [
+    "Graciella",
+    "Santos",
+    "Oliveira"
+   ],
    "ato": "Dispensar",
    "cargo": "Con Fiança De Coordenadora Geral De Unidade Tipo I E Ii",
    "data": "2026-03-23",
    "edicao": "do_20260323_000008745.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260323_000008745.pdf",
-   "sha256_edicao": "7cd9a0d420f35d96388d15a9563251659a27e173a5cafa69532d5c6a9ad2527f"
+   "sha256_edicao": "7cd9a0d420f35d96388d15a9563251659a27e173a5cafa69532d5c6a9ad2527f",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Matheus Lucas Iarenko França",
    "primeiro_nome": "Matheus",
+   "sobrenomes": [
+    "Lucas",
+    "Iarenko",
+    "França"
+   ],
    "ato": "Nomear",
    "cargo": "Supervisor Administrativo Dos Centros De Referência De Assist",
    "data": "2026-03-23",
    "edicao": "do_20260323_000008745.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260323_000008745.pdf",
-   "sha256_edicao": "7cd9a0d420f35d96388d15a9563251659a27e173a5cafa69532d5c6a9ad2527f"
+   "sha256_edicao": "7cd9a0d420f35d96388d15a9563251659a27e173a5cafa69532d5c6a9ad2527f",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Osmar Andrade Junior",
    "primeiro_nome": "Osmar",
+   "sobrenomes": [
+    "Andrade",
+    "Junior"
+   ],
    "ato": "Nomear",
    "cargo": "Gerente De Assistência Técnica Rural E Fomento À Agricultura",
    "data": "2026-03-23",
    "edicao": "do_20260323_000008745.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260323_000008745.pdf",
-   "sha256_edicao": "7cd9a0d420f35d96388d15a9563251659a27e173a5cafa69532d5c6a9ad2527f"
+   "sha256_edicao": "7cd9a0d420f35d96388d15a9563251659a27e173a5cafa69532d5c6a9ad2527f",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Em Conformidade Com",
    "primeiro_nome": "Em",
+   "sobrenomes": [
+    "Conformidade",
+    "Com"
+   ],
    "ato": "Designar",
    "cargo": null,
    "data": "2026-03-26",
    "edicao": "do_20260326_000008748.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260326_000008748.pdf",
-   "sha256_edicao": "b196111fa3fcde5a71a59bc0478ebd9c3aaf5f7072bf8fa400a3cfdc32d67f61"
+   "sha256_edicao": "b196111fa3fcde5a71a59bc0478ebd9c3aaf5f7072bf8fa400a3cfdc32d67f61",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Em Conformidade Com",
    "primeiro_nome": "Em",
+   "sobrenomes": [
+    "Conformidade",
+    "Com"
+   ],
    "ato": "Designar",
    "cargo": null,
    "data": "2026-03-27",
    "edicao": "do_20260327_000008749.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260327_000008749.pdf",
-   "sha256_edicao": "5b5afcdef456f91b2f16a9508dc7a00c98f973952728734a5d6f9c1daadc4747"
+   "sha256_edicao": "5b5afcdef456f91b2f16a9508dc7a00c98f973952728734a5d6f9c1daadc4747",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Os Seguintes Membros Para Compor",
    "primeiro_nome": "Os",
+   "sobrenomes": [
+    "Seguintes",
+    "Membros",
+    "Para",
+    "Compor"
+   ],
    "ato": "Designar",
    "cargo": null,
    "data": "2026-03-27",
    "edicao": "do_20260327_000008749.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260327_000008749.pdf",
-   "sha256_edicao": "5b5afcdef456f91b2f16a9508dc7a00c98f973952728734a5d6f9c1daadc4747"
+   "sha256_edicao": "5b5afcdef456f91b2f16a9508dc7a00c98f973952728734a5d6f9c1daadc4747",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Amanda Loos Agra",
    "primeiro_nome": "Amanda",
+   "sobrenomes": [
+    "Loos",
+    "Agra"
+   ],
    "ato": "Nomear",
    "cargo": "Secretária Executiva",
    "data": "2026-04-01",
    "edicao": "do_20260401_000008752.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260401_000008752.pdf",
-   "sha256_edicao": "caf7ef61f979e6608d63aba12c08fc926404bc5236b372e0d6f3fefc9c91848e"
+   "sha256_edicao": "caf7ef61f979e6608d63aba12c08fc926404bc5236b372e0d6f3fefc9c91848e",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Juliany Galdino Moura",
    "primeiro_nome": "Juliany",
+   "sobrenomes": [
+    "Galdino",
+    "Moura"
+   ],
    "ato": "Nomear",
    "cargo": "Gerente De Proteção Social De Média Complexidade",
    "data": "2026-04-01",
    "edicao": "do_20260401_000008752.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260401_000008752.pdf",
-   "sha256_edicao": "caf7ef61f979e6608d63aba12c08fc926404bc5236b372e0d6f3fefc9c91848e"
+   "sha256_edicao": "caf7ef61f979e6608d63aba12c08fc926404bc5236b372e0d6f3fefc9c91848e",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Paula Carvalho Camarano Camara",
    "primeiro_nome": "Paula",
+   "sobrenomes": [
+    "Carvalho",
+    "Camarano",
+    "Camara"
+   ],
    "ato": "Exonerar",
    "cargo": "Gerente De Proteção Social De",
    "data": "2026-04-01",
    "edicao": "do_20260401_000008752.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260401_000008752.pdf",
-   "sha256_edicao": "caf7ef61f979e6608d63aba12c08fc926404bc5236b372e0d6f3fefc9c91848e"
+   "sha256_edicao": "caf7ef61f979e6608d63aba12c08fc926404bc5236b372e0d6f3fefc9c91848e",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Em Conformidade Com",
    "primeiro_nome": "Em",
+   "sobrenomes": [
+    "Conformidade",
+    "Com"
+   ],
    "ato": "Designar",
    "cargo": null,
    "data": "2026-04-07",
    "edicao": "do_20260407_000008754.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260407_000008754.pdf",
-   "sha256_edicao": "ed281b11f4ca1cd200192b743f9901554bf1c68d3e734e55cba39a304f9ce8a6"
+   "sha256_edicao": "ed281b11f4ca1cd200192b743f9901554bf1c68d3e734e55cba39a304f9ce8a6",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Em Conformidade Com",
    "primeiro_nome": "Em",
+   "sobrenomes": [
+    "Conformidade",
+    "Com"
+   ],
    "ato": "Designar",
    "cargo": null,
    "data": "2026-04-09",
    "edicao": "do_20260409_000008756.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260409_000008756.pdf",
-   "sha256_edicao": "ce066e3251362c72c6ddef59763278f1bf3742d3bf8a57ed684e9e31d5b56c17"
+   "sha256_edicao": "ce066e3251362c72c6ddef59763278f1bf3742d3bf8a57ed684e9e31d5b56c17",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Em Conformidade Com",
    "primeiro_nome": "Em",
+   "sobrenomes": [
+    "Conformidade",
+    "Com"
+   ],
    "ato": "Designar",
    "cargo": null,
    "data": "2026-04-10",
    "edicao": "do_20260410_000008757.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260410_000008757.pdf",
-   "sha256_edicao": "a8c1cfae52ab7d815292a4877a25416beb1ad3f262bfecb935170875798a699a"
+   "sha256_edicao": "a8c1cfae52ab7d815292a4877a25416beb1ad3f262bfecb935170875798a699a",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Em Conformidade Com",
    "primeiro_nome": "Em",
+   "sobrenomes": [
+    "Conformidade",
+    "Com"
+   ],
    "ato": "Designar",
    "cargo": null,
    "data": "2026-04-13",
    "edicao": "do_20260413_000008758.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260413_000008758.pdf",
-   "sha256_edicao": "9264f19f4412c69f19669093dd2616facb54368db2d2dcaac02ff45ccd6644c2"
+   "sha256_edicao": "9264f19f4412c69f19669093dd2616facb54368db2d2dcaac02ff45ccd6644c2",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Em Conformidade Com",
    "primeiro_nome": "Em",
+   "sobrenomes": [
+    "Conformidade",
+    "Com"
+   ],
    "ato": "Designar",
    "cargo": null,
    "data": "2026-04-17",
    "edicao": "do_20260417_000008762.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260417_000008762.pdf",
-   "sha256_edicao": "5cbc694c5ade0a46b2601b0f6d8444fa3c256fcad92de36f175b6e35234c1e19"
+   "sha256_edicao": "5cbc694c5ade0a46b2601b0f6d8444fa3c256fcad92de36f175b6e35234c1e19",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Em Conformidade Com",
    "primeiro_nome": "Em",
+   "sobrenomes": [
+    "Conformidade",
+    "Com"
+   ],
    "ato": "Designar",
    "cargo": null,
    "data": "2026-04-28",
    "edicao": "do_20260428_000008767.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260428_000008767.pdf",
-   "sha256_edicao": "b27a5ac71dcc920d3ffcca3ad77a3b4cab21664948e77971e418d3a8bd4692c9"
+   "sha256_edicao": "b27a5ac71dcc920d3ffcca3ad77a3b4cab21664948e77971e418d3a8bd4692c9",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Em Conformidade Com",
    "primeiro_nome": "Em",
+   "sobrenomes": [
+    "Conformidade",
+    "Com"
+   ],
    "ato": "Designar",
    "cargo": null,
    "data": "2026-04-29",
    "edicao": "do_20260429_000008768.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260429_000008768.pdf",
-   "sha256_edicao": "77efd5b47ab5102a702e793098304893a487ca04cceb9dbc52e264cc8cedf114"
+   "sha256_edicao": "77efd5b47ab5102a702e793098304893a487ca04cceb9dbc52e264cc8cedf114",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Ou Adquirir Com Recursos Da\nParceria",
    "primeiro_nome": "Ou",
+   "sobrenomes": [
+    "Adquirir",
+    "Com",
+    "Recursos",
+    "Parceria"
+   ],
    "ato": "Contratar",
    "cargo": null,
    "data": "2026-04-29",
    "edicao": "do_20260429_000008768.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260429_000008768.pdf",
-   "sha256_edicao": "77efd5b47ab5102a702e793098304893a487ca04cceb9dbc52e264cc8cedf114"
+   "sha256_edicao": "77efd5b47ab5102a702e793098304893a487ca04cceb9dbc52e264cc8cedf114",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Para Prestação De Serviços",
    "primeiro_nome": "Para",
+   "sobrenomes": [
+    "Prestação",
+    "Serviços"
+   ],
    "ato": "Contratar",
    "cargo": null,
    "data": "2026-04-29",
    "edicao": "do_20260429_000008768.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260429_000008768.pdf",
-   "sha256_edicao": "77efd5b47ab5102a702e793098304893a487ca04cceb9dbc52e264cc8cedf114"
+   "sha256_edicao": "77efd5b47ab5102a702e793098304893a487ca04cceb9dbc52e264cc8cedf114",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Como Fiscal",
    "primeiro_nome": "Como",
+   "sobrenomes": [
+    "Fiscal"
+   ],
    "ato": "Designar",
    "cargo": null,
    "data": "2026-05-05",
    "edicao": "do_20260505_000008771.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260505_000008771.pdf",
-   "sha256_edicao": "894228269adc74115d3a0348ee1e83bc79c92a5cf7b790c3a56885168ccd16c7"
+   "sha256_edicao": "894228269adc74115d3a0348ee1e83bc79c92a5cf7b790c3a56885168ccd16c7",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Como Gestores",
    "primeiro_nome": "Como",
+   "sobrenomes": [
+    "Gestores"
+   ],
    "ato": "Designar",
    "cargo": null,
    "data": "2026-05-18",
    "edicao": "do_20260518_000008780.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260518_000008780.pdf",
-   "sha256_edicao": "339c2f330bbceee3d1110be94bc7eb983aac778ce8871317de902b740ee38a67"
+   "sha256_edicao": "339c2f330bbceee3d1110be94bc7eb983aac778ce8871317de902b740ee38a67",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Maria Nilce Batista De Moraes Carvalho",
    "primeiro_nome": "Maria",
+   "sobrenomes": [
+    "Nilce",
+    "Batista",
+    "Moraes",
+    "Carvalho"
+   ],
    "ato": "Designar",
    "cargo": "Con Fiança Iv",
    "data": "2026-05-26",
    "edicao": "do_20260526_000008786.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260526_000008786.pdf",
-   "sha256_edicao": "e7ecfbd6052d95a316a161fb3b8373681f31eae4db3e39240d18b363cb98d614"
+   "sha256_edicao": "e7ecfbd6052d95a316a161fb3b8373681f31eae4db3e39240d18b363cb98d614",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "João Paulo Cardoso Gomides",
    "primeiro_nome": "João",
+   "sobrenomes": [
+    "Paulo",
+    "Cardoso",
+    "Gomides"
+   ],
    "ato": "Nomear",
    "cargo": "Assessor Especial Técnico Iii",
    "data": "2026-05-27",
    "edicao": "do_20260527_000008787.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260527_000008787.pdf",
-   "sha256_edicao": "f0e2bd522d47146a39a4b7a60f74d20052463a895d03c5fdd456738672a879d8"
+   "sha256_edicao": "f0e2bd522d47146a39a4b7a60f74d20052463a895d03c5fdd456738672a879d8",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Ludmilla Pereira De Amorim Silva",
    "primeiro_nome": "Ludmilla",
+   "sobrenomes": [
+    "Pereira",
+    "Amorim",
+    "Silva"
+   ],
    "ato": "Designar",
    "cargo": "Conﬁança V",
    "data": "2026-05-27",
    "edicao": "do_20260527_000008787.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260527_000008787.pdf",
-   "sha256_edicao": "f0e2bd522d47146a39a4b7a60f74d20052463a895d03c5fdd456738672a879d8"
+   "sha256_edicao": "f0e2bd522d47146a39a4b7a60f74d20052463a895d03c5fdd456738672a879d8",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Paula Cristina Almeida Da Silva",
    "primeiro_nome": "Paula",
+   "sobrenomes": [
+    "Cristina",
+    "Almeida",
+    "Silva"
+   ],
    "ato": "Designar",
    "cargo": "Conﬁança De Coordenadora Do Centro De Referência De Assistênc",
    "data": "2026-05-27",
    "edicao": "do_20260527_000008787.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260527_000008787.pdf",
-   "sha256_edicao": "f0e2bd522d47146a39a4b7a60f74d20052463a895d03c5fdd456738672a879d8"
+   "sha256_edicao": "f0e2bd522d47146a39a4b7a60f74d20052463a895d03c5fdd456738672a879d8",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Renato Martins De Moura",
    "primeiro_nome": "Renato",
+   "sobrenomes": [
+    "Martins",
+    "Moura"
+   ],
    "ato": "Dispensar",
    "cargo": "Conﬁança De Coordenador Do Centro De Referência De Assistênci",
    "data": "2026-05-27",
    "edicao": "do_20260527_000008787.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260527_000008787.pdf",
-   "sha256_edicao": "f0e2bd522d47146a39a4b7a60f74d20052463a895d03c5fdd456738672a879d8"
+   "sha256_edicao": "f0e2bd522d47146a39a4b7a60f74d20052463a895d03c5fdd456738672a879d8",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Cinttia Moreira De Medeiros Maciel",
    "primeiro_nome": "Cinttia",
+   "sobrenomes": [
+    "Moreira",
+    "Medeiros",
+    "Maciel"
+   ],
    "ato": "Dispensar",
    "cargo": "Representante Titular Das Entidades Prestadoras De",
    "data": "2026-06-17",
    "edicao": "do_20260617_000008800.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260617_000008800.pdf",
-   "sha256_edicao": "d87ae3140a04bd4210552c7fda52a47b606363f72606583c7767430a5886743d"
+   "sha256_edicao": "d87ae3140a04bd4210552c7fda52a47b606363f72606583c7767430a5886743d",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Débora Cristina Israel De Souza Cardoso Da",
    "primeiro_nome": "Débora",
+   "sobrenomes": [
+    "Cristina",
+    "Israel",
+    "Souza",
+    "Cardoso"
+   ],
    "ato": "Dispensar",
    "cargo": null,
    "data": "2026-06-22",
    "edicao": "do_20260622_000008803.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260622_000008803.pdf",
-   "sha256_edicao": "1179c3974aab748ab7ef874ec841fbb6b5dfb1246b852fb6d3bed4727aeed02f"
+   "sha256_edicao": "1179c3974aab748ab7ef874ec841fbb6b5dfb1246b852fb6d3bed4727aeed02f",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Marcelo Nascimento Lataliza",
    "primeiro_nome": "Marcelo",
+   "sobrenomes": [
+    "Nascimento",
+    "Lataliza"
+   ],
    "ato": "Nomear",
    "cargo": "Coordenador Geral De Unidade Tipo Iv",
    "data": "2026-06-22",
    "edicao": "do_20260622_000008803.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260622_000008803.pdf",
-   "sha256_edicao": "1179c3974aab748ab7ef874ec841fbb6b5dfb1246b852fb6d3bed4727aeed02f"
+   "sha256_edicao": "1179c3974aab748ab7ef874ec841fbb6b5dfb1246b852fb6d3bed4727aeed02f",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Em Conformidade Com",
    "primeiro_nome": "Em",
+   "sobrenomes": [
+    "Conformidade",
+    "Com"
+   ],
    "ato": "Designar",
    "cargo": null,
    "data": "2026-07-03",
    "edicao": "do_20260703_000008812.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260703_000008812.pdf",
-   "sha256_edicao": "640e031b38861e5b242b66c43884188435df7bb97a8692fe5d1664acf3204a84"
+   "sha256_edicao": "640e031b38861e5b242b66c43884188435df7bb97a8692fe5d1664acf3204a84",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Para Atuar Como Fiscal Do Processo Sei",
    "primeiro_nome": "Para",
+   "sobrenomes": [
+    "Atuar",
+    "Como",
+    "Fiscal",
+    "Processo",
+    "Sei"
+   ],
    "ato": "Designar",
    "cargo": null,
    "data": "2026-07-03",
    "edicao": "do_20260703_000008812.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260703_000008812.pdf",
-   "sha256_edicao": "640e031b38861e5b242b66c43884188435df7bb97a8692fe5d1664acf3204a84"
+   "sha256_edicao": "640e031b38861e5b242b66c43884188435df7bb97a8692fe5d1664acf3204a84",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Andreia Dias Costa",
    "primeiro_nome": "Andreia",
+   "sobrenomes": [
+    "Dias",
+    "Costa"
+   ],
    "ato": "Designar",
    "cargo": "Con Fiança De Coordenadora Do Centro De Referência De Assistên",
    "data": "2026-07-24",
    "edicao": "do_20260724_000008827.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260724_000008827.pdf",
-   "sha256_edicao": "61e5438c8b6a24a57e7f98e020a82cc14755f039142f2407e47256c46469e1eb"
+   "sha256_edicao": "61e5438c8b6a24a57e7f98e020a82cc14755f039142f2407e47256c46469e1eb",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Carlos Eduardo Bernardes Lima",
    "primeiro_nome": "Carlos",
+   "sobrenomes": [
+    "Eduardo",
+    "Bernardes",
+    "Lima"
+   ],
    "ato": "Designar",
    "cargo": "Conﬁança I",
    "data": "2026-07-24",
    "edicao": "do_20260724_000008827.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260724_000008827.pdf",
-   "sha256_edicao": "61e5438c8b6a24a57e7f98e020a82cc14755f039142f2407e47256c46469e1eb"
+   "sha256_edicao": "61e5438c8b6a24a57e7f98e020a82cc14755f039142f2407e47256c46469e1eb",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Como Representantes Convidados Do Comitê Gestor Municipal",
    "primeiro_nome": "Como",
+   "sobrenomes": [
+    "Representantes",
+    "Convidados",
+    "Comitê",
+    "Gestor",
+    "Municipal"
+   ],
    "ato": "Nomear",
    "cargo": null,
    "data": "2026-07-24",
    "edicao": "do_20260724_000008827.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260724_000008827.pdf",
-   "sha256_edicao": "61e5438c8b6a24a57e7f98e020a82cc14755f039142f2407e47256c46469e1eb"
+   "sha256_edicao": "61e5438c8b6a24a57e7f98e020a82cc14755f039142f2407e47256c46469e1eb",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Wellington Heberling De Oliveira",
    "primeiro_nome": "Wellington",
+   "sobrenomes": [
+    "Heberling",
+    "Oliveira"
+   ],
    "ato": "Dispensar",
    "cargo": "Conﬁança De Coordenador Do Centro De Referência De Assistênci",
    "data": "2026-07-24",
    "edicao": "do_20260724_000008827.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260724_000008827.pdf",
-   "sha256_edicao": "61e5438c8b6a24a57e7f98e020a82cc14755f039142f2407e47256c46469e1eb"
+   "sha256_edicao": "61e5438c8b6a24a57e7f98e020a82cc14755f039142f2407e47256c46469e1eb",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Aparecida Tertuliana Cintra Andrade",
    "primeiro_nome": "Aparecida",
+   "sobrenomes": [
+    "Tertuliana",
+    "Cintra",
+    "Andrade"
+   ],
    "ato": "Designar",
    "cargo": "Conﬁança I",
    "data": "2026-07-28",
    "edicao": "do_20260728_000008829.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260728_000008829.pdf",
-   "sha256_edicao": "255705ac8121b656abc179337c63ea287172750f0a7b14ec983ee3d1a952d837"
+   "sha256_edicao": "255705ac8121b656abc179337c63ea287172750f0a7b14ec983ee3d1a952d837",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Aristoteles Soares Moreira",
    "primeiro_nome": "Aristoteles",
+   "sobrenomes": [
+    "Soares",
+    "Moreira"
+   ],
    "ato": "Dispensar",
    "cargo": "Con Fiança I",
    "data": "2026-07-28",
    "edicao": "do_20260728_000008829.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260728_000008829.pdf",
-   "sha256_edicao": "255705ac8121b656abc179337c63ea287172750f0a7b14ec983ee3d1a952d837"
+   "sha256_edicao": "255705ac8121b656abc179337c63ea287172750f0a7b14ec983ee3d1a952d837",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Larissa Escher Chagas",
    "primeiro_nome": "Larissa",
+   "sobrenomes": [
+    "Escher",
+    "Chagas"
+   ],
    "ato": "Dispensar",
    "cargo": "Con Fiança De Coordenadora Do Centro De Referência Especializa",
    "data": "2026-07-28",
    "edicao": "do_20260728_000008829.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260728_000008829.pdf",
-   "sha256_edicao": "255705ac8121b656abc179337c63ea287172750f0a7b14ec983ee3d1a952d837"
+   "sha256_edicao": "255705ac8121b656abc179337c63ea287172750f0a7b14ec983ee3d1a952d837",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Maria Rosa Caetano Da Silva",
    "primeiro_nome": "Maria",
+   "sobrenomes": [
+    "Rosa",
+    "Caetano",
+    "Silva"
+   ],
    "ato": "Dispensar",
    "cargo": "Con Fiança De Coordenadora Do Centro De Referência Especializa",
    "data": "2026-07-28",
    "edicao": "do_20260728_000008829.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260728_000008829.pdf",
-   "sha256_edicao": "255705ac8121b656abc179337c63ea287172750f0a7b14ec983ee3d1a952d837"
+   "sha256_edicao": "255705ac8121b656abc179337c63ea287172750f0a7b14ec983ee3d1a952d837",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Paula Corrêa Azevedo",
    "primeiro_nome": "Paula",
+   "sobrenomes": [
+    "Corrêa",
+    "Azevedo"
+   ],
    "ato": "Designar",
    "cargo": "Con Fiança De Coordenador Do Centro De Referência Especializad",
    "data": "2026-07-28",
    "edicao": "do_20260728_000008829.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260728_000008829.pdf",
-   "sha256_edicao": "255705ac8121b656abc179337c63ea287172750f0a7b14ec983ee3d1a952d837"
+   "sha256_edicao": "255705ac8121b656abc179337c63ea287172750f0a7b14ec983ee3d1a952d837",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Pollyana Barbosa Gomes",
    "primeiro_nome": "Pollyana",
+   "sobrenomes": [
+    "Barbosa",
+    "Gomes"
+   ],
    "ato": "Dispensar",
    "cargo": null,
    "data": "2026-07-28",
    "edicao": "do_20260728_000008829.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260728_000008829.pdf",
-   "sha256_edicao": "255705ac8121b656abc179337c63ea287172750f0a7b14ec983ee3d1a952d837"
+   "sha256_edicao": "255705ac8121b656abc179337c63ea287172750f0a7b14ec983ee3d1a952d837",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Renata Cardoso Azevedo",
    "primeiro_nome": "Renata",
+   "sobrenomes": [
+    "Cardoso",
+    "Azevedo"
+   ],
    "ato": "Dispensar",
    "cargo": "Con Fiança Iii",
    "data": "2026-07-28",
    "edicao": "do_20260728_000008829.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260728_000008829.pdf",
-   "sha256_edicao": "255705ac8121b656abc179337c63ea287172750f0a7b14ec983ee3d1a952d837"
+   "sha256_edicao": "255705ac8121b656abc179337c63ea287172750f0a7b14ec983ee3d1a952d837",
+   "situacao_atual": "DESLIGADO"
   },
   {
+   "nome_completo": "Rudimar Alves Pereira",
    "primeiro_nome": "Rudimar",
+   "sobrenomes": [
+    "Alves",
+    "Pereira"
+   ],
    "ato": "Designar",
    "cargo": "Con Fiança De Coordenador Do Centro De Referência Especializad",
    "data": "2026-07-28",
    "edicao": "do_20260728_000008829.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260728_000008829.pdf",
-   "sha256_edicao": "255705ac8121b656abc179337c63ea287172750f0a7b14ec983ee3d1a952d837"
+   "sha256_edicao": "255705ac8121b656abc179337c63ea287172750f0a7b14ec983ee3d1a952d837",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   },
   {
+   "nome_completo": "Valma Karine Feitosa Braga",
    "primeiro_nome": "Valma",
+   "sobrenomes": [
+    "Karine",
+    "Feitosa",
+    "Braga"
+   ],
    "ato": "Designar",
    "cargo": null,
    "data": "2026-07-28",
    "edicao": "do_20260728_000008829.pdf",
    "pagina": 1,
    "url_edicao": "http://sileg.goiania.go.gov.br/geral/do_20260728_000008829.pdf",
-   "sha256_edicao": "255705ac8121b656abc179337c63ea287172750f0a7b14ec983ee3d1a952d837"
+   "sha256_edicao": "255705ac8121b656abc179337c63ea287172750f0a7b14ec983ee3d1a952d837",
+   "situacao_atual": "ATIVO_OU_VINCULADO"
   }
  ]
 }

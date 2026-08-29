@@ -84,6 +84,13 @@ def dossie(hoje: date) -> tuple[str, dict]:
            if a.get("severidade") == "critica"][:8]
     partes.append("Críticos vigentes: " + "; ".join(
         f"[{a['codigo']}|{a['selo']}] {a['titulo']}" for a in top))
+    ele = ler_json(RAIZ / "referencias" / "eleitoral" / "cruzamentos.json",
+                   None)
+    if ele:
+        partes.append("SEÇÃO FINAL — FASE ELEITORAL (Q3: só ao fim, para "
+                      "economizar tokens; sempre INDICIÁRIA): "
+                      + json.dumps(ele.get("resumo", {}),
+                                   ensure_ascii=False)[:800])
     return "\n\n".join(partes), {"competencia_consolidada": comp,
                                  "precedentes_novos": len(novos_prec)}
 

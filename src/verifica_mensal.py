@@ -257,6 +257,30 @@ def analisa_mes(competencia: str) -> dict:
             "dados": {"resolucoes": citados_no_mes},
         })
 
+    # IMOB-M: contratação/locação de imóvel exige pesquisa de mercado
+    imoveis = [e for e in evs if any(t in json.dumps(e, ensure_ascii=False)
+               .upper() for t in ("LOCACAO DE IMOVEL", "ALUGUEL DE IMOVEL",
+                                  "LOCAÇÃO DE IMÓVEL"))]
+    if imoveis:
+        achados.append({
+            "codigo": f"IMOB-M-{competencia}", "bloco": "SEMASDH",
+            "severidade": "alta", "selo": "INDICIARIO",
+            "titulo": (f"{len(imoveis)} contratação(ões) de imóvel em "
+                       f"{nome_mes} de {ano} sem pesquisa de mercado anexa"),
+            "detalhe": ("Locação de imóvel publicada sem laudo de avaliação "
+                        "ou pesquisa de preços da região (metro quadrado "
+                        "comercial de imóveis semelhantes). Indício de "
+                        "sobrepreço é indício: a pesquisa imobiliária "
+                        "comparativa da região é a providência que o "
+                        "converte em prova ou o afasta."),
+            "norma": ("Artigo 51, caput e inciso II, da Lei 14.133/2021 — "
+                      "locação exige avaliação prévia; Artigo 23 da mesma "
+                      "lei — parâmetros de preço"),
+            "impedimento": "aferição de compatibilidade do aluguel com o mercado",
+            "onde_obter": ("laudo de avaliação no processo; pesquisa de "
+                           "mercado imobiliário da região do imóvel"),
+            "dados": {"eventos": [e.get("edicao") for e in imoveis]},
+        })
     achados.sort(key=lambda a: {"critica": 0, "alta": 1, "media": 2}.get(
         a["severidade"], 9))
     resumo = {

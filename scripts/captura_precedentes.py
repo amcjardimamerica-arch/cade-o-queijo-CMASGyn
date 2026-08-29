@@ -34,6 +34,10 @@ CONSULTAS = [
     '"conselho municipal de assistência social" repasse bloqueio transparência',
     'ação civil pública "portal da transparência" município condenação',
     'IGD SUAS "controle social" percentual conselho descumprimento',
+,
+    'acórdão tribunal de contas "assistência social" fundo municipal irregularidade',
+    'TCE OR TCM julgamento contas prefeitura "fundo de assistência social"',
+    'acórdão "conselho municipal" "controle social" repasse irregular',
 ]
 
 RELEVANTES = re.compile(

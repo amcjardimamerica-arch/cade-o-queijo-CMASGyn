@@ -19,6 +19,9 @@ import urllib.request
 API = "https://api.anthropic.com/v1/messages"
 CHAVE = os.environ.get("ANTHROPIC_API_KEY")
 
+# Q4: triagens não urgentes vão pela Batch API (50% de custo, latência ok)
+MODO_BATCH = {"triar_precedente_transparencia", "classificar_ato",
+              "triar_relevancia"}
 MODELOS = {
     "haiku":  "claude-haiku-4-5-20251001",
     "sonnet": "claude-sonnet-4-6",

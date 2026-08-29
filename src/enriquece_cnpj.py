@@ -59,10 +59,11 @@ def faltantes() -> tuple[list[str], list[str]]:
     trilha = ler_json(DADOS / "trilha_dinheiro.json", {})
     dest = ler_json(DADOS / "destinatarios_2026.json", {})
     tem = {normalizar(d["cnpj"]) for d in dest.get("destinatarios", [])
-           if d.get("razao_social")}
+           if d.get("razao_social") and d.get("qsa") is not None}
     compl = ler_json(DADOS / "cadastro_cnpj_complementar.json", {})
+    # backfill: quem tem razão social mas ainda não tem QSA volta à fila
     tem |= {normalizar(k) for k, v in compl.get("cadastros", {}).items()
-            if v.get("razao_social")}
+            if v.get("razao_social") and v.get("qsa") is not None}
     citados = {c for e in trilha.get("detalhe", [])
                for c in (e.get("cnpjs") or [])}
     validos, artefatos = [], []
@@ -89,8 +90,12 @@ def main():
     for n in alvo[:limite]:
         c = consultar(n, cache)
         if c and c.get("razao_social"):
+            qsa = [{"nome": s.get("nome_socio") or s.get("nome"),
+                    "qualificacao": s.get("qualificacao_socio")
+                    or s.get("codigo_qualificacao_socio")}
+                   for s in (c.get("qsa") or []) if isinstance(s, dict)]
             atual["cadastros"][fmt(n)] = {
-                **c, "fonte": ("dados abertos do CNPJ — Receita Federal, via "
+                **c, "qsa": qsa, "fonte": ("dados abertos do CNPJ — Receita Federal, via "
                                "BrasilAPI/minhareceita"),
                 "consultado_em": date.today().isoformat()}
             ok += 1
