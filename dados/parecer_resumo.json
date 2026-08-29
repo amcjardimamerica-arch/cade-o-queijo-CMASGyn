@@ -1,10 +1,10 @@
 {
-  "arquivo": "relatorios/parecer_2026-08-24.md",
+  "arquivo": "relatorios/parecer_2026-08-29.md",
   "pareceres": 13,
   "severidade_alta": 6,
-  "houve_mudanca": true,
-  "novos": 13,
+  "houve_mudanca": false,
+  "novos": 0,
   "agravados": 0,
   "resolvidos": 0,
-  "notificar": true
+  "notificar": false
 }

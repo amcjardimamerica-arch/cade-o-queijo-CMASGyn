@@ -1,0 +1,17 @@
+{
+  "https://cmasgyn.com.br/Resources/documentos/calendario_cmasgyn_2026.pdf": {
+    "url": "https://cmasgyn.com.br/Resources/documentos/calendario_cmasgyn_2026.pdf",
+    "arquivo": "acervo/cmasgyn/cmasgyn_plenarias/calendario_cmasgyn_2026.pdf",
+    "sha256": "ab3ff9b785f3bcd00811afec7b760453b42979dd20019065a9da1df675e0dc1c",
+    "visto_em": "2026-08-29T00:05:41.537496+00:00",
+    "fonte": "cmasgyn_plenarias",
+    "ocr": false,
+    "caracteres": 3226,
+    "versoes": [
+      {
+        "sha256": "ab3ff9b785f3bcd00811afec7b760453b42979dd20019065a9da1df675e0dc1c",
+        "em": "2026-08-29T00:05:41.537496+00:00"
+      }
+    ]
+  }
+}
