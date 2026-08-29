@@ -1896,9 +1896,8 @@ def parecer_final_conta(v, conta):
         + '</td></tr>' for f, n, p, s in itens)
     return (f'<h2><span data-tip="síntese acionável: a falha exata e a '
             f'providência que a sana">{titulo}</span></h2>'
-            f'<table><tr><th>Falha exata (e fundamento)</th>'
-            f'<th>Providência para sanar</th><th>Selo</th></tr>'
-            + linhas + '</table>')
+            f'<table><tr><th>Falha</th><th>Como deveria ser (fundamento)</th>'
+            '<th>Como está</th><th>Providência (e estado da publicação)</th></tr>'            + linhas + '</table>')
 
 
 def _seg_etapa():
