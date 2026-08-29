@@ -87,7 +87,7 @@ h2{font:700 13px/1.4 Arial,sans-serif;letter-spacing:.14em;text-transform:upperc
 border-bottom:1px solid var(--linha);padding-bottom:6px;margin:36px 0 12px}
 .explica{font:13px/1.6 Arial,sans-serif;color:var(--suave);margin:0 0 12px}
 [data-tip]{position:relative;cursor:help}
-[data-tip]:hover::after{content:attr(data-tip);position:absolute;left:0;top:calc(100% + 8px);
+[data-tip]:hover::after{content:attr(data-tip);position:absolute;left:0;top:calc(100% + 8px);min-width:230px;max-width:330px;
 z-index:9;background:#1c2733;color:#fff;font:12px/1.5 Arial,sans-serif;padding:8px 11px;
 border-radius:6px;width:max-content;max-width:340px;white-space:normal;
 box-shadow:0 4px 14px rgba(0,0,0,.25)}
@@ -209,6 +209,8 @@ padding:4px 8px;border-radius:4px;background:#eef2f7;color:#1d4f8a;margin:2px 4p
 .vdot.v1{background:#1d4f8a;box-shadow:0 0 0 3px #1d4f8a33}
 .vdot.v0{background:#c1281f;box-shadow:0 0 0 3px #c1281f33}
 .vdot.roxo{background:#6b3fa0;animation:pulsa 1.4s ease-in-out infinite}
+details,td,table,.ficha,.plin,.corpo,.camada,.presta,.crono{overflow:visible!important}
+[data-tip]:hover::after{z-index:999}
 @keyframes pulsa{0%,100%{box-shadow:0 0 0 3px #6b3fa055}50%{box-shadow:0 0 0 9px #6b3fa000}}
 .vd>div{position:absolute;z-index:20;right:0;top:calc(100% + 6px);width:340px;
 background:#fff;border:1px solid var(--linha);border-radius:8px;padding:10px 12px;
@@ -543,14 +545,20 @@ def fluxograma_baloes(fluxo, evs_mes, mapa, comp):
     for i, d in enumerate(saidas):
         nome = nome_de(mapa, d.get("cnpj", "")) or fmt_cnpj(d.get("cnpj", "?"))
         comprovada = d.get("tipo") == "comprovada"
-        cor = "#1d4f2b" if comprovada else "#a85b00"
+        dd = mapa.get(digitos(d.get("cnpj", ""))) or {}
+        if not d.get("cnpj"):
+            cor = "#c9a227"           # amarelo: pessoa física/sem inscrição
+        elif dd.get("sem_fins"):
+            cor = "#1d4f8a"           # azul: entidade sem fins lucrativos
+        else:
+            cor = "#e07b00"           # laranja: empresa
         tip = (f'saída: {nome} — {fmt(d["valor"])} em {d.get("data", "?")}. '
                f'Vínculo: {", ".join(d.get("vinculo") or ["nenhum publicado"])}.')
         abre = (f'<b>Inscrição:</b> {fmt_cnpj(d.get("cnpj", "?"))}<br>'
                 f'<b>Vínculo publicado:</b> '
                 f'{esc(", ".join(d.get("vinculo") or ["nenhum"]))}' + (f' — <a href="{url_da_edicao(d.get("edicao")) or "#"}">abrir a edição íntegra do instrumento</a>' if d.get("edicao") else '') + '<br>'
                 f'<b>Objeto:</b> {esc(d.get("objeto", "—"))}<br>'
-                f'<b>Processo:</b> {esc(d.get("processo", "—"))}'
+                f'<b>Processo SEI/administrativo:</b> <b style="font-size:14px">{esc(d.get("processo") or "(NÃO REFERENCIADO — validar junto à Prefeitura)")}</b>'
                 + ('' if comprovada else '<br><b>Omissão legal:</b> despesa '
                    'sem instrumento de vínculo publicado — Artigo 61 da Lei '
                    '4.320/1964 e Artigo 38 da Lei 13.019/2014.'))
@@ -593,7 +601,7 @@ def fluxograma_baloes(fluxo, evs_mes, mapa, comp):
              f'ao valor. No mês, {ev_desp} evento(s) alcançaram estação de '
              f'despesa. Despesa comprovada no exercício: '
              f'{fmt(fluxo["totais"]["despesa_comprovada"])} de um Fundo de '
-             f'{fmt(fluxo["totais"]["fundo"])}. Cores das entradas por esfera: <i style="background:#1d8a3a;width:11px;height:11px;display:inline-block;border-radius:3px"></i> federal <i style="background:#1d4f8a;width:11px;height:11px;display:inline-block;border-radius:3px"></i> estadual <i style="background:#e07b00;width:11px;height:11px;display:inline-block;border-radius:3px"></i> municipal. Envio em bloco a várias entidades consta UMA única vez — valor coletivo não se repete nem se soma por entidade.</p>')
+             f'{fmt(fluxo["totais"]["fundo"])}. Cores das entradas por esfera: <i style="background:#1d8a3a;width:11px;height:11px;display:inline-block;border-radius:3px"></i> federal <i style="background:#1d4f8a;width:11px;height:11px;display:inline-block;border-radius:3px"></i> estadual <i style="background:#e07b00;width:11px;height:11px;display:inline-block;border-radius:3px"></i> municipal. Saídas: <i style="background:#e07b00;width:11px;height:11px;display:inline-block;border-radius:3px"></i> empresa <i style="background:#1d4f8a;width:11px;height:11px;display:inline-block;border-radius:3px"></i> entidade sem fins lucrativos <i style="background:#c9a227;width:11px;height:11px;display:inline-block;border-radius:3px"></i> pessoa física. Envio em bloco a várias entidades consta UMA única vez — valor coletivo não se repete nem se soma por entidade.</p>')
     return grade + aviso
 
 
@@ -708,7 +716,7 @@ def fluxograma_gabinete(fluxo):
     for i, (cod, a) in enumerate(ordenadas):
         nats = ", ".join(f"{k} ({fmt(v)})" for k, v in
                          sorted(a["nats"].items(), key=lambda x: -x[1]))
-        pessoal = a["nats"].get("3.1.90.11", 0)
+        pessoal = sum(v for k, v in a["nats"].items() if k.startswith("3.1"))
         obs = ("<br><b>Atenção:</b> despesa de pessoal — soma para o teto "
                "de 30% do Artigo 4º da Lei Complementar municipal 273/2014."
                if pessoal else "")
@@ -799,14 +807,14 @@ def prestacao_gabinete(comp, evs, nome_mes):
             f'não publicado — a prestação de contas mensal desta conta é '
             f'integralmente omissa (Artigo 48-A, inciso I, da Lei '
             f'Complementar 101/2000). Selo: '
-            f'INCONCLUSIVO_POR_DOCUMENTO_FALTANTE.</p>'
+            f'INCONCLUSIVO_POR_DOCUMENTO_FALTANTE. ' + dot_verificacao(0, [], omissa=True, onde_deveria="portal da transparência do Município, SICONFI/RGF e prestação de contas ao TCM-GO") + '</p>'
             f'<p style="margin-top:8px"><b>Opacidade que impede separar as '
             f'contas:</b> as dotações publicadas no Diário vêm no formato '
             f'funcional-programático (ex.: 08.244.0108.2263), sem o código '
             f'da unidade orçamentária — pelo Diário é impossível atribuir '
             f'cada despesa à conta 3650 ou 3601. A separação exige o QDD '
             f'integral ou o portal da transparência (pendência P2). '
-            f'Dotações citadas no mês:</p><div class="ev" style="--pt:#a85b00">'
+            f'Dotações citadas no mês: ' + dot_verificacao(1, ["https://sileg.goiania.go.gov.br"]) + '</p><div class="ev" style="--pt:#a85b00">'
             f'{corpo_dot}</div></div>')
 
 
@@ -1067,6 +1075,22 @@ def fluxo_estacoes_cards(evs, est, previsto):
             + grade + aviso)
 
 
+TERMOS_DESTAQUE = ("SECRETARIA MUNICIPAL DE ASSISTÊNCIA SOCIAL",
+    "SECRETARIA DE ASSISTÊNCIA SOCIAL", "ASSISTÊNCIA SOCIAL",
+    "CONSELHO MUNICIPAL DE ASSISTÊNCIA SOCIAL", "CMAS", "SEMASDH",
+    "FUNDO MUNICIPAL DE ASSISTÊNCIA SOCIAL", "DIREITOS HUMANOS")
+
+
+def destaca_pasta(txt):
+    """Negrita as referências à secretaria analisada e ao conselho que a
+    controla; em réplicas para outras secretarias, esta lista é o único
+    ponto a trocar."""
+    for termo in TERMOS_DESTAQUE:
+        txt = re.sub(re.escape(termo), lambda m: f"<b>{m.group(0)}</b>",
+                     txt, flags=re.I)
+    return txt
+
+
 def calendario_html(comp, dados_pub):
     ano, mes = int(comp[:4]), int(comp[5:7])
     d = date(ano, mes, 1)
@@ -1095,7 +1119,7 @@ def calendario_html(comp, dados_pub):
                         f'<span class="li"><b class="k">pág. '
                         f'{x.get("pagina_estimada")}</b>'
                         f'<mark style="background:#fff3c4">'
-                        f'{esc((x.get("texto") or "")[:260])}…</mark></span>'
+                        f'{destaca_pasta(esc((x.get("texto") or "")[:260]))}…</mark></span>'
                         for x in trs[:3]))
             celulas.append(
                 f'<details class="diapop"><summary><span class="dia {cls}" '
@@ -1142,11 +1166,25 @@ ETAPAS_SAIDA = [("empenho", "1ª etapa — Empenho (Artigo 58 e Artigo 60 da "
                  "4.320/1964)")]
 
 
-def _ev_linhas(e, mapa):
+DESC_EST = {
+ "dotacao": "dotação: autorização orçamentária (Artigo 58 da Lei 4.320/1964)",
+ "empenho": "empenho: reserva do valor ao credor (Artigo 60) — ainda não é saída de dinheiro",
+ "liquidacao": "liquidação: verificação do direito do credor (Artigo 63)",
+ "pagamento": "pagamento: saída efetiva (Artigo 64)",
+ "repasse": "repasse: entrada de recurso na conta",
+ "vinculo": "vínculo: contrato/termo/convênio publicado",
+ "entidade": "entidade: pessoa jurídica citada no ato",
+ "credito": "crédito: alteração orçamentária por decreto",
+ "orcamento": "orçamento: previsão na lei orçamentária",
+ "deliberacao": "deliberação: ato do Conselho"}
+
+
+def _ev_linhas(e, mapa, procs=None):
     ests = e.get("estacoes") or []
     chips = "".join(
         f'<span class="chip" style="background:{COR_EST.get(s, "#8a8a94")}" '
-        f'data-tip="estação {s}">{s}</span>' for s in ests)
+        f'data-tip="{DESC_EST.get(s, "estação " + s)}">{s}</span>'
+        for s in ests)
     val = max(e.get("valores") or [0])
     rotv = classifica_valor(e)
     url = e.get("url")
@@ -1189,12 +1227,22 @@ def _ev_linhas(e, mapa):
                          f"fundo a fundo")
         linhas.append(f'<span class="li"><b class="k">Pessoa jurídica</b>'
                       f'{rot}{extra}</span>')
+    proc = None
+    for c in e.get("cnpjs") or []:
+        proc = (procs or {}).get(digitos(c))
+        if proc:
+            break
+    linhas.append('<span class="li"><b class="k">Processo SEI</b>'
+                  + (f'<b style="font-size:14px">{esc(proc)}</b>' if proc
+                     else '<b style="color:#c1281f">(NÃO REFERENCIADO na '
+                     'publicação — ausência a validar junto à Prefeitura)'
+                     '</b>') + '</span>')
     cor = COR_EST.get(ests[0], "#8a8a94") if ests else "#8a8a94"
     return (f'<div class="ev" style="--pt:{cor}">' + "".join(linhas)
             + "".join(pareceres) + '</div>')
 
 
-def cronologia_html(evs, mapa):
+def cronologia_html(evs, mapa, procs=None):
     if not evs:
         return ('<p class="explica">Nenhum evento publicado na competência — '
                 'a ausência é, ela própria, o achado EXE-M do mês.</p>')
@@ -1212,7 +1260,7 @@ def cronologia_html(evs, mapa):
                   'recursos chegando (repasses, orçamento e créditos)</div>')
     if entradas:
         partes.append('<div class="crono">' +
-                      "".join(_ev_linhas(e, mapa) for e in entradas) +
+                      "".join(_ev_linhas(e, mapa, procs) for e in entradas) +
                       '</div>')
     else:
         partes.append('<p class="explica">Nenhuma entrada publicada no mês '
@@ -1226,7 +1274,7 @@ def cronologia_html(evs, mapa):
         if bloco:
             partes.append(f'<div class="cr-etapa">{rotulo}</div>'
                           '<div class="crono">' +
-                          "".join(_ev_linhas(e, mapa) for e in bloco) +
+                          "".join(_ev_linhas(e, mapa, procs) for e in bloco) +
                           '</div>')
         else:
             partes.append(f'<div class="cr-etapa">{rotulo} — <b style='
@@ -1237,7 +1285,7 @@ def cronologia_html(evs, mapa):
         partes.append('<div class="cr-etapa">Atos preparatórios, dotações e '
                       'vinculações (não comprovam saída de dinheiro)</div>'
                       '<div class="crono">' +
-                      "".join(_ev_linhas(e, mapa) for e in resto) + '</div>')
+                      "".join(_ev_linhas(e, mapa, procs) for e in resto) + '</div>')
     return "".join(partes)
 
 
@@ -1350,6 +1398,7 @@ def prestacao_por_entidade(comp, evs, fluxo, mapa):
                 f'<span class="oq">{oq}</span>'
                 f'<span class="sem {sem}" data-tip="{esc(tip)}"></span>'
                 f'</summary><div class="det"><b>Causa do valor:</b> {det}'
+                f'{bloco_segunda_etapa("prestacao_entidades_13019", "Validação em 2ª etapa deste item")}'
                 f'<br><br><b>Origem do recurso:</b><br>{origem_det}'
                 f'</div></details>')
 
@@ -1856,6 +1905,44 @@ def trilha_folha_gabinete(nome_mes):
             + "".join(linhas) + '</table>')
 
 
+def fichas_gabinete(comp, nome_mes):
+    itens = [
+     {"codigo": f"GAB-M1-{comp}", "bloco": "SEMASDH", "severidade": "critica",
+      "selo": "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE",
+      "titulo": f"Demonstrativo próprio da unidade 3601 não publicado em {nome_mes}",
+      "detalhe": "Nenhum demonstrativo mensal de execução da unidade (por "
+      "ação e natureza) consta de edição alguma; a prestação de contas da "
+      "conta do Gabinete é integralmente omissa na competência.",
+      "norma": "Artigo 48-A, inciso I, da Lei Complementar 101/2000",
+      "impedimento": "toda análise de execução da conta 3601",
+      "onde_obter": "portal da transparência; SICONFI; TCM-GO"},
+     {"codigo": f"GAB-M2-{comp}", "bloco": "SEMASDH", "severidade": "critica",
+      "selo": "CONFIRMADO",
+      "titulo": "Folha de pagamento invisível — nenhuma linha 3.1.90.11 em "
+      "161 eventos do exercício",
+      "detalhe": "R$ 48.204.000 dotados para folha existem apenas como "
+      "previsão; vencimentos, adicionais, horas extras, prêmios e teto são "
+      "inaferíveis. Só sobras publicadas: exercícios anteriores "
+      "(R$ 2.605.000), ressarcimentos (R$ 1.160.000) e patronais (R$ 3.000).",
+      "norma": "Artigo 48-A, inciso I, da Lei Complementar 101/2000; Artigo "
+      "37, inciso XI, da Constituição da República",
+      "impedimento": "teto remuneratório, adicionais, horas extras e a "
+      "vedação do Artigo 12-A, § 4º, da Lei 8.742/1993",
+      "onde_obter": "folha analítica por competência (ofício de acesso "
+      "pronto); SICONFI/RGF como régua"},
+     {"codigo": f"GAB-M3-{comp}", "bloco": "SEMASDH", "severidade": "alta",
+      "selo": "CONFIRMADO",
+      "titulo": "Dotação publicada sem código da unidade orçamentária",
+      "detalhe": "Os atos de execução trazem só a funcional-programática "
+      "(ex.: 08.244.0108.2263), impedindo atribuir cada despesa à conta "
+      "3650 ou 3601 pelo próprio Diário.",
+      "norma": "Artigo 48-A, inciso I, da Lei Complementar 101/2000",
+      "impedimento": "separação plena das duas prestações de contas",
+      "onde_obter": "QDD integral; portal da transparência"},
+    ]
+    return "".join(ficha_html(a) for a in itens)
+
+
 def parecer_final_conta(v, conta):
     if conta == "3650":
         pref = {"IGD", "CMAS", "EXE", "IMOB"}
@@ -1863,7 +1950,7 @@ def parecer_final_conta(v, conta):
                   PROVIDENCIAS.get(a["codigo"].split("-")[0], "—"),
                   a["selo"]) for a in v["achados"]
                  if a["codigo"].split("-")[0] in pref]
-        titulo = "(removido)"
+        titulo = "F7 · Parecer resumido da conta do Fundo (3650)"
     else:
         itens = [
             ("Demonstrativo próprio da unidade 3601 não publicado no mês",
@@ -1882,7 +1969,7 @@ def parecer_final_conta(v, conta):
              "publicar a dotação completa (unidade.função.programa.ação) "
              "em todo ato de execução", "CONFIRMADO"),
         ]
-        titulo = "S5 · Parecer resumido da conta do Gabinete (3601)"
+        titulo = "S6 · Parecer resumido da conta do Gabinete (3601)"
     if not itens:
         return ""
     linhas = "".join(
@@ -2050,9 +2137,8 @@ def dot_verificacao(nivel, fontes, omissa=False, onde_deveria=""):
             f'<a href="{u}">{esc(u[:70])}</a> — '
             f'{esc(_rotulo_fonte(u)[1])}</span>' for u in fontes[:4])
     else:
-        tip = "NÃO VERIFICADO em nenhuma fonte independente"
-        corpo = ('nenhuma via de verificação disponível — 2ª etapa: '
-                 'ver sonda de fontes na seção correspondente')
+        tip = ("NÃO ALCANÇADO PELA ANÁLISE AUTOMÁTICA — o dado existe ou pode existir; requer validação humana no trecho/fonte indicados")
+        corpo = ('validação humana requerida: conferir diretamente no trecho citado do Diário/portal — a análise automática não alcançou este dado, o que não significa que ele não exista')
     return (f'<details class="vd"><summary data-tip="{esc(tip)}">'
             f'<span class="vdot {cls}"></span></summary>'
             f'<div>{corpo}</div></details>')
@@ -2073,7 +2159,7 @@ def caso_para_ficha(titulo_achado):
         tt = (it.get("titulo") or "").upper()
         if any(a in tt for a in alvo):
             return (f'<div class="camada"><b class="rot">Caso semelhante em '
-                    f'outro estado (inspira providência, não fundamenta)</b>'
+                    f'outro estado</b>'
                     f'<a href="{it.get("url", "#")}">'
                     f'{esc(it.get("titulo", ""))}</a> — '
                     f'{esc(it.get("fonte", ""))} '
@@ -2173,7 +2259,9 @@ def gera(comp):
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Parecer mensal — {v["mes"]} de {v["exercicio"]}</title>
 <style>{CSS}</style></head><body>
-<script>function det(id,html){{var b=document.getElementById(id);if(b){{b.innerHTML=html;}}}}</script>
+<script>function det(id,html){{var b=document.getElementById(id);if(b){{b.innerHTML=html;}}}}
+document.addEventListener('click',function(e){{var s=e.target.closest('.diapop>summary');if(!s)return;
+document.querySelectorAll('.diapop[open]').forEach(function(d){{if(!d.contains(s))d.removeAttribute('open');}});}});</script>
 {cabecalho_html(titulo, sub)}
 <div class="uma-frase"><small>Em uma frase</small>{frase}</div>
 <div class="placar">{placar}</div>
@@ -2218,11 +2306,10 @@ para o resumo de cada balão e seta, clique abaixo para os dados completos.</p>
                         comp_rec["previsto_total"] if comp_rec else None)}
 
 <h2>F3 · Cronologia — a trilha do dinheiro no mês, evento a evento</h2>
-{cronologia_html(evs, mapa)}
+{cronologia_html(evs, mapa, {digitos(d.get("cnpj","")): d.get("processo") for d in fluxo["despesas"] if d.get("processo")})}
 
 <h2>F4 · Prestação de contas mensal por entidade — omissões</h2>
 {prestacao_por_entidade(comp, evs, fluxo, mapa)}
-{bloco_segunda_etapa("prestacao_entidades_13019", "Validação em 2ª etapa das parcerias")}
 
 <h2>F5 · Demonstração de dados · piso do IGD na competência</h2>
 {(lambda igd: '<div style="display:grid;grid-template-columns:1fr 26px 1fr 26px 1fr;gap:6px;align-items:center">'
@@ -2245,6 +2332,8 @@ para o resumo de cada balão e seta, clique abaixo para os dados completos.</p>
 <h2>F6 · Fichas de desconformidade — do Fundo e do controle social</h2>
 {fichas_fundo}
 
+{parecer_final_conta(v, "3650")}
+
 <div class="parte" style="--pc1:#4a2703;--pc2:#a85b00"><div class="pt">Parte II — Conta do Gabinete da Secretaria (un. 3601)</div><div class="pn">Prestação de contas e análise individual — execução fora do Fundo</div></div>
 
 <h2><span data-tip="destinações da unidade 3601 no Quadro de Detalhamento da Despesa, com a lacuna de extração explicitada">S1 · Fluxograma da conta do Gabinete — origem e destinações</span></h2>
@@ -2253,7 +2342,6 @@ para o resumo de cada balão e seta, clique abaixo para os dados completos.</p>
 
 <h2><span data-tip="o que a conta 3601 publicou (ou omitiu) na competência">S2 · Prestação de contas mensal da conta 3601 — análise individual</span></h2>
 {prestacao_gabinete(comp, evs, v["mes"])}
-{bloco_segunda_etapa("folha_e_execucao_3601", "Validação em 2ª etapa da conta 3601")}
 
 <h2><span data-tip="cada destinação do QDD da unidade 3601, pormenorizada, com o estado da informação em símbolo — roxo quando nada foi publicado">S3 · Prestação de contas por destinação do QDD — pormenorizada</span></h2>
 {prestacao_gabinete_completa(comp, evs, v["mes"], fluxo)}
@@ -2263,9 +2351,13 @@ para o resumo de cada balão e seta, clique abaixo para os dados completos.</p>
 {trilha_folha_gabinete(v["mes"])}
 {folha_gabinete_resumo(v["mes"])}
 {pagamentos_pf_do_mes(comp)}
-{bloco_segunda_etapa("folha_e_execucao_3601", "Validação em 2ª etapa da folha")}
 
-{parecer_final_conta(v, "3601")}\n\n<h2>G6 · Condições estruturais que perduram na competência</h2>
+<h2>S5 · Fichas de desconformidade — conta do Gabinete</h2>
+{fichas_gabinete(comp, v["mes"])}
+
+{parecer_final_conta(v, "3601")}
+
+<h2>G6 · Condições estruturais que perduram na competência</h2>
 {"".join(f'<details class="plin"><summary data-tip="{esc(d[:130])}"><span class="quem"><b>{esc(ti)}</b></span><span class="oq">condição estrutural</span><span class="vdot roxo" style="justify-self:center"></span></summary><div class="det">{esc(d)}<br><b>Onde deveria estar publicado:</b> Diário Oficial, portal da transparência e prestação de contas ao TCM-GO.</div></details>' for ti, d in ESTRUTURAIS)}
 <div class="estrutural" style="margin-top:10px">
 <p style="margin-top:8px">Apuradas no exercício e vigentes no mês; constam do
@@ -2300,7 +2392,9 @@ def indice():
     html = f"""<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Pareceres mensais — 2026</title><style>{CSS}</style></head><body>
-<script>function det(id,html){{var b=document.getElementById(id);if(b){{b.innerHTML=html;}}}}</script>
+<script>function det(id,html){{var b=document.getElementById(id);if(b){{b.innerHTML=html;}}}}
+document.addEventListener('click',function(e){{var s=e.target.closest('.diapop>summary');if(!s)return;
+document.querySelectorAll('.diapop[open]').forEach(function(d){{if(!d.contains(s))d.removeAttribute('open');}});}});</script>
 {cabecalho_html("Pareceres <b>mensais</b> — 2026")}
 {"".join(linhas)}
 <footer></footer>
