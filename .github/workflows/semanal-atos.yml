@@ -32,6 +32,8 @@ jobs:
         run: python src/valida_fontes.py || true
       - name: Sonda de 2ª etapa — fontes oficiais alternativas
         run: python src/valida_segunda_etapa.py || true
+      - name: P-N1 — detector de Diário reescrito (integridade sha256)
+        run: python scripts/verifica_integridade_edicoes.py --amostra 24 || true
       - name: Servidores nomeados nas publicações (pasta própria, minimizado)
         run: python scripts/captura_servidores.py || true
       - name: Publicar
