@@ -861,8 +861,8 @@ def prestacao_gabinete_completa(comp, evs, nome_mes, fluxo):
         return (f'<details class="plin"><summary>'
                 f'<span class="quem"><b>{esc(titulo)}</b>{esc(sub)}</span>'
                 f'<span class="oq">{oq}</span>'
-                f'<span class="sem {sem}" data-tip="{esc(tip)}"></span>'
-                f'</summary><div class="det">{det}</div></details>')
+                + selo_verificacao({"verde": 2, "azul": 1}.get(sem, "omissa" if sem in ("vermelho", "roxo") else 0), ["https://sileg.goiania.go.gov.br"] if sem in ("verde", "azul") else [], onde_deveria="portal da transparencia, TCM-GO e Diario Oficial", nota=esc(tip))
+                + f'</summary><div class="det">{det}</div></details>')
 
     linhas = []
     for cod, a in sorted(acoes.items(), key=lambda kv: -kv[1]["v"]):
@@ -910,9 +910,7 @@ def prestacao_gabinete_completa(comp, evs, nome_mes, fluxo):
            'para o estado da informação; clique na linha para naturezas, '
            'fontes e o que falta. O símbolo ROXO marca ausência de '
            'informação publicada.</p>'
-           '<p class="legenda"><span class="sem roxo" style="display:inline-'
-           'block;vertical-align:-3px"></span> sem informação publicada '
-           '— nenhuma execução identificável da destinação</p>')
+           + LEGENDA_SELOS)
     return cab + '<div class="presta">' + "".join(linhas) + '</div>'
 
 
@@ -951,10 +949,11 @@ def folha_gabinete_resumo(nome_mes):
             f'<details class="plin"><summary>'
             f'<span class="quem"><b>{tit}</b>{escopo}</span>'
             f'<span class="oq"><b>—</b>sem informação publicada</span>'
-            f'<span class="sem roxo" data-tip="SEM INFORMAÇÃO PUBLICADA: '
-            f'a folha da unidade não consta de nenhuma edição do exercício '
-            f'(achado PES-01) — impossível confirmar ou afastar."></span>'
-            f'</summary><div class="det"><b>O que seria conferido:</b> '
+            + selo_verificacao("omissa", onde_deveria="folha analitica no "
+                "portal da transparencia, RGF no SICONFI e prestacao de "
+                "contas ao TCM-GO", nota="a folha da unidade nao consta de "
+                "edicao alguma do exercicio (achado PES-01)")
+            + f'</summary><div class="det"><b>O que seria conferido:</b> '
             f'{escopo}.<br><b>Documento necessário e fundamento:</b> '
             f'{norma}.</div></details>')
     sobras = "".join(
@@ -1244,8 +1243,25 @@ def _ev_linhas(e, mapa, procs=None):
                      else '<b style="color:#c1281f">(NÃO REFERENCIADO na '
                      'publicação — ausência a validar junto à Prefeitura)'
                      '</b>') + '</span>')
+    tem_desp = bool(DESPESA & set(ests))
+    tem_vinc = "vinculo" in ests
+    if tem_desp and tem_vinc:
+        s_ev = selo_verificacao(2, [url, "https://sileg.goiania.go.gov.br"],
+                                nota="estacao de despesa e instrumento "
+                                "publicados")
+    elif tem_desp or tem_vinc:
+        s_ev = selo_verificacao(1, [url] if url else [],
+                                nota="uma via publicada; a segunda "
+                                "(portal/SICONFI) segue em sonda")
+    else:
+        s_ev = selo_verificacao("omissa",
+                                onde_deveria="portal da transparencia e "
+                                "prestacao de contas ao TCM-GO",
+                                nota="mencao sem estacao de despesa nem "
+                                "instrumento publicado")
     cor = COR_EST.get(ests[0], "#8a8a94") if ests else "#8a8a94"
-    return (f'<div class="ev" style="--pt:{cor}">' + "".join(linhas)
+    return (f'<div class="ev" style="--pt:{cor}">'
+            f'<div style="float:right">{s_ev}</div>' + "".join(linhas)
             + "".join(pareceres) + '</div>')
 
 
@@ -1403,8 +1419,8 @@ def prestacao_por_entidade(comp, evs, fluxo, mapa):
                 f'<span class="quem"><b>{esc(nome)}</b>{fmt_cnpj(n)}<br>'
                 f'{tags}</span>'
                 f'<span class="oq">{oq}</span>'
-                f'<span class="sem {sem}" data-tip="{esc(tip)}"></span>'
-                f'</summary><div class="det"><b>Causa do valor:</b> {det}'
+                + selo_verificacao({"verde": 2, "azul": 1}.get(sem, "omissa" if sem in ("vermelho", "roxo") else 0), ["https://sileg.goiania.go.gov.br"] if sem in ("verde", "azul") else [], onde_deveria="portal da transparencia, TCM-GO e Diario Oficial", nota=esc(tip))
+                + f'</summary><div class="det"><b>Causa do valor:</b> {det}'
                 f'{bloco_segunda_etapa("prestacao_entidades_13019", "Validação em 2ª etapa deste item")}'
                 f'<br><br><b>Origem do recurso:</b><br>{origem_det}'
                 f'</div></details>')
@@ -1484,12 +1500,13 @@ def prestacao_por_entidade(comp, evs, fluxo, mapa):
             f'{e.get("data")}</b>edição {esc(e.get("edicao", "?"))} · '
             f'{len(nomes)} entidades em conjunto</span>'
             f'<span class="oq"><b>{fmt(val)}</b>valor único, coletivo</span>'
-            f'<span class="sem laranja" data-tip="SEM INDIVIDUALIZAÇÃO: a '
-            f'publicação traz um único valor para o conjunto de '
-            f'{len(nomes)} entidades. A ausência de individualização é, '
-            f'ela própria, desconformidade: a liquidação exige identificar '
-            f'o credor e o valor de cada um — Artigo 63, § 2º, da Lei '
-            f'4.320/1964."></span></summary>'
+            + selo_verificacao(0, ["https://sileg.goiania.go.gov.br"],
+                nota=f"SEM INDIVIDUALIZACAO: um unico valor para "
+                f"{len(nomes)} entidades — a liquidacao exige "
+                f"identificar credor e importancia (Artigo 63, "
+                f"paragrafo 2o, da Lei 4.320/1964); validar a lista "
+                f"no trecho da edicao")
+            + '</summary>'
             f'<div class="det"><b>Observação:</b> não existe '
             f'individualização publicada — o valor é do conjunto e não se '
             f'repete por entidade nesta análise. Rateio igualitário seria '
@@ -1509,11 +1526,8 @@ def prestacao_por_entidade(comp, evs, fluxo, mapa):
             'checagem de cumprimento da Lei 13.019/2014 e a CAUSA de cada '
             'valor. Símbolo à direita: passe o mouse para ver onde foi '
             'verificado; clique para os dados completos.</p>'
-            '<p class="legenda"><span class="sem verde" style="display:inline-block;vertical-align:-3px"></span> duas vias '
-            '<span class="sem azul" style="display:inline-block;vertical-align:-3px;margin-left:10px"></span> uma via '
-            '<span class="sem laranja" style="display:inline-block;vertical-align:-3px;margin-left:10px"></span> só menção/valor coletivo '
-            '<span class="sem vermelho" style="display:inline-block;vertical-align:-3px;margin-left:10px"></span> totalmente omisso (roxo pulsante — nada publicado)</p>'
-            '<div class="presta">' + "".join(todos) + '</div>')
+            + LEGENDA_SELOS
+            + '<div class="presta">' + "".join(todos) + '</div>')
 
 
 def tabelas_dados_html(comp_receita, evs, fluxo, mapa):
@@ -2099,6 +2113,15 @@ def pncp_da_entidade(cnpj_dig):
             f'<div class="ev" style="--pt:#3a5f8a">{linhas}</div>')
 
 
+LEGENDA_SELOS = (
+    '<p class="legenda">Padrao de verificacao do documento (identico em '
+    'todas as secoes): <span class="vdot v2"></span> duas vias '
+    'independentes <span class="vdot v1"></span> uma via '
+    '<span class="vdot v0"></span> nao alcancado pela analise — validar no '
+    'trecho <span class="vdot roxo"></span> omisso: nada publicado onde '
+    'deveria haver. Cursor mostra o significado e a fonte; clique abre os '
+    'links de verificacao.</p>')
+
 CONF_FONTES = {"sileg.goiania.go.gov.br": ("Diário Oficial do Município",
                "oficial — fé pública"),
                "fnas.mds.gov.br": ("Fundo Nacional de Assistência Social",
@@ -2116,7 +2139,63 @@ def _rotulo_fonte(url):
     return "fonte registrada", "verificar confiabilidade"
 
 
+def selo_verificacao(nivel, fontes=None, onde_deveria="", nota="",
+                     rotulo=""):
+    """IDENTIDADE UNICA DE VERIFICACAO — o mesmo selo em todo o documento.
+
+    nivel 2 = verde (duas vias independentes); 1 = azul (uma via);
+    "omissa" = roxo pulsante (nada publicado onde deveria haver);
+    0 = vermelho (nao alcancado pela analise automatica — existe ou pode
+    existir e pede validacao humana no trecho indicado).
+
+    Cursor: significado + fonte e confiabilidade. Clique: links diretos de
+    cada via, a nota do caso e, se omisso, onde deveria estar publicado.
+    """
+    fontes = [f for f in (fontes or []) if f]
+    if nivel == "omissa":
+        onde = (onde_deveria or "prestacao de contas ao TCM-GO, "
+                "transparencia ativa do Municipio/secretaria e Diario "
+                "Oficial")
+        tip = "OMISSAO — nada publicado. Deveria constar em: " + onde
+        corpo = ("<b>Estado:</b> informacao nao publicada.<br>"
+                 "<b>Onde deveria estar:</b> " + esc(onde) + ".<br>"
+                 "<b>Fundamento:</b> Artigo 48-A da Lei Complementar "
+                 "101/2000 e Artigo 8&ordm; da Lei 12.527/2011."
+                 + ("<br><b>No caso:</b> " + nota if nota else ""))
+        cls = "roxo"
+    elif nivel in (1, 2) and fontes:
+        nomes = "; ".join(_rotulo_fonte(u)[0] + " (" + _rotulo_fonte(u)[1]
+                          + ")" for u in fontes[:3])
+        via = "duas vias independentes" if nivel == 2 else "uma via"
+        tip = "VERIFICADO — " + via + ": " + nomes
+        corpo = ("<b>Verificado em:</b>" + "".join(
+            '<span class="li"><b class="k">' + esc(_rotulo_fonte(u)[0])
+            + '</b><a href="' + u + '">' + esc(u[:72]) + "</a> — "
+            + esc(_rotulo_fonte(u)[1]) + "</span>" for u in fontes[:4])
+            + ("<br><b>No caso:</b> " + nota if nota else ""))
+        cls = "v2" if nivel == 2 else "v1"
+    else:
+        tip = ("NAO ALCANCADO PELA ANALISE AUTOMATICA — o dado existe ou "
+               "pode existir; requer validacao humana no trecho indicado")
+        corpo = ("<b>Estado:</b> fora do alcance da apuracao automatica."
+                 "<br><b>Providencia:</b> conferir no trecho citado do "
+                 "Diario ou na fonte oficial correspondente — ausencia de "
+                 "captura nao significa inexistencia."
+                 + ("<br><b>No caso:</b> " + nota if nota else ""))
+        cls = "v0"
+    rot = ('<span style="font:700 9px/1 Arial;letter-spacing:.08em;'
+           'color:var(--suave);margin-left:5px">' + rotulo + "</span>"
+           if rotulo else "")
+    return ('<details class="vd"><summary data-tip="' + esc(tip) + '">'
+            '<span class="vdot ' + cls + '"></span>' + rot + "</summary>"
+            "<div>" + corpo + "</div></details>")
+
+
 def dot_verificacao(nivel, fontes, omissa=False, onde_deveria=""):
+    return selo_verificacao("omissa" if omissa else nivel, fontes, onde_deveria)
+
+
+def _dot_legado(nivel, fontes, omissa=False, onde_deveria=""):
     """nivel: 2=verde (duas etapas), 1=azul (uma), 0=vermelho (não
     verificado). omissa=True -> roxo pulsante (informação não publicada).
     Cursor: onde foi verificado (nome + confiabilidade) ou onde deveria
@@ -2179,18 +2258,15 @@ def ficha_html(a):
     selo = COR_SELO[a["selo"]]
     pref = a["codigo"].split("-")[0]
     falta = ""
-    if a.get("impedimento"):
-        ch = CHAVE_2E.get(a["codigo"].split("-")[0])
-        falta = (f'<div class="camada falta"><b class="rot">O que falta e '
-                 f'onde obter</b>Fica impedido: {a["impedimento"]}. '
-                 f'Obter em: {a.get("onde_obter", "—")}.</div>'
-                 + (bloco_segunda_etapa(ch) if ch else ""))
+    nota_selo = (f'fica impedido: {esc(a.get("impedimento", ""))}. Obter em: '
+                 f'{esc(a.get("onde_obter", "—"))}.'
+                 if a.get("impedimento") else "")
     resumo = re.sub(r"<[^>]+>", "", a["detalhe"])[:150] + "…"
     return f"""<details class="ficha" style="--sev:{sev}" open>
  <summary class="topo" data-tip="{esc(resumo)}" style="cursor:pointer;list-style:none"><span class="ic">{ICONE.get(pref, "•")}</span>
   <span class="tit">{a["titulo"]}</span>
   <span class="badge" style="background:{sev}" data-tip="severidade da desconformidade">{ROTULO_SEV[a["severidade"]]}</span>
-  {dot_verificacao({"CONFIRMADO": 2, "INDICIARIO": 1}.get(a["selo"], 0), [url_da_edicao(e) for e in (a.get("dados", {}).get("edicoes") or a.get("dados", {}).get("dias_uteis_sem_edicao", [])[:0]) if url_da_edicao(e)] or ([u for u in ["https://sileg.goiania.go.gov.br"]] if a["selo"] == "CONFIRMADO" else []), omissa=(a["selo"] == "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE"), onde_deveria=a.get("onde_obter", ""))}
+  {selo_verificacao("omissa" if a["selo"] == "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE" else {"CONFIRMADO": 2, "INDICIARIO": 1}.get(a["selo"], 0), [url_da_edicao(e) for e in (a.get("dados", {}).get("edicoes") or []) if url_da_edicao(e)] or (["https://sileg.goiania.go.gov.br"] if a["selo"] == "CONFIRMADO" else []), onde_deveria=a.get("onde_obter", ""), nota=nota_selo, rotulo=ROTULO_SELO[a["selo"]])}
  </summary>
  <div class="corpo tresrot">
   <div class="camada"><b class="rot">Como deveria ser (fundamento)</b>Cumprimento integral de: {a["norma"]}.</div>
