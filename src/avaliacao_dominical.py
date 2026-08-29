@@ -102,7 +102,10 @@ Avalie o dossiê e produza a AVALIAÇÃO DOMINICAL em markdown, com:
 o que piorou, o que estagnou, o que os selos permitem afirmar em peça.
 2. Três providências prioritárias para a semana, cada uma com a norma por \
 extenso que a sustenta.
-3. Se houver precedentes listados, diga qual merece estudo para replicação \
+3. EVOLUÇÃO: proponha exatamente UM parâmetro novo de detecção, viável com \
+os dados já coletados, com nome, gatilho determinístico e norma por extenso \
+— será registrado em metodologia/EVOLUCAO.md para avaliação humana.
+4. Se houver precedentes listados, diga qual merece estudo para replicação \
 em Goiânia e por quê — sem tratá-lo como fundamento de parecer.
 Regras invioláveis: só desconformidade; selo antes de qualquer afirmação; \
 em peça, use apenas o confirmado por dupla via; norma por extenso; sem \

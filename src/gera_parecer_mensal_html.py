@@ -505,7 +505,7 @@ def fluxograma_baloes(fluxo, evs_mes, mapa, comp):
                f'Vínculo: {", ".join(d.get("vinculo") or ["nenhum publicado"])}.')
         abre = (f'<b>Inscrição:</b> {fmt_cnpj(d.get("cnpj", "?"))}<br>'
                 f'<b>Vínculo publicado:</b> '
-                f'{esc(", ".join(d.get("vinculo") or ["nenhum"]))}<br>'
+                f'{esc(", ".join(d.get("vinculo") or ["nenhum"]))}' + (f' — <a href="{url_da_edicao(d.get("edicao")) or "#"}">abrir a edição íntegra do instrumento</a>' if d.get("edicao") else '') + '<br>'
                 f'<b>Objeto:</b> {esc(d.get("objeto", "—"))}<br>'
                 f'<b>Processo:</b> {esc(d.get("processo", "—"))}'
                 + ('' if comprovada else '<br><b>Omissão legal:</b> despesa '
@@ -975,6 +975,26 @@ def fluxo_estacoes_svg(previsto_total, est):
     return "".join(g) + aviso
 
 
+def detalhes_estacoes(evs):
+    if not evs:
+        return ""
+    blocos = []
+    for s in ("dotacao", "empenho", "liquidacao", "pagamento"):
+        do_s = [e for e in evs if s in (e.get("estacoes") or [])]
+        if do_s:
+            corpo = "; ".join(
+                f'{e.get("data")} — <a href="'
+                f'{url_da_edicao(e.get("edicao")) or "#"}">'
+                f'{esc(str(e.get("edicao")))}</a> pág. {e.get("pagina")}'
+                for e in do_s)
+        else:
+            corpo = ('<b style="color:#c1281f">(NADA PUBLICADO — a própria '
+                     'ausência é o dado)</b>')
+        blocos.append(f'<span class="li"><b class="k">{s}</b>{corpo}</span>')
+    return detalhes("Eventos por estação no mês — data, edição e acesso",
+                    "".join(blocos))
+
+
 def calendario_html(comp, dados_pub):
     ano, mes = int(comp[:4]), int(comp[5:7])
     d = date(ano, mes, 1)
@@ -1036,9 +1056,9 @@ def _ev_linhas(e, mapa):
         extra = ""
         if d and d["municipio"] and d["municipio"] != "GOIANIA":
             if (nome or "").upper().startswith("MUNICIPIO DE"):
-                extra = " ⚠ ente público de outro município"
+                extra = (" <b style=" + chr(39) + "color:#c1281f" + chr(39) + ">(⚠ ATENÇÃO: ente público de outro município)</b>")
                 pareceres.append(
-                    f'<div class="parecer-mini"><b>Parecer sobre a saída '
+                    f'<div class="parecer-mini"><b style="color:#c1281f">(⚠ ATENÇÃO) Parecer sobre a saída '
                     f'para {esc(nome.title())}:</b> valor do Fundo de '
                     f'Goiânia associado a outro ente federado. '
                     f'Transferência a outro Município é transferência '
@@ -1379,6 +1399,173 @@ def tabelas_dados_html(comp_receita, evs, fluxo, mapa):
     return t1, t2
 
 
+import gzip as _gz
+
+def _trechos():
+    global _TRC
+    try:
+        return _TRC
+    except NameError:
+        pass
+    _TRC = []
+    for arq in (RAIZ / "acervo" / "trechos").glob("*.jsonl.gz"):
+        for l in _gz.open(arq, "rt", encoding="utf-8"):
+            _TRC.append(json.loads(l))
+    return _TRC
+
+
+def url_da_edicao(ed):
+    for d in _trechos():
+        if d.get("edicao") == ed and d.get("url_original"):
+            return d["url_original"]
+    return None
+
+
+def edicoes_com_trecho(comp):
+    por_ed = {}
+    for d in _trechos():
+        if str(d.get("data", "")).startswith(comp):
+            e = por_ed.setdefault(d["edicao"], {"url": d.get("url_original"),
+                                                "data": d.get("data"),
+                                                "trechos": []})
+            txt = (d.get("texto") or "").strip().replace(chr(10), " ")
+            e["trechos"].append({"pagina": d.get("pagina_estimada"),
+                                 "excerto": txt[:320],
+                                 "sha": (d.get("sha256_trecho") or "")[:12]})
+    if not por_ed:
+        return ""
+    linhas = []
+    for ed, e in sorted(por_ed.items()):
+        trs = "".join(
+            f'<span class="li"><b class="k">pag. {x["pagina"]}</b>'
+            f'<mark style="background:#fff3c4">{esc(x["excerto"])}…</mark> '
+            f'<i>sha {x["sha"]}</i></span>' for x in e["trechos"][:4])
+        linhas.append(
+            f'<span class="li"><b class="k">{e["data"]}</b>'
+            f'<a href="{e["url"]}">{esc(ed)}</a> — edição íntegra (PDF '
+            f'oficial); trecho(s) da secretaria em destaque:</span>{trs}')
+    return detalhes("Acesso integral: edições do mês com o trecho da "
+                    "secretaria em destaque",
+                    '<div class="ev" style="--pt:#1d4f2b">'
+                    + "".join(linhas) + '</div>')
+
+
+def link_pncp(pncp_id):
+    if not pncp_id:
+        return ""
+    can = None
+    try:
+        cnpj, _, resto = str(pncp_id).partition("-")
+        seq, _, ano = resto.split("-")[-1].partition("/")
+        can = (f"https://pncp.gov.br/app/contratos/{digitos(cnpj)}/"
+               f"{ano}/{int(seq)}")
+    except Exception:
+        pass
+    busca = f"https://pncp.gov.br/app/busca?q={pncp_id}"
+    s = f' · <a href="{busca}">buscar no PNCP</a>'
+    if can:
+        s = f' — <a href="{can}">abrir no PNCP</a>' + s
+    return s
+
+
+PF_CHAVES = ("DIARIA", "GRATIFICA", "PREMIO", "SUBSIDIO", "JETOM", "JETON",
+             "HORA EXTRA", "ABONO")
+
+
+def pagamentos_pf_do_mes(comp):
+    import unicodedata
+    achou = []
+    for d in _trechos():
+        if not str(d.get("data", "")).startswith(comp):
+            continue
+        up = unicodedata.normalize("NFKD", d.get("texto") or "").encode(
+            "ascii", "ignore").decode().upper()
+        if not any(k in up for k in PF_CHAVES):
+            continue
+        tipo = next(k for k in PF_CHAVES if k in up)
+        nomes = re.findall(r"\b([A-Z]{3,}(?:\s+[A-Z]{2,}){1,5})\b", up)[:3]
+        val = max(d.get("valores") or [0])
+        achou.append({"tipo": tipo.title(), "nomes": [n.title() for n in
+                      nomes], "valor": val, "edicao": d.get("edicao"),
+                      "url": d.get("url_original"),
+                      "pagina": d.get("pagina_estimada"),
+                      "data": d.get("data")})
+    if not achou:
+        return ""
+    linhas = "".join(
+        f'<span class="li"><b class="k">{a["data"]} · {esc(a["tipo"])}</b>'
+        f'{esc("; ".join(a["nomes"]) or "beneficiário no texto")} — '
+        f'{fmt(a["valor"]) if a["valor"] else "valor no texto"} '
+        f'<i>(menção textual — não é liquidação)</i> · '
+        f'<a href="{a["url"]}">edição {esc(str(a["edicao"]))}</a> '
+        f'pág. {a["pagina"]}</span>' for a in achou[:20])
+    return ('<p class="explica"><b>Localizado pago/atribuído a pessoa '
+            f'física no mês ({len(achou)} menções)</b> — diárias, '
+            'gratificações, prêmios, subsídios: ato de pessoal é informação '
+            'pública funcional (Artigo 37, § 3º, da Constituição).</p>'
+            '<div class="ev" style="--pt:#5c5c00">' + linhas + '</div>')
+
+
+PROVIDENCIAS = {
+    "REC": "publicar o demonstrativo mensal da receita realizada por fonte "
+           "(Artigo 48-A, inciso II, da Lei Complementar 101/2000) e "
+           "conciliá-lo com o SICONFI",
+    "IGD": "publicar o demonstrativo de aplicação competência a competência "
+           "e recompor a diferença ao Conselho (Artigo 6º da Resolução "
+           "CNAS/MDS 202/2025), sob pena de bloqueio do repasse (§ 6º)",
+    "PUB": "restabelecer a circulação diária do Diário e publicar errata "
+           "das lacunas de numeração, com justificativa dia a dia",
+    "EXE": "publicar liquidações e pagamentos por dotação COM o código da "
+           "unidade (Artigo 63 e Artigo 64 da Lei 4.320/1964)",
+    "CMAS": "publicar a íntegra das resoluções citadas (Artigo 8º, § 1º, "
+            "inciso I, da Lei 12.527/2011)",
+    "IMOB": "juntar laudo de avaliação prévia e pesquisa de mercado da "
+            "região (Artigo 51, inciso II, e Artigo 23 da Lei 14.133/2021)",
+}
+
+
+def parecer_final_conta(v, conta):
+    if conta == "3650":
+        pref = {"IGD", "CMAS", "EXE", "IMOB"}
+        itens = [(a["titulo"], a["norma"],
+                  PROVIDENCIAS.get(a["codigo"].split("-")[0], "—"),
+                  a["selo"]) for a in v["achados"]
+                 if a["codigo"].split("-")[0] in pref]
+        titulo = "F8 · Parecer resumido da conta do Fundo (3650)"
+    else:
+        itens = [
+            ("Demonstrativo próprio da unidade 3601 não publicado no mês",
+             "Artigo 48-A, inciso I, da Lei Complementar 101/2000",
+             "publicar demonstrativo mensal de execução da unidade, por "
+             "ação e natureza", "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE"),
+            ("Folha invisível — vencimentos, adicionais, horas extras e "
+             "teto inaferíveis",
+             "Artigo 48-A, inciso I, da Lei Complementar 101/2000; Artigo "
+             "37, inciso XI, da Constituição",
+             "publicar folha analítica mensal por servidor e rubrica, "
+             "confrontável ao teto municipal", "CONFIRMADO"),
+            ("Dotação publicada sem código da unidade — impossível separar "
+             "as contas pelo Diário",
+             "Artigo 48-A, inciso I, da Lei Complementar 101/2000",
+             "publicar a dotação completa (unidade.função.programa.ação) "
+             "em todo ato de execução", "CONFIRMADO"),
+        ]
+        titulo = "S5 · Parecer resumido da conta do Gabinete (3601)"
+    if not itens:
+        return ""
+    linhas = "".join(
+        f'<tr><td><b>{esc(f)}</b><br><small style="color:#6b6660">'
+        f'{esc(n)}</small></td><td>{esc(p)}</td>'
+        f'<td><span class="badge" style="background:'
+        f'{COR_SELO.get(s, "#4a4a58")}">{s.split("_")[0]}</span></td></tr>'
+        for f, n, p, s in itens)
+    return (f'<h2><span data-tip="síntese acionável: a falha exata e a '
+            f'providência que a sana">{titulo}</span></h2>'
+            f'<table><tr><th>Falha exata (e fundamento)</th>'
+            f'<th>Providência para sanar</th><th>Selo</th></tr>'
+            + linhas + '</table>')
+
+
 def _seg_etapa():
     try:
         return json.loads((RAIZ / "relatorios" / "segunda_etapa.json")
@@ -1477,7 +1664,7 @@ def pncp_da_entidade(cnpj_dig):
     linhas = "".join(
         f'<span class="li"><b class="k">{esc(c.get("modalidade") or "?")}</b>'
         f'{esc((c.get("objeto") or "")[:110])} — {fmt(c.get("valor"))} '
-        f'(PNCP {esc(str(c.get("pncp_id")))})'
+        f'(PNCP {esc(str(c.get("pncp_id")))}{link_pncp(c.get("pncp_id"))})'
         + (f'<br><i style="color:#a85b00">{esc(c["observacao_q2"])}</i>'
            if c.get("observacao_q2") else "") + '</span>' for c in meus[:5])
     return (f'<br><b>Contratações no PNCP (Lei 14.133/2021, Artigo 174):</b>'
@@ -1495,12 +1682,13 @@ def ficha_html(a):
                  f'onde obter</b>Fica impedido: {a["impedimento"]}. '
                  f'Obter em: {a.get("onde_obter", "—")}.</div>'
                  + (bloco_segunda_etapa(ch) if ch else ""))
-    return f"""<article class="ficha" style="--sev:{sev}">
- <div class="topo"><span class="ic">{ICONE.get(pref, "•")}</span>
+    resumo = re.sub(r"<[^>]+>", "", a["detalhe"])[:150] + "…"
+    return f"""<details class="ficha" style="--sev:{sev}" open>
+ <summary class="topo" data-tip="{esc(resumo)}" style="cursor:pointer;list-style:none"><span class="ic">{ICONE.get(pref, "•")}</span>
   <span class="tit">{a["titulo"]}</span>
   <span class="badge" style="background:{sev}" data-tip="severidade da desconformidade">{ROTULO_SEV[a["severidade"]]}</span>
   <span class="badge" style="background:{selo}" data-tip="nível de prova do achado">{ROTULO_SELO[a["selo"]]}</span>
- </div>
+ </summary>
  <div class="corpo">
   <div class="camada"><b class="rot">O que se apurou</b>{a["detalhe"]}</div>
   {falta}
@@ -1510,7 +1698,7 @@ def ficha_html(a):
  Diário Oficial ancoradas por sha256 no histórico do repositório (arquivo
  relatorios/mensal/verificacao_da_competência); edições citadas nos dados do
  achado. Reprodutível por terceiro a partir do hash.</div>
-</article>"""
+</details>"""
 
 
 def gera(comp):
@@ -1548,7 +1736,7 @@ def gera(comp):
                              key=lambda kv: -kv[1]):
             cor = COR_FONTE.get(f, "#8a8a94")
             itens_pizza.append((NOME_FONTE.get(f, f), val, cor))
-            leg.append(f'<div><i style="background:{cor}"></i>'
+            leg.append(f'<div data-tip="fonte {f}: {fmt(val)} previstos na competência — Lei Orçamentária 11.590/2026"><i style="background:{cor}"></i>'
                        f'{NOME_FONTE.get(f, f)}<b class="v">{fmt(val)}</b></div>')
     pizza = pizza_svg(itens_pizza) if itens_pizza else ""
     legenda_pizza = ('<div class="leg">' + "".join(leg) +
@@ -1593,9 +1781,11 @@ faixa sombreada é a competência deste parecer. Passe o mouse nos pontos.</p>
 <h2><span data-tip="composição prevista das fontes da competência">G3 · De onde veio — fontes previstas da competência</span></h2>
 {detalhes("Informações completas e omissões legais desta seção", "Parâmetro: previsão por fonte na Lei Orçamentária 11.590/2026. Omissão: receita realizada do mês sem demonstrativo — Artigo 48 e Artigo 48-A da Lei Complementar 101/2000 (achado REC-M).")}
 <div class="grade2"><div>{pizza}</div>{legenda_pizza}</div>
+{detalhes("Fundamentação das fontes e o que falta", "Previsão por fonte: Lei Orçamentária 11.590/2026, unidade 3650. O que falta: receita REALIZADA da competência (achado REC-M) — 2ª etapa: SICONFI/RREO. A fonte 1660 (União/FNAS) contém o IGD cujo piso de 10% ao Conselho segue sem demonstrativo (achado IGD-M).")}
 
 <h2>G4 · O Diário Oficial no mês</h2>
 {calendario_html(comp, pub)}
+{edicoes_com_trecho(comp)}
 
 <h2>G5 · Fichas de desconformidade — gerais (receita e publicidade)</h2>
 {fichas_gerais}
@@ -1612,6 +1802,7 @@ para o resumo de cada balão e seta, clique abaixo para os dados completos.</p>
 {detalhes("Informações completas e omissões legais desta seção", "Parâmetro: Artigo 58, Artigo 60, Artigo 62, Artigo 63 e Artigo 64 da Lei 4.320/1964. Omissão do mês: estações zeradas indicadas em vermelho no próprio fluxo.")}
 {fluxo_estacoes_svg(comp_rec["previsto_total"] if comp_rec else None,
                     v["execucao_do_mes"]["por_estacao"])}
+{detalhes_estacoes(evs)}
 
 <h2>F3 · Cronologia — a trilha do dinheiro no mês, evento a evento</h2>
 {cronologia_html(evs, mapa)}
@@ -1629,6 +1820,8 @@ para o resumo de cada balão e seta, clique abaixo para os dados completos.</p>
 <h2>F7 · Fichas de desconformidade — do Fundo e do controle social</h2>
 {fichas_fundo}
 
+{parecer_final_conta(v, "3650")}
+
 <div class="parte" style="--pc1:#4a2703;--pc2:#a85b00"><div class="pt">Parte II — Conta do Gabinete da Secretaria (un. 3601)</div><div class="pn">Prestação de contas e análise individual — execução fora do Fundo</div></div>
 
 <h2><span data-tip="destinações da unidade 3601 no Quadro de Detalhamento da Despesa, com a lacuna de extração explicitada">S1 · Fluxograma da conta do Gabinete — origem e destinações</span></h2>
@@ -1644,7 +1837,10 @@ para o resumo de cada balão e seta, clique abaixo para os dados completos.</p>
 
 <h2><span data-tip="apenas adicionais, horas extras e pagamentos acima do teto municipal — o restante da folha não entra no resumo">S4 · Folha do Gabinete — resumo dirigido (adicionais, horas extras e teto)</span></h2>
 {folha_gabinete_resumo(v["mes"])}
+{pagamentos_pf_do_mes(comp)}
 {bloco_segunda_etapa("folha_e_execucao_3601", "Validação em 2ª etapa da folha")}
+
+{parecer_final_conta(v, "3601")}
 
 {casos_semelhantes(v)}\n\n<h2>G6 · Condições estruturais que perduram na competência</h2>
 <div class="estrutural"><ul>{estruturais}</ul>
