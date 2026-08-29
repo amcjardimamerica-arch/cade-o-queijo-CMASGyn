@@ -1,0 +1,18 @@
+[
+  {
+    "regra": "FIN-02",
+    "severidade": "media",
+    "titulo": "Nenhum ato de convocação de conferência municipal no acervo",
+    "detalhe": "Não foi localizado, no acervo público do conselho, ato de convocação da Conferência Municipal de Assistência Social. Verificar cumprimento da periodicidade prevista na Lei 8.742/1993 e na Lei 7.532/1995.",
+    "detectado_em": "2026-08-29T00:10:29.461437+00:00",
+    "saida_sugerida": "minuta_lai"
+  },
+  {
+    "regra": "IGD-04",
+    "severidade": "alta",
+    "titulo": "Ausência de transparência ativa sobre a aplicação do IGD",
+    "detalhe": "Decorridos mais de 90 dias sem qualquer publicação, no Diário Oficial, no portal da transparência ou no sítio do conselho, acerca do plano de aplicação e da execução dos recursos do IGD-PBF e do IGD-SUAS. A partir do exercício de 2026 tais recursos devem constar de dotação orçamentária específica no Quadro de Detalhamento de Despesas, com prestação de contas quadrimestral ao conselho, nos termos da Resolução CNAS/MDS 202/2025.",
+    "saida_sugerida": "minuta_lai",
+    "detectado_em": "2026-08-29T00:10:29.461632+00:00"
+  }
+]
