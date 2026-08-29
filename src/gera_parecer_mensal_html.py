@@ -40,7 +40,7 @@ DOCS = RAIZ / "docs" / "mensal"
 sys.path.insert(0, str(RAIZ / "src"))
 from marca import cabecalho_html, rodape_marca_html
 
-COR_SEV = {"critica": "#8c1d18", "alta": "#a85b00", "media": "#5c5c00"}
+COR_SEV = {"critica": "#e01b0e", "alta": "#e07b00", "media": "#5c5c00"}
 ROTULO_SEV = {"critica": "CRÍTICA", "alta": "ALTA", "media": "MÉDIA"}
 COR_SELO = {"CONFIRMADO": "#1d4f2b", "INDICIARIO": "#6a4a00",
             "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE": "#4a4a58"}
@@ -142,7 +142,7 @@ padding:9px 12px;cursor:pointer;list-style:none;font:13px/1.45 Arial,sans-serif}
 .sem.verde{background:#1d8a3a;box-shadow:0 0 0 3px #1d8a3a33}
 .sem.azul{background:#1d4f8a;box-shadow:0 0 0 3px #1d4f8a33}
 .sem.laranja{background:#e07b00;box-shadow:0 0 0 3px #e07b0033}
-.sem.vermelho{background:#c1281f;box-shadow:0 0 0 3px #c1281f33}
+.sem.vermelho{background:#6b3fa0;animation:pulsa 1.4s ease-in-out infinite}
 .sem.roxo{background:#6b3fa0;box-shadow:0 0 0 3px #6b3fa033}
 .plin .det{border-top:1px dashed var(--linha);padding:10px 12px;font:13px/1.6 Arial,sans-serif;background:#fbfaf7}
 .ficha{background:#fff;border:1px solid var(--linha);border-radius:6px;
@@ -221,6 +221,10 @@ font:12px/1.6 Arial,sans-serif;box-shadow:0 6px 20px rgba(0,0,0,.18);text-align:
 .diapop>div{position:absolute;z-index:15;left:0;right:0;top:calc(100% + 6px);
 background:#fff;border:1px solid var(--linha);border-radius:8px;padding:10px 14px;
 font:13px/1.6 Arial,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.trechoint{background:#fffdf3;border-left:3px solid #e8c34a;padding:8px 11px;
+margin-top:4px;max-height:420px;overflow:auto;white-space:pre-wrap;
+font:12px/1.65 "Courier New",monospace;color:#2b2b2b}
+.trechoint b{background:#fff3c4;font-weight:700}
 .detbox{background:#fff;border:1px dashed var(--linha);border-radius:6px;
 padding:9px 12px;font:13px/1.6 Arial,sans-serif;min-height:20px;margin-top:8px;color:var(--suave)}
 .tresrot b.rot{display:block;font:700 10px/2 Arial,sans-serif;letter-spacing:.12em;
@@ -724,7 +728,7 @@ def fluxograma_gabinete(fluxo):
         programa = any(x in nomeu for x in ("GOIANIA", "REDE", "MULHER",
                                             "DIREITOS", "PROGRAMA"))
         cor_dest = ("#6b3fa0" if pessoal else
-                    "#c1281f" if programa else "#8a8a94")
+                    "#1d4f8a" if programa else "#8a8a94")
         col_s.append(_qd(cor_dest,
                          a["nome"].title()[:46], a["v"],
                          f"ação {cod.split('.')[-1]}",
@@ -738,7 +742,7 @@ def fluxograma_gabinete(fluxo):
         tp.append(f'3601 → {a["nome"].title()}: {fmt(a["v"])}')
     if resto > 0:
         i = len(col_s)
-        col_s.append(_qd("#c1281f", "Linhas do QDD ainda não capturadas",
+        col_s.append(_qd("#e01b0e", "Linhas do QDD ainda não capturadas",
                          resto, "lacuna de extração — não é conformidade",
                          f"{fmt(resto)} da unidade 3601 ainda sem detalhe "
                          f"capturado do Quadro de Detalhamento da Despesa.",
@@ -751,7 +755,7 @@ def fluxograma_gabinete(fluxo):
                          "Complementar 101/2000."))
         ys.append(i * (ALT + GAP) + ALT / 2)
         ws.append(6)
-        cs.append("#c1281f")  # não capturado = vermelho, como pedido
+        cs.append("#e01b0e")  # não capturado/omisso = vermelho
         tp.append(f'3601 → linhas não capturadas: {fmt(resto)}')
     y_meio = (len(col_s) * (ALT + GAP)) / 2
     g1 = (f'<svg viewBox="0 0 84 {max(y_meio*2,120):.0f}" '
@@ -787,7 +791,7 @@ def fluxograma_gabinete(fluxo):
     aviso = (f'<p class="legenda">Do QDD capturado da unidade, '
              f'{fmt(pess)} ({100*pess/max(capturado,1):.1f}%) é folha de '
              f'pagamento — natureza 3.1.90.11 — a cruzar com o teto de 30% '
-             f'do Artigo 4º da Lei Complementar municipal 273/2014. Cores: <i style="background:#6b3fa0;width:11px;height:11px;display:inline-block;border-radius:3px"></i> folha de pagamento <i style="background:#c1281f;width:11px;height:11px;display:inline-block;border-radius:3px"></i> programas declarados e linhas não capturadas <i style="background:#8a8a94;width:11px;height:11px;display:inline-block;border-radius:3px"></i> demais.</p>')
+             f'do Artigo 4º da Lei Complementar municipal 273/2014. Cores: <i style="background:#6b3fa0;width:11px;height:11px;display:inline-block;border-radius:3px"></i> folha de pagamento <i style="background:#1d4f8a;width:11px;height:11px;display:inline-block;border-radius:3px"></i> programas declarados <i style="background:#e01b0e;width:11px;height:11px;display:inline-block;border-radius:3px"></i> linhas não capturadas/omissas <i style="background:#8a8a94;width:11px;height:11px;display:inline-block;border-radius:3px"></i> demais.</p>')
     return grade + aviso
 
 
@@ -1107,20 +1111,23 @@ def calendario_html(comp, dados_pub):
         base_tip = {"fds": "fim de semana ou feriado",
                     "nao": "dia útil SEM edição localizada — a ausência é "
                            "o dado",
-                    "pub": "edição localizada — clique para o trecho da "
-                           "secretaria e o PDF oficial"}[cls]
+                    "pub": "edição localizada — clique para o TRECHO INTEGRAL da secretaria "
+                           "(atos administrativos e financeiros) e o PDF oficial"}[cls]
         trs = por_dia.get(iso, [])
         if trs:
             ed = trs[0].get("edicao")
             url = trs[0].get("url_original")
             corpo = (f'<b>{iso}</b> — <a href="{url}">edição '
-                     f'{esc(str(ed))} íntegra (PDF oficial)</a><br>'
+                     f'{esc(str(ed))} íntegra (PDF oficial)</a> · '
+                     f'{len(trs)} trecho(s) da pasta nesta edição'
                      + "".join(
-                        f'<span class="li"><b class="k">pág. '
-                        f'{x.get("pagina_estimada")}</b>'
-                        f'<mark style="background:#fff3c4">'
-                        f'{destaca_pasta(esc((x.get("texto") or "")[:260]))}…</mark></span>'
-                        for x in trs[:3]))
+                        f'<div style="margin:9px 0 4px"><b class="k">'
+                        f'pág. {x.get("pagina_estimada")} · '
+                        f'{len(x.get("texto") or "")} caracteres · sha '
+                        f'{(x.get("sha256_trecho") or "")[:12]}</b>'
+                        f'<div class="trechoint">'
+                        f'{destaca_pasta(esc(x.get("texto") or ""))}</div>'
+                        f'</div>' for x in trs))
             celulas.append(
                 f'<details class="diapop"><summary><span class="dia {cls}" '
                 f'data-tip="{iso} — {base_tip}">{d.day}</span></summary>'
@@ -1505,7 +1512,7 @@ def prestacao_por_entidade(comp, evs, fluxo, mapa):
             '<p class="legenda"><span class="sem verde" style="display:inline-block;vertical-align:-3px"></span> duas vias '
             '<span class="sem azul" style="display:inline-block;vertical-align:-3px;margin-left:10px"></span> uma via '
             '<span class="sem laranja" style="display:inline-block;vertical-align:-3px;margin-left:10px"></span> só menção/valor coletivo '
-            '<span class="sem vermelho" style="display:inline-block;vertical-align:-3px;margin-left:10px"></span> totalmente omisso</p>'
+            '<span class="sem vermelho" style="display:inline-block;vertical-align:-3px;margin-left:10px"></span> totalmente omisso (roxo pulsante — nada publicado)</p>'
             '<div class="presta">' + "".join(todos) + '</div>')
 
 
