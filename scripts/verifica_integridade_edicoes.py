@@ -24,7 +24,7 @@ from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RAIZ / "src"))
-from cliente_http import Resposta  # cortês: robots, intervalo, condicional
+from cliente_http import ClienteHTTP  # cortês: robots, intervalo, condicional
 
 
 def ancoras() -> dict[str, dict]:
@@ -62,7 +62,7 @@ def main():
         n = int(sys.argv[sys.argv.index("--amostra") + 1])
     anc = ancoras()
     alvo = amostra_rotativa(list(anc), n)
-    cli = Resposta()
+    cli = ClienteHTTP(user_agent="AMC-Jardim-America-Vigilancia/1.0 (fiscalizacao publica)")
     integras, inalteradas, reescritas, indisponiveis = 0, 0, [], []
     for ed in alvo:
         a = anc[ed]
