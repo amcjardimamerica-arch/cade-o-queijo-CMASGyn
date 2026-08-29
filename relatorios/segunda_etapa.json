@@ -27,6 +27,20 @@
    "http": 200,
    "erros": null
   },
+  "siconfi_api": {
+   "nome": "API pública do SICONFI — RGF com a Despesa Total com Pessoal declarada",
+   "disponivel": false,
+   "url": "https://apidatatransparencia.tesouro.gov.br/ords/siconfi/tt/rgf?an_exercicio=2025&in_periodicidade=Q&nr_periodo=2&co_tipo_demonstrativo=RGF&co_esfera=M&co_poder=E&id_ente=5208707",
+   "http": null,
+   "erros": null
+  },
+  "folha_portal": {
+   "nome": "Folha de pagamento no portal da transparência do Município",
+   "disponivel": true,
+   "url": "https://www.goiania.go.gov.br/sing_transparencia/folha-de-pagamento-dados-gerais/",
+   "http": 200,
+   "erros": null
+  },
   "tcmgo_doc": {
    "nome": "Diário Oficial de Contas do TCM-GO",
    "disponivel": true,
@@ -43,10 +57,11 @@
   },
   "pncp": {
    "nome": "Portal Nacional de Contratações Públicas — API de consulta",
-   "disponivel": true,
+   "disponivel": false,
    "url": "https://pncp.gov.br/api/consulta/v1/contratos?dataInicial=20260101&dataFinal=20260131&pagina=1",
-   "http": 200,
+   "http": null,
    "erros": [
+    "ReadTimeout: HTTPSConnectionPool(host='pncp.gov.br', port=443): Read timed out. (read timeout=30)",
     "ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
    ]
   },
@@ -73,9 +88,10 @@
  },
  "mapa": {
   "folha_e_execucao_3601": [
+   "folha_portal",
+   "siconfi_api",
    "portal_transparencia",
    "esic",
-   "siconfi",
    "tcmgo_portal"
   ],
   "contratacoes_publicas": [

@@ -6,6 +6,10 @@
   },
   {
    "arquivo": "pncp_contratos.json",
+   "url": "https://pncp.gov.br/api/consulta/v1/contratos?dataInicial=20260101&dataFinal=20261231&pagina=2&tamanhoPagina=50"
+  },
+  {
+   "arquivo": "pncp_contratos.json",
    "url": "https://pncp.gov.br/api/consulta/v1/contratos"
   },
   {
