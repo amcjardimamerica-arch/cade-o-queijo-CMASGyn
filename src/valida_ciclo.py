@@ -11,6 +11,7 @@ CONTRATO = {
  "relatorios/qualidade_fontes.json": ["criterio"],
  "dados/trilha_dinheiro.json": ["eventos", "detalhe"],
  "dados/receita_mensal_2026.json": ["competencias"],
+ "dados/siconfi.json": ["coletado_em", "controle"],
  "referencias/servidores/nomeacoes.json": ["registros", "minimizacao"],
 }
 falhas = []

@@ -56,6 +56,7 @@ jobs:
           git config user.name "vigilancia-bot"
           git config user.email "vigilancia@users.noreply.github.com"
           git add -A dados/cadastro_cnpj_complementar.json estado/cnpj.json \
+                     dados/siconfi.json dados/pncp_contratos.json \
                      relatorios/segunda_etapa.json relatorios/qualidade_fontes.json \
                      referencias/ relatorios/avaliacao_dominical/ \
                      relatorios/mensal/ docs/mensal/ || true
