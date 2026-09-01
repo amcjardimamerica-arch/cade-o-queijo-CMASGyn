@@ -1,6 +1,6 @@
 {
  "exercicio": 2026,
- "gerado_em": "2026-08-28",
+ "gerado_em": "2026-09-01",
  "achados": [
   {
    "bloco": "ADM",
@@ -8,11 +8,11 @@
    "severidade": "critica",
    "selo": "CONFIRMADO",
    "titulo": "Diário Oficial sem edição desde 29/07/2026",
-   "detalhe": "Última publicação: 2026-07-29 (30 dias corridos). Dos 25 dias úteis da janela, 18 sem edição. Sondagem com controle exclui falha do coletor.",
+   "detalhe": "Última publicação: 2026-07-29 (31 dias corridos). Dos 25 dias úteis da janela, 22 sem edição. Sondagem com controle exclui falha do coletor.",
    "norma": "Artigo 37, caput, da Constituicao Federal; Artigo 8º, § 3º, III e VI da Lei 12.527/2011; Artigo 10, § 2º, da Lei municipal 9.009/2010",
    "dados": {
     "ultima": "2026-07-29",
-    "dias_sem_edicao": 18
+    "dias_sem_edicao": 22
    }
   },
   {
