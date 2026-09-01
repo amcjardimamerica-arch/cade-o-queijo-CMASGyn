@@ -1,0 +1,17 @@
+{
+ "coletado_em": "2026-09-01",
+ "id_ente": "5208707",
+ "fonte": "SICONFI/STN — RGF declarado pelo próprio ente",
+ "tentativas": [
+  "https://apidatatransparencia.tesouro.gov.br/ords/siconfi/tt 2025/Q3: HTTPError 404 Client Error: Not Found for url: https://apidatatransparencia.tesouro.gov.br",
+  "https://apidatatransparencia.tesouro.gov.br/ords/siconfi/tt 2025/S2: HTTPError 404 Client Error: Not Found for url: https://apidatatransparencia.tesouro.gov.br",
+  "https://apidatatransparencia.tesouro.gov.br/ords/siconfi/tt 2025/Q2: HTTPError 404 Client Error: Not Found for url: https://apidatatransparencia.tesouro.gov.br",
+  "https://apidatatransparencia.tesouro.gov.br/ords/siconfi/tt 2025/S1: HTTPError 404 Client Error: Not Found for url: https://apidatatransparencia.tesouro.gov.br",
+  "https://apidados.tesouro.gov.br/ords/siconfi/tt 2025/Q3: HTTPError 404 Client Error: Not Found for url: https://apidados.tesouro.gov.br/ords/siconf",
+  "https://apidados.tesouro.gov.br/ords/siconfi/tt 2025/S2: HTTPError 404 Client Error: Not Found for url: https://apidados.tesouro.gov.br/ords/siconf",
+  "https://apidados.tesouro.gov.br/ords/siconfi/tt 2025/Q2: HTTPError 404 Client Error: Not Found for url: https://apidados.tesouro.gov.br/ords/siconf",
+  "https://apidados.tesouro.gov.br/ords/siconfi/tt 2025/S1: HTTPError 404 Client Error: Not Found for url: https://apidados.tesouro.gov.br/ords/siconf"
+ ],
+ "controle": null,
+ "rgf": null
+}

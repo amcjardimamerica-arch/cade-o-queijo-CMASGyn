@@ -1,5 +1,5 @@
 # CORPUS NORMATIVO — VIGILÂNCIA DO CMASGyn
-# Consolidado em 2026-08-28
+# Consolidado em 2026-09-01
 # Este bloco é prefixo estável de prompt. Não editar manualmente.
 
 
@@ -53103,9 +53103,9 @@ Fonte: https://www.tce.go.gov.br
 
 Home - Tribunal de Contas do Estado de Goiás
 
-III ENAPI começa com cultura, homenagem e debate sobre governança colaborativa
+III ENAPI termina com defesa de mais recursos e ações para a primeira infância
 
- Palestrantes destacaram a ação integrada em defesa dos direitos da primeira infância
+ Evento teve mais de 1,8 mil inscritos, lançou livro sobre o Marco Legal e anunciou João Pessoa como sede da próxima edição
  
 
 LER MAIS
@@ -53518,7 +53518,7 @@ Seu navegador não suporta java script, alguns recursos estarão limitados.
  - 
 20
  de 
-12281
+12291
  
 
  RECOMENDAÇÃO Nº 126, DE 23 DE JUNHO DE 2026. 
@@ -53526,6 +53526,12 @@ Seu navegador não suporta java script, alguns recursos estarão limitados.
 Descrição
 
  Dispõe sobre ações voltadas à aposentadoria de membros e servidores, no âmbito da Política Nacional de Gestão de Pessoas do Ministério Público. 
+
+ PORTARIA CNMP-PRESI N° 237 DE 27 DE AGOSTO DE 2026 
+
+Descrição
+
+ Designa a Procuradora do Trabalho ANA GABRIELA OLIVEIRA DE PAULA para atuar, pelo período de 1 (um) ano, como membro colaboradora do Conselho Nacional do Ministério Público. 
 
  PORTARIA CNMP-PRESI N° 236 DE 26 DE AGOSTO DE 2026 
 
@@ -53539,6 +53545,12 @@ Designar o Membro Auxiliar da Presidência do Conselho Nacional do Ministério P
 Descrição
 
  Instaura Correição Ordinária com foco na promoção de Direitos Fundamentais no Ministério Público do Estado do Rio de Janeiro, nas 1ª, 2ª, 3ª, 4ª, 5ª, 6ª, 7ª e 8ª Promotorias de Justiça de Tutela Coletiva do Patrimônio Público e da Cidadania da Capital,... 
+
+ PORTARIA CNMP-PRESI N° 234 DE 24 DE AGOSTO DE 2026 
+
+Descrição
+
+ Designa, a Promotora de Justiça do Ministério Público do Estado do Rio Grande do Norte ADRIANA MEDEIROS GURGEL DE FARIA para atuar, pelo período de 1 (um) ano, como membro auxiliar do Conselho Nacional do Ministério Público. 
 
  PORTARIA CNMP-PRESI N° 235 DE 25 DE AGOSTO DE 2026 
 
@@ -53631,18 +53643,6 @@ Descrição
 Descrição
 
  Protocolo de Intenções que entre si celebram o Conselho Nacional do Ministério Público e a Fundação Getulio Vargas, visando estabelecer parceria para a realização de pesquisas voltadas ao desenvolvimento e à aplicação de tecnologias de inteligência... 
-
- PORTARIA CNMP-PRESI N° 222 DE 6 DE AGOSTO DE 2026 
-
-Descrição
-
- Prorroga, até 31 de dezembro de 2026, a cessão da servidora POLIANA OLIVEIRA SANTOS, ocupante do cargo de Analista Jurídico do Conselho Nacional do Ministério Público, matrícula nº 82.321, ao Conselho Nacional de Justiça, para exercício do cargo em... 
-
- PORTARIA CNMP-PRESI N° 221 DE 6 DE AGOSTO DE 2026 
-
-Descrição
-
- Prorroga, até 31 de dezembro de 2026, a cessão do servidor WILFREDO ENRIQUE PIRES PACHECO, ocupante do cargo de Técnico Administrativo do Conselho Nacional do Ministério Público, matrícula nº 17.966, ao Conselho Nacional de Justiça, para exercício do... 
 
 << Início
 < Anterior
@@ -53770,27 +53770,27 @@ Não achou? Use a página completa de serviços.
 
 Criminal
 
-MPF e Receita Federal deflagram Operação Jogo de Sombras contra esquema envolvendo apostas esportivas
+MPF obtém condenação de homem que compartilhava na internet imagens de abuso sexual infantil
 
-São cumpridos seis mandados de busca e apreensão em Pernambuco, Paraíba e São Paulo para apurar indícios de sonegação fiscal, evasão de divisas e lavagem de dinheiro
+Réu armazenava no computador e no celular mais de 230 arquivos de conteúdo sexual com crianças e adolescentes
 
-28/08/2026 | 08:00
+31/08/2026 | 15:20
 
 Criminal
 
-MPF obtém condenação por corrupção e lavagem de dinheiro em obra de hospital no Paraná
+Justiça recebe denúncia do MPF por esquema de exploração ilegal de cassiterita e ouro em terra indígena em RR
 
-Justiça Federal condenou dois réus a 11 anos de prisão e fixou reparação mínima de R$ 1,16 milhão
+Caso é apontado como o mais grave já registrado no estado envolvendo organização criminosa, lavagem de dinheiro e exploração ilegal de cassiterita
 
-28/08/2026 | 12:59
+31/08/2026 | 13:38
 
-Eleitoral
+Patrimônio Cultural
 
-MP Eleitoral contesta mais de 900 registros de candidatura nas Eleições 2026
+Patrimônio Cultural: MPF busca evitar que obras afetem bens tombados e patrimônio arqueológico em PE
 
-Casos de inelegibilidade, condenações por improbidade, suspeita de envolvimento com o crime organizado são alguns dos motivos apontados
+Recomendações foram direcionados aos municípios de Garanhuns e Recife
 
-27/08/2026 | 09:00
+31/08/2026 | 18:11
 
 Serviço
 
@@ -53810,41 +53810,41 @@ Mais notícias +
 
 Mais notícias +
 
-Meio Ambiente
+Comunidades Tradicionais
 
-MPF obtém decisão no TRF1 que obriga União e ICMBio a fixarem zonas de amortecimento em unidades de conservação
+Justiça Federal atende MPF e manda estado e União regularizarem ensino médio quilombola em Santarém (PA)
 
-Tribunal confirmou prazo de cinco anos para delimitação das áreas de proteção
+Sentença estabelece 60 dias para garantir professores, determina reposição de aulas e impõe pagamento por dano moral coletivo
 
-27/08/2026 | 14:42
+31/08/2026 | 15:32
 
-Patrimônio Cultural
+Direitos do Cidadão
 
-Patrimônio Cultural: MPF ajuíza ação contra concessionária por demolição irregular de estruturas históricas em MG
+MPF cobra do município e do estado do Rio de Janeiro cumprimento de diretrizes nacionais de educação em áreas de violência armada
 
-Órgão também aponta contaminação do solo da área que integra Complexo Ferroviário e requer limpeza e indenização pelos danos
+Normativos foram aprovados após atuação do MPF e garantem o cumprimento dos 200 dias letivos em contextos de crise, como operações policiais nas comunidades
 
-27/08/2026 | 14:21
+31/08/2026 | 18:02
 
-Meio Ambiente
+Geral
 
-Justiça Federal acolhe pedido do MPF e determina medidas emergenciais para proteger peixe-boi Astro em Sergipe
+Provas do 2º Processo de Estágio do MPF foram suspensas devido a problemas técnicos na plataforma
 
-Decisão estabelece fiscalização náutica, uso de protetores de hélice, educação ambiental e governança integrada nos estuários de Sergipe e da Bahia
+Em breve, serão divulgados a nova data para a realização das provas e o cronograma atualizado
 
-27/08/2026 | 15:43
+31/08/2026 | 15:17
 
 Oportunidade
 
 Acompanhe o 2º Processo Seletivo de Estágio 2026
 
-Posso confiar no que vejo?
+Eleições 2026
 
-Novo videocast do Manda a Real debate o deepfake como instrumento de desinformação
+Propaganda eleitoral nas ruas: saiba o que os candidatos podem ou não fazer
 
 Me explica, MPF!
 
-O que é impulsionamento de propaganda eleitoral?
+Quem fiscaliza a eleição para presidente da República?
 
 Transparência
 

@@ -1,0 +1,9 @@
+{
+ "coletado_em": "2026-09-01",
+ "fonte": "https://pncp.gov.br/api/consulta/v1/contratos",
+ "cnpjs_do_ente_usados": [],
+ "total": 0,
+ "da_pasta": 0,
+ "erro_de_coleta": null,
+ "contratos": []
+}
