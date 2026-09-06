@@ -1387,8 +1387,9 @@
    "municipio": "OSASCO",
    "uf": "SP",
    "abertura": "1943-03-02",
+   "qsa": [],
    "fonte": "dados abertos do CNPJ — Receita Federal, via BrasilAPI/minhareceita",
-   "consultado_em": "2026-08-28"
+   "consultado_em": "2026-09-06"
   },
   "62.008.789/0001-84": {
    "razao_social": "COPACABANA BAR LTDA",
@@ -1399,8 +1400,9 @@
    "municipio": "GOIANIA",
    "uf": "GO",
    "abertura": "2025-07-31",
+   "qsa": [],
    "fonte": "dados abertos do CNPJ — Receita Federal, via BrasilAPI/minhareceita",
-   "consultado_em": "2026-08-28"
+   "consultado_em": "2026-09-06"
   },
   "62.203.064/0001-47": {
    "razao_social": "62.203.064 JOAO PEDRO CANDIDO DE SOUZA",
@@ -1411,8 +1413,9 @@
    "municipio": "TRES RIOS",
    "uf": "RJ",
    "abertura": "2025-08-13",
+   "qsa": [],
    "fonte": "dados abertos do CNPJ — Receita Federal, via BrasilAPI/minhareceita",
-   "consultado_em": "2026-08-28"
+   "consultado_em": "2026-09-06"
   },
   "63.175.015/0001-00": {
    "razao_social": "SVC INDUSTRIA E COMERCIO DE CONFECCOES LTDA.",
@@ -1423,8 +1426,9 @@
    "municipio": "APUCARANA",
    "uf": "PR",
    "abertura": "2025-10-14",
+   "qsa": [],
    "fonte": "dados abertos do CNPJ — Receita Federal, via BrasilAPI/minhareceita",
-   "consultado_em": "2026-08-28"
+   "consultado_em": "2026-09-06"
   },
   "86.840.378/0001-19": {
    "razao_social": "ABRIGO DOS IDOSOS SAO VICENTE DE PAULO DE GOIANIA",
@@ -1435,8 +1439,9 @@
    "municipio": "GOIANIA",
    "uf": "GO",
    "abertura": "1994-03-07",
+   "qsa": [],
    "fonte": "dados abertos do CNPJ — Receita Federal, via BrasilAPI/minhareceita",
-   "consultado_em": "2026-08-28"
+   "consultado_em": "2026-09-06"
   },
   "01.682.475/0001-78": {
    "razao_social": "CENTRO DE REABILITACAO SAO PAULO APOSTOLO CRESPA",
@@ -1567,6 +1572,19 @@
    "qsa": [],
    "fonte": "dados abertos do CNPJ — Receita Federal, via BrasilAPI/minhareceita",
    "consultado_em": "2026-08-29"
+  },
+  "97.546.623/0001-04": {
+   "razao_social": "JR AGUAS LTDA",
+   "nome_fantasia": "JR AGUAS",
+   "natureza_juridica": "2062",
+   "atividade": "Comércio atacadista de água mineral",
+   "situacao": "ATIVA",
+   "municipio": "GOIANIA",
+   "uf": "GO",
+   "abertura": "2011-07-13",
+   "qsa": [],
+   "fonte": "dados abertos do CNPJ — Receita Federal, via BrasilAPI/minhareceita",
+   "consultado_em": "2026-09-06"
   }
  },
  "artefatos_de_extracao": [
@@ -1583,6 +1601,6 @@
    "motivo": "dígito verificador inválido — artefato do extrator; corrigir em src/extracao.py, não no dado"
   }
  ],
- "gerado_em": "2026-08-29",
+ "gerado_em": "2026-09-06",
  "nota": "Complemento cirúrgico: só CNPJs citados na trilha sem razão social no cadastro principal. Zero tokens de IA."
 }

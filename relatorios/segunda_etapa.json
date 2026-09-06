@@ -1,5 +1,5 @@
 {
- "sondado_em": "2026-08-29",
+ "sondado_em": "2026-09-06",
  "fontes": {
   "portal_transparencia": {
    "nome": "Portal da Transparência do Município de Goiânia",
@@ -57,11 +57,10 @@
   },
   "pncp": {
    "nome": "Portal Nacional de Contratações Públicas — API de consulta",
-   "disponivel": false,
+   "disponivel": true,
    "url": "https://pncp.gov.br/api/consulta/v1/contratos?dataInicial=20260101&dataFinal=20260131&pagina=1",
-   "http": null,
+   "http": 200,
    "erros": [
-    "ReadTimeout: HTTPSConnectionPool(host='pncp.gov.br', port=443): Read timed out. (read timeout=30)",
     "ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
    ]
   },

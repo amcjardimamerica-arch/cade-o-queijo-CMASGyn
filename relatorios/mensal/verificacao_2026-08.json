@@ -1,0 +1,130 @@
+{
+ "competencia": "2026-08",
+ "mes": "agosto",
+ "exercicio": 2026,
+ "gerado_em": "2026-09-06",
+ "parametros_aplicados": [
+  "REC-M",
+  "IGD-M",
+  "PUB-M",
+  "EXE-M",
+  "CMAS-M"
+ ],
+ "total_achados": 4,
+ "por_severidade": {
+  "critica": 1,
+  "alta": 3,
+  "media": 0
+ },
+ "por_selo": {
+  "CONFIRMADO": 0,
+  "INDICIARIO": 1,
+  "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE": 3
+ },
+ "execucao_do_mes": {
+  "eventos": 0,
+  "por_estacao": {
+   "dotacao": 0,
+   "empenho": 0,
+   "liquidacao": 0,
+   "pagamento": 0,
+   "vinculo": 0
+  }
+ },
+ "publicacao_do_mes": {
+  "dias_uteis": 21,
+  "dias_com_edicao": 0
+ },
+ "achados": [
+  {
+   "codigo": "IGD-M-2026-08",
+   "bloco": "CMAS",
+   "severidade": "critica",
+   "selo": "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE",
+   "titulo": "Piso de 10% do IGD ao controle social: aplicação de agosto de 2026 sem demonstrativo",
+   "detalhe": "Estimados R$ 140,625.21 de base na competência, o piso devido ao Conselho é de R$ 14,062.52. A norma incide competência a competência: aplicar o percentual sobre o acumulado do ano não a satisfaz. Nenhum demonstrativo de aplicação do mês foi publicado. A planilha do Fundo Nacional disponível alcança a competência 2025-11, de modo que o repasse efetivo de 2026 tampouco é conferível por via federal até a atualização da extração.",
+   "norma": "Artigo 6º da Resolução CNAS/MDS 202/2025; Artigo 14, § 7º, da Lei 14.601/2023",
+   "impedimento": "aferição do piso mensal de 10% na competência",
+   "onde_obter": "demonstrativo mensal do Fundo Municipal e extração de repasses do Fundo Nacional quando alcançar 2026",
+   "dados": {
+    "base_mensal_estimada": 140625.21,
+    "devido_ao_conselho_10": 14062.52,
+    "sancao": "bloqueio dos repasses até a comprovação — Artigo 6º, § 6º, da Resolução CNAS/MDS 202/2025"
+   }
+  },
+  {
+   "codigo": "REC-M-2026-08",
+   "bloco": "SEMASDH",
+   "severidade": "alta",
+   "selo": "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE",
+   "titulo": "Receita realizada de agosto de 2026 não publicada",
+   "detalhe": "A previsão da competência é de R$ 1,934,833.33 somadas as fontes, mas nenhum demonstrativo de receita realizada do mês foi localizado em publicação oficial. Sem o realizado, a conciliação entre entrada e saída do Fundo fica impedida para a competência.",
+   "norma": "Artigo 48 e Artigo 48-A da Lei Complementar 101/2000; Artigo 8º, § 1º, da Lei 12.527/2011",
+   "impedimento": "conciliação receita×despesa da competência",
+   "onde_obter": "portal da transparência do Município ou SICONFI",
+   "dados": {
+    "previsto_total": 1934833.33,
+    "previsto_por_fonte": {
+     "1660": 687500.0,
+     "1661": 500000.0,
+     "1665": 258666.67,
+     "tesouro": 750.0,
+     "patrimonial": 214500.0,
+     "nao_identificada": 172583.33
+    }
+   }
+  },
+  {
+   "codigo": "PUB-M-2026-08",
+   "bloco": "SEMASDH",
+   "severidade": "alta",
+   "selo": "INDICIARIO",
+   "titulo": "Diário Oficial: 21 de 21 dias úteis de agosto de 2026 sem edição localizada",
+   "detalhe": "O mês teve 21 dias úteis; localizaram-se edições em 0 dias. Via única: ausência no acervo amostral de edições citadas.",
+   "norma": "Artigo 37, caput, da Constituição da República — princípio da publicidade; Artigo 8º da Lei 12.527/2011",
+   "dados": {
+    "dias_uteis": 21,
+    "dias_com_edicao": 0,
+    "dias_uteis_sem_edicao": [
+     "2026-08-03",
+     "2026-08-04",
+     "2026-08-05",
+     "2026-08-06",
+     "2026-08-07",
+     "2026-08-10",
+     "2026-08-11",
+     "2026-08-12",
+     "2026-08-13",
+     "2026-08-14",
+     "2026-08-17",
+     "2026-08-18",
+     "2026-08-19",
+     "2026-08-20",
+     "2026-08-21",
+     "2026-08-24",
+     "2026-08-25",
+     "2026-08-26",
+     "2026-08-27",
+     "2026-08-28",
+     "2026-08-31"
+    ],
+    "lacunas_numeracao": []
+   }
+  },
+  {
+   "codigo": "EXE-M-2026-08",
+   "bloco": "SEMASDH",
+   "severidade": "alta",
+   "selo": "INCONCLUSIVO_POR_DOCUMENTO_FALTANTE",
+   "titulo": "Nenhum evento de execução localizado em agosto de 2026",
+   "detalhe": "A trilha do dinheiro não registra evento algum na competência. Ou não houve publicação, ou as edições do período não circularam — as duas hipóteses são desconformidade; nenhuma delas é conformidade.",
+   "norma": "Artigo 48-A, inciso I, da Lei Complementar 101/2000",
+   "impedimento": "qualquer aferição de execução na competência",
+   "onde_obter": "URL_TRANSPARENCIA (pendência P2) e edições do Diário",
+   "dados": {
+    "eventos": 0
+   }
+  }
+ ],
+ "camada_ia": "nenhuma — verificação integralmente determinística"
+}
