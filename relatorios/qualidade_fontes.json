@@ -10,15 +10,15 @@
   },
   {
    "arquivo": "siconfi.json",
-   "url": "https://apidados.tesouro.gov.br/ords/siconfi/tt"
-  },
-  {
-   "arquivo": "siconfi.json",
    "url": "https://apidatatransparencia.tesouro.gov.br/ords/siconfi/tt"
   },
   {
    "arquivo": "siconfi.json",
    "url": "https://apidatatransparencia.tesouro.gov.br"
+  },
+  {
+   "arquivo": "siconfi.json",
+   "url": "https://apidados.tesouro.gov.br/ords/siconfi/tt"
   },
   {
    "arquivo": "siconfi.json",

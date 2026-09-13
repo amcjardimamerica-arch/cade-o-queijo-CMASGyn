@@ -1,9 +1,9 @@
 {
- "coletado_em": "2026-09-06",
+ "coletado_em": "2026-09-13",
  "fonte": "https://pncp.gov.br/api/consulta/v1/contratos",
  "cnpjs_do_ente_usados": [],
  "total": 0,
  "da_pasta": 0,
- "erro_de_coleta": null,
+ "erro_de_coleta": "ReadTimeout: HTTPSConnectionPool(host='pncp.gov.br', port=443): Read timed out. (read timeout=45)",
  "contratos": []
 }
