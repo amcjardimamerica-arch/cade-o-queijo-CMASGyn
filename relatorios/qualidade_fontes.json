@@ -10,11 +10,7 @@
   },
   {
    "arquivo": "siconfi.json",
-   "url": "https://apidatatransparencia.tesouro.gov.br/ords/siconfi/tt"
-  },
-  {
-   "arquivo": "siconfi.json",
-   "url": "https://apidatatransparencia.tesouro.gov.br"
+   "url": "https://apidados.tesouro.gov.br/ords/siconf"
   },
   {
    "arquivo": "siconfi.json",
@@ -22,7 +18,11 @@
   },
   {
    "arquivo": "siconfi.json",
-   "url": "https://apidados.tesouro.gov.br/ords/siconf"
+   "url": "https://apidatatransparencia.tesouro.gov.br/ords/siconfi/tt"
+  },
+  {
+   "arquivo": "siconfi.json",
+   "url": "https://apidatatransparencia.tesouro.gov.br"
   },
   {
    "arquivo": "trilha_dinheiro.json",
