@@ -1,5 +1,5 @@
 {
- "sondado_em": "2026-09-14",
+ "sondado_em": "2026-09-20",
  "fontes": {
   "portal_transparencia": {
    "nome": "Portal da Transparência do Município de Goiânia",
@@ -60,7 +60,9 @@
    "disponivel": true,
    "url": "https://pncp.gov.br/api/consulta/v1/contratos?dataInicial=20260101&dataFinal=20260131&pagina=1",
    "http": 200,
-   "erros": null
+   "erros": [
+    "ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
+   ]
   },
   "dados_gov": {
    "nome": "dados.gov.br — conjuntos do Município de Goiânia",
