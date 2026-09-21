@@ -251,18 +251,51 @@
       "situacao": "INEXISTENTE",
       "util": true,
       "nota": "nenhuma edição indexada para o dia"
+    },
+    "2026-09-15": {
+      "situacao": "INEXISTENTE",
+      "util": true,
+      "nota": "nenhuma edição indexada para o dia"
+    },
+    "2026-09-16": {
+      "situacao": "INEXISTENTE",
+      "util": true,
+      "nota": "nenhuma edição indexada para o dia"
+    },
+    "2026-09-17": {
+      "situacao": "INEXISTENTE",
+      "util": true,
+      "nota": "nenhuma edição indexada para o dia"
+    },
+    "2026-09-18": {
+      "situacao": "INEXISTENTE",
+      "util": true,
+      "nota": "nenhuma edição indexada para o dia"
+    },
+    "2026-09-19": {
+      "situacao": "NAO_UTIL",
+      "util": false
+    },
+    "2026-09-20": {
+      "situacao": "NAO_UTIL",
+      "util": false
+    },
+    "2026-09-21": {
+      "situacao": "INEXISTENTE",
+      "util": true,
+      "nota": "nenhuma edição indexada para o dia"
     }
   },
-  "gerado_em": "2026-09-14T09:12:41.520269+00:00",
+  "gerado_em": "2026-09-21T15:41:15.955349+00:00",
   "resumo": {
-    "dias_uteis": 35,
+    "dias_uteis": 40,
     "contagem": {
       "SEM_ATO": 1,
       "PUBLICOU": 2,
-      "INEXISTENTE": 32
+      "INEXISTENTE": 37
     },
     "ultima_publicacao": "2026-07-29",
-    "dias_desde_ultima": 47,
-    "inexistentes": 32
+    "dias_desde_ultima": 54,
+    "inexistentes": 37
   }
 }

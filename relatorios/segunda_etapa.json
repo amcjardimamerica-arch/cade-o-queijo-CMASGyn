@@ -1,5 +1,5 @@
 {
- "sondado_em": "2026-09-20",
+ "sondado_em": "2026-09-21",
  "fontes": {
   "portal_transparencia": {
    "nome": "Portal da Transparência do Município de Goiânia",
@@ -57,10 +57,11 @@
   },
   "pncp": {
    "nome": "Portal Nacional de Contratações Públicas — API de consulta",
-   "disponivel": true,
+   "disponivel": false,
    "url": "https://pncp.gov.br/api/consulta/v1/contratos?dataInicial=20260101&dataFinal=20260131&pagina=1",
-   "http": 200,
+   "http": null,
    "erros": [
+    "ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
     "ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
    ]
   },
