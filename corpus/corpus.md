@@ -1,5 +1,5 @@
 # CORPUS NORMATIVO — VIGILÂNCIA DO CMASGyn
-# Consolidado em 2026-09-01
+# Consolidado em 2026-10-01
 # Este bloco é prefixo estável de prompt. Não editar manualmente.
 
 
@@ -672,8 +672,11 @@ Nota:
 
 
  1 - 
-Lei 8.248, de 2004
- - parceria entre o Poder Público Municipal e entidades da sociedade civil para prestação serviços de assistência social;
+Lei nº 11.707, de 2026
+ - regulamenta a concessão dos benefícios da 
+ 
+ Lei federal nº 8.742, de 7 de dezembro de 1993
+ – Lei Orgânica da Assistência Social – LOAS;
  
 
 
@@ -684,24 +687,30 @@ Lei nº 8.293, de 2004
 
 
  3 - 
+Lei nº 8.248, de 2004
+ - parceria entre o Poder Público Municipal e entidades da sociedade civil para prestação serviços de assistência social;
+ 
+
+
+ 4 - 
 Lei nº 7.531, de 1995
  - Fundo Municipal de Assitência Social; 
  
 
 
- 4 - 
+ 5 - 
  Decreto nº 120, de 2026
  - Regimento Interno das Unidades Casa de Acolhida Cidadã.
  
 
 
- 5 - 
+ 6 - 
 Decreto nº 55, de 2026
  - institui a Rede de Atenção, Proteção e Defesa às Pessoas em Situação de Violência; 
  
 
 
- 6 - 
+ 7 - 
 Decreto de Pessoal de 27.3.2026
  - membros do Conselho Municipal de Assistência Social. 
  
@@ -53103,57 +53112,57 @@ Fonte: https://www.tce.go.gov.br
 
 Home - Tribunal de Contas do Estado de Goiás
 
-III ENAPI termina com defesa de mais recursos e ações para a primeira infância
+TCE-GO encerra projeto piloto do MMDI-TC com avaliação positiva da ferramenta
 
- Evento teve mais de 1,8 mil inscritos, lançou livro sobre o Marco Legal e anunciou João Pessoa como sede da próxima edição
+ Metodologia composta por 229 critérios foi elogiada por focar no impacto gerado pelas ações dos tribunais
  
 
 LER MAIS
 
-III ENAPI debate proteção, investimentos e políticas para a primeira infância
+3º Circuito da Transparência movimenta Goiânia
 
- Programação da tarde do primeiro dia reuniu representantes da sociedade, dos tribunais de contas e da academia
+ Iniciativa que uniu esporte e solidariedade arrecadou cerca de 700 kg de alimentos
  
 
 LER MAIS
 
-Ciência e políticas públicas marcam programação da manhã do segundo dia do ENAPI
+TCE-GO testa nova ferramenta que visa medir o impacto do controle externo na vida do cidadão
 
- Especialistas abordaram desenvolvimento infantil, saúde relacional, escuta e saneamento básico
+ Marco de Medição de Desempenho e Impacto vai ser avaliado em todo o Brasil em 2027
  
 
 LER MAIS
 
-III ENAPI destaca ações integradas para garantir direitos na primeira infância
+TCE-GO mantém certificações ISO
 
- Programação reuniu debates sobre saúde, educação, contato com a natureza e boas práticas dos Tribunais de Contas
+ Auditoria externa foi finalizada nesta sexta-feira (25/set)
  
 
 LER MAIS
 
-ago 24, 2026
+set 28, 2026
 
-Vital Didonet lança em Goiânia novo livro sobre primeira infância
+Escoex representa o TCE-GO no 17º Educontas
 
-Obra será apresentada durante o III ENAPI
+Representantes apresentaram boas práticas em relação ao Diálogo Acadêmico Sustentável
 
-ago 25, 2026
+set 23, 2026
 
-Presidente do Tribunal de Contas da Guiné-Bissau visita o TCE-GO
+Boas práticas do TCE-GO em comunicação são apresentadas em evento nacional
 
-Encontro foi marcado por proposta de acordo de cooperação técnica voltado à primeira infância
+Trabalhos foram selecionados para o ComPública, realizado em Brasília
 
-ago 24, 2026
+set 28, 2026
 
-Artigo analisa novo modelo das três linhas de governança e controle
+TCE-GO apresenta atuação da Ouvidoria no Encco 2026
 
-Texto publicado no portal ConJur é assinado pela conselheira substituta do TCE-GO Heloísa Godinho e pelo conselheiro do TCMGO Fabrício Motta
+Coordenadora da Ouvidoria, Rafaella Queiroz, participou de painel sobre o tratamento de casos de assédio e discriminação
 
-ago 23, 2026
+set 26, 2026
 
-Conselheiro Henrique Santillo faria 89 anos neste domingo
+Nota de pesar pelo falecimento do deputado estadual Amilton Filho
 
-Ele é lembrado como um dos mais honrados homens públicos brasileiros
+Parlamentar morreu em acidente na madrugada de sábado (26/set)
 
 MAIS NOTÍCIAS
 
@@ -53518,7 +53527,7 @@ Seu navegador não suporta java script, alguns recursos estarão limitados.
  - 
 20
  de 
-12291
+12328
  
 
  RECOMENDAÇÃO Nº 126, DE 23 DE JUNHO DE 2026. 
@@ -53527,122 +53536,124 @@ Descrição
 
  Dispõe sobre ações voltadas à aposentadoria de membros e servidores, no âmbito da Política Nacional de Gestão de Pessoas do Ministério Público. 
 
- PORTARIA CNMP-PRESI N° 237 DE 27 DE AGOSTO DE 2026 
+ PORTARIA CNMP-CN/COCI n° 24, 23 de setembro de 2026. 
 
 Descrição
 
- Designa a Procuradora do Trabalho ANA GABRIELA OLIVEIRA DE PAULA para atuar, pelo período de 1 (um) ano, como membro colaboradora do Conselho Nacional do Ministério Público. 
+ Instaura Correição Ordinária em Unidade do Ministério Público do Estado de Santa Catarina, a ser realizada na modalidade presencial, nos dias 19 e 20 de outubro de 2026. 
 
- PORTARIA CNMP-PRESI N° 236 DE 26 DE AGOSTO DE 2026 
-
-Descrição
-
- Revoga o art. 1º da Portaria CNMP-PRESI n° 151 de 19 de maio de 2025.
-Designar o Membro Auxiliar da Presidência do Conselho Nacional do Ministério Público BERNARDO MORAIS CAVALCANTI para atuar como Membro Gestor do Gabinete de Segurança... 
-
- PORTARIA CNMP-CN/COCI n° 22, 18 de agosto de 2026 
+ PORTARIA CNMP-PRESI N° 260 DE 23 DE SETEMBRO DE 2026 
 
 Descrição
 
- Instaura Correição Ordinária com foco na promoção de Direitos Fundamentais no Ministério Público do Estado do Rio de Janeiro, nas 1ª, 2ª, 3ª, 4ª, 5ª, 6ª, 7ª e 8ª Promotorias de Justiça de Tutela Coletiva do Patrimônio Público e da Cidadania da Capital,... 
+ Institui Grupo de Trabalho Interinstitucional entre o Conselho Nacional do Ministério Público e o Ministério da Educação para o intercâmbio de dados educacionais e o desenvolvimento de ferramentas de inteligência. 
 
- PORTARIA CNMP-PRESI N° 234 DE 24 DE AGOSTO DE 2026 
-
-Descrição
-
- Designa, a Promotora de Justiça do Ministério Público do Estado do Rio Grande do Norte ADRIANA MEDEIROS GURGEL DE FARIA para atuar, pelo período de 1 (um) ano, como membro auxiliar do Conselho Nacional do Ministério Público. 
-
- PORTARIA CNMP-PRESI N° 235 DE 25 DE AGOSTO DE 2026 
+ PORTARIA CNMP-PRESI N° 261 DE 23 DE SETEMBRO DE 2026 
 
 Descrição
 
- Cancela a 13ª Sessão Ordinária de 2026, designada o dia 08 de setembro de 2026.
-Altera o Anexo da Portaria CNMP-PRESI nº 191 de 23 de junho de 2026, publicada no Diário Eletrônico do CNMP, Caderno Processual, de 25 de junho de 2026, que institui o... 
+ Revoga, a contar de 1° de outubro de 2026, a Portaria CNMP-PRESI n° 94, de 19 de março de 2026, publicada no Diário Oficial da União, Seção 2, edição de 20 de março de 2026. 
 
- PORTARIA CNMP-CN n° 101, DE 21 de agosto de 2026. 
-
-Descrição
-
- Destitui o Promotor de Justiça do Estado do Amazonas Darlan Benevides de Queiroz da função de Coordenador Adjunto de Inovações da Corregedoria Nacional do Ministério Público (Portaria CNMP-CN n° 90, 14 de maio de... 
-
- PORTARIA CNMP-PRESI N° 232 DE 19 DE AGOSTO DE 2026 
+ PORTARIA CNMP-PRESI N° 259 DE 23 DE SETEMBRO DE 2026 
 
 Descrição
 
- Designa integrantes do Fórum Nacional de Gestão do Ministério Público.
-Revoga a Portaria CNMP-PRESI n° 216 de 4 de julho de 2024. 
+ Concede, a pedido das Coordenadoras da Coordenadoria Nacional de Apoio às Vítimas, JULIANA NUNES FELIX e PATRÍCIA FERREIRA WANDERLEY DE SIQUEIRA GOULDING, elogio funcional aos servidores, Membros e colaboradores listados, em reconhecimento ao trabalho... 
 
- PORTARIA CNMP-PRESI N° 231 DE 18 DE AGOSTO DE 2026 
-
-Descrição
-
- Institui Grupo de Trabalho, no âmbito da CIJE, com o objetivo de realizar estudos técnicos acerca da adoção de crianças indígenas. 
-
- PORTARIA CNMP-PRESI N° 229 DE 13 DE AGOSTO DE 2026 
+ TERMO DE CESSÃO DE USO - ESPAÇO QUALIDADE DE VIDA NO TRABALHO 
 
 Descrição
 
- Dispõe sobre a abertura do Prêmio CNMP – Edição 2026, define os temas por categoria e designa os integrantes da Secretaria Executiva. 
+ Termo de Cessão de Uso, a Título Precário e Gratuito, que entre si celebram a União, por intermédio do Conselho Nacional do Ministério Público (CNMP), e a pessoa jurídica Associação dos Servidores do Conselho Nacional do Ministério Público... 
 
- ACORDO DE COOPERAÇÃO TÉCNICA Nº 5/2026 
-
-Descrição
-
- Acordo de Cooperação Técnica que entre si celebram o Conselho Nacional de Justiça, o Tribunal de Contas da União, o Conselho Nacional do Ministério Público, o Ministério da Saúde, o Ministério da Educação, o Fundo Nacional de Desenvolvimento da... 
-
- PORTARIA CNMP-PRESI N° 230 DE 14 DE AGOSTO DE 2026 
+ PORTARIA CNMP-PRESI N° 258 DE 17 DE SETEMBRO DE 2026 
 
 Descrição
 
- Altera a Portaria CNMP-PRESI nº 147, de 14 de maio de 2025, para reorganizar a estrutura do Gabinete de Segurança Institucional. 
+ Altera a Portaria CNMP-PRESI nº 249, de 30 de dezembro de 2020, publicada no Diário Oficial da União, seção 1, edição de 5 de janeiro de 2021.
+Revoga a Portaria CNMP-PRESI nº 158 de 19 de maio de 2026, publicada no Diário Oficial da União, Seção... 
 
- PORTARIA CNMP-PRESI N° 227 DE 13 DE AGOSTO DE 2026 
-
-Descrição
-
- Prorroga, pelo período de 1 (um) ano, a contar de 20 de agosto de 2026, o prazo previsto pela Portaria CNMP-PRESI nº 198 de 11 de julho de 2025, publicada no Diário Oficial da União, Seção 2, de 14 de julho de 2025. 
-
- PORTARIA CNMP-PRESI N° 228 DE 13 DE AGOSTO DE 2026 
+ PORTARIA CNMP-PRESI N° 257 DE 16 DE SETEMBRO DE 2026 
 
 Descrição
 
- Autoriza, por 1 (um) ano, a contar de 31 de agosto de 2026, com ônus para o Conselho Nacional do Ministério Público, a cessão do servidor BRENO PINHEIRO FRANCO DE ARAUJO, ocupante do cargo de Analista Jurídico, para exercer o cargo em comissão de... 
+ Cancela a 14ª Sessão Ordinária de 2026, designada para o dia 22 de setembro de 2026.
+Cancela a 15ª Sessão Ordinária de 2026, designada para o dia 13 de outubro de 2026.
+Convoca os Conselheiros do Conselho Nacional do Ministério Público para a 1ª... 
 
- PORTARIA CNMP-PRESI N° 226 DE 12 DE AGOSTO DE 2026 
-
-Descrição
-
- Abre no Orçamento Fiscal e da Seguridade Social da União, em favor do Conselho Nacional do Ministério Público, crédito suplementar, do tipo 420, no valor de R$ 128.812 (Cento e vinte e oito mil e oitocentos e doze reais), para reforço de... 
-
- PORTARIA CNMP-PRESI N° 225 DE 12 DE AGOSTO DE 2026 
+ PORTARIA CNMP-PRESI N° 255 DE 15 DE SETEMBRO DE 2026 
 
 Descrição
 
- Inclui o inciso LIV no art. 2º da Portaria CNMP-PRESI nº 178, de 10 de junho de 2022, publicada no Diário Oficial da União, Seção 2, de 13 de junho de 2022. 
+ Prorroga, pelo período de 1 (um) ano, a contar de 22 de setembro de 2026, a Portaria CNMP-PRESI nº 208, de 24 de julho de 2025, publicada no Diário Oficial da União, Seção 2, de 28 de julho de 2025. 
 
- RESOLUÇÃO CONJUNTA PRESI-CN Nº 2, DE 12 DE AGOSTO DE 2026. 
-
-Descrição
-
- Regulamenta o pagamento de passivos funcionais decorrentes do Adicional por Tempo de Serviço (ATS) aos membros ativos e inativos do Ministério Público, fixa as verbas integrantes da base de cálculo, estabelece os índices de atualização monetária e... 
-
- PORTARIA CNMP-PRESI Nº 224 DE 12 DE AGOSTO DE 2026 
+ PORTARIA CNMP-PRESI N° 254 DE 15 DE SETEMBRO DE 2026 
 
 Descrição
 
- Prorroga, pelo período de 1 (um) ano, a contar de 29 de novembro de 2026, o prazo previsto pela Portaria CNMP-PRESI nº 225 de 14 de agosto de 2025, publicada no Diário Oficial da União, seção 2, edição de 15 de agosto de 2025. 
+ Prorroga, pelo período de 1 (um) ano, a contar de 22 de outubro de 2026, o prazo previsto pela Portaria CNMP-PRESI nº 253 de 3 de outubro de 2025, publicada no Diário Oficial da União, Seção 2, de 7 de outubro de 2025. 
 
- RESOLUÇÃO CONJUNTA PRESI-CN Nº 1, DE 12 DE AGOSTO DE 2026. 
-
-Descrição
-
- Regulamenta a indenização de férias por necessidade do serviço e a apuração e pagamento decorrente da licença-prêmio por tempo de serviço devidas aos membros do ministério público, e dá outras providências. 
-
- PROTOCOLO DE INTENÇÕES Nº 01/2026 
+ PORTARIA CNMP-PRESI N° 256 DE 15 DE SETEMBRO DE 2026 
 
 Descrição
 
- Protocolo de Intenções que entre si celebram o Conselho Nacional do Ministério Público e a Fundação Getulio Vargas, visando estabelecer parceria para a realização de pesquisas voltadas ao desenvolvimento e à aplicação de tecnologias de inteligência... 
+ Prorroga, por 1 (um) ano, a contar de 21 de outubro de 2026, a cessão da servidora LÍVIA ABDALLA ARAÚJO, ocupante do cargo de Técnico Administrativo do Conselho Nacional do Ministério Público, matrícula nº 82.366, para exercer suas atividades na... 
+
+ PORTARIA CNMP-PRESI N° 253 DE 14 DE SETEMBRO DE 2026 
+
+Descrição
+
+ Altera a composição do Grupo de Trabalho instituído pela Portaria CNM-PRESI n° 248 de 9 de setembro de 2026. 
+
+ PORTARIA CNMP-PRESI N° 251 DE 10 DE SETEMBRO DE 2026 
+
+Descrição
+
+ Designa a servidora MARIA VITÓRIA OLIVEIRA DIAS RIBEIRO LEITE, matrícula 779000, ocupante do cargo de Oficial do Ministério Público, do quadro de pessoal do Ministério Público do Estado de Minas Gerais, para atuar, pelo período de 1 (um) ano, junto ao... 
+
+ PORTARIA CNMP-PRESI N° 250 DE 10 DE SETEMBRO DE 2026 
+
+Descrição
+
+ Institui Grupo de Trabalho, no âmbito da Comissão da Saúde, com o objetivo de implementar projeto para a elaboração do Sistema Nacional de Avaliação e Monitoramento Anual da Atuação do Ministério Público Brasileiro na Área da Saúde. 
+
+ PORTARIA CNMP-PRESI N° 252 DE 10 DE SETEMBRO DE 2026 
+
+Descrição
+
+ Designa a Membra Auxiliar da Presidência do Conselho Nacional do Ministério Público JULIANA NUNES FELIX para atuar como Coordenadora da Coordenadoria de Governança Estratégica da Presidência (CGE).
+Revoga a Portaria CNMP-PRESI nº 152 de 19 de maio de... 
+
+ PORTARIA CNMP-PRESI N° 248 DE 9 DE SETEMBRO DE 2026 
+
+Descrição
+
+ Institui Grupo de Trabalho para elaboração do Relatório de Atividades do Conselho Nacional do Ministério Público 2026 e da situação do Ministério Público no País - 2026 e do Relatório de Gestão 2026, em atendimento, respectivamente, ao disposto no art.... 
+
+ PORTARIA CNMP-PRESI N° 249 DE 9 DE SETEMBRO DE 2026 
+
+Descrição
+
+ Alterar o §4° do art. 2° da Portaria CNMP-PRESI n° 178 de 10 de junho de 2022, que passa a vigorar com a seguinte redação:
+"Art.... 
+
+ PORTARIA CNMP-PRESI N° 247 DE 8 DE SETEMBRO DE 2026 
+
+Descrição
+
+ Institui o processo e o cronograma de elaboração do Plano de Gestão 2027 no âmbito do Conselho Nacional do Ministério Público. 
+
+ PORTARIA CNMP-PRESI N° 246 DE 8 DE SETEMBRO DE 2026 
+
+Descrição
+
+ Institui o Protocolo Administrativo Digital do Conselho Nacional do Ministério Público (CNMP) e dispõe sobre o serviço de expedição no âmbito do CNMP. 
+
+ PORTARIA CNMP-CN N° 100, DE 19 DE AGOSTO DE 2026 
+
+Descrição
+
+ Requisita o Promotor de Justiça do Ministério Público do Estado de Mato Grosso do Sul Ronaldo Vieira Francisco, para atuar como Membro Colaborador da Corregedoria Nacional do Ministério Público, sem prejuízo de suas funções no órgão de origem. 
 
 << Início
 < Anterior
@@ -53768,41 +53779,41 @@ Não achou? Use a página completa de serviços.
  Ver todos os serviços
  
 
+Constitucional
+
+Servidor pode optar pelo regime antigo de aposentadoria se ingressou em novo concurso após Reforma da Previdência de 2013
+
+Decisão do STF segue parecer do MPF de que o vínculo é com a Administração Pública em geral, e não com ente específico
+
+30/09/2026 | 19:11
+
 Criminal
 
-MPF obtém condenação de homem que compartilhava na internet imagens de abuso sexual infantil
+Justiça Federal condena réu por intolerância religiosa contra muçulmanos em publicação nas redes sociais
 
-Réu armazenava no computador e no celular mais de 230 arquivos de conteúdo sexual com crianças e adolescentes
+Ministério Público Federal denunciou autor de postagem preconceituosa contra a religião islâmica
 
-31/08/2026 | 15:20
+30/09/2026 | 13:45
 
-Criminal
+Direitos do Cidadão
 
-Justiça recebe denúncia do MPF por esquema de exploração ilegal de cassiterita e ouro em terra indígena em RR
+MPF vai à Justiça para garantir isenção de imposto de carro a pessoas com surdez unilateral
 
-Caso é apontado como o mais grave já registrado no estado envolvendo organização criminosa, lavagem de dinheiro e exploração ilegal de cassiterita
+Ação exige adaptação do sistema da Receita Federal à legislação e pede indenização de R$ 500 mil por danos coletivos
 
-31/08/2026 | 13:38
+30/09/2026 | 16:18
 
-Patrimônio Cultural
+Violência política de gênero é crime!
 
-Patrimônio Cultural: MPF busca evitar que obras afetem bens tombados e patrimônio arqueológico em PE
+Saiba como reconhecer e denunciar essa prática
 
-Recomendações foram direcionados aos municípios de Garanhuns e Recife
+Cartilha
 
-31/08/2026 | 18:11
-
-Serviço
-
-MPF disponibiliza 0800 nacional e gratuito para atendimento ao cidadão
-
-Acompanhe
-
-Conheça iniciativas do MPF em defesa do patrimônio histórico e cultural brasileiro
+Entenda como o Ministério Público fiscaliza a disputa eleitoral
 
 Especial
 
-Entenda as regras que candidatos, eleitores e partidos devem seguir na disputa deste ano
+Confira o que pode e o que não pode nas eleições
 
 Últimas Notícias
 
@@ -53810,41 +53821,41 @@ Mais notícias +
 
 Mais notícias +
 
+Fiscalização de Atos Administrativos
+
+MPF apura impactos da retirada do medicamento para crises epiléticas do mercado nacional
+
+Investigação verifica cumprimento das normas sanitárias pela fabricante do Depakote Sprinkler e avalia alternativas seguras para pacientes
+
+30/09/2026 | 15:03
+
+Meio Ambiente
+
+Recebida denúncia do MPF contra acusado de exploração ilegal de cassiterita em parque nacional no Amazonas
+
+Atividade resultou na degradação de mais de 36 hectares de floresta; réu responde por usurpação de bens da União e crimes ambientais
+
+30/09/2026 | 12:19
+
 Comunidades Tradicionais
 
-Justiça Federal atende MPF e manda estado e União regularizarem ensino médio quilombola em Santarém (PA)
+Justiça extingue ação de particular após MPF apontar que área em MG pertence ao poder público em território quilombola
 
-Sentença estabelece 60 dias para garantir professores, determina reposição de aulas e impõe pagamento por dano moral coletivo
+Decisão reconhece que a disputa individual pela posse com a comunidade tradicional vai além do interesse privado
 
-31/08/2026 | 15:32
+30/09/2026 | 15:07
 
-Direitos do Cidadão
+Acompanhe
 
-MPF cobra do município e do estado do Rio de Janeiro cumprimento de diretrizes nacionais de educação em áreas de violência armada
-
-Normativos foram aprovados após atuação do MPF e garantem o cumprimento dos 200 dias letivos em contextos de crise, como operações policiais nas comunidades
-
-31/08/2026 | 18:02
-
-Geral
-
-Provas do 2º Processo de Estágio do MPF foram suspensas devido a problemas técnicos na plataforma
-
-Em breve, serão divulgados a nova data para a realização das provas e o cronograma atualizado
-
-31/08/2026 | 15:17
-
-Oportunidade
-
-Acompanhe o 2º Processo Seletivo de Estágio 2026
+2º Processo Seletivo de Estágio 2026
 
 Eleições 2026
 
-Propaganda eleitoral nas ruas: saiba o que os candidatos podem ou não fazer
+Campanha mobiliza sociedade contra violência política de gênero e mostra como denunciar
 
 Me explica, MPF!
 
-Quem fiscaliza a eleição para presidente da República?
+O que o acesso à informação tem a ver com o seu voto?
 
 Transparência
 

@@ -1,8 +1,8 @@
 {
-  "gerado_em": "2026-09-01T07:22:36.449817+00:00",
-  "sha256": "6324089995320b0541ce65f9522fe670f490c9fbcdadf3d7e047b3093208b156",
-  "caracteres": 2199612,
-  "tokens_estimados": 733204,
+  "gerado_em": "2026-10-01T07:26:32.261557+00:00",
+  "sha256": "cf6692b2e3e4bb7d591aca3600880867fc18672ab0e4ec22b3bac24ed5deb28d",
+  "caracteres": 2199677,
+  "tokens_estimados": 733225,
   "normas": 18,
   "indice": [
     {
@@ -28,8 +28,8 @@
       "nome": "Lei municipal 9.009/2010 — rege o CMASGyn; revogou a Lei 7.532/1995",
       "bloco": "municipal_goiania",
       "url": "https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2010/lo_20101230_000009009.html",
-      "sha256": "aeb9f3e26acc72470dc52e044629ffbc8c32c9c59633f7fd95ac7ea164ee9f9b",
-      "caracteres": 19253,
+      "sha256": "6f3d44e9683dba8b99bb7c26ce9ae4a3877b13857bed2a7b176e140efbbb0f98",
+      "caracteres": 19434,
       "critico": false
     },
     {
@@ -100,7 +100,7 @@
       "nome": "Atos do TCM-GO sobre repasses a entidades do terceiro setor — controle e prestação de contas",
       "bloco": "entidades_terceiro_setor",
       "url": "https://www.tcmgo.tc.br/site/legislacao/atos-normativos-do-tcm/in/",
-      "sha256": "7db462d4ef516f707c6e908eb2b02c21e734b46676383c6c9680013a3a7c4321",
+      "sha256": "d84e6f85a3d1876b642a33a5fd83c63b492d1dc99158f03dd0f2f0ea33b3fea5",
       "caracteres": 851,
       "critico": false
     },
@@ -118,7 +118,7 @@
       "nome": "Instruções Normativas do TCM-GO — prestação de contas",
       "bloco": "controle_externo",
       "url": "https://www.tcmgo.tc.br/site/legislacao/atos-normativos-do-tcm/in/",
-      "sha256": "eb0d124d89abe53b41991c541df2d1d2cfcc7926bab450efcd6d633cfb29f621",
+      "sha256": "c5330e96b0eaca4b096289b0151b739151497fcf24c9f5b943852d1c94c2e3df",
       "caracteres": 851,
       "critico": false
     },
@@ -127,7 +127,7 @@
       "nome": "Decisões Normativas do TCM-GO",
       "bloco": "controle_externo",
       "url": "https://www.tcmgo.tc.br/site/legislacao/atos-normativos-do-tcm/dn/",
-      "sha256": "eb54b4e7532b071c42e8b55aa7729113249aca534b14a3465acbeeed000d5e7f",
+      "sha256": "b0898a220f39de8e38d6988a75baea59c72adef7931d573d7968694b31fa3f70",
       "caracteres": 846,
       "critico": false
     },
@@ -136,7 +136,7 @@
       "nome": "Diário Oficial de Contas do TCM-GO",
       "bloco": "controle_externo",
       "url": "https://www.tcm.go.gov.br/doc/",
-      "sha256": "32eed09550b5b1c8315ec3401e9e6ad05766a2f2461bac7b14f06da3b2faf503",
+      "sha256": "cd8a2eb4cda53810cae23f3ff3e54123b640180b4cc4e67075693120b2fe4341",
       "caracteres": 956,
       "critico": false
     },
@@ -145,8 +145,8 @@
       "nome": "Tribunal de Contas do Estado de Goiás",
       "bloco": "controle_externo",
       "url": "https://www.tce.go.gov.br",
-      "sha256": "344f2c61cd72e158aa99dcda1e1221130e3e135b89636d4ab53f47fe26fe950c",
-      "caracteres": 2818,
+      "sha256": "c506c0ecd55ffccd0e3e2302f4f24078b572739595e647285b8ec1c6a4687adc",
+      "caracteres": 2615,
       "critico": false
     },
     {
@@ -154,8 +154,8 @@
       "nome": "Atos e normas do Conselho Nacional do Ministério Público",
       "bloco": "controle_externo",
       "url": "https://www.cnmp.mp.br/portal/atos-e-normas",
-      "sha256": "0f7de43018027444b10d721d9b51e33c337501a1e2d5b2eb2f789d062f158cac",
-      "caracteres": 9538,
+      "sha256": "4fc4b91fcff4671484726a152d14e8a0cc90f2dd8b774d68849c859e9be88573",
+      "caracteres": 9641,
       "critico": false
     },
     {
@@ -163,8 +163,8 @@
       "nome": "Ministério Público Federal",
       "bloco": "controle_externo",
       "url": "https://www.mpf.mp.br",
-      "sha256": "5ecca50118fa972506aadf0edde92315bbab12cff6719c3afde9f2170fe997c3",
-      "caracteres": 3278,
+      "sha256": "c4eff8f6552278094ed6be104be87cb476ea57529c96e080a11f12b83d8fe517",
+      "caracteres": 3262,
       "critico": false
     }
   ],
