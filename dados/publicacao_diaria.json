@@ -340,9 +340,12 @@
       "nota": "nenhuma edição indexada para o dia"
     },
     "2026-10-02": {
-      "situacao": "INEXISTENTE",
+      "situacao": "PUBLICOU",
       "util": true,
-      "nota": "nenhuma edição indexada para o dia"
+      "edicoes": 1,
+      "documentos": [
+        "do_20261002_000008876.pdf"
+      ]
     },
     "2026-10-03": {
       "situacao": "NAO_UTIL",
@@ -353,21 +356,62 @@
       "util": false
     },
     "2026-10-05": {
+      "situacao": "PUBLICOU",
+      "util": true,
+      "edicoes": 1,
+      "documentos": [
+        "do_20261005_000008877.pdf"
+      ]
+    },
+    "2026-10-06": {
+      "situacao": "PUBLICOU",
+      "util": true,
+      "edicoes": 1,
+      "documentos": [
+        "do_20261006_000008878.pdf"
+      ]
+    },
+    "2026-10-07": {
+      "situacao": "PUBLICOU",
+      "util": true,
+      "edicoes": 1,
+      "documentos": [
+        "do_20261007_000008879.pdf"
+      ]
+    },
+    "2026-10-08": {
       "situacao": "INEXISTENTE",
       "util": true,
       "nota": "nenhuma edição indexada para o dia"
+    },
+    "2026-10-09": {
+      "situacao": "INEXISTENTE",
+      "util": true,
+      "nota": "nenhuma edição indexada para o dia"
+    },
+    "2026-10-10": {
+      "situacao": "NAO_UTIL",
+      "util": false
+    },
+    "2026-10-11": {
+      "situacao": "NAO_UTIL",
+      "util": false
+    },
+    "2026-10-12": {
+      "situacao": "NAO_UTIL",
+      "util": false
     }
   },
-  "gerado_em": "2026-10-05T17:55:22.519357+00:00",
+  "gerado_em": "2026-10-12T18:37:07.363846+00:00",
   "resumo": {
-    "dias_uteis": 50,
+    "dias_uteis": 54,
     "contagem": {
       "SEM_ATO": 3,
-      "PUBLICOU": 2,
+      "PUBLICOU": 6,
       "INEXISTENTE": 45
     },
-    "ultima_publicacao": "2026-07-29",
-    "dias_desde_ultima": 68,
+    "ultima_publicacao": "2026-10-07",
+    "dias_desde_ultima": 5,
     "inexistentes": 45
   }
 }
