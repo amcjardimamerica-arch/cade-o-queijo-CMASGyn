@@ -1,35 +1,23 @@
 {
-  "gerado_em": "2026-10-01T07:27:20.080994+00:00",
-  "corpus_sha256": "cf6692b2e3e4bb7d591aca3600880867fc18672ab0e4ec22b3bac24ed5deb28d",
-  "corpus_gerado_em": "2026-10-01T07:26:32.261557+00:00",
+  "gerado_em": "2026-11-01T14:18:09.848266+00:00",
+  "corpus_sha256": "bdca402e9d75d733faec2f3398a5f1b850ba6d409b202812a201ec2158c5d744",
+  "corpus_gerado_em": "2026-11-01T14:18:07.311434+00:00",
   "normas_no_corpus": 18,
   "extraidos": {
     "percentual_igd_controle_social": {
       "regex": "(?:no\\s+m[íi]nimo|pelo\\s+menos)\\s+(\\d{1,3})\\s*%[^.]{0,240}(?:IGD|[ÍIí]ndice\\s+de\\s+Gest[ãa]o\\s+Descentralizada)[^.]{0,240}(?:controle\\s+social|conselho[s]?\\s+de\\s+assist)",
       "tipo": "percentual",
       "descricao": "Piso do IGD destinado ao financiamento do controle social",
-      "ocorrencias": [
-        {
-          "valor": 10,
-          "fonte": "Resolução CNAS/MDS 202/2025 — piso de 10% ao controle social",
-          "trecho": "no mínimo 10% do valor repassado mensalmente pelo Índice de Gestão Descentralizada do Sistema Único da Assistência Social - IGD/SUAS e do Índice de Gestão Descentralizada do Programa Bolsa Família - I"
-        }
-      ],
-      "valor_vigente": 10,
+      "ocorrencias": [],
+      "valor_vigente": null,
       "conflito": false
     },
     "periodicidade_prestacao_contas_meses": {
       "regex": "presta[çc][ãa]o\\s+de\\s+contas[^.]{0,140}?a\\s+cada\\s+(\\d{1,2})\\s+(?:\\(\\w+\\)\\s+)?meses",
       "tipo": "inteiro",
       "descricao": "Intervalo entre prestações de contas ao conselho",
-      "ocorrencias": [
-        {
-          "valor": 4,
-          "fonte": "Resolução CNAS/MDS 202/2025 — piso de 10% ao controle social",
-          "trecho": "prestação de contas a cada 4 meses"
-        }
-      ],
-      "valor_vigente": 4,
+      "ocorrencias": [],
+      "valor_vigente": null,
       "conflito": false
     },
     "prazo_lai_dias": {

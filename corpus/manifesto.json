@@ -1,8 +1,8 @@
 {
-  "gerado_em": "2026-10-01T07:26:32.261557+00:00",
-  "sha256": "cf6692b2e3e4bb7d591aca3600880867fc18672ab0e4ec22b3bac24ed5deb28d",
-  "caracteres": 2199677,
-  "tokens_estimados": 733225,
+  "gerado_em": "2026-11-01T14:18:07.311434+00:00",
+  "sha256": "bdca402e9d75d733faec2f3398a5f1b850ba6d409b202812a201ec2158c5d744",
+  "caracteres": 2181218,
+  "tokens_estimados": 727072,
   "normas": 18,
   "indice": [
     {
@@ -10,8 +10,8 @@
       "nome": "Resolução CNAS/MDS 202/2025 — piso de 10% ao controle social",
       "bloco": "cnas",
       "url": "https://www.gov.br/participamaisbrasil/blob/baixar/73611",
-      "sha256": "208505775dd4ae012177649a549db431cb3b771169737c36889b759dea26b2ad",
-      "caracteres": 19802,
+      "sha256": "219f50b410d767c9f8ea5b024cc71bc0f7e2463fe59a9de9a9bbe2f4673d3ed7",
+      "caracteres": 380,
       "critico": false
     },
     {
@@ -74,7 +74,7 @@
       "bloco": "municipal_goiania",
       "url": "https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2026/lo_20260109_000011590_ane_000000001.pdf",
       "sha256": "d1fc32c8deef66cd6e8085143b0de7071b08e9c2eaa50e2f4d54e5935ab9c7bc",
-      "caracteres": 922521,
+      "caracteres": 922511,
       "critico": false
     },
     {
@@ -83,7 +83,7 @@
       "bloco": "municipal_goiania",
       "url": "https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2026/lo_20260109_000011589_ane_000000001.pdf",
       "sha256": "d6304ffaad082ad1fa5945a4fbfdecb82ea225eb0d44a2ffbd20b9bc150359c6",
-      "caracteres": 161912,
+      "caracteres": 161956,
       "critico": false
     },
     {
@@ -92,7 +92,7 @@
       "bloco": "municipal_goiania",
       "url": "https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2025/lo_20250107_000011315_ane_000000001.pdf",
       "sha256": "7eb9c0fde5596d92987ba685753cf97ee37bae047fb5c23380f5ae62a5e960fa",
-      "caracteres": 874109,
+      "caracteres": 873747,
       "critico": false
     },
     {
@@ -100,7 +100,7 @@
       "nome": "Atos do TCM-GO sobre repasses a entidades do terceiro setor — controle e prestação de contas",
       "bloco": "entidades_terceiro_setor",
       "url": "https://www.tcmgo.tc.br/site/legislacao/atos-normativos-do-tcm/in/",
-      "sha256": "d84e6f85a3d1876b642a33a5fd83c63b492d1dc99158f03dd0f2f0ea33b3fea5",
+      "sha256": "d2bf68c991720437d71bffc8cacdf1501d3f3f95916de871609527475a5fcd13",
       "caracteres": 851,
       "critico": false
     },
@@ -118,7 +118,7 @@
       "nome": "Instruções Normativas do TCM-GO — prestação de contas",
       "bloco": "controle_externo",
       "url": "https://www.tcmgo.tc.br/site/legislacao/atos-normativos-do-tcm/in/",
-      "sha256": "c5330e96b0eaca4b096289b0151b739151497fcf24c9f5b943852d1c94c2e3df",
+      "sha256": "a32b3b1b8c07b2ad0bf182a920e9869a3db5686dab517a885cbeaf1a14bed8c1",
       "caracteres": 851,
       "critico": false
     },
@@ -127,7 +127,7 @@
       "nome": "Decisões Normativas do TCM-GO",
       "bloco": "controle_externo",
       "url": "https://www.tcmgo.tc.br/site/legislacao/atos-normativos-do-tcm/dn/",
-      "sha256": "b0898a220f39de8e38d6988a75baea59c72adef7931d573d7968694b31fa3f70",
+      "sha256": "4369b0d2692f786675349b930670319014a4b6f02ec534fbc99aedc8fac2d02e",
       "caracteres": 846,
       "critico": false
     },
@@ -136,7 +136,7 @@
       "nome": "Diário Oficial de Contas do TCM-GO",
       "bloco": "controle_externo",
       "url": "https://www.tcm.go.gov.br/doc/",
-      "sha256": "cd8a2eb4cda53810cae23f3ff3e54123b640180b4cc4e67075693120b2fe4341",
+      "sha256": "43aadd33bc815f4f489df434b5f00269138573fee93898417d7b518df6f13a0e",
       "caracteres": 956,
       "critico": false
     },
@@ -145,8 +145,8 @@
       "nome": "Tribunal de Contas do Estado de Goiás",
       "bloco": "controle_externo",
       "url": "https://www.tce.go.gov.br",
-      "sha256": "c506c0ecd55ffccd0e3e2302f4f24078b572739595e647285b8ec1c6a4687adc",
-      "caracteres": 2615,
+      "sha256": "7a620cfced738d3a0dba2b6c1923d22ce1a33fde8043199f781ca657c484fc6f",
+      "caracteres": 2804,
       "critico": false
     },
     {
@@ -154,8 +154,8 @@
       "nome": "Atos e normas do Conselho Nacional do Ministério Público",
       "bloco": "controle_externo",
       "url": "https://www.cnmp.mp.br/portal/atos-e-normas",
-      "sha256": "4fc4b91fcff4671484726a152d14e8a0cc90f2dd8b774d68849c859e9be88573",
-      "caracteres": 9641,
+      "sha256": "ee979ff5e7e276bc79dd92e3ad73fdb393c3a786ac39153ba91f6ed495c83bd1",
+      "caracteres": 9843,
       "critico": false
     },
     {
@@ -163,8 +163,8 @@
       "nome": "Ministério Público Federal",
       "bloco": "controle_externo",
       "url": "https://www.mpf.mp.br",
-      "sha256": "c4eff8f6552278094ed6be104be87cb476ea57529c96e080a11f12b83d8fe517",
-      "caracteres": 3262,
+      "sha256": "1740df142d70b6c7078281f6014c3ec95195db1e3d72b79a90add3b711705af9",
+      "caracteres": 4162,
       "critico": false
     }
   ],

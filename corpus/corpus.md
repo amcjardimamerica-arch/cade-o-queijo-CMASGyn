@@ -1,5 +1,5 @@
 # CORPUS NORMATIVO — VIGILÂNCIA DO CMASGyn
-# Consolidado em 2026-10-01
+# Consolidado em 2026-11-01
 # Este bloco é prefixo estável de prompt. Não editar manualmente.
 
 
@@ -26,333 +26,22 @@
 ## [r202_2025] Resolução CNAS/MDS 202/2025 — piso de 10% ao controle social
 Fonte: https://www.gov.br/participamaisbrasil/blob/baixar/73611
 
-Conselho Nacional de Assistência Social – CNAS 1/7 
+Acesso Negado!
+
  
- 
-Publicado em: 28/07/2025 | Edição: 140 | Seção: 1 | Página: 87 
- 
- 
-RESOLUÇÃO CNAS/MDS Nº 202, DE 25 DE JULHO DE 2025 
-Orienta os conselhos de assistência social, nas três 
-esferas, quanto à sua organização e funcionamento 
-como instância de participação e controle social do 
-Programa Bolsa Família e do Cadastro Único de 
-Programas Sociais do Governo Federal, bem como 
-quanto à aplicação obrigatória dos percentuais dos 
-índices de gestão descentralizada destinados ao 
-controle social e dá outras providências. 
- 
-O CONSELHO NACIONAL DE ASSISTÊNCIA SOCIAL - CNAS, em reunião ordinária 
-realizada nos dias 16 e 17 de julho de 2025, no uso das competências que lhe são conferidas pelo 
-art. 18 da Lei nº 8.742, de 7 de dezembro de 1993, e tendo em vista o disposto no art. 2º, II, VI e 
-XIV, e no art. 35, I, IV e V de seu Regimento Interno, aprovado pela Resolução CNAS nº 157, de 22 
-de maio de 2024, 
- 
-RESOLVE: 
- 
-Art. 1º Orientar os conselhos de assistência social quanto à sua organização e ao seu 
-funcionamento como instâncias de participação e de controle social do Programa Bolsa Família - 
-PBF e do Cadastro Único de Programas Sociais do Governo Federal - CadÚnico, bem como quanto à 
-aplicação obrigatória dos percentuais dos índices de gestão descentralizada destinados ao controle 
-social, conforme as normas vigentes. 
- 
-CAPÍTULO I 
-DOS PRINCÍPIOS E DIRETRIZES DA PARTICIPAÇÃO E CONTROLE SOCIAL NO PROGRAMA BOLSA 
-FAMÍLIA E NO CADÚNICO 
- 
-Art. 2º A participação e o controle social no âmbito do PBF e do CadÚnico referem -
-se ao conjunto de processos, procedimentos e mecanismos criados para possibilitar o diálogo 
-entre o Poder Executivo e as organizações da sociedade civil, movimentos sociais, usuárias(os) e 
-trabalhadoras(es) do Sistema Único de Assistência Social - SUAS, por meio do controle social do 
-SUAS. 
- 
-Art. 3º São princípios da participação e controle social no âmbito do PBF e do 
-CadÚnico: 
- 
-Conselho Nacional de Assistência Social – CNAS 2/7 
-I - o reconhecimento e a garantia da participação social e democrática como direito da(o) 
-cidadã(ão) usuária(o) do SUAS, bem como das suas organizações e entidades, conforme a 
-Resolução CNAS nº 99, de 4 de abril de 2023; 
-II - a complementariedade e integração entre processos, procedimentos, mecanismos e 
-instâncias da democracia representativa, participativa e direta; 
-III - a solidariedade, a cooperação, o respeito à diversidade e a garantia de acessibilidade, 
-visando à construção de valores de cidadania e do acesso igualitário e universal aos bens e 
-serviços; 
-IV - o direito à informação e à transparência na gestão; 
-V - a integração e a transversalidade dos procedimentos, processos, mecanismos e instâncias 
-de controle social e participação social; e 
-VI - a valorização da educação para a cidadania ativa e popular como um de seus elementos 
-constitutivos. 
- 
-Art. 4º O exercício da participação e controle social do PBF e do CadÚnico, realizado 
-pelos conselhos de assistência social estaduais, municipais e do Distrito Federal, observará as 
-seguintes diretrizes: 
-I - incentivar e apoiar a mobilização das(os) cidadãs(ãos) usuárias(os) do PBF, do CadÚnico e 
-da rede de serviços socioassistenciais, a fim de que possam participar do controle social e 
-das atividades dos conselhos de assistência social nos âmbitos estadual, municipal e do 
-Distrito Federal; 
-II - zelar pelo caráter público das reuniões dos conselhos de assistência social, salvo quando se 
-tratar de matéria sujeita a sigilo, na forma da legislação pertinente; 
-III - prezar pelo direito à proteção de dados pessoais, observado o disposto na Lei nº 13.709, de 
-14 de agosto de 2018; 
-IV - promover a disseminação de informações às(aos) cidadãs(ãos) usuárias(os) sobre seus 
-direitos e corresponsabilidades, objetivos, regras e mecanismos de funcionamento do PBF 
-e do CadÚnico; e 
-V - fortalecer e estimular a organização e espaços de participação das(os) cidadãs(ãos) 
-usuárias(os) do PBF e do CadÚnico por meio de fóruns e espaços coletivos, especialmente 
-conferências, entre outros. 
- 
-CAPÍTULO II 
-DAS ORIENTAÇÕES GERAIS AOS CONSELHOS DE ASSISTÊNCIA SOCIAL NA PARTICIPAÇÃO E 
-CONTROLE SOCIAL DO PBF E DO CADÚNICO 
- 
-Art. 5º Os conselhos de assistência social, na participação e no controle social do 
-PBF e do CadÚnico, poderão articular -se com os conselhos setoriais existentes, sobretudo com os 
-conselhos de saúde e educação, bem como com outras interfaces de participação, de maneira a 
-integrar e acompanhar a oferta de serviços públicos. 
- 
-Art. 6º O financiamento do controle social quanto às ações voltadas para a gestão 
-do PBF e do CadÚnico ocorrerá por meio de aplicação de no mínimo 10% do valor repassado 
-mensalmente pelo Índice de Gestão Descentralizada do Sistema Único da Assistência Social - 
-IGD/SUAS e do Índice de Gestão Descentralizada do Programa Bolsa Família - IGD/PBF, destinados 
-ao controle social, conforme as normas vigentes, sem prejuízo de outras fontes de financiamento. 
- 
-§ 1º Os conselhos de assistência social deverão: 
- 
-Conselho Nacional de Assistência Social – CNAS 3/7 
-I - fiscalizar a aplicação obrigatória dos percentuais mínimos dos IGDs, conforme as normas 
-vigentes, destinados ao desenvolvimento das atividades do controle social no âmbito do PBF e do 
-CadÚnico; 
-I - acompanhar, fiscalizar e aprovar a aplicação dos recursos do IGD/PBF e do IGD/SUAS, no 
-âmbito da gestão municipal, estadual e do Distrito Federal, conforme o disposto nas 
-normas que regulamentam os IGDs; e 
-II - planejar e emitir recomendações sobre recursos dos IGDs destinados aos conselhos de 
-assistência social para a sua estruturação, formação de conselheiras (os) e o fortalecimento 
-da participação social, especialmente de usuárias(os). 
- 
-§ 2º Os recursos do IGD/PBF e do IGD/SUAS destinados ao controle social deverão 
-ser explicitados no sistema de acompanhamento da execução financeira e de prestação de contas 
-a partir da apuração de contas de 2026. 
- 
-§ 3º As Secretarias responsáveis pela gestão do IGD/PBF e do IGD/SUAS 
-apresentarão prestação de contas à Comissão de Financiamento do CNAS a cada quatro meses, 
-detalhando o processo de monitoramento da execução dos recursos e as medidas que têm sido 
-tomadas em caso de acúmulo de recursos. 
- 
-§ 4º As gestões municipais, estaduais e do Distrito Federal deverão incluir no 
-Quadro de Detalhamento de Despesas - QDD uma dotação orçamentária específica de 
-fortalecimento do controle social (CMAS, CEAS e CAS/DF) a partir do ano de 2026. 
- 
-§ 5º As gestões municipais, estaduais e do Distrito Federal deverão apresentar 
-prestação de contas a cada 4 meses para os respectivos conselhos de Assistência Social, contendo 
-o detalhamento do processo de monitoramento da execução dos recursos e as medidas que têm 
-sido tomadas em caso de acúmulo de saldo. 
- 
-§ 6º Cabe ao Órgão Gestor Federal da Política de Assistência Social monitorar o 
-cumprimento referente à aplicação mínima dos 10% do repasse dos IGDs para fortalecimento do 
-controle social e, em caso de descumprimento, o ente federado terá seus repasses bloqueados até 
-que comprovem o cumprimento da norma. 
- 
-§ 7º Os entes que tenham saldos em conta devem fazer a reprogramação de acordo 
-com o disposto nesta resolução. 
- 
-Art. 7º Cabe aos conselhos de assistência social quanto às ações intersetoriais do 
-PBF e do CadÚnico: 
-I - participar do processo de planejamento das ações intersetoriais do PBF e do Cadastro 
-Único, no sentido de garantir a proteção social que conduza à superação das condições de 
-vulnerabilidade e desproteção social vivenciadas pelas famílias beneficiárias do PBF, 
-incluindo nos seus planos de ação as atividades de acompanhamento, fiscalização e 
-avaliação da gestão e da operacionalização do PBF e do CadÚnico, em consonância com a 
-Rede Federal de Fiscalização do Programa Bolsa Família e do CadÚnico; 
-II - comunicar ao Órgão Gestor Federal da Política de Assistência Social, à Rede Federal de 
-Fiscalização do Programa Bolsa Família e do CadÚnico, ao CNAS e às instituições integrantes 
-de controle e fiscalização dos entes federados a existência de eventual irregularidade no 
-município no que se refere à gestão e execução do PBF e do CadÚnico, abrangendo as 
-atividades realizadas pelo agente operador nacional do PBF e do CadÚnico; 
- 
-Conselho Nacional de Assistência Social – CNAS 4/7 
-III - participar, no caso dos conselhos de assistência social estaduais e do Distrito Federal, das 
-reuniões e atividades da Comissão Intersetorial do PBF no âmbito estadual e do Distrito 
-Federal, e no caso dos conselhos municipais, participar, quando houver, das comissões 
-municipais intersetoriais; e 
-IV - apreciar anualmente o plano de ação das respectivas comissões intersetoriais. 
- 
-Art. 8º No âmbito dos conselhos de assistência social, recomenda -se a constituição 
-de comissão temática, com o objetivo de assessorar e apoiar as atividades do Conselho em 
-questões sobre gestão integrada e intersetorial de serviços, benefícios, transferência de renda e 
-CadÚnico, assim como outras estratégias para este fim. 
- 
-§ 1º Em caso de não constituição regimental de comissão específica, recomenda -se 
-que o tema seja tratado pela Comissão de Política. 
- 
-§ 2º A Comissão de que trata o caput deve ser paritária entre representantes do 
-Governo e da sociedade civil, integrada por representantes das secretarias de educação e de 
-saúde, bem como de representação das(os) cidadãs(ãos) usuárias(os) do SUAS, de beneficiárias(os) 
-do PBF e das(os) trabalhadoras(es). 
- 
-Art. 9º Caberá aos conselhos de assistência social, quanto aos processos de 
-capacitação, no âmbito do controle social do PBF e do CadÚnico: 
-I - identificar as necessidades de capacitação de seus membros junto aos núcleos de educação 
-permanente do SUAS; 
-II - apoiar os Governos federal, estadual, do Distrito Federal e municipal nas capacitações de 
-seus membros, em consonância com os princípios e diretrizes da Política Nacional de 
-Educação Permanente do SUAS - PNEP/SUAS; e 
-III - promover processos formativos e de educação popular sobre o PBF e o CadÚnico às(aos) 
-usuárias(os). 
- 
-CAPÍTULO III 
-DAS ORIENTAÇÕES ESPECÍFICAS AOS CONSELHOS MUNICIPAIS DE ASSISTÊNCIA SOCIAL E AO 
-CONSELHO DE ASSISTÊNCIA SOCIAL DO DISTRITO FEDERAL NA PARTICIPAÇÃO E CONTROLE 
-SOCIAL DO PBF E DO CADÚNICO 
- 
-Art. 10. Caberá aos conselhos de assistência social municipais e do Distrito Federal 
-realizar atividades de acompanhamento, fiscalização e avaliação da execução e operacionalização 
-do PBF e do CadÚnico em seu âmbito, sem prejuízo de outras fixadas por sua norma de criação, 
-especialmente: 
-I - quanto à gestão e operação do CadÚnico: 
-a) acompanhar, avaliar e fiscalizar a gestão e operação do CadÚnico, subsidiados pelos órgãos 
-gestores com as informações necessárias; 
-b) acompanhar e fiscalizar o acesso das famílias e pessoas em situação de desproteção social 
-às unidades do CadÚnico, de forma a observar a cobertura adequada das unidades de 
-atendimento e o número de profissionais em relação ao tamanho da população que 
-demanda acesso à proteção social, especialmente do SUAS; e 
-c) acompanhar, avaliar e fiscalizar, junto à gestão local, as estratégias de busca ativa no SUAS, 
-de potenciais beneficiários do PBF e de outros programas usuárias(os) do CadÚnico, bem 
-como a qualidade nas informações das famílias, sobretudo das famílias em maior situação 
-de desproteção social e daquelas que integram cadastramento diferenciado, como os 
- 
-Conselho Nacional de Assistência Social – CNAS 5/7 
-Grupos Populacionais Tradicionais e específicos – GPTE, conforme o Decreto nº 11.016, de 
-29 de março de 2022, e a Portaria MDS nº 810, de 14 de setembro de 2022; 
- 
-II - acompanhar, avaliar e fiscalizar os procedimentos relacionados à gestão de benefícios do PBF, 
-executados nos âmbitos das competências dos municípios e do Distrito Federal, zelando para que 
-as normas que disciplinam o PBF sejam observadas em âmbito local; 
- 
-III - quanto à gestão e ao acompanhamento das condicionalidades do PBF: 
-a) estabelecer mecanismos de articulação permanente com os demais conselhos de políticas 
-públicas e de defesa e garantia de direitos, para acompanhar e fiscalizar a oferta, pela 
-gestão municipal e do Distrito Federal, dos serviços públicos de educação e saúde, 
-avaliando a garantia do acesso das famílias beneficiárias do PBF aos direitos básicos, para o 
-cumprimento das condicionalidades do Programa; 
-b) acompanhar, avaliar e fiscalizar periodicamente as estratégias utilizadas pela gestão para a 
-inserção nos serviços socioassistenciais das famílias beneficiárias do PBF, especialmente as 
-que não acessam as condicionalidades e estejam em situação de não cumprimento e com 
-benefícios bloqueados, suspensos ou cancelados; 
-c) solicitar os dados de condicionalidades para identificação de variáveis que impedem o 
-acesso das famílias aos outros direitos da assistência social e aos direitos básicos de saúde 
-e educação; 
-d) acompanhar e fiscalizar a gestão das condicionalidades, no sentido de contribuir para o 
-aprimoramento e a ampliação da rede de proteção social e o trabalho intersetorial, 
-estimulando o Poder Público a dar condições às famílias para o cumprimento das 
-condicionalidades; e 
-e) acompanhar os processos relacionados à gestão de condicionalidades, executados pelos 
-municípios e pelo Distrito Federal, zelando para que não haja sujeição das famílias a 
-condições vexatórias e violadoras de direitos, para que as condicionalidades se constituam 
-como estratégias para o rompimento do ciclo de reprodução da pobreza entre as gerações; 
- 
-IV - quanto às ações intersetoriais do PBF: 
-a) fiscalizar, junto aos órgãos gestores, a integração e a oferta de serviços que reforcem a 
-proteção social e conduzam à superação da condição de desproteção social enfrentada 
-pelas famílias beneficiárias do PBF, em especial daquelas em acompanhamento familiar, de 
-forma articulada com os conselhos setoriais existentes no município, com os outros entes 
-federativos e com a sociedade civil; e 
-b) fiscalizar, junto aos órgãos gestores, e solicitar dados sobre a existência de trabalho 
-intersetorial e ações integradas no território que atue para reduzir os indicadores de 
-desproteção, expressos especialmente nos dados de condicionalidades. 
- 
-CAPÍTULO IV 
-DAS ORIENTAÇÕES ESPECÍFICAS AOS CONSELHOS ESTADUAIS DE ASSISTÊNCIA SOCIAL NA 
-PARTICIPAÇÃO E CONTROLE SOCIAL DO PBF E DO CADÚNICO 
- 
-Art. 11. Caberá aos conselhos estaduais de assistência social, sem prejuízo de 
-outras atribuições fixadas por sua norma de criação: 
-I - realizar atividades de acompanhamento, fiscalização e avaliação da execução do PBF e do 
-CadÚnico no âmbito estadual; 
-II - apoiar e assessorar os CMAS na realização das suas atividades de participação e controle 
-social do PBF e do CadÚnico; 
- 
-Conselho Nacional de Assistência Social – CNAS 6/7 
-III - acompanhar, fiscalizar e verificar periodicamente se o órgão gestor estadual realiza ações 
-de busca ativa de pessoas sem registro civil de nascimento ou documentação básica para 
-fins de inserção no CadÚnico; 
-IV - estabelecer mecanismos de articulação permanente para definição de estratégias 
-conjuntas com os conselhos estaduais setoriais de educação e saúde; 
-V - analisar os resultados sobre o acompanhamento das condicionalidades no âmbito estadual, 
-para identificar e incidir no âmbito do controle social sobre as barreiras que impedem o 
-acesso das famílias aos direitos básicos, especialmente da assistência social, saúde e de 
-educação; 
-VI - cobrar no âmbito da gestão estadual o funcionamento e o fortalecimento da Comissão 
-Estadual Intersetorial, conforme disposto em normativos do PBF; e 
-VII - articular-se com os conselhos estaduais setoriais de educação e saúde, e participar, quando 
-couber, das atividades promovidas pela comissão estadual intersetorial do PBF, além de 
-solicitar informações da referida comissão. 
- 
-CAPÍTULO V 
-DAS ATRIBUIÇÕES DO CONSELHO NACIONAL DE ASSISTÊNCIA SOCIAL 
- 
-Art. 12. Caberá ao CNAS, na atuação do controle social do PBF e do CadÚnico: 
-I - acompanhar e fiscalizar a gestão do PBF e do CadÚnico em nível federal, especialmente por 
-meio da Comissão de Acompanhamento de Benefícios Socioassistenciais e Transferência de 
-Renda - CABSTR; 
-II - apreciar informações consolidadas do PBF referentes à gestão de benefícios e de 
-condicionalidades e à gestão descentralizada, apresentadas semestralmente ao CNAS pela 
-Secretaria Nacional de Renda de Cidadania - SENARC; 
-III - apreciar informações consolidadas da gestão do CadÚnico apresentadas pela Secretaria de 
-Avaliação, Gestão da Informação e CadÚnico - SAGICAD; 
-IV - articular-se com os conselhos nacionais setoriais de educação e saúde, e participar, quando 
-couber, das atividades promovidas pelo Comitê Interministerial do PBF, além de solicitar 
-informações ao referido Comitê; 
-V - articular-se com a Rede Federal de Fiscalização do Programa Bolsa Família e do CadÚnico, 
-no que couber, para o aprimoramento e o controle social no âmbito PBF e do CadÚnico; 
-VI - acompanhar a execução dos recursos do IGD/PBF e do IGD/SUAS transferidos aos fundos 
-de assistência social, a título de fortalecimento do controle social do PBF e do CadÚnico; 
-VII - orientar os conselhos de assistência social na realização de suas atividades de participação 
-e controle social do PBF e do CadÚnico, conforme previsto nesta Resolução; 
-VIII - propor e apoiar ações de manutenção e aprimoramento do PBF e do CadÚnico; e 
-IX - acompanhar a gestão integrada entre CadÚnico, PBF, benefícios e serviços 
-sociosassistenciais. 
- 
-CAPÍTULO VI 
-DAS DISPOSIÇÕES FINAIS 
- 
-Art. 13 . Os regimentos internos dos conselhos de assistência social podem 
-contemplar a participação e o controle social do PBF e do CadÚnico, no que couber, em 
-conformidade com o estabelecido nesta Resolução. 
- 
-Art. 14. Cabe ao Órgão Gestor Federal da Política de Assistência Social, em relação à 
-participação e controle social desempenhado pelos conselhos de assistência social: 
- 
-Conselho Nacional de Assistência Social – CNAS 7/7 
-I - disponibilizar informações atualizadas sobre a gestão de benefícios e as condicionalidades 
-do PBF, bem como da gestão descentralizada do PBF e do Cadastro Único, em especial 
-sobre o desempenho das gestões, transferências fundo a fundo do IGD/PBF e do Programa 
-de Fortalecimento Emergencial do Atendimento do Cadastro Único no Sistema Único da 
-Assistência Social - PROCAD-SUAS, bem como a sua utilização pelos fundos de assistência 
-social estaduais e municipais; 
-II - orientar e incluir nas ações de capacitação e de formação as atribuições dos conselhos de 
-assistência social, no que se refere à participação e controle social do PBF e do CadÚnico; 
-III - planejar, formular e realizar, em parceria com os Estados, Municípios e Distrito Federal, a 
-capacitação dos integrantes dos conselhos de assistência social sobre o PBF e o CadÚnico, 
-em consonância com a Política Nacional de Educação Permanente do SUAS; e 
-IV - desenvolver e implementar estratégias de vigilância socioassistencial e comunicação 
-voltadas às(aos) gestoras(es), trabalhadoras(es), conselheiras(os) e usuárias(os) do SUAS, 
-de modo a disseminar informações sobre o PBF e o CadÚnico. 
- 
-Art. 15 . Todas as disposições presentes no artigo 6º entrarão em vigor a partir de 
-janeiro de 2026. 
- 
-Art. 16. Os órgãos gestores da política pública de Assistência Social deverão tomar 
-as medidas necessárias para as adequações administrativas e normativas referentes à 
-implementação desta resolução. 
- 
-Art. 17. Fica revogada a Resolução do CNAS nº 15, de 5 de junho de 2014. 
- 
-Art. 18. Esta Resolução entra em vigor na data de sua publicação. 
- 
- 
-EDGILSON TAVARES DE ARAÚJO 
-Presidente do Conselho
+Esta requisição foi bloqueada. 
+
+Em caso de dúvida, por favor envie o código 9629256578199881288 no assunto da mensagem para o endereço eletrônico 
+bloqueio.de.aplicacoes@presidencia.gov.br
+.
+
+
+Solicitações não relacionadas a este alerta de bloqueio não serão tratadas por meio deste canal. 
+
+
+Diretoria de Tecnologia da Presidência da República.
+
+[Go Back]
 
 
 ==============================================================================
@@ -8492,8 +8181,7 @@ DOM Eletrônico
 Edição Nº 8697, de 09 de janeiro de 2026 - Edição Extra.
 Prefeitura de Goiânia/Secretaria Municipal da Casa Civil
 Assinado Digitalmente: www.goiania.go.gov.br
-VARIÁVEIS MACROECONÔMICAS Realizado Previsão 
-2024 2025 2026 
+VARIÁVEIS MACROECONÔMICAS Realizado Previsão 2024 2025 2026 
 PIB (% de crescimento) 3,40 2,16 1,80 
 PIB Serviços (% de crescimento) 3,67 1,90 1,70 
 IPCA acumulado (% a.a) 4,83 4,80 4,28 
@@ -9237,8 +8925,7 @@ DOM Eletrônico
 Edição Nº 8697, de 09 de janeiro de 2026 - Edição Extra.
 Prefeitura de Goiânia/Secretaria Municipal da Casa Civil
 Assinado Digitalmente: www.goiania.go.gov.br
-Nome Unidade Orcamentaria 3-CORRENTE 4-CAPITAL 9-RESERVA DE 
-CONTINGENCIA Total 
+Nome Unidade Orcamentaria 3-CORRENTE 4-CAPITAL 9-RESERVA DE CONTINGENCIA Total 
 DIRETORIA GERAL DA CAMARA MUNICIPAL 277.262.000,00 6.511.000,00 283.773.000,00 
 GABINETE DO SECRETARI0 MUNICIPAL DE GOVERNO 57.791.000,00 87.000,00 57.878.000,00 
 GABINETE DO PROCURADOR DO MUNICIPIO 93.902.000,00 592.000,00 94.494.000,00 
@@ -9406,46 +9093,34 @@ Prefeitura de Goiânia/Secretaria Municipal da Casa Civil
 Assinado Digitalmente: www.goiania.go.gov.br
 1.Evolução da Receita Orçamentária
 Art. 22, Inciso III, itens a,b,c da Lei 4320/64 R$ 1,00 
-Código Especificação 2022 
-Realizado 
-Realizado 
-Realizado 
-Orçamento 
-LOA 
+Código Especificação 2022 Realizado 2023 Realizado 2024 Realizado 2025 Orçamento 2026 LOA 
 1.0.0.0.00.0.0 RECEITAS CORRENTES 7.460.977.503,79 8.131.438.065,11 8.978.918.719,65 9.754.516.384,54 10.146.514.000,00 
-1.1.0.0.00.0.0 IMPOSTOS, TAXAS E CONTRIBUIÇÕES DE 
-MELHORIA 2.745.508.358,39 3.143.163.947,29 3.475.831.695,12 4.058.779.501,64 4.434.986.000,00 
+1.1.0.0.00.0.0 IMPOSTOS, TAXAS E CONTRIBUIÇÕES DE MELHORIA 2.745.508.358,39 3.143.163.947,29 3.475.831.695,12 4.058.779.501,64 4.434.986.000,00 
 1.1.1.0.00.0.0 Impostos 2.654.005.088,62 3.043.090.527,89 3.353.058.796,24 3.905.464.585,95 4.088.472.000,00 
 1.1.2.0.00.0.0 Taxas 91.503.269,77 100.073.419,40 122.772.898,88 153.314.915,69 345.514.000,00 
 1.1.3.0.00.0.0 Contribuição de Melhoria 0,00 0,00 0,00 0,00 1.000.000,00 
 1.2.0.0.00.0.0 CONTRIBUIÇÕES 474.377.947,05 545.767.171,78 578.937.917,99 604.319.779,36 618.666.000,00 
 1.2.1.0.00.0.0 Contribuições Sociais 371.261.062,96 451.052.639,66 480.484.013,47 495.434.421,34 513.856.000,00 
 1.2.2.0.00.0.0 Contribuições Econômicas 1.058,69 3.165,12 1.419,68 5.022,26 4.000,00 
-1.2.4.0.00.0.0 Contrib.para o Custeio do 
-Serv. De Iluminação Pública 103.115.825,40 94.711.367,00 98.452.484,84 108.880.335,76 104.806.000,00 
+1.2.4.0.00.0.0 Contrib.para o Custeio do Serv. De Iluminação Pública 103.115.825,40 94.711.367,00 98.452.484,84 108.880.335,76 104.806.000,00 
 1.3.0.0.00.0.0 RECEITA PATRIMONIAL 499.545.883,85 359.957.033,10 254.500.095,14 413.023.015,28 328.341.000,00 
-1.3.1.0.00.0.0 Exploração do Patrimônio 
-Imobiliário do Estado 41.829.494,30 42.980.529,97 15.115.122,01 41.497.577,01 17.338.000,00 
+1.3.1.0.00.0.0 Exploração do Patrimônio Imobiliário do Estado 41.829.494,30 42.980.529,97 15.115.122,01 41.497.577,01 17.338.000,00 
 1.3.2.0.00.0.0 Valores Mobiliários 243.870.669,46 254.190.870,34 159.700.168,68 305.885.580,91 242.473.000,00 
 1.3.3.0.00.0.0 
 Delegação de Serviços 
 Públicos Mediante Concessão, 
 Permissão, Autorização 55.437.828,60 60.112.308,80 76.262.202,02 60.232.001,70 62.927.000,00 
-1.3.4.0.00.0.0 Exploração de Recursos 
-Naturais 2.191.711,47 644.041,49 2.058.305,48 2.299.837,00 4.878.000,00 
+1.3.4.0.00.0.0 Exploração de Recursos Naturais 2.191.711,47 644.041,49 2.058.305,48 2.299.837,00 4.878.000,00 
 1.3.9.0.00.0.0 Demais Receitas Patrimoniais 156.216.180,02 2.029.282,50 1.364.296,95 3.108.018,66 725.000,00 
 1.6.0.0.00.0.0 RECEITA DE SERVIÇOS 11.149.643,71 3.916.341,81 3.660.335,31 8.126.077,95 4.855.000,00 
 1.7.0.0.00.0.0 TRANSFERÊNCIAS CORRENTES 3.540.152.324,94 3.826.555.176,55 4.400.399.841,78 4.384.997.876,33 4.433.858.000,00 
-1.7.1.0.00.0.0 Transferências da União e de 
-suas Entidades 1.489.460.873,67 1.600.334.595,13 1.861.587.308,29 1.981.682.393,81 1.913.523.000,00 
+1.7.1.0.00.0.0 Transferências da União e de suas Entidades 1.489.460.873,67 1.600.334.595,13 1.861.587.308,29 1.981.682.393,81 1.913.523.000,00 
 1.7.2.0.00.0.0 
 Transferências dos Estados e 
 do Distrito Federal e de suas 
 Entidades 1.353.562.765,03 1.488.154.142,02 1.669.933.550,87 1.578.697.491,65 1.610.815.000,00 
-1.7.5.0.00.0.0 Transferências de Outras 
-Instituições Públicas 694.668.641,04 735.566.618,21 865.060.193,49 822.066.471,07 904.720.000,00 
-1.7.9.0.00.0.0 Transferências de Pessoas 
-Físicas 2.460.045,20 2.499.821,19 3.818.789,13 2.551.519,80 4.800.000,00 
+1.7.5.0.00.0.0 Transferências de Outras Instituições Públicas 694.668.641,04 735.566.618,21 865.060.193,49 822.066.471,07 904.720.000,00 
+1.7.9.0.00.0.0 Transferências de Pessoas Físicas 2.460.045,20 2.499.821,19 3.818.789,13 2.551.519,80 4.800.000,00 
 1.9.0.0.00.0.0 OUTRAS RECEITAS CORRENTES 190.243.345,85 252.078.394,58 265.588.834,31 285.270.133,98 325.808.000,00 
 1.9.1.0.00.0.0 
 Multas 
@@ -9493,12 +9168,7 @@ Assinado Digitalmente: www.goiania.go.gov.br
 2.Evolução da Despesa Orçamentária 
  
 Art. 22, Inciso III, itens d, e ,f da Lei 4320/64 R$ 1,00 
-Código Especificação 2022 
-realizado 
-realizado 
-realizado 
-orçado 
-LOA 
+Código Especificação 2022 realizado 2023 realizado 2024 realizado 2025 orçado 2026 LOA 
 3.0.00.00.00 DESPESAS CORRENTES 6.687.961.642,70 7.773.233.468,89 8.957.063.162,95 9.276.935.000,00 9.461.399.000,00 
 3.1.00.00.00 Pessoal e Encargos Sociais 3.666.941.727,74 4.542.604.292,58 4.940.573.241,27 5.205.743.000,00 5.417.124.000,00 
 3.2.00.00.00 Juros e Encargos da Dívida 118.610.755,05 125.865.755,56 108.560.357,27 114.627.000,00 187.991.000,00 
@@ -9535,9 +9205,7 @@ Edição Nº 8697, de 09 de janeiro de 2026 - Edição Extra.
 Prefeitura de Goiânia/Secretaria Municipal da Casa Civil
 Assinado Digitalmente: www.goiania.go.gov.br
 R$ 1,00 
-CÓDIGO ESPECIFICAÇÃO FONTE 
-/STN DESDOBRAMENTO FONTE CATEGORIA 
-ECONÔMICA 
+CÓDIGO ESPECIFICAÇÃO FONTE /STN DESDOBRAMENTO FONTE CATEGORIA ECONÔMICA 
 1.0.0.0.00.0.0 RECEITAS CORRENTES 10.146.514.000,00 
 1.1.0.0.00.0.0 IMPOSTOS, TAXAS E CONTRIBUIÇÕES DE MELHORIA 4.434.986.000,00 
 1.1.1.0.00.0.0 IMPOSTOS 4.088.472.000,00 
@@ -11829,24 +11497,7 @@ Assinado Digitalmente: www.goiania.go.gov.br
 Lei Orgânica do Município de Goiânia, § 6º art.136 
 DEMONSTRATIVO DO EFEITO SOBRE AS RECEITAS E DESPESAS DECORRENTES DE ISENÇÕES, ANISTIAS, REMISSÕES, SUBSÍDIOS E BENEFÍCIOS DE NATUREZA FINANCEIRA, TRIBUTÁRIA E CREDITÍCIA 
 PREVISTO 2026 EQUIPARAÇÃO % PREVISÃO ORÇAMENTÁRIA Exercício 2026. 
-TRIBUTO MODALIDADE SETORES/PROGRAMAS/BENEFICIÁRI
-O 
-VALOR DA 
-RENÚNCIA 
- RECEITA 
-CORRENTE 
-IMPOSTOS,TAXAS 
-E CONTRIBUIÇÃO 
-DE MELHORIA 
-(DO) 
-TRIBUTO 
-DESPESAS 
-CORRENTES RECEITAS CORRENTES 
-IMPOSTOS,TAXAS E 
-CONTRIBUIÇÃO DE 
-MELHORIA 
-ISS IPTU ITBI Taxas DESPESAS 
-CORRENTES 
+TRIBUTO MODALIDADE SETORES/PROGRAMAS/BENEFICIÁRIO VALOR DA RENÚNCIA RECEITA CORRENTE IMPOSTOS,TAXAS E CONTRIBUIÇÃO DE MELHORIA (DO) TRIBUTO DESPESAS CORRENTES RECEITAS CORRENTES IMPOSTOS,TAXAS E CONTRIBUIÇÃO DE MELHORIA ISS IPTU ITBI Taxas DESPESAS CORRENTES 
 IPTU Isenção 
 Para as construções 
 requalificadas de habitações 
@@ -11995,8 +11646,7 @@ DOM Eletrônico
 Edição Nº 8697, de 09 de janeiro de 2026 - Edição Extra.
 Prefeitura de Goiânia/Secretaria Municipal da Casa Civil
 Assinado Digitalmente: www.goiania.go.gov.br
-IPTU Isenção IPTU SOCIAL Residências até 
-150K 22.537.289,90 0,22 0,51 1,61 0,24 10.146.514.000,00 4.434.986.000,00 0,00 1.401.339.000,00 0,00 0,00 9.461.399.000,00 
+IPTU Isenção IPTU SOCIAL Residências até 150K 22.537.289,90 0,22 0,51 1,61 0,24 10.146.514.000,00 4.434.986.000,00 0,00 1.401.339.000,00 0,00 0,00 9.461.399.000,00 
 IPTU Isenção 
 Para os serviços referentes à 
 armazenagem e logística 
@@ -12140,11 +11790,9 @@ Serviços de Qualquer Natureza
 Autônomos elencados no item 
 16.2 do Anexo X, Lei 
 Complementar 344/2021) 
-25.214.262,77 0,25 0,57 1,49 0,27 10.146.514.000,00 4.434.986.000,00 1.690.906.0
-00,00 0,00 9.461.399.000,00 
+25.214.262,77 0,25 0,57 1,49 0,27 10.146.514.000,00 4.434.986.000,00 1.690.906.000,00 0,00 9.461.399.000,00 
 Total do ISS 
-(III) 25.214.262,77 0,25 0,57 1,49 0,27 10.146.514.000,00 4.434.986.000,00 1.690.906.0
-00,00 0,00 9.461.399.000,00 
+(III) 25.214.262,77 0,25 0,57 1,49 0,27 10.146.514.000,00 4.434.986.000,00 1.690.906.000,00 0,00 9.461.399.000,00 
 TAXA Isenção 
 Remissão total da Taxa de 
 Licença para Localização e 
@@ -22764,13 +22412,7 @@ DOM Eletrônico
 Edição Nº 8697, de 09 de janeiro de 2026 - Edição Extra.
 Prefeitura de Goiânia/Secretaria Municipal da Casa Civil
 Assinado Digitalmente: www.goiania.go.gov.br
-1-Codigo Unidade Orcamentaria COMERCIO 
-E SERVICOS TRANSPORTE DESPORTO E 
-LAZER 
-ENCARGOS 
-ESPECIAIS 
-RESERVA DE 
-CONTINGENCIA 
+1-Codigo Unidade Orcamentaria COMERCIO E SERVICOS TRANSPORTE DESPORTO E LAZER ENCARGOS ESPECIAIS RESERVA DE CONTINGENCIA 
 101-CMG 3.000 
 1101-SEGOV 
 1201-PGM 
@@ -32360,8 +32002,7 @@ Código Descrição 2026 2027 2028 2029 Total
 ...... ....... ....... ....... ....... ....... ....... 
 16 HABITACAO 42.123.021.25 43.260.300,14 44.426.234,24 45.656.865,40 175.466.421,03 
 ...... ....... ....... ....... ....... ....... ....... 
-28 ENCARGOS 
-ESPECIAIS 457.946.590,90 462.929.494,38 493.933.661,57 441.005.732,58 1.855.815.479,43 
+28 ENCARGOS ESPECIAIS 457.946.590,90 462.929.494,38 493.933.661,57 441.005.732,58 1.855.815.479,43 
 ...... ....... ....... ....... ....... ....... ....... 
 TOTAL GERAL 10.246.040.320,77 10.423.702.110,31 10.947.470.425,22 11.522.656.570,66 43.139.869.426,96 
 “(NR) 
@@ -32393,8 +32034,7 @@ ANO
 Programa 106 - PROGRAMA MORAR BEM 
 ................................................ 
 INFORMAÇÕES FINANCEIRAS DO PROGRAMA 
-Recurso 2026 2027 2028 2029 TOTAL POR 
-RECURSO 
+Recurso 2026 2027 2028 2029 TOTAL POR RECURSO 
 Tesouro 24.000.000,00 24.000.000,00 24.000.000,00 24.000.000,00 96.000.000,00 
 Próprio 9.675.021,00 9.335.800,00 9.511.234,00 9.216.865,40 37.738.920,40 
 Transferência da 
@@ -33194,10 +32834,7 @@ entre outros).
 No total da receita projetada estão incluídos os valores arrecadados com a Dívida 
 Ativa e respectivas Multas e Juros. 
 Tabela 4 - Memória de Cálculo da Receita 
-RECEITAS 2026 
-Valor Corrente 
-Valor Corrente 
-Valor Corrente 
+RECEITAS 2026 Valor Corrente 2027 Valor Corrente 2028 Valor Corrente 
 RECEITAS CORRENTES 9.796.200.233,84 10.310.329.570,57 10.885.170.040,97 
 Impostos, Taxas e Contribuições de Melhoria 3.908.292.533,58 4.160.730.960,16 4.413.439.100,98 
 IPTU 1.141.618.895,64 1.213.529.456,75 1.281.599.506,21 
@@ -33561,10 +33198,7 @@ Para a fixação da Despesa foram considerados a evolução histórica e os índ
 oficiais que possam impactar a sua execução, considerando-se: os índices de variação de 
 preços (IPCA); as taxas de juros e os compromissos assumidos em contratos. 
 Tabela 6 - Memória de Cálculo da Despesa 
-DESPESAS 2026 
-Valor Corrente 
-Valor Corrente 
-Valor Corrente 
+DESPESAS 2026 Valor Corrente 2027 Valor Corrente 2028 Valor Corrente 
 DESPESAS CORRENTES 9.368.933.428,41 9.881.938.988,21 10.439.368.285,52 
 Pessoal e Encargos Sociais 5.138.006.365,10 5.412.410.940,65 5.687.713.100,21 
 Juros e Encargos da Dívida 211.350.141,92 207.356.596,53 231.473.076,60 
@@ -34025,8 +33659,7 @@ análise dos fatores determinantes para o alcance ou não dos valores estabeleci
 metas. 
 Conforme se observa do quadro anterior, os resultados primário e nominal 
 apurados ao final do exercício de 2024, desconsiderando-se os valores do Regime 
-Parâmetros Valor Previsto 
-Valor Realizado 
+Parâmetros Valor Previsto 2024 Valor Realizado 2024 
 Receita Corrente Líquida - RCL 7.062.035.341,14 8.074.342.039,46 
 DOM Eletrônico
 Edição Nº 8697, de 09 de janeiro de 2026.
@@ -34219,8 +33852,7 @@ Fonte 3 : Lei nº 10.689, de 29/10/2021 - LDO 2022
 Notas: 
 (¹) Inclui valores de Restos a Pagar Processados e não Processados Pagos (projetados) 
 Metodologia e Memória de Cálculo dos Valores Constantes 
-Indicador IBGE Expectativas 
-2023 2024 2025 2026 2027 2028 
+Indicador IBGE Expectativas 2023 2024 2025 2026 2027 2028 
 Inflação Média Anual-IPCA (%) 4,62 4,83 5,51 4,50 4,00 3,80 
 Índice Ano 1,0462 1,0483 1,0551 1,0450 1,0400 1,0380 
 Índice Acumulado 1,1060 1,0551 0,0000 1,0450 1,0868 1,1280 
@@ -34302,12 +33934,7 @@ Recursos Obtidos com a Alienação de Ativos
 A
 MF - Demonstrativo 5 (LRF, art.4º, §2º, inciso III) R$ 1,00 
 R
-ECEITAS REALIZADAS 2024 
-(a
-) 
-(b) 
-(c
-) 
+ECEITAS REALIZADAS 2024 (a ) 2023 (b) 2022 (c ) 
 R
 ECEITAS DE C APITAL - ALIENAÇÃO DE ATIVOS 
 (I) 
@@ -34324,12 +33951,7 @@ lienação de B ens Imóveis 8
 01.145 5
 66.169 
 D
-ESPESAS EXECUTADAS 2024 
-(a
-) 
-(b) 
-(c
-) 
+ESPESAS EXECUTADAS 2024 (a ) 2023 (b) 2022 (c ) 
 A
 PLICAÇÃO DOS R ECURSOS DA ALIENAÇÃO DE 
 ATIVOS (II) 
@@ -34357,13 +33979,7 @@ R
 egime Próprio de P revidência dos Servidores 0
  
 S
-ALDO FINANCEIRO 2024 
-(g
-) = ((Ia– (IId) + IIIh)) 
-(h) =
- ((Ib – IIe) + IIIi) 
-(i
-) = (Ic – IIf) 
+ALDO FINANCEIRO 2024 (g ) = ((Ia– (IId) + IIIh)) 2023 (h) = ((Ib – IIe) + IIIi) 2022 (i ) = (Ic – IIf) 
 V
 ALOR (III) 2
 .449.447 1
@@ -34562,8 +34178,7 @@ futura da grade de parâmetros macroeconômicos do
 ME/avaliação extemporânea, cujo valor é 3,10%a.a.) 
 Indexador do s istema previdencial INPC 
 Taxa de rotatividade 1,00% a.a. 
-Reposição do co ntingente de servidores ativos Reposição, no p lano previdenciário, de todo servidor que se 
-aposenta, falece ou se desvincula do ente público. 
+Reposição do co ntingente de servidores ativos Reposição, no p lano previdenciário, de todo servidor que se aposenta, falece ou se desvincula do ente público. 
 Idade de início da fase de contribuição para regime 
 previdenciário 25 anos 
 Custeio administrativo 2,00% sobre a folha de s alários do ano anterior. 
@@ -35176,8 +34791,7 @@ revidenciário
 Saldo Financeiro 
 do 
 Exercício 
-(a) (b) (c) = (a-b) (d) = (d Exercício Anterior) 
-+ (c) 
+(a) (b) (c) = (a-b) (d) = (d Exercício Anterior) + (c) 
 2023 0,01 0,01 
 Continua (1/3) 
 DOM Eletrônico
@@ -35658,11 +35272,7 @@ Demonstrativo 8 – Demo nstrativo da Margem de Expansão das
 Despesas Obrigatórias de Caráter Continuado - DOCC 
 AMF - Demonstrativo 8 (LRF, art. 4°, § 2°, inciso V) R$ 1,00 
 EV
-ENTOS Valor Previsto 
-pa
-ra 2026 
-Valor Previsto para 
-Valor Previsto para 
+ENTOS Valor Previsto pa ra 2026 Valor Previsto para 2027 Valor Previsto para 2028 
 Aumento Permanente da R eceita 392.317.362,77 489.549.080,37 524.836.963,13 
 (-) Transferências Constitucionais 0,00 0,00 0,00 
 (-) Transferências ao F UNDEB 153.519.916,81 59.185.114,89 60.464.948,93 
@@ -35840,10 +35450,8 @@ leste/oeste
 Reurbanização da bacia do córrego Botafogo 
 Recuperação do fundo do vale do córrego Cascavel 
 Construção de ciclovias 
-Parques e jardins Construção e estruturação de praças 
-esportivas 
-Edificações publicas Construção e reformas e manut. em próprios 
-públicos 
+Parques e jardins Construção e estruturação de praças esportivas 
+Edificações publicas Construção e reformas e manut. em próprios públicos 
 Ordenamento urbano Requalificação urbana 
 Administração e limpeza 
 i
@@ -35851,8 +35459,7 @@ nteligente
 Limpeza urbana e valorização dos espaços 
 p
 úblicos 
-Construindo a Goiânia do futuro Construindo a Goiânia do futuro - 
-construção de pontes 
+Construindo a Goiânia do futuro Construindo a Goiânia do futuro - construção de pontes 
 Macambira Anicuns Implantação do parque linear 
 Políticas Públicas para 
 Mu
@@ -36370,8 +35977,7 @@ a.CAIXA ECONOMICA FEDERAL (Pró‐Transporte 0353.401‐01) 9.346. 543,25
 b.CAIXA ECONOMICA FEDERAL (Operação nº 0400070‐17) 1.600.62 0,01
 3 Operações de Antecipação d a Receita Orçamentária 0,00
 4 Demais (Inclusive Operações de Crédito Externas) 0,00
-5 Operações de Crédito em tramitação na STN ou no Senado Federal e Operações 
-de Crédito autorizadas e ainda não contratadas (a+b) 746.000.00 0,00
+5 Operações de Crédito em tramitação na STN ou no Senado Federal e Operações de Crédito autorizadas e ainda não contratadas (a+b) 746.000.00 0,00
  a‐ PMAT 36.000.0 00,00
  b‐ BB 710.000. 000,00
 TOTAL (1+5) 756.947.163,26
@@ -36588,8 +36194,7 @@ Edição Nº 8451, de 07 de janeiro de 2025 - Suplemento
 Prefeitura de Goiânia/Chefia da Casa Civil
 Assinado Digitalmente: www.goiania.go.gov.br
 ANEXO I ‐ Demonstrativo da Despesa por Órgãos e Categorias Econômicas 
-Nome Unidade Orcamentária 3‐CORRENTE 4‐CAPITAL 9‐RESERVA DE 
-CONTINGENCIA Total 
+Nome Unidade Orcamentária 3‐CORRENTE 4‐CAPITAL 9‐RESERVA DE CONTINGENCIA Total 
 CAMARA MUNICIPAL DE GOIÂNIA 261.770.000 5.011.000 266.781.000 
 SECRETARIA MUNICIPAL DE GOVERNO 45.840.000 82.000 45.922.000 
 PROCURADORIA DO MUNICIPIO 95.960.000 460.000 96.420.000 
@@ -36734,43 +36339,31 @@ Prefeitura de Goiânia/Chefia da Casa Civil
 Assinado Digitalmente: www.goiania.go.gov.br
 DEMONSTRATIVO DA EVOLUÇÃO DA RECEITA ORÇAMENTÁRIA 
 Art. 22, Inciso III, itens a, b, c da Lei 4320/64 R$ 1,00 
-Código Especificação 2021 
-Realizado 
-Realizado 
-Realizado 
-Orçamento 
-LOA 
+Código Especificação 2021 Realizado 2022 Realizado 2023 Realizado 2024 Orçamento 2025 LOA 
 1.0.0.0.00.0.0 RECEITAS CORRENTES 6.265.524.616,35 7.460.977.503,79 8.131.438.065,11 8.621.310.652,83 9.754.516.384,54 
-1.1.0.0.00.0.0 IMPOSTOS, TAXAS E CONTRIBUIÇÕES DE 
-MELHORIA 2.306.552.383,92 2.745.508.358,39 3.143.163.947,29 3.303.145.142,22 4.058.779.501,64 
+1.1.0.0.00.0.0 IMPOSTOS, TAXAS E CONTRIBUIÇÕES DE MELHORIA 2.306.552.383,92 2.745.508.358,39 3.143.163.947,29 3.303.145.142,22 4.058.779.501,64 
 1.1.1.0.00.0.0 Impostos 2.225.047.856,00 2.654.005.088,62 3.043.090.527, 89 3.184.896.802,33 3.905.464.585,95 
 1.1.2.0.00.0.0 Taxas 81.504.527,92 91.503.269,77 100.073.419,40 118.248. 339,90 153.314.915,69 
 1.1.3.0.00.0.0 Contribuição de Melhoria 0,00 0,00 0,00 0,00 0,00 
 1.2.0.0.00.0.0 CONTRIBUIÇÕES 424.954.820,08 474.377.947,05 545.767.171,78 544 .575.337,03 604.319.779,36 
 1.2.1.0.00.0.0 Contribuições Sociais 334.066.015,49 371.261.062,96 451.0 52.639,66 439.819.027,85 495.434.421,34 
 1.2.2.0.00.0.0 Contribuições Econômicas 37.941,53 1.058,69 3.165,12 10.000,00 5.022,26 
-1.2.4.0.00.0.0 Contrib.para o Custeio do Serv. De 
-Iluminação Pública 90.850.863,06 103.115.825,40 94.711.367,00 1 04.746.309,18 108.880.335,76 
+1.2.4.0.00.0.0 Contrib.para o Custeio do Serv. De Iluminação Pública 90.850.863,06 103.115.825,40 94.711.367,00 1 04.746.309,18 108.880.335,76 
 1.3.0.0.00.0.0 RECEITA PATRIMONIAL 122.958.112,45 499.545.883,85 359.957.033 ,10 416.307.985,96 413.023.015,28 
-1.3.1.0.00.0.0 Exploração do Patrimônio Imobiliário do 
-Estado 68.119.942,74 41.829.494,30 42.980.529,97 41.935.738,64 41.497.577,01 
+1.3.1.0.00.0.0 Exploração do Patrimônio Imobiliário do Estado 68.119.942,74 41.829.494,30 42.980.529,97 41.935.738,64 41.497.577,01 
 1.3.2.0.00.0.0 Valores Mobiliários 53.584.766,71 243.87 0.669,46 254.190. 870,34 322.189.777,78 305.885.580,91 
-1.3.3.0.00.0.0 Delegação de Serviços Públicos Mediante 
-Concessão, Permissão, Autorização 0,00 55.437.828,60 60.112.308 ,80 47.644.426,72 60.232.001,70 
+1.3.3.0.00.0.0 Delegação de Serviços Públicos Mediante Concessão, Permissão, Autorização 0,00 55.437.828,60 60.112.308 ,80 47.644.426,72 60.232.001,70 
 1.3.4.0.00.0.0 Exploração de Recursos Naturais 13.074,00 2.191.711,47 644.041,49 2.306.780,18 2.299.837,00 
 1.3.9.0.00.0.0 Demais Receitas Patrimoniais 1.240.329,00 156.216.180,02 2.029.282,50 2.231.262,64 3.108.018,66 
 1.6.0.0.00.0.0 RECEITA DE SERVIÇOS 3.188.750,85 11.149.643,71 3.916.341,81 13 .194.136,56 8.126.077,95 
 1.7.0.0.00.0.0 TRANSFERÊNCIAS CORRENTES 3.279.680.799,01 3.540.152.324,94 3.8 26.555.176,55 4.135.621.361,98 4.384.997.876,33 
 1.7.1.0.00.0.0 Transferências da União e de suas Entidades 1.431.249.280 ,58 1.489.460.873,67 1.600.334.595,13 1.917.639.610,97 1.981.68 2.393,81 
-1.7.2.0.00.0.0 Transferências dos Estados e do Distrito 
-Federal e de suas Entidades 1.244.850.701,31 1.353.562.765,03 1 .488.154.142,02 1.464.207.782,42 1.578.697.491,65 
-1.7.3.0.00.0.0 Transferências dos Municípios e suas 
-Entidades 0,00 0,00 0,00 0,00 0,00 
+1.7.2.0.00.0.0 Transferências dos Estados e do Distrito Federal e de suas Entidades 1.244.850.701,31 1.353.562.765,03 1 .488.154.142,02 1.464.207.782,42 1.578.697.491,65 
+1.7.3.0.00.0.0 Transferências dos Municípios e suas Entidades 0,00 0,00 0,00 0,00 0,00 
 1.7.5.0.00.0.0 Transferências de Outras Instituições Públicas 601.229.75 8,17 694.668.641,04 735.566.618,21 751.507.537,49 822.066.471,07 
 1.7.9.0.00.0.0 Transferências de Pessoas Físicas 2.351.058,95 2.460.045,20 2.499.821,19 2.266.431,10 2.551.519,80 
 1.9.0.0.00.0.0 OUTRAS RECEITAS CORRENTES 128.189.750,04 190.243.345,85 252.078.394,58 208.466.689,08 285.270.133,98 
-1.9.1.0.00.0.0 Multas Administrativas,Contratuais e 
-Judiciais 95.014.214,00 134.858.441,97 188.575.684,96 140.286.2 26,75 185.883.961,32 
+1.9.1.0.00.0.0 Multas Administrativas,Contratuais e Judiciais 95.014.214,00 134.858.441,97 188.575.684,96 140.286.2 26,75 185.883.961,32 
 1.9.2.0.00.0.0 Indenizações, Restituições e Ressarcimentos 19.362.745,69 43.455.015,03 44.012.173,79 51.751.353,12 62.418.864,80 
 1.9.4.0.00.0.0 
  Multas e Juros de Mora das Receitas de 
@@ -36831,37 +36424,23 @@ Prefeitura de Goiânia/Chefia da Casa Civil
 Assinado Digitalmente: www.goiania.go.gov.br
 LEI ORÇAMENTÁRIA ANUAL 2025 
 Anexo II, Lei 4.320/1964, Portaria/SOF nº 8, de 04/02/1985 ‐ Receita Segundo as Categorias Econômicas R$ 1,00
-CÓDIGO ESPECIFICAÇÃO DESDOBRAMENTO FONTE CATEGORIA 
-ECONÔMICA 
+CÓDIGO ESPECIFICAÇÃO DESDOBRAMENTO FONTE CATEGORIA ECONÔMICA 
 1.0.0.0.00.0.0 RECEITAS CORRENTES 9.754.516.000,00
-1.1.0.0.00.0.0 IMPOSTOS, TAXAS E CONTRIBUIÇÕES DE 
-MELHORIA 4.058.780.000,00 
+1.1.0.0.00.0.0 IMPOSTOS, TAXAS E CONTRIBUIÇÕES DE MELHORIA 4.058.780.000,00 
 1.1.1.0.00.0.0 IMPOSTOS 3.905.465.000,00
 1.1.1.2.00.0.0 Impostos sobre o Patrimônio 1.813.636.000,00
-1.1.1.2.50.0.0 Imposto sobre a Propriedade Predial e Territorial 
-Urbana 1.425.364.000,00
-1.1.1.2.50.0.1 Imposto sobre a Propriedade Predial e Territorial 
-Urbana‐Principal 1500 399.058.000,00
-1.1.1.2.50.0.1 Imposto sobre a Propriedade Predial e Territorial 
-Urbana‐Principal 1500 362.110.000,00
-1.1.1.2.50.0.1 Imposto sobre a Propriedade Predial e Territorial 
-Urbana‐Principal 1500 497.262.000,00
-1.1.1.2.50.0.3 Imposto sobre a Propriedade Predial e Territorial 
-Urbana‐Dívida Ativa 1500 84.511.000,00
-1.1.1.2.50.0.3 Imposto sobre a Propriedade Predial e Territorial 
-Urbana‐Dívida Ativa 1500 34.816.000,00
-1.1.1.2.50.0.3 Imposto sobre a Propriedade Predial e Territorial 
-Urbana‐Dívida Ativa 1500 20.889.000,00
-1.1.1.2.50.0.5 Imposto sobre a Propriedade Predial e Territorial 
-Urbana‐Multas 1500 18.533.000,00
-1.1.1.2.50.0.6 Imposto sobre a Propriedade Predial e Territorial 
-Urbana‐Juros de Mora 1500 1.900.000,00
-1.1.1.2.50.0.7 Imposto sobre a Propriedade Predial e Territorial 
-Urbana‐Multas da Dívida Ativa 1500 3.183.000,00
-1.1.1.2.50.0.8 Imposto sobre a Propriedade Predial e Territorial 
-Urbana‐Juros de Mora da Dívida Ativa 1500 3.102.000,00
-1.1.1.2.53.0.0 Impostos sobre Transmissão "Inter Vivos" de Bens 
-Imóveis e de Direitos Reais sobre Imóveis 388.272.000,00
+1.1.1.2.50.0.0 Imposto sobre a Propriedade Predial e Territorial Urbana 1.425.364.000,00
+1.1.1.2.50.0.1 Imposto sobre a Propriedade Predial e Territorial Urbana‐Principal 1500 399.058.000,00
+1.1.1.2.50.0.1 Imposto sobre a Propriedade Predial e Territorial Urbana‐Principal 1500 362.110.000,00
+1.1.1.2.50.0.1 Imposto sobre a Propriedade Predial e Territorial Urbana‐Principal 1500 497.262.000,00
+1.1.1.2.50.0.3 Imposto sobre a Propriedade Predial e Territorial Urbana‐Dívida Ativa 1500 84.511.000,00
+1.1.1.2.50.0.3 Imposto sobre a Propriedade Predial e Territorial Urbana‐Dívida Ativa 1500 34.816.000,00
+1.1.1.2.50.0.3 Imposto sobre a Propriedade Predial e Territorial Urbana‐Dívida Ativa 1500 20.889.000,00
+1.1.1.2.50.0.5 Imposto sobre a Propriedade Predial e Territorial Urbana‐Multas 1500 18.533.000,00
+1.1.1.2.50.0.6 Imposto sobre a Propriedade Predial e Territorial Urbana‐Juros de Mora 1500 1.900.000,00
+1.1.1.2.50.0.7 Imposto sobre a Propriedade Predial e Territorial Urbana‐Multas da Dívida Ativa 1500 3.183.000,00
+1.1.1.2.50.0.8 Imposto sobre a Propriedade Predial e Territorial Urbana‐Juros de Mora da Dívida Ativa 1500 3.102.000,00
+1.1.1.2.53.0.0 Impostos sobre Transmissão "Inter Vivos" de Bens Imóveis e de Direitos Reais sobre Imóveis 388.272.000,00
 1.1.1.2.53.0.1 
 Imposto sobre Transmissão "Inter Vivos" de Bens 
 Imóveis e de Direitos Reais sobre Imóveis‐
@@ -36900,217 +36479,135 @@ da Dívida Ativa 1500 1.000,00
 Imposto sobre Transmissão "Inter Vivos" de Bens 
 Imóveis e de Direitos Reais sobre Imóveis‐Juros de 
 Mora da Dívida Ativa 1500 4.000,00
-1.1.1.3.00.0.0 Imposto sobre a Renda e Proventos de Qualquer 
-Natureza 520.208.000,00
+1.1.1.3.00.0.0 Imposto sobre a Renda e Proventos de Qualquer Natureza 520.208.000,00
 DOM Eletrônico
 Edição Nº 8451, de 07 de janeiro de 2025 - Suplemento
 Prefeitura de Goiânia/Chefia da Casa Civil
 Assinado Digitalmente: www.goiania.go.gov.br
 1.1.1.3.03.0.0 Imposto sobre a Renda‐Retido na Fonte 520.208.000,00
 1.1.1.3.03.1.0 Imposto sobre a Renda‐Retido na Fonte‐Trabalho 520.125.000,00
-1.1.1.3.03.1.1 Imposto sobre a Renda‐Retido na Fonte‐Trabalho‐
-Princial 1500 518.850.000,00
-1.1.1.3.03.1.1 Imposto sobre a Renda‐Retido na Fonte‐Trabalho‐
-Princial 1500 1.273.000,00
-1.1.1.3.03.1.1 Imposto sobre a Renda‐Retido na Fonte‐Trabalho‐
-Princial 1500 1.000,00
-1.1.1.3.03.1.1 Imposto sobre a Renda‐Retido na Fonte‐Trabalho‐
-Princial 1500 1.000,00
-1.1.1.3.03.4.0 Imposto sobre a Renda‐Retido na Fonte‐Outros 
-Rendimentos 83.000,00
-1.1.1.3.03.4.1 Imposto sobre a Renda‐Retido na Fonte‐Outros 
-Rendimentos‐Principal 1500 67.000,00
-1.1.1.3.03.4.1 Imposto sobre a Renda‐Retido na Fonte‐Outros 
-Rendimentos‐Principal 1500 9.000,00
-1.1.1.3.03.4.1 Imposto sobre a Renda‐Retido na Fonte‐Outros 
-Rendimentos‐Principal 1500 7.000,00
-1.1.1.4.00.0.0 Imposto sobre a Produção e Circulação de 
-Mercadorias e Serviços 1.571.621.000,00
+1.1.1.3.03.1.1 Imposto sobre a Renda‐Retido na Fonte‐Trabalho‐Princial 1500 518.850.000,00
+1.1.1.3.03.1.1 Imposto sobre a Renda‐Retido na Fonte‐Trabalho‐Princial 1500 1.273.000,00
+1.1.1.3.03.1.1 Imposto sobre a Renda‐Retido na Fonte‐Trabalho‐Princial 1500 1.000,00
+1.1.1.3.03.1.1 Imposto sobre a Renda‐Retido na Fonte‐Trabalho‐Princial 1500 1.000,00
+1.1.1.3.03.4.0 Imposto sobre a Renda‐Retido na Fonte‐Outros Rendimentos 83.000,00
+1.1.1.3.03.4.1 Imposto sobre a Renda‐Retido na Fonte‐Outros Rendimentos‐Principal 1500 67.000,00
+1.1.1.3.03.4.1 Imposto sobre a Renda‐Retido na Fonte‐Outros Rendimentos‐Principal 1500 9.000,00
+1.1.1.3.03.4.1 Imposto sobre a Renda‐Retido na Fonte‐Outros Rendimentos‐Principal 1500 7.000,00
+1.1.1.4.00.0.0 Imposto sobre a Produção e Circulação de Mercadorias e Serviços 1.571.621.000,00
 1.1.1.4.51.0.0 Imposto sobre Serviços 1.571.621.000,00
-1.1.1.4.51.1.0 Imposto sobre Serviços de Qualquer Natureza‐
-ISSQN 1.571.621.000,00
-1.1.1.4.51.1.1 Imposto sobre Serviços de Qualquer Natureza‐
-ISSQN‐Principal 1500 475.897.000,00
-1.1.1.4.51.1.1 Imposto sobre Serviços de Qualquer Natureza‐
-ISSQN‐Principal 1500 555.780.000,00
-1.1.1.4.51.1.1 Imposto sobre Serviços de Qualquer Natureza‐
-ISSQN‐Principal 1500 481.490.000,00
-1.1.1.4.51.1.3 Imposto sobre Serviços de Qualquer Natureza‐
-ISSQN‐Dívida Ativa 1500 26.451.000,00
-1.1.1.4.51.1.3 Imposto sobre Serviços de Qualquer Natureza‐
-ISSQN‐Dívida Ativa 1500 11.022.000,00
-1.1.1.4.51.1.3 Imposto sobre Serviços de Qualquer Natureza‐
-ISSQN‐Dívida Ativa 1 500 6.613.000,00
-1.1.1.4.51.1.5 Imposto sobre Serviços de Qualquer Natureza‐
-ISSQN‐Multas 1500 10.132.000,00
-1.1.1.4.51.1.6 Imposto sobre Serviços de Qualquer Natureza‐
-ISSQN‐Juros de Mora 1500 3.528.000,00
-1.1.1.4.51.1.7 Imposto sobre Serviços de Qualquer Natureza‐
-ISSQN‐Multas da Dívida Ativa 1500 352.000,00
-1.1.1.4.51.1.8 Imposto sobre Serviços de Qualquer Natureza‐
-ISSQN‐Juros de Mora da Dívida Ativa 1500 356.000,00
+1.1.1.4.51.1.0 Imposto sobre Serviços de Qualquer Natureza‐ISSQN 1.571.621.000,00
+1.1.1.4.51.1.1 Imposto sobre Serviços de Qualquer Natureza‐ISSQN‐Principal 1500 475.897.000,00
+1.1.1.4.51.1.1 Imposto sobre Serviços de Qualquer Natureza‐ISSQN‐Principal 1500 555.780.000,00
+1.1.1.4.51.1.1 Imposto sobre Serviços de Qualquer Natureza‐ISSQN‐Principal 1500 481.490.000,00
+1.1.1.4.51.1.3 Imposto sobre Serviços de Qualquer Natureza‐ISSQN‐Dívida Ativa 1500 26.451.000,00
+1.1.1.4.51.1.3 Imposto sobre Serviços de Qualquer Natureza‐ISSQN‐Dívida Ativa 1500 11.022.000,00
+1.1.1.4.51.1.3 Imposto sobre Serviços de Qualquer Natureza‐ISSQN‐Dívida Ativa 1 500 6.613.000,00
+1.1.1.4.51.1.5 Imposto sobre Serviços de Qualquer Natureza‐ISSQN‐Multas 1500 10.132.000,00
+1.1.1.4.51.1.6 Imposto sobre Serviços de Qualquer Natureza‐ISSQN‐Juros de Mora 1500 3.528.000,00
+1.1.1.4.51.1.7 Imposto sobre Serviços de Qualquer Natureza‐ISSQN‐Multas da Dívida Ativa 1500 352.000,00
+1.1.1.4.51.1.8 Imposto sobre Serviços de Qualquer Natureza‐ISSQN‐Juros de Mora da Dívida Ativa 1500 356.000,00
 1.1.2.0.00.0.0 TAXAS 153.315.000,00
 1.1.2.1.00.0.0 Taxas pelo Exercício do Poder de Polícia 122.753.000,00
 1.1.2.1.01.0.0 Taxas de Inspeção, Controle e Fiscalização 75.480.000,00
-1.1.2.1.01.0.1 Taxas de Inspeção, Controle e Fiscalização‐
-Principal 1501 47.077.000,00
-1.1.2.1.01.0.1 Taxas de Inspeção, Controle e Fiscalização‐
-Principal 1759 17.479.000,00
-1.1.2.1.01.0.1 Taxas de Inspeção, Controle e Fiscalização‐
-Principal 1899 288.000,00
-1.1.2.1.01.0.1 Taxas de Inspeção, Controle e Fiscalização‐
-Principal 1759 11.000,00
-1.1.2.1.01.0.1 Taxas de Inspeção, Controle e Fiscalização‐
-Principal 1753 6.366.000,00
-1.1.2.1.01.0.3 Taxas de Inspeção, Controle e Fiscalização‐Dívida 
-Ativa 1501 1.817.000,00
-1.1.2.1.01.0.3 Taxas de Inspeção, Controle e Fiscalização‐Dívida 
-Ativa 1899 1.020.000,00
-1.1.2.1.01.0.3 Taxas de Inspeção, Controle e Fiscalização‐Dívida 
-Ativa 1759 7.000,00
+1.1.2.1.01.0.1 Taxas de Inspeção, Controle e Fiscalização‐Principal 1501 47.077.000,00
+1.1.2.1.01.0.1 Taxas de Inspeção, Controle e Fiscalização‐Principal 1759 17.479.000,00
+1.1.2.1.01.0.1 Taxas de Inspeção, Controle e Fiscalização‐Principal 1899 288.000,00
+1.1.2.1.01.0.1 Taxas de Inspeção, Controle e Fiscalização‐Principal 1759 11.000,00
+1.1.2.1.01.0.1 Taxas de Inspeção, Controle e Fiscalização‐Principal 1753 6.366.000,00
+1.1.2.1.01.0.3 Taxas de Inspeção, Controle e Fiscalização‐Dívida Ativa 1501 1.817.000,00
+1.1.2.1.01.0.3 Taxas de Inspeção, Controle e Fiscalização‐Dívida Ativa 1899 1.020.000,00
+1.1.2.1.01.0.3 Taxas de Inspeção, Controle e Fiscalização‐Dívida Ativa 1759 7.000,00
 1.1.2.1.01.0.5 Taxas de Inspeção, Controle e Fiscalização‐Multas 1501 1.084.00 0,00
 1.1.2.1.01.0.5 Taxas de Inspeção, Controle e Fiscalização‐Multas 1759 12.000,0 0
-1.1.2.1.01.0.6 Taxas de Inspeção, Controle e Fiscalização‐Juros 
-de Mora 1501 208.000,00
-1.1.2.1.01.0.6 Taxas de Inspeção, Controle e Fiscalização‐Juros 
-de Mora 1759 5.000,00
+1.1.2.1.01.0.6 Taxas de Inspeção, Controle e Fiscalização‐Juros de Mora 1501 208.000,00
+1.1.2.1.01.0.6 Taxas de Inspeção, Controle e Fiscalização‐Juros de Mora 1759 5.000,00
 DOM Eletrônico
 Edição Nº 8451, de 07 de janeiro de 2025 - Suplemento
 Prefeitura de Goiânia/Chefia da Casa Civil
 Assinado Digitalmente: www.goiania.go.gov.br
-1.1.2.1.01.0.7 Taxas de Inspeção, Controle e Fiscalização‐Multas 
-da Dívida Ativa 1501 16.000,00
-1.1.2.1.01.0.7 Taxas de Inspeção, Controle e Fiscalização‐Multas 
-da Dívida Ativa 1899 8.000,00
-1.1.2.1.01.0.8 Taxas de Inspeção, Controle e Fiscalização‐Juros 
-de Mora da Dívida Ativa 1501 65.000,00
-1.1.2.1.01.0.8 Taxas de Inspeção, Controle e Fiscalização‐Juros 
-de Mora da Dívida Ativa 1899 17.000,00
+1.1.2.1.01.0.7 Taxas de Inspeção, Controle e Fiscalização‐Multas da Dívida Ativa 1501 16.000,00
+1.1.2.1.01.0.7 Taxas de Inspeção, Controle e Fiscalização‐Multas da Dívida Ativa 1899 8.000,00
+1.1.2.1.01.0.8 Taxas de Inspeção, Controle e Fiscalização‐Juros de Mora da Dívida Ativa 1501 65.000,00
+1.1.2.1.01.0.8 Taxas de Inspeção, Controle e Fiscalização‐Juros de Mora da Dívida Ativa 1899 17.000,00
 1.1.2.1.04.0.0 Taxa de Controle e Fiscalização Ambiental 12.767.000,00
-1.1.2.1.04.0.1 Taxa de Controle e Fiscalização Ambiental‐
-Principal 1501 2.744.000,00
-1.1.2.1.04.0.1 Taxa de Controle e Fiscalização Ambiental‐
-Principal 1899 9.147.000,00
-1.1.2.1.04.0.1 Taxa de Controle e Fiscalização Ambiental‐
-Principal 1759 460.000,00
+1.1.2.1.04.0.1 Taxa de Controle e Fiscalização Ambiental‐Principal 1501 2.744.000,00
+1.1.2.1.04.0.1 Taxa de Controle e Fiscalização Ambiental‐Principal 1899 9.147.000,00
+1.1.2.1.04.0.1 Taxa de Controle e Fiscalização Ambiental‐Principal 1759 460.000,00
 1.1.2.1.04.0.5 Taxa de Controle e Fiscalização Ambiental‐Multas 1501 45.000,00
 1.1.2.1.04.0.5 Taxa de Controle e Fiscalização Ambiental‐Multas 1899 286.000,0 0
-1.1.2.1.04.0.6 Taxa de Controle e Fiscalização Ambiental‐Juros 
-de Mora 1501 15.000,00
-1.1.2.1.04.0.6 Taxa de Controle e Fiscalização Ambiental‐Juros 
-de Mora 1899 70.000,00
+1.1.2.1.04.0.6 Taxa de Controle e Fiscalização Ambiental‐Juros de Mora 1501 15.000,00
+1.1.2.1.04.0.6 Taxa de Controle e Fiscalização Ambiental‐Juros de Mora 1899 70.000,00
 1.1.2.1.50.0.0 Taxa de Fiscalização de Vigilância Sanitária 34.506.000,00
-1.1.2.1.50.0.1 Taxa de Fiscalização de Vigilância Sanitária ‐ 
-Princial 1501 8.390.000,00
-1.1.2.1.50.0.1 Taxa de Fiscalização de Vigilância Sanitária ‐ 
-Princial 1753 25.217.000,00
-1.1.2.1.50.0.3 Taxa de Fiscalização de Vigilância Sanitária‐Dívida 
-Ativa 1501 50.000,00
-1.1.2.1.50.0.3 Taxa de Fiscalização de Vigilância Sanitária‐Dívida 
-Ativa 1753 147.000,00
+1.1.2.1.50.0.1 Taxa de Fiscalização de Vigilância Sanitária ‐ Princial 1501 8.390.000,00
+1.1.2.1.50.0.1 Taxa de Fiscalização de Vigilância Sanitária ‐ Princial 1753 25.217.000,00
+1.1.2.1.50.0.3 Taxa de Fiscalização de Vigilância Sanitária‐Dívida Ativa 1501 50.000,00
+1.1.2.1.50.0.3 Taxa de Fiscalização de Vigilância Sanitária‐Dívida Ativa 1753 147.000,00
 1.1.2.1.50.0.5 Taxa de Fiscalização de Vigilância Sanitária‐Multas 1501 122.000 ,00
 1.1.2.1.50.0.5 Taxa de Fiscalização de Vigilância Sanitária‐Multas 1753 487.000 ,00
-1.1.2.1.50.0.6 Taxa de Fiscalização de Vigilância Sanitária‐Juros 
-de Mora 1501 18.000,00
-1.1.2.1.50.0.6 Taxa de Fiscalização de Vigilância Sanitária‐Juros 
-de Mora 1753 73.000,00
-1.1.2.1.50.0.8 Taxa de Fiscalização de Vigilância Sanitária‐Juros 
-de Mora da Dívida Ativa 1753 2.000,00
+1.1.2.1.50.0.6 Taxa de Fiscalização de Vigilância Sanitária‐Juros de Mora 1501 18.000,00
+1.1.2.1.50.0.6 Taxa de Fiscalização de Vigilância Sanitária‐Juros de Mora 1753 73.000,00
+1.1.2.1.50.0.8 Taxa de Fiscalização de Vigilância Sanitária‐Juros de Mora da Dívida Ativa 1753 2.000,00
 1.1.2.2.00.0.0 Taxas pela Prestação de Serviços 30.562.000,00
 1.1.2.2.01.0.0 Taxas pela Prestação de Serviços em Geral 30.562.000,00
-1.1.2.2.01.0.1 Taxas pela Prestação de Serviços em Geral‐
-Principal 1501 20.338.000,00
-1.1.2.2.01.0.1 Taxas pela Prestação de Serviços em Geral‐
-Principal 1753 532.000,00
-1.1.2.2.01.0.1 Taxas pela Prestação de Serviços em Geral‐
-Principal 1759 289.000,00
-1.1.2.2.01.0.1 Taxas pela Prestação de Serviços em Geral‐
-Principal 1759 550.000,00
-1.1.2.2.01.0.1 Taxas pela Prestação de Serviços em Geral‐
-Principal 1899 8.118.000,00
-1.1.2.2.01.0.1 Taxas pela Prestação de Serviços em Geral‐
-Principal 1759 30.000,00
-1.1.2.2.01.0.3 Taxas pela Prestação de Serviços em Geral‐Dívida 
-Ativa 1501 242.000,00
-1.1.2.2.01.0.3 Taxas pela Prestação de Serviços em Geral‐Dívida 
-Ativa 1759 66.000,00
+1.1.2.2.01.0.1 Taxas pela Prestação de Serviços em Geral‐Principal 1501 20.338.000,00
+1.1.2.2.01.0.1 Taxas pela Prestação de Serviços em Geral‐Principal 1753 532.000,00
+1.1.2.2.01.0.1 Taxas pela Prestação de Serviços em Geral‐Principal 1759 289.000,00
+1.1.2.2.01.0.1 Taxas pela Prestação de Serviços em Geral‐Principal 1759 550.000,00
+1.1.2.2.01.0.1 Taxas pela Prestação de Serviços em Geral‐Principal 1899 8.118.000,00
+1.1.2.2.01.0.1 Taxas pela Prestação de Serviços em Geral‐Principal 1759 30.000,00
+1.1.2.2.01.0.3 Taxas pela Prestação de Serviços em Geral‐Dívida Ativa 1501 242.000,00
+1.1.2.2.01.0.3 Taxas pela Prestação de Serviços em Geral‐Dívida Ativa 1759 66.000,00
 1.1.2.2.01.0.5 Taxas pela Prestação de Serviços em Geral‐Multas 1501 288.000,00
 1.1.2.2.01.0.5 Taxas pela Prestação de Serviços em Geral‐Multas 1753 3.000,00
-1.1.2.2.01.0.6 Taxas pela Prestação de Serviços em Geral‐Juros 
-de Mora 1501 81.000,00
-1.1.2.2.01.0.8 Taxas pela Prestação de Serviços em Geral‐Juros 
-de Mora da Dívida Ativa 1501 20.000,00
-1.1.2.2.01.0.8 Taxas pela Prestação de Serviços em Geral‐Juros 
-de Mora da Dívida Ativa 1759 5.000,00
+1.1.2.2.01.0.6 Taxas pela Prestação de Serviços em Geral‐Juros de Mora 1501 81.000,00
+1.1.2.2.01.0.8 Taxas pela Prestação de Serviços em Geral‐Juros de Mora da Dívida Ativa 1501 20.000,00
+1.1.2.2.01.0.8 Taxas pela Prestação de Serviços em Geral‐Juros de Mora da Dívida Ativa 1759 5.000,00
 1.2.0.0.00.0.0 CONTRIBUIÇÕES 604.320.000,00 
 1.2.1.0.00.0.0 Contribuições Sociais 495.435.000,00
 DOM Eletrônico
 Edição Nº 8451, de 07 de janeiro de 2025 - Suplemento
 Prefeitura de Goiânia/Chefia da Casa Civil
 Assinado Digitalmente: www.goiania.go.gov.br
-1.2.1.5.00.0.0 Contribuições para Regimes Próprios de 
-Previdência e Sistema de Proteção Social 348.003.000,00
+1.2.1.5.00.0.0 Contribuições para Regimes Próprios de Previdência e Sistema de Proteção Social 348.003.000,00
 1.2.1.5.01.0.0 Contribuição do Servidor Civil 342.687.000,00
 1.2.1.5.01.1.0 Contribuição do Servidor Civil Ativo 297.799.000,00
 1.2.1.5.01.1.1 Contribuição do Servidor Civil Ativo‐Principal 1801 81.880.000,0 0
 1.2.1.5.01.1.1 Contribuição do Servidor Civil Ativo‐Principal 1800 215.808.000, 00
-1.2.1.5.01.1.2 Contribuição do Servidor Civil Ativo‐Multas e Juros 
-de Mora 1801 47.000,00
-1.2.1.5.01.1.2 Contribuição do Servidor Civil Ativo‐Multas e Juros 
-de Mora 1800 64.000,00
+1.2.1.5.01.1.2 Contribuição do Servidor Civil Ativo‐Multas e Juros de Mora 1801 47.000,00
+1.2.1.5.01.1.2 Contribuição do Servidor Civil Ativo‐Multas e Juros de Mora 1800 64.000,00
 1.2.1.5.01.2.0 Contribuição do Servidor Civil Inativo 41.040.000,00
 1.2.1.5.01.2.1 Contribuição do Servidor Civil Inativo‐Principal 1801 19.442.000,00
 1.2.1.5.01.2.1 Contribuição do Servidor Civil Inativo‐Principal 1800 21.598.000,00
 1.2.1.5.01.3.0 Contribuição do Servidor Civil ‐ Pensionistas 3.848.000,00
-1.2.1.5.01.3.1 Contribuição do Servidor Civil‐Pensionistas‐
-Principal 1801 519.000,00
-1.2.1.5.01.3.1 Contribuição do Servidor Civil‐Pensionistas‐
-Principal 1800 3.329.000,00
+1.2.1.5.01.3.1 Contribuição do Servidor Civil‐Pensionistas‐Principal 1801 519.000,00
+1.2.1.5.01.3.1 Contribuição do Servidor Civil‐Pensionistas‐Principal 1800 3.329.000,00
 1.2.1.5.02.0.0 Contribuição Patronal‐Servidor Civil 5.316.000,00
 1.2.1.5.02.1.0 Contribuição Patronal‐Servidor Civil Ativo 5.316.000,00
-1.2.1.5.02.1.1 Contribuição Patronal‐Servidor Civil Ativo‐
-Principal 1801 979.000,00
-1.2.1.5.02.1.1 Contribuição Patronal‐Servidor Civil Ativo‐
-Principal 1800 4.179.000,00
-1.2.1.5.02.1.2 Contribuição Patronal‐Servidor Civil Ativo‐Multas 
-e Juros de Mora 1801 77.000,00
-1.2.1.5.02.1.2 Contribuição Patronal‐Servidor Civil Ativo‐Multas 
-e Juros de Mora 1800 81.000,00
-1.2.1.6.00.0.0 Contribuição para Fundos de Assistência Médico‐
-Hospitalar e Social 147.432.000,00
-1.2.1.6.03.0.0 Contribuição para Fundos de Assistência Médica ‐ 
-Servidores Civis 147.430.000,00
-1.2.1.6.03.1.0 Contribuição para Fundos de Assistência Médica ‐ 
-Servidores Civis 147.430.000,00
-1.2.1.6.03.1.1 Contribuição para Fundos de Assistência Médica‐
-Servidores Civis‐Principal 1799 147.297.000,00
-1.2.1.6.03.1.2 Contribuição para Fundos de Assistência Médica‐
-Servidores Civis‐Multas e Juros de Mora 1799 133.000,00
-1.2.1.6.99.0.0 Contribuição para Fundos de Assistência Médica‐
-Outros Beneficiários 2.000,00
-1.2.1.6.99.1.0 Contribuição para Fundos de Assistência Médica‐
-Outros Beneficiários 2.000,00
-1.2.1.6.99.1.1 Contribuição para Fundos de Assistência Médica‐
-Outros Beneficiários‐Principal 1799 2.000,00
+1.2.1.5.02.1.1 Contribuição Patronal‐Servidor Civil Ativo‐Principal 1801 979.000,00
+1.2.1.5.02.1.1 Contribuição Patronal‐Servidor Civil Ativo‐Principal 1800 4.179.000,00
+1.2.1.5.02.1.2 Contribuição Patronal‐Servidor Civil Ativo‐Multas e Juros de Mora 1801 77.000,00
+1.2.1.5.02.1.2 Contribuição Patronal‐Servidor Civil Ativo‐Multas e Juros de Mora 1800 81.000,00
+1.2.1.6.00.0.0 Contribuição para Fundos de Assistência Médico‐Hospitalar e Social 147.432.000,00
+1.2.1.6.03.0.0 Contribuição para Fundos de Assistência Médica ‐ Servidores Civis 147.430.000,00
+1.2.1.6.03.1.0 Contribuição para Fundos de Assistência Médica ‐ Servidores Civis 147.430.000,00
+1.2.1.6.03.1.1 Contribuição para Fundos de Assistência Médica‐Servidores Civis‐Principal 1799 147.297.000,00
+1.2.1.6.03.1.2 Contribuição para Fundos de Assistência Médica‐Servidores Civis‐Multas e Juros de Mora 1799 133.000,00
+1.2.1.6.99.0.0 Contribuição para Fundos de Assistência Médica‐Outros Beneficiários 2.000,00
+1.2.1.6.99.1.0 Contribuição para Fundos de Assistência Médica‐Outros Beneficiários 2.000,00
+1.2.1.6.99.1.1 Contribuição para Fundos de Assistência Médica‐Outros Beneficiários‐Principal 1799 2.000,00
 1.2.2.0.00.0.0 Contribuições Econômicas 5.000,00
 1.2.2.1.99.0.0 Outras Contribuições Econômicas 5.000,00
-1.2.2.1.99.1.0 Outras Contribuições Econômicas‐Não 
-Arrecadadas e Não Projetadas pela RFB 5.000,00
-1.2.2.1.99.1.1 Outras Contribuições Econômicas‐Não 
-Arrecadadas e Não Projetadas pela RFB‐Principal 1501 5.000,00
-1.2.4.0.00.0.0 Contribuição para o Custeio do Serviço de 
-Iluminação Pública 108.880.000,00
-1.2.4.1.00.0.0 Contribuição para o Custeio do Serviço de 
-Iluminação Pública 108.880.000,00
-1.2.4.1.50.0.0 Contribuição para o Custeio do Serviço de 
-Iluminação Pública 108.880.000,00
-1.2.4.1.50.0.1 Contribuição para o Custeio do Serviço de 
-Iluminação Pública ‐ Principal 1751 108.880.000,00
+1.2.2.1.99.1.0 Outras Contribuições Econômicas‐Não Arrecadadas e Não Projetadas pela RFB 5.000,00
+1.2.2.1.99.1.1 Outras Contribuições Econômicas‐Não Arrecadadas e Não Projetadas pela RFB‐Principal 1501 5.000,00
+1.2.4.0.00.0.0 Contribuição para o Custeio do Serviço de Iluminação Pública 108.880.000,00
+1.2.4.1.00.0.0 Contribuição para o Custeio do Serviço de Iluminação Pública 108.880.000,00
+1.2.4.1.50.0.0 Contribuição para o Custeio do Serviço de Iluminação Pública 108.880.000,00
+1.2.4.1.50.0.1 Contribuição para o Custeio do Serviço de Iluminação Pública ‐ Principal 1751 108.880.000,00
 1.3.0.0.00.0.0 RECEITA PATRIMONIAL 413.022.000,00 
 1.3.1.0.00.0.0 Exploração do Patrimônio Imobiliário do Estado 41.497.000,00
 1.3.1.1.00.0.0 Exploração do Patrimônio Imobiliário do Estado 41.497.000,00
-1.3.1.1.02.0.0 Concessão,Permissão,Autorização ou Cessão do 
-Direito de Uso de Bens Imóveis Públicos 366.000,00
+1.3.1.1.02.0.0 Concessão,Permissão,Autorização ou Cessão do Direito de Uso de Bens Imóveis Públicos 366.000,00
 1.3.1.1.02.0.1 Concessão,Permissão,Autorização ou Cessão do 
 Direito de Uso de Bens Imóveis Públicos‐Principal 1501 104.000,00
 DOM Eletrônico
@@ -37190,21 +36687,14 @@ Assinado Digitalmente: www.goiania.go.gov.br
 1.3.2.1.01.0.1 Remuneração de Depósitos Bancários‐Principal 1759 3.000,00
 1.3.2.1.01.0.1 Remuneração de Depósitos Bancários‐Principal 1759 3.000,00
 1.3.2.1.01.0.1 Remuneração de Depósitos Bancários‐Principal 1759 712.000,00
-1.3.2.1.04.0.0 Remuneração dos Recursos do Regime Próprio de 
-Previdência Social‐RPPS 106.409.000,00
-1.3.2.1.04.0.1 Remuneração dos Recursos do Regime Próprio de 
-Previdência Social‐RPPS‐Principal 1802 216.000,00
-1.3.2.1.04.0.1 Remuneração dos Recursos do Regime Próprio de 
-Previdência Social‐RPPS‐Principal 1801 2.424.000,00
-1.3.2.1.04.0.1 Remuneração dos Recursos do Regime Próprio de 
-Previdência Social‐RPPS‐Principal 1800 103.769.000,00
-1.3.3.0.00.0.0 Delegação de Serviços Públicos Mediante 
-Concessão, Permissão, Autorização ou Licença 60.232.000,00
+1.3.2.1.04.0.0 Remuneração dos Recursos do Regime Próprio de Previdência Social‐RPPS 106.409.000,00
+1.3.2.1.04.0.1 Remuneração dos Recursos do Regime Próprio de Previdência Social‐RPPS‐Principal 1802 216.000,00
+1.3.2.1.04.0.1 Remuneração dos Recursos do Regime Próprio de Previdência Social‐RPPS‐Principal 1801 2.424.000,00
+1.3.2.1.04.0.1 Remuneração dos Recursos do Regime Próprio de Previdência Social‐RPPS‐Principal 1800 103.769.000,00
+1.3.3.0.00.0.0 Delegação de Serviços Públicos Mediante Concessão, Permissão, Autorização ou Licença 60.232.000,00
 1.3.3.5.00.0.0 Delegação dos Serviços de Saneamento Básico 60.232.000,00
-1.3.3.5.50.0.0 Delegação dos Serviços de Abastecimento de 
-Água Potável 60.232.000,00
-1.3.3.5.50.0.1 Delegação dos Serviços de Abastecimento de 
-Água Potável‐Principal 1759 60.232.000,00
+1.3.3.5.50.0.0 Delegação dos Serviços de Abastecimento de Água Potável 60.232.000,00
+1.3.3.5.50.0.1 Delegação dos Serviços de Abastecimento de Água Potável‐Principal 1759 60.232.000,00
 1.3.4.0.00.0.0 Exploração de Recursos Naturais 2.300.000,00
 1.3.4.9.00.0.0 Exploração de Outros Recursos Naturais 2.300.000,00
 1.3.4.9.01.0.0 Compensações Ambientais 2.300.000,00
@@ -37226,8 +36716,7 @@ Serviços Administrativos e Comerciais Gerais
 Prestados por Entidades e Órgãos Públicos em 
 Geral‐Principal 1501 925.000,00
 1.6.1.1.02.0.0 Inscrição em Concursos e Processos Seletivos 1.000.000,00
-1.6.1.1.02.0.1 Inscrição em Concursos e Processos Seletivos‐
-Principal 1759 1.000.000,00
+1.6.1.1.02.0.1 Inscrição em Concursos e Processos Seletivos‐Principal 1759 1.000.000,00
 1.6.9.0.00.0.0 Outros Serviços 6.201.000,00
 1.6.9.9.00.0.0 Outros Serviços 6.201.000,00
 1.6.9.9.99.0.0 Outros Serviços 6.201.000,00
@@ -37238,42 +36727,24 @@ DOM Eletrônico
 Edição Nº 8451, de 07 de janeiro de 2025 - Suplemento
 Prefeitura de Goiânia/Chefia da Casa Civil
 Assinado Digitalmente: www.goiania.go.gov.br
-1.7.1.1.00.0.0 Transferências Decorrentes de Participação na 
-Receita da União 878.738.000,00
-1.7.1.1.51.0.0 Cota‐Parte do Fundo de Participação dos 
-Município‐FPM 872.692.000,00
-1.7.1.1.51.1.0 Cota‐Parte do Fundo de Participação dos 
-Municípios‐Cota Mensal 797.630.000,00
-1.7.1.1.51.1.1 Cota‐Parte do Fundo de Participação dos 
-Municípios‐Cota Mensal‐Principal 1500 797.630.000,00
-1.7.1.1.51.2.0 Cota‐Parte do Fundo de Participação dos 
-Municípios‐Cotas Extraordinárias 75.062.000,00
-1.7.1.1.51.2.1 Cota‐Parte do Fundo de Participação dos 
-Municípios‐Cotas Extraordinárias‐Principal 1500 75.062.000,00
-1.7.1.1.52.0.0 Cota‐Parte do Imposto sobre a Propriedade 
-Territorial Rural 6.046.000,00
-1.7.1.1.52.0.1 Cota‐Parte do Imposto sobre Propriedade 
-Territorial Rural‐Principal 1500 6.046.000,00
-1.7.1.2.00.0.0 Transferências das Compensações Financeiras 
-pela Exploração de Recursos Naturais 16.581.000,00
-1.7.1.2.51.0.0 Cota‐parte da Compensação Financeira pela 
-Exploração de Recursos Minerais ‐ CFEM 119.000,00
-1.7.1.2.51.0.1 Cota‐Parte da Compensação Financeira pela 
-Exploração de Recursos Naturais‐CFEM‐Principal 1704 119.000,00
-1.7.1.2.52.0.0 Cota‐Parte da Compensação Financeira pela 
-Produção de Petróleo 15.912.000,00
-1.7.1.2.52.3.0 Cota‐Parte pela Participação Especial–Lei nº 
-9.478/97, artigo 50 15.912.000,00
-1.7.1.2.52.3.1 Cota‐Parte pela Participação Especial–Lei nº 
-9.478/97, artigo 50‐Principal 1500 4.324.000,00
-1.7.1.2.52.3.1 Cota‐Parte pela Participação Especial–Lei nº 
-9.478/97, artigo 50‐Principal 1720 11.588.000,00
-1.7.1.2.53.0.0 Cota‐Parte do Bônus de Assinatura de Contrato de 
-Partilha de Produção 550.000,00
-1.7.1.2.53.0.1 Cota‐Parte do Bônus de Assinatura de Contrato de 
-Partilha de Produção‐Principal 1721 550.000,00
-1.7.1.3.00.0.0 Transferências de Recursos do Sistema Único de 
-Saúde–SUS 946.562.000,00
+1.7.1.1.00.0.0 Transferências Decorrentes de Participação na Receita da União 878.738.000,00
+1.7.1.1.51.0.0 Cota‐Parte do Fundo de Participação dos Município‐FPM 872.692.000,00
+1.7.1.1.51.1.0 Cota‐Parte do Fundo de Participação dos Municípios‐Cota Mensal 797.630.000,00
+1.7.1.1.51.1.1 Cota‐Parte do Fundo de Participação dos Municípios‐Cota Mensal‐Principal 1500 797.630.000,00
+1.7.1.1.51.2.0 Cota‐Parte do Fundo de Participação dos Municípios‐Cotas Extraordinárias 75.062.000,00
+1.7.1.1.51.2.1 Cota‐Parte do Fundo de Participação dos Municípios‐Cotas Extraordinárias‐Principal 1500 75.062.000,00
+1.7.1.1.52.0.0 Cota‐Parte do Imposto sobre a Propriedade Territorial Rural 6.046.000,00
+1.7.1.1.52.0.1 Cota‐Parte do Imposto sobre Propriedade Territorial Rural‐Principal 1500 6.046.000,00
+1.7.1.2.00.0.0 Transferências das Compensações Financeiras pela Exploração de Recursos Naturais 16.581.000,00
+1.7.1.2.51.0.0 Cota‐parte da Compensação Financeira pela Exploração de Recursos Minerais ‐ CFEM 119.000,00
+1.7.1.2.51.0.1 Cota‐Parte da Compensação Financeira pela Exploração de Recursos Naturais‐CFEM‐Principal 1704 119.000,00
+1.7.1.2.52.0.0 Cota‐Parte da Compensação Financeira pela Produção de Petróleo 15.912.000,00
+1.7.1.2.52.3.0 Cota‐Parte pela Participação Especial–Lei nº 9.478/97, artigo 50 15.912.000,00
+1.7.1.2.52.3.1 Cota‐Parte pela Participação Especial–Lei nº 9.478/97, artigo 50‐Principal 1500 4.324.000,00
+1.7.1.2.52.3.1 Cota‐Parte pela Participação Especial–Lei nº 9.478/97, artigo 50‐Principal 1720 11.588.000,00
+1.7.1.2.53.0.0 Cota‐Parte do Bônus de Assinatura de Contrato de Partilha de Produção 550.000,00
+1.7.1.2.53.0.1 Cota‐Parte do Bônus de Assinatura de Contrato de Partilha de Produção‐Principal 1721 550.000,00
+1.7.1.3.00.0.0 Transferências de Recursos do Sistema Único de Saúde–SUS 946.562.000,00
 1.7.1.3.50.0.0 
 Transferências de Recursos do Sistema Único de 
 Saúde–SUS–Repasses Fundo a Fundo Bloco de 
@@ -37335,22 +36806,17 @@ Saúde–Gestão do SUS‐Principal 1600 10.000,00
 Transferências de Recursos do Bloco de 
 Manutenção das Ações e Serviços Públicos de 
 Saúde–Gestão do SUS‐Principal 1605 45.672.000,00
-1.7.1.4.00.0.0 Transferências de Recursos do Fundo Nacional do 
-Desenvolvimento da Educação–FNDE 64.525.000,00
+1.7.1.4.00.0.0 Transferências de Recursos do Fundo Nacional do Desenvolvimento da Educação–FNDE 64.525.000,00
 1.7.1.4.50.0.0 Transferências do Salário Educação 44.272.000,00
 1.7.1.4.50.0.1 Transferências do Salário‐Educação‐Principal 1550 44.272.000,00
-1.7.1.4.51.0.0 Transferências Diretas do FNDE Referentes ao 
-Programa Dinheiro Direto na Escola‐PDDE 3.000,00
+1.7.1.4.51.0.0 Transferências Diretas do FNDE Referentes ao Programa Dinheiro Direto na Escola‐PDDE 3.000,00
 1.7.1.4.51.0.1 
 Transferências Diretas do FNDE Referentes ao 
 Programa Dinheiro Direto na Escola‐PDDE‐
 Principal 1551 3.000,00
-1.7.1.4.52.0.0 Transferências referentes ao Programa Nacional 
-de Alimentação Escolar–PNAE 20.248.000,00
-1.7.1.4.52.0.1 Transferências referentes ao Programa Nacional 
-de Alimentação Escolar–PNAE‐Principal 1552 20.248.000,00
-1.7.1.4.53.0.0 Transferências referentes ao Programa Nacional 
-de Apoio ao Transporte do Escolar–PNATE 2.000,00
+1.7.1.4.52.0.0 Transferências referentes ao Programa Nacional de Alimentação Escolar–PNAE 20.248.000,00
+1.7.1.4.52.0.1 Transferências referentes ao Programa Nacional de Alimentação Escolar–PNAE‐Principal 1552 20.248.000,00
+1.7.1.4.53.0.0 Transferências referentes ao Programa Nacional de Apoio ao Transporte do Escolar–PNATE 2.000,00
 1.7.1.4.53.0.1 
 Transferências referentes ao Programa Nacional 
 de Apoio ao Transporte do Escolar–PNATE‐
@@ -37361,42 +36827,25 @@ da União ao Fundo de Manutenção e
 Desenvolvimento da Educação Básica e 
 Valorização dos Profissionais da Educação‐
 FUNDEB 31.179.000,00
-1.7.1.5.52.0.0 Transferências de Recursos de Complementação 
-da União ao Fundeb–VAAR 31.179.000,00
-1.7.1.5.52.0.1 Transferências de Recursos de Complementação 
-da União ao Fundeb–VAAR‐Principal 1543 31.179.000,00
-1.7.1.6.00.0.0 Transferências de Recursos do Fundo Nacional de 
-Assistência Social–FNAS 14.395.000,00
-1.7.1.6.50.0.0 Transferências de Recursos do Fundo Nacional de 
-Assistência Social–FNAS 14.395.000,00
-1.7.1.6.50.0.1 Transferências de Recursos do Fundo Nacional de 
-Assistência Social–FNAS‐Principal 1660 14.395.000,00
-1.7.1.7.00.0.0 Transferências de Convênios da União e de suas 
-Entidades 7.113.000,00
-1.7.1.7.51.0.0 Transferências de Convênios da União Destinadas 
-a Programas de Educação 1.989.000,00
-1.7.1.7.51.0.1 Transferências de Convênios da União Destinadas 
-a Programas de Educação‐Principal 1570 1.989.000,00
-1.7.1.7.52.0.0 Transferências de Convênios da União Destinadas 
-a Programas de Assistência Social 4.656.000,00
-1.7.1.7.52.0.1 Transferências de Convênios da União Destinadas 
-a Programas de Assistência Social‐Principal 1665 4.656.000,00
-1.7.1.7.99.0.0 Outras Transferências de Convênios da União e de 
-suas Entidades 468.000,00
-1.7.1.7.99.0.1 Outras Transferências de Convênios da União e de 
-Suas Entidades‐Principal 1700 468.000,00
-1.7.1.9.00.0.0 Outras Transferências de Recursos da União e de 
-suas Entidades 22.590.000,00
+1.7.1.5.52.0.0 Transferências de Recursos de Complementação da União ao Fundeb–VAAR 31.179.000,00
+1.7.1.5.52.0.1 Transferências de Recursos de Complementação da União ao Fundeb–VAAR‐Principal 1543 31.179.000,00
+1.7.1.6.00.0.0 Transferências de Recursos do Fundo Nacional de Assistência Social–FNAS 14.395.000,00
+1.7.1.6.50.0.0 Transferências de Recursos do Fundo Nacional de Assistência Social–FNAS 14.395.000,00
+1.7.1.6.50.0.1 Transferências de Recursos do Fundo Nacional de Assistência Social–FNAS‐Principal 1660 14.395.000,00
+1.7.1.7.00.0.0 Transferências de Convênios da União e de suas Entidades 7.113.000,00
+1.7.1.7.51.0.0 Transferências de Convênios da União Destinadas a Programas de Educação 1.989.000,00
+1.7.1.7.51.0.1 Transferências de Convênios da União Destinadas a Programas de Educação‐Principal 1570 1.989.000,00
+1.7.1.7.52.0.0 Transferências de Convênios da União Destinadas a Programas de Assistência Social 4.656.000,00
+1.7.1.7.52.0.1 Transferências de Convênios da União Destinadas a Programas de Assistência Social‐Principal 1665 4.656.000,00
+1.7.1.7.99.0.0 Outras Transferências de Convênios da União e de suas Entidades 468.000,00
+1.7.1.7.99.0.1 Outras Transferências de Convênios da União e de Suas Entidades‐Principal 1700 468.000,00
+1.7.1.9.00.0.0 Outras Transferências de Recursos da União e de suas Entidades 22.590.000,00
 1.7.1.9.57.0.0 Transferência Especial da União 100.000,00
 1.7.1.9.57.0.1 Transferência Especial da União‐Principal 1706 100.000,00
-1.7.1.9.58.0.0 Trasferência Obrigatória Decorrente da Lei 
-Complementar nº 176/2020 8.808.000,00
-1.7.1.9.58.0.1 Transferência Obrigatória Decorrente da Lei 
-Complementar nº 176/2020‐Principal 1500 8.808.000,00
-1.7.1.9.59.0.0 Transferência de Recursos do Fundo de Amparo 
-ao Trabalhador‐FAT 3.600.000,00
-1.7.1.9.59.0.1 Transferência de Recursos do Fundo de Amparo 
-ao Trabalhador‐FAT‐Principal 1714 3.600.000,00
+1.7.1.9.58.0.0 Trasferência Obrigatória Decorrente da Lei Complementar nº 176/2020 8.808.000,00
+1.7.1.9.58.0.1 Transferência Obrigatória Decorrente da Lei Complementar nº 176/2020‐Principal 1500 8.808.000,00
+1.7.1.9.59.0.0 Transferência de Recursos do Fundo de Amparo ao Trabalhador‐FAT 3.600.000,00
+1.7.1.9.59.0.1 Transferência de Recursos do Fundo de Amparo ao Trabalhador‐FAT‐Principal 1714 3.600.000,00
 1.7.1.9.60.0.0 Transferências da Política Nacional Aldir Blanc de 9.932.000,00
 DOM Eletrônico
 Edição Nº 8451, de 07 de janeiro de 2025 - Suplemento
@@ -37405,58 +36854,35 @@ Assinado Digitalmente: www.goiania.go.gov.br
 Fomento a Cultura‐Lei Nr.14.399/2022 
 1.7.1.9.60.0.1 Transferências da Política Nacional Aldir Blanc de 
 Fomento a Cultura‐Lei Nr.14.399/2022‐Principal 1719 9.932.000,00
-1.7.1.9.99.0.0 Outras Transferências de Recursos da União e de 
-suas Entidades 150.000,00
-1.7.1.9.99.0.1 Outras Transferências de Recursos da União de de 
-suas Entidades‐Principal 1706 50.000,00
-1.7.1.9.99.0.1 Outras Transferências de Recursos da União de de 
-suas Entidades‐Principal 1706 100.000,00
-1.7.2.0.00.0.0 Transferências dos Estados e do Distrito Federal e 
-de suas Entidades 1.578.698.000,00
-1.7.2.1.00.0.0 Participação na Receita dos Estados e Distrito 
-Federal 1.473.991.000,00
+1.7.1.9.99.0.0 Outras Transferências de Recursos da União e de suas Entidades 150.000,00
+1.7.1.9.99.0.1 Outras Transferências de Recursos da União de de suas Entidades‐Principal 1706 50.000,00
+1.7.1.9.99.0.1 Outras Transferências de Recursos da União de de suas Entidades‐Principal 1706 100.000,00
+1.7.2.0.00.0.0 Transferências dos Estados e do Distrito Federal e de suas Entidades 1.578.698.000,00
+1.7.2.1.00.0.0 Participação na Receita dos Estados e Distrito Federal 1.473.991.000,00
 1.7.2.1.50.0.0 Cota‐parte do ICMS 880.689.000,00
 1.7.2.1.50.0.1 Cota‐parte do ICMS‐Principal 1500 880.689.000,00
 1.7.2.1.51.0.0 Cota‐parte do IPVA 586.431.000,00
 1.7.2.1.51.0.1 Cota‐parte do IPVA‐Principal 1500 586.431.000,00
 1.7.2.1.52.0.0 Cota‐parte do IPI‐Municípios 5.787.000,00
 1.7.2.1.52.0.1 Cota‐parte do IPI‐Município‐Principal 1500 5.787.000,00
-1.7.2.1.53.0.0 Cota‐parte da Contribuição de Intervenção no 
-Domínio Econômico 1.084.000,00
-1.7.2.1.53.0.1 Cota‐parte da Contribuição de Intervenção no 
-Domínio Econômico‐Principal 1750 1.084.000,00
-1.7.2.3.00.0.0 Transferências de Recursos do Sistema Único de 
-Saúde–SUS 31.393.000,00
-1.7.2.3.50.0.0 Transferências de Recursos do Sistema Único de 
-Saúde–SUS 31.393.000,00
-1.7.2.3.50.0.1 Transferências de Recursos do Sistema Único de 
-Saúde‐SUS‐Principal 1621 31.393.000,00
-1.7.2.4.00.0.0 Transferências de Convênios dos Estados e DF e 
-de Suas Entidades 61.755.000,00
-1.7.2.4.50.0.0 Transferências de Convênios dos Estados e DF 
-para o Sistema Único de Saúde – SUS 60.882.000,00
-1.7.2.4.50.0.1 Transferências de Convênios dos Estados e DF 
-para o Sistema Único de Saúde‐SUS‐Principal 1632 60.882.000,00
-1.7.2.4.51.0.0 Transferências de Convênios dos Estados 
-Destinadas a Programas de Educação 421.000,00
-1.7.2.4.51.0.1 Transferências de Convênio dos Estados 
-destinados a Programas de Educação‐Principal 1571 421.000,00
-1.7.2.4.99.0.0 Outras Transferências de Convênios dos Estados e 
-DF e de Suas Entidades 452.000,00
-1.7.2.4.99.0.1 Outras Transferências de Convênios dos Estados e 
-DF e de Suas Entidades‐Principal 1710 2.000,00
-1.7.2.4.99.0.1 Outras Transferências de Convênios dos Estados e 
-DF e de Suas Entidades‐Principal 1710 200.000,00
-1.7.2.4.99.0.1 Outras Transferências de Convênios dos Estados e 
-DF e de Suas Entidades‐Principal 1710 50.000,00
-1.7.2.4.99.0.1 Outras Transferências de Convênios dos Estados e 
-DF e de Suas Entidades‐Principal 1710 200.000,00
-1.7.2.9.00.0.0 Outras Transferências dos Estados e Distrito 
-Federal 11.559.000,00
-1.7.2.9.51.0.0 Transferências de Estados destinadas à Assistência 
-Social 25.000,00
-1.7.2.9.51.0.1 Transferências de Estados destinadas à Assistência 
-Social‐Principal 1661 25.000,00
+1.7.2.1.53.0.0 Cota‐parte da Contribuição de Intervenção no Domínio Econômico 1.084.000,00
+1.7.2.1.53.0.1 Cota‐parte da Contribuição de Intervenção no Domínio Econômico‐Principal 1750 1.084.000,00
+1.7.2.3.00.0.0 Transferências de Recursos do Sistema Único de Saúde–SUS 31.393.000,00
+1.7.2.3.50.0.0 Transferências de Recursos do Sistema Único de Saúde–SUS 31.393.000,00
+1.7.2.3.50.0.1 Transferências de Recursos do Sistema Único de Saúde‐SUS‐Principal 1621 31.393.000,00
+1.7.2.4.00.0.0 Transferências de Convênios dos Estados e DF e de Suas Entidades 61.755.000,00
+1.7.2.4.50.0.0 Transferências de Convênios dos Estados e DF para o Sistema Único de Saúde – SUS 60.882.000,00
+1.7.2.4.50.0.1 Transferências de Convênios dos Estados e DF para o Sistema Único de Saúde‐SUS‐Principal 1632 60.882.000,00
+1.7.2.4.51.0.0 Transferências de Convênios dos Estados Destinadas a Programas de Educação 421.000,00
+1.7.2.4.51.0.1 Transferências de Convênio dos Estados destinados a Programas de Educação‐Principal 1571 421.000,00
+1.7.2.4.99.0.0 Outras Transferências de Convênios dos Estados e DF e de Suas Entidades 452.000,00
+1.7.2.4.99.0.1 Outras Transferências de Convênios dos Estados e DF e de Suas Entidades‐Principal 1710 2.000,00
+1.7.2.4.99.0.1 Outras Transferências de Convênios dos Estados e DF e de Suas Entidades‐Principal 1710 200.000,00
+1.7.2.4.99.0.1 Outras Transferências de Convênios dos Estados e DF e de Suas Entidades‐Principal 1710 50.000,00
+1.7.2.4.99.0.1 Outras Transferências de Convênios dos Estados e DF e de Suas Entidades‐Principal 1710 200.000,00
+1.7.2.9.00.0.0 Outras Transferências dos Estados e Distrito Federal 11.559.000,00
+1.7.2.9.51.0.0 Transferências de Estados destinadas à Assistência Social 25.000,00
+1.7.2.9.51.0.1 Transferências de Estados destinadas à Assistência Social‐Principal 1661 25.000,00
 1.7.2.9.53.0.0 
 Cota‐parte da Transferência da Compensação 
 Financeira das Perdas com Arrecadação de ICMS ‐ 
@@ -37499,63 +36925,39 @@ FUNDEB 1540 90.000,00
 1.9.1.0.00.0.0 Multas Adminstrativas, Contratuais e Judiciais 185.884.000,00
 1.9.1.1.00.0.0 Multas Administrativas, Contratuais e Judiciais 185.884.000,00
 1.9.1.1.01.0.0 Multas Previstas em Legilação Específica 182.310.000,00
-1.9.1.1.01.0.1 Multas Previstas em Legislação Específica‐
-Principal 1501 41.486.000,00
-1.9.1.1.01.0.1 Multas Previstas em Legislação Específica‐
-Principal 1752 132.951.000,00
-1.9.1.1.01.0.1 Multas Previstas em Legislação Específica‐
-Principal 1753 165.000,00
-1.9.1.1.01.0.1 Multas Previstas em Legislação Específica‐
-Principal 1759 1.293.000,00
-1.9.1.1.01.0.1 Multas Previstas em Legislação Específica‐
-Principal 1759 134.000,00
-1.9.1.1.01.0.1 Multas Previstas em Legislação Específica‐
-Principal 1759 5.000,00
-1.9.1.1.01.0.1 Multas Previstas em Legislação Específica‐
-Principal 1759 645.000,00
-1.9.1.1.01.0.3 Multas Previstas em Legislação Específica‐Dívida 
-Ativa 1501 1.101.000,00
-1.9.1.1.01.0.3 Multas Previstas em Legislação Específica‐Dívida 
-Ativa 1753 5.000,00
-1.9.1.1.01.0.3 Multas Previstas em Legislação Específica‐Dívida 
-Ativa 1759 636.000,00
-1.9.1.1.01.0.3 Multas Previstas em Legislação Específica‐Dívida 
-Ativa 1759 809.000,00
-1.9.1.1.01.0.3 Multas Previstas em Legislação Específica‐Dívida 
-Ativa 1759 2.653.000,00
+1.9.1.1.01.0.1 Multas Previstas em Legislação Específica‐Principal 1501 41.486.000,00
+1.9.1.1.01.0.1 Multas Previstas em Legislação Específica‐Principal 1752 132.951.000,00
+1.9.1.1.01.0.1 Multas Previstas em Legislação Específica‐Principal 1753 165.000,00
+1.9.1.1.01.0.1 Multas Previstas em Legislação Específica‐Principal 1759 1.293.000,00
+1.9.1.1.01.0.1 Multas Previstas em Legislação Específica‐Principal 1759 134.000,00
+1.9.1.1.01.0.1 Multas Previstas em Legislação Específica‐Principal 1759 5.000,00
+1.9.1.1.01.0.1 Multas Previstas em Legislação Específica‐Principal 1759 645.000,00
+1.9.1.1.01.0.3 Multas Previstas em Legislação Específica‐Dívida Ativa 1501 1.101.000,00
+1.9.1.1.01.0.3 Multas Previstas em Legislação Específica‐Dívida Ativa 1753 5.000,00
+1.9.1.1.01.0.3 Multas Previstas em Legislação Específica‐Dívida Ativa 1759 636.000,00
+1.9.1.1.01.0.3 Multas Previstas em Legislação Específica‐Dívida Ativa 1759 809.000,00
+1.9.1.1.01.0.3 Multas Previstas em Legislação Específica‐Dívida Ativa 1759 2.653.000,00
 1.9.1.1.01.0.5 Multas Previstas e m Legislação Específica‐Multas 1759 2.000,00
 1.9.1.1.01.0.5 Multas Previstas e m Legislação Específica‐Multas 1759 2.000,00
 1.9.1.1.01.0.5 Multas Previstas e m Legislação Específica‐Multas 1759 2.000,00
-1.9.1.1.01.0.7 Multas Previstas em Legislação Específica‐Multas 
-da Dívida Ativa 1759 8.000,00
-1.9.1.1.01.0.7 Multas Previstas em Legislação Específica‐Multas 
-da Dívida Ativa 1759 5.000,00
-1.9.1.1.01.0.8 Multas Previstas em Legislação Específica‐Juros de 
-Mora da Dívida Ativa 1501 151.000,00
-1.9.1.1.01.0.8 Multas Previstas em Legislação Específica‐Juros de 
-Mora da Dívida Ativa 1759 47.000,00
-1.9.1.1.01.0.8 Multas Previstas em Legislação Específica‐Juros de 
-Mora da Dívida Ativa 1759 91.000,00
-1.9.1.1.01.0.8 Multas Previstas em Legislação Específica‐Juros de 
-Mora da Dívida Ativa 1759 119.000,00
+1.9.1.1.01.0.7 Multas Previstas em Legislação Específica‐Multas da Dívida Ativa 1759 8.000,00
+1.9.1.1.01.0.7 Multas Previstas em Legislação Específica‐Multas da Dívida Ativa 1759 5.000,00
+1.9.1.1.01.0.8 Multas Previstas em Legislação Específica‐Juros de Mora da Dívida Ativa 1501 151.000,00
+1.9.1.1.01.0.8 Multas Previstas em Legislação Específica‐Juros de Mora da Dívida Ativa 1759 47.000,00
+1.9.1.1.01.0.8 Multas Previstas em Legislação Específica‐Juros de Mora da Dívida Ativa 1759 91.000,00
+1.9.1.1.01.0.8 Multas Previstas em Legislação Específica‐Juros de Mora da Dívida Ativa 1759 119.000,00
 1.9.1.1.06.0.0 Multas por Danos Ambientais 3.574.000,00
 1.9.1.1.06.1.0 Multas Administrativas por Danos Ambientais 3.574.000,00
-1.9.1.1.06.1.1 Multas Administrativas por Danos Ambientais‐
-Principal 1501 582.000,00
-1.9.1.1.06.1.1 Multas Administrativas por Danos Ambientais‐
-Principal 1759 2.860.000,00
+1.9.1.1.06.1.1 Multas Administrativas por Danos Ambientais‐Principal 1501 582.000,00
+1.9.1.1.06.1.1 Multas Administrativas por Danos Ambientais‐Principal 1759 2.860.000,00
 DOM Eletrônico
 Edição Nº 8451, de 07 de janeiro de 2025 - Suplemento
 Prefeitura de Goiânia/Chefia da Casa Civil
 Assinado Digitalmente: www.goiania.go.gov.br
-1.9.1.1.06.1.5 Multas Administrativas por Danos Ambientais‐
-Multas 1501 23.000,00
-1.9.1.1.06.1.5 Multas Administrativas por Danos Ambientais‐
-Multas 1759 53.000,00
-1.9.1.1.06.1.6 Multas Administrativas por Danos Ambientais‐
-Multas 1501 17.000,00
-1.9.1.1.06.1.6 Multas Administrativas por Danos Ambientais‐
-Juros de Mora 1759 39.000,00
+1.9.1.1.06.1.5 Multas Administrativas por Danos Ambientais‐Multas 1501 23.000,00
+1.9.1.1.06.1.5 Multas Administrativas por Danos Ambientais‐Multas 1759 53.000,00
+1.9.1.1.06.1.6 Multas Administrativas por Danos Ambientais‐Multas 1501 17.000,00
+1.9.1.1.06.1.6 Multas Administrativas por Danos Ambientais‐Juros de Mora 1759 39.000,00
 1.9.2.0.00.0.0 Indenizações, Restituições e Ressarcimentos 62.419.000,00
 1.9.2.1.00.0.0 Indenizações 62.000,00
 1.9.2.1.99.0.0 Outras Indenizações 62.000,00
@@ -37649,8 +37051,7 @@ Dívida Ativa 1501 2.000,00
 2.0.0.0.00.0.0 RECEITAS DE CAPITAL 789.818.000,00
 2.1.0.0.00.0.0 Operações de Crédito 756.947.000,00 
 2.1.1.0.00.0.0 Operações de Crédito‐Mercado Interno 756.947.000,00
-2.1.1.2.00.0.0 Operações de Crédito Contratuais‐Mercado 
-Interno 756.947.000,00
+2.1.1.2.00.0.0 Operações de Crédito Contratuais‐Mercado Interno 756.947.000,00
 2.1.1.2.01.0.0 
 Operações de Crédito Contratuais‐Mercado 
 Interno 650.701.000,00
@@ -37773,26 +37174,17 @@ Principal 1710 100.000,00
 7.2.1.0.00.0.0 Contribuições Sociais 507.855.000,00
 7.2.1.5.02.0.0 Contribuição Patronal‐Servidor Civil 447.605.000,00
 7.2.1.5.02.1.0 Contribuição Patronal‐Servidor Civil Ativo 380.855.000,00
-7.2.1.5.02.1.1 Contribuição Patronal‐Servidor Civil Ativo‐
-Principal 1801 103.860.000,00
-7.2.1.5.02.1.1 Contribuição Patronal‐Servidor Civil Ativo‐
-Principal 1800 276.995.000,00
+7.2.1.5.02.1.1 Contribuição Patronal‐Servidor Civil Ativo‐Principal 1801 103.860.000,00
+7.2.1.5.02.1.1 Contribuição Patronal‐Servidor Civil Ativo‐Principal 1800 276.995.000,00
 7.2.1.5.51.0.0 Contribuição Patronal‐Parcelamentos 66.750.000,00
-7.2.1.5.51.1.0 Contribuição Patronal‐Servidor Civil Ativo‐
-Parcelamentos 66.750.000,00
-7.2.1.5.51.1.1 Contribuição Patronal‐Servidor Civil Ativo‐
-Parcelamentos‐Principal 1800 41.101.000,00
-7.2.1.5.51.1.2 Contribuição Patronal‐Servidor Civil Ativo‐
-Parcelamentos‐Multas e Juros de Mora 1800 25.649.000,00
+7.2.1.5.51.1.0 Contribuição Patronal‐Servidor Civil Ativo‐Parcelamentos 66.750.000,00
+7.2.1.5.51.1.1 Contribuição Patronal‐Servidor Civil Ativo‐Parcelamentos‐Principal 1800 41.101.000,00
+7.2.1.5.51.1.2 Contribuição Patronal‐Servidor Civil Ativo‐Parcelamentos‐Multas e Juros de Mora 1800 25.649.000,00
 7.2.1.6.00.0.0 Contribuição para Fundos de Assistência Médica 60.250.000,00
-7.2.1.6.03.0.0 Contribuição para Fundos de Assistência Médica‐
-Servidores Civis 60.250.000,00
-7.2.1.6.03.1.0 Contribuição para Fundos de Assistência Médica ‐ 
-Servidores Civis 60.250.000,00
-7.2.1.6.03.1.1 Contribuição para Fundos de Assistência Médica‐
-Servidores Civis‐Principal 1799 60.137.000,00
-7.2.1.6.03.1.2 Contribuição para Fundos de Assistência Médica‐
-Servidores Civis‐Multas e Juros de Mora 1799 113.000,00
+7.2.1.6.03.0.0 Contribuição para Fundos de Assistência Médica‐Servidores Civis 60.250.000,00
+7.2.1.6.03.1.0 Contribuição para Fundos de Assistência Médica ‐ Servidores Civis 60.250.000,00
+7.2.1.6.03.1.1 Contribuição para Fundos de Assistência Médica‐Servidores Civis‐Principal 1799 60.137.000,00
+7.2.1.6.03.1.2 Contribuição para Fundos de Assistência Médica‐Servidores Civis‐Multas e Juros de Mora 1799 113.000,00
 7.6.0.0.00.0.0 RECEITA DE SERVICOS 38.960.000,00 38.960.000,00 
 DOM Eletrônico
 Edição Nº 8451, de 07 de janeiro de 2025 - Suplemento
@@ -37801,18 +37193,14 @@ Assinado Digitalmente: www.goiania.go.gov.br
 7.6.1.0.00.0.0 Serviços Administrativos e Comerciais Gerais 38.960.000,00
 7.6.1.1.00.0.0 Serviços Administrativos e Comerciais Gerais 38.960.000,00
 7.6.1.1.50.0.0 Serviços de Administração Previdenciária 38.960.000,00
-7.6.1.1.50.9.1 Outros Serviços de Administração Previdenciária‐
-Principal (Tx.RPPs) 1802 38.960.000,00
+7.6.1.1.50.9.1 Outros Serviços de Administração Previdenciária‐Principal (Tx.RPPs) 1802 38.960.000,00
 9.0.0.0.0.00.0.0 (‐) DEDUÇÕES DAS RECEITAS ‐461.851.000,00
 9.1.0.0.0.00.0.0 (‐) Deduções das Receitas Correntes ‐461.851.000,00
-9.1.1.0.0.00.0.0 Dedução de Impostos, Taxas e Contribuição de 
-Melhoria ‐4.228.000,00 
+9.1.1.0.0.00.0.0 Dedução de Impostos, Taxas e Contribuição de Melhoria ‐4.228.000,00 
 9.1.1.1.0.00.0.0 Restituição de Impostos‐Indébito Tributário ‐3.721.000,00
 9.1.1.1.2.00.0.0 Restituição do Imposto sobre o Patrimônio ‐1.057.000,00
-9.1.1.1.2.50.0.0 Restituição do Imposto sobre a Propriedade 
-Predial e Territorial Urbana ‐761.000,00
-9.1.1.1.2.50.0.1 Restituição do Imposto sobre a Propriedade 
-Predial e Territorial Urbana‐Principal 1500 ‐761.000,00
+9.1.1.1.2.50.0.0 Restituição do Imposto sobre a Propriedade Predial e Territorial Urbana ‐761.000,00
+9.1.1.1.2.50.0.1 Restituição do Imposto sobre a Propriedade Predial e Territorial Urbana‐Principal 1500 ‐761.000,00
 9.1.1.1.2.53.0.0 
 Restituição do Imposto sobre Transmissão "Inter 
 Vivos" de Bens Imóveis e de Direitos Reais sobre 
@@ -37821,38 +37209,24 @@ Imóveis ‐296.000,00
 Restituição do Imposto sobre Transmissão "Inter 
 Vivos" de Bens Imóveis e de Direitos Reais sobre 
 Imóveis‐Principal 1500 ‐296.000,00
-9.1.1.1.4.00.0.0 Restituição Imposto sobre a Produção e 
-Circulação de Mercadorias e Serviços ‐2.664.000,00
+9.1.1.1.4.00.0.0 Restituição Imposto sobre a Produção e Circulação de Mercadorias e Serviços ‐2.664.000,00
 9.1.1.1.4.51.0.0 Restituição Imposto sobre Serviços ‐2.664.000,00
-9.1.1.1.4.51.1.0 Restituição Imposto sobre Serviços de Qualquer 
-Natureza‐ISSQN ‐2.664.000,00
-9.1.1.1.4.51.1.1 Restituição Imposto sobre Serviços de Qualquer 
-Natureza‐ISSQN‐Principal 1500 ‐2.664.000,00
+9.1.1.1.4.51.1.0 Restituição Imposto sobre Serviços de Qualquer Natureza‐ISSQN ‐2.664.000,00
+9.1.1.1.4.51.1.1 Restituição Imposto sobre Serviços de Qualquer Natureza‐ISSQN‐Principal 1500 ‐2.664.000,00
 9.1.1.2.0.00.0.0 (‐) Dedução de Taxas ‐507.000,00
 9.1.1.2.2.00.0.0 Dedução de Taxas pela Prestação de Serviços ‐507.000,00
-9.1.1.2.2.01.0.0 Dedução de Taxas pela Prestação de Serviços em 
-Geral ‐507.000,00
-9.1.1.2.2.01.0.1 Dedução de Taxas pela Prestação de Serviços em 
-Geral‐Principal 1500 ‐507.000,00
+9.1.1.2.2.01.0.0 Dedução de Taxas pela Prestação de Serviços em Geral ‐507.000,00
+9.1.1.2.2.01.0.1 Dedução de Taxas pela Prestação de Serviços em Geral‐Principal 1500 ‐507.000,00
 9.1.7.0.0.00.0.0 (‐) Dedução de Transferências Correntes ‐457.623.000,00 
-9.1.7.1.0.00.0.0 (‐) Dedução de Transferências da União e de suas 
-Entidades ‐160.735.000,00
-9.1.7.1.1.00.0.0 Dedução de Transferências Decorrentes de 
-Participação na Receita da União ‐160.735.000,00
-9.1.7.1.1.51.0.0 Dedução da Cota‐Parte do Fundo de Participação 
-dos Municípios‐FPM ‐159.526.000,00
-9.1.7.1.1.51.1.0 Dedução da Cota‐parte do Fundo de Participação 
-dos Municípios‐Cota Mensal ‐159.526.000,00
-9.1.7.1.1.51.1.1 Dedução da Cota‐parte do Fundo de Participação 
-dos Municípios‐Cota Mensal 1500 ‐159.526.000,00
-9.1.7.1.1.52.0.0 Dedução da Cota‐Parte do Imposto Sobre a 
-Propriedade Territorial Rural ‐1.209.000,00
-9.1.7.1.1.52.0.1 Dedução da Cota‐parte do Imposto Sobre a 
-Propiedade Territorial Rural‐Principal 1500 ‐1.209.000,00
-9.1.7.2.0.00.0.0 Dedução de Transferências dos Estados e do 
-Distrito Federal e de suas Entidades ‐296.888.000,00
-9.1.7.2.1.00.0.0 Dedução da Participação na Receita dos Estados e 
-Distrito Federal ‐294.581.000,00
+9.1.7.1.0.00.0.0 (‐) Dedução de Transferências da União e de suas Entidades ‐160.735.000,00
+9.1.7.1.1.00.0.0 Dedução de Transferências Decorrentes de Participação na Receita da União ‐160.735.000,00
+9.1.7.1.1.51.0.0 Dedução da Cota‐Parte do Fundo de Participação dos Municípios‐FPM ‐159.526.000,00
+9.1.7.1.1.51.1.0 Dedução da Cota‐parte do Fundo de Participação dos Municípios‐Cota Mensal ‐159.526.000,00
+9.1.7.1.1.51.1.1 Dedução da Cota‐parte do Fundo de Participação dos Municípios‐Cota Mensal 1500 ‐159.526.000,00
+9.1.7.1.1.52.0.0 Dedução da Cota‐Parte do Imposto Sobre a Propriedade Territorial Rural ‐1.209.000,00
+9.1.7.1.1.52.0.1 Dedução da Cota‐parte do Imposto Sobre a Propiedade Territorial Rural‐Principal 1500 ‐1.209.000,00
+9.1.7.2.0.00.0.0 Dedução de Transferências dos Estados e do Distrito Federal e de suas Entidades ‐296.888.000,00
+9.1.7.2.1.00.0.0 Dedução da Participação na Receita dos Estados e Distrito Federal ‐294.581.000,00
 9.1.7.2.1.50.0.0 Dedução da Cota‐parte do ICMS ‐176.138.000,00
 9.1.7.2.1.50.0.1 Dedução da Cota‐parte do ICMS‐Principal 1500 ‐176.138.000,00
 9.1.7.2.1.51.0.0 Dedução da Cota‐parte do IPVA ‐117.286.000,00
@@ -38214,21 +37588,7 @@ Assinado Digitalmente: www.goiania.go.gov.br
 Lei Orgânica do Município de Goiânia, § 6º art.136 
 DEMONSTRATIVO DO EFEITO SOBRE AS RECEITAS E DESPESAS DECORRENTES DE ISENÇÕES, ANISTIAS, REMISSÕES, SUBSÍDIOS E BENEFÍCIOS DE NATUREZA FINANCEIRA, TRIBUTÁRIA E CREDITÍCIA 
 PREVISTO 2025 EQUIPARAÇÃO % PREVISÃO ORÇAMENTÁRIA Exercício 2025 
-TRIBUTO MODALIDADE SETORES/PROGRAMAS/BENEFICIÁRIO VALOR DA 
-RENÚNCIA 
- RECEITA 
-CORRENTE 
-IMPOSTOS,TAXAS 
-E CONTRIBUIÇÃO 
-DE MELHORIA 
-(DO)TRIBUTO DESPESAS 
-CORRENTES RECEITAS 
-CORRENTES 
-IMPOSTOS,TAXAS 
-E CONTRIBUIÇÃO 
-DE MELHORIA 
-ISS IPTU ITBI Taxas DESPESAS 
-CORRENTES 
+TRIBUTO MODALIDADE SETORES/PROGRAMAS/BENEFICIÁRIO VALOR DA RENÚNCIA RECEITA CORRENTE IMPOSTOS,TAXAS E CONTRIBUIÇÃO DE MELHORIA (DO)TRIBUTO DESPESAS CORRENTES RECEITAS CORRENTES IMPOSTOS,TAXAS E CONTRIBUIÇÃO DE MELHORIA ISS IPTU ITBI Taxas DESPESAS CORRENTES 
 IPTU Isenção 
 Para as construções requalificadas de habitações 
 coletivas, de uso residencial ou misto, nos termos do 
@@ -38422,8 +37782,7 @@ DOM Eletrônico
 Edição Nº 8451, de 07 de janeiro de 2025 - Suplemento
 Prefeitura de Goiânia/Chefia da Casa Civil
 Assinado Digitalmente: www.goiania.go.gov.br
-ISS Redução de 
-Alíquota 
+ISS Redução de Alíquota 
  A alíquota mínima do Imposto sobre Serviços de 
 Qualquer Natureza é de 2% (dois por cento) e a alíquota 
 máxima é de 5% (cinco por cento). As alíquotas para 
@@ -38439,8 +37798,7 @@ atividades de ciência, tecnologia e inovação, nos termos
 do Plano Diretor do Município de Goiânia. Empresas de 
 Tecnologia. (Lei Complementar 344/2021 art.226 § 1º III). 
 14.720.579,69 0,15 0,36 0,94 0,16 9.754.516.000,00 4.058.780.00 0,00 1.571.621.000,00 1.425.364.000,00 388.272.000,00 153.315.000,00 9.276.935.000,00 
-ISS Redução de 
-Alíquota A alíquota mínima do Imposto sobre Serviços de Qualquer 
+ISS Redução de Alíquota A alíquota mínima do Imposto sobre Serviços de Qualquer 
 Natureza é de 2% (dois por cento) e a alíquota máxima é 
 de 5% (cinco por cento). As alíquotas para cálculo do ISS 
 são: 2% (dois por cento) para os serviços descritos nos 
@@ -38448,8 +37806,7 @@ itens 9 e 12 e no subitem 17.08 da lista do Anexo I desta
 Lei Complementar; (Lei Complementar 344/2021 art. 226 
 § 1º IV). Eventos e Hotéis. 
 4.224.147,49 0,04 0,10 0,27 0,05 9.754.516.000,00 4.058.780.000 ,00 1.571.621.000,00 1.425.364.000,00 388.272.000,00 153.315.000,00 9.276.935.000,00 
-ISS Redução de 
-Alíquota 
+ISS Redução de Alíquota 
 A alíquota mínima do Imposto sobre Serviços de Qualquer 
 Natureza é de 2% (dois por cento) e a alíquota máxima é 
 de 5% (cinco por cento). As alíquotas para cálculo do ISS 
@@ -46108,10 +45465,7 @@ Prefeitura de Goiânia/Chefia da Casa Civil
 Assinado Digitalmente: www.goiania.go.gov.br
 Função 
 Órgão 
-LEGISLATIVA ESSENCIAL A JUSTICA ADMINISTRACAO SEGURANCA 
-PUBLICA 
-ASSISTENCIA 
-SOCIAL PREVIDENCIA SOCIAL 
+LEGISLATIVA ESSENCIAL A JUSTICA ADMINISTRACAO SEGURANCA PUBLICA ASSISTENCIA SOCIAL PREVIDENCIA SOCIAL 
 CMG 266.778.000 
 SEGOV 45.922.000 
 PGM 50.535.000 45.885.000 
@@ -46167,8 +45521,7 @@ Total 266.778.000 50.536.000 1.864.609.000 3.694.000 22.878.000 1.273.276.000
 Fun
 ção 
 Órgão 
-SAUDE TRABALHO EDUCACAO CULTURA DIREITOS DA 
-CIDADANIA URBANISMO HABITACAO 
+SAUDE TRABALHO EDUCACAO CULTURA DIREITOS DA CIDADANIA URBANISMO HABITACAO 
 CMG 
 SEGOV 
 PGM 
@@ -46223,17 +45576,7 @@ FMDPC 4.054.000
 Total 2.206.073.000 1.383.000 2.057.332.000 16.179.000 8.761.00 0 97.155.000 19.873.000 
 Função 
 Órgão 
-SANEAMENTO GESTAO 
-AMBIENTAL 
-CIENCIA E 
-TECNOLOGIA 
-COMERCIO E 
-SERVICOS TRANSPORTE DESPORTO E 
-LAZER 
-ENCARGOS 
-ESPECIAIS 
-RESERVA DE 
-CONTINGENCIA 
+SANEAMENTO GESTAO AMBIENTAL CIENCIA E TECNOLOGIA COMERCIO E SERVICOS TRANSPORTE DESPORTO E LAZER ENCARGOS ESPECIAIS RESERVA DE CONTINGENCIA 
 CMG 3.000 
 SEGOV 
 PGM 
@@ -46299,108 +45642,74 @@ Assinado Digitalmente: www.goiania.go.gov.br
 Órgão AÇÃO Nome Projeto Atividade Serviços Obras 
 1458 MODERNIZACAO OPERACIONAL DA CAMARA 2.000 2.000.000
 2001 ATIVIDADES LEGISLATIVAS 10.701.000
-2027 ACOES COM PUBLICIDADE INSTITUCIONAL E DE 
-UTILIDADE PUBLICA 10.002.000CMG 
+2027 ACOES COM PUBLICIDADE INSTITUCIONAL E DE UTILIDADE PUBLICA 10.002.000CMG 
 2314 PESSOAL E ENCARGOS SO CIAIS DA CAMARA 3.500.000
 2450 FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS 1.000
-SEGOV 2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, 
-TECNICO E OPERACIONAL 1.981.000 1.000
-2005 COORDENACAO DOS ASSUNTOS JURIDICOS DO 
-MUNICIPIO 374.000
+SEGOV 2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, TECNICO E OPERACIONAL 1.981.000 1.000
+2005 COORDENACAO DOS ASSUNTOS JURIDICOS DO MUNICIPIO 374.000
 2450 FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS 469.000PGM 
-2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, 
-TECNICO E OPERACIONAL 392.000
+2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, TECNICO E OPERACIONAL 392.000
 2007 POLITICA DE COMUNICACAO SOCIAL DESENVOLVIDA 20.514.000
-SECOM 2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, 
-TECNICO E OPERACIONAL 57.000 110.000
+SECOM 2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, TECNICO E OPERACIONAL 57.000 110.000
 1072 GESTAO PUBLICA CONECTADA 9.896.000 2.784.000
-2012 COORDENACAO DA POLITICA FINANCEIRA DO 
-MUNICIPIO 5.316.000 2.652.000
+2012 COORDENACAO DA POLITICA FINANCEIRA DO MUNICIPIO 5.316.000 2.652.000
 2450 FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS 134.000SEFIN 
-2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, 
-TECNICO E OPERACIONAL 492.000 18.000
+2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, TECNICO E OPERACIONAL 492.000 18.000
 2094 PAGAMENTO DE ENCARGOS BANCARIOS 13.920.000ENCARGOS 
 GERAIS 2095 DIVERSOS ENCARGOS DO MUNICIPIO 28.000
 1028 GOIANIA EM NOVA ACAO ‐ TABLETS E ROBOTICA 3.000
-1029 GOIANIA EM NOVA ACAO ‐ REFORMA E AMPLIACAO DE 
-UNIDADES ESCOLARES 3.000 2.000
-1030 GOIANIA EM NOVA ACAO ‐ ESCOLAS DE TEMPO 
-INTEGRAL 2.000 2.000
-1073 CONSTRUCAO E AMPLIACAO DA REDE FISICA DAS 
-ESCOLAS 11.000 13.458.000
-1074 CONSTRUCAO E AMPLIACAO DA REDE FISICA DAS 
-INSTITUICOES DA EDUCACAO INFANTIL 13.000 16.621.000
-1075 REFORMA E MANUTENCAO DA REDE FISICA DAS 
-ESCOLAS 13.000 4.000
-1076 REFORMA E MANUTENCAO DAS UNIDADES DE 
-EDUCACAO INFANTIL 83.000 4.000
-2014 DESENVOLVIMENTO DE ACOES PARA A MANUTENCAO 
-DA EDUCACAO INFANTIL ‐ CRECHE 15.268.000
-2017 DESENVOLVIMENTO DAS ACOES PARA MANUTENCAO 
-DO ENSINO FUNDAMENTAL 34.407.000
+1029 GOIANIA EM NOVA ACAO ‐ REFORMA E AMPLIACAO DE UNIDADES ESCOLARES 3.000 2.000
+1030 GOIANIA EM NOVA ACAO ‐ ESCOLAS DE TEMPO INTEGRAL 2.000 2.000
+1073 CONSTRUCAO E AMPLIACAO DA REDE FISICA DAS ESCOLAS 11.000 13.458.000
+1074 CONSTRUCAO E AMPLIACAO DA REDE FISICA DAS INSTITUICOES DA EDUCACAO INFANTIL 13.000 16.621.000
+1075 REFORMA E MANUTENCAO DA REDE FISICA DAS ESCOLAS 13.000 4.000
+1076 REFORMA E MANUTENCAO DAS UNIDADES DE EDUCACAO INFANTIL 83.000 4.000
+2014 DESENVOLVIMENTO DE ACOES PARA A MANUTENCAO DA EDUCACAO INFANTIL ‐ CRECHE 15.268.000
+2017 DESENVOLVIMENTO DAS ACOES PARA MANUTENCAO DO ENSINO FUNDAMENTAL 34.407.000
 2018 FORNECIMENTO DE MERENDA ESCOLAR PARA RME 2.000
-2077 DESENVOLVIMENTO DE ACOES PARA A MANUTENCAO 
-DA EDUCACAO INFANTIL ‐ PRE‐ESCOLA 4.760.000
+2077 DESENVOLVIMENTO DE ACOES PARA A MANUTENCAO DA EDUCACAO INFANTIL ‐ PRE‐ESCOLA 4.760.000
 FMMDE 
-2080 DESENVOLVIMENTO DE ACOES PARA A MANUTENCAO 
-DO ENSINO ESPECIAL 446.000
+2080 DESENVOLVIMENTO DE ACOES PARA A MANUTENCAO DO ENSINO ESPECIAL 446.000
 DOM Eletrônico
 Edição Nº 8451, de 07 de janeiro de 2025 - Suplemento
 Prefeitura de Goiânia/Chefia da Casa Civil
 Assinado Digitalmente: www.goiania.go.gov.br
-2168 DESENVOLV. DE ACOES PARA MANUTENCAO DA ED. 
-JOVENS E ADULTOS 1.408.000
-2264 MANUTENCAO E FUNCIONAMENTO DO CONSELHO 
-MUNICIPAL DE EDUCACAO 434.000
+2168 DESENVOLV. DE ACOES PARA MANUTENCAO DA ED. JOVENS E ADULTOS 1.408.000
+2264 MANUTENCAO E FUNCIONAMENTO DO CONSELHO MUNICIPAL DE EDUCACAO 434.000
 2045 MANUTENCAO DO FUNDEB_‐ E NSINO FUNDAMENTAL 2.000 1.000
-2083 MANUTENCAO DO FUNDEB ‐ EDUCACAO INFANTIL ‐ 
-CRECHE 2.000 1.000
-2084 MANUTENCAO DO FUNDEB ‐ EDUCACAO INFANTIL ‐ 
-PRE‐ESCOLA 2.000 1.000
-2085 MANUTENCAO DO FUNDEB ‐ EDUCACAO DE JOVENS E 
-ADULTOS‐EAJA 2.000 1.000
+2083 MANUTENCAO DO FUNDEB ‐ EDUCACAO INFANTIL ‐ CRECHE 2.000 1.000
+2084 MANUTENCAO DO FUNDEB ‐ EDUCACAO INFANTIL ‐ PRE‐ESCOLA 2.000 1.000
+2085 MANUTENCAO DO FUNDEB ‐ EDUCACAO DE JOVENS E ADULTOS‐EAJA 2.000 1.000
 FUNDEB 
 2086 MANUTENCAO DO FUNDEB ‐ E DUCACAO ESPECIAL 2.000 1.000
 2450 FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS 2.354.000
-2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, 
-TECNICO E OPERACIONAL 5.433.000 1.000SECULT 
+2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, TECNICO E OPERACIONAL 5.433.000 1.000SECULT 
 2743 APOIO AS ACOES CULTURAIS E FOLCLORICAS 1.000
-2744 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, 
-TECNICO E OPERACIONAL DA E.L.A. 42.000FAC 
+2744 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, TECNICO E OPERACIONAL DA E.L.A. 42.000FAC 
 2746 AGENDA CULTURAL 1.867.000
 1032 GOIANIA EM NOVA AC AO ‐ UBS 2.000 1.000
-1033 GOIANIA EM NOVA ACAO ‐ CENTRO DE 
-ESPECIALIDADES MEDICAS 2.000 1.000
+1033 GOIANIA EM NOVA ACAO ‐ CENTRO DE ESPECIALIDADES MEDICAS 2.000 1.000
 1034 GOIANIA EM NOVA ACAO ‐ TELEMEDICINA 2.000 1.000
 1035 GOIANIA EM NOVA ACAO ‐ PONTOS DE ATENDIMENTO 2.000 1.000
 1036 GOIANIA EM NOVA ACAO ‐ BEM ESTAR 2.000 1.000
-2779 FORTALECER A GESTAO DO SUS EM GOIANIA A PARTIR 
-DOS SEUS ESPACOS DE GOVERNANCAS 1.000
+2779 FORTALECER A GESTAO DO SUS EM GOIANIA A PARTIR DOS SEUS ESPACOS DE GOVERNANCAS 1.000
 FOMENTAR E APOIAR A PARTICIPACAO SOCIAL NOS 
 PROCESSOS DE FORMULACAO E IMPLEMENT DE 
 POLITICAS PUBLICAS DE SAUDE 
 3.000 1.000
-2781 FORTALECER E AMPLIAR O ACESSO A APS DE FORMA 
-INTEGRADA 43.015.000 7.000
-2782 PROMOVER A AMPLIACAO DA OFERTA DE SERVICOS DA 
-ATENC ESPECIALIZADA E DE URGENICA/EMERGENCIA 681.365.000 11.000
+2781 FORTALECER E AMPLIAR O ACESSO A APS DE FORMA INTEGRADA 43.015.000 7.000
+2782 PROMOVER A AMPLIACAO DA OFERTA DE SERVICOS DA ATENC ESPECIALIZADA E DE URGENICA/EMERGENCIA 681.365.000 11.000
 QUALIFICAR E MANTER A CENTRAL DE REGULACAO, 
 AUDITORIA E PROGRAMACAO PACTUADA INTEGRADA 
 (PPI) 
 2.000
-2784 REDUZIR OU CONTROLAR A OCORRENCIA DE DOENCAS 
-E AGRAVOS PASSIVEIS DE PREVENCAO E CONTROLE 50.008.000 3.000
-2785 FOMENTAR RESPOSTAS AS EMERGENCIAS DE SAUDE 
-PUBLICA E DESASTRES 4.000 2.000
+2784 REDUZIR OU CONTROLAR A OCORRENCIA DE DOENCAS E AGRAVOS PASSIVEIS DE PREVENCAO E CONTROLE 50.008.000 3.000
+2785 FOMENTAR RESPOSTAS AS EMERGENCIAS DE SAUDE PUBLICA E DESASTRES 4.000 2.000
 FMS 
-2786 QUALIFICAR A ASSISTENCIA FARMACEUTICA NO 
-AMBITO DO SUS MUNICIPAL 6.000
-1009 CONSTRUCAO DE UNIDADES DE PROTECAO SOCIAL 
-BASICA 24.000 1.000
-1014 CONSTRUCAO DE UNIDADES DE PROTECAO SOCIAL DE 
-MEDIA COMPLEXIDADE 24.000 1.000
-1502 CONSTRUCAO DE UNIDADE DE ACOLHIMENTO 
-INSTITUCIONAL 24.000
+2786 QUALIFICAR A ASSISTENCIA FARMACEUTICA NO AMBITO DO SUS MUNICIPAL 6.000
+1009 CONSTRUCAO DE UNIDADES DE PROTECAO SOCIAL BASICA 24.000 1.000
+1014 CONSTRUCAO DE UNIDADES DE PROTECAO SOCIAL DE MEDIA COMPLEXIDADE 24.000 1.000
+1502 CONSTRUCAO DE UNIDADE DE ACOLHIMENTO INSTITUCIONAL 24.000
 SEDHS 
 2347 MANUTENCAO DOS CONSELH OS TUTELARES 93.000 1.000
 DOM Eletrônico
@@ -46408,144 +45717,100 @@ Edição Nº 8451, de 07 de janeiro de 2025 - Suplemento
 Prefeitura de Goiânia/Chefia da Casa Civil
 Assinado Digitalmente: www.goiania.go.gov.br
 2450 FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS 2.000
-2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, 
-TECNICO E OPERACIONAL 4.781.000 1.000
+2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, TECNICO E OPERACIONAL 4.781.000 1.000
 2592 MANUTENCAO DO CONSELHO MUNICIPAL DO IDOSO 13.000 1.000
-2593 MANUTENCAO DO CONSELHO MUNICIPAL DOS 
-DIREITOS DA CRIANCA E DO ADOLESCENTE 13.000 1.000
-2594 MANUTENCAO DO CONSELHO MUNICIPAL DE 
-SEGURANCA ALIMENTAR E NUTRICIONAL 13.000 1.000
+2593 MANUTENCAO DO CONSELHO MUNICIPAL DOS DIREITOS DA CRIANCA E DO ADOLESCENTE 13.000 1.000
+2594 MANUTENCAO DO CONSELHO MUNICIPAL DE SEGURANCA ALIMENTAR E NUTRICIONAL 13.000 1.000
 2713 MANUTENCAO DOS C EMITERIOS 503.000 2.000
 1100 BPC ESCOLA 2.000
 1103 MODERNIZACAO DA GESTAO DO IGD SUAS 2.000 1.000
 1565 REPASSE DE BENEFICIOS EVENTUAIS 9.000
-2029 MANUTENCAO DO FORTALECIMENTO DO CONTROLE 
-SOCIAL ‐ IGD SUAS 50.000
-2042 MANUTENCAO DO FORTALECIMENTO DO CONTROLE 
-SOCIAL ‐ IGD PBF 150.000
-2052 MANUTENCAO DOS SERVICOS DE PROTECAO SOCIAL 
-BASICA 1.195.000 2.000
-2059 EXECUCAO E MANUTENCAO DO PROJETO CRIANCA 
-FELIZ 4.000 1.000
+2029 MANUTENCAO DO FORTALECIMENTO DO CONTROLE SOCIAL ‐ IGD SUAS 50.000
+2042 MANUTENCAO DO FORTALECIMENTO DO CONTROLE SOCIAL ‐ IGD PBF 150.000
+2052 MANUTENCAO DOS SERVICOS DE PROTECAO SOCIAL BASICA 1.195.000 2.000
+2059 EXECUCAO E MANUTENCAO DO PROJETO CRIANCA FELIZ 4.000 1.000
 2175 ERRADICACAO DO TRABALHO INFANTIL 3.000
-2555 MODERNIZACAO DA GESTAO DO PBF E CAD UNICO ‐ 
-IGD BOLSA 454.000 2.000
-2591 MANUTENCAO DO CONSELHO MUNICIPAL DE 
-ASSISTENCIA SOCIAL 4.000 1.000
+2555 MODERNIZACAO DA GESTAO DO PBF E CAD UNICO ‐ IGD BOLSA 454.000 2.000
+2591 MANUTENCAO DO CONSELHO MUNICIPAL DE ASSISTENCIA SOCIAL 4.000 1.000
 2625 ACESSUAS TRABALHO 3.000
-2770 MANUTENCAO DOS SERVICOS E UNIDADES DA REDE DE 
-MEDIA E ALTA COMPLEXIDADE 492.000 2.000
+2770 MANUTENCAO DOS SERVICOS E UNIDADES DA REDE DE MEDIA E ALTA COMPLEXIDADE 492.000 2.000
 FMAS 
-2775 ACOES ASSISTENCIAIS AOS IMIGRANTES 
-VENEZUELANOS 3.000
-FMDCA 2202 MANUTENCAO DO FUNDO MUNICIPAL DA CRIANCA E 
-ADOLESCENTE 38.000
+2775 ACOES ASSISTENCIAIS AOS IMIGRANTES VENEZUELANOS 3.000
+FMDCA 2202 MANUTENCAO DO FUNDO MUNICIPAL DA CRIANCA E ADOLESCENTE 38.000
 FMI 2719 MANUTENCAO DO FUNDO MUNICIPAL DO IDOSO 3.000
 2450 FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS 16.000
-2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, 
-TECNICO E OPERACIONAL 73.000CGM 
-2742 APERFEICOAMENTO E FORTALECIMENTO DO PORTAL 
-DA TRANSPARENCIA DA GESTAO 310.000
+2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, TECNICO E OPERACIONAL 73.000CGM 
+2742 APERFEICOAMENTO E FORTALECIMENTO DO PORTAL DA TRANSPARENCIA DA GESTAO 310.000
 1077 IMPLANTACAO DO PARQUE LINEAR 55.000 210.000
 1078 REQUALIFICACAO URBANA 13.000
 2450 FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS 1.000SEPLANH 
-2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, 
-TECNICO E OPERACIONAL 335.000 480.000
-2229 PROPICIAR SUPORTE FINANC AS ATIVIDADES 
-INERENTES AO PLANEJAMENTO URBANO 8.101.000
-FMDU 
-2389 COORDENACAO DOS PROGRAMAS E ATIVIDADES DE 
-APOIO ADMINISTRATIVO 5.601.000 100.000
+2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, TECNICO E OPERACIONAL 335.000 480.000
+2229 PROPICIAR SUPORTE FINANC AS ATIVIDADES INERENTES AO PLANEJAMENTO URBANO 8.101.000FMDU 
+2389 COORDENACAO DOS PROGRAMAS E ATIVIDADES DE APOIO ADMINISTRATIVO 5.601.000 100.000
 1045 GOIANIA EM NOVA ACAO ‐ VERA CRUZ 16.000 63.000FMHIS 
 1090 REURBANIZAO E CRIACAO DO PARQUE AMBIENTAL 30.000 10.000
 DOM Eletrônico
 Edição Nº 8451, de 07 de janeiro de 2025 - Suplemento
 Prefeitura de Goiânia/Chefia da Casa Civil
 Assinado Digitalmente: www.goiania.go.gov.br
-1091 PROGRAMA TECNICO SOCIAL DE INSERCAO NOS 
-RESIDENCIAIS EM GOIANIA 200.000
-1092 GOIANIA EM NOVA ACAO ‐ SUBSIDIO FINANCEIRO 
-PARA AQUISICAO DE MORADIA 2.083.000 202.000
-1105 ELABORACAO E CONSTRUCAO DE PROJETOS ESPECIAIS 
-DE HABITACAO E INTERESSE SOCIAL 4.060.000 10.000
-2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, 
-TECNICO E OPERACIONAL 260.000 10.000
-2761 GOIANIA EM NOVA ACAO ‐ REGULARIZACAO 
-FUNDIARIA 1.476.000 12.000
+1091 PROGRAMA TECNICO SOCIAL DE INSERCAO NOS RESIDENCIAIS EM GOIANIA 200.000
+1092 GOIANIA EM NOVA ACAO ‐ SUBSIDIO FINANCEIRO PARA AQUISICAO DE MORADIA 2.083.000 202.000
+1105 ELABORACAO E CONSTRUCAO DE PROJETOS ESPECIAIS DE HABITACAO E INTERESSE SOCIAL 4.060.000 10.000
+2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, TECNICO E OPERACIONAL 260.000 10.000
+2761 GOIANIA EM NOVA ACAO ‐ REGULARIZACAO FUNDIARIA 1.476.000 12.000
 1080 IMPLANTACAO DA CASA DA MULHER BRASILEIRA 2.000 3.143.000
-1081 POLITICAS PUBLICAS E NOVAS PERSPECTIVAS PARA AS 
-MULHERES 106.000
+1081 POLITICAS PUBLICAS E NOVAS PERSPECTIVAS PARA AS MULHERES 106.000
 1082 OBSERVATORIO DA MULHER GOIANA 1.000
 2450 FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS 1.000
-2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, 
-TECNICO E OPERACIONAL 181.000
+2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, TECNICO E OPERACIONAL 181.000
 2747 CASA ABRIGO SEMPRE VIVA 86.000
 2748 CENTRO DE REFERENCIA CORA CORALINA 2.000
 SMPM 
 2749 CENTRO DE FORMACAO DA MULHER 70.000
-1087 CONSTRUCAO E REFORMA DE MERCADOS, CEPAL E 
-FEIRAS 631.000 1.117.000
+1087 CONSTRUCAO E REFORMA DE MERCADOS, CEPAL E FEIRAS 631.000 1.117.000
 2039 APOIO A EXPANSAO COMERCIAL 1.000
-2062 IMPLANTACAO DO SISTEMA DE INSPECAO PARA 
-MAPEAMENTO(SIM) 1.000
+2062 IMPLANTACAO DO SISTEMA DE INSPECAO PARA MAPEAMENTO(SIM) 1.000
 2450 FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS 37.000
-2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, 
-TECNICO E OPERACIONAL 10.017.000 1.000
-2540 ATUALIZACAO CADASTRAL DAS ATIVIDADES 
-ECONOMICAS 1.000
+2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, TECNICO E OPERACIONAL 10.017.000 1.000
+2540 ATUALIZACAO CADASTRAL DAS ATIVIDADES ECONOMICAS 1.000
 2541 MANUTENCAO DOS MERCADOS, CEPAL E FEIRAS 3.000 1.000
 2542 AUTOMACAO DAS FEIRAS E MERCADOS 1.000
 2620 PROMOCAO DO DESENVOLVIMENTO COMUNITARIO 3.000 1.000
 SEDEC 
-2622 PROMOCAO DO DESENVOLVIMENTO ECONOMICO E 
-EMPREEDEDORISMO LOCAL 1.000
+2622 PROMOCAO DO DESENVOLVIMENTO ECONOMICO E EMPREEDEDORISMO LOCAL 1.000
 1095 QUALIFICACAO PROFISS IONAL E SOCIAL 1.331.000
-FUMAT 2758 
-MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, 
-TECNICO E OPERACIONAL DO SISTEMA NACIONAL DE 
+FUMAT 2758 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, TECNICO E OPERACIONAL DO SISTEMA NACIONAL DE 
 EMPREGO 
 834.000
 2450 FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS 609.000
-GOIANIAPREV 2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, 
-TECNICO E OPERACIONAL 8.141.000
+GOIANIAPREV 2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, TECNICO E OPERACIONAL 8.141.000
 FUNFIN 8008 TAXA DE ADMINISTRACAO DO RPPS 11.540.000
 FUNPREV 8008 TAXA DE ADMINISTRACAO DO RPPS 63.225.000
-1094 DISPONIBILIZACAO DE ESTRUTURA FISICA PARA 
-TRABALHO 2.000 1.000
+1094 DISPONIBILIZACAO DE ESTRUTURA FISICA PARA TRABALHO 2.000 1.000
 1097 JOVEM EM ACAO 4.000
 SMDHPA 
-1104 APOIO A POPULACAO LGBTQIA+ E COMBATE A 
-VIOLENCIA 3.000
+1104 APOIO A POPULACAO LGBTQIA+ E COMBATE A VIOLENCIA 3.000
 DOM Eletrônico
 Edição Nº 8451, de 07 de janeiro de 2025 - Suplemento
 Prefeitura de Goiânia/Chefia da Casa Civil
 Assinado Digitalmente: www.goiania.go.gov.br
-2403 POLITICAS PUBLICAS PARA PROMOCAO DA IGUALDADE 
-RACIAL 2.000
+2403 POLITICAS PUBLICAS PARA PROMOCAO DA IGUALDADE RACIAL 2.000
 2450 FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS 1.000
-2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, 
-TECNICO E OPERACIONAL 535.000 3.000
-2768 FORTALECIMENTO E AMPLIACAO DE ACOES DE APOIO 
-AS PESSOAS COM DEFICIENCIA 20.000 250.000
+2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, TECNICO E OPERACIONAL 535.000 3.000
+2768 FORTALECIMENTO E AMPLIACAO DE ACOES DE APOIO AS PESSOAS COM DEFICIENCIA 20.000 250.000
 2450 FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS 2.000
-2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, 
-TECNICO E OPERACIONAL 15.516.000 1.000
-2527 COORD E SUPERV DE DISTR DE COMBUSTIVEIS PARA O 
-MUNICIPIO 1.000
-2528 COORDENACAO E ADMINISTRACAO DE MATERIAL E 
-PATRIMONIO. 105.000 1.000
+2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, TECNICO E OPERACIONAL 15.516.000 1.000
+2527 COORD E SUPERV DE DISTR DE COMBUSTIVEIS PARA O MUNICIPIO 1.000
+2528 COORDENACAO E ADMINISTRACAO DE MATERIAL E PATRIMONIO. 105.000 1.000
 SEMAD 
-2530 COORDENACAO E ADMINISTRACAO DA FROTA DE 
-VEICULOS DO MUNICIPIO 184.925.000
+2530 COORDENACAO E ADMINISTRACAO DA FROTA DE VEICULOS DO MUNICIPIO 184.925.000
 2216 CONCURSO PUBLICO 2.880.000
-2759 CAPACITACAO E DESENVOLVIMENTO DE RECURSOS 
-HUMANOS PARA ADMINISTRACAO 1.816.000FUMCADES 
+2759 CAPACITACAO E DESENVOLVIMENTO DE RECURSOS HUMANOS PARA ADMINISTRACAO 1.816.000FUMCADES 
 2760 PROCESSO SELETIVO 60.000
 1066 PROMOCAO DO BEM ESTAR ANIMAL 11.000 3.000
 1069 PROMOCAO DA GESTAO AMBIENTAL 208.000 5.002.000
 2450 FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS 1.394.000AMMA 
-2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, 
-TECNICO E OPERACIONAL 3.106.000 3.000
+2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, TECNICO E OPERACIONAL 3.106.000 3.000
 2064 AGENDA AMARELA ‐ EDUCACAO AMBIENTAL 254.000 1.000
 2065 AGENDA AZUL ‐ RECURSOS HIDRICOS 4.000 1.000
 2066 AGENDA BRANCA ‐ GOVERNANCA E GESTAO 573.000 1.000
@@ -46553,21 +45818,15 @@ TECNICO E OPERACIONAL 3.106.000 3.000
 FMMA 
 2074 AGENDA VERDE ‐ BIODIVERSIDADE 243.000 3.444.000
 1023 GOIANIA EM NOVA ACAO ‐ CON STRUCAO DE PONTES 2.000 2.000
-1025 GOIANIA EM NOVA ACAO ‐ REQUALIFICACAO DA 
-AVENIDA ANHANGUERA 2.000 2.000
+1025 GOIANIA EM NOVA ACAO ‐ REQUALIFICACAO DA AVENIDA ANHANGUERA 2.000 2.000
 1026 GOIANIA EM NOVA ACAO ‐ PAVIMENTACAO ASFALTICA 2.000 2.000
-1085 GOIANIA EM NOVA ACAO ‐ PARQUE LUMINOTECNICO 
-DE GOIANIA 3.000 1.000
+1085 GOIANIA EM NOVA ACAO ‐ PARQUE LUMINOTECNICO DE GOIANIA 3.000 1.000
 1432 PAVIMENTACAO E CONSERVACAO DAS VIAS URBANAS 101.000 539.126.000
-1434 PAVIMENTACAO E REURBANIZACAO DA AVENIDA 
-GOIAS NORTE 1.000
-1440 PAVIMENTACAO E REURBANIZACAO DA AVENIDA 
-LESTE/OESTE 1.000 2.000
+1434 PAVIMENTACAO E REURBANIZACAO DA AVENIDA GOIAS NORTE 1.000
+1440 PAVIMENTACAO E REURBANIZACAO DA AVENIDA LESTE/OESTE 1.000 2.000
 1444 REURBANIZACAO DA BACIA DO CORREGO BOTAFOGO 2.000 1.000
-1445 RECUPERACAO DO FUNDO DO VALE DO CORREGO 
-CASCAVEL 2.000 1.201.000
-1447 CONCLUSAO DA IMPLANTACAO DO CONTORNO NORTE 
-DA BR 060 2.000 2.000
+1445 RECUPERACAO DO FUNDO DO VALE DO CORREGO CASCAVEL 2.000 1.201.000
+1447 CONCLUSAO DA IMPLANTACAO DO CONTORNO NORTE DA BR 060 2.000 2.000
 1448 IMPLANTACAO E CONSTRUCAO D O CORREDOR NORTE 1.000 1.000
 1466 IMPLANTACAO DO RESTAURANTE DO PACO MUNICIPAL 3.000
 SEINFRA 
@@ -46577,49 +45836,35 @@ Edição Nº 8451, de 07 de janeiro de 2025 - Suplemento
 Prefeitura de Goiânia/Chefia da Casa Civil
 Assinado Digitalmente: www.goiania.go.gov.br
 CONST E REFORMA 
-1474 CONSTRUCAO E REFORMAS E MANUT EM PROPRIOS 
-PUBLICOS 2.814.000 2.814.000
-1480 CONSTRUCAO E ESTRUTURACAO DE PRACAS 
-ESPORTIVAS 1.000 2.799.000
-1485 MOBILIDADE, ACESSIBILIDADE E TRANSPORTE ‐ 
-SEINFRA 1.000
-1492 IMPLEMENTACAO DE TERMINAIS/ESTACOES DE 
-INTEGRACAO NO CORREDOR GOIAS 2.000 2.000
-1493 IMPLEMENTACAO DA INFRAESTRUTURA E MELHORIAS 
-NO CORREDOR GOIAS. 2.000 26.727.000
-1494 PRIORIZACAO DA CIRCULACAO DOS ONIBUS EM VIAS 
-ARTERIAIS NO MUNICIPIO DE GOIANIA 1.000 11.000
+1474 CONSTRUCAO E REFORMAS E MANUT EM PROPRIOS PUBLICOS 2.814.000 2.814.000
+1480 CONSTRUCAO E ESTRUTURACAO DE PRACAS ESPORTIVAS 1.000 2.799.000
+1485 MOBILIDADE, ACESSIBILIDADE E TRANSPORTE ‐ SEINFRA 1.000
+1492 IMPLEMENTACAO DE TERMINAIS/ESTACOES DE INTEGRACAO NO CORREDOR GOIAS 2.000 2.000
+1493 IMPLEMENTACAO DA INFRAESTRUTURA E MELHORIAS NO CORREDOR GOIAS. 2.000 26.727.000
+1494 PRIORIZACAO DA CIRCULACAO DOS ONIBUS EM VIAS ARTERIAIS NO MUNICIPIO DE GOIANIA 1.000 11.000
 1549 CONSTRUCAO DE CICLOVIAS 2.000
-2231 SERVICOS DE MANUTENCAO AMPLIACAO E 
-MODERNIZACAO DA ILUMINACAO PUBLICA 81.301.000 2.000
+2231 SERVICOS DE MANUTENCAO AMPLIACAO E MODERNIZACAO DA ILUMINACAO PUBLICA 81.301.000 2.000
 2450 FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS 36.000
-2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, 
-TECNICO E OPERACIONAL 26.130.000 1.000
-2753 LIMPEZA URBANA, GESTAO DE RESIDUOS E 
-URBANIZACAO 622.545.000 1.000
+2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, TECNICO E OPERACIONAL 26.130.000 1.000
+2753 LIMPEZA URBANA, GESTAO DE RESIDUOS E URBANIZACAO 622.545.000 1.000
 1093 GOIANIA EM NOVA ACAO ‐ SEM AFARO INTELIGENTE 8.000 2.000
 1496 ENGENHARIA DE TRAFEGO E DE CAMPO 67.803.000 252.000
 1532 FISCALIZACAO, GESTAO DE TR ANSITO E TRANSPORTE 7.116.000 12. 000
 2421 EDUCACAO PARA O TRANSITO 15.432.000 12.000
 2450 FOLHA DE PAGAMENTO E E NCARGOS SOCIAIS 1.942.000
 SMM 
-2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, 
-TECNICO E OPERACIONAL 3.004.000 36.000
-2214 COORDENACAO DOS ASSUNTOS DE ASSISTENCIA DOS 
-SERVIDORES MUNICIPAIS 1.704.000 1.000
+2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, TECNICO E OPERACIONAL 3.004.000 36.000
+2214 COORDENACAO DOS ASSUNTOS DE ASSISTENCIA DOS SERVIDORES MUNICIPAIS 1.704.000 1.000
 2450 FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS 118.000IMAS 
-2215 MANUTENCAO DE ASSISTENCIA A SAUDE DOS 
-SERV.MUNICIPAIS 77.002.000
+2215 MANUTENCAO DE ASSISTENCIA A SAUDE DOS SERV.MUNICIPAIS 77.002.000
 1037 GOIANIA EM NOVA ACAO ‐ ANEL DE SEGURANCA 1.000
-1038 GOIANIA EM NOVA ACAO ‐ CENTRO DE CONTROLE DE 
-OPERACOES 10.000
+1038 GOIANIA EM NOVA ACAO ‐ CENTRO DE CONTROLE DE OPERACOES 10.000
 1041 GOIANIA EM NOVA ACAO ‐ CIDADE SEGURA 2.000
 1102 CONSTRUCAO DAS BAS ES COMUNITARIAS 1.000
 1509 VIDEOMONITORAMENTO 1.000
 2051 MULHER MAIS SEGURA 5.000
 2450 FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS 2.000
-2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, 
-TECNICO E OPERACIONAL 550.000 2.000
+2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, TECNICO E OPERACIONAL 550.000 2.000
 2453 GOIANIA MAIS SEGURA 2.000
 AGCMG 
 2736 ACOES DE PROTECAO E SEGURANCA DE DEFESA CIVIL 50.000
@@ -46632,53 +45877,37 @@ Edição Nº 8451, de 07 de janeiro de 2025 - Suplemento
 Prefeitura de Goiânia/Chefia da Casa Civil
 Assinado Digitalmente: www.goiania.go.gov.br
 1067 GOIANIA COMO DESTINO TURISTICO INTELIGENTE 1.153.000 1.000
-1070 CONSTRUCAO E MANUTENCAO DE PRACAS 
-RECREATIVAS E DE LAZER 52.000 2.000
-2226 MANUTENCAO DAS ATIVIDADES DO PARQUE 
-MUTIRAMA 1.652.000 101.000
+1070 CONSTRUCAO E MANUTENCAO DE PRACAS RECREATIVAS E DE LAZER 52.000 2.000
+2226 MANUTENCAO DAS ATIVIDADES DO PARQUE MUTIRAMA 1.652.000 101.000
 2450 FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS 1.000
-2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, 
-TECNICO E OPERACIONAL 7.512.000 101.000
-2738 MANUTENCAO, CONSERVACAO E INOVACAO DO 
-PARQUE ZOOLOGICO E MUSEU DE ORNITOLOGIA 453.000 40.000
-2739 MANUTENCAO, CONSERVACAO E INOVACAO DOS 
-CLUBES DO POVO E MORADA NOVA 110.000 80.000
-2740 PROMOCAO DE ATIVIDADES SISTEMATICAS E 
-ASSISTEMATICAS DE LAZER 151.000 2.000
+2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, TECNICO E OPERACIONAL 7.512.000 101.000
+2738 MANUTENCAO, CONSERVACAO E INOVACAO DO PARQUE ZOOLOGICO E MUSEU DE ORNITOLOGIA 453.000 40.000
+2739 MANUTENCAO, CONSERVACAO E INOVACAO DOS CLUBES DO POVO E MORADA NOVA 110.000 80.000
+2740 PROMOCAO DE ATIVIDADES SISTEMATICAS E ASSISTEMATICAS DE LAZER 151.000 2.000
 2071 REGULACAO E FISCALIZACAO DOS SERVICOS PUBLICOS 670.000
 2072 GESTAO DE CONCESSAO E PERMISSAO 240.000
 2450 FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS 3.000AR 
-2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, 
-TECNICO E OPERACIONAL 547.000 1.601.000
-2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, 
-TECNICO E OPERACIONAL 1.210.000 100.000
+2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, TECNICO E OPERACIONAL 547.000 1.601.000
+2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, TECNICO E OPERACIONAL 1.210.000 100.000
 2731 Controle e Melhoria dos serv iços de saneamento basico 2.65 0.000
 2732 Serviços de limpeza urbana e gestão de residuos 3.200.000 20.000.000
 FMSB 
 2733 Sistema de drenagem urbana e de aguas pluviais 3.098.000 10.000.000
 1031 GOIANIA EM NOVA ACAO ‐ GERENCIAMENTO 1.000
 2450 FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS 1.000SRI 
-2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, 
-TECNICO E OPERACIONAL 849.000 20.000
+2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, TECNICO E OPERACIONAL 849.000 20.000
 2450 FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS 3.000
-2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, 
-TECNICO E OPERACIONAL 45.000 1.000
-2776 MAPEAMENTO E REDESENHO DE FLUXOS DE 
-TRABALHO 140.000 1.000
-EPE 
+2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, TECNICO E OPERACIONAL 45.000 1.000
+2776 MAPEAMENTO E REDESENHO DE FLUXOS DE TRABALHO 140.000 1.000EPE 
 2777 INCUBACAO E POLITICAS PUBLICAS 9.000 1.000
 1096 GOIANIA EM NOVA ACAO ‐ FIBRA OTICA 8.000 1.000
 1098 GOIANIA EM NOVA ACAO ‐ DATA CENTER 8.000 1.000
-1099 GOIANIA EM NOVA ACAO ‐ MODERNIZACAO DA 
-POLIGONAL 8.000 1.000
+1099 GOIANIA EM NOVA ACAO ‐ MODERNIZACAO DA POLIGONAL 8.000 1.000
 2450 FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS 78.000
-2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, 
-TECNICO E OPERACIONAL 2.186.000 62.000
-2762 SERVICO DE PROCESSAMENTO DE DADOS, CIENCIA E 
-TECNOLOGIA DA INFORMACAO 8.000 60.000
+2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, TECNICO E OPERACIONAL 2.186.000 62.000
+2762 SERVICO DE PROCESSAMENTO DE DADOS, CIENCIA E TECNOLOGIA DA INFORMACAO 8.000 60.000
 2763 CENTRO DE CONTROLE INTEGRADO‐CCI 7.000 1.000
-2764 CAPACITACAO E TREINAMENTO TECNOLOGICO PARA 
-SERVIDORES 7.000
+2764 CAPACITACAO E TREINAMENTO TECNOLOGICO PARA SERVIDORES 7.000
 2765 FOMENTO A INOVACAO 8.000 1.000
 2766 CIDADE INTELIGENTE 8.000 1.000
 SICTEC 
@@ -46689,8 +45918,7 @@ Prefeitura de Goiânia/Chefia da Casa Civil
 Assinado Digitalmente: www.goiania.go.gov.br
 ‐ PARQUE TECNOLOGICO 
 1088 REALIZACAO DE EVENTOS ESPORTIVOS 236.000 88.000
-2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, 
-TECNICO E OPERACIONAL 1.483.000
+2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, TECNICO E OPERACIONAL 1.483.000
 OBRAS, INSTALACOES, MANUTENCOES, 
 REVITALIZACOES E CONSERVACOES DE ESPACOS 
 PUBLICOS ESPORTIVOS 
@@ -46698,10 +45926,8 @@ PUBLICOS ESPORTIVOS
 SMESP 
 2756 CONTRATOS E CONVENIOS 177.000 88.000
 2450 FOLHA DE PAGAMENTO E ENCARGOS SOCIAIS 1.000
-PROCON 2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, 
-TECNICO E OPERACIONAL 45.000 1.000
-FMDPC 2741 MODERNIZACAO E MANUTENCAO DO PROGRAMA DE 
-DEFESA DO CONSUMIDOR 2.265.000
+PROCON 2451 MANUTENCAO DAS ATIVIDADES ADMINISTRATIVAS, TECNICO E OPERACIONAL 45.000 1.000
+FMDPC 2741 MODERNIZACAO E MANUTENCAO DO PROGRAMA DE DEFESA DO CONSUMIDOR 2.265.000
  Total geral 2.196.869.000 658.177.000
 DOM Eletrônico
 Edição Nº 8451, de 07 de janeiro de 2025 - Suplemento
@@ -53112,57 +52338,57 @@ Fonte: https://www.tce.go.gov.br
 
 Home - Tribunal de Contas do Estado de Goiás
 
-TCE-GO encerra projeto piloto do MMDI-TC com avaliação positiva da ferramenta
+TCE-GO promove 3º Encontro de Inteligência Artificial e Políticas Públicas em novembro
 
- Metodologia composta por 229 critérios foi elogiada por focar no impacto gerado pelas ações dos tribunais
+ Inscrições estão abertas e o evento reunirá especialistas e gestores públicos para debater o uso da tecnologia e a avaliação de políticas públicas
  
 
 LER MAIS
 
-3º Circuito da Transparência movimenta Goiânia
+TCE-GO usa recurso de IA para simplificar decisões em linguagem simples
 
- Iniciativa que uniu esporte e solidariedade arrecadou cerca de 700 kg de alimentos
+ IAGO Linguagem Simples cria textos e ilustrações que ajudam o cidadão a entender o que o Tribunal decide
  
 
 LER MAIS
 
-TCE-GO testa nova ferramenta que visa medir o impacto do controle externo na vida do cidadão
+Orientações práticas sobre contratos de publicidade no setor público serão apresentadas durante Encontro de Comunicação, no TCE-GO
 
- Marco de Medição de Desempenho e Impacto vai ser avaliado em todo o Brasil em 2027
+ Oficina sobre o tema também integra programação
  
 
 LER MAIS
 
-TCE-GO mantém certificações ISO
+IAGO é finalista de prêmio estadual de inovação
 
- Auditoria externa foi finalizada nesta sexta-feira (25/set)
+ Ecossistema de inteligência artificial do TCE-GO concorre ao 3º Prêmio de Inovação do Setor Público de Goiás
  
 
 LER MAIS
 
-set 28, 2026
+out 29, 2026
 
-Escoex representa o TCE-GO no 17º Educontas
+Iniciativas de TC's que utilizam dados climáticos serão reconhecidas no ClimateScanner Summit
 
-Representantes apresentaram boas práticas em relação ao Diálogo Acadêmico Sustentável
+Evento será realizado nos dias 5 e 6 de novembro, no Rio de Janeiro
 
-set 23, 2026
+out 27, 2026
 
-Boas práticas do TCE-GO em comunicação são apresentadas em evento nacional
+Artigos de quatro auditores do TCE-GO integram livro sobre obras rodoviárias
 
-Trabalhos foram selecionados para o ComPública, realizado em Brasília
+Lançamento da publicação foi realizado em Brasília
 
-set 28, 2026
+out 28, 2026
 
-TCE-GO apresenta atuação da Ouvidoria no Encco 2026
+Atricon e IRB convidam representantes de países da Região Amazônica para o IV ENAPI
 
-Coordenadora da Ouvidoria, Rafaella Queiroz, participou de painel sobre o tratamento de casos de assédio e discriminação
+Convite foi entregue pelo Comitê da Primeira Infância ao cardeal Leonardo Steiner, em Manaus
 
-set 26, 2026
+out 27, 2026
 
-Nota de pesar pelo falecimento do deputado estadual Amilton Filho
+TCE-GO e gestores estaduais discutem contratação de professores temporários na UEG
 
-Parlamentar morreu em acidente na madrugada de sábado (26/set)
+Encontro traz subsídios para inspeção em contratos
 
 MAIS NOTÍCIAS
 
@@ -53490,6 +52716,8 @@ Revogado
 
 Não consta revogação expressa
 
+Exaurida
+
 Categoria
 
 Portarias da Corregedoria
@@ -53527,7 +52755,7 @@ Seu navegador não suporta java script, alguns recursos estarão limitados.
  - 
 20
  de 
-12328
+12412
  
 
  RECOMENDAÇÃO Nº 126, DE 23 DE JUNHO DE 2026. 
@@ -53536,124 +52764,123 @@ Descrição
 
  Dispõe sobre ações voltadas à aposentadoria de membros e servidores, no âmbito da Política Nacional de Gestão de Pessoas do Ministério Público. 
 
- PORTARIA CNMP-CN/COCI n° 24, 23 de setembro de 2026. 
+ PORTARIA CNMP-CN n° 105, 29 de outubro de 2026 
 
 Descrição
 
- Instaura Correição Ordinária em Unidade do Ministério Público do Estado de Santa Catarina, a ser realizada na modalidade presencial, nos dias 19 e 20 de outubro de 2026. 
+ Institui o Grupo de Trabalho para a Valorização da Aposentadoria, com a finalidade de estudar e propor critérios para a quitação dos passivos funcionais devidos aos membros do Ministério Público aposentados e aos respectivos pensionistas, e dá outras... 
 
- PORTARIA CNMP-PRESI N° 260 DE 23 DE SETEMBRO DE 2026 
-
-Descrição
-
- Institui Grupo de Trabalho Interinstitucional entre o Conselho Nacional do Ministério Público e o Ministério da Educação para o intercâmbio de dados educacionais e o desenvolvimento de ferramentas de inteligência. 
-
- PORTARIA CNMP-PRESI N° 261 DE 23 DE SETEMBRO DE 2026 
+ PORTARIA CNMP-CN n° 104, 26 de outubro de 2026 
 
 Descrição
 
- Revoga, a contar de 1° de outubro de 2026, a Portaria CNMP-PRESI n° 94, de 19 de março de 2026, publicada no Diário Oficial da União, Seção 2, edição de 20 de março de 2026. 
+ Art. 1º Alterar o art. 2º da Portaria CNMP-CN nº 51, de 11 de fevereiro de 2026, passa a vigorar com a seguinte redação:
+Onde lê:
+"Art. 2º Requisitar o Promotor de Justiça do Estado do Amazonas Darlan Benevides de Queiroz, em regime de dedicação... 
 
- PORTARIA CNMP-PRESI N° 259 DE 23 DE SETEMBRO DE 2026 
-
-Descrição
-
- Concede, a pedido das Coordenadoras da Coordenadoria Nacional de Apoio às Vítimas, JULIANA NUNES FELIX e PATRÍCIA FERREIRA WANDERLEY DE SIQUEIRA GOULDING, elogio funcional aos servidores, Membros e colaboradores listados, em reconhecimento ao trabalho... 
-
- TERMO DE CESSÃO DE USO - ESPAÇO QUALIDADE DE VIDA NO TRABALHO 
+ PORTARIA CNMP-CN n° 103/2026, 26 de outubro de 2026 
 
 Descrição
 
- Termo de Cessão de Uso, a Título Precário e Gratuito, que entre si celebram a União, por intermédio do Conselho Nacional do Ministério Público (CNMP), e a pessoa jurídica Associação dos Servidores do Conselho Nacional do Ministério Público... 
+ Art. 1° Revogar a Portaria CNMP-CN Nº 123, de 11 de setembro de 2019, que requisitou a Promotora de Justiça do Ministério Público do Estado do Rio Grande do Norte ADRIANA MEDEIROS GURGEL DE FARIA, como Membro Auxiliar da Corregedoria Nacional do... 
 
- PORTARIA CNMP-PRESI N° 258 DE 17 DE SETEMBRO DE 2026 
-
-Descrição
-
- Altera a Portaria CNMP-PRESI nº 249, de 30 de dezembro de 2020, publicada no Diário Oficial da União, seção 1, edição de 5 de janeiro de 2021.
-Revoga a Portaria CNMP-PRESI nº 158 de 19 de maio de 2026, publicada no Diário Oficial da União, Seção... 
-
- PORTARIA CNMP-PRESI N° 257 DE 16 DE SETEMBRO DE 2026 
+ PORTARIA CNMP-PRESI N° 283 DE 26 DE OUTUBRO DE 2026 
 
 Descrição
 
- Cancela a 14ª Sessão Ordinária de 2026, designada para o dia 22 de setembro de 2026.
-Cancela a 15ª Sessão Ordinária de 2026, designada para o dia 13 de outubro de 2026.
-Convoca os Conselheiros do Conselho Nacional do Ministério Público para a 1ª... 
+ Inclui o inciso VI no art. 2º da Portaria CNMP-PRESI nº 75, de 17 de março de 2025, publicada no Diário Oficial da União, Seção 2, de 19 de março de 2025, que passa a vigorar com a seguinte redação:"Art.... 
 
- PORTARIA CNMP-PRESI N° 255 DE 15 DE SETEMBRO DE 2026 
+ PORTARIA CNMP-PRESI N° 282 DE 20 DE OUTUBRO DE 2026 
 
 Descrição
 
- Prorroga, pelo período de 1 (um) ano, a contar de 22 de setembro de 2026, a Portaria CNMP-PRESI nº 208, de 24 de julho de 2025, publicada no Diário Oficial da União, Seção 2, de 28 de julho de 2025. 
+ Altera a Portaria CNMP-PRESI nº 164, de 13 de dezembro de 2016, que regulamenta a utilização dos recursos de telefonia fixa e móvel no âmbito do Conselho Nacional do Ministério Público. 
 
- PORTARIA CNMP-PRESI N° 254 DE 15 DE SETEMBRO DE 2026 
-
-Descrição
-
- Prorroga, pelo período de 1 (um) ano, a contar de 22 de outubro de 2026, o prazo previsto pela Portaria CNMP-PRESI nº 253 de 3 de outubro de 2025, publicada no Diário Oficial da União, Seção 2, de 7 de outubro de 2025. 
-
- PORTARIA CNMP-PRESI N° 256 DE 15 DE SETEMBRO DE 2026 
+ PORTARIA CNMP-PRESI N° 281 DE 19 DE OUTUBRO DE 2026 
 
 Descrição
 
- Prorroga, por 1 (um) ano, a contar de 21 de outubro de 2026, a cessão da servidora LÍVIA ABDALLA ARAÚJO, ocupante do cargo de Técnico Administrativo do Conselho Nacional do Ministério Público, matrícula nº 82.366, para exercer suas atividades na... 
+ Prorroga, a contar de 9 de outubro de 2026, pelo período de 1 (um) ano, o prazo previsto pela Portaria CNMP-PRESI nº 281, de 22 de outubro de 2025, publicada no Diário Oficial da União, Seção 2, de 28 de outubro de 2025.
+ 
+Altera o art. 3º da... 
 
- PORTARIA CNMP-PRESI N° 253 DE 14 DE SETEMBRO DE 2026 
-
-Descrição
-
- Altera a composição do Grupo de Trabalho instituído pela Portaria CNM-PRESI n° 248 de 9 de setembro de 2026. 
-
- PORTARIA CNMP-PRESI N° 251 DE 10 DE SETEMBRO DE 2026 
+ PORTARIA CNMP-PRESI N° 280 DE 16 DE OUTUBRO DE 2026 
 
 Descrição
 
- Designa a servidora MARIA VITÓRIA OLIVEIRA DIAS RIBEIRO LEITE, matrícula 779000, ocupante do cargo de Oficial do Ministério Público, do quadro de pessoal do Ministério Público do Estado de Minas Gerais, para atuar, pelo período de 1 (um) ano, junto ao... 
+ Designa a servidora ANDRESSA CAROLINE RODRIGUES, Assessora Jurídica, pertencente ao quadro do Ministério Público do Estado do Amapá, para atuar, pelo período de 1 (um) ano, junto ao Conselho Nacional do Ministério Público, com prejuízo das funções no... 
 
- PORTARIA CNMP-PRESI N° 250 DE 10 DE SETEMBRO DE 2026 
-
-Descrição
-
- Institui Grupo de Trabalho, no âmbito da Comissão da Saúde, com o objetivo de implementar projeto para a elaboração do Sistema Nacional de Avaliação e Monitoramento Anual da Atuação do Ministério Público Brasileiro na Área da Saúde. 
-
- PORTARIA CNMP-PRESI N° 252 DE 10 DE SETEMBRO DE 2026 
+ PORTARIA CNMP-PRESI N° 279 DE 15 DE OUTUBRO DE 2026 
 
 Descrição
 
- Designa a Membra Auxiliar da Presidência do Conselho Nacional do Ministério Público JULIANA NUNES FELIX para atuar como Coordenadora da Coordenadoria de Governança Estratégica da Presidência (CGE).
-Revoga a Portaria CNMP-PRESI nº 152 de 19 de maio de... 
+ Abre no Orçamento Fiscal e da Seguridade Social da União, em favor do Conselho Nacional do Ministério Público, crédito suplementar, do tipo 400b, no valor de R$ 12.261,00 (Doze mil, duzentos e sessenta e um reais), para reforço de dotação constante da... 
 
- PORTARIA CNMP-PRESI N° 248 DE 9 DE SETEMBRO DE 2026 
-
-Descrição
-
- Institui Grupo de Trabalho para elaboração do Relatório de Atividades do Conselho Nacional do Ministério Público 2026 e da situação do Ministério Público no País - 2026 e do Relatório de Gestão 2026, em atendimento, respectivamente, ao disposto no art.... 
-
- PORTARIA CNMP-PRESI N° 249 DE 9 DE SETEMBRO DE 2026 
+ PORTARIA CNMP-PRESI N° 278 DE 14 DE OUTUBRO DE 2026 
 
 Descrição
 
- Alterar o §4° do art. 2° da Portaria CNMP-PRESI n° 178 de 10 de junho de 2022, que passa a vigorar com a seguinte redação:
-"Art.... 
+ Altera a Portaria CNMP-PRESI nº 16, de 23 de fevereiro de 2015 que dispõe sobre a composição, a organização e o funcionamento do Fórum Nacional de Gestão do Ministério Público e de seus Comitês. A alteração define melhor as funções de coordenação e... 
 
- PORTARIA CNMP-PRESI N° 247 DE 8 DE SETEMBRO DE 2026 
-
-Descrição
-
- Institui o processo e o cronograma de elaboração do Plano de Gestão 2027 no âmbito do Conselho Nacional do Ministério Público. 
-
- PORTARIA CNMP-PRESI N° 246 DE 8 DE SETEMBRO DE 2026 
+ ASSENTO Nº 6 
 
 Descrição
 
- Institui o Protocolo Administrativo Digital do Conselho Nacional do Ministério Público (CNMP) e dispõe sobre o serviço de expedição no âmbito do CNMP. 
+ Acesso à informação. Lei nº 12.527/2011. Atendimento pelo serviço de informação ao cidadão. Possibilidade de indicação ao requerente do local e da forma de acesso às informações disponíveis em portal institucional ou outro meio de acesso universal.... 
 
- PORTARIA CNMP-CN N° 100, DE 19 DE AGOSTO DE 2026 
+ ASSENTO Nº 5 
 
 Descrição
 
- Requisita o Promotor de Justiça do Ministério Público do Estado de Mato Grosso do Sul Ronaldo Vieira Francisco, para atuar como Membro Colaborador da Corregedoria Nacional do Ministério Público, sem prejuízo de suas funções no órgão de origem. 
+ Licitações e contratos administrativos. Reajuste contratual. Dispensa de análise jurídica individualizada com base em parecer referencial, desde que atendidos os requisitos fixados e inexistente questão jurídica específica. Necessária manifestação... 
+
+ PORTARIA CNMP-PRESI N° 277 DE 13 DE OUTUBRO DE 2026 
+
+Descrição
+
+ Designa a Procuradora do Trabalho LUÍSA CARVALHO RODRIGUES para atuar, pelo período de 1 (um) ano, como membro colaboradora do Conselho Nacional do Ministério Público. 
+
+ PORTARIA CNMP-PRESI N° 276 DE 13 DE OUTUBRO DE 2026 
+
+Descrição
+
+ Designa a Procuradora Regional do Trabalho FERNANDA BRITO PEREIRA para atuar, pelo período de 1 (um) ano, como membro colaboradora do Conselho Nacional do Ministério Público. 
+
+ PORTARIA CNMP-PRESI N° 275 DE 9 DE OUTUBRO DE 2026 
+
+Descrição
+
+ Prorroga, pelo período de 1 (um) ano, a contar de 5 de novembro de 2026, o prazo previsto pela Portaria CNMP-PRESI nº 288, de 29 de outubro de 2025, publicada no Diário Oficial da União, Seção 2, de 30 de outubro de 2025. 
+
+ PORTARIA CNMP-PRESI N° 268 DE 6 DE OUTUBRO DE 2026 
+
+Descrição
+
+ Prorrogar, pelo período de 12 (doze) meses, a contar de 26 de junho de 2026, o prazo das atividades do Grupo de Trabalho de Acompanhamento da Política Nacional de Atendimento Socioeducativo, instituído por meio da Portaria CNMP-PRESI nº 96, de 14 de... 
+
+ PORTARIA CNMP-PRESI N° 272 DE 5 DE OUTUBRO DE 2026 
+
+Descrição
+
+ Institui o Plano Bienal de Gestão de Riscos do Conselho Nacional do Ministério Público para o período compreendido entre o terceiro trimestre de 2026 e o segundo trimestre de 2028 e estabelece o escopo prioritário e o apetite institucional a riscos. 
+
+ PORTARIA CNMP-PRESI N° 271 DE 5 DE OUTUBRO DE 2026 
+
+Descrição
+
+ Altera a Portaria CNMP-PRESI nº 85, de 17 de março de 2026, que institui a Política de Gestão de Riscos do Conselho Nacional do Ministério Público. 
+
+ PORTARIA CNMP-PRESI N° 273 DE 05 DE OUTUBRO DE 2026 
+
+Descrição
+
+ Abre no Orçamento Fiscal e da Seguridade Social da União, em favor do Conselho Nacional do Ministério Público, crédito suplementar, do tipo 420, no valor de R$ 500.000,00 (quinhentos mil reais), para reforço de dotação constante da Lei Orçamentária... 
+
+ PORTARIA CNMP-CN/COCI nº 25, de 28 de setembro de 2026 
+
+Descrição
+
+ Instaura Correição Ordinária em Unidade do Ministério Público do Estado da Bahia, a ser realizada na modalidade presencial, nos dias 28 e 29 de outubro de 2026. 
 
 << Início
 < Anterior
@@ -53713,161 +52940,90 @@ Todos os Links
 ## [mpf] Ministério Público Federal
 Fonte: https://www.mpf.mp.br
 
-Ministério Público Federal
-
- Ministério Público Federal
- 
-
-ⓘ
-
-Portal em transição
-
- Este é um portal intermediário. Alguns conteúdos estão sendo migrados e estarão disponíveis em breve.
- Caso encontre algum link indisponível, você será direcionado(a) para uma página informativa.
- 
-
-×
-
-Bem-vindo ao novo Portal do MPF
-
-Estamos em transição tecnológica, ajude a melhorar enviando críticas e sugestões
-
- Enviar feedback
- 
-
- Carta de Serviços
- 
-
-P
-
-Protocolo
-
-Envie documentos e acompanhe o andamento do pedido.
-
-D
-
-Denúncia
-
-Registre informações e solicite providências ao MPF.
-
-🔎
-
-Pesquisa de processos
-
-Consulte processos e documentos públicos do MPF.
-
-🎓
-
-Concursos
-
-Informações sobre concurso e estágio.
-
-O
-
-Ouvidoria
-
-Envie reclamações, elogios, sugestões e pedidos.
-
-C
-
-Certidão negativa
-
-Emita certidão negativa e consultas relacionadas ao MPF.
-
-Não achou? Use a página completa de serviços.
-
- Ver todos os serviços
- 
-
-Constitucional
-
-Servidor pode optar pelo regime antigo de aposentadoria se ingressou em novo concurso após Reforma da Previdência de 2013
-
-Decisão do STF segue parecer do MPF de que o vínculo é com a Administração Pública em geral, e não com ente específico
-
-30/09/2026 | 19:11
-
-Criminal
-
-Justiça Federal condena réu por intolerância religiosa contra muçulmanos em publicação nas redes sociais
-
-Ministério Público Federal denunciou autor de postagem preconceituosa contra a religião islâmica
-
-30/09/2026 | 13:45
-
-Direitos do Cidadão
-
-MPF vai à Justiça para garantir isenção de imposto de carro a pessoas com surdez unilateral
-
-Ação exige adaptação do sistema da Receita Federal à legislação e pede indenização de R$ 500 mil por danos coletivos
-
-30/09/2026 | 16:18
-
-Violência política de gênero é crime!
-
-Saiba como reconhecer e denunciar essa prática
-
-Cartilha
-
-Entenda como o Ministério Público fiscaliza a disputa eleitoral
-
-Especial
-
-Confira o que pode e o que não pode nas eleições
-
-Últimas Notícias
-
-Mais notícias +
-
-Mais notícias +
-
-Fiscalização de Atos Administrativos
-
-MPF apura impactos da retirada do medicamento para crises epiléticas do mercado nacional
-
-Investigação verifica cumprimento das normas sanitárias pela fabricante do Depakote Sprinkler e avalia alternativas seguras para pacientes
-
-30/09/2026 | 15:03
-
-Meio Ambiente
-
-Recebida denúncia do MPF contra acusado de exploração ilegal de cassiterita em parque nacional no Amazonas
-
-Atividade resultou na degradação de mais de 36 hectares de floresta; réu responde por usurpação de bens da União e crimes ambientais
-
-30/09/2026 | 12:19
-
-Comunidades Tradicionais
-
-Justiça extingue ação de particular após MPF apontar que área em MG pertence ao poder público em território quilombola
-
-Decisão reconhece que a disputa individual pela posse com a comunidade tradicional vai além do interesse privado
-
-30/09/2026 | 15:07
-
-Acompanhe
-
-2º Processo Seletivo de Estágio 2026
-
-Eleições 2026
-
-Campanha mobiliza sociedade contra violência política de gênero e mostra como denunciar
-
-Me explica, MPF!
-
-O que o acesso à informação tem a ver com o seu voto?
-
-Transparência
-
-Acesso à Informação
-
- Solicite informações, acompanhe pedidos e consulte dados públicos do MPF.
- 
-
-Uso de cookies
-
-Usamos cookies com propósitos estatísticos. Revise nossas políticas de 
-privacidade e cookies
-.
-
-OK
+Home — Ministério Público Federal
+Ir para o conteúdo
+Ir para a navegação
+Ir para o rodapé
+Mais opções
+Acessibilidade
+A−
+A+
+Acessibilidade
+Abrir menu
+Buscar
+Buscar
+Abrir busca
+Portal do Ministério Público Federal
+Destaques e serviços
+Novo portal do MPF está no ar: mais tecnologia, transparência e acessibilidade ao cidadão
+STJ decreta prisão preventiva de presidente do Tribunal de Contas (MT) em apuração de pagamentos paralelos
+Operação Censura: MPF e PF miram canal de comunicação entre líder de facção preso e cúpula em liberdade
+TSE segue MP Eleitoral e barra candidatura de político condenado por violência contra a mulher
+MPF alerta sobre possível instabilidade no portal
+Mais destaques
+STJ decreta prisão preventiva de presidente do Tribunal de Contas (MT) em apuração de pagamentos paralelos
+Investigação começou a partir de notícia encaminhada ao Ministério Público Federal (MPF); outros 5 foram presos e mais 15 são investigados
+Operação Censura: MPF e PF miram canal de comunicação entre líder de facção preso e cúpula em liberdade
+TSE segue MP Eleitoral e barra candidatura de político condenado por violência contra a mulher
+Corte considerou que lesão corporal praticada por motivação de gênero pode ser enquadrada em causa prevista na Lei de Inelegibilidade
+MPF alerta sobre possível instabilidade no portal
+Migração para nova plataforma pode gerar instabilidades
+O que você deseja fazer hoje?
+Informar irregularidade ou fato ilícito
+Encaminhar documentos avulsos
+Enviar petição ou resposta a processos em trâmite no MPF
+ (abre em nova aba)
+Pesquisar processos e documentos
+ (abre em nova aba)
+Falar com a Ouvidoria
+Emitir certidão negativa
+ (abre em nova aba)
+Consultar concursos e estágios
+Solicitar acesso à informação
+Ver a Carta de Serviços
+Protetor de direitos
+Conheça nossas frentes de atuação
+O MPF atua na proteção dos direitos da sociedade e na defesa do interesse público, sempre em busca de soluções, prevenção de conflitos e garantia da lei.
+Ir para a página de atuação
+Fiscaliza o processo e o cumprimento de normas eleitorais
+Apura crimes federais, como corrupção e organização criminosa
+Fiscaliza a atuação das polícias e do sistema prisional federais
+Protege as populações indígenas e comunidades tradicionais
+Protege o meio ambiente e o patrimônio cultural 
+Defende os direitos fundamentais, como igualdade e dignidade
+Fiscaliza os direitos sociais sob responsabilidade da União
+Cooperação internacional no combate a crimes transnacionais
+Protege os direitos do consumidor e a livre concorrência
+Conheça nossas frentes de atuação
+O MPF atua na proteção dos direitos da sociedade e na defesa do interesse público, sempre em busca de soluções, prevenção de conflitos e garantia da lei.
+Ir para a página de atuação
+Fiscaliza o processo e o cumprimento de normas eleitorais
+Apura crimes federais, como corrupção e organização criminosa
+Fiscaliza a atuação das polícias e do sistema prisional federais
+Protege as populações indígenas e comunidades tradicionais
+Protege o meio ambiente e o patrimônio cultural 
+Defende os direitos fundamentais, como igualdade e dignidade
+Fiscaliza os direitos sociais sob responsabilidade da União
+Cooperação internacional no combate a crimes transnacionais
+Protege os direitos do consumidor e a livre concorrência
+Acompanhe nossas redes
+Ver publicação
+Como é o trabalho do MP Eleitoral após as eleições
+Ver publicação
+Você sabe reconhecer a violência política de gênero?
+Ver publicação
+MPF participa de debate sobre estratégias para fortalecer investigações
+Ver publicação
+Procuradoria Federal dos Direitos do Cidadão abre edital para debate sobre segurança pública
+Ver publicação
+Acho chique respeitar o terreiro do vizinho, a igreja da esquina e a mesquita do centro
+Ver publicação
+Como é o trabalho do MP Eleitoral após as eleições
+Ver publicação
+Você sabe reconhecer a violência política de gênero?
+Ver publicação
+MPF participa de debate sobre estratégias para fortalecer investigações
+Ver publicação
+Procuradoria Federal dos Direitos do Cidadão abre edital para debate sobre segurança pública
+Ver publicação
+Acho chique respeitar o terreiro do vizinho, a igreja da esquina e a mesquita do centro
