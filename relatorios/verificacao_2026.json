@@ -1,6 +1,6 @@
 {
  "exercicio": 2026,
- "gerado_em": "2026-10-01",
+ "gerado_em": "2026-11-01",
  "achados": [
   {
    "bloco": "ADM",
@@ -8,11 +8,11 @@
    "severidade": "critica",
    "selo": "CONFIRMADO",
    "titulo": "Diário Oficial sem edição desde 29/07/2026",
-   "detalhe": "Última publicação: 2026-07-29 (61 dias corridos). Dos 45 dias úteis da janela, 42 sem edição. Sondagem com controle exclui falha do coletor.",
+   "detalhe": "Última publicação: 2026-10-07 (19 dias corridos). Dos 64 dias úteis da janela, 55 sem edição. Sondagem com controle exclui falha do coletor.",
    "norma": "Artigo 37, caput, da Constituicao Federal; Artigo 8º, § 3º, III e VI da Lei 12.527/2011; Artigo 10, § 2º, da Lei municipal 9.009/2010",
    "dados": {
-    "ultima": "2026-07-29",
-    "dias_sem_edicao": 42
+    "ultima": "2026-10-07",
+    "dias_sem_edicao": 55
    }
   },
   {
@@ -57,10 +57,10 @@
    "severidade": "alta",
    "selo": "CONFIRMADO",
    "titulo": "Prestação de contas quadrimestral ao Conselho não demonstrada",
-   "detalhe": "Critério extraído do corpus: a cada 4 meses. Em 2026 seriam devidas duas prestações (janeiro a abril e maio a agosto). Nenhuma localizada.",
+   "detalhe": "Critério extraído do corpus: a cada None meses. Em 2026 seriam devidas duas prestações (janeiro a abril e maio a agosto). Nenhuma localizada.",
    "norma": "Artigo 6º, § 5º, da Resolução CNAS/MDS 202/2025",
    "dados": {
-    "periodicidade_meses": 4,
+    "periodicidade_meses": null,
     "devidas_2026": 2,
     "apresentadas": 0
    }
