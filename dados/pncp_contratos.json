@@ -4,6 +4,6 @@
  "cnpjs_do_ente_usados": [],
  "total": 0,
  "da_pasta": 0,
- "erro_de_coleta": "HTTPError: 429 Client Error: Too Many Requests for url: https://pncp.gov.br/api/consulta/v1/contratos?dataInicial=20260101&dataFinal=20261231&pagina=14",
+ "erro_de_coleta": "HTTPError: 429 Client Error: Too Many Requests for url: https://pncp.gov.br/api/consulta/v1/contratos?dataInicial=20260101&dataFinal=20261231&pagina=16",
  "contratos": []
 }
