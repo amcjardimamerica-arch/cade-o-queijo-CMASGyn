@@ -10,7 +10,11 @@
   },
   {
    "arquivo": "pncp_contratos.json",
-   "url": "https://pncp.gov.br/api/consulta/v1/contratos?dataInicial=20260101&dataFinal=20261231&pagina=16"
+   "url": "https://pncp.gov.br/api/consulta/v1/contratos?dataInicial=20260101&dataFinal=20261231&pagina=9&"
+  },
+  {
+   "arquivo": "siconfi.json",
+   "url": "https://apidatatransparencia.tesouro.gov.br/ords/siconfi/tt"
   },
   {
    "arquivo": "siconfi.json",
@@ -23,10 +27,6 @@
   {
    "arquivo": "siconfi.json",
    "url": "https://apidados.tesouro.gov.br/ords/siconf"
-  },
-  {
-   "arquivo": "siconfi.json",
-   "url": "https://apidatatransparencia.tesouro.gov.br/ords/siconfi/tt"
   },
   {
    "arquivo": "trilha_dinheiro.json",
