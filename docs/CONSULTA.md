@@ -1,6 +1,6 @@
 # Consulta — vigilância do CMASGyn
 
-Gerado em 02/11/2026 às 19:12 UTC. Documento destilado para
+Gerado em 09/11/2026 às 19:30 UTC. Documento destilado para
 leitura em conversa. Os dados completos estão nos arquivos indicados ao final.
 
 ## Números
