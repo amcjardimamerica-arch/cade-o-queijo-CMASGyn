@@ -1,6 +1,6 @@
 # Parecer diário — vigilância do CMASGyn
 
-**09/11/2026**
+**16/11/2026**
 
 ## Sem novidade
 
