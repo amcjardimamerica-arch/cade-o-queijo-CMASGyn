@@ -551,9 +551,12 @@
       "nota": "nenhuma edição indexada para o dia"
     },
     "2026-11-13": {
-      "situacao": "INEXISTENTE",
+      "situacao": "PUBLICOU",
       "util": true,
-      "nota": "nenhuma edição indexada para o dia"
+      "edicoes": 1,
+      "documentos": [
+        "do_20261113_000008903.pdf"
+      ]
     },
     "2026-11-14": {
       "situacao": "NAO_UTIL",
@@ -564,21 +567,63 @@
       "util": false
     },
     "2026-11-16": {
+      "situacao": "PUBLICOU",
+      "util": true,
+      "edicoes": 1,
+      "documentos": [
+        "do_20261116_000008904.pdf"
+      ]
+    },
+    "2026-11-17": {
+      "situacao": "PUBLICOU",
+      "util": true,
+      "edicoes": 1,
+      "documentos": [
+        "do_20261117_000008905.pdf"
+      ]
+    },
+    "2026-11-18": {
+      "situacao": "SEM_ATO",
+      "util": true,
+      "edicoes": 1,
+      "documentos": [
+        "do_20261118_000008906.pdf"
+      ]
+    },
+    "2026-11-19": {
+      "situacao": "INEXISTENTE",
+      "util": true,
+      "nota": "nenhuma edição indexada para o dia"
+    },
+    "2026-11-20": {
+      "situacao": "INEXISTENTE",
+      "util": true,
+      "nota": "nenhuma edição indexada para o dia"
+    },
+    "2026-11-21": {
+      "situacao": "NAO_UTIL",
+      "util": false
+    },
+    "2026-11-22": {
+      "situacao": "NAO_UTIL",
+      "util": false
+    },
+    "2026-11-23": {
       "situacao": "INEXISTENTE",
       "util": true,
       "nota": "nenhuma edição indexada para o dia"
     }
   },
-  "gerado_em": "2026-11-16T19:17:15.496513+00:00",
+  "gerado_em": "2026-11-23T20:53:12.406826+00:00",
   "resumo": {
-    "dias_uteis": 78,
+    "dias_uteis": 83,
     "contagem": {
-      "SEM_ATO": 4,
-      "PUBLICOU": 6,
-      "INEXISTENTE": 68
+      "SEM_ATO": 5,
+      "PUBLICOU": 9,
+      "INEXISTENTE": 69
     },
-    "ultima_publicacao": "2026-10-07",
-    "dias_desde_ultima": 40,
-    "inexistentes": 68
+    "ultima_publicacao": "2026-11-17",
+    "dias_desde_ultima": 6,
+    "inexistentes": 69
   }
 }
