@@ -40,6 +40,8 @@ SILEG_SOLR = "https://sileg.goiania.go.gov.br/solr-4.1.0/select"
 PNCP = "https://pncp.gov.br/api/consulta/v1/"
 TESOURO_PACOTE = ("https://www.tesourotransparente.gov.br/ckan/api/3/action/package_show"
                   "?id=transferencias-constitucionais-para-municipios")
+TESOURO_BUSCA = ("https://www.tesourotransparente.gov.br/ckan/api/3/action/package_search"
+                 "?fq=name:transferencias-constitucionais-para-municipios")
 FNAS_PAGINA = "https://fnas.mds.gov.br/extracao-dos-valores-repassados-fundo-a-fundo/"
 FNAS_CONHECIDAS = {
     2024: "https://fnas.mds.gov.br/wp-content/uploads/2026/02/REPASSES_ANO_2024.xlsx",
@@ -775,7 +777,10 @@ def motor_pncp(ctx: Contexto, ibge: int, municipio: str, cnpjs_conhecidos=(),
 def recursos_tesouro(pacote: dict) -> dict[str, str]:
     """Do pacote CKAN, o endereço da planilha mensal de cada mês (AAAA-MM)."""
     achados = {}
-    for r in (pacote.get("result") or {}).get("resources") or []:
+    resultado = pacote.get("result") or {}
+    pacotes = resultado.get("results") if "results" in resultado else [resultado]   # package_search ou _show
+    recursos = [r for p in pacotes or [] for r in (p.get("resources") or [])]
+    for r in recursos:
         m = re.search(r"Mensal_Municipios_(\d{4})(\d{2})", r.get("name") or "")
         if m and r.get("url"):
             achados[f"{m.group(1)}-{m.group(2)}"] = r["url"]
@@ -818,8 +823,12 @@ def linhas_tesouro(conteudo: bytes, municipio: str, uf: str) -> list[dict]:
 def motor_tesouro(ctx: Contexto, municipio: str, uf: str) -> None:
     """Transferências constitucionais (FPM, ITR, ICMS desonerado, IPI-exp...) mês a mês, por
     decêndio, como o Tesouro publica: a via independente das receitas de transferência do RREO."""
-    leitura = ctx.ler("tesouro", "pacote", TESOURO_PACOTE)
-    pacote = _json(leitura) if leitura.ok else None
+    pacote = None
+    for alvo, url in (("pacote", TESOURO_PACOTE), ("busca", TESOURO_BUSCA)):   # a busca é a 2ª porta do CKAN
+        leitura = ctx.ler("tesouro", alvo, url, tentativas=4, tempo=90)
+        pacote = _json(leitura) if leitura.ok else None
+        if pacote:
+            break
     if pacote is None:
         return
     enderecos = recursos_tesouro(pacote)
@@ -864,7 +873,9 @@ def motor_siops(ctx: Contexto, municipio: str, uf_codigo: str) -> None:
             continue
         for bim in range(1, 7):
             per = Periodo("RREO", ano, bim)
-            if per.termina > ctx.hoje or not set(per.meses) & set(ctx.meses):
+            # Todos os bimestres fechados de cada exercício tocado: o ritmo do ano anterior é a régua
+            # do piso antes do 6º bimestre (fiscal._ritmo).
+            if per.termina > ctx.hoje:
                 continue
             linha_periodo = {"fonte": "SIOPS", "exercicio": ano, "periodo": bim, "homologado": None,
                              "situacao": None, "linhas": 0, "erro": None}
@@ -884,7 +895,8 @@ def motor_siops(ctx: Contexto, municipio: str, uf_codigo: str) -> None:
                 d = siops.ler(texto)
             except ValueError as e:
                 nao = "NAO TRANSMITIU" in siops._norm(re.sub(r"<[^>]+>", " ", texto))
-                linha_periodo.update(situacao="nao_entregue" if nao else "formato", erro=str(e))
+                ausente = "no_prazo" if ctx.hoje <= per.prazo else "nao_entregue"
+                linha_periodo.update(situacao=ausente if nao else "formato", erro=str(e))
                 ctx.banco.inserir("externos_periodos", linha_periodo)
                 continue
             if (d.exercicio, d.bimestre) != (ano, bim):
@@ -912,14 +924,17 @@ def motor_siope(ctx: Contexto, ibge6: str) -> None:
     for ano in sorted({int(m[:4]) for m in ctx.meses}):
         for bim in range(1, 7):
             per = Periodo("RREO", ano, bim)
-            if per.termina > ctx.hoje or not set(per.meses) & set(ctx.meses):
+            # Todos os bimestres fechados de cada exercício tocado: o ritmo do ano anterior é a régua
+            # do piso antes do 6º bimestre (fiscal._ritmo).
+            if per.termina > ctx.hoje:
                 continue
             linha_periodo = {"fonte": "SIOPE", "exercicio": ano, "periodo": bim, "homologado": None,
                              "situacao": None, "linhas": 0, "erro": None}
             leitura = ctx.ler("siope", f"{ano}-{bim}", siope.url_pdf(ibge6, bim, ano), mes=per.meses[-1], tempo=90)
             if not leitura.ok:
                 nao = "550" in (leitura.erro or "")
-                linha_periodo.update(situacao="nao_entregue" if nao else "falha", erro=leitura.erro)
+                ausente = "no_prazo" if ctx.hoje <= per.prazo else "nao_entregue"   # LRF, art. 52: 30 dias
+                linha_periodo.update(situacao=ausente if nao else "falha", erro=leitura.erro)
                 ctx.banco.inserir("externos_periodos", linha_periodo)
                 continue
             try:

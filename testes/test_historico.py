@@ -400,6 +400,28 @@ def test_tesouro_le_a_planilha_do_mes_e_guarda_so_o_municipio(tmp_path):
     banco.fechar()
 
 
+def test_tesouro_usa_a_busca_do_ckan_quando_o_pacote_cai(tmp_path):
+    busca = {"result": {"count": 1, "results": [{"resources": [
+        {"name": "Transferencia_Mensal_Municipios_202411.csv", "url": "https://t/202411.csv"}]}]}}
+    planilha = ("Município;UF;ANO;Mês;1º Decêndio;2º Decêndio;3º Decêndio;Item transferência;Transferência;\n"
+                "Goiânia;GO;2024;11;1;2;3;FPM;FPM;\n").encode("latin-1")
+    pedidos = []
+
+    def leitor(url, **_):
+        pedidos.append(url)
+        if "package_show" in url:
+            return base.Leitura(False, url, erro="URLError: [Errno 104] Connection reset by peer")
+        if "package_search" in url:
+            return base.Leitura(True, url, json.dumps(busca).encode(), http=200)
+        return base.Leitura(True, url, planilha, http=200)
+
+    banco = historico.rodar("2024-11", "2024-11", caminho=tmp_path / "h.db", motores=("tesouro",),
+                            hoje=date(2026, 11, 26), ler_url=leitor, dormir=lambda s: None, pausa=0)
+    assert sum("package_show" in u for u in pedidos) == 4
+    assert banco.consultar("SELECT mes, total FROM transferencias_tesouro") == [("2024-11", 6.0)]
+    banco.fechar()
+
+
 def test_numero_da_planilha_do_tesouro():
     assert historico._numero_br("1.234,56") == 1234.56
     assert historico._numero_br("94869121.13") == 94869121.13
@@ -427,17 +449,19 @@ def test_siops_le_o_bimestre_pelo_formulario_e_guarda_linha_a_linha(tmp_path):
     banco = historico.rodar("2025-09", "2025-12", caminho=tmp_path / "h.db", motores=("siops",),
                             hoje=date(2026, 11, 26), ler_url=leitor, dormir=lambda s: None, pausa=0)
     postados = [f for _, f in pedidos if f]
-    assert [f["cmbPeriodo"] for f in postados] == ["20", "2"]          # 5º e 6º bimestres
+    # Todos os bimestres de 2025 (o ritmo do ano é a régua do piso), mesmo com o intervalo no fim do ano.
+    assert [f["cmbPeriodo"] for f in postados] == ["12", "14", "1", "18", "20", "2"]
     assert all(f["cmbMunicipio[]"] == "520870" and f["cmbUF"] == "52" for f in postados)
     periodos = banco.consultar("SELECT periodo, situacao, homologado FROM externos_periodos ORDER BY periodo")
-    assert periodos == [(5, "nao_entregue", None), (6, "homologado", "06/02/26 10:00:59")]
+    assert periodos == [(n, "nao_entregue", None) for n in range(1, 6)] + [(6, "homologado", "06/02/26 10:00:59")]
     pct = banco.consultar("SELECT coluna, valor FROM externos_itens WHERE rotulo LIKE 'PERCENTUAL DA RECEITA%' "
                           "ORDER BY coluna")
     assert pct == [(0, 21.54), (1, 21.33), (2, 21.23)]
     d = diagnostico.diagnosticar(banco)
     siops = [(a["tipo"], a["titulo"]) for a in d["achados"] if a["motor"] == "siops"]
-    assert siops == [("lacuna", "Saúde: 5º bimestre de 2025 sem demonstrativo homologado no SIOPS")]
-    assert d["contagens"]["siops_bimestres"] == {"homologado": 1, "nao_entregue": 1}
+    assert siops == [("lacuna", f"Saúde: {n}º bimestre de 2025 sem demonstrativo homologado no SIOPS")
+                     for n in range(1, 6)]
+    assert d["contagens"]["siops_bimestres"] == {"homologado": 1, "nao_entregue": 5}
     banco.fechar()
 
 
@@ -471,22 +495,37 @@ def test_siope_guarda_o_bimestre_e_o_ftp_sem_arquivo_vira_lacuna(tmp_path):
             return base.Leitura(True, url, pdf)
         if url.endswith("_4_2025.pdf"):
             return base.Leitura(False, url, b"", erro="URLError: timed out")
+        if url.endswith("_1_2025.pdf"):
+            return base.Leitura(True, url, pdf)          # o PDF do 6º bimestre no lugar do 1º: formato
         return base.Leitura(False, url, b"", erro="URLError: ftp error: 550 Failed to open file.")
 
     banco = historico.rodar("2025-07", "2025-12", caminho=tmp_path / "h.db", motores=("siope",),
                             hoje=date(2026, 11, 26), ler_url=leitor, dormir=lambda s: None, pausa=0)
-    nomes = [u.rsplit("/", 1)[1] for u in pedidos]      # a rede caída tenta 3 vezes; o 550 é resposta e não repete
-    assert nomes == ["RREO_Municipal_520870_4_2025.pdf"] * 3 + [
-        "RREO_Municipal_520870_5_2025.pdf", "RREO_Municipal_520870_6_2025.pdf"]
+    # Todos os bimestres do exercício; a rede caída tenta 3 vezes, o 550 é resposta e não repete.
+    bims = [int(u.rsplit("/", 1)[1].split("_")[3]) for u in pedidos]
+    assert bims == [1, 2, 3, 4, 4, 4, 5, 6]
     periodos = banco.consultar("SELECT periodo, situacao, linhas FROM externos_periodos WHERE fonte = 'SIOPE' "
                                "ORDER BY periodo")
-    assert periodos == [(4, "falha", 0), (5, "nao_entregue", 0), (6, "homologado", 132)]
+    assert periodos == [(1, "formato", 0), (2, "nao_entregue", 0), (3, "nao_entregue", 0), (4, "falha", 0),
+                        (5, "nao_entregue", 0), (6, "homologado", 132)]
     pct = banco.consultar("SELECT coluna, valor FROM externos_itens WHERE fonte = 'SIOPE' AND rotulo LIKE '29-%' "
                           "ORDER BY coluna")
     assert pct == [(0, 1530483619.84), (1, 1581461177.17), (2, 25.83)]
     d = diagnostico.diagnosticar(banco)
     achados = [(a["tipo"], a["titulo"]) for a in d["achados"] if a["motor"] == "siope"]
-    assert achados == [("falha", "Educação: 4º bimestre de 2025 não foi lido"),
+    assert achados == [("falha", "Educação: 1º bimestre de 2025 não foi lido"),
+                       ("lacuna", "Educação: 2º bimestre de 2025 sem demonstrativo no SIOPE"),
+                       ("lacuna", "Educação: 3º bimestre de 2025 sem demonstrativo no SIOPE"),
+                       ("falha", "Educação: 4º bimestre de 2025 não foi lido"),
                        ("lacuna", "Educação: 5º bimestre de 2025 sem demonstrativo no SIOPE")]
-    assert d["contagens"]["siope_bimestres"] == {"falha": 1, "homologado": 1, "nao_entregue": 1}
+    assert d["contagens"]["siope_bimestres"] == {"falha": 1, "formato": 1, "homologado": 1, "nao_entregue": 3}
+    banco.fechar()
+    # O 5º bimestre de 2026 terminou em 31/10: em 26/11 o prazo de 30 dias ainda corre.
+    banco = historico.rodar("2026-09", "2026-10", caminho=tmp_path / "p.db", motores=("siope",),
+                            hoje=date(2026, 11, 26), ler_url=leitor, dormir=lambda s: None, pausa=0)
+    assert banco.consultar("SELECT periodo, situacao FROM externos_periodos ORDER BY periodo") == [
+        (1, "nao_entregue"), (2, "nao_entregue"), (3, "nao_entregue"), (4, "nao_entregue"), (5, "no_prazo")]
+    d = diagnostico.diagnosticar(banco)
+    assert [(a["tipo"], a["titulo"]) for a in d["achados"] if a["motor"] == "siope"][-1] == (
+        "melhoria", "Educação: 5º bimestre de 2026 ainda não publicado no SIOPE")
     banco.fechar()

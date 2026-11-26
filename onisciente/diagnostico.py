@@ -249,7 +249,11 @@ def _externos(banco: Banco) -> list[Achado]:
     for exercicio, periodo, situacao, erro in banco.consultar(
             "SELECT exercicio, periodo, situacao, erro FROM externos_periodos WHERE fonte = 'SIOPS' "
             "AND situacao <> 'homologado' ORDER BY exercicio, periodo"):
-        if situacao == "nao_entregue":
+        if situacao == "no_prazo":
+            saida.append(Achado("melhoria", "siops", f"Saúde: {periodo}º bimestre de {exercicio} ainda não "
+                                "publicado no SIOPS", "O prazo de 30 dias depois do bimestre ainda corre.",
+                                "A próxima coleta confere de novo; passado o prazo, vira lacuna."))
+        elif situacao == "nao_entregue":
             saida.append(Achado("lacuna", "siops", f"Saúde: {periodo}º bimestre de {exercicio} sem demonstrativo "
                                 "homologado no SIOPS", "O SIOPS respondeu que o Município não transmitiu.",
                                 "Prazo da LC 141/2012, art. 39: o piso do bimestre fica sem dado (roxo)."))
@@ -260,7 +264,11 @@ def _externos(banco: Banco) -> list[Achado]:
     for exercicio, periodo, situacao, erro in banco.consultar(
             "SELECT exercicio, periodo, situacao, erro FROM externos_periodos WHERE fonte = 'SIOPE' "
             "AND situacao <> 'homologado' ORDER BY exercicio, periodo"):
-        if situacao == "nao_entregue":
+        if situacao == "no_prazo":
+            saida.append(Achado("melhoria", "siope", f"Educação: {periodo}º bimestre de {exercicio} ainda não "
+                                "publicado no SIOPE", "O prazo de 30 dias depois do bimestre ainda corre.",
+                                "A próxima coleta confere de novo; passado o prazo, vira lacuna."))
+        elif situacao == "nao_entregue":
             saida.append(Achado("lacuna", "siope", f"Educação: {periodo}º bimestre de {exercicio} sem demonstrativo "
                                 "no SIOPE", "O FNDE não tem o PDF do bimestre: o Município não transmitiu "
                                 "ou o FNDE ainda não publicou.",

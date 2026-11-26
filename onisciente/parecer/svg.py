@@ -88,7 +88,7 @@ def medidor(m: Medida, largura: int = 760) -> str:
     x0, x1 = 12, largura - 12
     escala = max(m.limite * 2, (m.percentual or 0) * 1.1, 1.0)
     px = lambda v: x0 + (x1 - x0) * min(v, escala) / escala  # noqa: E731
-    cor = {"cumpre": "#15803D", "alerta": "#A16207", "prudencial": "#E07B00",
+    cor = {"cumpre": "#15803D", "acompanha": "#0E7490", "alerta": "#A16207", "prudencial": "#E07B00",
            "descumpre": "#E01B0E", "sem_dado": Selo.ROXO.cor}[m.situacao]
     partes = [f'<svg viewBox="0 0 {largura} {h}" role="img" xmlns="http://www.w3.org/2000/svg" '
               f'aria-label="{escape(m.regra.titulo)}" class="grafico">',

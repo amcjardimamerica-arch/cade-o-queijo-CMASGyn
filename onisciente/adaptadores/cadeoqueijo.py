@@ -309,13 +309,15 @@ def montar(competencia: str, *, raiz: Path = RAIZ, mapa: MapaLegal | None = None
                                        "a cobertura da trilha fica sem medida.")
 
     # Coerência: dos valores com duas vias independentes, quantos dizem o mesmo.
-    certs = panorama.fiscal.certificacoes() if panorama.fiscal else []
+    # Um valor com uma via só (a outra ainda no prazo) não é incoerência: fica fora da conta.
+    certs = [c for c in (panorama.fiscal.certificacoes() if panorama.fiscal else []) if len(c.vias) >= 2]
     coerencia: float | None
     if certs:
         iguais = sum(1 for c in certs if c.selo is Selo.VERDE and not c.divergencia)
         coerencia = iguais / len(certs)
-        motivos["coerencia"] = (f"{iguais} de {len(certs)} valores publicados no RGF e no RREO do mesmo "
-                                "período dizem o mesmo dentro de 1%")
+        motivos["coerencia"] = (f"{iguais} de {len(certs)} valores publicados em duas vias oficiais do mesmo "
+                                "período (no RGF e no RREO; no SIOPS, no SIOPE e no RREO) dizem o mesmo "
+                                "dentro de 1%")
     else:
         coerencia = None
         motivos["coerencia"] = "nenhum valor da competência com duas vias independentes no banco"

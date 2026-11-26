@@ -184,7 +184,11 @@ def test_nenhuma_parte_da_nota_e_zero_fixo(panorama):
     # Cada parte medida tem a evidência; a não medida tem o motivo.
     for nome in ("cobertura", "coerencia", "tempestividade", "vinculo", "prestacao"):
         assert ind.motivos.get(nome), nome
-    assert ind.coerencia == 1.0 and "RGF e no RREO" in ind.motivos["coerencia"]
+    # Duas vias: RGF × RREO e, desde o bloco 2, SIOPS/SIOPE × RREO. Em 2026 o SIOPE declara 85,52% do
+    # FUNDEB nos profissionais no 4º bimestre e o RREO Anexo 14 declara 88,98%: a única divergência.
+    assert ind.coerencia == pytest.approx(10 / 11) and "RGF e no RREO" in ind.motivos["coerencia"]
+    divergentes = [c.titulo for c in panorama.fiscal.conferencias if c.certificacao.divergencia]
+    assert divergentes == ["Percentual do FUNDEB nos profissionais (4º bimestre de 2026)"]
     assert "liquidados na Assistência Social" in ind.motivos["cobertura"]
 
 
@@ -348,3 +352,28 @@ def test_educacao_sem_siope_fica_sem_dado():
     assert {m.regra.id: m.situacao for m in f.medidas if m.regra.id in
             ("PISO-EDUCACAO", "FUNDEB-PROFISSIONAIS", "FUNDEB-SALDO")} == dict.fromkeys(
         ("PISO-EDUCACAO", "FUNDEB-PROFISSIONAIS", "FUNDEB-SALDO"), "sem_dado")
+
+
+def test_piso_antes_do_fim_do_ano_segue_o_ritmo_do_ano_anterior():
+    # 4º bimestre de 2026: 21,88% em MDE, abaixo de 25%, mas acima dos 20,06% do 4º bimestre de 2025,
+    # que fechou em 25,83%. É acompanhamento, sem ficha.
+    f = fiscal.medir_municipio(date(2026, 8, 31))
+    mde = next(m for m in f.medidas if m.regra.id == "PISO-EDUCACAO")
+    assert mde.situacao == "acompanha" and mde.percentual == pytest.approx(21.88, abs=0.01)
+    assert "20.06%" in f.memoria["PISO-EDUCACAO"] and "25.83%" in f.memoria["PISO-EDUCACAO"]
+    assert not any(x.codigo.startswith("PISO-PISO-EDUCACAO") for x in f.fichas("2026-08"))
+
+
+def test_piso_abaixo_do_ritmo_do_ano_anterior_e_alerta(tmp_path):
+    copia = tmp_path / "historico.db"
+    shutil.copy(BANCO, copia)
+    con = sqlite3.connect(copia)
+    con.execute("update externos_itens set valor = 500000000 where fonte = 'SIOPE' and exercicio = 2026 "
+                "and periodo = 4 and rotulo like '28-%' and coluna = 0")
+    con.commit()
+    con.close()
+    f = fiscal.medir_municipio(date(2026, 8, 31), banco=copia)
+    mde = next(m for m in f.medidas if m.regra.id == "PISO-EDUCACAO")
+    assert mde.situacao == "alerta" and mde.percentual < 20.06
+    assert "abaixo desse ritmo" in f.memoria["PISO-EDUCACAO"]
+    assert "PISO-PISO-EDUCACAO-2026-08" in {x.codigo for x in f.fichas("2026-08")}

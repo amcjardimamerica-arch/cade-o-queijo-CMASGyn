@@ -37,7 +37,11 @@ def test_adaptador_le_o_cade_o_queijo(panorama, competencia):
     codigos = {f.codigo for f in panorama.fichas}
     assert {a["codigo"] for a in verif["achados"]} <= codigos  # nenhum achado do mês se perde
     assert len(codigos) == len(panorama.fichas)                 # nenhum código repetido
-    assert all(f.origem == "cadeoqueijo" for f in panorama.fichas)
+    # As fichas do Cadê o Queijo chegam marcadas; as outras são do próprio Onisciente (pisos e duas vias).
+    proprias = {f.codigo for f in panorama.fiscal.fichas(competencia)} if panorama.fiscal else set()
+    assert all(f.origem == "cadeoqueijo" or (f.origem == "onisciente" and f.codigo in proprias)
+               for f in panorama.fichas)
+    assert {a["codigo"] for a in verif["achados"]} <= {f.codigo for f in panorama.fichas if f.origem == "cadeoqueijo"}
     assert panorama.integridade is not None
     assert all(a.selo is Selo.ROXO for a in panorama.ausencias)
 

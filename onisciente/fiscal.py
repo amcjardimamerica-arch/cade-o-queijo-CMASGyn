@@ -433,6 +433,42 @@ def ultimo_externo(lt: Leitor, fonte: str, ate: date) -> Externo | None:
     return cand[-1] if cand else None
 
 
+def externo(lt: Leitor, fonte: str, exercicio: int, periodo: int) -> Externo | None:
+    """O demonstrativo homologado de um bimestre exato, se está no banco."""
+    try:
+        linha = lt.con.execute(
+            "select homologado from externos_periodos where fonte=? and exercicio=? and periodo=? and "
+            "situacao='homologado'", (fonte, exercicio, periodo)).fetchone()
+    except sqlite3.OperationalError:
+        return None
+    return Externo(lt, fonte, exercicio, periodo, linha[0]) if linha else None
+
+
+def _ritmo(m: Medida, lt: Leitor, fonte: str, d: Externo, padrao: str, coluna_meio: int,
+           coluna_fim: int) -> tuple[Medida, str]:
+    """Antes do 6º bimestre, um piso anual abaixo do mínimo é comparado ao ritmo do ano anterior.
+
+    O gasto com saúde e educação se concentra no fim do ano: no mesmo bimestre do ano anterior o
+    percentual também estava abaixo e o ano fechou acima. Abaixo do mínimo, mas no ritmo (ou acima)
+    de um ano anterior que cumpriu, é acompanhamento; abaixo do ritmo, ou sem o ano anterior, é alerta.
+    """
+    if d.periodo == 6 or m.percentual is None or m.percentual >= m.limite:
+        return m, ""
+    antes, fim = externo(lt, fonte, d.exercicio - 1, d.periodo), externo(lt, fonte, d.exercicio - 1, 6)
+    pct_antes = antes.valor(padrao, coluna_meio) if antes else None
+    pct_fim = fim.valor(padrao, coluna_fim) if fim else None
+    if pct_antes is None or pct_fim is None:
+        return replace(m, situacao="alerta"), (
+            f" Sem o {d.periodo}º bimestre e o fechamento de {d.exercicio - 1} no banco para comparar o ritmo: alerta.")
+    if m.percentual + 1e-9 >= pct_antes and pct_fim >= m.limite:
+        return replace(m, situacao="acompanha"), (
+            f" No {d.periodo}º bimestre de {d.exercicio - 1} o {fonte} declarava {pct_antes:.2f}%, e o ano fechou "
+            f"em {pct_fim:.2f}%: o ritmo de {d.exercicio} está igual ou acima, então é acompanhamento, não alerta.")
+    return replace(m, situacao="alerta"), (
+        f" No {d.periodo}º bimestre de {d.exercicio - 1} o {fonte} declarava {pct_antes:.2f}% (o ano fechou em "
+        f"{pct_fim:.2f}%): {d.exercicio} está abaixo desse ritmo, então é alerta.")
+
+
 # A receita da base da saúde e da educação (LC 141/2012, art. 7º; CF, art. 212) pelo RREO Anexo 3:
 # os quatro impostos municipais e as transferências constitucionais, sem a dedução do FUNDEB.
 BASE_IMPOSTOS_RREO = {
@@ -526,8 +562,7 @@ def _medir_saude(lt: Leitor, ate: date, mapa: MapaLegal, fiscal: Fiscal) -> None
     else:   # sem a base própria, o número é só o declarado: uma via, selo azul
         m = medir("PISO-SAUDE", aplicado, base_siops, mapa=mapa)
         fiscal.notas.append(f"Saúde: {memoria_base}; o piso fica com a base declarada no SIOPS, sem cálculo próprio.")
-    if not final and m.situacao == "descumpre":
-        m = replace(m, situacao="alerta")
+    m, ritmo_saude = _ritmo(m, lt, "SIOPS", d, r"^PERCENTUAL DA RECEITA DE IMPOSTOS", 1, 0)
     fiscal.medidas.append(m)
     ref = d.rotulo + (f", homologado em {d.homologado}" if d.homologado else "")
     rreo = next((p for p in lt.periodos("RREO") if p.exercicio == d.exercicio and p.periodo == d.periodo), None)
@@ -546,7 +581,8 @@ def _medir_saude(lt: Leitor, ate: date, mapa: MapaLegal, fiscal: Fiscal) -> None
         f"{_moeda(aplicado)}, sobre a receita de impostos e transferências refeita pelo RREO"
         f"{' e pela DCA' if final else ''}: {_moeda(base)} ({memoria_base}). O SIOPS declara a base de "
         f"{_moeda(base_siops)} e {declarado if declarado is not None else '?'}%."
-        + ("" if final else " Antes do 6º bimestre é acompanhamento: o mínimo de 15% vale para o ano."))
+        + ("" if final else " Antes do 6º bimestre é acompanhamento: o mínimo de 15% vale para o ano.")
+        + ritmo_saude)
     fiscal.fontes["PISO-SAUDE"] = f"{ref}; RREO Anexos 2 e 3" + (" e DCA Anexo I-C" if final else "")
 
 
@@ -589,8 +625,7 @@ def _medir_educacao(lt: Leitor, ate: date, mapa: MapaLegal, fiscal: Fiscal) -> N
     else:
         m = medir("PISO-EDUCACAO", aplicado, base_siope, mapa=mapa)
         fiscal.notas.append(f"Educação: {memoria_base}; o piso fica com a base declarada no SIOPE, sem cálculo próprio.")
-    if not final and m.situacao == "descumpre":
-        m = replace(m, situacao="alerta")
+    m, ritmo_mde = _ritmo(m, lt, "SIOPE", d, r"^29-", 2, 2)
     fiscal.medidas.append(m)
     partes = [v(r"^22-", 0), v(r"^23-", 0), v(r"^24-", 0), v(r"^25-", 0), v(r"^26-", 0), v(r"^27-", 0)]
     refeito = (partes[0] + partes[1] - sum(partes[2:])) if None not in partes else None
@@ -631,7 +666,8 @@ def _medir_educacao(lt: Leitor, ate: date, mapa: MapaLegal, fiscal: Fiscal) -> N
         f"{_moeda(sum(x or 0 for x in partes[2:]))}; sobre a receita de impostos e transferências refeita pelo RREO"
         f"{' e pela DCA' if final else ''}: {_moeda(base)} ({memoria_base}). O SIOPE declara a base de "
         f"{_moeda(base_siope)}, o exigido de {_moeda(exigido)} e {declarado if declarado is not None else '?'}%."
-        + ("" if final else " Antes do 6º bimestre é acompanhamento: o mínimo de 25% vale para o ano."))
+        + ("" if final else " Antes do 6º bimestre é acompanhamento: o mínimo de 25% vale para o ano.")
+        + ritmo_mde)
     fiscal.fontes["PISO-EDUCACAO"] = f"{ref} (RREO Anexo 8); {ref_rreo}, Anexos 2, 3 e 14" + (" e DCA" if final else "")
 
     # FUNDEB, 70% na remuneração dos profissionais
