@@ -321,3 +321,33 @@ def test_anexo_sem_par_no_siconfi_aponta_a_fonte_propria(tmp_path):
                                      "anexo": "RREO-Anexo 01", "itens": 3, "guardado": 1})
     [a] = diagnostico._siconfi(banco, {"educacao": "RREO-Anexo 8"})
     assert "SIOPE" in a.detalhe and "SIOPE" in a.proposta and "outro nome" not in a.detalhe
+
+
+def test_pncp_somado_continua_de_onde_parou(tmp_path):
+    """Na segunda rodada, o que já foi lido por inteiro não é pedido de novo (salvo o mês corrente)."""
+    pedidos = []
+
+    def pncp(url, **_):
+        q = {k: v[0] for k, v in parse_qs(urlparse(url).query).items()}
+        pedidos.append(("procura" if "contratacoes" in url else q["cnpjOrgao"], q["dataInicial"]))
+        if "contratacoes" in url:
+            return base.Leitura(True, url, b"", http=204)
+        corpo = {"data": [{"numeroControlePNCP": f"K-{q['cnpjOrgao']}-{q['dataInicial']}",
+                           "dataPublicacaoPncp": "2026-10-05", "objetoContrato": "Obra"}],
+                 "totalPaginas": 1}
+        return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+    banco = historico.Banco(tmp_path / "h.db")
+    ctx = historico.Contexto(banco, ["2026-10", "2026-11"], date(2026, 11, 26),
+                             ler_url=pncp, dormir=lambda s: None, pausa=0)
+    anterior = {"janelas": [{"cnpj": "1", "meses": ["2026-10", "2026-11"], "lida": True},
+                            {"cnpj": "2", "meses": ["2026-10"], "lida": False}],
+                "procura": ["2026-10", "2026-11"]}
+    historico.motor_pncp(ctx, 5208707, "Goiânia", {"1": "", "2": ""}, anterior)
+    assert ("1", "20261101") in pedidos and ("1", "20261001") not in pedidos  # só o mês corrente
+    assert ("2", "20261001") in pedidos                                        # o que faltou
+    assert [p for p in pedidos if p[0] == "procura"] and all(
+        d == "20261101" for o, d in pedidos if o == "procura")
+    lidos, _ = diagnostico.meses_pncp_lidos(banco, ctx.meses)
+    assert lidos == {"2026-10", "2026-11"}
+    assert json.loads(dict(banco.consultar("SELECT chave, valor FROM meta"))["pncp_procura"]) == [
+        "2026-10", "2026-11"]

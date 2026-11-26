@@ -173,7 +173,7 @@ TABELAS_DO_MOTOR = {
     "sileg": [("coletas", "motor = 'sileg'"), ("diario_oficial_mes", "fonte = 'sileg'")],
     "fnas": [("coletas", "motor = 'fnas'"), ("repasses_fnas", ""), ("meta", "chave = 'fnas_do_arquivo'")],
     "pncp": [("coletas", "motor = 'pncp'"), ("contratacoes_pncp", ""), ("contratos_pncp", ""),
-             ("meta", "chave IN ('pncp_orgaos', 'pncp_janelas')")],
+             ("meta", "chave IN ('pncp_orgaos', 'pncp_janelas', 'pncp_procura')")],
     "fontes": [("coletas", "motor = 'fontes'"), ("fontes", "")],
     "normas": [("coletas", "motor = 'ctresb'"), ("normas", "")],
 }
@@ -632,10 +632,18 @@ def _pncp_contratos(ctx: Contexto, cnpj: str, nome: str, janela: list[str]) -> b
     return False                              # mais de 50 páginas: a janela ficou incompleta
 
 
-def _pncp_descobrir(ctx: Contexto, ibge: int, municipio: str, orgaos: dict[str, str]) -> None:
-    """Contratações publicadas com o código IBGE: guardadas, e os órgãos novos anotados."""
+def _pncp_descobrir(ctx: Contexto, ibge: int, municipio: str, orgaos: dict[str, str],
+                    feitos: list[str] | None = None) -> None:
+    """Contratações publicadas com o código IBGE: guardadas, e os órgãos novos anotados.
+
+    ``feitos`` recebe os meses procurados por inteiro; os que já estão nela são pulados.
+    """
+    feitos = feitos if feitos is not None else []
     for mes in ctx.meses:
+        if mes in feitos:
+            continue
         d1, d2 = f"{mes.replace('-', '')}01", fim_do_mes(mes).strftime("%Y%m%d")
+        inteiro = True
         for modalidade in MODALIDADES_DESCOBERTA:
             for pagina in range(1, 21):
                 params = {"dataInicial": d1, "dataFinal": d2, "codigoModalidadeContratacao": modalidade,
@@ -646,6 +654,7 @@ def _pncp_descobrir(ctx: Contexto, ibge: int, municipio: str, orgaos: dict[str, 
                     break
                 dados = _json(leitura) if leitura.ok else None
                 if not dados:
+                    inteiro = False
                     break
                 for c in dados.get("data") or []:
                     org = c.get("orgaoEntidade") or {}
@@ -665,31 +674,56 @@ def _pncp_descobrir(ctx: Contexto, ibge: int, municipio: str, orgaos: dict[str, 
                         "situacao": c.get("situacaoCompraNome")})
                 if pagina >= int(dados.get("totalPaginas") or 1):
                     break
+            else:
+                inteiro = False               # mais de 20 páginas: o mês ficou incompleto
+        if inteiro:
+            feitos.append(mes)
 
 
-def motor_pncp(ctx: Contexto, ibge: int, municipio: str, cnpjs_conhecidos=()) -> None:
+def motor_pncp(ctx: Contexto, ibge: int, municipio: str, cnpjs_conhecidos=(),
+               anterior: dict | None = None) -> None:
     """Contratos dos órgãos do Município e as contratações publicadas com o código IBGE.
 
     Com órgãos já conhecidos (do alvo ou da rodada anterior), os contratos vêm primeiro, os
     da pasta da assistência à frente, um ano por consulta; uma janela anual recusada é refeita
     mês a mês. A procura por órgãos novos usa o tempo que sobrar. Sem nenhum órgão conhecido,
     a procura vem antes, porque sem ela não há a quem perguntar pelos contratos.
+
+    Com ``anterior`` (as janelas e a procura de uma rodada já guardada), continua de onde
+    ela parou: o que já foi lido por inteiro não é pedido de novo, salvo o mês corrente,
+    que ainda recebe contratos.
     """
     if isinstance(cnpjs_conhecidos, dict):
         orgaos = {str(c): n or "" for c, n in cnpjs_conhecidos.items()}
     else:
         orgaos = {str(c): "" for c in cnpjs_conhecidos}
+    corrente = ctx.hoje.strftime("%Y-%m")
     janelas_lidas: list[dict] = []
+    for j in (anterior or {}).get("janelas") or []:
+        meses_ja = [m for m in j.get("meses") or [] if m != corrente and m in ctx.meses]
+        if j.get("lida") and meses_ja:
+            janelas_lidas.append({"cnpj": j["cnpj"], "meses": meses_ja, "lida": True})
+    ja_lidos = {(j["cnpj"], m) for j in janelas_lidas for m in j["meses"]}
+    procura = [m for m in (anterior or {}).get("procura") or [] if m != corrente]
 
     def guardar():
         ctx.banco.inserir("meta", {"chave": "pncp_orgaos",
                                    "valor": json.dumps(orgaos, ensure_ascii=False)})
         ctx.banco.inserir("meta", {"chave": "pncp_janelas",
                                    "valor": json.dumps(janelas_lidas, ensure_ascii=False)})
+        ctx.banco.inserir("meta", {"chave": "pncp_procura", "valor": json.dumps(procura)})
 
     def contratos(lista: list[str]):
         for cnpj in sorted(lista, key=lambda c: (not _da_pasta(orgaos.get(c, "")), c)):
             for janela in _janelas_anuais(ctx.meses):
+                faltam = [m for m in janela if (cnpj, m) not in ja_lidos]
+                if not faltam:
+                    continue
+                if faltam != janela:          # parte do ano já lida: só os meses que faltam
+                    for mes in faltam:
+                        janelas_lidas.append({"cnpj": cnpj, "meses": [mes],
+                                              "lida": _pncp_contratos(ctx, cnpj, "", [mes])})
+                    continue
                 if _pncp_contratos(ctx, cnpj, orgaos.get(cnpj, ""), janela):
                     janelas_lidas.append({"cnpj": cnpj, "meses": janela, "lida": True})
                     continue
@@ -704,10 +738,10 @@ def motor_pncp(ctx: Contexto, ibge: int, municipio: str, cnpjs_conhecidos=()) ->
     conhecidos = list(orgaos)
     if conhecidos:
         contratos(conhecidos)
-        _pncp_descobrir(ctx, ibge, municipio, orgaos)
+        _pncp_descobrir(ctx, ibge, municipio, orgaos, procura)
         contratos([c for c in orgaos if c not in conhecidos])
     else:
-        _pncp_descobrir(ctx, ibge, municipio, orgaos)
+        _pncp_descobrir(ctx, ibge, municipio, orgaos, procura)
         contratos(list(orgaos))
     guardar()
 
@@ -774,9 +808,11 @@ def rodar(desde: str, ate: str, *, motores=MOTORES, caminho=BANCO, hoje: date | 
     from .config import carregar_alvo
     alvo = carregar_alvo()
     orgaos_pncp: dict[str, str] = {c: "" for c in alvo.pncp_cnpjs}
+    pncp_anterior = None
     if somar and Path(caminho).exists():
         banco = Banco.abrir(caminho)
-        guardados = dict(banco.consultar("SELECT chave, valor FROM meta")).get("pncp_orgaos")
+        meta_anterior = dict(banco.consultar("SELECT chave, valor FROM meta"))
+        guardados = meta_anterior.get("pncp_orgaos")
         if guardados:                         # o que a rodada anterior descobriu não se perde
             for cnpj, nome in json.loads(guardados).items():
                 orgaos_pncp[cnpj] = nome or orgaos_pncp.get(cnpj, "")
@@ -784,8 +820,17 @@ def rodar(desde: str, ate: str, *, motores=MOTORES, caminho=BANCO, hoje: date | 
         if anterior and anterior != f"{desde} a {ate}":
             banco.con.close()
             raise ValueError(f"o banco é de {anterior}; para somar, use o mesmo intervalo")
+        if "pncp" in motores and meta_anterior.get("pncp_janelas"):
+            # O PNCP é lento (cerca de 20 s por chamada): continua de onde parou, guardando o
+            # que já leu e tirando só as chamadas que falharam, que serão refeitas.
+            pncp_anterior = {"janelas": json.loads(meta_anterior["pncp_janelas"]),
+                             "procura": json.loads(meta_anterior.get("pncp_procura") or "[]")}
         for nome in motores:
-            banco.apagar_motor(nome)
+            if nome == "pncp" and pncp_anterior:
+                banco.con.execute("DELETE FROM coletas WHERE motor = 'pncp' AND ok = 0")
+                banco.con.execute("DELETE FROM meta WHERE chave = 'motor:pncp'")
+            else:
+                banco.apagar_motor(nome)
     else:
         banco = Banco(caminho)
     ctx = Contexto(banco, meses(desde, ate), hoje or date.today(), brutos=brutos, **kw)
@@ -798,7 +843,7 @@ def rodar(desde: str, ate: str, *, motores=MOTORES, caminho=BANCO, hoje: date | 
         "querido_diario": lambda: motor_querido_diario(ctx, alvo.ibge),
         "sileg": lambda: motor_sileg(ctx),
         "fnas": lambda: motor_fnas(ctx, alvo.ibge),
-        "pncp": lambda: motor_pncp(ctx, alvo.ibge, alvo.municipio, orgaos_pncp),
+        "pncp": lambda: motor_pncp(ctx, alvo.ibge, alvo.municipio, orgaos_pncp, pncp_anterior),
         "fontes": lambda: motor_fontes(ctx),
         "normas": lambda: motor_normas(ctx),
     }

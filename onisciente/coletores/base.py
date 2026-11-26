@@ -13,6 +13,7 @@ import json
 import ssl
 import urllib.error
 import urllib.request
+import warnings
 from dataclasses import dataclass
 from datetime import date, datetime, timezone
 from pathlib import Path
@@ -68,11 +69,16 @@ def contexto_tls_compativel() -> ssl.SSLContext:
     """Certificado conferido como sempre, mas aceitando as cifras de servidores mais antigos.
 
     Alguns servidores públicos (o do Querido Diário, por exemplo) só falam cifras que o
-    OpenSSL recente recusa no nível de segurança padrão; baixar o nível não tira a
-    conferência do certificado nem do nome do servidor.
+    OpenSSL recente recusa no nível de segurança padrão, ou só aceitam TLS antigo e a
+    renegociação antiga; abrir essas portas não tira a conferência do certificado nem do
+    nome do servidor.
     """
     contexto = ssl.create_default_context()
-    contexto.set_ciphers("DEFAULT@SECLEVEL=1")
+    contexto.set_ciphers("ALL:@SECLEVEL=0")
+    with warnings.catch_warnings():       # TLS 1.0 está obsoleto, mas é o que o servidor antigo fala
+        warnings.simplefilter("ignore", DeprecationWarning)
+        contexto.minimum_version = ssl.TLSVersion.TLSv1
+    contexto.options |= getattr(ssl, "OP_LEGACY_SERVER_CONNECT", 0x4)
     return contexto
 
 
