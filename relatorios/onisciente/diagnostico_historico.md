@@ -1,6 +1,6 @@
 # Diagnóstico da coleta histórica (2024-11 a 2026-11)
 
-Rodada de 2026-11-26T23:02:59+00:00. Banco: `dados/onisciente/historico.db`.
+Rodada de 2026-11-26T23:10:58+00:00. Banco: `dados/onisciente/historico.db`.
 
 Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna na fonte (ela respondeu e o dado não estava lá). As duas nunca se misturam.
 
@@ -11,6 +11,7 @@ Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna na fonte (
 | Normas federais (ctresb/leis) | 21 | 21 | 0 | 0 | 3.4 |
 | Repasses federais (FNAS) | 4 | 3 | 1 | 0 | 98.2 |
 | Portais e endereços configurados | 25 | 20 | 5 | 0 | 253.3 |
+| Matriz de Saldos Contábeis (SICONFI) | 24 | 24 | 0 | 0 | 38.7 |
 | Contratações (PNCP) | 618 | 617 | 1 | 0 | 17295.3 |
 | Diário Oficial pelo Querido Diário | 50 | 0 | 50 | 0 | 210.6 |
 | SICONFI (Tesouro Nacional) | 23 | 23 | 0 | 0 | 5.9 |
