@@ -1,0 +1,85 @@
+{
+ "quando": "2026-11-26T22:29:59+00:00",
+ "leituras": [
+  {
+   "fonte": "siope6",
+   "url": "ftp://ftp.fnde.gov.br/web/siope/RREO/RREO_Municipal_520870_6_2024.pdf",
+   "post": null,
+   "ok": true,
+   "http": null,
+   "erro": "",
+   "bytes": 47402,
+   "arquivo": "siope6__ftp-fnde-gov-br-web-siope-rreo-rreo-municipal-520870-6-2024-pdf-9923fa86.txt"
+  },
+  {
+   "fonte": "siope6",
+   "url": "ftp://ftp.fnde.gov.br/web/siope/RREO/RREO_Municipal_520870_1_2025.pdf",
+   "post": null,
+   "ok": true,
+   "http": null,
+   "erro": "",
+   "bytes": 47448,
+   "arquivo": "siope6__ftp-fnde-gov-br-web-siope-rreo-rreo-municipal-520870-1-2025-pdf-e3f12b99.txt"
+  },
+  {
+   "fonte": "siope6",
+   "url": "ftp://ftp.fnde.gov.br/web/siope/RREO/RREO_Municipal_520870_6_2025.pdf",
+   "post": null,
+   "ok": true,
+   "http": null,
+   "erro": "",
+   "bytes": 47586,
+   "arquivo": "siope6__ftp-fnde-gov-br-web-siope-rreo-rreo-municipal-520870-6-2025-pdf-be964d94.txt"
+  },
+  {
+   "fonte": "siope6",
+   "url": "ftp://ftp.fnde.gov.br/web/siope/RREO/RREO_Municipal_520870_1_2026.pdf",
+   "post": null,
+   "ok": true,
+   "http": null,
+   "erro": "",
+   "bytes": 47009,
+   "arquivo": "siope6__ftp-fnde-gov-br-web-siope-rreo-rreo-municipal-520870-1-2026-pdf-db88ff67.txt"
+  },
+  {
+   "fonte": "siope6",
+   "url": "ftp://ftp.fnde.gov.br/web/siope/RREO/RREO_Municipal_520870_2_2026.pdf",
+   "post": null,
+   "ok": true,
+   "http": null,
+   "erro": "",
+   "bytes": 47192,
+   "arquivo": "siope6__ftp-fnde-gov-br-web-siope-rreo-rreo-municipal-520870-2-2026-pdf-b3639949.txt"
+  },
+  {
+   "fonte": "siope6",
+   "url": "ftp://ftp.fnde.gov.br/web/siope/RREO/RREO_Municipal_520870_3_2026.pdf",
+   "post": null,
+   "ok": true,
+   "http": null,
+   "erro": "",
+   "bytes": 47303,
+   "arquivo": "siope6__ftp-fnde-gov-br-web-siope-rreo-rreo-municipal-520870-3-2026-pdf-c9884ba9.txt"
+  },
+  {
+   "fonte": "siope6",
+   "url": "ftp://ftp.fnde.gov.br/web/siope/RREO/RREO_Municipal_520870_4_2026.pdf",
+   "post": null,
+   "ok": true,
+   "http": null,
+   "erro": "",
+   "bytes": 47335,
+   "arquivo": "siope6__ftp-fnde-gov-br-web-siope-rreo-rreo-municipal-520870-4-2026-pdf-70d6e895.txt"
+  },
+  {
+   "fonte": "siope6",
+   "url": "ftp://ftp.fnde.gov.br/web/siope/RREO/RREO_Municipal_520870_5_2026.pdf",
+   "post": null,
+   "ok": false,
+   "http": null,
+   "erro": "URLError: <urlopen error ftp error: error_perm('550 Failed to change directory.')>",
+   "bytes": 0,
+   "arquivo": "siope6__ftp-fnde-gov-br-web-siope-rreo-rreo-municipal-520870-5-2026-pdf-85f2227f.txt"
+  }
+ ]
+}
