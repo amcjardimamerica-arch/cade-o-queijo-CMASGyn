@@ -23,7 +23,10 @@ S = requests.Session(); S.verify = False
 S.headers.update({"User-Agent": "AMC-Jardim-America-Vigilancia/1.0",
                   "Accept": "application/json"})
 IBGE = "5208707"
-BASES = ["https://apidatatransparencia.tesouro.gov.br/ords/siconfi/tt",
+# A apidatalake é a base que responde desde 2026 (coleta histórica do Onisciente); as duas
+# antigas ficam como reserva, caso o Tesouro as religue.
+BASES = ["https://apidatalake.tesouro.gov.br/ords/siconfi/tt",
+         "https://apidatatransparencia.tesouro.gov.br/ords/siconfi/tt",
          "https://apidados.tesouro.gov.br/ords/siconfi/tt"]
 ROTULOS_DTP = ("DESPESA TOTAL COM PESSOAL", "DTP")
 ROTULOS_RCL = ("RECEITA CORRENTE LÍQUIDA", "RECEITA CORRENTE LIQUIDA")

@@ -1,0 +1,74 @@
+name: Onisciente — coleta histórica
+# Liga os motores de busca para um intervalo de meses, guarda tudo no banco
+# dados/onisciente/historico.db e escreve o diagnóstico de onde o sistema falha
+# e onde pode melhorar (relatorios/onisciente/diagnostico_historico.md).
+# Roda no GitHub porque daqui a rede é aberta; as respostas cruas ficam como
+# artefato da execução por 30 dias.
+on:
+  workflow_dispatch:
+    inputs:
+      desde: {description: "Primeiro mês (AAAA-MM)", default: "2024-11"}
+      ate: {description: "Último mês (AAAA-MM)", default: "2026-11"}
+      motores: {description: "Motores, separados por vírgula (vazio = todos)", default: ""}
+  push:
+    branches: [claude/project-thread-m40l41]
+    paths:
+      - .github/workflows/onisciente-historico.yml
+      - onisciente/historico.py
+      - onisciente/diagnostico.py
+permissions: {contents: write}
+concurrency: {group: onisciente-historico, cancel-in-progress: false}
+jobs:
+  coletar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      DESDE: ${{ inputs.desde || '2024-11' }}
+      ATE: ${{ inputs.ate || '2026-11' }}
+      MOTORES: ${{ inputs.motores || '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install --quiet PyYAML openpyxl
+      - name: Conferir o aperto de mão com o Querido Diário
+        # O servidor recusou o TLS do robô nas duas rodadas; isto grava no log da execução
+        # o que o servidor aceita, para a próxima correção não ser no escuro.
+        if: ${{ env.MOTORES == '' || contains(env.MOTORES, 'querido_diario') }}
+        continue-on-error: true
+        run: |
+          H=api.queridodiario.ok.org.br
+          curl -sSv --max-time 30 -o /dev/null "https://$H/gazettes?territory_ids=5208707&size=1" 2>&1 | grep -E '^\* |^< HTTP' | head -30 || true
+          for v in tls1_3 tls1_2; do
+            echo "== openssl $v"; timeout 20 openssl s_client -$v -connect $H:443 -servername $H </dev/null 2>&1 | grep -E 'Protocol|Cipher|alert|error|Verify' | head -8 || true
+          done
+      - name: Ligar os motores
+        run: |
+          python -m onisciente historico --desde "$DESDE" --ate "$ATE" \
+            ${MOTORES:+--motores "$MOTORES" --somar} --brutos "$RUNNER_TEMP/brutos"
+      - name: Diagnóstico na página da execução
+        if: always()
+        run: |
+          if [ -f relatorios/onisciente/diagnostico_historico.md ]; then
+            cat relatorios/onisciente/diagnostico_historico.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Guardar as respostas cruas
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: onisciente-historico-brutos
+          path: ${{ runner.temp }}/brutos
+          retention-days: 30
+          if-no-files-found: ignore
+      - name: Publicar banco, diagnóstico e a página do banco
+        run: |
+          ls -l dados/onisciente/historico.db
+          git config user.name "vigilancia-bot"; git config user.email "bot@users.noreply.github.com"
+          git add dados/onisciente/historico.db relatorios/onisciente/diagnostico_historico.* docs/onisciente/banco docs/onisciente/index.html
+          git diff --staged --quiet && exit 0
+          git commit -m "Onisciente: coleta histórica $DESDE a $ATE"
+          for n in 1 2 3; do
+            git pull --rebase origin "$GITHUB_REF_NAME" && git push origin "HEAD:$GITHUB_REF_NAME" && exit 0
+            sleep $((n * 10))
+          done
+          exit 1

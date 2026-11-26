@@ -49,6 +49,8 @@ python -m onisciente parecer            # parecer da última competência
 python -m onisciente parecer --todas    # todos os pareceres do exercício
 python -m onisciente coletar leis       # confere as normas federais no ctresb/leis (precisa de rede)
 python -m onisciente coletar siconfi    # via federal dos pisos (precisa de rede)
+python -m onisciente historico --desde 2024-11 --ate 2026-11   # liga os motores de busca no intervalo
+python -m onisciente diagnostico        # refaz o diagnóstico a partir do banco, sem rede
 python -m pytest                        # todos os testes, sem internet
 ```
 

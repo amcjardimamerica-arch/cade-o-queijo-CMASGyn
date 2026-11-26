@@ -248,13 +248,18 @@ def gerar(p: Panorama, *, hoje: date | None = None) -> str:
             + "".join(s) + "</main></body></html>")
 
 
-def indice(pareceres: list[tuple[str, str]], alvo: str) -> str:
-    """Página que lista os pareceres publicados: [(competência, arquivo)]."""
+def indice(pareceres: list[tuple[str, str]], alvo: str, *, banco: bool = False) -> str:
+    """Página que lista os pareceres publicados: [(competência, arquivo)].
+
+    Com ``banco``, liga também a página do banco histórico (docs/onisciente/banco/).
+    """
     itens = "".join(f'<li><a href="{escape(arq)}">{escape(_mes(c).capitalize())}</a></li>'
                     for c, arq in sorted(pareceres, reverse=True))
+    ligacao = ("<h2>Banco histórico</h2><ul><li><a href=\"banco/index.html\">Banco de teste da "
+               "coleta dos últimos dois anos</a></li></ul>") if banco else ""
     return ("<!doctype html><html lang=\"pt-BR\"><head><meta charset=\"utf-8\">"
             "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">"
             f"<title>Onisciente</title><style>{CSS}</style></head><body><main>"
             f"<h1>Onisciente</h1><p class=\"sub\">{escape(alvo)} · a trilha do dinheiro público</p>"
             f"<h2>Pareceres mensais</h2><ul>{itens or '<li>Nenhum parecer ainda.</li>'}</ul>"
-            "</main></body></html>")
+            f"{ligacao}</main></body></html>")

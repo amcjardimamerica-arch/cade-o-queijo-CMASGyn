@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Onisciente, banco de teste</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Zilla+Slab:wght@500;700&display=swap">
+<style>
+/* Layout: uma coluna de leitura (régua de meses, achados, rio do FNAS, explorador do PNCP), com a identidade do painel do Onisciente. */
+:root{
+  --papel:#FBFAF7; --cartao:#FFFFFF; --tinta:#1F2933; --apagado:#5B6672; --linha:#D7DCE1; --fundo2:#F1EFEA;
+  --verde:#15803D; --azul:#2563EB; --roxo:#7E22CE; --vermelho:#C81E1E; --ambar:#B45309;
+  --verde-f:#E7F4EC; --azul-f:#E8EEFC; --roxo-f:#F3E8FC; --vermelho-f:#FCE9E9; --ambar-f:#FBF0E2;
+  --display:"Zilla Slab",Georgia,"Times New Roman",serif;
+  --texto:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --dado:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --papel:#14181C; --cartao:#1B2126; --tinta:#E6E9EC; --apagado:#9AA4AE; --linha:#2E363D; --fundo2:#20272D;
+  --verde:#4ADE80; --azul:#7AA2F7; --roxo:#C084FC; --vermelho:#F87171; --ambar:#F59E0B;
+  --verde-f:#173323; --azul-f:#1A2742; --roxo-f:#2C1B3D; --vermelho-f:#3A1C1C; --ambar-f:#3A2A12;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --papel:#14181C; --cartao:#1B2126; --tinta:#E6E9EC; --apagado:#9AA4AE; --linha:#2E363D; --fundo2:#20272D;
+  --verde:#4ADE80; --azul:#7AA2F7; --roxo:#C084FC; --vermelho:#F87171; --ambar:#F59E0B;
+  --verde-f:#173323; --azul-f:#1A2742; --roxo-f:#2C1B3D; --vermelho-f:#3A1C1C; --ambar-f:#3A2A12;
+  color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--papel);color:var(--tinta);font:15px/1.55 var(--texto);margin:0}
+main{max-width:1040px;margin:0 auto;padding-block:28px 72px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(28px,4.4vw,40px);font-weight:700}
+h2{font-size:24px;font-weight:700}
+h3{font-size:17px;font-weight:700}
+p{margin:0}
+.rotulo{font:500 11.5px/1.3 var(--texto);text-transform:uppercase;letter-spacing:.08em;color:var(--apagado)}
+.num{font-family:var(--dado);font-variant-numeric:tabular-nums}
+a{color:var(--azul)}
+:focus-visible{outline:2px solid var(--azul);outline-offset:2px}
+
+header{display:grid;gap:10px;padding-bottom:22px;border-bottom:1px solid var(--linha)}
+.carimbo{display:inline-flex;gap:8px;align-items:center;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:3px 10px;font-size:12.5px;font-weight:500;border:1px solid transparent}
+.chip.teste{background:var(--ambar-f);color:var(--ambar);border-color:color-mix(in srgb,var(--ambar) 35%,transparent)}
+.chip.neutro{background:var(--fundo2);color:var(--apagado)}
+.lead{max-width:68ch;color:var(--apagado);font-size:16px}
+nav.indice{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13.5px}
+nav.indice a{text-decoration:none;color:var(--tinta);border-bottom:1px solid var(--linha)}
+nav.indice a:hover{border-color:var(--tinta)}
+
+section{display:grid;gap:14px;padding-top:34px}
+.cab{display:grid;gap:4px}
+.cab p{color:var(--apagado);max-width:72ch}
+
+.fontes{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.fonte{background:var(--cartao);border:1px solid var(--linha);border-radius:8px;padding:12px 14px;display:grid;gap:4px;align-content:start}
+.fonte .valor{font:600 22px/1.15 var(--dado);font-variant-numeric:tabular-nums}
+.fonte .nota{font-size:12.5px;color:var(--apagado)}
+.fonte.falha{border-color:color-mix(in srgb,var(--vermelho) 45%,var(--linha))}
+.fonte.falha .valor{color:var(--vermelho)}
+
+.selos{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13px;color:var(--apagado)}
+.selo{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:5px;font:600 12px/1 var(--dado)}
+.s-ok{background:var(--verde-f);color:var(--verde)}
+.s-falha{background:var(--vermelho-f);color:var(--vermelho)}
+.s-lacuna{background:var(--roxo-f);color:var(--roxo)}
+.s-prazo{background:var(--azul-f);color:var(--azul)}
+.s-parcial{background:var(--ambar-f);color:var(--ambar)}
+.s-vazio{background:var(--fundo2);color:var(--apagado)}
+
+.rolagem{overflow-x:auto;border:1px solid var(--linha);border-radius:8px;background:var(--cartao)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{padding:7px 10px;text-align:left;border-bottom:1px solid var(--linha);vertical-align:top}
+th{font:500 11.5px/1.3 var(--texto);text-transform:uppercase;letter-spacing:.06em;color:var(--apagado);background:var(--fundo2);position:sticky;top:0}
+tr:last-child td{border-bottom:0}
+td.r,th.r{text-align:right}
+.regua td,.regua th{text-align:center;padding:5px 6px}
+.regua td:first-child,.regua th:first-child{text-align:left;white-space:nowrap}
+.regua td:first-child{font-family:var(--dado);font-size:12.5px}
+
+.achados{display:grid;gap:10px}
+.ficha{background:var(--cartao);border:1px solid var(--linha);border-left:5px solid var(--linha);border-radius:8px;padding:12px 14px;display:grid;gap:6px}
+.ficha.falha{border-left-color:var(--vermelho)}
+.ficha.lacuna{border-left-color:var(--roxo)}
+.ficha.melhoria{border-left-color:var(--azul)}
+.ficha .tipo{font:600 11px/1 var(--texto);letter-spacing:.08em;text-transform:uppercase}
+.ficha.falha .tipo{color:var(--vermelho)} .ficha.lacuna .tipo{color:var(--roxo)} .ficha.melhoria .tipo{color:var(--azul)}
+.ficha .det{color:var(--apagado);font-size:14px}
+.ficha .prop{font-size:14px}
+.ficha .prop b{font-weight:600}
+.filtro-achados{display:flex;gap:6px;flex-wrap:wrap}
+
+button,select,input{font:inherit;color:var(--tinta)}
+.botao{background:var(--cartao);border:1px solid var(--linha);border-radius:999px;padding:5px 12px;cursor:pointer;font-size:13px}
+.botao[aria-pressed="true"]{background:var(--tinta);color:var(--papel);border-color:var(--tinta)}
+.botao:hover{border-color:var(--tinta)}
+
+.grafico{background:var(--cartao);border:1px solid var(--linha);border-radius:8px;padding:12px 12px 6px;overflow-x:auto}
+.grafico svg{display:block;min-width:640px;width:100%;height:auto}
+.grafico text{fill:var(--apagado);font:11px var(--dado)}
+.grafico .eixo{stroke:var(--linha)}
+.grafico .barra{fill:var(--azul)}
+.grafico .barra:hover{fill:var(--verde)}
+.grafico .lac{fill:var(--roxo-f);stroke:var(--roxo);stroke-dasharray:3 3}
+.duas{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:14px}
+@media (max-width:760px){.duas{grid-template-columns:minmax(0,1fr)}}
+.blocos{display:grid;gap:8px;background:var(--cartao);border:1px solid var(--linha);border-radius:8px;padding:12px 14px}
+.bl{display:grid;gap:3px}
+.bl .linha{display:flex;justify-content:space-between;gap:10px;font-size:13px}
+.bl .trilho{height:7px;background:var(--fundo2);border-radius:4px;overflow:hidden}
+.bl .trilho i{display:block;height:100%;background:var(--azul)}
+
+.controles{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.controles input[type=search]{flex:1 1 240px;min-width:0;padding:8px 12px;border:1px solid var(--linha);border-radius:8px;background:var(--cartao)}
+.controles select{padding:7px 10px;border:1px solid var(--linha);border-radius:8px;background:var(--cartao);max-width:100%}
+.controles label{display:inline-flex;gap:6px;align-items:center;font-size:13.5px}
+.resumo{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13.5px;color:var(--apagado)}
+.resumo b{color:var(--tinta);font-family:var(--dado);font-weight:600}
+.tabela-pncp{max-height:620px}
+.tabela-pncp td.obj{min-width:260px;max-width:460px}
+.tabela-pncp td.obj small{display:block;color:var(--apagado);font-size:12px}
+.pasta{display:inline-block;font-size:10.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--verde);background:var(--verde-f);border-radius:4px;padding:1px 5px;margin-left:4px}
+.mais{justify-self:start}
+.carregando{color:var(--apagado);font-size:13.5px}
+footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--linha);color:var(--apagado);font-size:13px;display:grid;gap:6px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="carimbo">
+      <span class="chip teste">Banco de teste</span>
+      <span class="chip neutro num" id="periodo">2024-11 a 2026-11</span>
+    </div>
+    <h1>Onisciente, banco de teste</h1>
+    <p class="lead">O que os motores de busca já trouxeram para o banco histórico de Goiânia, mês a mês, e onde o sistema falhou ou a fonte ficou sem o dado. Vermelho é falha do sistema; roxo é a fonte que respondeu sem o dado. As duas nunca se misturam.</p>
+    <nav class="indice" aria-label="Seções">
+      <a href="../index.html">Pareceres mensais</a>      <a href="#fontes">O que entrou</a><a href="#regua">Régua de meses</a><a href="#achados">Onde falha e onde melhorar</a>
+      <a href="#fnas">Repasses federais</a><a href="#pncp">Contratos e licitações</a><a href="#siconfi">Demonstrativos fiscais</a>
+    </nav>
+  </header>
+
+  <section id="fontes">
+    <div class="cab"><span class="rotulo">Rodada <span class="num" id="rodada"></span></span><h2>O que entrou no banco</h2></div>
+    <div class="fontes" id="cartoes"></div>
+  </section>
+
+  <section id="regua">
+    <div class="cab"><h2>Régua de meses</h2><p>Cada coluna é uma via de dados. O PNCP aparece como parcial enquanto houver órgãos ou meses sem leitura completa.</p></div>
+    <div class="selos">
+      <span><span class="selo s-ok">✓</span> coletado com dado</span>
+      <span><span class="selo s-parcial">◐</span> coletado em parte</span>
+      <span><span class="selo s-falha">✗</span> falha do sistema</span>
+      <span><span class="selo s-lacuna">·</span> fonte sem o dado</span>
+      <span><span class="selo s-prazo">…</span> ainda no prazo legal</span>
+    </div>
+    <div class="rolagem"><table class="regua" id="tabela-regua"></table></div>
+  </section>
+
+  <section id="achados">
+    <div class="cab"><h2>Onde o sistema falha e onde pode melhorar</h2><p>Os achados que o próprio diagnóstico da coleta escreveu, com a proposta de cada um.</p></div>
+    <div class="filtro-achados" role="group" aria-label="Filtrar achados">
+      <button class="botao" data-f="todos" aria-pressed="true">Todos</button>
+      <button class="botao" data-f="falha" aria-pressed="false">Falhas</button>
+      <button class="botao" data-f="lacuna" aria-pressed="false">Lacunas</button>
+      <button class="botao" data-f="melhoria" aria-pressed="false">Melhorias</button>
+    </div>
+    <div class="achados" id="lista-achados"></div>
+  </section>
+
+  <section id="fnas">
+    <div class="cab"><h2>Repasses federais do FNAS ao Fundo Municipal</h2><p>Valor repassado por mês de competência, lido das planilhas do FNAS. Os meses tracejados em roxo são os de um ano cuja planilha o FNAS ainda não publicou.</p></div>
+    <div class="duas">
+      <div class="grafico" id="grafico-fnas" role="img" aria-label="Repasses do FNAS por mês"></div>
+      <div class="blocos" id="blocos-fnas"></div>
+    </div>
+  </section>
+
+  <section id="pncp">
+    <div class="cab"><h2>Contratos e licitações no PNCP</h2><p id="pncp-nota">Contratos assinados e contratações publicadas pelos órgãos do Município. Procure por objeto, fornecedor, CNPJ ou órgão.</p></div>
+    <div class="filtro-achados" role="group" aria-label="Escolher a tabela">
+      <button class="botao" data-t="contratos" aria-pressed="true">Contratos</button>
+      <button class="botao" data-t="contratacoes" aria-pressed="false">Licitações e contratações</button>
+    </div>
+    <div class="controles">
+      <input type="search" id="busca" placeholder="Ex.: acolhimento, cesta básica, CNPJ do fornecedor" aria-label="Procurar">
+      <select id="orgao" aria-label="Órgão"><option value="">Todos os órgãos</option></select>
+      <label id="so-pasta-rot"><input type="checkbox" id="so-pasta"> Só da assistência social</label>
+    </div>
+    <div class="resumo" id="resumo-pncp"><span class="carregando">Carregando os contratos…</span></div>
+    <div class="rolagem tabela-pncp"><table id="tabela-pncp"></table></div>
+    <button class="botao mais" id="mais" hidden>Mostrar mais 100</button>
+  </section>
+
+  <section id="siconfi">
+    <div class="cab"><h2>Demonstrativos fiscais no SICONFI</h2><p>Cada relatório do Tesouro lido para o período, com a situação da entrega e quantos itens entraram no banco.</p></div>
+    <div class="rolagem"><table id="tabela-siconfi"></table></div>
+  </section>
+
+  <footer>
+    <p>Banco: <span class="num">dados/onisciente/historico.db</span>, no repositório cade-o-queijo-CMASGyn. Os números mudam a cada rodada da coleta histórica.</p>
+  </footer>
+</main>
+
+<script>
+(function(){
+const brl=new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"});
+const brlc=new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL",notation:"compact",maximumFractionDigits:1});
+const int=new Intl.NumberFormat("pt-BR");
+const $=s=>document.querySelector(s);
+const esc=t=>String(t??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const mesBR=m=>{const [a,b]=m.split("-");return ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"][+b-1]+"/"+a.slice(2)};
+
+fetch("dados.json").then(r=>r.json()).then(d=>{
+  $("#periodo").textContent=d.intervalo.replace(" a "," a ");
+  const rod=new Date(d.rodada);
+  $("#rodada").textContent=rod.toLocaleString("pt-BR",{dateStyle:"short",timeStyle:"short"});
+  const k=d.contagens;
+  const anos=[...new Set(d.fnas_mes.map(x=>x.mes.slice(0,4)))].join(" e ");
+  const mesesSileg=d.diario.filter(x=>x.fonte==="sileg"&&x.edicoes>0).length;
+  const qd=(k.edicoes_diario||{}).querido_diario||0;
+  const fontes=[
+    {n:"SICONFI",v:int.format(k.siconfi_itens),t:"itens dos demonstrativos fiscais, "+((k.siconfi_periodos||{}).entregue||0)+" períodos entregues"},
+    {n:"Diário Oficial",v:int.format((k.edicoes_diario||{}).sileg||0),t:`edições pelo índice do SILEG, em ${mesesSileg} de ${d.meses.length} meses`},
+    {n:"Repasses do FNAS",v:brlc.format(k.repasses_fnas[1]),t:int.format(k.repasses_fnas[0])+" linhas das planilhas"+(anos?" de "+anos:"")},
+    {n:"Contratos no PNCP",v:int.format(k.contratos_pncp[0]),t:k.contratos_pncp[1]+" da pasta da assistência social"},
+    {n:"Licitações no PNCP",v:int.format(k.contratacoes_pncp),t:"contratações publicadas pelos órgãos do Município"},
+    qd?{n:"Querido Diário",v:int.format(qd),t:"edições pela segunda via do Diário"}
+      :{n:"Querido Diário",v:"0",t:"o servidor recusou a conexão; o Diário entra pelo SILEG",f:1},
+  ];
+  $("#cartoes").innerHTML=fontes.map(f=>`<div class="fonte${f.f?" falha":""}"><span class="rotulo">${f.n}</span><span class="valor">${f.v}</span><span class="nota">${f.t}</span></div>`).join("");
+
+  // régua
+  const cols=[["sileg","Diário (SILEG)"],["querido_diario","Diário (QD)"],["rreo","RREO"],["rgf","RGF"],["dca","DCA"],["fnas","FNAS"],["pncp","PNCP"]];
+  const completos=new Set(d.pncp.meses_completos||[]);
+  const selo=(c,v,m)=>{
+    if(c==="pncp"&&v==="✓"&&!completos.has(m)) return `<span class="selo s-parcial" title="parte dos órgãos lida">◐</span>`;
+    if(v==="✓") return `<span class="selo s-ok" title="coletado com dado">✓</span>`;
+    if(v==="✗") return `<span class="selo s-falha" title="falha do sistema">✗</span>`;
+    if(v==="·") return `<span class="selo s-lacuna" title="fonte sem o dado">·</span>`;
+    if(v==="…") return `<span class="selo s-prazo" title="ainda no prazo">…</span>`;
+    return `<span class="selo s-vazio" title="não se aplica a este mês">&nbsp;</span>`;
+  };
+  let h="<thead><tr><th>Mês</th>"+cols.map(c=>`<th>${c[1]}</th>`).join("")+"</tr></thead><tbody>";
+  for(const m of d.meses){const r=d.cobertura[m]||{};h+=`<tr><td>${m}</td>`+cols.map(c=>`<td>${selo(c[0],r[c[0]],m)}</td>`).join("")+"</tr>"}
+  $("#tabela-regua").innerHTML=h+"</tbody>";
+
+  // achados
+  const ord={falha:0,lacuna:1,melhoria:2};
+  const nomes={falha:"Falha do sistema",lacuna:"Fonte sem o dado",melhoria:"Pode melhorar"};
+  const ach=[...d.achados].sort((a,b)=>ord[a.tipo]-ord[b.tipo]);
+  const desenha=f=>{$("#lista-achados").innerHTML=ach.filter(a=>f==="todos"||a.tipo===f).map(a=>
+    `<article class="ficha ${a.tipo}"><span class="tipo">${nomes[a.tipo]||a.tipo}</span><h3>${esc(a.titulo)}</h3>${a.detalhe?`<p class="det">${esc(a.detalhe)}</p>`:""}${a.proposta?`<p class="prop"><b>Proposta:</b> ${esc(a.proposta)}</p>`:""}</article>`).join("")};
+  desenha("todos");
+  document.querySelectorAll("[data-f]").forEach(b=>b.addEventListener("click",()=>{
+    document.querySelectorAll("[data-f]").forEach(x=>x.setAttribute("aria-pressed",x===b));desenha(b.dataset.f)}));
+
+  // FNAS
+  const porMes=Object.fromEntries(d.fnas_mes.map(x=>[x.mes,x]));
+  const W=760,H=240,ml=58,mb=34,mt=12,mr=8;
+  const max=Math.max(...d.fnas_mes.map(x=>x.valor));
+  const topo=Math.ceil(max/1e6)*1e6;
+  const bw=(W-ml-mr)/d.meses.length;
+  const y=v=>mt+(H-mt-mb)*(1-v/topo);
+  let s=`<svg viewBox="0 0 ${W} ${H}" aria-hidden="true">`;
+  for(let i=0;i<=topo/1e6;i++){const v=i*1e6,yy=y(v);s+=`<line class="eixo" x1="${ml}" x2="${W-mr}" y1="${yy}" y2="${yy}"/><text x="${ml-6}" y="${yy+4}" text-anchor="end">${i?("R$ "+i+" mi"):"0"}</text>`}
+  d.meses.forEach((m,i)=>{
+    const x=ml+i*bw+3,w=bw-6,r=porMes[m];
+    if(r){s+=`<rect class="barra" x="${x}" y="${y(r.valor)}" width="${w}" height="${y(0)-y(r.valor)}" rx="2"><title>${mesBR(m)}: ${brl.format(r.valor)} (${r.linhas} linhas)</title></rect>`}
+    else if((d.cobertura[m]||{}).fnas==="·"){s+=`<rect class="lac" x="${x}" y="${y(0)-22}" width="${w}" height="22" rx="2"><title>${mesBR(m)}: planilha do ano ainda não publicada</title></rect>`}
+    if(i%2===0)s+=`<text x="${x+w/2}" y="${H-12}" text-anchor="middle">${mesBR(m)}</text>`;
+  });
+  $("#grafico-fnas").innerHTML=s+"</svg>";
+  const maxb=Math.max(...d.fnas_bloco.map(b=>b.valor));
+  $("#blocos-fnas").innerHTML=`<span class="rotulo">Por bloco de financiamento</span>`+d.fnas_bloco.map(b=>
+    `<div class="bl"><div class="linha"><span>${esc(b.bloco)}</span><span class="num">${brl.format(b.valor)}</span></div><div class="trilho"><i style="width:${(b.valor/maxb*100).toFixed(1)}%"></i></div></div>`).join("");
+
+  // SICONFI
+  const sit={entregue:"s-ok","no prazo":"s-prazo"};
+  $("#tabela-siconfi").innerHTML="<thead><tr><th>Relatório</th><th>Prazo legal</th><th>Situação</th><th class='r'>Itens</th><th class='r'>Anexos</th></tr></thead><tbody>"+
+    d.siconfi.map(p=>`<tr><td>${esc(p.rotulo)}</td><td class="num">${p.prazo||""}</td><td><span class="selo ${sit[p.situacao]||"s-falha"}" style="width:auto;padding:0 7px">${esc(p.situacao)}</span></td><td class="r num">${int.format(p.itens||0)}</td><td class="r num">${p.anexos||0}</td></tr>`).join("")+"</tbody>";
+
+  // PNCP
+  $("#pncp-nota").textContent=`Contratos assinados e contratações publicadas pelos ${d.pncp.orgaos_conhecidos} órgãos do Município achados até agora. Procure por objeto, fornecedor, CNPJ ou órgão.`;
+  const sel=$("#orgao");
+  d.orgaos_contratos.forEach(o=>{const op=document.createElement("option");op.value=o.orgao;op.textContent=`${o.orgao} (${o.n})`;sel.appendChild(op)});
+}).catch(()=>{$("#cartoes").innerHTML='<p class="carregando">Os dados não carregaram. Recarregue a página.</p>'});
+
+// explorador do PNCP
+const est={t:"contratos",lim:100,dados:{}};
+const carregar=t=>est.dados[t]?Promise.resolve(est.dados[t]):fetch(t+".json").then(r=>r.json()).then(x=>(est.dados[t]=x));
+const norm=s=>String(s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+function filtrar(){
+  const q=norm($("#busca").value.trim()),o=$("#orgao").value,p=$("#so-pasta").checked,c=est.t==="contratos";
+  return (est.dados[est.t]||[]).filter(r=>{
+    if(o&&r[3]!==o)return false;
+    if(c&&p&&!r[8])return false;
+    if(!c&&p&&!/ASSISTENCIA SOCIAL|FMAS/.test(r[3]))return false;
+    if(q){const alvo=norm(c?[r[0],r[3],r[4],r[5],r[6]].join(" "):[r[0],r[2],r[3],r[4],r[7]].join(" "));if(!q.split(/\s+/).every(w=>alvo.includes(w)))return false}
+    return true});
+}
+function desenhar(){
+  const c=est.t==="contratos",rs=filtrar(),vis=rs.slice(0,est.lim);
+  const soma=rs.reduce((a,r)=>a+(c?r[7]:(r[6]||r[5]||0)),0);
+  $("#resumo-pncp").innerHTML=`<span><b>${int.format(rs.length)}</b> ${c?"contratos":"contratações"}</span><span>Soma ${c?"dos valores globais":"dos valores homologados ou estimados"}: <b>${brl.format(soma)}</b></span>`;
+  const cab=c?"<th>Assinatura</th><th>Objeto e fornecedor</th><th>Órgão</th><th class='r'>Valor global</th>":"<th>Mês</th><th>Objeto e modalidade</th><th>Órgão</th><th class='r'>Homologado</th><th class='r'>Estimado</th>";
+  const linhas=vis.map(r=>c
+    ?`<tr><td class="num">${r[2]||r[1]}</td><td class="obj">${esc(r[6])}${r[8]?'<span class="pasta">assistência</span>':""}<small>${esc(r[4])} · ${esc(r[5])}</small></td><td>${esc(r[3])}</td><td class="r num">${brl.format(r[7])}</td></tr>`
+    :`<tr><td class="num">${r[1]}</td><td class="obj">${esc(r[4])}<small>${esc(r[2])} · ${esc(r[7])}</small></td><td>${esc(r[3])}</td><td class="r num">${r[6]?brl.format(r[6]):"—"}</td><td class="r num">${brl.format(r[5])}</td></tr>`).join("");
+  $("#tabela-pncp").innerHTML=`<thead><tr>${cab}</tr></thead><tbody>${linhas||'<tr><td colspan="5">Nada encontrado com esses filtros.</td></tr>'}</tbody>`;
+  $("#mais").hidden=rs.length<=est.lim;
+}
+function trocar(t){est.t=t;est.lim=100;$("#resumo-pncp").innerHTML='<span class="carregando">Carregando…</span>';carregar(t).then(desenhar).catch(()=>{$("#resumo-pncp").innerHTML='<span class="carregando">Os dados não carregaram. Recarregue a página.</span>'})}
+document.querySelectorAll("[data-t]").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll("[data-t]").forEach(x=>x.setAttribute("aria-pressed",x===b));trocar(b.dataset.t)}));
+let tm;$("#busca").addEventListener("input",()=>{clearTimeout(tm);tm=setTimeout(()=>{est.lim=100;desenhar()},180)});
+$("#orgao").addEventListener("change",()=>{est.lim=100;desenhar()});
+$("#so-pasta").addEventListener("change",()=>{est.lim=100;desenhar()});
+$("#mais").addEventListener("click",()=>{est.lim+=100;desenhar()});
+trocar("contratos");
+})();
+</script>
+</body>
+</html>
