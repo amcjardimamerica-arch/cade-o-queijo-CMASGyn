@@ -1,0 +1,1372 @@
+URL: http://siops.datasus.gov.br/consleirespfiscal.php?UF=52&Ano=2026&Periodo=1&Municipio=&MudouAno=true
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 56312
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-15;"/>
+
+<!-- inicio: adicionado o header que expira o cache -->
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="expires" content="-1" />
+
+<!-- fim: adicionado o header que expira o cache -->
+<meta name="verify-v1" content="Y/EnCi+IymynycM5dicese45d4aImZDuXpCxf8so36c=" />
+
+
+<title>. : SIOPS - Consulta de Lei de Responsabil i dade Fisca l. </title><script language="javascript" type="text/javascript">
+<!--
+//url=url==null?"":url;
+url="";
+-->
+</script>
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="expires" content="-1" />
+
+<!-- deploy-master:header
+2019-10-18 9:32hs-->
+
+
+
+<!-- fim: adicionado o header que expira o cache wwwwwwwwww -->
+<!--
+0000000
+
+	<style type="text/css" title="currentStyle" media="screen">@import "ZZportalsaude/includes/templates/eportal/css/smoothness/jquery-ui-1.8.6.custom.css";</style>
+	<style type="text/css" rel="stylesheet" href="ZZportalsaude/includes/templates/eportal/css/nivo-slider.css" media="screen"></style>
+	<style type="text/css" title="currentStyle" media="screen">@import "portalsaude/includes/templates/eportal/css/geral.css";</style>
+	<style type="text/css" title="currentStyle" media="screen">@import "portalsaude/includes/templates/eportal/css/menu.css";</style>
+portalsaude\includes\templates\eportal\css\geral.css
+-->
+	<link title="geral" rel="stylesheet" type="text/css" href="portalsaude/includes/templates/eportal/css/geral.css" media="screen" />
+	<link title="geral" rel="stylesheet" type="text/css" href="portalsaude/includes/templates/eportal/css/menu.css" media="screen" />
+<!--
+	<link title="geral" rel="stylesheet" type="text/css" href="portalsaude/includes/templates/eportal/css/geral.css" media="screen">
+	<link title="geral" rel="stylesheet" type="text/css" href="portalsaude/includes/templates/eportal/css/menu.css" media="screen">
+
+	<style type="text/css" title="currentStyle" media="screen">@import "ZZportalsaude/includes/templates/eportal/css/modulos.css";</style>
+	<style type="text/css" title="currentStyle" media="screen">@import "ZZportalsaude/includes/templates/eportal/css/nivo-slider.css";</style>
+	<style type="text/css" title="currentStyle" media="screen">@import "ZZportalsaude/includes/templates/eportal/css/style.css";</style>
+	<style type="text/css" title="currentStyle" media="screen">@import "ZZportalsaude/includes/templates/eportal/css/prettyPhoto.css";</style>
+	<style type="text/css" title="currentStyle" media="screen">@import "ZZportalsaude/includes/templates/eportal/css/template_home.css";</style>
+	<style type="text/css" title="currentStyle" media="screen">@import "ZZportalsaude/arquivos/2011/css/perfilCidadao.css";</style>
+-->
+	<!-- importando estilos -->
+<!--
+	<link title="geral" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/geral.css" media="screen">
+
+	<LINK title=geral rel="stylesheet" type=text/css href="portalsaude/includes/templates/eportal/css/templatePS01.css" media="screen">
+
+    <link title="geral" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/modulos.css" media="screen">
+    <link title="geral" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/menu.css" media="screen">
+    <link title="geral" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/style.css" media="screen">
+	<link title="geral" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/nivo-slider.css" media="screen">
+	<link title="geral" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/prettyPhoto.css" media="screen">
+	<link title="geral" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/smoothness/jquery-ui-1.8.6.custom.css" media="screen">
+	<link title="geralC" rel="alternate stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/geralC.css" media="screen">
+
+	<LINK title="geralC" rel="stylesheet" type=text/css href="portalsaude/includes/templates/eportal/css/templatePS01.css" media="screen">
+
+	<link title="geralC" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/modulos.css" media="screen">
+	<link title="geralC" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/menuX.css" media="screen">
+	<link title="geralC" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/nivo-slider.css" media="screen">
+	<link title="geralC" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/style.css" media="screen">
+	<link title="geralC" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/prettyPhoto.css" media="screen">
+    <link title="geralC" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/smoothness/jquery-ui-1.8.6.custom.css" media="screen">
+-->
+    
+<!--
+    <link href="CSS/siops.css" type="text/css" rel="stylesheet" />
+
+	<link rel="stylesheet" type="text/css" href="CSS/keyboard.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="CSS/siops12.css"      title="Normal"/>
+    <link rel="alternate stylesheet" type="text/css" media="screen" href="CSS/siops15.css"      title="Pequeno"/>
+    <link rel="alternate stylesheet" type="text/css" media="screen" href="CSS/siops20.css"      title="Grande"/>
+    <link rel="alternate stylesheet" type="text/css" media="screen" href="CSS/cinza.css"        title="cinza"/>
+    <link rel="alternate stylesheet" type="text/css" media="screen" href="CSS/pretobranco.css"  title="pretobranco"/>
+    <link rel="stylesheet" type="text/css" media="print"    href="CSS/estilo-texto.css"/>
+-->
+
+
+    <!-- importando estilos fim-->
+<!--
+    <script src="zzportalsaude/includes/templates/eportal/js/acessibilidade.js" type="text/javascript"></script>
+	<script src="ZZportalsaude/includes/templates/eportal/js/jquery-1.4.3.min.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+	<script src="ZZportalsaude/includes/templates/eportal/js/jquery.tools.min.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+	<script src="ZZportalsaude/includes/templates/eportal/js/jquery-ui-1.8.10.custom.min.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+-->
+	<!--Script flow Player-->
+<!--
+	<script src="ZZportalsaude/includes/templates/eportal/js/flowplayer-3.2.6.min.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+-->
+
+	<!--Script flow Player-->
+
+
+<!--
+	<script src="ZZportalsaude/includes/templates/eportal/js/cookie.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+	<script src="ZZportalsaude/includes/templates/eportal/js/font_size.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+	<script src="ZZportalsaude/includes/templates/eportal/js/jquery.jcarousel.min.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+	<script src="ZZportalsaude/includes/templates/eportal/js/jquery.prettyPhoto.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+	<script src="ZZportalsaude/includes/templates/eportal/js/ajaxlib.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+-->
+
+<!--
+    <script type="text/javascript" src="js/funcoes.js"></script>
+
+
+
+<script type="text/javascript" language="JavaScript" src="/portal/geral/js/acessibilidade.js"></script>
+<script type="text/javascript" language="JavaScript" src="/portal/geral/js/font_size.js"></script>
+<script type="text/javascript" language="JavaScript" src="/portal/geral/js/cookie.js"></script>
+
+
+
+-->
+
+
+	<script type="text/javascript">
+		<!--
+		function mudaAba(itemMenu, div, qtd){	
+			qtd++;
+			for (i = 1; i < qtd; i++ ) {
+				divAba = document.getElementById(div + i);
+				divAba.className = 'off';		
+			}
+			divAba = document.getElementById(div + itemMenu);
+			divAba.className = 'on';
+		}
+
+		function mostraAbaInicio(itemMenuInicio, div, qtd){	
+			qtd++;
+			for (i = 1; i < qtd; i++ ) {
+				divAba = document.getElementById(div + i);
+				divAba.className = 'off';		
+			}	
+			divAba = document.getElementById(div + itemMenuInicio);
+			divAba.className = 'on';
+		}
+		-->
+	</script>
+	<style type="text/css">
+		#topo{
+			width:100%;
+			position:relative;
+			}
+		#barraGoverno{
+			margin:0px;
+			height:35px;
+			width:100%;
+			background-image:url(http://portal.saude.gov.br/portal/geral/img/MinisterioDaSaudeGF.png);
+			}
+		#barraGovernoPosicao1{
+			position:absolute;
+			top:7px;
+			left:30px;
+			}
+		#barraGovernoPosicao2{
+			position:absolute;
+			top:5px;
+			left:850px;
+			}
+		/*#testeira{
+			background:url(http://portal.saude.gov.br/portal/geral/img/testeira.jpg) no-repeat;
+			height:122px;
+			margin:0px;
+			padding:0px;
+			width:100%;
+			}*/
+		#SaudeGovBr{
+			width:220px;
+			height:70px;
+			position:relative;
+			top:15px;
+			left:10px;
+			}
+		#testeiraPosicao1{
+			/* custodio */ background:url(portalsaude/arquivos/jpg/2012/Jan/23/testeira.jpg) no-repeat;
+			width:680px; 
+			float:left;
+			min-height:122px;
+			}
+		#testeiraPosicao2{
+			
+			width:260px;
+			padding:5px 10px 0px 10px;
+			float:left;
+			min-height:72px;
+			}
+		/*#busca {
+			height:35px;
+		}
+		#busca  input{
+			width:225px;
+			border:none;
+			color:#999;
+			padding:10px 5px 10px 30px;
+			background-image:url(http://portal.saude.gov.br/portal/geral/img/bgBusca.jpg);
+			background-repeat:no-repeat;
+			margin:0px;
+		}
+		#busca {
+			width:252px;
+			/height:30px;/
+			border:0px;
+			font-size:16px;
+			font-family: "Century Gothic", Tahoma, Verdana, Arial;
+		}*/
+		#links{
+			margin:0px 0px 10px 0px;
+			font-size:11px;
+			border-bottom:1px #CCC solid;}
+		
+		#links a{
+			color:#999;
+			text-decoration:none;
+			}
+		#redes img{
+			/*margin-top:10px;*/
+			margin-right:3px;
+			text-decoration:none;
+			}
+		#menuN{
+			width:100%;
+			margin:0px;
+			}
+</style>  
+<!--
+</head>
+<body>
+-->
+<!-- Nova Identidade Visual do Governo -->
+<!-- 16/09/2011 CÃ­ntia-->
+<style type="text/css">
+		body {
+			margin:0;
+		}
+		#barra-brasil-v3 {
+			position:relative;
+			clear:both;
+			overflow:hidden;
+			min-width:1000px;
+			height:28px;
+			background:#004b82;
+		}
+		#barra-brasil-v3 span {
+			display:block;
+			width:50%;
+			height:28px;
+			background:url(portalsaude/includes/templates/eportal//img/barra-brasil-v3-bgx.gif) 0 bottom repeat-x;
+		}
+		#barra-brasil-v3 span .imagemGov {
+			position:absolute;
+			top:4px;
+			left:50%;
+			height: 24px;
+			width: 1000px;
+			background: url(portalsaude/includes/templates/eportal//img/barra-brasil-v3-azul.gif) right top no-repeat;
+			margin-left:-518px;
+		}
+ #barra-brasil-v3 span .imagemAi {
+			position:absolute;
+			top:4px;
+			left:48%;
+			height: 24px;
+			width: 810px;
+			margin-left:-450px;
+		}
+		#barra-brasil-v3 span .acessoainformacaogov {
+			width: 120px;
+			height: 24px;
+			float:right;
+			display:block;
+			border: 0 !important;
+		}
+		#barra-brasil-v3 span .brasilgov {
+			width: 100px;
+			height: 24px;
+			float:right;
+			display:block;
+			border: 0 !important;
+
+		}
+	</style>
+<!--
+    <link href="xxCSS/testeira_menu.css" type="text/css" rel="stylesheet" />
+    <link href="xxCSS/siops_novoPortal.css" type="text/css" rel="stylesheet" />
+    <link href="xxCSS/siops12.css" type="text/css" rel="stylesheet" media="screen" title="Normal"/>
+
+    <link rel="stylesheet" type="text/css" media="print"    href="zzCSS/estilo-texto.css"/>
+    <link rel="stylesheet" type="text/css" media="print"    href="zzCSS/p/estilo-texto.css"/>
+    <link rel="stylesheet" type="text/css" media="print"    href="xxCSS/estilo-texto.css"/>
+-->
+
+</head>
+<body>
+
+<div id="barra-brasil-v3">
+<span>
+  <div class="imagemGov">
+  		<a href="http://www.brasil.gov.br" target="_blank" class="brasilgov"></a>
+  </div>
+  <div class="imagemAi">
+  	<a href="http://www.cgu.gov.br/acessoainformacaogov/" target="_blank" class="acessoainformacaogov"></a>
+  </div>
+
+</span>
+</div>
+<div id="tudo">
+<div id="topo"> 
+	<div id="acessibilidadeGeral"> 
+		<ul>
+			<li class="esconder"><a href="#conteudo">Pular para o conteudo</a></li>
+			<li><a href="javascript:void(0);" title="Aumentar Fonte">A+</a></li>
+			<li><a href="javascript:void(0);" title="Diminuir Fonte">A-</a></li>
+			<li class="contrasteOff"><a href="#" title="Aumentar Contraste">C+</a></li>
+			<li class="contrasteOn" ><a href="#" title="Diminuir Contraste">C-</a></li>
+		</ul>
+	</div>
+	<div id="testeira">
+<!--
+		<div id="testeiraPosicao1" style="background: url('portalsaude/arquivos/jpg/2012/Jan/23/testeira.jpg')">
+-->
+		<div id="testeiraPosicao1">
+				<a href="portalsaude" title="Minist&eacute;rio da Sa&uacute;de">
+					<div id="SaudeGovBr"></div>
+				</a>
+		</div>
+		<!-- coluna1Posicao1F -->
+        <script language="javascript">
+			function limpaBusca(valor){
+				if(valor=="Busca"){
+					document.getElementById("buscaGeral").value="";
+				}
+			}
+		</script>
+		<div id="testeiraPosicao2">
+			<div id="busca">
+				
+				<form id="form1" method="post" action="http://portalsaude.saude.gov.br/portalsaude/busca">
+					<p>
+						<label for="buscaGeral"></label>
+						<input name="Busca" type="text" id="buscaGeral" onfocus="limpaBusca(this.value);" maxlength="30" placeholder="Buscar" value="Busca"/>
+						<!--<input name="Buscar" type="button" value="Buscar">-->
+					</p>
+				</form>
+			</div>
+			<div id="links">
+				<span>
+					<a href="http://portal.saude.gov.br/portalsaude/texto/1999/166/mapa-do-site.html" title="Mapa do Site">Mapa do Site</a> |
+					<a href="http://portal.saude.gov.br/portal/saude/area.cfm?id_area=141" title="Fale Conosco">Fale Conosco</a> |
+					<a href="http://portalsaude.saude.gov.br/portalsaude/index.cfm?portal=pagina.visualizarArea&codArea=353" title="Links de Interesse">Links de Interesse</a>
+				</span>
+			</div>
+			<div id="redes">
+				<span>
+					<a href="https://www.facebook.com/minsaude" title="Facebook" target="_blank">
+						&nbsp;<img src="portalsaude/includes/templates/eportal//img/facebook.png" alt="Facebbok" border="0"/>
+					</a>
+					<a href="http://twitter.com/minsaude" title="Twitter" target="_blank">
+						&nbsp;<img src="portalsaude/includes/templates/eportal//img/twitter.png" alt="Twitter" border="0"/>
+					</a>
+					<a href="http://www.youtube.com/minsaudebr" title="Youtube" target="_blank">
+						&nbsp;<img src="portalsaude/includes/templates/eportal//img/youtube.png" alt="YouTube" border="0"/>
+					</a>
+					<a href="http://www.flickr.com/photos/ministeriodasaude/" title="Flickr" target="_blank">
+						&nbsp;<img src="portalsaude/includes/templates/eportal//img/fliker.png" alt="Flickr" border="0"/>
+					</a>
+					<a href="http://www.orkut.com.br/Main#Home" title="Orkut">
+						&nbsp;<img src="portalsaude/includes/templates/eportal//img/orkut.png" alt="Orkut" border="0"/>
+					</a>
+					<a href="http://www.formspring.me/minsaude" title="Formspring" target="_blank">
+						&nbsp;<img src="portalsaude/includes/templates/eportal//img/formspring.png" alt="FormSpring" border="0"/>
+					</a>
+					<a href="##" title="Separador">
+						&nbsp;<img src="portalsaude/includes/templates/eportal//img/separadorMenu.gif" alt="Separador do menu" border="0"/>
+					</a>
+					<a href="http://portalsaude.saude.gov.br/portalsaude/index.cfm/?portal=pagina.visualizarArea&codArea=356" title="Espanhol">
+						&nbsp;<img src="portalsaude/includes/templates/eportal//img/idiomaesp.png" alt="Idioma em Espanhol" border="0"/>
+					</a>
+					<a href="http://portalsaude.saude.gov.br/portalsaude/index.cfm/?portal=pagina.visualizarArea&codArea=347" title="Ingles">
+						&nbsp;<img src="portalsaude/includes/templates/eportal//img/idiomaing.png" alt="Idioma em InglÃªs" border="0"/>
+					</a>
+				</span>
+			</div>
+		</div>
+		<!-- coluna1Posicao1F -->
+  </div>
+		<!-- testeiraF -->
+
+	<div id="menu">
+		<div id="menuPosicao1">
+			<div id="menuGeral">
+				
+				<div id="menu" onblur="javascript: mostraAbaInicio(1, 'aba', 5);">
+					<ul>
+						<li style="display:none;">
+							<div>
+								<div>
+									<ul>
+									</ul>
+								</div>
+							</div>
+						</li>
+
+						<li id="li1" class="navAzul menuPrincipal" onmouseover="javascript: mudaAba(1, 'aba', 6);" onfocus="javascript: mudaAba(1, 'aba', 6);">
+							<a class="menu" href="http://portalsaude.saude.gov.br/portalsaude/area/2/cidadao.html" title="Cidad&atilde;o">Cidad&atilde;o</a>
+								<div id="aba1"  class="on">
+									<div class="navAzulbg submenu">
+											<ul>
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/index.cfm?portal=pagina.visualizarArea&codArea=400" title="Principal">Principal</a> </li>
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/3/saude-para-voce.html" title="Sa&uacute;de para Voc&ecirc;">Sa&uacute;de para Voc&ecirc;</a> </li>
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/341/orientacao-e-prevencao.html" title="Orienta&ccedil;&atilde;o e Preven&ccedil;&atilde;o">Orienta&ccedil;&atilde;o e Preven&ccedil;&atilde;o</a> </li>
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/342/acoes-e-programas.html" title="A&ccedil;&otilde;es e Programas">A&ccedil;&otilde;es e Programas</a> </li>
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/312/comunicacao.html" title="Comunica&ccedil;&atilde;o">Comunica&ccedil;&atilde;o</a> </li>
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/313/legislacao.html" title="Legisla&ccedil;&atilde;o">Legisla&ccedil;&atilde;o</a> </li>
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/348/redes-sociais.html" title="Redes Sociais">Redes Sociais</a> </li>
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/345/entenda-o-sus.html" title="Entenda o SUS">Entenda o SUS</a> </li>
+											</ul>
+										</div>
+									</div>
+								</li>
+												<li id="li2" class="navVermelho menuPrincipal" onmouseover="javascript: mudaAba(2, 'aba', 6);" onfocus="javascript: mudaAba(2, 'aba', 6);">
+													
+													
+													<a class="menu" href="http://portalsaude.saude.gov.br/portalsaude/area/5/profissional-e-gestor.html" title="Profissional e Gestor">Profissional e Gestor</a>
+													
+													<div id="aba2" class="off">
+														<div class="navVermelhobg submenu">
+															<ul>
+											
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/index.cfm?portal=pagina.visualizarArea&codArea=400" title="Principal">Principal</a> </li>
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/315/horus.html" title="H&oacute;rus">H&oacute;rus</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/343/pesquisa-em-saude.html" title="Pesquisa em Sa&uacute;de">Pesquisa em Sa&uacute;de</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/317/vigilancia.html" title="Vigil&acirc;ncia">Vigil&acirc;ncia</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/344/educacao.html" title="Educa&ccedil;&atilde;o">Educa&ccedil;&atilde;o</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/319/gestao-da-saude-publica.html" title="Gest&atilde;o da Sa&uacute;de P&uacute;blica">Gest&atilde;o da Sa&uacute;de P&uacute;blica</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/355/trabalhe-na-saude.html" title="Trabalhe na Sa&uacute;de">Trabalhe na Sa&uacute;de</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/322/medicamentos.html" title="Medicamentos ">Medicamentos </a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/320/legislacao.html" title="Legisla&ccedil;&atilde;o">Legisla&ccedil;&atilde;o</a> </li>
+													
+															</ul>
+														</div>
+													</div>
+												</li>
+												<li id="li3" class="navCinza menuPrincipal" onmouseover="javascript: mudaAba(3, 'aba', 6);" onfocus="javascript: mudaAba(3, 'aba', 6);">
+													
+													
+													<a class="menu" href="http://portalsaude.saude.gov.br/portalsaude/area/7/o-ministerio.html" title="O Minist&eacute;rio">O Minist&eacute;rio</a>
+													
+													<div id="aba3" class="off">
+														<div class="navCinzabg submenu">
+															<ul>
+											
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/index.cfm?portal=pagina.visualizarArea&codArea=400" title="Principal">Principal</a> </li>
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/330/historico.html" title="Hist&oacute;rico">Hist&oacute;rico</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/331/estrutura-e-competencias.html" title="Estrutura e Compet&ecirc;ncias">Estrutura e Compet&ecirc;ncias</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/332/ministro.html" title="Ministro">Ministro</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/333/relacoes-internacionais.html" title="Rela&ccedil;&otilde;es Internacionais">Rela&ccedil;&otilde;es Internacionais</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/334/unidades-do-ministerio.html" title="Unidades do Minist&eacute;rio">Unidades do Minist&eacute;rio</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/337/legislacao.html" title="Legisla&ccedil;&atilde;o">Legisla&ccedil;&atilde;o</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/369/transparencia-da-saude.html" title="Transpar&ecirc;ncia da Sa&uacute;de">Transpar&ecirc;ncia da Sa&uacute;de</a> </li>
+													
+															</ul>
+														</div>
+													</div>
+												</li>
+												<li id="li4" class="navCinza menuPrincipal" onmouseover="javascript: mudaAba(4, 'aba', 6);" onfocus="javascript: mudaAba(4, 'aba', 6);">
+													
+													
+													<a class="menu" href="http://portalsaude.saude.gov.br/portalsaude/area/9/servicos.html" title="Servi&ccedil;os">Servi&ccedil;os</a>
+													
+													<div id="aba4" class="off">
+														<div class="navCinzabg submenu">
+															<ul>
+											
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/9/principal-_-servicos.html" title="Principal - Servi&ccedil;os">Principal - Servi&ccedil;os</a> </li>
+													
+															</ul>
+														</div>
+													</div>
+												</li>
+
+
+
+
+
+
+
+												<li id="li5" class="navCinza menuPrincipal" onmouseover="javascript: mudaAba(5, 'aba', 6);" onfocus="javascript: mudaAba(5, 'aba', 6);">
+													<a class="menu" href="http://portalsaude.saude.gov.br/portalsaude/area/11/biblioteca.html" title="Biblioteca">Biblioteca</a>
+
+													<div id="aba5" class="off">
+														<div class="navCinzabg submenu">
+															<ul>
+												<li>
+
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/11/principal-_-biblioteca.html" title="Principal - Biblioteca">Principal - Biblioteca</a> </li>
+									</ul>
+								</div>
+							</div>
+						</li>
+<li id="li6" class="navCinza menuPrincipal" onmouseover="javascript: mudaAba(6, 'aba', 6);" onfocus="javascript: mudaAba(6, 'aba', 6);">
+	<a class="menu" href="http://portalsaude.saude.gov.br/portalsaude/area/380/acesso-a-informacao.html" title="Acesso &agrave; informa&ccedil;&atilde;o">Acesso &agrave; informa&ccedil;&atilde;o
+	</a>
+	<div id="aba6" class="off">
+		<div class="navCinzabg submenu">
+			<ul>
+				<li>
+					<a href="http://portalsaude.saude.gov.br/portalsaude/area/380/principal-_-acesso-a-informacao.html" title="Principal - Acesso &agrave; informa&ccedil;&atilde;o">Principal - Acesso &agrave; informa&ccedil;&atilde;o</a> 
+				</li>
+			</ul>
+		</div>
+	</div>
+</li>
+						</ul>
+				</div>
+				<!-- menu fim -->
+		</div>
+		<!-- fim menuGeral  -->
+		</div>
+		<!-- coluna1Posicao1F -->
+  </div>
+		<!-- menuF -->
+</div>
+
+<script language="javascript" type="text/javascript">
+<!--
+var ns6=document.getElementById&&!document.all
+var ns66=(!document.all && document.getElementById)
+var ie4=document.all&&navigator.userAgent.indexOf("Opera")==-1
+function checkcontained(e){
+	var iscontained=0
+	cur=ns6?e.target:event.srcElement
+	i=0
+	if (cur.id=="foldheader")
+		iscontained=1
+	else
+		while (ns6&&cur.parentNode||(ie4&&cur.parentElement)){
+			if (cur.id=="foldheader"||cur.id=="foldinglist"){
+				iscontained=((cur.id=="foldheader")?1:0)
+				break
+			}
+			cur=(ns6?cur.parentNode:cur.parentElement)
+		}
+	if (iscontained){
+		var foldercontent=((ns6)?cur.nextSibling.nextSibling:cur.all.tags("ul")[0])
+		if (foldercontent.style.display=="none"){
+			foldercontent.style.display=""
+			cur.style.listStyleImage="url(img/menosp.gif)"
+		}else{
+			foldercontent.style.display="none"
+			cur.style.listStyleImage="url(img/maisp.gif)"
+		}
+	}
+}
+-->
+</script>
+
+<script language="javascript" type="text/javascript">
+<!--
+if (ie4||ns6)
+	document.onclick=checkcontained
+var isNS4 = (document.layers) ? true : false
+var isIE4 = (document.all && !document.getElementById) ? true : false
+var isIE5 = (document.all &&  document.getElementById) ? true : false
+var isNS6 =(!document.all &&  document.getElementById) ? true : false
+var browser='nao sei'
+if (isNS4) browser="NS4"
+if (isIE4) browser="IE4"
+if (isIE5) browser="DOM"
+if (isNS6) browser="DOM"
+-->
+</script>
+
+<noscript>Seu browse não suporta script.</noscript>
+<!-- testeira_preparada_inc INI -->
+
+
+<meta name="author"              content="Claudio Cunha"/>
+<meta name="author"              content="José Custódio Oliveira Gomes"/>
+
+<meta name="keywords"            lang="pt" content="financeiro, orçamento, saúde"/>
+<meta name="description"         content="Sistema de Informações sobre Orçamento Público em Saúde."/>
+<!--
+<meta name="robots"              content="all"/>
+-->
+
+<meta name="author"              content="Claudio Cunha"/>
+<meta name="author"              content="José Custódio Oliveira Gomes"/>
+
+<meta name="keywords"            lang="pt" content="financeiro, orçamento, saúde"/>
+<meta name="description"         content="Sistema de Informações sobre Orçamento Público em Saúde."/>
+<!--
+<meta name="robots"              content="all"/>
+-->
+
+<!-- http://www.robotstxt.org/meta.html -->
+<meta name="robots" content="noindex, nofollow" />
+
+<link rel="stylesheet"           type="text/css"                href="CSS/keyboard.css"/>
+
+<!--
+<link rel="stylesheet"           type="text/css" media="screen" href="CSS/siops12.css"      title="Normal"/>
+
+<link rel="alternate stylesheet" type="text/css" media="screen" href="CSS/siops15.css"      title="Pequeno"/>
+<link rel="alternate stylesheet" type="text/css" media="screen" href="CSS/siops20.css"      title="Grande"/>
+<link rel="stylesheet"           type="text/css" media="screen" href="CSS/siops.css"        title="Todos"/>
+<link rel="stylesheet"           type="text/css" media="screen" href="CSS/siopsGeral22.css"/>
+-->
+
+<link rel="stylesheet"			type="text/css" media="screen" href="CSS/testeira_menu.css"/>
+
+<!--
+<link rel="alternate stylesheet" type="text/css" media="screen" href="CSS/cinza.css"        title="cinza"/>
+<link rel="alternate stylesheet" type="text/css" media="screen" href="CSS/pretobranco.css"  title="pretobranco"/>
+
+
+
+----- aqui ----
+-->
+
+<link rel="stylesheet" type="text/css" media="print"    href="CSS/estilo-texto.css"/>
+
+
+<!--
+<link rel="stylesheet"           type="text/css" media="handheld" href="siopscel.css"     title="Todos">
+<link rel="stylesheet" type="text/css" media="print"    href="estilo-texto.css"/>
+-->
+
+
+
+
+<script type="text/javascript" src="js/keyboard.js"></script>
+
+
+<script type="text/javascript" src="js/funcoes2.js"></script>
+
+<style type="text/css">
+lllbody{
+	zzfont-family: Tahoma, Arial, Verdana, sans-serif;
+	background: url(img/sombraGeral.png) top no-repeat ;
+	zzfont-size:12px;
+	zzcolor:#333;
+	zzmargin:0px;
+}
+</style>
+
+<!--<link rel="stylesheet" type="text/css" media="screen" href="bimestral/CSS/bim_siops.css"/>-->
+
+<!-- testeira_preparada_inc FIM -->
+	
+<style type="text/css">
+body{
+	background: url(img/sombraGeral.png) top no-repeat ;
+}
+</style>
+
+<script type="text/javascript">
+    function recarregaPaginaXX(mudouAno) {
+        mudouAno = ((mudouAno == null) ? false : mudouAno);
+        var parametros = document.FrmConsLeiRespFiscal.cmbUF.value +
+                "&Ano=" + document.FrmConsLeiRespFiscal.cmbAno.value +
+                "&Periodo=" + document.FrmConsLeiRespFiscal.cmbPeriodo.value;
+        if (document.FrmConsLeiRespFiscal.cmbMunicipio != null)
+            parametros = parametros + "&Municipio=" + document.FrmConsLeiRespFiscal.cmbMunicipio.value;
+        parametros = parametros + "&MudouAno=" + mudouAno;
+        window.location.replace("consleirespfiscal.php?UF=" + parametros);
+    }
+
+// busca o site de destino de acordo com a opção de ano
+    function buscaSiteDestino() {
+        var auxAno, auxPeriodo;
+        if (document.FrmConsLeiRespFiscal.cmbMunicipio == null)
+        {
+            alert("Escolha um município para executar a consulta!");
+            return false;
+        }
+        ;
+        auxAno = document.FrmConsLeiRespFiscal.cmbAno.options[document.FrmConsLeiRespFiscal.cmbAno.selectedIndex].value;
+        auxPeriodo = document.FrmConsLeiRespFiscal.cmbPeriodo.options[document.FrmConsLeiRespFiscal.cmbPeriodo.selectedIndex].value;
+//bimestral=document.FrmConsLeiRespFiscal.chkBimestral.value;
+
+
+        //================================ ANO DE 2002 =====================================
+        if (auxAno == 20012) //2002
+        {
+            if (auxPeriodo == 2) {
+
+                /*
+                 window.alert("Consulta ao ano "+auxAno+ " não disponível.");
+                 document.FrmConsLeiRespFiscal.target = "";
+                 */
+                document.FrmConsLeiRespFiscal.action = "relleirespfiscal_2002_2.php";
+            }
+            else
+            if (auxPeriodo == 1) {
+                /*
+                 window.alert("Consulta ao ano "+auxAno+ " não disponível.");
+                 document.FrmConsLeiRespFiscal.target = "";
+                 */
+                document.FrmConsLeiRespFiscal.action = "relleirespfiscal_2002_1.php";
+            }
+        }
+        else
+        if (auxAno == 20013) //2003
+        {
+            if (auxPeriodo == 2) {
+
+                window.alert("Consulta ao ano " + auxAno + " não disponível.");
+                document.FrmConsLeiRespFiscal.target = "";
+                document.FrmConsLeiRespFiscal.action = "relleirespfiscal_2003_2.php";
+            }
+
+            else
+            if (auxPeriodo == 1) {
+                /*        
+                 window.alert("Consulta ao ano "+auxAno+ " não disponível.");
+                 document.FrmConsLeiRespFiscal.target = "";
+                 */
+                document.FrmConsLeiRespFiscal.action = "relleirespfiscal_2003_1.php";
+            }
+        }
+        else
+        if (auxAno == 20014)  //2004
+        {
+            if (auxPeriodo == 2)
+            {
+                /*
+                 window.alert("Consulta ao ano "+auxAno+ " não disponível.");
+                 document.FrmConsLeiRespFiscal.target = "";
+                 */
+                document.FrmConsLeiRespFiscal.action = "relleirespfiscal_2004_2.php";
+            }
+            else
+            if (auxPeriodo == 1) {
+                /*
+                 window.alert("Consulta ao ano "+auxAno+ " não disponível.");
+                 document.FrmConsLeiRespFiscal.target = "";
+                 */
+                document.FrmConsLeiRespFiscal.action = "relleirespfiscal_2004_1.php";
+            }
+        }
+        //================================ ANO DE 2005 =====================================
+        else
+
+        if (auxAno == 201099) //2005
+        {
+            if (auxPeriodo == 2)
+            {
+                window.alert("Consulta ao ano " + auxAno + " não disponível.");
+                document.FrmConsLeiRespFiscal.target = "";<!--document.FrmConsLeiRespFiscal.action = "relleirespfiscal_2005_2.php";-->
+            }
+            else
+            if (auxPeriodo == 1)
+            {
+                window.alert("Consulta ao ano " + auxAno + " não disponível.");
+                document.FrmConsLeiRespFiscal.target = "";<!--document.FrmConsLeiRespFiscal.action = "relleirespfiscal_2005_1.php";-->
+            }
+        }
+        else
+
+        if (auxAno >= 2003) {
+            document.FrmConsLeiRespFiscal.action = "rel_LRF.php";
+        }
+
+        else
+        {
+//     window.alert("Consulta não disponível.");
+            window.alert("Consulta não disponível para o ano de 2003.");
+            document.FrmConsLeiRespFiscal.target = "";
+        }
+
+    }
+</script>
+
+<div class="aondeverm" >
+            Demonstrativo da Lei de Responsabilidade Fiscal.<br>
+        <a href='index.php' class='alinha' title=' ' tabindex=27>Início</a>&nbsp;>&nbsp;<a href='acompfin.php' class='alinha' title=' ' tabindex=28>Acompanhamento Financeiro</a>&nbsp;>&nbsp;<a href='leirespfiscal.php' class='alinha' title='Lei de Responsabilidade Fiscal' tabindex=28>Lei de Responsabilidade Fiscal</a>&nbsp;>&nbsp;Municípios.
+</div>
+<div id='container'>
+    <div class='informacao'>
+        <div class='quadro'>
+            <p class='centro'><span class="lbltitulo">DEMONSTRATIVO DA DESPESA COM SAÚDE, CONFORME O ANEXO XVI </span></p>
+            <p class='centro'><span class="lbltitulo">DO RELATÓRIO RESUMIDO DE EXECUÇÃO ORÇAMENTÁRIA / RREO</span> </p>
+        </div>
+    </div>
+    <div class='informacao'>
+        <form name="FrmConsLeiRespFiscal" method="post" action="" onSubmit="return buscaSiteDestino();" >
+            <div class='informacao'>
+                <div class='quadro80c'>
+                    
+
+<!--zz11.INI-->
+
+<DIV class='col2b'>
+<div class='col30b col_right'><label class='label3' for='cmbAno'>Ano:&nbsp;</label></div>
+
+<div class='col70b'>
+<select name='cmbAno' id='cmbAno' class='combo'  onchange='javascript:reloadPage("/consleirespfiscal.php", "");'  <!-- xx11xx --> />
+<option SELECTED value='2026'>2026</option>
+<option  value='2025'>2025</option>
+<option  value='2024'>2024</option>
+<option  value='2023'>2023</option>
+<option  value='2022'>2022</option>
+<option  value='2021'>2021</option>
+<option  value='2020'>2020</option>
+<option  value='2019'>2019</option>
+<option  value='2018'>2018</option>
+<option  value='2017'>2017</option>
+<option  value='2016'>2016</option>
+<option  value='2015'>2015</option>
+<option  value='2014'>2014</option>
+<option  value='2013'>2013</option>
+<option  value='2012'>2012</option>
+<option  value='2011'>2011</option>
+<option  value='2010'>2010</option>
+<option  value='2009'>2009</option>
+<option  value='2008'>2008</option>
+<option  value='2007'>2007</option>
+<option  value='2006'>2006</option>
+<option  value='2005'>2005</option>
+<option  value='2004'>2004</option>
+<option  value='2003'>2003</option>
+</select>
+</div>
+
+
+</DIV>
+<!--zz11.FIM-->
+
+
+<!--zz11.INI-->
+
+<DIV class='col2b'>
+<div class='col30b col_right'><label class='label3' for='cmbUF'>UF:&nbsp;</label></div>
+<div class='col70b'>
+<select  name='cmbUF' id='cmbUF' class='combo' onchange='javascript:reloadPage("/consleirespfiscal.php", "UF");' >
+<option  value='12'>Acre</option>
+<option  value='27'>Alagoas</option>
+<option  value='16'>Amapá </option>
+<option  value='13'>Amazonas</option>
+<option  value='29'>Bahia</option>
+<option  value='23'>Ceará</option>
+<option  value='32'>Espírito Santo</option>
+<option SELECTED  value='52'>Goiás</option>
+<option  value='21'>Maranhão</option>
+<option  value='51'>Mato Grosso</option>
+<option  value='50'>Mato Grosso do Sul</option>
+<option  value='31'>Minas Gerais</option>
+<option  value='15'>Pará</option>
+<option  value='25'>Paraíba</option>
+<option  value='41'>Paraná</option>
+<option  value='26'>Pernambuco</option>
+<option  value='22'>Piauí</option>
+<option  value='33'>Rio de Janeiro</option>
+<option  value='24'>Rio Grande do Norte</option>
+<option  value='43'>Rio Grande do Sul</option>
+<option  value='11'>Rondônia</option>
+<option  value='14'>Roraima</option>
+<option  value='42'>Santa Catarina</option>
+<option  value='35'>São Paulo</option>
+<option  value='28'>Sergipe</option>
+<option  value='17'>Tocantins</option>
+</select></div>
+
+
+</DIV>
+<!--zz11.FIM-->
+                </div>
+            </div>
+            <div class='informacao'>
+                <div class='quadro80c'>
+                    
+
+<!--zz11.INI-->
+
+<DIV class='col2b'>
+<div class='col30b col_right'><label class='label3' for='cmbPeriodo'>Per&iacute;odo:&nbsp;</label>
+</div>
+<div class='col70b'><select name='cmbPeriodo' id='cmbPeriodo' class='combo' />
+<option  value='12'>1º Bimestre</option>
+<option  value='14'>2º Bimestre</option>
+<option SELECTED value='1'>3º Bimestre</option>
+<option  value='18'>4º Bimestre</option>
+<option  value='20'>5º Bimestre</option>
+</select>
+</div>
+
+
+</DIV>
+<!--zz11.FIM-->
+
+
+<!--zz11.INI-->
+
+<DIV class='col2b'>
+<div class='col30b col_right'><label class='label3' for='cmbMunicipio'>Munic&iacute;pio:&nbsp;</label></div>
+<div class='col70b'>
+<select  name='cmbMunicipio[]' id='cmbMunicipio' class='combo'  onchange='javascript:reloadPage("/consleirespfiscal.php", "");' >
+<option   SELECTED value='520005'>Abadia de Goiás</option>
+<option    value='520010'>Abadiânia</option>
+<option    value='520013'>Acreúna</option>
+<option    value='520015'>Adelândia</option>
+<option    value='520017'>Água Fria de Goiás</option>
+<option    value='520020'>Água Limpa</option>
+<option    value='520025'>Águas Lindas de Goiás</option>
+<option    value='520030'>Alexânia</option>
+<option    value='520050'>Aloândia</option>
+<option    value='520055'>Alto Horizonte</option>
+<option    value='520060'>Alto Paraíso de Goiás</option>
+<option    value='520080'>Alvorada do Norte</option>
+<option    value='520082'>Amaralina</option>
+<option    value='520085'>Americano do Brasil</option>
+<option    value='520090'>Amorinópolis</option>
+<option    value='520110'>Anápolis</option>
+<option    value='520120'>Anhanguera</option>
+<option    value='520130'>Anicuns</option>
+<option    value='520140'>Aparecida de Goiânia</option>
+<option    value='520145'>Aparecida do Rio Doce</option>
+<option    value='520150'>Aporé</option>
+<option    value='520160'>Araçu</option>
+<option    value='520170'>Aragarças</option>
+<option    value='520180'>Aragoiânia</option>
+<option    value='520215'>Araguapaz</option>
+<option    value='520235'>Arenópolis</option>
+<option    value='520250'>Aruanã</option>
+<option    value='520260'>Aurilândia</option>
+<option    value='520280'>Avelinópolis</option>
+<option    value='520310'>Baliza</option>
+<option    value='520320'>Barro Alto</option>
+<option    value='520330'>Bela Vista de Goiás</option>
+<option    value='520340'>Bom Jardim de Goiás</option>
+<option    value='520350'>Bom Jesus de Goiás</option>
+<option    value='520355'>Bonfinópolis</option>
+<option    value='520357'>Bonópolis</option>
+<option    value='520360'>Brazabrantes</option>
+<option    value='520380'>Britânia</option>
+<option    value='520390'>Buriti Alegre</option>
+<option    value='520393'>Buriti de Goiás</option>
+<option    value='520396'>Buritinópolis</option>
+<option    value='520400'>Cabeceiras</option>
+<option    value='520410'>Cachoeira Alta</option>
+<option    value='520420'>Cachoeira de Goiás</option>
+<option    value='520425'>Cachoeira Dourada</option>
+<option    value='520430'>Caçu</option>
+<option    value='520440'>Caiapônia</option>
+<option    value='520450'>Caldas Novas</option>
+<option    value='520455'>Caldazinha</option>
+<option    value='520460'>Campestre de Goiás</option>
+<option    value='520465'>Campinaçu</option>
+<option    value='520470'>Campinorte</option>
+<option    value='520480'>Campo Alegre de Goiás</option>
+<option    value='520485'>Campo Limpo de Goiás</option>
+<option    value='520490'>Campos Belos</option>
+<option    value='520495'>Campos Verdes</option>
+<option    value='520500'>Carmo do Rio Verde</option>
+<option    value='520505'>Castelândia</option>
+<option    value='520510'>Catalão</option>
+<option    value='520520'>Caturaí</option>
+<option    value='520530'>Cavalcante</option>
+<option    value='520540'>Ceres</option>
+<option    value='520545'>Cezarina</option>
+<option    value='520547'>Chapadão do Céu</option>
+<option    value='520549'>Cidade Ocidental</option>
+<option    value='520551'>Cocalzinho de Goiás</option>
+<option    value='520552'>Colinas do Sul</option>
+<option    value='520570'>Córrego do Ouro</option>
+<option    value='520580'>Corumbá de Goiás</option>
+<option    value='520590'>Corumbaíba</option>
+<option    value='520620'>Cristalina</option>
+<option    value='520630'>Cristianópolis</option>
+<option    value='520640'>Crixás</option>
+<option    value='520650'>Cromínia</option>
+<option    value='520660'>Cumari</option>
+<option    value='520670'>Damianópolis</option>
+<option    value='520680'>Damolândia</option>
+<option    value='520690'>Davinópolis</option>
+<option    value='520710'>Diorama</option>
+<option    value='520830'>Divinópolis de Goiás</option>
+<option    value='520725'>Doverlândia</option>
+<option    value='520735'>Edealina</option>
+<option    value='520740'>Edéia</option>
+<option    value='520750'>Estrela do Norte</option>
+<option    value='520753'>Faina</option>
+<option    value='520760'>Fazenda Nova</option>
+<option    value='520780'>Firminópolis</option>
+<option    value='520790'>Flores de Goiás</option>
+<option    value='520800'>Formosa</option>
+<option    value='520810'>Formoso</option>
+<option    value='520815'>Gameleira de Goiás</option>
+<option    value='520840'>Goianápolis</option>
+<option    value='520850'>Goiandira</option>
+<option    value='520860'>Goianésia</option>
+<option    value='520870'>Goiânia</option>
+<option    value='520880'>Goianira</option>
+<option    value='520890'>Goiás</option>
+<option    value='520910'>Goiatuba</option>
+<option    value='520915'>Gouvelândia</option>
+<option    value='520920'>Guapó</option>
+<option    value='520929'>Guaraíta</option>
+<option    value='520940'>Guarani de Goiás</option>
+<option    value='520945'>Guarinos</option>
+<option    value='520960'>Heitoraí</option>
+<option    value='520970'>Hidrolândia</option>
+<option    value='520980'>Hidrolina</option>
+<option    value='520990'>Iaciara</option>
+<option    value='520993'>Inaciolândia</option>
+<option    value='520995'>Indiara</option>
+<option    value='521000'>Inhumas</option>
+<option    value='521010'>Ipameri</option>
+<option    value='521015'>Ipiranga de Goiás</option>
+<option    value='521020'>Iporá</option>
+<option    value='521030'>Israelândia</option>
+<option    value='521040'>Itaberaí</option>
+<option    value='521056'>Itaguari</option>
+<option    value='521060'>Itaguaru</option>
+<option    value='521080'>Itajá</option>
+<option    value='521090'>Itapaci</option>
+<option    value='521100'>Itapirapuã</option>
+<option    value='521120'>Itapuranga</option>
+<option    value='521130'>Itarumã</option>
+<option    value='521140'>Itauçu</option>
+<option    value='521150'>Itumbiara</option>
+<option    value='521160'>Ivolândia</option>
+<option    value='521170'>Jandaia</option>
+<option    value='521180'>Jaraguá</option>
+<option    value='521190'>Jataí</option>
+<option    value='521200'>Jaupaci</option>
+<option    value='521205'>Jesúpolis</option>
+<option    value='521210'>Joviânia</option>
+<option    value='521220'>Jussara</option>
+<option    value='521225'>Lagoa Santa</option>
+<option    value='521230'>Leopoldo de Bulhões</option>
+<option    value='521250'>Luziânia</option>
+<option    value='521260'>Mairipotaba</option>
+<option    value='521270'>Mambaí</option>
+<option    value='521280'>Mara Rosa</option>
+<option    value='521290'>Marzagão</option>
+<option    value='521295'>Matrinchã</option>
+<option    value='521300'>Maurilândia</option>
+<option    value='521305'>Mimoso de Goiás</option>
+<option    value='521308'>Minaçu</option>
+<option    value='521310'>Mineiros</option>
+<option    value='521340'>Moiporá</option>
+<option    value='521350'>Monte Alegre de Goiás</option>
+<option    value='521370'>Montes Claros de Goiás</option>
+<option    value='521375'>Montividiu</option>
+<option    value='521377'>Montividiu do Norte</option>
+<option    value='521380'>Morrinhos</option>
+<option    value='521385'>Morro Agudo de Goiás</option>
+<option    value='521390'>Mossâmedes</option>
+<option    value='521400'>Mozarlândia</option>
+<option    value='521405'>Mundo Novo</option>
+<option    value='521410'>Mutunópolis</option>
+<option    value='521440'>Nazário</option>
+<option    value='521450'>Nerópolis</option>
+<option    value='521460'>Niquelândia</option>
+<option    value='521470'>Nova América</option>
+<option    value='521480'>Nova Aurora</option>
+<option    value='521483'>Nova Crixás</option>
+<option    value='521486'>Nova Glória</option>
+<option    value='521487'>Nova Iguaçu de Goiás</option>
+<option    value='521490'>Nova Roma</option>
+<option    value='521500'>Nova Veneza</option>
+<option    value='521520'>Novo Brasil</option>
+<option    value='521523'>Novo Gama</option>
+<option    value='521525'>Novo Planalto</option>
+<option    value='521530'>Orizona</option>
+<option    value='521540'>Ouro Verde de Goiás</option>
+<option    value='521550'>Ouvidor</option>
+<option    value='521560'>Padre Bernardo</option>
+<option    value='521565'>Palestina de Goiás</option>
+<option    value='521570'>Palmeiras de Goiás</option>
+<option    value='521580'>Palmelo</option>
+<option    value='521590'>Palminópolis</option>
+<option    value='521600'>Panamá</option>
+<option    value='521630'>Paranaiguara</option>
+<option    value='521640'>Paraúna</option>
+<option    value='521645'>Perolândia</option>
+<option    value='521680'>Petrolina de Goiás</option>
+<option    value='521690'>Pilar de Goiás</option>
+<option    value='521710'>Piracanjuba</option>
+<option    value='521720'>Piranhas</option>
+<option    value='521730'>Pirenópolis</option>
+<option    value='521740'>Pires do Rio</option>
+<option    value='521760'>Planaltina</option>
+<option    value='521770'>Pontalina</option>
+<option    value='521800'>Porangatu</option>
+<option    value='521805'>Porteirão</option>
+<option    value='521810'>Portelândia</option>
+<option    value='521830'>Posse</option>
+<option    value='521839'>Professor Jamil</option>
+<option    value='521850'>Quirinópolis</option>
+<option    value='521860'>Rialma</option>
+<option    value='521870'>Rianápolis</option>
+<option    value='521878'>Rio Quente</option>
+<option    value='521880'>Rio Verde</option>
+<option    value='521890'>Rubiataba</option>
+<option    value='521900'>Sanclerlândia</option>
+<option    value='521910'>Santa Bárbara de Goiás</option>
+<option    value='521920'>Santa Cruz de Goiás</option>
+<option    value='521925'>Santa Fé de Goiás</option>
+<option    value='521930'>Santa Helena de Goiás</option>
+<option    value='521935'>Santa Isabel</option>
+<option    value='521940'>Santa Rita do Araguaia</option>
+<option    value='521945'>Santa Rita do Novo Destino</option>
+<option    value='521950'>Santa Rosa de Goiás</option>
+<option    value='521960'>Santa Tereza de Goiás</option>
+<option    value='521970'>Santa Terezinha de Goiás</option>
+<option    value='521971'>Santo Antônio da Barra</option>
+<option    value='521973'>Santo Antônio de Goiás</option>
+<option    value='521975'>Santo Antônio do Descoberto</option>
+<option    value='521980'>São Domingos</option>
+<option    value='521990'>São Francisco de Goiás</option>
+<option    value='522005'>São João da Paraúna</option>
+<option    value='522000'>São João d'Aliança</option>
+<option    value='522010'>São Luís de Montes Belos</option>
+<option    value='522015'>São Luíz do Norte</option>
+<option    value='522020'>São Miguel do Araguaia</option>
+<option    value='522026'>São Miguel do Passa Quatro</option>
+<option    value='522028'>São Patrício</option>
+<option    value='522040'>São Simão</option>
+<option    value='522045'>Senador Canedo</option>
+<option    value='522050'>Serranópolis</option>
+<option    value='522060'>Silvânia</option>
+<option    value='522068'>Simolândia</option>
+<option    value='522070'>Sítio d'Abadia</option>
+<option    value='522100'>Taquaral de Goiás</option>
+<option    value='522108'>Teresina de Goiás</option>
+<option    value='522119'>Terezópolis de Goiás</option>
+<option    value='522130'>Três Ranchos</option>
+<option    value='522140'>Trindade</option>
+<option    value='522145'>Trombas</option>
+<option    value='522150'>Turvânia</option>
+<option    value='522155'>Turvelândia</option>
+<option    value='522157'>Uirapuru</option>
+<option    value='522160'>Uruaçu</option>
+<option    value='522170'>Uruana</option>
+<option    value='522180'>Urutaí</option>
+<option    value='522185'>Valparaíso de Goiás</option>
+<option    value='522190'>Varjão</option>
+<option    value='522200'>Vianópolis</option>
+<option    value='522205'>Vicentinópolis</option>
+<option    value='522220'>Vila Boa</option>
+<option    value='522230'>Vila Propício</option>
+</select>
+</div>
+</DIV>
+<!--zz11.FIM-->
+                </div>
+            </div>
+            <div class='informacao'>
+                <div class='centro'>
+                    <input type='button' name='voltar' id='voltar' value='Voltar' onclick="document.location.href = 'relmun.php';" tabindex=30>
+                    <input type="Submit" name="BtConsultar" value="Consultar"  tabindex=31>
+                </div>
+            </div>
+        </form>
+    </div>
+
+<!--
+<div>
+-->
+
+<script type="text/javascript">
+<!--
+function botaoVoltarPadrao(varBotaoVoltar1) {
+//alert(11);
+//alert(varBotaoVoltar1);
+	obj=document.getElementById('dados');
+	if(obj!=null){
+		btn=document.getElementById('voltar');
+		if(btn!=null){
+			if(btn.value!='')
+				window.location.replace(btn.value);
+		}else
+			window.location.replace(varBotaoVoltar1);
+	}else
+		window.location.replace(varBotaoVoltar1);
+
+/*
+//alert('varBotaoVoltar1:'+varBotaoVoltar1);
+//window.alert('varBotaoVoltar:'+varBotaoVoltar1);
+//	window.location='sol_critica.php';
+//	window.location=varBotaoVoltar1;
+//window.history.clear();
+
+alert('qtdeVoltar:'+qtdeVoltar);
+	qtdeVoltar=((qtdeVoltar!=null)?qtdeVoltar:0);
+alert('qtdeVoltar:'+qtdeVoltar);
+	history.go(-2+qtdeVoltar);
+	qtdeVoltar=0;
+*/
+}
+-->
+</script>
+<div style="clear:both;" class='XSDWE_rodape'>
+<a id='voltarPortal' Onclick='javascript:history.go(-1);' href='#' title='Voltar' target='_self'>&nbsp;
+<img src='img/btnVoltar.png' alt='Voltar' border='0'/></a></div>
+<style type="text/css">
+#zzrodape{
+	width:100%;
+	padding:5px;
+	min-height:200px;
+	background:url(../geral/img/bgRodape.jpg) top repeat-x;
+	margin-top:30px;
+}
+#rodapePosicao1{
+	zzwidth:220px;
+	zzfloat:left;
+	zzpadding-right:20px;
+	background: url(../geral/img/sombraverticalnoticias.png) right no-repeat; 
+}
+#zzrodapePosicao2{
+	width:720px;
+	background:url(../geral/img/sombraColuna.png) bottom no-repeat;
+	background:url(../img/sombraColuna.png) bottom no-repeat;
+	float:left;
+}
+</style>
+
+<div id="rodape" >
+	<div id="rodapePosicao1">
+		<p>
+			<a href="http://portal.saude.gov.br/portal/saude/area.cfm?id_area=141" title="Acesse a Ouvidoria">
+				<img align="absMiddle" alt="Ouvidoria" src="portalsaude/arquivos/png/2011/Out/04/logo_136.png"/>&nbsp;
+			</a>
+		</p>
+		<p>
+					Minist&eacute;rio da Sa&uacute;de<br/>
+					Esplanada dos Minist&eacute;rios Bloco G<br/>
+					Brasilia-DF / CEP: 70058-900
+		</p>
+		<p>
+			<a href="http://www.saude.gov.br/cartasus" target="_blank">
+				<img alt="Acesse o serviÃ§o CartaSUS e avalie seu atendimento."
+					src="portalsaude/arquivos/jpg/2012/Jan/16/selo_carta_sus_16012012.jpg" 
+					style="border-width: 0px; border-style: solid; width: 119px; height: 35px;" 
+					title="Acesse o serviÃ§o CartaSUS e avalie seu atendimento."/>
+			</a>
+		</p>
+	</div>
+<!-- rodapePosicao1F -->
+	<div class="rodapeXS" id="rodapePosicao2">
+		<span><b>Acessos</b></span><br/>
+			<a href="http://www3.transparencia.gov.br/TransparenciaPublica/index.jsp?CodigoOrgao=36000&amp;TipoOrgao=1&amp;consulta=0"
+				target="_blank" title="Acesse o Portal da TransparÃªncia PÃºblica"><img alt="Acesso" border="0" 
+				src="portalsaude/includes/templates/eportal//img/acesso1.gif" title="Acesse o Portal da TransparÃªncia PÃºblica" /> 
+			</a>
+			<!-- <a href="http://www.brasilsemmiseria.gov.br"
+				target="_blank" title="BrasilSemMiseria"><img alt="Brasil sem miseria" border="0" 
+				src="portalsaude/includes/templates/eportal//img/brasil_sem_miseria.jpg" /> -->
+			</a>
+			<a href="http://www.secom.gov.br/sobre-a-secom/publicacoes/caderno-destaques/arquivos/destaque-colorido" target="_blank" 
+				title="Destaques"> <img alt="Destaques" border="0" src="portalsaude/includes/templates/eportal//img/bn_destaques_230811.jpg"/>
+			</a>
+			<a href="http://portal.saude.gov.br/portal/saude/profissional/area.cfm?id_area=1818" target="_blank" 
+				title="DoencasCronicas"><img alt="DoencasCronicas" border="0" 
+				src="portalsaude/includes/templates/eportal//img/banner_planoDCNT3_230811.jpg" />
+			</a>
+			<a href="http://www.saude.gov.br/guiasinalizacao" target="_self"><img alt="Guia de sinalizaÃ§Ã£o de serviÃ§os e unidades do SUS"
+				src="portalsaude/arquivos/jpg/2011/Dez/16/guia_sinalizacao.jpg" style="width:120px;height:40px;" />
+			</a>
+		<div class="clearboth">&nbsp;
+		</div>
+	</div>
+<!-- rodapePosicao2F -->
+	<div class="rodapeXS" id="rodapePosicao3">
+		<img alt="Assinatura" src="portalsaude/includes/templates/eportal//img/assinatura.gif"/>
+	</div>
+<!-- rodapePosicao3F -->  <br />
+	<div class="rodapeXS" id="rodapePosicao4">
+		<a href="http://webmail.saude.gov.br" target="_blank" title="webmail.saude.gov.br">
+			<img alt="webmail.saude.gov.br" 
+				src="portalsaude/includes/templates/eportal//img/webmail_rodape2.jpg"
+			/>
+		</a>
+	</div>
+<!-- rodapePosicao4F -->
+</div>
+<!-- rodapeF -->
+<script type='text/javascript'>var obj=document.getElementById('voltar'); if (obj!=null) obj.style.visibility='hidden';</script>
+</div>
+</body>
+</html>
