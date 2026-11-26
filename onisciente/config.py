@@ -46,6 +46,7 @@ class Alvo:
     orgao_lai: str
     abertura_sessao: tuple[int, int]
     dominios: dict[str, Dominio]
+    pncp_cnpjs: tuple[str, ...] = ()
 
     def ativos(self) -> list[Dominio]:
         return [d for d in self.dominios.values() if d.ativo]
@@ -85,4 +86,5 @@ def carregar_alvo(caminho: Path | str | None = None) -> Alvo:
         orgao_lai=bruto.get("orgao_lai", ""),
         abertura_sessao=(int(mes), int(dia)),
         dominios=dominios,
+        pncp_cnpjs=tuple(str(c) for c in bruto.get("pncp_cnpjs", ())),
     )

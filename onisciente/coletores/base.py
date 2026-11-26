@@ -31,25 +31,28 @@ class Leitura:
     conteudo: bytes = b""
     erro: str = ""
     original: Original | None = None
+    http: int | None = None
 
     @property
     def texto(self) -> str:
         return self.conteudo.decode("utf-8", errors="replace")
 
 
-def ler(url: str, *, tempo: int = 60, fonte: str = "") -> Leitura:
+def ler(url: str, *, tempo: int = 60, fonte: str = "",
+        cabecalhos: dict[str, str] | None = None) -> Leitura:
     """Lê uma URL pública. Nunca levanta exceção: devolve a falha descrita."""
-    pedido = urllib.request.Request(url, headers={"User-Agent": AGENTE})
+    pedido = urllib.request.Request(url, headers={"User-Agent": AGENTE, **(cabecalhos or {})})
     try:
         with urllib.request.urlopen(pedido, timeout=tempo) as resposta:  # noqa: S310 (URL do mapa)
             conteudo = resposta.read()
+            codigo = resposta.status
     except urllib.error.HTTPError as e:
-        return Leitura(False, url, erro=f"HTTP {e.code}")
+        return Leitura(False, url, erro=f"HTTP {e.code}", http=e.code)
     except (urllib.error.URLError, TimeoutError, OSError) as e:
         return Leitura(False, url, erro=f"{type(e).__name__}: {getattr(e, 'reason', e)}")
     original = Original(url=url, coletado_em=date.today().isoformat(),
                         sha256=impressao(conteudo), fonte=fonte)
-    return Leitura(True, url, conteudo, original=original)
+    return Leitura(True, url, conteudo, original=original, http=codigo)
 
 
 def _carregar_estado(caminho: Path = ESTADO) -> dict:

@@ -5,7 +5,10 @@ uf = "GO"
 ibge = 5208707
 siconfi_id_ente = 5208707
 faixa_camara = "IV"            # CF, art. 29-A, inciso IV
-querido_diario = "go_goiania"  # raspador do Diário Oficial no Querido Diário
+querido_diario = "go_goiania"
+# CNPJs de órgãos do Município no PNCP, além dos que a coleta histórica descobre sozinha
+# pelas contratações publicadas com o código IBGE (python -m onisciente historico).
+pncp_cnpjs = []  # raspador do Diário Oficial no Querido Diário
 orgao_lai = "Controladoria Geral do Município de Goiânia"   # Lei municipal 9.262/2013
 
 # Abertura da sessão legislativa (mês, dia), que conta o prazo das contas anuais

@@ -6,6 +6,8 @@
     python -m onisciente parecer --todas      # refaz todos os pareceres do exercício
     python -m onisciente coletar leis         # confere as normas no ctresb/leis (rede)
     python -m onisciente coletar siconfi --exercicio 2025 --periodo 6   (rede)
+    python -m onisciente historico --desde 2024-11 --ate 2026-11   (rede; banco + diagnóstico)
+    python -m onisciente diagnostico          # refaz o diagnóstico a partir do banco, sem rede
 """
 
 from __future__ import annotations
@@ -137,6 +139,44 @@ def cmd_coletar(args) -> int:
     return 2
 
 
+def _imprimir_diagnostico(d: dict, arquivos) -> None:
+    from collections import Counter
+    tipos = Counter(a["tipo"] for a in d["achados"])
+    for r in d["motores"]:
+        print(f"{r['nome']}: {r['ok']}/{r['chamadas']} chamadas certas")
+    print(f"Achados: {tipos.get('falha', 0)} falha(s), {tipos.get('lacuna', 0)} lacuna(s), "
+          f"{tipos.get('melhoria', 0)} melhoria(s).")
+    for a in arquivos:
+        print("->", Path(a).relative_to(RAIZ) if Path(a).is_relative_to(RAIZ) else a)
+
+
+def cmd_historico(args) -> int:
+    from . import diagnostico, historico
+    motores = tuple(args.motores.split(",")) if args.motores else historico.MOTORES
+    desconhecidos = set(motores) - set(historico.MOTORES)
+    if desconhecidos:
+        print(f"motor desconhecido: {', '.join(sorted(desconhecidos))}", file=sys.stderr)
+        return 2
+    banco = historico.rodar(args.desde, args.ate, motores=motores,
+                            brutos=Path(args.brutos) if args.brutos else None, pausa=args.pausa)
+    d = diagnostico.diagnosticar(banco)
+    banco.fechar()
+    _imprimir_diagnostico(d, diagnostico.gravar(d, SAIDA_RELATORIOS))
+    return 0
+
+
+def cmd_diagnostico(_args) -> int:
+    from . import diagnostico, historico
+    if not historico.BANCO.exists():
+        print("Banco histórico não encontrado; rode `python -m onisciente historico`.", file=sys.stderr)
+        return 1
+    banco = historico.Banco.abrir(historico.BANCO)
+    d = diagnostico.diagnosticar(banco)
+    banco.con.close()
+    _imprimir_diagnostico(d, diagnostico.gravar(d, SAIDA_RELATORIOS))
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="onisciente", description="A trilha do dinheiro público.")
     sub = p.add_subparsers(dest="comando", required=True)
@@ -150,6 +190,15 @@ def main(argv: list[str] | None = None) -> int:
     pc.add_argument("--exercicio", type=int, default=date.today().year - 1)
     pc.add_argument("--periodo", type=int)
     pc.set_defaults(f=cmd_coletar)
+    ph = sub.add_parser("historico", help="liga os motores de busca num intervalo de meses (rede)")
+    ph.add_argument("--desde", required=True, help="AAAA-MM")
+    ph.add_argument("--ate", required=True, help="AAAA-MM")
+    ph.add_argument("--motores", help="lista separada por vírgula (padrão: todos)")
+    ph.add_argument("--brutos", help="pasta para guardar as respostas cruas")
+    ph.add_argument("--pausa", type=float, default=1.0, help="segundos entre chamadas")
+    ph.set_defaults(f=cmd_historico)
+    sub.add_parser("diagnostico", help="refaz o diagnóstico a partir do banco histórico") \
+        .set_defaults(f=cmd_diagnostico)
     args = p.parse_args(argv)
     return args.f(args)
 
