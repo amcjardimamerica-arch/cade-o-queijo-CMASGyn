@@ -171,3 +171,21 @@ def test_faixas_de_meses():
     assert diagnostico._faixas(["2024-11", "2024-12", "2025-01", "2025-03"]) == \
         "2024-11 a 2025-01, 2025-03"
     assert diagnostico._faixas([]) == ""
+
+
+def test_disjuntor_para_de_chamar_fonte_fora_do_ar(tmp_path):
+    chamadas = []
+
+    def fora_do_ar(url, **_):
+        chamadas.append(url)
+        return base.Leitura(False, url, erro="TimeoutError: timed out")
+    ctx = historico.Contexto(historico.Banco(tmp_path / "h.db"), ["2025-01"], date(2026, 1, 1),
+                             ler_url=fora_do_ar, dormir=lambda s: None, pausa=0, disjuntor=3)
+    for n in range(10):
+        ctx.ler("sileg", "x", f"https://sileg/{n}", tentativas=2)
+    assert len(chamadas) == 6                     # 3 leituras de 2 tentativas, depois mais nada
+    erros = [e for (e,) in ctx.banco.consultar("SELECT erro FROM coletas")]
+    assert erros[3].startswith("não tentado") and len(erros) == 10
+    ctx.fim_do_motor = 0                          # tempo esgotado: nem o site novo é chamado
+    ctx.ler("fontes", "y", "https://outro/", disjuntor=False)
+    assert len(chamadas) == 6

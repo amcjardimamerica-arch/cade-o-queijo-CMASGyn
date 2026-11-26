@@ -210,13 +210,26 @@ class Contexto:
     brutos: Path | None = None             # se dado, guarda cada resposta crua aqui
     limites: dict[str, int] = field(default_factory=lambda: {"pncp": 1500, "qd": 400})
     gastos: dict[str, int] = field(default_factory=dict)
+    # Disjuntor: depois de tantas falhas de rede seguidas, o motor deixa de chamar a fonte
+    # e registra o resto como não tentado. Uma fonte fora do ar não pode prender a rodada.
+    disjuntor: int = 6
+    seguidas: dict[str, int] = field(default_factory=dict)
+    fim_do_motor: float | None = None      # relógio monotônico; depois disso, nada é chamado
 
-    def ler(self, motor: str, alvo: str, url: str, *, mes: str = "", tentativas: int = 4,
-            cabecalhos: dict | None = None, tempo: int = 90) -> base.Leitura:
+    def ler(self, motor: str, alvo: str, url: str, *, mes: str = "", tentativas: int = 3,
+            cabecalhos: dict | None = None, tempo: int = 60,
+            disjuntor: bool = True) -> base.Leitura:
         """Lê com espera crescente em 429 e 5xx, e registra a chamada no banco."""
         limite = self.limites.get(motor)
+        motivo = None
         if limite is not None and self.gastos.get(motor, 0) >= limite:
-            leitura = base.Leitura(False, url, erro="limite de chamadas da rodada atingido")
+            motivo = "limite de chamadas da rodada atingido"
+        elif disjuntor and self.seguidas.get(motor, 0) >= self.disjuntor:
+            motivo = f"não tentado: {self.disjuntor} falhas de rede seguidas nesta fonte"
+        elif self.fim_do_motor is not None and time.monotonic() > self.fim_do_motor:
+            motivo = "não tentado: tempo do motor nesta rodada esgotado"
+        if motivo:
+            leitura = base.Leitura(False, url, erro=motivo)
             self._registrar(motor, alvo, mes, leitura, 0, 0.0)
             return leitura
         inicio = time.monotonic()
@@ -231,6 +244,8 @@ class Contexto:
                                   or leitura.erro.startswith(("TimeoutError", "URLError"))):
                 break
             self.dormir(min(5 * 2 ** n, 60))
+        rede = not leitura.ok and (leitura.http is None or leitura.http >= 500)
+        self.seguidas[motor] = self.seguidas.get(motor, 0) + 1 if rede else 0
         self._registrar(motor, alvo, mes, leitura, feitas, time.monotonic() - inicio)
         if self.pausa:
             self.dormir(self.pausa)
@@ -393,7 +408,7 @@ def motor_sileg(ctx: Contexto) -> None:
         for chave, q in (("edicoes", f"id:*do_{prefixo}*"),
                          ("com_termos", f"id:*do_{prefixo}* AND ({clausula})")):
             url = SILEG_SOLR + "?" + urlencode({"q": q, "rows": 0, "wt": "json"})
-            leitura = ctx.ler("sileg", chave, url, mes=mes, tentativas=2)
+            leitura = ctx.ler("sileg", chave, url, mes=mes, tentativas=2, tempo=45)
             dados = _json(leitura) if leitura.ok else None
             if dados is None:
                 erro = leitura.erro or "resposta não é JSON"
@@ -573,7 +588,8 @@ def enderecos_configurados(raiz: Path = RAIZ) -> list[tuple[str, str, str, str]]
 
 def motor_fontes(ctx: Contexto) -> None:
     for grupo, nome, url, esperado in enderecos_configurados():
-        leitura = ctx.ler("fontes", nome[:80], url, tentativas=2, tempo=45, cabecalhos=NAVEGADOR)
+        leitura = ctx.ler("fontes", nome[:80], url, tentativas=2, tempo=45, cabecalhos=NAVEGADOR,
+                          disjuntor=False)              # cada endereço é de um site diferente
         ctx.banco.inserir("fontes", {"grupo": grupo, "nome": nome, "url": url, "ok": int(leitura.ok),
                                      "http": leitura.http, "erro": leitura.erro or None,
                                      "esperado": esperado})
@@ -591,10 +607,13 @@ def motor_normas(ctx: Contexto) -> None:
 
 
 MOTORES = ("siconfi", "querido_diario", "sileg", "fnas", "pncp", "fontes", "normas")
+# Minutos que cada motor pode usar numa rodada (o fluxo do GitHub para em 180).
+TEMPO_DO_MOTOR = {"pncp": 40, "siconfi": 25}
+TEMPO_PADRAO = 20
 
 
 def rodar(desde: str, ate: str, *, motores=MOTORES, caminho=BANCO, hoje: date | None = None,
-          brutos: Path | None = None, **kw) -> Banco:
+          brutos: Path | None = None, tempo_limitado: bool = True, **kw) -> Banco:
     from .config import carregar_alvo
     alvo = carregar_alvo()
     banco = Banco(caminho)
@@ -614,6 +633,8 @@ def rodar(desde: str, ate: str, *, motores=MOTORES, caminho=BANCO, hoje: date | 
     }
     for nome in motores:
         inicio = time.monotonic()
+        if tempo_limitado:
+            ctx.fim_do_motor = inicio + 60 * TEMPO_DO_MOTOR.get(nome, TEMPO_PADRAO)
         try:
             chamadas[nome]()
             erro = None
