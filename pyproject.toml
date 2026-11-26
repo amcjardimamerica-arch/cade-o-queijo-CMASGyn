@@ -1,3 +1,6 @@
+# O Onisciente roda de dentro do repositório (python -m onisciente), porque lê e grava os
+# dados, relatórios e o painel que ficam aqui. Não é um pacote para instalar à parte.
+
 [project]
 name = "onisciente"
 version = "0.1.0"
@@ -8,16 +11,6 @@ dependencies = ["PyYAML>=6.0"]
 
 [project.optional-dependencies]
 testes = ["pytest>=8"]
-
-[project.scripts]
-onisciente = "onisciente.__main__:main"
-
-[build-system]
-requires = ["setuptools>=68"]
-build-backend = "setuptools.build_meta"
-
-[tool.setuptools.packages.find]
-include = ["onisciente*"]
 
 [tool.pytest.ini_options]
 testpaths = ["testes"]
