@@ -8,6 +8,7 @@ grava nada no banco. O resultado serve para escrever os coletores sem adivinhar 
 
 from __future__ import annotations
 
+import base64
 import hashlib
 import json
 import re
@@ -131,8 +132,8 @@ def _guardar(fonte: str, url: str, leitura, formulario: dict | None = None) -> d
     PASTA.mkdir(parents=True, exist_ok=True)
     arq = PASTA / f"{fonte}__{_slug(url, formulario)}.txt"
     bruto = leitura.conteudo[:LIMITE]
-    if leitura.ok and bruto.startswith(b"%PDF"):      # binário: guarda os bytes como vieram
-        arq.with_suffix(".pdf").write_bytes(leitura.conteudo)
+    if leitura.ok and bruto.startswith(b"%PDF"):      # binário: os bytes como vieram, em base64
+        arq.with_suffix(".pdf.b64").write_text(base64.b64encode(leitura.conteudo).decode())
     try:
         corpo = bruto.decode("utf-8") if leitura.ok else ""
     except UnicodeDecodeError:
