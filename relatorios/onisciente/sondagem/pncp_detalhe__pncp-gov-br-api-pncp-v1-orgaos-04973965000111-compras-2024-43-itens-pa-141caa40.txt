@@ -1,0 +1,8 @@
+URL: https://pncp.gov.br/api/pncp/v1/orgaos/04973965000111/compras/2024/43/itens?pagina=1&tamanhoPagina=100
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 1087
+
+[{"numeroItem":1,"descricao":"Aparelho Ar Condicionado","materialOuServico":"M","materialOuServicoNome":"Material","valorUnitarioEstimado":2347.2200,"valorTotal":21124.9800,"quantidade":9.0000,"unidadeMedida":"Unidade  ","orcamentoSigiloso":false,"itemCategoriaId":3,"itemCategoriaNome":"Não se aplica","patrimonio":null,"codigoRegistroImobiliario":null,"criterioJulgamentoId":1,"criterioJulgamentoNome":"Menor preço","situacaoCompraItem":2,"situacaoCompraItemNome":"Homologado","tipoBeneficio":1,"tipoBeneficioNome":"Participação exclusiva para ME/EPP","incentivoProdutivoBasico":false,"dataInclusao":"2024-11-12T11:22:08","dataAtualizacao":"2024-12-05T17:00:01","temResultado":true,"imagem":0,"aplicabilidadeMargemPreferenciaNormal":false,"aplicabilidadeMargemPreferenciaAdicional":false,"percentualMargemPreferenciaNormal":null,"percentualMargemPreferenciaAdicional":null,"ncmNbsCodigo":null,"ncmNbsDescricao":null,"catalogo":null,"categoriaItemCatalogo":null,"catalogoCodigoItem":null,"informacaoComplementar":null,"tipoMargemPreferencia":null,"exigenciaConteudoNacional":false}]

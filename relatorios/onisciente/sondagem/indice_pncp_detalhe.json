@@ -1,0 +1,125 @@
+{
+ "quando": "2026-11-26T23:38:48+00:00",
+ "leituras": [
+  {
+   "fonte": "pncp_detalhe",
+   "url": "https://pncp.gov.br/api/pncp/v3/api-docs",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 404780,
+   "arquivo": "pncp_detalhe__pncp-gov-br-api-pncp-v3-api-docs-86046b01.txt"
+  },
+  {
+   "fonte": "pncp_detalhe",
+   "url": "https://pncp.gov.br/api/consulta/v3/api-docs",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 36855,
+   "arquivo": "pncp_detalhe__pncp-gov-br-api-consulta-v3-api-docs-e1c2c792.txt"
+  },
+  {
+   "fonte": "pncp_detalhe",
+   "url": "https://dadosabertos.compras.gov.br/v3/api-docs",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 154948,
+   "arquivo": "pncp_detalhe__dadosabertos-compras-gov-br-v3-api-docs-bdcf95f3.txt"
+  },
+  {
+   "fonte": "pncp_detalhe",
+   "url": "https://pncp.gov.br/api/consulta/v1/orgaos/04973965000111/compras/2024/43",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 2195,
+   "arquivo": "pncp_detalhe__pncp-gov-br-api-consulta-v1-orgaos-04973965000111-compras-2024-43-3cbccbe3.txt"
+  },
+  {
+   "fonte": "pncp_detalhe",
+   "url": "https://pncp.gov.br/api/pncp/v1/orgaos/04973965000111/compras/2024/43",
+   "post": null,
+   "ok": false,
+   "http": 301,
+   "erro": "HTTP 301",
+   "bytes": 0,
+   "arquivo": "pncp_detalhe__pncp-gov-br-api-pncp-v1-orgaos-04973965000111-compras-2024-43-09fec5bf.txt"
+  },
+  {
+   "fonte": "pncp_detalhe",
+   "url": "https://pncp.gov.br/api/pncp/v1/orgaos/04973965000111/compras/2024/43/itens?pagina=1&tamanhoPagina=100",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 1087,
+   "arquivo": "pncp_detalhe__pncp-gov-br-api-pncp-v1-orgaos-04973965000111-compras-2024-43-itens-pa-141caa40.txt"
+  },
+  {
+   "fonte": "pncp_detalhe",
+   "url": "https://pncp.gov.br/api/pncp/v1/orgaos/04973965000111/compras/2024/43/itens/1/resultados",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 1218,
+   "arquivo": "pncp_detalhe__pncp-gov-br-api-pncp-v1-orgaos-04973965000111-compras-2024-43-itens-1-63045fd0.txt"
+  },
+  {
+   "fonte": "pncp_detalhe",
+   "url": "https://pncp.gov.br/api/pncp/v1/orgaos/17577524000142/compras/2024/16/itens?pagina=1&tamanhoPagina=100",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 107365,
+   "arquivo": "pncp_detalhe__pncp-gov-br-api-pncp-v1-orgaos-17577524000142-compras-2024-16-itens-pa-a8ef6f67.txt"
+  },
+  {
+   "fonte": "pncp_detalhe",
+   "url": "https://pncp.gov.br/api/pncp/v1/orgaos/04973965000111/contratos/2024/47",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 1921,
+   "arquivo": "pncp_detalhe__pncp-gov-br-api-pncp-v1-orgaos-04973965000111-contratos-2024-47-83a14984.txt"
+  },
+  {
+   "fonte": "pncp_detalhe",
+   "url": "https://pncp.gov.br/api/pncp/v1/orgaos/04973965000111/contratos/2024/47/termos",
+   "post": null,
+   "ok": true,
+   "http": 204,
+   "erro": "",
+   "bytes": 0,
+   "arquivo": "pncp_detalhe__pncp-gov-br-api-pncp-v1-orgaos-04973965000111-contratos-2024-47-termos-bc8b6b71.txt"
+  },
+  {
+   "fonte": "pncp_detalhe",
+   "url": "https://pncp.gov.br/api/pncp/v1/orgaos/17736850000155/contratos/2024/1/termos",
+   "post": null,
+   "ok": true,
+   "http": 204,
+   "erro": "",
+   "bytes": 0,
+   "arquivo": "pncp_detalhe__pncp-gov-br-api-pncp-v1-orgaos-17736850000155-contratos-2024-1-termos-47577592.txt"
+  },
+  {
+   "fonte": "pncp_detalhe",
+   "url": "https://pncp.gov.br/api/consulta/v1/contratos?dataInicial=20241101&dataFinal=20241130&cnpjOrgao=04973965000111&pagina=1&tamanhoPagina=10",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 19744,
+   "arquivo": "pncp_detalhe__pncp-gov-br-api-consulta-v1-contratos-datainicial-20241101-datafinal-2-5d88416c.txt"
+  }
+ ]
+}

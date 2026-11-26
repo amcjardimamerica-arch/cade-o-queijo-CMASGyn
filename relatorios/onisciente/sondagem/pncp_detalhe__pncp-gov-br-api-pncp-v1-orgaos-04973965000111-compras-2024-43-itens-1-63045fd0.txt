@@ -1,0 +1,8 @@
+URL: https://pncp.gov.br/api/pncp/v1/orgaos/04973965000111/compras/2024/43/itens/1/resultados
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 1218
+
+[{"numeroItem":1,"porteFornecedorId":3,"niFornecedor":"23528340000195","tipoPessoa":"PJ","dataInclusao":"2024-12-05T17:00:00","dataAtualizacao":"2024-12-05T17:00:00","reservaRemanescente":{"codigo":1,"nome":"Não se aplica"},"timezoneCotacaoMoedaEstrangeira":null,"moedaEstrangeira":null,"valorNominalMoedaEstrangeira":null,"dataCotacaoMoedaEstrangeira":null,"nomeRazaoSocialFornecedor":"23.528.340 EUGENIO DE OLIVEIRA LIMA","codigoPais":"BRA","quantidadeHomologada":9.00000,"valorUnitarioHomologado":2116.9900,"valorTotalHomologado":19052.9100,"percentualDesconto":0.0000,"amparoLegalMargemPreferencia":null,"amparoLegalCriterioDesempate":null,"paisOrigemProdutoServico":null,"localidadeExterior":null,"indicadorSubcontratacao":false,"ordemClassificacaoSrp":1,"dataResultado":"2024-12-05","motivoCancelamento":null,"dataCancelamento":null,"numeroControlePNCPCompra":"04973965000111-1-000043/2024","aplicacaoMargemPreferencia":false,"aplicacaoBeneficioMeEpp":false,"aplicacaoCriterioDesempate":false,"situacaoCompraItemResultadoId":1,"porteFornecedorNome":"Demais","situacaoCompraItemResultadoNome":"Informado","sequencialResultado":1,"naturezaJuridicaNome":null,"localidadeFornecedor":null,"naturezaJuridicaId":null}]
