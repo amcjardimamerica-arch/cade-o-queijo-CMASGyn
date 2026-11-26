@@ -1,6 +1,6 @@
 # Diagnóstico da coleta histórica (2024-11 a 2026-11)
 
-Rodada de 2026-11-26T17:24:37+00:00. Banco: `dados/onisciente/historico.db`.
+Rodada de 2026-11-26T18:45:28+00:00. Banco: `dados/onisciente/historico.db`.
 
 Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna na fonte (ela respondeu e o dado não estava lá). As duas nunca se misturam.
 
@@ -11,7 +11,7 @@ Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna na fonte (
 | Normas federais (ctresb/leis) | 21 | 21 | 0 | 0 | 3.4 |
 | Repasses federais (FNAS) | 4 | 3 | 1 | 0 | 98.2 |
 | Portais e endereços configurados | 25 | 20 | 5 | 0 | 253.3 |
-| Contratações (PNCP) | 586 | 294 | 292 | 0 | 8710.4 |
+| Contratações (PNCP) | 533 | 425 | 108 | 0 | 13085.7 |
 | Diário Oficial pelo Querido Diário | 50 | 0 | 50 | 0 | 210.6 |
 | SICONFI (Tesouro Nacional) | 23 | 23 | 0 | 0 | 5.9 |
 | SICONFI pelos endereços antigos | 2 | 0 | 2 | 0 | 1.2 |
@@ -22,15 +22,15 @@ Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna na fonte (
 - **SICONFI:** 28081 itens; períodos por situação: {"entregue": 19, "no prazo": 1}.
 - **Diário Oficial:** edições somadas por via: {"querido_diario": 0, "sileg": 504}.
 - **Repasses do FNAS:** 330 linhas, R$ 17.168.303,62.
-- **PNCP:** 676 contratações e 1976 contratos de órgãos do Município (56 da pasta da assistência).
+- **PNCP:** 902 contratações e 2114 contratos de órgãos do Município (61 da pasta da assistência).
 - **Endereços configurados:** 20 de 25 abriram.
 
 ## Onde o sistema falha
 
 1. **Repasses federais (FNAS): 1 de 4 chamadas falharam.** Erro mais comum: planilha do ano não publicada na página do FNAS (1 vezes). *Proposta:* Ver a tabela coletas do banco para os endereços exatos.
-2. **Contratações (PNCP): 292 de 586 chamadas falharam.** Erro mais comum: não tentado: tempo do motor nesta rodada esgotado (291 vezes). *Proposta:* Ver a tabela coletas do banco para os endereços exatos.
-3. **O Querido Diário não respondeu em 25 de 25 meses.** Meses: 2024-11 a 2026-11. Erro: URLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] ssl/tls alert handshake failure (_ssl.c:1011). *Proposta:* O servidor recusou o aperto de mão TLS do robô. O leitor já repete a chamada com cifras compatíveis, sem deixar de conferir o certificado; se ainda falhar, a outra via fica como principal até o servidor ser atualizado.
-4. **Contratos do PNCP não lidos por inteiro em 25 meses.** Meses sem todos os órgãos lidos: 2024-11 a 2026-11. Órgãos sem nenhum mês lido: 9 de 26. *Proposta:* A API do PNCP leva cerca de 20 segundos por chamada: rodar de novo só o motor pncp, que continua dos órgãos já conhecidos.
+2. **Contratações (PNCP): 108 de 533 chamadas falharam.** Erro mais comum: não tentado: tempo do motor nesta rodada esgotado (106 vezes). *Proposta:* Ver a tabela coletas do banco para os endereços exatos.
+3. **O Querido Diário não respondeu em 25 de 25 meses.** Meses: 2024-11 a 2026-11. Erro: URLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] ssl/tls alert handshake failure (_ssl.c:1011). *Proposta:* O servidor recusou o aperto de mão TLS (alerta 40), também para o curl e o openssl com TLS 1.2 e 1.3 na mesma máquina: o bloqueio está do lado da fonte, não nas cifras do robô. A outra via fica como principal, e a coleta mensal tenta de novo e avisa quando a fonte voltar.
+4. **Contratos do PNCP não lidos por inteiro em 25 meses.** Meses sem todos os órgãos lidos: 2024-11 a 2026-11. Órgãos sem nenhum mês lido: 3 de 29. *Proposta:* A API do PNCP leva cerca de 20 segundos por chamada: rodar de novo só o motor pncp, que continua dos órgãos já conhecidos.
 5. **3 de 25 endereços configurados não abriram.** Painel de preenchimento de prestação de contas (HTTP 404); CNAS — Resoluções (Participa + Brasil) (TimeoutError: The read operation timed out); MDS — Índice de Gestão Descentralizada (HTTP 404) *Proposta:* Marcar cada um como morto em config/portais.yml com o substituto, ou corrigir o endereço.
 6. **O coletor antigo do PNCP consulta o Brasil inteiro.** cadeoqueijo/coleta_pncp.py tira os CNPJs do Município de dados/destinatarios_2026.json, que não tem nenhum; sem CNPJ, pede todos os contratos do país e filtra por “GOIANIA” só nas 20 primeiras páginas. Por isso recebeu 429 e achou zero contratos. *Proposta:* Usar os órgãos descobertos pela coleta histórica (código IBGE) e consultar por CNPJ, mês a mês.
 

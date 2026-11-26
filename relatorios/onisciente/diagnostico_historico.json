@@ -1,6 +1,6 @@
 {
  "intervalo": "2024-11 a 2026-11",
- "rodada": "2026-11-26T17:24:37+00:00",
+ "rodada": "2026-11-26T18:45:28+00:00",
  "meses": [
   "2024-11",
   "2024-12",
@@ -70,14 +70,15 @@
   {
    "motor": "pncp",
    "nome": "Contratações (PNCP)",
-   "chamadas": 586,
-   "ok": 294,
-   "falhas": 292,
-   "tentativas": 330,
+   "chamadas": 533,
+   "ok": 425,
+   "falhas": 108,
+   "tentativas": 477,
    "http_429": 0,
-   "segundos": 8710.4,
+   "segundos": 13085.7,
    "erros": {
-    "não tentado: tempo do motor nesta rodada esgotado": 291,
+    "não tentado: tempo do motor nesta rodada esgotado": 106,
+    "TimeoutError: The read operation timed out": 1,
     "RemoteDisconnected: Remote end closed connection without response": 1
    }
   },
@@ -146,10 +147,10 @@
    17168303.62
   ],
   "repasses_fnas_arquivo": 0,
-  "contratacoes_pncp": 676,
+  "contratacoes_pncp": 902,
   "contratos_pncp": [
-   1976,
-   56
+   2114,
+   61
   ],
   "fontes": [
    25,
@@ -379,8 +380,8 @@
   {
    "tipo": "falha",
    "motor": "pncp",
-   "titulo": "Contratações (PNCP): 292 de 586 chamadas falharam",
-   "detalhe": "Erro mais comum: não tentado: tempo do motor nesta rodada esgotado (291 vezes).",
+   "titulo": "Contratações (PNCP): 108 de 533 chamadas falharam",
+   "detalhe": "Erro mais comum: não tentado: tempo do motor nesta rodada esgotado (106 vezes).",
    "proposta": "Ver a tabela coletas do banco para os endereços exatos."
   },
   {
@@ -402,7 +403,7 @@
    "motor": "querido_diario",
    "titulo": "O Querido Diário não respondeu em 25 de 25 meses",
    "detalhe": "Meses: 2024-11 a 2026-11. Erro: URLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] ssl/tls alert handshake failure (_ssl.c:1011).",
-   "proposta": "O servidor recusou o aperto de mão TLS do robô. O leitor já repete a chamada com cifras compatíveis, sem deixar de conferir o certificado; se ainda falhar, a outra via fica como principal até o servidor ser atualizado."
+   "proposta": "O servidor recusou o aperto de mão TLS (alerta 40), também para o curl e o openssl com TLS 1.2 e 1.3 na mesma máquina: o bloqueio está do lado da fonte, não nas cifras do robô. A outra via fica como principal, e a coleta mensal tenta de novo e avisa quando a fonte voltar."
   },
   {
    "tipo": "melhoria",
@@ -429,7 +430,7 @@
    "tipo": "falha",
    "motor": "pncp",
    "titulo": "Contratos do PNCP não lidos por inteiro em 25 meses",
-   "detalhe": "Meses sem todos os órgãos lidos: 2024-11 a 2026-11. Órgãos sem nenhum mês lido: 9 de 26.",
+   "detalhe": "Meses sem todos os órgãos lidos: 2024-11 a 2026-11. Órgãos sem nenhum mês lido: 3 de 29.",
    "proposta": "A API do PNCP leva cerca de 20 segundos por chamada: rodar de novo só o motor pncp, que continua dos órgãos já conhecidos."
   },
   {
