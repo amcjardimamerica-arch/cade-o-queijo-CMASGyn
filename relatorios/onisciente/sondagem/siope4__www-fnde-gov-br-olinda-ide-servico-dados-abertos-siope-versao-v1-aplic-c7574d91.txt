@@ -1,0 +1,7 @@
+URL: https://www.fnde.gov.br/olinda-ide/servico/DADOS_ABERTOS_SIOPE/versao/v1/aplicacao
+POST: {}
+OK: False
+HTTP: 500
+ERRO: HTTP 500
+BYTES: 0
+

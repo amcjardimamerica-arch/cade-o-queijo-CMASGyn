@@ -1,0 +1,7 @@
+URL: https://www.fnde.gov.br/olinda-ide/servico/DADOS_ABERTOS_SIOPE/versao/v1/odata/Informacoes_Complementares_Siope(Ano_Consulta=@Ano_Consulta,Num_Peri=@Num_Peri,Sig_UF=@Sig_UF)?@Ano_Consulta=2026&@Num_Peri=4&@Sig_UF='GO'&$filter=COD_MUNI%20eq%20520870&$format=json&$top=2000
+POST: {}
+OK: False
+HTTP: 500
+ERRO: HTTP 500
+BYTES: 0
+
