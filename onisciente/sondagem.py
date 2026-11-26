@@ -55,6 +55,16 @@ CANDIDATOS: dict[str, list[str]] = {
         "https://www.tesourotransparente.gov.br/ckan/api/3/action/package_show?id="
         "transferencias-constitucionais-para-municipios",
     ],
+    # O CKAN do Tesouro recusa a conexão da coleta: a mesma porta de novo e outras vias das transferências.
+    "tesouro2": [
+        "https://www.tesourotransparente.gov.br/ckan/api/3/action/package_show?id="
+        "transferencias-constitucionais-para-municipios",
+        "https://www.tesourotransparente.gov.br/ckan/dataset/transferencias-constitucionais-para-municipios",
+        "https://demonstrativos.apps.bb.com.br/arrecadacao-federal",
+        "https://portaldatransparencia.gov.br/download-de-dados/transferencias/202501",
+        "https://portaldatransparencia.gov.br/transferencias/consulta?paginacaoSimples=true&tamanhoPagina=10"
+        "&offset=0&direcaoOrdenacao=asc&de=01%2F01%2F2025&ate=31%2F01%2F2025&uf=GO&nomeMunicipio=GOIANIA",
+    ],
     # Segunda rodada: a consulta pública do SIOPS (Anexo XVI, ASPS) e o RREO municipal do SIOPE.
     "siops2": [
         "http://siops.datasus.gov.br/consleirespfiscal.php?UF=52&Ano=2025&Periodo=1&Municipio=&MudouAno=true",
