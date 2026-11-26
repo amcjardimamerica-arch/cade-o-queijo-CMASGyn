@@ -1,6 +1,6 @@
 # Diagnóstico da coleta histórica (2024-11 a 2026-11)
 
-Rodada de 2026-11-26T22:47:11+00:00. Banco: `dados/onisciente/historico.db`.
+Rodada de 2026-11-26T23:02:59+00:00. Banco: `dados/onisciente/historico.db`.
 
 Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna na fonte (ela respondeu e o dado não estava lá). As duas nunca se misturam.
 
@@ -18,7 +18,8 @@ Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna na fonte (
 | Diário Oficial pelo índice do SILEG | 50 | 50 | 0 | 0 | 13.3 |
 | Demonstrativo da educação (SIOPE) | 17 | 16 | 1 | 0 | 266.6 |
 | Demonstrativo da saúde (SIOPS) | 20 | 20 | 0 | 0 | 29.3 |
-| Transferências constitucionais (Tesouro) | 2 | 0 | 2 | 0 | 244.0 |
+| Transferências constitucionais (Tesouro) | 2 | 0 | 2 | 0 | 243.0 |
+| Transferências federais (Portal da Transparência) | 24 | 24 | 0 | 0 | 14.3 |
 
 ## O que entrou no banco
 

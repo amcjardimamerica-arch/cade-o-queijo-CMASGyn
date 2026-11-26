@@ -1,6 +1,6 @@
 {
  "intervalo": "2024-11 a 2026-11",
- "rodada": "2026-11-26T22:47:11+00:00",
+ "rodada": "2026-11-26T23:02:59+00:00",
  "meses": [
   "2024-11",
   "2024-12",
@@ -161,10 +161,21 @@
    "falhas": 2,
    "tentativas": 8,
    "http_429": 0,
-   "segundos": 244.0,
+   "segundos": 243.0,
    "erros": {
     "URLError: [Errno 104] Connection reset by peer": 2
    }
+  },
+  {
+   "motor": "transferencias",
+   "nome": "Transferências federais (Portal da Transparência)",
+   "chamadas": 24,
+   "ok": 24,
+   "falhas": 0,
+   "tentativas": 24,
+   "http_429": 0,
+   "segundos": 14.3,
+   "erros": {}
   }
  ],
  "contagens": {
@@ -198,6 +209,10 @@
    "homologado": 16,
    "no_prazo": 1
   },
+  "transferencias_federais": [
+   24,
+   4075332863.33
+  ],
   "transferencias_tesouro": [
    0,
    0.0
