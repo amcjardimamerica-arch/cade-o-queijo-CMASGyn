@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from typing import TYPE_CHECKING
 
 from .nucleo.ausencias import Ausencia
 from .nucleo.custodia import Original
@@ -11,6 +12,9 @@ from .nucleo.integridade import IndiceIntegridade
 from .nucleo.selos import Gravidade
 from .pisos import Medida
 from .rio.afluentes import Margens, Rio
+
+if TYPE_CHECKING:
+    from .fiscal import Fiscal
 
 
 @dataclass
@@ -27,6 +31,7 @@ class Panorama:
     custodia: list[Original] = field(default_factory=list)
     leitura_falhou: list[str] = field(default_factory=list)  # trechos em vermelho
     notas: list[str] = field(default_factory=list)
+    fiscal: "Fiscal | None" = None   # o Município pelo RGF e pelo RREO do banco histórico
 
     def fichas_ordenadas(self) -> list[Ficha]:
         return ordenar(self.fichas)
@@ -45,7 +50,7 @@ class Panorama:
                   f"{c['media']} de gravidade média"]
         frase = f"{total} indício{'s' if total != 1 else ''}: " + ", ".join(partes) + "."
         if self.integridade is not None:
-            frase += f" Integridade da trilha: {self.integridade.nota:.0f} de 100."
+            frase += " " + self.integridade.frase()
         n = len(self.ausencias)
         if n == 1:
             frase += " 1 documento que a lei manda publicar não está publicado."
@@ -74,6 +79,17 @@ class Panorama:
                        "limite": m.limite, "situacao": m.situacao, "declarado": m.declarado,
                        "divergencia": m.divergencia, "selo": m.selo.value if m.selo else None}
                       for m in self.medidas],
+            "municipio": None if self.fiscal is None else {
+                "rgf": self.fiscal.rgf.rotulo if self.fiscal.rgf else None,
+                "rreo": self.fiscal.rreo.rotulo if self.fiscal.rreo else None,
+                "tetos": [{"regra": m.regra.id, "titulo": m.regra.titulo, "percentual": m.percentual,
+                           "limite": m.limite, "situacao": m.situacao, "declarado": m.declarado,
+                           "divergencia": m.divergencia, "selo": m.selo.value if m.selo else None,
+                           "memoria": self.fiscal.memoria.get(m.regra.id)}
+                          for m in self.fiscal.medidas],
+                "duas_vias": [c.como_dict() for c in self.fiscal.conferencias],
+                "notas": self.fiscal.notas,
+            },
             "fichas": [f.como_dict() for f in self.fichas_ordenadas()],
             "ausencias": [a.como_dict() for a in self.ausencias],
             "custodia": [o.como_dict() for o in self.custodia],

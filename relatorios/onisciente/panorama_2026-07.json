@@ -2,27 +2,40 @@
  "competencia": "2026-07",
  "alvo": "Prefeitura de Goiânia",
  "dominio": "Assistência Social",
- "em_uma_frase": "36 indícios: 10 críticos, 21 de gravidade alta, 5 de gravidade média. Integridade da trilha: 11 de 100. 30 documentos que a lei manda publicar não estão publicados.",
+ "em_uma_frase": "36 indícios: 10 críticos, 21 de gravidade alta, 5 de gravidade média. Integridade da trilha: 29 de 85 pontos medidos (tempestividade sem medida nesta competência). 29 documentos que a lei manda publicar não estão publicados.",
  "contagem": {
   "critica": 10,
   "alta": 21,
   "media": 5
  },
  "integridade": {
-  "nota": 11.4,
+  "nota": 29.3,
+  "completo": false,
+  "pontos_medidos": 85,
+  "nota_maxima": 44.3,
   "partes": {
    "cobertura": 0.0,
-   "coerencia": 0.0,
-   "tempestividade": 7.17,
+   "coerencia": 25.0,
+   "tempestividade": null,
    "vinculo": 4.27,
    "prestacao": 0.0
   },
   "fracoes": {
    "cobertura": 0.0,
-   "coerencia": 0.0,
-   "tempestividade": 0.4783,
+   "coerencia": 1.0,
+   "tempestividade": null,
    "vinculo": 0.427,
    "prestacao": 0.0
+  },
+  "nao_medidas": [
+   "tempestividade"
+  ],
+  "motivos": {
+   "cobertura": "R$ 12.459.495,31 liquidados na Assistência Social até o RREO do 3º bimestre de 2026; nenhum real com empenhos, liquidações, pagamentos publicados item a item (conferência do portal em 2026-08-26), então nenhum atravessa as nove estações",
+   "coerencia": "3 de 3 valores publicados no RGF e no RREO do mesmo período dizem o mesmo dentro de 1%",
+   "tempestividade": "as duas leituras do Diário divergem (11 dias lidos pelo motor semanal, 23 edições no índice do SILEG): a leitura falhou em uma delas e a medida não pesa contra o Município",
+   "prestacao": "prestações de contas das parcerias não publicadas",
+   "vinculo": "38 de 89 entidades com lançamento em 2026 têm contrato, termo ou convênio localizado"
   },
   "gera_pedido_de_acesso": true
  },
@@ -103,6 +116,138 @@
    "selo": "roxo"
   }
  ],
+ "municipio": {
+  "rgf": "RGF do 1º quadrimestre de 2026",
+  "rreo": "RREO do 3º bimestre de 2026",
+  "tetos": [
+   {
+    "regra": "PESSOAL-EXECUTIVO",
+    "titulo": "Despesa com pessoal do Executivo",
+    "percentual": 46.2836,
+    "limite": 54.0,
+    "situacao": "cumpre",
+    "declarado": 46.28,
+    "divergencia": false,
+    "selo": "verde",
+    "memoria": "Despesa bruta de R$ 5.166.202.701,69 (soma dos doze meses publicados), menos R$ 1.055.255.387,66 não computados (art. 19, § 1º), mais restos a pagar não processados líquidos de R$ 14.271.476,78: R$ 4.125.218.790,81, sobre a RCL ajustada de R$ 8.912.920.409,75."
+   },
+   {
+    "regra": "DIVIDA-CONSOLIDADA",
+    "titulo": "Dívida consolidada líquida",
+    "percentual": 3.6232,
+    "limite": 120.0,
+    "situacao": "cumpre",
+    "declarado": 3.62,
+    "divergencia": false,
+    "selo": "verde",
+    "memoria": "Dívida consolidada líquida de R$ 325.877.488,39 (dívida de R$ 2.096.574.827,36 menos deduções de R$ 1.770.697.338,97), sobre a RCL ajustada para endividamento de R$ 8.994.257.835,75."
+   },
+   {
+    "regra": "OPERACOES-CREDITO",
+    "titulo": "Operações de crédito no exercício",
+    "percentual": 1.5147,
+    "limite": 16.0,
+    "situacao": "cumpre",
+    "declarado": 1.51,
+    "divergencia": false,
+    "selo": "verde",
+    "memoria": "Operações de crédito consideradas no limite, até o quadrimestre: R$ 136.236.480,00, sobre a RCL ajustada para endividamento de R$ 8.994.257.835,75."
+   }
+  ],
+  "duas_vias": [
+   {
+    "titulo": "Despesa bruta com pessoal: doze meses contra o total",
+    "referencia": "RGF do 1º quadrimestre de 2026",
+    "selo": "verde",
+    "divergencia": false,
+    "entre_demonstrativos": false,
+    "vias": [
+     {
+      "fonte": "RGF, soma dos doze meses",
+      "valor": 5166202701.69
+     },
+     {
+      "fonte": "RGF, total declarado",
+      "valor": 5166202701.69
+     }
+    ],
+    "nota": "confirmado em duas vias independentes"
+   },
+   {
+    "titulo": "Despesa total com pessoal: parcelas contra o total",
+    "referencia": "RGF do 1º quadrimestre de 2026",
+    "selo": "verde",
+    "divergencia": false,
+    "entre_demonstrativos": false,
+    "vias": [
+     {
+      "fonte": "RGF, soma das parcelas",
+      "valor": 4125218790.81
+     },
+     {
+      "fonte": "RGF, total declarado",
+      "valor": 4125218790.81
+     }
+    ],
+    "nota": "confirmado em duas vias independentes"
+   },
+   {
+    "titulo": "Receita corrente líquida",
+    "referencia": "RGF do 1º quadrimestre de 2026 e RREO do 2º bimestre de 2026",
+    "selo": "verde",
+    "divergencia": false,
+    "entre_demonstrativos": true,
+    "vias": [
+     {
+      "fonte": "RGF Anexo 1",
+      "valor": 9028505612.75
+     },
+     {
+      "fonte": "RREO Anexo 3",
+      "valor": 9028505612.75
+     }
+    ],
+    "nota": "confirmado em duas vias independentes"
+   },
+   {
+    "titulo": "Receita corrente líquida ajustada para a despesa com pessoal",
+    "referencia": "RGF do 1º quadrimestre de 2026 e RREO do 2º bimestre de 2026",
+    "selo": "verde",
+    "divergencia": false,
+    "entre_demonstrativos": true,
+    "vias": [
+     {
+      "fonte": "RGF Anexo 1",
+      "valor": 8912920409.75
+     },
+     {
+      "fonte": "RREO Anexo 3",
+      "valor": 8912920409.75
+     }
+    ],
+    "nota": "confirmado em duas vias independentes"
+   },
+   {
+    "titulo": "Dívida consolidada líquida",
+    "referencia": "RGF do 1º quadrimestre de 2026 e RREO do 2º bimestre de 2026",
+    "selo": "verde",
+    "divergencia": false,
+    "entre_demonstrativos": true,
+    "vias": [
+     {
+      "fonte": "RGF Anexo 2",
+      "valor": 325877488.39
+     },
+     {
+      "fonte": "RREO Anexo 6",
+      "valor": 325877488.39
+     }
+    ],
+    "nota": "confirmado em duas vias independentes"
+   }
+  ],
+  "notas": []
+ },
  "fichas": [
   {
    "codigo": "EXE-M-2026-07",
@@ -769,16 +914,6 @@
    "selo": "roxo"
   },
   {
-   "o_que_falta": "Relatório Resumido da Execução Orçamentária",
-   "periodo": "exercício 2026",
-   "conferencia_impedida": "origem do dinheiro e conciliação com os repasses (estação 1)",
-   "onde_deveria_estar": "Portal da Transparência (responsabilidade fiscal) e SICONFI",
-   "fundamento": "LC 101/2000, arts. 48 e 48-A; Lei 12.527/2011, art. 8º; Lei municipal 9.262/2013, art. 7º, § 3º",
-   "orgao": "Controladoria Geral do Município de Goiânia",
-   "bloco": "Receita realizada",
-   "selo": "roxo"
-  },
-  {
    "o_que_falta": "Balanço Patrimonial 2025",
    "periodo": "exercício 2026",
    "conferencia_impedida": "origem do dinheiro e conciliação com os repasses (estação 1)",
@@ -1070,11 +1205,12 @@
   }
  ],
  "leitura_falhou": [
-  "SICONFI (RREO e RGF): 8 tentativa(s) sem leitura na coleta de 2026-11-22; os pisos ficam sem segunda via."
+  "SICONFI (RREO e RGF): 8 tentativa(s) sem leitura na coleta de 2026-11-22; os pisos ficam sem segunda via.",
+  "Diário Oficial de 2026-07: o motor semanal leu 11 dia(s) com edição e o índice do SILEG tem 23 edição(ões); a tempestividade fica sem medida até as leituras baterem."
  ],
  "notas": [
   "O rio mostra o previsto na LOA para o mês: a receita realizada da competência não foi publicada.",
-  "Nenhum pagamento publicado na competência: a cobertura da trilha é zero.",
+  "O Relatório Resumido da Execução Orçamentária está publicado no SICONFI (RREO do 3º bimestre de 2026) e não entra como ausência.",
   "O vínculo é a parte das 89 entidades com lançamento em 2026 que têm contrato, termo ou convênio localizado; a trilha não separa os valores por exercício, então a medida é por entidade, não por real.",
   "Montado a partir do Cadê o Queijo em 26/11/2026."
  ]

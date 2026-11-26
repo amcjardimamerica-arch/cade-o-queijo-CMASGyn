@@ -13,6 +13,7 @@ from html import escape
 from .. import __version__
 from ..lai import ESCADA, oficios_por_orgao
 from ..nucleo.indicios import Familia, Ficha
+from ..nucleo.integridade import PESOS, ROTULOS
 from ..nucleo.selos import Selo, Verificacao
 from ..panorama import Panorama
 from ..rio.fontes import classificar
@@ -135,10 +136,20 @@ def gerar(p: Panorama, *, hoje: date | None = None) -> str:
     s.append(f'<p class="frase">{escape(p.em_uma_frase())}</p>')
     s.append('<p class="omitido">O que está em ordem foi omitido.</p>')
     if p.integridade:
-        s.append(svg.integridade(p.integridade))
-        if p.integridade.gera_pedido_de_acesso:
-            s.append(f"<p>A nota de integridade ficou abaixo de {p.integridade.minimo:g}: os pedidos "
+        ind = p.integridade
+        s.append(svg.integridade(ind))
+        if ind.motivos:
+            s.append('<ul class="sub">' + "".join(
+                f"<li><strong>{escape(ROTULOS[n])}</strong>: {escape(ind.motivos[n])}.</li>"
+                for n in PESOS if n in ind.motivos) + "</ul>")
+        if ind.gera_pedido_de_acesso:
+            extra = "" if ind.completo else (f" (mesmo se o que ficou sem medida estivesse perfeito, "
+                                              f"a nota chegaria a {ind.nota_maxima:g})")
+            s.append(f"<p>A nota de integridade ficou abaixo de {ind.minimo:g}{extra}: os pedidos "
                      'de acesso estão prontos na <a href="#ausencias">seção 8</a>.</p>')
+        elif ind.nota < ind.minimo:
+            s.append(f'<p class="omitido">A nota apurada está abaixo de {ind.minimo:g}, mas depende de '
+                     "medida que o sistema não fez; nenhum pedido de acesso sai dela.</p>")
     for n in p.notas:
         s.append(f'<p class="omitido">{escape(n)}</p>')
 
@@ -168,6 +179,26 @@ def gerar(p: Panorama, *, hoje: date | None = None) -> str:
         s.append(f"<h3>{_selo(m.selo)}{escape(m.regra.titulo)}</h3>")
         s.append(f'<p class="sub">{escape(m.regra.norma)} · base: {escape(m.regra.base)}</p>')
         s.append(svg.medidor(m))
+    if p.fiscal is not None:
+        f = p.fiscal
+        s.append(f"<h3>O Município: {escape(f.rgf.rotulo if f.rgf else 'sem RGF entregue')}</h3>")
+        for m in f.medidas:
+            s.append(f"<h3>{_selo(m.selo)}{escape(m.regra.titulo)}</h3>")
+            s.append(f'<p class="sub">{escape(m.regra.norma)} · base: {escape(m.regra.base)}</p>')
+            s.append(svg.medidor(m))
+            if f.memoria.get(m.regra.id):
+                s.append(f'<p class="sub">{escape(f.memoria[m.regra.id])}</p>')
+        if f.conferencias:
+            linhas = "".join(
+                f"<tr><td>{_selo(c.selo)}{escape(c.titulo)}</td>"
+                + "".join(f'<td class="num">{escape(v.fonte)}<br>{svg.moeda(v.valor)}</td>'
+                          for v in c.certificacao.vias[:2])
+                + f"<td>{'divergem' if c.certificacao.divergencia else 'iguais'}</td></tr>"
+                for c in f.conferencias)
+            s.append('<div class="tabela"><table><tr><th>Duas vias</th><th>Via 1</th><th>Via 2</th>'
+                     "<th>Resultado</th></tr>" + linhas + "</table></div>")
+        for n in f.notas:
+            s.append(f'<p class="omitido">{escape(n)}</p>')
 
     # 4. As contas, uma a uma
     s.append("<h2>4. As contas, uma a uma</h2>")

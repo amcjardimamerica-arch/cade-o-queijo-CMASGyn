@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from html import escape
 
-from ..nucleo.integridade import PESOS, IndiceIntegridade
+from ..nucleo.integridade import PESOS, ROTULOS, IndiceIntegridade
 from ..nucleo.selos import Selo
 from ..pisos import Medida
 from ..rio.afluentes import Rio
@@ -112,19 +112,23 @@ def medidor(m: Medida, largura: int = 760) -> str:
 
 
 def integridade(ind: IndiceIntegridade, largura: int = 760) -> str:
-    """As cinco medidas do índice, cada uma contra o seu peso."""
+    """As cinco medidas do índice, cada uma contra o seu peso; a não medida sai em vermelho."""
     linha_h = 26
     h = 20 + linha_h * len(PESOS)
-    x_barra, x_fim = 170, largura - 90
-    nomes = {"cobertura": "Cobertura", "coerencia": "Coerência", "tempestividade": "Tempestividade",
-             "vinculo": "Vínculo", "prestacao": "Prestação de contas"}
+    x_barra, x_fim = 170, largura - 150
     partes = [f'<svg viewBox="0 0 {largura} {h}" role="img" xmlns="http://www.w3.org/2000/svg" '
               f'aria-label="Índice de integridade da trilha" class="grafico">']
     for i, (nome, peso) in enumerate(PESOS.items()):
         y = 10 + i * linha_h
         obtido = ind.partes[nome]
         larg = (x_fim - x_barra) * peso / 40
-        partes.append(f'<text x="12" y="{y + 12}" class="t">{nomes[nome]}</text>')
+        partes.append(f'<text x="12" y="{y + 12}" class="t">{ROTULOS[nome]}</text>')
+        if obtido is None:
+            partes.append(f'<rect x="{x_barra}" y="{y + 2}" width="{larg:.1f}" height="12" rx="3" '
+                          f'fill="none" stroke="{Selo.VERMELHO.cor}" stroke-dasharray="4 3"/>')
+            partes.append(f'<text x="{x_barra + larg + 8:.1f}" y="{y + 12}" class="ts" '
+                          f'fill="{Selo.VERMELHO.cor}">não medida ({peso} pts)</text>')
+            continue
         partes.append(f'<rect x="{x_barra}" y="{y + 2}" width="{larg:.1f}" height="12" rx="3" fill="#EEF1F4"/>')
         partes.append(f'<rect x="{x_barra}" y="{y + 2}" width="{larg * obtido / peso:.1f}" height="12" '
                       f'rx="3" fill="#2563EB"/>')
