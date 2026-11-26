@@ -1,6 +1,6 @@
 {
  "intervalo": "2024-11 a 2026-11",
- "rodada": "2026-11-26T20:02:50+00:00",
+ "rodada": "2026-11-26T21:03:08+00:00",
  "meses": [
   "2024-11",
   "2024-12",
@@ -70,14 +70,14 @@
   {
    "motor": "pncp",
    "nome": "Contratações (PNCP)",
-   "chamadas": 563,
-   "ok": 561,
-   "falhas": 2,
-   "tentativas": 613,
+   "chamadas": 618,
+   "ok": 617,
+   "falhas": 1,
+   "tentativas": 668,
    "http_429": 0,
-   "segundos": 16218.3,
+   "segundos": 17295.3,
    "erros": {
-    "RemoteDisconnected: Remote end closed connection without response": 2
+    "RemoteDisconnected: Remote end closed connection without response": 1
    }
   },
   {
@@ -378,8 +378,8 @@
   {
    "tipo": "falha",
    "motor": "pncp",
-   "titulo": "Contratações (PNCP): 2 de 563 chamadas falharam",
-   "detalhe": "Erro mais comum: RemoteDisconnected: Remote end closed connection without response (2 vezes).",
+   "titulo": "Contratações (PNCP): 1 de 618 chamadas falharam",
+   "detalhe": "Erro mais comum: RemoteDisconnected: Remote end closed connection without response (1 vezes).",
    "proposta": "Ver a tabela coletas do banco para os endereços exatos."
   },
   {
@@ -423,13 +423,6 @@
    "titulo": "Sem repasse federal registrado em 11 meses",
    "detalhe": "Meses sem nenhuma linha de repasse para o município: 2026-01 a 2026-11.",
    "proposta": "Para os meses do ano corrente, usar o Portal da Transparência da União (transferências) como segunda via enquanto a planilha anual não sai."
-  },
-  {
-   "tipo": "falha",
-   "motor": "pncp",
-   "titulo": "Contratos do PNCP não lidos por inteiro em 1 meses",
-   "detalhe": "Meses sem todos os órgãos lidos: 2026-11. Órgãos sem nenhum mês lido: 0 de 32.",
-   "proposta": "A API do PNCP leva cerca de 20 segundos por chamada: rodar de novo só o motor pncp, que continua dos órgãos já conhecidos."
   },
   {
    "tipo": "falha",

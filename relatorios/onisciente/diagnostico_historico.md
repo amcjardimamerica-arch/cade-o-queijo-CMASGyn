@@ -1,6 +1,6 @@
 # Diagnóstico da coleta histórica (2024-11 a 2026-11)
 
-Rodada de 2026-11-26T20:02:50+00:00. Banco: `dados/onisciente/historico.db`.
+Rodada de 2026-11-26T21:03:08+00:00. Banco: `dados/onisciente/historico.db`.
 
 Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna na fonte (ela respondeu e o dado não estava lá). As duas nunca se misturam.
 
@@ -11,7 +11,7 @@ Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna na fonte (
 | Normas federais (ctresb/leis) | 21 | 21 | 0 | 0 | 3.4 |
 | Repasses federais (FNAS) | 4 | 3 | 1 | 0 | 98.2 |
 | Portais e endereços configurados | 25 | 20 | 5 | 0 | 253.3 |
-| Contratações (PNCP) | 563 | 561 | 2 | 0 | 16218.3 |
+| Contratações (PNCP) | 618 | 617 | 1 | 0 | 17295.3 |
 | Diário Oficial pelo Querido Diário | 50 | 0 | 50 | 0 | 210.6 |
 | SICONFI (Tesouro Nacional) | 23 | 23 | 0 | 0 | 5.9 |
 | SICONFI pelos endereços antigos | 2 | 0 | 2 | 0 | 1.2 |
@@ -28,11 +28,10 @@ Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna na fonte (
 ## Onde o sistema falha
 
 1. **Repasses federais (FNAS): 1 de 4 chamadas falharam.** Erro mais comum: planilha do ano não publicada na página do FNAS (1 vezes). *Proposta:* Ver a tabela coletas do banco para os endereços exatos.
-2. **Contratações (PNCP): 2 de 563 chamadas falharam.** Erro mais comum: RemoteDisconnected: Remote end closed connection without response (2 vezes). *Proposta:* Ver a tabela coletas do banco para os endereços exatos.
+2. **Contratações (PNCP): 1 de 618 chamadas falharam.** Erro mais comum: RemoteDisconnected: Remote end closed connection without response (1 vezes). *Proposta:* Ver a tabela coletas do banco para os endereços exatos.
 3. **O Querido Diário não respondeu em 25 de 25 meses.** Meses: 2024-11 a 2026-11. Erro: URLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] ssl/tls alert handshake failure (_ssl.c:1011). *Proposta:* O servidor recusou o aperto de mão TLS (alerta 40), também para o curl e o openssl com TLS 1.2 e 1.3 na mesma máquina: o bloqueio está do lado da fonte, não nas cifras do robô. A outra via fica como principal, e a coleta mensal tenta de novo e avisa quando a fonte voltar.
-4. **Contratos do PNCP não lidos por inteiro em 1 meses.** Meses sem todos os órgãos lidos: 2026-11. Órgãos sem nenhum mês lido: 0 de 32. *Proposta:* A API do PNCP leva cerca de 20 segundos por chamada: rodar de novo só o motor pncp, que continua dos órgãos já conhecidos.
-5. **3 de 25 endereços configurados não abriram.** Painel de preenchimento de prestação de contas (HTTP 404); CNAS — Resoluções (Participa + Brasil) (TimeoutError: The read operation timed out); MDS — Índice de Gestão Descentralizada (HTTP 404) *Proposta:* Marcar cada um como morto em config/portais.yml com o substituto, ou corrigir o endereço.
-6. **O coletor antigo do PNCP consulta o Brasil inteiro.** cadeoqueijo/coleta_pncp.py tira os CNPJs do Município de dados/destinatarios_2026.json, que não tem nenhum; sem CNPJ, pede todos os contratos do país e filtra por “GOIANIA” só nas 20 primeiras páginas. Por isso recebeu 429 e achou zero contratos. *Proposta:* Usar os órgãos descobertos pela coleta histórica (código IBGE) e consultar por CNPJ, mês a mês.
+4. **3 de 25 endereços configurados não abriram.** Painel de preenchimento de prestação de contas (HTTP 404); CNAS — Resoluções (Participa + Brasil) (TimeoutError: The read operation timed out); MDS — Índice de Gestão Descentralizada (HTTP 404) *Proposta:* Marcar cada um como morto em config/portais.yml com o substituto, ou corrigir o endereço.
+5. **O coletor antigo do PNCP consulta o Brasil inteiro.** cadeoqueijo/coleta_pncp.py tira os CNPJs do Município de dados/destinatarios_2026.json, que não tem nenhum; sem CNPJ, pede todos os contratos do país e filtra por “GOIANIA” só nas 20 primeiras páginas. Por isso recebeu 429 e achou zero contratos. *Proposta:* Usar os órgãos descobertos pela coleta histórica (código IBGE) e consultar por CNPJ, mês a mês.
 
 ## Onde a fonte respondeu sem o dado
 
