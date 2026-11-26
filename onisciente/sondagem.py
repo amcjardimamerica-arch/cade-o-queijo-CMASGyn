@@ -110,6 +110,9 @@ CANDIDATOS: dict[str, list[str]] = {
         "Indicadores_Siope(Ano_Consulta=@Ano_Consulta,Num_Peri=@Num_Peri,Sig_UF=@Sig_UF)"
         "?@Ano_Consulta=2025&@Num_Peri=6&@Sig_UF='GO'&$top=3&$format=json",
     ],
+    # Sexta rodada: os PDFs do RREO Anexo 8 de Goiânia no FTP do SIOPE, guardados em bruto.
+    "siope6": [f"ftp://ftp.fnde.gov.br/web/siope/RREO/RREO_Municipal_520870_{b}_{a}.pdf"
+               for a, bs in ((2024, (6,)), (2025, (1, 6)), (2026, (1, 2, 3, 4, 5))) for b in bs],
     "transferegov": [
         "https://api.transferegov.gestao.gov.br/transferenciasespeciais/",
         "https://api.transferegov.gestao.gov.br/fundoafundo/",
@@ -128,6 +131,8 @@ def _guardar(fonte: str, url: str, leitura, formulario: dict | None = None) -> d
     PASTA.mkdir(parents=True, exist_ok=True)
     arq = PASTA / f"{fonte}__{_slug(url, formulario)}.txt"
     bruto = leitura.conteudo[:LIMITE]
+    if leitura.ok and bruto.startswith(b"%PDF"):      # binário: guarda os bytes como vieram
+        arq.with_suffix(".pdf").write_bytes(leitura.conteudo)
     try:
         corpo = bruto.decode("utf-8") if leitura.ok else ""
     except UnicodeDecodeError:
