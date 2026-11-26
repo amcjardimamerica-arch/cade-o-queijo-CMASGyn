@@ -23,7 +23,7 @@ from __future__ import annotations
 import re
 import sqlite3
 import unicodedata
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from datetime import date
 from pathlib import Path
 
@@ -86,14 +86,15 @@ class Fiscal:
     medidas: list[Medida] = field(default_factory=list)
     conferencias: list[ConferenciaDeVias] = field(default_factory=list)
     memoria: dict[str, str] = field(default_factory=dict)   # regra -> memória de cálculo
+    fontes: dict[str, str] = field(default_factory=dict)    # regra -> demonstrativos usados
     notas: list[str] = field(default_factory=list)
 
     def fichas(self, competencia: str, ente: str = "o Município") -> list[Ficha]:
         out: list[Ficha] = []
         for m in self.medidas:
             for f in fichas_da_medida(m, competencia=competencia, ente=ente):
-                f.observacao = (self.memoria.get(m.regra.id) or "") + (
-                    f" Fonte: {self.rgf.rotulo}." if self.rgf else "")
+                fonte = self.fontes.get(m.regra.id) or (self.rgf.rotulo if self.rgf else "")
+                f.observacao = (self.memoria.get(m.regra.id) or "") + (f" Fonte: {fonte}." if fonte else "")
                 out.append(f)
         for c in self.conferencias:
             if not c.certificacao.divergencia:
@@ -104,7 +105,7 @@ class Fiscal:
                 familia=Familia.PISO,
                 titulo=f"{c.titulo}: os demonstrativos divergem",
                 gravidade="alta",
-                como_deveria="O mesmo valor publicado no RGF e no RREO do mesmo período deve ser igual.",
+                como_deveria="O mesmo valor publicado em dois demonstrativos do mesmo período deve ser igual.",
                 norma=c.norma,
                 como_esta=f"{c.referencia}. {vias}.",
                 niveis=[Nivel.B, Nivel.B],
@@ -185,12 +186,18 @@ def bimestre_do_quadrimestre(q: int) -> int:
     return 2 * q
 
 
-def medir_municipio(ate: date, *, banco: Path | str = BANCO, mapa: MapaLegal | None = None) -> Fiscal:
+def medir_municipio(ate: date, *, banco: Path | str = BANCO, mapa: MapaLegal | None = None,
+                    faixa_camara: str | None = None) -> Fiscal:
     """Mede o Município pelo último RGF e RREO entregues até ``ate``."""
     mapa = mapa or carregar()
+    if faixa_camara is None:
+        from .config import carregar_alvo
+        faixa_camara = carregar_alvo().faixa_camara
     leitor = Leitor(banco)
     try:
-        return _medir(leitor, ate, mapa)
+        fiscal = _medir(leitor, ate, mapa)
+        _medir_camara(leitor, ate, mapa, fiscal, faixa_camara)
+        return fiscal
     finally:
         leitor.fechar()
 
@@ -288,6 +295,91 @@ def _medir(lt: Leitor, ate: date, mapa: MapaLegal) -> Fiscal:
             "Dívida consolidada líquida", selar([Via("RGF Anexo 2", dcl), Via("RREO Anexo 6", dcl_rreo)]),
             ref, "LC 101/2000, arts. 53 e 55; Resolução do Senado 40/2001"))
     return fiscal
+
+
+# Base do art. 29-A: receita tributária e as transferências dos arts. 153, § 5º, 158 e 159 da CF
+# efetivamente realizadas no exercício anterior, sem a dedução do FUNDEB.
+BASE_29A_RREO = {  # RREO Anexo 3, coluna dos últimos 12 meses do 6º bimestre
+    "ReceitaTributariaLiquidaExcetoTransferenciasEFUNDEB": "Impostos, taxas e contribuições de melhoria",
+    "RREO3CotaParteDoFPM": "Cota-parte do FPM",
+    "RREO3CotaParteDoICMS": "Cota-parte do ICMS",
+    "RREO3CotaParteDoIPVA": "Cota-parte do IPVA",
+    "RREO3CotaParteDoITR": "Cota-parte do ITR",
+    "RREO3TransferenciasDaLC611989": "IPI-exportação (LC 61/1989)",
+}
+BASE_29A_DCA = ("RO1.7.1.1.51.0.0", "RO1.7.2.1.50.0.0", "RO1.7.2.1.51.0.0", "RO1.7.1.1.52.0.0",
+                "RO1.7.2.1.52.0.0")   # FPM, ICMS, IPVA, ITR, IPI-exportação na DCA Anexo I-C
+
+
+def _dca(lt: Leitor, exercicio: int, anexo: str, cod_conta: str, coluna: str,
+         conta: str | None = None) -> float | None:
+    per = next((p for p in lt.periodos("DCA") if p.exercicio == exercicio), None)
+    return lt.valor(per, anexo, cod_conta, coluna, conta=conta) if per else None
+
+
+def _medir_camara(lt: Leitor, ate: date, mapa: MapaLegal, fiscal: Fiscal, faixa: str) -> None:
+    """Art. 29-A: a despesa do Legislativo no último exercício fechado sobre a base do anterior.
+
+    Numerador: o liquidado na função Legislativa (RREO Anexo 2 do 6º bimestre), com as
+    intraorçamentárias, que são despesa da Câmara (as contribuições patronais); os inativos
+    ficam na função Previdência e não entram. Segunda via: a DCA do exercício (Anexo I-E).
+    Denominador: a base do exercício anterior pelo RREO Anexo 3, com segunda via na DCA (I-C).
+    """
+    fechados = [p for p in lt.periodos("RREO") if p.periodo == 6 and p.termina <= ate]
+    if not fechados:
+        fiscal.notas.append("Câmara (CF, art. 29-A): nenhum exercício fechado no banco.")
+        fiscal.medidas.append(medir("CAMARA", None, None, faixa=faixa, mapa=mapa))
+        return
+    fim = fechados[-1]
+    ant = next((p for p in fechados if p.exercicio == fim.exercicio - 1), None)
+    sql = ("select rotulo, valor from siconfi_itens where demonstrativo='RREO' and exercicio=? and "
+           "periodo=6 and anexo='RREO-Anexo 02' and conta='Legislativa' and "
+           "coluna like 'DESPESAS LIQUIDADAS ATÉ O BIMESTRE%'")
+    linhas = dict(lt.con.execute(sql, (fim.exercicio,)).fetchall())
+    exceto = next((v for r, v in linhas.items() if r.startswith("Total das Despesas Exceto Intra")), None)
+    intra = next((v for r, v in linhas.items() if r.startswith("Total das Despesas Intra")), 0.0)
+    base = None
+    if ant is not None:
+        partes = {k: lt.valor(ant, "Anexo 03", k, r"TOTAL \(ÚLTIMOS 12 MESES\)") for k in BASE_29A_RREO}
+        if None not in partes.values():
+            base = sum(partes.values())
+    despesa = (exceto + (intra or 0.0)) if exceto is not None else None
+    m = medir("CAMARA", despesa, base, faixa=faixa, mapa=mapa)
+    ref = f"Câmara em {fim.exercicio} sobre a base de {fim.exercicio - 1}"
+    if base is None:
+        fiscal.notas.append(f"Câmara (CF, art. 29-A): o RREO do 6º bimestre de {fim.exercicio - 1}, "
+                            "que dá a base do limite, não está no banco.")
+    # Segunda via de cada parcela, na DCA do mesmo exercício.
+    vias_ok = []
+    dca_desp = _dca(lt, fim.exercicio, "Anexo I-E", "TotalDespesas", "Despesas Liquidadas",
+                    conta="01 - Legislativa")
+    if exceto is not None:
+        c = ConferenciaDeVias(f"Despesa liquidada da Câmara em {fim.exercicio}",
+                              selar([Via("RREO Anexo 2", exceto), Via("DCA Anexo I-E", dca_desp)]),
+                              f"{fim.rotulo} e DCA de {fim.exercicio}", "CF, art. 29-A; LC 101/2000, art. 51")
+        fiscal.conferencias.append(c)
+        vias_ok.append(c.selo is Selo.VERDE)
+    if base is not None:
+        trib = _dca(lt, ant.exercicio, "Anexo I-C", "RO1.1.0.0.00.0.0", "Receitas Brutas Realizadas")
+        ded = _dca(lt, ant.exercicio, "Anexo I-C", "RO1.1.0.0.00.0.0", "Outras Deduções da Receita") or 0.0
+        transf = [_dca(lt, ant.exercicio, "Anexo I-C", k, "Receitas Brutas Realizadas") for k in BASE_29A_DCA]
+        base_dca = (trib - ded + sum(transf)) if trib is not None and None not in transf else None
+        c = ConferenciaDeVias(f"Base do limite da Câmara ({ant.exercicio})",
+                              selar([Via("RREO Anexo 3", base), Via("DCA Anexo I-C", base_dca)]),
+                              f"{ant.rotulo} e DCA de {ant.exercicio}", "CF, art. 29-A; LC 101/2000, art. 51")
+        fiscal.conferencias.append(c)
+        vias_ok.append(c.selo is Selo.VERDE)
+        fiscal.memoria["CAMARA"] = (
+            f"Despesa liquidada na função Legislativa em {fim.exercicio}: {_moeda(exceto)}, mais "
+            f"{_moeda(intra)} de despesas intraorçamentárias (contribuições patronais), total "
+            f"{_moeda(despesa)}; sobre a receita tributária e as transferências constitucionais de "
+            f"{ant.exercicio} ({', '.join(BASE_29A_RREO.values())}): {_moeda(base)}. "
+            f"Limite da faixa {faixa}. Inativos ficam na função Previdência e não entram.")
+    # Sem percentual declarado, o número é certificado pelas duas vias das parcelas.
+    if m.situacao != "sem_dado" and len(vias_ok) == 2 and all(vias_ok):
+        m = replace(m, selo=Selo.VERDE)
+    fiscal.medidas.append(m)
+    fiscal.fontes["CAMARA"] = f"{fim.rotulo}, RREO do 6º bimestre de {fim.exercicio - 1} e DCA"
 
 
 def liquidado_na_funcao(funcao_nome: str, ate: date, *, banco: Path | str = BANCO

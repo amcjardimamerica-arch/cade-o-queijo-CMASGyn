@@ -69,11 +69,10 @@ def test_duas_vias_rgf_contra_rreo_em_todos_os_quadrimestres():
     for ex, q, termina in periodos:
         f = fiscal.medir_municipio(date.fromisoformat(termina))
         independentes = [c for c in f.conferencias if c.entre_demonstrativos]
-        assert {c.titulo for c in independentes} == {
-            "Receita corrente líquida", "Receita corrente líquida ajustada para a despesa com pessoal",
-            "Dívida consolidada líquida"}, (ex, q)
+        assert {"Receita corrente líquida", "Receita corrente líquida ajustada para a despesa com pessoal",
+                "Dívida consolidada líquida"} <= {c.titulo for c in independentes}, (ex, q)
         assert all(c.selo is Selo.VERDE for c in independentes), (ex, q)
-        assert len(f.certificacoes()) == 3
+        assert len(f.certificacoes()) == len(independentes)
 
 
 def test_divergencia_entre_rgf_e_rreo_vira_ficha(tmp_path):
@@ -108,6 +107,27 @@ def test_declarado_diferente_do_calculo_proprio_vira_ficha(tmp_path):
     assert "PISO-DIV-PESSOAL-EXECUTIVO-2025-12" in {x.codigo for x in f.fichas("2025-12")}
 
 
+def test_camara_pelo_art_29a_com_duas_vias():
+    f = fiscal.medir_municipio(date(2026, 10, 31))
+    camara = next(m for m in f.medidas if m.regra.id == "CAMARA")
+    # 2025 (último exercício fechado) sobre a base de 2024, faixa IV do alvo: 4,5%
+    assert camara.limite == 4.5 and camara.situacao == "cumpre"
+    assert camara.percentual == pytest.approx(4.28, abs=0.01)
+    assert camara.selo is Selo.VERDE
+    vias = {c.titulo: c for c in f.conferencias if "Câmara" in c.titulo}
+    assert set(vias) == {"Despesa liquidada da Câmara em 2025", "Base do limite da Câmara (2024)"}
+    assert all(c.selo is Selo.VERDE for c in vias.values())
+    assert "intraorçamentárias" in f.memoria["CAMARA"] and "faixa IV" in f.memoria["CAMARA"]
+
+
+def test_camara_sem_base_do_ano_anterior_fica_sem_dado():
+    # Em 2025 o exercício fechado é 2024 e a base de 2023 não está no banco.
+    f = fiscal.medir_municipio(date(2025, 6, 30))
+    camara = next(m for m in f.medidas if m.regra.id == "CAMARA")
+    assert camara.situacao == "sem_dado" and camara.selo is Selo.ROXO
+    assert any("6º bimestre de 2023" in n for n in f.notas)
+
+
 def test_liquidado_na_funcao_so_fora_das_intraorcamentarias():
     valor, per = fiscal.liquidado_na_funcao("Assistência Social", date(2026, 10, 31))
     assert per.rotulo == "RREO do 4º bimestre de 2026"
@@ -122,13 +142,13 @@ def panorama():
 
 
 def test_parecer_traz_o_municipio_e_as_duas_vias(panorama):
-    assert panorama.fiscal is not None and len(panorama.fiscal.medidas) == 3
+    assert panorama.fiscal is not None and len(panorama.fiscal.medidas) >= 4
     pagina = html.gerar(panorama, hoje=date(2026, 11, 26))
     assert "O Município: RGF do 2º quadrimestre de 2026" in pagina
     assert "Duas vias" in pagina and "RREO Anexo 3" in pagina
     d = panorama.como_dict()
-    assert {t["regra"] for t in d["municipio"]["tetos"]} == {
-        "PESSOAL-EXECUTIVO", "DIVIDA-CONSOLIDADA", "OPERACOES-CREDITO"}
+    assert {t["regra"] for t in d["municipio"]["tetos"]} >= {
+        "PESSOAL-EXECUTIVO", "DIVIDA-CONSOLIDADA", "OPERACOES-CREDITO", "CAMARA"}
 
 
 def test_nenhuma_parte_da_nota_e_zero_fixo(panorama):
