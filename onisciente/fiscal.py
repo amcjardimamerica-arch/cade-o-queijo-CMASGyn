@@ -677,8 +677,7 @@ def _medir_educacao(lt: Leitor, ate: date, mapa: MapaLegal, fiscal: Fiscal) -> N
     profissionais = v(r"^12-", col)
     declarado70 = v(r"^15-", 3)
     m70 = medir("FUNDEB-PROFISSIONAIS", profissionais, base70, declarado=declarado70, mapa=mapa)
-    if not final and m70.situacao == "descumpre":
-        m70 = replace(m70, situacao="alerta")
+    m70, ritmo70 = _ritmo(m70, lt, "SIOPE", d, r"^15-", 3, 3)
     fiscal.medidas.append(m70)
     fiscal.conferencias.append(ConferenciaDeVias(
         f"Percentual do FUNDEB nos profissionais ({d.periodo}º bimestre de {d.exercicio})",
@@ -690,7 +689,8 @@ def _medir_educacao(lt: Leitor, ate: date, mapa: MapaLegal, fiscal: Fiscal) -> N
         f"{_moeda(profissionais)}, sobre as receitas do FUNDEB recebidas sem a complementação VAAR "
         f"({_moeda(receitas)} - {_moeda(vaar)} = {_moeda(base70)}). O SIOPE declara "
         f"{declarado70 if declarado70 is not None else '?'}% (linha 15)."
-        + ("" if final else " Antes do 6º bimestre é acompanhamento: o mínimo de 70% vale para o ano."))
+        + ("" if final else " Antes do 6º bimestre é acompanhamento: o mínimo de 70% vale para o ano.")
+        + ritmo70)
     fiscal.fontes["FUNDEB-PROFISSIONAIS"] = f"{ref} (RREO Anexo 8, linhas 6, 12 e 15); {ref_rreo}, Anexo 14"
 
     # FUNDEB, saldo para o exercício seguinte: só no fechamento do ano

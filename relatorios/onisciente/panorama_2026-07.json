@@ -2,27 +2,27 @@
  "competencia": "2026-07",
  "alvo": "Prefeitura de Goiânia",
  "dominio": "Assistência Social",
- "em_uma_frase": "36 indícios: 10 críticos, 21 de gravidade alta, 5 de gravidade média. Integridade da trilha: 29 de 85 pontos medidos (tempestividade sem medida nesta competência). 29 documentos que a lei manda publicar não estão publicados.",
+ "em_uma_frase": "38 indícios: 10 críticos, 23 de gravidade alta, 5 de gravidade média. Integridade da trilha: 25 de 85 pontos medidos (tempestividade sem medida nesta competência). 29 documentos que a lei manda publicar não estão publicados.",
  "contagem": {
   "critica": 10,
-  "alta": 21,
+  "alta": 23,
   "media": 5
  },
  "integridade": {
-  "nota": 29.3,
+  "nota": 25.4,
   "completo": false,
   "pontos_medidos": 85,
-  "nota_maxima": 44.3,
+  "nota_maxima": 40.4,
   "partes": {
    "cobertura": 0.0,
-   "coerencia": 25.0,
+   "coerencia": 21.15,
    "tempestividade": null,
    "vinculo": 4.27,
    "prestacao": 0.0
   },
   "fracoes": {
    "cobertura": 0.0,
-   "coerencia": 1.0,
+   "coerencia": 0.8462,
    "tempestividade": null,
    "vinculo": 0.427,
    "prestacao": 0.0
@@ -32,7 +32,7 @@
   ],
   "motivos": {
    "cobertura": "R$ 12.459.495,31 liquidados na Assistência Social até o RREO do 3º bimestre de 2026; nenhum real com empenhos, liquidações, pagamentos publicados item a item (conferência do portal em 2026-08-26), então nenhum atravessa as nove estações",
-   "coerencia": "3 de 3 valores publicados no RGF e no RREO do mesmo período dizem o mesmo dentro de 1%",
+   "coerencia": "11 de 13 valores publicados em duas vias oficiais do mesmo período (no RGF e no RREO; no SIOPS, no SIOPE e no RREO) dizem o mesmo dentro de 1%",
    "tempestividade": "as duas leituras do Diário divergem (11 dias lidos pelo motor semanal, 23 edições no índice do SILEG): a leitura falhou em uma delas e a medida não pesa contra o Município",
    "prestacao": "prestações de contas das parcerias não publicadas",
    "vinculo": "38 de 89 entidades com lançamento em 2026 têm contrato, termo ou convênio localizado"
@@ -152,6 +152,61 @@
     "divergencia": false,
     "selo": "verde",
     "memoria": "Operações de crédito consideradas no limite, até o quadrimestre: R$ 136.236.480,00, sobre a RCL ajustada para endividamento de R$ 8.994.257.835,75."
+   },
+   {
+    "regra": "CAMARA",
+    "titulo": "Repasse à Câmara Municipal",
+    "percentual": 4.2799,
+    "limite": 4.5,
+    "situacao": "cumpre",
+    "declarado": null,
+    "divergencia": false,
+    "selo": "verde",
+    "memoria": "Despesa liquidada na função Legislativa em 2025: R$ 242.556.342,81, mais R$ 7.608.287,35 de despesas intraorçamentárias (contribuições patronais), total R$ 250.164.630,16; sobre a receita tributária e as transferências constitucionais de 2024 (Impostos, taxas e contribuições de melhoria, Cota-parte do FPM, Cota-parte do ICMS, Cota-parte do IPVA, Cota-parte do ITR, IPI-exportação (LC 61/1989)): R$ 5.845.098.063,92. Limite da faixa IV. Inativos ficam na função Previdência e não entram."
+   },
+   {
+    "regra": "PISO-SAUDE",
+    "titulo": "Aplicação mínima em saúde",
+    "percentual": 16.182,
+    "limite": 15.0,
+    "situacao": "cumpre",
+    "declarado": 16.18,
+    "divergencia": false,
+    "selo": "verde",
+    "memoria": "Aplicado em ações e serviços públicos de saúde (liquidado até o bimestre): R$ 537.386.866,77, sobre a receita de impostos e transferências refeita pelo RREO: R$ 3.320.889.777,58 (IPTU R$ 802.059.599,43, ISS R$ 817.714.942,16, ITBI R$ 192.110.298,03, IRRF R$ 261.060.669,31, cota-parte do ICMS R$ 527.833.345,59, cota-parte do IPVA R$ 268.936.490,24, cota-parte do ITR R$ 132.833,01, IPI-exportação R$ 3.624.566,65, FPM R$ 447.417.033,16 (FPM inteiro do RREO Anexo 3 (as cotas extraordinárias só se separam na DCA))). O SIOPS declara a base de R$ 3.320.889.777,58 e 16.18%. Antes do 6º bimestre é acompanhamento: o mínimo de 15% vale para o ano."
+   },
+   {
+    "regra": "PISO-EDUCACAO",
+    "titulo": "Manutenção e desenvolvimento do ensino",
+    "percentual": 21.5344,
+    "limite": 25.0,
+    "situacao": "acompanha",
+    "declarado": 21.53,
+    "divergencia": false,
+    "selo": "verde",
+    "memoria": "Total para fins de limite (linha 28, liquidado): R$ 715.134.560,55 = MDE com impostos R$ 465.548.463,42 + destinado ao FUNDEB R$ 249.588.853,67 - deduções R$ 2.756,54; sobre a receita de impostos e transferências refeita pelo RREO: R$ 3.320.889.777,58 (IPTU R$ 802.059.599,43, ISS R$ 817.714.942,16, ITBI R$ 192.110.298,03, IRRF R$ 261.060.669,31, cota-parte do ICMS R$ 527.833.345,59, cota-parte do IPVA R$ 268.936.490,24, cota-parte do ITR R$ 132.833,01, IPI-exportação R$ 3.624.566,65, FPM R$ 447.417.033,16 (FPM inteiro do RREO Anexo 3 (as cotas extraordinárias só se separam na DCA))). O SIOPE declara a base de R$ 3.320.889.777,58, o exigido de R$ 830.222.444,40 e 21.53%. Antes do 6º bimestre é acompanhamento: o mínimo de 25% vale para o ano. No 3º bimestre de 2025 o SIOPE declarava 18.13%, e o ano fechou em 25.83%: o ritmo de 2026 está igual ou acima, então é acompanhamento, não alerta."
+   },
+   {
+    "regra": "FUNDEB-PROFISSIONAIS",
+    "titulo": "Fundeb na remuneração dos profissionais",
+    "percentual": 87.0401,
+    "limite": 70.0,
+    "situacao": "cumpre",
+    "declarado": 87.04,
+    "divergencia": false,
+    "selo": "verde",
+    "memoria": "Despesa do FUNDEB com profissionais da educação básica (linha 12, liquidada): R$ 382.676.686,00, sobre as receitas do FUNDEB recebidas sem a complementação VAAR (R$ 461.280.853,45 - R$ 21.625.421,84 = R$ 439.655.431,61). O SIOPE declara 87.04% (linha 15). Antes do 6º bimestre é acompanhamento: o mínimo de 70% vale para o ano."
+   },
+   {
+    "regra": "FUNDEB-SALDO",
+    "titulo": "Saldo do Fundeb para o exercício seguinte",
+    "percentual": 4.6519,
+    "limite": 10.0,
+    "situacao": "cumpre",
+    "declarado": 4.65,
+    "divergencia": false,
+    "selo": "verde",
+    "memoria": "Recebido do FUNDEB em 2025 (linha 6): R$ 946.796.567,67; empenhado com esse dinheiro (linha 11): R$ 902.752.786,69; não aplicado: R$ 44.043.780,98. O SIOPE declara 4.65% (linha 18); o máximo é 10%, a usar até abril."
    }
   ],
   "duas_vias": [
@@ -241,6 +296,222 @@
      {
       "fonte": "RREO Anexo 6",
       "valor": 325877488.39
+     }
+    ],
+    "nota": "confirmado em duas vias independentes"
+   },
+   {
+    "titulo": "Despesa liquidada da Câmara em 2025",
+    "referencia": "RREO do 6º bimestre de 2025 e DCA de 2025",
+    "selo": "verde",
+    "divergencia": false,
+    "entre_demonstrativos": true,
+    "vias": [
+     {
+      "fonte": "RREO Anexo 2",
+      "valor": 242556342.81
+     },
+     {
+      "fonte": "DCA Anexo I-E",
+      "valor": 242556342.81
+     }
+    ],
+    "nota": "confirmado em duas vias independentes"
+   },
+   {
+    "titulo": "Base do limite da Câmara (2024)",
+    "referencia": "RREO do 6º bimestre de 2024 e DCA de 2024",
+    "selo": "verde",
+    "divergencia": false,
+    "entre_demonstrativos": true,
+    "vias": [
+     {
+      "fonte": "RREO Anexo 3",
+      "valor": 5845098063.92
+     },
+     {
+      "fonte": "DCA Anexo I-C",
+      "valor": 5845098063.92
+     }
+    ],
+    "nota": "confirmado em duas vias independentes"
+   },
+   {
+    "titulo": "Receita da base da saúde (3º bimestre de 2026)",
+    "referencia": "SIOPS, 3º bimestre de 2026, homologado em 27/07/26 09:26:32; RREO do 3º bimestre de 2026",
+    "selo": "verde",
+    "divergencia": false,
+    "entre_demonstrativos": true,
+    "vias": [
+     {
+      "fonte": "SIOPS, linha III",
+      "valor": 3320889777.58
+     },
+     {
+      "fonte": "RREO Anexo 3 e DCA, cálculo próprio",
+      "valor": 3320889777.58
+     }
+    ],
+    "nota": "confirmado em duas vias independentes"
+   },
+   {
+    "titulo": "Despesa liquidada com saúde (3º bimestre de 2026)",
+    "referencia": "SIOPS, 3º bimestre de 2026, homologado em 27/07/26 09:26:32; RREO do 3º bimestre de 2026",
+    "selo": "azul",
+    "divergencia": true,
+    "entre_demonstrativos": true,
+    "vias": [
+     {
+      "fonte": "SIOPS, linha XLVIII",
+      "valor": 1101837588.39
+     },
+     {
+      "fonte": "RREO Anexo 2, função Saúde",
+      "valor": 1155368240.12
+     }
+    ],
+    "nota": "as vias divergem; o selo cai para azul e a divergência vira indício"
+   },
+   {
+    "titulo": "Total para fins de limite em MDE (3º bimestre de 2026)",
+    "referencia": "SIOPE, 3º bimestre de 2026",
+    "selo": "verde",
+    "divergencia": false,
+    "entre_demonstrativos": false,
+    "vias": [
+     {
+      "fonte": "SIOPE, linha 28",
+      "valor": 715134560.55
+     },
+     {
+      "fonte": "SIOPE, linhas 22 + 23 - 24 a 27",
+      "valor": 715134560.5500001
+     }
+    ],
+    "nota": "confirmado em duas vias independentes"
+   },
+   {
+    "titulo": "Receita da base da educação (3º bimestre de 2026)",
+    "referencia": "SIOPE, 3º bimestre de 2026; RREO do 3º bimestre de 2026",
+    "selo": "verde",
+    "divergencia": false,
+    "entre_demonstrativos": true,
+    "vias": [
+     {
+      "fonte": "SIOPE, linha 3",
+      "valor": 3320889777.58
+     },
+     {
+      "fonte": "RREO Anexo 3 e DCA, cálculo próprio",
+      "valor": 3320889777.58
+     }
+    ],
+    "nota": "confirmado em duas vias independentes"
+   },
+   {
+    "titulo": "Receita destinada ao FUNDEB (3º bimestre de 2026)",
+    "referencia": "SIOPE, 3º bimestre de 2026; RREO do 3º bimestre de 2026",
+    "selo": "verde",
+    "divergencia": false,
+    "entre_demonstrativos": true,
+    "vias": [
+     {
+      "fonte": "SIOPE, linha 4",
+      "valor": 249588853.67
+     },
+     {
+      "fonte": "RREO Anexo 3, dedução para o FUNDEB",
+      "valor": 249588853.67
+     }
+    ],
+    "nota": "confirmado em duas vias independentes"
+   },
+   {
+    "titulo": "Transferências recebidas do FUNDEB (3º bimestre de 2026)",
+    "referencia": "SIOPE, 3º bimestre de 2026; RREO do 3º bimestre de 2026",
+    "selo": "verde",
+    "divergencia": false,
+    "entre_demonstrativos": true,
+    "vias": [
+     {
+      "fonte": "SIOPE, linhas 6.1.1 a 6.4.1",
+      "valor": 458055225.39
+     },
+     {
+      "fonte": "RREO Anexo 3, transferências do FUNDEB",
+      "valor": 458055225.39
+     }
+    ],
+    "nota": "confirmado em duas vias independentes"
+   },
+   {
+    "titulo": "Despesa liquidada com educação (3º bimestre de 2026)",
+    "referencia": "SIOPE, 3º bimestre de 2026; RREO do 3º bimestre de 2026",
+    "selo": "verde",
+    "divergencia": false,
+    "entre_demonstrativos": true,
+    "vias": [
+     {
+      "fonte": "SIOPE, linha 33",
+      "valor": 1008163945.77
+     },
+     {
+      "fonte": "RREO Anexo 2, função Educação",
+      "valor": 1008163945.77
+     }
+    ],
+    "nota": "confirmado em duas vias independentes"
+   },
+   {
+    "titulo": "Percentual aplicado em MDE (3º bimestre de 2026)",
+    "referencia": "SIOPE, 3º bimestre de 2026; RREO do 3º bimestre de 2026",
+    "selo": "verde",
+    "divergencia": false,
+    "entre_demonstrativos": true,
+    "vias": [
+     {
+      "fonte": "SIOPE, linha 29",
+      "valor": 21.53
+     },
+     {
+      "fonte": "RREO Anexo 14 (SICONFI)",
+      "valor": 21.53
+     }
+    ],
+    "nota": "confirmado em duas vias independentes"
+   },
+   {
+    "titulo": "Percentual do FUNDEB nos profissionais (3º bimestre de 2026)",
+    "referencia": "SIOPE, 3º bimestre de 2026; RREO do 3º bimestre de 2026",
+    "selo": "azul",
+    "divergencia": true,
+    "entre_demonstrativos": true,
+    "vias": [
+     {
+      "fonte": "SIOPE, linha 15",
+      "valor": 87.04
+     },
+     {
+      "fonte": "RREO Anexo 14 (SICONFI)",
+      "valor": 90.49
+     }
+    ],
+    "nota": "as vias divergem; o selo cai para azul e a divergência vira indício"
+   },
+   {
+    "titulo": "Receita do FUNDEB não aplicada em 2025",
+    "referencia": "SIOPE, 6º bimestre de 2025",
+    "selo": "verde",
+    "divergencia": false,
+    "entre_demonstrativos": false,
+    "vias": [
+     {
+      "fonte": "SIOPE, linha 18",
+      "valor": 44043780.98
+     },
+     {
+      "fonte": "SIOPE, linhas 6 - 11",
+      "valor": 44043780.9799999
      }
     ],
     "nota": "confirmado em duas vias independentes"
@@ -673,6 +944,40 @@
    "competencia": null,
    "origem": "cadeoqueijo",
    "observacao": "achado do exercício"
+  },
+  {
+   "codigo": "VIAS-DESPESA-LIQUIDADA-COM-SAUDE-3O-2026-07",
+   "familia": "PISO",
+   "titulo": "Despesa liquidada com saúde (3º bimestre de 2026): os demonstrativos divergem",
+   "gravidade": "alta",
+   "como_deveria": "O mesmo valor publicado em dois demonstrativos do mesmo período deve ser igual.",
+   "norma": "LC 141/2012, arts. 32 e 34",
+   "como_esta": "SIOPS, 3º bimestre de 2026, homologado em 27/07/26 09:26:32; RREO do 3º bimestre de 2026. SIOPS, linha XLVIII: R$ 1.101.837.588,39; RREO Anexo 2, função Saúde: R$ 1.155.368.240,12.",
+   "verificacao": "INDICIARIO",
+   "providencia": "Pedir a conciliação entre os dois demonstrativos e a retificação no SICONFI.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": "2026-07",
+   "origem": "onisciente",
+   "observacao": ""
+  },
+  {
+   "codigo": "VIAS-PERCENTUAL-DO-FUNDEB-NOS-PROFI-2026-07",
+   "familia": "PISO",
+   "titulo": "Percentual do FUNDEB nos profissionais (3º bimestre de 2026): os demonstrativos divergem",
+   "gravidade": "alta",
+   "como_deveria": "O mesmo valor publicado em dois demonstrativos do mesmo período deve ser igual.",
+   "norma": "LRF, art. 52",
+   "como_esta": "SIOPE, 3º bimestre de 2026; RREO do 3º bimestre de 2026. SIOPE, linha 15: R$ 87,04; RREO Anexo 14 (SICONFI): R$ 90,49.",
+   "verificacao": "INDICIARIO",
+   "providencia": "Pedir a conciliação entre os dois demonstrativos e a retificação no SICONFI.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": "2026-07",
+   "origem": "onisciente",
+   "observacao": ""
   },
   {
    "codigo": "REC-02",

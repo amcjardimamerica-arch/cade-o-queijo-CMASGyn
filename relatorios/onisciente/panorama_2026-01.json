@@ -32,7 +32,7 @@
   ],
   "motivos": {
    "cobertura": "R$ 8.931.352,84 liquidados na Assistência Social até o RREO do 6º bimestre de 2025; nenhum real com empenhos, liquidações, pagamentos publicados item a item (conferência do portal em 2026-08-26), então nenhum atravessa as nove estações",
-   "coerencia": "3 de 3 valores publicados no RGF e no RREO do mesmo período dizem o mesmo dentro de 1%",
+   "coerencia": "13 de 13 valores publicados em duas vias oficiais do mesmo período (no RGF e no RREO; no SIOPS, no SIOPE e no RREO) dizem o mesmo dentro de 1%",
    "tempestividade": "as duas leituras do Diário divergem (13 dias lidos pelo motor semanal, 22 edições no índice do SILEG): a leitura falhou em uma delas e a medida não pesa contra o Município",
    "prestacao": "prestações de contas das parcerias não publicadas",
    "vinculo": "38 de 89 entidades com lançamento em 2026 têm contrato, termo ou convênio localizado"
@@ -152,6 +152,61 @@
     "divergencia": false,
     "selo": "verde",
     "memoria": "Operações de crédito consideradas no limite, até o quadrimestre: R$ 119.226.719,80, sobre a RCL ajustada para endividamento de R$ 8.868.551.697,27."
+   },
+   {
+    "regra": "CAMARA",
+    "titulo": "Repasse à Câmara Municipal",
+    "percentual": 4.2799,
+    "limite": 4.5,
+    "situacao": "cumpre",
+    "declarado": null,
+    "divergencia": false,
+    "selo": "verde",
+    "memoria": "Despesa liquidada na função Legislativa em 2025: R$ 242.556.342,81, mais R$ 7.608.287,35 de despesas intraorçamentárias (contribuições patronais), total R$ 250.164.630,16; sobre a receita tributária e as transferências constitucionais de 2024 (Impostos, taxas e contribuições de melhoria, Cota-parte do FPM, Cota-parte do ICMS, Cota-parte do IPVA, Cota-parte do ITR, IPI-exportação (LC 61/1989)): R$ 5.845.098.063,92. Limite da faixa IV. Inativos ficam na função Previdência e não entram."
+   },
+   {
+    "regra": "PISO-SAUDE",
+    "titulo": "Aplicação mínima em saúde",
+    "percentual": 21.5587,
+    "limite": 15.0,
+    "situacao": "cumpre",
+    "declarado": 21.54,
+    "divergencia": false,
+    "selo": "verde",
+    "memoria": "Aplicado em ações e serviços públicos de saúde (empenhado, fim do exercício): R$ 1.301.828.372,25, sobre a receita de impostos e transferências refeita pelo RREO e pela DCA: R$ 6.038.519.255,22 (IPTU R$ 1.188.766.061,66, ISS R$ 1.500.278.790,70, ITBI R$ 376.379.956,33, IRRF R$ 691.799.457,23, cota-parte do ICMS R$ 979.288.471,03, cota-parte do IPVA R$ 636.822.250,82, cota-parte do ITR R$ 2.438.999,43, IPI-exportação R$ 6.707.721,42, FPM R$ 648.304.218,84, compensações da LC 176/2020 R$ 7.733.327,76 (FPM só da cota mensal, pela DCA Anexo I-C, mais as compensações da LC 176/2020)). O SIOPS declara a base de R$ 6.042.010.272,82 e 21.54%."
+   },
+   {
+    "regra": "PISO-EDUCACAO",
+    "titulo": "Manutenção e desenvolvimento do ensino",
+    "percentual": 25.8474,
+    "limite": 25.0,
+    "situacao": "cumpre",
+    "declarado": 25.83,
+    "divergencia": false,
+    "selo": "verde",
+    "memoria": "Total para fins de limite (linha 28, empenhado): R$ 1.581.461.177,17 = MDE com impostos R$ 1.125.375.814,58 + destinado ao FUNDEB R$ 456.957.201,21 - deduções R$ 871.838,62; sobre a receita de impostos e transferências refeita pelo RREO e pela DCA: R$ 6.118.443.461,78 (IPTU R$ 1.188.766.061,66, ISS R$ 1.500.278.790,70, ITBI R$ 376.379.956,33, IRRF R$ 691.799.457,23, cota-parte do ICMS R$ 979.288.471,03, cota-parte do IPVA R$ 636.822.250,82, cota-parte do ITR R$ 2.438.999,43, IPI-exportação R$ 6.707.721,42, FPM R$ 648.304.218,84, FPM, cotas extraordinárias (CF, art. 159, I, d e e) R$ 79.924.206,56, compensações da LC 176/2020 R$ 7.733.327,76 (FPM pela DCA Anexo I-C, cota mensal e extraordinárias, mais as compensações da LC 176/2020)). O SIOPE declara a base de R$ 6.121.934.479,38, o exigido de R$ 1.530.483.619,84 e 25.83%."
+   },
+   {
+    "regra": "FUNDEB-PROFISSIONAIS",
+    "titulo": "Fundeb na remuneração dos profissionais",
+    "percentual": 84.0076,
+    "limite": 70.0,
+    "situacao": "cumpre",
+    "declarado": 84.01,
+    "divergencia": false,
+    "selo": "verde",
+    "memoria": "Despesa do FUNDEB com profissionais da educação básica (linha 12, empenhada): R$ 752.747.775,37, sobre as receitas do FUNDEB recebidas sem a complementação VAAR (R$ 946.796.567,67 - R$ 50.749.514,66 = R$ 896.047.053,01). O SIOPE declara 84.01% (linha 15)."
+   },
+   {
+    "regra": "FUNDEB-SALDO",
+    "titulo": "Saldo do Fundeb para o exercício seguinte",
+    "percentual": 4.6519,
+    "limite": 10.0,
+    "situacao": "cumpre",
+    "declarado": 4.65,
+    "divergencia": false,
+    "selo": "verde",
+    "memoria": "Recebido do FUNDEB em 2025 (linha 6): R$ 946.796.567,67; empenhado com esse dinheiro (linha 11): R$ 902.752.786,69; não aplicado: R$ 44.043.780,98. O SIOPE declara 4.65% (linha 18); o máximo é 10%, a usar até abril."
    }
   ],
   "duas_vias": [
@@ -241,6 +296,222 @@
      {
       "fonte": "RREO Anexo 6",
       "valor": 715018254.72
+     }
+    ],
+    "nota": "confirmado em duas vias independentes"
+   },
+   {
+    "titulo": "Despesa liquidada da Câmara em 2025",
+    "referencia": "RREO do 6º bimestre de 2025 e DCA de 2025",
+    "selo": "verde",
+    "divergencia": false,
+    "entre_demonstrativos": true,
+    "vias": [
+     {
+      "fonte": "RREO Anexo 2",
+      "valor": 242556342.81
+     },
+     {
+      "fonte": "DCA Anexo I-E",
+      "valor": 242556342.81
+     }
+    ],
+    "nota": "confirmado em duas vias independentes"
+   },
+   {
+    "titulo": "Base do limite da Câmara (2024)",
+    "referencia": "RREO do 6º bimestre de 2024 e DCA de 2024",
+    "selo": "verde",
+    "divergencia": false,
+    "entre_demonstrativos": true,
+    "vias": [
+     {
+      "fonte": "RREO Anexo 3",
+      "valor": 5845098063.92
+     },
+     {
+      "fonte": "DCA Anexo I-C",
+      "valor": 5845098063.92
+     }
+    ],
+    "nota": "confirmado em duas vias independentes"
+   },
+   {
+    "titulo": "Receita da base da saúde (6º bimestre de 2025)",
+    "referencia": "SIOPS, 6º bimestre de 2025, homologado em 06/02/26 10:00:59; RREO do 6º bimestre de 2025",
+    "selo": "verde",
+    "divergencia": false,
+    "entre_demonstrativos": true,
+    "vias": [
+     {
+      "fonte": "SIOPS, linha III",
+      "valor": 6042010272.82
+     },
+     {
+      "fonte": "RREO Anexo 3 e DCA, cálculo próprio",
+      "valor": 6038519255.22
+     }
+    ],
+    "nota": "confirmado em duas vias independentes"
+   },
+   {
+    "titulo": "Despesa liquidada com saúde (6º bimestre de 2025)",
+    "referencia": "SIOPS, 6º bimestre de 2025, homologado em 06/02/26 10:00:59; RREO do 6º bimestre de 2025",
+    "selo": "verde",
+    "divergencia": false,
+    "entre_demonstrativos": true,
+    "vias": [
+     {
+      "fonte": "SIOPS, linha XLVIII",
+      "valor": 2281507865.01
+     },
+     {
+      "fonte": "RREO Anexo 2, função Saúde",
+      "valor": 2270808213.44
+     }
+    ],
+    "nota": "confirmado em duas vias independentes"
+   },
+   {
+    "titulo": "Total para fins de limite em MDE (6º bimestre de 2025)",
+    "referencia": "SIOPE, 6º bimestre de 2025",
+    "selo": "verde",
+    "divergencia": false,
+    "entre_demonstrativos": false,
+    "vias": [
+     {
+      "fonte": "SIOPE, linha 28",
+      "valor": 1581461177.17
+     },
+     {
+      "fonte": "SIOPE, linhas 22 + 23 - 24 a 27",
+      "valor": 1581461177.17
+     }
+    ],
+    "nota": "confirmado em duas vias independentes"
+   },
+   {
+    "titulo": "Receita da base da educação (6º bimestre de 2025)",
+    "referencia": "SIOPE, 6º bimestre de 2025; RREO do 6º bimestre de 2025",
+    "selo": "verde",
+    "divergencia": false,
+    "entre_demonstrativos": true,
+    "vias": [
+     {
+      "fonte": "SIOPE, linha 3",
+      "valor": 6121934479.38
+     },
+     {
+      "fonte": "RREO Anexo 3 e DCA, cálculo próprio",
+      "valor": 6118443461.78
+     }
+    ],
+    "nota": "confirmado em duas vias independentes"
+   },
+   {
+    "titulo": "Receita destinada ao FUNDEB (6º bimestre de 2025)",
+    "referencia": "SIOPE, 6º bimestre de 2025; RREO do 6º bimestre de 2025",
+    "selo": "verde",
+    "divergencia": false,
+    "entre_demonstrativos": true,
+    "vias": [
+     {
+      "fonte": "SIOPE, linha 4",
+      "valor": 456957201.21
+     },
+     {
+      "fonte": "RREO Anexo 3, dedução para o FUNDEB",
+      "valor": 456957201.21
+     }
+    ],
+    "nota": "confirmado em duas vias independentes"
+   },
+   {
+    "titulo": "Transferências recebidas do FUNDEB (6º bimestre de 2025)",
+    "referencia": "SIOPE, 6º bimestre de 2025; RREO do 6º bimestre de 2025",
+    "selo": "verde",
+    "divergencia": false,
+    "entre_demonstrativos": true,
+    "vias": [
+     {
+      "fonte": "SIOPE, linhas 6.1.1 a 6.4.1",
+      "valor": 941293344.1
+     },
+     {
+      "fonte": "RREO Anexo 3, transferências do FUNDEB",
+      "valor": 941293344.1
+     }
+    ],
+    "nota": "confirmado em duas vias independentes"
+   },
+   {
+    "titulo": "Despesa liquidada com educação (6º bimestre de 2025)",
+    "referencia": "SIOPE, 6º bimestre de 2025; RREO do 6º bimestre de 2025",
+    "selo": "verde",
+    "divergencia": false,
+    "entre_demonstrativos": true,
+    "vias": [
+     {
+      "fonte": "SIOPE, linha 33",
+      "valor": 2068310203.86
+     },
+     {
+      "fonte": "RREO Anexo 2, função Educação",
+      "valor": 2068310203.86
+     }
+    ],
+    "nota": "confirmado em duas vias independentes"
+   },
+   {
+    "titulo": "Percentual aplicado em MDE (6º bimestre de 2025)",
+    "referencia": "SIOPE, 6º bimestre de 2025; RREO do 6º bimestre de 2025",
+    "selo": "verde",
+    "divergencia": false,
+    "entre_demonstrativos": true,
+    "vias": [
+     {
+      "fonte": "SIOPE, linha 29",
+      "valor": 25.83
+     },
+     {
+      "fonte": "RREO Anexo 14 (SICONFI)",
+      "valor": 25.83
+     }
+    ],
+    "nota": "confirmado em duas vias independentes"
+   },
+   {
+    "titulo": "Percentual do FUNDEB nos profissionais (6º bimestre de 2025)",
+    "referencia": "SIOPE, 6º bimestre de 2025; RREO do 6º bimestre de 2025",
+    "selo": "verde",
+    "divergencia": false,
+    "entre_demonstrativos": true,
+    "vias": [
+     {
+      "fonte": "SIOPE, linha 15",
+      "valor": 84.01
+     },
+     {
+      "fonte": "RREO Anexo 14 (SICONFI)",
+      "valor": 84.07
+     }
+    ],
+    "nota": "confirmado em duas vias independentes"
+   },
+   {
+    "titulo": "Receita do FUNDEB não aplicada em 2025",
+    "referencia": "SIOPE, 6º bimestre de 2025",
+    "selo": "verde",
+    "divergencia": false,
+    "entre_demonstrativos": false,
+    "vias": [
+     {
+      "fonte": "SIOPE, linha 18",
+      "valor": 44043780.98
+     },
+     {
+      "fonte": "SIOPE, linhas 6 - 11",
+      "valor": 44043780.9799999
      }
     ],
     "nota": "confirmado em duas vias independentes"

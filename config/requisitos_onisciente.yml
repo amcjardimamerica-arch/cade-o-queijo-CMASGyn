@@ -21,9 +21,8 @@
   bloco: Premissas
   requisito: A fonte oficial certifica a si mesma (duas vias)
   situacao: parcial
-  evidencia: 'selar() roda no pipeline: RCL, RCL ajustada e dívida consolidada líquida conferidas entre o RGF e o RREO (fiscal.py),
-    verdes em todos os quadrimestres do banco; o rio ainda sai só com a LOA'
-  falta: Duas vias no rio (RREO × Tesouro/FNAS) e nos pisos de saúde e educação
+  evidencia: 'selar() roda no pipeline: RGF × RREO (RCL, RCL ajustada, dívida); desde o bloco 2, SIOPS × RREO na saúde e SIOPE × RREO na educação e no FUNDEB (base de impostos, receitas e transferências do FUNDEB, despesa liquidada e percentuais), todas verdes no fechamento de 2024 e 2025; a divergência real do FUNDEB no 4º bimestre de 2026 vira indício'
+  falta: Duas vias no rio (RREO × Tesouro/FNAS), bloco 3
   trava: testes/test_fiscal.py::test_duas_vias_rgf_contra_rreo_em_todos_os_quadrimestres
 - id: 4
   bloco: Premissas
@@ -248,27 +247,31 @@
 - id: 40
   bloco: Pisos e tetos
   requisito: Saúde 15%
-  situacao: parcial
-  evidencia: Regra PISO-SAUDE e medir() prontos; RREO Anexo 12 não vem do SICONFI (diagnóstico)
-  falta: Ler do SIOPS
+  situacao: cumprido
+  evidencia: SIOPS lido pelo formulário público, 17 bimestres de 2024 a 2026 no banco; base própria pelo RREO Anexo 3 e DCA; 21,74% (2024) e 21,56% (2025) contra 21,77% e 21,54% declarados, duas vias verdes; antes do 6º bimestre, o ritmo do ano anterior é a régua
+  falta: ''
+  trava: testes/test_fiscal.py::test_piso_da_saude_no_banco_real_com_duas_vias_em_cada_ano
 - id: 41
   bloco: Pisos e tetos
   requisito: Educação 25%
-  situacao: parcial
-  evidencia: Regra PISO-EDUCACAO; Anexo 8 ausente
-  falta: Ler do SIOPE
+  situacao: cumprido
+  evidencia: SIOPE lido do PDF público do FNDE (RREO Anexo 8), 16 bimestres de 2024 a 2026 no banco; base própria com as cotas extras do FPM pela DCA; 25,07% (2024) e 25,85% (2025) contra 25,10% e 25,83% declarados, conferências verdes
+  falta: ''
+  trava: testes/test_fiscal.py::test_educacao_e_fundeb_no_banco_real_com_duas_vias_em_cada_ano
 - id: 42
   bloco: Pisos e tetos
   requisito: Fundeb 70% profissionais
-  situacao: parcial
-  evidencia: Regra FUNDEB-PROFISSIONAIS; sem dado
-  falta: SIOPE
+  situacao: cumprido
+  evidencia: 'Linha 12 sobre as receitas do FUNDEB sem o VAAR: 83,93% (2024) e 84,01% (2025), iguais ao declarado; conferido com o RREO Anexo 14; abaixo de 70% no fechamento descumpre'
+  falta: ''
+  trava: testes/test_fiscal.py::test_educacao_e_fundeb_no_banco_real_com_duas_vias_em_cada_ano
 - id: 43
   bloco: Pisos e tetos
   requisito: Fundeb saldo até 10%
-  situacao: parcial
-  evidencia: Regra FUNDEB-SALDO; sem dado
-  falta: SIOPE
+  situacao: cumprido
+  evidencia: 'Receita do FUNDEB menos o empenhado, no fechamento: 6,39% (2024) e 4,65% (2025), iguais ao declarado na linha 18'
+  falta: ''
+  trava: testes/test_fiscal.py::test_educacao_e_fundeb_no_banco_real_com_duas_vias_em_cada_ano
 - id: 44
   bloco: Pisos e tetos
   requisito: Pessoal 54% com alerta 48,6% e prudencial 51,3%
@@ -319,10 +322,10 @@
 - id: 51
   bloco: Pisos e tetos
   requisito: Cálculo próprio × declarado (mais de 1% = indício)
-  situacao: parcial
-  evidencia: Aplicado ao IGD e, desde o bloco 1, a pessoal, dívida e crédito (ficha PISO-DIV quando passa de 1%)
-  falta: Aplicar a saúde, educação e FUNDEB (bloco 2; a Câmara não tem percentual declarado e é conferida por duas vias)
-  trava: testes/test_fiscal.py::test_declarado_diferente_do_calculo_proprio_vira_ficha
+  situacao: cumprido
+  evidencia: Cálculo próprio × declarado no IGD, pessoal, dívida, crédito e, desde o bloco 2, saúde, MDE e os dois do FUNDEB (ficha PISO-DIV quando passa de 1%); a Câmara é conferida por duas vias
+  falta: ''
+  trava: testes/test_fiscal.py::test_fundeb_abaixo_de_70_no_fim_do_ano_descumpre
 - id: 52
   bloco: Pisos e tetos
   requisito: Piso do IGD ao controle social
@@ -806,9 +809,10 @@
 - id: 131
   bloco: Parecer
   requisito: Pisos e tetos
-  situacao: parcial
-  evidencia: IGD e, desde os blocos 1 e 2, pessoal, dívida, crédito e Câmara do Município com memória de cálculo e duas vias
-  falta: Saúde, educação e FUNDEB
+  situacao: cumprido
+  evidencia: O parecer mensal traz IGD, pessoal, dívida, crédito, Câmara, saúde, MDE e FUNDEB com medidor, memória de cálculo, fonte e duas vias (pareceres de 2026 refeitos com o banco real)
+  falta: ''
+  trava: testes/test_fiscal.py::test_parecer_traz_o_municipio_e_as_duas_vias
 - id: 132
   bloco: Parecer
   requisito: Contas uma a uma (9 maiores saídas, 4 estações, cronologia)
@@ -878,15 +882,17 @@
 - id: 143
   bloco: Fontes e cadência
   requisito: SIOPS
-  situacao: ausente
-  evidencia: Não coletado
-  falta: Coletor
+  situacao: parcial
+  evidencia: 'Coletor pelo formulário público (motor siops): 17 bimestres de 2024 a 2026 homologados no banco; bimestre no prazo não é lacuna'
+  falta: Entrar na agenda mensal (bloco 6)
+  trava: testes/test_historico.py::test_siops_le_o_bimestre_pelo_formulario_e_guarda_linha_a_linha
 - id: 144
   bloco: Fontes e cadência
   requisito: SIOPE
-  situacao: ausente
-  evidencia: Não coletado
-  falta: Coletor
+  situacao: parcial
+  evidencia: 'Coletor do PDF público do FNDE no FTP do SIOPE (motor siope): 16 bimestres de 2024 a 2026 no banco; o 5º de 2026 ainda no prazo'
+  falta: Entrar na agenda mensal (bloco 6)
+  trava: testes/test_historico.py::test_siope_guarda_o_bimestre_e_o_ftp_sem_arquivo_vira_lacuna
 - id: 145
   bloco: Fontes e cadência
   requisito: 'Tesouro: FPM, ITR, ICMS e outras transferências'
@@ -998,16 +1004,16 @@
 - id: 163
   bloco: Roteiro e portões
   requisito: 'Fase 3: pisos batem com SIOPS, SIOPE e RGF 2024/2025'
-  situacao: parcial
-  evidencia: RGF 2024/2025 medido e batendo com o declarado em todos os quadrimestres
-  falta: SIOPS e SIOPE
-  trava: testes/test_fiscal.py::test_tetos_de_2025_batem_com_o_declarado
+  situacao: cumprido
+  evidencia: Pisos de 2024 e 2025 batem com SIOPS (saúde), SIOPE (MDE e FUNDEB) e RGF (pessoal, dívida, crédito), dentro de 1%
+  falta: ''
+  trava: testes/test_fiscal.py::test_educacao_e_fundeb_no_banco_real_com_duas_vias_em_cada_ano
 - id: 164
   bloco: Roteiro e portões
   requisito: 'Fase 4: integridade de Saúde e Educação medida'
-  situacao: ausente
-  evidencia: Domínios inativos
-  falta: Coletores SIOPS e SIOPE e domínios de Saúde e Educação ativos (bloco 5)
+  situacao: parcial
+  evidencia: Pisos de saúde, educação e FUNDEB medidos com duas vias desde o bloco 2
+  falta: Domínios de Saúde e Educação ativos com FNS e FNDE (bloco 5)
 - id: 165
   bloco: Roteiro e portões
   requisito: 'Fase 5: cada contrato com item de catálogo comparado à mediana'

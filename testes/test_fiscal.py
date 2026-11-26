@@ -377,3 +377,30 @@ def test_piso_abaixo_do_ritmo_do_ano_anterior_e_alerta(tmp_path):
     assert mde.situacao == "alerta" and mde.percentual < 20.06
     assert "abaixo desse ritmo" in f.memoria["PISO-EDUCACAO"]
     assert "PISO-PISO-EDUCACAO-2026-08" in {x.codigo for x in f.fichas("2026-08")}
+
+
+def test_educacao_e_fundeb_no_banco_real_com_duas_vias_em_cada_ano():
+    # Conta própria × SIOPE no fechamento de 2024 e de 2025; todas as conferências verdes.
+    esperado = {2024: (25.07, 25.10, 83.93, 6.39), 2025: (25.85, 25.83, 84.01, 4.65)}
+    for ano, (mde, mde_decl, setenta, saldo) in esperado.items():
+        f = fiscal.medir_municipio(date(ano, 12, 31))
+        m = {x.regra.id: x for x in f.medidas}
+        assert m["PISO-EDUCACAO"].percentual == pytest.approx(mde, abs=0.01)
+        assert m["PISO-EDUCACAO"].declarado == pytest.approx(mde_decl, abs=0.001)
+        assert m["FUNDEB-PROFISSIONAIS"].percentual == pytest.approx(setenta, abs=0.01)
+        assert m["FUNDEB-SALDO"].percentual == pytest.approx(saldo, abs=0.01)
+        for rid in ("PISO-EDUCACAO", "FUNDEB-PROFISSIONAIS", "FUNDEB-SALDO"):
+            assert m[rid].situacao == "cumpre" and m[rid].selo is Selo.VERDE, (ano, rid)
+        educ = [c for c in f.conferencias if c.titulo.startswith((
+            "Receita da base da educação", "Receita destinada ao FUNDEB", "Transferências recebidas do FUNDEB",
+            "Despesa liquidada com educação", "Percentual aplicado em MDE", "Percentual do FUNDEB"))]
+        assert len(educ) == 6 and all(c.certificacao.selo is Selo.VERDE for c in educ), ano
+
+
+def test_fundeb_no_1o_bimestre_segue_o_ritmo_do_ano_anterior():
+    f = fiscal.medir_municipio(date(2026, 2, 28))
+    setenta = next(m for m in f.medidas if m.regra.id == "FUNDEB-PROFISSIONAIS")
+    assert setenta.percentual < 70 and setenta.situacao == "acompanha"
+    f = fiscal.medir_municipio(date(2025, 2, 28))          # 2025 começou abaixo do ritmo de 2024
+    setenta = next(m for m in f.medidas if m.regra.id == "FUNDEB-PROFISSIONAIS")
+    assert setenta.situacao == "alerta" and "65.46%" in f.memoria["FUNDEB-PROFISSIONAIS"]
