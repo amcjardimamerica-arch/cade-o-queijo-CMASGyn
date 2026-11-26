@@ -12,6 +12,7 @@ from __future__ import annotations
 import json
 import ssl
 import urllib.error
+import urllib.parse
 import urllib.request
 from dataclasses import dataclass
 from datetime import date, datetime, timezone
@@ -40,9 +41,13 @@ class Leitura:
 
 
 def ler(url: str, *, tempo: int = 60, fonte: str = "",
-        cabecalhos: dict[str, str] | None = None) -> Leitura:
-    """Lê uma URL pública. Nunca levanta exceção: devolve a falha descrita."""
-    pedido = urllib.request.Request(url, headers={"User-Agent": AGENTE, **(cabecalhos or {})})
+        cabecalhos: dict[str, str] | None = None, formulario: dict | None = None) -> Leitura:
+    """Lê uma URL pública. Nunca levanta exceção: devolve a falha descrita.
+
+    ``formulario`` envia os campos por POST, como o botão de consulta de uma página pública.
+    """
+    dados = urllib.parse.urlencode(formulario, doseq=True).encode() if formulario else None
+    pedido = urllib.request.Request(url, data=dados, headers={"User-Agent": AGENTE, **(cabecalhos or {})})
     contexto = None
     for tentativa in (1, 2):
         try:
