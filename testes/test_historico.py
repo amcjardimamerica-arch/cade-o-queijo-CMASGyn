@@ -189,3 +189,16 @@ def test_disjuntor_para_de_chamar_fonte_fora_do_ar(tmp_path):
     ctx.fim_do_motor = 0                          # tempo esgotado: nem o site novo é chamado
     ctx.ler("fontes", "y", "https://outro/", disjuntor=False)
     assert len(chamadas) == 6
+
+
+def test_somar_refaz_so_o_motor_pedido(tmp_path):
+    caminho = tmp_path / "h.db"
+    comum = dict(caminho=caminho, hoje=date(2026, 11, 26), ler_url=_ler_falso,
+                 dormir=lambda s: None, pausa=0)
+    historico.rodar("2025-01", "2025-01", motores=("siconfi", "querido_diario"), **comum).fechar()
+    banco = historico.rodar("2025-01", "2025-01", motores=("querido_diario",), somar=True, **comum)
+    assert banco.consultar("SELECT COUNT(*) FROM siconfi_periodos")[0][0] > 0   # ficou
+    assert banco.consultar("SELECT COUNT(*) FROM diario_oficial_mes")[0][0] == 1  # refeito, sem dobrar
+    banco.fechar()
+    with pytest.raises(ValueError):
+        historico.rodar("2024-01", "2025-01", motores=("sileg",), somar=True, **comum)

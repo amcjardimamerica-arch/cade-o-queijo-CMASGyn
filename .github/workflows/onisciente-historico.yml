@@ -34,7 +34,7 @@ jobs:
       - name: Ligar os motores
         run: |
           python -m onisciente historico --desde "$DESDE" --ate "$ATE" \
-            ${MOTORES:+--motores "$MOTORES"} --brutos "$RUNNER_TEMP/brutos"
+            ${MOTORES:+--motores "$MOTORES" --somar} --brutos "$RUNNER_TEMP/brutos"
       - name: Diagnóstico na página da execução
         if: always()
         run: |

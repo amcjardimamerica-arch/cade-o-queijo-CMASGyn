@@ -158,7 +158,8 @@ def cmd_historico(args) -> int:
         print(f"motor desconhecido: {', '.join(sorted(desconhecidos))}", file=sys.stderr)
         return 2
     banco = historico.rodar(args.desde, args.ate, motores=motores,
-                            brutos=Path(args.brutos) if args.brutos else None, pausa=args.pausa)
+                            brutos=Path(args.brutos) if args.brutos else None, pausa=args.pausa,
+                            somar=args.somar)
     d = diagnostico.diagnosticar(banco)
     banco.fechar()
     _imprimir_diagnostico(d, diagnostico.gravar(d, SAIDA_RELATORIOS))
@@ -196,6 +197,8 @@ def main(argv: list[str] | None = None) -> int:
     ph.add_argument("--motores", help="lista separada por vírgula (padrão: todos)")
     ph.add_argument("--brutos", help="pasta para guardar as respostas cruas")
     ph.add_argument("--pausa", type=float, default=1.0, help="segundos entre chamadas")
+    ph.add_argument("--somar", action="store_true",
+                    help="refaz só os motores pedidos no banco existente, mantendo os outros")
     ph.set_defaults(f=cmd_historico)
     sub.add_parser("diagnostico", help="refaz o diagnóstico a partir do banco histórico") \
         .set_defaults(f=cmd_diagnostico)

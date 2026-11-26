@@ -135,33 +135,48 @@ def periodos_do_intervalo(lista_meses: list[str], hoje: date) -> list[Periodo]:
 # --- Banco --------------------------------------------------------------------------
 
 ESQUEMA = """
-CREATE TABLE coletas (motor TEXT, alvo TEXT, mes TEXT, url TEXT, ok INTEGER, http INTEGER,
+CREATE TABLE IF NOT EXISTS coletas (motor TEXT, alvo TEXT, mes TEXT, url TEXT, ok INTEGER, http INTEGER,
     erro TEXT, tentativas INTEGER, segundos REAL, bytes INTEGER, sha256 TEXT, quando TEXT);
-CREATE TABLE siconfi_periodos (demonstrativo TEXT, exercicio INTEGER, periodo INTEGER,
+CREATE TABLE IF NOT EXISTS siconfi_periodos (demonstrativo TEXT, exercicio INTEGER, periodo INTEGER,
     rotulo TEXT, termina TEXT, prazo TEXT, situacao TEXT, itens INTEGER, anexos INTEGER, erro TEXT);
-CREATE TABLE siconfi_anexos (demonstrativo TEXT, exercicio INTEGER, periodo INTEGER,
+CREATE TABLE IF NOT EXISTS siconfi_anexos (demonstrativo TEXT, exercicio INTEGER, periodo INTEGER,
     anexo TEXT, itens INTEGER, guardado INTEGER);
-CREATE TABLE siconfi_itens (demonstrativo TEXT, exercicio INTEGER, periodo INTEGER, anexo TEXT,
+CREATE TABLE IF NOT EXISTS siconfi_itens (demonstrativo TEXT, exercicio INTEGER, periodo INTEGER, anexo TEXT,
     rotulo TEXT, coluna TEXT, cod_conta TEXT, conta TEXT, valor REAL);
-CREATE TABLE siconfi_entregas (exercicio INTEGER, entregavel TEXT, periodo INTEGER,
+CREATE TABLE IF NOT EXISTS siconfi_entregas (exercicio INTEGER, entregavel TEXT, periodo INTEGER,
     periodicidade TEXT, status TEXT, data_status TEXT, forma_envio TEXT, tipo TEXT);
-CREATE TABLE diario_oficial (fonte TEXT, mes TEXT, data TEXT, edicao TEXT, extra INTEGER,
+CREATE TABLE IF NOT EXISTS diario_oficial (fonte TEXT, mes TEXT, data TEXT, edicao TEXT, extra INTEGER,
     url TEXT, com_termos INTEGER);
-CREATE TABLE diario_oficial_mes (fonte TEXT, mes TEXT, edicoes INTEGER, com_termos INTEGER,
+CREATE TABLE IF NOT EXISTS diario_oficial_mes (fonte TEXT, mes TEXT, edicoes INTEGER, com_termos INTEGER,
     erro TEXT);
-CREATE TABLE repasses_fnas (competencia TEXT, tipo TEXT, bloco TEXT, programa TEXT, valor REAL,
+CREATE TABLE IF NOT EXISTS repasses_fnas (competencia TEXT, tipo TEXT, bloco TEXT, programa TEXT, valor REAL,
     ordem_bancaria TEXT, planilha INTEGER);
-CREATE TABLE contratacoes_pncp (pncp_id TEXT PRIMARY KEY, mes TEXT, modalidade TEXT,
+CREATE TABLE IF NOT EXISTS contratacoes_pncp (pncp_id TEXT PRIMARY KEY, mes TEXT, modalidade TEXT,
     orgao_cnpj TEXT, orgao TEXT, esfera TEXT, unidade TEXT, objeto TEXT, valor_estimado REAL,
     valor_homologado REAL, situacao TEXT);
-CREATE TABLE contratos_pncp (pncp_id TEXT PRIMARY KEY, mes TEXT, data_assinatura TEXT,
+CREATE TABLE IF NOT EXISTS contratos_pncp (pncp_id TEXT PRIMARY KEY, mes TEXT, data_assinatura TEXT,
     orgao_cnpj TEXT, orgao TEXT, unidade TEXT, fornecedor_ni TEXT, fornecedor TEXT, objeto TEXT,
     valor_global REAL, da_pasta INTEGER);
-CREATE TABLE fontes (grupo TEXT, nome TEXT, url TEXT, ok INTEGER, http INTEGER, erro TEXT,
+CREATE TABLE IF NOT EXISTS fontes (grupo TEXT, nome TEXT, url TEXT, ok INTEGER, http INTEGER, erro TEXT,
     esperado TEXT);
-CREATE TABLE normas (caminho TEXT, ok INTEGER, revogada INTEGER, erro TEXT);
-CREATE TABLE meta (chave TEXT PRIMARY KEY, valor TEXT);
+CREATE TABLE IF NOT EXISTS normas (caminho TEXT, ok INTEGER, revogada INTEGER, erro TEXT);
+CREATE TABLE IF NOT EXISTS meta (chave TEXT PRIMARY KEY, valor TEXT);
 """
+
+
+# O que cada motor grava, para refazer um motor sem perder os outros.
+TABELAS_DO_MOTOR = {
+    "siconfi": [("coletas", "motor IN ('siconfi', 'siconfi-antiga')"), ("siconfi_periodos", ""),
+                ("siconfi_anexos", ""), ("siconfi_itens", ""), ("siconfi_entregas", "")],
+    "querido_diario": [("coletas", "motor = 'qd'"), ("diario_oficial", "fonte = 'querido_diario'"),
+                       ("diario_oficial_mes", "fonte = 'querido_diario'")],
+    "sileg": [("coletas", "motor = 'sileg'"), ("diario_oficial_mes", "fonte = 'sileg'")],
+    "fnas": [("coletas", "motor = 'fnas'"), ("repasses_fnas", "")],
+    "pncp": [("coletas", "motor = 'pncp'"), ("contratacoes_pncp", ""), ("contratos_pncp", ""),
+             ("meta", "chave = 'pncp_orgaos'")],
+    "fontes": [("coletas", "motor = 'fontes'"), ("fontes", "")],
+    "normas": [("coletas", "motor = 'ctresb'"), ("normas", "")],
+}
 
 
 class Banco:
@@ -180,7 +195,14 @@ class Banco:
         banco = cls.__new__(cls)
         banco.caminho = caminho
         banco.con = sqlite3.connect(str(caminho))
+        banco.con.executescript(ESQUEMA)
         return banco
+
+    def apagar_motor(self, motor: str) -> None:
+        """Tira do banco tudo o que um motor gravou, para ele coletar de novo."""
+        for tabela, filtro in TABELAS_DO_MOTOR[motor]:
+            self.con.execute(f"DELETE FROM {tabela}" + (f" WHERE {filtro}" if filtro else ""))
+        self.con.execute("DELETE FROM meta WHERE chave = ?", (f"motor:{motor}",))
 
     def inserir(self, tabela: str, linha: dict) -> None:
         colunas = ", ".join(linha)
@@ -613,10 +635,22 @@ TEMPO_PADRAO = 12
 
 
 def rodar(desde: str, ate: str, *, motores=MOTORES, caminho=BANCO, hoje: date | None = None,
-          brutos: Path | None = None, tempo_limitado: bool = True, **kw) -> Banco:
+          brutos: Path | None = None, tempo_limitado: bool = True, somar: bool = False,
+          **kw) -> Banco:
+    """Liga os motores. Com ``somar``, refaz só esses motores num banco já existente do mesmo
+    intervalo e mantém o que os outros coletaram."""
     from .config import carregar_alvo
     alvo = carregar_alvo()
-    banco = Banco(caminho)
+    if somar and Path(caminho).exists():
+        banco = Banco.abrir(caminho)
+        anterior = dict(banco.consultar("SELECT chave, valor FROM meta")).get("intervalo")
+        if anterior and anterior != f"{desde} a {ate}":
+            banco.con.close()
+            raise ValueError(f"o banco é de {anterior}; para somar, use o mesmo intervalo")
+        for nome in motores:
+            banco.apagar_motor(nome)
+    else:
+        banco = Banco(caminho)
     ctx = Contexto(banco, meses(desde, ate), hoje or date.today(), brutos=brutos, **kw)
     banco.inserir("meta", {"chave": "intervalo", "valor": f"{desde} a {ate}"})
     banco.inserir("meta", {"chave": "rodada", "valor": datetime.now(timezone.utc).isoformat(
