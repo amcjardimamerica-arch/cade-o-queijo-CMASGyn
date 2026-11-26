@@ -25,7 +25,7 @@ from .coletores.base import ler
 PASTA = RAIZ / "relatorios" / "onisciente" / "sondagem"
 LIMITE = 600_000
 LIMITE_GRANDE = 6_000_000   # a MSC vem em páginas de milhares de linhas: guarda a página inteira
-GRANDES = {"msc"}
+GRANDES = {"msc", "pncp_detalhe"}
 
 OLINDA = "https://www.fnde.gov.br/olinda-ide/servico/"
 CANDIDATOS: dict[str, list[str]] = {
@@ -139,6 +139,23 @@ CANDIDATOS: dict[str, list[str]] = {
     # Sexta rodada: os PDFs do RREO Anexo 8 de Goiânia no FTP do SIOPE, guardados em bruto.
     "siope6": [f"ftp://ftp.fnde.gov.br/web/siope/RREO/RREO_Municipal_520870_{b}_{a}.pdf"
                for a, bs in ((2024, (6,)), (2025, (1, 6)), (2026, (1, 2, 3, 4, 5))) for b in bs],
+    # Bloco 4: o detalhe das contratações e dos contratos do PNCP (amparo legal, itens, resultados,
+    # termos aditivos) e o painel de preços do Compras.gov.br, com as especificações das APIs.
+    "pncp_detalhe": [
+        "https://pncp.gov.br/api/pncp/v3/api-docs",
+        "https://pncp.gov.br/api/consulta/v3/api-docs",
+        "https://dadosabertos.compras.gov.br/v3/api-docs",
+        "https://pncp.gov.br/api/consulta/v1/orgaos/04973965000111/compras/2024/43",
+        "https://pncp.gov.br/api/pncp/v1/orgaos/04973965000111/compras/2024/43",
+        "https://pncp.gov.br/api/pncp/v1/orgaos/04973965000111/compras/2024/43/itens?pagina=1&tamanhoPagina=100",
+        "https://pncp.gov.br/api/pncp/v1/orgaos/04973965000111/compras/2024/43/itens/1/resultados",
+        "https://pncp.gov.br/api/pncp/v1/orgaos/17577524000142/compras/2024/16/itens?pagina=1&tamanhoPagina=100",
+        "https://pncp.gov.br/api/pncp/v1/orgaos/04973965000111/contratos/2024/47",
+        "https://pncp.gov.br/api/pncp/v1/orgaos/04973965000111/contratos/2024/47/termos",
+        "https://pncp.gov.br/api/pncp/v1/orgaos/17736850000155/contratos/2024/1/termos",
+        "https://pncp.gov.br/api/consulta/v1/contratos?dataInicial=20241101&dataFinal=20241130"
+        "&cnpjOrgao=04973965000111&pagina=1&tamanhoPagina=10",
+    ],
     "transferegov": [
         "https://api.transferegov.gestao.gov.br/transferenciasespeciais/",
         "https://api.transferegov.gestao.gov.br/fundoafundo/",
