@@ -65,6 +65,8 @@ CANDIDATOS: dict[str, list[str]] = {
         "https://portaldatransparencia.gov.br/transferencias/consulta?paginacaoSimples=true&tamanhoPagina=10"
         "&offset=0&direcaoOrdenacao=asc&de=01%2F01%2F2025&ate=31%2F01%2F2025&uf=GO&nomeMunicipio=GOIANIA",
     ],
+    # As transferências do mês no Portal da Transparência (arquivo de dados abertos, sem chave).
+    "transparencia": ["https://portaldatransparencia.gov.br/download-de-dados/transferencias/202501"],
     # Segunda rodada: a consulta pública do SIOPS (Anexo XVI, ASPS) e o RREO municipal do SIOPE.
     "siops2": [
         "http://siops.datasus.gov.br/consleirespfiscal.php?UF=52&Ano=2025&Periodo=1&Municipio=&MudouAno=true",
@@ -142,8 +144,9 @@ def _guardar(fonte: str, url: str, leitura, formulario: dict | None = None) -> d
     PASTA.mkdir(parents=True, exist_ok=True)
     arq = PASTA / f"{fonte}__{_slug(url, formulario)}.txt"
     bruto = leitura.conteudo[:LIMITE]
-    if leitura.ok and bruto.startswith(b"%PDF"):      # binário: os bytes como vieram, em base64
-        arq.with_suffix(".pdf.b64").write_text(base64.b64encode(leitura.conteudo).decode())
+    if leitura.ok and bruto.startswith((b"%PDF", b"PK\x03\x04")):   # binário: os bytes como vieram, em base64
+        sufixo = ".pdf.b64" if bruto.startswith(b"%PDF") else ".zip.b64"
+        arq.with_suffix(sufixo).write_text(base64.b64encode(leitura.conteudo).decode())
     try:
         corpo = bruto.decode("utf-8") if leitura.ok else ""
     except UnicodeDecodeError:
