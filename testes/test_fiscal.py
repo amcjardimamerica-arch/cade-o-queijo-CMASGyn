@@ -53,6 +53,8 @@ def test_tetos_de_2025_batem_com_o_declarado():
     assert por["DIVIDA-CONSOLIDADA"].percentual == pytest.approx(8.06, abs=0.01)
     assert por["OPERACOES-CREDITO"].percentual == pytest.approx(1.34, abs=0.01)
     for m in f.medidas:
+        if m.regra.id not in ("PESSOAL-EXECUTIVO", "DIVIDA-CONSOLIDADA", "OPERACOES-CREDITO"):
+            continue                       # os pisos têm testes próprios
         assert m.selo is Selo.VERDE and not m.divergencia and m.situacao == "cumpre"
         assert f.memoria[m.regra.id]
     # memória de cálculo com a despesa bruta dos doze meses publicados
@@ -176,3 +178,87 @@ def test_sem_banco_o_parecer_diz_que_a_leitura_falhou(tmp_path):
     assert p.fiscal is None
     assert p.integridade.cobertura is None and p.integridade.coerencia is None
     assert any("Banco histórico" in v for v in p.leitura_falhou)
+
+
+# --- Saúde: o Anexo 12 homologado no SIOPS, com a base refeita pelo RREO e pela DCA ---------
+
+DADOS = RAIZ / "testes" / "dados"
+
+
+def _banco_com_siops(tmp_path, *, exercicio=2025, periodo=6, ajuste=None):
+    """Cópia do banco com o demonstrativo da saúde de 2025 (6º bimestre) lido da página do SIOPS."""
+    from onisciente import historico
+    from onisciente.coletores import siops
+    copia = tmp_path / "historico.db"
+    shutil.copy(BANCO, copia)
+    b = historico.Banco.abrir(copia)
+    d = siops.ler((DADOS / "siops_goiania_2025_6bim.html").read_text(encoding="utf-8"))
+    for linha in d.linhas:
+        for coluna, valor in enumerate(linha.valores):
+            if valor is not None:
+                b.inserir("externos_itens", dict(
+                    fonte="SIOPS", exercicio=exercicio, periodo=periodo, quadro=linha.quadro,
+                    titulo_quadro=linha.titulo_quadro, ordem=linha.ordem, rotulo=linha.rotulo,
+                    coluna=coluna, valor=valor))
+    b.inserir("externos_periodos", dict(fonte="SIOPS", exercicio=exercicio, periodo=periodo,
+                                        homologado=d.homologado, situacao="homologado",
+                                        linhas=len(d.linhas), erro=None))
+    if ajuste:
+        b.con.execute(ajuste)
+    b.con.commit()
+    b.con.close()
+    return copia
+
+
+def test_siops_lido_linha_a_linha():
+    from onisciente.coletores import siops
+    escolha = (DADOS / "siops_escolha_go_2025.html").read_text(encoding="utf-8")
+    assert siops.periodos(escolha) == {1: "12", 2: "14", 3: "1", 4: "18", 5: "20", 6: "2"}
+    assert siops.codigo_municipio(escolha, "Goiânia") == "520870"
+    d = siops.ler((DADOS / "siops_goiania_2025_6bim.html").read_text(encoding="utf-8"))
+    assert (d.exercicio, d.bimestre, d.homologado) == (2025, 6, "06/02/26 10:00:59")
+    assert d.procurar(r"^PERCENTUAL DA RECEITA").valores == [21.54, 21.33, 21.23]
+    assert d.procurar(r"^COTA-PARTE FPM").valores[2] == 648304218.84
+    with pytest.raises(ValueError):
+        siops.ler("<html>O Municipio não transmitiu</html>")
+
+
+def test_piso_da_saude_de_2025_com_base_propria_e_duas_vias(tmp_path):
+    f = fiscal.medir_municipio(date(2025, 12, 31), banco=_banco_com_siops(tmp_path))
+    saude = next(m for m in f.medidas if m.regra.id == "PISO-SAUDE")
+    assert saude.situacao == "cumpre" and saude.selo is Selo.VERDE and not saude.divergencia
+    assert saude.declarado == 21.54 and saude.percentual == pytest.approx(21.56, abs=0.01)
+    assert saude.numerador == pytest.approx(1301828372.25)          # empenhado: fim do exercício
+    vias = {c.titulo: c for c in f.conferencias if "saúde" in c.titulo}
+    assert set(vias) == {"Receita da base da saúde (6º bimestre de 2025)",
+                         "Despesa liquidada com saúde (6º bimestre de 2025)"}
+    assert all(c.selo is Selo.VERDE and c.entre_demonstrativos for c in vias.values())
+    assert "cota mensal" in f.memoria["PISO-SAUDE"] and "DCA" in f.fontes["PISO-SAUDE"]
+
+
+def test_saude_declarada_diferente_do_calculo_vira_ficha(tmp_path):
+    banco = _banco_com_siops(tmp_path, ajuste="update externos_itens set valor = 25.0 where rotulo like "
+                                              "'PERCENTUAL DA RECEITA%' and coluna = 0")
+    f = fiscal.medir_municipio(date(2025, 12, 31), banco=banco)
+    saude = next(m for m in f.medidas if m.regra.id == "PISO-SAUDE")
+    assert saude.divergencia and saude.selo is Selo.AZUL
+    assert "PISO-DIV-PISO-SAUDE-2025-12" in {x.codigo for x in f.fichas("2025-12")}
+
+
+def test_saude_abaixo_de_15_antes_do_fim_do_ano_e_alerta(tmp_path):
+    # O mesmo demonstrativo posto no 2º bimestre de 2026, com o liquidado reduzido a R$ 100 milhões.
+    banco = _banco_com_siops(tmp_path, exercicio=2026, periodo=2, ajuste=(
+        "update externos_itens set valor = 100000000 where rotulo like '(=) VALOR APLICADO EM ASPS%' "
+        "and coluna = 1"))
+    f = fiscal.medir_municipio(date(2026, 4, 30), banco=banco)
+    saude = next(m for m in f.medidas if m.regra.id == "PISO-SAUDE")
+    assert saude.percentual < 15 and saude.situacao == "alerta"
+    assert saude.numerador == 100000000                              # liquidado: antes do fim do ano
+    assert "acompanhamento" in f.memoria["PISO-SAUDE"]
+    assert not any(x.titulo.endswith("limite descumprido") for x in f.fichas("2026-04"))
+
+
+def test_saude_sem_siops_fica_sem_dado():
+    f = fiscal.medir_municipio(date(2023, 12, 31))
+    saude = next(m for m in f.medidas if m.regra.id == "PISO-SAUDE")
+    assert saude.situacao == "sem_dado"

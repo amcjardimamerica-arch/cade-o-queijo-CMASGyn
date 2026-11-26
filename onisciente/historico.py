@@ -27,7 +27,7 @@ from typing import Callable
 from urllib.parse import urlencode
 
 from . import RAIZ
-from .coletores import base
+from .coletores import base, siops
 
 BANCO = RAIZ / "dados" / "onisciente" / "historico.db"
 SAIDA = RAIZ / "relatorios" / "onisciente"
@@ -164,6 +164,10 @@ CREATE TABLE IF NOT EXISTS fontes (grupo TEXT, nome TEXT, url TEXT, ok INTEGER, 
 CREATE TABLE IF NOT EXISTS normas (caminho TEXT, ok INTEGER, revogada INTEGER, erro TEXT);
 CREATE TABLE IF NOT EXISTS transferencias_tesouro (mes TEXT, item TEXT, destino TEXT, decendio1 REAL,
     decendio2 REAL, decendio3 REAL, total REAL);
+CREATE TABLE IF NOT EXISTS externos_periodos (fonte TEXT, exercicio INTEGER, periodo INTEGER,
+    homologado TEXT, situacao TEXT, linhas INTEGER, erro TEXT);
+CREATE TABLE IF NOT EXISTS externos_itens (fonte TEXT, exercicio INTEGER, periodo INTEGER, quadro INTEGER,
+    titulo_quadro TEXT, ordem INTEGER, rotulo TEXT, coluna INTEGER, valor REAL);
 CREATE TABLE IF NOT EXISTS meta (chave TEXT PRIMARY KEY, valor TEXT);
 """
 
@@ -179,6 +183,8 @@ TABELAS_DO_MOTOR = {
     "pncp": [("coletas", "motor = 'pncp'"), ("contratacoes_pncp", ""), ("contratos_pncp", ""),
              ("meta", "chave IN ('pncp_orgaos', 'pncp_janelas', 'pncp_procura')")],
     "fontes": [("coletas", "motor = 'fontes'"), ("fontes", "")],
+    "siops": [("coletas", "motor = 'siops'"), ("externos_periodos", "fonte = 'SIOPS'"),
+              ("externos_itens", "fonte = 'SIOPS'")],
     "tesouro": [("coletas", "motor = 'tesouro'"), ("transferencias_tesouro", ""),
                 ("meta", "chave = 'tesouro_meses'")],
     "normas": [("coletas", "motor = 'ctresb'"), ("normas", "")],
@@ -832,6 +838,63 @@ def motor_tesouro(ctx: Contexto, municipio: str, uf: str) -> None:
         {"lidos": lidos, "nao_publicados": nao_publicados})})
 
 
+# --- Motor: SIOPS (o demonstrativo da saúde, RREO Anexo 12, homologado no Ministério) -------
+
+def motor_siops(ctx: Contexto, municipio: str, uf_codigo: str) -> None:
+    """Para cada exercício do intervalo, os bimestres já fechados, como o SIOPS os publica."""
+    for ano in sorted({int(m[:4]) for m in ctx.meses}):
+        escolha = ctx.ler("siops", f"escolha {ano}", siops.url_escolha(uf_codigo, ano))
+        if not escolha.ok:
+            continue
+        pagina = siops.texto(escolha.conteudo)
+        codigos = siops.periodos(pagina)
+        mun = siops.codigo_municipio(pagina, municipio)
+        if not codigos or not mun:
+            _anotar(ctx, "siops", f"escolha {ano}", "", escolha.url,
+                    "formato: a página de escolha não trouxe os bimestres ou o município")
+            continue
+        for bim in range(1, 7):
+            per = Periodo("RREO", ano, bim)
+            if per.termina > ctx.hoje or not set(per.meses) & set(ctx.meses):
+                continue
+            linha_periodo = {"fonte": "SIOPS", "exercicio": ano, "periodo": bim, "homologado": None,
+                             "situacao": None, "linhas": 0, "erro": None}
+            codigo = codigos.get(bim)
+            if codigo is None:
+                linha_periodo.update(situacao="sem_periodo", erro="o SIOPS não oferece o bimestre")
+                ctx.banco.inserir("externos_periodos", linha_periodo)
+                continue
+            leitura = ctx.ler("siops", f"{ano}-{bim}", siops.RELATORIO, mes=per.meses[-1],
+                              formulario=siops.formulario(ano, uf_codigo, codigo, mun), tempo=90)
+            if not leitura.ok:
+                linha_periodo.update(situacao="falha", erro=leitura.erro)
+                ctx.banco.inserir("externos_periodos", linha_periodo)
+                continue
+            texto = siops.texto(leitura.conteudo)
+            try:
+                d = siops.ler(texto)
+            except ValueError as e:
+                nao = "NAO TRANSMITIU" in siops._norm(re.sub(r"<[^>]+>", " ", texto))
+                linha_periodo.update(situacao="nao_entregue" if nao else "formato", erro=str(e))
+                ctx.banco.inserir("externos_periodos", linha_periodo)
+                continue
+            if (d.exercicio, d.bimestre) != (ano, bim):
+                linha_periodo.update(situacao="formato",
+                                     erro=f"a página trouxe {d.bimestre}º bimestre de {d.exercicio}")
+                ctx.banco.inserir("externos_periodos", linha_periodo)
+                continue
+            for linha in d.linhas:
+                for coluna, valor in enumerate(linha.valores):
+                    if valor is None:
+                        continue
+                    ctx.banco.inserir("externos_itens", {
+                        "fonte": "SIOPS", "exercicio": ano, "periodo": bim, "quadro": linha.quadro,
+                        "titulo_quadro": linha.titulo_quadro, "ordem": linha.ordem, "rotulo": linha.rotulo,
+                        "coluna": coluna, "valor": valor})
+            linha_periodo.update(homologado=d.homologado, situacao="homologado", linhas=len(d.linhas))
+            ctx.banco.inserir("externos_periodos", linha_periodo)
+
+
 def enderecos_configurados(raiz: Path = RAIZ) -> list[tuple[str, str, str, str]]:
     """(grupo, nome, url, esperado) de cada endereço nos arquivos de fontes do sistema."""
     import yaml
@@ -878,7 +941,7 @@ def motor_normas(ctx: Contexto) -> None:
                                      "erro": r.get("erro")})
 
 
-MOTORES = ("siconfi", "querido_diario", "sileg", "fnas", "pncp", "fontes", "normas", "tesouro")
+MOTORES = ("siconfi", "querido_diario", "sileg", "fnas", "pncp", "fontes", "normas", "tesouro", "siops")
 # Minutos que cada motor pode usar numa rodada (o fluxo do GitHub para em 180).
 TEMPO_DO_MOTOR = {"pncp": 75, "siconfi": 20}
 TEMPO_PADRAO = 12
@@ -931,6 +994,7 @@ def rodar(desde: str, ate: str, *, motores=MOTORES, caminho=BANCO, hoje: date | 
         "fontes": lambda: motor_fontes(ctx),
         "normas": lambda: motor_normas(ctx),
         "tesouro": lambda: motor_tesouro(ctx, alvo.municipio, alvo.uf),
+        "siops": lambda: motor_siops(ctx, alvo.municipio, str(alvo.ibge)[:2]),
     }
     for nome in motores:
         inicio = time.monotonic()

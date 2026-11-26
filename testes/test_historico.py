@@ -404,3 +404,38 @@ def test_numero_da_planilha_do_tesouro():
     assert historico._numero_br("1.234,56") == 1234.56
     assert historico._numero_br("94869121.13") == 94869121.13
     assert historico._numero_br("") == 0.0
+
+
+# --- SIOPS: o demonstrativo da saúde, lido pelo formulário público -------------------------
+
+DADOS = __import__("pathlib").Path(__file__).parent / "dados"
+
+
+def test_siops_le_o_bimestre_pelo_formulario_e_guarda_linha_a_linha(tmp_path):
+    escolha = (DADOS / "siops_escolha_go_2025.html").read_bytes()
+    relatorio = (DADOS / "siops_goiania_2025_6bim.html").read_bytes()
+    pedidos = []
+
+    def leitor(url, formulario=None, **_):
+        pedidos.append((url, formulario))
+        if "consleirespfiscal" in url:
+            return base.Leitura(True, url, escolha, http=200)
+        if formulario and formulario["cmbPeriodo"] == "2":
+            return base.Leitura(True, url, relatorio, http=200)
+        return base.Leitura(True, url, "O Municipio não transmitiu".encode("latin-1"), http=200)
+
+    banco = historico.rodar("2025-09", "2025-12", caminho=tmp_path / "h.db", motores=("siops",),
+                            hoje=date(2026, 11, 26), ler_url=leitor, dormir=lambda s: None, pausa=0)
+    postados = [f for _, f in pedidos if f]
+    assert [f["cmbPeriodo"] for f in postados] == ["20", "2"]          # 5º e 6º bimestres
+    assert all(f["cmbMunicipio[]"] == "520870" and f["cmbUF"] == "52" for f in postados)
+    periodos = banco.consultar("SELECT periodo, situacao, homologado FROM externos_periodos ORDER BY periodo")
+    assert periodos == [(5, "nao_entregue", None), (6, "homologado", "06/02/26 10:00:59")]
+    pct = banco.consultar("SELECT coluna, valor FROM externos_itens WHERE rotulo LIKE 'PERCENTUAL DA RECEITA%' "
+                          "ORDER BY coluna")
+    assert pct == [(0, 21.54), (1, 21.33), (2, 21.23)]
+    d = diagnostico.diagnosticar(banco)
+    siops = [(a["tipo"], a["titulo"]) for a in d["achados"] if a["motor"] == "siops"]
+    assert siops == [("lacuna", "Saúde: 5º bimestre de 2025 sem demonstrativo homologado no SIOPS")]
+    assert d["contagens"]["siops_bimestres"] == {"homologado": 1, "nao_entregue": 1}
+    banco.fechar()

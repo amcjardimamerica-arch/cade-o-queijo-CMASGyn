@@ -14,7 +14,9 @@ import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
+from http.cookiejar import CookieJar
 from urllib.parse import quote
+from urllib.request import HTTPCookieProcessor, build_opener, install_opener
 
 from . import RAIZ
 from .coletores.base import ler
@@ -95,6 +97,19 @@ CANDIDATOS: dict[str, list[str]] = {
         "?@Ano_Consulta=2024&@Num_Peri=6&@Sig_UF='GO'&$format=json&$top=5",
         "https://www.fnde.gov.br/olinda-ide/servico/DADOS_ABERTOS_SIOPE/versao/v1/aplicacao",
     ],
+    # Quinta rodada: o SIOPE com sessão (cookie da página do formulário) e o PDF do RREO no FTP.
+    "siope5": [
+        "https://www.fnde.gov.br/siope/relatorioRREOMunicipal2006.do",
+        ("https://www.fnde.gov.br/siope/relatorioRREOMunicipal2006.do",
+         {"acao": "pesquisar", "pag": "result", "anos": "2025", "periodos": "6", "cod_uf": "52",
+          "municipios": "520870"}),
+        "ftp://ftp.fnde.gov.br/web/siope/RREO/RREO_Municipal_520870_6_2025.pdf",
+        "ftp://ftp.fnde.gov.br/web/siope/RREO/RREO_Municipal_520870_4_2026.pdf",
+        "ftp://ftp.fnde.gov.br/web/siope/RREO/",
+        "https://www.fnde.gov.br/olinda-ide/servico/DADOS_ABERTOS_SIOPE/versao/v1/odata/"
+        "Indicadores_Siope(Ano_Consulta=@Ano_Consulta,Num_Peri=@Num_Peri,Sig_UF=@Sig_UF)"
+        "?@Ano_Consulta=2025&@Num_Peri=6&@Sig_UF='GO'&$top=3&$format=json",
+    ],
     "transferegov": [
         "https://api.transferegov.gestao.gov.br/transferenciasespeciais/",
         "https://api.transferegov.gestao.gov.br/fundoafundo/",
@@ -169,6 +184,7 @@ def _seguir(fonte: str, url: str, leitura) -> list:
 
 def sondar(fontes: list[str] | None = None) -> list[dict]:
     resultado = []
+    install_opener(build_opener(HTTPCookieProcessor(CookieJar())))   # sessão, como num navegador
     for fonte, urls in CANDIDATOS.items():
         if fontes and fonte not in fontes:
             continue

@@ -20,6 +20,7 @@ Cada número sai com o demonstrativo, o período, o anexo e a linha de onde veio
 
 from __future__ import annotations
 
+import calendar
 import re
 import sqlite3
 import unicodedata
@@ -197,6 +198,7 @@ def medir_municipio(ate: date, *, banco: Path | str = BANCO, mapa: MapaLegal | N
     try:
         fiscal = _medir(leitor, ate, mapa)
         _medir_camara(leitor, ate, mapa, fiscal, faixa_camara)
+        _medir_saude(leitor, ate, mapa, fiscal)
         return fiscal
     finally:
         leitor.fechar()
@@ -380,6 +382,153 @@ def _medir_camara(lt: Leitor, ate: date, mapa: MapaLegal, fiscal: Fiscal, faixa:
         m = replace(m, selo=Selo.VERDE)
     fiscal.medidas.append(m)
     fiscal.fontes["CAMARA"] = f"{fim.rotulo}, RREO do 6º bimestre de {fim.exercicio - 1} e DCA"
+
+
+# --- Saúde (CF, art. 198, § 2º; LC 141/2012, art. 7º) ------------------------------------
+
+def _norm(t: str) -> str:
+    t = unicodedata.normalize("NFKD", t or "").encode("ascii", "ignore").decode()
+    return " ".join(t.upper().split())
+
+
+class Externo:
+    """Um demonstrativo homologado fora do SICONFI (SIOPS, SIOPE), linha a linha."""
+
+    def __init__(self, lt: Leitor, fonte: str, exercicio: int, periodo: int, homologado: str):
+        self.fonte, self.exercicio, self.periodo, self.homologado = fonte, exercicio, periodo, homologado
+        self.linhas: dict[int, tuple[str, str, dict[int, float]]] = {}
+        for ordem, rotulo, quadro, coluna, valor in lt.con.execute(
+                "select ordem, rotulo, titulo_quadro, coluna, valor from externos_itens where fonte=? and "
+                "exercicio=? and periodo=?", (fonte, exercicio, periodo)):
+            self.linhas.setdefault(ordem, (rotulo, quadro, {}))[2][coluna] = valor
+
+    @property
+    def termina(self) -> date:
+        mes = 2 * self.periodo
+        return date(self.exercicio, mes, calendar.monthrange(self.exercicio, mes)[1])
+
+    @property
+    def rotulo(self) -> str:
+        return f"{self.fonte}, {self.periodo}º bimestre de {self.exercicio}"
+
+    def valor(self, padrao: str, coluna: int) -> float | None:
+        rx = re.compile(padrao)
+        for ordem in sorted(self.linhas):
+            rotulo, _, valores = self.linhas[ordem]
+            if rx.search(_norm(rotulo)):
+                return valores.get(coluna)
+        return None
+
+
+def ultimo_externo(lt: Leitor, fonte: str, ate: date) -> Externo | None:
+    try:
+        linhas = lt.con.execute(
+            "select exercicio, periodo, homologado from externos_periodos where fonte=? and "
+            "situacao='homologado' order by exercicio, periodo", (fonte,)).fetchall()
+    except sqlite3.OperationalError:
+        return None
+    cand = [Externo(lt, fonte, e, p, h) for e, p, h in linhas]
+    cand = [x for x in cand if x.termina <= ate]
+    return cand[-1] if cand else None
+
+
+# A receita da base da saúde e da educação (LC 141/2012, art. 7º; CF, art. 212) pelo RREO Anexo 3:
+# os quatro impostos municipais e as transferências constitucionais, sem a dedução do FUNDEB.
+BASE_IMPOSTOS_RREO = {
+    "IPTULiquidoExcetoTransferenciasEFUNDEB": "IPTU",
+    "ISSLiquidoExcetoTransferenciasEFUNDEB": "ISS",
+    "ITBILiquidoExcetoTransferenciasEFUNDEB": "ITBI",
+    "IRRFLiquidoExcetoTransferenciasEFUNDEB": "IRRF",
+    "RREO3CotaParteDoICMS": "cota-parte do ICMS",
+    "RREO3CotaParteDoIPVA": "cota-parte do IPVA",
+    "RREO3CotaParteDoITR": "cota-parte do ITR",
+    "RREO3TransferenciasDaLC611989": "IPI-exportação",
+}
+
+
+def base_de_impostos(lt: Leitor, exercicio: int, bimestre: int) -> tuple[float | None, str]:
+    """Cálculo próprio da receita de impostos e transferências até o bimestre, com a memória.
+
+    No 6º bimestre o FPM vem da DCA (só a cota mensal: as cotas extraordinárias de 1% não
+    entram na base) com as compensações da LC 176/2020; nos outros, o FPM inteiro do RREO.
+    """
+    per = next((p for p in lt.periodos("RREO") if p.exercicio == exercicio and p.periodo == bimestre), None)
+    if per is None:
+        return None, f"o RREO do {bimestre}º bimestre de {exercicio} não está no banco"
+    partes: dict[str, float] = {}
+    for cod, nome in {**BASE_IMPOSTOS_RREO, "RREO3CotaParteDoFPM": "FPM"}.items():
+        serie = lt.serie_mensal(per, "Anexo 03", cod)
+        if serie is None:
+            return None, f"o RREO Anexo 3 não traz os meses de {nome}"
+        partes[nome] = sum(serie[: 2 * bimestre])
+    nota = "FPM inteiro do RREO Anexo 3 (as cotas extraordinárias só se separam na DCA)"
+    if bimestre == 6:
+        mensal = _dca(lt, exercicio, "Anexo I-C", "RO1.7.1.1.51.1.0", "Receitas Brutas Realizadas")
+        lc176 = _dca(lt, exercicio, "Anexo I-C", "RO1.7.1.9.58.0.0", "Receitas Brutas Realizadas")
+        if mensal is not None:
+            partes["FPM"] = mensal
+            partes["compensações da LC 176/2020"] = lc176 or 0.0
+            nota = "FPM só da cota mensal, pela DCA Anexo I-C, mais as compensações da LC 176/2020"
+    total = sum(partes.values())
+    memoria = ", ".join(f"{k} {_moeda(v)}" for k, v in partes.items()) + f" ({nota})"
+    return total, memoria
+
+
+def _medir_saude(lt: Leitor, ate: date, mapa: MapaLegal, fiscal: Fiscal) -> None:
+    """Piso da saúde pelo demonstrativo homologado no SIOPS, com cálculo próprio da base.
+
+    Aplicado: o valor aplicado em ASPS (linha XVI) — a despesa empenhada no 6º bimestre e a
+    liquidada nos outros (nota 1 do próprio demonstrativo). Base: refeita pelo RREO Anexo 3 e
+    pela DCA, e conferida com a linha III do SIOPS. A despesa total com saúde do SIOPS é
+    conferida com a função Saúde do RREO Anexo 2 (com as intraorçamentárias).
+    Antes do 6º bimestre o piso é acompanhamento: abaixo de 15% é alerta, não descumprimento.
+    """
+    d = ultimo_externo(lt, "SIOPS", ate)
+    if d is None:
+        fiscal.notas.append("Saúde (LC 141/2012): nenhum demonstrativo do SIOPS homologado no banco até a data.")
+        fiscal.medidas.append(medir("PISO-SAUDE", None, None, mapa=mapa))
+        return
+    final = d.periodo == 6
+    col = 0 if final else 1                     # empenhada (d) no fim do ano; liquidada (e) antes
+    aplicado = d.valor(r"^\(=\) VALOR APLICADO EM ASPS", col)
+    declarado = d.valor(r"^PERCENTUAL DA RECEITA DE IMPOSTOS", col)
+    base_siops = d.valor(r"^TOTAL DAS RECEITAS RESULTANTES DE IMPOSTOS", 2)
+    base, memoria_base = base_de_impostos(lt, d.exercicio, d.periodo)
+    if base is not None:
+        m = medir("PISO-SAUDE", aplicado, base, declarado=declarado, mapa=mapa)
+    else:   # sem a base própria, o número é só o declarado: uma via, selo azul
+        m = medir("PISO-SAUDE", aplicado, base_siops, mapa=mapa)
+        fiscal.notas.append(f"Saúde: {memoria_base}; o piso fica com a base declarada no SIOPS, sem cálculo próprio.")
+    if not final and m.situacao == "descumpre":
+        m = replace(m, situacao="alerta")
+    fiscal.medidas.append(m)
+    ref = d.rotulo + (f", homologado em {d.homologado}" if d.homologado else "")
+    rreo = next((p for p in lt.periodos("RREO") if p.exercicio == d.exercicio and p.periodo == d.periodo), None)
+    fiscal.conferencias.append(ConferenciaDeVias(
+        f"Receita da base da saúde ({d.periodo}º bimestre de {d.exercicio})",
+        selar([Via("SIOPS, linha III", base_siops), Via("RREO Anexo 3 e DCA, cálculo próprio", base)]),
+        f"{ref}; {rreo.rotulo if rreo else 'RREO ausente'}", "LC 141/2012, arts. 7º e 32"))
+    total_siops = d.valor(r"^TOTAL DAS DESPESAS COM SAUDE \(XLVIII\)", 4)
+    saude_rreo = None
+    if rreo is not None:
+        linhas = dict(lt.con.execute(
+            "select rotulo, valor from siconfi_itens where demonstrativo='RREO' and exercicio=? and periodo=? "
+            "and anexo='RREO-Anexo 02' and conta='Saúde' and coluna like 'DESPESAS LIQUIDADAS ATÉ O BIMESTRE%'",
+            (d.exercicio, d.periodo)).fetchall())
+        exceto = next((v for r, v in linhas.items() if r.startswith("Total das Despesas Exceto Intra")), None)
+        intra = next((v for r, v in linhas.items() if r.startswith("Total das Despesas Intra")), 0.0)
+        saude_rreo = exceto + (intra or 0.0) if exceto is not None else None
+    fiscal.conferencias.append(ConferenciaDeVias(
+        f"Despesa liquidada com saúde ({d.periodo}º bimestre de {d.exercicio})",
+        selar([Via("SIOPS, linha XLVIII", total_siops), Via("RREO Anexo 2, função Saúde", saude_rreo)]),
+        f"{ref}; {rreo.rotulo if rreo else 'RREO ausente'}", "LC 141/2012, arts. 32 e 34"))
+    fiscal.memoria["PISO-SAUDE"] = (
+        f"Aplicado em ações e serviços públicos de saúde ({'empenhado, fim do exercício' if final else 'liquidado até o bimestre'}): "
+        f"{_moeda(aplicado)}, sobre a receita de impostos e transferências refeita pelo RREO"
+        f"{' e pela DCA' if final else ''}: {_moeda(base)} ({memoria_base}). O SIOPS declara a base de "
+        f"{_moeda(base_siops)} e {declarado if declarado is not None else '?'}%."
+        + ("" if final else " Antes do 6º bimestre é acompanhamento: o mínimo de 15% vale para o ano."))
+    fiscal.fontes["PISO-SAUDE"] = f"{ref}; RREO Anexos 2 e 3" + (" e DCA Anexo I-C" if final else "")
 
 
 def liquidado_na_funcao(funcao_nome: str, ate: date, *, banco: Path | str = BANCO
