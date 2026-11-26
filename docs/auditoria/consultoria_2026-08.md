@@ -84,7 +84,7 @@ si sós (estatística nunca é prova — regra da casa), todos alimentando a
 dupla etapa. Ordenados por relação impacto/esforço:
 
 **P-N1 · Detector de Diário reescrito** *(implementado nesta revisão —
-`scripts/verifica_integridade_edicoes.py`)*. Rebaixa periodicamente
+`cadeoqueijo/verifica_integridade_edicoes.py`)*. Rebaixa periodicamente
 edições já ancoradas e compara o sha256 atual com o histórico. PDF
 substituído silenciosamente após publicação = adulteração de fé pública —
 Artigo 37, caput, da Constituição. Ninguém no Brasil monitora isto. Com

@@ -1,0 +1,19 @@
+# Domínio: Assistência Social. É o Cadê o Queijo, primeiro domínio do Onisciente.
+id = "assistencia"
+nome = "Assistência Social"
+ativo = true
+funcao = "08"
+fundo = "Fundo Municipal de Assistência Social"
+unidade_orcamentaria = "3650"
+conselho = "Conselho Municipal de Assistência Social de Goiânia (CMASGyn)"
+orgao_gestor = "Secretaria Municipal de Políticas Públicas para Mulher, Direitos Humanos e Assistência Social"
+# De onde vêm os dados enquanto a coleta própria do Onisciente não cobre a pasta.
+dados = "cadeoqueijo"
+# Fontes vinculadas que só podem correr para a função 08.
+fontes_vinculadas = ["1660", "1661", "1665", "2660", "2661"]
+# Pisos que o domínio mede.
+regras = ["IGD-CONTROLE-SOCIAL"]
+
+[qualidade]
+indicador = "famílias acompanhadas pelo PAIF"
+fonte = "Registro Mensal de Atendimentos (RMA) do SUAS"

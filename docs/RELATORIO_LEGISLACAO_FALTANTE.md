@@ -92,7 +92,7 @@ Lei Orçamentária Anual de 2024 e Lei de Diretrizes Orçamentárias de 2023 —
 
 **Via de contingência.** Diário Oficial da União pela data de publicação, quando o `in.gov.br` voltar. Cada resolução tem data conhecida no catálogo, o que torna a busca direta.
 
-O `scripts/captura_cnas.py`, chamado pelo ciclo mensal legal, tenta as três vias e registra o motivo de cada falha no catálogo. O repositório passa a saber por que não tem o que não tem.
+O `cadeoqueijo/captura_cnas.py`, chamado pelo ciclo mensal legal, tenta as três vias e registra o motivo de cada falha no catálogo. O repositório passa a saber por que não tem o que não tem.
 
 ## 7. Ressalva de método
 

@@ -1,13 +1,76 @@
-# Vigilância do CMASGyn
+# Onisciente e Cadê o Queijo
 
-Agente de monitoramento do Conselho Municipal de Assistência Social de Goiânia
-e dos órgãos municipais correlatos. Coleta diária, verificação de conformidade
-contra corpus normativo congelado e produção de boletim de achados.
+Fiscalização do dinheiro público de Goiânia, a partir de documentos oficiais.
+
+- **Onisciente** (`onisciente/`) segue o dinheiro de ponta a ponta: de onde
+  veio, por onde passou, que contrato o prendeu, a quem foi pago e se a conta
+  foi prestada. É uma trilha, não um cartório: funciona sozinho, sem validação
+  humana travando, e trata a falta de um documento que a lei manda publicar
+  como alerta de descumprimento de transparência.
+- **Cadê o Queijo** (`cadeoqueijo/`) é o motor que já roda toda semana sobre a
+  Assistência Social e o Conselho Municipal (CMASGyn). O Onisciente lê o que
+  ele produz e o aprimora; nada do que ele faz foi desligado.
 
 > **Leia primeiro o arquivo [PERMISSOES.md](PERMISSOES.md).** O sistema não roda
 > sem as credenciais e as duas confirmações que só você pode dar.
 
 ---
+
+## Como o repositório está organizado
+
+```
+onisciente/          o sistema novo, em Python
+  nucleo/            níveis de prova, selos, as nove estações, fichas, ausências, índice de integridade
+  legal/             leitura do mapa legal (regras/mapa_legal.yml)
+  rio/               fontes de recurso da STN, afluentes e margens do rio
+  conferencias/      preço, contrato e entrega, prestação de contas, padrões de gasto, verbas devidas
+  pisos.py           pisos e tetos (saúde, educação, Fundeb, pessoal, Câmara, IGD) em cálculo próprio
+  contas.py          prazos das contas do prefeito, do parecer e do julgamento
+  lai.py             a escada da Lei de Acesso e os ofícios prontos
+  tempo.py           a máquina do tempo (projeções sempre marcadas como projeção)
+  adaptadores/       lê o que o Cadê o Queijo já produz
+  coletores/         SICONFI e o acervo de leis (ctresb/leis e SILEG), com cadeia de custódia
+  parecer/           o parecer mensal em HTML, com gráficos SVG próprios
+cadeoqueijo/         o motor da Assistência Social (antes em src/ e scripts/)
+regras/mapa_legal.yml  a régua: 21 regras com número, norma e endereço de cada uma das 70 normas
+alvos/goiania.toml   o município fiscalizado (trocar o alvo é trocar este arquivo)
+dominios/            o que entra em cada fiscalização: assistência (ativo), saúde e educação (prontos)
+testes/              testes do Onisciente e a regressão dos sete erros históricos do Cadê o Queijo
+docs/onisciente/     os pareceres publicados no painel
+relatorios/onisciente/  o panorama em JSON e os ofícios de cada mês
+config/ prompts/ corpus/ acervo/ estado/ dados/ relatorios/   como antes (os robôs gravam aqui)
+```
+
+## Como rodar
+
+```
+python -m onisciente verificar          # confere o mapa legal, o alvo e os domínios
+python -m onisciente parecer            # parecer da última competência
+python -m onisciente parecer --todas    # todos os pareceres do exercício
+python -m onisciente coletar leis       # confere as normas federais no ctresb/leis (precisa de rede)
+python -m onisciente coletar siconfi    # via federal dos pisos (precisa de rede)
+python -m pytest                        # todos os testes, sem internet
+```
+
+Os robôs do GitHub já fazem isso sozinhos: o domingo gera o parecer do
+Onisciente junto com a avaliação do Cadê o Queijo, o dia 1º confere as normas e
+o SICONFI, e o fluxo **Qualidade** roda os testes a cada envio.
+
+## Como o Onisciente fala
+
+- **Selo** diz quanto a informação é certa: verde (duas vias oficiais batem),
+  azul (uma via, ou vias que divergem), roxo (a lei manda publicar e não está
+  publicado), vermelho (a fonte falhou na leitura).
+- **Gravidade** diz quanto importa: crítica, alta ou média. O que está em ordem
+  é omitido.
+- **Verificação** diz o que a prova permite: confirmado só com duas fontes de
+  níveis distintos; um nome igual nunca passa de indiciário; documento faltante
+  é inconclusivo e vira ofício. O sistema nunca imputa crime.
+- Dados pessoais (CPF, matrícula) nunca aparecem nas telas públicas.
+
+---
+
+# O motor do Cadê o Queijo
 
 ## O que ele faz
 
@@ -118,20 +181,6 @@ Regime estacionário, após a primeira semana de calibragem:
 
 O item caro não é o token: é o reconhecimento óptico de edições escaneadas, que
 consome processamento. Daí a regra R11.
-
----
-
-## Estrutura
-
-```
-config/     fontes, léxico, corpus, regras, roteamento de modelos
-src/        coleta, filtro, conformidade, orçamento, orquestração
-prompts/    um por nível de modelo
-corpus/     normas consolidadas + manifesto com hashes  (gerado)
-acervo/     documentos coletados, com versões anteriores (gerado)
-estado/     registros, fila e controle de orçamento      (gerado)
-relatorios/ boletins diários e achados                   (gerado)
-```
 
 ---
 

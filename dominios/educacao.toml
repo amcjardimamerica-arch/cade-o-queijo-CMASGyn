@@ -1,0 +1,18 @@
+# Domínio: Educação e Fundeb. Entra na trilha completa na fase 4 do roteiro.
+id = "educacao"
+nome = "Educação"
+ativo = false
+funcao = "12"
+fundo = "Fundeb"
+dados = "siconfi"
+fontes_vinculadas = ["1540", "1541", "1542", "1543", "1550", "1551", "1552", "1553", "1569"]
+regras = ["PISO-EDUCACAO", "FUNDEB-PROFISSIONAIS", "FUNDEB-SALDO"]
+
+[siconfi]
+demonstrativo = "rreo"
+anexo = "RREO-Anexo 8"
+periodo = 6
+
+[qualidade]
+indicador = "vagas em creche"
+fonte = "Censo Escolar, INEP"

@@ -20,18 +20,18 @@ jobs:
         env: {PIP_DISABLE_PIP_VERSION_CHECK: "1"}
       - run: pip install --quiet -r requirements.txt
       - name: Enriquecer cadastro de CNPJs pendentes (camada 0)
-        run: python src/enriquece_cnpj.py --limite 60 || true
+        run: python cadeoqueijo/enriquece_cnpj.py --limite 60 || true
       - name: Capturar precedentes de transparência (camada 0 + Haiku opcional)
         env: {ANTHROPIC_API_KEY: "${{ secrets.ANTHROPIC_API_KEY }}"}
-        run: python scripts/captura_precedentes.py || true
+        run: python cadeoqueijo/captura_precedentes.py || true
       - name: Sonda de 2ª etapa — fontes oficiais alternativas
-        run: python src/valida_segunda_etapa.py || true
+        run: python cadeoqueijo/valida_segunda_etapa.py || true
       - name: Servidores nomeados nas publicações (pasta própria, minimizado)
-        run: python scripts/captura_servidores.py || true
+        run: python cadeoqueijo/captura_servidores.py || true
       - name: Cruzamento societário e de parentesco
-        run: python src/cruza_vinculos.py || true
+        run: python cadeoqueijo/cruza_vinculos.py || true
       - name: Contratações no PNCP
-        run: python src/coleta_pncp.py || true
+        run: python cadeoqueijo/coleta_pncp.py || true
       - name: Verificação mensal da competência encerrada, se houver
         run: |
           python - <<'PY'
@@ -40,17 +40,20 @@ jobs:
           if h.weekday() == 6 and h.day <= 7:
               import subprocess, sys
               c = f"{(h.replace(day=1)-timedelta(days=1)):%Y-%m}"
-              subprocess.run([sys.executable, "src/run_mensal.py", c])
+              subprocess.run([sys.executable, "cadeoqueijo/run_mensal.py", c])
           PY
+      - name: Onisciente — parecer da última competência (trilha, rio, pisos, ausências)
+        run: |
+          python -m onisciente parecer || echo "::warning::Onisciente não gerou o parecer desta semana"
       - name: Avaliação dominical (julgamento — modelo avançado)
         env: {ANTHROPIC_API_KEY: "${{ secrets.ANTHROPIC_API_KEY }}"}
-        run: python src/avaliacao_dominical.py
+        run: python cadeoqueijo/avaliacao_dominical.py
       - name: Parâmetro de qualidade — só fonte oficial fundamenta dado
-        run: python src/valida_fontes.py || true
+        run: python cadeoqueijo/valida_fontes.py || true
       - name: Contrato de ciclo — artefatos obrigatórios presentes e válidos
-        run: python src/valida_ciclo.py
+        run: python cadeoqueijo/valida_ciclo.py
       - name: Via federal da folha — SICONFI/RGF (2ª etapa oficial)
-        run: python src/coleta_siconfi.py || true
+        run: python cadeoqueijo/coleta_siconfi.py || true
       - name: Publicar
         run: |
           git config user.name "vigilancia-bot"
@@ -59,6 +62,7 @@ jobs:
                      dados/siconfi.json dados/pncp_contratos.json \
                      relatorios/segunda_etapa.json relatorios/qualidade_fontes.json \
                      referencias/ relatorios/avaliacao_dominical/ \
-                     relatorios/mensal/ docs/mensal/ || true
+                     relatorios/mensal/ docs/mensal/ \
+                     relatorios/onisciente/ docs/onisciente/ || true
           git diff --cached --quiet || git commit -m "avaliação dominical $(date -u +%F)"
           git push

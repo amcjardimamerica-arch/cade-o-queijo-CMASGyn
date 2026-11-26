@@ -76,7 +76,7 @@ grupos:
       - "(?-i:\\bCEBAS\\b)"
       - "Resolu[çc][ãa]o CNAS n?[.º°]? ?14"
 
-  # Preenchido automaticamente por src/coleta_cmasgyn.py a partir da página
+  # Preenchido automaticamente por cadeoqueijo/coleta_cmasgyn.py a partir da página
   # de Entidades Inscritas. NÃO editar à mão — é sobrescrito a cada semana.
   entidades_inscritas:
     ancora: true

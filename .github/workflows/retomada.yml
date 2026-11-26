@@ -51,7 +51,7 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           LIMITE_TOKENS_JANELA: ${{ vars.LIMITE_TOKENS_JANELA }}
-        run: python src/run_fila.py
+        run: python cadeoqueijo/run_fila.py
 
       - name: Persistir
         if: steps.checar.outputs.prosseguir == 'sim'

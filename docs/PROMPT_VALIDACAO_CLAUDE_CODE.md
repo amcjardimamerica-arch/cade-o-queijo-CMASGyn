@@ -13,7 +13,7 @@ Trabalhe em ordem. Não pule etapas. Ao terminar cada bloco, escreva o resultado
 ## Bloco 1 — Integridade estrutural
 
 1. Todo JSON em `config/` e `dados/` faz parse? Liste os que falham.
-2. Todo `.py` em `scripts/` compila? Liste os erros.
+2. Todo `.py` em `cadeoqueijo/` compila? Liste os erros.
 3. Todo `.yml` em `.github/workflows/` e `config/` é YAML válido?
 4. Há import de módulo não declarado em `requirements.txt`?
 5. Há caminho absoluto codificado que quebre fora deste container?
@@ -47,7 +47,7 @@ Este é o risco central de qualquer vigilância automatizada: o coletor quebra, 
 
 ## Bloco 5 — Roteamento de modelos
 
-22. `scripts/roteador_ia.py` cobre todas as tarefas que o código efetivamente executa? Encontre chamada de IA que não passa pelo roteador.
+22. `cadeoqueijo/roteador_ia.py` cobre todas as tarefas que o código efetivamente executa? Encontre chamada de IA que não passa pelo roteador.
 23. Alguma tarefa determinística está indo para modelo? Extração de valor, validação de dígito, soma, comparação de percentual e comparação de datas devem ser código puro.
 24. Alguma tarefa de juízo profundo está indo para Haiku? Parecer jurídico e auditoria não podem.
 25. `recortar()` está sendo chamado em todo envio? Documento inteiro nunca vai para o modelo. Um Diário Oficial tem 14 MB; o trecho relevante tem 2 KB.

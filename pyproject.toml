@@ -1,0 +1,18 @@
+# O Onisciente roda de dentro do repositório (python -m onisciente), porque lê e grava os
+# dados, relatórios e o painel que ficam aqui. Não é um pacote para instalar à parte.
+
+[project]
+name = "onisciente"
+version = "0.1.0"
+description = "A trilha do dinheiro público, da origem à prestação de contas. Evolução do Cadê o Queijo."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["PyYAML>=6.0"]
+
+[project.optional-dependencies]
+testes = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+testpaths = ["testes"]
+python_files = ["test_*.py"]
+addopts = "-q"
