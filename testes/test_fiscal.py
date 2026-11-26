@@ -62,6 +62,30 @@ def test_tetos_de_2025_batem_com_o_declarado():
     assert f.fichas("2025-12") == []
 
 
+def test_piso_da_saude_no_banco_real_com_duas_vias_em_cada_ano():
+    """2024 e 2025 pelo SIOPS homologado, conferidos com o RREO e a DCA (dentro de 1%)."""
+    for ate, proprio, declarado in ((date(2024, 12, 31), 21.74, 21.77), (date(2025, 12, 31), 21.56, 21.54)):
+        f = fiscal.medir_municipio(ate)
+        m = next(x for x in f.medidas if x.regra.id == "PISO-SAUDE")
+        assert m.percentual == pytest.approx(proprio, abs=0.01) and m.declarado == declarado
+        assert m.selo is Selo.VERDE and m.situacao == "cumpre" and not m.divergencia
+        vias = [c for c in f.conferencias if "saúde" in c.titulo]
+        assert len(vias) == 2 and all(c.selo is Selo.VERDE for c in vias)
+
+
+def test_despesa_com_saude_do_siops_diverge_do_rreo_no_comeco_de_2026():
+    """Achado do banco real: de janeiro a junho de 2026 o RREO (função Saúde) liquida cerca de
+    R$ 53 a 57 milhões a mais que o total do SIOPS; no 4º bimestre as vias voltam a bater."""
+    for bim, fim in ((1, date(2026, 2, 28)), (2, date(2026, 4, 30)), (3, date(2026, 6, 30))):
+        f = fiscal.medir_municipio(fim)
+        via = next(c for c in f.conferencias if c.titulo == f"Despesa liquidada com saúde ({bim}º bimestre de 2026)")
+        assert via.selo is Selo.AZUL and via.certificacao.divergencia
+        siops, rreo = (v.valor for v in via.certificacao.vias)
+        assert 50e6 < rreo - siops < 60e6
+    f = fiscal.medir_municipio(date(2026, 8, 31))
+    assert next(c for c in f.conferencias if c.titulo.startswith("Despesa liquidada com saúde")).selo is Selo.VERDE
+
+
 def test_duas_vias_rgf_contra_rreo_em_todos_os_quadrimestres():
     con = sqlite3.connect(BANCO)
     periodos = con.execute("select exercicio, periodo, termina from siconfi_periodos where "
@@ -71,9 +95,11 @@ def test_duas_vias_rgf_contra_rreo_em_todos_os_quadrimestres():
     for ex, q, termina in periodos:
         f = fiscal.medir_municipio(date.fromisoformat(termina))
         independentes = [c for c in f.conferencias if c.entre_demonstrativos]
-        assert {"Receita corrente líquida", "Receita corrente líquida ajustada para a despesa com pessoal",
-                "Dívida consolidada líquida"} <= {c.titulo for c in independentes}, (ex, q)
-        assert all(c.selo is Selo.VERDE for c in independentes), (ex, q)
+        rgf = {"Receita corrente líquida", "Receita corrente líquida ajustada para a despesa com pessoal",
+               "Dívida consolidada líquida"}
+        assert rgf <= {c.titulo for c in independentes}, (ex, q)
+        # as vias da saúde (SIOPS × RREO) têm teste próprio e podem divergir de verdade
+        assert all(c.selo is Selo.VERDE for c in independentes if c.titulo in rgf), (ex, q)
         assert len(f.certificacoes()) == len(independentes)
 
 
