@@ -38,6 +38,8 @@ SICONFI_ANTIGAS = ("https://apidatatransparencia.tesouro.gov.br/ords/siconfi/tt/
 QUERIDO_DIARIO = "https://api.queridodiario.ok.org.br/gazettes"
 SILEG_SOLR = "https://sileg.goiania.go.gov.br/solr-4.1.0/select"
 PNCP = "https://pncp.gov.br/api/consulta/v1/"
+TESOURO_PACOTE = ("https://www.tesourotransparente.gov.br/ckan/api/3/action/package_show"
+                  "?id=transferencias-constitucionais-para-municipios")
 FNAS_PAGINA = "https://fnas.mds.gov.br/extracao-dos-valores-repassados-fundo-a-fundo/"
 FNAS_CONHECIDAS = {
     2024: "https://fnas.mds.gov.br/wp-content/uploads/2026/02/REPASSES_ANO_2024.xlsx",
@@ -160,6 +162,8 @@ CREATE TABLE IF NOT EXISTS contratos_pncp (pncp_id TEXT PRIMARY KEY, mes TEXT, d
 CREATE TABLE IF NOT EXISTS fontes (grupo TEXT, nome TEXT, url TEXT, ok INTEGER, http INTEGER, erro TEXT,
     esperado TEXT);
 CREATE TABLE IF NOT EXISTS normas (caminho TEXT, ok INTEGER, revogada INTEGER, erro TEXT);
+CREATE TABLE IF NOT EXISTS transferencias_tesouro (mes TEXT, item TEXT, destino TEXT, decendio1 REAL,
+    decendio2 REAL, decendio3 REAL, total REAL);
 CREATE TABLE IF NOT EXISTS meta (chave TEXT PRIMARY KEY, valor TEXT);
 """
 
@@ -175,6 +179,8 @@ TABELAS_DO_MOTOR = {
     "pncp": [("coletas", "motor = 'pncp'"), ("contratacoes_pncp", ""), ("contratos_pncp", ""),
              ("meta", "chave IN ('pncp_orgaos', 'pncp_janelas', 'pncp_procura')")],
     "fontes": [("coletas", "motor = 'fontes'"), ("fontes", "")],
+    "tesouro": [("coletas", "motor = 'tesouro'"), ("transferencias_tesouro", ""),
+                ("meta", "chave = 'tesouro_meses'")],
     "normas": [("coletas", "motor = 'ctresb'"), ("normas", "")],
 }
 
@@ -250,7 +256,7 @@ class Contexto:
 
     def ler(self, motor: str, alvo: str, url: str, *, mes: str = "", tentativas: int = 3,
             cabecalhos: dict | None = None, tempo: int = 60,
-            disjuntor: bool = True) -> base.Leitura:
+            disjuntor: bool = True, formulario: dict | None = None) -> base.Leitura:
         """Lê com espera crescente em 429 e 5xx, e registra a chamada no banco."""
         limite = self.limites.get(motor)
         motivo = None
@@ -270,7 +276,8 @@ class Contexto:
         for n in range(tentativas):
             feitas = n + 1
             self.gastos[motor] = self.gastos.get(motor, 0) + 1
-            leitura = self.ler_url(url, tempo=tempo, cabecalhos=cabecalhos)
+            extra = {"formulario": formulario} if formulario else {}
+            leitura = self.ler_url(url, tempo=tempo, cabecalhos=cabecalhos, **extra)
             codigo = leitura.http
             if leitura.ok or not (codigo == 429 or (codigo and codigo >= 500)
                                   or leitura.erro.startswith(("TimeoutError", "URLError"))):
@@ -748,6 +755,83 @@ def motor_pncp(ctx: Contexto, ibge: int, municipio: str, cnpjs_conhecidos=(),
 
 # --- Motor 5: portais e endereços do sistema ------------------------------------------
 
+# --- Motor: transferências constitucionais do Tesouro (a segunda via do rio) -------------
+
+def recursos_tesouro(pacote: dict) -> dict[str, str]:
+    """Do pacote CKAN, o endereço da planilha mensal de cada mês (AAAA-MM)."""
+    achados = {}
+    for r in (pacote.get("result") or {}).get("resources") or []:
+        m = re.search(r"Mensal_Municipios_(\d{4})(\d{2})", r.get("name") or "")
+        if m and r.get("url"):
+            achados[f"{m.group(1)}-{m.group(2)}"] = r["url"]
+    return achados
+
+
+def _numero_br(texto: str) -> float:
+    t = (texto or "").strip()
+    if not t:
+        return 0.0
+    if "," in t:                      # 1.234,56 ou 1234,56
+        t = t.replace(".", "").replace(",", ".")
+    return float(t)
+
+
+def linhas_tesouro(conteudo: bytes, municipio: str, uf: str) -> list[dict]:
+    """As linhas do município na planilha mensal (separada por ';', em latin-1)."""
+    texto = conteudo.decode("latin-1")
+    linhas = texto.splitlines()
+    if not linhas or "Item transfer" not in linhas[0]:
+        raise ValueError("planilha sem o cabeçalho esperado (Item transferência)")
+    cab = [_norm(c) for c in linhas[0].split(";")]
+    pos = {nome: cab.index(nome) for nome in ("MUNICIPIO", "UF", "ANO", "MES", "ITEM TRANSFERENCIA",
+                                                "TRANSFERENCIA")}
+    dec = [i for i, c in enumerate(cab) if c.endswith("DECENDIO")]
+    alvo, saida = _norm(municipio), []
+    for linha in linhas[1:]:
+        c = linha.split(";")
+        if len(c) < len(cab) - 1 or _norm(c[pos["MUNICIPIO"]]) != alvo or c[pos["UF"]].strip() != uf:
+            continue
+        valores = [_numero_br(c[i]) for i in dec]
+        saida.append({"mes": f"{c[pos['ANO']].strip()}-{c[pos['MES']].strip().zfill(2)}",
+                      "item": c[pos["ITEM TRANSFERENCIA"]].strip(),
+                      "destino": c[pos["TRANSFERENCIA"]].strip(),
+                      "decendio1": valores[0], "decendio2": valores[1], "decendio3": valores[2],
+                      "total": round(sum(valores), 2)})
+    return saida
+
+
+def motor_tesouro(ctx: Contexto, municipio: str, uf: str) -> None:
+    """Transferências constitucionais (FPM, ITR, ICMS desonerado, IPI-exp...) mês a mês, por
+    decêndio, como o Tesouro publica: a via independente das receitas de transferência do RREO."""
+    leitura = ctx.ler("tesouro", "pacote", TESOURO_PACOTE)
+    pacote = _json(leitura) if leitura.ok else None
+    if pacote is None:
+        return
+    enderecos = recursos_tesouro(pacote)
+    lidos, nao_publicados = [], []
+    for mes in ctx.meses:
+        url = enderecos.get(mes)
+        if not url:
+            nao_publicados.append(mes)
+            continue
+        planilha = ctx.ler("tesouro", "planilha", url, mes=mes, tempo=120)
+        if not planilha.ok:
+            continue
+        try:
+            linhas = linhas_tesouro(planilha.conteudo, municipio, uf)
+        except (ValueError, IndexError) as e:
+            _anotar(ctx, "tesouro", "planilha", mes, url, f"formato: {e}")
+            continue
+        if not linhas:
+            _anotar(ctx, "tesouro", "planilha", mes, url, f"{municipio} não está na planilha")
+            continue
+        for linha in linhas:
+            ctx.banco.inserir("transferencias_tesouro", linha)
+        lidos.append(mes)
+    ctx.banco.inserir("meta", {"chave": "tesouro_meses", "valor": json.dumps(
+        {"lidos": lidos, "nao_publicados": nao_publicados})})
+
+
 def enderecos_configurados(raiz: Path = RAIZ) -> list[tuple[str, str, str, str]]:
     """(grupo, nome, url, esperado) de cada endereço nos arquivos de fontes do sistema."""
     import yaml
@@ -794,7 +878,7 @@ def motor_normas(ctx: Contexto) -> None:
                                      "erro": r.get("erro")})
 
 
-MOTORES = ("siconfi", "querido_diario", "sileg", "fnas", "pncp", "fontes", "normas")
+MOTORES = ("siconfi", "querido_diario", "sileg", "fnas", "pncp", "fontes", "normas", "tesouro")
 # Minutos que cada motor pode usar numa rodada (o fluxo do GitHub para em 180).
 TEMPO_DO_MOTOR = {"pncp": 75, "siconfi": 20}
 TEMPO_PADRAO = 12
@@ -846,6 +930,7 @@ def rodar(desde: str, ate: str, *, motores=MOTORES, caminho=BANCO, hoje: date | 
         "pncp": lambda: motor_pncp(ctx, alvo.ibge, alvo.municipio, orgaos_pncp, pncp_anterior),
         "fontes": lambda: motor_fontes(ctx),
         "normas": lambda: motor_normas(ctx),
+        "tesouro": lambda: motor_tesouro(ctx, alvo.municipio, alvo.uf),
     }
     for nome in motores:
         inicio = time.monotonic()

@@ -280,9 +280,10 @@
 - id: 45
   bloco: Pisos e tetos
   requisito: Câmara 4,5% (faixa IV)
-  situacao: parcial
-  evidencia: Regra CAMARA e faixa IV no alvo; não medido
-  falta: RREO/DCA
+  situacao: cumprido
+  evidencia: fiscal._medir_camara (bloco 2) mede o art. 29-A com a despesa liquidada da Legislativa (RREO Anexo 2, com intraorçamentárias) sobre a base do ano anterior (RREO Anexo 3), conferidas pela DCA I-E e I-C; out/2026 4,28% de 4,5%, selo verde
+  falta: ''
+  trava: testes/test_fiscal.py::test_camara_pelo_art_29a_com_duas_vias
 - id: 46
   bloco: Pisos e tetos
   requisito: Dívida consolidada até 1,2 × RCL
@@ -320,7 +321,7 @@
   requisito: Cálculo próprio × declarado (mais de 1% = indício)
   situacao: parcial
   evidencia: Aplicado ao IGD e, desde o bloco 1, a pessoal, dívida e crédito (ficha PISO-DIV quando passa de 1%)
-  falta: Aplicar a saúde, educação, FUNDEB e Câmara (bloco 2)
+  falta: Aplicar a saúde, educação e FUNDEB (bloco 2; a Câmara não tem percentual declarado e é conferida por duas vias)
   trava: testes/test_fiscal.py::test_declarado_diferente_do_calculo_proprio_vira_ficha
 - id: 52
   bloco: Pisos e tetos
@@ -806,8 +807,8 @@
   bloco: Parecer
   requisito: Pisos e tetos
   situacao: parcial
-  evidencia: IGD e, desde o bloco 1, pessoal, dívida e crédito do Município com memória de cálculo e duas vias
-  falta: Saúde, educação, FUNDEB e Câmara
+  evidencia: IGD e, desde os blocos 1 e 2, pessoal, dívida, crédito e Câmara do Município com memória de cálculo e duas vias
+  falta: Saúde, educação e FUNDEB
 - id: 132
   bloco: Parecer
   requisito: Contas uma a uma (9 maiores saídas, 4 estações, cronologia)

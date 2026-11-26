@@ -370,3 +370,37 @@ def test_pagina_do_banco_tem_os_dados_e_o_indice_liga_ela(rodada, tmp_path):
     assert len(json.loads(arquivos[3].read_text(encoding="utf-8"))) >= 1
     assert 'href="banco/index.html"' in parecer_html.indice([], "Goiânia", banco=True)
     assert "banco/index.html" not in parecer_html.indice([], "Goiânia")
+
+
+# --- Tesouro: transferências constitucionais, a segunda via do rio ------------------------
+
+def test_tesouro_le_a_planilha_do_mes_e_guarda_so_o_municipio(tmp_path):
+    pacote = {"result": {"resources": [
+        {"name": "Transferencia_Mensal_Municipios_202410.csv", "url": "https://t/202410.csv"},
+        {"name": "Transferencia_Mensal_Municipios_202411.csv", "url": "https://t/202411.csv"},
+        {"name": "Metadados", "url": "https://t/m.pdf"}]}}
+    planilha = ("Município;UF;ANO;Mês;1º Decêndio;2º Decêndio;3º Decêndio;Item transferência;"
+                "Transferência;\n"
+                "Goiânia;GO;2024;11;100.5;200;300;FPM;FPM;\n"
+                "Goiânia;GO;2024;11;25;50;75;FPM;FUNDEB;\n"
+                "Goiânia;SP;2024;11;9;9;9;FPM;FPM;\n"
+                "Anápolis;GO;2024;11;1;2;3;FPM;FPM;\n").encode("latin-1")
+
+    def leitor(url, **_):
+        if "package_show" in url:
+            return base.Leitura(True, url, json.dumps(pacote).encode(), http=200)
+        return base.Leitura(True, url, planilha, http=200)
+
+    banco = historico.rodar("2024-11", "2024-12", caminho=tmp_path / "h.db", motores=("tesouro",),
+                            hoje=date(2026, 11, 26), ler_url=leitor, dormir=lambda s: None, pausa=0)
+    linhas = banco.consultar("SELECT mes, item, destino, total FROM transferencias_tesouro ORDER BY destino")
+    assert linhas == [("2024-11", "FPM", "FPM", 600.5), ("2024-11", "FPM", "FUNDEB", 150.0)]
+    meses = json.loads(dict(banco.consultar("SELECT chave, valor FROM meta"))["tesouro_meses"])
+    assert meses == {"lidos": ["2024-11"], "nao_publicados": ["2024-12"]}
+    banco.fechar()
+
+
+def test_numero_da_planilha_do_tesouro():
+    assert historico._numero_br("1.234,56") == 1234.56
+    assert historico._numero_br("94869121.13") == 94869121.13
+    assert historico._numero_br("") == 0.0
