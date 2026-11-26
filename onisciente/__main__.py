@@ -8,6 +8,7 @@
     python -m onisciente coletar siconfi --exercicio 2025 --periodo 6   (rede)
     python -m onisciente historico --desde 2024-11 --ate 2026-11   (rede; banco + diagnóstico)
     python -m onisciente diagnostico          # refaz o diagnóstico a partir do banco, sem rede
+    python -m onisciente painel-banco         # refaz só a página do banco no site, sem rede
 """
 
 from __future__ import annotations
@@ -89,7 +90,9 @@ def atualizar_indice() -> None:
         m = re.fullmatch(r"parecer_(\d{4}-\d{2})\.html", arq.name)
         if m:
             pareceres.append((m.group(1), arq.name))
-    (SAIDA_DOCS / "index.html").write_text(parecer_html.indice(pareceres, alvo.nome), encoding="utf-8")
+    banco = (SAIDA_DOCS / "banco" / "index.html").exists()
+    (SAIDA_DOCS / "index.html").write_text(parecer_html.indice(pareceres, alvo.nome, banco=banco),
+                                           encoding="utf-8")
 
 
 def cmd_parecer(args) -> int:
@@ -161,9 +164,18 @@ def cmd_historico(args) -> int:
                             brutos=Path(args.brutos) if args.brutos else None, pausa=args.pausa,
                             somar=args.somar)
     d = diagnostico.diagnosticar(banco)
+    pagina = _publicar_banco(banco, d)
     banco.fechar()
-    _imprimir_diagnostico(d, diagnostico.gravar(d, SAIDA_RELATORIOS))
+    _imprimir_diagnostico(d, [*diagnostico.gravar(d, SAIDA_RELATORIOS), *pagina])
     return 0
+
+
+def _publicar_banco(banco, d: dict) -> list[Path]:
+    """Escreve a página do banco no site e liga ela no índice dos pareceres."""
+    from . import painel_banco
+    arquivos = painel_banco.gerar(banco, d)
+    atualizar_indice()
+    return arquivos
 
 
 def cmd_diagnostico(_args) -> int:
@@ -173,8 +185,23 @@ def cmd_diagnostico(_args) -> int:
         return 1
     banco = historico.Banco.abrir(historico.BANCO)
     d = diagnostico.diagnosticar(banco)
+    pagina = _publicar_banco(banco, d)
     banco.con.close()
-    _imprimir_diagnostico(d, diagnostico.gravar(d, SAIDA_RELATORIOS))
+    _imprimir_diagnostico(d, [*diagnostico.gravar(d, SAIDA_RELATORIOS), *pagina])
+    return 0
+
+
+def cmd_painel_banco(_args) -> int:
+    """Só a página do banco no site, sem regravar o diagnóstico em relatorios/."""
+    from . import diagnostico, historico
+    if not historico.BANCO.exists():
+        print("Banco histórico não encontrado; rode `python -m onisciente historico`.", file=sys.stderr)
+        return 1
+    banco = historico.Banco.abrir(historico.BANCO)
+    arquivos = _publicar_banco(banco, diagnostico.diagnosticar(banco))
+    banco.con.close()
+    for a in arquivos:
+        print("->", Path(a).relative_to(RAIZ))
     return 0
 
 
@@ -202,6 +229,8 @@ def main(argv: list[str] | None = None) -> int:
     ph.set_defaults(f=cmd_historico)
     sub.add_parser("diagnostico", help="refaz o diagnóstico a partir do banco histórico") \
         .set_defaults(f=cmd_diagnostico)
+    sub.add_parser("painel-banco", help="refaz só a página do banco histórico no site") \
+        .set_defaults(f=cmd_painel_banco)
     args = p.parse_args(argv)
     return args.f(args)
 

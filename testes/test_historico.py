@@ -351,3 +351,22 @@ def test_pncp_somado_continua_de_onde_parou(tmp_path):
     assert lidos == {"2026-10", "2026-11"}
     assert json.loads(dict(banco.consultar("SELECT chave, valor FROM meta"))["pncp_procura"]) == [
         "2026-10", "2026-11"]
+
+
+def test_pagina_do_banco_tem_os_dados_e_o_indice_liga_ela(rodada, tmp_path):
+    from onisciente import painel_banco
+    from onisciente.parecer import html as parecer_html
+    d = diagnostico.diagnosticar(rodada)
+    arquivos = painel_banco.gerar(rodada, d, tmp_path / "banco")
+    assert [a.name for a in arquivos] == ["index.html", "dados.json", "contratos.json",
+                                          "contratacoes.json"]
+    pagina = arquivos[0].read_text(encoding="utf-8")
+    assert pagina.startswith("<!doctype html>") and 'fetch("dados.json")' in pagina
+    resumo = json.loads(arquivos[1].read_text(encoding="utf-8"))
+    assert resumo["intervalo"] == "2024-12 a 2025-01" and resumo["meses"] == ["2024-12", "2025-01"]
+    assert resumo["pncp"]["meses_completos"] == ["2024-12", "2025-01"]
+    contratos = json.loads(arquivos[2].read_text(encoding="utf-8"))
+    assert [c[0] for c in contratos] == ["K-1"] and contratos[0][8] == 1   # da pasta
+    assert len(json.loads(arquivos[3].read_text(encoding="utf-8"))) >= 1
+    assert 'href="banco/index.html"' in parecer_html.indice([], "Goiânia", banco=True)
+    assert "banco/index.html" not in parecer_html.indice([], "Goiânia")
