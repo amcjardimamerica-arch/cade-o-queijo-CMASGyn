@@ -32,10 +32,34 @@ def _curto(v: float) -> str:
     return moeda(v)
 
 
-def rio(r: Rio, largura: int = 760) -> str:
+def _linhas_do_rio(r: Rio, maximo: int | None) -> list[tuple[str, Esfera, float, str, bool]]:
+    """(nome, esfera, valor, legenda, tracejado). Além de ``maximo`` linhas, as menores se juntam por esfera."""
+    afl = sorted((a for a in r.afluentes if a.valor > 0), key=lambda a: -a.valor)
+
+    def linha(a) -> tuple[str, Esfera, float, str, bool]:
+        natureza = {True: "vinculada", False: "livre", None: "sem fonte declarada"}[a.vinculado]
+        return (a.nome, a.esfera, a.valor, natureza + (f" · fonte {a.fonte}" if a.fonte else ""),
+                a.vinculado is None)
+
+    if maximo is None or len(afl) <= maximo:
+        return [linha(a) for a in afl]
+    grandes, resto = afl[:maximo - 1], afl[maximo - 1:]
+    out = [linha(a) for a in grandes]
+    por_esfera: dict[Esfera, list] = {}
+    for a in resto:
+        por_esfera.setdefault(a.esfera, []).append(a)
+    for esf, lista in sorted(por_esfera.items(), key=lambda kv: -sum(a.valor for a in kv[1])):
+        soma = sum(a.valor for a in lista)
+        vinc = sum(a.valor for a in lista if a.vinculado)
+        out.append((f"Demais afluentes ({len(lista)}), {esf.value}", esf, soma,
+                    f"vinculada {_curto(vinc)} · livre ou sem fonte {_curto(soma - vinc)}", False))
+    return sorted(out, key=lambda x: -x[2])
+
+
+def rio(r: Rio, largura: int = 760, *, rotulo: str = "no mês", maximo: int | None = None) -> str:
     """Afluentes descendo até o leito: espessura pelo valor, cor pela esfera."""
-    afl = sorted(r.afluentes, key=lambda a: -a.valor)
-    total = r.total()
+    afl = _linhas_do_rio(r, maximo)
+    total = sum(x[2] for x in afl)
     if not afl or total <= 0:
         return ('<p class="vazio">Sem afluente publicado para a competência: o rio não pode ser '
                 'desenhado.</p>')
@@ -50,24 +74,22 @@ def rio(r: Rio, largura: int = 760) -> str:
     partes.append(f'<rect x="{x_leito}" y="{leito_y0 - 6}" width="22" height="{leito_h + 12}" '
                   f'rx="11" fill="#E8EEF5" stroke="{LINHA}"/>')
     acumulado = leito_y0
-    for i, a in enumerate(afl):
+    maior = afl[0][2]
+    for i, (nome, esfera, valor, legenda, tracejado) in enumerate(afl):
         y = leito_y0 + i * linha_h + linha_h / 2
-        esp = max(2.0, max_esp * a.valor / afl[0].valor)
-        alvo_y = acumulado + (leito_h * a.valor / total) / 2
-        acumulado += leito_h * a.valor / total
-        cor = a.esfera.cor
-        tracejado = ' stroke-dasharray="6 4"' if a.vinculado is None else ""
+        esp = max(2.0, max_esp * valor / maior)
+        alvo_y = acumulado + (leito_h * valor / total) / 2
+        acumulado += leito_h * valor / total
+        traco = ' stroke-dasharray="6 4"' if tracejado else ""
         partes.append(
             f'<path d="M{x_ini},{y:.1f} C{(x_ini + x_leito) / 2:.0f},{y:.1f} '
             f'{(x_ini + x_leito) / 2:.0f},{alvo_y:.1f} {x_leito},{alvo_y:.1f}" fill="none" '
-            f'stroke="{cor}" stroke-width="{esp:.1f}" stroke-linecap="round" opacity="0.85"{tracejado}/>')
-        natureza = {True: "vinculada", False: "livre", None: "sem fonte declarada"}[a.vinculado]
-        partes.append(f'<text x="{x_rotulo}" y="{y - 2:.1f}" class="t">{escape(a.nome[:34])}</text>')
-        partes.append(f'<text x="{x_rotulo}" y="{y + 12:.1f}" class="ts">{_curto(a.valor)} · '
-                      f'{escape(natureza)}{" · fonte " + escape(a.fonte) if a.fonte else ""}</text>')
+            f'stroke="{esfera.cor}" stroke-width="{esp:.1f}" stroke-linecap="round" opacity="0.85"{traco}/>')
+        partes.append(f'<text x="{x_rotulo}" y="{y - 2:.1f}" class="t">{escape(nome[:40])}</text>')
+        partes.append(f'<text x="{x_rotulo}" y="{y + 12:.1f}" class="ts">{_curto(valor)} · {escape(legenda)}</text>')
     vl = r.vinculada_e_livre()
     partes.append(f'<text x="{x_leito + 30}" y="{leito_y0 + 14}" class="th">{_curto(total)}</text>')
-    partes.append(f'<text x="{x_leito + 30}" y="{leito_y0 + 30}" class="ts">no mês</text>')
+    partes.append(f'<text x="{x_leito + 30}" y="{leito_y0 + 30}" class="ts">{escape(rotulo)}</text>')
     y_leg = altura - 40
     x = x_rotulo
     for esf, nome in ((Esfera.FEDERAL, "federal"), (Esfera.ESTADUAL, "estadual"),

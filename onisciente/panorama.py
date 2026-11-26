@@ -88,6 +88,7 @@ class Panorama:
                            "memoria": self.fiscal.memoria.get(m.regra.id)}
                           for m in self.fiscal.medidas],
                 "duas_vias": [c.como_dict() for c in self.fiscal.conferencias],
+                "rio": self.fiscal.rio.como_dict() if self.fiscal.rio is not None else None,
                 "notas": self.fiscal.notas,
             },
             "fichas": [f.como_dict() for f in self.fichas_ordenadas()],

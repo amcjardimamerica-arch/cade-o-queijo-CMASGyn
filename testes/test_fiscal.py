@@ -59,7 +59,9 @@ def test_tetos_de_2025_batem_com_o_declarado():
         assert f.memoria[m.regra.id]
     # memória de cálculo com a despesa bruta dos doze meses publicados
     assert "soma dos doze meses publicados" in f.memoria["PESSOAL-EXECUTIVO"]
-    assert f.fichas("2025-12") == []
+    # os tetos e as duas vias RGF x RREO não geram ficha; as do rio do Município têm testes próprios
+    assert [x for x in f.fichas("2025-12") if not x.codigo.startswith(("RIO-", "VIN-DESVIO-"))] == []
+    assert f.rio is not None and f.rio.rotulo == "RREO do 6º bimestre de 2025"
 
 
 def test_piso_da_saude_no_banco_real_com_duas_vias_em_cada_ano():
@@ -100,7 +102,8 @@ def test_duas_vias_rgf_contra_rreo_em_todos_os_quadrimestres():
         assert rgf <= {c.titulo for c in independentes}, (ex, q)
         # as vias da saúde (SIOPS × RREO) têm teste próprio e podem divergir de verdade
         assert all(c.selo is Selo.VERDE for c in independentes if c.titulo in rgf), (ex, q)
-        assert len(f.certificacoes()) == len(independentes)
+        do_rio = [c for c in (f.rio.certificacoes() if f.rio else []) if c.selo in (Selo.VERDE, Selo.AZUL)]
+        assert len(f.certificacoes()) == len(independentes) + len(do_rio)
 
 
 def test_divergencia_entre_rgf_e_rreo_vira_ficha(tmp_path):
@@ -115,7 +118,7 @@ def test_divergencia_entre_rgf_e_rreo_vira_ficha(tmp_path):
     f = fiscal.medir_municipio(date(2025, 12, 31), banco=copia)
     rcl = next(c for c in f.conferencias if c.titulo == "Receita corrente líquida")
     assert rcl.selo is Selo.AZUL and rcl.certificacao.divergencia
-    fichas = f.fichas("2025-12")
+    fichas = [x for x in f.fichas("2025-12") if x.codigo.startswith("VIAS-")]
     assert [x.codigo for x in fichas] == ["VIAS-RECEITA-CORRENTE-LIQUIDA-2025-12"]
     assert fichas[0].familia is Familia.PISO
 
@@ -186,7 +189,10 @@ def test_nenhuma_parte_da_nota_e_zero_fixo(panorama):
         assert ind.motivos.get(nome), nome
     # Duas vias: RGF × RREO e, desde o bloco 2, SIOPS/SIOPE × RREO. Em 2026 o SIOPE declara 85,52% do
     # FUNDEB nos profissionais no 4º bimestre e o RREO Anexo 14 declara 88,98%: a única divergência.
-    assert ind.coerencia == pytest.approx(10 / 11) and "RGF e no RREO" in ind.motivos["coerencia"]
+    # Desde o bloco 3 entram também o RREO contra a matriz de saldos contábeis (21 valores, todos iguais ao
+    # centavo) e a origem na União contra o registro do Município (7 transferências; FNDE e FNAS divergem).
+    assert ind.coerencia == pytest.approx(36 / 39) and "RGF e no RREO" in ind.motivos["coerencia"]
+    assert "na matriz de saldos" in ind.motivos["coerencia"]
     divergentes = [c.titulo for c in panorama.fiscal.conferencias if c.certificacao.divergencia]
     assert divergentes == ["Percentual do FUNDEB nos profissionais (4º bimestre de 2026)"]
     assert "liquidados na Assistência Social" in ind.motivos["cobertura"]

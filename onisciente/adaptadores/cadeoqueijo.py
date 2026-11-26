@@ -316,7 +316,8 @@ def montar(competencia: str, *, raiz: Path = RAIZ, mapa: MapaLegal | None = None
         iguais = sum(1 for c in certs if c.selo is Selo.VERDE and not c.divergencia)
         coerencia = iguais / len(certs)
         motivos["coerencia"] = (f"{iguais} de {len(certs)} valores publicados em duas vias oficiais do mesmo "
-                                "período (no RGF e no RREO; no SIOPS, no SIOPE e no RREO) dizem o mesmo "
+                                "período (no RGF e no RREO; no SIOPS, no SIOPE e no RREO; no RREO e na matriz de saldos "
+                                "contábeis; no SIAFI e na matriz) dizem o mesmo "
                                 "dentro de 1%")
     else:
         coerencia = None

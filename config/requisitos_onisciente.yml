@@ -7,9 +7,10 @@
   bloco: Premissas
   requisito: 'Trilha e não cartório: cada número leva fonte e selo'
   situacao: parcial
-  evidencia: Selos e custódia existem; os tetos do Município no parecer saem do RGF com duas vias seladas (RGF × RREO) desde
-    o bloco 1
-  falta: Selar também o rio e as contas e guardar o original de cada número
+  evidencia: Selos e custódia existem; os tetos do Município saem do RGF com duas vias seladas (RGF × RREO) desde o bloco
+    1; desde o bloco 3 cada afluente do rio do Município leva o selo da conferência RREO × matriz de saldos contábeis e a
+    origem (União × Município) leva o seu
+  falta: Selar as contas uma a uma da despesa e guardar o original de cada número
 - id: 2
   bloco: Premissas
   requisito: Funciona sozinho, no relógio
@@ -20,10 +21,12 @@
 - id: 3
   bloco: Premissas
   requisito: A fonte oficial certifica a si mesma (duas vias)
-  situacao: parcial
-  evidencia: 'selar() roda no pipeline: RGF × RREO (RCL, RCL ajustada, dívida); desde o bloco 2, SIOPS × RREO na saúde e SIOPE × RREO na educação e no FUNDEB (base de impostos, receitas e transferências do FUNDEB, despesa liquidada e percentuais), todas verdes no fechamento de 2024 e 2025; a divergência real do FUNDEB no 4º bimestre de 2026 vira indício'
-  falta: Duas vias no rio (RREO × Tesouro/FNAS), bloco 3
-  trava: testes/test_fiscal.py::test_duas_vias_rgf_contra_rreo_em_todos_os_quadrimestres
+  situacao: cumprido
+  evidencia: 'selar() roda no pipeline: RGF × RREO (RCL, RCL ajustada, dívida); SIOPS × RREO e SIOPE × RREO (bloco 2); desde
+    o bloco 3, RREO × matriz de saldos contábeis (16 espécies, receita de capital, receita realizada, despesa empenhada, liquidada
+    e paga, iguais ao centavo nos 11 bimestres de 2025 e 2026) e SIAFI × matriz na origem de 7 transferências da União'
+  falta: ''
+  trava: testes/test_rio_municipio.py::test_rreo_e_matriz_iguais_em_todos_os_bimestres_de_2025_e_2026
 - id: 4
   bloco: Premissas
   requisito: Ausência de dado vira alerta
@@ -113,9 +116,13 @@
   bloco: O rio
   requisito: Afluentes por espécie (IPTU, ISS, ITBI, IRRF, ICMS, IPVA, FPM, ITR, Fundeb, salário-educação, SUS, FNAS, COSIP,
     CIDE/multas, convênios, emendas, operações de crédito)
-  situacao: parcial
-  evidencia: rio/fontes.py classifica por fonte de destinação; não há tabela por espécie; dado real só da Assistência
-  falta: Ler a receita do RREO Anexo 1/3 por natureza e montar os afluentes do município inteiro
+  situacao: cumprido
+  evidencia: 'rio/municipio.py: 16 espécies correntes pelo RREO Anexo 3 mês a mês e 4 de capital pelo Anexo 1, cada uma aberta
+    pelas fontes registradas na matriz de saldos contábeis (salário-educação 1550, SUS 1600, FNAS 1660, COSIP 1751, CIDE 1750,
+    multas 1752, convênios 1700/1571, emendas 1706/1710, operações de crédito 1754); no parecer de out/2026, ''O rio do Município
+    inteiro'''
+  falta: ''
+  trava: testes/test_rio_municipio.py::test_afluentes_abrem_pelas_fontes_registradas_e_a_esfera_vem_da_especie
 - id: 19
   bloco: O rio
   requisito: Fontes STN 1500/1540/1600/1660 e demais
@@ -131,27 +138,36 @@
 - id: 21
   bloco: O rio
   requisito: Desvio de finalidade
-  situacao: parcial
-  evidencia: desvio_de_finalidade() existe; não é chamado no pipeline
-  falta: Aplicar sobre empenhos por fonte
+  situacao: cumprido
+  evidencia: 'rio/municipio.py desvios(): empenhos da matriz por fonte e função; em 2026 a COSIP (751) aparece na função 04
+    (R$ 14,7 mi, com vencimentos de pessoal) e na 26, e o FNAS (660) na 28, com ficha VIN-DESVIO; alienação de bens em despesa
+    corrente (LRF art. 44) também; destinações sem catálogo ficam listadas'
+  falta: ''
+  trava: testes/test_rio_municipio.py::test_cosip_empenhada_fora_do_leito
 - id: 22
   bloco: O rio
   requisito: As 4 margens (previsto não empenhado, empenhado não liquidado, liquidado não pago, pago sem vínculo)
   situacao: parcial
-  evidencia: rio/afluentes.py Margens; o parecer diz que “aparecem quando a execução for publicada”
-  falta: Alimentar com a execução (RREO Anexo 2 ou portal)
+  evidencia: As margens do Município inteiro (dotação não empenhada, empenhado não liquidado, liquidado não pago) saem do
+    RREO Anexo 1 conferido com a matriz de saldos contábeis e aparecem no parecer
+  falta: 'Pago sem vínculo publicado: depende da despesa item a item (bloco 5)'
+  trava: testes/test_rio_municipio.py::test_cada_especie_confere_com_a_matriz_de_saldos_contabeis
 - id: 23
   bloco: O rio
   requisito: Receita realizada contra a prevista
-  situacao: parcial
-  evidencia: O código pede e, sem dado, vira ausência; o rio de out/2026 mostra só o previsto
-  falta: Usar o RREO Anexo 1 já coletado como via do realizado
+  situacao: cumprido
+  evidencia: 'rio/municipio.py _ritmo(): cada espécie contra a previsão atualizada, no ritmo do ano anterior até o mesmo bimestre
+    (no 6º bimestre, contra o ano todo); a falta acima de 0,05% da receita prevista vira ficha (IPTU em 2026)'
+  falta: ''
+  trava: testes/test_rio_municipio.py::test_iptu_abaixo_do_ritmo_vira_ficha_e_itr_pequeno_nao
 - id: 24
   bloco: O rio
   requisito: Rio do município inteiro
-  situacao: ausente
-  evidencia: Só a pasta da Assistência entra no parecer
-  falta: Rio do município pelo RREO, depois por secretaria
+  situacao: cumprido
+  evidencia: 'rio/municipio.py montar(): o rio do exercício de todo o Município pelo RREO, ligado ao fiscal e ao parecer de
+    cada domínio'
+  falta: ''
+  trava: testes/test_rio_municipio.py::test_parecer_mostra_o_rio_do_municipio_e_as_tres_conferencias
 - id: 25
   bloco: O rio
   requisito: Sankey com modos Todo / Vinculada / Livre
@@ -161,15 +177,20 @@
 - id: 26
   bloco: O rio
   requisito: Afluentes batem com o RREO em 1% (portão da fase 2)
-  situacao: ausente
-  evidencia: Nenhuma comparação implementada
-  falta: Conferência rio × RREO
+  situacao: cumprido
+  evidencia: 'O rio (soma dos afluentes menos o FUNDEB entregue) contra a receita realizada do Anexo 1, e os grupos (tributos,
+    transferências): iguais ao centavo em 2025 e 2026'
+  falta: ''
+  trava: testes/test_rio_municipio.py::test_rio_fecha_ao_centavo_com_a_receita_realizada_do_rreo
 - id: 27
   bloco: O rio
   requisito: Origem conciliada com repasses (FNAS, Tesouro, FNS, FNDE)
-  situacao: ausente
-  evidencia: FNAS 2024-25 está no banco (330 linhas) mas não é cruzado com a receita
-  falta: Cruzar repasses × receita por fonte
+  situacao: cumprido
+  evidencia: 'rio/municipio.py conferir_origem(): Portal da Transparência (SIAFI) × matriz por natureza e fonte, mês a mês,
+    para FPM, ITR, royalties, complementação do FUNDEB, SUS fundo a fundo (FNS), FNDE e FNAS; o valor que falta é procurado
+    em outra natureza ou fonte do mesmo mês (FNAS de jan/2026 achado na fonte de emendas)'
+  falta: ''
+  trava: testes/test_rio_municipio.py::test_origem_confere_fpm_itr_royalties_e_aponta_fnas
 - id: 28
   bloco: As 9 estações
   requisito: 9 estações com nível mínimo de prova
@@ -896,9 +917,11 @@
 - id: 145
   bloco: Fontes e cadência
   requisito: 'Tesouro: FPM, ITR, ICMS e outras transferências'
-  situacao: ausente
-  evidencia: Não coletado
-  falta: Coletor
+  situacao: parcial
+  evidencia: FPM, ITR e royalties lidos do SIAFI pelo Portal da Transparência (transferências constitucionais) e conferidos
+    com a matriz; a matriz de saldos contábeis vem do Tesouro (SICONFI)
+  falta: 'A cota do ICMS e do IPVA é do Estado: sem segunda via fora do Município (requisito 149)'
+  trava: testes/test_rio_municipio.py::test_fpm_da_uniao_e_oitenta_por_cento_do_registrado_no_municipio
 - id: 146
   bloco: Fontes e cadência
   requisito: FNS
@@ -914,9 +937,11 @@
 - id: 148
   bloco: Fontes e cadência
   requisito: FNAS
-  situacao: parcial
-  evidencia: 2024 e 2025; 2026 não publicado na página do FNAS
-  falta: 2ª via pelo Portal da Transparência
+  situacao: cumprido
+  evidencia: Página do FNAS em 2024 e 2025; 2ª via pelo Portal da Transparência (órgão FNAS) de 2024 a 2026, conferida mês
+    a mês com a matriz
+  falta: ''
+  trava: testes/test_rio_municipio.py::test_origem_confere_fpm_itr_royalties_e_aponta_fnas
 - id: 149
   bloco: Fontes e cadência
   requisito: Economia GO (cota de ICMS e IPVA)

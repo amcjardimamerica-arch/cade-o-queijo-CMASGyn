@@ -17,6 +17,7 @@ from ..nucleo.integridade import PESOS, ROTULOS
 from ..nucleo.selos import Selo, Verificacao
 from ..panorama import Panorama
 from ..rio.fontes import classificar
+from ..rio.municipio import RioMunicipal, Tipo
 from . import svg
 
 MESES = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto",
@@ -170,6 +171,8 @@ def gerar(p: Panorama, *, hoje: date | None = None) -> str:
                  "existe para a competência.</p>")
     for v in p.leitura_falhou:
         s.append(f'<div class="vermelho">{_selo(Selo.VERMELHO)}{escape(v)}</div>')
+    if p.fiscal is not None and p.fiscal.rio is not None:
+        s.extend(_rio_municipal(p.fiscal.rio))
 
     # 3. Pisos e tetos
     s.append("<h2>3. Pisos e tetos</h2>")
@@ -294,3 +297,93 @@ def indice(pareceres: list[tuple[str, str]], alvo: str, *, banco: bool = False) 
             f"<h1>Onisciente</h1><p class=\"sub\">{escape(alvo)} · a trilha do dinheiro público</p>"
             f"<h2>Pareceres mensais</h2><ul>{itens or '<li>Nenhum parecer ainda.</li>'}</ul>"
             f"{ligacao}</main></body></html>")
+
+
+_TIPOS = (
+    (Tipo.ENTRE_FONTES, "A origem: o que a União transferiu contra o que o Município registrou",
+     "Portal da Transparência (SIAFI) contra a matriz de saldos contábeis, na natureza e na fonte que "
+     "vinculam o recurso."),
+    (Tipo.ENTRE_DEMONSTRATIVOS, "O RREO contra a matriz de saldos contábeis",
+     "Duas entregas do Município, homologadas em separado pelo Tesouro."),
+    (Tipo.MESMO_RELATORIO, "O rio contra o próprio RREO",
+     "Quadros do mesmo relatório: confere a montagem do rio, mas não é outra via e não entra na coerência."),
+)
+
+
+def _rio_municipal(rm: RioMunicipal) -> list[str]:
+    """O rio do Município inteiro no exercício, com as três conferências, o ritmo e o leito."""
+    s = [f"<h3>O rio do Município inteiro: {escape(rm.rotulo)}</h3>",
+         '<p class="sub">Cada espécie de receita do exercício, aberta pelas fontes em que o Município a '
+         "registrou na matriz de saldos contábeis. A fonte diz se a água é vinculada ou livre.</p>",
+         svg.rio(rm.rio, rotulo="no exercício", maximo=24)]
+    s.append('<div class="tabela"><table><tr><th>O leito</th><th>Valor</th></tr>'
+             f'<tr><td>Afluentes somados</td><td class="num">{svg.moeda(rm.rio.total())}</td></tr>'
+             f'<tr><td>FUNDEB entregue ao fundo (sangria)</td><td class="num">{svg.moeda(-rm.sangria_fundeb)}</td></tr>'
+             f'<tr><td>Receita realizada pelo rio</td><td class="num">{svg.moeda(rm.liquido)}</td></tr>'
+             f'<tr><td>Receita realizada declarada no RREO</td><td class="num">{svg.moeda(rm.realizado_declarado)}</td></tr>'
+             f'<tr><td>Receita prevista no ano</td><td class="num">{svg.moeda(rm.previsto_ano)}</td></tr>'
+             "</table></div>")
+    if rm.margens is not None:
+        m = rm.margens
+        s.append('<div class="tabela"><table><tr><th>Margem do Município inteiro</th><th>Valor</th></tr>'
+                 + (f'<tr><td>Previsto e não empenhado</td><td class="num">{svg.moeda(m.previsto_nao_empenhado)}</td></tr>'
+                    if rm.margens_no_ano else
+                    f'<tr><td>Dotação ainda não empenhada (o ano não acabou)</td>'
+                    f'<td class="num">{svg.moeda(m.previsto_nao_empenhado)}</td></tr>')
+                 + f'<tr><td>Empenhado e não liquidado</td><td class="num">{svg.moeda(m.empenhado_nao_liquidado)}</td></tr>'
+                 f'<tr><td>Liquidado e não pago</td><td class="num">{svg.moeda(m.liquidado_nao_pago)}</td></tr>'
+                 "</table></div>")
+    for tipo, titulo, explica in _TIPOS:
+        conf = [c for c in rm.conferencias if c.tipo == tipo]
+        if not conf:
+            continue
+        linhas = []
+        mesma_ref = all(c.referencia == conf[0].referencia for c in conf)
+        for c in conf:
+            vias = c.certificacao.vias
+            linhas.append(
+                f"<tr><td>{_selo(c.selo)}{escape(c.titulo)}</td>"
+                + "".join(f'<td class="num">{escape(v.fonte)}<br>{svg.moeda(v.valor)}</td>' for v in vias[:2])
+                + f"<td>{'divergem' if c.certificacao.divergencia else 'iguais'}</td></tr>")
+            nota = ([c.referencia + "."] if not mesma_ref else []) + c.detalhe
+            if nota:
+                linhas.append(f'<tr><td colspan="4" class="sub">{escape(" ".join(nota))}</td></tr>')
+        comum = conf[0].referencia if mesma_ref else ""
+        s.append(f"<h4>{escape(titulo)}</h4><p class=\"sub\">{escape(explica)}"
+                 + (f" {escape(comum)}." if comum else "") + "</p>")
+        s.append('<div class="tabela"><table><tr><th>Valor</th><th>Via 1</th><th>Via 2</th><th>Resultado</th></tr>'
+                 + "".join(linhas) + "</table></div>")
+    if rm.ritmos:
+        nome = {"cumpre": "no ritmo", "alerta": "abaixo do ritmo", "abaixo_imaterial": "abaixo, sem relevância",
+                "sem_dado": "sem ano anterior"}
+        linhas = "".join(
+            f"<tr><td>{escape(r.especie)}</td><td class=\"num\">{svg.moeda(r.realizado)}</td>"
+            f"<td class=\"num\">{svg.moeda(r.esperado)}</td><td class=\"num\">{svg.moeda(r.previsto)}</td>"
+            f"<td>{escape(nome.get(r.situacao, r.situacao))}</td></tr>" for r in rm.ritmos)
+        s.append("<h4>Realizado contra o previsto</h4><p class=\"sub\">Cada espécie contra a previsão atualizada, "
+                 "no ritmo em que o ano anterior se realizou até o mesmo bimestre.</p>")
+        s.append('<div class="tabela"><table><tr><th>Espécie</th><th>Realizado</th><th>Esperado no ritmo</th>'
+                 "<th>Previsto no ano</th><th>Situação</th></tr>" + linhas + "</table></div>")
+    s.append("<h4>O leito: água vinculada empenhada fora da sua finalidade</h4>")
+    if rm.meses_desvio:
+        s.append(f'<p class="sub">Empenhos da matriz de saldos contábeis, {escape(", ".join(rm.meses_desvio[:1]))} '
+                 f"a {escape(rm.meses_desvio[-1])}, por fonte e função.</p>")
+    if rm.desvios:
+        linhas = "".join(
+            f"<tr><td>{escape(d.fonte)} · {escape(d.nome_fonte)}</td><td>{escape(d.funcao)}</td>"
+            f'<td class="num">{svg.moeda(d.valor)}</td><td>{escape(d.norma)}</td></tr>' for d in rm.desvios)
+        s.append('<div class="tabela"><table><tr><th>Fonte</th><th>Função</th><th>Empenhado</th><th>Norma</th></tr>'
+                 + linhas + "</table></div>")
+    elif rm.meses_desvio:
+        s.append('<p class="sub">Nenhuma fonte vinculada empenhada fora do seu leito.</p>')
+    else:
+        s.append('<p class="omitido">A matriz de saldos contábeis do exercício não está no banco: o leito '
+                 "não pôde ser conferido.</p>")
+    if rm.fontes_sem_catalogo:
+        itens = ", ".join(f"{f} ({svg.moeda(v)})" for f, v in sorted(rm.fontes_sem_catalogo.items(),
+                                                                     key=lambda kv: -kv[1]))
+        s.append(f'<p class="omitido">Destinações sem leito no catálogo do sistema, que ainda não se '
+                 f"conferem: {escape(itens)}. Falha do sistema, não do Município.</p>")
+    for n in rm.notas:
+        s.append(f'<p class="omitido">{escape(n)}</p>')
+    return s

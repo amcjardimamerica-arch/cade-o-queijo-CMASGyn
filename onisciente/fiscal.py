@@ -27,6 +27,7 @@ import unicodedata
 from dataclasses import dataclass, field, replace
 from datetime import date
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 from . import RAIZ
 from .legal.mapa import MapaLegal, carregar
@@ -34,6 +35,9 @@ from .nucleo.indicios import Familia, Ficha, emitir
 from .nucleo.provas import Nivel
 from .nucleo.selos import Certificacao, Selo, Via, selar
 from .pisos import Medida, fichas_da_medida, medir
+
+if TYPE_CHECKING:
+    from .rio.municipio import RioMunicipal
 
 BANCO = RAIZ / "dados" / "onisciente" / "historico.db"
 
@@ -89,9 +93,10 @@ class Fiscal:
     memoria: dict[str, str] = field(default_factory=dict)   # regra -> memória de cálculo
     fontes: dict[str, str] = field(default_factory=dict)    # regra -> demonstrativos usados
     notas: list[str] = field(default_factory=list)
+    rio: "RioMunicipal | None" = None                      # o rio do Município inteiro (rio/municipio.py)
 
     def fichas(self, competencia: str, ente: str = "o Município") -> list[Ficha]:
-        out: list[Ficha] = []
+        out: list[Ficha] = list(self.rio.fichas(competencia)) if self.rio is not None else []
         for m in self.medidas:
             for f in fichas_da_medida(m, competencia=competencia, ente=ente):
                 fonte = self.fontes.get(m.regra.id) or (self.rgf.rotulo if self.rgf else "")
@@ -117,9 +122,12 @@ class Fiscal:
 
     def certificacoes(self) -> list[Certificacao]:
         """Os valores com duas vias independentes (RGF contra RREO), para a coerência."""
-        return [c.certificacao for c in self.conferencias
-                if c.entre_demonstrativos and c.certificacao.selo in (Selo.VERDE, Selo.AZUL)
-                and len(c.certificacao.vias) >= 2]
+        proprias = [c.certificacao for c in self.conferencias
+                    if c.entre_demonstrativos and c.certificacao.selo in (Selo.VERDE, Selo.AZUL)
+                    and len(c.certificacao.vias) >= 2]
+        do_rio = [c for c in (self.rio.certificacoes() if self.rio is not None else [])
+                  if c.selo in (Selo.VERDE, Selo.AZUL)]
+        return proprias + do_rio
 
 
 def _moeda(v: float | None) -> str:
@@ -200,9 +208,18 @@ def medir_municipio(ate: date, *, banco: Path | str = BANCO, mapa: MapaLegal | N
         _medir_camara(leitor, ate, mapa, fiscal, faixa_camara)
         _medir_saude(leitor, ate, mapa, fiscal)
         _medir_educacao(leitor, ate, mapa, fiscal)
+        _medir_rio(leitor, ate, fiscal)
         return fiscal
     finally:
         leitor.fechar()
+
+
+def _medir_rio(lt: Leitor, ate: date, fiscal: Fiscal) -> None:
+    """O rio do Município inteiro: espécies, fontes, origem na União e leito da despesa."""
+    from .rio import municipio
+    if fiscal.rreo is None:
+        return
+    fiscal.rio = municipio.montar(lt, fiscal.rreo, ate=ate)
 
 
 def _medir(lt: Leitor, ate: date, mapa: MapaLegal) -> Fiscal:

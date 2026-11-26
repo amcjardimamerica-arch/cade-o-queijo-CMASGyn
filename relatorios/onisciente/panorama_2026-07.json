@@ -2,27 +2,27 @@
  "competencia": "2026-07",
  "alvo": "Prefeitura de Goiânia",
  "dominio": "Assistência Social",
- "em_uma_frase": "38 indícios: 10 críticos, 23 de gravidade alta, 5 de gravidade média. Integridade da trilha: 25 de 85 pontos medidos (tempestividade sem medida nesta competência). 29 documentos que a lei manda publicar não estão publicados.",
+ "em_uma_frase": "44 indícios: 10 críticos, 26 de gravidade alta, 8 de gravidade média. Integridade da trilha: 27 de 85 pontos medidos (tempestividade sem medida nesta competência). 29 documentos que a lei manda publicar não estão publicados.",
  "contagem": {
   "critica": 10,
-  "alta": 23,
-  "media": 5
+  "alta": 26,
+  "media": 8
  },
  "integridade": {
-  "nota": 25.4,
+  "nota": 26.8,
   "completo": false,
   "pontos_medidos": 85,
-  "nota_maxima": 40.4,
+  "nota_maxima": 41.8,
   "partes": {
    "cobertura": 0.0,
-   "coerencia": 21.15,
+   "coerencia": 22.56,
    "tempestividade": null,
    "vinculo": 4.27,
    "prestacao": 0.0
   },
   "fracoes": {
    "cobertura": 0.0,
-   "coerencia": 0.8462,
+   "coerencia": 0.9024,
    "tempestividade": null,
    "vinculo": 0.427,
    "prestacao": 0.0
@@ -32,7 +32,7 @@
   ],
   "motivos": {
    "cobertura": "R$ 12.459.495,31 liquidados na Assistência Social até o RREO do 3º bimestre de 2026; nenhum real com empenhos, liquidações, pagamentos publicados item a item (conferência do portal em 2026-08-26), então nenhum atravessa as nove estações",
-   "coerencia": "11 de 13 valores publicados em duas vias oficiais do mesmo período (no RGF e no RREO; no SIOPS, no SIOPE e no RREO) dizem o mesmo dentro de 1%",
+   "coerencia": "37 de 41 valores publicados em duas vias oficiais do mesmo período (no RGF e no RREO; no SIOPS, no SIOPE e no RREO; no RREO e na matriz de saldos contábeis; no SIAFI e na matriz) dizem o mesmo dentro de 1%",
    "tempestividade": "as duas leituras do Diário divergem (11 dias lidos pelo motor semanal, 23 edições no índice do SILEG): a leitura falhou em uma delas e a medida não pesa contra o Município",
    "prestacao": "prestações de contas das parcerias não publicadas",
    "vinculo": "38 de 89 entidades com lançamento em 2026 têm contrato, termo ou convênio localizado"
@@ -517,6 +517,1520 @@
     "nota": "confirmado em duas vias independentes"
    }
   ],
+  "rio": {
+   "rreo": "RREO do 3º bimestre de 2026",
+   "total_bruto": 5497617086.9,
+   "sangria_fundeb": 249588853.67,
+   "liquido": 5248028233.23,
+   "realizado_declarado": 5248028233.23,
+   "previsto_ano": 10328972000.0,
+   "por_esfera": {
+    "municipal": 3182045315.8699994,
+    "federal": 1012698358.25,
+    "estadual": 818100732.7400001,
+    "mista": 484772680.04
+   },
+   "vinculada_e_livre": {
+    "vinculada": 1660982818.07,
+    "livre": 3706228879.68,
+    "sem_fonte": 130405389.14999999
+   },
+   "afluentes": [
+    {
+     "nome": "IPTU",
+     "esfera": "municipal",
+     "valor": 802059599.43,
+     "fonte": "1500",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1500 na matriz"
+    },
+    {
+     "nome": "ISS",
+     "esfera": "municipal",
+     "valor": 817714942.16,
+     "fonte": "1500",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1500 na matriz"
+    },
+    {
+     "nome": "ITBI",
+     "esfera": "municipal",
+     "valor": 192110298.03,
+     "fonte": "1500",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1500 na matriz"
+    },
+    {
+     "nome": "IRRF retido na fonte",
+     "esfera": "municipal",
+     "valor": 261060669.31,
+     "fonte": "1500",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1500 na matriz"
+    },
+    {
+     "nome": "Taxas e outros tributos: Outros recursos não vinculados",
+     "esfera": "municipal",
+     "valor": 86150567.68,
+     "fonte": "1501",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1501 na matriz"
+    },
+    {
+     "nome": "Taxas e outros tributos: Recursos não vinculados de impostos",
+     "esfera": "municipal",
+     "valor": 76304653.45,
+     "fonte": "1500",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1500 na matriz"
+    },
+    {
+     "nome": "Taxas e outros tributos: fonte 1753",
+     "esfera": "municipal",
+     "valor": 20738196.38,
+     "fonte": "1753",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1753 na matriz"
+    },
+    {
+     "nome": "Taxas e outros tributos: fonte 1759",
+     "esfera": "municipal",
+     "valor": 6434251.62,
+     "fonte": "1759",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1759 na matriz"
+    },
+    {
+     "nome": "Taxas e outros tributos: fonte 1899",
+     "esfera": "municipal",
+     "valor": 5555849.890000001,
+     "fonte": "1899",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1899 na matriz"
+    },
+    {
+     "nome": "Contribuições (iluminação pública e previdência): Previdência própria, fundo em capitalização",
+     "esfera": "municipal",
+     "valor": 224672508.84,
+     "fonte": "1800",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1800 na matriz"
+    },
+    {
+     "nome": "Contribuições (iluminação pública e previdência): Contribuição de iluminação pública",
+     "esfera": "municipal",
+     "valor": 73826161.11,
+     "fonte": "1751",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1751 na matriz"
+    },
+    {
+     "nome": "Contribuições (iluminação pública e previdência): fonte 1799",
+     "esfera": "municipal",
+     "valor": 61386326.650000006,
+     "fonte": "1799",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1799 na matriz"
+    },
+    {
+     "nome": "Contribuições (iluminação pública e previdência): Previdência própria, fundo em repartição",
+     "esfera": "municipal",
+     "valor": 60661479.64,
+     "fonte": "1801",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1801 na matriz"
+    },
+    {
+     "nome": "Receita patrimonial: Recursos não vinculados de impostos",
+     "esfera": "municipal",
+     "valor": 61745239.379999995,
+     "fonte": "1500",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1500 na matriz"
+    },
+    {
+     "nome": "Receita patrimonial: Previdência própria, fundo em capitalização",
+     "esfera": "municipal",
+     "valor": 26219753.99,
+     "fonte": "1800",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1800 na matriz"
+    },
+    {
+     "nome": "Receita patrimonial: fonte 1759",
+     "esfera": "municipal",
+     "valor": 24720606.830000002,
+     "fonte": "1759",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1759 na matriz"
+    },
+    {
+     "nome": "Receita patrimonial: Outros recursos não vinculados",
+     "esfera": "municipal",
+     "valor": 24368800.580000002,
+     "fonte": "1501",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1501 na matriz"
+    },
+    {
+     "nome": "Receita patrimonial: SUS federal, bloco de manutenção",
+     "esfera": "municipal",
+     "valor": 4077234.05,
+     "fonte": "1600",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1600 na matriz"
+    },
+    {
+     "nome": "Receita patrimonial: Convênios da União",
+     "esfera": "municipal",
+     "valor": 3994171.91,
+     "fonte": "1700",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1700 na matriz"
+    },
+    {
+     "nome": "Receita patrimonial: Transferências do Fundeb (impostos)",
+     "esfera": "municipal",
+     "valor": 3225628.0599999996,
+     "fonte": "1540",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1540 na matriz"
+    },
+    {
+     "nome": "Receita patrimonial: Salário-educação",
+     "esfera": "municipal",
+     "valor": 2050222.81,
+     "fonte": "1550",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1550 na matriz"
+    },
+    {
+     "nome": "Receita patrimonial: Transferência especial da União (emendas)",
+     "esfera": "municipal",
+     "valor": 1967180.6199999999,
+     "fonte": "1706",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1706 na matriz"
+    },
+    {
+     "nome": "Receita patrimonial: Outro recurso vinculado à saúde (grupo 600 a 659)",
+     "esfera": "municipal",
+     "valor": 1668224.01,
+     "fonte": "1632",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1632 na matriz"
+    },
+    {
+     "nome": "Receita patrimonial: fonte 1802",
+     "esfera": "municipal",
+     "valor": 1482883.84,
+     "fonte": "1802",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1802 na matriz"
+    },
+    {
+     "nome": "Receita patrimonial: Fundo Nacional de Assistência Social",
+     "esfera": "municipal",
+     "valor": 1396268.8699999999,
+     "fonte": "1660",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1660 na matriz"
+    },
+    {
+     "nome": "Receita patrimonial: FNDE: alimentação escolar",
+     "esfera": "municipal",
+     "valor": 911740.54,
+     "fonte": "1552",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1552 na matriz"
+    },
+    {
+     "nome": "Receita patrimonial: Operações de crédito",
+     "esfera": "municipal",
+     "valor": 812597.69,
+     "fonte": "1754",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1754 na matriz"
+    },
+    {
+     "nome": "Receita patrimonial: Transferência especial do Estado",
+     "esfera": "municipal",
+     "valor": 785604.65,
+     "fonte": "1710",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1710 na matriz"
+    },
+    {
+     "nome": "Receita patrimonial: Convênios da União vinculados à educação",
+     "esfera": "municipal",
+     "valor": 704490.76,
+     "fonte": "1570",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1570 na matriz"
+    },
+    {
+     "nome": "Receita patrimonial: Fundo Estadual de Assistência Social",
+     "esfera": "municipal",
+     "valor": 674243.1699999999,
+     "fonte": "1661",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1661 na matriz"
+    },
+    {
+     "nome": "Receita patrimonial: SUS federal, bloco de estruturação",
+     "esfera": "municipal",
+     "valor": 574209.73,
+     "fonte": "1601",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1601 na matriz"
+    },
+    {
+     "nome": "Receita patrimonial: Política Nacional Aldir Blanc (cultura)",
+     "esfera": "municipal",
+     "valor": 501467.81000000006,
+     "fonte": "1719",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1719 na matriz"
+    },
+    {
+     "nome": "Receita patrimonial: Previdência própria, fundo em repartição",
+     "esfera": "municipal",
+     "valor": 365518.57,
+     "fonte": "1801",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1801 na matriz"
+    },
+    {
+     "nome": "Receita patrimonial: Royalties do petróleo e gás natural",
+     "esfera": "municipal",
+     "valor": 195779.74,
+     "fonte": "1704",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1704 na matriz"
+    },
+    {
+     "nome": "Receita patrimonial: CIDE-combustíveis",
+     "esfera": "municipal",
+     "valor": 177482.44000000003,
+     "fonte": "1750",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1750 na matriz"
+    },
+    {
+     "nome": "Receita patrimonial: SUS federal, piso salarial da enfermagem",
+     "esfera": "municipal",
+     "valor": 120629.4,
+     "fonte": "1605",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1605 na matriz"
+    },
+    {
+     "nome": "Receita patrimonial: fonte 1799",
+     "esfera": "municipal",
+     "valor": 81568.06999999999,
+     "fonte": "1799",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1799 na matriz"
+    },
+    {
+     "nome": "Receita patrimonial: Convênios do Estado vinculados à educação",
+     "esfera": "municipal",
+     "valor": 53819.23,
+     "fonte": "1571",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1571 na matriz"
+    },
+    {
+     "nome": "Receita patrimonial: Lei Paulo Gustavo, audiovisual",
+     "esfera": "municipal",
+     "valor": 1763.1599999999999,
+     "fonte": "1715",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1715 na matriz"
+    },
+    {
+     "nome": "Receita patrimonial: estornos e fontes menores",
+     "esfera": "municipal",
+     "valor": 3719.699999988079,
+     "fonte": null,
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; saldo das fontes abaixo de R$ 1.000 e das negativas"
+    },
+    {
+     "nome": "Receita de serviços: fonte 1759",
+     "esfera": "municipal",
+     "valor": 1829306.8,
+     "fonte": "1759",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1759 na matriz"
+    },
+    {
+     "nome": "Receita de serviços: Outros recursos não vinculados",
+     "esfera": "municipal",
+     "valor": 566389.22,
+     "fonte": "1501",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1501 na matriz"
+    },
+    {
+     "nome": "FPM",
+     "esfera": "federal",
+     "valor": 447417033.16,
+     "fonte": "1500",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1500 na matriz"
+    },
+    {
+     "nome": "Cota-parte do ITR",
+     "esfera": "federal",
+     "valor": 132833.01,
+     "fonte": "1500",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1500 na matriz"
+    },
+    {
+     "nome": "Cota-parte do ICMS",
+     "esfera": "estadual",
+     "valor": 527833345.59000003,
+     "fonte": "1500",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1500 na matriz"
+    },
+    {
+     "nome": "Cota-parte do IPVA",
+     "esfera": "estadual",
+     "valor": 268936490.24,
+     "fonte": "1500",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1500 na matriz"
+    },
+    {
+     "nome": "IPI-exportação (LC 61/1989)",
+     "esfera": "estadual",
+     "valor": 3624566.65,
+     "fonte": "1500",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1500 na matriz"
+    },
+    {
+     "nome": "FUNDEB: Transferências do Fundeb (impostos)",
+     "esfera": "mista",
+     "valor": 436317543.05999994,
+     "fonte": "1540",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1540 na matriz"
+    },
+    {
+     "nome": "FUNDEB: Fundeb, complementação da União (VAAR)",
+     "esfera": "federal",
+     "valor": 21625421.84,
+     "fonte": "1543",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1543 na matriz"
+    },
+    {
+     "nome": "FUNDEB: Outro recurso vinculado à educação (grupo 540 a 599)",
+     "esfera": "mista",
+     "valor": 112260.49,
+     "fonte": "1546",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1546 na matriz"
+    },
+    {
+     "nome": "Outras transferências correntes: SUS federal, bloco de manutenção",
+     "esfera": "federal",
+     "valor": 420423681.5,
+     "fonte": "1600",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1600 na matriz"
+    },
+    {
+     "nome": "Outras transferências correntes: Outro recurso vinculado à saúde (grupo 600 a 659)",
+     "esfera": "mista",
+     "valor": 43944696.489999995,
+     "fonte": "1632",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1632 na matriz"
+    },
+    {
+     "nome": "Outras transferências correntes: Salário-educação",
+     "esfera": "federal",
+     "valor": 34402239.65,
+     "fonte": "1550",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1550 na matriz"
+    },
+    {
+     "nome": "Outras transferências correntes: SUS federal, agentes comunitários de saúde e de combate às endemias",
+     "esfera": "federal",
+     "valor": 32592150.2,
+     "fonte": "1604",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1604 na matriz"
+    },
+    {
+     "nome": "Outras transferências correntes: Transferência especial da União (emendas)",
+     "esfera": "federal",
+     "valor": 22883783.0,
+     "fonte": "1706",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1706 na matriz"
+    },
+    {
+     "nome": "Outras transferências correntes: SUS estadual",
+     "esfera": "estadual",
+     "valor": 16335559.82,
+     "fonte": "1621",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1621 na matriz"
+    },
+    {
+     "nome": "Outras transferências correntes: SUS federal, piso salarial da enfermagem",
+     "esfera": "federal",
+     "valor": 13538055.040000003,
+     "fonte": "1605",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1605 na matriz"
+    },
+    {
+     "nome": "Outras transferências correntes: FNDE: alimentação escolar",
+     "esfera": "federal",
+     "valor": 6690548.3,
+     "fonte": "1552",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1552 na matriz"
+    },
+    {
+     "nome": "Outras transferências correntes: Recursos não vinculados de impostos",
+     "esfera": "municipal",
+     "valor": 5035660.53,
+     "fonte": "1500",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1500 na matriz"
+    },
+    {
+     "nome": "Outras transferências correntes: SUS federal, bloco de estruturação",
+     "esfera": "federal",
+     "valor": 4800000.0,
+     "fonte": "1601",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1601 na matriz"
+    },
+    {
+     "nome": "Outras transferências correntes: Royalties do petróleo e gás natural",
+     "esfera": "federal",
+     "valor": 4516593.32,
+     "fonte": "1704",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1704 na matriz"
+    },
+    {
+     "nome": "Outras transferências correntes: Outras vinculações de transferências",
+     "esfera": "mista",
+     "valor": 3742695.6599999997,
+     "fonte": "1749",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1749 na matriz"
+    },
+    {
+     "nome": "Outras transferências correntes: Fundo Nacional de Assistência Social",
+     "esfera": "federal",
+     "valor": 2916952.13,
+     "fonte": "1660",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1660 na matriz"
+    },
+    {
+     "nome": "Outras transferências correntes: Transferência especial do Estado",
+     "esfera": "estadual",
+     "valor": 1180020.44,
+     "fonte": "1710",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1710 na matriz"
+    },
+    {
+     "nome": "Outras transferências correntes: CIDE-combustíveis",
+     "esfera": "federal",
+     "valor": 476879.12,
+     "fonte": "1750",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1750 na matriz"
+    },
+    {
+     "nome": "Outras transferências correntes: fonte 1759",
+     "esfera": "mista",
+     "valor": 376784.47,
+     "fonte": "1759",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1759 na matriz"
+    },
+    {
+     "nome": "Outras transferências correntes: fonte 1714",
+     "esfera": "mista",
+     "valor": 278670.0,
+     "fonte": "1714",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1714 na matriz"
+    },
+    {
+     "nome": "Outras transferências correntes: Convênios do Estado vinculados à educação",
+     "esfera": "estadual",
+     "valor": 190750.0,
+     "fonte": "1571",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1571 na matriz"
+    },
+    {
+     "nome": "Outras transferências correntes: Compensação financeira pela exploração mineral (CFEM)",
+     "esfera": "federal",
+     "valor": 42187.98,
+     "fonte": "1708",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1708 na matriz"
+    },
+    {
+     "nome": "Outras transferências correntes: estornos e fontes menores",
+     "esfera": "mista",
+     "valor": 29.87000000476837,
+     "fonte": null,
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; saldo das fontes abaixo de R$ 1.000 e das negativas"
+    },
+    {
+     "nome": "Outras receitas correntes: Recursos não vinculados de impostos",
+     "esfera": "municipal",
+     "valor": 98487006.69999999,
+     "fonte": "1500",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1500 na matriz"
+    },
+    {
+     "nome": "Outras receitas correntes: Outros recursos não vinculados",
+     "esfera": "municipal",
+     "valor": 32680784.559999995,
+     "fonte": "1501",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1501 na matriz"
+    },
+    {
+     "nome": "Outras receitas correntes: Multas de trânsito",
+     "esfera": "municipal",
+     "valor": 32393695.689999998,
+     "fonte": "1752",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1752 na matriz"
+    },
+    {
+     "nome": "Outras receitas correntes: Previdência própria, fundo em capitalização",
+     "esfera": "municipal",
+     "valor": 13762428.12,
+     "fonte": "1800",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1800 na matriz"
+    },
+    {
+     "nome": "Outras receitas correntes: fonte 1759",
+     "esfera": "municipal",
+     "valor": 7121753.64,
+     "fonte": "1759",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1759 na matriz"
+    },
+    {
+     "nome": "Outras receitas correntes: SUS federal, bloco de manutenção",
+     "esfera": "municipal",
+     "valor": 686306.29,
+     "fonte": "1600",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1600 na matriz"
+    },
+    {
+     "nome": "Outras receitas correntes: Previdência própria, fundo em repartição",
+     "esfera": "municipal",
+     "valor": 613917.78,
+     "fonte": "1801",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1801 na matriz"
+    },
+    {
+     "nome": "Outras receitas correntes: fonte 1753",
+     "esfera": "municipal",
+     "valor": 318111.64,
+     "fonte": "1753",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1753 na matriz"
+    },
+    {
+     "nome": "Outras receitas correntes: Transferência especial da União (emendas)",
+     "esfera": "municipal",
+     "valor": 103891.81,
+     "fonte": "1706",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1706 na matriz"
+    },
+    {
+     "nome": "Outras receitas correntes: Salário-educação",
+     "esfera": "municipal",
+     "valor": 85927.3,
+     "fonte": "1550",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1550 na matriz"
+    },
+    {
+     "nome": "Outras receitas correntes: fonte 1802",
+     "esfera": "municipal",
+     "valor": 77318.32,
+     "fonte": "1802",
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; fonte 1802 na matriz"
+    },
+    {
+     "nome": "Outras receitas correntes: estornos e fontes menores",
+     "esfera": "municipal",
+     "valor": 11.430000007152557,
+     "fonte": null,
+     "selo": "verde",
+     "origem": "RREO Anexo 3, 2026, meses 1 a 6; saldo das fontes abaixo de R$ 1.000 e das negativas"
+    },
+    {
+     "nome": "Operações de crédito",
+     "esfera": "municipal",
+     "valor": 136236480.0,
+     "fonte": "1754",
+     "selo": "verde",
+     "origem": "RREO Anexo 1, até o 3º bimestre; fonte 1754 na matriz"
+    },
+    {
+     "nome": "Alienação de bens",
+     "esfera": "municipal",
+     "valor": 489972.24,
+     "fonte": "1755",
+     "selo": "verde",
+     "origem": "RREO Anexo 1, até o 3º bimestre; fonte 1755 na matriz"
+    },
+    {
+     "nome": "Transferências de capital da União",
+     "esfera": "federal",
+     "valor": 240000.0,
+     "fonte": "1660",
+     "selo": "verde",
+     "origem": "RREO Anexo 1, até o 3º bimestre; fonte 1660 na matriz"
+    }
+   ],
+   "margens": {
+    "previsto_nao_empenhado": 2930232013.05,
+    "empenhado_nao_liquidado": 3034023462.67,
+    "liquidado_nao_pago": 134888380.64999962,
+    "pago_sem_vinculo": 0.0,
+    "previsto": 10893529664.51,
+    "empenhado": 7963297651.46,
+    "liquidado": 4929274188.79,
+    "pago": 4794385808.14,
+    "fim_do_ano": false
+   },
+   "conferencias": [
+    {
+     "titulo": "Receita realizada no exercício",
+     "referencia": "RREO do 3º bimestre de 2026: Anexo 3 mês a mês contra o Anexo 1 acumulado",
+     "tipo": "mesmo_relatorio",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "rio: soma dos afluentes menos o FUNDEB entregue",
+       "valor": 5248028233.23
+      },
+      {
+       "fonte": "RREO Anexo 1, receitas até o bimestre",
+       "valor": 5248028233.23
+      }
+     ],
+     "detalhe": []
+    },
+    {
+     "titulo": "Impostos, taxas e contribuições de melhoria",
+     "referencia": "RREO do 3º bimestre de 2026: Anexo 3 mês a mês contra o Anexo 1 acumulado",
+     "tipo": "mesmo_relatorio",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "rio: IPTU, ISS, ITBI, IRRF e taxas",
+       "valor": 2268129027.95
+      },
+      {
+       "fonte": "RREO Anexo 1, até o bimestre",
+       "valor": 2268129027.95
+      }
+     ],
+     "detalhe": []
+    },
+    {
+     "titulo": "Transferências correntes",
+     "referencia": "RREO do 3º bimestre de 2026: Anexo 3 mês a mês contra o Anexo 1 acumulado",
+     "tipo": "mesmo_relatorio",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "rio: transferências menos o FUNDEB entregue",
+       "valor": 2070778577.8899999
+      },
+      {
+       "fonte": "RREO Anexo 1, até o bimestre",
+       "valor": 2070778577.89
+      }
+     ],
+     "detalhe": []
+    },
+    {
+     "titulo": "IPTU",
+     "referencia": "jan/2026 a jun/2026: RREO Anexo 3 mês a mês contra a matriz de saldos contábeis (receita realizada menos as deduções que não são do FUNDEB)",
+     "tipo": "entre_demonstrativos",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "RREO Anexo 3",
+       "valor": 802059599.43
+      },
+      {
+       "fonte": "Matriz de saldos contábeis",
+       "valor": 802059599.43
+      }
+     ],
+     "detalhe": []
+    },
+    {
+     "titulo": "ISS",
+     "referencia": "jan/2026 a jun/2026: RREO Anexo 3 mês a mês contra a matriz de saldos contábeis (receita realizada menos as deduções que não são do FUNDEB)",
+     "tipo": "entre_demonstrativos",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "RREO Anexo 3",
+       "valor": 817714942.16
+      },
+      {
+       "fonte": "Matriz de saldos contábeis",
+       "valor": 817714942.16
+      }
+     ],
+     "detalhe": []
+    },
+    {
+     "titulo": "ITBI",
+     "referencia": "jan/2026 a jun/2026: RREO Anexo 3 mês a mês contra a matriz de saldos contábeis (receita realizada menos as deduções que não são do FUNDEB)",
+     "tipo": "entre_demonstrativos",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "RREO Anexo 3",
+       "valor": 192110298.03
+      },
+      {
+       "fonte": "Matriz de saldos contábeis",
+       "valor": 192110298.03
+      }
+     ],
+     "detalhe": []
+    },
+    {
+     "titulo": "IRRF retido na fonte",
+     "referencia": "jan/2026 a jun/2026: RREO Anexo 3 mês a mês contra a matriz de saldos contábeis (receita realizada menos as deduções que não são do FUNDEB)",
+     "tipo": "entre_demonstrativos",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "RREO Anexo 3",
+       "valor": 261060669.31
+      },
+      {
+       "fonte": "Matriz de saldos contábeis",
+       "valor": 261060669.31
+      }
+     ],
+     "detalhe": []
+    },
+    {
+     "titulo": "Taxas e outros tributos",
+     "referencia": "jan/2026 a jun/2026: RREO Anexo 3 mês a mês contra a matriz de saldos contábeis (receita realizada menos as deduções que não são do FUNDEB)",
+     "tipo": "entre_demonstrativos",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "RREO Anexo 3",
+       "valor": 195183519.02
+      },
+      {
+       "fonte": "Matriz de saldos contábeis",
+       "valor": 195183519.02
+      }
+     ],
+     "detalhe": []
+    },
+    {
+     "titulo": "Contribuições (iluminação pública e previdência)",
+     "referencia": "jan/2026 a jun/2026: RREO Anexo 3 mês a mês contra a matriz de saldos contábeis (receita realizada menos as deduções que não são do FUNDEB)",
+     "tipo": "entre_demonstrativos",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "RREO Anexo 3",
+       "valor": 420546476.24
+      },
+      {
+       "fonte": "Matriz de saldos contábeis",
+       "valor": 420546476.24
+      }
+     ],
+     "detalhe": []
+    },
+    {
+     "titulo": "Receita patrimonial",
+     "referencia": "jan/2026 a jun/2026: RREO Anexo 3 mês a mês contra a matriz de saldos contábeis (receita realizada menos as deduções que não são do FUNDEB)",
+     "tipo": "entre_demonstrativos",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "RREO Anexo 3",
+       "valor": 162880849.60999998
+      },
+      {
+       "fonte": "Matriz de saldos contábeis",
+       "valor": 162880849.60999998
+      }
+     ],
+     "detalhe": []
+    },
+    {
+     "titulo": "Receita de serviços",
+     "referencia": "jan/2026 a jun/2026: RREO Anexo 3 mês a mês contra a matriz de saldos contábeis (receita realizada menos as deduções que não são do FUNDEB)",
+     "tipo": "entre_demonstrativos",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "RREO Anexo 3",
+       "valor": 2395696.02
+      },
+      {
+       "fonte": "Matriz de saldos contábeis",
+       "valor": 2395696.02
+      }
+     ],
+     "detalhe": []
+    },
+    {
+     "titulo": "FPM",
+     "referencia": "jan/2026 a jun/2026: RREO Anexo 3 mês a mês contra a matriz de saldos contábeis (receita realizada menos as deduções que não são do FUNDEB)",
+     "tipo": "entre_demonstrativos",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "RREO Anexo 3",
+       "valor": 447417033.16
+      },
+      {
+       "fonte": "Matriz de saldos contábeis",
+       "valor": 447417033.16
+      }
+     ],
+     "detalhe": []
+    },
+    {
+     "titulo": "Cota-parte do ITR",
+     "referencia": "jan/2026 a jun/2026: RREO Anexo 3 mês a mês contra a matriz de saldos contábeis (receita realizada menos as deduções que não são do FUNDEB)",
+     "tipo": "entre_demonstrativos",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "RREO Anexo 3",
+       "valor": 132833.01
+      },
+      {
+       "fonte": "Matriz de saldos contábeis",
+       "valor": 132833.01
+      }
+     ],
+     "detalhe": []
+    },
+    {
+     "titulo": "Cota-parte do ICMS",
+     "referencia": "jan/2026 a jun/2026: RREO Anexo 3 mês a mês contra a matriz de saldos contábeis (receita realizada menos as deduções que não são do FUNDEB)",
+     "tipo": "entre_demonstrativos",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "RREO Anexo 3",
+       "valor": 527833345.59000003
+      },
+      {
+       "fonte": "Matriz de saldos contábeis",
+       "valor": 527833345.59000003
+      }
+     ],
+     "detalhe": []
+    },
+    {
+     "titulo": "Cota-parte do IPVA",
+     "referencia": "jan/2026 a jun/2026: RREO Anexo 3 mês a mês contra a matriz de saldos contábeis (receita realizada menos as deduções que não são do FUNDEB)",
+     "tipo": "entre_demonstrativos",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "RREO Anexo 3",
+       "valor": 268936490.24
+      },
+      {
+       "fonte": "Matriz de saldos contábeis",
+       "valor": 268936490.24
+      }
+     ],
+     "detalhe": []
+    },
+    {
+     "titulo": "IPI-exportação (LC 61/1989)",
+     "referencia": "jan/2026 a jun/2026: RREO Anexo 3 mês a mês contra a matriz de saldos contábeis (receita realizada menos as deduções que não são do FUNDEB)",
+     "tipo": "entre_demonstrativos",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "RREO Anexo 3",
+       "valor": 3624566.65
+      },
+      {
+       "fonte": "Matriz de saldos contábeis",
+       "valor": 3624566.65
+      }
+     ],
+     "detalhe": []
+    },
+    {
+     "titulo": "FUNDEB",
+     "referencia": "jan/2026 a jun/2026: RREO Anexo 3 mês a mês contra a matriz de saldos contábeis (receita realizada menos as deduções que não são do FUNDEB)",
+     "tipo": "entre_demonstrativos",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "RREO Anexo 3",
+       "valor": 458055225.39
+      },
+      {
+       "fonte": "Matriz de saldos contábeis",
+       "valor": 458055225.39
+      }
+     ],
+     "detalhe": []
+    },
+    {
+     "titulo": "Outras transferências correntes",
+     "referencia": "jan/2026 a jun/2026: RREO Anexo 3 mês a mês contra a matriz de saldos contábeis (receita realizada menos as deduções que não são do FUNDEB)",
+     "tipo": "entre_demonstrativos",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "RREO Anexo 3",
+       "valor": 614367937.52
+      },
+      {
+       "fonte": "Matriz de saldos contábeis",
+       "valor": 614367937.52
+      }
+     ],
+     "detalhe": []
+    },
+    {
+     "titulo": "Outras receitas correntes",
+     "referencia": "jan/2026 a jun/2026: RREO Anexo 3 mês a mês contra a matriz de saldos contábeis (receita realizada menos as deduções que não são do FUNDEB)",
+     "tipo": "entre_demonstrativos",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "RREO Anexo 3",
+       "valor": 186331153.28
+      },
+      {
+       "fonte": "Matriz de saldos contábeis",
+       "valor": 186331153.28
+      }
+     ],
+     "detalhe": []
+    },
+    {
+     "titulo": "Receitas de capital",
+     "referencia": "jan/2026 a jun/2026: RREO Anexo 1 contra a matriz",
+     "tipo": "entre_demonstrativos",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "RREO Anexo 1",
+       "valor": 136966452.24
+      },
+      {
+       "fonte": "Matriz de saldos contábeis",
+       "valor": 136966452.24
+      }
+     ],
+     "detalhe": []
+    },
+    {
+     "titulo": "Receita realizada (Anexo 1 e matriz)",
+     "referencia": "RREO do 3º bimestre de 2026: receitas exceto intraorçamentárias, deduções incluídas",
+     "tipo": "entre_demonstrativos",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "RREO Anexo 1",
+       "valor": 5248028233.23
+      },
+      {
+       "fonte": "Matriz de saldos contábeis",
+       "valor": 5248028233.2300005
+      }
+     ],
+     "detalhe": []
+    },
+    {
+     "titulo": "Despesa empenhada",
+     "referencia": "RREO do 3º bimestre de 2026: despesa exceto intraorçamentária",
+     "tipo": "entre_demonstrativos",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "RREO Anexo 1",
+       "valor": 7963297651.46
+      },
+      {
+       "fonte": "Matriz de saldos contábeis",
+       "valor": 7963297651.46
+      }
+     ],
+     "detalhe": []
+    },
+    {
+     "titulo": "Despesa liquidada",
+     "referencia": "RREO do 3º bimestre de 2026: despesa exceto intraorçamentária",
+     "tipo": "entre_demonstrativos",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "RREO Anexo 1",
+       "valor": 4929274188.79
+      },
+      {
+       "fonte": "Matriz de saldos contábeis",
+       "valor": 4929274188.79
+      }
+     ],
+     "detalhe": []
+    },
+    {
+     "titulo": "Despesa paga",
+     "referencia": "RREO do 3º bimestre de 2026: despesa exceto intraorçamentária",
+     "tipo": "entre_demonstrativos",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "RREO Anexo 1",
+       "valor": 4794385808.14
+      },
+      {
+       "fonte": "Matriz de saldos contábeis",
+       "valor": 4794385808.14
+      }
+     ],
+     "detalhe": []
+    },
+    {
+     "titulo": "FPM",
+     "referencia": "jan/2026 a jul/2026, 7 meses; o SIAFI traz o líquido da retenção de 20% ao FUNDEB, somada de volta",
+     "tipo": "entre_fontes",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "Portal da Transparência, SIAFI (o que a União transferiu)",
+       "valor": 499811693.5625
+      },
+      {
+       "fonte": "Matriz de saldos contábeis (o que o Município registrou)",
+       "valor": 499811693.35999995
+      }
+     ],
+     "detalhe": []
+    },
+    {
+     "titulo": "Cota-parte do ITR",
+     "referencia": "jan/2026 a jul/2026, 7 meses; o SIAFI traz o líquido da retenção de 20% ao FUNDEB, somada de volta",
+     "tipo": "entre_fontes",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "Portal da Transparência, SIAFI (o que a União transferiu)",
+       "valor": 140726.75
+      },
+      {
+       "fonte": "Matriz de saldos contábeis (o que o Município registrou)",
+       "valor": 140726.62999999998
+      }
+     ],
+     "detalhe": []
+    },
+    {
+     "titulo": "Royalties do petróleo e da mineração",
+     "referencia": "jan/2026 a jul/2026, 7 meses",
+     "tipo": "entre_fontes",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "Portal da Transparência, SIAFI (o que a União transferiu)",
+       "valor": 11154994.469999999
+      },
+      {
+       "fonte": "Matriz de saldos contábeis (o que o Município registrou)",
+       "valor": 11154994.469999999
+      }
+     ],
+     "detalhe": []
+    },
+    {
+     "titulo": "Complementação da União ao FUNDEB",
+     "referencia": "jan/2026 a jul/2026, 7 meses",
+     "tipo": "entre_fontes",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "Portal da Transparência, SIAFI (o que a União transferiu)",
+       "valor": 24662132.89
+      },
+      {
+       "fonte": "Matriz de saldos contábeis (o que o Município registrou)",
+       "valor": 24774393.38
+      }
+     ],
+     "detalhe": [
+      "jan/2026: SIAFI R$ 9.904.298,20, Município R$ 10.016.558,69 (diferença -R$ 112.260,49)."
+     ]
+    },
+    {
+     "titulo": "SUS fundo a fundo",
+     "referencia": "jan/2026 a jul/2026, 7 meses",
+     "tipo": "entre_fontes",
+     "selo": "verde",
+     "divergencia": false,
+     "vias": [
+      {
+       "fonte": "Portal da Transparência, SIAFI (o que a União transferiu)",
+       "valor": 549405020.0799999
+      },
+      {
+       "fonte": "Matriz de saldos contábeis (o que o Município registrou)",
+       "valor": 549393921.0
+      }
+     ],
+     "detalhe": [
+      "jan/2026: SIAFI R$ 66.258.070,13, Município R$ 64.400.564,83 (diferença R$ 1.857.505,30).",
+      "fev/2026: SIAFI R$ 58.877.989,12, Município R$ 61.281.477,86 (diferença -R$ 2.403.488,74).",
+      "mar/2026: SIAFI R$ 68.798.670,03, Município R$ 76.137.483,00 (diferença -R$ 7.338.812,97).",
+      "abr/2026: SIAFI R$ 92.571.382,13, Município R$ 87.176.405,11 (diferença R$ 5.394.977,02).",
+      "mai/2026: SIAFI R$ 104.458.435,67, Município R$ 96.200.248,91 (diferença R$ 8.258.186,76).",
+      "jun/2026: SIAFI R$ 90.207.081,70, Município R$ 86.157.707,03 (diferença R$ 4.049.374,67).",
+      "jul/2026: SIAFI R$ 68.233.391,30, Município R$ 78.040.034,26 (diferença -R$ 9.806.642,96)."
+     ]
+    },
+    {
+     "titulo": "FNDE (salário-educação, alimentação e transporte escolar)",
+     "referencia": "jan/2026 a jul/2026, 7 meses",
+     "tipo": "entre_fontes",
+     "selo": "azul",
+     "divergencia": true,
+     "vias": [
+      {
+       "fonte": "Portal da Transparência, SIAFI (o que a União transferiu)",
+       "valor": 42297704.12
+      },
+      {
+       "fonte": "Matriz de saldos contábeis (o que o Município registrou)",
+       "valor": 47549265.72
+      }
+     ],
+     "detalhe": [
+      "mar/2026: SIAFI R$ 1.375.055,00, Município R$ 6.626.616,60 (diferença -R$ 5.251.561,60).",
+      "mai/2026: SIAFI R$ 6.505.995,80, Município R$ 1.375.055,00 (diferença R$ 5.130.940,80).",
+      "jun/2026: SIAFI R$ 6.493.327,67, Município R$ 11.624.268,47 (diferença -R$ 5.130.940,80)."
+     ]
+    },
+    {
+     "titulo": "FNAS (assistência social)",
+     "referencia": "jan/2026 a jul/2026, 7 meses",
+     "tipo": "entre_fontes",
+     "selo": "azul",
+     "divergencia": true,
+     "vias": [
+      {
+       "fonte": "Portal da Transparência, SIAFI (o que a União transferiu)",
+       "valor": 7900605.02
+      },
+      {
+       "fonte": "Matriz de saldos contábeis (o que o Município registrou)",
+       "valor": 3655705.4899999998
+      }
+     ],
+     "detalhe": [
+      "jan/2026: SIAFI R$ 789.774,19, Município R$ 164.157,50 (diferença R$ 625.616,69).",
+      "Os R$ 150.000,00 da ação 219G (Estruturacao da rede de servicos e fortalecimento da gestao do sistema) de jan/2026 aparecem no mesmo mês na natureza 17199901, fonte 1706 (Transferência especial da União (emendas)): o recurso entrou, mas fora da fonte que o vincula.",
+      "fev/2026: SIAFI R$ 0,00, Município R$ 475.616,69 (diferença -R$ 475.616,69).",
+      "mar/2026: SIAFI R$ 1.796.525,90, Município R$ 951.332,98 (diferença R$ 845.192,92).",
+      "abr/2026: SIAFI R$ 572.480,74, Município R$ 421.004,14 (diferença R$ 151.476,60).",
+      "mai/2026: SIAFI R$ 570.128,48, Município R$ 817.318,00 (diferença -R$ 247.189,52).",
+      "jun/2026: SIAFI R$ 3.307.522,82, Município R$ 327.522,82 (diferença R$ 2.980.000,00).",
+      "jul/2026: SIAFI R$ 864.172,89, Município R$ 498.753,36 (diferença R$ 365.419,53)."
+     ]
+    }
+   ],
+   "ritmos": [
+    {
+     "especie": "IPTU",
+     "realizado": 802059599.43,
+     "previsto": 1400207000.0,
+     "esperado": 933727920.9903067,
+     "fracao_anterior": 0.6668499164697125,
+     "situacao": "alerta"
+    },
+    {
+     "especie": "ISS",
+     "realizado": 817714942.16,
+     "previsto": 1689279000.0,
+     "esperado": 811959661.2392229,
+     "fracao_anterior": 0.4806545640117606,
+     "situacao": "cumpre"
+    },
+    {
+     "especie": "ITBI",
+     "realizado": 192110298.03,
+     "previsto": 411814000.0,
+     "esperado": 194862138.08598852,
+     "fracao_anterior": 0.47317997466329104,
+     "situacao": "cumpre"
+    },
+    {
+     "especie": "IRRF retido na fonte",
+     "realizado": 261060669.31,
+     "previsto": 583740000.0,
+     "esperado": 285447577.7071156,
+     "fracao_anterior": 0.48899780331502996,
+     "situacao": "cumpre"
+    },
+    {
+     "especie": "Taxas e outros tributos",
+     "realizado": 195183519.02,
+     "previsto": 346344000.0,
+     "esperado": 161006737.99392664,
+     "fracao_anterior": 0.464875204980963,
+     "situacao": "cumpre"
+    },
+    {
+     "especie": "Contribuições (iluminação pública e previdência)",
+     "realizado": 420546476.24,
+     "previsto": 618666000.0,
+     "esperado": 312301030.2133943,
+     "fracao_anterior": 0.504797467799094,
+     "situacao": "cumpre"
+    },
+    {
+     "especie": "Receita patrimonial",
+     "realizado": 162880849.60999998,
+     "previsto": 328340000.0,
+     "esperado": 147173642.62664327,
+     "fracao_anterior": 0.4482354956040789,
+     "situacao": "cumpre"
+    },
+    {
+     "especie": "Receita de serviços",
+     "realizado": 2395696.02,
+     "previsto": 4855000.0,
+     "esperado": 2310443.572901301,
+     "fracao_anterior": 0.47588951038131844,
+     "situacao": "cumpre"
+    },
+    {
+     "especie": "FPM",
+     "realizado": 447417033.16,
+     "previsto": 749796000.0,
+     "esperado": 357110211.1035763,
+     "fracao_anterior": 0.4762764953448355,
+     "situacao": "cumpre"
+    },
+    {
+     "especie": "Cota-parte do ITR",
+     "realizado": 132833.01,
+     "previsto": 4228000.0,
+     "esperado": 2922104.3034684104,
+     "fracao_anterior": 0.6911315760332096,
+     "situacao": "abaixo_imaterial"
+    },
+    {
+     "especie": "Cota-parte do ICMS",
+     "realizado": 527833345.59000003,
+     "previsto": 931268000.0,
+     "esperado": 435631827.21739024,
+     "fracao_anterior": 0.4677835244176652,
+     "situacao": "cumpre"
+    },
+    {
+     "especie": "Cota-parte do IPVA",
+     "realizado": 268936490.24,
+     "previsto": 570434000.0,
+     "esperado": 227078213.03924796,
+     "fracao_anterior": 0.3980797305897754,
+     "situacao": "cumpre"
+    },
+    {
+     "especie": "IPI-exportação (LC 61/1989)",
+     "realizado": 3624566.65,
+     "previsto": 6811000.0,
+     "esperado": 3168282.8382115485,
+     "fracao_anterior": 0.4651714635459622,
+     "situacao": "cumpre"
+    },
+    {
+     "especie": "FUNDEB",
+     "realizado": 458055225.39,
+     "previsto": 968730000.0,
+     "esperado": 483374673.614932,
+     "fracao_anterior": 0.4989777064970962,
+     "situacao": "cumpre"
+    },
+    {
+     "especie": "Outras transferências correntes",
+     "realizado": 614367937.52,
+     "previsto": 1202592000.0,
+     "esperado": 545661047.4501908,
+     "fracao_anterior": 0.45373746661393954,
+     "situacao": "cumpre"
+    },
+    {
+     "especie": "Outras receitas correntes",
+     "realizado": 186331153.28,
+     "previsto": 325808000.0,
+     "esperado": 212455487.4781843,
+     "fracao_anterior": 0.6520880011484811,
+     "situacao": "alerta"
+    }
+   ],
+   "desvios": [
+    {
+     "fonte": "751",
+     "nome_fonte": "Contribuição de iluminação pública",
+     "funcao": "04",
+     "valor": 13301136.23,
+     "norma": "CF, art. 149-A",
+     "motivo": "leito",
+     "naturezas": [
+      {
+       "subfuncao": "122",
+       "natureza": "31901100",
+       "valor": 7800000.0
+      },
+      {
+       "subfuncao": "122",
+       "natureza": "33909200",
+       "valor": 1597187.99
+      },
+      {
+       "subfuncao": "122",
+       "natureza": "33903900",
+       "valor": 1539199.0
+      },
+      {
+       "subfuncao": "122",
+       "natureza": "33904000",
+       "valor": 1044000.0
+      },
+      {
+       "subfuncao": "122",
+       "natureza": "33909300",
+       "valor": 773749.2400000001
+      },
+      {
+       "subfuncao": "122",
+       "natureza": "33904600",
+       "valor": 460000.0
+      },
+      {
+       "subfuncao": "122",
+       "natureza": "33904900",
+       "valor": 87000.0
+      },
+      {
+       "subfuncao": "122",
+       "natureza": "44904000",
+       "valor": 0.0
+      }
+     ]
+    },
+    {
+     "fonte": "660",
+     "nome_fonte": "Fundo Nacional de Assistência Social",
+     "funcao": "28",
+     "valor": 421041.0,
+     "norma": "Lei 8.742/1993, art. 30",
+     "motivo": "leito",
+     "naturezas": [
+      {
+       "subfuncao": "846",
+       "natureza": "33904700",
+       "valor": 380000.0
+      },
+      {
+       "subfuncao": "846",
+       "natureza": "33909200",
+       "valor": 41041.0
+      }
+     ]
+    }
+   ],
+   "meses_desvio": [
+    "2026-01",
+    "2026-02",
+    "2026-03",
+    "2026-04",
+    "2026-05",
+    "2026-06",
+    "2026-07"
+   ],
+   "fontes_sem_catalogo": {
+    "753": 24663742.21,
+    "759": 15247399.360000001,
+    "799": 131958401.86,
+    "802": 27961882.259999998,
+    "899": 6570428.789999999
+   },
+   "notas": []
+  },
   "notas": []
  },
  "fichas": [
@@ -1014,6 +2528,23 @@
    "observacao": ""
   },
   {
+   "codigo": "RIO-ORIGEM-FNAS-ASSISTENCIA-SOCIAL-2026-07",
+   "familia": "RIO",
+   "titulo": "FNAS (assistência social): a União transferiu mais do que o Município registrou na fonte que vincula o recurso",
+   "gravidade": "alta",
+   "como_deveria": "A receita de transferência registrada pelo Município, na natureza e na fonte que a vinculam, deve ser a que o SIAFI registra como transferida no mês.",
+   "norma": "Lei 8.742/1993, art. 30; Decreto 7.788/2012; LC 101/2000, arts. 8º, parágrafo único, e 48-A, II; Lei 4.320/1964, art. 35, I",
+   "como_esta": "jan/2026 a jul/2026, 7 meses. Portal da Transparência, SIAFI (o que a União transferiu): R$ 7.900.605,02; Matriz de saldos contábeis (o que o Município registrou): R$ 3.655.705,49. jan/2026: SIAFI R$ 789.774,19, Município R$ 164.157,50 (diferença R$ 625.616,69). Os R$ 150.000,00 da ação 219G (Estruturacao da rede de servicos e fortalecimento da gestao do sistema) de jan/2026 aparecem no mesmo mês na natureza 17199901, fonte 1706 (Transferência especial da União (emendas)): o recurso entrou, mas fora da fonte que o vincula. fev/2026: SIAFI R$ 0,00, Município R$ 475.616,69 (diferença -R$ 475.616,69). mar/2026: SIAFI R$ 1.796.525,90, Município R$ 951.332,98 (diferença R$ 845.192,92). abr/2026: SIAFI R$ 572.480,74, Município R$ 421.004,14 (diferença R$ 151.476,60). mai/2026: SIAFI R$ 570.128,48, Município R$ 817.318,00 (diferença -R$ 247.189,52). jun/2026: SIAFI R$ 3.307.522,82, Município R$ 327.522,82 (diferença R$ 2.980.000,00). jul/2026: SIAFI R$ 864.172,89, Município R$ 498.753,36 (diferença R$ 365.419,53).",
+   "verificacao": "CONFIRMADO",
+   "providencia": "Pedir a conciliação da receita de transferências com os extratos da conta do fundo e a reclassificação da receita, se for o caso.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": "2026-07",
+   "origem": "onisciente",
+   "observacao": ""
+  },
+  {
    "codigo": "PUB-M-2026-07",
    "familia": "SIS",
    "titulo": "Diário Oficial: 12 de 23 dias úteis de julho de 2026 sem edição localizada",
@@ -1082,6 +2613,40 @@
    "observacao": "achado do exercício"
   },
   {
+   "codigo": "VIN-DESVIO-660-28-2026-07",
+   "familia": "VIN",
+   "titulo": "Fundo Nacional de Assistência Social: empenhada fora do seu leito, na função 28 (R$ 421.041,00)",
+   "gravidade": "alta",
+   "como_deveria": "O recurso vinculado só se aplica no objeto da vinculação, ainda que em exercício diverso do ingresso.",
+   "norma": "LC 101/2000, art. 8º, parágrafo único; Lei 8.742/1993, art. 30",
+   "como_esta": "Matriz de saldos contábeis, empenhos de jan/2026 a jul/2026: destinação 660 (Fundo Nacional de Assistência Social) na função 28, R$ 421.041,00. Maiores itens: subfunção 846, natureza 33904700: R$ 380.000,00; subfunção 846, natureza 33909200: R$ 41.041,00.",
+   "verificacao": "INDICIARIO",
+   "providencia": "Pedir as notas de empenho e o enquadramento da despesa na finalidade da fonte; se não houver, a recomposição da conta vinculada.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": "2026-07",
+   "origem": "onisciente",
+   "observacao": ""
+  },
+  {
+   "codigo": "VIN-DESVIO-751-04-2026-07",
+   "familia": "VIN",
+   "titulo": "Contribuição de iluminação pública: empenhada fora do seu leito, na função 04 (R$ 13.301.136,23)",
+   "gravidade": "alta",
+   "como_deveria": "O recurso vinculado só se aplica no objeto da vinculação, ainda que em exercício diverso do ingresso.",
+   "norma": "LC 101/2000, art. 8º, parágrafo único; CF, art. 149-A",
+   "como_esta": "Matriz de saldos contábeis, empenhos de jan/2026 a jul/2026: destinação 751 (Contribuição de iluminação pública) na função 04, R$ 13.301.136,23. Maiores itens: subfunção 122, natureza 31901100: R$ 7.800.000,00; subfunção 122, natureza 33909200: R$ 1.597.187,99; subfunção 122, natureza 33903900: R$ 1.539.199,00; subfunção 122, natureza 33904000: R$ 1.044.000,00; subfunção 122, natureza 33909300: R$ 773.749,24.",
+   "verificacao": "INDICIARIO",
+   "providencia": "Pedir as notas de empenho e o enquadramento da despesa na finalidade da fonte; se não houver, a recomposição da conta vinculada.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": "2026-07",
+   "origem": "onisciente",
+   "observacao": ""
+  },
+  {
    "codigo": "CMAS-FIN-03",
    "familia": "ORC",
    "titulo": "3 rubricas do Conselho são dotação simbólica",
@@ -1116,6 +2681,40 @@
    "observacao": "achado do exercício"
   },
   {
+   "codigo": "RIO-RECEITA-IPTU-2026-07",
+   "familia": "ORC",
+   "titulo": "IPTU: arrecadação abaixo do ritmo do ano anterior",
+   "gravidade": "media",
+   "como_deveria": "A receita prevista deve se realizar; se não se realizar, o Poder limita o empenho no bimestre seguinte.",
+   "norma": "LC 101/2000, arts. 9º e 12",
+   "como_esta": "RREO do 3º bimestre de 2026: realizado R$ 802.059.599,43 contra previsão atualizada de R$ 1.400.207.000,00; no ritmo do ano anterior (66.7% da receita do ano até este bimestre) esperavam-se R$ 933.727.920,99.",
+   "verificacao": "INDICIARIO",
+   "providencia": "Verificar no RREO e no Diário Oficial se houve decreto de limitação de empenho.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": "2026-07",
+   "origem": "onisciente",
+   "observacao": ""
+  },
+  {
+   "codigo": "RIO-RECEITA-OUTRAS-RECEITAS-CORRENTES-2026-07",
+   "familia": "ORC",
+   "titulo": "Outras receitas correntes: arrecadação abaixo do ritmo do ano anterior",
+   "gravidade": "media",
+   "como_deveria": "A receita prevista deve se realizar; se não se realizar, o Poder limita o empenho no bimestre seguinte.",
+   "norma": "LC 101/2000, arts. 9º e 12",
+   "como_esta": "RREO do 3º bimestre de 2026: realizado R$ 186.331.153,28 contra previsão atualizada de R$ 325.808.000,00; no ritmo do ano anterior (65.2% da receita do ano até este bimestre) esperavam-se R$ 212.455.487,48.",
+   "verificacao": "INDICIARIO",
+   "providencia": "Verificar no RREO e no Diário Oficial se houve decreto de limitação de empenho.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": "2026-07",
+   "origem": "onisciente",
+   "observacao": ""
+  },
+  {
    "codigo": "PES-04",
    "familia": "PES",
    "titulo": "Prestação de contas de deslocamento não localizada",
@@ -1148,6 +2747,23 @@
    "competencia": null,
    "origem": "cadeoqueijo",
    "observacao": "achado do exercício"
+  },
+  {
+   "codigo": "RIO-ORIGEM-FNDE-SALARIO-EDUCACAO-ALIMENTA-2026-07",
+   "familia": "RIO",
+   "titulo": "FNDE (salário-educação, alimentação e transporte escolar): o Município registrou mais do que o SIAFI mostra como transferido",
+   "gravidade": "media",
+   "como_deveria": "A receita de transferência registrada pelo Município, na natureza e na fonte que a vinculam, deve ser a que o SIAFI registra como transferida no mês.",
+   "norma": "CF, art. 212, § 6º; Lei 11.947/2009; Lei 10.880/2004; LC 101/2000, arts. 8º, parágrafo único, e 48-A, II; Lei 4.320/1964, art. 35, I",
+   "como_esta": "jan/2026 a jul/2026, 7 meses. Portal da Transparência, SIAFI (o que a União transferiu): R$ 42.297.704,12; Matriz de saldos contábeis (o que o Município registrou): R$ 47.549.265,72. mar/2026: SIAFI R$ 1.375.055,00, Município R$ 6.626.616,60 (diferença -R$ 5.251.561,60). mai/2026: SIAFI R$ 6.505.995,80, Município R$ 1.375.055,00 (diferença R$ 5.130.940,80). jun/2026: SIAFI R$ 6.493.327,67, Município R$ 11.624.268,47 (diferença -R$ 5.130.940,80).",
+   "verificacao": "CONFIRMADO",
+   "providencia": "Pedir a conciliação da receita de transferências com os extratos da conta do fundo e a reclassificação da receita, se for o caso.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": "2026-07",
+   "origem": "onisciente",
+   "observacao": ""
   },
   {
    "codigo": "SYS-05",
