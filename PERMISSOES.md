@@ -68,7 +68,7 @@ agente **não inventa endereço**. Execute uma vez, na sua máquina:
 
 ```bash
 pip install -r requirements.txt
-python src/descobrir.py
+python cadeoqueijo/descobrir.py
 ```
 
 O roteiro inspeciona o portal e grava candidatos em
@@ -110,14 +110,14 @@ exemplo, `l7532_1995.pdf`) ou preencher a URL no arquivo de configuração.
 
 ```bash
 # 1. Descobrir o endpoint do Diário Oficial (uma vez)
-python src/descobrir.py
+python cadeoqueijo/descobrir.py
 
 # 2. Consolidar o corpus normativo (uma vez, depois mensal)
-python src/corpus_build.py
+python cadeoqueijo/corpus_build.py
 #    Leia relatorios/corpus_pendencias.md e resolva o que faltar.
 
 # 3. Testar a rotina sem gastar token
-LIMITE_TOKENS_JANELA=0 python src/run_diario.py
+LIMITE_TOKENS_JANELA=0 python cadeoqueijo/run_diario.py
 #    Roda coleta, filtro e regras determinísticas; para antes do modelo.
 
 # 4. Enviar ao GitHub e habilitar os workflows na aba Actions.

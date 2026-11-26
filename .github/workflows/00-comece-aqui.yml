@@ -35,10 +35,10 @@ jobs:
             echo "| Item | Situação |"
             echo "|---|---|"
           } >> "$GITHUB_STEP_SUMMARY"
-          for f in requirements.txt testes.py docs/index.html \
-                   src/historico.py src/extracao.py src/biblioteca.py \
-                   src/verificacao_dupla.py src/publicacao_diaria.py \
-                   src/financeiro.py src/trilha.py src/busca_local.py \
+          for f in requirements.txt testes/autonomia_cadeoqueijo.py docs/index.html \
+                   cadeoqueijo/historico.py cadeoqueijo/extracao.py cadeoqueijo/biblioteca.py \
+                   cadeoqueijo/verificacao_dupla.py cadeoqueijo/publicacao_diaria.py \
+                   cadeoqueijo/financeiro.py cadeoqueijo/trilha.py cadeoqueijo/busca_local.py \
                    config/dominios/assistencia_social.yml dados/janela3anos.json \
                    documentos/Oficio_LAI_CMASGyn.docx; do
             if [ -f "$f" ]; then

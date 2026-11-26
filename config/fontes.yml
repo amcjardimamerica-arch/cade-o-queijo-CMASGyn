@@ -18,7 +18,7 @@ fontes:
     cadencia: diaria
     tipo: dom
     # O portal de consulta do DOM é o SILEG. O padrão de URL do PDF da edição
-    # deve ser fixado na primeira execução por src/descobrir.py, que grava
+    # deve ser fixado na primeira execução por cadeoqueijo/descobrir.py, que grava
     # o resultado em estado/dom_endpoint.json. NÃO inventar padrão de URL.
     portal_consulta: "http://sileg.goiania.go.gov.br/"
     pagina_institucional: "https://www.goiania.go.gov.br/casa-civil/diario-oficial/"

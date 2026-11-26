@@ -13,31 +13,31 @@ jobs:
         with: {python-version: "3.11", cache: pip}
       - run: pip install --quiet -r requirements.txt
       - name: Coletar a semana
-        run: python src/run_diario.py --janela 7 || true
+        run: python cadeoqueijo/run_diario.py --janela 7 || true
       - name: Extrair e classificar
         run: |
-          python src/extracao.py assistencia_social || true
-          python src/biblioteca.py || true
-          python src/publicacao_diaria.py 10 || true
+          python cadeoqueijo/extracao.py assistencia_social || true
+          python cadeoqueijo/biblioteca.py || true
+          python cadeoqueijo/publicacao_diaria.py 10 || true
       - name: Verificação dupla dos atos
-        run: python src/verificacao_dupla.py 40 || true
+        run: python cadeoqueijo/verificacao_dupla.py 40 || true
       - name: Enriquecer cadastro de CNPJs pendentes (camada 0, cirúrgico)
-        run: python src/enriquece_cnpj.py --limite 40 || true
+        run: python cadeoqueijo/enriquece_cnpj.py --limite 40 || true
       - name: Parecer dos atos da semana
         env: {ANTHROPIC_API_KEY: "${{ secrets.ANTHROPIC_API_KEY }}"}
-        run: python src/parecer.py --ciclo semanal > /tmp/p.json || true
+        run: python cadeoqueijo/parecer.py --ciclo semanal > /tmp/p.json || true
       - name: Destilar
-        run: python src/consulta.py || true
+        run: python cadeoqueijo/consulta.py || true
       - name: Parâmetro de qualidade — só fonte oficial fundamenta dado
-        run: python src/valida_fontes.py || true
+        run: python cadeoqueijo/valida_fontes.py || true
       - name: Sonda de 2ª etapa — fontes oficiais alternativas
-        run: python src/valida_segunda_etapa.py || true
+        run: python cadeoqueijo/valida_segunda_etapa.py || true
       - name: P-N1 — detector de Diário reescrito (integridade sha256)
-        run: python scripts/verifica_integridade_edicoes.py --amostra 24 || true
+        run: python cadeoqueijo/verifica_integridade_edicoes.py --amostra 24 || true
       - name: Servidores nomeados nas publicações (pasta própria, minimizado)
-        run: python scripts/captura_servidores.py || true
+        run: python cadeoqueijo/captura_servidores.py || true
       - name: Contrato de ciclo — artefatos obrigatórios presentes e válidos
-        run: python src/valida_ciclo.py
+        run: python cadeoqueijo/valida_ciclo.py
       - name: Publicar
         run: |
           git config user.name "vigilancia-bot"; git config user.email "bot@users.noreply.github.com"

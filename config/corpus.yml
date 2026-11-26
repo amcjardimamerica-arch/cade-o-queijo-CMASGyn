@@ -104,7 +104,7 @@ blocos:
     nome: Resoluções do CNAS e da CIT — 269 com texto integral
     local: corpus_txt/cnas/
     fonte: Diário Oficial da União
-    atualizador: src/captura_cnas.py
+    atualizador: cadeoqueijo/captura_cnas.py
     url: null
   - id: r202_2025
     nome: Resolução CNAS/MDS 202/2025 — piso de 10% ao controle social

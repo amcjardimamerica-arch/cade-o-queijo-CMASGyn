@@ -1,0 +1,44 @@
+name: Qualidade — testes do Onisciente e regressão do Cadê o Queijo
+
+# Roda a cada envio e a cada pedido de mudança. Não usa a internet nem altera
+# nada: confere o mapa legal, roda os testes do Onisciente e os sete erros
+# históricos do Cadê o Queijo, e confirma que todo o motor antigo compila.
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: qualidade-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  testes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Dependências mínimas
+        env: { PIP_DISABLE_PIP_VERSION_CHECK: "1" }
+        run: pip install --quiet PyYAML requests pytest
+      - name: Mapa legal, alvo e domínios
+        run: python -m onisciente verificar
+      - name: Testes (inclui a regressão do Cadê o Queijo)
+        run: python -m pytest -v
+      - name: Parecer de prova, gerado fora do repositório
+        run: |
+          python - <<'PY'
+          from onisciente.__main__ import competencias_disponiveis
+          from onisciente.adaptadores import cadeoqueijo
+          from onisciente.parecer import html
+          c = competencias_disponiveis()[-1]
+          p = cadeoqueijo.montar(c)
+          pagina = html.gerar(p)
+          print(f"{c}: {p.em_uma_frase()} ({len(pagina) // 1024} KB)")
+          PY

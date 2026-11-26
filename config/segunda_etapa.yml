@@ -1,6 +1,6 @@
 # Validação em 2ª etapa: para cada informação indisponível na 1ª via
 # (Diário Oficial), onde ela pode estar em fonte OFICIAL alternativa.
-# As URLs candidatas são sondadas por src/valida_segunda_etapa.py em
+# As URLs candidatas são sondadas por cadeoqueijo/valida_segunda_etapa.py em
 # ambiente com rede; o estado da sonda acompanha cada citação no parecer.
 fontes:
   portal_transparencia:

@@ -1,0 +1,1197 @@
+# Mapa legal do Onisciente.
+# Cada regra tem norma, parâmetro testável, fonte do dado e família de indício.
+# Uma regra sem número não vira indício: vira pergunta no ofício.
+# As normas vêm do catálogo levantado em 26/11/2026 (ctresb/leis e Sileg).
+versao: '2026-11-26'
+fonte_de_leis:
+  repositorio: https://github.com/ctresb/leis
+  base_url: https://github.com/ctresb/leis/blob/main/
+  nota: Cada norma aponta para o arquivo dela; o motor confere o campo revogada antes de usar a regra.
+sileg:
+  padrao: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/{ano}/{tipo}_{data}_{numero:09d}.html
+  tipos:
+    lo: lei ordinária
+    lc: lei complementar
+    dc: decreto
+regras:
+- id: PISO-SAUDE
+  titulo: Aplicação mínima em saúde
+  tipo: minimo
+  valor: 15.0
+  unidade: '%'
+  base: receita de impostos e transferências constitucionais
+  norma: CF, art. 198, § 2º e LC 141/2012, art. 7º
+  fonte_dado:
+  - RREO Anexo 12
+  - SIOPS
+  familia: PISO
+  gravidade: critica
+- id: PISO-EDUCACAO
+  titulo: Manutenção e desenvolvimento do ensino
+  tipo: minimo
+  valor: 25.0
+  unidade: '%'
+  base: receita de impostos e transferências constitucionais
+  norma: CF, art. 212
+  fonte_dado:
+  - RREO Anexo 8
+  - SIOPE
+  familia: PISO
+  gravidade: critica
+- id: FUNDEB-PROFISSIONAIS
+  titulo: Fundeb na remuneração dos profissionais
+  tipo: minimo
+  valor: 70.0
+  unidade: '%'
+  base: receita do Fundeb no exercício
+  norma: Lei 14.113/2020, art. 26
+  fonte_dado:
+  - SIOPE
+  - folha da educação
+  familia: PISO
+  gravidade: critica
+- id: FUNDEB-SALDO
+  titulo: Saldo do Fundeb para o exercício seguinte
+  tipo: maximo
+  valor: 10.0
+  unidade: '%'
+  base: receita do Fundeb no exercício
+  norma: Lei 14.113/2020, art. 25, § 3º
+  fonte_dado:
+  - SIOPE
+  familia: PISO
+  gravidade: alta
+- id: PESSOAL-EXECUTIVO
+  titulo: Despesa com pessoal do Executivo
+  tipo: maximo
+  valor: 54.0
+  alerta: 48.6
+  prudencial: 51.3
+  unidade: '%'
+  base: receita corrente líquida
+  norma: LC 101/2000, arts. 20, 22 e 59
+  fonte_dado:
+  - RGF Anexo 1
+  - folha do portal
+  familia: PISO
+  gravidade: critica
+- id: CAMARA
+  titulo: Repasse à Câmara Municipal
+  tipo: maximo
+  faixas:
+    I: 7.0
+    II: 6.0
+    III: 5.0
+    IV: 4.5
+    V: 4.0
+    VI: 3.5
+  unidade: '%'
+  base: receita tributária e transferências do exercício anterior
+  norma: CF, art. 29-A
+  fonte_dado:
+  - execução
+  - duodécimos no Diário Oficial
+  familia: PISO
+  gravidade: alta
+- id: DIVIDA-CONSOLIDADA
+  titulo: Dívida consolidada líquida
+  tipo: maximo
+  valor: 120.0
+  unidade: '%'
+  base: receita corrente líquida
+  norma: Resolução do Senado 40/2001
+  fonte_dado:
+  - RGF Anexo 2
+  familia: PISO
+  gravidade: alta
+- id: OPERACOES-CREDITO
+  titulo: Operações de crédito no exercício
+  tipo: maximo
+  valor: 16.0
+  unidade: '%'
+  base: receita corrente líquida
+  norma: Resolução do Senado 43/2001
+  fonte_dado:
+  - RGF Anexo 4
+  familia: PISO
+  gravidade: alta
+- id: EMENDA-CAPITAL
+  titulo: Emendas de transferência especial em capital
+  tipo: minimo
+  valor: 70.0
+  unidade: '%'
+  base: valor da transferência especial
+  norma: CF, art. 166-A, § 5º
+  fonte_dado:
+  - Transferegov
+  - empenhos
+  familia: PISO
+  gravidade: alta
+- id: IGD-CONTROLE-SOCIAL
+  titulo: Piso do IGD ao controle social
+  tipo: minimo
+  valor: 10.0
+  unidade: '%'
+  base: repasse do IGD na competência
+  norma: Resolução CNAS/MDS 202/2025, art. 6º; Lei 14.601/2023, art. 14, § 7º
+  fonte_dado:
+  - demonstrativo mensal do Fundo Municipal de Assistência Social
+  - extração de repasses do Fundo Nacional
+  familia: PISO
+  gravidade: critica
+- id: DIVERGENCIA-DECLARADO
+  titulo: Cálculo próprio contra o declarado
+  tipo: tolerancia
+  valor: 1.0
+  unidade: '%'
+  base: diferença relativa entre o percentual calculado e o declarado
+  norma: LC 101/2000, arts. 48 e 52
+  fonte_dado:
+  - RREO
+  - RGF
+  - SIOPS
+  - SIOPE
+  familia: PISO
+  gravidade: alta
+- id: PRECO-MEDIANA
+  titulo: Preço unitário contra a mediana nacional
+  tipo: maximo
+  valor: 40.0
+  percentil: 95
+  unidade: '% acima da mediana'
+  base: mediana nacional do mesmo item no semestre
+  norma: Lei 14.133/2021, art. 23
+  fonte_dado:
+  - PNCP
+  - painel de preços do Compras.gov.br
+  familia: PRC
+  gravidade: alta
+- id: ADITIVO-LIMITE
+  titulo: Acréscimo por aditivo
+  tipo: maximo
+  valor: 25.0
+  unidade: '% do valor original'
+  base: valor inicial atualizado do contrato
+  norma: Lei 14.133/2021, art. 125
+  fonte_dado:
+  - PNCP
+  - Diário Oficial
+  familia: PRC
+  gravidade: alta
+- id: DISPENSA-LIMITE
+  titulo: Limite de dispensa por valor (soma do mesmo objeto)
+  tipo: maximo
+  obras: 125451.15
+  outros: 62725.59
+  vigencia: 2025
+  conferir_atualizacao: true
+  unidade: R$
+  base: soma das contratações do mesmo objeto no exercício
+  norma: Lei 14.133/2021, art. 75, I, II e § 1º; Decreto 12.343/2024
+  fonte_dado:
+  - extratos de dispensa no Diário Oficial
+  - PNCP
+  familia: PRC
+  gravidade: alta
+- id: ORDEM-DESPESA
+  titulo: Empenho, liquidação e pagamento nesta ordem
+  tipo: ordem
+  unidade: datas
+  base: datas de cada estação
+  norma: Lei 4.320/1964, arts. 60, 62 e 63
+  fonte_dado:
+  - portal de transparência
+  - Diário Oficial
+  familia: ENT
+  gravidade: alta
+- id: FOLHA-DIA-5
+  titulo: Folha paga até o dia 5 do mês seguinte
+  tipo: prazo
+  valor: 5
+  unidade: dia do mês seguinte
+  base: competência da folha
+  norma: Lei Orgânica de Goiânia, art. 30
+  fonte_dado:
+  - folha do portal
+  familia: PES
+  gravidade: alta
+- id: PREVIDENCIA-DIA-20
+  titulo: Repasse ao regime próprio até o dia 20
+  tipo: prazo
+  valor: 20
+  unidade: dia do mês seguinte
+  base: competência da contribuição
+  norma: LC municipal 312/2018
+  fonte_dado:
+  - demonstrativo bimestral do GOIANIAPREV
+  familia: PES
+  gravidade: critica
+- id: FIM-DE-MANDATO-PESSOAL
+  titulo: Sem aumento de pessoal nos 180 dias finais
+  tipo: prazo
+  valor: 180
+  unidade: dias antes do fim do mandato
+  base: atos de pessoal
+  norma: LC 101/2000, art. 21
+  fonte_dado:
+  - Diário Oficial
+  - RGF
+  familia: PISO
+  gravidade: critica
+- id: CONCENTRACAO
+  titulo: Concentração de credores
+  tipo: maximo
+  valor: 80.0
+  credores: 5
+  unidade: '% do pago'
+  base: total pago na ação ou fonte no exercício
+  norma: CF, art. 37, caput (impessoalidade)
+  fonte_dado:
+  - portal de transparência
+  - Diário Oficial
+  familia: PCT
+  gravidade: media
+- id: FONTE-PARADA
+  titulo: Fonte sem coleta
+  tipo: prazo
+  valor: 3
+  unidade: dias
+  base: última coleta bem-sucedida
+  norma: 'Premissa do sistema: falha de coleta é falha do Onisciente'
+  fonte_dado:
+  - estado da coleta
+  familia: SIS
+  gravidade: alta
+- id: INTEGRIDADE-LAI
+  titulo: Nota de integridade que gera pedido de acesso
+  tipo: minimo
+  valor: 50.0
+  unidade: pontos
+  base: índice de integridade da trilha
+  norma: Lei 12.527/2011, art. 8º; Lei municipal 9.262/2013
+  fonte_dado:
+  - índice do próprio sistema
+  familia: SIS
+  gravidade: alta
+normas:
+- id: cf-art-212
+  area: Orçamento e responsabilidade fiscal
+  norma: CF, art. 212
+  assunto: Constituição Federal
+  parametro: Mínimo de 25% da receita de impostos e transferências em manutenção e desenvolvimento do ensino.
+  conferencias:
+  - Pisos
+  - PISO-02
+  localizada: true
+  revogada: false
+  ctresb:
+  - constituicao.md
+- id: cf-art-212-a-e-lei-14-113-2020-art-26
+  area: Orçamento e responsabilidade fiscal
+  norma: CF, art. 212-A e Lei 14.113/2020, art. 26
+  assunto: Fundeb
+  parametro: Mínimo de 70% do Fundeb na remuneração dos profissionais da educação básica em exercício.
+  conferencias:
+  - Pisos
+  localizada: true
+  revogada: false
+  ctresb:
+  - constituicao.md
+  - federal/leis-ordinarias/2020/lei-14113-2020-12-25.md
+- id: cf-art-198-2o-e-lc-141-2012-art-7o
+  area: Orçamento e responsabilidade fiscal
+  norma: CF, art. 198, § 2º e LC 141/2012, art. 7º
+  assunto: Saúde
+  parametro: Mínimo de 15% dos impostos e transferências em ações e serviços públicos de saúde; recurso do SUS só
+    corre para saúde.
+  conferencias:
+  - Pisos
+  - RIO-01
+  localizada: true
+  revogada: false
+  ctresb:
+  - constituicao.md
+  - federal/leis-complementares/2012/lcp-141-2012-01-13.md
+- id: cf-art-29-a
+  area: Orçamento e responsabilidade fiscal
+  norma: CF, art. 29-A
+  assunto: Câmara Municipal
+  parametro: Teto do repasse à Câmara pela faixa de população; Goiânia na faixa de 4,5%.
+  conferencias:
+  - Pisos
+  localizada: true
+  revogada: false
+  ctresb:
+  - constituicao.md
+- id: cf-art-166-a-5o
+  area: Orçamento e responsabilidade fiscal
+  norma: CF, art. 166-A, § 5º
+  assunto: Emendas de transferência especial
+  parametro: Pelo menos 70% em despesas de capital.
+  conferencias:
+  - Pisos
+  - PISO-06
+  localizada: true
+  revogada: false
+  ctresb:
+  - constituicao.md
+- id: lc-101-2000-arts-19-20-22-e-59
+  area: Orçamento e responsabilidade fiscal
+  norma: LC 101/2000, arts. 19, 20, 22 e 59
+  assunto: Lei de Responsabilidade Fiscal
+  parametro: Pessoal do Executivo municipal até 54% da receita corrente líquida; alerta em 90% e limite prudencial
+    em 95% do teto.
+  conferencias:
+  - Pisos
+  - PISO-04
+  localizada: true
+  revogada: false
+  ctresb:
+  - federal/leis-complementares/2000/lcp-101-2000-05-04.md
+- id: lc-101-2000-arts-48-48-a-52-e-54
+  area: Orçamento e responsabilidade fiscal
+  norma: LC 101/2000, arts. 48, 48-A, 52 e 54
+  assunto: Transparência fiscal
+  parametro: Execução em tempo real na internet; RREO a cada bimestre em até 30 dias; RGF a cada quadrimestre.
+  conferencias:
+  - Ausências
+  - Ofícios
+  localizada: true
+  revogada: false
+  ctresb:
+  - federal/leis-complementares/2000/lcp-101-2000-05-04.md
+- id: lc-101-2000-arts-73-a-a-73-c
+  area: Orçamento e responsabilidade fiscal
+  norma: LC 101/2000, arts. 73-A a 73-C
+  assunto: Denúncia e sanção
+  parametro: Qualquer cidadão ou associação pode denunciar ao Tribunal de Contas e ao Ministério Público; descumprir
+    a transparência bloqueia transferências voluntárias.
+  conferencias:
+  - Contra a não resposta
+  localizada: true
+  revogada: false
+  ctresb:
+  - federal/leis-complementares/2000/lcp-101-2000-05-04.md
+- id: lei-4-320-1964-arts-58-a-65
+  area: Orçamento e responsabilidade fiscal
+  norma: Lei 4.320/1964, arts. 58 a 65
+  assunto: Normas gerais de direito financeiro
+  parametro: Empenho prévio; liquidação só com prova da entrega; pagamento só depois da liquidação.
+  conferencias:
+  - Trilha
+  - ENT-01
+  - ENT-02
+  localizada: true
+  revogada: false
+  ctresb:
+  - federal/leis-ordinarias/1964/lei-4320-1964-03-17.md
+- id: lei-14-133-2021-arts-23-75-94-e-125
+  area: Licitações, contratos e parcerias
+  norma: Lei 14.133/2021, arts. 23, 75, 94 e 125
+  assunto: Licitações e contratos
+  parametro: Preço estimado por pesquisa em bases oficiais; dispensa somada por objeto no ano; contrato só tem eficácia
+    depois de publicado no PNCP; acréscimo até 25%.
+  conferencias:
+  - Preço
+  - VIN-01
+  - PRC-02
+  - PRC-03
+  localizada: true
+  revogada: false
+  ctresb:
+  - federal/leis-ordinarias/2021/lei-14133-2021-04-01.md
+- id: lei-13-019-2014
+  area: Licitações, contratos e parcerias
+  norma: Lei 13.019/2014
+  assunto: Parcerias com organizações da sociedade civil
+  parametro: Chamamento público como regra; prestação de contas por termo, com metas e despesas da própria entidade.
+  conferencias:
+  - PCT-01
+  - VIN-04
+  localizada: true
+  revogada: false
+  ctresb:
+  - federal/leis-ordinarias/2014/lei-13019-2014-07-31.md
+- id: cf-art-37-x-e-xi
+  area: Pessoal, previdência e trabalho
+  norma: CF, art. 37, X e XI
+  assunto: Remuneração
+  parametro: Revisão geral anual na mesma data e sem distinção de índices; teto municipal é o subsídio do prefeito.
+  conferencias:
+  - Pessoal
+  - Gestores
+  localizada: true
+  revogada: false
+  ctresb:
+  - constituicao.md
+- id: cf-art-37-9o
+  area: Pessoal, previdência e trabalho
+  norma: CF, art. 37, § 9º
+  assunto: Estatais
+  parametro: O teto alcança empresa pública que recebe do ente recursos para pagar pessoal ou custeio.
+  conferencias:
+  - Gestores
+  localizada: true
+  revogada: false
+  ctresb:
+  - constituicao.md
+- id: cf-art-40-8o-e-lei-9-717-1998
+  area: Pessoal, previdência e trabalho
+  norma: CF, art. 40, § 8º e Lei 9.717/1998
+  assunto: Regime próprio
+  parametro: Benefícios reajustados para preservar o valor real; contribuições repassadas ao regime próprio.
+  conferencias:
+  - PES-06
+  - PES-07
+  localizada: true
+  revogada: false
+  ctresb:
+  - constituicao.md
+  - federal/leis-ordinarias/1998/lei-9717-1998-11-27.md
+- id: lei-11-738-2008-arts-2o-e-5o
+  area: Pessoal, previdência e trabalho
+  norma: Lei 11.738/2008, arts. 2º e 5º
+  assunto: Piso do magistério
+  parametro: Vencimento inicial nunca abaixo do piso nacional, atualizado em janeiro.
+  conferencias:
+  - PES-02
+  localizada: true
+  revogada: false
+  ctresb:
+  - federal/leis-ordinarias/2008/lei-11738-2008-07-16.md
+- id: lei-8-036-1990-art-15
+  area: Pessoal, previdência e trabalho
+  norma: Lei 8.036/1990, art. 15
+  assunto: FGTS
+  parametro: Depósito de 8% da remuneração até o dia 20 do mês seguinte, para empregados celetistas das estatais.
+  conferencias:
+  - PES-08
+  localizada: true
+  revogada: false
+  ctresb:
+  - federal/leis-ordinarias/1990/lei-8036-1990-05-11.md
+- id: lei-8-429-1992-arts-9-10-e-11
+  area: Penal e improbidade
+  norma: Lei 8.429/1992, arts. 9, 10 e 11
+  assunto: Improbidade administrativa
+  parametro: Enriquecimento ilícito, dano ao erário e violação de princípios; negar publicidade a ato oficial é
+    improbidade (art. 11, IV).
+  conferencias:
+  - Indícios
+  - Contra a não resposta
+  localizada: true
+  revogada: false
+  ctresb:
+  - federal/leis-ordinarias/1992/lei-8429-1992-06-02.md
+- id: decreto-lei-201-1967
+  area: Penal e improbidade
+  norma: Decreto-Lei 201/1967
+  assunto: Crimes de responsabilidade de prefeitos
+  parametro: Desviar ou aplicar indevidamente renda pública, deixar de prestar contas no prazo, empregar verba em
+    desacordo com os planos.
+  conferencias:
+  - Indícios
+  - Contas
+  localizada: true
+  revogada: false
+  ctresb:
+  - federal/decretos-lei/1967/del-201-1967-02-27.md
+- id: codigo-penal-arts-312-315-e-359-a-a-359-h
+  area: Penal e improbidade
+  norma: Código Penal, arts. 312, 315 e 359-A a 359-H
+  assunto: Crimes contra a administração e as finanças públicas
+  parametro: 'Peculato, emprego irregular de verba e crimes contra as finanças públicas. O sistema nunca imputa
+    crime: só aponta o dispositivo que o fato pode tocar.'
+  conferencias:
+  - Indícios
+  localizada: true
+  revogada: false
+  ctresb:
+  - federal/decretos-lei/1940/del-2848-1940-12-07.md
+- id: lei-12-527-2011-arts-8o-10-11-15-e-32
+  area: Transparência e acesso à informação
+  norma: Lei 12.527/2011, arts. 8º, 10, 11, 15 e 32
+  assunto: Lei de Acesso à Informação
+  parametro: Transparência ativa em formato aberto; pedido sem motivo; resposta em 20 dias mais 10; recurso em 10
+    dias, decidido em 5; recusa é conduta ilícita.
+  conferencias:
+  - Ausências
+  - Ofícios
+  localizada: true
+  revogada: false
+  ctresb:
+  - federal/leis-ordinarias/2011/lei-12527-2011-11-18.md
+- id: lei-12-016-2009-e-lei-9-507-1997
+  area: Transparência e acesso à informação
+  norma: Lei 12.016/2009 e Lei 9.507/1997
+  assunto: Mandado de segurança e habeas data
+  parametro: Mandado de segurança em 120 dias contra a negativa; habeas data só para dado pessoal do requerente.
+  conferencias:
+  - Contra a não resposta
+  localizada: true
+  revogada: false
+  ctresb:
+  - federal/leis-ordinarias/2009/lei-12016-2009-08-07.md
+  - federal/leis-ordinarias/1997/lei-9507-1997-11-12.md
+- id: cf-art-167-v-e-vi
+  area: Orçamento e responsabilidade fiscal
+  norma: CF, art. 167, V e VI
+  assunto: Créditos e remanejamentos
+  parametro: Crédito suplementar só com autorização legislativa e indicação de recursos; transposição e remanejamento
+    só com lei.
+  conferencias:
+  - Trilha
+  - ORC
+  localizada: true
+  revogada: false
+  ctresb:
+  - constituicao.md
+- id: lc-101-2000-art-14
+  area: Tributária
+  norma: LC 101/2000, art. 14
+  assunto: Renúncia de receita
+  parametro: Isenção, anistia ou remissão só com estimativa de impacto e compensação, ou prova de que foi considerada
+    na LOA.
+  conferencias:
+  - Rio
+  - Indícios
+  localizada: true
+  revogada: false
+  ctresb:
+  - federal/leis-complementares/2000/lcp-101-2000-05-04.md
+- id: cf-arts-158-e-159
+  area: Tributária
+  norma: CF, arts. 158 e 159
+  assunto: Repartição de receitas
+  parametro: Cota-parte de ICMS, IPVA e FPM recebida pelo município conferida contra o que a União e o Estado publicam
+    como repassado.
+  conferencias:
+  - Rio
+  localizada: true
+  revogada: false
+  ctresb:
+  - constituicao.md
+- id: lei-12-846-2013
+  area: Penal e improbidade
+  norma: Lei 12.846/2013
+  assunto: Lei Anticorrupção
+  parametro: Responsabilidade objetiva da empresa que lesa a administração; acordo de leniência.
+  conferencias:
+  - Trilha do Rato
+  - VIN
+  localizada: true
+  revogada: false
+  ctresb:
+  - federal/leis-ordinarias/2013/lei-12846-2013-08-01.md
+- id: lei-4-717-1965
+  area: Penal e improbidade
+  norma: Lei 4.717/1965
+  assunto: Ação popular
+  parametro: Qualquer cidadão pode pedir a anulação de ato lesivo ao patrimônio público.
+  conferencias:
+  - Contra a não resposta
+  localizada: true
+  revogada: false
+  ctresb:
+  - federal/leis-ordinarias/1965/lei-4717-1965-06-29.md
+- id: lei-13-709-2018
+  area: Transparência e acesso à informação
+  norma: Lei 13.709/2018
+  assunto: Proteção de dados
+  parametro: 'Convive com a Lei de Acesso: dado pessoal não justifica negar remuneração individualizada, mas o Onisciente
+    não expõe CPF nem matrícula.'
+  conferencias:
+  - Gestores
+  - Pessoal
+  localizada: true
+  revogada: false
+  ctresb:
+  - federal/leis-ordinarias/2018/lei-13709-2018-08-14.md
+- id: lei-estadual-15-958-2007
+  area: Controle externo
+  norma: Lei estadual 15.958/2007
+  assunto: Lei Orgânica do Tribunal de Contas dos Municípios de Goiás
+  parametro: Contas de governo até 60 dias da abertura da sessão; parecer prévio em 60 dias (aprovação, ressalva
+    ou rejeição); balancetes de gestão em 45 dias; denúncia por cidadão ou associação; contas rejeitadas vão à Justiça
+    Eleitoral.
+  conferencias:
+  - Contas
+  - Contra a não resposta
+  localizada: true
+  revogada: false
+  ctresb:
+  - estaduais/GO/leis-ordinarias/2007/lei-15958-2007-id80070.md
+- id: cf-arts-70-e-74-2o
+  area: Controle externo
+  norma: CF, arts. 70 e 74, § 2º
+  assunto: Fiscalização
+  parametro: Controle externo pela Câmara com o Tribunal; qualquer cidadão pode denunciar irregularidade ao Tribunal
+    de Contas.
+  conferencias:
+  - Contas
+  localizada: true
+  revogada: false
+  ctresb:
+  - constituicao.md
+- id: lei-organica-art-30
+  area: Município de Goiânia
+  norma: Lei Orgânica, art. 30
+  assunto: Folha de pagamento
+  parametro: Folha de ativos e inativos quitada até o dia 5 do mês seguinte, sob pena de atualização; depois de
+    15 de dezembro, o 13º vem antes de qualquer credor.
+  conferencias:
+  - PES-05
+  localizada: true
+  revogada: false
+  ctresb:
+  - municipais/GO/goiania/lei-organica/1990/lei-organica-goiania-1990.md
+- id: lei-organica-art-28-vi-e-2o
+  area: Município de Goiânia
+  norma: Lei Orgânica, art. 28, VI e § 2º
+  assunto: Direitos dos servidores
+  parametro: Correção dos vencimentos em percentual e periodicidade da lei; adicional por quinquênio incorporável.
+  conferencias:
+  - PES-01
+  - PES-04
+  localizada: true
+  revogada: false
+  ctresb:
+  - municipais/GO/goiania/lei-organica/1990/lei-organica-goiania-1990.md
+- id: lei-organica-art-29
+  area: Município de Goiânia
+  norma: Lei Orgânica, art. 29
+  assunto: Servidor e fornecedor
+  parametro: Servidor não pode ser diretor nem conselheiro de empresa que contrata com o município.
+  conferencias:
+  - Trilha do Rato
+  - Vínculo
+  localizada: true
+  revogada: false
+  ctresb:
+  - municipais/GO/goiania/lei-organica/1990/lei-organica-goiania-1990.md
+- id: lei-organica-arts-103-103-a-103-b-e-115-xxv
+  area: Município de Goiânia
+  norma: Lei Orgânica, arts. 103, 103-A, 103-B e 115, XXV
+  assunto: Contas do prefeito
+  parametro: Balancetes ao Tribunal em 45 dias; contas anuais em até 60 dias da abertura da sessão legislativa;
+    parecer prévio em 60 dias; Câmara julga em 75; tudo apreciado até o fim do exercício seguinte; contas 60 dias
+    à disposição do contribuinte.
+  conferencias:
+  - Contas
+  - Máquina do tempo
+  localizada: true
+  revogada: false
+  ctresb:
+  - municipais/GO/goiania/lei-organica/1990/lei-organica-goiania-1990.md
+- id: lei-organica-art-104
+  area: Município de Goiânia
+  norma: Lei Orgânica, art. 104
+  assunto: Controle interno
+  parametro: A Auditoria Geral do Município é o controle interno do Executivo e deve comunicar irregularidades ao
+    Tribunal de Contas.
+  conferencias:
+  - Contra a não resposta
+  localizada: true
+  revogada: false
+  ctresb:
+  - municipais/GO/goiania/lei-organica/1990/lei-organica-goiania-1990.md
+- id: lei-organica-art-64-iv-v-e-xi
+  area: Município de Goiânia
+  norma: Lei Orgânica, art. 64, IV, V e XI
+  assunto: Câmara e contas
+  parametro: A Câmara fiscaliza com o Tribunal, julga as contas anuais e toma as contas se o prefeito não as apresentar
+    em 60 dias da abertura da sessão.
+  conferencias:
+  - Contas
+  localizada: true
+  revogada: false
+  ctresb:
+  - municipais/GO/goiania/lei-organica/1990/lei-organica-goiania-1990.md
+- id: ppa-2026-2029-lei-11-510-2025
+  area: Orçamento e responsabilidade fiscal
+  norma: PPA 2026-2029 (Lei 11.510/2025)
+  assunto: Plano plurianual
+  parametro: Monitoramento semestral e relatório anual de execução publicado; vetos ao art. 10, §§ 1º e 2º, ao art.
+    17 (PPPs) e ao art. 21.
+  conferencias:
+  - Máquina do tempo
+  - Secretarias
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Prefeitura (Sileg)
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2025/lo_20251022_000011510.html
+- id: ldo-2026-lei-11-589-2026
+  area: Orçamento e responsabilidade fiscal
+  norma: LDO 2026 (Lei 11.589/2026)
+  assunto: Diretrizes orçamentárias
+  parametro: Suplementação até 23%; emendas individuais até 2% da receita corrente líquida, metade para a saúde;
+    cronograma de desembolso em 30 dias.
+  conferencias:
+  - Secretarias
+  - ORC
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Prefeitura (Sileg)
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2026/lo_20260109_000011589.html
+- id: loa-2026-lei-11-590-2026
+  area: Orçamento e responsabilidade fiscal
+  norma: LOA 2026 (Lei 11.590/2026)
+  assunto: Orçamento de Goiânia
+  parametro: Receita de R$ 10,84 bilhões; créditos suplementares até 23%; R$ 185,1 milhões em emendas impositivas.
+    O sistema soma os decretos de suplementação e testa o limite.
+  conferencias:
+  - Secretarias
+  - Máquina do tempo
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Prefeitura (Sileg)
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2026/lo_20260109_000011590.html
+  - nome: Ficha no Sileg
+    url: https://www.goiania.go.gov.br/sistemas/sileg/asp/sileg01020r1.asp?txt_cd_leg=151548&txt_ano=2026
+- id: decreto-147-2026
+  area: Orçamento e responsabilidade fiscal
+  norma: Decreto 147/2026
+  assunto: Emendas impositivas
+  parametro: Coordenação e execução das emendas impositivas; justificativa de impedimento em 60 dias da LOA (Lei
+    Orgânica, art. 138).
+  conferencias:
+  - Rio
+  - ORC
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Prefeitura (Sileg)
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2026/dc_20260817_000000147.html
+- id: lei-11-662-2026
+  area: Orçamento e responsabilidade fiscal
+  norma: Lei 11.662/2026
+  assunto: Placa de obra de emenda
+  parametro: Obra paga com emenda parlamentar traz o nome do autor na placa.
+  conferencias:
+  - Trilha
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Prefeitura (Sileg)
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2026/lo_20260708_000011662.html
+- id: decreto-265-2016
+  area: Controle externo
+  norma: Decreto 265/2016
+  assunto: Regimento da Controladoria-Geral do Município
+  parametro: Estrutura do controle interno; lei própria do controle interno não localizada, vira ofício.
+  conferencias:
+  - Contas
+  - Contra a não resposta
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Prefeitura (Sileg)
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2016/dc_20160127_000000265.pdf
+- id: lei-11-633-2026
+  area: Controle externo
+  norma: Lei 11.633/2026
+  assunto: Avaliação de políticas públicas
+  parametro: 'Política municipal de avaliação: base para a meta contra resultado de cada secretaria.'
+  conferencias:
+  - Secretarias
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Prefeitura (Sileg)
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2026/lo_20260522_000011633.html
+- id: lc-344-2021
+  area: Tributária
+  norma: LC 344/2021
+  assunto: Código Tributário de Goiânia
+  parametro: Isenção, redução, anistia e remissão só por lei específica; isenção exige regularidade fiscal e com
+    o FGTS.
+  conferencias:
+  - Rio
+  - Vínculo
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Prefeitura (Sileg)
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2021/lc_20210930_000000344.html
+- id: lc-362-2022
+  area: Tributária
+  norma: LC 362/2022
+  assunto: Alteração do Código Tributário
+  parametro: Aumento do IPTU limitado a 5% a partir de 2026; isenção do imóvel único até R$ 140 mil; ISS de 2%;
+    multa diária de 0,33% até 20%.
+  conferencias:
+  - Rio
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Prefeitura (Sileg)
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2022/lc_20221231_000000362.html
+- id: lc-367-2023
+  area: Tributária
+  norma: LC 367/2023
+  assunto: REFIS 2023 e ITBI
+  parametro: Programa de parcelamento de 2023 e ITBI de 1,5%.
+  conferencias:
+  - Rio
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Prefeitura (Sileg)
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2023/lc_20231023_000000367.html
+- id: lc-384-2025
+  area: Tributária
+  norma: LC 384/2025
+  assunto: Taxa de fiscalização (TRCF)
+  parametro: Alíquota de 1,5%; relatório trimestral; audiência na Câmara até agosto.
+  conferencias:
+  - Rio
+  - Ausências
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Prefeitura (Sileg)
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2025/lc_20250625_000000384.html
+- id: lc-386-2025
+  area: Tributária
+  norma: LC 386/2025
+  assunto: Contribuição de iluminação pública (COSIP)
+  parametro: Destinação vinculada à iluminação; conselho gestor de 12 membros.
+  conferencias:
+  - Rio
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Prefeitura (Sileg)
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2025/lc_20251230_000000386.html
+- id: lei-11-520-2025
+  area: Tributária
+  norma: Lei 11.520/2025
+  assunto: REFIS 2025
+  parametro: Desconto até 99% e até 60 parcelas; renúncia a conferir contra o art. 14 da LRF.
+  conferencias:
+  - Rio
+  - Indícios
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Prefeitura (Sileg)
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2025/lo_20251031_000011520.html
+- id: lei-11-744-2026
+  area: Tributária
+  norma: Lei 11.744/2026
+  assunto: Transparência de incentivos fiscais
+  parametro: Dados por beneficiário, atualizados mês a mês, obrigatórios a partir de novembro de 2027.
+  conferencias:
+  - Rio
+  - Ausências
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Prefeitura (Sileg)
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2026/lo_20261116_000011744.html
+- id: decreto-891-2023
+  area: Licitações, contratos e parcerias
+  norma: Decreto 891/2023
+  assunto: Comissão de licitação da Fazenda
+  parametro: Composição e segregação de funções na Fazenda.
+  conferencias:
+  - VIN
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Prefeitura (Sileg)
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2023/dc_20230309_000000891.pdf
+- id: decretos-963-967-2022-e-3-182-2023
+  area: Licitações, contratos e parcerias
+  norma: Decretos 963, 967/2022 e 3.182/2023
+  assunto: Regulamentos da Lei 14.133 em Goiânia
+  parametro: 'Agente de contratação efetivo e segregação de funções; registro de preços com adesão até 50%; Controladoria
+    analisa toda dispensa. Texto oficial não localizado: vira ofício.'
+  conferencias:
+  - VIN
+  - PRC
+  localizada: false
+  revogada: false
+- id: lei-11-678-2026
+  area: Licitações, contratos e parcerias
+  norma: Lei 11.678/2026
+  assunto: Trabalho escravo
+  parametro: Proíbe contratar empresa flagrada com trabalho análogo ao escravo; cruzamento com a lista do Ministério
+    do Trabalho.
+  conferencias:
+  - Trilha do Rato
+  - VIN
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Prefeitura (Sileg)
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2026/lo_20260720_000011678.html
+- id: parcerias-com-organizacoes-sociais
+  area: Licitações, contratos e parcerias
+  norma: Parcerias com organizações sociais
+  assunto: Decreto da Lei 13.019 e Lei 8.248/2004
+  parametro: Não localizados no sistema de legislação. Viram ofício.
+  conferencias:
+  - PCT
+  - Ofícios
+  localizada: false
+  revogada: false
+- id: lc-011-1992
+  area: Pessoal, previdência e trabalho
+  norma: LC 011/1992
+  assunto: Estatuto dos Servidores de Goiânia
+  parametro: Diária de meia sem pernoite e devolução em 5 dias (art. 71); gratificações do art. 78, inclusive por
+    órgão de deliberação coletiva e produtividade de 20% a 40%; hora extra até 10 h por dia.
+  conferencias:
+  - PES-04
+  - Gestores
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Prefeitura (Sileg)
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/1992/lc_19920511_000000011.html
+- id: lc-335-2021
+  area: Pessoal, previdência e trabalho
+  norma: LC 335/2021
+  assunto: Organização administrativa
+  parametro: Jeton da JARI e do CADEP de R$ 80,21 por sessão, até 66 sessões por mês (art. 29).
+  conferencias:
+  - PES-03
+  - Gestores
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Prefeitura (Sileg)
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2021/lc_20210101_000000335.html
+- id: lc-382-2024
+  area: Pessoal, previdência e trabalho
+  norma: LC 382/2024
+  assunto: Reforma administrativa
+  parametro: Secretarias criadas e extintas; até 7 administrações regionais; auxílio-representação de 1/3 do subsídio
+    do vereador.
+  conferencias:
+  - Secretarias
+  - Gestores
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Prefeitura (Sileg)
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2024/lc_20241230_000000382.html
+- id: decreto-163-2026
+  area: Pessoal, previdência e trabalho
+  norma: Decreto 163/2026
+  assunto: Gratificação de Desempenho (GDI)
+  parametro: Até 150 UPV por servidor; relatórios trimestrais publicados; metas com crescimento mínimo de 5% ao
+    ano.
+  conferencias:
+  - Pessoal
+  - Ausências
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Prefeitura (Sileg)
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2026/dc_20260904_000000163.html
+- id: leis-11-108-2023-11-248-2024-11-479-2025-e-11-668-2026
+  area: Pessoal, previdência e trabalho
+  norma: Leis 11.108/2023, 11.248/2024, 11.479/2025 e 11.668/2026
+  assunto: Revisão geral anual do Executivo
+  parametro: 4,18% (dez/2023), 3,69% (set/2024), 4,83% (set/2025) e 4,26% em duas parcelas (jul e ago/2026). Comurg,
+    agentes de saúde e magistério ficaram fora em 2024 e 2025. O sistema compara com o IPCA de cada período.
+  conferencias:
+  - PES-01
+  - PES-06
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: '2023'
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2023/lo_20231220_000011108.html
+  - nome: '2024'
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2024/lo_20240917_000011248.html
+  - nome: '2025'
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2025/lo_20250919_000011479.html
+  - nome: '2026'
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2026/lo_20260713_000011668.html
+- id: lc-354-2022
+  area: Pessoal, previdência e trabalho
+  norma: LC 354/2022
+  assunto: Estatuto dos Servidores da Câmara
+  parametro: Data-base em maio pelo IPCA (art. 60) e teto igual ao subsídio do prefeito. Vale para a Câmara; a data-base
+    do Executivo não foi localizada.
+  conferencias:
+  - PES-01
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Prefeitura (Sileg)
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2022/lc_20220715_000000354.html
+- id: planos-de-carreira
+  area: Pessoal, previdência e trabalho
+  norma: Planos de carreira
+  assunto: Saúde (Lei 8.916/2010), Administrativos (Lei 9.129/2011), Educação administrativa (Lei 9.128/2011), Operacionais
+    (Lei 8.623/2008), Nível Superior (Lei 7.998/2000)
+  parametro: Progressão a cada 2 ou 3 anos; titulação de 10% a 40%; insalubridade e difícil lotação; vale-alimentação.
+  conferencias:
+  - PES-04
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Saúde
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2010/lo_20100602_000008916.html
+  - nome: Administrativos
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2011/lo_20111229_000009129.html
+  - nome: Educação administrativa
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2011/lo_20111229_000009128.html
+  - nome: Operacionais
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2008/lo_20080326_000008623.html
+  - nome: Nível Superior
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2000/lo_20000627_000007998.html
+- id: carreiras-de-fiscalizacao-e-procuradoria
+  area: Pessoal, previdência e trabalho
+  norma: Carreiras de fiscalização e procuradoria
+  assunto: Auditor de Tributos (LC 360/2022), Finanças e Controle (LC 377/2024), Posturas e Saúde (LC 376/2024),
+    Procuradores (LC 313/2018), Trânsito (Lei 9.375/2013), Guarda Civil (Lei 9.354/2013)
+  parametro: Indenização de transporte mínima de 75 UPV para auditores de tributos; risco de vida de 75% no trânsito;
+    progressões por média.
+  conferencias:
+  - PES-04
+  - Gestores
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Auditor de Tributos
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2022/lc_20221219_000000360.html
+  - nome: Finanças e Controle
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2024/lc_20240405_000000377.html
+  - nome: Posturas e Saúde
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2024/lc_20240405_000000376.html
+  - nome: Procuradores
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2018/lc_20181030_000000313.html
+  - nome: Trânsito
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2013/lo_20131227_000009375.html
+  - nome: Guarda Civil
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2013/lo_20131108_000009354.html
+- id: lc-091-2000-e-lei-7-997-2000
+  area: Pessoal, previdência e trabalho
+  norma: LC 091/2000 e Lei 7.997/2000
+  assunto: Magistério municipal
+  parametro: Progressão anual; titularidade de 30% a 50%; hora-atividade de 30%, abaixo do 1/3 da Lei 11.738. Texto
+    compilado da Lei 7.997 não localizado.
+  conferencias:
+  - PES-02
+  localizada: false
+  revogada: false
+  oficial:
+  - nome: Fonte oficial
+    url: https://www.goiania.go.gov.br/download/smarh/estatuto_magisterio.pdf
+- id: lc-312-2018-e-lc-336-2021
+  area: Pessoal, previdência e trabalho
+  norma: LC 312/2018 e LC 336/2021
+  assunto: Previdência municipal (GOIANIAPREV)
+  parametro: Repasse até o dia 20 do mês seguinte, com juros de 0,5% ao mês e IPCA; parcelamento em até 60 vezes;
+    contribuição de 14% e patronal de 18%. Paridade e reajuste de proventos não localizados.
+  conferencias:
+  - PES-06
+  - PES-07
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Prefeitura (Sileg)
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2018/lc_20180928_000000312.html
+  - nome: LC 336/2021
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2021/lc_20210129_000000336.html
+- id: subsidios-diarias-veiculos-e-telefonia
+  area: Pessoal, previdência e trabalho
+  norma: Subsídios, diárias, veículos e telefonia
+  assunto: Benefícios de gestores
+  parametro: Lei de subsídios 2025-2028, tabela de diárias, uso de veículos, telefonia e verba de representação
+    não localizados. Viram ofício à Câmara, à Casa Civil e à Administração.
+  conferencias:
+  - Gestores
+  - Ofícios
+  localizada: false
+  revogada: false
+- id: lei-9-262-2013
+  area: Transparência e acesso à informação
+  norma: Lei 9.262/2013
+  assunto: Lei de Acesso em Goiânia
+  parametro: Rol de transparência ativa (art. 7º, § 3º); resposta em 20 + 10 dias; recurso à Comissão Mista e depois
+    ao Prefeito; relatório anual até 1º de junho; agente infrator sofre no mínimo suspensão. Alterada pela Lei 11.478/2025
+    (locações de imóveis).
+  conferencias:
+  - Ausências
+  - Ofícios
+  - Contra a não resposta
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Prefeitura (Sileg)
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2013/lo_20130522_000009262.html
+  - nome: PDF no Sileg
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2013/ordinaria92622013.pdf
+- id: lei-8-902-2010
+  area: Transparência e acesso à informação
+  norma: Lei 8.902/2010
+  assunto: Portal da Transparência
+  parametro: 17 itens obrigatórios, entre eles diárias, contratos e repasses a entidades, com atualização diária.
+  conferencias:
+  - Ausências
+  - Gestores
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Prefeitura (Sileg)
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2010/lo_20100407_000008902.html
+- id: lei-9-606-2015
+  area: Qualidade
+  norma: Lei 9.606/2015
+  assunto: Plano Municipal de Educação 2015-2025
+  parametro: Creche para 50% (37% em 2023), pré-escola universal (86%). O plano venceu; o novo (2026-2036) deve
+    ir à Câmara até junho de 2027.
+  conferencias:
+  - Secretarias
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Fonte oficial
+    url: https://sme.goiania.go.gov.br/site/images/PME/PME.pdf
+- id: lc-349-2022
+  area: Qualidade
+  norma: LC 349/2022
+  assunto: Plano Diretor de Goiânia
+  parametro: Metas urbanas e de mobilidade que balizam as obras da Infraestrutura.
+  conferencias:
+  - Secretarias
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Fonte oficial
+    url: https://www.goiania.go.gov.br/seplan/wp-json/wp/v2/pages/178
+- id: plano-municipal-de-saude
+  area: Qualidade
+  norma: Plano Municipal de Saúde
+  assunto: Saúde
+  parametro: 'Vigente o de 2022-2025, citado na programação anual de 2025. O de 2026-2029 não foi localizado: vira
+    ofício.'
+  conferencias:
+  - Secretarias
+  - Ofícios
+  localizada: false
+  revogada: false
+  oficial:
+  - nome: Fonte oficial
+    url: https://saude.goiania.go.gov.br/wp-content/uploads/sites/3/2025/06/Resolucao-PAS-2025.pdf
+- id: decreto-3-058-2024
+  area: Qualidade
+  norma: Decreto 3.058/2024
+  assunto: Plano Municipal de Segurança Pública 2024-2034
+  parametro: 245 ações com metas, em ciclos de 2 anos.
+  conferencias:
+  - Secretarias
+  localizada: true
+  revogada: false
+  oficial:
+  - nome: Prefeitura (Sileg)
+    url: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2024/dc_20240813_000003058.html

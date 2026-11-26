@@ -44,7 +44,7 @@ Distribuição: 2016 (3), 2017 (8), 2018 (4), 2019 (22), 2020 (17), 2021 (10), 2
 
 **PDF da página do Diário antigo.** `pesquisa.in.gov.br/imprensa/servlet/INPDFViewer?jornal=1&pagina=N&data=DD/MM/AAAA` devolve a página digitalizada. Cobre matéria anterior a 2016, exigindo data e página exatas.
 
-O `scripts/captura_cnas.py` tenta as três em cascata.
+O `cadeoqueijo/captura_cnas.py` tenta as três em cascata.
 
 ### O que ainda falta
 

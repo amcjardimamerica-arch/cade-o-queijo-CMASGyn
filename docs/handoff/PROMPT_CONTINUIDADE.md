@@ -18,8 +18,8 @@ Para trabalhar, clone e leia:
 
 ```bash
 git clone https://github.com/amcjardimamerica-arch/cade-o-queijo-CMASGyn repo && cd repo
-python3 src/run_fiscalizacao.py          # roda as 15 etapas
-python3 scripts/consulta_local.py "Art. 30" lei_8742   # consulta a lei sem rede
+python3 cadeoqueijo/run_fiscalizacao.py          # roda as 15 etapas
+python3 cadeoqueijo/consulta_local.py "Art. 30" lei_8742   # consulta a lei sem rede
 ```
 
 Para escrever, vou gerar um token e colar quando você pedir. **Não peça o token antes de precisar dele.**
@@ -71,17 +71,17 @@ Os cinco de maior peso:
 
 Dois fluxos de trabalho: **semanal de atos** (segunda, 09:00 UTC) e **mensal de contas e legislação** (dia 1º, 07:00 UTC, encadeado — legislação primeiro).
 
-O `src/run_fiscalizacao.py` encadeia 15 etapas e só emite parecer havendo irregularidade. A auditoria de **dupla etapa** roda apenas sobre suspeita de uso indevido: achado de mera ausência documental não a aciona, porque falta de documento já é conclusiva.
+O `cadeoqueijo/run_fiscalizacao.py` encadeia 15 etapas e só emite parecer havendo irregularidade. A auditoria de **dupla etapa** roda apenas sobre suspeita de uso indevido: achado de mera ausência documental não a aciona, porque falta de documento já é conclusiva.
 
 Saídas: `relatorios/Parecer_Fiscalizacao_2026.docx` e cinco HTML em `docs/`, entre eles `fluxograma_2026.html`, com setas proporcionais ao valor e pizzas por estágio.
 
 ### Economia de tokens — o desenho, não um detalhe
 
-O corpo legal é baixado uma vez por mês e lido de `corpus/`. **Nenhuma consulta de norma durante a análise.** O `scripts/consulta_local.py` busca sem rede e devolve só o trecho.
+O corpo legal é baixado uma vez por mês e lido de `corpus/`. **Nenhuma consulta de norma durante a análise.** O `cadeoqueijo/consulta_local.py` busca sem rede e devolve só o trecho.
 
 `recortar()` manda a vizinhança do termo, não o documento: um Diário Oficial tem 14 MB, o trecho útil tem 2 KB.
 
-**53% das tarefas são determinísticas e não vão para modelo nenhum.** Haiku faz triagem e extração; Sonnet faz parecer de ato individual; Opus entra três vezes por ciclo mensal, para auditoria e parecer consolidado. O roteamento está em `src/roteador_ia.py`. Respeite-o: mandar tarefa determinística para modelo é desperdício, e mandar parecer jurídico para Haiku é erro de qualidade.
+**53% das tarefas são determinísticas e não vão para modelo nenhum.** Haiku faz triagem e extração; Sonnet faz parecer de ato individual; Opus entra três vezes por ciclo mensal, para auditoria e parecer consolidado. O roteamento está em `cadeoqueijo/roteador_ia.py`. Respeite-o: mandar tarefa determinística para modelo é desperdício, e mandar parecer jurídico para Haiku é erro de qualidade.
 
 ### O que está pendente e depende de mim
 
@@ -104,6 +104,6 @@ Faça, não descreva. Se puder rodar, rode. Teste o que escrever antes de dizer 
 
 Direto, sem preâmbulo. Relatório só com desconformidade. Ao fim de cada análise, uma linha dizendo o que fazer em seguida.
 
-Comece confirmando que leu o `estado_sistema.json`, clonando o repositório e rodando `python3 src/run_fiscalizacao.py`. Se o resultado divergir de 32 achados, me diga o que mudou antes de seguir.
+Comece confirmando que leu o `estado_sistema.json`, clonando o repositório e rodando `python3 cadeoqueijo/run_fiscalizacao.py`. Se o resultado divergir de 32 achados, me diga o que mudou antes de seguir.
 
 ## FIM DO BLOCO

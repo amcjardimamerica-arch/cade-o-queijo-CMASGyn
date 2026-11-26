@@ -54,7 +54,7 @@ e o sistema evolui adicionando elos, nunca encurtando a trilha.
 6. Somar totais sem separar por fonte — o agregado esconde o descumprido.
 7. Passo de publicação que não commita o artefato novo (o ciclo "roda"
    e o resultado evapora) — todo relatório novo entra no `git add` E no
-   contrato de ciclo (`src/valida_ciclo.py`).
+   contrato de ciclo (`cadeoqueijo/valida_ciclo.py`).
 
 ## Como replicar para outra secretaria (checklist de bootstrap)
 

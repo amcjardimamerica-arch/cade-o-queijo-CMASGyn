@@ -10,7 +10,7 @@ federal:
     formato: "planilha por exercício, sem autenticação"
     traz: [municipio, bloco, programa, competencia, valor, ordem_bancaria_siafi]
     status: FUNCIONA
-    usado_por: src/coleta_federal.py
+    usado_por: cadeoqueijo/coleta_federal.py
     valor: "É o lado da União na conciliação. Traz o IGD competência a competência,
              que é a base do piso de 10% do artigo 6º da Resolução CNAS/MDS 202/2025."
   prestacao_de_contas:

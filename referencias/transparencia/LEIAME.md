@@ -9,7 +9,7 @@ replicáveis em Goiânia.
 
 - `precedentes.json` — acervo acumulado, com situação `A_AVALIAR` até revisão.
 - `AAAA-MM.md` — capturas do mês, legíveis.
-- Coleta: `scripts/captura_precedentes.py` (RSS determinístico + triagem por
+- Coleta: `cadeoqueijo/captura_precedentes.py` (RSS determinístico + triagem por
   palavra-chave; Haiku pontua relevância só quando houver chave).
 - Julgamento de aplicabilidade: exclusivo do ciclo dominical (modelo avançado)
   ou de revisão humana. Precedente jornalístico exige confirmação na fonte

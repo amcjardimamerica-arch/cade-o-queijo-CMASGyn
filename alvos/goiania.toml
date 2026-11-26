@@ -1,0 +1,22 @@
+# Alvo do Onisciente: trocar o município é trocar este arquivo.
+nome = "Prefeitura de Goiânia"
+municipio = "Goiânia"
+uf = "GO"
+ibge = 5208707
+siconfi_id_ente = 5208707
+faixa_camara = "IV"            # CF, art. 29-A, inciso IV
+querido_diario = "go_goiania"  # raspador do Diário Oficial no Querido Diário
+orgao_lai = "Controladoria Geral do Município de Goiânia"   # Lei municipal 9.262/2013
+
+# Abertura da sessão legislativa (mês, dia), que conta o prazo das contas anuais
+# (Lei Orgânica, art. 103). Conferir no Regimento da Câmara antes de usar em ofício.
+abertura_sessao_legislativa = [2, 1]
+
+# Período global do sistema: um exercício, um intervalo ou todos.
+primeiro_exercicio = 2019
+ultimo_exercicio_ppa = 2029
+
+[dominios]
+assistencia = "dominios/assistencia.toml"   # o Cadê o Queijo de hoje
+saude       = "dominios/saude.toml"
+educacao    = "dominios/educacao.toml"

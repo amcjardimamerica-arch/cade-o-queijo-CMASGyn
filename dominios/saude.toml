@@ -1,0 +1,18 @@
+# Domínio: Saúde. Entra na trilha completa na fase 4 do roteiro.
+id = "saude"
+nome = "Saúde"
+ativo = false
+funcao = "10"
+fundo = "Fundo Municipal de Saúde"
+dados = "siconfi"
+fontes_vinculadas = ["1600", "1601", "1621"]
+regras = ["PISO-SAUDE"]
+
+[siconfi]
+demonstrativo = "rreo"
+anexo = "RREO-Anexo 12"
+periodo = 6   # último bimestre
+
+[qualidade]
+indicador = "cobertura da atenção primária"
+fonte = "e-Gestor AB, Ministério da Saúde"
