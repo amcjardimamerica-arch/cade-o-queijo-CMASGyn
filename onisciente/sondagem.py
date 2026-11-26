@@ -71,6 +71,16 @@ CANDIDATOS: dict[str, list[str]] = {
         "https://www.fnde.gov.br/siope/relatorioRREOMunicipal2009.do",
         "https://www.fnde.gov.br/siope/consultarRREOMunicipal.do",
     ],
+    # Terceira rodada: o botão Consultar do SIOPE envia o formulário com acao=pesquisar.
+    "siope3": [
+        ("https://www.fnde.gov.br/siope/relatorioRREOMunicipal2006.do",
+         {"acao": "pesquisar", "pag": "result", "anos": ano, "periodos": per, "cod_uf": "52",
+          "municipios": "520870"})
+        for ano, per in (("2025", "6"), ("2024", "6"), ("2026", "4"), ("2026", "5"))
+    ],
+    "siops3": [
+        "http://siops.datasus.gov.br/consleirespfiscal.php?UF=52&Ano=2026&Periodo=1&Municipio=&MudouAno=true",
+    ],
     "transferegov": [
         "https://api.transferegov.gestao.gov.br/transferenciasespeciais/",
         "https://api.transferegov.gestao.gov.br/fundoafundo/",
