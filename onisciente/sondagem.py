@@ -11,6 +11,7 @@ from __future__ import annotations
 import base64
 import hashlib
 import json
+import time
 import re
 import sys
 from datetime import datetime, timezone
@@ -25,7 +26,8 @@ from .coletores.base import ler
 PASTA = RAIZ / "relatorios" / "onisciente" / "sondagem"
 LIMITE = 600_000
 LIMITE_GRANDE = 6_000_000   # a MSC vem em páginas de milhares de linhas: guarda a página inteira
-GRANDES = {"msc", "pncp_detalhe"}
+GRANDES = {"msc", "pncp_detalhe", "pncp_dados"}
+DADOS = "https://dadosabertos.compras.gov.br/"
 
 OLINDA = "https://www.fnde.gov.br/olinda-ide/servico/"
 CANDIDATOS: dict[str, list[str]] = {
@@ -156,6 +158,29 @@ CANDIDATOS: dict[str, list[str]] = {
         "https://pncp.gov.br/api/consulta/v1/contratos?dataInicial=20241101&dataFinal=20241130"
         "&cnpjOrgao=04973965000111&pagina=1&tamanhoPagina=10",
     ],
+    # Bloco 4: as vias em lote do Compras.gov.br (amparo legal, itens com catálogo e resultado,
+    # preço nacional) e, no PNCP, aditivos de contratos grandes e instrumentos de cobrança (NF-e).
+    "pncp_dados": [
+        DADOS + "modulo-contratacoes/1_consultarContratacoes_PNCP_14133?pagina=1&tamanhoPagina=20"
+        "&dataPublicacaoPncpInicial=2025-03-01&dataPublicacaoPncpFinal=2025-03-31&codigoModalidade=8"
+        "&unidadeOrgaoCodigoIbge=5208707",
+        DADOS + "modulo-contratacoes/2_consultarItensContratacoes_PNCP_14133?pagina=1&tamanhoPagina=50"
+        "&orgaoEntidadeCnpj=04973965000111&dataInclusaoPncpInicial=2024-11-01&dataInclusaoPncpFinal=2024-11-30",
+        DADOS + "modulo-contratacoes/2_consultarItensContratacoes_PNCP_14133?pagina=1&tamanhoPagina=500"
+        "&orgaoEntidadeCnpj=25141524000123&dataInclusaoPncpInicial=2025-01-01&dataInclusaoPncpFinal=2025-12-31",
+        DADOS + "modulo-contratacoes/3_consultarResultadoItensContratacoes_PNCP_14133?pagina=1&tamanhoPagina=50"
+        "&orgaoEntidadeCnpj=04973965000111&dataResultadoPncpInicial=2024-11-01&dataResultadoPncpFinal=2024-12-31",
+        "https://pncp.gov.br/api/pncp/v1/orgaos/25141524000123/contratos/2026/76/termos",
+        "https://pncp.gov.br/api/pncp/v1/orgaos/17736850000155/contratos/2024/4/termos",
+        "https://pncp.gov.br/api/pncp/v1/orgaos/17736850000155/contratos/2024/3/termos",
+        "https://pncp.gov.br/api/pncp/v1/orgaos/17497764000137/contratos/2026/3/termos",
+        "https://pncp.gov.br/api/consulta/v1/instrumentoscobranca/inclusao?dataInicial=20250101"
+        "&dataFinal=20251231&cnpjOrgao=04973965000111&pagina=1&tamanhoPagina=10",
+        "https://pncp.gov.br/api/consulta/v1/instrumentoscobranca/inclusao?dataInicial=20260101"
+        "&dataFinal=20260131&pagina=1&tamanhoPagina=10",
+        "https://pncp.gov.br/api/consulta/v1/contratos?dataInicial=20250101&dataFinal=20251231"
+        "&cnpjOrgao=25141524000123&pagina=1&tamanhoPagina=100",
+    ],
     "transferegov": [
         "https://api.transferegov.gestao.gov.br/transferenciasespeciais/",
         "https://api.transferegov.gestao.gov.br/fundoafundo/",
@@ -200,12 +225,37 @@ def _siops_consultas(url: str, texto: str) -> list[tuple[str, dict]]:
               "BtConsultar": "Consultar"}) for c in codigos for p in periodos]
 
 
+def _preco_dos_itens(texto: str) -> list[str]:
+    """Dos itens de um órgão, a pesquisa de preço nacional dos três primeiros códigos achados."""
+    try:
+        itens = json.loads(texto).get("resultado") or []
+    except (ValueError, AttributeError):
+        return []
+    novos: list[str] = []
+    for it in itens:
+        pdm, cat = it.get("codigoPdm"), it.get("codItemCatalogo")
+        if it.get("materialOuServico") == "S" and cat:
+            novos.append(DADOS + f"modulo-pesquisa-preco/3_consultarServico?pagina=1&tamanhoPagina=50"
+                                 f"&codigoItemCatalogo={cat}")
+        elif cat:
+            novos.append(DADOS + f"modulo-pesquisa-preco/1_consultarMaterial?pagina=1&tamanhoPagina=50"
+                                 f"&tipo=codigoItemCatalogo&codigo={cat}")
+        elif pdm:
+            novos.append(DADOS + f"modulo-pesquisa-preco/1_consultarMaterial?pagina=1&tamanhoPagina=50"
+                                 f"&tipo=codigoPdm&codigo={pdm}")
+        if len(set(novos)) >= 3:
+            break
+    return list(dict.fromkeys(novos))
+
+
 def _seguir(fonte: str, url: str, leitura) -> list:
     """Endereços de segunda rodada: amostras de conjuntos OData e recursos CKAN."""
     if not leitura.ok:
         return []
     texto = leitura.texto
     novos: list = []
+    if "2_consultarItensContratacoes" in url:
+        return _preco_dos_itens(texto)
     if "consleirespfiscal.php?UF=" in url:
         return _siops_consultas(url, leitura.conteudo.decode("latin-1"))
     if url.endswith("/odata/"):
@@ -246,8 +296,11 @@ def sondar(fontes: list[str] | None = None) -> list[dict]:
             if chave in vistos:
                 continue
             vistos.add(chave)
-            leitura = ler(url, tempo=60, fonte=fonte, formulario=formulario)
-            resultado.append(_guardar(fonte, url, leitura, formulario))
+            inicio = time.monotonic()
+            leitura = ler(url, tempo=90, fonte=fonte, formulario=formulario)
+            registro = _guardar(fonte, url, leitura, formulario)
+            registro["segundos"] = round(time.monotonic() - inicio, 1)
+            resultado.append(registro)
             if item in urls:
                 fila.extend(_seguir(fonte, url, leitura))
     nome = "indice.json" if not fontes else f"indice_{'_'.join(fontes)}.json"
