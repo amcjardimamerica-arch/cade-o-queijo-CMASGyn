@@ -608,8 +608,8 @@ def motor_normas(ctx: Contexto) -> None:
 
 MOTORES = ("siconfi", "querido_diario", "sileg", "fnas", "pncp", "fontes", "normas")
 # Minutos que cada motor pode usar numa rodada (o fluxo do GitHub para em 180).
-TEMPO_DO_MOTOR = {"pncp": 40, "siconfi": 25}
-TEMPO_PADRAO = 20
+TEMPO_DO_MOTOR = {"pncp": 30, "siconfi": 20}
+TEMPO_PADRAO = 12
 
 
 def rodar(desde: str, ate: str, *, motores=MOTORES, caminho=BANCO, hoje: date | None = None,
