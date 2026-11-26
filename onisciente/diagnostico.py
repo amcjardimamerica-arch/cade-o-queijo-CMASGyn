@@ -35,6 +35,7 @@ NOME_DOS_MOTORES = {
     "siops": "Demonstrativo da saúde (SIOPS)",
     "siope": "Demonstrativo da educação (SIOPE)",
     "transferencias": "Transferências federais (Portal da Transparência)",
+    "msc": "Matriz de Saldos Contábeis (SICONFI)",
 }
 
 
@@ -278,6 +279,25 @@ def _externos(banco: Banco) -> list[Achado]:
             saida.append(Achado("falha", "siope", f"Educação: {periodo}º bimestre de {exercicio} não foi lido",
                                 f"{situacao}: {erro}", "Rodar de novo só o motor siope; se repetir, conferir "
                                 "o leitor do PDF do SIOPE."))
+    por_situacao: dict[str, list[str]] = {}
+    erros_msc: dict[str, str] = {}
+    for mes, situacao, erro in banco.consultar(
+            "SELECT mes, situacao, erro FROM msc_meses WHERE situacao <> 'entregue' ORDER BY mes"):
+        por_situacao.setdefault(situacao, []).append(mes)
+        erros_msc.setdefault(situacao, erro or "")
+    for situacao, meses in por_situacao.items():
+        if situacao == "no_prazo":
+            saida.append(Achado("melhoria", "msc", "Matriz de saldos contábeis ainda não enviada: " + _faixas(meses),
+                                "O prazo (último dia do mês seguinte) ainda corre.",
+                                "A coleta mensal confere de novo; passado o prazo, vira lacuna."))
+        elif situacao == "nao_entregue":
+            saida.append(Achado("lacuna", "msc", "Matriz de saldos contábeis não enviada ao SICONFI: " + _faixas(meses),
+                                "O SICONFI devolveu a matriz vazia depois do prazo.",
+                                "O rio e o desvio de finalidade desses meses ficam sem a via por fonte e função."))
+        else:
+            saida.append(Achado("falha", "msc", "Matriz de saldos contábeis não lida: " + _faixas(meses),
+                                f"{situacao}: {erros_msc[situacao]}",
+                                "Rodar de novo só o motor msc; se repetir, conferir a API do SICONFI."))
     federais = json.loads(_meta(banco).get("transferencias_meses") or "null")
     if federais and federais.get("nao_publicados"):
         saida.append(Achado("melhoria", "transferencias", "O Portal da Transparência ainda não publicou "
@@ -496,6 +516,8 @@ def diagnosticar(banco: Banco, *, raiz: Path = RAIZ) -> dict:
             "SELECT situacao, COUNT(*) FROM externos_periodos WHERE fonte = 'SIOPE' GROUP BY situacao")),
         "transferencias_federais": banco.consultar(
             "SELECT COUNT(DISTINCT mes), ROUND(COALESCE(SUM(valor), 0), 2) FROM transferencias_federais")[0],
+        "msc_meses": banco.consultar(
+            "SELECT COUNT(DISTINCT mes), COUNT(*) FROM msc_itens")[0],
         "transferencias_tesouro": banco.consultar(
             "SELECT COUNT(*), ROUND(COALESCE(SUM(total), 0), 2) FROM transferencias_tesouro")[0],
     }

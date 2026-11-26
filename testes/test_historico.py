@@ -1,6 +1,7 @@
 """Coleta histórica e diagnóstico, sem rede: as fontes respondem por um leitor falso."""
 
 import json
+import re
 from datetime import date
 from urllib.parse import parse_qs, urlparse
 
@@ -586,3 +587,55 @@ def test_arquivo_de_transferencias_com_cabecalho_mudado_e_formato():
     from onisciente.coletores import transparencia
     with pytest.raises(ValueError, match="não é zip"):
         transparencia.linhas_do_municipio(b"nada", "Goiânia", "GO")
+
+
+def _item_msc(conta, natureza, valor, **extra):
+    base_item = {"tipo_matriz": "MSCC", "cod_ibge": 5208707, "classe_conta": 6, "conta_contabil": conta,
+                 "poder_orgao": "10131", "ano_fonte_recursos": 1, "fonte_recursos": "1500", "funcao": None,
+                 "subfuncao": None, "exercicio": 2025, "mes_referencia": 1, "educacao_saude": None,
+                 "natureza_despesa": None, "ano_inscricao": None, "natureza_receita": None,
+                 "valor": valor, "natureza_conta": natureza, "tipo_valor": "period_change"}
+    base_item.update(extra)
+    return base_item
+
+
+def test_msc_guarda_as_paginas_do_mes_e_separa_prazo_de_lacuna(tmp_path):
+    import json as _json
+    pagina1 = {"items": [_item_msc("621200000", "C", 100.0, natureza_receita="17115111")] * 2,
+               "hasMore": True, "count": 2}
+    pagina2 = {"items": [_item_msc("622130400", "C", 40.0, fonte_recursos="1600", funcao="10",
+                                   subfuncao="302", natureza_despesa="33903900")], "hasMore": False, "count": 1}
+    pedidos = []
+
+    def leitor(url, **_):
+        pedidos.append(url)
+        mes = re.search(r"me_referencia=(\d+)", url).group(1)
+        ano = re.search(r"an_referencia=(\d+)", url).group(1)
+        if (ano, mes) == ("2025", "1"):
+            corpo = pagina2 if "offset=2" in url else pagina1
+        elif (ano, mes) == ("2025", "2"):
+            corpo = {"items": [], "hasMore": False, "count": 0}       # depois do prazo: lacuna
+        elif (ano, mes) == ("2026", "10"):
+            corpo = {"items": [], "hasMore": False, "count": 0}       # ainda no prazo
+        else:
+            return base.Leitura(True, url, b"<html>erro</html>", http=200)
+        return base.Leitura(True, url, _json.dumps(corpo).encode(), http=200)
+
+    banco = historico.rodar("2025-01", "2025-03", caminho=tmp_path / "h.db", motores=("msc",),
+                            hoje=date(2026, 11, 26), ler_url=leitor, dormir=lambda s: None, pausa=0)
+    assert banco.consultar("SELECT mes, situacao, itens FROM msc_meses ORDER BY mes") == [
+        ("2025-01", "entregue", 3), ("2025-02", "nao_entregue", 0), ("2025-03", "formato", 0)]
+    assert banco.consultar("SELECT conta_contabil, fonte_recursos, funcao, natureza_receita, natureza_conta, "
+                           "sum(valor) FROM msc_itens GROUP BY 1, 2, 3, 4, 5 ORDER BY 1") == [
+        ("621200000", "1500", None, "17115111", "C", 200.0),
+        ("622130400", "1600", "10", None, "C", 40.0)]
+    assert sum("offset=2" in u for u in pedidos) == 1
+    achados = {(a["tipo"], a["titulo"]) for a in diagnostico.diagnosticar(banco)["achados"] if a["motor"] == "msc"}
+    assert ("lacuna", "Matriz de saldos contábeis não enviada ao SICONFI: 2025-02") in achados
+    assert ("falha", "Matriz de saldos contábeis não lida: 2025-03") in achados
+    banco.fechar()
+
+    banco = historico.rodar("2026-10", "2026-10", caminho=tmp_path / "h2.db", motores=("msc",),
+                            hoje=date(2026, 11, 26), ler_url=leitor, dormir=lambda s: None, pausa=0)
+    assert banco.consultar("SELECT mes, situacao, prazo FROM msc_meses") == [("2026-10", "no_prazo", "2026-11-30")]
+    banco.fechar()

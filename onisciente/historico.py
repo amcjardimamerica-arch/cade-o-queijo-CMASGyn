@@ -27,7 +27,7 @@ from typing import Callable
 from urllib.parse import urlencode
 
 from . import RAIZ
-from .coletores import base, siope, siops, transparencia
+from .coletores import base, msc, siope, siops, transparencia
 
 BANCO = RAIZ / "dados" / "onisciente" / "historico.db"
 SAIDA = RAIZ / "relatorios" / "onisciente"
@@ -168,6 +168,10 @@ CREATE TABLE IF NOT EXISTS transferencias_tesouro (mes TEXT, item TEXT, destino 
     decendio2 REAL, decendio3 REAL, total REAL);
 CREATE TABLE IF NOT EXISTS transferencias_federais (mes TEXT, tipo TEXT, tipo_favorecido TEXT, orgao TEXT,
     funcao TEXT, programa TEXT, acao TEXT, nome_acao TEXT, favorecido TEXT, nome_favorecido TEXT, valor REAL);
+CREATE TABLE IF NOT EXISTS msc_itens (mes TEXT, conta_contabil TEXT, poder_orgao TEXT, ano_fonte_recursos INTEGER,
+    fonte_recursos TEXT, funcao TEXT, subfuncao TEXT, natureza_receita TEXT, natureza_despesa TEXT,
+    ano_inscricao INTEGER, educacao_saude INTEGER, natureza_conta TEXT, valor REAL);
+CREATE TABLE IF NOT EXISTS msc_meses (mes TEXT, situacao TEXT, itens INTEGER, prazo TEXT, erro TEXT);
 CREATE TABLE IF NOT EXISTS externos_periodos (fonte TEXT, exercicio INTEGER, periodo INTEGER,
     homologado TEXT, situacao TEXT, linhas INTEGER, erro TEXT);
 CREATE TABLE IF NOT EXISTS externos_itens (fonte TEXT, exercicio INTEGER, periodo INTEGER, quadro INTEGER,
@@ -196,6 +200,7 @@ TABELAS_DO_MOTOR = {
     "normas": [("coletas", "motor = 'ctresb'"), ("normas", "")],
     "transferencias": [("coletas", "motor = 'transferencias'"), ("transferencias_federais", ""),
                        ("meta", "chave = 'transferencias_meses'")],
+    "msc": [("coletas", "motor = 'msc'"), ("msc_itens", ""), ("msc_meses", "")],
 }
 
 
@@ -894,6 +899,56 @@ def motor_transferencias(ctx: Contexto, municipio: str, uf: str) -> None:
         {"lidos": lidos, "nao_publicados": nao_publicados})})
 
 
+# --- Motor: MSC (a matriz de saldos contábeis do mês, por fonte e por função) ---------------
+
+def prazo_msc(mes: str) -> date:
+    """A MSC do mês se envia até o último dia do mês seguinte."""
+    return fim_do_mes(mes_seguinte(mes))
+
+
+def mes_seguinte(mes: str) -> str:
+    a, m = map(int, mes.split("-"))
+    return f"{a + (m == 12)}-{1 if m == 12 else m + 1:02d}"
+
+
+def motor_msc(ctx: Contexto, ibge: int) -> None:
+    """A classe 6 da MSC de cada mês fechado, página a página. Mês sem matriz dentro do prazo é
+    "no_prazo"; depois do prazo, "nao_entregue", que é lacuna do Município."""
+    for mes in ctx.meses:
+        if fim_do_mes(mes) >= ctx.hoje:
+            continue
+        prazo = prazo_msc(mes)
+        linha = {"mes": mes, "situacao": None, "itens": 0, "prazo": prazo.isoformat(), "erro": None}
+        itens: list[dict] = []
+        offset, ok = 0, True
+        while True:
+            url = msc.url(ibge, mes, offset=offset)
+            leitura = ctx.ler("msc", f"classe 6 +{offset}", url, mes=mes, tempo=120)
+            if not leitura.ok:
+                linha.update(situacao="falha", erro=leitura.erro or f"HTTP {leitura.http}")
+                ok = False
+                break
+            try:
+                pagina, mais = msc.pagina(leitura.conteudo)
+            except ValueError as e:
+                _anotar(ctx, "msc", f"classe 6 +{offset}", mes, url, f"formato: {e}")
+                linha.update(situacao="formato", erro=str(e)[:300])
+                ok = False
+                break
+            itens.extend(pagina)
+            if not mais or not pagina:
+                break
+            offset += len(pagina)
+        if ok:
+            if itens:
+                for it in itens:
+                    ctx.banco.inserir("msc_itens", {"mes": mes, **it})
+                linha.update(situacao="entregue", itens=len(itens))
+            else:
+                linha["situacao"] = "no_prazo" if ctx.hoje <= prazo else "nao_entregue"
+        ctx.banco.inserir("msc_meses", linha)
+
+
 # --- Motor: SIOPS (o demonstrativo da saúde, RREO Anexo 12, homologado no Ministério) -------
 
 def motor_siops(ctx: Contexto, municipio: str, uf_codigo: str) -> None:
@@ -1043,9 +1098,9 @@ def motor_normas(ctx: Contexto) -> None:
 
 
 MOTORES = ("siconfi", "querido_diario", "sileg", "fnas", "pncp", "fontes", "normas", "tesouro", "siops", "siope",
-           "transferencias")
+           "transferencias", "msc")
 # Minutos que cada motor pode usar numa rodada (o fluxo do GitHub para em 180).
-TEMPO_DO_MOTOR = {"pncp": 75, "siconfi": 20, "transferencias": 30}
+TEMPO_DO_MOTOR = {"pncp": 75, "siconfi": 20, "transferencias": 30, "msc": 20}
 TEMPO_PADRAO = 12
 
 
@@ -1099,6 +1154,7 @@ def rodar(desde: str, ate: str, *, motores=MOTORES, caminho=BANCO, hoje: date | 
         "siops": lambda: motor_siops(ctx, alvo.municipio, str(alvo.ibge)[:2]),
         "siope": lambda: motor_siope(ctx, str(alvo.ibge)[:6]),
         "transferencias": lambda: motor_transferencias(ctx, alvo.municipio, alvo.uf),
+        "msc": lambda: motor_msc(ctx, alvo.siconfi_id_ente),
     }
     for nome in motores:
         inicio = time.monotonic()
