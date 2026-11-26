@@ -10,6 +10,7 @@ próprio sistema, nunca como silêncio do município.
 from __future__ import annotations
 
 import json
+import ssl
 import urllib.error
 import urllib.request
 from dataclasses import dataclass
@@ -42,17 +43,44 @@ def ler(url: str, *, tempo: int = 60, fonte: str = "",
         cabecalhos: dict[str, str] | None = None) -> Leitura:
     """Lê uma URL pública. Nunca levanta exceção: devolve a falha descrita."""
     pedido = urllib.request.Request(url, headers={"User-Agent": AGENTE, **(cabecalhos or {})})
-    try:
-        with urllib.request.urlopen(pedido, timeout=tempo) as resposta:  # noqa: S310 (URL do mapa)
-            conteudo = resposta.read()
-            codigo = resposta.status
-    except urllib.error.HTTPError as e:
-        return Leitura(False, url, erro=f"HTTP {e.code}", http=e.code)
-    except (urllib.error.URLError, TimeoutError, OSError) as e:
-        return Leitura(False, url, erro=f"{type(e).__name__}: {getattr(e, 'reason', e)}")
+    contexto = None
+    for tentativa in (1, 2):
+        try:
+            with urllib.request.urlopen(pedido, timeout=tempo,  # noqa: S310 (URL do mapa)
+                                        context=contexto) as resposta:
+                conteudo = resposta.read()
+                codigo = resposta.status
+            break
+        except urllib.error.HTTPError as e:
+            return Leitura(False, url, erro=f"HTTP {e.code}", http=e.code)
+        except (urllib.error.URLError, TimeoutError, OSError) as e:
+            motivo = getattr(e, "reason", e)
+            if tentativa == 1 and _aperto_de_mao_recusado(motivo):
+                contexto = contexto_tls_compativel()   # servidor antigo: cifras mais velhas
+                continue
+            return Leitura(False, url, erro=f"{type(e).__name__}: {motivo}")
     original = Original(url=url, coletado_em=date.today().isoformat(),
                         sha256=impressao(conteudo), fonte=fonte)
     return Leitura(True, url, conteudo, original=original, http=codigo)
+
+
+def contexto_tls_compativel() -> ssl.SSLContext:
+    """Certificado conferido como sempre, mas aceitando as cifras de servidores mais antigos.
+
+    Alguns servidores públicos (o do Querido Diário, por exemplo) só falam cifras que o
+    OpenSSL recente recusa no nível de segurança padrão; baixar o nível não tira a
+    conferência do certificado nem do nome do servidor.
+    """
+    contexto = ssl.create_default_context()
+    contexto.set_ciphers("DEFAULT@SECLEVEL=1")
+    return contexto
+
+
+def _aperto_de_mao_recusado(motivo) -> bool:
+    texto = str(motivo).upper()
+    if "CERTIFICATE" in texto:            # certificado inválido nunca é contornado
+        return False
+    return "HANDSHAKE_FAILURE" in texto or "UNSUPPORTED_PROTOCOL" in texto
 
 
 def _carregar_estado(caminho: Path = ESTADO) -> dict:

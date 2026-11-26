@@ -5,10 +5,29 @@ uf = "GO"
 ibge = 5208707
 siconfi_id_ente = 5208707
 faixa_camara = "IV"            # CF, art. 29-A, inciso IV
-querido_diario = "go_goiania"
-# CNPJs de órgãos do Município no PNCP, além dos que a coleta histórica descobre sozinha
-# pelas contratações publicadas com o código IBGE (python -m onisciente historico).
-pncp_cnpjs = []  # raspador do Diário Oficial no Querido Diário
+querido_diario = "go_goiania"  # raspador do Diário Oficial no Querido Diário
+# CNPJs de órgãos do Município no PNCP. A coleta histórica (python -m onisciente historico)
+# descobriu estes pelas contratações publicadas com o código IBGE entre 2024-11 e 2025-05;
+# com a lista pronta, ela vai direto aos contratos e só depois procura órgãos novos.
+pncp_cnpjs = [
+    "00001727000193",  # GOIANIA CAMARA MUNICIPAL DE GOIANIA
+    "01393989000103",  # FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL-FMAS
+    "01414440000158",  # PROCURADORIA GERAL DO MUNICIPIO
+    "02371916000183",  # INSTITUTO MUNICIPAL DE ASSISTENCIA A SAUDE DOS SERVIDORES DE GOIANIA - IMAS
+    "04973965000111",  # FUNDO MUNICIPAL DE MANUTENCAO E DESENVOLVIMENTO DO ENSINO
+    "08948407000157",  # INSTITUTO DE PREVIDENCIA DOS SERVIDORES DO MUNICIPIO DE GOIANIA - GOIANIAPREV
+    "17577524000142",  # SECRETARIA MUNICIPAL DE ADMINISTRACAO
+    "17596132000120",  # SECRETARIA MUNICIPAL DE DIREITOS HUMANOS E POLITICAS AFIRMATIVAS
+    "17736850000155",  # SECRETARIA MUNICIPAL DE ENGENHARIA DE TRANSITO
+    "22616136000163",  # AGENCIA MUNICIPAL DE TURISMO, EVENTOS E LAZER
+    "25141482000120",  # SECRETARIA MUNICIPAL DE DESENVOLVIMENTO E ECONOMIA CRIATIVA
+    "25141524000123",  # SECRETARIA MUNICIPAL DE SAUDE
+    "25141540000116",  # SECRETARIA MUNICIPAL DE COMUNICACAO
+    "26913483000109",  # CONTROLADORIA GERAL DO MUNICIPIO DE GOIANIA
+    "40475427000160",  # SECRETARIA MUNICIPAL DE INOVACAO, CIENCIA E TECNOLOGIA
+    "40478763000167",  # SECRETARIA MUNICIPAL DOS ESPORTES
+    "40489303000134",  # ESCRITORIO DE PRIORIDADES ESTRATEGICAS
+]
 orgao_lai = "Controladoria Geral do Município de Goiânia"   # Lei municipal 9.262/2013
 
 # Abertura da sessão legislativa (mês, dia), que conta o prazo das contas anuais

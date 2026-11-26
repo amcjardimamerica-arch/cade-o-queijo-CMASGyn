@@ -116,7 +116,7 @@ def _chamadas(resumo: list[dict]) -> list[Achado]:
     return saida
 
 
-def _siconfi(banco: Banco, dominios: dict) -> list[Achado]:
+def _siconfi(banco: Banco, dominios: dict, raiz: Path = RAIZ) -> list[Achado]:
     saida = []
     periodos = banco.consultar("SELECT rotulo, situacao, prazo, erro FROM siconfi_periodos "
                                "ORDER BY demonstrativo, exercicio, periodo")
@@ -142,17 +142,29 @@ def _siconfi(banco: Banco, dominios: dict) -> list[Achado]:
         if rotulos and anexo not in rotulos:
             parecidos = [r for r in rotulos if _numero_do_anexo(r) == _numero_do_anexo(anexo)
                          and r.split("-")[0] == anexo.split("-")[0]]
+            if parecidos:
+                saida.append(Achado(
+                    "melhoria", "siconfi",
+                    f"O domínio {dom} procura o anexo “{anexo}”, que o SICONFI escreve de outro jeito",
+                    f"O Tesouro chama o anexo de “{parecidos[0]}”; a consulta com o nome errado "
+                    "volta vazia e a segunda via do piso fica sem dado.",
+                    f"Trocar em dominios/{dom}.toml para “{parecidos[0]}”."))
+                continue
+            origem = FONTE_PROPRIA_DO_ANEXO.get(_numero_do_anexo(anexo))
             saida.append(Achado(
                 "melhoria", "siconfi",
-                f"O domínio {dom} procura o anexo “{anexo}”, que o SICONFI não usa",
-                "O Tesouro chama o anexo de " + (f"“{parecidos[0]}”" if parecidos else
-                                                 "outro nome") + "; a consulta com o nome "
-                "errado volta vazia e a segunda via do piso fica sem dado.",
-                f"Trocar em dominios/{dom}.toml para “{parecidos[0]}”." if parecidos else
-                "Conferir o nome na lista de anexos do banco (tabela siconfi_anexos)."))
+                f"O domínio {dom} procura o anexo “{anexo}”, que não veio do SICONFI",
+                "Nenhum período coletado traz um anexo com esse número; a consulta volta vazia "
+                "e a segunda via do piso fica sem dado." + (
+                    f" Provavelmente porque esse anexo nasce no {origem} e não chega à base de "
+                    "dados abertos do SICONFI (a conferir)." if origem else ""),
+                (f"Ler o piso direto do {origem} e manter o SICONFI como conferência." if origem else
+                 "Conferir o nome na lista de anexos do banco (tabela siconfi_anexos).")))
     antigas = banco.consultar("SELECT alvo, ok, erro FROM coletas WHERE motor = 'siconfi-antiga'")
     novas_ok = banco.consultar("SELECT COUNT(*) FROM coletas WHERE motor = 'siconfi' AND ok = 1")
-    if antigas and not any(ok for _, ok, _ in antigas) and novas_ok[0][0]:
+    coletor_antigo = raiz / "cadeoqueijo" / "coleta_siconfi.py"
+    ja_corrigido = coletor_antigo.exists() and "apidatalake" in coletor_antigo.read_text(encoding="utf-8")
+    if antigas and not any(ok for _, ok, _ in antigas) and novas_ok[0][0] and not ja_corrigido:
         saida.append(Achado(
             "falha", "siconfi",
             "O coletor antigo do SICONFI usa endereços que não respondem mais",
@@ -160,6 +172,10 @@ def _siconfi(banco: Banco, dominios: dict) -> list[Achado]:
             f" ({antigas[0][2]}); o endereço novo (apidatalake) respondeu.",
             "Trocar a base do coletor antigo pela apidatalake.tesouro.gov.br."))
     return saida
+
+
+# Anexos do RREO que os entes preenchem em sistemas próprios antes de chegarem ao Tesouro.
+FONTE_PROPRIA_DO_ANEXO = {"8": "SIOPE (educação, FNDE)", "12": "SIOPS (saúde, Ministério da Saúde)"}
 
 
 def _numero_do_anexo(nome: str) -> str:
@@ -184,8 +200,7 @@ def _diario(banco: Banco, lista: list[str]) -> list[Achado]:
             erro = tab[fonte][com_erro[0]][2] if com_erro[0] in tab[fonte] else "não coletado"
             saida.append(Achado("falha", fonte, f"O {nome} não respondeu em {len(com_erro)} "
                                 f"de {len(lista)} meses", f"Meses: {_faixas(com_erro)}. Erro: {erro}.",
-                                "Coletar de dentro do GitHub (rede aberta) e manter a outra via "
-                                "como reserva."))
+                                _proposta_de_rede(erro)))
         if vazios:
             saida.append(Achado("melhoria", fonte, f"O {nome} não tem edição em {len(vazios)} meses",
                                 f"Meses sem nenhuma edição: {_faixas(vazios)}.",
@@ -208,6 +223,22 @@ def _diario(banco: Banco, lista: list[str]) -> list[Achado]:
     return saida
 
 
+def _proposta_de_rede(erro: str) -> str:
+    """O que fazer depende de como a fonte falhou."""
+    e = (erro or "").upper()
+    if "SSL" in e or "HANDSHAKE" in e or "TLS" in e:
+        return ("O servidor recusou o aperto de mão TLS do robô. O leitor já repete a chamada com "
+                "cifras compatíveis, sem deixar de conferir o certificado; se ainda falhar, a "
+                "outra via fica como principal até o servidor ser atualizado.")
+    if "TIMEOUT" in e or "TIMED OUT" in e:
+        return "A fonte demora demais: dar mais tempo à chamada e coletar um mês por dia."
+    if "NÃO TENTADO" in e:
+        return "A rodada parou de chamar a fonte depois de falhas seguidas; rodar de novo só este motor."
+    if re.search(r"HTTP 4\d\d", e):
+        return "A API recusou o pedido: conferir se o endereço ou os parâmetros mudaram."
+    return "Conferir o endereço da API e manter a outra via como reserva."
+
+
 def _fnas(banco: Banco, lista: list[str]) -> list[Achado]:
     saida = []
     coletas = banco.consultar("SELECT alvo, ok, erro FROM coletas WHERE motor = 'fnas'")
@@ -219,6 +250,21 @@ def _fnas(banco: Banco, lista: list[str]) -> list[Achado]:
                                 "A página de extração de repasses não tem a planilha do ano.",
                                 "Os repasses do ano ficam sem a via federal até a publicação; "
                                 "a coleta mensal confere de novo."))
+    bloqueios = [(a, e) for a, ok, e in coletas if not ok and e and "devolveu uma página" in e]
+    if bloqueios:
+        saida.append(Achado(
+            "falha", "fnas", "O site do FNAS devolveu uma página curta no lugar do conteúdo",
+            "; ".join(f"{a}: {e}" for a, e in bloqueios[:4]) + ".",
+            "O servidor provavelmente barra robôs de nuvem. Pedir ao MDS a planilha por dados "
+            "abertos, ou baixá-la pelo coletor diário que já guarda dados/repasses_federais.json."))
+    do_arquivo = json.loads(_meta(banco).get("fnas_do_arquivo") or "[]")
+    if do_arquivo:
+        saida.append(Achado(
+            "melhoria", "fnas",
+            "Repasses de " + ", ".join(map(str, do_arquivo)) + " vieram do arquivo já guardado",
+            "A fonte não entregou a planilha nesta rodada; o banco usou dados/repasses_federais.json, "
+            "coletado antes pelo sistema, e marca cada linha com essa origem.",
+            "Quando o site voltar a entregar a planilha, rodar de novo só o motor fnas."))
     com = {m for (m,) in banco.consultar("SELECT DISTINCT competencia FROM repasses_fnas")}
     sem = [m for m in lista if m not in com]
     if com and sem:
@@ -243,7 +289,18 @@ def _pncp(banco: Banco, lista: list[str]) -> list[Achado]:
             "Pôr os CNPJs dos órgãos em pncp_cnpjs, no arquivo do alvo."))
         return saida
     por_mes = dict(banco.consultar("SELECT mes, COUNT(*) FROM contratos_pncp GROUP BY mes"))
-    sem = [m for m in lista if not por_mes.get(m)]
+    lidos, por_orgao = meses_pncp_lidos(banco, lista)
+    nao_lidos = [m for m in lista if m not in lidos]
+    faltam = [c for c in orgaos if not por_orgao.get(c)]
+    if nao_lidos or faltam:
+        saida.append(Achado(
+            "falha", "pncp",
+            f"Contratos do PNCP não lidos por inteiro em {len(nao_lidos)} meses",
+            (f"Meses sem todos os órgãos lidos: {_faixas(nao_lidos)}. " if nao_lidos else "") +
+            f"Órgãos sem nenhum mês lido: {len(faltam)} de {len(orgaos)}.",
+            "A API do PNCP leva cerca de 20 segundos por chamada: rodar de novo só o motor pncp, "
+            "que continua dos órgãos já conhecidos."))
+    sem = [m for m in lista if m in lidos and not por_mes.get(m)]
     if sem:
         saida.append(Achado(
             "lacuna", "pncp", f"Nenhum contrato do Município no PNCP em {len(sem)} meses",
@@ -251,6 +308,23 @@ def _pncp(banco: Banco, lista: list[str]) -> list[Achado]:
             "A Lei 14.133/2021 (art. 94) manda divulgar o contrato no PNCP; confirmar no portal "
             "municipal antes de tratar como ausência."))
     return saida
+
+
+def meses_pncp_lidos(banco: Banco, lista: list[str]) -> tuple[set[str], dict[str, set[str]]]:
+    """Meses em que os contratos de todos os órgãos conhecidos foram lidos, e os lidos por órgão.
+
+    Só nesses meses a falta de contrato é lacuna do Município; nos outros é falha da coleta.
+    """
+    meta = _meta(banco)
+    orgaos = json.loads(meta.get("pncp_orgaos") or "{}")
+    por_orgao: dict[str, set[str]] = defaultdict(set)
+    for janela in json.loads(meta.get("pncp_janelas") or "[]"):
+        if janela.get("lida"):
+            por_orgao[janela["cnpj"]].update(janela["meses"])
+    if not orgaos:
+        return set(), por_orgao
+    lidos = {m for m in lista if all(m in por_orgao.get(c, ()) for c in orgaos)}
+    return lidos, por_orgao
 
 
 def _fontes(banco: Banco) -> list[Achado]:
@@ -346,7 +420,7 @@ def diagnosticar(banco: Banco, *, raiz: Path = RAIZ) -> dict:
     lista = meses(desde, ate)
     resumo = resumo_por_motor(banco)
     achados = (_motores_quebrados(meta) + _chamadas(resumo)
-               + _siconfi(banco, _dominios_siconfi(raiz)) + _diario(banco, lista)
+               + _siconfi(banco, _dominios_siconfi(raiz), raiz) + _diario(banco, lista)
                + _fnas(banco, lista) + _pncp(banco, lista) + _fontes(banco) + _normas(banco)
                + _pareceres(lista, raiz) + _coletores_antigos(raiz))
     contagens = {
@@ -357,6 +431,8 @@ def diagnosticar(banco: Banco, *, raiz: Path = RAIZ) -> dict:
             "SELECT fonte, SUM(edicoes) FROM diario_oficial_mes GROUP BY fonte")),
         "repasses_fnas": banco.consultar("SELECT COUNT(*), ROUND(COALESCE(SUM(valor), 0), 2) "
                                          "FROM repasses_fnas")[0],
+        "repasses_fnas_arquivo": banco.consultar(
+            "SELECT COUNT(*) FROM repasses_fnas WHERE origem LIKE 'arquivo%'")[0][0],
         "contratacoes_pncp": banco.consultar("SELECT COUNT(*) FROM contratacoes_pncp")[0][0],
         "contratos_pncp": banco.consultar("SELECT COUNT(*), SUM(da_pasta) FROM contratos_pncp")[0],
         "fontes": banco.consultar("SELECT COUNT(*), SUM(ok) FROM fontes")[0],
@@ -387,14 +463,14 @@ def cobertura_mensal(banco: Banco, lista: list[str]) -> dict[str, dict[str, str]
     fnas = {m for (m,) in banco.consultar("SELECT DISTINCT competencia FROM repasses_fnas")}
     tem_fnas = banco.consultar("SELECT COUNT(*) FROM coletas WHERE motor = 'fnas' AND ok = 1")[0][0]
     pncp = dict(banco.consultar("SELECT mes, COUNT(*) FROM contratos_pncp GROUP BY mes"))
-    pncp_erro = dict(banco.consultar(
-        "SELECT mes, COUNT(*) FROM coletas WHERE motor = 'pncp' AND ok = 0 AND http != 204 GROUP BY mes"))
+    pncp_lidos, _ = meses_pncp_lidos(banco, lista)
     tem_pncp = banco.consultar("SELECT COUNT(*) FROM coletas WHERE motor = 'pncp'")[0][0]
     for m in lista:
         if tem_fnas:
             tab[m]["fnas"] = "✓" if m in fnas else "·"
         if tem_pncp:
-            tab[m]["pncp"] = "✓" if pncp.get(m) else ("✗" if pncp_erro.get(m) else "·")
+            # ✓ achou contrato; · todos os órgãos lidos e nenhum contrato; ✗ algum órgão não lido
+            tab[m]["pncp"] = "✓" if pncp.get(m) else ("·" if m in pncp_lidos else "✗")
     return tab
 
 
@@ -407,8 +483,8 @@ COLUNAS = [("querido_diario", "Diário (QD)"), ("sileg", "Diário (SILEG)"), ("r
 def markdown(d: dict) -> str:
     linhas = [f"# Diagnóstico da coleta histórica ({d['intervalo']})", "",
               f"Rodada de {d['rodada']}. Banco: `dados/onisciente/historico.db`.", "",
-              "Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna do município "
-              "(a fonte respondeu e o dado não estava lá). As duas nunca se misturam.", "",
+              "Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna na fonte "
+              "(ela respondeu e o dado não estava lá). As duas nunca se misturam.", "",
               "## Motores", "",
               "| Motor | Chamadas | Certas | Falhas | 429 | Tempo (s) |",
               "|---|---:|---:|---:|---:|---:|"]
@@ -422,11 +498,13 @@ def markdown(d: dict) -> str:
                f"- **Diário Oficial:** edições somadas por via: "
                f"{json.dumps(c['edicoes_diario'], ensure_ascii=False)}.",
                f"- **Repasses do FNAS:** {c['repasses_fnas'][0]} linhas, "
-               f"{_reais(c['repasses_fnas'][1] or 0)}.",
+               f"{_reais(c['repasses_fnas'][1] or 0)}"
+               + (f" ({c['repasses_fnas_arquivo']} delas do arquivo já guardado)."
+                  if c.get("repasses_fnas_arquivo") else "."),
                f"- **PNCP:** {c['contratacoes_pncp']} contratações e {c['contratos_pncp'][0]} contratos "
                f"de órgãos do Município ({c['contratos_pncp'][1] or 0} da pasta da assistência).",
                f"- **Endereços configurados:** {c['fontes'][1] or 0} de {c['fontes'][0]} abriram."]
-    for tipo, titulo in (("falha", "Onde o sistema falha"), ("lacuna", "Onde o município deixou lacuna"),
+    for tipo, titulo in (("falha", "Onde o sistema falha"), ("lacuna", "Onde a fonte respondeu sem o dado"),
                          ("melhoria", "Onde o sistema pode melhorar")):
         itens = [a for a in d["achados"] if a["tipo"] == tipo]
         linhas += ["", f"## {titulo}", ""]

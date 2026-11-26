@@ -152,7 +152,8 @@ def test_diagnostico_separa_falha_lacuna_e_melhoria(rodada, tmp_path):
     for a in d["achados"]:
         por_tipo.setdefault(a["tipo"], []).append(a["titulo"])
     assert any("SILEG" in t or "sileg" in t.lower() for t in por_tipo["falha"])
-    assert any("endereços que não respondem" in t for t in por_tipo["falha"])
+    # o coletor antigo já usa a apidatalake: as bases mortas deixam de ser falha do sistema
+    assert not any("endereços que não respondem" in t for t in por_tipo["falha"])
     assert any("não estão no SICONFI" in t for t in por_tipo["lacuna"])
     assert any("contrato do Município no PNCP" in t for t in por_tipo["lacuna"])
     assert any("RREO-Anexo 8" in t for t in por_tipo["melhoria"])      # nome do anexo da educação
@@ -161,7 +162,7 @@ def test_diagnostico_separa_falha_lacuna_e_melhoria(rodada, tmp_path):
     assert d["cobertura"]["2025-01"]["pncp"] == "✓" and d["cobertura"]["2024-12"]["pncp"] == "·"
     arq_json, arq_md = diagnostico.gravar(d, tmp_path)
     texto = arq_md.read_text(encoding="utf-8")
-    for titulo in ("Onde o sistema falha", "Onde o município deixou lacuna",
+    for titulo in ("Onde o sistema falha", "Onde a fonte respondeu sem o dado",
                    "Onde o sistema pode melhorar", "Cobertura mês a mês"):
         assert f"## {titulo}" in texto
     assert json.loads(arq_json.read_text(encoding="utf-8"))["intervalo"] == "2024-12 a 2025-01"
@@ -202,3 +203,121 @@ def test_somar_refaz_so_o_motor_pedido(tmp_path):
     banco.fechar()
     with pytest.raises(ValueError):
         historico.rodar("2024-01", "2025-01", motores=("sileg",), somar=True, **comum)
+
+
+# --- Correções da segunda rodada ---------------------------------------------------------
+
+def test_fnas_bloqueado_usa_o_arquivo_ja_guardado(tmp_path):
+    def bloqueado(url, **_):                     # 247 bytes: página de bloqueio, não a planilha
+        return base.Leitura(True, url, b"<html>" + b"x" * 241, http=200)
+    banco = historico.rodar("2024-11", "2024-12", caminho=tmp_path / "h.db", motores=("fnas",),
+                            hoje=date(2026, 11, 26), ler_url=bloqueado,
+                            dormir=lambda s: None, pausa=0)
+    erros = [e for (e,) in banco.consultar("SELECT erro FROM coletas WHERE ok = 0")]
+    assert any("devolveu uma página de 247 bytes" in e for e in erros)
+    assert not any("não publicada" in e for e in erros)       # bloqueio não é falta de publicação
+    origens = dict(banco.consultar("SELECT origem, COUNT(*) FROM repasses_fnas GROUP BY origem"))
+    assert set(origens) == {historico.ORIGEM_ARQUIVO} and origens[historico.ORIGEM_ARQUIVO] > 0
+    d = diagnostico.diagnosticar(banco)
+    titulos = {a["tipo"] + ": " + a["titulo"] for a in d["achados"]}
+    assert "falha: O site do FNAS devolveu uma página curta no lugar do conteúdo" in titulos
+    assert any(t.startswith("melhoria: Repasses de 2024") for t in titulos)
+    assert d["contagens"]["repasses_fnas_arquivo"] == origens[historico.ORIGEM_ARQUIVO]
+    banco.fechar()
+
+
+def test_pncp_le_por_ano_e_refaz_mes_a_mes_quando_recusado(tmp_path):
+    pedidos = []
+
+    def pncp(url, **_):
+        q = {k: v[0] for k, v in parse_qs(urlparse(url).query).items()}
+        pedidos.append((q.get("cnpjOrgao"), q["dataInicial"], q["dataFinal"]))
+        if "contratacoes" in url:
+            return base.Leitura(True, url, b"", http=204)
+        if q["dataInicial"][:6] != q["dataFinal"][:6]:          # janela anual: a API recusa
+            return base.Leitura(False, url, erro="HTTP 422", http=422)
+        if q["dataInicial"].startswith("202502"):
+            corpo = {"data": [{"numeroControlePNCP": "K-2", "dataPublicacaoPncp": "2025-02-10",
+                               "objetoContrato": "Acolhimento - Assistência Social"}],
+                     "totalPaginas": 1}
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        if q["dataInicial"].startswith("202503"):
+            return base.Leitura(False, url, erro="TimeoutError: timed out")
+        return base.Leitura(True, url, b"", http=204)
+    banco = historico.Banco(tmp_path / "h.db")
+    ctx = historico.Contexto(banco, historico.meses("2025-01", "2025-03"), date(2026, 11, 26),
+                             ler_url=pncp, dormir=lambda s: None, pausa=0)
+    historico.motor_pncp(ctx, 5208707, "Goiânia", {"01393989000103": "FUNDO MUNICIPAL DE "
+                                                   "ASSISTENCIA SOCIAL-FMAS"})
+    contratos = [(cnpj, d1, d2) for cnpj, d1, d2 in pedidos if cnpj]
+    assert contratos[0] == ("01393989000103", "20250101", "20250331")   # primeiro, o ano inteiro
+    assert ("01393989000103", "20250201", "20250228") in contratos       # depois, mês a mês
+    [(mes, pasta)] = banco.consultar("SELECT mes, da_pasta FROM contratos_pncp")
+    assert (mes, pasta) == ("2025-02", 1)
+    lidos, _ = diagnostico.meses_pncp_lidos(banco, ctx.meses)
+    assert lidos == {"2025-01", "2025-02"}                  # março não respondeu
+    cobertura = diagnostico.cobertura_mensal(banco, ctx.meses)
+    assert [cobertura[m]["pncp"] for m in ctx.meses] == ["·", "✓", "✗"]
+    achados = {a.tipo: a for a in diagnostico._pncp(banco, ctx.meses)}
+    assert "1 meses" in achados["falha"].titulo and "2025-03" in achados["falha"].detalhe
+    assert achados["lacuna"].detalhe.startswith("Meses: 2025-01.")      # só o mês lido e vazio
+
+
+def test_pncp_conhecidos_vem_antes_da_procura_e_assistencia_primeiro(tmp_path):
+    ordem = []
+
+    def pncp(url, **_):
+        q = {k: v[0] for k, v in parse_qs(urlparse(url).query).items()}
+        ordem.append("procura" if "contratacoes" in url else q["cnpjOrgao"])
+        return base.Leitura(True, url, b"", http=204)
+    ctx = historico.Contexto(historico.Banco(tmp_path / "h.db"), ["2025-01"], date(2026, 1, 1),
+                             ler_url=pncp, dormir=lambda s: None, pausa=0)
+    historico.motor_pncp(ctx, 5208707, "Goiânia", {"00000000000001": "SECRETARIA DE OBRAS",
+                                                   "00000000000002": "SECRETARIA DE ASSISTENCIA SOCIAL"})
+    assert ordem[:3] == ["00000000000002", "00000000000001", "procura"]
+
+
+def test_leitor_repete_com_cifras_compativeis_quando_o_servidor_recusa_o_tls(monkeypatch):
+    import ssl
+    import urllib.error
+    contextos = []
+
+    class Resposta:
+        status = 200
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *a):
+            return False
+
+        def read(self):
+            return b"{}"
+
+    def abrir(pedido, timeout, context=None):
+        contextos.append(context)
+        if context is None:
+            raise urllib.error.URLError(ssl.SSLError(1, "[SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] sslv3 "
+                                                        "alert handshake failure"))
+        return Resposta()
+    monkeypatch.setattr(base.urllib.request, "urlopen", abrir)
+    leitura = base.ler("https://api.queridodiario.ok.org.br/gazettes")
+    assert leitura.ok and len(contextos) == 2
+    assert contextos[1].verify_mode == ssl.CERT_REQUIRED and contextos[1].check_hostname
+    assert not base._aperto_de_mao_recusado("[SSL: CERTIFICATE_VERIFY_FAILED] certificate")
+
+
+def test_proposta_depende_do_tipo_de_falha():
+    assert "TLS" in diagnostico._proposta_de_rede("URLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE]")
+    assert "GitHub" not in diagnostico._proposta_de_rede("URLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE]")
+    assert "tempo" in diagnostico._proposta_de_rede("TimeoutError: timed out")
+
+
+def test_anexo_sem_par_no_siconfi_aponta_a_fonte_propria(tmp_path):
+    banco = historico.Banco(tmp_path / "h.db")
+    banco.inserir("siconfi_periodos", {"demonstrativo": "RREO", "exercicio": 2025, "periodo": 1,
+                                       "rotulo": "RREO 2025, 1º bimestre", "situacao": "entregue"})
+    banco.inserir("siconfi_anexos", {"demonstrativo": "RREO", "exercicio": 2025, "periodo": 1,
+                                     "anexo": "RREO-Anexo 01", "itens": 3, "guardado": 1})
+    [a] = diagnostico._siconfi(banco, {"educacao": "RREO-Anexo 8"})
+    assert "SIOPE" in a.detalhe and "SIOPE" in a.proposta and "outro nome" not in a.detalhe

@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS diario_oficial (fonte TEXT, mes TEXT, data TEXT, edic
 CREATE TABLE IF NOT EXISTS diario_oficial_mes (fonte TEXT, mes TEXT, edicoes INTEGER, com_termos INTEGER,
     erro TEXT);
 CREATE TABLE IF NOT EXISTS repasses_fnas (competencia TEXT, tipo TEXT, bloco TEXT, programa TEXT, valor REAL,
-    ordem_bancaria TEXT, planilha INTEGER);
+    ordem_bancaria TEXT, planilha INTEGER, origem TEXT);
 CREATE TABLE IF NOT EXISTS contratacoes_pncp (pncp_id TEXT PRIMARY KEY, mes TEXT, modalidade TEXT,
     orgao_cnpj TEXT, orgao TEXT, esfera TEXT, unidade TEXT, objeto TEXT, valor_estimado REAL,
     valor_homologado REAL, situacao TEXT);
@@ -171,9 +171,9 @@ TABELAS_DO_MOTOR = {
     "querido_diario": [("coletas", "motor = 'qd'"), ("diario_oficial", "fonte = 'querido_diario'"),
                        ("diario_oficial_mes", "fonte = 'querido_diario'")],
     "sileg": [("coletas", "motor = 'sileg'"), ("diario_oficial_mes", "fonte = 'sileg'")],
-    "fnas": [("coletas", "motor = 'fnas'"), ("repasses_fnas", "")],
+    "fnas": [("coletas", "motor = 'fnas'"), ("repasses_fnas", ""), ("meta", "chave = 'fnas_do_arquivo'")],
     "pncp": [("coletas", "motor = 'pncp'"), ("contratacoes_pncp", ""), ("contratos_pncp", ""),
-             ("meta", "chave = 'pncp_orgaos'")],
+             ("meta", "chave IN ('pncp_orgaos', 'pncp_janelas')")],
     "fontes": [("coletas", "motor = 'fontes'"), ("fontes", "")],
     "normas": [("coletas", "motor = 'ctresb'"), ("normas", "")],
 }
@@ -196,7 +196,17 @@ class Banco:
         banco.caminho = caminho
         banco.con = sqlite3.connect(str(caminho))
         banco.con.executescript(ESQUEMA)
+        banco._atualizar_colunas()
         return banco
+
+    def _atualizar_colunas(self) -> None:
+        """Bancos de rodadas antigas ganham as colunas novas sem perder o que já têm."""
+        novas = {"repasses_fnas": {"origem": "TEXT"}}
+        for tabela, colunas in novas.items():
+            existentes = {c[1] for c in self.con.execute(f"PRAGMA table_info({tabela})")}
+            for coluna, tipo in colunas.items():
+                if coluna not in existentes:
+                    self.con.execute(f"ALTER TABLE {tabela} ADD COLUMN {coluna} {tipo}")
 
     def apagar_motor(self, motor: str) -> None:
         """Tira do banco tudo o que um motor gravou, para ele coletar de novo."""
@@ -230,7 +240,7 @@ class Contexto:
     dormir: Callable[[float], None] = time.sleep
     pausa: float = 1.0                     # entre chamadas à mesma API
     brutos: Path | None = None             # se dado, guarda cada resposta crua aqui
-    limites: dict[str, int] = field(default_factory=lambda: {"pncp": 1500, "qd": 400})
+    limites: dict[str, int] = field(default_factory=lambda: {"pncp": 2500, "qd": 400})
     gastos: dict[str, int] = field(default_factory=dict)
     # Disjuntor: depois de tantas falhas de rede seguidas, o motor deixa de chamar a fonte
     # e registra o resto como não tentado. Uma fonte fora do ar não pode prender a rodada.
@@ -284,6 +294,14 @@ class Contexto:
             "segundos": round(segundos, 2), "bytes": len(leitura.conteudo),
             "sha256": leitura.original.sha256 if leitura.original else None,
             "quando": datetime.now(timezone.utc).isoformat(timespec="seconds")})
+
+
+def _anotar(ctx: Contexto, motor: str, alvo: str, mes: str, url: str, erro: str) -> None:
+    """Registra uma falha que não é de rede (formato, conteúdo errado) junto das chamadas."""
+    ctx.banco.inserir("coletas", {
+        "motor": motor, "alvo": alvo, "mes": mes, "url": url, "ok": 0, "http": None,
+        "erro": erro[:300], "tentativas": 0, "segundos": 0, "bytes": 0, "sha256": None,
+        "quando": datetime.now(timezone.utc).isoformat(timespec="seconds")})
 
 
 def _json(leitura: base.Leitura):
@@ -472,39 +490,90 @@ def linhas_fnas(conteudo: bytes, ibge6: str) -> list[dict]:
     return saida
 
 
+PAGINA_MINIMA = 2000      # bytes: menos que isso é página de bloqueio, não a página do FNAS
+REPASSES_DO_REPOSITORIO = RAIZ / "dados" / "repasses_federais.json"
+ORIGEM_FNAS = "planilha do FNAS"
+ORIGEM_ARQUIVO = "arquivo do repositório (dados/repasses_federais.json), coletado antes"
+
+
+def _e_planilha(conteudo: bytes) -> bool:
+    return conteudo[:2] == b"PK"          # todo .xlsx é um zip
+
+
+def _repasses_do_repositorio(caminho: Path = REPASSES_DO_REPOSITORIO) -> dict[int, list[dict]]:
+    """Repasses já guardados pelo coletor antigo, por ano da planilha de origem."""
+    if not caminho.exists():
+        return {}
+    dados = json.loads(caminho.read_text(encoding="utf-8"))
+    por_ano: dict[int, list[dict]] = {}
+    for r in dados.get("detalhe") or []:
+        try:
+            ano, valor = int(r["ano"]), float(r["valor"])
+        except (KeyError, TypeError, ValueError):
+            continue
+        por_ano.setdefault(ano, []).append({
+            "competencia": r.get("competencia"), "tipo": r.get("tipo"), "bloco": r.get("bloco"),
+            "programa": r.get("programa"), "valor": valor,
+            "ordem_bancaria": str(r.get("ordem_bancaria") or "")})
+    return por_ano
+
+
 def motor_fnas(ctx: Contexto, ibge: int) -> None:
     pagina = ctx.ler("fnas", "pagina", FNAS_PAGINA, cabecalhos=NAVEGADOR)
-    achadas = planilhas_fnas(pagina.texto) if pagina.ok else {}
+    pagina_ok = pagina.ok and len(pagina.conteudo) >= PAGINA_MINIMA
+    if pagina.ok and not pagina_ok:
+        _anotar(ctx, "fnas", "pagina (conteúdo)", "", FNAS_PAGINA,
+                f"a fonte devolveu uma página de {len(pagina.conteudo)} bytes, não a página "
+                "do FNAS (provável bloqueio do servidor a robôs)")
+    achadas = planilhas_fnas(pagina.texto) if pagina_ok else {}
     anos_do_intervalo = sorted({int(m[:4]) for m in ctx.meses})
     # a planilha de um ano pode trazer competências do ano anterior: lê-se a partir do primeiro
     desejadas = {a: achadas.get(a) or FNAS_CONHECIDAS.get(a) for a in anos_do_intervalo}
     dentro = set(ctx.meses)
+    sem_planilha = []
     for ano, url in desejadas.items():
         if not url:
-            erro = ("planilha do ano não publicada na página do FNAS" if pagina.ok else
+            erro = ("planilha do ano não publicada na página do FNAS" if pagina_ok else
                     "a página do FNAS não abriu; não se sabe se a planilha do ano saiu")
-            ctx.banco.inserir("coletas", {
-                "motor": "fnas", "alvo": f"planilha {ano}", "mes": f"{ano}-12", "url": FNAS_PAGINA,
-                "ok": 0, "http": None, "erro": erro,
-                "tentativas": 0, "segundos": 0, "bytes": 0, "sha256": None,
-                "quando": datetime.now(timezone.utc).isoformat(timespec="seconds")})
+            _anotar(ctx, "fnas", f"planilha {ano}", f"{ano}-12", FNAS_PAGINA, erro)
+            sem_planilha.append(ano)
             continue
-        leitura = ctx.ler("fnas", f"planilha {ano}", url, mes=f"{ano}-12", cabecalhos=NAVEGADOR,
-                          tempo=300)
+        leitura = None
+        for cabecalhos in (NAVEGADOR, None):        # se o disfarce de navegador for barrado
+            leitura = ctx.ler("fnas", f"planilha {ano}", url, mes=f"{ano}-12",
+                              cabecalhos=cabecalhos, tempo=300)
+            if leitura.ok and _e_planilha(leitura.conteudo):
+                break
         if not leitura.ok:
+            sem_planilha.append(ano)
+            continue
+        if not _e_planilha(leitura.conteudo):
+            _anotar(ctx, "fnas", f"leitura {ano}", f"{ano}-12", url,
+                    f"a fonte devolveu uma página de {len(leitura.conteudo)} bytes em vez da "
+                    "planilha (provável bloqueio do servidor a robôs)")
+            sem_planilha.append(ano)
             continue
         try:
             linhas = linhas_fnas(leitura.conteudo, str(ibge)[:6])
         except Exception as e:  # planilha com formato novo: falha às claras
-            ctx.banco.inserir("coletas", {
-                "motor": "fnas", "alvo": f"leitura {ano}", "mes": f"{ano}-12", "url": url, "ok": 0,
-                "http": None, "erro": f"{type(e).__name__}: {e}"[:200], "tentativas": 1,
-                "segundos": 0, "bytes": 0, "sha256": None,
-                "quando": datetime.now(timezone.utc).isoformat(timespec="seconds")})
+            _anotar(ctx, "fnas", f"leitura {ano}", f"{ano}-12", url, f"{type(e).__name__}: {e}")
+            sem_planilha.append(ano)
             continue
         for linha in linhas:
             if linha["competencia"] in dentro:
-                ctx.banco.inserir("repasses_fnas", {**linha, "planilha": ano})
+                ctx.banco.inserir("repasses_fnas", {**linha, "planilha": ano, "origem": ORIGEM_FNAS})
+    # O que a fonte não deu agora vem do que o sistema já guardou, marcado como tal.
+    if sem_planilha:
+        guardados = _repasses_do_repositorio()
+        usados = []
+        for ano in sem_planilha:
+            for linha in guardados.get(ano, []):
+                if linha["competencia"] in dentro:
+                    ctx.banco.inserir("repasses_fnas", {**linha, "planilha": ano,
+                                                        "origem": ORIGEM_ARQUIVO})
+            if guardados.get(ano):
+                usados.append(ano)
+        ctx.banco.inserir("meta", {"chave": "fnas_do_arquivo", "valor": json.dumps(usados)})
 
 
 # --- Motor 4: contratações (PNCP) ------------------------------------------------------
@@ -516,8 +585,55 @@ def _e_municipal(orgao: dict, municipio: str) -> bool:
         ("MUNICIPAL" in nome and _norm(municipio) in nome)
 
 
-def motor_pncp(ctx: Contexto, ibge: int, municipio: str, cnpjs_conhecidos: tuple = ()) -> None:
-    orgaos: dict[str, str] = {c: "" for c in cnpjs_conhecidos}
+def _da_pasta(nome: str) -> bool:
+    return any(t in _norm(nome) for t in TERMOS_PASTA)
+
+
+def _janelas_anuais(lista_meses: list[str]) -> list[list[str]]:
+    """Os meses do intervalo agrupados por ano civil (a API aceita até um ano por consulta)."""
+    janelas: dict[str, list[str]] = {}
+    for mes in lista_meses:
+        janelas.setdefault(mes[:4], []).append(mes)
+    return list(janelas.values())
+
+
+def _pncp_contratos(ctx: Contexto, cnpj: str, nome: str, janela: list[str]) -> bool:
+    """Lê os contratos de um órgão numa janela de meses; devolve se a janela foi lida inteira."""
+    d1 = f"{janela[0].replace('-', '')}01"
+    d2 = fim_do_mes(janela[-1]).strftime("%Y%m%d")
+    rotulo = janela[0] if len(janela) == 1 else f"{janela[0]} a {janela[-1]}"
+    for pagina in range(1, 51):
+        params = {"dataInicial": d1, "dataFinal": d2, "cnpjOrgao": cnpj, "pagina": pagina,
+                  "tamanhoPagina": 100}
+        leitura = ctx.ler("pncp", f"contratos {cnpj} {rotulo}",
+                          PNCP + "contratos?" + urlencode(params), mes=janela[0])
+        if leitura.http == 204:
+            return True                       # a API respondeu: nenhum contrato na janela
+        dados = _json(leitura) if leitura.ok else None
+        if not dados:
+            return False
+        for c in dados.get("data") or []:
+            org = c.get("orgaoEntidade") or {}
+            tudo = _norm(json.dumps(c, ensure_ascii=False))
+            quando = str(c.get("dataPublicacaoPncp") or c.get("dataAssinatura") or "")[:7]
+            ctx.banco.inserir("contratos_pncp", {
+                "pncp_id": c.get("numeroControlePNCP"),
+                "mes": quando if re.fullmatch(r"\d{4}-\d{2}", quando) else janela[0],
+                "data_assinatura": c.get("dataAssinatura"), "orgao_cnpj": cnpj,
+                "orgao": org.get("razaoSocial") or nome,
+                "unidade": (c.get("unidadeOrgao") or {}).get("nomeUnidade"),
+                "fornecedor_ni": c.get("niFornecedor"),
+                "fornecedor": c.get("nomeRazaoSocialFornecedor"),
+                "objeto": (c.get("objetoContrato") or "")[:500],
+                "valor_global": c.get("valorGlobal"),
+                "da_pasta": int(any(t in tudo for t in TERMOS_PASTA))})
+        if pagina >= int(dados.get("totalPaginas") or 1):
+            return True
+    return False                              # mais de 50 páginas: a janela ficou incompleta
+
+
+def _pncp_descobrir(ctx: Contexto, ibge: int, municipio: str, orgaos: dict[str, str]) -> None:
+    """Contratações publicadas com o código IBGE: guardadas, e os órgãos novos anotados."""
     for mes in ctx.meses:
         d1, d2 = f"{mes.replace('-', '')}01", fim_do_mes(mes).strftime("%Y%m%d")
         for modalidade in MODALIDADES_DESCOBERTA:
@@ -536,7 +652,8 @@ def motor_pncp(ctx: Contexto, ibge: int, municipio: str, cnpjs_conhecidos: tuple
                     if not _e_municipal(org, municipio):
                         continue
                     cnpj = str(org.get("cnpj") or "")
-                    orgaos.setdefault(cnpj, org.get("razaoSocial") or "")
+                    if not orgaos.get(cnpj):
+                        orgaos[cnpj] = org.get("razaoSocial") or ""
                     ctx.banco.inserir("contratacoes_pncp", {
                         "pncp_id": c.get("numeroControlePNCP"), "mes": mes,
                         "modalidade": c.get("modalidadeNome"), "orgao_cnpj": cnpj,
@@ -548,36 +665,51 @@ def motor_pncp(ctx: Contexto, ibge: int, municipio: str, cnpjs_conhecidos: tuple
                         "situacao": c.get("situacaoCompraNome")})
                 if pagina >= int(dados.get("totalPaginas") or 1):
                     break
-    for cnpj in sorted(orgaos):
-        for mes in ctx.meses:
-            d1, d2 = f"{mes.replace('-', '')}01", fim_do_mes(mes).strftime("%Y%m%d")
-            for pagina in range(1, 21):
-                params = {"dataInicial": d1, "dataFinal": d2, "cnpjOrgao": cnpj, "pagina": pagina,
-                          "tamanhoPagina": 100}
-                leitura = ctx.ler("pncp", f"contratos {cnpj}",
-                                  PNCP + "contratos?" + urlencode(params), mes=mes)
-                if leitura.http == 204:
-                    break
-                dados = _json(leitura) if leitura.ok else None
-                if not dados:
-                    break
-                for c in dados.get("data") or []:
-                    org = c.get("orgaoEntidade") or {}
-                    tudo = _norm(json.dumps(c, ensure_ascii=False))
-                    ctx.banco.inserir("contratos_pncp", {
-                        "pncp_id": c.get("numeroControlePNCP"), "mes": mes,
-                        "data_assinatura": c.get("dataAssinatura"), "orgao_cnpj": cnpj,
-                        "orgao": org.get("razaoSocial") or orgaos.get(cnpj),
-                        "unidade": (c.get("unidadeOrgao") or {}).get("nomeUnidade"),
-                        "fornecedor_ni": c.get("niFornecedor"),
-                        "fornecedor": c.get("nomeRazaoSocialFornecedor"),
-                        "objeto": (c.get("objetoContrato") or "")[:500],
-                        "valor_global": c.get("valorGlobal"),
-                        "da_pasta": int(any(t in tudo for t in TERMOS_PASTA))})
-                if pagina >= int(dados.get("totalPaginas") or 1):
-                    break
-    ctx.banco.inserir("meta", {"chave": "pncp_orgaos",
-                               "valor": json.dumps(orgaos, ensure_ascii=False)})
+
+
+def motor_pncp(ctx: Contexto, ibge: int, municipio: str, cnpjs_conhecidos=()) -> None:
+    """Contratos dos órgãos do Município e as contratações publicadas com o código IBGE.
+
+    Com órgãos já conhecidos (do alvo ou da rodada anterior), os contratos vêm primeiro, os
+    da pasta da assistência à frente, um ano por consulta; uma janela anual recusada é refeita
+    mês a mês. A procura por órgãos novos usa o tempo que sobrar. Sem nenhum órgão conhecido,
+    a procura vem antes, porque sem ela não há a quem perguntar pelos contratos.
+    """
+    if isinstance(cnpjs_conhecidos, dict):
+        orgaos = {str(c): n or "" for c, n in cnpjs_conhecidos.items()}
+    else:
+        orgaos = {str(c): "" for c in cnpjs_conhecidos}
+    janelas_lidas: list[dict] = []
+
+    def guardar():
+        ctx.banco.inserir("meta", {"chave": "pncp_orgaos",
+                                   "valor": json.dumps(orgaos, ensure_ascii=False)})
+        ctx.banco.inserir("meta", {"chave": "pncp_janelas",
+                                   "valor": json.dumps(janelas_lidas, ensure_ascii=False)})
+
+    def contratos(lista: list[str]):
+        for cnpj in sorted(lista, key=lambda c: (not _da_pasta(orgaos.get(c, "")), c)):
+            for janela in _janelas_anuais(ctx.meses):
+                if _pncp_contratos(ctx, cnpj, orgaos.get(cnpj, ""), janela):
+                    janelas_lidas.append({"cnpj": cnpj, "meses": janela, "lida": True})
+                    continue
+                if len(janela) == 1:
+                    janelas_lidas.append({"cnpj": cnpj, "meses": janela, "lida": False})
+                    continue
+                for mes in janela:            # a janela do ano falhou: tenta mês a mês
+                    janelas_lidas.append({"cnpj": cnpj, "meses": [mes],
+                                          "lida": _pncp_contratos(ctx, cnpj, "", [mes])})
+            guardar()
+
+    conhecidos = list(orgaos)
+    if conhecidos:
+        contratos(conhecidos)
+        _pncp_descobrir(ctx, ibge, municipio, orgaos)
+        contratos([c for c in orgaos if c not in conhecidos])
+    else:
+        _pncp_descobrir(ctx, ibge, municipio, orgaos)
+        contratos(list(orgaos))
+    guardar()
 
 
 # --- Motor 5: portais e endereços do sistema ------------------------------------------
@@ -630,7 +762,7 @@ def motor_normas(ctx: Contexto) -> None:
 
 MOTORES = ("siconfi", "querido_diario", "sileg", "fnas", "pncp", "fontes", "normas")
 # Minutos que cada motor pode usar numa rodada (o fluxo do GitHub para em 180).
-TEMPO_DO_MOTOR = {"pncp": 30, "siconfi": 20}
+TEMPO_DO_MOTOR = {"pncp": 75, "siconfi": 20}
 TEMPO_PADRAO = 12
 
 
@@ -641,8 +773,13 @@ def rodar(desde: str, ate: str, *, motores=MOTORES, caminho=BANCO, hoje: date | 
     intervalo e mantém o que os outros coletaram."""
     from .config import carregar_alvo
     alvo = carregar_alvo()
+    orgaos_pncp: dict[str, str] = {c: "" for c in alvo.pncp_cnpjs}
     if somar and Path(caminho).exists():
         banco = Banco.abrir(caminho)
+        guardados = dict(banco.consultar("SELECT chave, valor FROM meta")).get("pncp_orgaos")
+        if guardados:                         # o que a rodada anterior descobriu não se perde
+            for cnpj, nome in json.loads(guardados).items():
+                orgaos_pncp[cnpj] = nome or orgaos_pncp.get(cnpj, "")
         anterior = dict(banco.consultar("SELECT chave, valor FROM meta")).get("intervalo")
         if anterior and anterior != f"{desde} a {ate}":
             banco.con.close()
@@ -661,7 +798,7 @@ def rodar(desde: str, ate: str, *, motores=MOTORES, caminho=BANCO, hoje: date | 
         "querido_diario": lambda: motor_querido_diario(ctx, alvo.ibge),
         "sileg": lambda: motor_sileg(ctx),
         "fnas": lambda: motor_fnas(ctx, alvo.ibge),
-        "pncp": lambda: motor_pncp(ctx, alvo.ibge, alvo.municipio, alvo.pncp_cnpjs),
+        "pncp": lambda: motor_pncp(ctx, alvo.ibge, alvo.municipio, orgaos_pncp),
         "fontes": lambda: motor_fontes(ctx),
         "normas": lambda: motor_normas(ctx),
     }
