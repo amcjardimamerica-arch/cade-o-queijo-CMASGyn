@@ -1,6 +1,6 @@
 {
  "intervalo": "2024-11 a 2026-11",
- "rodada": "2026-11-26T18:45:28+00:00",
+ "rodada": "2026-11-26T20:02:50+00:00",
  "meses": [
   "2024-11",
   "2024-12",
@@ -70,16 +70,14 @@
   {
    "motor": "pncp",
    "nome": "Contratações (PNCP)",
-   "chamadas": 533,
-   "ok": 425,
-   "falhas": 108,
-   "tentativas": 477,
+   "chamadas": 563,
+   "ok": 561,
+   "falhas": 2,
+   "tentativas": 613,
    "http_429": 0,
-   "segundos": 13085.7,
+   "segundos": 16218.3,
    "erros": {
-    "não tentado: tempo do motor nesta rodada esgotado": 106,
-    "TimeoutError: The read operation timed out": 1,
-    "RemoteDisconnected: Remote end closed connection without response": 1
+    "RemoteDisconnected: Remote end closed connection without response": 2
    }
   },
   {
@@ -147,9 +145,9 @@
    17168303.62
   ],
   "repasses_fnas_arquivo": 0,
-  "contratacoes_pncp": 902,
+  "contratacoes_pncp": 2328,
   "contratos_pncp": [
-   2114,
+   2118,
    61
   ],
   "fontes": [
@@ -380,8 +378,8 @@
   {
    "tipo": "falha",
    "motor": "pncp",
-   "titulo": "Contratações (PNCP): 108 de 533 chamadas falharam",
-   "detalhe": "Erro mais comum: não tentado: tempo do motor nesta rodada esgotado (106 vezes).",
+   "titulo": "Contratações (PNCP): 2 de 563 chamadas falharam",
+   "detalhe": "Erro mais comum: RemoteDisconnected: Remote end closed connection without response (2 vezes).",
    "proposta": "Ver a tabela coletas do banco para os endereços exatos."
   },
   {
@@ -429,8 +427,8 @@
   {
    "tipo": "falha",
    "motor": "pncp",
-   "titulo": "Contratos do PNCP não lidos por inteiro em 25 meses",
-   "detalhe": "Meses sem todos os órgãos lidos: 2024-11 a 2026-11. Órgãos sem nenhum mês lido: 3 de 29.",
+   "titulo": "Contratos do PNCP não lidos por inteiro em 1 meses",
+   "detalhe": "Meses sem todos os órgãos lidos: 2026-11. Órgãos sem nenhum mês lido: 0 de 32.",
    "proposta": "A API do PNCP leva cerca de 20 segundos por chamada: rodar de novo só o motor pncp, que continua dos órgãos já conhecidos."
   },
   {
