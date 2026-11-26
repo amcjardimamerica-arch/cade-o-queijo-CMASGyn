@@ -4,18 +4,13 @@ name: Onisciente — coleta histórica
 # e onde pode melhorar (relatorios/onisciente/diagnostico_historico.md).
 # Roda no GitHub porque daqui a rede é aberta; as respostas cruas ficam como
 # artefato da execução por 30 dias.
+# Só roda quando pedida: um envio de código nunca refaz o banco do zero.
 on:
   workflow_dispatch:
     inputs:
       desde: {description: "Primeiro mês (AAAA-MM)", default: "2024-11"}
       ate: {description: "Último mês (AAAA-MM)", default: "2026-11"}
       motores: {description: "Motores, separados por vírgula (vazio = todos)", default: ""}
-  push:
-    branches: [claude/project-thread-m40l41]
-    paths:
-      - .github/workflows/onisciente-historico.yml
-      - onisciente/historico.py
-      - onisciente/diagnostico.py
 permissions: {contents: write}
 concurrency: {group: onisciente-historico, cancel-in-progress: false}
 jobs:
@@ -30,7 +25,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
-      - run: pip install --quiet PyYAML openpyxl
+      - run: pip install --quiet PyYAML openpyxl pypdf
       - name: Conferir o aperto de mão com o Querido Diário
         # O servidor recusou o TLS do robô nas duas rodadas; isto grava no log da execução
         # o que o servidor aceita, para a próxima correção não ser no escuro.

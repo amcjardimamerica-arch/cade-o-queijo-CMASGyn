@@ -1,0 +1,72 @@
+{
+ "quando": "2026-11-26T22:28:32+00:00",
+ "leituras": [
+  {
+   "fonte": "siope5",
+   "url": "https://www.fnde.gov.br/siope/relatorioRREOMunicipal2006.do",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 9142,
+   "arquivo": "siope5__www-fnde-gov-br-siope-relatoriorreomunicipal2006-do-284d2d70.txt"
+  },
+  {
+   "fonte": "siope5",
+   "url": "https://www.fnde.gov.br/siope/relatorioRREOMunicipal2006.do",
+   "post": {
+    "acao": "pesquisar",
+    "pag": "result",
+    "anos": "2025",
+    "periodos": "6",
+    "cod_uf": "52",
+    "municipios": "520870"
+   },
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 25282,
+   "arquivo": "siope5__www-fnde-gov-br-siope-relatoriorreomunicipal2006-do-f4913cfe.txt"
+  },
+  {
+   "fonte": "siope5",
+   "url": "ftp://ftp.fnde.gov.br/web/siope/RREO/RREO_Municipal_520870_6_2025.pdf",
+   "post": null,
+   "ok": true,
+   "http": null,
+   "erro": "",
+   "bytes": 47586,
+   "arquivo": "siope5__ftp-fnde-gov-br-web-siope-rreo-rreo-municipal-520870-6-2025-pdf-be964d94.txt"
+  },
+  {
+   "fonte": "siope5",
+   "url": "ftp://ftp.fnde.gov.br/web/siope/RREO/RREO_Municipal_520870_4_2026.pdf",
+   "post": null,
+   "ok": true,
+   "http": null,
+   "erro": "",
+   "bytes": 47335,
+   "arquivo": "siope5__ftp-fnde-gov-br-web-siope-rreo-rreo-municipal-520870-4-2026-pdf-70d6e895.txt"
+  },
+  {
+   "fonte": "siope5",
+   "url": "ftp://ftp.fnde.gov.br/web/siope/RREO/",
+   "post": null,
+   "ok": true,
+   "http": null,
+   "erro": "",
+   "bytes": 32541578,
+   "arquivo": "siope5__ftp-fnde-gov-br-web-siope-rreo-3d0d53fb.txt"
+  },
+  {
+   "fonte": "siope5",
+   "url": "https://www.fnde.gov.br/olinda-ide/servico/DADOS_ABERTOS_SIOPE/versao/v1/odata/Indicadores_Siope(Ano_Consulta=@Ano_Consulta,Num_Peri=@Num_Peri,Sig_UF=@Sig_UF)?@Ano_Consulta=2025&@Num_Peri=6&@Sig_UF='GO'&$top=3&$format=json",
+   "post": null,
+   "ok": false,
+   "http": 500,
+   "erro": "HTTP 500",
+   "bytes": 0,
+   "arquivo": "siope5__www-fnde-gov-br-olinda-ide-servico-dados-abertos-siope-versao-v1-odata-95788f04.txt"
+  }
+ ]
+}

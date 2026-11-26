@@ -205,6 +205,21 @@ def cmd_painel_banco(_args) -> int:
     return 0
 
 
+def cmd_requisitos(args) -> int:
+    """Reconta os 183 requisitos do projeto original a partir do registro."""
+    from . import requisitos
+    itens = requisitos.carregar()
+    erros = requisitos.problemas(itens)
+    c = requisitos.contar(itens)
+    print(f"{c['percentual']}% do projeto original: {c['cumpridos']} cumpridos, {c['parciais']} parciais, "
+          f"{c['ausentes']} ausentes, de {c['total']}.")
+    for bloco, v in c["por_bloco"].items():
+        print(f"  {bloco}: {v['percentual']}% ({v['cumpridos']}/{v['parciais']}/{v['ausentes']})")
+    for e in erros:
+        print("ERRO:", e, file=sys.stderr)
+    return 1 if erros else 0
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="onisciente", description="A trilha do dinheiro público.")
     sub = p.add_subparsers(dest="comando", required=True)
@@ -231,6 +246,8 @@ def main(argv: list[str] | None = None) -> int:
         .set_defaults(f=cmd_diagnostico)
     sub.add_parser("painel-banco", help="refaz só a página do banco histórico no site") \
         .set_defaults(f=cmd_painel_banco)
+    sub.add_parser("requisitos", help="reconta os 183 requisitos do projeto original") \
+        .set_defaults(f=cmd_requisitos)
     args = p.parse_args(argv)
     return args.f(args)
 

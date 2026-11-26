@@ -7,11 +7,13 @@ e todo mês (``relatorios/`` e ``dados/``). Nada aqui altera esses arquivos.
 
 from __future__ import annotations
 
+import calendar
 import json
-from datetime import datetime
+from datetime import date, datetime
 from pathlib import Path
 
 from .. import RAIZ
+from .. import fiscal as fiscal_mod
 from ..legal.mapa import MapaLegal, carregar
 from ..nucleo.ausencias import Ausencia
 from ..nucleo.custodia import Original
@@ -40,6 +42,24 @@ ONDE = {
     "recursos_humanos": "Portal da Transparência de Goiânia, recursos humanos",
     "sitio_conselho": "sítio oficial do Conselho Municipal de Assistência Social",
 }
+
+
+def _moeda(v: float) -> str:
+    return "R$ " + f"{v:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+
+
+def _sileg_do_mes(banco: Path, competencia: str) -> int | None:
+    """Edições do mês no índice do SILEG, pela coleta histórica; None se não houver leitura."""
+    if not banco.exists():
+        return None
+    import sqlite3
+    con = sqlite3.connect(f"file:{banco}?mode=ro", uri=True)
+    try:
+        linha = con.execute("select edicoes from diario_oficial_mes where fonte='sileg' and mes=? and "
+                            "erro is null and edicoes is not null", (competencia,)).fetchone()
+    finally:
+        con.close()
+    return int(linha[0]) if linha else None
 
 
 def _ler(caminho: Path) -> dict | None:
@@ -101,8 +121,17 @@ def _ativa_no_ano(entidade: dict, ano: str) -> bool:
     ultimo = (entidade.get("ultimo") or primeiro)[:4]
     return bool(primeiro) and primeiro <= ano <= ultimo
 
+def _fim_da_competencia(competencia: str) -> date:
+    a, m = int(competencia[:4]), int(competencia[5:7])
+    return date(a, m, calendar.monthrange(a, m)[1])
+
+
+# O que o índice de transparência chama de execução da despesa, item a item.
+EXECUCAO_INDIVIDUALIZADA = ("Empenhos", "Liquidações", "Pagamentos")
+
+
 def montar(competencia: str, *, raiz: Path = RAIZ, mapa: MapaLegal | None = None,
-           alvo: str = "Prefeitura de Goiânia") -> Panorama:
+           alvo: str = "Prefeitura de Goiânia", banco: Path | None = None) -> Panorama:
     """Monta o panorama da competência (``AAAA-MM``) a partir dos dados do Cadê o Queijo."""
     mapa = mapa or carregar()
     ano = competencia[:4]
@@ -181,6 +210,28 @@ def montar(competencia: str, *, raiz: Path = RAIZ, mapa: MapaLegal | None = None
             unicas.append(a)
     panorama.ausencias = unicas
 
+    # 4b. O Município pelo RGF e pelo RREO do banco histórico (tetos, duas vias, liquidado).
+    fim = _fim_da_competencia(competencia)
+    banco = banco or (raiz / "dados" / "onisciente" / "historico.db")
+    liquidado_funcao, rreo_funcao = None, None
+    if banco.exists():
+        panorama.fiscal = fiscal_mod.medir_municipio(fim, banco=banco, mapa=mapa)
+        panorama.fichas += panorama.fiscal.fichas(competencia)
+        liquidado_funcao, rreo_funcao = fiscal_mod.liquidado_na_funcao("Assistência Social", fim, banco=banco)
+        rreo = panorama.fiscal.rreo
+        if rreo is not None and str(rreo.exercicio) == ano:
+            # O RREO é do ente, não do Fundo: está publicado no SICONFI e não falta.
+            antes = len(panorama.ausencias)
+            panorama.ausencias = [a for a in panorama.ausencias
+                                  if a.o_que_falta != "Relatório Resumido da Execução Orçamentária"]
+            if len(panorama.ausencias) < antes:
+                panorama.notas.append(f"O Relatório Resumido da Execução Orçamentária está publicado no "
+                                      f"SICONFI ({rreo.rotulo}) e não entra como ausência.")
+    else:
+        panorama.leitura_falhou.append(
+            "Banco histórico (dados/onisciente/historico.db) não encontrado: os tetos do Município, as "
+            "duas vias e a cobertura ficam sem medida nesta competência.")
+
     # 5. Custódia: os originais do mês na trilha do dinheiro.
     trilha = _ler(raiz / "dados" / "trilha_dinheiro.json") or {}
     coletado = (trilha.get("gerado_em") or "")[:10]
@@ -207,7 +258,21 @@ def montar(competencia: str, *, raiz: Path = RAIZ, mapa: MapaLegal | None = None
     # 7. Índice de integridade da trilha.
     pub = verif.get("publicacao_do_mes") or {}
     dias_uteis = pub.get("dias_uteis") or 0
-    tempestividade = (pub.get("dias_com_edicao", 0) / dias_uteis) if dias_uteis else 0.0
+    dias_lidos = pub.get("dias_com_edicao", 0)
+    tempestividade: float | None = (dias_lidos / dias_uteis) if dias_uteis else None
+    # Segunda via da tempestividade: o índice do próprio SILEG guardado no banco histórico.
+    sileg = _sileg_do_mes(banco or (raiz / "dados" / "onisciente" / "historico.db"), competencia)
+    motivo_tempo = None
+    if dias_uteis and sileg is not None:
+        estimados = min(sileg, dias_uteis)
+        if abs(estimados - dias_lidos) > 1:
+            tempestividade = None
+            motivo_tempo = (f"as duas leituras do Diário divergem ({dias_lidos} dias lidos pelo motor semanal, "
+                            f"{sileg} edições no índice do SILEG): a leitura falhou em uma delas e a medida "
+                            "não pesa contra o Município")
+            panorama.leitura_falhou.append(
+                f"Diário Oficial de {competencia}: o motor semanal leu {dias_lidos} dia(s) com edição e o índice "
+                f"do SILEG tem {sileg} edição(ões); a tempestividade fica sem medida até as leituras baterem.")
     # Vínculo: entidades com lançamento no exercício que têm contrato, termo ou convênio.
     # A trilha soma os valores de cada entidade em vários anos, sem separar por exercício;
     # somar esses valores misturaria anos anteriores. Por isso a medida é por entidade.
@@ -216,21 +281,65 @@ def montar(competencia: str, *, raiz: Path = RAIZ, mapa: MapaLegal | None = None
     parcerias = (transp.get("blocos") or {}).get("Parcerias com entidades", {})
     prestacao = 0.0 if "Prestações de contas" in (parcerias.get("falta") or []) else 1.0
     minimo = mapa.regra("INTEGRIDADE-LAI").valor or 50.0
+    motivos: dict[str, str] = {}
+
+    # Cobertura: do liquidado na função (RREO), quanto atravessa as nove estações com documento.
+    execucao = (transp.get("blocos") or {}).get("Execução da despesa", {})
+    nao_publicada = [i for i in EXECUCAO_INDIVIDUALIZADA if i in (execucao.get("falta") or [])]
+    cobertura: float | None
+    if liquidado_funcao is None:
+        cobertura = None
+        motivos["cobertura"] = ("sem o liquidado da função no RREO do banco histórico, não há base para "
+                                "medir quanto do gasto atravessa a trilha")
+    elif liquidado_funcao <= 0:
+        cobertura = None
+        motivos["cobertura"] = f"nada liquidado na função até o {rreo_funcao.rotulo}"
+    elif nao_publicada:
+        cobertura = 0.0  # medido: o Município não publica o gasto item a item
+        motivos["cobertura"] = (
+            f"{_moeda(liquidado_funcao)} liquidados na Assistência Social até o {rreo_funcao.rotulo}; "
+            f"nenhum real com {', '.join(i.lower() for i in nao_publicada)} publicados item a item "
+            f"(conferência do portal em {transp.get('gerado_em', 'data não registrada')}), então nenhum "
+            "atravessa as nove estações")
+    else:
+        cobertura = None
+        motivos["cobertura"] = ("a execução da despesa consta como publicada, mas o Onisciente ainda não "
+                                "a lê item a item: falha do sistema, não do Município")
+        panorama.leitura_falhou.append("Execução da despesa item a item: publicada, mas ainda não lida; "
+                                       "a cobertura da trilha fica sem medida.")
+
+    # Coerência: dos valores com duas vias independentes, quantos dizem o mesmo.
+    # Um valor com uma via só (a outra ainda no prazo) não é incoerência: fica fora da conta.
+    certs = [c for c in (panorama.fiscal.certificacoes() if panorama.fiscal else []) if len(c.vias) >= 2]
+    coerencia: float | None
+    if certs:
+        iguais = sum(1 for c in certs if c.selo is Selo.VERDE and not c.divergencia)
+        coerencia = iguais / len(certs)
+        motivos["coerencia"] = (f"{iguais} de {len(certs)} valores publicados em duas vias oficiais do mesmo "
+                                "período (no RGF e no RREO; no SIOPS, no SIOPE e no RREO; no RREO e na matriz de saldos "
+                                "contábeis; no SIAFI e na matriz) dizem o mesmo "
+                                "dentro de 1%")
+    else:
+        coerencia = None
+        motivos["coerencia"] = "nenhum valor da competência com duas vias independentes no banco"
+    motivos["tempestividade"] = motivo_tempo or (
+        f"{dias_lidos} de {dias_uteis} dias úteis com Diário Oficial publicado"
+        + (f", confirmado pelo índice do SILEG ({sileg} edições)" if sileg is not None else "")
+        if dias_uteis else "sem calendário de dias úteis da competência")
+    motivos["prestacao"] = ("prestações de contas das parcerias não publicadas" if prestacao == 0.0
+                            else "prestações de contas das parcerias publicadas")
     panorama.integridade = IndiceIntegridade(
-        # O Cadê o Queijo não segue cada real pelas nove estações; até a execução ser
-        # publicada, nenhum valor pago atravessa a trilha inteira com documento.
-        cobertura=0.0,
-        coerencia=0.0,  # nenhum valor do mês confirmado por duas vias
+        cobertura=cobertura,
+        coerencia=coerencia,
         tempestividade=tempestividade,
-        vinculo=vinculo,
+        vinculo=vinculo if ativas else None,
         prestacao=prestacao,
         minimo=minimo,
+        motivos=motivos,
     )
-    if pagamentos_mes == 0:
-        panorama.notas.append("Nenhum pagamento publicado na competência: a cobertura da trilha é zero.")
-    else:
-        panorama.notas.append(f"{pagamentos_mes} ato(s) de pagamento no Diário da competência, mas "
-                              "nenhum com as nove estações documentadas: a cobertura da trilha é zero.")
+    motivos["vinculo"] = (f"{sum(1 for e in ativas if e.get('com_vinculo'))} de {len(ativas)} entidades "
+                          f"com lançamento em {ano} têm contrato, termo ou convênio localizado"
+                          if ativas else "nenhuma entidade com lançamento no exercício")
     panorama.notas.append(f"O vínculo é a parte das {len(ativas)} entidades com lançamento em {ano} "
                           "que têm contrato, termo ou convênio localizado; a trilha não separa "
                           "os valores por exercício, então a medida é por entidade, não por real.")

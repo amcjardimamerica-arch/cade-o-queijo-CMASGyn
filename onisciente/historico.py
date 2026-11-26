@@ -27,7 +27,7 @@ from typing import Callable
 from urllib.parse import urlencode
 
 from . import RAIZ
-from .coletores import base
+from .coletores import base, msc, siope, siops, transparencia
 
 BANCO = RAIZ / "dados" / "onisciente" / "historico.db"
 SAIDA = RAIZ / "relatorios" / "onisciente"
@@ -38,6 +38,10 @@ SICONFI_ANTIGAS = ("https://apidatatransparencia.tesouro.gov.br/ords/siconfi/tt/
 QUERIDO_DIARIO = "https://api.queridodiario.ok.org.br/gazettes"
 SILEG_SOLR = "https://sileg.goiania.go.gov.br/solr-4.1.0/select"
 PNCP = "https://pncp.gov.br/api/consulta/v1/"
+TESOURO_PACOTE = ("https://www.tesourotransparente.gov.br/ckan/api/3/action/package_show"
+                  "?id=transferencias-constitucionais-para-municipios")
+TESOURO_BUSCA = ("https://www.tesourotransparente.gov.br/ckan/api/3/action/package_search"
+                 "?fq=name:transferencias-constitucionais-para-municipios")
 FNAS_PAGINA = "https://fnas.mds.gov.br/extracao-dos-valores-repassados-fundo-a-fundo/"
 FNAS_CONHECIDAS = {
     2024: "https://fnas.mds.gov.br/wp-content/uploads/2026/02/REPASSES_ANO_2024.xlsx",
@@ -160,6 +164,18 @@ CREATE TABLE IF NOT EXISTS contratos_pncp (pncp_id TEXT PRIMARY KEY, mes TEXT, d
 CREATE TABLE IF NOT EXISTS fontes (grupo TEXT, nome TEXT, url TEXT, ok INTEGER, http INTEGER, erro TEXT,
     esperado TEXT);
 CREATE TABLE IF NOT EXISTS normas (caminho TEXT, ok INTEGER, revogada INTEGER, erro TEXT);
+CREATE TABLE IF NOT EXISTS transferencias_tesouro (mes TEXT, item TEXT, destino TEXT, decendio1 REAL,
+    decendio2 REAL, decendio3 REAL, total REAL);
+CREATE TABLE IF NOT EXISTS transferencias_federais (mes TEXT, tipo TEXT, tipo_favorecido TEXT, orgao TEXT,
+    funcao TEXT, programa TEXT, acao TEXT, nome_acao TEXT, favorecido TEXT, nome_favorecido TEXT, valor REAL);
+CREATE TABLE IF NOT EXISTS msc_itens (mes TEXT, conta_contabil TEXT, poder_orgao TEXT, ano_fonte_recursos INTEGER,
+    fonte_recursos TEXT, funcao TEXT, subfuncao TEXT, natureza_receita TEXT, natureza_despesa TEXT,
+    ano_inscricao INTEGER, educacao_saude INTEGER, natureza_conta TEXT, valor REAL);
+CREATE TABLE IF NOT EXISTS msc_meses (mes TEXT, situacao TEXT, itens INTEGER, prazo TEXT, erro TEXT);
+CREATE TABLE IF NOT EXISTS externos_periodos (fonte TEXT, exercicio INTEGER, periodo INTEGER,
+    homologado TEXT, situacao TEXT, linhas INTEGER, erro TEXT);
+CREATE TABLE IF NOT EXISTS externos_itens (fonte TEXT, exercicio INTEGER, periodo INTEGER, quadro INTEGER,
+    titulo_quadro TEXT, ordem INTEGER, rotulo TEXT, coluna INTEGER, valor REAL);
 CREATE TABLE IF NOT EXISTS meta (chave TEXT PRIMARY KEY, valor TEXT);
 """
 
@@ -175,7 +191,16 @@ TABELAS_DO_MOTOR = {
     "pncp": [("coletas", "motor = 'pncp'"), ("contratacoes_pncp", ""), ("contratos_pncp", ""),
              ("meta", "chave IN ('pncp_orgaos', 'pncp_janelas', 'pncp_procura')")],
     "fontes": [("coletas", "motor = 'fontes'"), ("fontes", "")],
+    "siope": [("coletas", "motor = 'siope'"), ("externos_periodos", "fonte = 'SIOPE'"),
+              ("externos_itens", "fonte = 'SIOPE'")],
+    "siops": [("coletas", "motor = 'siops'"), ("externos_periodos", "fonte = 'SIOPS'"),
+              ("externos_itens", "fonte = 'SIOPS'")],
+    "tesouro": [("coletas", "motor = 'tesouro'"), ("transferencias_tesouro", ""),
+                ("meta", "chave = 'tesouro_meses'")],
     "normas": [("coletas", "motor = 'ctresb'"), ("normas", "")],
+    "transferencias": [("coletas", "motor = 'transferencias'"), ("transferencias_federais", ""),
+                       ("meta", "chave = 'transferencias_meses'")],
+    "msc": [("coletas", "motor = 'msc'"), ("msc_itens", ""), ("msc_meses", "")],
 }
 
 
@@ -231,6 +256,11 @@ class Banco:
 
 # --- Leitura com paciência ------------------------------------------------------------
 
+def _ftp_sem_arquivo(url: str, leitura: base.Leitura) -> bool:
+    """FTP respondeu 550 (arquivo inexistente): resposta definitiva, não falha de rede."""
+    return url.startswith("ftp://") and not leitura.ok and " 550" in (leitura.erro or "")
+
+
 @dataclass
 class Contexto:
     banco: Banco
@@ -250,7 +280,7 @@ class Contexto:
 
     def ler(self, motor: str, alvo: str, url: str, *, mes: str = "", tentativas: int = 3,
             cabecalhos: dict | None = None, tempo: int = 60,
-            disjuntor: bool = True) -> base.Leitura:
+            disjuntor: bool = True, formulario: dict | None = None) -> base.Leitura:
         """Lê com espera crescente em 429 e 5xx, e registra a chamada no banco."""
         limite = self.limites.get(motor)
         motivo = None
@@ -270,13 +300,16 @@ class Contexto:
         for n in range(tentativas):
             feitas = n + 1
             self.gastos[motor] = self.gastos.get(motor, 0) + 1
-            leitura = self.ler_url(url, tempo=tempo, cabecalhos=cabecalhos)
+            extra = {"formulario": formulario} if formulario else {}
+            leitura = self.ler_url(url, tempo=tempo, cabecalhos=cabecalhos, **extra)
             codigo = leitura.http
-            if leitura.ok or not (codigo == 429 or (codigo and codigo >= 500)
-                                  or leitura.erro.startswith(("TimeoutError", "URLError"))):
+            if leitura.ok or _ftp_sem_arquivo(url, leitura) or not (
+                    codigo == 429 or (codigo and codigo >= 500)
+                    or leitura.erro.startswith(("TimeoutError", "URLError"))):
                 break
             self.dormir(min(5 * 2 ** n, 60))
-        rede = not leitura.ok and (leitura.http is None or leitura.http >= 500)
+        rede = (not leitura.ok and (leitura.http is None or leitura.http >= 500)
+                and not _ftp_sem_arquivo(url, leitura))
         self.seguidas[motor] = self.seguidas.get(motor, 0) + 1 if rede else 0
         self._registrar(motor, alvo, mes, leitura, feitas, time.monotonic() - inicio)
         if self.pausa:
@@ -748,6 +781,276 @@ def motor_pncp(ctx: Contexto, ibge: int, municipio: str, cnpjs_conhecidos=(),
 
 # --- Motor 5: portais e endereços do sistema ------------------------------------------
 
+# --- Motor: transferências constitucionais do Tesouro (a segunda via do rio) -------------
+
+def recursos_tesouro(pacote: dict) -> dict[str, str]:
+    """Do pacote CKAN, o endereço da planilha mensal de cada mês (AAAA-MM)."""
+    achados = {}
+    resultado = pacote.get("result") or {}
+    pacotes = resultado.get("results") if "results" in resultado else [resultado]   # package_search ou _show
+    recursos = [r for p in pacotes or [] for r in (p.get("resources") or [])]
+    for r in recursos:
+        m = re.search(r"Mensal_Municipios_(\d{4})(\d{2})", r.get("name") or "")
+        if m and r.get("url"):
+            achados[f"{m.group(1)}-{m.group(2)}"] = r["url"]
+    return achados
+
+
+def _numero_br(texto: str) -> float:
+    t = (texto or "").strip()
+    if not t:
+        return 0.0
+    if "," in t:                      # 1.234,56 ou 1234,56
+        t = t.replace(".", "").replace(",", ".")
+    return float(t)
+
+
+def linhas_tesouro(conteudo: bytes, municipio: str, uf: str) -> list[dict]:
+    """As linhas do município na planilha mensal (separada por ';', em latin-1)."""
+    texto = conteudo.decode("latin-1")
+    linhas = texto.splitlines()
+    if not linhas or "Item transfer" not in linhas[0]:
+        raise ValueError("planilha sem o cabeçalho esperado (Item transferência)")
+    cab = [_norm(c) for c in linhas[0].split(";")]
+    pos = {nome: cab.index(nome) for nome in ("MUNICIPIO", "UF", "ANO", "MES", "ITEM TRANSFERENCIA",
+                                                "TRANSFERENCIA")}
+    dec = [i for i, c in enumerate(cab) if c.endswith("DECENDIO")]
+    alvo, saida = _norm(municipio), []
+    for linha in linhas[1:]:
+        c = linha.split(";")
+        if len(c) < len(cab) - 1 or _norm(c[pos["MUNICIPIO"]]) != alvo or c[pos["UF"]].strip() != uf:
+            continue
+        valores = [_numero_br(c[i]) for i in dec]
+        saida.append({"mes": f"{c[pos['ANO']].strip()}-{c[pos['MES']].strip().zfill(2)}",
+                      "item": c[pos["ITEM TRANSFERENCIA"]].strip(),
+                      "destino": c[pos["TRANSFERENCIA"]].strip(),
+                      "decendio1": valores[0], "decendio2": valores[1], "decendio3": valores[2],
+                      "total": round(sum(valores), 2)})
+    return saida
+
+
+def motor_tesouro(ctx: Contexto, municipio: str, uf: str) -> None:
+    """Transferências constitucionais (FPM, ITR, ICMS desonerado, IPI-exp...) mês a mês, por
+    decêndio, como o Tesouro publica: a via independente das receitas de transferência do RREO."""
+    pacote = None
+    for alvo, url in (("pacote", TESOURO_PACOTE), ("busca", TESOURO_BUSCA)):   # a busca é a 2ª porta do CKAN
+        leitura = ctx.ler("tesouro", alvo, url, tentativas=4, tempo=90)
+        pacote = _json(leitura) if leitura.ok else None
+        if pacote:
+            break
+    if pacote is None:
+        return
+    enderecos = recursos_tesouro(pacote)
+    lidos, nao_publicados = [], []
+    for mes in ctx.meses:
+        url = enderecos.get(mes)
+        if not url:
+            nao_publicados.append(mes)
+            continue
+        planilha = ctx.ler("tesouro", "planilha", url, mes=mes, tempo=120)
+        if not planilha.ok:
+            continue
+        try:
+            linhas = linhas_tesouro(planilha.conteudo, municipio, uf)
+        except (ValueError, IndexError) as e:
+            _anotar(ctx, "tesouro", "planilha", mes, url, f"formato: {e}")
+            continue
+        if not linhas:
+            _anotar(ctx, "tesouro", "planilha", mes, url, f"{municipio} não está na planilha")
+            continue
+        for linha in linhas:
+            ctx.banco.inserir("transferencias_tesouro", linha)
+        lidos.append(mes)
+    ctx.banco.inserir("meta", {"chave": "tesouro_meses", "valor": json.dumps(
+        {"lidos": lidos, "nao_publicados": nao_publicados})})
+
+
+# --- Motor: transferências federais (Portal da Transparência, base SIAFI) -------------------
+
+def motor_transferencias(ctx: Contexto, municipio: str, uf: str) -> None:
+    """O arquivo do mês de cada mês fechado: tudo o que a União transferiu ao Município e às
+    entidades com sede nele. Mês sem arquivo ainda é "não publicado"; arquivo ilegível é formato."""
+    lidos, nao_publicados = [], []
+    for mes in ctx.meses:
+        if fim_do_mes(mes) >= ctx.hoje:
+            continue
+        url = transparencia.url_mes(mes)
+        leitura = ctx.ler("transferencias", "mes", url, mes=mes, tempo=180)
+        if not leitura.ok:
+            if leitura.http in (403, 404):
+                nao_publicados.append(mes)
+            continue
+        try:
+            linhas = transparencia.linhas_do_municipio(leitura.conteudo, municipio, uf)
+        except ValueError as e:
+            if leitura.conteudo[:15].lstrip().lower().startswith((b"<!doctype", b"<html")):
+                nao_publicados.append(mes)   # o portal devolve a página, não o arquivo, para mês sem dado
+            else:
+                _anotar(ctx, "transferencias", "mes", mes, url, f"formato: {e}")
+            continue
+        if not linhas:
+            _anotar(ctx, "transferencias", "mes", mes, url, f"{municipio} não está no arquivo do mês")
+            continue
+        for linha in linhas:
+            if linha["mes"] == mes:
+                ctx.banco.inserir("transferencias_federais", linha)
+        lidos.append(mes)
+    ctx.banco.inserir("meta", {"chave": "transferencias_meses", "valor": json.dumps(
+        {"lidos": lidos, "nao_publicados": nao_publicados})})
+
+
+# --- Motor: MSC (a matriz de saldos contábeis do mês, por fonte e por função) ---------------
+
+def prazo_msc(mes: str) -> date:
+    """A MSC do mês se envia até o último dia do mês seguinte."""
+    return fim_do_mes(mes_seguinte(mes))
+
+
+def mes_seguinte(mes: str) -> str:
+    a, m = map(int, mes.split("-"))
+    return f"{a + (m == 12)}-{1 if m == 12 else m + 1:02d}"
+
+
+def motor_msc(ctx: Contexto, ibge: int) -> None:
+    """A classe 6 da MSC de cada mês fechado, página a página. Mês sem matriz dentro do prazo é
+    "no_prazo"; depois do prazo, "nao_entregue", que é lacuna do Município."""
+    for mes in ctx.meses:
+        if fim_do_mes(mes) >= ctx.hoje:
+            continue
+        prazo = prazo_msc(mes)
+        linha = {"mes": mes, "situacao": None, "itens": 0, "prazo": prazo.isoformat(), "erro": None}
+        itens: list[dict] = []
+        offset, ok = 0, True
+        while True:
+            url = msc.url(ibge, mes, offset=offset)
+            leitura = ctx.ler("msc", f"classe 6 +{offset}", url, mes=mes, tempo=120)
+            if not leitura.ok:
+                linha.update(situacao="falha", erro=leitura.erro or f"HTTP {leitura.http}")
+                ok = False
+                break
+            try:
+                pagina, mais = msc.pagina(leitura.conteudo)
+            except ValueError as e:
+                _anotar(ctx, "msc", f"classe 6 +{offset}", mes, url, f"formato: {e}")
+                linha.update(situacao="formato", erro=str(e)[:300])
+                ok = False
+                break
+            itens.extend(pagina)
+            if not mais or not pagina:
+                break
+            offset += len(pagina)
+        if ok:
+            if itens:
+                for it in itens:
+                    ctx.banco.inserir("msc_itens", {"mes": mes, **it})
+                linha.update(situacao="entregue", itens=len(itens))
+            else:
+                linha["situacao"] = "no_prazo" if ctx.hoje <= prazo else "nao_entregue"
+        ctx.banco.inserir("msc_meses", linha)
+
+
+# --- Motor: SIOPS (o demonstrativo da saúde, RREO Anexo 12, homologado no Ministério) -------
+
+def motor_siops(ctx: Contexto, municipio: str, uf_codigo: str) -> None:
+    """Para cada exercício do intervalo, os bimestres já fechados, como o SIOPS os publica."""
+    for ano in sorted({int(m[:4]) for m in ctx.meses}):
+        escolha = ctx.ler("siops", f"escolha {ano}", siops.url_escolha(uf_codigo, ano))
+        if not escolha.ok:
+            continue
+        pagina = siops.texto(escolha.conteudo)
+        codigos = siops.periodos(pagina)
+        mun = siops.codigo_municipio(pagina, municipio)
+        if not codigos or not mun:
+            _anotar(ctx, "siops", f"escolha {ano}", "", escolha.url,
+                    "formato: a página de escolha não trouxe os bimestres ou o município")
+            continue
+        for bim in range(1, 7):
+            per = Periodo("RREO", ano, bim)
+            # Todos os bimestres fechados de cada exercício tocado: o ritmo do ano anterior é a régua
+            # do piso antes do 6º bimestre (fiscal._ritmo).
+            if per.termina > ctx.hoje:
+                continue
+            linha_periodo = {"fonte": "SIOPS", "exercicio": ano, "periodo": bim, "homologado": None,
+                             "situacao": None, "linhas": 0, "erro": None}
+            codigo = codigos.get(bim)
+            if codigo is None:
+                linha_periodo.update(situacao="sem_periodo", erro="o SIOPS não oferece o bimestre")
+                ctx.banco.inserir("externos_periodos", linha_periodo)
+                continue
+            leitura = ctx.ler("siops", f"{ano}-{bim}", siops.RELATORIO, mes=per.meses[-1],
+                              formulario=siops.formulario(ano, uf_codigo, codigo, mun), tempo=90)
+            if not leitura.ok:
+                linha_periodo.update(situacao="falha", erro=leitura.erro)
+                ctx.banco.inserir("externos_periodos", linha_periodo)
+                continue
+            texto = siops.texto(leitura.conteudo)
+            try:
+                d = siops.ler(texto)
+            except ValueError as e:
+                nao = "NAO TRANSMITIU" in siops._norm(re.sub(r"<[^>]+>", " ", texto))
+                ausente = "no_prazo" if ctx.hoje <= per.prazo else "nao_entregue"
+                linha_periodo.update(situacao=ausente if nao else "formato", erro=str(e))
+                ctx.banco.inserir("externos_periodos", linha_periodo)
+                continue
+            if (d.exercicio, d.bimestre) != (ano, bim):
+                linha_periodo.update(situacao="formato",
+                                     erro=f"a página trouxe {d.bimestre}º bimestre de {d.exercicio}")
+                ctx.banco.inserir("externos_periodos", linha_periodo)
+                continue
+            for linha in d.linhas:
+                for coluna, valor in enumerate(linha.valores):
+                    if valor is None:
+                        continue
+                    ctx.banco.inserir("externos_itens", {
+                        "fonte": "SIOPS", "exercicio": ano, "periodo": bim, "quadro": linha.quadro,
+                        "titulo_quadro": linha.titulo_quadro, "ordem": linha.ordem, "rotulo": linha.rotulo,
+                        "coluna": coluna, "valor": valor})
+            linha_periodo.update(homologado=d.homologado, situacao="homologado", linhas=len(d.linhas))
+            ctx.banco.inserir("externos_periodos", linha_periodo)
+
+
+def motor_siope(ctx: Contexto, ibge6: str) -> None:
+    """O RREO Anexo 8 de cada bimestre fechado, pelo PDF que o FNDE publica no FTP do SIOPE.
+
+    Arquivo ausente no FTP (erro 550) é bimestre não transmitido ao SIOPE: lacuna do Município.
+    """
+    for ano in sorted({int(m[:4]) for m in ctx.meses}):
+        for bim in range(1, 7):
+            per = Periodo("RREO", ano, bim)
+            # Todos os bimestres fechados de cada exercício tocado: o ritmo do ano anterior é a régua
+            # do piso antes do 6º bimestre (fiscal._ritmo).
+            if per.termina > ctx.hoje:
+                continue
+            linha_periodo = {"fonte": "SIOPE", "exercicio": ano, "periodo": bim, "homologado": None,
+                             "situacao": None, "linhas": 0, "erro": None}
+            leitura = ctx.ler("siope", f"{ano}-{bim}", siope.url_pdf(ibge6, bim, ano), mes=per.meses[-1], tempo=90)
+            if not leitura.ok:
+                nao = "550" in (leitura.erro or "")
+                ausente = "no_prazo" if ctx.hoje <= per.prazo else "nao_entregue"   # LRF, art. 52: 30 dias
+                linha_periodo.update(situacao=ausente if nao else "falha", erro=leitura.erro)
+                ctx.banco.inserir("externos_periodos", linha_periodo)
+                continue
+            try:
+                d = siope.ler(leitura.conteudo)
+            except Exception as e:      # PDF ilegível: formato, não lacuna
+                linha_periodo.update(situacao="formato", erro=f"{type(e).__name__}: {e}")
+                ctx.banco.inserir("externos_periodos", linha_periodo)
+                continue
+            if (d.exercicio, d.bimestre) != (ano, bim):
+                linha_periodo.update(situacao="formato",
+                                     erro=f"o PDF traz o {d.bimestre}º bimestre de {d.exercicio}")
+                ctx.banco.inserir("externos_periodos", linha_periodo)
+                continue
+            for item in d.itens:
+                for coluna, valor in enumerate(item.valores):
+                    ctx.banco.inserir("externos_itens", {
+                        "fonte": "SIOPE", "exercicio": ano, "periodo": bim, "quadro": 0, "titulo_quadro": "",
+                        "ordem": item.ordem, "rotulo": f"{item.codigo}- {item.rotulo}"[:200],
+                        "coluna": coluna, "valor": valor})
+            linha_periodo.update(situacao="homologado", linhas=len(d.itens))
+            ctx.banco.inserir("externos_periodos", linha_periodo)
+
+
 def enderecos_configurados(raiz: Path = RAIZ) -> list[tuple[str, str, str, str]]:
     """(grupo, nome, url, esperado) de cada endereço nos arquivos de fontes do sistema."""
     import yaml
@@ -794,9 +1097,10 @@ def motor_normas(ctx: Contexto) -> None:
                                      "erro": r.get("erro")})
 
 
-MOTORES = ("siconfi", "querido_diario", "sileg", "fnas", "pncp", "fontes", "normas")
+MOTORES = ("siconfi", "querido_diario", "sileg", "fnas", "pncp", "fontes", "normas", "tesouro", "siops", "siope",
+           "transferencias", "msc")
 # Minutos que cada motor pode usar numa rodada (o fluxo do GitHub para em 180).
-TEMPO_DO_MOTOR = {"pncp": 75, "siconfi": 20}
+TEMPO_DO_MOTOR = {"pncp": 75, "siconfi": 20, "transferencias": 30, "msc": 20}
 TEMPO_PADRAO = 12
 
 
@@ -846,6 +1150,11 @@ def rodar(desde: str, ate: str, *, motores=MOTORES, caminho=BANCO, hoje: date | 
         "pncp": lambda: motor_pncp(ctx, alvo.ibge, alvo.municipio, orgaos_pncp, pncp_anterior),
         "fontes": lambda: motor_fontes(ctx),
         "normas": lambda: motor_normas(ctx),
+        "tesouro": lambda: motor_tesouro(ctx, alvo.municipio, alvo.uf),
+        "siops": lambda: motor_siops(ctx, alvo.municipio, str(alvo.ibge)[:2]),
+        "siope": lambda: motor_siope(ctx, str(alvo.ibge)[:6]),
+        "transferencias": lambda: motor_transferencias(ctx, alvo.municipio, alvo.uf),
+        "msc": lambda: motor_msc(ctx, alvo.siconfi_id_ente),
     }
     for nome in motores:
         inicio = time.monotonic()

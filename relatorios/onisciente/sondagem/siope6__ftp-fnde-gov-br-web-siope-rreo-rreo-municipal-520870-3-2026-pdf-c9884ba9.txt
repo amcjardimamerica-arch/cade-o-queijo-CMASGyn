@@ -1,0 +1,7 @@
+URL: ftp://ftp.fnde.gov.br/web/siope/RREO/RREO_Municipal_520870_3_2026.pdf
+POST: {}
+OK: False
+HTTP: None
+ERRO: URLError: timed out
+BYTES: 0
+

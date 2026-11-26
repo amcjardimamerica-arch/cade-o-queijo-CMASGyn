@@ -1,0 +1,7 @@
+URL: https://pncp.gov.br/api/pncp/v1/orgaos/04973965000111/contratos/2024/47/termos
+POST: {}
+OK: True
+HTTP: 204
+ERRO: 
+BYTES: 0
+

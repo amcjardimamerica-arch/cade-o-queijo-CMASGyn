@@ -1,0 +1,6 @@
+URL: https://www.fnde.gov.br/olinda-ide/servico/DADOS_ABERTOS_SIOPE/versao/v1/odata/$metadata
+OK: False
+HTTP: 500
+ERRO: HTTP 500
+BYTES: 0
+

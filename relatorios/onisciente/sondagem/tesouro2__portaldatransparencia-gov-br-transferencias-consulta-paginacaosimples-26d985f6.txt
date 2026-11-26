@@ -1,0 +1,7 @@
+URL: https://portaldatransparencia.gov.br/transferencias/consulta?paginacaoSimples=true&tamanhoPagina=10&offset=0&direcaoOrdenacao=asc&de=01%2F01%2F2025&ate=31%2F01%2F2025&uf=GO&nomeMunicipio=GOIANIA
+POST: {}
+OK: False
+HTTP: 405
+ERRO: HTTP 405
+BYTES: 0
+

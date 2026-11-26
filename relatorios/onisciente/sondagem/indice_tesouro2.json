@@ -1,0 +1,55 @@
+{
+ "quando": "2026-11-26T22:58:56+00:00",
+ "leituras": [
+  {
+   "fonte": "tesouro2",
+   "url": "https://www.tesourotransparente.gov.br/ckan/api/3/action/package_show?id=transferencias-constitucionais-para-municipios",
+   "post": null,
+   "ok": false,
+   "http": null,
+   "erro": "URLError: [Errno 104] Connection reset by peer",
+   "bytes": 0,
+   "arquivo": "tesouro2__www-tesourotransparente-gov-br-ckan-api-3-action-package-show-id-trans-25b85028.txt"
+  },
+  {
+   "fonte": "tesouro2",
+   "url": "https://www.tesourotransparente.gov.br/ckan/dataset/transferencias-constitucionais-para-municipios",
+   "post": null,
+   "ok": false,
+   "http": null,
+   "erro": "URLError: [Errno 104] Connection reset by peer",
+   "bytes": 0,
+   "arquivo": "tesouro2__www-tesourotransparente-gov-br-ckan-dataset-transferencias-constitucio-66f8a688.txt"
+  },
+  {
+   "fonte": "tesouro2",
+   "url": "https://demonstrativos.apps.bb.com.br/arrecadacao-federal",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 4592,
+   "arquivo": "tesouro2__demonstrativos-apps-bb-com-br-arrecadacao-federal-8c78cd9e.txt"
+  },
+  {
+   "fonte": "tesouro2",
+   "url": "https://portaldatransparencia.gov.br/download-de-dados/transferencias/202501",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 2557702,
+   "arquivo": "tesouro2__portaldatransparencia-gov-br-download-de-dados-transferencias-202501-4f3cb1dd.txt"
+  },
+  {
+   "fonte": "tesouro2",
+   "url": "https://portaldatransparencia.gov.br/transferencias/consulta?paginacaoSimples=true&tamanhoPagina=10&offset=0&direcaoOrdenacao=asc&de=01%2F01%2F2025&ate=31%2F01%2F2025&uf=GO&nomeMunicipio=GOIANIA",
+   "post": null,
+   "ok": false,
+   "http": 405,
+   "erro": "HTTP 405",
+   "bytes": 0,
+   "arquivo": "tesouro2__portaldatransparencia-gov-br-transferencias-consulta-paginacaosimples-26d985f6.txt"
+  }
+ ]
+}

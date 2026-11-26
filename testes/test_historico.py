@@ -1,6 +1,7 @@
 """Coleta histórica e diagnóstico, sem rede: as fontes respondem por um leitor falso."""
 
 import json
+import re
 from datetime import date
 from urllib.parse import parse_qs, urlparse
 
@@ -370,3 +371,271 @@ def test_pagina_do_banco_tem_os_dados_e_o_indice_liga_ela(rodada, tmp_path):
     assert len(json.loads(arquivos[3].read_text(encoding="utf-8"))) >= 1
     assert 'href="banco/index.html"' in parecer_html.indice([], "Goiânia", banco=True)
     assert "banco/index.html" not in parecer_html.indice([], "Goiânia")
+
+
+# --- Tesouro: transferências constitucionais, a segunda via do rio ------------------------
+
+def test_tesouro_le_a_planilha_do_mes_e_guarda_so_o_municipio(tmp_path):
+    pacote = {"result": {"resources": [
+        {"name": "Transferencia_Mensal_Municipios_202410.csv", "url": "https://t/202410.csv"},
+        {"name": "Transferencia_Mensal_Municipios_202411.csv", "url": "https://t/202411.csv"},
+        {"name": "Metadados", "url": "https://t/m.pdf"}]}}
+    planilha = ("Município;UF;ANO;Mês;1º Decêndio;2º Decêndio;3º Decêndio;Item transferência;"
+                "Transferência;\n"
+                "Goiânia;GO;2024;11;100.5;200;300;FPM;FPM;\n"
+                "Goiânia;GO;2024;11;25;50;75;FPM;FUNDEB;\n"
+                "Goiânia;SP;2024;11;9;9;9;FPM;FPM;\n"
+                "Anápolis;GO;2024;11;1;2;3;FPM;FPM;\n").encode("latin-1")
+
+    def leitor(url, **_):
+        if "package_show" in url:
+            return base.Leitura(True, url, json.dumps(pacote).encode(), http=200)
+        return base.Leitura(True, url, planilha, http=200)
+
+    banco = historico.rodar("2024-11", "2024-12", caminho=tmp_path / "h.db", motores=("tesouro",),
+                            hoje=date(2026, 11, 26), ler_url=leitor, dormir=lambda s: None, pausa=0)
+    linhas = banco.consultar("SELECT mes, item, destino, total FROM transferencias_tesouro ORDER BY destino")
+    assert linhas == [("2024-11", "FPM", "FPM", 600.5), ("2024-11", "FPM", "FUNDEB", 150.0)]
+    meses = json.loads(dict(banco.consultar("SELECT chave, valor FROM meta"))["tesouro_meses"])
+    assert meses == {"lidos": ["2024-11"], "nao_publicados": ["2024-12"]}
+    banco.fechar()
+
+
+def test_tesouro_usa_a_busca_do_ckan_quando_o_pacote_cai(tmp_path):
+    busca = {"result": {"count": 1, "results": [{"resources": [
+        {"name": "Transferencia_Mensal_Municipios_202411.csv", "url": "https://t/202411.csv"}]}]}}
+    planilha = ("Município;UF;ANO;Mês;1º Decêndio;2º Decêndio;3º Decêndio;Item transferência;Transferência;\n"
+                "Goiânia;GO;2024;11;1;2;3;FPM;FPM;\n").encode("latin-1")
+    pedidos = []
+
+    def leitor(url, **_):
+        pedidos.append(url)
+        if "package_show" in url:
+            return base.Leitura(False, url, erro="URLError: [Errno 104] Connection reset by peer")
+        if "package_search" in url:
+            return base.Leitura(True, url, json.dumps(busca).encode(), http=200)
+        return base.Leitura(True, url, planilha, http=200)
+
+    banco = historico.rodar("2024-11", "2024-11", caminho=tmp_path / "h.db", motores=("tesouro",),
+                            hoje=date(2026, 11, 26), ler_url=leitor, dormir=lambda s: None, pausa=0)
+    assert sum("package_show" in u for u in pedidos) == 4
+    assert banco.consultar("SELECT mes, total FROM transferencias_tesouro") == [("2024-11", 6.0)]
+    banco.fechar()
+
+
+def test_numero_da_planilha_do_tesouro():
+    assert historico._numero_br("1.234,56") == 1234.56
+    assert historico._numero_br("94869121.13") == 94869121.13
+    assert historico._numero_br("") == 0.0
+
+
+# --- SIOPS: o demonstrativo da saúde, lido pelo formulário público -------------------------
+
+DADOS = __import__("pathlib").Path(__file__).parent / "dados"
+
+
+def test_siops_le_o_bimestre_pelo_formulario_e_guarda_linha_a_linha(tmp_path):
+    escolha = (DADOS / "siops_escolha_go_2025.html").read_bytes()
+    relatorio = (DADOS / "siops_goiania_2025_6bim.html").read_bytes()
+    pedidos = []
+
+    def leitor(url, formulario=None, **_):
+        pedidos.append((url, formulario))
+        if "consleirespfiscal" in url:
+            return base.Leitura(True, url, escolha, http=200)
+        if formulario and formulario["cmbPeriodo"] == "2":
+            return base.Leitura(True, url, relatorio, http=200)
+        return base.Leitura(True, url, "O Municipio não transmitiu".encode("latin-1"), http=200)
+
+    banco = historico.rodar("2025-09", "2025-12", caminho=tmp_path / "h.db", motores=("siops",),
+                            hoje=date(2026, 11, 26), ler_url=leitor, dormir=lambda s: None, pausa=0)
+    postados = [f for _, f in pedidos if f]
+    # Todos os bimestres de 2025 (o ritmo do ano é a régua do piso), mesmo com o intervalo no fim do ano.
+    assert [f["cmbPeriodo"] for f in postados] == ["12", "14", "1", "18", "20", "2"]
+    assert all(f["cmbMunicipio[]"] == "520870" and f["cmbUF"] == "52" for f in postados)
+    periodos = banco.consultar("SELECT periodo, situacao, homologado FROM externos_periodos ORDER BY periodo")
+    assert periodos == [(n, "nao_entregue", None) for n in range(1, 6)] + [(6, "homologado", "06/02/26 10:00:59")]
+    pct = banco.consultar("SELECT coluna, valor FROM externos_itens WHERE rotulo LIKE 'PERCENTUAL DA RECEITA%' "
+                          "ORDER BY coluna")
+    assert pct == [(0, 21.54), (1, 21.33), (2, 21.23)]
+    d = diagnostico.diagnosticar(banco)
+    siops = [(a["tipo"], a["titulo"]) for a in d["achados"] if a["motor"] == "siops"]
+    assert siops == [("lacuna", f"Saúde: {n}º bimestre de 2025 sem demonstrativo homologado no SIOPS")
+                     for n in range(1, 6)]
+    assert d["contagens"]["siops_bimestres"] == {"homologado": 1, "nao_entregue": 5}
+    banco.fechar()
+
+
+# --- SIOPE: o demonstrativo da educação (RREO Anexo 8), pelo PDF público do FNDE ------------
+
+def test_siope_le_o_pdf_do_anexo_8_item_a_item():
+    from onisciente.coletores import siope
+    d = siope.ler((DADOS / "siope_goiania_2025_6bim.pdf").read_bytes())
+    assert (d.exercicio, d.bimestre) == (2025, 6)
+    assert len(d.itens) == 132
+    assert d.item("3").valores == [6272968000.0, 6121934479.38]
+    assert d.item("6.4").valores == [31179000.0, 50749514.66]
+    assert d.item("15").valores[3] == 84.01
+    assert d.item("18").valores[4] == 4.65
+    assert d.item("29").valores == [1530483619.84, 1581461177.17, 25.83]
+    assert d.item("33").valores[2] == 2068310203.86
+    d1 = siope.ler((DADOS / "siope_goiania_2026_1bim.pdf").read_bytes())
+    assert (d1.exercicio, d1.bimestre, d1.item("29").valores[2]) == (2026, 1, 7.5)
+    assert siope.url_pdf("520870", 5, 2026).endswith("/RREO_Municipal_520870_5_2026.pdf")
+    with pytest.raises(ValueError):
+        siope.ler(b"<html>nada</html>")
+
+
+def test_siope_guarda_o_bimestre_e_o_ftp_sem_arquivo_vira_lacuna(tmp_path):
+    pdf = (DADOS / "siope_goiania_2025_6bim.pdf").read_bytes()
+    pedidos = []
+
+    def leitor(url, **_):
+        pedidos.append(url)
+        if url.endswith("_6_2025.pdf"):
+            return base.Leitura(True, url, pdf)
+        if url.endswith("_4_2025.pdf"):
+            return base.Leitura(False, url, b"", erro="URLError: timed out")
+        if url.endswith("_1_2025.pdf"):
+            return base.Leitura(True, url, pdf)          # o PDF do 6º bimestre no lugar do 1º: formato
+        return base.Leitura(False, url, b"", erro="URLError: ftp error: 550 Failed to open file.")
+
+    banco = historico.rodar("2025-07", "2025-12", caminho=tmp_path / "h.db", motores=("siope",),
+                            hoje=date(2026, 11, 26), ler_url=leitor, dormir=lambda s: None, pausa=0)
+    # Todos os bimestres do exercício; a rede caída tenta 3 vezes, o 550 é resposta e não repete.
+    bims = [int(u.rsplit("/", 1)[1].split("_")[3]) for u in pedidos]
+    assert bims == [1, 2, 3, 4, 4, 4, 5, 6]
+    periodos = banco.consultar("SELECT periodo, situacao, linhas FROM externos_periodos WHERE fonte = 'SIOPE' "
+                               "ORDER BY periodo")
+    assert periodos == [(1, "formato", 0), (2, "nao_entregue", 0), (3, "nao_entregue", 0), (4, "falha", 0),
+                        (5, "nao_entregue", 0), (6, "homologado", 132)]
+    pct = banco.consultar("SELECT coluna, valor FROM externos_itens WHERE fonte = 'SIOPE' AND rotulo LIKE '29-%' "
+                          "ORDER BY coluna")
+    assert pct == [(0, 1530483619.84), (1, 1581461177.17), (2, 25.83)]
+    d = diagnostico.diagnosticar(banco)
+    achados = [(a["tipo"], a["titulo"]) for a in d["achados"] if a["motor"] == "siope"]
+    assert achados == [("falha", "Educação: 1º bimestre de 2025 não foi lido"),
+                       ("lacuna", "Educação: 2º bimestre de 2025 sem demonstrativo no SIOPE"),
+                       ("lacuna", "Educação: 3º bimestre de 2025 sem demonstrativo no SIOPE"),
+                       ("falha", "Educação: 4º bimestre de 2025 não foi lido"),
+                       ("lacuna", "Educação: 5º bimestre de 2025 sem demonstrativo no SIOPE")]
+    assert d["contagens"]["siope_bimestres"] == {"falha": 1, "formato": 1, "homologado": 1, "nao_entregue": 3}
+    banco.fechar()
+    # O 5º bimestre de 2026 terminou em 31/10: em 26/11 o prazo de 30 dias ainda corre.
+    banco = historico.rodar("2026-09", "2026-10", caminho=tmp_path / "p.db", motores=("siope",),
+                            hoje=date(2026, 11, 26), ler_url=leitor, dormir=lambda s: None, pausa=0)
+    assert banco.consultar("SELECT periodo, situacao FROM externos_periodos ORDER BY periodo") == [
+        (1, "nao_entregue"), (2, "nao_entregue"), (3, "nao_entregue"), (4, "nao_entregue"), (5, "no_prazo")]
+    d = diagnostico.diagnosticar(banco)
+    assert [(a["tipo"], a["titulo"]) for a in d["achados"] if a["motor"] == "siope"][-1] == (
+        "melhoria", "Educação: 5º bimestre de 2026 ainda não publicado no SIOPE")
+    banco.fechar()
+
+
+# --- Transferências federais: o arquivo do mês do Portal da Transparência ------------------
+
+def _zip_transferencias(linhas: list[list[str]]) -> bytes:
+    import io
+    import zipfile
+    cab = ["ANO / MÊS", "TIPO TRANSFERÊNCIA", "TIPO FAVORECIDO", "UF", "CÓDIGO MUNICÍPIO SIAFI", "NOME MUNICÍPIO",
+           "CÓDIGO ÓRGÃO SIAFI", "NOME ÓRGÃO", "NOME FUNÇÃO", "NOME PROGRAMA", "AÇÃO", "NOME AÇÃO",
+           "CÓDIGO FAVORECIDO", "NOME FAVORECIDO", "VALOR TRANSFERIDO"]
+    texto = "\n".join(";".join(f'"{c}"' for c in linha) for linha in [cab, *linhas])
+    saida = io.BytesIO()
+    with zipfile.ZipFile(saida, "w", zipfile.ZIP_DEFLATED) as z:
+        z.writestr("202501_Transferencias.csv", texto.encode("latin-1"))
+    return saida.getvalue()
+
+
+def test_transferencias_federais_do_mes_so_do_municipio(tmp_path):
+    fpm = ["202501", "Constitucionais e Royalties", "Administração Pública Municipal", "GO", "9373", "GOIANIA",
+           "-1", "Sem informação", "Encargos especiais", "TRANSFERENCIAS", "0044",
+           "TRANSFERENCIA AO FUNDO DE PARTICIPACAO DOS MUNICIPIOS - FPM", "01612092000123", "MUNICIPIO DE GOIANIA"]
+    arquivo = _zip_transferencias([
+        fpm + ["1000,50"], fpm + ["2000,25"],                                       # somadas
+        ["202501", "Legais, Voluntárias e Específicas", "Fundo Público", "GO", "9373", "GOIÂNIA", "36000",
+         "Ministério da Saúde", "Saúde", "SUS", "8585", "MEDIA E ALTA COMPLEXIDADE", "11111111000111",
+         "FUNDO MUNICIPAL DE SAUDE", "500"],
+        ["202501", "Constitucionais e Royalties", "Administração Pública Municipal", "GO", "9227",
+         "APARECIDA DE GOIANIA", "-1", "x", "x", "x", "0044", "FPM", "1", "MUNICIPIO DE APARECIDA", "9"],
+        ["202501", "Constitucionais e Royalties", "Administração Pública Municipal", "SP", "1", "GOIANIA",
+         "-1", "x", "x", "x", "0044", "FPM", "1", "outro", "9"]])
+    pedidos = []
+
+    def leitor(url, **_):
+        pedidos.append(url)
+        if url.endswith("/202501"):
+            return base.Leitura(True, url, arquivo, http=200)
+        return base.Leitura(True, url, b"<!DOCTYPE html><html>sem arquivo</html>", http=200)
+
+    banco = historico.rodar("2025-01", "2025-02", caminho=tmp_path / "h.db", motores=("transferencias",),
+                            hoje=date(2026, 11, 26), ler_url=leitor, dormir=lambda s: None, pausa=0)
+    assert [u.rsplit("/", 1)[1] for u in pedidos] == ["202501", "202502"]
+    linhas = banco.consultar("SELECT mes, nome_acao, nome_favorecido, valor FROM transferencias_federais "
+                             "ORDER BY valor DESC")
+    assert linhas == [("2025-01", "TRANSFERENCIA AO FUNDO DE PARTICIPACAO DOS MUNICIPIOS - FPM",
+                       "MUNICIPIO DE GOIANIA", 3000.75),
+                      ("2025-01", "MEDIA E ALTA COMPLEXIDADE", "FUNDO MUNICIPAL DE SAUDE", 500.0)]
+    d = diagnostico.diagnosticar(banco)
+    assert ("melhoria", "O Portal da Transparência ainda não publicou 2025-02") in [
+        (a["tipo"], a["titulo"]) for a in d["achados"] if a["motor"] == "transferencias"]
+    assert d["contagens"]["transferencias_federais"] == (1, 3500.75)
+    banco.fechar()
+
+
+def test_arquivo_de_transferencias_com_cabecalho_mudado_e_formato():
+    from onisciente.coletores import transparencia
+    with pytest.raises(ValueError, match="não é zip"):
+        transparencia.linhas_do_municipio(b"nada", "Goiânia", "GO")
+
+
+def _item_msc(conta, natureza, valor, **extra):
+    base_item = {"tipo_matriz": "MSCC", "cod_ibge": 5208707, "classe_conta": 6, "conta_contabil": conta,
+                 "poder_orgao": "10131", "ano_fonte_recursos": 1, "fonte_recursos": "1500", "funcao": None,
+                 "subfuncao": None, "exercicio": 2025, "mes_referencia": 1, "educacao_saude": None,
+                 "natureza_despesa": None, "ano_inscricao": None, "natureza_receita": None,
+                 "valor": valor, "natureza_conta": natureza, "tipo_valor": "period_change"}
+    base_item.update(extra)
+    return base_item
+
+
+def test_msc_guarda_as_paginas_do_mes_e_separa_prazo_de_lacuna(tmp_path):
+    import json as _json
+    pagina1 = {"items": [_item_msc("621200000", "C", 100.0, natureza_receita="17115111")] * 2,
+               "hasMore": True, "count": 2}
+    pagina2 = {"items": [_item_msc("622130400", "C", 40.0, fonte_recursos="1600", funcao="10",
+                                   subfuncao="302", natureza_despesa="33903900")], "hasMore": False, "count": 1}
+    pedidos = []
+
+    def leitor(url, **_):
+        pedidos.append(url)
+        mes = re.search(r"me_referencia=(\d+)", url).group(1)
+        ano = re.search(r"an_referencia=(\d+)", url).group(1)
+        if (ano, mes) == ("2025", "1"):
+            corpo = pagina2 if "offset=2" in url else pagina1
+        elif (ano, mes) == ("2025", "2"):
+            corpo = {"items": [], "hasMore": False, "count": 0}       # depois do prazo: lacuna
+        elif (ano, mes) == ("2026", "10"):
+            corpo = {"items": [], "hasMore": False, "count": 0}       # ainda no prazo
+        else:
+            return base.Leitura(True, url, b"<html>erro</html>", http=200)
+        return base.Leitura(True, url, _json.dumps(corpo).encode(), http=200)
+
+    banco = historico.rodar("2025-01", "2025-03", caminho=tmp_path / "h.db", motores=("msc",),
+                            hoje=date(2026, 11, 26), ler_url=leitor, dormir=lambda s: None, pausa=0)
+    assert banco.consultar("SELECT mes, situacao, itens FROM msc_meses ORDER BY mes") == [
+        ("2025-01", "entregue", 3), ("2025-02", "nao_entregue", 0), ("2025-03", "formato", 0)]
+    assert banco.consultar("SELECT conta_contabil, fonte_recursos, funcao, natureza_receita, natureza_conta, "
+                           "sum(valor) FROM msc_itens GROUP BY 1, 2, 3, 4, 5 ORDER BY 1") == [
+        ("621200000", "1500", None, "17115111", "C", 200.0),
+        ("622130400", "1600", "10", None, "C", 40.0)]
+    assert sum("offset=2" in u for u in pedidos) == 1
+    achados = {(a["tipo"], a["titulo"]) for a in diagnostico.diagnosticar(banco)["achados"] if a["motor"] == "msc"}
+    assert ("lacuna", "Matriz de saldos contábeis não enviada ao SICONFI: 2025-02") in achados
+    assert ("falha", "Matriz de saldos contábeis não lida: 2025-03") in achados
+    banco.fechar()
+
+    banco = historico.rodar("2026-10", "2026-10", caminho=tmp_path / "h2.db", motores=("msc",),
+                            hoje=date(2026, 11, 26), ler_url=leitor, dormir=lambda s: None, pausa=0)
+    assert banco.consultar("SELECT mes, situacao, prazo FROM msc_meses") == [("2026-10", "no_prazo", "2026-11-30")]
+    banco.fechar()

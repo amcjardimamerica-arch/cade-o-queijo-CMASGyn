@@ -31,6 +31,11 @@ NOME_DOS_MOTORES = {
     "pncp": "Contratações (PNCP)",
     "fontes": "Portais e endereços configurados",
     "ctresb": "Normas federais (ctresb/leis)",
+    "tesouro": "Transferências constitucionais (Tesouro)",
+    "siops": "Demonstrativo da saúde (SIOPS)",
+    "siope": "Demonstrativo da educação (SIOPE)",
+    "transferencias": "Transferências federais (Portal da Transparência)",
+    "msc": "Matriz de Saldos Contábeis (SICONFI)",
 }
 
 
@@ -240,6 +245,74 @@ def _proposta_de_rede(erro: str) -> str:
     return "Conferir o endereço da API e manter a outra via como reserva."
 
 
+def _externos(banco: Banco) -> list[Achado]:
+    """SIOPS, SIOPE e Tesouro: bimestre não homologado é lacuna do Município; leitura falha é do sistema."""
+    saida = []
+    for exercicio, periodo, situacao, erro in banco.consultar(
+            "SELECT exercicio, periodo, situacao, erro FROM externos_periodos WHERE fonte = 'SIOPS' "
+            "AND situacao <> 'homologado' ORDER BY exercicio, periodo"):
+        if situacao == "no_prazo":
+            saida.append(Achado("melhoria", "siops", f"Saúde: {periodo}º bimestre de {exercicio} ainda não "
+                                "publicado no SIOPS", "O prazo de 30 dias depois do bimestre ainda corre.",
+                                "A próxima coleta confere de novo; passado o prazo, vira lacuna."))
+        elif situacao == "nao_entregue":
+            saida.append(Achado("lacuna", "siops", f"Saúde: {periodo}º bimestre de {exercicio} sem demonstrativo "
+                                "homologado no SIOPS", "O SIOPS respondeu que o Município não transmitiu.",
+                                "Prazo da LC 141/2012, art. 39: o piso do bimestre fica sem dado (roxo)."))
+        else:
+            saida.append(Achado("falha", "siops", f"Saúde: {periodo}º bimestre de {exercicio} não foi lido",
+                                f"{situacao}: {erro}", "Rodar de novo só o motor siops; se repetir, conferir "
+                                "a página de consulta do SIOPS."))
+    for exercicio, periodo, situacao, erro in banco.consultar(
+            "SELECT exercicio, periodo, situacao, erro FROM externos_periodos WHERE fonte = 'SIOPE' "
+            "AND situacao <> 'homologado' ORDER BY exercicio, periodo"):
+        if situacao == "no_prazo":
+            saida.append(Achado("melhoria", "siope", f"Educação: {periodo}º bimestre de {exercicio} ainda não "
+                                "publicado no SIOPE", "O prazo de 30 dias depois do bimestre ainda corre.",
+                                "A próxima coleta confere de novo; passado o prazo, vira lacuna."))
+        elif situacao == "nao_entregue":
+            saida.append(Achado("lacuna", "siope", f"Educação: {periodo}º bimestre de {exercicio} sem demonstrativo "
+                                "no SIOPE", "O FNDE não tem o PDF do bimestre: o Município não transmitiu "
+                                "ou o FNDE ainda não publicou.",
+                                "Os pisos da educação e do FUNDEB do bimestre ficam com uma via só."))
+        else:
+            saida.append(Achado("falha", "siope", f"Educação: {periodo}º bimestre de {exercicio} não foi lido",
+                                f"{situacao}: {erro}", "Rodar de novo só o motor siope; se repetir, conferir "
+                                "o leitor do PDF do SIOPE."))
+    por_situacao: dict[str, list[str]] = {}
+    erros_msc: dict[str, str] = {}
+    for mes, situacao, erro in banco.consultar(
+            "SELECT mes, situacao, erro FROM msc_meses WHERE situacao <> 'entregue' ORDER BY mes"):
+        por_situacao.setdefault(situacao, []).append(mes)
+        erros_msc.setdefault(situacao, erro or "")
+    for situacao, meses in por_situacao.items():
+        if situacao == "no_prazo":
+            saida.append(Achado("melhoria", "msc", "Matriz de saldos contábeis ainda não enviada: " + _faixas(meses),
+                                "O prazo (último dia do mês seguinte) ainda corre.",
+                                "A coleta mensal confere de novo; passado o prazo, vira lacuna."))
+        elif situacao == "nao_entregue":
+            saida.append(Achado("lacuna", "msc", "Matriz de saldos contábeis não enviada ao SICONFI: " + _faixas(meses),
+                                "O SICONFI devolveu a matriz vazia depois do prazo.",
+                                "O rio e o desvio de finalidade desses meses ficam sem a via por fonte e função."))
+        else:
+            saida.append(Achado("falha", "msc", "Matriz de saldos contábeis não lida: " + _faixas(meses),
+                                f"{situacao}: {erros_msc[situacao]}",
+                                "Rodar de novo só o motor msc; se repetir, conferir a API do SICONFI."))
+    federais = json.loads(_meta(banco).get("transferencias_meses") or "null")
+    if federais and federais.get("nao_publicados"):
+        saida.append(Achado("melhoria", "transferencias", "O Portal da Transparência ainda não publicou "
+                            + _faixas(federais["nao_publicados"]),
+                            "O arquivo de transferências do mês sai depois do mês.",
+                            "A coleta mensal confere de novo."))
+    tesouro = json.loads(_meta(banco).get("tesouro_meses") or "null")
+    if tesouro and tesouro.get("nao_publicados"):
+        saida.append(Achado("melhoria", "tesouro", "O Tesouro ainda não publicou "
+                            + _faixas(tesouro["nao_publicados"]),
+                            "A planilha mensal das transferências constitucionais sai depois do mês.",
+                            "A coleta mensal confere de novo."))
+    return saida
+
+
 def _fnas(banco: Banco, lista: list[str]) -> list[Achado]:
     saida = []
     coletas = banco.consultar("SELECT alvo, ok, erro FROM coletas WHERE motor = 'fnas'")
@@ -422,7 +495,7 @@ def diagnosticar(banco: Banco, *, raiz: Path = RAIZ) -> dict:
     resumo = resumo_por_motor(banco)
     achados = (_motores_quebrados(meta) + _chamadas(resumo)
                + _siconfi(banco, _dominios_siconfi(raiz), raiz) + _diario(banco, lista)
-               + _fnas(banco, lista) + _pncp(banco, lista) + _fontes(banco) + _normas(banco)
+               + _fnas(banco, lista) + _externos(banco) + _pncp(banco, lista) + _fontes(banco) + _normas(banco)
                + _pareceres(lista, raiz) + _coletores_antigos(raiz))
     contagens = {
         "siconfi_itens": banco.consultar("SELECT COUNT(*) FROM siconfi_itens")[0][0],
@@ -437,6 +510,16 @@ def diagnosticar(banco: Banco, *, raiz: Path = RAIZ) -> dict:
         "contratacoes_pncp": banco.consultar("SELECT COUNT(*) FROM contratacoes_pncp")[0][0],
         "contratos_pncp": banco.consultar("SELECT COUNT(*), SUM(da_pasta) FROM contratos_pncp")[0],
         "fontes": banco.consultar("SELECT COUNT(*), SUM(ok) FROM fontes")[0],
+        "siops_bimestres": dict(banco.consultar(
+            "SELECT situacao, COUNT(*) FROM externos_periodos WHERE fonte = 'SIOPS' GROUP BY situacao")),
+        "siope_bimestres": dict(banco.consultar(
+            "SELECT situacao, COUNT(*) FROM externos_periodos WHERE fonte = 'SIOPE' GROUP BY situacao")),
+        "transferencias_federais": banco.consultar(
+            "SELECT COUNT(DISTINCT mes), ROUND(COALESCE(SUM(valor), 0), 2) FROM transferencias_federais")[0],
+        "msc_meses": banco.consultar(
+            "SELECT COUNT(DISTINCT mes), COUNT(*) FROM msc_itens")[0],
+        "transferencias_tesouro": banco.consultar(
+            "SELECT COUNT(*), ROUND(COALESCE(SUM(total), 0), 2) FROM transferencias_tesouro")[0],
     }
     return {"intervalo": meta["intervalo"], "rodada": meta.get("rodada"), "meses": lista,
             "motores": resumo, "contagens": contagens,

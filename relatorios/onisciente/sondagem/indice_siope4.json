@@ -1,0 +1,125 @@
+{
+ "quando": "2026-11-26T22:21:52+00:00",
+ "leituras": [
+  {
+   "fonte": "siope4",
+   "url": "https://www.fnde.gov.br/olinda-ide/servico/DADOS_ABERTOS_SIOPE/versao/v1/odata/Indicadores_Siope(Ano_Consulta=@Ano_Consulta,Num_Peri=@Num_Peri,Sig_UF=@Sig_UF)?@Ano_Consulta=2025&@Num_Peri=6&@Sig_UF='GO'&$filter=COD_MUNI%20eq%20520870&$format=json&$top=2000",
+   "post": null,
+   "ok": false,
+   "http": 500,
+   "erro": "HTTP 500",
+   "bytes": 0,
+   "arquivo": "siope4__www-fnde-gov-br-olinda-ide-servico-dados-abertos-siope-versao-v1-odata-a115c1ad.txt"
+  },
+  {
+   "fonte": "siope4",
+   "url": "https://www.fnde.gov.br/olinda-ide/servico/DADOS_ABERTOS_SIOPE/versao/v1/odata/Indicadores_Siope(Ano_Consulta=@Ano_Consulta,Num_Peri=@Num_Peri,Sig_UF=@Sig_UF)?@Ano_Consulta=2026&@Num_Peri=4&@Sig_UF='GO'&$filter=COD_MUNI%20eq%20520870&$format=json&$top=2000",
+   "post": null,
+   "ok": false,
+   "http": 500,
+   "erro": "HTTP 500",
+   "bytes": 0,
+   "arquivo": "siope4__www-fnde-gov-br-olinda-ide-servico-dados-abertos-siope-versao-v1-odata-4e612bc6.txt"
+  },
+  {
+   "fonte": "siope4",
+   "url": "https://www.fnde.gov.br/olinda-ide/servico/DADOS_ABERTOS_SIOPE/versao/v1/odata/Dados_Gerais_Siope(Ano_Consulta=@Ano_Consulta,Num_Peri=@Num_Peri,Sig_UF=@Sig_UF)?@Ano_Consulta=2025&@Num_Peri=6&@Sig_UF='GO'&$filter=COD_MUNI%20eq%20520870&$format=json&$top=2000",
+   "post": null,
+   "ok": false,
+   "http": 500,
+   "erro": "HTTP 500",
+   "bytes": 0,
+   "arquivo": "siope4__www-fnde-gov-br-olinda-ide-servico-dados-abertos-siope-versao-v1-odata-292fea79.txt"
+  },
+  {
+   "fonte": "siope4",
+   "url": "https://www.fnde.gov.br/olinda-ide/servico/DADOS_ABERTOS_SIOPE/versao/v1/odata/Dados_Gerais_Siope(Ano_Consulta=@Ano_Consulta,Num_Peri=@Num_Peri,Sig_UF=@Sig_UF)?@Ano_Consulta=2026&@Num_Peri=4&@Sig_UF='GO'&$filter=COD_MUNI%20eq%20520870&$format=json&$top=2000",
+   "post": null,
+   "ok": false,
+   "http": 500,
+   "erro": "HTTP 500",
+   "bytes": 0,
+   "arquivo": "siope4__www-fnde-gov-br-olinda-ide-servico-dados-abertos-siope-versao-v1-odata-ec786dd5.txt"
+  },
+  {
+   "fonte": "siope4",
+   "url": "https://www.fnde.gov.br/olinda-ide/servico/DADOS_ABERTOS_SIOPE/versao/v1/odata/Receita_Siope(Ano_Consulta=@Ano_Consulta,Num_Peri=@Num_Peri,Sig_UF=@Sig_UF)?@Ano_Consulta=2025&@Num_Peri=6&@Sig_UF='GO'&$filter=COD_MUNI%20eq%20520870&$format=json&$top=2000",
+   "post": null,
+   "ok": false,
+   "http": 500,
+   "erro": "HTTP 500",
+   "bytes": 0,
+   "arquivo": "siope4__www-fnde-gov-br-olinda-ide-servico-dados-abertos-siope-versao-v1-odata-3c2d6d7a.txt"
+  },
+  {
+   "fonte": "siope4",
+   "url": "https://www.fnde.gov.br/olinda-ide/servico/DADOS_ABERTOS_SIOPE/versao/v1/odata/Receita_Siope(Ano_Consulta=@Ano_Consulta,Num_Peri=@Num_Peri,Sig_UF=@Sig_UF)?@Ano_Consulta=2026&@Num_Peri=4&@Sig_UF='GO'&$filter=COD_MUNI%20eq%20520870&$format=json&$top=2000",
+   "post": null,
+   "ok": false,
+   "http": 500,
+   "erro": "HTTP 500",
+   "bytes": 0,
+   "arquivo": "siope4__www-fnde-gov-br-olinda-ide-servico-dados-abertos-siope-versao-v1-odata-beeda0de.txt"
+  },
+  {
+   "fonte": "siope4",
+   "url": "https://www.fnde.gov.br/olinda-ide/servico/DADOS_ABERTOS_SIOPE/versao/v1/odata/Despesas_Siope(Ano_Consulta=@Ano_Consulta,Num_Peri=@Num_Peri,Sig_UF=@Sig_UF)?@Ano_Consulta=2025&@Num_Peri=6&@Sig_UF='GO'&$filter=COD_MUNI%20eq%20520870&$format=json&$top=2000",
+   "post": null,
+   "ok": false,
+   "http": 500,
+   "erro": "HTTP 500",
+   "bytes": 0,
+   "arquivo": "siope4__www-fnde-gov-br-olinda-ide-servico-dados-abertos-siope-versao-v1-odata-a14f519f.txt"
+  },
+  {
+   "fonte": "siope4",
+   "url": "https://www.fnde.gov.br/olinda-ide/servico/DADOS_ABERTOS_SIOPE/versao/v1/odata/Despesas_Siope(Ano_Consulta=@Ano_Consulta,Num_Peri=@Num_Peri,Sig_UF=@Sig_UF)?@Ano_Consulta=2026&@Num_Peri=4&@Sig_UF='GO'&$filter=COD_MUNI%20eq%20520870&$format=json&$top=2000",
+   "post": null,
+   "ok": false,
+   "http": 500,
+   "erro": "HTTP 500",
+   "bytes": 0,
+   "arquivo": "siope4__www-fnde-gov-br-olinda-ide-servico-dados-abertos-siope-versao-v1-odata-c0644552.txt"
+  },
+  {
+   "fonte": "siope4",
+   "url": "https://www.fnde.gov.br/olinda-ide/servico/DADOS_ABERTOS_SIOPE/versao/v1/odata/Informacoes_Complementares_Siope(Ano_Consulta=@Ano_Consulta,Num_Peri=@Num_Peri,Sig_UF=@Sig_UF)?@Ano_Consulta=2025&@Num_Peri=6&@Sig_UF='GO'&$filter=COD_MUNI%20eq%20520870&$format=json&$top=2000",
+   "post": null,
+   "ok": false,
+   "http": 500,
+   "erro": "HTTP 500",
+   "bytes": 0,
+   "arquivo": "siope4__www-fnde-gov-br-olinda-ide-servico-dados-abertos-siope-versao-v1-odata-54fe7c42.txt"
+  },
+  {
+   "fonte": "siope4",
+   "url": "https://www.fnde.gov.br/olinda-ide/servico/DADOS_ABERTOS_SIOPE/versao/v1/odata/Informacoes_Complementares_Siope(Ano_Consulta=@Ano_Consulta,Num_Peri=@Num_Peri,Sig_UF=@Sig_UF)?@Ano_Consulta=2026&@Num_Peri=4&@Sig_UF='GO'&$filter=COD_MUNI%20eq%20520870&$format=json&$top=2000",
+   "post": null,
+   "ok": false,
+   "http": 500,
+   "erro": "HTTP 500",
+   "bytes": 0,
+   "arquivo": "siope4__www-fnde-gov-br-olinda-ide-servico-dados-abertos-siope-versao-v1-odata-614757ef.txt"
+  },
+  {
+   "fonte": "siope4",
+   "url": "https://www.fnde.gov.br/olinda-ide/servico/DADOS_ABERTOS_SIOPE/versao/v1/odata/Indicadores_Siope(Ano_Consulta=@Ano_Consulta,Num_Peri=@Num_Peri,Sig_UF=@Sig_UF)?@Ano_Consulta=2024&@Num_Peri=6&@Sig_UF='GO'&$format=json&$top=5",
+   "post": null,
+   "ok": false,
+   "http": 500,
+   "erro": "HTTP 500",
+   "bytes": 0,
+   "arquivo": "siope4__www-fnde-gov-br-olinda-ide-servico-dados-abertos-siope-versao-v1-odata-5d215ea9.txt"
+  },
+  {
+   "fonte": "siope4",
+   "url": "https://www.fnde.gov.br/olinda-ide/servico/DADOS_ABERTOS_SIOPE/versao/v1/aplicacao",
+   "post": null,
+   "ok": false,
+   "http": 500,
+   "erro": "HTTP 500",
+   "bytes": 0,
+   "arquivo": "siope4__www-fnde-gov-br-olinda-ide-servico-dados-abertos-siope-versao-v1-aplic-c7574d91.txt"
+  }
+ ]
+}

@@ -1,0 +1,7 @@
+URL: https://www.fnde.gov.br/siope/consultarRREOMunicipal.do
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 0
+

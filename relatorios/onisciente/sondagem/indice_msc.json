@@ -1,0 +1,45 @@
+{
+ "quando": "2026-11-26T23:07:07+00:00",
+ "leituras": [
+  {
+   "fonte": "msc",
+   "url": "https://apidatalake.tesouro.gov.br/ords/siconfi/tt/msc_orcamentaria?id_ente=5208707&an_referencia=2025&me_referencia=12&co_tipo_matriz=MSCC&classe_conta=6&id_tv=period_change",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 1596485,
+   "arquivo": "msc__apidatalake-tesouro-gov-br-ords-siconfi-tt-msc-orcamentaria-id-ente-52-fac5a6f7.txt"
+  },
+  {
+   "fonte": "msc",
+   "url": "https://apidatalake.tesouro.gov.br/ords/siconfi/tt/msc_orcamentaria?id_ente=5208707&an_referencia=2025&me_referencia=12&co_tipo_matriz=MSCC&classe_conta=5&id_tv=period_change",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 256796,
+   "arquivo": "msc__apidatalake-tesouro-gov-br-ords-siconfi-tt-msc-orcamentaria-id-ente-52-90284e7e.txt"
+  },
+  {
+   "fonte": "msc",
+   "url": "https://apidatalake.tesouro.gov.br/ords/siconfi/tt/msc_orcamentaria?id_ente=5208707&an_referencia=2025&me_referencia=12&co_tipo_matriz=MSCE&classe_conta=6&id_tv=ending_balance",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 240509,
+   "arquivo": "msc__apidatalake-tesouro-gov-br-ords-siconfi-tt-msc-orcamentaria-id-ente-52-ef318266.txt"
+  },
+  {
+   "fonte": "msc",
+   "url": "https://apidatalake.tesouro.gov.br/ords/siconfi/tt/msc_controle?id_ente=5208707&an_referencia=2025&me_referencia=12&co_tipo_matriz=MSCC&classe_conta=8&id_tv=ending_balance",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 12785,
+   "arquivo": "msc__apidatalake-tesouro-gov-br-ords-siconfi-tt-msc-controle-id-ente-520870-8c7ff60a.txt"
+  }
+ ]
+}

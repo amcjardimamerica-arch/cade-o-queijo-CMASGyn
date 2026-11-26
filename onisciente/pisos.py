@@ -60,14 +60,14 @@ class Medida:
     denominador: float
     percentual: float | None
     limite: float
-    situacao: str                     # cumpre, alerta, prudencial, descumpre, sem_dado
+    situacao: str                     # cumpre, acompanha, alerta, prudencial, descumpre, sem_dado
     declarado: float | None = None
     divergencia: bool = False
     selo: Selo | None = None
 
     @property
     def cumpre(self) -> bool:
-        return self.situacao in {"cumpre", "alerta", "prudencial"}
+        return self.situacao in {"cumpre", "acompanha", "alerta", "prudencial"}
 
 
 def _limite(regra: Regra, faixa: str | None) -> float:

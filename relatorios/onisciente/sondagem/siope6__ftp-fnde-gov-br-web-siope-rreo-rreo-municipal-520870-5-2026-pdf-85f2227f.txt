@@ -1,0 +1,7 @@
+URL: ftp://ftp.fnde.gov.br/web/siope/RREO/RREO_Municipal_520870_5_2026.pdf
+POST: {}
+OK: False
+HTTP: None
+ERRO: URLError: <urlopen error ftp error: error_perm('550 Failed to change directory.')>
+BYTES: 0
+

@@ -1,0 +1,1058 @@
+URL: https://www.fnde.gov.br/siope/relatorioRREOMunicipal2006.do
+POST: {"acao": "pesquisar", "pag": "result", "anos": "2026", "periodos": "5", "cod_uf": "52", "municipios": "520870"}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 25282
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin 
+
+template="/Templates/report_template.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>SIOPE</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Language" content="English" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<!-- InstanceBeginEditable name="head" -->
+<script language="javascript" src="functions.js"></script>
+  <script src='https://www.google.com/recaptcha/api.js' type="text/javascript" async defer></script>
+<!-- InstanceEndEditable -->
+</head>
+<body>
+
+<div id="wrap">
+
+<script type="text/javascript">
+    var UA = navigator.userAgent;
+    var css = "";
+    if (UA.indexOf('MSIE') > -1) {
+        css = '<link rel="stylesheet" type="text/css" href="styleImpressao.css" media="print"/>';
+    }
+    // else if (UA.indexOf('Firefox') > -1) {}
+    document.write(css);
+</script>
+
+<div id="report_header_cabecalho">
+    <table style="width:100%">
+        <tr>
+            <td>
+                <div style="display: flex; align-items: center; justify-content: space-between; max-height: 45px; ">
+                    <a href="http://www.fnde.gov.br/home/" target="_blank">
+                        <img src="images/logo.png" style="max-height: 45px;" alt="Logo FNDE">
+                    </a>
+                    <img src="images/logomarca_siope.gif" style="max-height: 35px; padding-right: 10px;" alt="Logo SIOPE">
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="frame">
+<!-- InstanceBeginEditable name="ContentRegion" -->
+<script type="text/javascript" language="JavaScript1.2" >
+function submitFormulario(){
+	 var ano = document.formRREO.anos.value;
+	// var estado = document.formRREO.cod_uf.value;
+	 var municipio = document.formRREO.municipios.value;
+	 var periodo = document.formRREO.periodos.value;
+	 var link = "ftp://ftp.fnde.gov.br/web/siope/RREO/RREO_Municipal";
+	 var parametros = link + '_' + municipio + '_' + periodo + '_' + ano + '.pdf';
+
+//	 if (ano == 2010){
+ //   	 window.open(parametros);  
+    	       
+  //       } 
+	 document.formRREO.acao.value = "pesquisar";
+	 document.formRREO.submit();
+}
+
+function atualizar(){
+	 document.formRREO.acao.value = "atualizar";
+	 document.formRREO.periodos.options[document.formRREO.periodos.selectedIndex].value 
+
+= -1;	 
+	 document.formRREO.submit();
+}
+</script>
+
+<h1>Relat&oacute;rio Resumido da Execu&ccedil;&atilde;o Or&ccedil;ament&aacute;ria - RREO - Anexo X da Lei de Responsabilidade 
+
+Fiscal</h1>
+
+<br />
+
+  <div style="
+        color: #842029;
+        background: #f8d7da;
+        padding: 10px 15px;
+        margin-bottom: 15px;
+        border: 1px solid #842029;
+        border-left: 5px solid #842029;
+        font-weight: bolder;
+    ">
+        É necessário validar o captcha</div>
+<div align="center">
+
+<form name="formRREO" action="relatorioRREOMunicipal2006.do" method="post">
+<input name="acao" type="hidden" id="acao" value="" >
+<input name="pag" type="hidden" id="pag" value="result" >
+    
+<table class="searchPanel">
+<tr>
+  <th><label>Ano:</label>&nbsp;</th>
+  <td>
+    <select name="anos">
+    <option value='2026'
+        selected
+        >2026</option>
+        <option value='2025'
+        
+        >2025</option>
+        <option value='2024'
+        
+        >2024</option>
+        <option value='2023'
+        
+        >2023</option>
+        <option value='2022'
+        
+        >2022</option>
+        <option value='2021'
+        
+        >2021</option>
+        <option value='2020'
+        
+        >2020</option>
+        <option value='2019'
+        
+        >2019</option>
+        <option value='2018'
+        
+        >2018</option>
+        <option value='2017'
+        
+        >2017</option>
+        <option value='2016'
+        
+        >2016</option>
+        <option value='2015'
+        
+        >2015</option>
+        <option value='2014'
+        
+        >2014</option>
+        <option value='2013'
+        
+        >2013</option>
+        <option value='2012'
+        
+        >2012</option>
+        <option value='2011'
+        
+        >2011</option>
+        <option value='2010'
+        
+        >2010</option>
+        <option value='2009'
+        
+        >2009</option>
+        <option value='2008'
+        
+        >2008</option>
+        <option value='2007'
+        
+        >2007</option>
+        <option value='2006'
+        
+        >2006</option>
+        </select>
+  </td>
+</tr>
+<tr>
+  <th><label>Per&iacute;odo:</label>&nbsp;</th>
+  <td>
+    <select name="periodos">
+      <option value='6'
+          
+          >Anual</option>
+        <option value='5'
+          selected
+          
+          >5º Bimestre</option>
+        <option value='4'
+          
+          >4º Bimestre</option>
+        <option value='3'
+          
+          >3º Bimestre</option>
+        <option value='2'
+          
+          >2º Bimestre</option>
+        <option value='1'
+          
+          >1º Bimestre</option>
+        </select>
+  </td>
+</tr>	
+<tr>    
+  <th><label>UF:</label>&nbsp;</th>
+  <td>    
+   <select onChange="atualizar()" name="cod_uf">
+    <option value='12'
+      
+      >Acre</option>
+      <option value='27'
+      
+      >Alagoas</option>
+      <option value='16'
+      
+      >Amapa</option>
+      <option value='13'
+      
+      >Amazonas</option>
+      <option value='29'
+      
+      >Bahia</option>
+      <option value='23'
+      
+      >Ceara</option>
+      <option value='32'
+      
+      >Espirito Santo</option>
+      <option value='52'
+      selected
+      
+      >Goias</option>
+      <option value='21'
+      
+      >Maranhao</option>
+      <option value='51'
+      
+      >Mato Grosso</option>
+      <option value='50'
+      
+      >Mato Grosso do Sul</option>
+      <option value='31'
+      
+      >Minas Gerais</option>
+      <option value='15'
+      
+      >Para</option>
+      <option value='25'
+      
+      >Paraiba</option>
+      <option value='41'
+      
+      >Parana</option>
+      <option value='26'
+      
+      >Pernambuco</option>
+      <option value='22'
+      
+      >Piaui</option>
+      <option value='33'
+      
+      >Rio de Janeiro</option>
+      <option value='24'
+      
+      >Rio Grande do Norte</option>
+      <option value='43'
+      
+      >Rio Grande do Sul</option>
+      <option value='11'
+      
+      >Rondonia</option>
+      <option value='14'
+      
+      >Roraima</option>
+      <option value='42'
+      
+      >Santa Catarina</option>
+      <option value='35'
+      
+      >Sao Paulo</option>
+      <option value='28'
+      
+      >Sergipe</option>
+      <option value='17'
+      
+      >Tocantins</option>
+      </select>
+  </td>
+</tr>
+<tr>
+
+  <th><label>Munic&iacute;pio:</label>&nbsp;</th>
+  <td>
+    <select name="municipios">
+    <option value='520005' 
+      
+      >Abadia de Goiás</option> 
+      <option value='520010' 
+      
+      >Abadiânia</option> 
+      <option value='520013' 
+      
+      >Acreúna</option> 
+      <option value='520015' 
+      
+      >Adelândia</option> 
+      <option value='520017' 
+      
+      >Água Fria de Goiás</option> 
+      <option value='520020' 
+      
+      >Água Limpa</option> 
+      <option value='520025' 
+      
+      >Águas Lindas de Goiás</option> 
+      <option value='520030' 
+      
+      >Alexânia</option> 
+      <option value='520050' 
+      
+      >Aloândia</option> 
+      <option value='520055' 
+      
+      >Alto Horizonte</option> 
+      <option value='520060' 
+      
+      >Alto Paraíso de Goiás</option> 
+      <option value='520080' 
+      
+      >Alvorada do Norte</option> 
+      <option value='520082' 
+      
+      >Amaralina</option> 
+      <option value='520085' 
+      
+      >Americano do Brasil</option> 
+      <option value='520090' 
+      
+      >Amorinópolis</option> 
+      <option value='520110' 
+      
+      >Anápolis</option> 
+      <option value='520120' 
+      
+      >Anhanguera</option> 
+      <option value='520130' 
+      
+      >Anicuns</option> 
+      <option value='520140' 
+      
+      >Aparecida de Goiânia</option> 
+      <option value='520145' 
+      
+      >Aparecida do Rio Doce</option> 
+      <option value='520150' 
+      
+      >Aporé</option> 
+      <option value='520160' 
+      
+      >Araçu</option> 
+      <option value='520170' 
+      
+      >Aragarças</option> 
+      <option value='520180' 
+      
+      >Aragoiânia</option> 
+      <option value='520215' 
+      
+      >Araguapaz</option> 
+      <option value='520235' 
+      
+      >Arenópolis</option> 
+      <option value='520250' 
+      
+      >Aruanã</option> 
+      <option value='520260' 
+      
+      >Aurilândia</option> 
+      <option value='520280' 
+      
+      >Avelinópolis</option> 
+      <option value='520310' 
+      
+      >Baliza</option> 
+      <option value='520320' 
+      
+      >Barro Alto</option> 
+      <option value='520330' 
+      
+      >Bela Vista de Goiás</option> 
+      <option value='520340' 
+      
+      >Bom Jardim de Goiás</option> 
+      <option value='520350' 
+      
+      >Bom Jesus de Goiás</option> 
+      <option value='520355' 
+      
+      >Bonfinópolis</option> 
+      <option value='520357' 
+      
+      >Bonópolis</option> 
+      <option value='520360' 
+      
+      >Brazabrantes</option> 
+      <option value='520380' 
+      
+      >Britânia</option> 
+      <option value='520390' 
+      
+      >Buriti Alegre</option> 
+      <option value='520393' 
+      
+      >Buriti de Goiás</option> 
+      <option value='520396' 
+      
+      >Buritinópolis</option> 
+      <option value='520400' 
+      
+      >Cabeceiras</option> 
+      <option value='520410' 
+      
+      >Cachoeira Alta</option> 
+      <option value='520420' 
+      
+      >Cachoeira de Goiás</option> 
+      <option value='520425' 
+      
+      >Cachoeira Dourada</option> 
+      <option value='520430' 
+      
+      >Caçu</option> 
+      <option value='520440' 
+      
+      >Caiapônia</option> 
+      <option value='520450' 
+      
+      >Caldas Novas</option> 
+      <option value='520455' 
+      
+      >Caldazinha</option> 
+      <option value='520460' 
+      
+      >Campestre de Goiás</option> 
+      <option value='520465' 
+      
+      >Campinaçu</option> 
+      <option value='520470' 
+      
+      >Campinorte</option> 
+      <option value='520480' 
+      
+      >Campo Alegre de Goiás</option> 
+      <option value='520485' 
+      
+      >Campo Limpo de Goiás</option> 
+      <option value='520490' 
+      
+      >Campos Belos</option> 
+      <option value='520495' 
+      
+      >Campos Verdes</option> 
+      <option value='520500' 
+      
+      >Carmo do Rio Verde</option> 
+      <option value='520505' 
+      
+      >Castelândia</option> 
+      <option value='520510' 
+      
+      >Catalão</option> 
+      <option value='520520' 
+      
+      >Caturaí</option> 
+      <option value='520530' 
+      
+      >Cavalcante</option> 
+      <option value='520540' 
+      
+      >Ceres</option> 
+      <option value='520545' 
+      
+      >Cezarina</option> 
+      <option value='520547' 
+      
+      >Chapadão do Céu</option> 
+      <option value='520549' 
+      
+      >Cidade Ocidental</option> 
+      <option value='520551' 
+      
+      >Cocalzinho de Goiás</option> 
+      <option value='520552' 
+      
+      >Colinas do Sul</option> 
+      <option value='520570' 
+      
+      >Córrego do Ouro</option> 
+      <option value='520580' 
+      
+      >Corumbá de Goiás</option> 
+      <option value='520590' 
+      
+      >Corumbaíba</option> 
+      <option value='520620' 
+      
+      >Cristalina</option> 
+      <option value='520630' 
+      
+      >Cristianópolis</option> 
+      <option value='520640' 
+      
+      >Crixás</option> 
+      <option value='520650' 
+      
+      >Cromínia</option> 
+      <option value='520660' 
+      
+      >Cumari</option> 
+      <option value='520670' 
+      
+      >Damianópolis</option> 
+      <option value='520680' 
+      
+      >Damolândia</option> 
+      <option value='520690' 
+      
+      >Davinópolis</option> 
+      <option value='520710' 
+      
+      >Diorama</option> 
+      <option value='520830' 
+      
+      >Divinópolis de Goiás</option> 
+      <option value='520725' 
+      
+      >Doverlândia</option> 
+      <option value='520735' 
+      
+      >Edealina</option> 
+      <option value='520740' 
+      
+      >Edéia</option> 
+      <option value='520750' 
+      
+      >Estrela do Norte</option> 
+      <option value='520753' 
+      
+      >Faina</option> 
+      <option value='520760' 
+      
+      >Fazenda Nova</option> 
+      <option value='520780' 
+      
+      >Firminópolis</option> 
+      <option value='520790' 
+      
+      >Flores de Goiás</option> 
+      <option value='520800' 
+      
+      >Formosa</option> 
+      <option value='520810' 
+      
+      >Formoso</option> 
+      <option value='520815' 
+      
+      >Gameleira de Goiás</option> 
+      <option value='520840' 
+      
+      >Goianápolis</option> 
+      <option value='520850' 
+      
+      >Goiandira</option> 
+      <option value='520860' 
+      
+      >Goianésia</option> 
+      <option value='520870' 
+      selected
+      	
+      >Goiânia</option> 
+      <option value='520880' 
+      
+      >Goianira</option> 
+      <option value='520890' 
+      
+      >Goiás</option> 
+      <option value='520910' 
+      
+      >Goiatuba</option> 
+      <option value='520915' 
+      
+      >Gouvelândia</option> 
+      <option value='520920' 
+      
+      >Guapó</option> 
+      <option value='520929' 
+      
+      >Guaraíta</option> 
+      <option value='520940' 
+      
+      >Guarani de Goiás</option> 
+      <option value='520945' 
+      
+      >Guarinos</option> 
+      <option value='520960' 
+      
+      >Heitoraí</option> 
+      <option value='520970' 
+      
+      >Hidrolândia</option> 
+      <option value='520980' 
+      
+      >Hidrolina</option> 
+      <option value='520990' 
+      
+      >Iaciara</option> 
+      <option value='520993' 
+      
+      >Inaciolândia</option> 
+      <option value='520995' 
+      
+      >Indiara</option> 
+      <option value='521000' 
+      
+      >Inhumas</option> 
+      <option value='521010' 
+      
+      >Ipameri</option> 
+      <option value='521015' 
+      
+      >Ipiranga de Goiás</option> 
+      <option value='521020' 
+      
+      >Iporá</option> 
+      <option value='521030' 
+      
+      >Israelândia</option> 
+      <option value='521040' 
+      
+      >Itaberaí</option> 
+      <option value='521056' 
+      
+      >Itaguari</option> 
+      <option value='521060' 
+      
+      >Itaguaru</option> 
+      <option value='521080' 
+      
+      >Itajá</option> 
+      <option value='521090' 
+      
+      >Itapaci</option> 
+      <option value='521100' 
+      
+      >Itapirapuã</option> 
+      <option value='521120' 
+      
+      >Itapuranga</option> 
+      <option value='521130' 
+      
+      >Itarumã</option> 
+      <option value='521140' 
+      
+      >Itauçu</option> 
+      <option value='521150' 
+      
+      >Itumbiara</option> 
+      <option value='521160' 
+      
+      >Ivolândia</option> 
+      <option value='521170' 
+      
+      >Jandaia</option> 
+      <option value='521180' 
+      
+      >Jaraguá</option> 
+      <option value='521190' 
+      
+      >Jataí</option> 
+      <option value='521200' 
+      
+      >Jaupaci</option> 
+      <option value='521205' 
+      
+      >Jesúpolis</option> 
+      <option value='521210' 
+      
+      >Joviânia</option> 
+      <option value='521220' 
+      
+      >Jussara</option> 
+      <option value='521225' 
+      
+      >Lagoa Santa</option> 
+      <option value='521230' 
+      
+      >Leopoldo de Bulhões</option> 
+      <option value='521250' 
+      
+      >Luziânia</option> 
+      <option value='521260' 
+      
+      >Mairipotaba</option> 
+      <option value='521270' 
+      
+      >Mambaí</option> 
+      <option value='521280' 
+      
+      >Mara Rosa</option> 
+      <option value='521290' 
+      
+      >Marzagão</option> 
+      <option value='521295' 
+      
+      >Matrinchã</option> 
+      <option value='521300' 
+      
+      >Maurilândia</option> 
+      <option value='521305' 
+      
+      >Mimoso de Goiás</option> 
+      <option value='521308' 
+      
+      >Minaçu</option> 
+      <option value='521310' 
+      
+      >Mineiros</option> 
+      <option value='521340' 
+      
+      >Moiporá</option> 
+      <option value='521350' 
+      
+      >Monte Alegre de Goiás</option> 
+      <option value='521370' 
+      
+      >Montes Claros de Goiás</option> 
+      <option value='521375' 
+      
+      >Montividiu</option> 
+      <option value='521377' 
+      
+      >Montividiu do Norte</option> 
+      <option value='521380' 
+      
+      >Morrinhos</option> 
+      <option value='521385' 
+      
+      >Morro Agudo de Goiás</option> 
+      <option value='521390' 
+      
+      >Mossâmedes</option> 
+      <option value='521400' 
+      
+      >Mozarlândia</option> 
+      <option value='521405' 
+      
+      >Mundo Novo</option> 
+      <option value='521410' 
+      
+      >Mutunópolis</option> 
+      <option value='521440' 
+      
+      >Nazário</option> 
+      <option value='521450' 
+      
+      >Nerópolis</option> 
+      <option value='521460' 
+      
+      >Niquelândia</option> 
+      <option value='521470' 
+      
+      >Nova América</option> 
+      <option value='521480' 
+      
+      >Nova Aurora</option> 
+      <option value='521483' 
+      
+      >Nova Crixás</option> 
+      <option value='521486' 
+      
+      >Nova Glória</option> 
+      <option value='521487' 
+      
+      >Nova Iguaçu de Goiás</option> 
+      <option value='521490' 
+      
+      >Nova Roma</option> 
+      <option value='521500' 
+      
+      >Nova Veneza</option> 
+      <option value='521520' 
+      
+      >Novo Brasil</option> 
+      <option value='521523' 
+      
+      >Novo Gama</option> 
+      <option value='521525' 
+      
+      >Novo Planalto</option> 
+      <option value='521530' 
+      
+      >Orizona</option> 
+      <option value='521540' 
+      
+      >Ouro Verde de Goiás</option> 
+      <option value='521550' 
+      
+      >Ouvidor</option> 
+      <option value='521560' 
+      
+      >Padre Bernardo</option> 
+      <option value='521565' 
+      
+      >Palestina de Goiás</option> 
+      <option value='521570' 
+      
+      >Palmeiras de Goiás</option> 
+      <option value='521580' 
+      
+      >Palmelo</option> 
+      <option value='521590' 
+      
+      >Palminópolis</option> 
+      <option value='521600' 
+      
+      >Panamá</option> 
+      <option value='521630' 
+      
+      >Paranaiguara</option> 
+      <option value='521640' 
+      
+      >Paraúna</option> 
+      <option value='521645' 
+      
+      >Perolândia</option> 
+      <option value='521680' 
+      
+      >Petrolina de Goiás</option> 
+      <option value='521690' 
+      
+      >Pilar de Goiás</option> 
+      <option value='521710' 
+      
+      >Piracanjuba</option> 
+      <option value='521720' 
+      
+      >Piranhas</option> 
+      <option value='521730' 
+      
+      >Pirenópolis</option> 
+      <option value='521740' 
+      
+      >Pires do Rio</option> 
+      <option value='521760' 
+      
+      >Planaltina</option> 
+      <option value='521770' 
+      
+      >Pontalina</option> 
+      <option value='521800' 
+      
+      >Porangatu</option> 
+      <option value='521805' 
+      
+      >Porteirão</option> 
+      <option value='521810' 
+      
+      >Portelândia</option> 
+      <option value='521830' 
+      
+      >Posse</option> 
+      <option value='521839' 
+      
+      >Professor Jamil</option> 
+      <option value='521850' 
+      
+      >Quirinópolis</option> 
+      <option value='521860' 
+      
+      >Rialma</option> 
+      <option value='521870' 
+      
+      >Rianápolis</option> 
+      <option value='521878' 
+      
+      >Rio Quente</option> 
+      <option value='521880' 
+      
+      >Rio Verde</option> 
+      <option value='521890' 
+      
+      >Rubiataba</option> 
+      <option value='521900' 
+      
+      >Sanclerlândia</option> 
+      <option value='521910' 
+      
+      >Santa Bárbara de Goiás</option> 
+      <option value='521920' 
+      
+      >Santa Cruz de Goiás</option> 
+      <option value='521925' 
+      
+      >Santa Fé de Goiás</option> 
+      <option value='521930' 
+      
+      >Santa Helena de Goiás</option> 
+      <option value='521935' 
+      
+      >Santa Isabel</option> 
+      <option value='521940' 
+      
+      >Santa Rita do Araguaia</option> 
+      <option value='521945' 
+      
+      >Santa Rita do Novo Destino</option> 
+      <option value='521950' 
+      
+      >Santa Rosa de Goiás</option> 
+      <option value='521960' 
+      
+      >Santa Tereza de Goiás</option> 
+      <option value='521970' 
+      
+      >Santa Terezinha de Goiás</option> 
+      <option value='521971' 
+      
+      >Santo Antônio da Barra</option> 
+      <option value='521973' 
+      
+      >Santo Antônio de Goiás</option> 
+      <option value='521975' 
+      
+      >Santo Antônio do Descoberto</option> 
+      <option value='521980' 
+      
+      >São Domingos</option> 
+      <option value='521990' 
+      
+      >São Francisco de Goiás</option> 
+      <option value='522005' 
+      
+      >São João da Paraúna</option> 
+      <option value='522000' 
+      
+      >São João dAliança</option> 
+      <option value='522010' 
+      
+      >São Luís de Montes Belos</option> 
+      <option value='522015' 
+      
+      >São Luíz do Norte</option> 
+      <option value='522020' 
+      
+      >São Miguel do Araguaia</option> 
+      <option value='522026' 
+      
+      >São Miguel do Passa Quatro</option> 
+      <option value='522028' 
+      
+      >São Patrício</option> 
+      <option value='522040' 
+      
+      >São Simão</option> 
+      <option value='522045' 
+      
+      >Senador Canedo</option> 
+      <option value='522050' 
+      
+      >Serranópolis</option> 
+      <option value='522060' 
+      
+      >Silvânia</option> 
+      <option value='522068' 
+      
+      >Simolândia</option> 
+      <option value='522070' 
+      
+      >Sítio dAbadia</option> 
+      <option value='522100' 
+      
+      >Taquaral de Goiás</option> 
+      <option value='522108' 
+      
+      >Teresina de Goiás</option> 
+      <option value='522119' 
+      
+      >Terezópolis de Goiás</option> 
+      <option value='522130' 
+      
+      >Três Ranchos</option> 
+      <option value='522140' 
+      
+      >Trindade</option> 
+      <option value='522145' 
+      
+      >Trombas</option> 
+      <option value='522150' 
+      
+      >Turvânia</option> 
+      <option value='522155' 
+      
+      >Turvelândia</option> 
+      <option value='522157' 
+      
+      >Uirapuru</option> 
+      <option value='522160' 
+      
+      >Uruaçu</option> 
+      <option value='522170' 
+      
+      >Uruana</option> 
+      <option value='522180' 
+      
+      >Urutaí</option> 
+      <option value='522185' 
+      
+      >Valparaíso de Goiás</option> 
+      <option value='522190' 
+      
+      >Varjão</option> 
+      <option value='522200' 
+      
+      >Vianópolis</option> 
+      <option value='522205' 
+      
+      >Vicentinópolis</option> 
+      <option value='522220' 
+      
+      >Vila Boa</option> 
+      <option value='522230' 
+      
+      >Vila Propício</option> 
+      </select>
+  </td>  
+                        
+</tr>
+  <tr>
+    <td colspan="2">
+      <div class="g-recaptcha" data-sitekey="6Lc1KqcUAAAAACYWpPxX2r3E6aTSyZDos0hT1uh3"></div>
+    </td>
+  </tr>
+  <tr>
+	<td colspan="2" id="buttonBar"><input type="button" name="Submit" value="Consultar" onClick="submitFormulario()"></td>
+</tr>
+</table>
+
+</form>
+
+</div>
+
+<!-- InstanceEndEditable --></div>
+
+<div style="clear: both;"> </div>
+
+<div id="footer">
+    FNDE - FUNDO NACIONAL DE DESENVOLVIMENTO DA EDUCA&Ccedil;&Atilde;O<br/>
+    Vers&atilde;o: 12.11.2026#9b23a8</div>
+</body>
+<!-- InstanceEnd --></html>

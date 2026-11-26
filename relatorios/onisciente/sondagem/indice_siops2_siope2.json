@@ -1,0 +1,287 @@
+{
+ "quando": "2026-11-26T22:17:52+00:00",
+ "leituras": [
+  {
+   "fonte": "siops2",
+   "url": "http://siops.datasus.gov.br/consleirespfiscal.php?UF=52&Ano=2025&Periodo=1&Municipio=&MudouAno=true",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 56352,
+   "arquivo": "siops2__siops-datasus-gov-br-consleirespfiscal-php-uf-52-ano-2025-periodo-1-mu-da9eac78.txt"
+  },
+  {
+   "fonte": "siops2",
+   "url": "http://siops.datasus.gov.br/consleirespfiscal.php?UF=52&Ano=2024&Periodo=1&Municipio=&MudouAno=true",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 56352,
+   "arquivo": "siops2__siops-datasus-gov-br-consleirespfiscal-php-uf-52-ano-2024-periodo-1-mu-a1646596.txt"
+  },
+  {
+   "fonte": "siops2",
+   "url": "http://siops.datasus.gov.br/rel_LRF.php",
+   "post": {
+    "cmbAno": "2025",
+    "cmbUF": "52",
+    "cmbPeriodo": "12",
+    "cmbMunicipio[]": "520870",
+    "BtConsultar": "Consultar"
+   },
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 107293,
+   "arquivo": "siops2__siops-datasus-gov-br-rel-lrf-php-597867e8.txt"
+  },
+  {
+   "fonte": "siops2",
+   "url": "http://siops.datasus.gov.br/rel_LRF.php",
+   "post": {
+    "cmbAno": "2025",
+    "cmbUF": "52",
+    "cmbPeriodo": "14",
+    "cmbMunicipio[]": "520870",
+    "BtConsultar": "Consultar"
+   },
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 107424,
+   "arquivo": "siops2__siops-datasus-gov-br-rel-lrf-php-00582e9d.txt"
+  },
+  {
+   "fonte": "siops2",
+   "url": "http://siops.datasus.gov.br/rel_LRF.php",
+   "post": {
+    "cmbAno": "2025",
+    "cmbUF": "52",
+    "cmbPeriodo": "1",
+    "cmbMunicipio[]": "520870",
+    "BtConsultar": "Consultar"
+   },
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 107439,
+   "arquivo": "siops2__siops-datasus-gov-br-rel-lrf-php-40298d04.txt"
+  },
+  {
+   "fonte": "siops2",
+   "url": "http://siops.datasus.gov.br/rel_LRF.php",
+   "post": {
+    "cmbAno": "2025",
+    "cmbUF": "52",
+    "cmbPeriodo": "18",
+    "cmbMunicipio[]": "520870",
+    "BtConsultar": "Consultar"
+   },
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 107480,
+   "arquivo": "siops2__siops-datasus-gov-br-rel-lrf-php-1458fb7a.txt"
+  },
+  {
+   "fonte": "siops2",
+   "url": "http://siops.datasus.gov.br/rel_LRF.php",
+   "post": {
+    "cmbAno": "2025",
+    "cmbUF": "52",
+    "cmbPeriodo": "20",
+    "cmbMunicipio[]": "520870",
+    "BtConsultar": "Consultar"
+   },
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 107622,
+   "arquivo": "siops2__siops-datasus-gov-br-rel-lrf-php-b2feb971.txt"
+  },
+  {
+   "fonte": "siops2",
+   "url": "http://siops.datasus.gov.br/rel_LRF.php",
+   "post": {
+    "cmbAno": "2025",
+    "cmbUF": "52",
+    "cmbPeriodo": "2",
+    "cmbMunicipio[]": "520870",
+    "BtConsultar": "Consultar"
+   },
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 107582,
+   "arquivo": "siops2__siops-datasus-gov-br-rel-lrf-php-909d8c3c.txt"
+  },
+  {
+   "fonte": "siops2",
+   "url": "http://siops.datasus.gov.br/rel_LRF.php",
+   "post": {
+    "cmbAno": "2024",
+    "cmbUF": "52",
+    "cmbPeriodo": "12",
+    "cmbMunicipio[]": "520870",
+    "BtConsultar": "Consultar"
+   },
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 106702,
+   "arquivo": "siops2__siops-datasus-gov-br-rel-lrf-php-d5a9045d.txt"
+  },
+  {
+   "fonte": "siops2",
+   "url": "http://siops.datasus.gov.br/rel_LRF.php",
+   "post": {
+    "cmbAno": "2024",
+    "cmbUF": "52",
+    "cmbPeriodo": "14",
+    "cmbMunicipio[]": "520870",
+    "BtConsultar": "Consultar"
+   },
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 106790,
+   "arquivo": "siops2__siops-datasus-gov-br-rel-lrf-php-6db8b2af.txt"
+  },
+  {
+   "fonte": "siops2",
+   "url": "http://siops.datasus.gov.br/rel_LRF.php",
+   "post": {
+    "cmbAno": "2024",
+    "cmbUF": "52",
+    "cmbPeriodo": "1",
+    "cmbMunicipio[]": "520870",
+    "BtConsultar": "Consultar"
+   },
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 106862,
+   "arquivo": "siops2__siops-datasus-gov-br-rel-lrf-php-b7b598a4.txt"
+  },
+  {
+   "fonte": "siops2",
+   "url": "http://siops.datasus.gov.br/rel_LRF.php",
+   "post": {
+    "cmbAno": "2024",
+    "cmbUF": "52",
+    "cmbPeriodo": "18",
+    "cmbMunicipio[]": "520870",
+    "BtConsultar": "Consultar"
+   },
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 106870,
+   "arquivo": "siops2__siops-datasus-gov-br-rel-lrf-php-50f16e97.txt"
+  },
+  {
+   "fonte": "siops2",
+   "url": "http://siops.datasus.gov.br/rel_LRF.php",
+   "post": {
+    "cmbAno": "2024",
+    "cmbUF": "52",
+    "cmbPeriodo": "20",
+    "cmbMunicipio[]": "520870",
+    "BtConsultar": "Consultar"
+   },
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 106880,
+   "arquivo": "siops2__siops-datasus-gov-br-rel-lrf-php-dc0f7d9b.txt"
+  },
+  {
+   "fonte": "siops2",
+   "url": "http://siops.datasus.gov.br/rel_LRF.php",
+   "post": {
+    "cmbAno": "2024",
+    "cmbUF": "52",
+    "cmbPeriodo": "2",
+    "cmbMunicipio[]": "520870",
+    "BtConsultar": "Consultar"
+   },
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 106746,
+   "arquivo": "siops2__siops-datasus-gov-br-rel-lrf-php-2efa0a9e.txt"
+  },
+  {
+   "fonte": "siope2",
+   "url": "https://www.fnde.gov.br/siope/relatorioRREOMunicipal2009.do?acao=atualizar&pag=result&anos=2025&periodos=6&cod_uf=52&municipios=520870",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 25001,
+   "arquivo": "siope2__www-fnde-gov-br-siope-relatoriorreomunicipal2009-do-acao-atualizar-pag-04ab7f42.txt"
+  },
+  {
+   "fonte": "siope2",
+   "url": "https://www.fnde.gov.br/siope/relatorioRREOMunicipal2009.do?acao=atualizar&pag=result&anos=2025&periodos=-1&cod_uf=52&municipios=520870",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 24981,
+   "arquivo": "siope2__www-fnde-gov-br-siope-relatoriorreomunicipal2009-do-acao-atualizar-pag-4c28d622.txt"
+  },
+  {
+   "fonte": "siope2",
+   "url": "https://www.fnde.gov.br/siope/relatorioRREOMunicipal2006.do?acao=atualizar&pag=result&anos=2025&periodos=6&cod_uf=52&municipios=520870",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 25001,
+   "arquivo": "siope2__www-fnde-gov-br-siope-relatoriorreomunicipal2006-do-acao-atualizar-pag-484fe563.txt"
+  },
+  {
+   "fonte": "siope2",
+   "url": "https://www.fnde.gov.br/siope/relatorioRREOMunicipal2009.do?acao=atualizar&pag=result&anos=2026&periodos=4&cod_uf=52&municipios=520870",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 25001,
+   "arquivo": "siope2__www-fnde-gov-br-siope-relatoriorreomunicipal2009-do-acao-atualizar-pag-581109df.txt"
+  },
+  {
+   "fonte": "siope2",
+   "url": "https://www.fnde.gov.br/siope/relatorioRREOMunicipal2009.do?acao=atualizar&pag=result&anos=2024&periodos=6&cod_uf=52&municipios=520870",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 25001,
+   "arquivo": "siope2__www-fnde-gov-br-siope-relatoriorreomunicipal2009-do-acao-atualizar-pag-3e585f7f.txt"
+  },
+  {
+   "fonte": "siope2",
+   "url": "https://www.fnde.gov.br/siope/relatorioRREOMunicipal2009.do",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 9142,
+   "arquivo": "siope2__www-fnde-gov-br-siope-relatoriorreomunicipal2009-do-fefc30a8.txt"
+  },
+  {
+   "fonte": "siope2",
+   "url": "https://www.fnde.gov.br/siope/consultarRREOMunicipal.do",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 0,
+   "arquivo": "siope2__www-fnde-gov-br-siope-consultarrreomunicipal-do-3c860721.txt"
+  }
+ ]
+}

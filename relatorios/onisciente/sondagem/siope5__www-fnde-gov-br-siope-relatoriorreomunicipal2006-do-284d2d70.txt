@@ -1,0 +1,373 @@
+URL: https://www.fnde.gov.br/siope/relatorioRREOMunicipal2006.do
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 9142
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin 
+
+template="/Templates/report_template.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>SIOPE</title>
+<!-- InstanceEndEditable -->
+<meta http-equiv="Content-Language" content="English" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<!-- InstanceBeginEditable name="head" -->
+<script language="javascript" src="functions.js"></script>
+  <script src='https://www.google.com/recaptcha/api.js' type="text/javascript" async defer></script>
+<!-- InstanceEndEditable -->
+</head>
+<body>
+
+<div id="wrap">
+
+<script type="text/javascript">
+    var UA = navigator.userAgent;
+    var css = "";
+    if (UA.indexOf('MSIE') > -1) {
+        css = '<link rel="stylesheet" type="text/css" href="styleImpressao.css" media="print"/>';
+    }
+    // else if (UA.indexOf('Firefox') > -1) {}
+    document.write(css);
+</script>
+
+<div id="report_header_cabecalho">
+    <table style="width:100%">
+        <tr>
+            <td>
+                <div style="display: flex; align-items: center; justify-content: space-between; max-height: 45px; ">
+                    <a href="http://www.fnde.gov.br/home/" target="_blank">
+                        <img src="images/logo.png" style="max-height: 45px;" alt="Logo FNDE">
+                    </a>
+                    <img src="images/logomarca_siope.gif" style="max-height: 35px; padding-right: 10px;" alt="Logo SIOPE">
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="frame">
+<!-- InstanceBeginEditable name="ContentRegion" -->
+<script type="text/javascript" language="JavaScript1.2" >
+function submitFormulario(){
+	 var ano = document.formRREO.anos.value;
+	// var estado = document.formRREO.cod_uf.value;
+	 var municipio = document.formRREO.municipios.value;
+	 var periodo = document.formRREO.periodos.value;
+	 var link = "ftp://ftp.fnde.gov.br/web/siope/RREO/RREO_Municipal";
+	 var parametros = link + '_' + municipio + '_' + periodo + '_' + ano + '.pdf';
+
+//	 if (ano == 2010){
+ //   	 window.open(parametros);  
+    	       
+  //       } 
+	 document.formRREO.acao.value = "pesquisar";
+	 document.formRREO.submit();
+}
+
+function atualizar(){
+	 document.formRREO.acao.value = "atualizar";
+	 document.formRREO.periodos.options[document.formRREO.periodos.selectedIndex].value 
+
+= -1;	 
+	 document.formRREO.submit();
+}
+</script>
+
+<h1>Relat&oacute;rio Resumido da Execu&ccedil;&atilde;o Or&ccedil;ament&aacute;ria - RREO - Anexo X da Lei de Responsabilidade 
+
+Fiscal</h1>
+
+<br />
+
+  <div align="center">
+
+<form name="formRREO" action="relatorioRREOMunicipal2006.do" method="post">
+<input name="acao" type="hidden" id="acao" value="" >
+<input name="pag" type="hidden" id="pag" value="result" >
+    
+<table class="searchPanel">
+<tr>
+  <th><label>Ano:</label>&nbsp;</th>
+  <td>
+    <select name="anos">
+    <option value='2026'
+        
+        >2026</option>
+        <option value='2025'
+        
+        >2025</option>
+        <option value='2024'
+        
+        >2024</option>
+        <option value='2023'
+        
+        >2023</option>
+        <option value='2022'
+        
+        >2022</option>
+        <option value='2021'
+        
+        >2021</option>
+        <option value='2020'
+        
+        >2020</option>
+        <option value='2019'
+        
+        >2019</option>
+        <option value='2018'
+        
+        >2018</option>
+        <option value='2017'
+        
+        >2017</option>
+        <option value='2016'
+        
+        >2016</option>
+        <option value='2015'
+        
+        >2015</option>
+        <option value='2014'
+        
+        >2014</option>
+        <option value='2013'
+        
+        >2013</option>
+        <option value='2012'
+        
+        >2012</option>
+        <option value='2011'
+        
+        >2011</option>
+        <option value='2010'
+        
+        >2010</option>
+        <option value='2009'
+        
+        >2009</option>
+        <option value='2008'
+        
+        >2008</option>
+        <option value='2007'
+        
+        >2007</option>
+        <option value='2006'
+        
+        >2006</option>
+        </select>
+  </td>
+</tr>
+<tr>
+  <th><label>Per&iacute;odo:</label>&nbsp;</th>
+  <td>
+    <select name="periodos">
+      <option value='6'
+          
+          >Anual</option>
+        <option value='5'
+          
+          >5º Bimestre</option>
+        <option value='4'
+          
+          >4º Bimestre</option>
+        <option value='3'
+          
+          >3º Bimestre</option>
+        <option value='2'
+          
+          >2º Bimestre</option>
+        <option value='1'
+          
+          >1º Bimestre</option>
+        </select>
+  </td>
+</tr>	
+<tr>    
+  <th><label>UF:</label>&nbsp;</th>
+  <td>    
+   <select onChange="atualizar()" name="cod_uf">
+    <option value='12'
+      
+      >Acre</option>
+      <option value='27'
+      
+      >Alagoas</option>
+      <option value='16'
+      
+      >Amapa</option>
+      <option value='13'
+      
+      >Amazonas</option>
+      <option value='29'
+      
+      >Bahia</option>
+      <option value='23'
+      
+      >Ceara</option>
+      <option value='32'
+      
+      >Espirito Santo</option>
+      <option value='52'
+      
+      >Goias</option>
+      <option value='21'
+      
+      >Maranhao</option>
+      <option value='51'
+      
+      >Mato Grosso</option>
+      <option value='50'
+      
+      >Mato Grosso do Sul</option>
+      <option value='31'
+      
+      >Minas Gerais</option>
+      <option value='15'
+      
+      >Para</option>
+      <option value='25'
+      
+      >Paraiba</option>
+      <option value='41'
+      
+      >Parana</option>
+      <option value='26'
+      
+      >Pernambuco</option>
+      <option value='22'
+      
+      >Piaui</option>
+      <option value='33'
+      
+      >Rio de Janeiro</option>
+      <option value='24'
+      
+      >Rio Grande do Norte</option>
+      <option value='43'
+      
+      >Rio Grande do Sul</option>
+      <option value='11'
+      
+      >Rondonia</option>
+      <option value='14'
+      
+      >Roraima</option>
+      <option value='42'
+      
+      >Santa Catarina</option>
+      <option value='35'
+      
+      >Sao Paulo</option>
+      <option value='28'
+      
+      >Sergipe</option>
+      <option value='17'
+      
+      >Tocantins</option>
+      </select>
+  </td>
+</tr>
+<tr>
+
+  <th><label>Munic&iacute;pio:</label>&nbsp;</th>
+  <td>
+    <select name="municipios">
+    <option value='120001' 
+      
+      >Acrelândia</option> 
+      <option value='120005' 
+      
+      >Assis Brasil</option> 
+      <option value='120010' 
+      
+      >Brasiléia</option> 
+      <option value='120013' 
+      
+      >Bujari</option> 
+      <option value='120017' 
+      
+      >Capixaba</option> 
+      <option value='120020' 
+      
+      >Cruzeiro do Sul</option> 
+      <option value='120025' 
+      
+      >Epitaciolândia</option> 
+      <option value='120030' 
+      
+      >Feijó</option> 
+      <option value='120032' 
+      
+      >Jordão</option> 
+      <option value='120033' 
+      
+      >Mâncio Lima</option> 
+      <option value='120034' 
+      
+      >Manoel Urbano</option> 
+      <option value='120035' 
+      
+      >Marechal Thaumaturgo</option> 
+      <option value='120038' 
+      
+      >Plácido de Castro</option> 
+      <option value='120080' 
+      
+      >Porto Acre</option> 
+      <option value='120039' 
+      
+      >Porto Walter</option> 
+      <option value='120040' 
+      
+      >Rio Branco</option> 
+      <option value='120042' 
+      
+      >Rodrigues Alves</option> 
+      <option value='120043' 
+      
+      >Santa Rosa do Purus</option> 
+      <option value='120050' 
+      
+      >Sena Madureira</option> 
+      <option value='120045' 
+      
+      >Senador Guiomard</option> 
+      <option value='120060' 
+      
+      >Tarauacá</option> 
+      <option value='120070' 
+      
+      >Xapuri</option> 
+      </select>
+  </td>  
+                        
+</tr>
+  <tr>
+    <td colspan="2">
+      <div class="g-recaptcha" data-sitekey="6Lc1KqcUAAAAACYWpPxX2r3E6aTSyZDos0hT1uh3"></div>
+    </td>
+  </tr>
+  <tr>
+	<td colspan="2" id="buttonBar"><input type="button" name="Submit" value="Consultar" onClick="submitFormulario()"></td>
+</tr>
+</table>
+
+</form>
+
+</div>
+
+<!-- InstanceEndEditable --></div>
+
+<div style="clear: both;"> </div>
+
+<div id="footer">
+    FNDE - FUNDO NACIONAL DE DESENVOLVIMENTO DA EDUCA&Ccedil;&Atilde;O<br/>
+    Vers&atilde;o: 12.11.2026#9b23a8</div>
+</body>
+<!-- InstanceEnd --></html>
