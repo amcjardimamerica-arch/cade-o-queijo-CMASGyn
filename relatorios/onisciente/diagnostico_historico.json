@@ -1,6 +1,6 @@
 {
  "intervalo": "2024-11 a 2026-11",
- "rodada": "2026-11-26T22:39:12+00:00",
+ "rodada": "2026-11-26T22:47:11+00:00",
  "meses": [
   "2024-11",
   "2024-12",
@@ -132,12 +132,12 @@
   {
    "motor": "siope",
    "nome": "Demonstrativo da educação (SIOPE)",
-   "chamadas": 12,
-   "ok": 11,
+   "chamadas": 17,
+   "ok": 16,
    "falhas": 1,
-   "tentativas": 14,
+   "tentativas": 21,
    "http_429": 0,
-   "segundos": 58.0,
+   "segundos": 266.6,
    "erros": {
     "URLError: <urlopen error ftp error: error_perm('550 Failed to change directory.')>": 1
    }
@@ -145,25 +145,25 @@
   {
    "motor": "siops",
    "nome": "Demonstrativo da saúde (SIOPS)",
-   "chamadas": 15,
-   "ok": 15,
+   "chamadas": 20,
+   "ok": 20,
    "falhas": 0,
-   "tentativas": 15,
+   "tentativas": 20,
    "http_429": 0,
-   "segundos": 23.1,
+   "segundos": 29.3,
    "erros": {}
   },
   {
    "motor": "tesouro",
    "nome": "Transferências constitucionais (Tesouro)",
-   "chamadas": 1,
+   "chamadas": 2,
    "ok": 0,
-   "falhas": 1,
-   "tentativas": 3,
+   "falhas": 2,
+   "tentativas": 8,
    "http_429": 0,
-   "segundos": 70.5,
+   "segundos": 244.0,
    "erros": {
-    "URLError: [Errno 104] Connection reset by peer": 1
+    "URLError: [Errno 104] Connection reset by peer": 2
    }
   }
  ],
@@ -192,11 +192,11 @@
    20
   ],
   "siops_bimestres": {
-   "homologado": 12
+   "homologado": 17
   },
   "siope_bimestres": {
-   "homologado": 11,
-   "nao_entregue": 1
+   "homologado": 16,
+   "no_prazo": 1
   },
   "transferencias_tesouro": [
    0,
@@ -473,11 +473,11 @@
    "proposta": "Para os meses do ano corrente, usar o Portal da Transparência da União (transferências) como segunda via enquanto a planilha anual não sai."
   },
   {
-   "tipo": "lacuna",
+   "tipo": "melhoria",
    "motor": "siope",
-   "titulo": "Educação: 5º bimestre de 2026 sem demonstrativo no SIOPE",
-   "detalhe": "O FNDE não tem o PDF do bimestre: o Município não transmitiu ou o FNDE ainda não publicou.",
-   "proposta": "Os pisos da educação e do FUNDEB do bimestre ficam com uma via só."
+   "titulo": "Educação: 5º bimestre de 2026 ainda não publicado no SIOPE",
+   "detalhe": "O prazo de 30 dias depois do bimestre ainda corre.",
+   "proposta": "A próxima coleta confere de novo; passado o prazo, vira lacuna."
   },
   {
    "tipo": "falha",
