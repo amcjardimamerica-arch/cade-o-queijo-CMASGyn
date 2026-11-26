@@ -1,0 +1,897 @@
+URL: http://siops.datasus.gov.br/rel_LRF.php
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 36387
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-15;"/>
+
+<!-- inicio: adicionado o header que expira o cache -->
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="expires" content="-1" />
+
+<!-- fim: adicionado o header que expira o cache -->
+<meta name="verify-v1" content="Y/EnCi+IymynycM5dicese45d4aImZDuXpCxf8so36c=" />
+
+
+<title>. : SIOPS - Demonstrativo da Lei de Responsabilidade Fiscal.</title><script language="javascript" type="text/javascript">
+<!--
+//url=url==null?"":url;
+url="";
+-->
+</script>
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="expires" content="-1" />
+
+<!-- deploy-master:header
+2019-10-18 9:32hs-->
+
+
+
+<!-- fim: adicionado o header que expira o cache wwwwwwwwww -->
+<!--
+0000000
+
+	<style type="text/css" title="currentStyle" media="screen">@import "ZZportalsaude/includes/templates/eportal/css/smoothness/jquery-ui-1.8.6.custom.css";</style>
+	<style type="text/css" rel="stylesheet" href="ZZportalsaude/includes/templates/eportal/css/nivo-slider.css" media="screen"></style>
+	<style type="text/css" title="currentStyle" media="screen">@import "portalsaude/includes/templates/eportal/css/geral.css";</style>
+	<style type="text/css" title="currentStyle" media="screen">@import "portalsaude/includes/templates/eportal/css/menu.css";</style>
+portalsaude\includes\templates\eportal\css\geral.css
+-->
+	<link title="geral" rel="stylesheet" type="text/css" href="portalsaude/includes/templates/eportal/css/geral.css" media="screen" />
+	<link title="geral" rel="stylesheet" type="text/css" href="portalsaude/includes/templates/eportal/css/menu.css" media="screen" />
+<!--
+	<link title="geral" rel="stylesheet" type="text/css" href="portalsaude/includes/templates/eportal/css/geral.css" media="screen">
+	<link title="geral" rel="stylesheet" type="text/css" href="portalsaude/includes/templates/eportal/css/menu.css" media="screen">
+
+	<style type="text/css" title="currentStyle" media="screen">@import "ZZportalsaude/includes/templates/eportal/css/modulos.css";</style>
+	<style type="text/css" title="currentStyle" media="screen">@import "ZZportalsaude/includes/templates/eportal/css/nivo-slider.css";</style>
+	<style type="text/css" title="currentStyle" media="screen">@import "ZZportalsaude/includes/templates/eportal/css/style.css";</style>
+	<style type="text/css" title="currentStyle" media="screen">@import "ZZportalsaude/includes/templates/eportal/css/prettyPhoto.css";</style>
+	<style type="text/css" title="currentStyle" media="screen">@import "ZZportalsaude/includes/templates/eportal/css/template_home.css";</style>
+	<style type="text/css" title="currentStyle" media="screen">@import "ZZportalsaude/arquivos/2011/css/perfilCidadao.css";</style>
+-->
+	<!-- importando estilos -->
+<!--
+	<link title="geral" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/geral.css" media="screen">
+
+	<LINK title=geral rel="stylesheet" type=text/css href="portalsaude/includes/templates/eportal/css/templatePS01.css" media="screen">
+
+    <link title="geral" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/modulos.css" media="screen">
+    <link title="geral" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/menu.css" media="screen">
+    <link title="geral" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/style.css" media="screen">
+	<link title="geral" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/nivo-slider.css" media="screen">
+	<link title="geral" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/prettyPhoto.css" media="screen">
+	<link title="geral" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/smoothness/jquery-ui-1.8.6.custom.css" media="screen">
+	<link title="geralC" rel="alternate stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/geralC.css" media="screen">
+
+	<LINK title="geralC" rel="stylesheet" type=text/css href="portalsaude/includes/templates/eportal/css/templatePS01.css" media="screen">
+
+	<link title="geralC" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/modulos.css" media="screen">
+	<link title="geralC" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/menuX.css" media="screen">
+	<link title="geralC" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/nivo-slider.css" media="screen">
+	<link title="geralC" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/style.css" media="screen">
+	<link title="geralC" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/prettyPhoto.css" media="screen">
+    <link title="geralC" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/smoothness/jquery-ui-1.8.6.custom.css" media="screen">
+-->
+    
+<!--
+    <link href="CSS/siops.css" type="text/css" rel="stylesheet" />
+
+	<link rel="stylesheet" type="text/css" href="CSS/keyboard.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="CSS/siops12.css"      title="Normal"/>
+    <link rel="alternate stylesheet" type="text/css" media="screen" href="CSS/siops15.css"      title="Pequeno"/>
+    <link rel="alternate stylesheet" type="text/css" media="screen" href="CSS/siops20.css"      title="Grande"/>
+    <link rel="alternate stylesheet" type="text/css" media="screen" href="CSS/cinza.css"        title="cinza"/>
+    <link rel="alternate stylesheet" type="text/css" media="screen" href="CSS/pretobranco.css"  title="pretobranco"/>
+    <link rel="stylesheet" type="text/css" media="print"    href="CSS/estilo-texto.css"/>
+-->
+
+
+    <!-- importando estilos fim-->
+<!--
+    <script src="zzportalsaude/includes/templates/eportal/js/acessibilidade.js" type="text/javascript"></script>
+	<script src="ZZportalsaude/includes/templates/eportal/js/jquery-1.4.3.min.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+	<script src="ZZportalsaude/includes/templates/eportal/js/jquery.tools.min.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+	<script src="ZZportalsaude/includes/templates/eportal/js/jquery-ui-1.8.10.custom.min.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+-->
+	<!--Script flow Player-->
+<!--
+	<script src="ZZportalsaude/includes/templates/eportal/js/flowplayer-3.2.6.min.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+-->
+
+	<!--Script flow Player-->
+
+
+<!--
+	<script src="ZZportalsaude/includes/templates/eportal/js/cookie.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+	<script src="ZZportalsaude/includes/templates/eportal/js/font_size.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+	<script src="ZZportalsaude/includes/templates/eportal/js/jquery.jcarousel.min.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+	<script src="ZZportalsaude/includes/templates/eportal/js/jquery.prettyPhoto.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+	<script src="ZZportalsaude/includes/templates/eportal/js/ajaxlib.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+-->
+
+<!--
+    <script type="text/javascript" src="js/funcoes.js"></script>
+
+
+
+<script type="text/javascript" language="JavaScript" src="/portal/geral/js/acessibilidade.js"></script>
+<script type="text/javascript" language="JavaScript" src="/portal/geral/js/font_size.js"></script>
+<script type="text/javascript" language="JavaScript" src="/portal/geral/js/cookie.js"></script>
+
+
+
+-->
+
+
+	<script type="text/javascript">
+		<!--
+		function mudaAba(itemMenu, div, qtd){	
+			qtd++;
+			for (i = 1; i < qtd; i++ ) {
+				divAba = document.getElementById(div + i);
+				divAba.className = 'off';		
+			}
+			divAba = document.getElementById(div + itemMenu);
+			divAba.className = 'on';
+		}
+
+		function mostraAbaInicio(itemMenuInicio, div, qtd){	
+			qtd++;
+			for (i = 1; i < qtd; i++ ) {
+				divAba = document.getElementById(div + i);
+				divAba.className = 'off';		
+			}	
+			divAba = document.getElementById(div + itemMenuInicio);
+			divAba.className = 'on';
+		}
+		-->
+	</script>
+	<style type="text/css">
+		#topo{
+			width:100%;
+			position:relative;
+			}
+		#barraGoverno{
+			margin:0px;
+			height:35px;
+			width:100%;
+			background-image:url(http://portal.saude.gov.br/portal/geral/img/MinisterioDaSaudeGF.png);
+			}
+		#barraGovernoPosicao1{
+			position:absolute;
+			top:7px;
+			left:30px;
+			}
+		#barraGovernoPosicao2{
+			position:absolute;
+			top:5px;
+			left:850px;
+			}
+		/*#testeira{
+			background:url(http://portal.saude.gov.br/portal/geral/img/testeira.jpg) no-repeat;
+			height:122px;
+			margin:0px;
+			padding:0px;
+			width:100%;
+			}*/
+		#SaudeGovBr{
+			width:220px;
+			height:70px;
+			position:relative;
+			top:15px;
+			left:10px;
+			}
+		#testeiraPosicao1{
+			/* custodio */ background:url(portalsaude/arquivos/jpg/2012/Jan/23/testeira.jpg) no-repeat;
+			width:680px; 
+			float:left;
+			min-height:122px;
+			}
+		#testeiraPosicao2{
+			
+			width:260px;
+			padding:5px 10px 0px 10px;
+			float:left;
+			min-height:72px;
+			}
+		/*#busca {
+			height:35px;
+		}
+		#busca  input{
+			width:225px;
+			border:none;
+			color:#999;
+			padding:10px 5px 10px 30px;
+			background-image:url(http://portal.saude.gov.br/portal/geral/img/bgBusca.jpg);
+			background-repeat:no-repeat;
+			margin:0px;
+		}
+		#busca {
+			width:252px;
+			/height:30px;/
+			border:0px;
+			font-size:16px;
+			font-family: "Century Gothic", Tahoma, Verdana, Arial;
+		}*/
+		#links{
+			margin:0px 0px 10px 0px;
+			font-size:11px;
+			border-bottom:1px #CCC solid;}
+		
+		#links a{
+			color:#999;
+			text-decoration:none;
+			}
+		#redes img{
+			/*margin-top:10px;*/
+			margin-right:3px;
+			text-decoration:none;
+			}
+		#menuN{
+			width:100%;
+			margin:0px;
+			}
+</style>  
+<!--
+</head>
+<body>
+-->
+<!-- Nova Identidade Visual do Governo -->
+<!-- 16/09/2011 Cíntia-->
+<style type="text/css">
+		body {
+			margin:0;
+		}
+		#barra-brasil-v3 {
+			position:relative;
+			clear:both;
+			overflow:hidden;
+			min-width:1000px;
+			height:28px;
+			background:#004b82;
+		}
+		#barra-brasil-v3 span {
+			display:block;
+			width:50%;
+			height:28px;
+			background:url(portalsaude/includes/templates/eportal//img/barra-brasil-v3-bgx.gif) 0 bottom repeat-x;
+		}
+		#barra-brasil-v3 span .imagemGov {
+			position:absolute;
+			top:4px;
+			left:50%;
+			height: 24px;
+			width: 1000px;
+			background: url(portalsaude/includes/templates/eportal//img/barra-brasil-v3-azul.gif) right top no-repeat;
+			margin-left:-518px;
+		}
+ #barra-brasil-v3 span .imagemAi {
+			position:absolute;
+			top:4px;
+			left:48%;
+			height: 24px;
+			width: 810px;
+			margin-left:-450px;
+		}
+		#barra-brasil-v3 span .acessoainformacaogov {
+			width: 120px;
+			height: 24px;
+			float:right;
+			display:block;
+			border: 0 !important;
+		}
+		#barra-brasil-v3 span .brasilgov {
+			width: 100px;
+			height: 24px;
+			float:right;
+			display:block;
+			border: 0 !important;
+
+		}
+	</style>
+<!--
+    <link href="xxCSS/testeira_menu.css" type="text/css" rel="stylesheet" />
+    <link href="xxCSS/siops_novoPortal.css" type="text/css" rel="stylesheet" />
+    <link href="xxCSS/siops12.css" type="text/css" rel="stylesheet" media="screen" title="Normal"/>
+
+    <link rel="stylesheet" type="text/css" media="print"    href="zzCSS/estilo-texto.css"/>
+    <link rel="stylesheet" type="text/css" media="print"    href="zzCSS/p/estilo-texto.css"/>
+    <link rel="stylesheet" type="text/css" media="print"    href="xxCSS/estilo-texto.css"/>
+-->
+
+</head>
+<body>
+
+<div id="barra-brasil-v3">
+<span>
+  <div class="imagemGov">
+  		<a href="http://www.brasil.gov.br" target="_blank" class="brasilgov"></a>
+  </div>
+  <div class="imagemAi">
+  	<a href="http://www.cgu.gov.br/acessoainformacaogov/" target="_blank" class="acessoainformacaogov"></a>
+  </div>
+
+</span>
+</div>
+<div id="tudo">
+<div id="topo"> 
+	<div id="acessibilidadeGeral"> 
+		<ul>
+			<li class="esconder"><a href="#conteudo">Pular para o conteudo</a></li>
+			<li><a href="javascript:void(0);" title="Aumentar Fonte">A+</a></li>
+			<li><a href="javascript:void(0);" title="Diminuir Fonte">A-</a></li>
+			<li class="contrasteOff"><a href="#" title="Aumentar Contraste">C+</a></li>
+			<li class="contrasteOn" ><a href="#" title="Diminuir Contraste">C-</a></li>
+		</ul>
+	</div>
+	<div id="testeira">
+<!--
+		<div id="testeiraPosicao1" style="background: url('portalsaude/arquivos/jpg/2012/Jan/23/testeira.jpg')">
+-->
+		<div id="testeiraPosicao1">
+				<a href="portalsaude" title="Minist&eacute;rio da Sa&uacute;de">
+					<div id="SaudeGovBr"></div>
+				</a>
+		</div>
+		<!-- coluna1Posicao1F -->
+        <script language="javascript">
+			function limpaBusca(valor){
+				if(valor=="Busca"){
+					document.getElementById("buscaGeral").value="";
+				}
+			}
+		</script>
+		<div id="testeiraPosicao2">
+			<div id="busca">
+				
+				<form id="form1" method="post" action="http://portalsaude.saude.gov.br/portalsaude/busca">
+					<p>
+						<label for="buscaGeral"></label>
+						<input name="Busca" type="text" id="buscaGeral" onfocus="limpaBusca(this.value);" maxlength="30" placeholder="Buscar" value="Busca"/>
+						<!--<input name="Buscar" type="button" value="Buscar">-->
+					</p>
+				</form>
+			</div>
+			<div id="links">
+				<span>
+					<a href="http://portal.saude.gov.br/portalsaude/texto/1999/166/mapa-do-site.html" title="Mapa do Site">Mapa do Site</a> |
+					<a href="http://portal.saude.gov.br/portal/saude/area.cfm?id_area=141" title="Fale Conosco">Fale Conosco</a> |
+					<a href="http://portalsaude.saude.gov.br/portalsaude/index.cfm?portal=pagina.visualizarArea&codArea=353" title="Links de Interesse">Links de Interesse</a>
+				</span>
+			</div>
+			<div id="redes">
+				<span>
+					<a href="https://www.facebook.com/minsaude" title="Facebook" target="_blank">
+						&nbsp;<img src="portalsaude/includes/templates/eportal//img/facebook.png" alt="Facebbok" border="0"/>
+					</a>
+					<a href="http://twitter.com/minsaude" title="Twitter" target="_blank">
+						&nbsp;<img src="portalsaude/includes/templates/eportal//img/twitter.png" alt="Twitter" border="0"/>
+					</a>
+					<a href="http://www.youtube.com/minsaudebr" title="Youtube" target="_blank">
+						&nbsp;<img src="portalsaude/includes/templates/eportal//img/youtube.png" alt="YouTube" border="0"/>
+					</a>
+					<a href="http://www.flickr.com/photos/ministeriodasaude/" title="Flickr" target="_blank">
+						&nbsp;<img src="portalsaude/includes/templates/eportal//img/fliker.png" alt="Flickr" border="0"/>
+					</a>
+					<a href="http://www.orkut.com.br/Main#Home" title="Orkut">
+						&nbsp;<img src="portalsaude/includes/templates/eportal//img/orkut.png" alt="Orkut" border="0"/>
+					</a>
+					<a href="http://www.formspring.me/minsaude" title="Formspring" target="_blank">
+						&nbsp;<img src="portalsaude/includes/templates/eportal//img/formspring.png" alt="FormSpring" border="0"/>
+					</a>
+					<a href="##" title="Separador">
+						&nbsp;<img src="portalsaude/includes/templates/eportal//img/separadorMenu.gif" alt="Separador do menu" border="0"/>
+					</a>
+					<a href="http://portalsaude.saude.gov.br/portalsaude/index.cfm/?portal=pagina.visualizarArea&codArea=356" title="Espanhol">
+						&nbsp;<img src="portalsaude/includes/templates/eportal//img/idiomaesp.png" alt="Idioma em Espanhol" border="0"/>
+					</a>
+					<a href="http://portalsaude.saude.gov.br/portalsaude/index.cfm/?portal=pagina.visualizarArea&codArea=347" title="Ingles">
+						&nbsp;<img src="portalsaude/includes/templates/eportal//img/idiomaing.png" alt="Idioma em Inglês" border="0"/>
+					</a>
+				</span>
+			</div>
+		</div>
+		<!-- coluna1Posicao1F -->
+  </div>
+		<!-- testeiraF -->
+
+	<div id="menu">
+		<div id="menuPosicao1">
+			<div id="menuGeral">
+				
+				<div id="menu" onblur="javascript: mostraAbaInicio(1, 'aba', 5);">
+					<ul>
+						<li style="display:none;">
+							<div>
+								<div>
+									<ul>
+									</ul>
+								</div>
+							</div>
+						</li>
+
+						<li id="li1" class="navAzul menuPrincipal" onmouseover="javascript: mudaAba(1, 'aba', 6);" onfocus="javascript: mudaAba(1, 'aba', 6);">
+							<a class="menu" href="http://portalsaude.saude.gov.br/portalsaude/area/2/cidadao.html" title="Cidad&atilde;o">Cidad&atilde;o</a>
+								<div id="aba1"  class="on">
+									<div class="navAzulbg submenu">
+											<ul>
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/index.cfm?portal=pagina.visualizarArea&codArea=400" title="Principal">Principal</a> </li>
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/3/saude-para-voce.html" title="Sa&uacute;de para Voc&ecirc;">Sa&uacute;de para Voc&ecirc;</a> </li>
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/341/orientacao-e-prevencao.html" title="Orienta&ccedil;&atilde;o e Preven&ccedil;&atilde;o">Orienta&ccedil;&atilde;o e Preven&ccedil;&atilde;o</a> </li>
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/342/acoes-e-programas.html" title="A&ccedil;&otilde;es e Programas">A&ccedil;&otilde;es e Programas</a> </li>
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/312/comunicacao.html" title="Comunica&ccedil;&atilde;o">Comunica&ccedil;&atilde;o</a> </li>
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/313/legislacao.html" title="Legisla&ccedil;&atilde;o">Legisla&ccedil;&atilde;o</a> </li>
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/348/redes-sociais.html" title="Redes Sociais">Redes Sociais</a> </li>
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/345/entenda-o-sus.html" title="Entenda o SUS">Entenda o SUS</a> </li>
+											</ul>
+										</div>
+									</div>
+								</li>
+												<li id="li2" class="navVermelho menuPrincipal" onmouseover="javascript: mudaAba(2, 'aba', 6);" onfocus="javascript: mudaAba(2, 'aba', 6);">
+													
+													
+													<a class="menu" href="http://portalsaude.saude.gov.br/portalsaude/area/5/profissional-e-gestor.html" title="Profissional e Gestor">Profissional e Gestor</a>
+													
+													<div id="aba2" class="off">
+														<div class="navVermelhobg submenu">
+															<ul>
+											
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/index.cfm?portal=pagina.visualizarArea&codArea=400" title="Principal">Principal</a> </li>
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/315/horus.html" title="H&oacute;rus">H&oacute;rus</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/343/pesquisa-em-saude.html" title="Pesquisa em Sa&uacute;de">Pesquisa em Sa&uacute;de</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/317/vigilancia.html" title="Vigil&acirc;ncia">Vigil&acirc;ncia</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/344/educacao.html" title="Educa&ccedil;&atilde;o">Educa&ccedil;&atilde;o</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/319/gestao-da-saude-publica.html" title="Gest&atilde;o da Sa&uacute;de P&uacute;blica">Gest&atilde;o da Sa&uacute;de P&uacute;blica</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/355/trabalhe-na-saude.html" title="Trabalhe na Sa&uacute;de">Trabalhe na Sa&uacute;de</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/322/medicamentos.html" title="Medicamentos ">Medicamentos </a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/320/legislacao.html" title="Legisla&ccedil;&atilde;o">Legisla&ccedil;&atilde;o</a> </li>
+													
+															</ul>
+														</div>
+													</div>
+												</li>
+												<li id="li3" class="navCinza menuPrincipal" onmouseover="javascript: mudaAba(3, 'aba', 6);" onfocus="javascript: mudaAba(3, 'aba', 6);">
+													
+													
+													<a class="menu" href="http://portalsaude.saude.gov.br/portalsaude/area/7/o-ministerio.html" title="O Minist&eacute;rio">O Minist&eacute;rio</a>
+													
+													<div id="aba3" class="off">
+														<div class="navCinzabg submenu">
+															<ul>
+											
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/index.cfm?portal=pagina.visualizarArea&codArea=400" title="Principal">Principal</a> </li>
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/330/historico.html" title="Hist&oacute;rico">Hist&oacute;rico</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/331/estrutura-e-competencias.html" title="Estrutura e Compet&ecirc;ncias">Estrutura e Compet&ecirc;ncias</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/332/ministro.html" title="Ministro">Ministro</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/333/relacoes-internacionais.html" title="Rela&ccedil;&otilde;es Internacionais">Rela&ccedil;&otilde;es Internacionais</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/334/unidades-do-ministerio.html" title="Unidades do Minist&eacute;rio">Unidades do Minist&eacute;rio</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/337/legislacao.html" title="Legisla&ccedil;&atilde;o">Legisla&ccedil;&atilde;o</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/369/transparencia-da-saude.html" title="Transpar&ecirc;ncia da Sa&uacute;de">Transpar&ecirc;ncia da Sa&uacute;de</a> </li>
+													
+															</ul>
+														</div>
+													</div>
+												</li>
+												<li id="li4" class="navCinza menuPrincipal" onmouseover="javascript: mudaAba(4, 'aba', 6);" onfocus="javascript: mudaAba(4, 'aba', 6);">
+													
+													
+													<a class="menu" href="http://portalsaude.saude.gov.br/portalsaude/area/9/servicos.html" title="Servi&ccedil;os">Servi&ccedil;os</a>
+													
+													<div id="aba4" class="off">
+														<div class="navCinzabg submenu">
+															<ul>
+											
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/9/principal-_-servicos.html" title="Principal - Servi&ccedil;os">Principal - Servi&ccedil;os</a> </li>
+													
+															</ul>
+														</div>
+													</div>
+												</li>
+
+
+
+
+
+
+
+												<li id="li5" class="navCinza menuPrincipal" onmouseover="javascript: mudaAba(5, 'aba', 6);" onfocus="javascript: mudaAba(5, 'aba', 6);">
+													<a class="menu" href="http://portalsaude.saude.gov.br/portalsaude/area/11/biblioteca.html" title="Biblioteca">Biblioteca</a>
+
+													<div id="aba5" class="off">
+														<div class="navCinzabg submenu">
+															<ul>
+												<li>
+
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/11/principal-_-biblioteca.html" title="Principal - Biblioteca">Principal - Biblioteca</a> </li>
+									</ul>
+								</div>
+							</div>
+						</li>
+<li id="li6" class="navCinza menuPrincipal" onmouseover="javascript: mudaAba(6, 'aba', 6);" onfocus="javascript: mudaAba(6, 'aba', 6);">
+	<a class="menu" href="http://portalsaude.saude.gov.br/portalsaude/area/380/acesso-a-informacao.html" title="Acesso &agrave; informa&ccedil;&atilde;o">Acesso &agrave; informa&ccedil;&atilde;o
+	</a>
+	<div id="aba6" class="off">
+		<div class="navCinzabg submenu">
+			<ul>
+				<li>
+					<a href="http://portalsaude.saude.gov.br/portalsaude/area/380/principal-_-acesso-a-informacao.html" title="Principal - Acesso &agrave; informa&ccedil;&atilde;o">Principal - Acesso &agrave; informa&ccedil;&atilde;o</a> 
+				</li>
+			</ul>
+		</div>
+	</div>
+</li>
+						</ul>
+				</div>
+				<!-- menu fim -->
+		</div>
+		<!-- fim menuGeral  -->
+		</div>
+		<!-- coluna1Posicao1F -->
+  </div>
+		<!-- menuF -->
+</div>
+
+<script language="javascript" type="text/javascript">
+<!--
+var ns6=document.getElementById&&!document.all
+var ns66=(!document.all && document.getElementById)
+var ie4=document.all&&navigator.userAgent.indexOf("Opera")==-1
+function checkcontained(e){
+	var iscontained=0
+	cur=ns6?e.target:event.srcElement
+	i=0
+	if (cur.id=="foldheader")
+		iscontained=1
+	else
+		while (ns6&&cur.parentNode||(ie4&&cur.parentElement)){
+			if (cur.id=="foldheader"||cur.id=="foldinglist"){
+				iscontained=((cur.id=="foldheader")?1:0)
+				break
+			}
+			cur=(ns6?cur.parentNode:cur.parentElement)
+		}
+	if (iscontained){
+		var foldercontent=((ns6)?cur.nextSibling.nextSibling:cur.all.tags("ul")[0])
+		if (foldercontent.style.display=="none"){
+			foldercontent.style.display=""
+			cur.style.listStyleImage="url(img/menosp.gif)"
+		}else{
+			foldercontent.style.display="none"
+			cur.style.listStyleImage="url(img/maisp.gif)"
+		}
+	}
+}
+-->
+</script>
+
+<script language="javascript" type="text/javascript">
+<!--
+if (ie4||ns6)
+	document.onclick=checkcontained
+var isNS4 = (document.layers) ? true : false
+var isIE4 = (document.all && !document.getElementById) ? true : false
+var isIE5 = (document.all &&  document.getElementById) ? true : false
+var isNS6 =(!document.all &&  document.getElementById) ? true : false
+var browser='nao sei'
+if (isNS4) browser="NS4"
+if (isIE4) browser="IE4"
+if (isIE5) browser="DOM"
+if (isNS6) browser="DOM"
+-->
+</script>
+
+<noscript>Seu browse n�o suporta script.</noscript>
+<!-- testeira_preparada_inc INI -->
+
+
+<meta name="author"              content="Claudio Cunha"/>
+<meta name="author"              content="Jos� Cust�dio Oliveira Gomes"/>
+
+<meta name="keywords"            lang="pt" content="financeiro, or�amento, sa�de"/>
+<meta name="description"         content="Sistema de Informa��es sobre Or�amento P�blico em Sa�de."/>
+<!--
+<meta name="robots"              content="all"/>
+-->
+
+<meta name="author"              content="Claudio Cunha"/>
+<meta name="author"              content="Jos� Cust�dio Oliveira Gomes"/>
+
+<meta name="keywords"            lang="pt" content="financeiro, or�amento, sa�de"/>
+<meta name="description"         content="Sistema de Informa��es sobre Or�amento P�blico em Sa�de."/>
+<!--
+<meta name="robots"              content="all"/>
+-->
+
+<!-- http://www.robotstxt.org/meta.html -->
+<meta name="robots" content="noindex, nofollow" />
+
+<link rel="stylesheet"           type="text/css"                href="CSS/keyboard.css"/>
+
+<!--
+<link rel="stylesheet"           type="text/css" media="screen" href="CSS/siops12.css"      title="Normal"/>
+
+<link rel="alternate stylesheet" type="text/css" media="screen" href="CSS/siops15.css"      title="Pequeno"/>
+<link rel="alternate stylesheet" type="text/css" media="screen" href="CSS/siops20.css"      title="Grande"/>
+<link rel="stylesheet"           type="text/css" media="screen" href="CSS/siops.css"        title="Todos"/>
+<link rel="stylesheet"           type="text/css" media="screen" href="CSS/siopsGeral22.css"/>
+-->
+
+<link rel="stylesheet"			type="text/css" media="screen" href="CSS/testeira_menu.css"/>
+
+<!--
+<link rel="alternate stylesheet" type="text/css" media="screen" href="CSS/cinza.css"        title="cinza"/>
+<link rel="alternate stylesheet" type="text/css" media="screen" href="CSS/pretobranco.css"  title="pretobranco"/>
+
+
+
+----- aqui ----
+-->
+
+<link rel="stylesheet" type="text/css" media="print"    href="CSS/estilo-texto.css"/>
+
+
+<!--
+<link rel="stylesheet"           type="text/css" media="handheld" href="siopscel.css"     title="Todos">
+<link rel="stylesheet" type="text/css" media="print"    href="estilo-texto.css"/>
+-->
+
+
+
+
+<script type="text/javascript" src="js/keyboard.js"></script>
+
+
+<script type="text/javascript" src="js/funcoes2.js"></script>
+
+<style type="text/css">
+lllbody{
+	zzfont-family: Tahoma, Arial, Verdana, sans-serif;
+	background: url(img/sombraGeral.png) top no-repeat ;
+	zzfont-size:12px;
+	zzcolor:#333;
+	zzmargin:0px;
+}
+</style>
+
+<!--<link rel="stylesheet" type="text/css" media="screen" href="bimestral/CSS/bim_siops.css"/>-->
+
+<!-- testeira_preparada_inc FIM -->
+	
+<style type="text/css">
+body{
+	background: url(img/sombraGeral.png) top no-repeat ;
+}
+</style>
+
+<script src="js/AJAX_funcoes.js" type="text/javascript" charset="UTF-8" language="javascript" charset="utf-8"></script>
+<script src="bimestral/js/BIM_funcoes.js" type="text/javascript" charset="UTF-8" language="javascript" charset="utf-8"></script>
+<div class="aondeverm" >
+    Demonstrativo da Lei de Responsabilidade Fiscal<br>
+    <a class='alinha' href='index.php' title='Ir para a p�gina inicial' tabindex=27>In�cio</a>&nbsp;>&nbsp;
+    <a class='alinha' href='municipio.php' title='P�ginal inicial dos munic�pios' tabindex=28>Munic�pios</a>&nbsp;>&nbsp;
+    <a class='alinha' href='relmun.php' title='Demonstrativos para os munic�pios' tabindex=28>Demonstrativos</a>&nbsp;>&nbsp;Demonstrativo da Lei de Responsabilidade Fiscal
+</div>
+<div id='container'>
+    <div id='arearelatorio' name='arearelatorio'>
+        <div class="informacao" style="margin-left: 0px;">
+                            <div class="centro">
+                    <table class="tam tdexterno" align="center">
+                        <tr>
+                            <td class="td2 tdc dadosInfo">Demonstrativo da Lei de Responsabilidade Fiscal - Anexo XVI</td>
+                        </tr>
+                        <tr>
+                            <td class="td2 tdc dadosInfo">O Municipio mun - mun n�o transmitiu os dados para c�lculo do demonstrativo.</td>
+                        </tr>
+                    </table>
+                </div>
+                <!--
+<div>
+-->
+
+<script type="text/javascript">
+<!--
+function botaoVoltarPadrao(varBotaoVoltar1) {
+//alert(11);
+//alert(varBotaoVoltar1);
+	obj=document.getElementById('dados');
+	if(obj!=null){
+		btn=document.getElementById('voltar');
+		if(btn!=null){
+			if(btn.value!='')
+				window.location.replace(btn.value);
+		}else
+			window.location.replace(varBotaoVoltar1);
+	}else
+		window.location.replace(varBotaoVoltar1);
+
+/*
+//alert('varBotaoVoltar1:'+varBotaoVoltar1);
+//window.alert('varBotaoVoltar:'+varBotaoVoltar1);
+//	window.location='sol_critica.php';
+//	window.location=varBotaoVoltar1;
+//window.history.clear();
+
+alert('qtdeVoltar:'+qtdeVoltar);
+	qtdeVoltar=((qtdeVoltar!=null)?qtdeVoltar:0);
+alert('qtdeVoltar:'+qtdeVoltar);
+	history.go(-2+qtdeVoltar);
+	qtdeVoltar=0;
+*/
+}
+-->
+</script>
+<div style="clear:both;" class='XSDWE_rodape'>
+
+<p>
+	<a id='voltarPortal' Onclick="botaoVoltarPadrao('consleirespfiscal.php');" title='Voltar'>&nbsp;
+		<img src='img/btnVoltar.png' alt='Voltar' border='0'/>
+	</a>
+</p>
+</div>
+<style type="text/css">
+#zzrodape{
+	width:100%;
+	padding:5px;
+	min-height:200px;
+	background:url(../geral/img/bgRodape.jpg) top repeat-x;
+	margin-top:30px;
+}
+#rodapePosicao1{
+	zzwidth:220px;
+	zzfloat:left;
+	zzpadding-right:20px;
+	background: url(../geral/img/sombraverticalnoticias.png) right no-repeat; 
+}
+#zzrodapePosicao2{
+	width:720px;
+	background:url(../geral/img/sombraColuna.png) bottom no-repeat;
+	background:url(../img/sombraColuna.png) bottom no-repeat;
+	float:left;
+}
+</style>
+
+<div id="rodape" >
+	<div id="rodapePosicao1">
+		<p>
+			<a href="http://portal.saude.gov.br/portal/saude/area.cfm?id_area=141" title="Acesse a Ouvidoria">
+				<img align="absMiddle" alt="Ouvidoria" src="portalsaude/arquivos/png/2011/Out/04/logo_136.png"/>&nbsp;
+			</a>
+		</p>
+		<p>
+					Minist&eacute;rio da Sa&uacute;de<br/>
+					Esplanada dos Minist&eacute;rios Bloco G<br/>
+					Brasilia-DF / CEP: 70058-900
+		</p>
+		<p>
+			<a href="http://www.saude.gov.br/cartasus" target="_blank">
+				<img alt="Acesse o serviço CartaSUS e avalie seu atendimento."
+					src="portalsaude/arquivos/jpg/2012/Jan/16/selo_carta_sus_16012012.jpg" 
+					style="border-width: 0px; border-style: solid; width: 119px; height: 35px;" 
+					title="Acesse o serviço CartaSUS e avalie seu atendimento."/>
+			</a>
+		</p>
+	</div>
+<!-- rodapePosicao1F -->
+	<div class="rodapeXS" id="rodapePosicao2">
+		<span><b>Acessos</b></span><br/>
+			<a href="http://www3.transparencia.gov.br/TransparenciaPublica/index.jsp?CodigoOrgao=36000&amp;TipoOrgao=1&amp;consulta=0"
+				target="_blank" title="Acesse o Portal da Transparência Pública"><img alt="Acesso" border="0" 
+				src="portalsaude/includes/templates/eportal//img/acesso1.gif" title="Acesse o Portal da Transparência Pública" /> 
+			</a>
+			<!-- <a href="http://www.brasilsemmiseria.gov.br"
+				target="_blank" title="BrasilSemMiseria"><img alt="Brasil sem miseria" border="0" 
+				src="portalsaude/includes/templates/eportal//img/brasil_sem_miseria.jpg" /> -->
+			</a>
+			<a href="http://www.secom.gov.br/sobre-a-secom/publicacoes/caderno-destaques/arquivos/destaque-colorido" target="_blank" 
+				title="Destaques"> <img alt="Destaques" border="0" src="portalsaude/includes/templates/eportal//img/bn_destaques_230811.jpg"/>
+			</a>
+			<a href="http://portal.saude.gov.br/portal/saude/profissional/area.cfm?id_area=1818" target="_blank" 
+				title="DoencasCronicas"><img alt="DoencasCronicas" border="0" 
+				src="portalsaude/includes/templates/eportal//img/banner_planoDCNT3_230811.jpg" />
+			</a>
+			<a href="http://www.saude.gov.br/guiasinalizacao" target="_self"><img alt="Guia de sinalização de serviços e unidades do SUS"
+				src="portalsaude/arquivos/jpg/2011/Dez/16/guia_sinalizacao.jpg" style="width:120px;height:40px;" />
+			</a>
+		<div class="clearboth">&nbsp;
+		</div>
+	</div>
+<!-- rodapePosicao2F -->
+	<div class="rodapeXS" id="rodapePosicao3">
+		<img alt="Assinatura" src="portalsaude/includes/templates/eportal//img/assinatura.gif"/>
+	</div>
+<!-- rodapePosicao3F -->  <br />
+	<div class="rodapeXS" id="rodapePosicao4">
+		<a href="http://webmail.saude.gov.br" target="_blank" title="webmail.saude.gov.br">
+			<img alt="webmail.saude.gov.br" 
+				src="portalsaude/includes/templates/eportal//img/webmail_rodape2.jpg"
+			/>
+		</a>
+	</div>
+<!-- rodapePosicao4F -->
+</div>
+<!-- rodapeF -->
+<script type='text/javascript'>var obj=document.getElementById('voltar'); if (obj!=null) obj.style.visibility='hidden';</script>
+		</div>
+		
+	</body>
+	
+</html>
+

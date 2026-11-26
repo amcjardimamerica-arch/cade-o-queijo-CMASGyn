@@ -1,0 +1,284 @@
+{
+ "quando": "2026-11-26T22:14:09+00:00",
+ "leituras": [
+  {
+   "fonte": "siope",
+   "url": "https://www.fnde.gov.br/olinda-ide/servico/",
+   "ok": false,
+   "http": 404,
+   "erro": "HTTP 404",
+   "bytes": 0,
+   "arquivo": "siope__www-fnde-gov-br-olinda-ide-servico.txt"
+  },
+  {
+   "fonte": "siope",
+   "url": "https://www.fnde.gov.br/olinda-ide/servico/DADOS_ABERTOS_SIOPE/versao/v1/odata/",
+   "ok": false,
+   "http": 500,
+   "erro": "HTTP 500",
+   "bytes": 0,
+   "arquivo": "siope__www-fnde-gov-br-olinda-ide-servico-dados-abertos-siope-versao-v1-odata.txt"
+  },
+  {
+   "fonte": "siope",
+   "url": "https://www.fnde.gov.br/olinda-ide/servico/DADOS_ABERTOS_SIOPE/versao/v1/odata/$metadata",
+   "ok": false,
+   "http": 500,
+   "erro": "HTTP 500",
+   "bytes": 0,
+   "arquivo": "siope__www-fnde-gov-br-olinda-ide-servico-dados-abertos-siope-versao-v1-odata-metadata.txt"
+  },
+  {
+   "fonte": "siope",
+   "url": "https://www.fnde.gov.br/olinda-ide/servico/DADOS_ABERTOS_SIOPE/versao/v1/documentacao",
+   "ok": false,
+   "http": 500,
+   "erro": "HTTP 500",
+   "bytes": 0,
+   "arquivo": "siope__www-fnde-gov-br-olinda-ide-servico-dados-abertos-siope-versao-v1-documentacao.txt"
+  },
+  {
+   "fonte": "fnde",
+   "url": "https://www.fnde.gov.br/dadosabertos/api/3/action/package_list",
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 9632,
+   "arquivo": "fnde__www-fnde-gov-br-dadosabertos-api-3-action-package-list.txt"
+  },
+  {
+   "fonte": "fnde",
+   "url": "https://www.fnde.gov.br/dadosabertos/api/3/action/package_search?q=transferencias&rows=20",
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 9632,
+   "arquivo": "fnde__www-fnde-gov-br-dadosabertos-api-3-action-package-search-q-transferencias-rows-20.txt"
+  },
+  {
+   "fonte": "siops",
+   "url": "https://opendatasus.saude.gov.br/api/3/action/package_search?q=siops&rows=20",
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 33301,
+   "arquivo": "siops__opendatasus-saude-gov-br-api-3-action-package-search-q-siops-rows-20.txt"
+  },
+  {
+   "fonte": "siops",
+   "url": "https://opendatasus.saude.gov.br/api/3/action/package_show?id=siops",
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 33301,
+   "arquivo": "siops__opendatasus-saude-gov-br-api-3-action-package-show-id-siops.txt"
+  },
+  {
+   "fonte": "siops",
+   "url": "http://siops.datasus.gov.br/consleirespfiscal.php",
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 44574,
+   "arquivo": "siops__siops-datasus-gov-br-consleirespfiscal-php.txt"
+  },
+  {
+   "fonte": "siops",
+   "url": "http://siops.datasus.gov.br/rel_LRF.php",
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 36387,
+   "arquivo": "siops__siops-datasus-gov-br-rel-lrf-php.txt"
+  },
+  {
+   "fonte": "siops",
+   "url": "http://siops.datasus.gov.br/indicadores.php",
+   "ok": false,
+   "http": 404,
+   "erro": "HTTP 404",
+   "bytes": 0,
+   "arquivo": "siops__siops-datasus-gov-br-indicadores-php.txt"
+  },
+  {
+   "fonte": "fns",
+   "url": "https://opendatasus.saude.gov.br/api/3/action/package_search?q=fundo%20a%20fundo&rows=20",
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 33301,
+   "arquivo": "fns__opendatasus-saude-gov-br-api-3-action-package-search-q-fundo-20a-20fundo-rows-20.txt"
+  },
+  {
+   "fonte": "fns",
+   "url": "https://consultafns.saude.gov.br/",
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 86877,
+   "arquivo": "fns__consultafns-saude-gov-br.txt"
+  },
+  {
+   "fonte": "fns",
+   "url": "https://consultafns.saude.gov.br/recursos/consulta-detalhada",
+   "ok": false,
+   "http": 404,
+   "erro": "HTTP 404",
+   "bytes": 0,
+   "arquivo": "fns__consultafns-saude-gov-br-recursos-consulta-detalhada.txt"
+  },
+  {
+   "fonte": "tesouro",
+   "url": "https://www.tesourotransparente.gov.br/ckan/api/3/action/package_search?q=transfer%C3%AAncias%20constitucionais&rows=20",
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 274705,
+   "arquivo": "tesouro__www-tesourotransparente-gov-br-ckan-api-3-action-package-search-q-transfer-c3-aancias-20co.txt"
+  },
+  {
+   "fonte": "tesouro",
+   "url": "https://www.tesourotransparente.gov.br/ckan/api/3/action/package_show?id=transferencias-constitucionais-para-municipios",
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 117284,
+   "arquivo": "tesouro__www-tesourotransparente-gov-br-ckan-api-3-action-package-show-id-transferencias-constituci.txt"
+  },
+  {
+   "fonte": "tesouro",
+   "url": "https://www.tesourotransparente.gov.br/ckan/dataset/af4e7c47-2132-4d9a-bd7c-34e28a210b03/resource/dc189145-9ea9-4c0f-b60b-65e57a37ba38/download/transferenciamensalmunicipios1997.csv.csv",
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 8163647,
+   "arquivo": "tesouro__www-tesourotransparente-gov-br-ckan-dataset-af4e7c47-2132-4d9a-bd7c-34e28a210b03-resource.txt"
+  },
+  {
+   "fonte": "tesouro",
+   "url": "https://www.tesourotransparente.gov.br/ckan/dataset/af4e7c47-2132-4d9a-bd7c-34e28a210b03/resource/66ffadd6-d841-4bab-a3e0-fea3da9c17d9/download/transferenciamensalmunicipios1998.csv.csv",
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 31303152,
+   "arquivo": "tesouro__www-tesourotransparente-gov-br-ckan-dataset-af4e7c47-2132-4d9a-bd7c-34e28a210b03-resource.txt"
+  },
+  {
+   "fonte": "tesouro",
+   "url": "https://www.tesourotransparente.gov.br/ckan/dataset/af4e7c47-2132-4d9a-bd7c-34e28a210b03/resource/0c5852d2-2fc9-4b23-ba7f-1e7644d57b38/download/transferenciamensalmunicipios1999.csv.csv",
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 32819555,
+   "arquivo": "tesouro__www-tesourotransparente-gov-br-ckan-dataset-af4e7c47-2132-4d9a-bd7c-34e28a210b03-resource.txt"
+  },
+  {
+   "fonte": "tesouro",
+   "url": "https://www.tesourotransparente.gov.br/ckan/dataset/af4e7c47-2132-4d9a-bd7c-34e28a210b03/resource/4d332fbc-69d3-4e46-85e3-c25031646dfa/download/transferenciamensalmunicipios2000.csv.csv",
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 36480372,
+   "arquivo": "tesouro__www-tesourotransparente-gov-br-ckan-dataset-af4e7c47-2132-4d9a-bd7c-34e28a210b03-resource.txt"
+  },
+  {
+   "fonte": "tesouro",
+   "url": "https://www.tesourotransparente.gov.br/ckan/dataset/af4e7c47-2132-4d9a-bd7c-34e28a210b03/resource/3ffc1342-513d-44c0-bb22-7c2f8de98d2f/download/transferenciamensalmunicipios2001.csv.csv",
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 38099850,
+   "arquivo": "tesouro__www-tesourotransparente-gov-br-ckan-dataset-af4e7c47-2132-4d9a-bd7c-34e28a210b03-resource.txt"
+  },
+  {
+   "fonte": "tesouro",
+   "url": "https://www.tesourotransparente.gov.br/ckan/dataset/894a4dad-f306-4717-a417-ea54349376ba/resource/96567b6b-9148-423a-b8e2-6c1cfdc1bc26/download/metadados-apitransferenciasconstitucionais.pdf",
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 583670,
+   "arquivo": "tesouro__www-tesourotransparente-gov-br-ckan-dataset-894a4dad-f306-4717-a417-ea54349376ba-resource.txt"
+  },
+  {
+   "fonte": "tesouro",
+   "url": "https://www.tesourotransparente.gov.br/ckan/dataset/8add38c3-cf27-4428-940e-806548cac95c/resource/1bb3522d-28ef-4665-88b1-8bcc9d0904d4/download/transferenciaestados1997-2015.csv.csv",
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 3870949,
+   "arquivo": "tesouro__www-tesourotransparente-gov-br-ckan-dataset-8add38c3-cf27-4428-940e-806548cac95c-resource.txt"
+  },
+  {
+   "fonte": "tesouro",
+   "url": "https://www.tesourotransparente.gov.br/ckan/dataset/8add38c3-cf27-4428-940e-806548cac95c/resource/bde2060d-dfbc-472e-b93e-997b5b4f246a/download/transferenciaestados1997-2015.csv.csv",
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 153509,
+   "arquivo": "tesouro__www-tesourotransparente-gov-br-ckan-dataset-8add38c3-cf27-4428-940e-806548cac95c-resource.txt"
+  },
+  {
+   "fonte": "tesouro",
+   "url": "https://www.tesourotransparente.gov.br/ckan/dataset/8add38c3-cf27-4428-940e-806548cac95c/resource/8576f5bd-7766-4022-8637-ab9e05cb061a/download/transferenciaestados1997-2015.csv.csv",
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 155474,
+   "arquivo": "tesouro__www-tesourotransparente-gov-br-ckan-dataset-8add38c3-cf27-4428-940e-806548cac95c-resource.txt"
+  },
+  {
+   "fonte": "tesouro",
+   "url": "https://www.tesourotransparente.gov.br/ckan/dataset/8add38c3-cf27-4428-940e-806548cac95c/resource/150e4c9d-e44c-49a5-96fc-f5c97ecfc523/download/transferenciaestados1997-2015.csv.csv",
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 155474,
+   "arquivo": "tesouro__www-tesourotransparente-gov-br-ckan-dataset-8add38c3-cf27-4428-940e-806548cac95c-resource.txt"
+  },
+  {
+   "fonte": "tesouro",
+   "url": "https://www.tesourotransparente.gov.br/ckan/dataset/8add38c3-cf27-4428-940e-806548cac95c/resource/cbdcaa1d-0e26-4b1b-95e6-94ec25dec03e/download/transferenciamensalestados201608.csv.csv",
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 20838,
+   "arquivo": "tesouro__www-tesourotransparente-gov-br-ckan-dataset-8add38c3-cf27-4428-940e-806548cac95c-resource.txt"
+  },
+  {
+   "fonte": "tesouro",
+   "url": "https://www.tesourotransparente.gov.br/ckan/dataset/83e419da-1552-46bf-bfc3-05160b2c46c9/resource/66d69917-a5d8-4500-b4b2-ef1f5d062430/download/emendas-parlamentares.csv",
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 71116146,
+   "arquivo": "tesouro__www-tesourotransparente-gov-br-ckan-dataset-83e419da-1552-46bf-bfc3-05160b2c46c9-resource.txt"
+  },
+  {
+   "fonte": "transferegov",
+   "url": "https://api.transferegov.gestao.gov.br/transferenciasespeciais/",
+   "ok": false,
+   "http": 503,
+   "erro": "HTTP 503",
+   "bytes": 0,
+   "arquivo": "transferegov__api-transferegov-gestao-gov-br-transferenciasespeciais.txt"
+  },
+  {
+   "fonte": "transferegov",
+   "url": "https://api.transferegov.gestao.gov.br/fundoafundo/",
+   "ok": false,
+   "http": 503,
+   "erro": "HTTP 503",
+   "bytes": 0,
+   "arquivo": "transferegov__api-transferegov-gestao-gov-br-fundoafundo.txt"
+  },
+  {
+   "fonte": "transferegov",
+   "url": "https://api.transferegov.gestao.gov.br/ted/",
+   "ok": false,
+   "http": 503,
+   "erro": "HTTP 503",
+   "bytes": 0,
+   "arquivo": "transferegov__api-transferegov-gestao-gov-br-ted.txt"
+  }
+ ]
+}

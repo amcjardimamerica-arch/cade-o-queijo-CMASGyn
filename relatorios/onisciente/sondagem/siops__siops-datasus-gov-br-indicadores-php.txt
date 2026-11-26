@@ -1,0 +1,6 @@
+URL: http://siops.datasus.gov.br/indicadores.php
+OK: False
+HTTP: 404
+ERRO: HTTP 404
+BYTES: 0
+

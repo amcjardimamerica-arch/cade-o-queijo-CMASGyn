@@ -1,0 +1,6 @@
+URL: https://api.transferegov.gestao.gov.br/ted/
+OK: False
+HTTP: 503
+ERRO: HTTP 503
+BYTES: 0
+
