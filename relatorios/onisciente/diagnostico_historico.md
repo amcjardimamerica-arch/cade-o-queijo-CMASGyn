@@ -1,6 +1,6 @@
 # Diagnóstico da coleta histórica (2024-11 a 2026-11)
 
-Rodada de 2026-11-26T21:03:08+00:00. Banco: `dados/onisciente/historico.db`.
+Rodada de 2026-11-26T22:28:31+00:00. Banco: `dados/onisciente/historico.db`.
 
 Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna na fonte (ela respondeu e o dado não estava lá). As duas nunca se misturam.
 
@@ -16,6 +16,8 @@ Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna na fonte (
 | SICONFI (Tesouro Nacional) | 23 | 23 | 0 | 0 | 5.9 |
 | SICONFI pelos endereços antigos | 2 | 0 | 2 | 0 | 1.2 |
 | Diário Oficial pelo índice do SILEG | 50 | 50 | 0 | 0 | 13.3 |
+| Demonstrativo da saúde (SIOPS) | 15 | 15 | 0 | 0 | 23.1 |
+| Transferências constitucionais (Tesouro) | 1 | 0 | 1 | 0 | 71.4 |
 
 ## O que entrou no banco
 

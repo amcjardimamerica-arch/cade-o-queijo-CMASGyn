@@ -1,6 +1,6 @@
 {
  "intervalo": "2024-11 a 2026-11",
- "rodada": "2026-11-26T21:03:08+00:00",
+ "rodada": "2026-11-26T22:28:31+00:00",
  "meses": [
   "2024-11",
   "2024-12",
@@ -128,6 +128,30 @@
    "http_429": 0,
    "segundos": 13.3,
    "erros": {}
+  },
+  {
+   "motor": "siops",
+   "nome": "Demonstrativo da saúde (SIOPS)",
+   "chamadas": 15,
+   "ok": 15,
+   "falhas": 0,
+   "tentativas": 15,
+   "http_429": 0,
+   "segundos": 23.1,
+   "erros": {}
+  },
+  {
+   "motor": "tesouro",
+   "nome": "Transferências constitucionais (Tesouro)",
+   "chamadas": 1,
+   "ok": 0,
+   "falhas": 1,
+   "tentativas": 3,
+   "http_429": 0,
+   "segundos": 71.4,
+   "erros": {
+    "URLError: [Errno 104] Connection reset by peer": 1
+   }
   }
  ],
  "contagens": {
@@ -153,6 +177,13 @@
   "fontes": [
    25,
    20
+  ],
+  "siops_bimestres": {
+   "homologado": 12
+  },
+  "transferencias_tesouro": [
+   0,
+   0.0
   ]
  },
  "cobertura": {
