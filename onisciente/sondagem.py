@@ -24,6 +24,8 @@ from .coletores.base import ler
 
 PASTA = RAIZ / "relatorios" / "onisciente" / "sondagem"
 LIMITE = 600_000
+LIMITE_GRANDE = 6_000_000   # a MSC vem em páginas de milhares de linhas: guarda a página inteira
+GRANDES = {"msc"}
 
 OLINDA = "https://www.fnde.gov.br/olinda-ide/servico/"
 CANDIDATOS: dict[str, list[str]] = {
@@ -64,6 +66,17 @@ CANDIDATOS: dict[str, list[str]] = {
         "https://portaldatransparencia.gov.br/download-de-dados/transferencias/202501",
         "https://portaldatransparencia.gov.br/transferencias/consulta?paginacaoSimples=true&tamanhoPagina=10"
         "&offset=0&direcaoOrdenacao=asc&de=01%2F01%2F2025&ate=31%2F01%2F2025&uf=GO&nomeMunicipio=GOIANIA",
+    ],
+    # A Matriz de Saldos Contábeis (MSC) do SICONFI: receita e despesa por fonte, natureza e função.
+    "msc": [
+        "https://apidatalake.tesouro.gov.br/ords/siconfi/tt/msc_orcamentaria?id_ente=5208707&an_referencia=2025"
+        "&me_referencia=12&co_tipo_matriz=MSCC&classe_conta=6&id_tv=period_change",
+        "https://apidatalake.tesouro.gov.br/ords/siconfi/tt/msc_orcamentaria?id_ente=5208707&an_referencia=2025"
+        "&me_referencia=12&co_tipo_matriz=MSCC&classe_conta=5&id_tv=period_change",
+        "https://apidatalake.tesouro.gov.br/ords/siconfi/tt/msc_orcamentaria?id_ente=5208707&an_referencia=2025"
+        "&me_referencia=12&co_tipo_matriz=MSCE&classe_conta=6&id_tv=ending_balance",
+        "https://apidatalake.tesouro.gov.br/ords/siconfi/tt/msc_controle?id_ente=5208707&an_referencia=2025"
+        "&me_referencia=12&co_tipo_matriz=MSCC&classe_conta=8&id_tv=ending_balance",
     ],
     # As transferências do mês no Portal da Transparência (arquivo de dados abertos, sem chave).
     "transparencia": ["https://portaldatransparencia.gov.br/download-de-dados/transferencias/202501"],
@@ -143,7 +156,7 @@ def _slug(url: str, formulario: dict | None = None) -> str:
 def _guardar(fonte: str, url: str, leitura, formulario: dict | None = None) -> dict:
     PASTA.mkdir(parents=True, exist_ok=True)
     arq = PASTA / f"{fonte}__{_slug(url, formulario)}.txt"
-    bruto = leitura.conteudo[:LIMITE]
+    bruto = leitura.conteudo[:LIMITE_GRANDE if fonte in GRANDES else LIMITE]
     if leitura.ok and bruto.startswith((b"%PDF", b"PK\x03\x04")):   # binário: os bytes como vieram, em base64
         sufixo = ".pdf.b64" if bruto.startswith(b"%PDF") else ".zip.b64"
         arq.with_suffix(sufixo).write_text(base64.b64encode(leitura.conteudo).decode())
