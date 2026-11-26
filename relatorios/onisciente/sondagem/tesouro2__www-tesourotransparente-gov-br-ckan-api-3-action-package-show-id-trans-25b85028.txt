@@ -1,0 +1,7 @@
+URL: https://www.tesourotransparente.gov.br/ckan/api/3/action/package_show?id=transferencias-constitucionais-para-municipios
+POST: {}
+OK: False
+HTTP: None
+ERRO: URLError: [Errno 104] Connection reset by peer
+BYTES: 0
+
