@@ -1,6 +1,6 @@
 {
  "intervalo": "2024-11 a 2026-11",
- "rodada": "2026-11-26T15:59:19+00:00",
+ "rodada": "2026-11-26T17:24:37+00:00",
  "meses": [
   "2024-11",
   "2024-12",
@@ -70,14 +70,14 @@
   {
    "motor": "pncp",
    "nome": "Contratações (PNCP)",
-   "chamadas": 201,
-   "ok": 72,
-   "falhas": 129,
-   "tentativas": 106,
+   "chamadas": 586,
+   "ok": 294,
+   "falhas": 292,
+   "tentativas": 330,
    "http_429": 0,
-   "segundos": 4490.2,
+   "segundos": 8710.4,
    "erros": {
-    "não tentado: tempo do motor nesta rodada esgotado": 128,
+    "não tentado: tempo do motor nesta rodada esgotado": 291,
     "RemoteDisconnected: Remote end closed connection without response": 1
    }
   },
@@ -89,7 +89,7 @@
    "falhas": 50,
    "tentativas": 18,
    "http_429": 0,
-   "segundos": 211.2,
+   "segundos": 210.6,
    "erros": {
     "não tentado: 6 falhas de rede seguidas nesta fonte": 44,
     "URLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] ssl/tls alert handshake failure (_ssl.c:1011)": 6
@@ -146,9 +146,9 @@
    17168303.62
   ],
   "repasses_fnas_arquivo": 0,
-  "contratacoes_pncp": 0,
+  "contratacoes_pncp": 676,
   "contratos_pncp": [
-   1956,
+   1976,
    56
   ],
   "fontes": [
@@ -379,8 +379,8 @@
   {
    "tipo": "falha",
    "motor": "pncp",
-   "titulo": "Contratações (PNCP): 129 de 201 chamadas falharam",
-   "detalhe": "Erro mais comum: não tentado: tempo do motor nesta rodada esgotado (128 vezes).",
+   "titulo": "Contratações (PNCP): 292 de 586 chamadas falharam",
+   "detalhe": "Erro mais comum: não tentado: tempo do motor nesta rodada esgotado (291 vezes).",
    "proposta": "Ver a tabela coletas do banco para os endereços exatos."
   },
   {
@@ -429,7 +429,7 @@
    "tipo": "falha",
    "motor": "pncp",
    "titulo": "Contratos do PNCP não lidos por inteiro em 25 meses",
-   "detalhe": "Meses sem todos os órgãos lidos: 2024-11 a 2026-11. Órgãos sem nenhum mês lido: 1 de 17.",
+   "detalhe": "Meses sem todos os órgãos lidos: 2024-11 a 2026-11. Órgãos sem nenhum mês lido: 9 de 26.",
    "proposta": "A API do PNCP leva cerca de 20 segundos por chamada: rodar de novo só o motor pncp, que continua dos órgãos já conhecidos."
   },
   {
