@@ -529,3 +529,60 @@ def test_siope_guarda_o_bimestre_e_o_ftp_sem_arquivo_vira_lacuna(tmp_path):
     assert [(a["tipo"], a["titulo"]) for a in d["achados"] if a["motor"] == "siope"][-1] == (
         "melhoria", "Educação: 5º bimestre de 2026 ainda não publicado no SIOPE")
     banco.fechar()
+
+
+# --- Transferências federais: o arquivo do mês do Portal da Transparência ------------------
+
+def _zip_transferencias(linhas: list[list[str]]) -> bytes:
+    import io
+    import zipfile
+    cab = ["ANO / MÊS", "TIPO TRANSFERÊNCIA", "TIPO FAVORECIDO", "UF", "CÓDIGO MUNICÍPIO SIAFI", "NOME MUNICÍPIO",
+           "CÓDIGO ÓRGÃO SIAFI", "NOME ÓRGÃO", "NOME FUNÇÃO", "NOME PROGRAMA", "AÇÃO", "NOME AÇÃO",
+           "CÓDIGO FAVORECIDO", "NOME FAVORECIDO", "VALOR TRANSFERIDO"]
+    texto = "\n".join(";".join(f'"{c}"' for c in linha) for linha in [cab, *linhas])
+    saida = io.BytesIO()
+    with zipfile.ZipFile(saida, "w", zipfile.ZIP_DEFLATED) as z:
+        z.writestr("202501_Transferencias.csv", texto.encode("latin-1"))
+    return saida.getvalue()
+
+
+def test_transferencias_federais_do_mes_so_do_municipio(tmp_path):
+    fpm = ["202501", "Constitucionais e Royalties", "Administração Pública Municipal", "GO", "9373", "GOIANIA",
+           "-1", "Sem informação", "Encargos especiais", "TRANSFERENCIAS", "0044",
+           "TRANSFERENCIA AO FUNDO DE PARTICIPACAO DOS MUNICIPIOS - FPM", "01612092000123", "MUNICIPIO DE GOIANIA"]
+    arquivo = _zip_transferencias([
+        fpm + ["1000,50"], fpm + ["2000,25"],                                       # somadas
+        ["202501", "Legais, Voluntárias e Específicas", "Fundo Público", "GO", "9373", "GOIÂNIA", "36000",
+         "Ministério da Saúde", "Saúde", "SUS", "8585", "MEDIA E ALTA COMPLEXIDADE", "11111111000111",
+         "FUNDO MUNICIPAL DE SAUDE", "500"],
+        ["202501", "Constitucionais e Royalties", "Administração Pública Municipal", "GO", "9227",
+         "APARECIDA DE GOIANIA", "-1", "x", "x", "x", "0044", "FPM", "1", "MUNICIPIO DE APARECIDA", "9"],
+        ["202501", "Constitucionais e Royalties", "Administração Pública Municipal", "SP", "1", "GOIANIA",
+         "-1", "x", "x", "x", "0044", "FPM", "1", "outro", "9"]])
+    pedidos = []
+
+    def leitor(url, **_):
+        pedidos.append(url)
+        if url.endswith("/202501"):
+            return base.Leitura(True, url, arquivo, http=200)
+        return base.Leitura(True, url, b"<!DOCTYPE html><html>sem arquivo</html>", http=200)
+
+    banco = historico.rodar("2025-01", "2025-02", caminho=tmp_path / "h.db", motores=("transferencias",),
+                            hoje=date(2026, 11, 26), ler_url=leitor, dormir=lambda s: None, pausa=0)
+    assert [u.rsplit("/", 1)[1] for u in pedidos] == ["202501", "202502"]
+    linhas = banco.consultar("SELECT mes, nome_acao, nome_favorecido, valor FROM transferencias_federais "
+                             "ORDER BY valor DESC")
+    assert linhas == [("2025-01", "TRANSFERENCIA AO FUNDO DE PARTICIPACAO DOS MUNICIPIOS - FPM",
+                       "MUNICIPIO DE GOIANIA", 3000.75),
+                      ("2025-01", "MEDIA E ALTA COMPLEXIDADE", "FUNDO MUNICIPAL DE SAUDE", 500.0)]
+    d = diagnostico.diagnosticar(banco)
+    assert ("melhoria", "O Portal da Transparência ainda não publicou 2025-02") in [
+        (a["tipo"], a["titulo"]) for a in d["achados"] if a["motor"] == "transferencias"]
+    assert d["contagens"]["transferencias_federais"] == (1, 3500.75)
+    banco.fechar()
+
+
+def test_arquivo_de_transferencias_com_cabecalho_mudado_e_formato():
+    from onisciente.coletores import transparencia
+    with pytest.raises(ValueError, match="não é zip"):
+        transparencia.linhas_do_municipio(b"nada", "Goiânia", "GO")

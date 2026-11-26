@@ -34,6 +34,7 @@ NOME_DOS_MOTORES = {
     "tesouro": "Transferências constitucionais (Tesouro)",
     "siops": "Demonstrativo da saúde (SIOPS)",
     "siope": "Demonstrativo da educação (SIOPE)",
+    "transferencias": "Transferências federais (Portal da Transparência)",
 }
 
 
@@ -277,6 +278,12 @@ def _externos(banco: Banco) -> list[Achado]:
             saida.append(Achado("falha", "siope", f"Educação: {periodo}º bimestre de {exercicio} não foi lido",
                                 f"{situacao}: {erro}", "Rodar de novo só o motor siope; se repetir, conferir "
                                 "o leitor do PDF do SIOPE."))
+    federais = json.loads(_meta(banco).get("transferencias_meses") or "null")
+    if federais and federais.get("nao_publicados"):
+        saida.append(Achado("melhoria", "transferencias", "O Portal da Transparência ainda não publicou "
+                            + _faixas(federais["nao_publicados"]),
+                            "O arquivo de transferências do mês sai depois do mês.",
+                            "A coleta mensal confere de novo."))
     tesouro = json.loads(_meta(banco).get("tesouro_meses") or "null")
     if tesouro and tesouro.get("nao_publicados"):
         saida.append(Achado("melhoria", "tesouro", "O Tesouro ainda não publicou "
@@ -487,6 +494,8 @@ def diagnosticar(banco: Banco, *, raiz: Path = RAIZ) -> dict:
             "SELECT situacao, COUNT(*) FROM externos_periodos WHERE fonte = 'SIOPS' GROUP BY situacao")),
         "siope_bimestres": dict(banco.consultar(
             "SELECT situacao, COUNT(*) FROM externos_periodos WHERE fonte = 'SIOPE' GROUP BY situacao")),
+        "transferencias_federais": banco.consultar(
+            "SELECT COUNT(DISTINCT mes), ROUND(COALESCE(SUM(valor), 0), 2) FROM transferencias_federais")[0],
         "transferencias_tesouro": banco.consultar(
             "SELECT COUNT(*), ROUND(COALESCE(SUM(total), 0), 2) FROM transferencias_tesouro")[0],
     }

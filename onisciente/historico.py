@@ -27,7 +27,7 @@ from typing import Callable
 from urllib.parse import urlencode
 
 from . import RAIZ
-from .coletores import base, siope, siops
+from .coletores import base, siope, siops, transparencia
 
 BANCO = RAIZ / "dados" / "onisciente" / "historico.db"
 SAIDA = RAIZ / "relatorios" / "onisciente"
@@ -166,6 +166,8 @@ CREATE TABLE IF NOT EXISTS fontes (grupo TEXT, nome TEXT, url TEXT, ok INTEGER, 
 CREATE TABLE IF NOT EXISTS normas (caminho TEXT, ok INTEGER, revogada INTEGER, erro TEXT);
 CREATE TABLE IF NOT EXISTS transferencias_tesouro (mes TEXT, item TEXT, destino TEXT, decendio1 REAL,
     decendio2 REAL, decendio3 REAL, total REAL);
+CREATE TABLE IF NOT EXISTS transferencias_federais (mes TEXT, tipo TEXT, tipo_favorecido TEXT, orgao TEXT,
+    funcao TEXT, programa TEXT, acao TEXT, nome_acao TEXT, favorecido TEXT, nome_favorecido TEXT, valor REAL);
 CREATE TABLE IF NOT EXISTS externos_periodos (fonte TEXT, exercicio INTEGER, periodo INTEGER,
     homologado TEXT, situacao TEXT, linhas INTEGER, erro TEXT);
 CREATE TABLE IF NOT EXISTS externos_itens (fonte TEXT, exercicio INTEGER, periodo INTEGER, quadro INTEGER,
@@ -192,6 +194,8 @@ TABELAS_DO_MOTOR = {
     "tesouro": [("coletas", "motor = 'tesouro'"), ("transferencias_tesouro", ""),
                 ("meta", "chave = 'tesouro_meses'")],
     "normas": [("coletas", "motor = 'ctresb'"), ("normas", "")],
+    "transferencias": [("coletas", "motor = 'transferencias'"), ("transferencias_federais", ""),
+                       ("meta", "chave = 'transferencias_meses'")],
 }
 
 
@@ -856,6 +860,40 @@ def motor_tesouro(ctx: Contexto, municipio: str, uf: str) -> None:
         {"lidos": lidos, "nao_publicados": nao_publicados})})
 
 
+# --- Motor: transferências federais (Portal da Transparência, base SIAFI) -------------------
+
+def motor_transferencias(ctx: Contexto, municipio: str, uf: str) -> None:
+    """O arquivo do mês de cada mês fechado: tudo o que a União transferiu ao Município e às
+    entidades com sede nele. Mês sem arquivo ainda é "não publicado"; arquivo ilegível é formato."""
+    lidos, nao_publicados = [], []
+    for mes in ctx.meses:
+        if fim_do_mes(mes) >= ctx.hoje:
+            continue
+        url = transparencia.url_mes(mes)
+        leitura = ctx.ler("transferencias", "mes", url, mes=mes, tempo=180)
+        if not leitura.ok:
+            if leitura.http in (403, 404):
+                nao_publicados.append(mes)
+            continue
+        try:
+            linhas = transparencia.linhas_do_municipio(leitura.conteudo, municipio, uf)
+        except ValueError as e:
+            if leitura.conteudo[:15].lstrip().lower().startswith((b"<!doctype", b"<html")):
+                nao_publicados.append(mes)   # o portal devolve a página, não o arquivo, para mês sem dado
+            else:
+                _anotar(ctx, "transferencias", "mes", mes, url, f"formato: {e}")
+            continue
+        if not linhas:
+            _anotar(ctx, "transferencias", "mes", mes, url, f"{municipio} não está no arquivo do mês")
+            continue
+        for linha in linhas:
+            if linha["mes"] == mes:
+                ctx.banco.inserir("transferencias_federais", linha)
+        lidos.append(mes)
+    ctx.banco.inserir("meta", {"chave": "transferencias_meses", "valor": json.dumps(
+        {"lidos": lidos, "nao_publicados": nao_publicados})})
+
+
 # --- Motor: SIOPS (o demonstrativo da saúde, RREO Anexo 12, homologado no Ministério) -------
 
 def motor_siops(ctx: Contexto, municipio: str, uf_codigo: str) -> None:
@@ -1004,9 +1042,10 @@ def motor_normas(ctx: Contexto) -> None:
                                      "erro": r.get("erro")})
 
 
-MOTORES = ("siconfi", "querido_diario", "sileg", "fnas", "pncp", "fontes", "normas", "tesouro", "siops", "siope")
+MOTORES = ("siconfi", "querido_diario", "sileg", "fnas", "pncp", "fontes", "normas", "tesouro", "siops", "siope",
+           "transferencias")
 # Minutos que cada motor pode usar numa rodada (o fluxo do GitHub para em 180).
-TEMPO_DO_MOTOR = {"pncp": 75, "siconfi": 20}
+TEMPO_DO_MOTOR = {"pncp": 75, "siconfi": 20, "transferencias": 30}
 TEMPO_PADRAO = 12
 
 
@@ -1059,6 +1098,7 @@ def rodar(desde: str, ate: str, *, motores=MOTORES, caminho=BANCO, hoje: date | 
         "tesouro": lambda: motor_tesouro(ctx, alvo.municipio, alvo.uf),
         "siops": lambda: motor_siops(ctx, alvo.municipio, str(alvo.ibge)[:2]),
         "siope": lambda: motor_siope(ctx, str(alvo.ibge)[:6]),
+        "transferencias": lambda: motor_transferencias(ctx, alvo.municipio, alvo.uf),
     }
     for nome in motores:
         inicio = time.monotonic()
