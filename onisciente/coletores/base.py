@@ -54,7 +54,7 @@ def ler(url: str, *, tempo: int = 60, fonte: str = "",
             with urllib.request.urlopen(pedido, timeout=tempo,  # noqa: S310 (URL do mapa)
                                         context=contexto) as resposta:
                 conteudo = resposta.read()
-                codigo = resposta.status
+                codigo = getattr(resposta, "status", None)   # FTP não tem código HTTP
             break
         except urllib.error.HTTPError as e:
             return Leitura(False, url, erro=f"HTTP {e.code}", http=e.code)

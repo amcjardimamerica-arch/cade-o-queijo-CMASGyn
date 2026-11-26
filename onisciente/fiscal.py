@@ -199,6 +199,7 @@ def medir_municipio(ate: date, *, banco: Path | str = BANCO, mapa: MapaLegal | N
         fiscal = _medir(leitor, ate, mapa)
         _medir_camara(leitor, ate, mapa, fiscal, faixa_camara)
         _medir_saude(leitor, ate, mapa, fiscal)
+        _medir_educacao(leitor, ate, mapa, fiscal)
         return fiscal
     finally:
         leitor.fechar()
@@ -446,11 +447,13 @@ BASE_IMPOSTOS_RREO = {
 }
 
 
-def base_de_impostos(lt: Leitor, exercicio: int, bimestre: int) -> tuple[float | None, str]:
+def base_de_impostos(lt: Leitor, exercicio: int, bimestre: int, *,
+                     extraordinarias: bool = False) -> tuple[float | None, str]:
     """Cálculo próprio da receita de impostos e transferências até o bimestre, com a memória.
 
-    No 6º bimestre o FPM vem da DCA (só a cota mensal: as cotas extraordinárias de 1% não
-    entram na base) com as compensações da LC 176/2020; nos outros, o FPM inteiro do RREO.
+    No 6º bimestre o FPM vem da DCA (a cota mensal; as cotas extraordinárias de 1% do art.
+    159, I, d e e, só com ``extraordinarias`` — a educação as conta, a saúde não) com as
+    compensações da LC 176/2020; nos outros, o FPM inteiro do RREO.
     """
     per = next((p for p in lt.periodos("RREO") if p.exercicio == exercicio and p.periodo == bimestre), None)
     if per is None:
@@ -465,13 +468,37 @@ def base_de_impostos(lt: Leitor, exercicio: int, bimestre: int) -> tuple[float |
     if bimestre == 6:
         mensal = _dca(lt, exercicio, "Anexo I-C", "RO1.7.1.1.51.1.0", "Receitas Brutas Realizadas")
         lc176 = _dca(lt, exercicio, "Anexo I-C", "RO1.7.1.9.58.0.0", "Receitas Brutas Realizadas")
+        extra = _dca(lt, exercicio, "Anexo I-C", "RO1.7.1.1.51.2.0", "Receitas Brutas Realizadas")
         if mensal is not None:
             partes["FPM"] = mensal
-            partes["compensações da LC 176/2020"] = lc176 or 0.0
             nota = "FPM só da cota mensal, pela DCA Anexo I-C, mais as compensações da LC 176/2020"
+            if extraordinarias:
+                partes["FPM, cotas extraordinárias (CF, art. 159, I, d e e)"] = extra or 0.0
+                nota = "FPM pela DCA Anexo I-C, cota mensal e extraordinárias, mais as compensações da LC 176/2020"
+            partes["compensações da LC 176/2020"] = lc176 or 0.0
     total = sum(partes.values())
     memoria = ", ".join(f"{k} {_moeda(v)}" for k, v in partes.items()) + f" ({nota})"
     return total, memoria
+
+
+def _liquidado_com_intra(lt: Leitor, exercicio: int, bimestre: int, funcao: str) -> float | None:
+    """RREO Anexo 2: liquidado até o bimestre na função, com as intraorçamentárias."""
+    linhas = dict(lt.con.execute(
+        "select rotulo, valor from siconfi_itens where demonstrativo='RREO' and exercicio=? and periodo=? "
+        "and anexo='RREO-Anexo 02' and conta=? and coluna like 'DESPESAS LIQUIDADAS ATÉ O BIMESTRE%'",
+        (exercicio, bimestre, funcao)).fetchall())
+    exceto = next((v for r, v in linhas.items() if r.startswith("Total das Despesas Exceto Intra")), None)
+    intra = next((v for r, v in linhas.items() if r.startswith("Total das Despesas Intra")), 0.0)
+    return exceto + (intra or 0.0) if exceto is not None else None
+
+
+def _rreo14(lt: Leitor, exercicio: int, bimestre: int, conta_inicio: str) -> float | None:
+    """RREO Anexo 14 (demonstrativo simplificado, no SICONFI): o % aplicado declarado."""
+    linha = lt.con.execute(
+        "select valor from siconfi_itens where demonstrativo='RREO' and exercicio=? and periodo=? and "
+        "anexo='RREO-Anexo 14' and conta like ? and coluna='% Aplicado Até o Bimestre'",
+        (exercicio, bimestre, conta_inicio + "%")).fetchone()
+    return linha[0] if linha else None
 
 
 def _medir_saude(lt: Leitor, ate: date, mapa: MapaLegal, fiscal: Fiscal) -> None:
@@ -509,15 +536,7 @@ def _medir_saude(lt: Leitor, ate: date, mapa: MapaLegal, fiscal: Fiscal) -> None
         selar([Via("SIOPS, linha III", base_siops), Via("RREO Anexo 3 e DCA, cálculo próprio", base)]),
         f"{ref}; {rreo.rotulo if rreo else 'RREO ausente'}", "LC 141/2012, arts. 7º e 32"))
     total_siops = d.valor(r"^TOTAL DAS DESPESAS COM SAUDE \(XLVIII\)", 4)
-    saude_rreo = None
-    if rreo is not None:
-        linhas = dict(lt.con.execute(
-            "select rotulo, valor from siconfi_itens where demonstrativo='RREO' and exercicio=? and periodo=? "
-            "and anexo='RREO-Anexo 02' and conta='Saúde' and coluna like 'DESPESAS LIQUIDADAS ATÉ O BIMESTRE%'",
-            (d.exercicio, d.periodo)).fetchall())
-        exceto = next((v for r, v in linhas.items() if r.startswith("Total das Despesas Exceto Intra")), None)
-        intra = next((v for r, v in linhas.items() if r.startswith("Total das Despesas Intra")), 0.0)
-        saude_rreo = exceto + (intra or 0.0) if exceto is not None else None
+    saude_rreo = _liquidado_com_intra(lt, d.exercicio, d.periodo, "Saúde")
     fiscal.conferencias.append(ConferenciaDeVias(
         f"Despesa liquidada com saúde ({d.periodo}º bimestre de {d.exercicio})",
         selar([Via("SIOPS, linha XLVIII", total_siops), Via("RREO Anexo 2, função Saúde", saude_rreo)]),
@@ -529,6 +548,148 @@ def _medir_saude(lt: Leitor, ate: date, mapa: MapaLegal, fiscal: Fiscal) -> None
         f"{_moeda(base_siops)} e {declarado if declarado is not None else '?'}%."
         + ("" if final else " Antes do 6º bimestre é acompanhamento: o mínimo de 15% vale para o ano."))
     fiscal.fontes["PISO-SAUDE"] = f"{ref}; RREO Anexos 2 e 3" + (" e DCA Anexo I-C" if final else "")
+
+
+
+# --- Educação e FUNDEB (CF, arts. 212 e 212-A; Lei 14.113/2020) -------------------------
+
+def _medir_educacao(lt: Leitor, ate: date, mapa: MapaLegal, fiscal: Fiscal) -> None:
+    """MDE, 70% do FUNDEB e saldo do FUNDEB pelo RREO Anexo 8 transmitido ao SIOPE.
+
+    MDE: o total para fins de limite (linha 28) sobre a receita de impostos e transferências
+    refeita pelo RREO Anexo 3 e pela DCA; o percentual declarado é a linha 29. FUNDEB 70%: a
+    despesa com profissionais (linha 12) sobre as receitas do FUNDEB sem a complementação VAAR
+    (linha 6 menos 6.4; Lei 14.113/2020, art. 26). Saldo: o recebido e não aplicado (linha 6
+    menos a 11) sobre o recebido, só no 6º bimestre (art. 25, § 3º). Empenhado no 6º bimestre,
+    liquidado antes (nota 5 do demonstrativo); antes do fim do ano o mínimo é acompanhamento.
+    Segundas vias: a base (linha 3), a dedução para o FUNDEB (linha 4) e as transferências
+    recebidas do FUNDEB, pelo RREO Anexo 3; a despesa com educação (linha 33) pelo RREO Anexo 2;
+    os dois percentuais pelo RREO Anexo 14 (SICONFI).
+    """
+    d = ultimo_externo(lt, "SIOPE", ate)
+    if d is None:
+        fiscal.notas.append("Educação (CF, art. 212): nenhum RREO Anexo 8 do SIOPE no banco até a data.")
+        for regra in ("PISO-EDUCACAO", "FUNDEB-PROFISSIONAIS", "FUNDEB-SALDO"):
+            fiscal.medidas.append(medir(regra, None, None, mapa=mapa))
+        return
+    final = d.periodo == 6
+    col = 0 if final else 1
+    v = d.valor
+    ref = d.rotulo
+    rreo = next((p for p in lt.periodos("RREO") if p.exercicio == d.exercicio and p.periodo == d.periodo), None)
+    ref_rreo = rreo.rotulo if rreo else "RREO ausente"
+
+    # MDE
+    aplicado = v(r"^28-", 0)
+    exigido, _, declarado = (v(r"^29-", k) for k in (0, 1, 2))
+    base_siope = v(r"^3-", 1)
+    base, memoria_base = base_de_impostos(lt, d.exercicio, d.periodo, extraordinarias=True)
+    if base is not None:
+        m = medir("PISO-EDUCACAO", aplicado, base, declarado=declarado, mapa=mapa)
+    else:
+        m = medir("PISO-EDUCACAO", aplicado, base_siope, mapa=mapa)
+        fiscal.notas.append(f"Educação: {memoria_base}; o piso fica com a base declarada no SIOPE, sem cálculo próprio.")
+    if not final and m.situacao == "descumpre":
+        m = replace(m, situacao="alerta")
+    fiscal.medidas.append(m)
+    partes = [v(r"^22-", 0), v(r"^23-", 0), v(r"^24-", 0), v(r"^25-", 0), v(r"^26-", 0), v(r"^27-", 0)]
+    refeito = (partes[0] + partes[1] - sum(partes[2:])) if None not in partes else None
+    fiscal.conferencias.append(ConferenciaDeVias(
+        f"Total para fins de limite em MDE ({d.periodo}º bimestre de {d.exercicio})",
+        selar([Via("SIOPE, linha 28", aplicado), Via("SIOPE, linhas 22 + 23 - 24 a 27", refeito)]),
+        ref, "CF, art. 212; LDB, art. 72", entre_demonstrativos=False))
+    deducao = None
+    if rreo is not None and (serie := lt.serie_mensal(rreo, "Anexo 03", "DeducaoDeReceitaParaFormacaoDoFUNDEB")):
+        deducao = sum(serie[: 2 * d.periodo])
+    recebido_fundeb = None
+    if rreo is not None and (serie := lt.serie_mensal(rreo, "Anexo 03", "RREO3TransferenciasDoFUNDEB")):
+        recebido_fundeb = sum(serie[: 2 * d.periodo])
+    principais = [v(rf"^{k}-", 1) for k in ("6.1.1", "6.2.1", "6.3.1", "6.4.1")]
+    principal = sum(principais) if None not in principais else None
+    rreo_mde = _rreo14(lt, d.exercicio, d.periodo, "Mínimo Anual de <18% / 25%>")
+    for titulo, vias, norma in (
+            (f"Receita da base da educação ({d.periodo}º bimestre de {d.exercicio})",
+             [Via("SIOPE, linha 3", base_siope), Via("RREO Anexo 3 e DCA, cálculo próprio", base)],
+             "CF, art. 212"),
+            (f"Receita destinada ao FUNDEB ({d.periodo}º bimestre de {d.exercicio})",
+             [Via("SIOPE, linha 4", v(r"^4-", 1)), Via("RREO Anexo 3, dedução para o FUNDEB", deducao)],
+             "CF, art. 212-A, II"),
+            (f"Transferências recebidas do FUNDEB ({d.periodo}º bimestre de {d.exercicio})",
+             [Via("SIOPE, linhas 6.1.1 a 6.4.1", principal), Via("RREO Anexo 3, transferências do FUNDEB",
+                                                                    recebido_fundeb)],
+             "Lei 14.113/2020, art. 3º"),
+            (f"Despesa liquidada com educação ({d.periodo}º bimestre de {d.exercicio})",
+             [Via("SIOPE, linha 33", v(r"^33-", 2)),
+              Via("RREO Anexo 2, função Educação", _liquidado_com_intra(lt, d.exercicio, d.periodo, "Educação"))],
+             "LDB, art. 72"),
+            (f"Percentual aplicado em MDE ({d.periodo}º bimestre de {d.exercicio})",
+             [Via("SIOPE, linha 29", declarado), Via("RREO Anexo 14 (SICONFI)", rreo_mde)], "LRF, art. 52")):
+        fiscal.conferencias.append(ConferenciaDeVias(titulo, selar(vias), f"{ref}; {ref_rreo}", norma))
+    fiscal.memoria["PISO-EDUCACAO"] = (
+        f"Total para fins de limite (linha 28, {'empenhado' if final else 'liquidado'}): {_moeda(aplicado)} = "
+        f"MDE com impostos {_moeda(partes[0])} + destinado ao FUNDEB {_moeda(partes[1])} - deduções "
+        f"{_moeda(sum(x or 0 for x in partes[2:]))}; sobre a receita de impostos e transferências refeita pelo RREO"
+        f"{' e pela DCA' if final else ''}: {_moeda(base)} ({memoria_base}). O SIOPE declara a base de "
+        f"{_moeda(base_siope)}, o exigido de {_moeda(exigido)} e {declarado if declarado is not None else '?'}%."
+        + ("" if final else " Antes do 6º bimestre é acompanhamento: o mínimo de 25% vale para o ano."))
+    fiscal.fontes["PISO-EDUCACAO"] = f"{ref} (RREO Anexo 8); {ref_rreo}, Anexos 2, 3 e 14" + (" e DCA" if final else "")
+
+    # FUNDEB, 70% na remuneração dos profissionais
+    receitas = v(r"^6-", 1)
+    vaar = v(r"^6\.4-", 1)
+    base70 = receitas - vaar if None not in (receitas, vaar) else None
+    profissionais = v(r"^12-", col)
+    declarado70 = v(r"^15-", 3)
+    m70 = medir("FUNDEB-PROFISSIONAIS", profissionais, base70, declarado=declarado70, mapa=mapa)
+    if not final and m70.situacao == "descumpre":
+        m70 = replace(m70, situacao="alerta")
+    fiscal.medidas.append(m70)
+    fiscal.conferencias.append(ConferenciaDeVias(
+        f"Percentual do FUNDEB nos profissionais ({d.periodo}º bimestre de {d.exercicio})",
+        selar([Via("SIOPE, linha 15", declarado70),
+               Via("RREO Anexo 14 (SICONFI)", _rreo14(lt, d.exercicio, d.periodo, "Mínimo Anual de 70% do FUNDEB"))]),
+        f"{ref}; {ref_rreo}", "LRF, art. 52"))
+    fiscal.memoria["FUNDEB-PROFISSIONAIS"] = (
+        f"Despesa do FUNDEB com profissionais da educação básica (linha 12, {'empenhada' if final else 'liquidada'}): "
+        f"{_moeda(profissionais)}, sobre as receitas do FUNDEB recebidas sem a complementação VAAR "
+        f"({_moeda(receitas)} - {_moeda(vaar)} = {_moeda(base70)}). O SIOPE declara "
+        f"{declarado70 if declarado70 is not None else '?'}% (linha 15)."
+        + ("" if final else " Antes do 6º bimestre é acompanhamento: o mínimo de 70% vale para o ano."))
+    fiscal.fontes["FUNDEB-PROFISSIONAIS"] = f"{ref} (RREO Anexo 8, linhas 6, 12 e 15); {ref_rreo}, Anexo 14"
+
+    # FUNDEB, saldo para o exercício seguinte: só no fechamento do ano
+    fim = d if final else None
+    if fim is None:
+        anos = [e for e in _externos_fechados(lt, "SIOPE", ate)]
+        fim = anos[-1] if anos else None
+    if fim is None:
+        fiscal.medidas.append(medir("FUNDEB-SALDO", None, None, mapa=mapa))
+        fiscal.notas.append("FUNDEB (art. 25, § 3º): nenhum exercício fechado no SIOPE até a data.")
+        return
+    recebido = fim.valor(r"^6-", 1)
+    gasto = fim.valor(r"^11-", 0)
+    nao_aplicado = recebido - gasto if None not in (recebido, gasto) else None
+    declarado10 = fim.valor(r"^18-", 4)
+    fiscal.medidas.append(medir("FUNDEB-SALDO", nao_aplicado, recebido, declarado=declarado10, mapa=mapa))
+    fiscal.conferencias.append(ConferenciaDeVias(
+        f"Receita do FUNDEB não aplicada em {fim.exercicio}",
+        selar([Via("SIOPE, linha 18", fim.valor(r"^18-", 1)), Via("SIOPE, linhas 6 - 11", nao_aplicado)]),
+        fim.rotulo, "Lei 14.113/2020, art. 25, § 3º", entre_demonstrativos=False))
+    fiscal.memoria["FUNDEB-SALDO"] = (
+        f"Recebido do FUNDEB em {fim.exercicio} (linha 6): {_moeda(recebido)}; empenhado com esse dinheiro "
+        f"(linha 11): {_moeda(gasto)}; não aplicado: {_moeda(nao_aplicado)}. O SIOPE declara "
+        f"{declarado10 if declarado10 is not None else '?'}% (linha 18); o máximo é 10%, a usar até abril.")
+    fiscal.fontes["FUNDEB-SALDO"] = f"{fim.rotulo} (RREO Anexo 8, linhas 6, 11 e 18)"
+
+
+def _externos_fechados(lt: Leitor, fonte: str, ate: date) -> list[Externo]:
+    try:
+        linhas = lt.con.execute(
+            "select exercicio, periodo, homologado from externos_periodos where fonte=? and periodo=6 and "
+            "situacao='homologado' order by exercicio", (fonte,)).fetchall()
+    except sqlite3.OperationalError:
+        return []
+    return [x for x in (Externo(lt, fonte, e, p, h) for e, p, h in linhas) if x.termina <= ate]
 
 
 def liquidado_na_funcao(funcao_nome: str, ate: date, *, banco: Path | str = BANCO

@@ -439,3 +439,54 @@ def test_siops_le_o_bimestre_pelo_formulario_e_guarda_linha_a_linha(tmp_path):
     assert siops == [("lacuna", "Saúde: 5º bimestre de 2025 sem demonstrativo homologado no SIOPS")]
     assert d["contagens"]["siops_bimestres"] == {"homologado": 1, "nao_entregue": 1}
     banco.fechar()
+
+
+# --- SIOPE: o demonstrativo da educação (RREO Anexo 8), pelo PDF público do FNDE ------------
+
+def test_siope_le_o_pdf_do_anexo_8_item_a_item():
+    from onisciente.coletores import siope
+    d = siope.ler((DADOS / "siope_goiania_2025_6bim.pdf").read_bytes())
+    assert (d.exercicio, d.bimestre) == (2025, 6)
+    assert len(d.itens) == 132
+    assert d.item("3").valores == [6272968000.0, 6121934479.38]
+    assert d.item("6.4").valores == [31179000.0, 50749514.66]
+    assert d.item("15").valores[3] == 84.01
+    assert d.item("18").valores[4] == 4.65
+    assert d.item("29").valores == [1530483619.84, 1581461177.17, 25.83]
+    assert d.item("33").valores[2] == 2068310203.86
+    d1 = siope.ler((DADOS / "siope_goiania_2026_1bim.pdf").read_bytes())
+    assert (d1.exercicio, d1.bimestre, d1.item("29").valores[2]) == (2026, 1, 7.5)
+    assert siope.url_pdf("520870", 5, 2026).endswith("/RREO_Municipal_520870_5_2026.pdf")
+    with pytest.raises(ValueError):
+        siope.ler(b"<html>nada</html>")
+
+
+def test_siope_guarda_o_bimestre_e_o_ftp_sem_arquivo_vira_lacuna(tmp_path):
+    pdf = (DADOS / "siope_goiania_2025_6bim.pdf").read_bytes()
+    pedidos = []
+
+    def leitor(url, **_):
+        pedidos.append(url)
+        if url.endswith("_6_2025.pdf"):
+            return base.Leitura(True, url, pdf)
+        if url.endswith("_4_2025.pdf"):
+            return base.Leitura(False, url, b"", erro="URLError: timed out")
+        return base.Leitura(False, url, b"", erro="URLError: ftp error: 550 Failed to open file.")
+
+    banco = historico.rodar("2025-07", "2025-12", caminho=tmp_path / "h.db", motores=("siope",),
+                            hoje=date(2026, 11, 26), ler_url=leitor, dormir=lambda s: None, pausa=0)
+    nomes = [u.rsplit("/", 1)[1] for u in pedidos]      # a rede caída tenta 3 vezes; o 550 é resposta e não repete
+    assert nomes == ["RREO_Municipal_520870_4_2025.pdf"] * 3 + [
+        "RREO_Municipal_520870_5_2025.pdf", "RREO_Municipal_520870_6_2025.pdf"]
+    periodos = banco.consultar("SELECT periodo, situacao, linhas FROM externos_periodos WHERE fonte = 'SIOPE' "
+                               "ORDER BY periodo")
+    assert periodos == [(4, "falha", 0), (5, "nao_entregue", 0), (6, "homologado", 132)]
+    pct = banco.consultar("SELECT coluna, valor FROM externos_itens WHERE fonte = 'SIOPE' AND rotulo LIKE '29-%' "
+                          "ORDER BY coluna")
+    assert pct == [(0, 1530483619.84), (1, 1581461177.17), (2, 25.83)]
+    d = diagnostico.diagnosticar(banco)
+    achados = [(a["tipo"], a["titulo"]) for a in d["achados"] if a["motor"] == "siope"]
+    assert achados == [("falha", "Educação: 4º bimestre de 2025 não foi lido"),
+                       ("lacuna", "Educação: 5º bimestre de 2025 sem demonstrativo no SIOPE")]
+    assert d["contagens"]["siope_bimestres"] == {"falha": 1, "homologado": 1, "nao_entregue": 1}
+    banco.fechar()

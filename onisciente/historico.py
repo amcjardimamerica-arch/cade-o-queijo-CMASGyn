@@ -27,7 +27,7 @@ from typing import Callable
 from urllib.parse import urlencode
 
 from . import RAIZ
-from .coletores import base, siops
+from .coletores import base, siope, siops
 
 BANCO = RAIZ / "dados" / "onisciente" / "historico.db"
 SAIDA = RAIZ / "relatorios" / "onisciente"
@@ -183,6 +183,8 @@ TABELAS_DO_MOTOR = {
     "pncp": [("coletas", "motor = 'pncp'"), ("contratacoes_pncp", ""), ("contratos_pncp", ""),
              ("meta", "chave IN ('pncp_orgaos', 'pncp_janelas', 'pncp_procura')")],
     "fontes": [("coletas", "motor = 'fontes'"), ("fontes", "")],
+    "siope": [("coletas", "motor = 'siope'"), ("externos_periodos", "fonte = 'SIOPE'"),
+              ("externos_itens", "fonte = 'SIOPE'")],
     "siops": [("coletas", "motor = 'siops'"), ("externos_periodos", "fonte = 'SIOPS'"),
               ("externos_itens", "fonte = 'SIOPS'")],
     "tesouro": [("coletas", "motor = 'tesouro'"), ("transferencias_tesouro", ""),
@@ -243,6 +245,11 @@ class Banco:
 
 # --- Leitura com paciência ------------------------------------------------------------
 
+def _ftp_sem_arquivo(url: str, leitura: base.Leitura) -> bool:
+    """FTP respondeu 550 (arquivo inexistente): resposta definitiva, não falha de rede."""
+    return url.startswith("ftp://") and not leitura.ok and " 550" in (leitura.erro or "")
+
+
 @dataclass
 class Contexto:
     banco: Banco
@@ -285,11 +292,13 @@ class Contexto:
             extra = {"formulario": formulario} if formulario else {}
             leitura = self.ler_url(url, tempo=tempo, cabecalhos=cabecalhos, **extra)
             codigo = leitura.http
-            if leitura.ok or not (codigo == 429 or (codigo and codigo >= 500)
-                                  or leitura.erro.startswith(("TimeoutError", "URLError"))):
+            if leitura.ok or _ftp_sem_arquivo(url, leitura) or not (
+                    codigo == 429 or (codigo and codigo >= 500)
+                    or leitura.erro.startswith(("TimeoutError", "URLError"))):
                 break
             self.dormir(min(5 * 2 ** n, 60))
-        rede = not leitura.ok and (leitura.http is None or leitura.http >= 500)
+        rede = (not leitura.ok and (leitura.http is None or leitura.http >= 500)
+                and not _ftp_sem_arquivo(url, leitura))
         self.seguidas[motor] = self.seguidas.get(motor, 0) + 1 if rede else 0
         self._registrar(motor, alvo, mes, leitura, feitas, time.monotonic() - inicio)
         if self.pausa:
@@ -895,6 +904,45 @@ def motor_siops(ctx: Contexto, municipio: str, uf_codigo: str) -> None:
             ctx.banco.inserir("externos_periodos", linha_periodo)
 
 
+def motor_siope(ctx: Contexto, ibge6: str) -> None:
+    """O RREO Anexo 8 de cada bimestre fechado, pelo PDF que o FNDE publica no FTP do SIOPE.
+
+    Arquivo ausente no FTP (erro 550) é bimestre não transmitido ao SIOPE: lacuna do Município.
+    """
+    for ano in sorted({int(m[:4]) for m in ctx.meses}):
+        for bim in range(1, 7):
+            per = Periodo("RREO", ano, bim)
+            if per.termina > ctx.hoje or not set(per.meses) & set(ctx.meses):
+                continue
+            linha_periodo = {"fonte": "SIOPE", "exercicio": ano, "periodo": bim, "homologado": None,
+                             "situacao": None, "linhas": 0, "erro": None}
+            leitura = ctx.ler("siope", f"{ano}-{bim}", siope.url_pdf(ibge6, bim, ano), mes=per.meses[-1], tempo=90)
+            if not leitura.ok:
+                nao = "550" in (leitura.erro or "")
+                linha_periodo.update(situacao="nao_entregue" if nao else "falha", erro=leitura.erro)
+                ctx.banco.inserir("externos_periodos", linha_periodo)
+                continue
+            try:
+                d = siope.ler(leitura.conteudo)
+            except Exception as e:      # PDF ilegível: formato, não lacuna
+                linha_periodo.update(situacao="formato", erro=f"{type(e).__name__}: {e}")
+                ctx.banco.inserir("externos_periodos", linha_periodo)
+                continue
+            if (d.exercicio, d.bimestre) != (ano, bim):
+                linha_periodo.update(situacao="formato",
+                                     erro=f"o PDF traz o {d.bimestre}º bimestre de {d.exercicio}")
+                ctx.banco.inserir("externos_periodos", linha_periodo)
+                continue
+            for item in d.itens:
+                for coluna, valor in enumerate(item.valores):
+                    ctx.banco.inserir("externos_itens", {
+                        "fonte": "SIOPE", "exercicio": ano, "periodo": bim, "quadro": 0, "titulo_quadro": "",
+                        "ordem": item.ordem, "rotulo": f"{item.codigo}- {item.rotulo}"[:200],
+                        "coluna": coluna, "valor": valor})
+            linha_periodo.update(situacao="homologado", linhas=len(d.itens))
+            ctx.banco.inserir("externos_periodos", linha_periodo)
+
+
 def enderecos_configurados(raiz: Path = RAIZ) -> list[tuple[str, str, str, str]]:
     """(grupo, nome, url, esperado) de cada endereço nos arquivos de fontes do sistema."""
     import yaml
@@ -941,7 +989,7 @@ def motor_normas(ctx: Contexto) -> None:
                                      "erro": r.get("erro")})
 
 
-MOTORES = ("siconfi", "querido_diario", "sileg", "fnas", "pncp", "fontes", "normas", "tesouro", "siops")
+MOTORES = ("siconfi", "querido_diario", "sileg", "fnas", "pncp", "fontes", "normas", "tesouro", "siops", "siope")
 # Minutos que cada motor pode usar numa rodada (o fluxo do GitHub para em 180).
 TEMPO_DO_MOTOR = {"pncp": 75, "siconfi": 20}
 TEMPO_PADRAO = 12
@@ -995,6 +1043,7 @@ def rodar(desde: str, ate: str, *, motores=MOTORES, caminho=BANCO, hoje: date | 
         "normas": lambda: motor_normas(ctx),
         "tesouro": lambda: motor_tesouro(ctx, alvo.municipio, alvo.uf),
         "siops": lambda: motor_siops(ctx, alvo.municipio, str(alvo.ibge)[:2]),
+        "siope": lambda: motor_siope(ctx, str(alvo.ibge)[:6]),
     }
     for nome in motores:
         inicio = time.monotonic()

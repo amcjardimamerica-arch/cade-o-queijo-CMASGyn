@@ -288,3 +288,63 @@ def test_saude_sem_siops_fica_sem_dado():
     f = fiscal.medir_municipio(date(2023, 12, 31))
     saude = next(m for m in f.medidas if m.regra.id == "PISO-SAUDE")
     assert saude.situacao == "sem_dado"
+
+
+# --- Educação e FUNDEB: SIOPE (RREO Anexo 8) contra a conta própria e o RREO do SICONFI --------
+
+def _banco_com_siope(tmp_path, *, ajuste=None):
+    """Cópia do banco com o Anexo 8 do 6º bimestre de 2025 lido do PDF do SIOPE."""
+    from onisciente import historico
+    from onisciente.coletores import siope
+    copia = tmp_path / "historico.db"
+    shutil.copy(BANCO, copia)
+    b = historico.Banco.abrir(copia)
+    b.con.execute("DELETE FROM externos_itens WHERE fonte = 'SIOPE'")
+    b.con.execute("DELETE FROM externos_periodos WHERE fonte = 'SIOPE'")
+    d = siope.ler((DADOS / "siope_goiania_2025_6bim.pdf").read_bytes())
+    for item in d.itens:
+        for coluna, valor in enumerate(item.valores):
+            b.inserir("externos_itens", dict(fonte="SIOPE", exercicio=2025, periodo=6, quadro=0, titulo_quadro="",
+                                             ordem=item.ordem, rotulo=f"{item.codigo}- {item.rotulo}"[:200],
+                                             coluna=coluna, valor=valor))
+    b.inserir("externos_periodos", dict(fonte="SIOPE", exercicio=2025, periodo=6, homologado=None,
+                                        situacao="homologado", linhas=len(d.itens), erro=None))
+    if ajuste:
+        b.con.execute(ajuste)
+    b.con.commit()
+    b.con.close()
+    return copia
+
+
+def test_educacao_e_fundeb_de_2025_com_conta_propria_e_duas_vias(tmp_path):
+    f = fiscal.medir_municipio(date(2025, 12, 31), banco=_banco_com_siope(tmp_path))
+    m = {x.regra.id: x for x in f.medidas}
+    mde, setenta, saldo = m["PISO-EDUCACAO"], m["FUNDEB-PROFISSIONAIS"], m["FUNDEB-SALDO"]
+    assert (mde.declarado, setenta.declarado, saldo.declarado) == (25.83, 84.01, 4.65)
+    assert mde.percentual == pytest.approx(25.85, abs=0.01)          # base própria, com as cotas extras do FPM
+    assert setenta.percentual == pytest.approx(84.01, abs=0.01)
+    assert saldo.percentual == pytest.approx(4.65, abs=0.01)
+    assert all(x.situacao == "cumpre" and x.selo is Selo.VERDE and not x.divergencia
+               for x in (mde, setenta, saldo))
+    vias = {c.titulo: c for c in f.conferencias if "6º bimestre de 2025" in c.titulo or "em 2025" in c.titulo}
+    for titulo in ("Receita da base da educação", "Receita destinada ao FUNDEB", "Transferências recebidas do FUNDEB",
+                   "Despesa liquidada com educação"):
+        c = next(c for t, c in vias.items() if t.startswith(titulo))
+        assert c.selo is Selo.VERDE and c.entre_demonstrativos, t
+    assert "SIOPE" in f.fontes["PISO-EDUCACAO"] and "VAAR" in f.memoria["FUNDEB-PROFISSIONAIS"]
+
+
+def test_fundeb_abaixo_de_70_no_fim_do_ano_descumpre(tmp_path):
+    banco = _banco_com_siope(tmp_path, ajuste="update externos_itens set valor = 500000000 where fonte = 'SIOPE' "
+                                              "and rotulo like '12-%' and coluna = 0")
+    f = fiscal.medir_municipio(date(2025, 12, 31), banco=banco)
+    setenta = next(m for m in f.medidas if m.regra.id == "FUNDEB-PROFISSIONAIS")
+    assert setenta.percentual < 70 and setenta.situacao == "descumpre"
+    assert setenta.divergencia and setenta.selo is Selo.AZUL            # o SIOPE declarou 84,01%
+
+
+def test_educacao_sem_siope_fica_sem_dado():
+    f = fiscal.medir_municipio(date(2023, 12, 31))
+    assert {m.regra.id: m.situacao for m in f.medidas if m.regra.id in
+            ("PISO-EDUCACAO", "FUNDEB-PROFISSIONAIS", "FUNDEB-SALDO")} == dict.fromkeys(
+        ("PISO-EDUCACAO", "FUNDEB-PROFISSIONAIS", "FUNDEB-SALDO"), "sem_dado")

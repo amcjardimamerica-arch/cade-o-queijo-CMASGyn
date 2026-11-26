@@ -33,6 +33,7 @@ NOME_DOS_MOTORES = {
     "ctresb": "Normas federais (ctresb/leis)",
     "tesouro": "Transferências constitucionais (Tesouro)",
     "siops": "Demonstrativo da saúde (SIOPS)",
+    "siope": "Demonstrativo da educação (SIOPE)",
 }
 
 
@@ -243,7 +244,7 @@ def _proposta_de_rede(erro: str) -> str:
 
 
 def _externos(banco: Banco) -> list[Achado]:
-    """SIOPS e Tesouro: bimestre não homologado é lacuna do Município; leitura falha é do sistema."""
+    """SIOPS, SIOPE e Tesouro: bimestre não homologado é lacuna do Município; leitura falha é do sistema."""
     saida = []
     for exercicio, periodo, situacao, erro in banco.consultar(
             "SELECT exercicio, periodo, situacao, erro FROM externos_periodos WHERE fonte = 'SIOPS' "
@@ -256,6 +257,18 @@ def _externos(banco: Banco) -> list[Achado]:
             saida.append(Achado("falha", "siops", f"Saúde: {periodo}º bimestre de {exercicio} não foi lido",
                                 f"{situacao}: {erro}", "Rodar de novo só o motor siops; se repetir, conferir "
                                 "a página de consulta do SIOPS."))
+    for exercicio, periodo, situacao, erro in banco.consultar(
+            "SELECT exercicio, periodo, situacao, erro FROM externos_periodos WHERE fonte = 'SIOPE' "
+            "AND situacao <> 'homologado' ORDER BY exercicio, periodo"):
+        if situacao == "nao_entregue":
+            saida.append(Achado("lacuna", "siope", f"Educação: {periodo}º bimestre de {exercicio} sem demonstrativo "
+                                "no SIOPE", "O FNDE não tem o PDF do bimestre: o Município não transmitiu "
+                                "ou o FNDE ainda não publicou.",
+                                "Os pisos da educação e do FUNDEB do bimestre ficam com uma via só."))
+        else:
+            saida.append(Achado("falha", "siope", f"Educação: {periodo}º bimestre de {exercicio} não foi lido",
+                                f"{situacao}: {erro}", "Rodar de novo só o motor siope; se repetir, conferir "
+                                "o leitor do PDF do SIOPE."))
     tesouro = json.loads(_meta(banco).get("tesouro_meses") or "null")
     if tesouro and tesouro.get("nao_publicados"):
         saida.append(Achado("melhoria", "tesouro", "O Tesouro ainda não publicou "
@@ -464,6 +477,8 @@ def diagnosticar(banco: Banco, *, raiz: Path = RAIZ) -> dict:
         "fontes": banco.consultar("SELECT COUNT(*), SUM(ok) FROM fontes")[0],
         "siops_bimestres": dict(banco.consultar(
             "SELECT situacao, COUNT(*) FROM externos_periodos WHERE fonte = 'SIOPS' GROUP BY situacao")),
+        "siope_bimestres": dict(banco.consultar(
+            "SELECT situacao, COUNT(*) FROM externos_periodos WHERE fonte = 'SIOPE' GROUP BY situacao")),
         "transferencias_tesouro": banco.consultar(
             "SELECT COUNT(*), ROUND(COALESCE(SUM(total), 0), 2) FROM transferencias_tesouro")[0],
     }
