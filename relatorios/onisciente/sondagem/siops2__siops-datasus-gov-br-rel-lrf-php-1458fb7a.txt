@@ -1,0 +1,946 @@
+URL: http://siops.datasus.gov.br/rel_LRF.php
+POST: {"cmbAno": "2025", "cmbUF": "52", "cmbPeriodo": "18", "cmbMunicipio[]": "520870", "BtConsultar": "Consultar"}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 107480
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-15;"/>
+
+<!-- inicio: adicionado o header que expira o cache -->
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="expires" content="-1" />
+
+<!-- fim: adicionado o header que expira o cache -->
+<meta name="verify-v1" content="Y/EnCi+IymynycM5dicese45d4aImZDuXpCxf8so36c=" />
+
+
+<title>. : SIOPS - Demonstrativo da Lei de Responsabilidade Fiscal.</title><script language="javascript" type="text/javascript">
+<!--
+//url=url==null?"":url;
+url="";
+-->
+</script>
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="expires" content="-1" />
+
+<!-- deploy-master:header
+2019-10-18 9:32hs-->
+
+
+
+<!-- fim: adicionado o header que expira o cache wwwwwwwwww -->
+<!--
+0000000
+
+	<style type="text/css" title="currentStyle" media="screen">@import "ZZportalsaude/includes/templates/eportal/css/smoothness/jquery-ui-1.8.6.custom.css";</style>
+	<style type="text/css" rel="stylesheet" href="ZZportalsaude/includes/templates/eportal/css/nivo-slider.css" media="screen"></style>
+	<style type="text/css" title="currentStyle" media="screen">@import "portalsaude/includes/templates/eportal/css/geral.css";</style>
+	<style type="text/css" title="currentStyle" media="screen">@import "portalsaude/includes/templates/eportal/css/menu.css";</style>
+portalsaude\includes\templates\eportal\css\geral.css
+-->
+	<link title="geral" rel="stylesheet" type="text/css" href="portalsaude/includes/templates/eportal/css/geral.css" media="screen" />
+	<link title="geral" rel="stylesheet" type="text/css" href="portalsaude/includes/templates/eportal/css/menu.css" media="screen" />
+<!--
+	<link title="geral" rel="stylesheet" type="text/css" href="portalsaude/includes/templates/eportal/css/geral.css" media="screen">
+	<link title="geral" rel="stylesheet" type="text/css" href="portalsaude/includes/templates/eportal/css/menu.css" media="screen">
+
+	<style type="text/css" title="currentStyle" media="screen">@import "ZZportalsaude/includes/templates/eportal/css/modulos.css";</style>
+	<style type="text/css" title="currentStyle" media="screen">@import "ZZportalsaude/includes/templates/eportal/css/nivo-slider.css";</style>
+	<style type="text/css" title="currentStyle" media="screen">@import "ZZportalsaude/includes/templates/eportal/css/style.css";</style>
+	<style type="text/css" title="currentStyle" media="screen">@import "ZZportalsaude/includes/templates/eportal/css/prettyPhoto.css";</style>
+	<style type="text/css" title="currentStyle" media="screen">@import "ZZportalsaude/includes/templates/eportal/css/template_home.css";</style>
+	<style type="text/css" title="currentStyle" media="screen">@import "ZZportalsaude/arquivos/2011/css/perfilCidadao.css";</style>
+-->
+	<!-- importando estilos -->
+<!--
+	<link title="geral" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/geral.css" media="screen">
+
+	<LINK title=geral rel="stylesheet" type=text/css href="portalsaude/includes/templates/eportal/css/templatePS01.css" media="screen">
+
+    <link title="geral" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/modulos.css" media="screen">
+    <link title="geral" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/menu.css" media="screen">
+    <link title="geral" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/style.css" media="screen">
+	<link title="geral" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/nivo-slider.css" media="screen">
+	<link title="geral" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/prettyPhoto.css" media="screen">
+	<link title="geral" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/smoothness/jquery-ui-1.8.6.custom.css" media="screen">
+	<link title="geralC" rel="alternate stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/geralC.css" media="screen">
+
+	<LINK title="geralC" rel="stylesheet" type=text/css href="portalsaude/includes/templates/eportal/css/templatePS01.css" media="screen">
+
+	<link title="geralC" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/modulos.css" media="screen">
+	<link title="geralC" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/menuX.css" media="screen">
+	<link title="geralC" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/nivo-slider.css" media="screen">
+	<link title="geralC" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/style.css" media="screen">
+	<link title="geralC" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/prettyPhoto.css" media="screen">
+    <link title="geralC" rel="stylesheet" type=text/css href="ZZportalsaude/includes/templates/eportal/css/smoothness/jquery-ui-1.8.6.custom.css" media="screen">
+-->
+    
+<!--
+    <link href="CSS/siops.css" type="text/css" rel="stylesheet" />
+
+	<link rel="stylesheet" type="text/css" href="CSS/keyboard.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="CSS/siops12.css"      title="Normal"/>
+    <link rel="alternate stylesheet" type="text/css" media="screen" href="CSS/siops15.css"      title="Pequeno"/>
+    <link rel="alternate stylesheet" type="text/css" media="screen" href="CSS/siops20.css"      title="Grande"/>
+    <link rel="alternate stylesheet" type="text/css" media="screen" href="CSS/cinza.css"        title="cinza"/>
+    <link rel="alternate stylesheet" type="text/css" media="screen" href="CSS/pretobranco.css"  title="pretobranco"/>
+    <link rel="stylesheet" type="text/css" media="print"    href="CSS/estilo-texto.css"/>
+-->
+
+
+    <!-- importando estilos fim-->
+<!--
+    <script src="zzportalsaude/includes/templates/eportal/js/acessibilidade.js" type="text/javascript"></script>
+	<script src="ZZportalsaude/includes/templates/eportal/js/jquery-1.4.3.min.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+	<script src="ZZportalsaude/includes/templates/eportal/js/jquery.tools.min.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+	<script src="ZZportalsaude/includes/templates/eportal/js/jquery-ui-1.8.10.custom.min.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+-->
+	<!--Script flow Player-->
+<!--
+	<script src="ZZportalsaude/includes/templates/eportal/js/flowplayer-3.2.6.min.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+-->
+
+	<!--Script flow Player-->
+
+
+<!--
+	<script src="ZZportalsaude/includes/templates/eportal/js/cookie.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+	<script src="ZZportalsaude/includes/templates/eportal/js/font_size.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+	<script src="ZZportalsaude/includes/templates/eportal/js/jquery.jcarousel.min.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+	<script src="ZZportalsaude/includes/templates/eportal/js/jquery.prettyPhoto.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+	<script src="ZZportalsaude/includes/templates/eportal/js/ajaxlib.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+-->
+
+<!--
+    <script type="text/javascript" src="js/funcoes.js"></script>
+
+
+
+<script type="text/javascript" language="JavaScript" src="/portal/geral/js/acessibilidade.js"></script>
+<script type="text/javascript" language="JavaScript" src="/portal/geral/js/font_size.js"></script>
+<script type="text/javascript" language="JavaScript" src="/portal/geral/js/cookie.js"></script>
+
+
+
+-->
+
+
+	<script type="text/javascript">
+		<!--
+		function mudaAba(itemMenu, div, qtd){	
+			qtd++;
+			for (i = 1; i < qtd; i++ ) {
+				divAba = document.getElementById(div + i);
+				divAba.className = 'off';		
+			}
+			divAba = document.getElementById(div + itemMenu);
+			divAba.className = 'on';
+		}
+
+		function mostraAbaInicio(itemMenuInicio, div, qtd){	
+			qtd++;
+			for (i = 1; i < qtd; i++ ) {
+				divAba = document.getElementById(div + i);
+				divAba.className = 'off';		
+			}	
+			divAba = document.getElementById(div + itemMenuInicio);
+			divAba.className = 'on';
+		}
+		-->
+	</script>
+	<style type="text/css">
+		#topo{
+			width:100%;
+			position:relative;
+			}
+		#barraGoverno{
+			margin:0px;
+			height:35px;
+			width:100%;
+			background-image:url(http://portal.saude.gov.br/portal/geral/img/MinisterioDaSaudeGF.png);
+			}
+		#barraGovernoPosicao1{
+			position:absolute;
+			top:7px;
+			left:30px;
+			}
+		#barraGovernoPosicao2{
+			position:absolute;
+			top:5px;
+			left:850px;
+			}
+		/*#testeira{
+			background:url(http://portal.saude.gov.br/portal/geral/img/testeira.jpg) no-repeat;
+			height:122px;
+			margin:0px;
+			padding:0px;
+			width:100%;
+			}*/
+		#SaudeGovBr{
+			width:220px;
+			height:70px;
+			position:relative;
+			top:15px;
+			left:10px;
+			}
+		#testeiraPosicao1{
+			/* custodio */ background:url(portalsaude/arquivos/jpg/2012/Jan/23/testeira.jpg) no-repeat;
+			width:680px; 
+			float:left;
+			min-height:122px;
+			}
+		#testeiraPosicao2{
+			
+			width:260px;
+			padding:5px 10px 0px 10px;
+			float:left;
+			min-height:72px;
+			}
+		/*#busca {
+			height:35px;
+		}
+		#busca  input{
+			width:225px;
+			border:none;
+			color:#999;
+			padding:10px 5px 10px 30px;
+			background-image:url(http://portal.saude.gov.br/portal/geral/img/bgBusca.jpg);
+			background-repeat:no-repeat;
+			margin:0px;
+		}
+		#busca {
+			width:252px;
+			/height:30px;/
+			border:0px;
+			font-size:16px;
+			font-family: "Century Gothic", Tahoma, Verdana, Arial;
+		}*/
+		#links{
+			margin:0px 0px 10px 0px;
+			font-size:11px;
+			border-bottom:1px #CCC solid;}
+		
+		#links a{
+			color:#999;
+			text-decoration:none;
+			}
+		#redes img{
+			/*margin-top:10px;*/
+			margin-right:3px;
+			text-decoration:none;
+			}
+		#menuN{
+			width:100%;
+			margin:0px;
+			}
+</style>  
+<!--
+</head>
+<body>
+-->
+<!-- Nova Identidade Visual do Governo -->
+<!-- 16/09/2011 CÃ­ntia-->
+<style type="text/css">
+		body {
+			margin:0;
+		}
+		#barra-brasil-v3 {
+			position:relative;
+			clear:both;
+			overflow:hidden;
+			min-width:1000px;
+			height:28px;
+			background:#004b82;
+		}
+		#barra-brasil-v3 span {
+			display:block;
+			width:50%;
+			height:28px;
+			background:url(portalsaude/includes/templates/eportal//img/barra-brasil-v3-bgx.gif) 0 bottom repeat-x;
+		}
+		#barra-brasil-v3 span .imagemGov {
+			position:absolute;
+			top:4px;
+			left:50%;
+			height: 24px;
+			width: 1000px;
+			background: url(portalsaude/includes/templates/eportal//img/barra-brasil-v3-azul.gif) right top no-repeat;
+			margin-left:-518px;
+		}
+ #barra-brasil-v3 span .imagemAi {
+			position:absolute;
+			top:4px;
+			left:48%;
+			height: 24px;
+			width: 810px;
+			margin-left:-450px;
+		}
+		#barra-brasil-v3 span .acessoainformacaogov {
+			width: 120px;
+			height: 24px;
+			float:right;
+			display:block;
+			border: 0 !important;
+		}
+		#barra-brasil-v3 span .brasilgov {
+			width: 100px;
+			height: 24px;
+			float:right;
+			display:block;
+			border: 0 !important;
+
+		}
+	</style>
+<!--
+    <link href="xxCSS/testeira_menu.css" type="text/css" rel="stylesheet" />
+    <link href="xxCSS/siops_novoPortal.css" type="text/css" rel="stylesheet" />
+    <link href="xxCSS/siops12.css" type="text/css" rel="stylesheet" media="screen" title="Normal"/>
+
+    <link rel="stylesheet" type="text/css" media="print"    href="zzCSS/estilo-texto.css"/>
+    <link rel="stylesheet" type="text/css" media="print"    href="zzCSS/p/estilo-texto.css"/>
+    <link rel="stylesheet" type="text/css" media="print"    href="xxCSS/estilo-texto.css"/>
+-->
+
+</head>
+<body>
+
+<div id="barra-brasil-v3">
+<span>
+  <div class="imagemGov">
+  		<a href="http://www.brasil.gov.br" target="_blank" class="brasilgov"></a>
+  </div>
+  <div class="imagemAi">
+  	<a href="http://www.cgu.gov.br/acessoainformacaogov/" target="_blank" class="acessoainformacaogov"></a>
+  </div>
+
+</span>
+</div>
+<div id="tudo">
+<div id="topo"> 
+	<div id="acessibilidadeGeral"> 
+		<ul>
+			<li class="esconder"><a href="#conteudo">Pular para o conteudo</a></li>
+			<li><a href="javascript:void(0);" title="Aumentar Fonte">A+</a></li>
+			<li><a href="javascript:void(0);" title="Diminuir Fonte">A-</a></li>
+			<li class="contrasteOff"><a href="#" title="Aumentar Contraste">C+</a></li>
+			<li class="contrasteOn" ><a href="#" title="Diminuir Contraste">C-</a></li>
+		</ul>
+	</div>
+	<div id="testeira">
+<!--
+		<div id="testeiraPosicao1" style="background: url('portalsaude/arquivos/jpg/2012/Jan/23/testeira.jpg')">
+-->
+		<div id="testeiraPosicao1">
+				<a href="portalsaude" title="Minist&eacute;rio da Sa&uacute;de">
+					<div id="SaudeGovBr"></div>
+				</a>
+		</div>
+		<!-- coluna1Posicao1F -->
+        <script language="javascript">
+			function limpaBusca(valor){
+				if(valor=="Busca"){
+					document.getElementById("buscaGeral").value="";
+				}
+			}
+		</script>
+		<div id="testeiraPosicao2">
+			<div id="busca">
+				
+				<form id="form1" method="post" action="http://portalsaude.saude.gov.br/portalsaude/busca">
+					<p>
+						<label for="buscaGeral"></label>
+						<input name="Busca" type="text" id="buscaGeral" onfocus="limpaBusca(this.value);" maxlength="30" placeholder="Buscar" value="Busca"/>
+						<!--<input name="Buscar" type="button" value="Buscar">-->
+					</p>
+				</form>
+			</div>
+			<div id="links">
+				<span>
+					<a href="http://portal.saude.gov.br/portalsaude/texto/1999/166/mapa-do-site.html" title="Mapa do Site">Mapa do Site</a> |
+					<a href="http://portal.saude.gov.br/portal/saude/area.cfm?id_area=141" title="Fale Conosco">Fale Conosco</a> |
+					<a href="http://portalsaude.saude.gov.br/portalsaude/index.cfm?portal=pagina.visualizarArea&codArea=353" title="Links de Interesse">Links de Interesse</a>
+				</span>
+			</div>
+			<div id="redes">
+				<span>
+					<a href="https://www.facebook.com/minsaude" title="Facebook" target="_blank">
+						&nbsp;<img src="portalsaude/includes/templates/eportal//img/facebook.png" alt="Facebbok" border="0"/>
+					</a>
+					<a href="http://twitter.com/minsaude" title="Twitter" target="_blank">
+						&nbsp;<img src="portalsaude/includes/templates/eportal//img/twitter.png" alt="Twitter" border="0"/>
+					</a>
+					<a href="http://www.youtube.com/minsaudebr" title="Youtube" target="_blank">
+						&nbsp;<img src="portalsaude/includes/templates/eportal//img/youtube.png" alt="YouTube" border="0"/>
+					</a>
+					<a href="http://www.flickr.com/photos/ministeriodasaude/" title="Flickr" target="_blank">
+						&nbsp;<img src="portalsaude/includes/templates/eportal//img/fliker.png" alt="Flickr" border="0"/>
+					</a>
+					<a href="http://www.orkut.com.br/Main#Home" title="Orkut">
+						&nbsp;<img src="portalsaude/includes/templates/eportal//img/orkut.png" alt="Orkut" border="0"/>
+					</a>
+					<a href="http://www.formspring.me/minsaude" title="Formspring" target="_blank">
+						&nbsp;<img src="portalsaude/includes/templates/eportal//img/formspring.png" alt="FormSpring" border="0"/>
+					</a>
+					<a href="##" title="Separador">
+						&nbsp;<img src="portalsaude/includes/templates/eportal//img/separadorMenu.gif" alt="Separador do menu" border="0"/>
+					</a>
+					<a href="http://portalsaude.saude.gov.br/portalsaude/index.cfm/?portal=pagina.visualizarArea&codArea=356" title="Espanhol">
+						&nbsp;<img src="portalsaude/includes/templates/eportal//img/idiomaesp.png" alt="Idioma em Espanhol" border="0"/>
+					</a>
+					<a href="http://portalsaude.saude.gov.br/portalsaude/index.cfm/?portal=pagina.visualizarArea&codArea=347" title="Ingles">
+						&nbsp;<img src="portalsaude/includes/templates/eportal//img/idiomaing.png" alt="Idioma em InglÃªs" border="0"/>
+					</a>
+				</span>
+			</div>
+		</div>
+		<!-- coluna1Posicao1F -->
+  </div>
+		<!-- testeiraF -->
+
+	<div id="menu">
+		<div id="menuPosicao1">
+			<div id="menuGeral">
+				
+				<div id="menu" onblur="javascript: mostraAbaInicio(1, 'aba', 5);">
+					<ul>
+						<li style="display:none;">
+							<div>
+								<div>
+									<ul>
+									</ul>
+								</div>
+							</div>
+						</li>
+
+						<li id="li1" class="navAzul menuPrincipal" onmouseover="javascript: mudaAba(1, 'aba', 6);" onfocus="javascript: mudaAba(1, 'aba', 6);">
+							<a class="menu" href="http://portalsaude.saude.gov.br/portalsaude/area/2/cidadao.html" title="Cidad&atilde;o">Cidad&atilde;o</a>
+								<div id="aba1"  class="on">
+									<div class="navAzulbg submenu">
+											<ul>
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/index.cfm?portal=pagina.visualizarArea&codArea=400" title="Principal">Principal</a> </li>
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/3/saude-para-voce.html" title="Sa&uacute;de para Voc&ecirc;">Sa&uacute;de para Voc&ecirc;</a> </li>
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/341/orientacao-e-prevencao.html" title="Orienta&ccedil;&atilde;o e Preven&ccedil;&atilde;o">Orienta&ccedil;&atilde;o e Preven&ccedil;&atilde;o</a> </li>
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/342/acoes-e-programas.html" title="A&ccedil;&otilde;es e Programas">A&ccedil;&otilde;es e Programas</a> </li>
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/312/comunicacao.html" title="Comunica&ccedil;&atilde;o">Comunica&ccedil;&atilde;o</a> </li>
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/313/legislacao.html" title="Legisla&ccedil;&atilde;o">Legisla&ccedil;&atilde;o</a> </li>
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/348/redes-sociais.html" title="Redes Sociais">Redes Sociais</a> </li>
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/345/entenda-o-sus.html" title="Entenda o SUS">Entenda o SUS</a> </li>
+											</ul>
+										</div>
+									</div>
+								</li>
+												<li id="li2" class="navVermelho menuPrincipal" onmouseover="javascript: mudaAba(2, 'aba', 6);" onfocus="javascript: mudaAba(2, 'aba', 6);">
+													
+													
+													<a class="menu" href="http://portalsaude.saude.gov.br/portalsaude/area/5/profissional-e-gestor.html" title="Profissional e Gestor">Profissional e Gestor</a>
+													
+													<div id="aba2" class="off">
+														<div class="navVermelhobg submenu">
+															<ul>
+											
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/index.cfm?portal=pagina.visualizarArea&codArea=400" title="Principal">Principal</a> </li>
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/315/horus.html" title="H&oacute;rus">H&oacute;rus</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/343/pesquisa-em-saude.html" title="Pesquisa em Sa&uacute;de">Pesquisa em Sa&uacute;de</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/317/vigilancia.html" title="Vigil&acirc;ncia">Vigil&acirc;ncia</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/344/educacao.html" title="Educa&ccedil;&atilde;o">Educa&ccedil;&atilde;o</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/319/gestao-da-saude-publica.html" title="Gest&atilde;o da Sa&uacute;de P&uacute;blica">Gest&atilde;o da Sa&uacute;de P&uacute;blica</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/355/trabalhe-na-saude.html" title="Trabalhe na Sa&uacute;de">Trabalhe na Sa&uacute;de</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/322/medicamentos.html" title="Medicamentos ">Medicamentos </a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/320/legislacao.html" title="Legisla&ccedil;&atilde;o">Legisla&ccedil;&atilde;o</a> </li>
+													
+															</ul>
+														</div>
+													</div>
+												</li>
+												<li id="li3" class="navCinza menuPrincipal" onmouseover="javascript: mudaAba(3, 'aba', 6);" onfocus="javascript: mudaAba(3, 'aba', 6);">
+													
+													
+													<a class="menu" href="http://portalsaude.saude.gov.br/portalsaude/area/7/o-ministerio.html" title="O Minist&eacute;rio">O Minist&eacute;rio</a>
+													
+													<div id="aba3" class="off">
+														<div class="navCinzabg submenu">
+															<ul>
+											
+												<li>
+													<a href="http://portalsaude.saude.gov.br/portalsaude/index.cfm?portal=pagina.visualizarArea&codArea=400" title="Principal">Principal</a> </li>
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/330/historico.html" title="Hist&oacute;rico">Hist&oacute;rico</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/331/estrutura-e-competencias.html" title="Estrutura e Compet&ecirc;ncias">Estrutura e Compet&ecirc;ncias</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/332/ministro.html" title="Ministro">Ministro</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/333/relacoes-internacionais.html" title="Rela&ccedil;&otilde;es Internacionais">Rela&ccedil;&otilde;es Internacionais</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/334/unidades-do-ministerio.html" title="Unidades do Minist&eacute;rio">Unidades do Minist&eacute;rio</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/337/legislacao.html" title="Legisla&ccedil;&atilde;o">Legisla&ccedil;&atilde;o</a> </li>
+													
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/369/transparencia-da-saude.html" title="Transpar&ecirc;ncia da Sa&uacute;de">Transpar&ecirc;ncia da Sa&uacute;de</a> </li>
+													
+															</ul>
+														</div>
+													</div>
+												</li>
+												<li id="li4" class="navCinza menuPrincipal" onmouseover="javascript: mudaAba(4, 'aba', 6);" onfocus="javascript: mudaAba(4, 'aba', 6);">
+													
+													
+													<a class="menu" href="http://portalsaude.saude.gov.br/portalsaude/area/9/servicos.html" title="Servi&ccedil;os">Servi&ccedil;os</a>
+													
+													<div id="aba4" class="off">
+														<div class="navCinzabg submenu">
+															<ul>
+											
+												<li>
+													
+													
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/9/principal-_-servicos.html" title="Principal - Servi&ccedil;os">Principal - Servi&ccedil;os</a> </li>
+													
+															</ul>
+														</div>
+													</div>
+												</li>
+
+
+
+
+
+
+
+												<li id="li5" class="navCinza menuPrincipal" onmouseover="javascript: mudaAba(5, 'aba', 6);" onfocus="javascript: mudaAba(5, 'aba', 6);">
+													<a class="menu" href="http://portalsaude.saude.gov.br/portalsaude/area/11/biblioteca.html" title="Biblioteca">Biblioteca</a>
+
+													<div id="aba5" class="off">
+														<div class="navCinzabg submenu">
+															<ul>
+												<li>
+
+													<a href="http://portalsaude.saude.gov.br/portalsaude/area/11/principal-_-biblioteca.html" title="Principal - Biblioteca">Principal - Biblioteca</a> </li>
+									</ul>
+								</div>
+							</div>
+						</li>
+<li id="li6" class="navCinza menuPrincipal" onmouseover="javascript: mudaAba(6, 'aba', 6);" onfocus="javascript: mudaAba(6, 'aba', 6);">
+	<a class="menu" href="http://portalsaude.saude.gov.br/portalsaude/area/380/acesso-a-informacao.html" title="Acesso &agrave; informa&ccedil;&atilde;o">Acesso &agrave; informa&ccedil;&atilde;o
+	</a>
+	<div id="aba6" class="off">
+		<div class="navCinzabg submenu">
+			<ul>
+				<li>
+					<a href="http://portalsaude.saude.gov.br/portalsaude/area/380/principal-_-acesso-a-informacao.html" title="Principal - Acesso &agrave; informa&ccedil;&atilde;o">Principal - Acesso &agrave; informa&ccedil;&atilde;o</a> 
+				</li>
+			</ul>
+		</div>
+	</div>
+</li>
+						</ul>
+				</div>
+				<!-- menu fim -->
+		</div>
+		<!-- fim menuGeral  -->
+		</div>
+		<!-- coluna1Posicao1F -->
+  </div>
+		<!-- menuF -->
+</div>
+
+<script language="javascript" type="text/javascript">
+<!--
+var ns6=document.getElementById&&!document.all
+var ns66=(!document.all && document.getElementById)
+var ie4=document.all&&navigator.userAgent.indexOf("Opera")==-1
+function checkcontained(e){
+	var iscontained=0
+	cur=ns6?e.target:event.srcElement
+	i=0
+	if (cur.id=="foldheader")
+		iscontained=1
+	else
+		while (ns6&&cur.parentNode||(ie4&&cur.parentElement)){
+			if (cur.id=="foldheader"||cur.id=="foldinglist"){
+				iscontained=((cur.id=="foldheader")?1:0)
+				break
+			}
+			cur=(ns6?cur.parentNode:cur.parentElement)
+		}
+	if (iscontained){
+		var foldercontent=((ns6)?cur.nextSibling.nextSibling:cur.all.tags("ul")[0])
+		if (foldercontent.style.display=="none"){
+			foldercontent.style.display=""
+			cur.style.listStyleImage="url(img/menosp.gif)"
+		}else{
+			foldercontent.style.display="none"
+			cur.style.listStyleImage="url(img/maisp.gif)"
+		}
+	}
+}
+-->
+</script>
+
+<script language="javascript" type="text/javascript">
+<!--
+if (ie4||ns6)
+	document.onclick=checkcontained
+var isNS4 = (document.layers) ? true : false
+var isIE4 = (document.all && !document.getElementById) ? true : false
+var isIE5 = (document.all &&  document.getElementById) ? true : false
+var isNS6 =(!document.all &&  document.getElementById) ? true : false
+var browser='nao sei'
+if (isNS4) browser="NS4"
+if (isIE4) browser="IE4"
+if (isIE5) browser="DOM"
+if (isNS6) browser="DOM"
+-->
+</script>
+
+<noscript>Seu browse não suporta script.</noscript>
+<!-- testeira_preparada_inc INI -->
+
+
+<meta name="author"              content="Claudio Cunha"/>
+<meta name="author"              content="José Custódio Oliveira Gomes"/>
+
+<meta name="keywords"            lang="pt" content="financeiro, orçamento, saúde"/>
+<meta name="description"         content="Sistema de Informações sobre Orçamento Público em Saúde."/>
+<!--
+<meta name="robots"              content="all"/>
+-->
+
+<meta name="author"              content="Claudio Cunha"/>
+<meta name="author"              content="José Custódio Oliveira Gomes"/>
+
+<meta name="keywords"            lang="pt" content="financeiro, orçamento, saúde"/>
+<meta name="description"         content="Sistema de Informações sobre Orçamento Público em Saúde."/>
+<!--
+<meta name="robots"              content="all"/>
+-->
+
+<!-- http://www.robotstxt.org/meta.html -->
+<meta name="robots" content="noindex, nofollow" />
+
+<link rel="stylesheet"           type="text/css"                href="CSS/keyboard.css"/>
+
+<!--
+<link rel="stylesheet"           type="text/css" media="screen" href="CSS/siops12.css"      title="Normal"/>
+
+<link rel="alternate stylesheet" type="text/css" media="screen" href="CSS/siops15.css"      title="Pequeno"/>
+<link rel="alternate stylesheet" type="text/css" media="screen" href="CSS/siops20.css"      title="Grande"/>
+<link rel="stylesheet"           type="text/css" media="screen" href="CSS/siops.css"        title="Todos"/>
+<link rel="stylesheet"           type="text/css" media="screen" href="CSS/siopsGeral22.css"/>
+-->
+
+<link rel="stylesheet"			type="text/css" media="screen" href="CSS/testeira_menu.css"/>
+
+<!--
+<link rel="alternate stylesheet" type="text/css" media="screen" href="CSS/cinza.css"        title="cinza"/>
+<link rel="alternate stylesheet" type="text/css" media="screen" href="CSS/pretobranco.css"  title="pretobranco"/>
+
+
+
+----- aqui ----
+-->
+
+<link rel="stylesheet" type="text/css" media="print"    href="CSS/estilo-texto.css"/>
+
+
+<!--
+<link rel="stylesheet"           type="text/css" media="handheld" href="siopscel.css"     title="Todos">
+<link rel="stylesheet" type="text/css" media="print"    href="estilo-texto.css"/>
+-->
+
+
+
+
+<script type="text/javascript" src="js/keyboard.js"></script>
+
+
+<script type="text/javascript" src="js/funcoes2.js"></script>
+
+<style type="text/css">
+lllbody{
+	zzfont-family: Tahoma, Arial, Verdana, sans-serif;
+	background: url(img/sombraGeral.png) top no-repeat ;
+	zzfont-size:12px;
+	zzcolor:#333;
+	zzmargin:0px;
+}
+</style>
+
+<!--<link rel="stylesheet" type="text/css" media="screen" href="bimestral/CSS/bim_siops.css"/>-->
+
+<!-- testeira_preparada_inc FIM -->
+	
+<style type="text/css">
+body{
+	background: url(img/sombraGeral.png) top no-repeat ;
+}
+</style>
+
+<script src="js/AJAX_funcoes.js" type="text/javascript" charset="UTF-8" language="javascript" charset="utf-8"></script>
+<script src="bimestral/js/BIM_funcoes.js" type="text/javascript" charset="UTF-8" language="javascript" charset="utf-8"></script>
+<div class="aondeverm" >
+    Demonstrativo da Lei de Responsabilidade Fiscal<br>
+    <a class='alinha' href='index.php' title='Ir para a página inicial' tabindex=27>Início</a>&nbsp;>&nbsp;
+    <a class='alinha' href='municipio.php' title='Páginal inicial dos municípios' tabindex=28>Municípios</a>&nbsp;>&nbsp;
+    <a class='alinha' href='relmun.php' title='Demonstrativos para os municípios' tabindex=28>Demonstrativos</a>&nbsp;>&nbsp;Demonstrativo da Lei de Responsabilidade Fiscal
+</div>
+<div id='container'>
+    <div id='arearelatorio' name='arearelatorio'>
+        <div class="informacao" style="margin-left: 0px;">
+                            <div class="informacao">
+                    <div class="centro lbltitulo">
+                        Demonstrativo da Lei de Responsabilidade Fiscal
+                    </div>
+                    <div class="informacao">
+                        <br><br>
+                        <table class="td2 tam2 tdExterno">
+                            <tr>
+                                <td width="20%"><span class="label8">&nbsp;UF:</span>&nbsp;Goiás</td>
+                                <td class="tdr" width="80%"><span class="label8">MUNICÍPIO:</span>&nbsp;Goiânia&nbsp;&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td class="tdcb" colspan="2">RELATÓRIO RESUMIDO DA EXECUÇÃO ORÇAMENTÁRIA</td>
+                            </tr>
+                            <tr>
+                                <td class="tdcb" colspan="2">
+                                    DEMONSTRATIVO DAS RECEITAS E DESPESAS COM AÇÕES E SERVIÇOS PÚBLICOS DE SAÚDE                                </td>
+                            </tr>
+                            <tr>
+                                <td class="tdcb" colspan="2">ORÇAMENTOS FISCAL E DA SEGURIDADE SOCIAL</td>
+                            </tr>
+                            <tr>
+                                <td class="tdc" colspan="2">4º Bimestre de 2025&nbsp;&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td class="tdc" colspan="2">Dados Homologados em 03/10/25 12:11:29</td>
+                            </tr>
+                        </table>
+                        <br>
+                    </div>
+
+                    <table class="tam2 tdExterno" cellspacing="0"><tr bgcolor="#CDCDCD" style="font-weight: bold; border:0px solid #000000;"><td rowspan="2" class="td2 tdc dadosInfo" colspan="2" width=34%>RECEITAS RESULTANTES DE IMPOSTOS E TRANSFERÊNCIAS CONSTITUCIONAIS E LEGAIS</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>PREVISÃO INICIAL</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>PREVISÃO ATUALIZADA (a)</td><td class="td2 tdc dadosInfo" colspan="2">RECEITAS REALIZADAS</td><tr bgcolor="#CDCDCD" style="font-weight: bold; border:0px solid #000000;"><td class="td2 tdc dadosInfo" width=10%>Até o Bimestre (b)</td><td class="td2 tdc dadosInfo" width=10%>% (b/a) x 100</td></tr></tr><tr><td colspan="2" class="td2 caixa">RECEITA DE IMPOSTOS  (I)</td><td bgcolor="#FFFFFF" class="tdr caixa" ">3.905.465.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">3.905.465.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">2.578.924.609,66</td><td bgcolor="#FFFFFF" class="tdr caixa" ">66,03</td></tr><tr><td colspan="2" class="td2 caixa">Receita Resultante do Imposto Predial e Territorial Urbano - IPTU</td><td bgcolor="#FFFFFF" class="tdr caixa" ">1.425.364.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">1.425.364.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">921.120.309,52</td><td bgcolor="#FFFFFF" class="tdr caixa" ">64,62</td></tr><tr><td colspan="2" class="td2 caixa">Receita Resultante do Imposto sobre Transmissão Inter Vivos - ITBI</td><td bgcolor="#FFFFFF" class="tdr caixa" ">498.272.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">498.272.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">243.068.807,67</td><td bgcolor="#FFFFFF" class="tdr caixa" ">48,78</td></tr><tr><td colspan="2" class="td2 caixa">Receita Resultante do Imposto sobre Serviços de Qualquer Natureza - ISS</td><td bgcolor="#FFFFFF" class="tdr caixa" ">1.461.621.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">1.461.621.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">970.027.213,09</td><td bgcolor="#FFFFFF" class="tdr caixa" ">66,37</td></tr><tr><td colspan="2" class="td2 caixa">Receita Resultante do Imposto sobre a Renda e Proventos de Qualquer Natureza Retido na Fonte - IRRF</td><td bgcolor="#FFFFFF" class="tdr caixa" ">520.208.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">520.208.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">444.708.279,38</td><td bgcolor="#FFFFFF" class="tdr caixa" ">85,49</td></tr><tr><td colspan="2" class="td2 caixa">RECEITA DE TRANSFERÊNCIAS CONSTITUCIONAIS E LEGAIS (II)</td><td bgcolor="#FFFFFF" class="tdr caixa" ">2.288.117.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">2.288.117.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">1.408.761.784,55</td><td bgcolor="#FFFFFF" class="tdr caixa" ">61,57</td></tr><tr><td colspan="2" class="td2 caixa">Cota-Parte FPM</td><td bgcolor="#FFFFFF" class="tdr caixa" ">797.630.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">797.630.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">436.979.367,75</td><td bgcolor="#FFFFFF" class="tdr caixa" ">54,78</td></tr><tr><td colspan="2" class="td2 caixa">Cota-Parte ITR</td><td bgcolor="#FFFFFF" class="tdr caixa" ">6.046.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">6.046.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">1.716.069,11</td><td bgcolor="#FFFFFF" class="tdr caixa" ">28,38</td></tr><tr><td colspan="2" class="td2 caixa">Cota-Parte do IPVA</td><td bgcolor="#FFFFFF" class="tdr caixa" ">586.431.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">586.431.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">325.598.557,58</td><td bgcolor="#FFFFFF" class="tdr caixa" ">55,52</td></tr><tr><td colspan="2" class="td2 caixa">Cota-Parte do ICMS</td><td bgcolor="#FFFFFF" class="tdr caixa" ">880.689.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">880.689.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">628.956.600,87</td><td bgcolor="#FFFFFF" class="tdr caixa" ">71,42</td></tr><tr><td colspan="2" class="td2 caixa">Cota-Parte do IPI - Exportação</td><td bgcolor="#FFFFFF" class="tdr caixa" ">5.787.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">5.787.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">4.286.843,88</td><td bgcolor="#FFFFFF" class="tdr caixa" ">74,08</td></tr><tr><td colspan="2" class="td2 caixa">Compensações Financeiras Provenientes de Impostos e Transferências Constitucionais</td><td bgcolor="#FFFFFF" class="tdr caixa" ">11.534.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">11.534.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">11.224.345,36</td><td bgcolor="#FFFFFF" class="tdr caixa" ">97,32</td></tr><tr><td colspan="2" class="td2 caixa">TOTAL DAS RECEITAS RESULTANTES DE IMPOSTOS E TRANFERÊNCIAS CONSTITUCIONAIS E LEGAIS - (III) = (I) + (II)</td><td bgcolor="#FFFFFF" class="tdr caixa" ">6.193.582.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">6.193.582.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">3.987.686.394,21</td><td bgcolor="#FFFFFF" class="tdr caixa" ">64,38</td></tr></table><br/><table class="tam2 tdExterno" cellspacing="0"><tr bgcolor="#CDCDCD" style="font-weight: bold; border:0px solid #000000;"><td rowspan="2" class="td2 tdc dadosInfo" colspan="2" width=34%>DESPESAS COM AÇÕES E SERVIÇOS PÚBLICOS DE SAÚDE (ASPS) - POR SUBFUNÇÃO E CATEGORIA ECONÔMICA</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>DOTAÇÃO INICIAL</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>DOTAÇÃO ATUALIZADA (c)</td><td class="td2 tdc dadosInfo" colspan="2">DESPESAS EMPENHADAS</td><td class="td2 tdc dadosInfo" colspan="2">DESPESAS LIQUIDADAS</td><td class="td2 tdc dadosInfo" colspan="2">DESPESAS PAGAS</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>Inscritas em Restos a Pagar Não Processados (g)</td><tr bgcolor="#CDCDCD" style="font-weight: bold; border:0px solid #000000;"><td class="td2 tdc dadosInfo" width=10%>Até o bimestre (d)</td><td class="td2 tdc dadosInfo" width=10%>% (d/c) x 100</td><td class="td2 tdc dadosInfo" width=10%>Até o bimestre (e)</td><td class="td2 tdc dadosInfo" width=10%>% (e/c) x 100</td><td class="td2 tdc dadosInfo" width=10%>Até o bimestre (f)</td><td class="td2 tdc dadosInfo" width=10%>% (f/c) x 100</td></tr></tr><tr><td colspan="2" class="td2 caixa">ATENÇÃO BÁSICA  (IV)</td><td bgcolor="#FFFFFF" class="tdr caixa" ">18.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">498.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td></tr><tr><td colspan="2" class="td2 caixa">Despesas Correntes</td><td bgcolor="#FFFFFF" class="tdr caixa" ">12.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">492.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td></tr><tr><td colspan="2" class="td2 caixa">Despesas de Capital</td><td bgcolor="#FFFFFF" class="tdr caixa" ">6.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">6.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td></tr><tr><td colspan="2" class="td2 caixa">ASSISTÊNCIA HOSPITALAR E AMBULATORIAL  (V)</td><td bgcolor="#FFFFFF" class="tdr caixa" ">75.548.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">69.299.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">32.448.622,77</td><td bgcolor="#FFFFFF" class="tdr caixa" ">46,82</td><td bgcolor="#FFFFFF" class="tdr caixa" ">16.910.548,86</td><td bgcolor="#FFFFFF" class="tdr caixa" ">24,40</td><td bgcolor="#FFFFFF" class="tdr caixa" ">16.910.548,86</td><td bgcolor="#FFFFFF" class="tdr caixa" ">24,40</td><td bgcolor="#FFFFFF" class="tdr caixa" ">15.538.073,91</td></tr><tr><td colspan="2" class="td2 caixa">Despesas Correntes</td><td bgcolor="#FFFFFF" class="tdr caixa" ">75.542.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">69.293.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">32.448.622,77</td><td bgcolor="#FFFFFF" class="tdr caixa" ">46,83</td><td bgcolor="#FFFFFF" class="tdr caixa" ">16.910.548,86</td><td bgcolor="#FFFFFF" class="tdr caixa" ">24,40</td><td bgcolor="#FFFFFF" class="tdr caixa" ">16.910.548,86</td><td bgcolor="#FFFFFF" class="tdr caixa" ">24,40</td><td bgcolor="#FFFFFF" class="tdr caixa" ">15.538.073,91</td></tr><tr><td colspan="2" class="td2 caixa">Despesas de Capital</td><td bgcolor="#FFFFFF" class="tdr caixa" ">6.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">6.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td></tr><tr><td colspan="2" class="td2 caixa">SUPORTE PROFILÁTICO E TERAPÊUTICO  (VI)</td><td bgcolor="#FFFFFF" class="tdr caixa" ">4.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">4.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td></tr><tr><td colspan="2" class="td2 caixa">Despesas Correntes</td><td bgcolor="#FFFFFF" class="tdr caixa" ">3.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">3.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td></tr><tr><td colspan="2" class="td2 caixa">Despesas de Capital</td><td bgcolor="#FFFFFF" class="tdr caixa" ">1.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">1.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td></tr><tr><td colspan="2" class="td2 caixa">VIGILÂNCIA SANITÁRIA  (VII)</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td></tr><tr><td colspan="2" class="td2 caixa">Despesas Correntes</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td></tr><tr><td colspan="2" class="td2 caixa">Despesas de Capital</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td></tr><tr><td colspan="2" class="td2 caixa">VIGILÂNCIA EPIDEMIOLÓGICA (VIII)</td><td bgcolor="#FFFFFF" class="tdr caixa" ">4.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">205.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td></tr><tr><td colspan="2" class="td2 caixa">Despesas Correntes</td><td bgcolor="#FFFFFF" class="tdr caixa" ">3.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">204.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td></tr><tr><td colspan="2" class="td2 caixa">Despesas de Capital</td><td bgcolor="#FFFFFF" class="tdr caixa" ">1.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">1.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td></tr><tr><td colspan="2" class="td2 caixa">ALIMENTAÇÃO E NUTRIÇÃO (IX)</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td></tr><tr><td colspan="2" class="td2 caixa">Despesas Correntes</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td></tr><tr><td colspan="2" class="td2 caixa">Despesas de Capital</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td></tr><tr><td colspan="2" class="td2 caixa">OUTRAS SUBFUNÇÕES (X)</td><td bgcolor="#FFFFFF" class="tdr caixa" ">1.002.871.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">1.019.671.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">915.137.377,58</td><td bgcolor="#FFFFFF" class="tdr caixa" ">89,75</td><td bgcolor="#FFFFFF" class="tdr caixa" ">811.102.691,23</td><td bgcolor="#FFFFFF" class="tdr caixa" ">79,55</td><td bgcolor="#FFFFFF" class="tdr caixa" ">792.036.840,99</td><td bgcolor="#FFFFFF" class="tdr caixa" ">77,68</td><td bgcolor="#FFFFFF" class="tdr caixa" ">104.034.686,35</td></tr><tr><td colspan="2" class="td2 caixa">Despesas Correntes</td><td bgcolor="#FFFFFF" class="tdr caixa" ">1.002.863.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">1.019.663.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">915.137.377,58</td><td bgcolor="#FFFFFF" class="tdr caixa" ">89,75</td><td bgcolor="#FFFFFF" class="tdr caixa" ">811.102.691,23</td><td bgcolor="#FFFFFF" class="tdr caixa" ">79,55</td><td bgcolor="#FFFFFF" class="tdr caixa" ">792.036.840,99</td><td bgcolor="#FFFFFF" class="tdr caixa" ">77,68</td><td bgcolor="#FFFFFF" class="tdr caixa" ">104.034.686,35</td></tr><tr><td colspan="2" class="td2 caixa">Despesas de Capital</td><td bgcolor="#FFFFFF" class="tdr caixa" ">8.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">8.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">0,00</td></tr><tr><td colspan="2" class="td2 caixa">TOTAL (XI) = (IV + V + VI + VII + VIII + IX + X)</td><td bgcolor="#FFFFFF" class="tdr caixa" ">1.078.445.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">1.089.677.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" ">947.586.000,35</td><td bgcolor="#FFFFFF" class="tdr caixa" ">86,96</td><td bgcolor="#FFFFFF" class="tdr caixa" ">828.013.240,09</td><td bgcolor="#FFFFFF" class="tdr caixa" ">75,99</td><td bgcolor="#FFFFFF" class="tdr caixa" ">808.947.389,85</td><td bgcolor="#FFFFFF" class="tdr caixa" ">74,24</td><td bgcolor="#FFFFFF" class="tdr caixa" ">119.572.760,26</td></tr></table><br/><table class="tam2 tdExterno" cellspacing="0"><tr bgcolor="#CDCDCD" style="font-weight: bold; border:0px solid #000000;"><td rowspan="2" class="td2 tdc dadosInfo" colspan="2" width=34%>APURAÇÃO DO CUMPRIMENTO DO LIMITE MÍNIMO PARA APLICAÇÃO EM ASPS</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>DESPESAS EMPENHADAS (d)</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>DESPESAS LIQUIDADAS (e)</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>DESPESAS PAGAS (f)</td><tr bgcolor="#CDCDCD" style="font-weight: bold; border:0px solid #000000;"></tr></tr><tr><td colspan="2" class="td2 caixa">Total das Despesas com ASPS (XII) = (XI)</td><td bgcolor="#FFFFFF" class="tdr caixa" ">947.586.000,35</td><td bgcolor="#FFFFFF" class="tdr caixa" ">828.013.240,09</td><td bgcolor="#FFFFFF" class="tdr caixa" ">808.947.389,85</td></tr><tr><td colspan="2" class="td2 caixa">(-) Restos a Pagar Inscritos Indevidamente no Exercício sem Disponibilidade Financeira (XIII)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">N/A</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">N/A</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">N/A</td></tr><tr><td colspan="2" class="td2 caixa">(-) Despesas Custeadas com Recursos Vinculados à Parcela do Percentual Mínimo que não foi Aplicada em ASPS em Exercícios Anteriores (XIV)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr><tr><td colspan="2" class="td2 caixa">(-) Despesas Custeadas com Disponibilidade de Caixa Vinculada aos Restos a Pagar Cancelados (XV)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr><tr><td colspan="2" class="td2 caixa">(=) VALOR APLICADO EM ASPS (XVI) = (XII - XIII - XIV - XV)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">947.586.000,35</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">828.013.240,09</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">808.947.389,85</td></tr><tr><td colspan="2" class="td2 caixa">Despesa Mínima a ser Aplicada em ASPS (XVII) = (III) x 15% (LC 141/2012)</td><td colspan="3" bgcolor="#FFFFFF" class="tdr caixa" width:100px;">598.152.959,13</td></tr><tr><td colspan="2" class="td2 caixa">Despesa Mínima a ser Aplicada em ASPS (XVII) = (III) x % (Lei Orgânica Municipal)</td><td colspan="3" bgcolor="#FFFFFF" class="tdr caixa" width:160px;">N/A</td></tr><tr><td colspan="2" class="td2 caixa">Diferença entre o Valor Aplicado e a Despesa Mínima a ser Aplicada (XVIII) = (XVI (d ou e) - XVII)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">349.433.041,22</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">229.860.280,96</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">210.794.430,72</td></tr><tr><td colspan="2" class="td2 caixa">Limite não Cumprido (XIX) = (XVIII) (Quando valor for inferior a zero)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr><tr><td colspan="2" class="td2 caixa">PERCENTUAL DA RECEITA  DE IMPOSTOS E TRANSFERÊNCIAS CONSTITUCIONAIS E LEGAIS APLICADO EM ASPS  (XVI / III)*100 (mínimo de 15% conforme LC n° 141/2012 ou % da Lei Orgânica Municipal)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">23,76</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">20,76</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">20,28</td></tr></table><br/><table class="tam2 tdExterno" cellspacing="0"><tr bgcolor="#CDCDCD" style="font-weight: bold; border:0px solid #000000;"><td rowspan="2" class="td2 tdc dadosInfo" colspan="2" width=34%>CONTROLE DO VALOR REFERENTE AO PERCENTUAL MÍNIMO NÃO CUMPRIDO EM EXERCÍCIOS ANTERIORES PARA FINS DE APLICAÇÃO DOS RECURSOS VINCULADOS CONFORME ARTIGOS 25 E 26 DA LC 141/2012</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>Saldo Inicial (no exercício atual) (h)</td><td class="td2 tdc dadosInfo" colspan="3">Despesas Custeadas no Exercício de Referência</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>Saldo Final (não aplicado) (l) = (h - (i ou j))</td><tr bgcolor="#CDCDCD" style="font-weight: bold; border:0px solid #000000;"><td class="td2 tdc dadosInfo" width=10%>Empenhadas (i)</td><td class="td2 tdc dadosInfo" width=10%>Liquidadas (j)</td><td class="td2 tdc dadosInfo" width=10%>Pagas (k)</td></tr></tr><tr><td colspan="2" class="td2 caixa">Diferença de limite não cumprido em 2024</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr><tr><td colspan="2" class="td2 caixa">Diferença de limite não cumprido em 2023</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr><tr><td colspan="2" class="td2 caixa">Diferença de limite não cumprido em 2022</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr><tr><td colspan="2" class="td2 caixa">Diferença de limite não cumprido em 2021</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr><tr><td colspan="2" class="td2 caixa">Diferença de limite não cumprido em exercícios anteriores</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr><tr><td colspan="2" class="td2 caixa">TOTAL DA DIFERENÇA DE LIMITE NÃO CUMPRIDO EM EXERCÍCIOS ANTERIORES (XX)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr></table><br/><table class="tam2 tdExterno" cellspacing="0"><tr bgcolor="#CDCDCD" style="font-weight: bold; border:0px solid #000000;"><td rowspan="2" class="td2 tdc dadosInfo" colspan="2" width=34%>EXERCÍCIO DO EMPENHO<sup>2</sup></td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>Valor Mínimo para aplicação em ASPS (m)</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>Valor aplicado em ASPS no exercício (n)</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>Valor aplicado além do limite mínimo (o) = (n - m), se < 0, então (o) = 0</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>Total inscrito em RP no exercício (p)</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>RPNP Inscritos Indevidamente no Exercício sem Disponibilidade Financeira q = (XIIId)</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>Valor inscrito em RP considerado no Limite (r) = (p - (o + q)) se < 0, então (r) = (0)</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>Total de RP pagos (s)</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>Total de RP a pagar (t)</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>Total de RP cancelados ou prescritos (u)</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>Diferença entre o valor aplicado além do limite e o total de RP cancelados (v) = ((o + q) - u))</td><tr bgcolor="#CDCDCD" style="font-weight: bold; border:0px solid #000000;"></tr></tr><tr><td colspan="2" class="td2 caixa">Empenhos de 2025</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">598.152.959,13</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">828.013.240,09</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">229.860.280,96</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">N/A</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">N/A</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">N/A</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">N/A</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">N/A</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">N/A</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">N/A</td></tr><tr><td colspan="2" class="td2 caixa">Empenhos de 2024</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">847.229.881,98</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">1.229.768.981,39</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">382.539.099,41</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">7.672.501,38</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">66.050,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">7.606.451,38</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">382.539.099,41</td></tr><tr><td colspan="2" class="td2 caixa">Empenhos de 2023</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">761.879.014,71</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">1.066.277.796,06</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">304.398.781,35</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">5.072.327,75</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">7.018.564,96</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">7.676,17</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">5.064.651,58</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">311.417.346,31</td></tr><tr><td colspan="2" class="td2 caixa">Empenhos de 2022</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">675.066.498,44</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">726.434.141,22</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">51.367.642,78</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">9.297.877,24</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">9.297.877,24</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">51.367.642,78</td></tr><tr><td colspan="2" class="td2 caixa">Empenhos de 2021</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">578.686.792,85</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">806.888.310,24</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">228.201.517,39</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">222.153,63</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">222.153,63</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">228.201.517,39</td></tr><tr><td colspan="2" class="td2 caixa">Empenhos de 2020</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">477.744.985,47</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">634.914.213,21</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">157.169.227,74</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">11.625,79</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">11.625,79</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">157.169.227,74</td></tr><tr><td colspan="2" class="td2 caixa">Empenhos de 2019</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">459.754.971,96</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">603.021.832,28</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">143.266.860,32</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">1.244.288,51</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">1.967.880,92</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">1.244.288,51</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">143.990.452,73</td></tr><tr><td colspan="2" class="td2 caixa">Empenhos de 2018</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">413.353.155,72</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">497.510.929,74</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">84.157.774,02</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">5.939.108,38</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">90.096.882,40</td></tr><tr><td colspan="2" class="td2 caixa">Empenhos de 2017</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">375.025.657,52</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">518.310.414,46</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">143.284.756,94</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">143.284.756,94</td></tr><tr><td colspan="2" class="td2 caixa">Empenhos de 2016</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">356.512.582,52</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">484.547.630,09</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">128.035.047,57</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">128.035.047,57</td></tr><tr><td colspan="2" class="td2 caixa">Empenhos de 2015</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">333.791.379,50</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">414.624.053,91</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">80.832.674,41</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">80.832.674,41</td></tr><tr><td colspan="2" class="td2 caixa">Empenhos de 2014</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">307.140.755,60</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">385.758.252,11</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">78.617.496,51</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">78.617.496,51</td></tr><tr><td colspan="2" class="td2 caixa">Empenhos de 2013</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">277.401.774,38</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">420.226.947,67</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">142.825.173,29</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">142.825.173,29</td></tr></table><br/><table class="tam2 tdExterno" cellspacing="0"><tr bgcolor="#CDCDCD" style="font-weight: bold; border:0px solid #000000;"><td rowspan="2" colspan="2" width="90%">TOTAL DOS RESTOS A PAGAR CANCELADOS OU PRESCRITOS ATÉ O FINAL DO EXERCÍCIO ATUAL QUE AFETARAM O CUMPRIMENTO DO LIMITE (XXI) (soma dos saldos negativos da coluna "r")</td><td bgcolor="#FFFFFF" style="border: 1px solid #000000;" width="10%" class="tdr">0,00</td></tr></table><table class="tam2 tdExterno" cellspacing="0"><tr bgcolor="#CDCDCD" style="font-weight: bold; border:0px solid #000000;"><td rowspan="2" colspan="2" width="90%">TOTAL DOS RESTOS A PAGAR CANCELADOS OU PRESCRITOS ATÉ O FINAL DO EXERCÍCIO ANTERIOR QUE AFETARAM O CUMPRIMENTO DO LIMITE (XXII) (valor informado no demonstrativo do exercício anterior)</td><td bgcolor="#FFFFFF" style="border: 1px solid #000000;" width="10%" class="tdr">0,00</td></tr></table><table class="tam2 tdExterno" cellspacing="0"><tr bgcolor="#CDCDCD" style="font-weight: bold; border:0px solid #000000;"><td rowspan="2" colspan="2" width="90%">TOTAL DOS RESTOS A PAGAR CANCELADOS OU PRESCRITOS NO EXERCÍCIO ATUAL QUE AFETARAM O CUMPRIMENTO DO LIMITE (XXIII) = (XXI - XVII) (Artigo 24 § 1º e 2º da LC 141/2012)</td><td bgcolor="#FFFFFF" style="border: 1px solid #000000;" width="10%" class="tdr">0,00</td></tr></table><br/><table class="tam2 tdExterno" cellspacing="0"><tr bgcolor="#CDCDCD" style="font-weight: bold; border:0px solid #000000;"><td rowspan="2" class="td2 tdc dadosInfo" colspan="2" width=34%>CONTROLE DE RESTOS A PAGAR CANCELADOS OU PRESCRITOS CONSIDERADOS PARA FINS DE APLICAÇÃO DA DISPONIBILIDADE DE CAIXA CONFORME ARTIGO 24§ 1º e 2º DA LC 141/2012</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>Saldo Inicial (w)</td><td class="td2 tdc dadosInfo" colspan="3">Despesas Custeadas no Exercício de Referência</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>Saldo Final (não aplicado)<sup>1</sup> (aa) = (w - (x ou y))</td><tr bgcolor="#CDCDCD" style="font-weight: bold; border:0px solid #000000;"><td class="td2 tdc dadosInfo" width=10%>Empenhadas (x)</td><td class="td2 tdc dadosInfo" width=10%>Liquidadas (y)</td><td class="td2 tdc dadosInfo" width=10%>Pagas (z)</td></tr></tr><tr><td colspan="2" class="td2 caixa">Restos a pagar cancelados ou prescritos em 2025 a ser compensados (XXIV)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr><tr><td colspan="2" class="td2 caixa">Restos a pagar cancelados ou prescritos em 2024 a ser compensados (XXV)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr><tr><td colspan="2" class="td2 caixa">Restos a pagar cancelados ou prescritos em 2023 a ser compensados (XXVI)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr><tr><td colspan="2" class="td2 caixa">Restos a pagar cancelados ou prescritos em exercícios anteriores a serem compensados (XXVII)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr><tr><td colspan="2" class="td2 caixa">TOTAL DE RESTOS A PAGAR CANCELADOS OU PRESCRITOS A COMPENSAR (XXVIII)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr></table><br/><table class="tam2 tdExterno" cellspacing="0"><tr bgcolor="#CDCDCD" style="font-weight: bold; border:0px solid #000000;"><td rowspan="2" class="td2 tdc dadosInfo" colspan="2" width=34%>RECEITAS ADICIONAIS PARA O FINANCIAMENTO DA SAÚDE NÃO COMPUTADAS NO CÁLCULO DO MÍNIMO</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>PREVISÃO INICIAL</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>PREVISÃO ATUALIZADA (a)</td><td class="td2 tdc dadosInfo" colspan="2">RECEITAS REALIZADAS</td><tr bgcolor="#CDCDCD" style="font-weight: bold; border:0px solid #000000;"><td class="td2 tdc dadosInfo" width=10%>Até o Bimestre (b)</td><td class="td2 tdc dadosInfo" width=10%>% (b/a) x 100 </td></tr></tr><tr><td colspan="2" class="td2 caixa">RECEITAS DE TRANSFERÊNCIAS PARA A SAÚDE  (XXIX)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">1.039.437.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">1.039.437.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">637.398.297,34</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">61,32</td></tr><tr><td colspan="2" class="td2 caixa">Provenientes da União</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">947.162.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">947.162.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">578.573.421,82</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">61,08</td></tr><tr><td colspan="2" class="td2 caixa">Provenientes dos Estados</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">92.275.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">92.275.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">58.824.875,52</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">63,75</td></tr><tr><td colspan="2" class="td2 caixa">Provenientes de Outros Municípios</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr><tr><td colspan="2" class="td2 caixa">RECEITA DE OPERAÇÕES DE CRÉDITO INTERNAS E EXTERNAS VINCULADAS A SAÚDE (XXX)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">50.083.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">50.083.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr><tr><td colspan="2" class="td2 caixa">OUTRAS RECEITAS (XXXI)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr><tr><td colspan="2" class="td2 caixa">TOTAL RECEITAS ADICIONAIS PARA FINANCIAMENTO DA SAÚDE (XXXII) = (XXIX + XXX + XXXI)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">1.089.520.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">1.089.520.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">637.398.297,34</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">58,50</td></tr></table><br/><table class="tam2 tdExterno" cellspacing="0"><tr bgcolor="#CDCDCD" style="font-weight: bold; border:0px solid #000000;"><td rowspan="2" class="td2 tdc dadosInfo" colspan="2" width=34%>DESPESAS COM SAUDE POR SUBFUNÇÕES E CATEGORIA ECONÔMICA NÃO COMPUTADAS NO CÁLCULO DO MÍNIMO</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>DOTAÇÃO INICIAL</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>DOTAÇÃO ATUALIZADA (c)</td><td class="td2 tdc dadosInfo" colspan="2">DESPESAS EMPENHADAS</td><td class="td2 tdc dadosInfo" colspan="2">DESPESAS LIQUIDADAS</td><td class="td2 tdc dadosInfo" colspan="2">DESPESAS PAGAS</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>Inscritas em Restos a Pagar não Processados (g)</td><tr bgcolor="#CDCDCD" style="font-weight: bold; border:0px solid #000000;"><td class="td2 tdc dadosInfo" width=10%>Até o bimestre (d)</td><td class="td2 tdc dadosInfo" width=10%>% (d/c) x 100</td><td class="td2 tdc dadosInfo" width=10%>Até o bimestre (e)</td><td class="td2 tdc dadosInfo" width=10%>% (e/c) x 100</td><td class="td2 tdc dadosInfo" width=10%>Até o bimestre (f)</td><td class="td2 tdc dadosInfo" width=10%>% (f/c) x 100</td></tr></tr><tr><td colspan="2" class="td2 caixa">ATENÇÃO BÁSICA  (XXXIII)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">120.126.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">130.504.701,55</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">102.754.975,02</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">78,74</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">74.826.713,33</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">57,34</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">70.708.026,27</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">54,18</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">27.928.261,69</td></tr><tr><td colspan="2" class="td2 caixa">Despesas Correntes</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">120.085.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">130.463.701,55</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">102.753.727,02</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">78,76</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">74.826.713,33</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">57,35</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">70.708.026,27</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">54,20</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">27.927.013,69</td></tr><tr><td colspan="2" class="td2 caixa">Despesas de Capital</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">41.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">41.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">1.248,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">3,04</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">1.248,00</td></tr><tr><td colspan="2" class="td2 caixa">ASSISTÊNCIA HOSPITALAR E AMBULATORIAL  (XXXIV)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">890.070.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">926.196.793,67</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">746.794.065,44</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">80,63</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">559.555.530,65</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">60,41</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">545.970.672,81</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">58,95</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">187.238.534,79</td></tr><tr><td colspan="2" class="td2 caixa">Despesas Correntes</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">838.657.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">874.783.793,67</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">746.794.065,44</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">85,37</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">559.555.530,65</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">63,97</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">545.970.672,81</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">62,41</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">187.238.534,79</td></tr><tr><td colspan="2" class="td2 caixa">Despesas de Capital</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">51.413.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">51.413.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr><tr><td colspan="2" class="td2 caixa">SUPORTE PROFILÁTICO E TERAPÊUTICO (XXXV)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">12.013.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">12.631.334,82</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">10.253.344,49</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">81,17</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">7.459.975,64</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">59,06</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">6.883.667,65</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">54,50</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">2.793.368,85</td></tr><tr><td colspan="2" class="td2 caixa">Despesas Correntes</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">12.010.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">12.628.334,82</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">10.253.344,49</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">81,19</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">7.459.975,64</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">59,07</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">6.883.667,65</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">54,51</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">2.793.368,85</td></tr><tr><td colspan="2" class="td2 caixa">Despesas de Capital</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">3.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">3.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr><tr><td colspan="2" class="td2 caixa">VIGILÂNCIA SANITÁRIA  (XXXVI)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr><tr><td colspan="2" class="td2 caixa">Despesas Correntes</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr><tr><td colspan="2" class="td2 caixa">Despesas de Capital</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr><tr><td colspan="2" class="td2 caixa">VIGILÂNCIA EPIDEMIOLÓGICA (XXXVII)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">105.419.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">105.535.800,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">34.656.050,88</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">32,84</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">27.536.721,08</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">26,09</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">26.557.256,48</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">25,16</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">7.119.329,80</td></tr><tr><td colspan="2" class="td2 caixa">Despesas Correntes</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">105.399.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">105.515.800,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">34.656.050,88</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">32,84</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">27.536.721,08</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">26,10</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">26.557.256,48</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">25,17</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">7.119.329,80</td></tr><tr><td colspan="2" class="td2 caixa">Despesas de Capital</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">20.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">20.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr><tr><td colspan="2" class="td2 caixa">ALIMENTAÇÃO E NUTRIÇÃO (XXXVIII)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr><tr><td colspan="2" class="td2 caixa">Despesas Correntes</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr><tr><td colspan="2" class="td2 caixa">Despesas de Capital</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr><tr><td colspan="2" class="td2 caixa">OUTRAS SUBFUNÇÕES (XXXIX)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">13.420.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">13.420.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">10.554.413,29</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">78,65</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">7.071.801,73</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">52,70</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">7.071.801,73</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">52,70</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">3.482.611,56</td></tr><tr><td colspan="2" class="td2 caixa">Despesas Correntes</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">13.420.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">13.420.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">10.554.413,29</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">78,65</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">7.071.801,73</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">52,70</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">7.071.801,73</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">52,70</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">3.482.611,56</td></tr><tr><td colspan="2" class="td2 caixa">Despesas de Capital</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr><tr><td colspan="2" class="td2 caixa">TOTAL DAS DESPESAS NÃO COMPUTADAS NO CÁLCULO DO MÍNIMO  (XL) = (XXXIII + XXXIV + XXXV + XXXVI + XXXVII + XXXVIII+ XXXIX)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">1.141.048.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">1.188.288.630,04</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">905.012.849,12</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">76,16</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">676.450.742,43</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">56,93</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">657.191.424,94</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">55,31</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">228.562.106,69</td></tr></table><br/><table class="tam2 tdExterno" cellspacing="0"><tr bgcolor="#CDCDCD" style="font-weight: bold; border:0px solid #000000;"><td rowspan="2" class="td2 tdc dadosInfo" colspan="2" width=34%>DESPESAS TOTAIS COM SAÚDE EXECUTADAS COM COM RECURSOS PRÓPRIOS E COM RECURSOS TRANSFERIDOS DE OUTROS ENTES</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>DOTAÇÃO INICIAL</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>DOTAÇÃO ATUALIZADA (c)</td><td class="td2 tdc dadosInfo" colspan="2">DESPESAS EMPENHADAS</td><td class="td2 tdc dadosInfo" colspan="2">DESPESAS LIQUIDADAS</td><td class="td2 tdc dadosInfo" colspan="2">DESPESAS PAGAS</td><td rowspan="2" class="td2 tdc dadosInfo" width=10%>Inscritas em Restos a Pagar não Processados (g)</td><tr bgcolor="#CDCDCD" style="font-weight: bold; border:0px solid #000000;"><td class="td2 tdc dadosInfo" width=10%>Até o bimestre (d)</td><td class="td2 tdc dadosInfo" width=10%>% (d/c) x 100</td><td class="td2 tdc dadosInfo" width=10%>Até o bimestre (e)</td><td class="td2 tdc dadosInfo" width=10%>% (e/c) x 100</td><td class="td2 tdc dadosInfo" width=10%>Até o bimestre (f)</td><td class="td2 tdc dadosInfo" width=10%>% (f/c) x 100</td></tr></tr><tr><td colspan="2" class="td2 caixa">ATENÇÃO BÁSICA(XLI) = (IV + XXXIII)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">120.144.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">131.002.701,55</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">102.754.975,02</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">78,44</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">74.826.713,33</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">57,12</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">70.708.026,27</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">53,97</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">27.928.261,69</td></tr><tr><td colspan="2" class="td2 caixa">ASSISTÊNCIA HOSPITALAR E AMBULATORIAL (XLII) = (V + XXXIV)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">965.618.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">995.495.793,67</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">779.242.688,21</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">78,28</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">576.466.079,51</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">57,91</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">562.881.221,67</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">56,54</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">202.776.608,70</td></tr><tr><td colspan="2" class="td2 caixa">SUPORTE PROFILÁTICO E TERAPÊUTICO (XLIII) = (VI + XXXV)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">12.017.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">12.635.334,82</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">10.253.344,49</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">81,15</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">7.459.975,64</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">59,04</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">6.883.667,65</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">54,48</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">2.793.368,85</td></tr><tr><td colspan="2" class="td2 caixa">VIGILÂNCIA SANITÁRIA (XLIV) = (VII + XXXVI)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr><tr><td colspan="2" class="td2 caixa">VIGILÂNCIA EPIDEMIOLÓGICA (XLV) = (VIII + XXXVII)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">105.423.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">105.740.800,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">34.656.050,88</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">32,77</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">27.536.721,08</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">26,04</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">26.557.256,48</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">25,12</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">7.119.329,80</td></tr><tr><td colspan="2" class="td2 caixa">ALIMENTAÇÃO E NUTRIÇÃO (XLVI) = (IX + XXXVIII)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">0,00</td></tr><tr><td colspan="2" class="td2 caixa">OUTRAS SUBFUNÇÕES (XLVII) = (X + XXXIX)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">1.016.291.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">1.033.091.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">925.691.790,87</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">89,60</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">818.174.492,96</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">79,20</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">799.108.642,72</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">77,35</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">107.517.297,91</td></tr><tr><td colspan="2" class="td2 caixa">TOTAL DAS DESPESAS COM SAÚDE (XLVIII) = (XI + XL)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">2.219.493.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">2.277.965.630,04</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">1.852.598.849,47</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">81,33</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">1.504.463.982,52</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">66,04</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">1.466.138.814,79</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">64,36</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">348.134.866,95</td></tr><tr><td colspan="2" class="td2 caixa">(-) Despesas da Fonte: Transferências da União - inciso I do art. 5º da Lei Complementar 173/2020</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">1.050.542.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">1.097.782.630,04</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">892.684.619,83</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">81,32</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">668.484.600,35</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">60,89</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">649.613.609,15</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">59,18</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">224.200.019,48</td></tr><tr><td colspan="2" class="td2 caixa">TOTAL DAS DESPESAS EXECUTADAS COM RECURSOS PRÓPRIOS (XLIX)</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">1.168.951.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">1.180.183.000,00</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">959.914.229,64</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">81,34</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">835.979.382,17</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">70,83</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">816.525.205,64</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">69,19</td><td bgcolor="#FFFFFF" class="tdr caixa" width:160px;">123.934.847,47</td></tr></table><br/>	
+						
+
+                    <div class="informacao">
+						<div class="imagem">
+							<table width='170%' border='0' class='tablesorter' cellspacing='0' style='border: 0px solid #000000;'>
+								<tr>
+									<td>
+										<label>FONTE: SIOPS, Goiás03/10/25 12:11:29<br/>1 - Nos cinco primeiros bimestres do exercício, o acompanhamento será feito com base na despesa liquidada. No último bimestre do exercício, o valor deverá corresponder ao total da despesa empenhada.<br/>
+		2 - Até o exercício de 2018, o controle da execução dos restos a pagar considerava apenas os valores dos restos a pagar não processados (regra antiga). A partir do exercício de 2019, o controle da execução dos restos a pagar considera os restos a pagar processados e não processados (regra nova).<br/>
+		3 - Essas despesas são consideradas executadas pelo ente transferidor.									</td>
+								</tr>
+							</table>
+							<br />
+
+							<div class='centro'><input type='button' name='voltar' id='voltar'
+								value='Voltar' onclick="javascript:history.back();" tabindex=30> 
+<input class='naoImprime' type='button' name='copiar' id='copiar' value='  Copiar para a área de transferência  ' onclick='javascript:copia();' tabindex=31>
+
+
+
+
+							</div>
+						</div>
+
+					</div>   
+				</div>
+			</div> <!--
+<div>
+-->
+
+<script type="text/javascript">
+<!--
+function botaoVoltarPadrao(varBotaoVoltar1) {
+//alert(11);
+//alert(varBotaoVoltar1);
+	obj=document.getElementById('dados');
+	if(obj!=null){
+		btn=document.getElementById('voltar');
+		if(btn!=null){
+			if(btn.value!='')
+				window.location.replace(btn.value);
+		}else
+			window.location.replace(varBotaoVoltar1);
+	}else
+		window.location.replace(varBotaoVoltar1);
+
+/*
+//alert('varBotaoVoltar1:'+varBotaoVoltar1);
+//window.alert('varBotaoVoltar:'+varBotaoVoltar1);
+//	window.location='sol_critica.php';
+//	window.location=varBotaoVoltar1;
+//window.history.clear();
+
+alert('qtdeVoltar:'+qtdeVoltar);
+	qtdeVoltar=((qtdeVoltar!=null)?qtdeVoltar:0);
+alert('qtdeVoltar:'+qtdeVoltar);
+	history.go(-2+qtdeVoltar);
+	qtdeVoltar=0;
+*/
+}
+-->
+</script>
+<div style="clear:both;" class='XSDWE_rodape'>
+
+<p>
+	<a id='voltarPortal' Onclick="botaoVoltarPadrao('consleirespfiscal.php');" title='Voltar'>&nbsp;
+		<img src='img/btnVoltar.png' alt='Voltar' border='0'/>
+	</a>
+</p>
+</div>
+<style type="text/css">
+#zzrodape{
+	width:100%;
+	padding:5px;
+	min-height:200px;
+	background:url(../geral/img/bgRodape.jpg) top repeat-x;
+	margin-top:30px;
+}
+#rodapePosicao1{
+	zzwidth:220px;
+	zzfloat:left;
+	zzpadding-right:20px;
+	background: url(../geral/img/sombraverticalnoticias.png) right no-repeat; 
+}
+#zzrodapePosicao2{
+	width:720px;
+	background:url(../geral/img/sombraColuna.png) bottom no-repeat;
+	background:url(../img/sombraColuna.png) bottom no-repeat;
+	float:left;
+}
+</style>
+
+<div id="rodape" >
+	<div id="rodapePosicao1">
+		<p>
+			<a href="http://portal.saude.gov.br/portal/saude/area.cfm?id_area=141" title="Acesse a Ouvidoria">
+				<img align="absMiddle" alt="Ouvidoria" src="portalsaude/arquivos/png/2011/Out/04/logo_136.png"/>&nbsp;
+			</a>
+		</p>
+		<p>
+					Minist&eacute;rio da Sa&uacute;de<br/>
+					Esplanada dos Minist&eacute;rios Bloco G<br/>
+					Brasilia-DF / CEP: 70058-900
+		</p>
+		<p>
+			<a href="http://www.saude.gov.br/cartasus" target="_blank">
+				<img alt="Acesse o serviÃ§o CartaSUS e avalie seu atendimento."
+					src="portalsaude/arquivos/jpg/2012/Jan/16/selo_carta_sus_16012012.jpg" 
+					style="border-width: 0px; border-style: solid; width: 119px; height: 35px;" 
+					title="Acesse o serviÃ§o CartaSUS e avalie seu atendimento."/>
+			</a>
+		</p>
+	</div>
+<!-- rodapePosicao1F -->
+	<div class="rodapeXS" id="rodapePosicao2">
+		<span><b>Acessos</b></span><br/>
+			<a href="http://www3.transparencia.gov.br/TransparenciaPublica/index.jsp?CodigoOrgao=36000&amp;TipoOrgao=1&amp;consulta=0"
+				target="_blank" title="Acesse o Portal da TransparÃªncia PÃºblica"><img alt="Acesso" border="0" 
+				src="portalsaude/includes/templates/eportal//img/acesso1.gif" title="Acesse o Portal da TransparÃªncia PÃºblica" /> 
+			</a>
+			<!-- <a href="http://www.brasilsemmiseria.gov.br"
+				target="_blank" title="BrasilSemMiseria"><img alt="Brasil sem miseria" border="0" 
+				src="portalsaude/includes/templates/eportal//img/brasil_sem_miseria.jpg" /> -->
+			</a>
+			<a href="http://www.secom.gov.br/sobre-a-secom/publicacoes/caderno-destaques/arquivos/destaque-colorido" target="_blank" 
+				title="Destaques"> <img alt="Destaques" border="0" src="portalsaude/includes/templates/eportal//img/bn_destaques_230811.jpg"/>
+			</a>
+			<a href="http://portal.saude.gov.br/portal/saude/profissional/area.cfm?id_area=1818" target="_blank" 
+				title="DoencasCronicas"><img alt="DoencasCronicas" border="0" 
+				src="portalsaude/includes/templates/eportal//img/banner_planoDCNT3_230811.jpg" />
+			</a>
+			<a href="http://www.saude.gov.br/guiasinalizacao" target="_self"><img alt="Guia de sinalizaÃ§Ã£o de serviÃ§os e unidades do SUS"
+				src="portalsaude/arquivos/jpg/2011/Dez/16/guia_sinalizacao.jpg" style="width:120px;height:40px;" />
+			</a>
+		<div class="clearboth">&nbsp;
+		</div>
+	</div>
+<!-- rodapePosicao2F -->
+	<div class="rodapeXS" id="rodapePosicao3">
+		<img alt="Assinatura" src="portalsaude/includes/templates/eportal//img/assinatura.gif"/>
+	</div>
+<!-- rodapePosicao3F -->  <br />
+	<div class="rodapeXS" id="rodapePosicao4">
+		<a href="http://webmail.saude.gov.br" target="_blank" title="webmail.saude.gov.br">
+			<img alt="webmail.saude.gov.br" 
+				src="portalsaude/includes/templates/eportal//img/webmail_rodape2.jpg"
+			/>
+		</a>
+	</div>
+<!-- rodapePosicao4F -->
+</div>
+<!-- rodapeF -->
+<script type='text/javascript'>var obj=document.getElementById('voltar'); if (obj!=null) obj.style.visibility='hidden';</script>
+		</div>
+		
+	</body>
+	
+</html>
+
