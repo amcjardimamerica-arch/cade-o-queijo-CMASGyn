@@ -1,0 +1,7 @@
+URL: https://pncp.gov.br/api/consulta/v1/instrumentoscobranca/inclusao?dataInicial=20260101&dataFinal=20260131&pagina=1&tamanhoPagina=10
+POST: {}
+OK: False
+HTTP: 504
+ERRO: HTTP 504
+BYTES: 0
+

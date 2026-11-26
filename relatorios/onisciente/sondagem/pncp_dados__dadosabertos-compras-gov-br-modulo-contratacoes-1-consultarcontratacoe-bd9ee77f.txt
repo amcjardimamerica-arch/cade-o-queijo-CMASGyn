@@ -1,0 +1,8 @@
+URL: https://dadosabertos.compras.gov.br/modulo-contratacoes/1_consultarContratacoes_PNCP_14133?pagina=1&tamanhoPagina=20&dataPublicacaoPncpInicial=2025-03-01&dataPublicacaoPncpFinal=2025-03-31&codigoModalidade=8&unidadeOrgaoCodigoIbge=5208707
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 73
+
+{"resultado":[],"totalRegistros":0,"totalPaginas":0,"paginasRestantes":0}

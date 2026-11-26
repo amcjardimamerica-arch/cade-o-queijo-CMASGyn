@@ -1,0 +1,7 @@
+URL: https://pncp.gov.br/api/pncp/v1/orgaos/25141524000123/contratos/2026/76/termos
+POST: {}
+OK: True
+HTTP: 204
+ERRO: 
+BYTES: 0
+
