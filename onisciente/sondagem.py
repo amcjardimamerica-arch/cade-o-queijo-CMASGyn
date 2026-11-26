@@ -81,6 +81,20 @@ CANDIDATOS: dict[str, list[str]] = {
     "siops3": [
         "http://siops.datasus.gov.br/consleirespfiscal.php?UF=52&Ano=2026&Periodo=1&Municipio=&MudouAno=true",
     ],
+    # Quarta rodada: o OData do SIOPE com os parâmetros obrigatórios (ano, bimestre, UF).
+    "siope4": [
+        "https://www.fnde.gov.br/olinda-ide/servico/DADOS_ABERTOS_SIOPE/versao/v1/odata/"
+        f"{conjunto}(Ano_Consulta=@Ano_Consulta,Num_Peri=@Num_Peri,Sig_UF=@Sig_UF)"
+        f"?@Ano_Consulta={ano}&@Num_Peri={per}&@Sig_UF='GO'&$filter=COD_MUNI%20eq%20520870&$format=json&$top=2000"
+        for conjunto in ("Indicadores_Siope", "Dados_Gerais_Siope", "Receita_Siope", "Despesas_Siope",
+                         "Informacoes_Complementares_Siope")
+        for ano, per in (("2025", "6"), ("2026", "4"))
+    ] + [
+        "https://www.fnde.gov.br/olinda-ide/servico/DADOS_ABERTOS_SIOPE/versao/v1/odata/"
+        "Indicadores_Siope(Ano_Consulta=@Ano_Consulta,Num_Peri=@Num_Peri,Sig_UF=@Sig_UF)"
+        "?@Ano_Consulta=2024&@Num_Peri=6&@Sig_UF='GO'&$format=json&$top=5",
+        "https://www.fnde.gov.br/olinda-ide/servico/DADOS_ABERTOS_SIOPE/versao/v1/aplicacao",
+    ],
     "transferegov": [
         "https://api.transferegov.gestao.gov.br/transferenciasespeciais/",
         "https://api.transferegov.gestao.gov.br/fundoafundo/",
