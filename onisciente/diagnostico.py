@@ -36,6 +36,7 @@ NOME_DOS_MOTORES = {
     "siope": "Demonstrativo da educação (SIOPE)",
     "transferencias": "Transferências federais (Portal da Transparência)",
     "msc": "Matriz de Saldos Contábeis (SICONFI)",
+    "pncp_detalhe": "Detalhe das compras e contratos (PNCP e Compras.gov.br)",
 }
 
 

@@ -181,13 +181,17 @@ regras:
 - id: DISPENSA-LIMITE
   titulo: Limite de dispensa por valor (soma do mesmo objeto)
   tipo: maximo
-  obras: 125451.15
-  outros: 62725.59
-  vigencia: 2025
+  obras: 130984.2
+  outros: 65492.11
+  vigencia: 2026
+  por_ano:   # Lei 14.133/2021, art. 182: atualização anual por decreto
+    2024: {obras: 119812.02, outros: 59906.02, decreto: Decreto 11.871/2023}
+    2025: {obras: 125451.15, outros: 62725.59, decreto: Decreto 12.343/2024}
+    2026: {obras: 130984.2, outros: 65492.11, decreto: Decreto 12.807/2025}
   conferir_atualizacao: true
   unidade: R$
   base: soma das contratações do mesmo objeto no exercício
-  norma: Lei 14.133/2021, art. 75, I, II e § 1º; Decreto 12.343/2024
+  norma: Lei 14.133/2021, art. 75, I, II e § 1º; Decretos 11.871/2023, 12.343/2024 e 12.807/2025
   fonte_dado:
   - extratos de dispensa no Diário Oficial
   - PNCP

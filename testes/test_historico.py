@@ -639,3 +639,73 @@ def test_msc_guarda_as_paginas_do_mes_e_separa_prazo_de_lacuna(tmp_path):
                             hoje=date(2026, 11, 26), ler_url=leitor, dormir=lambda s: None, pausa=0)
     assert banco.consultar("SELECT mes, situacao, prazo FROM msc_meses") == [("2026-10", "no_prazo", "2026-11-30")]
     banco.fechar()
+
+
+def test_pncp_detalhe_le_amparo_itens_contrato_termos_preco_e_notas(tmp_path):
+    """O motor de detalhe parte do que já está no banco e guarda cada via; a segunda rodada não repete."""
+    pedidos = []
+    item = {"numeroControlePNCPCompra": "04973965000111-1-000043/2024", "numeroItemPncp": 1,
+            "orgaoEntidadeCnpj": "04973965000111", "descricaoResumida": "Aparelho Ar Condicionado",
+            "materialOuServico": "M", "codigoClasse": 4120, "codItemCatalogo": 440744, "codigoPdm": "13768",
+            "unidadeMedida": "Unidade  ", "quantidade": 9.0, "valorUnitarioEstimado": 2347.22,
+            "valorTotal": 21124.98, "codFornecedor": "23528340000195", "quantidadeResultado": 9.0,
+            "valorUnitarioResultado": 2116.99, "valorTotalResultado": 19052.91,
+            "dataInclusaoPncp": "2024-11-12T11:22:08", "dataResultado": "2024-12-05 00:00:00.0000000"}
+
+    def rede(url, **_):
+        pedidos.append(url)
+        if "2_consultarItens" in url:
+            q = {k: v[0] for k, v in parse_qs(urlparse(url).query).items()}
+            if q["dataInclusaoPncpInicial"][:7] != q["dataInclusaoPncpFinal"][:7]:
+                return base.Leitura(False, url, erro="TimeoutError: timed out")   # ano inteiro: lento demais
+            corpo = {"resultado": [item] if q["dataInclusaoPncpInicial"].startswith("2024-11") else [],
+                     "totalPaginas": 1}
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        if "/compras/2024/43" in url:
+            corpo = {"amparoLegal": {"codigo": 19, "nome": "Lei 14.133/2021, Art. 75, II"}, "srp": False,
+                     "valorTotalEstimado": 21124.98, "valorTotalHomologado": 19052.91}
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        if url.endswith("/contratos/2024/47"):
+            corpo = {"numeroControlePncpCompra": "04973965000111-1-000043/2024", "valorInicial": 100.0,
+                     "valorGlobal": 140.0, "tipoContrato": {"nome": "Contrato (termo inicial)"},
+                     "dataVigenciaInicio": "2024-11-19", "dataVigenciaFim": "2025-11-19"}
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        if url.endswith("/contratos/2024/47/termos"):
+            corpo = [{"sequencialTermoContrato": 1, "tipoTermoContratoNome": "Termo Aditivo",
+                      "valorAcrescido": 40.0, "qualificacaoAcrescimoSupressao": True}]
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        if "1_consultarMaterial" in url:
+            assert "dataCompraInicio=2024-07-01" in url and "codigo=440744" in url
+            corpo = {"resultado": [{"idCompraItem": f"X{n}", "precoUnitario": 1500.0 + n, "dataCompra": "2024-10-01",
+                                    "estado": "MG"} for n in range(3)], "totalPaginas": 1}
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        if "instrumentoscobranca" in url and "dataInicial=20241101" in url:
+            corpo = {"data": [{"cnpj": "04973965000111", "ano": 2024, "sequencialContrato": 47,
+                               "sequencialInstrumentoCobranca": 1, "tipoInstrumentoCobranca": {"nome": "Nota Fiscal"},
+                               "notaFiscalEletronica": {"valorNotaFiscal": "19052.91", "itens": [
+                                   {"numeroItem": "1", "descricaoProdutoServico": "AR SPLIT", "quantidade": "9",
+                                    "valorUnitario": "2116.99", "valorTotal": "19052.91"}]}}],
+                     "totalPaginas": 1}
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        return base.Leitura(True, url, b"", http=204)
+
+    banco = historico.Banco(tmp_path / "h.db")
+    banco.inserir("contratacoes_pncp", {"pncp_id": "04973965000111-1-000043/2024", "mes": "2024-11",
+                                        "modalidade": "Dispensa", "orgao_cnpj": "04973965000111"})
+    banco.inserir("contratos_pncp", {"pncp_id": "04973965000111-2-000047/2024", "mes": "2024-11",
+                                     "orgao_cnpj": "04973965000111", "valor_global": 140.0})
+    ctx = historico.Contexto(banco, historico.meses("2024-11", "2024-12"), date(2026, 11, 26),
+                             ler_url=rede, dormir=lambda s: None, pausa=0)
+    historico.motor_pncp_detalhe(ctx)
+    assert banco.consultar("SELECT catalogo, unitario_resultado FROM pncp_itens") == [(440744, 2116.99)]
+    assert banco.consultar("SELECT codigo, nome FROM pncp_amparos") == [(19, "Lei 14.133/2021, Art. 75, II")]
+    assert banco.consultar("SELECT compra_id, valor_inicial FROM pncp_contratos_detalhe") == [
+        ("04973965000111-1-000043/2024", 100.0)]
+    assert banco.consultar("SELECT valor_acrescido, acrescimo_supressao FROM pncp_termos") == [(40.0, 1)]
+    assert banco.consultar("SELECT COUNT(*), MIN(semestre) FROM precos_referencia") == [(3, "2024-2")]
+    assert banco.consultar("SELECT contrato_id, valor_nf FROM pncp_cobrancas") == [
+        ("04973965000111-2-000047/2024", 19052.91)]
+    assert banco.consultar("SELECT unitario FROM pncp_nf_itens") == [(2116.99,)]
+    antes = len(pedidos)
+    historico.motor_pncp_detalhe(ctx)                      # tudo lido por inteiro: nada de novo
+    assert len(pedidos) == antes
