@@ -1,6 +1,6 @@
 {
  "intervalo": "2024-11 a 2026-11",
- "rodada": "2026-11-26T15:11:55+00:00",
+ "rodada": "2026-11-26T15:59:19+00:00",
  "meses": [
   "2024-11",
   "2024-12",
@@ -43,14 +43,13 @@
   {
    "motor": "fnas",
    "nome": "Repasses federais (FNAS)",
-   "chamadas": 6,
+   "chamadas": 4,
    "ok": 3,
-   "falhas": 3,
-   "tentativas": 5,
+   "falhas": 1,
+   "tentativas": 3,
    "http_429": 0,
-   "segundos": 2.9,
+   "segundos": 98.2,
    "erros": {
-    "BadZipFile: File is not a zip file": 2,
     "planilha do ano não publicada na página do FNAS": 1
    }
   },
@@ -71,14 +70,15 @@
   {
    "motor": "pncp",
    "nome": "Contratações (PNCP)",
-   "chamadas": 583,
-   "ok": 83,
-   "falhas": 500,
-   "tentativas": 83,
+   "chamadas": 201,
+   "ok": 72,
+   "falhas": 129,
+   "tentativas": 106,
    "http_429": 0,
-   "segundos": 1731.5,
+   "segundos": 4490.2,
    "erros": {
-    "não tentado: tempo do motor nesta rodada esgotado": 500
+    "não tentado: tempo do motor nesta rodada esgotado": 128,
+    "RemoteDisconnected: Remote end closed connection without response": 1
    }
   },
   {
@@ -89,7 +89,7 @@
    "falhas": 50,
    "tentativas": 18,
    "http_429": 0,
-   "segundos": 210.5,
+   "segundos": 211.2,
    "erros": {
     "não tentado: 6 falhas de rede seguidas nesta fonte": 44,
     "URLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] ssl/tls alert handshake failure (_ssl.c:1011)": 6
@@ -142,13 +142,14 @@
    "sileg": 504
   },
   "repasses_fnas": [
-   0,
-   0.0
+   330,
+   17168303.62
   ],
-  "contratacoes_pncp": 191,
+  "repasses_fnas_arquivo": 0,
+  "contratacoes_pncp": 0,
   "contratos_pncp": [
-   0,
-   null
+   1956,
+   56
   ],
   "fontes": [
    25,
@@ -157,258 +158,251 @@
  },
  "cobertura": {
   "2024-11": {
-   "querido_diario": "✗",
    "sileg": "✓",
+   "querido_diario": "✗",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
-   "fnas": "·",
-   "pncp": "·"
+   "fnas": "✓",
+   "pncp": "✓"
   },
   "2024-12": {
-   "querido_diario": "✗",
    "sileg": "✓",
+   "querido_diario": "✗",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
-   "fnas": "·",
-   "pncp": "·"
+   "fnas": "✓",
+   "pncp": "✓"
   },
   "2025-01": {
-   "querido_diario": "✗",
    "sileg": "✓",
+   "querido_diario": "✗",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
-   "fnas": "·",
-   "pncp": "·"
+   "fnas": "✓",
+   "pncp": "✓"
   },
   "2025-02": {
-   "querido_diario": "✗",
    "sileg": "✓",
+   "querido_diario": "✗",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
-   "fnas": "·",
-   "pncp": "·"
+   "fnas": "✓",
+   "pncp": "✓"
   },
   "2025-03": {
-   "querido_diario": "✗",
    "sileg": "✓",
+   "querido_diario": "✗",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
-   "fnas": "·",
-   "pncp": "·"
+   "fnas": "✓",
+   "pncp": "✓"
   },
   "2025-04": {
-   "querido_diario": "✗",
    "sileg": "✓",
+   "querido_diario": "✗",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
-   "fnas": "·",
-   "pncp": "·"
+   "fnas": "✓",
+   "pncp": "✓"
   },
   "2025-05": {
-   "querido_diario": "✗",
    "sileg": "✓",
+   "querido_diario": "✗",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
-   "fnas": "·",
-   "pncp": "·"
+   "fnas": "✓",
+   "pncp": "✓"
   },
   "2025-06": {
-   "querido_diario": "✗",
    "sileg": "✓",
+   "querido_diario": "✗",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
-   "fnas": "·",
-   "pncp": "·"
+   "fnas": "✓",
+   "pncp": "✓"
   },
   "2025-07": {
-   "querido_diario": "✗",
    "sileg": "✓",
+   "querido_diario": "✗",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
-   "fnas": "·",
-   "pncp": "·"
+   "fnas": "✓",
+   "pncp": "✓"
   },
   "2025-08": {
-   "querido_diario": "✗",
    "sileg": "✓",
+   "querido_diario": "✗",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
-   "fnas": "·",
-   "pncp": "·"
+   "fnas": "✓",
+   "pncp": "✓"
   },
   "2025-09": {
-   "querido_diario": "✗",
    "sileg": "✓",
+   "querido_diario": "✗",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
-   "fnas": "·",
-   "pncp": "·"
+   "fnas": "✓",
+   "pncp": "✓"
   },
   "2025-10": {
-   "querido_diario": "✗",
    "sileg": "✓",
+   "querido_diario": "✗",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
-   "fnas": "·",
-   "pncp": "·"
+   "fnas": "✓",
+   "pncp": "✓"
   },
   "2025-11": {
-   "querido_diario": "✗",
    "sileg": "✓",
+   "querido_diario": "✗",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
-   "fnas": "·",
-   "pncp": "·"
+   "fnas": "✓",
+   "pncp": "✓"
   },
   "2025-12": {
-   "querido_diario": "✗",
    "sileg": "✓",
+   "querido_diario": "✗",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
-   "fnas": "·",
-   "pncp": "·"
+   "fnas": "✓",
+   "pncp": "✓"
   },
   "2026-01": {
-   "querido_diario": "✗",
    "sileg": "✓",
+   "querido_diario": "✗",
    "rreo": "✓",
    "rgf": "✓",
    "fnas": "·",
-   "pncp": "·"
+   "pncp": "✓"
   },
   "2026-02": {
-   "querido_diario": "✗",
    "sileg": "✓",
+   "querido_diario": "✗",
    "rreo": "✓",
    "rgf": "✓",
    "fnas": "·",
-   "pncp": "·"
+   "pncp": "✓"
   },
   "2026-03": {
-   "querido_diario": "✗",
    "sileg": "✓",
+   "querido_diario": "✗",
    "rreo": "✓",
    "rgf": "✓",
    "fnas": "·",
-   "pncp": "·"
+   "pncp": "✓"
   },
   "2026-04": {
-   "querido_diario": "✗",
    "sileg": "✓",
+   "querido_diario": "✗",
    "rreo": "✓",
    "rgf": "✓",
    "fnas": "·",
-   "pncp": "·"
+   "pncp": "✓"
   },
   "2026-05": {
-   "querido_diario": "✗",
    "sileg": "✓",
+   "querido_diario": "✗",
    "rreo": "✓",
    "rgf": "✓",
    "fnas": "·",
-   "pncp": "·"
+   "pncp": "✓"
   },
   "2026-06": {
-   "querido_diario": "✗",
    "sileg": "✓",
+   "querido_diario": "✗",
    "rreo": "✓",
    "rgf": "✓",
    "fnas": "·",
-   "pncp": "·"
+   "pncp": "✓"
   },
   "2026-07": {
-   "querido_diario": "✗",
    "sileg": "✓",
+   "querido_diario": "✗",
    "rreo": "✓",
    "rgf": "✓",
    "fnas": "·",
-   "pncp": "·"
+   "pncp": "✓"
   },
   "2026-08": {
-   "querido_diario": "✗",
    "sileg": "✓",
+   "querido_diario": "✗",
    "rreo": "✓",
    "rgf": "✓",
    "fnas": "·",
-   "pncp": "·"
+   "pncp": "✓"
   },
   "2026-09": {
-   "querido_diario": "✗",
    "sileg": "✓",
+   "querido_diario": "✗",
    "rreo": "…",
    "fnas": "·",
-   "pncp": "·"
+   "pncp": "✓"
   },
   "2026-10": {
-   "querido_diario": "✗",
    "sileg": "✓",
+   "querido_diario": "✗",
    "rreo": "…",
    "fnas": "·",
-   "pncp": "·"
+   "pncp": "✓"
   },
   "2026-11": {
-   "querido_diario": "✗",
    "sileg": "✓",
+   "querido_diario": "✗",
    "fnas": "·",
-   "pncp": "·"
+   "pncp": "✓"
   }
  },
  "achados": [
   {
    "tipo": "falha",
    "motor": "fnas",
-   "titulo": "Repasses federais (FNAS): 3 de 6 chamadas falharam",
-   "detalhe": "Erro mais comum: BadZipFile: File is not a zip file (2 vezes).",
+   "titulo": "Repasses federais (FNAS): 1 de 4 chamadas falharam",
+   "detalhe": "Erro mais comum: planilha do ano não publicada na página do FNAS (1 vezes).",
    "proposta": "Ver a tabela coletas do banco para os endereços exatos."
   },
   {
    "tipo": "falha",
    "motor": "pncp",
-   "titulo": "Contratações (PNCP): 500 de 583 chamadas falharam",
-   "detalhe": "Erro mais comum: não tentado: tempo do motor nesta rodada esgotado (500 vezes).",
+   "titulo": "Contratações (PNCP): 129 de 201 chamadas falharam",
+   "detalhe": "Erro mais comum: não tentado: tempo do motor nesta rodada esgotado (128 vezes).",
    "proposta": "Ver a tabela coletas do banco para os endereços exatos."
   },
   {
    "tipo": "melhoria",
    "motor": "siconfi",
-   "titulo": "O domínio educacao procura o anexo “RREO-Anexo 8”, que o SICONFI não usa",
-   "detalhe": "O Tesouro chama o anexo de outro nome; a consulta com o nome errado volta vazia e a segunda via do piso fica sem dado.",
-   "proposta": "Conferir o nome na lista de anexos do banco (tabela siconfi_anexos)."
+   "titulo": "O domínio educacao procura o anexo “RREO-Anexo 8”, que não veio do SICONFI",
+   "detalhe": "Nenhum período coletado traz um anexo com esse número; a consulta volta vazia e a segunda via do piso fica sem dado. Provavelmente porque esse anexo nasce no SIOPE (educação, FNDE) e não chega à base de dados abertos do SICONFI (a conferir).",
+   "proposta": "Ler o piso direto do SIOPE (educação, FNDE) e manter o SICONFI como conferência."
   },
   {
    "tipo": "melhoria",
    "motor": "siconfi",
-   "titulo": "O domínio saude procura o anexo “RREO-Anexo 12”, que o SICONFI não usa",
-   "detalhe": "O Tesouro chama o anexo de outro nome; a consulta com o nome errado volta vazia e a segunda via do piso fica sem dado.",
-   "proposta": "Conferir o nome na lista de anexos do banco (tabela siconfi_anexos)."
-  },
-  {
-   "tipo": "falha",
-   "motor": "siconfi",
-   "titulo": "O coletor antigo do SICONFI usa endereços que não respondem mais",
-   "detalhe": "cadeoqueijo/coleta_siconfi.py chama apidatatransparencia.tesouro.gov.br e apidados.tesouro.gov.br (HTTP 404); o endereço novo (apidatalake) respondeu.",
-   "proposta": "Trocar a base do coletor antigo pela apidatalake.tesouro.gov.br."
+   "titulo": "O domínio saude procura o anexo “RREO-Anexo 12”, que não veio do SICONFI",
+   "detalhe": "Nenhum período coletado traz um anexo com esse número; a consulta volta vazia e a segunda via do piso fica sem dado. Provavelmente porque esse anexo nasce no SIOPS (saúde, Ministério da Saúde) e não chega à base de dados abertos do SICONFI (a conferir).",
+   "proposta": "Ler o piso direto do SIOPS (saúde, Ministério da Saúde) e manter o SICONFI como conferência."
   },
   {
    "tipo": "falha",
    "motor": "querido_diario",
    "titulo": "O Querido Diário não respondeu em 25 de 25 meses",
    "detalhe": "Meses: 2024-11 a 2026-11. Erro: URLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] ssl/tls alert handshake failure (_ssl.c:1011).",
-   "proposta": "Coletar de dentro do GitHub (rede aberta) e manter a outra via como reserva."
+   "proposta": "O servidor recusou o aperto de mão TLS do robô. O leitor já repete a chamada com cifras compatíveis, sem deixar de conferir o certificado; se ainda falhar, a outra via fica como principal até o servidor ser atualizado."
   },
   {
    "tipo": "melhoria",
@@ -425,11 +419,18 @@
    "proposta": "Os repasses do ano ficam sem a via federal até a publicação; a coleta mensal confere de novo."
   },
   {
-   "tipo": "lacuna",
+   "tipo": "melhoria",
+   "motor": "fnas",
+   "titulo": "Sem repasse federal registrado em 11 meses",
+   "detalhe": "Meses sem nenhuma linha de repasse para o município: 2026-01 a 2026-11.",
+   "proposta": "Para os meses do ano corrente, usar o Portal da Transparência da União (transferências) como segunda via enquanto a planilha anual não sai."
+  },
+  {
+   "tipo": "falha",
    "motor": "pncp",
-   "titulo": "Nenhum contrato do Município no PNCP em 25 meses",
-   "detalhe": "Meses: 2024-11 a 2026-11. Órgãos procurados: 17.",
-   "proposta": "A Lei 14.133/2021 (art. 94) manda divulgar o contrato no PNCP; confirmar no portal municipal antes de tratar como ausência."
+   "titulo": "Contratos do PNCP não lidos por inteiro em 25 meses",
+   "detalhe": "Meses sem todos os órgãos lidos: 2024-11 a 2026-11. Órgãos sem nenhum mês lido: 1 de 17.",
+   "proposta": "A API do PNCP leva cerca de 20 segundos por chamada: rodar de novo só o motor pncp, que continua dos órgãos já conhecidos."
   },
   {
    "tipo": "falha",
