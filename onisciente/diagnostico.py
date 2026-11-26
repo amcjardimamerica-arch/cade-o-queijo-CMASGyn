@@ -227,9 +227,10 @@ def _proposta_de_rede(erro: str) -> str:
     """O que fazer depende de como a fonte falhou."""
     e = (erro or "").upper()
     if "SSL" in e or "HANDSHAKE" in e or "TLS" in e:
-        return ("O servidor recusou o aperto de mão TLS do robô. O leitor já repete a chamada com "
-                "cifras compatíveis, sem deixar de conferir o certificado; se ainda falhar, a "
-                "outra via fica como principal até o servidor ser atualizado.")
+        return ("O servidor recusou o aperto de mão TLS (alerta 40), também para o curl e o "
+                "openssl com TLS 1.2 e 1.3 na mesma máquina: o bloqueio está do lado da fonte, "
+                "não nas cifras do robô. A outra via fica como principal, e a coleta mensal tenta "
+                "de novo e avisa quando a fonte voltar.")
     if "TIMEOUT" in e or "TIMED OUT" in e:
         return "A fonte demora demais: dar mais tempo à chamada e coletar um mês por dia."
     if "NÃO TENTADO" in e:
