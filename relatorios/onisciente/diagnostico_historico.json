@@ -1,6 +1,6 @@
 {
  "intervalo": "2024-11 a 2026-11",
- "rodada": "2026-11-26T22:28:31+00:00",
+ "rodada": "2026-11-26T22:39:12+00:00",
  "meses": [
   "2024-11",
   "2024-12",
@@ -130,6 +130,19 @@
    "erros": {}
   },
   {
+   "motor": "siope",
+   "nome": "Demonstrativo da educação (SIOPE)",
+   "chamadas": 12,
+   "ok": 11,
+   "falhas": 1,
+   "tentativas": 14,
+   "http_429": 0,
+   "segundos": 58.0,
+   "erros": {
+    "URLError: <urlopen error ftp error: error_perm('550 Failed to change directory.')>": 1
+   }
+  },
+  {
    "motor": "siops",
    "nome": "Demonstrativo da saúde (SIOPS)",
    "chamadas": 15,
@@ -148,7 +161,7 @@
    "falhas": 1,
    "tentativas": 3,
    "http_429": 0,
-   "segundos": 71.4,
+   "segundos": 70.5,
    "erros": {
     "URLError: [Errno 104] Connection reset by peer": 1
    }
@@ -180,6 +193,10 @@
   ],
   "siops_bimestres": {
    "homologado": 12
+  },
+  "siope_bimestres": {
+   "homologado": 11,
+   "nao_entregue": 1
   },
   "transferencias_tesouro": [
    0,
@@ -454,6 +471,13 @@
    "titulo": "Sem repasse federal registrado em 11 meses",
    "detalhe": "Meses sem nenhuma linha de repasse para o município: 2026-01 a 2026-11.",
    "proposta": "Para os meses do ano corrente, usar o Portal da Transparência da União (transferências) como segunda via enquanto a planilha anual não sai."
+  },
+  {
+   "tipo": "lacuna",
+   "motor": "siope",
+   "titulo": "Educação: 5º bimestre de 2026 sem demonstrativo no SIOPE",
+   "detalhe": "O FNDE não tem o PDF do bimestre: o Município não transmitiu ou o FNDE ainda não publicou.",
+   "proposta": "Os pisos da educação e do FUNDEB do bimestre ficam com uma via só."
   },
   {
    "tipo": "falha",

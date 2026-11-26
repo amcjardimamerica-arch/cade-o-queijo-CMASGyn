@@ -1,6 +1,6 @@
 # Diagnóstico da coleta histórica (2024-11 a 2026-11)
 
-Rodada de 2026-11-26T22:28:31+00:00. Banco: `dados/onisciente/historico.db`.
+Rodada de 2026-11-26T22:39:12+00:00. Banco: `dados/onisciente/historico.db`.
 
 Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna na fonte (ela respondeu e o dado não estava lá). As duas nunca se misturam.
 
@@ -16,8 +16,9 @@ Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna na fonte (
 | SICONFI (Tesouro Nacional) | 23 | 23 | 0 | 0 | 5.9 |
 | SICONFI pelos endereços antigos | 2 | 0 | 2 | 0 | 1.2 |
 | Diário Oficial pelo índice do SILEG | 50 | 50 | 0 | 0 | 13.3 |
+| Demonstrativo da educação (SIOPE) | 12 | 11 | 1 | 0 | 58.0 |
 | Demonstrativo da saúde (SIOPS) | 15 | 15 | 0 | 0 | 23.1 |
-| Transferências constitucionais (Tesouro) | 1 | 0 | 1 | 0 | 71.4 |
+| Transferências constitucionais (Tesouro) | 1 | 0 | 1 | 0 | 70.5 |
 
 ## O que entrou no banco
 
@@ -38,6 +39,7 @@ Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna na fonte (
 ## Onde a fonte respondeu sem o dado
 
 1. **O FNAS ainda não publicou a planilha 2026.** A página de extração de repasses não tem a planilha do ano. *Proposta:* Os repasses do ano ficam sem a via federal até a publicação; a coleta mensal confere de novo.
+2. **Educação: 5º bimestre de 2026 sem demonstrativo no SIOPE.** O FNDE não tem o PDF do bimestre: o Município não transmitiu ou o FNDE ainda não publicou. *Proposta:* Os pisos da educação e do FUNDEB do bimestre ficam com uma via só.
 
 ## Onde o sistema pode melhorar
 
