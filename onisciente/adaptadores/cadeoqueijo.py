@@ -95,6 +95,12 @@ def _fonte_do_codigo(codigo: str) -> str | None:
     return None
 
 
+def _ativa_no_ano(entidade: dict, ano: str) -> bool:
+    """A entidade teve lançamento no exercício: sua janela [primeiro, último] toca o ano."""
+    primeiro = (entidade.get("primeiro") or "")[:4]
+    ultimo = (entidade.get("ultimo") or primeiro)[:4]
+    return bool(primeiro) and primeiro <= ano <= ultimo
+
 def montar(competencia: str, *, raiz: Path = RAIZ, mapa: MapaLegal | None = None,
            alvo: str = "Prefeitura de Goiânia") -> Panorama:
     """Monta o panorama da competência (``AAAA-MM``) a partir dos dados do Cadê o Queijo."""
@@ -202,10 +208,11 @@ def montar(competencia: str, *, raiz: Path = RAIZ, mapa: MapaLegal | None = None
     pub = verif.get("publicacao_do_mes") or {}
     dias_uteis = pub.get("dias_uteis") or 0
     tempestividade = (pub.get("dias_com_edicao", 0) / dias_uteis) if dias_uteis else 0.0
-    entidades = trilha.get("entidades") or []
-    total_ent = sum(e.get("valor") or 0 for e in entidades)
-    com_vinculo = sum(e.get("valor") or 0 for e in entidades if e.get("com_vinculo"))
-    vinculo = com_vinculo / total_ent if total_ent else 0.0
+    # Vínculo: entidades com lançamento no exercício que têm contrato, termo ou convênio.
+    # A trilha soma os valores de cada entidade em vários anos, sem separar por exercício;
+    # somar esses valores misturaria anos anteriores. Por isso a medida é por entidade.
+    ativas = [e for e in (trilha.get("entidades") or []) if _ativa_no_ano(e, ano)]
+    vinculo = (sum(1 for e in ativas if e.get("com_vinculo")) / len(ativas)) if ativas else 0.0
     parcerias = (transp.get("blocos") or {}).get("Parcerias com entidades", {})
     prestacao = 0.0 if "Prestações de contas" in (parcerias.get("falta") or []) else 1.0
     minimo = mapa.regra("INTEGRIDADE-LAI").valor or 50.0
@@ -224,6 +231,8 @@ def montar(competencia: str, *, raiz: Path = RAIZ, mapa: MapaLegal | None = None
     else:
         panorama.notas.append(f"{pagamentos_mes} ato(s) de pagamento no Diário da competência, mas "
                               "nenhum com as nove estações documentadas: a cobertura da trilha é zero.")
-    panorama.notas.append("O vínculo é medido sobre o acumulado do exercício na trilha do dinheiro.")
+    panorama.notas.append(f"O vínculo é a parte das {len(ativas)} entidades com lançamento em {ano} "
+                          "que têm contrato, termo ou convênio localizado; a trilha não separa "
+                          "os valores por exercício, então a medida é por entidade, não por real.")
     panorama.notas.append(f"Montado a partir do Cadê o Queijo em {datetime.now():%d/%m/%Y}.")
     return panorama

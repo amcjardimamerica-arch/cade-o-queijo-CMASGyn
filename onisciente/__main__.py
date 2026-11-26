@@ -113,7 +113,8 @@ def cmd_coletar(args) -> int:
         falhas = [r for r in resultado if not r["ok"]]
         revogadas = [r for r in resultado if r.get("revogada")]
         coleta.registrar("ctresb", coleta.Leitura(not falhas, RAW_CTRESB,
-                                                  erro="; ".join(r["caminho"] for r in falhas)))
+                                                  erro="; ".join(r["caminho"] for r in falhas)),
+                        ciclo_dias=31)
         for r in resultado:
             situacao = "ok" if r["ok"] else f"FALHOU ({r.get('erro')})"
             print(f"{situacao:>8} {'REVOGADA ' if r.get('revogada') else ''}{r['caminho']}")

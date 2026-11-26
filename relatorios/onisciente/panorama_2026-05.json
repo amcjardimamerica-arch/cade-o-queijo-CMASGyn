@@ -2,26 +2,26 @@
  "competencia": "2026-05",
  "alvo": "Prefeitura de Goiânia",
  "dominio": "Assistência Social",
- "em_uma_frase": "37 indícios: 10 críticos, 21 de gravidade alta, 6 de gravidade média. Integridade da trilha: 15 de 100. 30 documentos que a lei manda publicar não estão publicados.",
+ "em_uma_frase": "37 indícios: 10 críticos, 21 de gravidade alta, 6 de gravidade média. Integridade da trilha: 14 de 100. 30 documentos que a lei manda publicar não estão publicados.",
  "contagem": {
   "critica": 10,
   "alta": 21,
   "media": 6
  },
  "integridade": {
-  "nota": 15.1,
+  "nota": 14.0,
   "partes": {
    "cobertura": 0.0,
    "coerencia": 0.0,
    "tempestividade": 9.75,
-   "vinculo": 5.35,
+   "vinculo": 4.27,
    "prestacao": 0.0
   },
   "fracoes": {
    "cobertura": 0.0,
    "coerencia": 0.0,
    "tempestividade": 0.65,
-   "vinculo": 0.5351,
+   "vinculo": 0.427,
    "prestacao": 0.0
   },
   "gera_pedido_de_acesso": true
@@ -1124,7 +1124,7 @@
  "notas": [
   "O rio mostra o previsto na LOA para o mês: a receita realizada da competência não foi publicada.",
   "Nenhum pagamento publicado na competência: a cobertura da trilha é zero.",
-  "O vínculo é medido sobre o acumulado do exercício na trilha do dinheiro.",
+  "O vínculo é a parte das 89 entidades com lançamento em 2026 que têm contrato, termo ou convênio localizado; a trilha não separa os valores por exercício, então a medida é por entidade, não por real.",
   "Montado a partir do Cadê o Queijo em 26/11/2026."
  ]
 }

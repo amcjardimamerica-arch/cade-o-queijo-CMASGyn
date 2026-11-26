@@ -58,13 +58,19 @@ def _carregar_estado(caminho: Path = ESTADO) -> dict:
     return {"fontes": {}}
 
 
-def registrar(fonte: str, leitura: Leitura, *, caminho: Path = ESTADO) -> dict:
-    """Guarda o resultado da coleta de uma fonte no estado do sistema."""
+def registrar(fonte: str, leitura: Leitura, *, caminho: Path = ESTADO,
+              ciclo_dias: int = 1) -> dict:
+    """Guarda o resultado da coleta de uma fonte no estado do sistema.
+
+    ``ciclo_dias`` é de quanto em quanto tempo a fonte é lida pelos robôs (1 = todo dia,
+    31 = todo mês): o prazo de fonte parada conta a partir do fim do ciclo.
+    """
     estado = _carregar_estado(caminho)
     agora = datetime.now(timezone.utc).isoformat(timespec="seconds")
     item = estado["fontes"].setdefault(fonte, {})
     item["ultima_tentativa"] = agora
     item["url"] = leitura.url
+    item["ciclo_dias"] = ciclo_dias
     if leitura.ok:
         item["ultimo_sucesso"] = agora
         item["sha256"] = leitura.original.sha256 if leitura.original else None
@@ -77,21 +83,29 @@ def registrar(fonte: str, leitura: Leitura, *, caminho: Path = ESTADO) -> dict:
 
 
 def fontes_paradas(estado: dict, hoje: date, limite_dias: int = 3) -> list[Ficha]:
-    """Fonte sem coleta bem-sucedida há mais de ``limite_dias``: falha do sistema."""
+    """Fonte sem coleta bem-sucedida há mais que o seu ciclo mais ``limite_dias``: falha do sistema.
+
+    Uma fonte lida todo mês não é dada como parada no meio do mês; uma fonte que falhou
+    na última tentativa é parada na hora, porque o próximo ciclo ainda não a corrigiu.
+    """
     fichas = []
     for fonte, item in sorted(estado.get("fontes", {}).items()):
         sucesso = item.get("ultimo_sucesso")
+        ciclo = int(item.get("ciclo_dias") or 1)
+        tolerancia = ciclo + limite_dias
         dias = None
         if sucesso:
             dias = (hoje - datetime.fromisoformat(sucesso).date()).days
-        if sucesso is None or dias > limite_dias:
+        falhou_por_ultimo = bool(item.get("erro"))
+        if sucesso is None or dias > tolerancia or falhou_por_ultimo:
             quando = f"há {dias} dias" if dias is not None else "nunca"
             fichas.append(emitir(
                 codigo=f"SIS-COLETA-{fonte.upper()}",
                 familia=Familia.SIS,
                 titulo=f"Coleta da fonte {fonte} parada",
                 gravidade="alta",
-                como_deveria=f"Toda fonte é lida pelo menos a cada {limite_dias} dias.",
+                como_deveria=(f"A fonte é lida a cada {ciclo} dia(s) e não pode passar "
+                              f"{limite_dias} dias além disso sem leitura bem-sucedida."),
                 norma="Premissa do Onisciente: falha de coleta é falha do sistema",
                 como_esta=f"Último sucesso {quando}. Erro registrado: {item.get('erro') or 'nenhum'}.",
                 niveis=[],

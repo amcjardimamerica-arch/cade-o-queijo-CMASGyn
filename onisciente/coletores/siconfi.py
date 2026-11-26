@@ -9,6 +9,7 @@ pisos fica sem segunda via e o parecer marca em vermelho.
 from __future__ import annotations
 
 import json
+import re
 import unicodedata
 from pathlib import Path
 from urllib.parse import urlencode
@@ -40,7 +41,8 @@ def coletar(demonstrativo: str, *, ente: int, exercicio: int, periodo: int, anex
             ler_url=ler, pasta: Path = PASTA) -> Leitura:
     endereco = url(demonstrativo, ente=ente, exercicio=exercicio, periodo=periodo, anexo=anexo)
     leitura = ler_url(endereco, fonte="SICONFI")
-    registrar(f"siconfi-{demonstrativo}", leitura)
+    anexo_id = re.sub(r"[^a-z0-9]+", "-", anexo.lower()).strip("-")
+    registrar(f"siconfi-{demonstrativo}-{anexo_id}", leitura, ciclo_dias=31)
     if leitura.ok:
         pasta.mkdir(parents=True, exist_ok=True)
         nome = f"{demonstrativo}_{exercicio}_{periodo}_{anexo.replace(' ', '_')}.json"

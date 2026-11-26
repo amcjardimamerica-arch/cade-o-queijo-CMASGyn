@@ -141,7 +141,53 @@ def test_estado_da_coleta_e_fonte_parada(tmp_path):
     assert ficha.familia.value == "SIS" and "nunca" in ficha.como_esta
     ontem = (datetime.now(timezone.utc) - timedelta(days=1)).isoformat()
     estado["fontes"]["siconfi"]["ultimo_sucesso"] = ontem
+    estado["fontes"]["siconfi"].pop("erro")          # a última leitura deu certo
     assert base.fontes_paradas(estado, date.today()) == []
+
+
+def test_fonte_mensal_nao_e_parada_no_meio_do_mes(tmp_path):
+    arq = tmp_path / "estado.json"
+    base.registrar("ctresb", base.Leitura(True, "https://x"), caminho=arq, ciclo_dias=31)
+    estado = json.loads(arq.read_text(encoding="utf-8"))
+    vinte_dias = (datetime.now(timezone.utc) - timedelta(days=20)).isoformat()
+    estado["fontes"]["ctresb"]["ultimo_sucesso"] = vinte_dias
+    assert base.fontes_paradas(estado, date.today()) == []
+    quarenta_dias = (datetime.now(timezone.utc) - timedelta(days=40)).isoformat()
+    estado["fontes"]["ctresb"]["ultimo_sucesso"] = quarenta_dias
+    assert len(base.fontes_paradas(estado, date.today())) == 1
+
+
+def test_fonte_que_falhou_na_ultima_leitura_e_parada_na_hora(tmp_path):
+    arq = tmp_path / "estado.json"
+    base.registrar("ctresb", base.Leitura(True, "https://x"), caminho=arq, ciclo_dias=31)
+    base.registrar("ctresb", base.Leitura(False, "https://x", erro="HTTP 500"), caminho=arq,
+                   ciclo_dias=31)
+    estado = json.loads(arq.read_text(encoding="utf-8"))
+    [ficha] = base.fontes_paradas(estado, date.today())
+    assert "HTTP 500" in ficha.como_esta
+
+
+def test_siconfi_registra_cada_anexo_separado(tmp_path, monkeypatch):
+    arq = tmp_path / "estado.json"
+    monkeypatch.setattr(base, "ESTADO", arq)
+    monkeypatch.setattr(siconfi, "registrar",
+                        lambda fonte, leitura, **kw: base.registrar(fonte, leitura, caminho=arq, **kw))
+    falha = _leitor({"Anexo+12": None})
+    siconfi.coletar("rreo", ente=1, exercicio=2025, periodo=6, anexo="RREO-Anexo 12",
+                    ler_url=falha, pasta=tmp_path)
+    siconfi.coletar("rreo", ente=1, exercicio=2025, periodo=6, anexo="RREO-Anexo 8",
+                    ler_url=_leitor({"Anexo+8": '{"items": []}'}), pasta=tmp_path)
+    fontes = json.loads(arq.read_text(encoding="utf-8"))["fontes"]
+    assert set(fontes) == {"siconfi-rreo-rreo-anexo-12", "siconfi-rreo-rreo-anexo-8"}
+    assert fontes["siconfi-rreo-rreo-anexo-12"]["erro"] == "HTTP 404"
+    assert [f.codigo for f in base.fontes_paradas({"fontes": fontes}, date.today())] == \
+        ["SIS-COLETA-SICONFI-RREO-RREO-ANEXO-12"]
+
+
+def test_vinculo_conta_so_entidades_do_exercicio():
+    assert cadeoqueijo._ativa_no_ano({"primeiro": "2025-03-01", "ultimo": "2026-02-01"}, "2026")
+    assert not cadeoqueijo._ativa_no_ano({"primeiro": "2024-03-01", "ultimo": "2025-12-30"}, "2026")
+    assert not cadeoqueijo._ativa_no_ano({}, "2026")
 
 
 def test_ler_sem_rede_nao_levanta_excecao():

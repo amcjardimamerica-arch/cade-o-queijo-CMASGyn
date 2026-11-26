@@ -256,7 +256,7 @@ regras:
   tipo: prazo
   valor: 3
   unidade: dias
-  base: última coleta bem-sucedida
+  base: última coleta bem-sucedida, contada a partir do fim do ciclo da fonte (diária, semanal ou mensal)
   norma: 'Premissa do sistema: falha de coleta é falha do Onisciente'
   fonte_dado:
   - estado da coleta
