@@ -1,0 +1,15 @@
+{
+ "quando": "2026-11-26T23:00:31+00:00",
+ "leituras": [
+  {
+   "fonte": "transparencia",
+   "url": "https://portaldatransparencia.gov.br/download-de-dados/transferencias/202501",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 2557702,
+   "arquivo": "transparencia__portaldatransparencia-gov-br-download-de-dados-transferencias-202501-4f3cb1dd.txt"
+  }
+ ]
+}
