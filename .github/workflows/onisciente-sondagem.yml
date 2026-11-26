@@ -1,0 +1,33 @@
+name: Onisciente — sondagem das fontes federais
+# Lê os endereços candidatos de SIOPE, SIOPS, Tesouro, FNS, FNDE e Transferegov e guarda
+# o começo de cada resposta em relatorios/onisciente/sondagem/. Só lê; não mexe no banco.
+on:
+  workflow_dispatch:
+  push:
+    branches: [claude/project-thread-m40l41]
+    paths:
+      - .github/workflows/onisciente-sondagem.yml
+      - onisciente/sondagem.py
+permissions: {contents: write}
+concurrency: {group: onisciente-sondagem, cancel-in-progress: false}
+jobs:
+  sondar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install --quiet PyYAML
+      - run: python -m onisciente.sondagem
+      - name: Publicar a sondagem
+        run: |
+          git config user.name "vigilancia-bot"; git config user.email "bot@users.noreply.github.com"
+          git add relatorios/onisciente/sondagem
+          git diff --staged --quiet && exit 0
+          git commit -m "Onisciente: sondagem das fontes federais"
+          for n in 1 2 3; do
+            git pull --rebase origin "$GITHUB_REF_NAME" && git push origin "HEAD:$GITHUB_REF_NAME" && exit 0
+            sleep $((n * 10))
+          done
+          exit 1
