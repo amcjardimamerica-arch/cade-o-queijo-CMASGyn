@@ -1,5 +1,5 @@
 {
- "quando": "2026-11-26T23:00:07+00:00",
+ "quando": "2026-11-26T23:06:53+00:00",
  "leituras": [
   {
    "fonte": "siope6",
@@ -55,10 +55,10 @@
    "fonte": "siope6",
    "url": "ftp://ftp.fnde.gov.br/web/siope/RREO/RREO_Municipal_520870_3_2026.pdf",
    "post": null,
-   "ok": true,
+   "ok": false,
    "http": null,
-   "erro": "",
-   "bytes": 47303,
+   "erro": "URLError: timed out",
+   "bytes": 0,
    "arquivo": "siope6__ftp-fnde-gov-br-web-siope-rreo-rreo-municipal-520870-3-2026-pdf-c9884ba9.txt"
   },
   {
