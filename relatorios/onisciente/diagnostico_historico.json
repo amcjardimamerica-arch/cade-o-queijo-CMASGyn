@@ -1,6 +1,6 @@
 {
  "intervalo": "2024-11 a 2026-11",
- "rodada": "2026-11-27T04:12:26+00:00",
+ "rodada": "2026-11-27T06:50:46+00:00",
  "meses": [
   "2024-11",
   "2024-12",
@@ -94,15 +94,16 @@
   {
    "motor": "pncp_detalhe",
    "nome": "Detalhe das compras e contratos (PNCP e Compras.gov.br)",
-   "chamadas": 6601,
+   "chamadas": 8274,
    "ok": 5311,
-   "falhas": 1290,
-   "tentativas": 8996,
-   "http_429": 1194,
-   "segundos": 60112.5,
+   "falhas": 2963,
+   "tentativas": 5857,
+   "http_429": 0,
+   "segundos": 18288.7,
    "erros": {
-    "HTTP 429": 1194,
-    "HTTP 404": 96
+    "não tentado: 6 falhas de rede seguidas nesta fonte": 2438,
+    "HTTP 404": 518,
+    "HTTP 503": 7
    }
   },
   {
@@ -473,13 +474,6 @@
    "titulo": "Contratações (PNCP): 1 de 618 chamadas falharam",
    "detalhe": "Erro mais comum: RemoteDisconnected: Remote end closed connection without response (1 vezes).",
    "proposta": "Ver a tabela coletas do banco para os endereços exatos."
-  },
-  {
-   "tipo": "melhoria",
-   "motor": "pncp_detalhe",
-   "titulo": "Detalhe das compras e contratos (PNCP e Compras.gov.br) pediu para ir mais devagar",
-   "detalhe": "1194 respostas 429 (muitas requisições).",
-   "proposta": "Aumentar a pausa entre chamadas e coletar em janelas menores, todo dia, em vez de tudo de uma vez."
   },
   {
    "tipo": "melhoria",
