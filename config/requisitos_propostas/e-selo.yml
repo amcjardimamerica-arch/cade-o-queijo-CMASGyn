@@ -1,0 +1,86 @@
+# Propostas da Frente E (auditoria independente do Selo de Transparência) para config/requisitos_onisciente.yml.
+# Mesmo formato do registro; o coordenador acrescenta ao fim. Cada trava é um teste de testes/test_selo.py.
+- id: 184
+  bloco: Selo de transparência (PNTP)
+  requisito: Metodologia oficial do PNTP gravada e versionada, com fontes e data de leitura
+  situacao: parcial
+  evidencia: regras/pntp/matriz_2026.yml (pesos, itens, faixas, regra dos essenciais, 109 critérios) e matriz_2025.yml
+  falta: Planilha oficial com os itens aplicáveis e a fundamentação de cada critério; um obrigatório a mais na matriz comum (54 contra 53)
+  trava: testes/test_selo.py::test_matriz_carrega_e_e_valida
+- id: 185
+  bloco: Selo de transparência (PNTP)
+  requisito: Avaliador critério a critério com os cinco itens de verificação
+  situacao: cumprido
+  evidencia: onisciente/selo/verificadores.py e onisciente/selo/avaliador.py
+  falta: ''
+  trava: testes/test_selo.py::test_verificador_confere_os_cinco_itens_numa_consulta_completa
+- id: 186
+  bloco: Selo de transparência (PNTP)
+  requisito: Índice e nível pela fórmula oficial (pesos de dimensão, exigibilidade e itens)
+  situacao: cumprido
+  evidencia: onisciente/selo/formula.py
+  falta: ''
+  trava: testes/test_selo.py::test_formula_reproduz_exemplo_feito_a_mao
+- id: 187
+  bloco: Selo de transparência (PNTP)
+  requisito: Essencial em falta derruba o selo para Elevado
+  situacao: cumprido
+  evidencia: onisciente/selo/formula.py (nivel, essencial_atendido)
+  falta: ''
+  trava: testes/test_selo.py::test_essencial_em_falta_derruba_o_selo
+- id: 188
+  bloco: Selo de transparência (PNTP)
+  requisito: Confronto do selo encontrado com o selo declarado e com o Radar da Transparência
+  situacao: parcial
+  evidencia: onisciente/selo/avaliador.py (DECLARADO, veredito, _radar), docs/onisciente/selo/goiania.html
+  falta: Ler o painel por entidade do Radar para Goiânia (sondagem e_radar no GitHub)
+  trava: testes/test_selo.py::test_auditoria_gera_quatro_notas_e_veredito
+- id: 189
+  bloco: Selo de transparência (PNTP)
+  requisito: Fundo e Conselho Municipal de Assistência Social conferidos pela lei, ausência de dado como alerta
+  situacao: cumprido
+  evidencia: onisciente/selo/fundos.py (F1 a F5 e C1 a C4) e critérios O.2 e O.3
+  falta: ''
+  trava: testes/test_selo.py::test_fundo_e_conselho_sem_dado_viram_alerta
+- id: 190
+  bloco: Selo de transparência (PNTP)
+  requisito: Alertas existentes (nota fiscal ausente e gastos fora do padrão) como prova contra o selo
+  situacao: cumprido
+  evidencia: onisciente/selo/provas.py (_notas_fiscais, _siconfi) e avaliador._alertas_cruzados
+  falta: ''
+  trava: testes/test_selo.py::test_nf_ausente_entra_como_prova_de_falta_de_transparencia
+- id: 191
+  bloco: Selo de transparência (PNTP)
+  requisito: Leitura restritiva onde há margem, com a nota oficial guardada e cada escolha documentada
+  situacao: cumprido
+  evidencia: regras/pntp/escolhas.yml (E01 a E16)
+  falta: ''
+  trava: testes/test_selo.py::test_escolhas_documentadas_tem_as_duas_leituras
+- id: 192
+  bloco: Selo de transparência (PNTP)
+  requisito: Estudo da metodologia com fontes, avaliação, métricas, replicação e falhas
+  situacao: cumprido
+  evidencia: docs/onisciente/selo/estudo_pntp.md
+  falta: ''
+  trava: testes/test_selo.py::test_estudo_cobre_fontes_avaliacao_metricas_replicacao_e_falhas
+- id: 193
+  bloco: Selo de transparência (PNTP)
+  requisito: Verificadores sobre as páginas reais do portal e coerência de valores com a MSC
+  situacao: parcial
+  evidencia: onisciente/selo/coleta.py e chaves e_* da sondagem; verificadores testados sobre páginas guardadas
+  falta: Rodar a sondagem do selo no GitHub; comparar valores do portal com a MSC do SICONFI
+  trava: testes/test_selo.py::test_link_presente_e_vazio_nao_vale_na_restritiva
+- id: 194
+  bloco: Selo de transparência (PNTP)
+  requisito: Achado do selo no parecer mensal
+  situacao: parcial
+  evidencia: onisciente/selo/relatorio.py (secao_parecer, fichas PCT-SELO, PCT-FMAS e PCT-CMAS)
+  falta: Chamada em onisciente/parecer/html.py (arquivo da Frente C)
+  trava: testes/test_selo.py::test_pagina_e_secao_do_parecer
+- id: 195
+  bloco: Selo de transparência (PNTP)
+  requisito: Ofícios prontos à Controladoria e ao TCM-GO
+  situacao: cumprido
+  evidencia: onisciente/selo/relatorio.py (oficios), relatorios/onisciente/selo/oficios.txt
+  falta: ''
+  trava: testes/test_selo.py::test_oficios_pedem_os_papeis_ao_tribunal_e_a_publicacao_a_controladoria

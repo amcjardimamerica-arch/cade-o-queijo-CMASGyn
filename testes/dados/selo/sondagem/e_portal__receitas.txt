@@ -1,0 +1,9 @@
+URL: https://www.goiania.go.gov.br/transparencia/receitas
+POST: 
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 300
+
+<html><body><ul><li><a href="/transparencia/receitas/previsao">Receitas: previsão e arrecadação</a></li>
+<li>Receita prevista e receita realizada</li></ul></body></html>

@@ -1,0 +1,29 @@
+# Ciclo 2025 do PNTP: o que foi lido para confrontar o Selo Diamante que Goiânia recebeu em dezembro de 2025.
+# A matriz completa do ciclo 2025 não foi lida; a auditoria usa a do ciclo 2026 (matriz_2026.yml), que é a vigente.
+ciclo: 2025
+lida_em: '2026-11-27'
+completa: false
+fontes:
+  - id: cartilha_2025
+    titulo: Cartilha PNTP 2025 (Atricon), cópia do TCE-SP
+    url: https://tce.sp.gov.br/sites/default/files/publicacoes/Cartilha%20PNTP%202025.pdf
+    lida_em: '2026-11-27'
+  - id: noticia_goiania_2025
+    titulo: Prefeitura de Goiânia recebe selo Diamante por nota máxima em transparência pública (Jornal Opção)
+    url: https://www.jornalopcao.com.br/goiania/goiania-recebe-selo-diamante-por-nota-maxima-em-transparencia-publica-772080/
+    data: '2025-12-05'
+    lida_em: '2026-11-27'
+    trouxe: Goiânia (Poder Executivo) com nota acima de 95% e Selo Diamante; autoavaliação, validação pelo TCM-GO e
+      exame amostral por outro tribunal da Atricon
+metodologia:
+  pesos_exigibilidade: {essencial: 2.0, obrigatorio: 1.5, recomendado: 1.0}
+  itens: {disponibilidade: 0.30, atualidade: 0.30, serie_historica: 0.20, gravacao: 0.10, filtro: 0.10}
+  regra_diamante: índice de 95% a 100% com 100% dos critérios essenciais
+totais_oficiais:
+  comum: {total: 71, essencial: 6, obrigatorio: 53, recomendado: 12}
+  executivo: {total: 19, essencial: 4, obrigatorio: 6, recomendado: 9}
+  executivo_consorcios: {total: 1, essencial: 1, obrigatorio: 0, recomendado: 0}
+diferencas_para_2026:
+  - O critério 4.3 (empenhos com credor e licitação de origem) era obrigatório em 2025 e passou a essencial em 2026.
+  - Os critérios 16.1 e 16.2 (renúncia de receita) passaram de recomendados a obrigatórios em 2026 (LC 224/2025).
+  - Os critérios 17.1 a 17.3 (emendas parlamentares) passaram a obrigatórios em 2026.
