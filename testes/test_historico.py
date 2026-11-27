@@ -1035,6 +1035,40 @@ def test_itens_ja_lidos_com_a_data_final_errada_ganham_o_ultimo_dia_do_mes(tmp_p
     banco.fechar()
 
 
+def test_itens_lentos_mes_a_mes_correm_em_paralelo_e_fecham_o_ano(tmp_path):
+    """Um a um, 27 meses de itens levaram 25 minutos (27/11). Os meses vão em paralelo, cada um
+    com o tempo da leitura lenta (180 s), e o ano fica marcado quando todos os meses vieram."""
+    import threading
+    import time as _t
+    agora, maximo, trava, tempos = [0], [0], threading.Lock(), []
+
+    def rede(url, tempo=60, **_):
+        if "2_consultarItens" not in url:
+            return base.Leitura(True, url, b"", http=204)
+        with trava:
+            agora[0] += 1
+            maximo[0] = max(maximo[0], agora[0])
+            tempos.append(tempo)
+        _t.sleep(0.05)
+        with trava:
+            agora[0] -= 1
+        return base.Leitura(True, url, json.dumps({"resultado": [], "totalPaginas": 1}).encode(), http=200)
+
+    banco = historico.Banco(tmp_path / "h.db")
+    banco.inserir("contratacoes_pncp", {"pncp_id": "04973965000111-1-000009/2025", "mes": "2025-04",
+                                        "modalidade": "Pregão - Eletrônico", "orgao_cnpj": "04973965000111"})
+    meses = [f"2025-{m:02d}" for m in range(1, 13)]
+    ctx = historico.Contexto(banco, meses, date(2026, 11, 27), ler_url=rede, dormir=lambda s: None,
+                             pausa=0, paralelo=4)
+    historico.motor_pncp_detalhe(ctx)
+    assert maximo[0] > 1                          # mais de um mês na rede ao mesmo tempo
+    assert set(tempos) == {180}
+    lidos = set(json.loads(dict(banco.consultar("SELECT chave, valor FROM meta"))["pncp_detalhe_lidos"]))
+    assert {f"itens 04973965000111 {m} inteiro" for m in meses} <= lidos
+    assert "itens 04973965000111 2025" in lidos
+    banco.fechar()
+
+
 def test_recusa_dos_dados_abertos_guarda_o_porque(tmp_path):
     """Um 400 dos dados abertos sem o corpo não se explica: o motivo vai junto do erro."""
     def rede(url, **_):

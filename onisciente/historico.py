@@ -979,6 +979,15 @@ class _Reserva:
         return False
 
 
+def _url_itens_do_orgao(cnpj: str, d1: str, d2: str, pagina: int = 1) -> str:
+    """A página dos itens de um órgão de ``d1`` até ``d2`` (inclusive): a data final da
+    consulta é exclusiva, então o pedido vai até o dia seguinte."""
+    fim = (date.fromisoformat(d2) + timedelta(days=1)).isoformat()
+    params = {"pagina": pagina, "tamanhoPagina": 500, "orgaoEntidadeCnpj": cnpj,
+              "dataInclusaoPncpInicial": d1, "dataInclusaoPncpFinal": fim}
+    return DADOS_ABERTOS + "modulo-contratacoes/2_consultarItensContratacoes_PNCP_14133?" + urlencode(params)
+
+
 def _itens_do_orgao(ctx: Contexto, cnpj: str, d1: str, d2: str, rotulo: str) -> bool:
     """Itens das contratações de um órgão incluídas no PNCP de ``d1`` até ``d2`` (inclusive),
     com catálogo e resultado.
@@ -987,12 +996,8 @@ def _itens_do_orgao(ctx: Contexto, cnpj: str, d1: str, d2: str, rotulo: str) -> 
     coletores a tratam assim, e o mesmo dia nos dois campos devolve zero): pedir até o dia 30
     deixava de fora o que foi incluído no dia 30. Por isso o pedido vai até o dia seguinte.
     """
-    fim = (date.fromisoformat(d2) + timedelta(days=1)).isoformat()
     for pagina in range(1, 201):
-        params = {"pagina": pagina, "tamanhoPagina": 500, "orgaoEntidadeCnpj": cnpj,
-                  "dataInclusaoPncpInicial": d1, "dataInclusaoPncpFinal": fim}
-        leitura = ctx.ler("pncp_detalhe", f"itens {cnpj} {rotulo}", DADOS_ABERTOS
-                          + "modulo-contratacoes/2_consultarItensContratacoes_PNCP_14133?" + urlencode(params),
+        leitura = ctx.ler("pncp_detalhe", f"itens {cnpj} {rotulo}", _url_itens_do_orgao(cnpj, d1, d2, pagina),
                           mes=rotulo[:7], tempo=180, tentativas=2)
         dados = _json(leitura) if leitura.ok else None
         if dados is None:
@@ -1305,16 +1310,17 @@ def motor_pncp_detalhe(ctx: Contexto, ibge: int | None = None) -> None:
     lidos = _Lidos(ctx.banco)
     pausa, ctx.pausa = ctx.pausa, min(ctx.pausa, 0.3)    # as vias de detalhe respondem em segundos
 
-    def etapa(pedidos) -> None:
+    def etapa(pedidos, tempo: int = 60) -> None:
         """(chave, url da primeira leitura, leitor): o que falta é lido em blocos, com a rede
-        do bloco antecipada em paralelo e o tratamento na ordem."""
+        do bloco antecipada em paralelo e o tratamento na ordem. ``tempo`` é o que cada
+        leitura antecipada espera (o mesmo que o leitor daria a ela)."""
         faltam = [p for p in pedidos if p[0] not in lidos]
         bloco = max(1, ctx.paralelo * 4)
         for i in range(0, len(faltam), bloco):
             if _tempo_acabou(ctx):
                 break
             parte = faltam[i:i + bloco]
-            ctx.antecipar("pncp_detalhe", [url for _, url, _ in parte])
+            ctx.antecipar("pncp_detalhe", [url for _, url, _ in parte], tempo=tempo)
             for chave, _url, ler in parte:
                 if ler():
                     lidos.marcar(chave)
@@ -1394,32 +1400,35 @@ def motor_pncp_detalhe(ctx: Contexto, ibge: int | None = None) -> None:
 
         def itens_com_catalogo() -> None:
             # Mês a mês: a janela de um ano nunca respondeu dentro do tempo (6 min e meio
-            # perdidos por órgão e ano em 27/11), e a de um mês responde em uns 20 s.
-            for cnpj in pasta + [c for c in orgaos if c not in pasta]:
+            # perdidos por órgão e ano em 27/11), e a de um mês responde em uns 20 s. Os meses
+            # vão em paralelo, como as demais vias: um a um, 27 meses levaram 25 minutos (27/11).
+            ordem = pasta + [c for c in orgaos if c not in pasta]
+            pedidos = []
+            for cnpj in ordem:
                 for janela in _janelas_anuais(ctx.meses):
-                    chave = f"itens {cnpj} {janela[0][:4]}"
-                    if chave in lidos or _tempo_acabou(ctx):
+                    if f"itens {cnpj} {janela[0][:4]}" in lidos:
                         continue
-                    inteiro = True
                     for mes in janela:
-                        chave_mes = f"itens {cnpj} {mes}"
-                        if chave_mes in lidos:
-                            continue
-                        if _tempo_acabou(ctx):
-                            inteiro = False
-                            break
-                        if _itens_do_orgao(ctx, cnpj, f"{mes}-01", fim_do_mes(mes).isoformat(), mes):
-                            lidos.marcar(chave_mes)
-                            lidos.marcar(f"{chave_mes} inteiro")    # já com o último dia
-                        else:
-                            inteiro = False
-                    if inteiro:
-                        lidos.marcar(chave)
-                lidos.guardar()
+                        chave = f"itens {cnpj} {mes}"
+                        pedidos.append((chave, _url_itens_do_orgao(cnpj, f"{mes}-01", fim_do_mes(mes).isoformat()),
+                                        lambda c=cnpj, m=mes, k=chave: _mes_inteiro(c, m, k)))
+            etapa(pedidos, tempo=180)
+            for cnpj in ordem:
+                for janela in _janelas_anuais(ctx.meses):
+                    if all(f"itens {cnpj} {m}" in lidos for m in janela):
+                        lidos.marcar(f"itens {cnpj} {janela[0][:4]}")
+            lidos.guardar()
+
+        def _mes_inteiro(cnpj, mes, chave) -> bool:
+            if _itens_do_orgao(ctx, cnpj, f"{mes}-01", fim_do_mes(mes).isoformat(), mes):
+                lidos.marcar(f"{chave} inteiro")    # já com o último dia
+                return True
+            return False
 
         def ultimo_dia() -> None:
             """Remenda o que as leituras de antes (data final tratada como inclusiva) perderam:
             os itens incluídos no último dia de cada mês, ou do ano, já lido."""
+            pedidos = []
             for cnpj in pasta + [c for c in orgaos if c not in pasta]:
                 for janela in _janelas_anuais(ctx.meses):
                     if f"itens {cnpj} {janela[0][:4]}" in lidos and not any(
@@ -1428,15 +1437,12 @@ def motor_pncp_detalhe(ctx: Contexto, ibge: int | None = None) -> None:
                     else:
                         meses_lidos = [m for m in janela if f"itens {cnpj} {m}" in lidos]
                     for mes in meses_lidos:
-                        chave = f"itens {cnpj} {mes} ultimo dia"
-                        if chave in lidos or f"itens {cnpj} {mes} inteiro" in lidos:
+                        if f"itens {cnpj} {mes} inteiro" in lidos:
                             continue
-                        if _tempo_acabou(ctx):
-                            return
                         dia = fim_do_mes(mes).isoformat()
-                        if _itens_do_orgao(ctx, cnpj, dia, dia, f"{mes} último dia"):
-                            lidos.marcar(chave)
-                lidos.guardar()
+                        pedidos.append((f"itens {cnpj} {mes} ultimo dia", _url_itens_do_orgao(cnpj, dia, dia),
+                                        lambda c=cnpj, d=dia, m=mes: _itens_do_orgao(ctx, c, d, d, f"{m} último dia")))
+            etapa(pedidos, tempo=180)
 
         def precos() -> None:
             alvos = ctx.banco.consultar(
@@ -1455,7 +1461,7 @@ def motor_pncp_detalhe(ctx: Contexto, ibge: int | None = None) -> None:
                 servico = ms == "S"
                 pedidos.append((f"preco {catalogo} {semestre}", _url_preco(int(catalogo), servico, semestre),
                                 lambda c=int(catalogo), s=servico, m=semestre: _precos_nacionais(ctx, c, s, m)))
-            etapa(pedidos)
+            etapa(pedidos, tempo=120)
 
         # 1. Amparo legal das contratações da pasta e de todas as dispensas (o que a conferência
         #    de dispensas precisa); as demais modalidades ficam para depois dos contratos.
