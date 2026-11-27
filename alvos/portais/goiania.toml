@@ -1,21 +1,31 @@
 # Coletor da execução da despesa de Goiânia: empenhos, liquidações, ordens de pagamento e pagamentos,
 # por órgão e por credor (requisitos 30, 105 e 141).
 #
-# O que se sabe do portal veio de páginas públicas lidas em 27/11/2026, ainda não conferidas ao vivo:
-#   * o TransWeb (ASP.NET) em www10.goiania.go.gov.br/transweb/, com as consultas do manual de 2010
-#     ("Empenho por Órgão", "Empenho por Número", "Empenho por Credor", "Ordem de Pagamento por Órgão");
-#   * o portal novo (WordPress) em www.goiania.go.gov.br/transparencia/, com as categorias Despesas,
-#     Diárias, Convênios e Transferências e Contratos.
-# Nenhum caminho .aspx das consultas está confirmado. Por isso cada página é uma lista de candidatos
-# (o coletor usa o primeiro que responde com o formulário esperado) e cada campo é uma lista de
-# nomes possíveis: o nome real do ASP.NET (ctl00$Conteudo$txtData...) casa por igualdade, depois
-# pelo fim do nome, depois por trecho, sem diferença de maiúsculas. A sondagem (chaves d2_* em
-# onisciente/sondagem.py) traz os nomes reais; ajustar aqui não muda código.
+# O que a sondagem de 27/11/2026 leu (relatórios da sondagem, commit fa208ec):
+#   * o TransWeb em www10.goiania.go.gov.br/transweb/ é feito em OutSystems sobre ASP.NET: o estado
+#     da tela vai no campo escondido __OSVSTATE (o __VIEWSTATE vem vazio) e os nomes dos campos têm o
+#     prefixo do OutSystems (wt12$block$wtMainContent$wt...). /transweb/, Default.aspx e Home.aspx
+#     dão 404; PortaldaTransparencia.aspx?Antigo=True responde e traz o menu com as consultas, entre
+#     elas "Despesas por Favorecido" (Portal_Despesas.aspx), "Orçamento Municipal" (Orcamento.aspx),
+#     "Contratos e Convênios" (ContratoseConvenios.aspx) e "Diárias e Passagens"
+#     (Portal_DiariasPassagens.aspx). A página de despesas em si ainda não foi lida;
+#   * o portal novo (WordPress) em www.goiania.go.gov.br/transparencia/ responde; a categoria 49 é
+#     "Despesas e Receitas" (52 Responsabilidade Fiscal, 50 Acesso à Informação, 55 Recursos Humanos).
+#     A lista de itens da categoria é montada no navegador (React): o HTML lido não traz os arquivos;
+#   * goiania.nucleogov.com.br dá 403.
+# As consultas do manual de 2010 (Empenho por Órgão, por Credor, Ordem de Pagamento) não aparecem no
+# menu atual. Por isso cada página é uma lista de candidatos, com Portal_Despesas.aspx primeiro, e o
+# coletor ainda procura no menu das entradas os links cujo texto fala de despesa, empenho, favorecido
+# ou ordem de pagamento. Cada campo é uma lista de nomes possíveis: o nome real casa por igualdade,
+# depois pelo fim do nome, depois por trecho, sem diferença de maiúsculas. Ajustar aqui não muda código.
 
 [transweb]
 base = "https://www10.goiania.go.gov.br/transweb/"
 # Páginas de entrada, para achar as consultas pelos links quando os caminhos abaixo falharem.
-entradas = ["Home.aspx", "PortaldaTransparencia.aspx?Antigo=True", "Default.aspx"]
+# Home.aspx e Default.aspx dão 404 (sondagem de 27/11/2026); a página antiga traz o menu.
+entradas = ["PortaldaTransparencia.aspx?Antigo=True"]
+# Textos de link do menu que levam às consultas da despesa.
+menu_despesa = ["Despesas por Favorecido", "Despesas", "Empenho", "Favorecido", "Ordem de Pagamento"]
 confirmado = false
 formato_data = "%d/%m/%Y"
 # Paginação do GridView: o coletor segue __doPostBack(grid, 'Page$N') até esta página.
@@ -25,12 +35,12 @@ paginas_maximas = 200
 id = "empenho_orgao"
 tipo = "empenho"
 titulo = "Empenho por Órgão"
-paginas = ["EmpenhoOrgao.aspx", "ConsultaEmpenhoOrgao.aspx", "Empenho/EmpenhoPorOrgao.aspx",
+paginas = ["Portal_Despesas.aspx", "EmpenhoOrgao.aspx", "ConsultaEmpenhoOrgao.aspx", "Empenho/EmpenhoPorOrgao.aspx",
            "EmpenhoPorOrgao.aspx", "Consultas/EmpenhoOrgao.aspx"]
 # O manual descreve a consulta por dia (data dia/mês/ano + órgão): uma consulta por dia e por órgão.
 granularidade = "dia"
 percorre_orgaos = true
-botao = ["btnConsultar", "Consultar", "btnPesquisar"]
+botao = ["btnConsultar", "Consultar", "btnPesquisar", "Pesquisar", "Buscar", "Filtrar"]
 detalhe = true            # escolher cada empenho e ler o detalhe (liquidações e pagamentos)
 [transweb.consultas.campos]
 data = ["txtData", "Data", "txtDataEmpenho", "dtData"]
@@ -51,11 +61,11 @@ historico = ["Histórico", "Historico", "Objeto", "Descrição"]
 id = "empenho_credor"
 tipo = "empenho"
 titulo = "Empenho por Credor"
-paginas = ["EmpenhoCredor.aspx", "ConsultaEmpenhoCredor.aspx", "EmpenhoPorCredor.aspx"]
+paginas = ["Portal_Despesas.aspx", "EmpenhoCredor.aspx", "ConsultaEmpenhoCredor.aspx", "EmpenhoPorCredor.aspx"]
 # Com período (data inicial e final): usada para seguir um credor (os do PNCP) no exercício.
 granularidade = "intervalo"
 percorre_orgaos = false
-botao = ["btnConsultar", "Consultar"]
+botao = ["btnConsultar", "Consultar", "btnPesquisar", "Pesquisar", "Buscar", "Filtrar"]
 detalhe = true
 [transweb.consultas.campos]
 documento = ["txtCpfCnpj", "CpfCnpj", "CPF", "CNPJ", "txtCredor"]
@@ -77,11 +87,11 @@ historico = ["Histórico", "Historico"]
 id = "ordem_pagamento_orgao"
 tipo = "ordem_pagamento"
 titulo = "Ordem de Pagamento por Órgão"
-paginas = ["OrdemPagamentoOrgao.aspx", "ConsultaOrdemPagamento.aspx", "OrdemPagamento.aspx",
+paginas = ["Portal_Despesas.aspx", "OrdemPagamentoOrgao.aspx", "ConsultaOrdemPagamento.aspx", "OrdemPagamento.aspx",
            "OrdemDePagamentoPorOrgao.aspx"]
 granularidade = "dia"
 percorre_orgaos = true
-botao = ["btnConsultar", "Consultar"]
+botao = ["btnConsultar", "Consultar", "btnPesquisar", "Pesquisar", "Buscar", "Filtrar"]
 detalhe = false
 [transweb.consultas.campos]
 data = ["txtData", "Data", "txtDataPagamento"]
@@ -107,6 +117,6 @@ anulacao = ["Anulação", "Anulacao", "Estorno"]
 # ela é lida com as mesmas colunas da consulta de empenhos.
 [wordpress]
 base = "https://www.goiania.go.gov.br/transparencia/"
-categorias = { despesas = 49 }   # 49 é o exemplo de filtro visto nas páginas públicas; a sondagem confirma se é a de Despesas
+categorias = { despesas_e_receitas = 49 }   # confirmada na sondagem de 27/11/2026: "Despesas e Receitas"
 filtro = "?filtro_simplificado=categoria&categoria={categoria}"
 formatos = ["csv", "xls", "xlsx", "ods", "pdf", "json"]

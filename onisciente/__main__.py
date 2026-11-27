@@ -9,6 +9,9 @@
     python -m onisciente historico --desde 2024-11 --ate 2026-11   (rede; banco + diagnóstico)
     python -m onisciente diagnostico          # refaz o diagnóstico a partir do banco, sem rede
     python -m onisciente painel-banco         # refaz só a página do banco no site, sem rede
+    python -m onisciente selo                 # auditoria independente do selo de transparência (PNTP)
+    python -m onisciente selo --sondar        # lê antes o portal, o Radar e o sítio do Conselho (rede)
+    python -m onisciente empresas             # confere as contratadas e escreve docs/onisciente/empresas.html
 """
 
 from __future__ import annotations
@@ -220,6 +223,27 @@ def cmd_requisitos(args) -> int:
     return 1 if erros else 0
 
 
+def cmd_selo(args) -> int:
+    """Auditoria independente do selo de transparência: critério por critério, nota e confronto."""
+    from .selo import avaliar, relatorio
+    if args.sondar:
+        from .selo import coleta
+        lidas = coleta.coletar(args.fontes.split(",") if args.fontes else None)
+        print(f"sondagem do selo: {sum(1 for x in lidas if x.get('ok'))} de {len(lidas)} páginas lidas")
+    hoje = date.fromisoformat(args.hoje) if args.hoje else None
+    aud = avaliar(Path(args.banco) if args.banco else relatorio.RAIZ / "dados" / "onisciente" / "historico.db",
+                  hoje=hoje)
+    for arq in relatorio.gravar(aud):
+        print("gravado:", arq.relative_to(RAIZ))
+    print(aud.veredito["frase"])
+    for k, n in aud.notas.items():
+        print(f"  {k}: {relatorio.pct(n.indice)} ({n.nivel})")
+    erros = aud.matriz.problemas()
+    for e in erros:
+        print("ERRO na matriz:", e, file=sys.stderr)
+    return 1 if erros else 0
+
+
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="onisciente", description="A trilha do dinheiro público.")
     sub = p.add_subparsers(dest="comando", required=True)
@@ -248,6 +272,16 @@ def main(argv: list[str] | None = None) -> int:
         .set_defaults(f=cmd_painel_banco)
     sub.add_parser("requisitos", help="reconta os 183 requisitos do projeto original") \
         .set_defaults(f=cmd_requisitos)
+    ps = sub.add_parser("selo", help="auditoria independente do selo de transparência (PNTP)")
+    ps.add_argument("--sondar", action="store_true", help="lê antes as páginas das fontes e_* (rede)")
+    ps.add_argument("--fontes", help="fontes e_* separadas por vírgula (padrão: todas)")
+    ps.add_argument("--hoje", help="AAAA-MM-DD (padrão: hoje)")
+    ps.add_argument("--banco", help="banco histórico (padrão: dados/onisciente/historico.db)")
+    ps.set_defaults(f=cmd_selo)
+    pe = sub.add_parser("empresas", help="confere as empresas contratadas (Receita, QSA, impedimentos)")
+    pe.add_argument("--banco", help="caminho do banco (padrão: dados/onisciente/historico.db)")
+    pe.add_argument("--saida", help="página a escrever (padrão: docs/onisciente/empresas.html)")
+    pe.set_defaults(f=lambda a: __import__("onisciente.conferencias.empresas", fromlist=["cmd"]).cmd(a))
     args = p.parse_args(argv)
     return args.f(args)
 

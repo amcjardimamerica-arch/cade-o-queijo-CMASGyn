@@ -195,13 +195,16 @@ CANDIDATOS: dict[str, list[str]] = {
         "https://goiania.nucleogov.com.br/cidadao/",
     ],
     # Frente D2 (execução da despesa de Goiânia): as páginas candidatas do TransWeb listadas em
-    # alvos/portais/goiania.toml (nenhum caminho de consulta confirmado) e o portal novo em WordPress.
-    # O que responder com formulário dá os nomes reais dos campos para ajustar o toml.
+    # alvos/portais/goiania.toml e o portal novo em WordPress. A sondagem de 27/11/2026 achou o menu
+    # em PortaldaTransparencia.aspx?Antigo=True (Home.aspx e Default.aspx dão 404); as páginas do
+    # menu ligadas à despesa vêm primeiro. O que responder com formulário dá os nomes reais dos campos.
     "d2_transweb": [
-        "https://www10.goiania.go.gov.br/transweb/Home.aspx",
+        "https://www10.goiania.go.gov.br/transweb/Portal_Despesas.aspx",
+        "https://www10.goiania.go.gov.br/transweb/Orcamento.aspx",
+        "https://www10.goiania.go.gov.br/transweb/ContratoseConvenios.aspx",
+        "https://www10.goiania.go.gov.br/transweb/Portal_DiariasPassagens.aspx",
+        "https://www10.goiania.go.gov.br/transweb/ListaOrgaos.aspx",
         "https://www10.goiania.go.gov.br/transweb/PortaldaTransparencia.aspx?Antigo=True",
-        "https://www10.goiania.go.gov.br/transweb/Default.aspx",
-        "https://www10.goiania.go.gov.br/transweb/PerguntasFrequentes.aspx",
         "https://www10.goiania.go.gov.br/transweb/EmpenhoOrgao.aspx",
         "https://www10.goiania.go.gov.br/transweb/ConsultaEmpenhoOrgao.aspx",
         "https://www10.goiania.go.gov.br/transweb/Empenho/EmpenhoPorOrgao.aspx",
@@ -218,6 +221,7 @@ CANDIDATOS: dict[str, list[str]] = {
     "d2_wordpress": [
         "https://www.goiania.go.gov.br/transparencia/",
         "https://www.goiania.go.gov.br/transparencia/?filtro_simplificado=categoria&categoria=49",
+        "https://www.goiania.go.gov.br/wp-json/wp/v2/pages?search=despesa&per_page=20",
         "https://www.goiania.go.gov.br/wp-json/wp/v2/categories?per_page=100",
         "https://www.goiania.go.gov.br/wp-json/wp/v2/media?per_page=20&search=despesa",
         "https://www.goiania.go.gov.br/wp-json/",
@@ -301,6 +305,84 @@ CANDIDATOS: dict[str, list[str]] = {
         "https://www.tcmgo.tc.br/site/jurisprudencia/?pesquisa=Goi%C3%A2nia&pagina=1",
         "https://www.tcmgo.tc.br/site/?s=Goi%C3%A2nia&paged=1",
         "https://www.tcm.go.gov.br/doc/",
+    ],
+    # Frente E (27/11): auditoria independente do Selo de Transparência (PNTP). As páginas que cada critério
+    # da matriz (regras/pntp/matriz_2026.yml) manda olhar; onisciente/selo/coleta.py segue os links internos.
+    "e_home": ["https://www.goiania.go.gov.br/"],
+    "e_portal": ["https://www.goiania.go.gov.br/transparencia/"]
+    + [f"https://www.goiania.go.gov.br/transparencia/?filtro_simplificado=categoria&categoria={n}"
+       for n in range(40, 71)]
+    + ["https://www.goiania.go.gov.br/transparencia/?s=" + quote(t)
+       for t in ("empenho", "diárias", "convênio", "contrato", "licitação", "obras", "renúncia", "emenda",
+                 "dívida ativa", "assistência social", "conselho", "relatório de gestão fiscal",
+                 "relatório resumido", "plano plurianual", "estagiários", "terceirizados", "ordem cronológica")],
+    "e_transweb": [
+        "https://www10.goiania.go.gov.br/transweb/",
+        "https://www10.goiania.go.gov.br/transweb/Default.aspx",
+        "https://www10.goiania.go.gov.br/transweb/PerguntasFrequentes.aspx",
+    ],
+    "e_folha": ["https://www.goiania.go.gov.br/sing_transparencia/folha-de-pagamento-dados-gerais/"],
+    "e_legislacao": [
+        "https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2025/lo_20251022_000011510.html",
+        "https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2026/lo_20260109_000011589.html",
+        "https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2026/lo_20260109_000011590.html",
+        "https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2013/lo_20130522_000009262.html",
+        "https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2026/dc_20260817_000000147.html",
+    ],
+    "e_esic": [
+        "https://esic.goiania.go.gov.br/",
+        "https://www.goiania.go.gov.br/transparencia/?filtro_simplificado=categoria&categoria=50",
+    ],
+    "e_cmas": [
+        "https://cmasgyn.com.br/Conselho/Conselheiros",
+        "https://cmasgyn.com.br/Conselho/Plenarias",
+        "https://cmasgyn.com.br/Conselho/Entidades",
+        "https://cmasgyn.com.br/Documentos",
+        "https://cmasgyn.com.br/Documentos/Legislacao",
+    ],
+    "e_saude": ["https://saude.goiania.go.gov.br/"],
+    "e_educacao": ["https://sme.goiania.go.gov.br/"],
+    "e_dados": [
+        "https://dados.gov.br/dados/conjuntos-dados?organizacao=goiania",
+        "https://goiania.nucleogov.com.br/api",
+    ],
+    # O resultado oficial (Radar, painel por entidade) e a metodologia, para confrontar e guardar.
+    "e_radar": [
+        "https://radardatransparencia.atricon.org.br/",
+        "https://radardatransparencia.atricon.org.br/painel-6/",
+        "https://pntp.atricon.org.br/dados-abertos/",
+        "https://pntp.atricon.org.br/o-programa/",
+    ],
+    "e_metodo": [
+        "https://www.mpma.mp.br/wp-content/uploads/2026/04/Cartilha-PNTP-2026-versao-08.04.2026.pdf",
+        "https://sistema.pelotas.com.br/transparencia/arquivos/" + quote("Matriz de Criterios 2026 PDF.pdf"),
+        "https://cdn.atricon.org.br/uploads/2026/02/Cronograma-PNTP-2026.pdf",
+        "https://www.tcepi.tc.br/wp-content/uploads/2026/04/Metodologia-PNTP-2026.pdf",
+    ],
+    # Frente F (empresas contratadas): a base mensal do CNPJ da Receita (WebDAV do compartilhamento,
+    # índice antigo, página do compartilhamento e o dicionário de dados), o espelho por CNPJ com um
+    # fornecedor do banco, o CEPIM e a lista de inidôneos do TCU.
+    "f_cnpj": [
+        "https://arquivos.receitafederal.gov.br/public.php/webdav/Dados/Cadastros/CNPJ/",
+        "https://arquivos.receitafederal.gov.br/index.php/s/gn672Ad4CF8N6TK",
+        "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/",
+        "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/2026-11/",
+        "https://www.gov.br/receitafederal/dados/cnpj-metadados.pdf",
+    ],
+    "f_brasilapi": [
+        "https://brasilapi.com.br/api/cnpj/v1/16826800000104",
+        "https://minhareceita.org/16826800000104",
+    ],
+    "f_cepim": [
+        "https://portaldatransparencia.gov.br/download-de-dados/cepim/20261126",
+        "https://portaldatransparencia.gov.br/download-de-dados/cepim/20261125",
+    ],
+    "f_tcu": [
+        "https://certidoes.apps.tcu.gov.br/api/publico/responsaveis-inidoneos-com-paginacao",
+        "https://certidoes.apps.tcu.gov.br/api/publico/responsaveis-inidoneos-com-paginacao?pagina=0"
+        "&tamanhoPagina=50",
+        "https://certidoes.apps.tcu.gov.br/lista-inidoneos",
+        "https://contas.tcu.gov.br/ords/condenacao/consulta/inidoneos",
     ],
 }
 

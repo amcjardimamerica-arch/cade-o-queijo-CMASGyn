@@ -1,0 +1,152 @@
+# Limiares das conferências das empresas contratadas (onisciente/conferencias/empresas.py).
+#
+# Escolhidos de propósito para o lado restritivo: o sistema prefere levantar um indício a mais e deixar
+# a apuração descartar do que deixar passar uma desconformidade. Toda ficha que nasce daqui diz que é
+# indício para apuração, não acusação. Cada limiar tem o valor, a justificativa e a base (legal ou
+# técnica). Mudar um valor é mudar este arquivo (versionado), nunca o código.
+versao: "2026-11-27"
+
+limiares:
+  meses_minimos_de_funcionamento:
+    valor: 12
+    justificativa: >-
+      Empresa com menos de um ano de atividade na data da assinatura ainda não fechou um exercício e,
+      em regra, não tem atestado de capacidade técnica nem balanço para mostrar; empresa aberta às
+      vésperas do contrato é o sinal clássico de empresa criada para o contrato.
+    base: >-
+      Lei 14.133/2021, arts. 67, II (atestados de capacidade técnica) e 69, I (balanço dos dois últimos
+      exercícios); tipologias de fraude em licitações (empresa recém-criada).
+  dias_abertura_antes_da_licitacao:
+    valor: 365
+    justificativa: >-
+      Empresa aberta até um ano antes da publicação da compra (ou depois dela) pode ter sido constituída
+      para disputar aquela compra; o prazo de um ano é o dobro do que as tipologias costumam usar.
+    base: >-
+      Lei 14.133/2021, art. 5º (moralidade e impessoalidade); Código Penal, art. 337-F (frustração do
+      caráter competitivo).
+  contratos_anteriores_minimos:
+    valor: 1
+    justificativa: >-
+      Sem nenhum contrato ou item ganho antes, no mesmo ramo, em qualquer órgão do banco, não há registro
+      público de experiência da contratada naquele objeto.
+    base: Lei 14.133/2021, art. 67, II e § 1º (capacidade técnica pelo objeto de características semelhantes).
+  dias_cnae_recente:
+    valor: 365
+    justificativa: >-
+      Atividade compatível com o objeto incluída no cadastro há menos de um ano da assinatura (ou depois
+      dela) sugere adaptação do cadastro para caber no edital.
+    base: Lei 14.133/2021, art. 66 (habilitação jurídica compatível com o objeto).
+  fracao_minima_capital_social:
+    valor: 0.10
+    justificativa: >-
+      Capital social abaixo de 10% do valor do contrato é o teto do que a lei permite exigir de capital
+      mínimo; abaixo disso a empresa não teria passado se o edital exigisse o máximo.
+    base: Lei 14.133/2021, art. 69, § 4º (capital mínimo ou patrimônio líquido de até 10% do valor estimado).
+  limite_anual_mei:
+    valor: 81000.00
+    justificativa: >-
+      O MEI que contrata com o Município acima do teto anual de receita deixa de ser MEI; a soma dos
+      contratos assinados no ano acima do teto é indício de que a opção pelo MEI está viciada.
+    base: Lei Complementar 123/2006, art. 18-A, § 1º (receita bruta anual de até R$ 81.000,00).
+  limite_anual_microempresa:
+    valor: 360000.00
+    justificativa: >-
+      Microempresa com contratos que somam mais que o teto da ME no ano usa um porte que não é o seu,
+      e com ele os benefícios dos arts. 42 a 49 da LC 123 nas licitações.
+    base: Lei Complementar 123/2006, art. 3º, I; Lei 14.133/2021, art. 4º, §§ 1º e 2º.
+  limite_anual_simples:
+    valor: 4800000.00
+    justificativa: >-
+      Optante pelo Simples com contratos que passam do teto anual de receita da empresa de pequeno porte
+      no ano não pode continuar no regime nem usar o tratamento favorecido nas licitações.
+    base: >-
+      Lei Complementar 123/2006, art. 3º, II; Lei 14.133/2021, art. 4º, § 2º (o benefício cessa para quem,
+      no ano, já tem contratos com a Administração que somados passam da receita da EPP).
+  socios_em_comum_minimos:
+    valor: 1
+    justificativa: >-
+      Basta um sócio, administrador, endereço, telefone ou correio eletrônico em comum entre empresas que
+      disputam a mesma compra ou se revezam no mesmo órgão para o indício de conluio.
+    base: >-
+      Lei 14.133/2021, arts. 5º e 14; Lei 12.846/2013, art. 5º, IV, a (frustrar o caráter competitivo
+      mediante ajuste); Código Penal, art. 337-F.
+  empresas_por_socio_laranja:
+    valor: 3
+    justificativa: >-
+      A mesma pessoa no quadro de três ou mais contratadas do Município é o padrão de interposição de
+      pessoas (sócio laranja) descrito nas tipologias; com duas já há o alerta de sócio em comum.
+    base: Lei 12.846/2013, art. 5º, III (interposta pessoa para ocultar os reais interesses).
+  faixas_etarias_atipicas:
+    valor: [1, 2, 9]
+    justificativa: >-
+      Sócio com até 20 anos ou com mais de 80 anos (faixas 1, 2 e 9 da Receita) no quadro de contratada
+      é sinal de interposição de pessoas.
+    base: Dicionário de dados do CNPJ (faixa etária do sócio); Lei 12.846/2013, art. 5º, III.
+  valor_minimo_endereco_residencial:
+    valor: 0.00
+    justificativa: >-
+      Qualquer contrato com empresa sediada em endereço residencial ou virtual vira indício: a sede não
+      demonstra estrutura para executar o objeto.
+    base: Lei 14.133/2021, art. 67, III (indicação das instalações e do aparelhamento).
+  similaridade_minima_da_razao:
+    valor: 0.60
+    justificativa: >-
+      Razão social do contrato e razão social da Receita com menos de 60% das palavras em comum indicam
+      troca de nome da empresa; troca pouco antes do contrato esconde o histórico da contratada.
+    base: Lei 14.133/2021, art. 14, III (impedimento que segue a pessoa jurídica sucessora).
+  dias_razao_recente:
+    valor: 365
+    justificativa: Troca de razão social até um ano antes da assinatura.
+    base: Lei 14.133/2021, art. 14, III e § 1º.
+
+# Palavras do endereço que indicam sede residencial ou virtual (coworking, escritório virtual).
+palavras_endereco_residencial: [APTO, APARTAMENTO, "AP ", CASA, RESIDENCIAL, CONDOMINIO, CHACARA, KITNET, SOBRADO]
+palavras_endereco_virtual: [COWORKING, CO-WORKING, ESCRITORIO VIRTUAL, ESCRITORIO COMPARTILHADO,
+                            SALA COMPARTILHADA, BUSINESS CENTER, ENDERECO FISCAL, DOMICILIO FISCAL]
+
+# Correspondência objeto x CNAE. O ramo sai do texto do objeto (os ramos de compras.py e os daqui);
+# cada ramo aceita as divisões CNAE (2 dígitos) e as classes (4 ou 5 dígitos) listadas. Atacado (46) e
+# varejo (47) só valem para ramos de bens. Além disso, qualquer palavra significativa do objeto (5 letras
+# ou mais) que apareça na descrição de um CNAE da empresa conta como compatível (correspondência por
+# palavras), quando a tabela de CNAEs da Receita está no banco.
+cnae_por_ramo:
+  material de construção: [23, 24, 25, 46, 47]
+  manutenção de veículos: [45, 22, 29, 33]
+  locação de veículos: [77, 49]
+  combustível: [19, 46, 47]
+  água mineral: [11, 46, 47]
+  alimentação: [10, 11, 46, 47, 56, "0113", "0119", "0121", "0122", "0131", "0133", "0139"]
+  passagens e viagens: [79, 55, 51, 49]
+  medicamentos: [21, 46, 47]
+  material médico-hospitalar: [32, 46, 47, 26, 86]
+  informática: [26, 46, 47, 62, 63, 58, 95]
+  limpeza e higiene: [20, 46, 47, 81, 17]
+  expediente: [17, 18, 46, 47]
+  gráfica e divulgação: [18, 17, 58, 73, 32, 74]
+  eventos: [82, 90, 77, 93, 56, 74, 73, 59]
+  mobiliário e eletro: [31, 27, 28, 46, 47, 43, 33, 95]
+  vestuário: [13, 14, 15, 46, 47]
+  capacitação: [85, 70, 74, 82, 94]
+  manutenção predial: [41, 42, 43, 81, 33]
+  obras e engenharia: [41, 42, 43, 71]
+  locação de imóvel: [68]
+  vigilância e segurança: [80]
+  limpeza e conservação: [81, 78]
+  mão de obra terceirizada: [78, 81, 82]
+  transporte: [49, 50, 51, 52, 53]
+  saúde e assistência: [86, 87, 88]
+  consultoria e auditoria: [69, 70, 71, 72, 74]
+  tecnologia e sistemas: [62, 63, 58]
+  publicidade: [73, 74, 59, 60]
+
+# Ramos que compras.py não tem (serviços comuns da pasta). Mesma regra de palavras do início.
+ramos_extra:
+  locação de imóvel: [LOCACAO DE IMOVE, LOCACAO DO IMOVE, ALUGUEL DE IMOVE, LOCACAO DE SALA, LOCACAO DE PREDIO]
+  vigilância e segurança: [VIGILANCIA, SEGURANCA PATRIMONIAL, MONITORAMENTO ELETRONICO, PORTARIA]
+  limpeza e conservação: [LIMPEZA E CONSERVACAO, CONSERVACAO E LIMPEZA, SERVICOS DE LIMPEZA, ZELADORIA]
+  mão de obra terceirizada: [MAO DE OBRA, TERCEIRIZAC, POSTOS DE TRABALHO, DEDICACAO EXCLUSIVA]
+  transporte: [TRANSPORTE, FRETE, MUDANCA]
+  saúde e assistência: [ACOLHIMENTO, ABRIGO, CASA DE PASSAGEM, ATENDIMENTO PSICO, CLINICA, COMUNIDADE TERAPEUTICA]
+  consultoria e auditoria: [CONSULTORIA, ASSESSORIA, AUDITORIA, PERICIA]
+  tecnologia e sistemas: [SISTEMA, PLATAFORMA, DESENVOLVIMENTO DE SOFTWARE, HOSPEDAGEM DE SITE, NUVEM]
+  publicidade: [PUBLICIDADE, PROPAGANDA, COMUNICACAO SOCIAL, MARKETING]

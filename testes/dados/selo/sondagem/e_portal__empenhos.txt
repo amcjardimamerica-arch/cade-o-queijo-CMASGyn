@@ -1,0 +1,20 @@
+URL: https://www.goiania.go.gov.br/transparencia/despesas/empenhos
+POST: 
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 2000
+
+<html><body><h1>Consulta de empenhos</h1>
+<form><select name="exercicio"><option>2023</option><option>2024</option><option>2025</option><option>2026</option></select>
+<input type="text" name="credor"><input type="submit" value="Filtrar"></form>
+<table><tr><th>Data</th><th>Empenho</th><th>Credor</th><th>Modalidade de licitação</th><th>Valor</th></tr>
+<tr><td>20/11/2026</td><td>2026NE0000</td><td>Credor 0 Ltda</td><td>Pregão eletrônico 10/2026</td><td>1.234,56</td></tr>
+<tr><td>19/11/2026</td><td>2026NE0001</td><td>Credor 1 Ltda</td><td>Pregão eletrônico 11/2026</td><td>2.234,56</td></tr>
+<tr><td>18/11/2026</td><td>2026NE0002</td><td>Credor 2 Ltda</td><td>Pregão eletrônico 12/2026</td><td>3.234,56</td></tr>
+<tr><td>17/11/2026</td><td>2026NE0003</td><td>Credor 3 Ltda</td><td>Pregão eletrônico 13/2026</td><td>4.234,56</td></tr>
+<tr><td>16/11/2026</td><td>2026NE0004</td><td>Credor 4 Ltda</td><td>Pregão eletrônico 14/2026</td><td>5.234,56</td></tr>
+<tr><td>15/11/2026</td><td>2026NE0005</td><td>Credor 5 Ltda</td><td>Pregão eletrônico 15/2026</td><td>6.234,56</td></tr>
+</table>
+<a href="/transparencia/despesas/empenhos.csv">Baixar em CSV</a>
+</body></html>

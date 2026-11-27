@@ -1,5 +1,5 @@
 {
- "quando": "2026-11-26T23:49:48+00:00",
+ "quando": "2026-11-27T23:42:24+00:00",
  "leituras": [
   {
    "fonte": "pncp_dados",
@@ -10,7 +10,7 @@
    "erro": "",
    "bytes": 73,
    "arquivo": "pncp_dados__dadosabertos-compras-gov-br-modulo-contratacoes-1-consultarcontratacoe-bd9ee77f.txt",
-   "segundos": 0.8
+   "segundos": 1.0
   },
   {
    "fonte": "pncp_dados",
@@ -21,7 +21,7 @@
    "erro": "",
    "bytes": 25878,
    "arquivo": "pncp_dados__dadosabertos-compras-gov-br-modulo-contratacoes-2-consultaritenscontra-33a79eab.txt",
-   "segundos": 6.6
+   "segundos": 6.3
   },
   {
    "fonte": "pncp_dados",
@@ -38,12 +38,12 @@
    "fonte": "pncp_dados",
    "url": "https://dadosabertos.compras.gov.br/modulo-contratacoes/3_consultarResultadoItensContratacoes_PNCP_14133?pagina=1&tamanhoPagina=50&orgaoEntidadeCnpj=04973965000111&dataResultadoPncpInicial=2024-11-01&dataResultadoPncpFinal=2024-12-31",
    "post": null,
-   "ok": true,
-   "http": 200,
-   "erro": "",
-   "bytes": 25698,
+   "ok": false,
+   "http": null,
+   "erro": "TimeoutError: The read operation timed out",
+   "bytes": 0,
    "arquivo": "pncp_dados__dadosabertos-compras-gov-br-modulo-contratacoes-3-consultarresultadoit-b3d9016b.txt",
-   "segundos": 2.2
+   "segundos": 90.6
   },
   {
    "fonte": "pncp_dados",
@@ -54,7 +54,7 @@
    "erro": "",
    "bytes": 0,
    "arquivo": "pncp_dados__pncp-gov-br-api-pncp-v1-orgaos-25141524000123-contratos-2026-76-termos-01ebb35c.txt",
-   "segundos": 0.7
+   "segundos": 0.8
   },
   {
    "fonte": "pncp_dados",
@@ -65,7 +65,7 @@
    "erro": "",
    "bytes": 0,
    "arquivo": "pncp_dados__pncp-gov-br-api-pncp-v1-orgaos-17736850000155-contratos-2024-4-termos-6eb01df2.txt",
-   "segundos": 0.4
+   "segundos": 0.8
   },
   {
    "fonte": "pncp_dados",
@@ -87,7 +87,7 @@
    "erro": "",
    "bytes": 0,
    "arquivo": "pncp_dados__pncp-gov-br-api-pncp-v1-orgaos-17497764000137-contratos-2026-3-termos-bcfb6c5d.txt",
-   "segundos": 0.4
+   "segundos": 0.6
   },
   {
    "fonte": "pncp_dados",
@@ -96,20 +96,20 @@
    "ok": false,
    "http": 422,
    "erro": "HTTP 422",
-   "bytes": 0,
+   "bytes": 214,
    "arquivo": "pncp_dados__pncp-gov-br-api-consulta-v1-instrumentoscobranca-inclusao-datainicial-4521ed1b.txt",
-   "segundos": 2.6
+   "segundos": 0.4
   },
   {
    "fonte": "pncp_dados",
    "url": "https://pncp.gov.br/api/consulta/v1/instrumentoscobranca/inclusao?dataInicial=20260101&dataFinal=20260131&pagina=1&tamanhoPagina=10",
    "post": null,
    "ok": false,
-   "http": 504,
-   "erro": "HTTP 504",
-   "bytes": 0,
+   "http": 500,
+   "erro": "HTTP 500",
+   "bytes": 201,
    "arquivo": "pncp_dados__pncp-gov-br-api-consulta-v1-instrumentoscobranca-inclusao-datainicial-6061c9b0.txt",
-   "segundos": 70.4
+   "segundos": 66.9
   },
   {
    "fonte": "pncp_dados",
@@ -118,20 +118,9 @@
    "ok": false,
    "http": 504,
    "erro": "HTTP 504",
-   "bytes": 0,
+   "bytes": 92,
    "arquivo": "pncp_dados__pncp-gov-br-api-consulta-v1-contratos-datainicial-20250101-datafinal-2-7e72b0a9.txt",
    "segundos": 70.4
-  },
-  {
-   "fonte": "pncp_dados",
-   "url": "https://dadosabertos.compras.gov.br/modulo-pesquisa-preco/1_consultarMaterial?pagina=1&tamanhoPagina=50&tipo=codigoItemCatalogo&codigo=440744",
-   "post": null,
-   "ok": true,
-   "http": 200,
-   "erro": "",
-   "bytes": 91400,
-   "arquivo": "pncp_dados__dadosabertos-compras-gov-br-modulo-pesquisa-preco-1-consultarmaterial-7628cd26.txt",
-   "segundos": 2.0
   },
   {
    "fonte": "pncp_dados",
@@ -142,7 +131,7 @@
    "erro": "",
    "bytes": 86334,
    "arquivo": "pncp_dados__dadosabertos-compras-gov-br-modulo-pesquisa-preco-1-consultarmaterial-440259ad.txt",
-   "segundos": 1.6
+   "segundos": 1.7
   },
   {
    "fonte": "pncp_dados",
@@ -151,9 +140,20 @@
    "ok": true,
    "http": 200,
    "erro": "",
-   "bytes": 75839,
+   "bytes": 75862,
    "arquivo": "pncp_dados__dadosabertos-compras-gov-br-modulo-pesquisa-preco-1-consultarmaterial-fdbd7c63.txt",
-   "segundos": 3.9
+   "segundos": 4.7
+  },
+  {
+   "fonte": "pncp_dados",
+   "url": "https://dadosabertos.compras.gov.br/modulo-pesquisa-preco/1_consultarMaterial?pagina=1&tamanhoPagina=50&tipo=codigoItemCatalogo&codigo=464374",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 75628,
+   "arquivo": "pncp_dados__dadosabertos-compras-gov-br-modulo-pesquisa-preco-1-consultarmaterial-fe504765.txt",
+   "segundos": 3.5
   }
  ]
 }

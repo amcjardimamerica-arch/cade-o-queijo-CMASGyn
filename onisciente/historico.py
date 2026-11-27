@@ -1927,6 +1927,15 @@ TABELAS_DO_MOTOR["execucao_goiania"] = goiania_transweb.TABELAS_DO_MOTOR
 MOTORES += ("execucao_goiania",)
 TEMPO_DO_MOTOR["execucao_goiania"] = 60
 
+# Bloco 7: empresas contratadas (cadastro da Receita, QSA, CEPIM e inidôneos do TCU), frente F.
+# Só as coletas desses motores são apagadas no --somar: as tabelas cnpj_* e impedimentos guardam o
+# histórico mensal que alimenta os alertas de CNAE recente e de razão social trocada.
+from .coletores import motor_cnpj as _mcnpj  # noqa: E402
+MOTORES += ("cnpj", "impedimentos")
+TEMPO_DO_MOTOR.update({"cnpj": 150, "impedimentos": 15})
+TABELAS_DO_MOTOR["cnpj"] = [("coletas", "motor = 'cnpj'")]
+TABELAS_DO_MOTOR["impedimentos"] = [("coletas", "motor = 'impedimentos'")]
+
 
 def _motor_execucao(ctx, alvo) -> None:
     if not alvo.portal_despesa:
@@ -1994,6 +2003,8 @@ def rodar(desde: str, ate: str, *, motores=MOTORES, caminho=BANCO, hoje: date | 
     }
     chamadas.update(_mf.chamadas(ctx, alvo))
     chamadas["execucao_goiania"] = lambda: _motor_execucao(ctx, alvo)
+    chamadas["cnpj"] = lambda: _mcnpj.motor_cnpj(ctx)
+    chamadas["impedimentos"] = lambda: _mcnpj.motor_impedimentos(ctx)
     for nome in motores:
         inicio = time.monotonic()
         if tempo_limitado:

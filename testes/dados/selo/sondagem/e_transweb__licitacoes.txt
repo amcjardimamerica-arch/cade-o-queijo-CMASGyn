@@ -1,0 +1,8 @@
+URL: https://www.goiania.go.gov.br/transparencia/licitacoes
+POST: 
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 200
+
+<html><head><script src="/app.js"></script></head><body><div id="app"></div><noscript>Ative o JavaScript</noscript></body></html>
