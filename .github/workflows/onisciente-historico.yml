@@ -38,9 +38,31 @@ jobs:
             echo "== openssl $v"; timeout 20 openssl s_client -$v -connect $H:443 -servername $H </dev/null 2>&1 | grep -E 'Protocol|Cipher|alert|error|Verify' | head -8 || true
           done
       - name: Ligar os motores
+        # Enquanto os motores correm, um boletim (o que cada fonte respondeu, erros e tempos)
+        # é publicado no ramo a cada 10 minutos em relatorios/onisciente/boletim_coleta.md,
+        # numa cópia à parte do ramo, para os erros aparecerem durante a rodada e não só no fim.
         run: |
+          INICIO=$(date -u +%Y-%m-%dT%H:%M:%S+00:00)
           python -m onisciente historico --desde "$DESDE" --ate "$ATE" \
-            ${MOTORES:+--motores "$MOTORES" --somar} --brutos "$RUNNER_TEMP/brutos"
+            ${MOTORES:+--motores "$MOTORES" --somar} --brutos "$RUNNER_TEMP/brutos" &
+          MOTOR=$!
+          git config --global user.name "vigilancia-bot"; git config --global user.email "bot@users.noreply.github.com"
+          git worktree add -q "$RUNNER_TEMP/boletim" HEAD
+          publicar() {
+            [ -f dados/onisciente/historico.db ] || return 0
+            python -m onisciente.boletim dados/onisciente/historico.db "$INICIO" > "$RUNNER_TEMP/boletim.md" || return 0
+            ( cd "$RUNNER_TEMP/boletim" && git fetch -q origin "$GITHUB_REF_NAME" && git reset -q --hard FETCH_HEAD \
+              && mkdir -p relatorios/onisciente && cp "$RUNNER_TEMP/boletim.md" relatorios/onisciente/boletim_coleta.md \
+              && git add relatorios/onisciente/boletim_coleta.md \
+              && { git diff --staged --quiet || { git commit -q -m "Onisciente: boletim da coleta em andamento [skip ci]" \
+                   && git push -q origin "HEAD:$GITHUB_REF_NAME"; }; } ) || echo "boletim não publicado agora"
+          }
+          while kill -0 $MOTOR 2>/dev/null; do
+            for _ in $(seq 60); do kill -0 $MOTOR 2>/dev/null || break; sleep 10; done
+            publicar
+          done
+          wait $MOTOR
+          publicar
       - name: Diagnóstico na página da execução
         if: always()
         run: |
@@ -59,6 +81,7 @@ jobs:
         run: |
           ls -l dados/onisciente/historico.db
           git config user.name "vigilancia-bot"; git config user.email "bot@users.noreply.github.com"
+          git worktree remove --force "$RUNNER_TEMP/boletim" 2>/dev/null || true
           git add dados/onisciente/historico.db relatorios/onisciente/diagnostico_historico.* docs/onisciente/banco docs/onisciente/index.html
           git diff --staged --quiet && exit 0
           git commit -m "Onisciente: coleta histórica $DESDE a $ATE"

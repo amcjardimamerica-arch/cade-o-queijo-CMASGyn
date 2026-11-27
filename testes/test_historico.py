@@ -656,8 +656,11 @@ def test_pncp_detalhe_le_amparo_itens_contrato_termos_preco_e_notas(tmp_path):
         pedidos.append(url)
         if "2_consultarItens" in url:
             q = {k: v[0] for k, v in parse_qs(urlparse(url).query).items()}
-            if q["dataInclusaoPncpInicial"][:7] != q["dataInclusaoPncpFinal"][:7]:
+            d1, d2 = (date.fromisoformat(q[k]) for k in ("dataInclusaoPncpInicial", "dataInclusaoPncpFinal"))
+            if (d2 - d1).days > 31:
                 return base.Leitura(False, url, erro="TimeoutError: timed out")   # ano inteiro: lento demais
+            if d1.day == 1:                                   # a data final é exclusiva: 1º do mês seguinte
+                assert d2.day == 1 and d2.month != d1.month
             corpo = {"resultado": [item] if q["dataInclusaoPncpInicial"].startswith("2024-11") else [],
                      "totalPaginas": 1}
             return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
@@ -832,9 +835,10 @@ def test_nota_fiscal_nenhuma_no_mes_e_lida_mas_endereco_errado_continua_falha(tm
 
 
 def test_fonte_que_pede_calma_sai_do_paralelo_e_depois_espera_a_proxima_rodada(tmp_path):
-    """429 numa leitura antecipada tira a fonte do paralelo; lida uma a uma, se ela recusa de novo
-    ``disjuntor`` vezes seguidas, o resto dela fica para a próxima rodada, e as outras fontes do
-    mesmo motor seguem. A espera pedida pela fonte (Retry-After) é a usada."""
+    """429 tira a fonte do paralelo; lida uma a uma, se ela recusa ``disjuntor`` vezes seguidas,
+    o resto dela fica para a próxima rodada, e as outras fontes do mesmo motor seguem. A espera
+    pedida pela fonte (Retry-After) é a usada. O amparo sai antes pela via rápida do PNCP; a
+    consulta é só a reserva de quem a via rápida não trouxe."""
     esperas, consultas = [], []
 
     def rede(url, **_):
@@ -856,9 +860,12 @@ def test_fonte_que_pede_calma_sai_do_paralelo_e_depois_espera_a_proxima_rodada(t
     historico.motor_pncp_detalhe(ctx)
     assert "pncp.gov.br/api/consulta" in ctx._lentas
     assert set(esperas) >= {7.0}
-    # Antecipadas: o primeiro bloco (16), depois 3 leituras na fila de 3 tentativas cada; e mais nada.
-    assert len(consultas) == 16 * 3 + 3 * 3
-    erros = [e for (e,) in banco.consultar("SELECT erro FROM coletas WHERE alvo LIKE 'compra %' ORDER BY rowid")]
+    # 3 leituras de reserva na fila, de 3 tentativas cada; e mais nada.
+    assert len(consultas) == 3 * 3
+    assert banco.consultar("SELECT COUNT(DISTINCT alvo) FROM coletas WHERE url LIKE '%/api/pncp/v1/orgaos/%/compras/%'"
+                           " AND url NOT LIKE '%/itens%'") == [(20,)]      # a via rápida foi tentada para todas
+    erros = [e for (e,) in banco.consultar("SELECT erro FROM coletas WHERE alvo LIKE 'compra %' "
+                                           "AND url LIKE '%/api/consulta/%' ORDER BY rowid")]
     assert erros[:3] == ["HTTP 429"] * 3 and all("pediu para esperar" in e for e in erros[3:])
     assert banco.consultar("SELECT COUNT(*) FROM pncp_contratos_detalhe") == [(20,)]   # outra fonte seguiu
 
@@ -962,4 +969,97 @@ def test_itens_lentos_ficam_com_metade_do_tempo_e_o_preco_nacional_com_a_outra(t
     ctx.fim_do_motor = None
     with historico._Reserva(ctx, 0.5):                                     # sem relógio, sem corte
         assert ctx.fim_do_motor is None
+    banco.fechar()
+
+
+def test_amparo_sai_da_via_rapida_e_a_consulta_so_e_reserva(tmp_path):
+    """A API do PNCP (~0,6 s) traz o mesmo amparo legal que a consulta (~10 s, fora do ar no
+    início da rodada de 27/11): a consulta só é chamada quando a via rápida não traz o amparo."""
+    pedidos = []
+
+    def rede(url, **_):
+        pedidos.append(url)
+        if url.endswith("/api/pncp/v1/orgaos/04973965000111/compras/2025/1"):
+            corpo = {"amparoLegal": {"codigo": 19, "nome": "Lei 14.133/2021, Art. 75, II"}}
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        if url.endswith("/api/pncp/v1/orgaos/04973965000111/compras/2025/2"):
+            return base.Leitura(False, url, b"", erro="HTTP 503", http=503)
+        if url.endswith("/api/consulta/v1/orgaos/04973965000111/compras/2025/2"):
+            corpo = {"amparoLegal": {"codigo": 4, "nome": "Lei 14.133/2021, Art. 74, I"}}
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        return base.Leitura(True, url, b"", http=204)
+
+    banco = historico.Banco(tmp_path / "h.db")
+    for n in (1, 2):
+        banco.inserir("contratacoes_pncp", {"pncp_id": f"04973965000111-1-{n:06d}/2025", "mes": "2025-03",
+                                            "modalidade": "Dispensa", "orgao_cnpj": "04973965000111"})
+    ctx = historico.Contexto(banco, ["2025-03"], date(2026, 11, 27), ler_url=rede, dormir=lambda s: None, pausa=0)
+    historico.motor_pncp_detalhe(ctx)
+    assert sorted(banco.consultar("SELECT codigo FROM pncp_amparos")) == [(4,), (19,)]
+    assert not any(u.endswith("/api/consulta/v1/orgaos/04973965000111/compras/2025/1") for u in pedidos)
+    banco.fechar()
+
+
+def test_itens_ja_lidos_com_a_data_final_errada_ganham_o_ultimo_dia_do_mes(tmp_path):
+    """Os meses lidos antes pediam até o dia 30 com a data final exclusiva: o que entrou no dia
+    30 ficou de fora. Eles são remendados com a janela do último dia (30 a 1º do mês seguinte),
+    e um mês lido já do jeito certo não é remendado."""
+    pedidos = []
+
+    def rede(url, **_):
+        pedidos.append(url)
+        if "2_consultarItens" in url:
+            q = {k: v[0] for k, v in parse_qs(urlparse(url).query).items()}
+            itens = []
+            if q["dataInclusaoPncpInicial"] == "2025-04-30":
+                itens = [{"numeroControlePNCPCompra": "04973965000111-1-000009/2025", "numeroItemPncp": 1,
+                          "codItemCatalogo": 440744, "valorUnitarioResultado": 10.0,
+                          "dataInclusaoPncp": "2025-04-30T18:00:00"}]
+            return base.Leitura(True, url, json.dumps({"resultado": itens, "totalPaginas": 1}).encode(), http=200)
+        return base.Leitura(True, url, b"", http=204)
+
+    banco = historico.Banco(tmp_path / "h.db")
+    banco.inserir("contratacoes_pncp", {"pncp_id": "04973965000111-1-000009/2025", "mes": "2025-04",
+                                        "modalidade": "Pregão - Eletrônico", "orgao_cnpj": "04973965000111"})
+    banco.inserir("meta", {"chave": "pncp_detalhe_lidos",
+                           "valor": json.dumps(["itens 04973965000111 2025-04"])})   # lido do jeito antigo
+    ctx = historico.Contexto(banco, ["2025-04", "2025-05"], date(2026, 11, 27), ler_url=rede,
+                             dormir=lambda s: None, pausa=0)
+    historico.motor_pncp_detalhe(ctx)
+    assert banco.consultar("SELECT compra_id, catalogo FROM pncp_itens") == [("04973965000111-1-000009/2025", 440744)]
+    lidos = set(json.loads(dict(banco.consultar("SELECT chave, valor FROM meta"))["pncp_detalhe_lidos"]))
+    assert {"itens 04973965000111 2025-04 ultimo dia", "itens 04973965000111 2025-05 inteiro"} <= lidos
+    remendos = [u for u in pedidos if "dataInclusaoPncpInicial=2025-04-30" in u]
+    assert len(remendos) == 1 and "dataInclusaoPncpFinal=2025-05-01" in remendos[0]
+    assert not any("dataInclusaoPncpInicial=2025-05-31" in u for u in pedidos)   # maio já veio inteiro
+    banco.fechar()
+
+
+def test_recusa_dos_dados_abertos_guarda_o_porque(tmp_path):
+    """Um 400 dos dados abertos sem o corpo não se explica: o motivo vai junto do erro."""
+    def rede(url, **_):
+        return base.Leitura(False, url, "Informe um número de paginação no intervalo de 10 a 500".encode(),
+                            erro="HTTP 400", http=400)
+
+    banco = historico.Banco(tmp_path / "h.db")
+    ctx = historico.Contexto(banco, ["2025-04"], date(2026, 11, 27), ler_url=rede, dormir=lambda s: None, pausa=0)
+    ctx.ler("pncp_detalhe", "x", "https://dadosabertos.compras.gov.br/x", tentativas=1)
+    assert banco.consultar("SELECT erro FROM coletas") == [
+        ("HTTP 400: Informe um número de paginação no intervalo de 10 a 500",)]
+    banco.fechar()
+
+
+def test_boletim_da_coleta_conta_por_fonte_e_situacao_enquanto_ela_corre(tmp_path):
+    """O boletim publicado a cada 10 minutos mostra, por fonte, o que deu certo e o que falhou."""
+    from onisciente import boletim
+    banco = historico.Banco(tmp_path / "h.db")
+    ctx = historico.Contexto(banco, ["2025-04"], date(2026, 11, 27), dormir=lambda s: None, pausa=0,
+                             ler_url=lambda url, **_: (base.Leitura(True, url, b"{}", http=200) if "pncp" in url
+                                                        else base.Leitura(False, url, erro="HTTP 503", http=503)))
+    ctx.ler("pncp_detalhe", "a", "https://pncp.gov.br/api/pncp/v1/x", tentativas=1)
+    ctx.ler("pncp_detalhe", "b", "https://dadosabertos.compras.gov.br/y", tentativas=1)
+    banco.con.commit()
+    texto = boletim.boletim(str(tmp_path / "h.db"), "2000-01-01")
+    assert "| pncp.gov.br/api/pncp | ok | 1 |" in texto
+    assert "| dadosabertos.compras.gov.br | HTTP 503 | 1 |" in texto
     banco.fechar()
