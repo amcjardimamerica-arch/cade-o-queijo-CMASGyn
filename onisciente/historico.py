@@ -303,6 +303,7 @@ class Contexto:
     limites: dict[str, int] = field(default_factory=lambda: {"pncp": 2500, "qd": 400, "pncp_detalhe": 20000})
     gastos: dict[str, int] = field(default_factory=dict)
     # Disjuntor: depois de tantas falhas de rede seguidas, o motor deixa de chamar a fonte
+    # (o servidor e o serviço da URL; as outras fontes do mesmo motor seguem)
     # e registra o resto como não tentado. Uma fonte fora do ar não pode prender a rodada.
     disjuntor: int = 6
     seguidas: dict[str, int] = field(default_factory=dict)
@@ -330,7 +331,7 @@ class Contexto:
             pass                                # já lida (e contada) por ``antecipar``
         elif limite is not None and self.gastos.get(motor, 0) >= limite:
             motivo = "limite de chamadas da rodada atingido"
-        elif disjuntor and self.seguidas.get(motor, 0) >= self.disjuntor:
+        elif disjuntor and self.seguidas.get(_fonte_da_url(url), 0) >= self.disjuntor:
             motivo = f"não tentado: {self.disjuntor} falhas de rede seguidas nesta fonte"
         elif disjuntor and self.recusas_fonte.get(_fonte_da_url(url), 0) >= self.disjuntor:
             motivo = (f"não tentado: a fonte pediu para esperar (HTTP 429) {self.disjuntor} vezes "
@@ -384,7 +385,8 @@ class Contexto:
         limite = self.limites.get(motor)
         if limite is not None:
             pendentes = pendentes[:max(0, limite - self.gastos.get(motor, 0))]
-        if (not pendentes or self.seguidas.get(motor, 0) >= self.disjuntor
+        pendentes = [u for u in pendentes if self.seguidas.get(_fonte_da_url(u), 0) < self.disjuntor]
+        if (not pendentes
                 or (self.fim_do_motor is not None and time.monotonic() > self.fim_do_motor)):
             return
         with ThreadPoolExecutor(max_workers=self.paralelo) as linhas:
@@ -397,7 +399,8 @@ class Contexto:
     def _depois(self, motor, alvo, mes, url, leitura, feitas, segundos, *, pausar=True):
         rede = (not leitura.ok and (leitura.http is None or leitura.http >= 500)
                 and not _ftp_sem_arquivo(url, leitura))
-        self.seguidas[motor] = self.seguidas.get(motor, 0) + 1 if rede else 0
+        fonte_url = _fonte_da_url(url)
+        self.seguidas[fonte_url] = self.seguidas.get(fonte_url, 0) + 1 if rede else 0
         if leitura.http is not None:
             fonte = _fonte_da_url(url)
             self.recusas_fonte[fonte] = self.recusas_fonte.get(fonte, 0) + 1 if leitura.http == 429 else 0

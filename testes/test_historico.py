@@ -892,3 +892,26 @@ def test_amparo_das_demais_contratacoes_vem_da_listagem_do_mes(tmp_path):
     um_a_um = sorted(int(u.rsplit("/", 1)[1]) for u in pedidos if re.search(r"/compras/2025/\d+$", u))
     assert um_a_um == [1, 6]                       # a dispensa (etapa 1) e a que a listagem não trouxe
     assert not any("99" in a for (a,) in banco.consultar("SELECT compra_id FROM pncp_amparos"))
+
+
+def test_disjuntor_desliga_so_a_fonte_fora_do_ar_e_nao_o_motor_inteiro(tmp_path):
+    """Um motor que lê de três serviços (consulta e integração do PNCP, dados abertos) não para
+    tudo quando um deles cai: só o serviço que falhou fica para a próxima rodada."""
+    chamadas = []
+
+    def rede(url, **_):
+        chamadas.append(url)
+        if "/api/consulta/" in url:
+            return base.Leitura(False, url, erro="HTTP 503", http=503)
+        return base.Leitura(True, url, b"{}", http=200)
+    ctx = historico.Contexto(historico.Banco(tmp_path / "h.db"), ["2025-01"], date(2026, 1, 1),
+                             ler_url=rede, dormir=lambda s: None, pausa=0, disjuntor=3)
+    for n in range(6):
+        ctx.ler("pncp_detalhe", "x", f"https://pncp.gov.br/api/consulta/v1/a/{n}", tentativas=1)
+    for n in range(4):
+        ctx.ler("pncp_detalhe", "y", f"https://pncp.gov.br/api/pncp/v1/b/{n}", tentativas=1)
+        ctx.ler("pncp_detalhe", "z", f"https://dadosabertos.compras.gov.br/c/{n}", tentativas=1)
+    assert sum("/api/consulta/" in u for u in chamadas) == 3
+    assert sum("/api/pncp/" in u for u in chamadas) == 4 and sum("dadosabertos" in u for u in chamadas) == 4
+    assert historico._fonte_da_url("https://pncp.gov.br/api/consulta/v1/x") == "pncp.gov.br/api/consulta"
+    assert historico._fonte_da_url("https://dadosabertos.compras.gov.br/c/1") == "dadosabertos.compras.gov.br"
