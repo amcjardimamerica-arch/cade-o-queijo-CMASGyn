@@ -1,19 +1,19 @@
-# Coleta em andamento: boletim de 2026-11-27T15:30+00:00
+# Coleta em andamento: boletim de 2026-11-27T15:34+00:00
 
-Desde 2026-11-27T15:10:38+00:00: 280 chamadas registradas.
-Última chamada: 2026-11-27T15:30:18+00:00 (itens 00937974000104 2025-04 último dia).
+Desde 2026-11-27T15:10:38+00:00: 421 chamadas registradas.
+Última chamada: 2026-11-27T15:34:07+00:00 (preco 396523 2026-1).
 
 ## Por fonte
 
 | fonte | situação | chamadas |
 |---|---|---|
-| dadosabertos.compras.gov.br | ok | 280 |
+| dadosabertos.compras.gov.br | ok | 421 |
 
 ## Tempo das respostas boas (segundos)
 
 | fonte | n | mediana | p90 | máximo |
 |---|---|---|---|---|
-| dadosabertos.compras.gov.br | 280 | 1.9 | 67.8 | 276.2 |
+| dadosabertos.compras.gov.br | 421 | 1.2 | 42.3 | 276.2 |
 
 ## O que o banco tem agora
 
@@ -25,7 +25,7 @@ Desde 2026-11-27T15:10:38+00:00: 280 chamadas registradas.
 | pncp_itens | 8543 |
 | pncp_cobrancas | 0 |
 | pncp_nf_itens | 0 |
-| precos_referencia | 170941 |
+| precos_referencia | 176057 |
 
 ## Lido por inteiro (acumulado)
 
@@ -33,7 +33,7 @@ Desde 2026-11-27T15:10:38+00:00: 280 chamadas registradas.
 - cobrancas: 800
 - compra: 846
 - contrato: 2118
-- itens: 1364
+- itens: 1373
 - itens da compra: 2328
-- preco: 2372
+- preco: 2504
 - termos: 2118
