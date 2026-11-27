@@ -4,10 +4,18 @@ O TCM-GO julga as contas do Prefeito (parecer prévio), as contas de gestão dos
 denúncias e representações sobre licitações e contratos. As decisões saem como acórdãos (``AC``),
 resoluções (``RC``, ``RS``) e pareceres prévios, publicadas no portal e no Diário Oficial de Contas.
 
-Nenhuma API pública foi confirmada. O coletor lê os candidatos de ``CANDIDATOS`` (a pesquisa de
-jurisprudência e a busca do portal, com o termo Goiânia) e aceita JSON ou página HTML: na página,
-cada menção a um acórdão, resolução ou parecer prévio com número e ano vira uma decisão, com o
-trecho em volta como sumário e o link mais próximo como endereço.
+Nenhuma API pública foi confirmada. O coletor lê os candidatos de ``CANDIDATOS`` e aceita JSON ou
+página HTML: na página, cada menção a um acórdão, resolução ou parecer prévio com número e ano vira
+uma decisão, com o trecho em volta como sumário e o link mais próximo como endereço.
+
+A sondagem de 27/11/2026 mostrou que os endereços da primeira rodada não pesquisam: a página
+``site/jurisprudencia/`` ignora o termo e é só o índice das ferramentas (a pesquisa de verdade fica
+em ``virtual.tcmgo.tc.br/jurisprudencia/``, um aplicativo cujo serviço ainda não foi lido), a busca
+``site/?s=`` devolve notícias e páginas do portal, e o antigo ``pesquisaJurisprudencia/rest`` só
+redireciona para o portal. As três respostas reais, reduzidas, estão em ``testes/dados/federais/``
+(``tcm_*_real.html``) e o leitor devolve lista vazia para elas, sem inventar decisão. Os candidatos
+agora são a busca do WordPress em JSON, a lista oficial de contas com parecer prévio pela rejeição
+ou julgadas irregulares e a busca do portal.
 """
 
 from __future__ import annotations
@@ -22,9 +30,14 @@ from .tcu import sobre
 PORTAL = "https://www.tcmgo.tc.br/"
 
 CANDIDATOS = (
+    PORTAL + "site/wp-json/wp/v2/search?search={termo}&per_page=100&page={pagina}",
+    PORTAL + "site/contas-com-parecer-previo-pela-rejeicao-ou-julgamentos-irregulares/?pagina={pagina}",
+    PORTAL + "site/?s={termo}&paged={pagina}",
+)
+# Lidos na sondagem e descartados: não pesquisam (ver o comentário do módulo).
+DESCARTADOS = (
     PORTAL + "pesquisaJurisprudencia/rest/pesquisa?termo={termo}&pagina={pagina}",
     PORTAL + "site/jurisprudencia/?pesquisa={termo}&pagina={pagina}",
-    PORTAL + "site/?s={termo}&paged={pagina}",
 )
 
 DECISAO = re.compile(

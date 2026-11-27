@@ -6,10 +6,22 @@ fundo a fundo, ao lado do SIAFI (Portal da Transparência, tabela ``transferenci
 8585, 219A, 00UC...) e do que o Município declara no RREO Anexo 12 (SIOPS, "Provenientes da União")
 e na matriz de saldos contábeis.
 
-A consulta pública (``consultafns.saude.gov.br``) é um aplicativo que chama uma API JSON. O endereço
-exato da API ainda não foi confirmado pela sondagem; por isso o coletor tenta, na ordem, os modelos
-de ``MODELOS`` e guarda qual respondeu. Os nomes dos campos são achados pelo sentido (``data_repasse``,
-``dataPagamento``, ``valor_liquido``...), nunca pela posição.
+A consulta pública (``consultafns.saude.gov.br``) é um aplicativo AngularJS (versão 1.50.9) que chama
+uma API JSON em ``/recursos/``. O endereço exato ainda não foi confirmado; por isso o coletor tenta, na
+ordem, os modelos de ``MODELOS`` e guarda qual respondeu. Os nomes dos campos são achados pelo
+sentido (``data_repasse``, ``dataPagamento``, ``valor_liquido``...), nunca pela posição.
+
+Sondagem de 27/11/2026:
+- ``apifns.saude.gov.br`` não existe no DNS (todas as rotas). Os quatro modelos desse host continuam
+  na lista só porque a trava antiga do motor os cita; falham na hora, sem custo;
+- ``/recursos/repasse-dia/detalhar-pagamento`` respondeu HTTP 400 com ``codigoMunicipio`` e ``ano``: o
+  serviço existe, mas pede outros parâmetros. Os novos modelos mandam o período em datas;
+- ``/recursos/consolidado/municipio`` deu 404 e saiu da lista;
+- ``app/app.js`` e ``app/main.js`` responderam, mas não trazem os serviços: ``app.js`` só configura
+  a rota padrão ``repasse-dia``, o login (``/oauth/token``, ``/api/autenticacao/usuario``) e um cache de
+  10 minutos; ``main.js`` só carrega ``controllers/portalController``, ``services/utilService`` e as
+  bibliotecas. Os serviços com os endereços da API estão nesses arquivos e nas páginas de cada rota,
+  que a próxima sondagem lê (chave ``d1_fns``).
 """
 
 from __future__ import annotations
@@ -28,6 +40,17 @@ MODELOS = (
     API + "repasses?municipio_ibge={ibge6}&ano={ano}&pagina={pagina}&tamanho=1000",
     API + "v1/pagamentos?municipio_ibge={ibge6}&ano={ano}&pagina={pagina}&tamanho=1000",
     API + "repasses-fundo-a-fundo?municipio_ibge={ibge6}&ano={ano}&page={pagina}&size=1000",
+    # consultafns: o serviço do "repasse dia" existe (400 com ano); o período vai em datas dd/mm/aaaa.
+    CONSULTA + "repasse-dia/detalhar-pagamento?codigoMunicipio={ibge6}&dataPagamentoInicial={inicio}"
+               "&dataPagamentoFinal={fim}&page={pagina}&count=1000",
+    CONSULTA + "repasse-dia/detalhar-pagamento?municipio={ibge6}&dataInicial={inicio}&dataFinal={fim}"
+               "&page={pagina}&count=1000",
+    CONSULTA + "repasse-dia/consolidado?codigoMunicipio={ibge6}&dataPagamentoInicial={inicio}"
+               "&dataPagamentoFinal={fim}&page={pagina}&count=1000",
+    CONSULTA + "consulta-detalhada/detalhe-acao?codigoMunicipio={ibge6}&ano={ano}&page={pagina}&count=1000",
+)
+# Lidos na sondagem e descartados (404 ou parâmetros recusados).
+DESCARTADOS = (
     CONSULTA + "repasse-dia/detalhar-pagamento?codigoMunicipio={ibge6}&ano={ano}&page={pagina}&count=1000",
     CONSULTA + "consolidado/municipio?codigoMunicipio={ibge6}&ano={ano}",
 )
@@ -35,7 +58,8 @@ MODELOS = (
 
 def url(modelo: str, ibge: int | str, ano: int, pagina: int = 1) -> str:
     ibge = str(ibge)
-    return modelo.format(ibge6=ibge[:6], ibge=ibge, ano=ano, pagina=pagina)
+    return modelo.format(ibge6=ibge[:6], ibge=ibge, ano=ano, pagina=pagina,
+                         inicio=f"01/01/{ano}", fim=f"31/12/{ano}")
 
 
 def _texto(v) -> str:

@@ -3,9 +3,17 @@
 A consulta pública de liberações do FNDE (SIMAD, ``www.fnde.gov.br/pls/simad``) funciona em dois
 passos, como o botão de uma página: um POST com o ano, a UF e o código IBGE de 6 dígitos devolve a
 lista das entidades do município (Prefeitura, conselhos escolares, unidades executoras), cada uma
-com o CNPJ; um GET por CNPJ devolve as liberações daquela entidade no ano, programa a programa
-(PNAE, PNATE, PDDE, salário-educação...), com data, ordem bancária, banco, agência, conta e valor,
-fechando com uma linha "Total:".
+com o CNPJ; as liberações de cada entidade saem do mesmo endereço, pelo formulário oculto da página
+(``formOculto``, que a função ``enviarFormulario`` preenche com o ano, o programa, a UF, o município,
+o tipo de entidade e o CNPJ em ``p_cgc``). O formulário não declara método, então vai por GET.
+
+A sondagem de 27/11/2026 confirmou o primeiro passo com a página real de Goiânia em 2025 (guardada
+em ``testes/dados/federais/fnde_entidades_real.html``, reduzida): 406 entidades com CNPJ e centenas
+de pessoas físicas (bolsistas) sem CNPJ, que ficam de fora porque não há liberação a pedir por CNPJ
+e porque o nome de pessoa não é dado de entidade. O endereço antigo das liberações por CNPJ
+(``liberacoes_01_result_pc``) deu 404. A página de liberações de uma entidade ainda não foi lida na
+sondagem: o leitor dela segue o formato presumido (programa a programa, com data, ordem bancária,
+banco, agência, conta e valor, e a linha "Total:").
 
 A soma das liberações é conferida com a linha "Total:" da própria página: se não fechar, a leitura
 está errada (formato mudado) e o coletor falha às claras.
@@ -20,7 +28,11 @@ from . import comum_federal as cf
 BASE = "https://www.fnde.gov.br/pls/simad/"
 FORMULARIO = BASE + "internet_fnde.liberacoes_01_pc"
 ENTIDADES = BASE + "internet_fnde.liberacoes_result_pc"
-LIBERACOES = BASE + "internet_fnde.liberacoes_01_result_pc"
+LIBERACOES = ENTIDADES          # o formOculto da lista manda o CNPJ (p_cgc) ao mesmo endereço
+
+# enviarFormulario('ano', 'programa', 'uf', 'municipio', 'tipo de entidade', 'cnpj'), seguido do rótulo do link.
+CHAMADA = re.compile(r"enviarFormulario\(\s*'([^']*)'\s*,\s*'([^']*)'\s*,\s*'([^']*)'\s*,\s*'([^']*)'\s*,"
+                     r"\s*'([^']*)'\s*,\s*'([^']*)'\s*\)\s*;?\s*\"?\s*>\s*([^<]*)<")
 
 DATA = re.compile(r"^\d{2}/\d{2}/\d{4}$")
 CNPJ = re.compile(r"\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2}")
@@ -32,26 +44,42 @@ def formulario(ano: int, uf: str, ibge6: str) -> dict:
             "p_tp_entidade": ""}
 
 
-def url_liberacoes(ano: int, cnpj: str) -> str:
-    return f"{LIBERACOES}?p_ano={ano}&p_cgc={cf.digitos(cnpj)}&p_programa="
+def url_liberacoes(ano: int, cnpj: str, uf: str = "", ibge6: str = "", programa: str = "",
+                   tp_entidade: str = "") -> str:
+    """O formOculto da lista de entidades, com o CNPJ da entidade, como o navegador o envia (GET)."""
+    return (f"{LIBERACOES}?p_ano={ano}&p_programa={programa}&p_uf={uf}&p_municipio={str(ibge6)[:6]}"
+            f"&p_tp_entidade={tp_entidade}&p_cgc={cf.digitos(cnpj)}")
 
 
 def entidades(pagina: str) -> list[dict]:
-    """As entidades do município na lista do SIMAD: CNPJ, nome e o link das liberações, se houver.
+    """As entidades do município na lista do SIMAD: CNPJ, nome e o endereço das liberações.
 
-    Levanta ``ValueError`` se a página não traz nenhuma entidade com CNPJ (formato mudado).
+    Lê as chamadas ``enviarFormulario(...)`` da página real (o CNPJ vem em ``p_cgc``; as pessoas
+    físicas vêm com ``p_cgc`` vazio e ficam de fora), os links com ``p_cgc=`` e, por fim, as células
+    com CNPJ das tabelas. Levanta ``ValueError`` se a página não traz nenhuma entidade com CNPJ.
     """
     vistos: dict[str, dict] = {}
+    for ano, programa, uf, municipio, tp, cgc, rotulo in CHAMADA.findall(pagina):
+        cnpj = cf.digitos(cgc)
+        if len(cnpj) != 14:
+            continue
+        item = vistos.setdefault(cnpj, {"cnpj": cnpj, "nome": "",
+                                        "url": url_liberacoes(ano, cnpj, uf, municipio, programa, tp)})
+        rotulo = re.sub(r"\s+", " ", rotulo).strip()
+        if rotulo and not CNPJ.fullmatch(rotulo):
+            item["nome"] = item["nome"] or rotulo
     for href, rotulo in cf.links(pagina, ENTIDADES):
         if m := re.search(r"p_cgc=(\d{14})", href):
             nome = "" if CNPJ.fullmatch(rotulo.strip()) else rotulo
-            vistos.setdefault(m.group(1), {"cnpj": m.group(1), "nome": nome, "url": href})
+            vistos.setdefault(m.group(1), {"cnpj": m.group(1), "nome": nome, "url": None})
     for tabela in cf.tabelas_html(pagina):
         for linha in tabela:
             for i, celula in enumerate(linha):
                 if CNPJ.fullmatch(celula.strip()):
                     cnpj = cf.digitos(celula)
                     nome = next((c for c in linha[i + 1:] if c and not CNPJ.fullmatch(c)), "")
+                    if len(cnpj) != 14:
+                        continue
                     item = vistos.setdefault(cnpj, {"cnpj": cnpj, "nome": nome, "url": None})
                     item["nome"] = item["nome"] or nome
     if not vistos:

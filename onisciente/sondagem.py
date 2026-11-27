@@ -249,62 +249,80 @@ CANDIDATOS: dict[str, list[str]] = {
         "https://portaldatransparencia.gov.br/download-de-dados/ceis/20261126",
         "https://portaldatransparencia.gov.br/download-de-dados/cnep/20261126",
     ],
-    # Frente D1 (bloco 5): os modelos de endereço que os coletores federais tentam, para confirmar
-    # qual responde e com que formato (onisciente/coletores/{fns,fnde,transferegov,sancoes,...}.py).
+    # Frente D1 (bloco 5), segunda rodada (27/11/2026): o que a primeira sondagem deixou em aberto.
     "d1_fns": [
-        "https://apifns.saude.gov.br/api/",
-        "https://apifns.saude.gov.br/api/v1/",
-        "https://apifns.saude.gov.br/api/v1/repasses?municipio_ibge=520870&ano=2025&pagina=1&tamanho=1000",
-        "https://apifns.saude.gov.br/api/repasses?municipio_ibge=520870&ano=2025&pagina=1&tamanho=1000",
-        "https://apifns.saude.gov.br/api/v1/pagamentos?municipio_ibge=520870&ano=2025&pagina=1&tamanho=1000",
-        "https://apifns.saude.gov.br/api/repasses-fundo-a-fundo?municipio_ibge=520870&ano=2025&page=1&size=1000",
-        "https://apifns.saude.gov.br/swagger-ui/index.html",
-        "https://apifns.saude.gov.br/v3/api-docs",
-        "https://consultafns.saude.gov.br/recursos/repasse-dia/detalhar-pagamento?codigoMunicipio=520870&ano=2025"
-        "&page=1&count=1000",
-        "https://consultafns.saude.gov.br/recursos/consolidado/municipio?codigoMunicipio=520870&ano=2025",
-        "https://consultafns.saude.gov.br/app/app.js",
-        "https://consultafns.saude.gov.br/app/main.js",
+        # Os serviços do aplicativo (o app.js e o main.js não trazem os endereços da API).
+        "https://consultafns.saude.gov.br/app/controllers/portalController.js",
+        "https://consultafns.saude.gov.br/app/services/utilService.js",
+        "https://consultafns.saude.gov.br/app/pages/release/controllers/releaseController.js",
+        "https://consultafns.saude.gov.br/app/pages/repasse-dia/controllers/repasseDiaController.js",
+        "https://consultafns.saude.gov.br/app/pages/repasse-dia/services/repasseDiaService.js",
+        "https://consultafns.saude.gov.br/app/pages/repasse-dia/repasse-dia.html",
+        "https://consultafns.saude.gov.br/vendor/app-route/route.min.js",
+        # O serviço do "repasse dia" existe (400 com codigoMunicipio e ano): o período em datas.
+        "https://consultafns.saude.gov.br/recursos/repasse-dia/detalhar-pagamento?codigoMunicipio=520870"
+        "&dataPagamentoInicial=01/01/2025&dataPagamentoFinal=31/01/2025&page=1&count=10",
+        "https://consultafns.saude.gov.br/recursos/repasse-dia/detalhar-pagamento?municipio=520870"
+        "&dataInicial=01/01/2025&dataFinal=31/01/2025&page=1&count=10",
+        "https://consultafns.saude.gov.br/recursos/repasse-dia/consolidado?codigoMunicipio=520870"
+        "&dataPagamentoInicial=01/01/2025&dataPagamentoFinal=31/01/2025&page=1&count=10",
+        "https://consultafns.saude.gov.br/recursos/consulta-detalhada/detalhe-acao?codigoMunicipio=520870"
+        "&ano=2025&page=1&count=10",
+        "https://consultafns.saude.gov.br/recursos/municipios/uf/GO",
     ],
     "d1_fnde": [
-        "https://www.fnde.gov.br/pls/simad/internet_fnde.liberacoes_01_pc",
+        # As liberações de uma entidade: o formOculto da lista manda p_cgc ao mesmo endereço (GET).
+        "https://www.fnde.gov.br/pls/simad/internet_fnde.liberacoes_result_pc?p_ano=2025&p_programa=&p_uf=GO"
+        "&p_municipio=520870&p_tp_entidade=&p_cgc=01612092000123",
+        "https://www.fnde.gov.br/pls/simad/internet_fnde.liberacoes_result_pc?p_ano=2025&p_programa=&p_uf=GO"
+        "&p_municipio=520870&p_tp_entidade=&p_cgc=02439034000102",
         ("https://www.fnde.gov.br/pls/simad/internet_fnde.liberacoes_result_pc",
-         {"p_ano": "2025", "p_programa": "", "p_uf": "GO", "p_municipio": "520870", "p_tp_entidade": ""}),
-        "https://www.fnde.gov.br/pls/simad/internet_fnde.liberacoes_01_result_pc?p_ano=2025"
-        "&p_cgc=01612092000123&p_programa=",
+         {"p_ano": "2025", "p_programa": "", "p_uf": "GO", "p_municipio": "520870", "p_tp_entidade": "",
+          "p_cgc": "01612092000123"}),
     ],
     "d1_transferegov": [
+        # A API deu 503 em todas as rotas: de novo, e as vias em arquivo.
         "https://api.transferegov.gestao.gov.br/transferenciasespeciais/",
         "https://api.transferegov.gestao.gov.br/transferenciasespeciais/plano_acao_especial"
-        "?cnpj_beneficiario_plano_acao=eq.01612092000123&limit=1000&offset=0",
-        "https://api.transferegov.gestao.gov.br/transferenciasespeciais/programa_especial?limit=5",
-        "https://api.transferegov.gestao.gov.br/fundoafundo/",
-        "https://api.transferegov.gestao.gov.br/ted/",
+        "?cnpj_beneficiario_plano_acao=eq.01612092000123&limit=5&offset=0",
+        "https://docs.api.transferegov.gestao.gov.br/transferenciasespeciais/",
+        "https://repositorio.dados.gov.br/seges/detru/",
+        "https://portaldatransparencia.gov.br/download-de-dados/emendas-parlamentares/UNICO",
+        "https://dados.gov.br/dados/conjuntos-dados/transferencias-especiais",
     ],
     "d1_sancoes": [
-        "https://portaldatransparencia.gov.br/download-de-dados/ceis/20261126",
-        "https://portaldatransparencia.gov.br/download-de-dados/cnep/20261126",
-        "https://portaldatransparencia.gov.br/download-de-dados/ceis/20261125",
+        # Os endereços com data deram 403: a página de download (que diz a data publicada) e o
+        # repositório da CGU para onde o download encaminha.
+        "https://portaldatransparencia.gov.br/download-de-dados/ceis",
+        "https://portaldatransparencia.gov.br/download-de-dados/cnep",
+        "https://dadosabertos-download.cgu.gov.br/PortalDaTransparencia/saida/ceis/20261127_CEIS.zip",
+        "https://dadosabertos-download.cgu.gov.br/PortalDaTransparencia/saida/ceis/20261126_CEIS.zip",
+        "https://dadosabertos-download.cgu.gov.br/PortalDaTransparencia/saida/cnep/20261126_CNEP.zip",
+        "https://portaldatransparencia.gov.br/download-de-dados/ceis/20261127",
+        "https://dados.gov.br/dados/conjuntos-dados/cadastro-nacional-de-empresas-inidoneas-e-suspensas-ceis",
     ],
     "d1_economia_go": [
-        "https://www.transparencia.go.gov.br/api/repasses-municipios?ano=2025&municipio=5208707",
-        "https://www.transparencia.go.gov.br/portaldatransparencia/repasses-aos-municipios/?ano=2025",
-        "https://dadosabertos.go.gov.br/api/3/action/package_search?q=repasse%20municipios%20icms&rows=20",
-        "https://goias.gov.br/economia/repasses-aos-municipios/",
-        "https://www.economia.go.gov.br/repasses-aos-municipios.html",
-        "https://goias.gov.br/economia/",
+        # O menu do novo portal aponta a página de repasses no singular (o plural deu 404).
+        "https://goias.gov.br/economia/repasse-aos-municipios/",
+        "https://goias.gov.br/economia/icms/",
+        "https://goias.gov.br/economia/arrecadacao-estadual/",
+        "https://dadosabertos.go.gov.br/dataset/",
+        "https://www.transparencia.go.gov.br/",
     ],
     "d1_tcu": [
+        # A pesquisa respondeu (formato lido); os dados abertos deram conexão recusada: de novo.
         "https://dados-abertos.apps.tcu.gov.br/api/acordao/recupera-acordaos?inicio=0&quantidade=5",
         "https://pesquisa.apps.tcu.gov.br/rest/publico/base/acordao-completo/documentosResumidos?termo=%22Goi%C3%A2nia%22"
-        "&ordenacao=DTRELEVANCIA+desc%2C+NUMACORDAOINT+desc&quantidade=5&inicio=0&sinonimos=true",
+        "&ordenacao=DTRELEVANCIA+desc%2C+NUMACORDAOINT+desc&quantidade=100&inicio=0&sinonimos=true",
     ],
     "d1_tcm": [
-        "https://www.tcmgo.tc.br/",
-        "https://www.tcmgo.tc.br/pesquisaJurisprudencia/rest/pesquisa?termo=Goi%C3%A2nia&pagina=1",
-        "https://www.tcmgo.tc.br/site/jurisprudencia/?pesquisa=Goi%C3%A2nia&pagina=1",
-        "https://www.tcmgo.tc.br/site/?s=Goi%C3%A2nia&paged=1",
-        "https://www.tcm.go.gov.br/doc/",
+        # As páginas da primeira rodada não pesquisam; a pesquisa de verdade fica no virtual.tcmgo.
+        "https://virtual.tcmgo.tc.br/jurisprudencia/",
+        "https://www.tcmgo.tc.br/site/wp-json/wp/v2/search?search=Goi%C3%A2nia&per_page=20&page=1",
+        "https://www.tcmgo.tc.br/site/wp-json/tainacan/v2/collections",
+        "https://www.tcmgo.tc.br/site/contas-com-parecer-previo-pela-rejeicao-ou-julgamentos-irregulares/",
+        "https://www.tcmgo.tc.br/site/tcm-em-acao/julgamento-das-contas-de-governo-pelas-camaras-municipais/",
+        "https://acessoainformacao.tcmgo.tc.br/cidadao/outras_informacoes/debitos_multas_tcm",
     ],
     # Frente E (27/11): auditoria independente do Selo de Transparência (PNTP). As páginas que cada critério
     # da matriz (regras/pntp/matriz_2026.yml) manda olhar; onisciente/selo/coleta.py segue os links internos.
