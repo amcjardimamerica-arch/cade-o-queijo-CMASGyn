@@ -217,6 +217,31 @@ CANDIDATOS: dict[str, list[str]] = {
         "https://portaldatransparencia.gov.br/download-de-dados/ceis/20261126",
         "https://portaldatransparencia.gov.br/download-de-dados/cnep/20261126",
     ],
+    # Frente F (empresas contratadas): a base mensal do CNPJ da Receita (WebDAV do compartilhamento,
+    # índice antigo, página do compartilhamento e o dicionário de dados), o espelho por CNPJ com um
+    # fornecedor do banco, o CEPIM e a lista de inidôneos do TCU.
+    "f_cnpj": [
+        "https://arquivos.receitafederal.gov.br/public.php/webdav/Dados/Cadastros/CNPJ/",
+        "https://arquivos.receitafederal.gov.br/index.php/s/gn672Ad4CF8N6TK",
+        "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/",
+        "https://arquivos.receitafederal.gov.br/dados/cnpj/dados_abertos_cnpj/2026-11/",
+        "https://www.gov.br/receitafederal/dados/cnpj-metadados.pdf",
+    ],
+    "f_brasilapi": [
+        "https://brasilapi.com.br/api/cnpj/v1/16826800000104",
+        "https://minhareceita.org/16826800000104",
+    ],
+    "f_cepim": [
+        "https://portaldatransparencia.gov.br/download-de-dados/cepim/20261126",
+        "https://portaldatransparencia.gov.br/download-de-dados/cepim/20261125",
+    ],
+    "f_tcu": [
+        "https://certidoes.apps.tcu.gov.br/api/publico/responsaveis-inidoneos-com-paginacao",
+        "https://certidoes.apps.tcu.gov.br/api/publico/responsaveis-inidoneos-com-paginacao?pagina=0"
+        "&tamanhoPagina=50",
+        "https://certidoes.apps.tcu.gov.br/lista-inidoneos",
+        "https://contas.tcu.gov.br/ords/condenacao/consulta/inidoneos",
+    ],
 }
 
 

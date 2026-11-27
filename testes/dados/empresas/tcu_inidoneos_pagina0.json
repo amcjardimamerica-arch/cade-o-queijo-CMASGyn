@@ -1,0 +1,6 @@
+{"items": [
+  {"nome": "Carlos Inidoneo", "cpfCnpj": "***.777.888-**", "processo": "TC 000.111/2023-0",
+   "deliberacao": "Acórdão 100/2024-Plenário", "dataTransitoJulgado": "15/01/2024", "dataFinal": "15/01/2029", "uf": "GO"},
+  {"nome": "Construtora Inidonea Ltda", "cpfCnpj": "99.999.999/0001-91", "processo": "TC 000.222/2022-0",
+   "deliberacao": "Acórdão 200/2023-Plenário", "dataTransitoJulgado": "2023-03-01", "dataFinal": "2028-03-01"}
+], "hasMore": false, "limit": 500, "offset": 0}

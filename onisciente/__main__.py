@@ -9,6 +9,7 @@
     python -m onisciente historico --desde 2024-11 --ate 2026-11   (rede; banco + diagnóstico)
     python -m onisciente diagnostico          # refaz o diagnóstico a partir do banco, sem rede
     python -m onisciente painel-banco         # refaz só a página do banco no site, sem rede
+    python -m onisciente empresas             # confere as contratadas e escreve docs/onisciente/empresas.html
 """
 
 from __future__ import annotations
@@ -248,6 +249,10 @@ def main(argv: list[str] | None = None) -> int:
         .set_defaults(f=cmd_painel_banco)
     sub.add_parser("requisitos", help="reconta os 183 requisitos do projeto original") \
         .set_defaults(f=cmd_requisitos)
+    pe = sub.add_parser("empresas", help="confere as empresas contratadas (Receita, QSA, impedimentos)")
+    pe.add_argument("--banco", help="caminho do banco (padrão: dados/onisciente/historico.db)")
+    pe.add_argument("--saida", help="página a escrever (padrão: docs/onisciente/empresas.html)")
+    pe.set_defaults(f=lambda a: __import__("onisciente.conferencias.empresas", fromlist=["cmd"]).cmd(a))
     args = p.parse_args(argv)
     return args.f(args)
 
