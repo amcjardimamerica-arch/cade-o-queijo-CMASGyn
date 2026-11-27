@@ -46,13 +46,17 @@ class Rio:
 
 @dataclass(frozen=True)
 class Margens:
-    """As águas que não chegam: é nas margens que o parecer começa."""
+    """As águas que não chegam: é nas margens que o parecer começa.
+
+    ``pago_com_vinculo`` é ``None`` quando o pago ainda não se cruzou com os instrumentos (contrato,
+    termo, folha) item a item: a quarta margem fica sem medida, e nunca zero.
+    """
 
     previsto: float
     empenhado: float
     liquidado: float
     pago: float
-    pago_com_vinculo: float
+    pago_com_vinculo: float | None
 
     @property
     def previsto_nao_empenhado(self) -> float:
@@ -67,10 +71,12 @@ class Margens:
         return max(0.0, self.liquidado - self.pago)
 
     @property
-    def pago_sem_vinculo(self) -> float:
+    def pago_sem_vinculo(self) -> float | None:
+        if self.pago_com_vinculo is None:
+            return None
         return max(0.0, self.pago - self.pago_com_vinculo)
 
-    def como_dict(self) -> dict[str, float]:
+    def como_dict(self) -> dict[str, float | None]:
         return {
             "previsto_nao_empenhado": self.previsto_nao_empenhado,
             "empenhado_nao_liquidado": self.empenhado_nao_liquidado,

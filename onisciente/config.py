@@ -9,8 +9,9 @@ Trocar de município é trocar o arquivo do alvo: nenhuma linha de código muda.
 
 from __future__ import annotations
 
+import re
 import tomllib
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 
 from . import RAIZ
@@ -62,9 +63,9 @@ class Dominio:
         erros = []
         if not (len(self.funcao) == 2 and self.funcao.isdigit()):
             erros.append(f"{self.id}: função orçamentária inválida {self.funcao!r}")
-        for f, s in self.recortes:
-            if not (len(f) == 2 and f.isdigit()) or (s is not None and not (len(s) == 3 and s.isdigit())):
-                erros.append(f"{self.id}: recorte inválido {f}.{s}")
+        for r in self.recorte:   # escrito como no toml: "10" (função) ou "15.452" (função.subfunção)
+            if not re.fullmatch(r"\d{2}(\.\d{3})?", str(r)):
+                erros.append(f"{self.id}: recorte inválido {r!r} (use \"10\" ou \"15.452\")")
         if self.funcao not in self.funcoes:
             erros.append(f"{self.id}: a função principal {self.funcao} não está no recorte")
         for f in self.fontes_vinculadas:
@@ -117,8 +118,10 @@ def carregar_alvo(caminho: Path | str | None = None) -> Alvo:
     caminho = Path(caminho) if caminho else ALVO_PADRAO
     bruto = tomllib.loads(caminho.read_text(encoding="utf-8"))
     dominios = {}
+    nomes = bruto.get("nomes_dominios", {})   # o nome local da pasta, se o ente a chama de outro jeito
     for chave, rel in bruto.get("dominios", {}).items():
-        dominios[chave] = carregar_dominio(RAIZ / rel)
+        d = carregar_dominio(RAIZ / rel)
+        dominios[chave] = replace(d, nome=str(nomes[chave])) if chave in nomes else d
     mes, dia = bruto.get("abertura_sessao_legislativa", [2, 1])
     return Alvo(
         nome=bruto["nome"],
