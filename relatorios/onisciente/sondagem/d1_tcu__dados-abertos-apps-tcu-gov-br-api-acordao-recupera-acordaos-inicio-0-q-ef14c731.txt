@@ -1,0 +1,7 @@
+URL: https://dados-abertos.apps.tcu.gov.br/api/acordao/recupera-acordaos?inicio=0&quantidade=5
+POST: {}
+OK: False
+HTTP: None
+ERRO: URLError: [Errno 104] Connection reset by peer
+BYTES: 0
+
