@@ -46,6 +46,9 @@ NOME_DOS_MOTORES = {
     "economia_go": "Cota-parte do Estado (Secretaria da Economia de Goiás)",
     "tcu": "Decisões do TCU",
     "tcm": "Decisões do TCM-GO",
+    "execucao_goiania": "Execução item a item no portal de Goiânia (TransWeb)",
+    "cnpj": "Cadastro das empresas na Receita Federal (CNPJ e QSA)",
+    "impedimentos": "Impedimentos (CEPIM e inidôneos do TCU)",
 }
 
 

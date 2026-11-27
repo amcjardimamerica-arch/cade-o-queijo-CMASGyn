@@ -85,10 +85,12 @@ RODADAS: dict[str, Rodada] = {r.nome: r for r in (
         Grupo(("siconfi", "siops", "siope", "fnas"), janela=12),
         Grupo(("msc", "tesouro", "transferencias", "fontes"), janela=3),
         Grupo(("economia_go",), janela=3),    # cota-parte do Estado (ICMS e IPVA)
+        Grupo(("cnpj",), janela=1),           # base mensal da Receita; nos outros meses, só os CNPJs novos
     ), fluxo="onisciente-agenda-mensal.yml"),
     Rodada("leis", "Leis federais e de Goiânia e decisões dos tribunais de contas", "toda segunda-feira, 9h em Goiânia", 7, (
         Grupo(("normas",), janela=1),
         Grupo(("tcu", "tcm"), janela=1),
+        Grupo(("impedimentos",), janela=1),   # CEPIM e inidôneos do TCU
     ), fluxo="onisciente-agenda-leis.yml"),
     Rodada("serie", "Série histórica desde o primeiro exercício", "todo dia 10, 13h em Goiânia", 31, (
         Grupo(("siconfi", "siops", "siope", "fnas", "msc", "tesouro", "transferencias", "sileg",

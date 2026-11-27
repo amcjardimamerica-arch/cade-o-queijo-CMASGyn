@@ -11,6 +11,7 @@
     python -m onisciente painel-banco         # refaz só a página do banco no site, sem rede
     python -m onisciente selo                 # auditoria independente do selo de transparência (PNTP)
     python -m onisciente selo --sondar        # lê antes o portal, o Radar e o sítio do Conselho (rede)
+    python -m onisciente empresas             # confere as contratadas e escreve docs/onisciente/empresas.html
 """
 
 from __future__ import annotations
@@ -277,6 +278,10 @@ def main(argv: list[str] | None = None) -> int:
     ps.add_argument("--hoje", help="AAAA-MM-DD (padrão: hoje)")
     ps.add_argument("--banco", help="banco histórico (padrão: dados/onisciente/historico.db)")
     ps.set_defaults(f=cmd_selo)
+    pe = sub.add_parser("empresas", help="confere as empresas contratadas (Receita, QSA, impedimentos)")
+    pe.add_argument("--banco", help="caminho do banco (padrão: dados/onisciente/historico.db)")
+    pe.add_argument("--saida", help="página a escrever (padrão: docs/onisciente/empresas.html)")
+    pe.set_defaults(f=lambda a: __import__("onisciente.conferencias.empresas", fromlist=["cmd"]).cmd(a))
     args = p.parse_args(argv)
     return args.f(args)
 
