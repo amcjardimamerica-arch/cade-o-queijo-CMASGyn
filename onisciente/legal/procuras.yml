@@ -1,0 +1,52 @@
+# O que o motor de normas procura no índice do Sileg toda semana.
+#
+# Cada entrada aponta para uma norma do mapa legal (regras/mapa_legal.yml) que o mapa dá
+# como não localizada, ou para um documento que o sistema precisa e que sai no Diário
+# Oficial (o QDD do exercício). Cada alvo é procurado de um dos dois jeitos:
+#
+#   tipo, numero, ano  -> pelo identificador no índice (lo, lc, dc); achado, o endereço
+#                         oficial sai do padrão do Sileg e é lido para confirmar.
+#   texto (ano/desde)  -> pela frase no texto integral das edições do Diário Oficial.
+#
+# O que não for achado vira item de ofício (onisciente.legal.normas.ausencias), com o
+# fundamento da Lei de Acesso. Achado, o item sai do ofício na rodada seguinte.
+
+procuras:
+  - norma: decretos-963-967-2022-e-3-182-2023
+    procurar:
+      - {tipo: dc, numero: 963, ano: 2022, rotulo: "Decreto 963/2022"}
+      - {tipo: dc, numero: 967, ano: 2022, rotulo: "Decreto 967/2022"}
+      - {tipo: dc, numero: 3182, ano: 2023, rotulo: "Decreto 3.182/2023"}
+
+  - norma: parcerias-com-organizacoes-sociais
+    procurar:
+      - {tipo: lo, numero: 8248, ano: 2004, rotulo: "Lei 8.248/2004 (parcerias)"}
+      - {texto: "regulamenta a Lei Federal nº 13.019", desde: 2016,
+         rotulo: "Decreto municipal que regulamenta a Lei 13.019/2014"}
+
+  - norma: lc-091-2000-e-lei-7-997-2000
+    procurar:
+      - {tipo: lc, numero: 91, ano: 2000, rotulo: "Lei Complementar 91/2000 (magistério)"}
+      - {tipo: lo, numero: 7997, ano: 2000, rotulo: "Lei 7.997/2000 (magistério)"}
+
+  - norma: subsidios-diarias-veiculos-e-telefonia
+    procurar:
+      - {texto: "fixa os subsídios do Prefeito", desde: 2024,
+         rotulo: "Lei de subsídios do Prefeito, do Vice e dos Secretários (2025-2028)"}
+      - {texto: "valores das diárias", desde: 2021, rotulo: "Tabela de diárias do Executivo"}
+      - {texto: "uso de veículos oficiais", desde: 2021, rotulo: "Norma de uso de veículos oficiais"}
+      - {texto: "verba de representação", desde: 2021, rotulo: "Norma da verba de representação"}
+
+  - norma: plano-municipal-de-saude
+    procurar:
+      - {texto: "Plano Municipal de Saúde 2026-2029", desde: 2025,
+         rotulo: "Plano Municipal de Saúde 2026-2029"}
+
+  # Requisito 139: o Quadro de Detalhamento da Despesa do exercício, que detalha a LOA por
+  # elemento e fonte. Sai por decreto no Diário Oficial no começo do ano.
+  - documento: qdd-2026
+    nome: Quadro de Detalhamento da Despesa (QDD) de 2026
+    conferencia: dotação de cada ação por elemento de despesa e por fonte, a base da execução contra o orçamento
+    fundamento: Lei 4.320/1964, art. 8º; Lei 12.527/2011, art. 8º; Lei Complementar 101/2000, art. 48
+    procurar:
+      - {texto: "Quadro de Detalhamento da Despesa", ano: 2026, rotulo: "QDD 2026 no Diário Oficial"}

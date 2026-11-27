@@ -37,7 +37,13 @@ SAIDA = RAIZ / "relatorios" / "onisciente"
 SICONFI = "https://apidatalake.tesouro.gov.br/ords/siconfi/tt/"
 SICONFI_ANTIGAS = ("https://apidatatransparencia.tesouro.gov.br/ords/siconfi/tt/",
                    "https://apidados.tesouro.gov.br/ords/siconfi/tt/")
-QUERIDO_DIARIO = "https://api.queridodiario.ok.org.br/gazettes"
+# O Querido Diário mudou a API para o próprio domínio (queridodiario.ok.org.br/api); o
+# subdomínio antigo passou a recusar o aperto de mão TLS (alerta 40) para qualquer cliente,
+# curl e openssl inclusive, nas rodadas de 26 e 27/11. A via nova vem primeiro; a antiga
+# fica de reserva, e a que respondeu fica anotada no banco (meta ``qd_via``).
+QUERIDO_DIARIO_VIAS = ("https://queridodiario.ok.org.br/api/gazettes",
+                       "https://api.queridodiario.ok.org.br/gazettes")
+QUERIDO_DIARIO = QUERIDO_DIARIO_VIAS[0]
 SILEG_SOLR = "https://sileg.goiania.go.gov.br/solr-4.1.0/select"
 PNCP = "https://pncp.gov.br/api/consulta/v1/"
 TESOURO_PACOTE = ("https://www.tesourotransparente.gov.br/ckan/api/3/action/package_show"
@@ -562,7 +568,20 @@ def motor_siconfi(ctx: Contexto, ente: int) -> None:
 
 # --- Motor 2: Diário Oficial (Querido Diário e índice do SILEG) -------------------------
 
+def _qd_via_caiu(leitura: base.Leitura) -> bool:
+    """A via do Querido Diário não existe ou não fala com o robô (rede, TLS, 404/410/403):
+    vale tentar a outra via. Uma recusa por pressa (429) ou um 5xx não troca de via."""
+    return not leitura.ok and (leitura.http is None or leitura.http in (403, 404, 410))
+
+
 def motor_querido_diario(ctx: Contexto, ibge: int) -> None:
+    """Edições do Diário Oficial do mês pelo Querido Diário, todas e as com os termos da pasta.
+
+    Tenta as vias em ordem: a primeira que responder fica para o resto da rodada. Se nenhuma
+    responder, cada mês fica com o erro da última via tentada (falha do sistema, não do Município).
+    """
+    vias = list(QUERIDO_DIARIO_VIAS)
+    via_boa: str | None = None
     for mes in ctx.meses:
         inicio, fim = f"{mes}-01", fim_do_mes(mes).isoformat()
         edicoes: dict[tuple, dict] = {}
@@ -574,12 +593,19 @@ def motor_querido_diario(ctx: Contexto, ibge: int) -> None:
                           "published_until": fim, "size": 100, "offset": offset}
                 if com_termos:
                     params["querystring"] = " | ".join(f'"{t}"' for t in TERMOS)
-                leitura = ctx.ler("qd", f"{'termos' if com_termos else 'edicoes'}",
-                                  QUERIDO_DIARIO + "?" + urlencode(params), mes=mes)
+                consulta = "?" + urlencode(params)
+                alvo = f"{'termos' if com_termos else 'edicoes'}"
+                for via in ([via_boa] if via_boa else vias):
+                    leitura = ctx.ler("qd", alvo, via + consulta, mes=mes)
+                    if leitura.ok or not _qd_via_caiu(leitura):
+                        break
                 dados = _json(leitura) if leitura.ok else None
                 if dados is None:
                     erro = leitura.erro or "resposta não é JSON"
                     break
+                if via_boa is None:
+                    via_boa = via
+                    ctx.banco.inserir("meta", {"chave": "qd_via", "valor": via})
                 pagina = dados.get("gazettes") or []
                 for g in pagina:
                     chave = (g.get("date"), str(g.get("edition") or ""), bool(g.get("is_extra_edition")))
@@ -598,23 +624,62 @@ def motor_querido_diario(ctx: Contexto, ibge: int) -> None:
             "com_termos": sum(i["com_termos"] for i in edicoes.values()), "erro": erro})
 
 
+# Os dias em que o Diário saiu, edição a edição, pelo índice do SILEG: a base da
+# tempestividade (quantos dias úteis do mês tiveram Diário) contada no próprio coletor.
+DIARIO_DIAS = """CREATE TABLE IF NOT EXISTS diario_oficial_dias (fonte TEXT, mes TEXT, data TEXT,
+    edicoes INTEGER, PRIMARY KEY (fonte, mes, data))"""
+RE_EDICAO_SILEG = re.compile(r"do_(\d{8})_")
+
+
+def dias_das_edicoes(ids) -> dict[str, int]:
+    """``{'AAAA-MM-DD': edições}`` a partir dos identificadores do índice (``do_AAAAMMDD_...``)."""
+    dias: dict[str, int] = {}
+    for i in ids:
+        m = RE_EDICAO_SILEG.search(str(i))
+        if not m:
+            continue
+        s = m.group(1)
+        try:
+            dia = date(int(s[:4]), int(s[4:6]), int(s[6:8])).isoformat()
+        except ValueError:
+            continue
+        dias[dia] = dias.get(dia, 0) + 1
+    return dias
+
+
 def motor_sileg(ctx: Contexto) -> None:
+    """Edições do mês no índice do SILEG (todas e as com os termos) e os dias em que saíram."""
+    ctx.banco.con.execute(DIARIO_DIAS)
     clausula = " OR ".join(f'attr_content:"{t}"' for t in TERMOS)
     for mes in ctx.meses:
         prefixo = mes.replace("-", "")
         contagem, erro = {}, None
-        for chave, q in (("edicoes", f"id:*do_{prefixo}*"),
-                         ("com_termos", f"id:*do_{prefixo}* AND ({clausula})")):
-            url = SILEG_SOLR + "?" + urlencode({"q": q, "rows": 0, "wt": "json"})
+        dias: dict[str, int] | None = None
+        for chave, q, linhas in (("edicoes", f"id:*do_{prefixo}*", 400),
+                                 ("com_termos", f"id:*do_{prefixo}* AND ({clausula})", 0)):
+            params = {"q": q, "rows": linhas, "wt": "json"}
+            if linhas:
+                params["fl"] = "id"
+            url = SILEG_SOLR + "?" + urlencode(params)
             leitura = ctx.ler("sileg", chave, url, mes=mes, tentativas=2, tempo=45)
             dados = _json(leitura) if leitura.ok else None
             if dados is None:
                 erro = leitura.erro or "resposta não é JSON"
                 break
-            contagem[chave] = int(dados.get("response", {}).get("numFound", 0))
+            resposta = dados.get("response", {})
+            contagem[chave] = int(resposta.get("numFound", 0))
+            if linhas:
+                docs = resposta.get("docs") or []
+                if len(docs) >= contagem[chave]:      # todas as edições vieram: os dias valem
+                    dias = dias_das_edicoes(d.get("id") for d in docs)
         ctx.banco.inserir("diario_oficial_mes", {
             "fonte": "sileg", "mes": mes, "edicoes": contagem.get("edicoes"),
             "com_termos": contagem.get("com_termos"), "erro": erro})
+        if dias is not None:
+            ctx.banco.con.execute("DELETE FROM diario_oficial_dias WHERE fonte = 'sileg' AND mes = ?", (mes,))
+            for dia, n in sorted(dias.items()):
+                ctx.banco.inserir("diario_oficial_dias", {"fonte": "sileg", "mes": mes, "data": dia,
+                                                          "edicoes": n})
 
 
 # --- Motor 3: repasses federais (FNAS) -------------------------------------------------
@@ -1811,14 +1876,36 @@ def motor_fontes(ctx: Contexto) -> None:
 
 
 def motor_normas(ctx: Contexto) -> None:
-    from .coletores.leis import conferir_ctresb
+    """A régua legal: as normas federais no ctresb/leis, as de Goiânia no Sileg (cada endereço
+    oficial do mapa legal) e a procura, no índice do Sileg, do que o mapa dá como não localizado."""
+    from .coletores import leis
+    from .legal.mapa import carregar
 
     def ler(url, **kw):
         return ctx.ler("ctresb", url.rsplit("/", 1)[-1], url, tentativas=2)
-    for r in conferir_ctresb(ler_url=ler):
+    for r in leis.conferir_ctresb(ler_url=ler):
         ctx.banco.inserir("normas", {"caminho": r["caminho"], "ok": int(r["ok"]),
                                      "revogada": int(bool(r.get("revogada"))),
                                      "erro": r.get("erro")})
+
+    for ddl in leis.TABELAS:
+        ctx.banco.con.execute(ddl)
+    ctx.banco.con.execute("DELETE FROM normas_municipais")
+    ctx.banco.con.execute("DELETE FROM normas_procura")
+    ctx.banco.con.execute("DELETE FROM coletas WHERE motor IN ('sileg-normas', 'sileg-procura')")
+    mapa = carregar()
+    for n in leis.normas_municipais(mapa):
+        r = leis.ler_norma_municipal(
+            n["url"], ler_url=lambda url, **kw: ctx.ler("sileg-normas", n["norma_id"][:80], url,
+                                                       tentativas=2, tempo=60))
+        ctx.banco.inserir("normas_municipais", {**n, **{k: r[k] for k in (
+            "ok", "http", "bytes", "sha256", "formato", "inicio", "aviso_revogacao", "erro")}})
+    for p in leis.carregar_procuras():
+        chave = p.get("norma") or p.get("documento")
+        for alvo in p.get("procurar") or []:
+            r = leis.procurar(alvo, mapa, ler_url=lambda url, **kw: ctx.ler(
+                "sileg-procura", chave[:80], url, tentativas=2, tempo=60))
+            ctx.banco.inserir("normas_procura", {"norma_id": chave, **r})
 
 
 MOTORES = ("siconfi", "querido_diario", "sileg", "fnas", "pncp", "fontes", "normas", "tesouro", "siops", "siope",
