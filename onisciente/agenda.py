@@ -74,20 +74,24 @@ RODADAS: dict[str, Rodada] = {r.nome: r for r in (
     Rodada("diaria", "Diário Oficial e compras públicas", "todo dia, 23h em Goiânia", 1, (
         Grupo(("sileg", "querido_diario"), janela=2),
         Grupo(("pncp", "pncp_detalhe"), janela=2, modo="continuar", reabrir=("meses",)),
+        Grupo(("sancoes",), janela=1),        # CEIS e CNEP: o arquivo do dia substitui o anterior
     ), fluxo="onisciente-agenda-diaria.yml"),
-    Rodada("precos", "Painel de preços (Compras.gov.br)", "toda quarta-feira, 9h em Goiânia", 7, (
+    Rodada("precos", "Painel de preços e repasses federais", "toda quarta-feira, 9h em Goiânia", 7, (
         Grupo(("pncp_detalhe",), janela=1, modo="continuar", reabrir=("precos",)),
+        Grupo(("fns", "fnde", "transferegov"), janela=3),
     ), fluxo="onisciente-agenda-precos.yml"),
     Rodada("mensal", "Contas do Tesouro, saúde, educação e repasses", "todo dia 2, 6h em Goiânia", 31, (
         Grupo(("siconfi", "siops", "siope", "fnas"), janela=12),
         Grupo(("msc", "tesouro", "transferencias", "fontes"), janela=3),
+        Grupo(("economia_go",), janela=3),    # cota-parte do Estado (ICMS e IPVA)
     ), fluxo="onisciente-agenda-mensal.yml"),
-    Rodada("leis", "Leis federais e de Goiânia", "toda segunda-feira, 9h em Goiânia", 7, (
+    Rodada("leis", "Leis federais e de Goiânia e decisões dos tribunais de contas", "toda segunda-feira, 9h em Goiânia", 7, (
         Grupo(("normas",), janela=1),
+        Grupo(("tcu", "tcm"), janela=1),
     ), fluxo="onisciente-agenda-leis.yml"),
     Rodada("serie", "Série histórica desde o primeiro exercício", "todo dia 10, 13h em Goiânia", 31, (
         Grupo(("siconfi", "siops", "siope", "fnas", "msc", "tesouro", "transferencias", "sileg",
-               "querido_diario"), janela=12),
+               "querido_diario", "fns", "fnde", "transferegov", "economia_go"), janela=12),
         # O detalhe das compras do trecho novo fica com a rodada diária, que lê o banco inteiro.
         Grupo(("pncp",), janela=12, modo="continuar", reabrir=("meses",)),
     ), fluxo="onisciente-agenda-serie.yml"),

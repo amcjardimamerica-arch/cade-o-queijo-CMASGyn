@@ -37,6 +37,15 @@ NOME_DOS_MOTORES = {
     "transferencias": "Transferências federais (Portal da Transparência)",
     "msc": "Matriz de Saldos Contábeis (SICONFI)",
     "pncp_detalhe": "Detalhe das compras e contratos (PNCP e Compras.gov.br)",
+    "sileg-normas": "Leis de Goiânia baixadas do SILEG",
+    "sileg-procura": "Procura das leis não localizadas no SILEG",
+    "fns": "Fundo Nacional de Saúde (repasses fundo a fundo)",
+    "fnde": "FNDE (liberações da educação)",
+    "transferegov": "Transferegov (transferências especiais e convênios)",
+    "sancoes": "Empresas punidas (CEIS e CNEP)",
+    "economia_go": "Cota-parte do Estado (Secretaria da Economia de Goiás)",
+    "tcu": "Decisões do TCU",
+    "tcm": "Decisões do TCM-GO",
 }
 
 
