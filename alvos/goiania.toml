@@ -36,7 +36,7 @@ abertura_sessao_legislativa = [2, 1]
 
 # A execução da despesa item a item (empenhos, liquidações, ordens de pagamento e pagamentos):
 # endereços, campos e colunas do portal ficam neste arquivo, para ajustar sem mudar código.
-portal_despesa = "alvos/goiania_portal.toml"
+portal_despesa = "alvos/portais/goiania.toml"
 
 # Período global do sistema: um exercício, um intervalo ou todos.
 primeiro_exercicio = 2019

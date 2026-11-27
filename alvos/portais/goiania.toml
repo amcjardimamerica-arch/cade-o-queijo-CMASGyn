@@ -1,0 +1,112 @@
+# Coletor da execução da despesa de Goiânia: empenhos, liquidações, ordens de pagamento e pagamentos,
+# por órgão e por credor (requisitos 30, 105 e 141).
+#
+# O que se sabe do portal veio de páginas públicas lidas em 27/11/2026, ainda não conferidas ao vivo:
+#   * o TransWeb (ASP.NET) em www10.goiania.go.gov.br/transweb/, com as consultas do manual de 2010
+#     ("Empenho por Órgão", "Empenho por Número", "Empenho por Credor", "Ordem de Pagamento por Órgão");
+#   * o portal novo (WordPress) em www.goiania.go.gov.br/transparencia/, com as categorias Despesas,
+#     Diárias, Convênios e Transferências e Contratos.
+# Nenhum caminho .aspx das consultas está confirmado. Por isso cada página é uma lista de candidatos
+# (o coletor usa o primeiro que responde com o formulário esperado) e cada campo é uma lista de
+# nomes possíveis: o nome real do ASP.NET (ctl00$Conteudo$txtData...) casa por igualdade, depois
+# pelo fim do nome, depois por trecho, sem diferença de maiúsculas. A sondagem (chaves d2_* em
+# onisciente/sondagem.py) traz os nomes reais; ajustar aqui não muda código.
+
+[transweb]
+base = "https://www10.goiania.go.gov.br/transweb/"
+# Páginas de entrada, para achar as consultas pelos links quando os caminhos abaixo falharem.
+entradas = ["Home.aspx", "PortaldaTransparencia.aspx?Antigo=True", "Default.aspx"]
+confirmado = false
+formato_data = "%d/%m/%Y"
+# Paginação do GridView: o coletor segue __doPostBack(grid, 'Page$N') até esta página.
+paginas_maximas = 200
+
+[[transweb.consultas]]
+id = "empenho_orgao"
+tipo = "empenho"
+titulo = "Empenho por Órgão"
+paginas = ["EmpenhoOrgao.aspx", "ConsultaEmpenhoOrgao.aspx", "Empenho/EmpenhoPorOrgao.aspx",
+           "EmpenhoPorOrgao.aspx", "Consultas/EmpenhoOrgao.aspx"]
+# O manual descreve a consulta por dia (data dia/mês/ano + órgão): uma consulta por dia e por órgão.
+granularidade = "dia"
+percorre_orgaos = true
+botao = ["btnConsultar", "Consultar", "btnPesquisar"]
+detalhe = true            # escolher cada empenho e ler o detalhe (liquidações e pagamentos)
+[transweb.consultas.campos]
+data = ["txtData", "Data", "txtDataEmpenho", "dtData"]
+orgao = ["ddlOrgao", "Orgao", "cboOrgao", "drpOrgao"]
+[transweb.consultas.colunas]
+empenho = ["Empenho", "Nº Empenho", "Número do Empenho", "Numero", "Número", "Nota de Empenho"]
+data = ["Data", "Data do Empenho", "Data Empenho", "Emissão"]
+credor = ["Credor", "Favorecido", "Nome do Credor", "Razão Social", "Nome"]
+documento = ["CPF/CNPJ", "CNPJ/CPF", "CNPJ", "CPF", "Documento"]
+valor = ["Valor", "Valor Empenhado", "Valor do Empenho", "Vlr. Empenhado"]
+orgao = ["Órgão", "Orgao", "Unidade"]
+dotacao = ["Dotação", "Dotação Compactada", "Dotacao"]
+elemento = ["Elemento", "Natureza", "Natureza da Despesa", "Elemento de Despesa"]
+fonte = ["Fonte", "Fonte de Recurso", "Fonte de Recursos"]
+historico = ["Histórico", "Historico", "Objeto", "Descrição"]
+
+[[transweb.consultas]]
+id = "empenho_credor"
+tipo = "empenho"
+titulo = "Empenho por Credor"
+paginas = ["EmpenhoCredor.aspx", "ConsultaEmpenhoCredor.aspx", "EmpenhoPorCredor.aspx"]
+# Com período (data inicial e final): usada para seguir um credor (os do PNCP) no exercício.
+granularidade = "intervalo"
+percorre_orgaos = false
+botao = ["btnConsultar", "Consultar"]
+detalhe = true
+[transweb.consultas.campos]
+documento = ["txtCpfCnpj", "CpfCnpj", "CPF", "CNPJ", "txtCredor"]
+data_inicial = ["txtDataInicial", "DataInicial", "txtDtInicial", "dtInicio"]
+data_final = ["txtDataFinal", "DataFinal", "txtDtFinal", "dtFim"]
+orgao = ["ddlOrgao", "Orgao"]
+[transweb.consultas.colunas]
+empenho = ["Empenho", "Nº Empenho", "Número", "Numero"]
+data = ["Data", "Data do Empenho"]
+credor = ["Credor", "Favorecido", "Nome"]
+documento = ["CPF/CNPJ", "CNPJ", "CPF"]
+valor = ["Valor", "Valor Empenhado"]
+orgao = ["Órgão", "Orgao", "Unidade"]
+elemento = ["Elemento", "Natureza"]
+fonte = ["Fonte", "Fonte de Recurso"]
+historico = ["Histórico", "Historico"]
+
+[[transweb.consultas]]
+id = "ordem_pagamento_orgao"
+tipo = "ordem_pagamento"
+titulo = "Ordem de Pagamento por Órgão"
+paginas = ["OrdemPagamentoOrgao.aspx", "ConsultaOrdemPagamento.aspx", "OrdemPagamento.aspx",
+           "OrdemDePagamentoPorOrgao.aspx"]
+granularidade = "dia"
+percorre_orgaos = true
+botao = ["btnConsultar", "Consultar"]
+detalhe = false
+[transweb.consultas.campos]
+data = ["txtData", "Data", "txtDataPagamento"]
+orgao = ["ddlOrgao", "Orgao", "cboOrgao"]
+[transweb.consultas.colunas]
+ordem = ["Ordem", "Ordem de Pagamento", "Nº OP", "OP"]
+empenho = ["Empenho", "Nº Empenho"]
+data = ["Data", "Data de Pagamento", "Data da OP"]
+credor = ["Credor", "Favorecido", "Nome"]
+documento = ["CPF/CNPJ", "CNPJ", "CPF"]
+valor = ["Valor", "Valor Pago", "Valor da OP", "Valor Líquido"]
+orgao = ["Órgão", "Orgao"]
+fonte = ["Fonte", "Fonte de Recurso"]
+
+# As tabelas do detalhe de um empenho: qual tipo de evento cada uma traz, pelo cabeçalho.
+[transweb.detalhe]
+liquidacao = ["Liquidação", "Liquidacao", "Data da Liquidação", "Valor Liquidado"]
+ordem_pagamento = ["Ordem de Pagamento", "Nº OP", "Data da OP"]
+pagamento = ["Pagamento", "Data do Pagamento", "Valor Pago"]
+anulacao = ["Anulação", "Anulacao", "Estorno"]
+
+# O portal novo (WordPress): a lista de arquivos de cada categoria. Quando houver planilha (CSV),
+# ela é lida com as mesmas colunas da consulta de empenhos.
+[wordpress]
+base = "https://www.goiania.go.gov.br/transparencia/"
+categorias = { despesas = 49 }   # 49 é o exemplo de filtro visto nas páginas públicas; a sondagem confirma se é a de Despesas
+filtro = "?filtro_simplificado=categoria&categoria={categoria}"
+formatos = ["csv", "xls", "xlsx", "ods", "pdf", "json"]
