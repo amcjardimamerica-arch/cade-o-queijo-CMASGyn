@@ -75,7 +75,7 @@ RODADAS: dict[str, Rodada] = {r.nome: r for r in (
         Grupo(("sileg", "querido_diario"), janela=2),
         Grupo(("pncp", "pncp_detalhe"), janela=2, modo="continuar", reabrir=("meses",)),
         Grupo(("sancoes",), janela=1),        # CEIS e CNEP: o arquivo do dia substitui o anterior
-        Grupo(("execucao_goiania",), janela=1),  # empenhos e pagamentos do portal; continua de onde parou
+        Grupo(("execucao_goiania",), janela=2),  # empenhos e pagamentos; o próprio motor continua de onde parou
     ), fluxo="onisciente-agenda-diaria.yml"),
     Rodada("precos", "Painel de preços e repasses federais", "toda quarta-feira, 9h em Goiânia", 7, (
         Grupo(("pncp_detalhe",), janela=1, modo="continuar", reabrir=("precos",)),
