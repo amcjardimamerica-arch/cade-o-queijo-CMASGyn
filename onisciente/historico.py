@@ -29,7 +29,7 @@ from typing import Callable
 from urllib.parse import urlencode
 
 from . import RAIZ
-from .coletores import base, msc, siope, siops, transparencia
+from .coletores import base, goiania_transweb, msc, siope, siops, transparencia
 
 BANCO = RAIZ / "dados" / "onisciente" / "historico.db"
 SAIDA = RAIZ / "relatorios" / "onisciente"
@@ -1920,6 +1920,18 @@ ESQUEMA += _mf.ESQUEMA
 TABELAS_DO_MOTOR.update(_mf.TABELAS_DO_MOTOR)
 MOTORES += _mf.MOTORES
 TEMPO_DO_MOTOR.update(_mf.TEMPO_DO_MOTOR)
+
+# Bloco 6: execução item a item no portal do Município (TransWeb e WordPress), frente D2.
+ESQUEMA += goiania_transweb.TABELAS_SQL
+TABELAS_DO_MOTOR["execucao_goiania"] = goiania_transweb.TABELAS_DO_MOTOR
+MOTORES += ("execucao_goiania",)
+TEMPO_DO_MOTOR["execucao_goiania"] = 60
+
+
+def _motor_execucao(ctx, alvo) -> None:
+    if not alvo.portal_despesa:
+        raise RuntimeError("o alvo não tem portal_despesa configurado: execução item a item não conferida")
+    goiania_transweb.motor(ctx, goiania_transweb.carregar_portal(alvo.portal_despesa))
 PARALELO = 6           # leituras simultâneas nas vias de detalhe (só onde o motor antecipa)
 
 
@@ -1981,6 +1993,7 @@ def rodar(desde: str, ate: str, *, motores=MOTORES, caminho=BANCO, hoje: date | 
         "pncp_detalhe": lambda: motor_pncp_detalhe(ctx, alvo.ibge),
     }
     chamadas.update(_mf.chamadas(ctx, alvo))
+    chamadas["execucao_goiania"] = lambda: _motor_execucao(ctx, alvo)
     for nome in motores:
         inicio = time.monotonic()
         if tempo_limitado:

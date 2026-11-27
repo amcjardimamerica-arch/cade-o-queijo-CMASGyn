@@ -370,7 +370,7 @@ def _seguir(fonte: str, url: str, leitura) -> list:
         return []
     texto = leitura.texto
     novos: list = []
-    if fonte in ("goiania", "fns2", "fnde2"):
+    if fonte in ("goiania", "fns2", "fnde2") or fonte.startswith("d2_"):
         # As páginas dos portais: os links internos (.aspx, scripts com os endereços da API).
         base = re.match(r"https?://[^/]+", url).group(0)
         for href in re.findall(r"""(?:href|src)=["']([^"'#]+\.(?:aspx|js|php)[^"']*)["']""", texto, re.I):
