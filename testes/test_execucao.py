@@ -1,5 +1,8 @@
 """A execução da despesa item a item (Frente D2): o coletor do portal e as conferências da execução.
 
+As fixtures ``portal_antigo_real.html`` e ``wordpress_transparencia_real.html`` são as páginas
+públicas lidas pela sondagem de 27/11/2026 (commit fa208ec), sem o cabeçalho da sondagem.
+
 Travas dos requisitos 30, 31, 32, 55, 56, 57, 63, 64, 66, 132 e 141. O coletor roda contra as
 fixtures de ``testes/dados/transweb/`` (imitam o formato descrito no manual do TransWeb e a lista de
 arquivos do portal WordPress; não são cópias de páginas reais) com um leitor HTTP de mentira. As
@@ -118,6 +121,46 @@ def test_consulta_com_paginacao_e_detalhe():
     assert posts[0]["__VIEWSTATE"] == "/wEPDwUKMTY1NDU2MTA1MmRk"
     pagina2 = next(f for f in posts if f.get("__EVENTARGUMENT") == "Page$2")
     assert pagina2["__EVENTVALIDATION"].endswith("pagina1")
+
+
+def test_transweb_real_e_outsystems_com_menu_da_despesa():
+    """Amostra real lida pela sondagem de 27/11/2026 (PortaldaTransparencia.aspx?Antigo=True)."""
+    html = _f("portal_antigo_real.html")
+    f = G.formularios(html)[0]
+    assert f.aspnet and f.outsystems and f.campos["__VIEWSTATE"] == ""
+    assert f.envio({})["__OSVSTATE"] == f.campos["__OSVSTATE"] != ""
+    entrada = PORTAL.base + PORTAL.entradas[0]
+    assert G.paginas_do_menu(html, entrada, PORTAL.menu_despesa) == [PORTAL.base + "Portal_Despesas.aspx"]
+    assert all(c.paginas[0] == "Portal_Despesas.aspx" for c in PORTAL.consultas)
+    assert "Home.aspx" not in PORTAL.entradas and "Default.aspx" not in PORTAL.entradas
+
+
+def test_abrir_consulta_procura_no_menu_quando_os_caminhos_falham():
+    import dataclasses
+    c = dataclasses.replace(PORTAL.consulta("empenho_orgao"), paginas=("NaoExiste.aspx",))
+    portal = dataclasses.replace(PORTAL, consultas=(c,))
+    pedidos = []
+
+    def ler(url, formulario=None, **_):
+        pedidos.append(url)
+        if url.endswith("PortaldaTransparencia.aspx?Antigo=True"):
+            return Leitura(True, url, _f("portal_antigo_real.html"), http=200)
+        if url.endswith("Portal_Despesas.aspx"):
+            return Leitura(True, url, _f("empenho_orgao.html"), http=200)
+        return Leitura(False, url, b"", erro="HTTP 404", http=404)
+
+    acao, form, _ = G.abrir_consulta(ler, portal, c)
+    assert acao.endswith("EmpenhoOrgao.aspx") and form.achar(["txtData"])
+    assert [u.rsplit("/", 1)[-1] for u in pedidos] == ["NaoExiste.aspx", "PortaldaTransparencia.aspx?Antigo=True",
+                                                       "Portal_Despesas.aspx"]
+
+
+def test_wordpress_real_categoria_49_e_despesas_e_receitas():
+    """Amostra real do portal novo: a categoria 49 é Despesas e Receitas e a lista vem do navegador."""
+    html = _f("wordpress_transparencia_real.html")
+    assert G.categorias_do_portal(html)[49] == "Despesas e Receitas"
+    assert PORTAL.wordpress["categorias"] == {"despesas_e_receitas": 49}
+    assert G.arquivos_da_categoria(html, PORTAL.wordpress["base"]) == []
 
 
 def test_consulta_vazia_e_pagina_inexistente():
