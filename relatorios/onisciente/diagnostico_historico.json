@@ -1,6 +1,6 @@
 {
  "intervalo": "2024-11 a 2026-11",
- "rodada": "2026-11-27T10:02:25+00:00",
+ "rodada": "2026-11-27T12:36:20+00:00",
  "meses": [
   "2024-11",
   "2024-12",
@@ -94,18 +94,15 @@
   {
    "motor": "pncp_detalhe",
    "nome": "Detalhe das compras e contratos (PNCP e Compras.gov.br)",
-   "chamadas": 6942,
-   "ok": 6632,
-   "falhas": 310,
-   "tentativas": 6963,
+   "chamadas": 13423,
+   "ok": 13401,
+   "falhas": 22,
+   "tentativas": 13460,
    "http_429": 0,
-   "segundos": 33374.9,
+   "segundos": 56325.1,
    "erros": {
-    "não tentado: tempo do motor nesta rodada esgotado": 19,
-    "HTTP 301": 7,
-    "HTTP 404: {\"path\":\"/pncp-consulta/v1/instrumentoscobranca/inclusao\",\"message\":\"Nenhum instrumento de Cobrança encontrado.\",\"error\":\"404 NOT_FOUND\",\"timestamp\":\"2026-11-27T07:02:43.967018519-03:00\",\"status\":\"40": 1,
-    "HTTP 404: {\"path\":\"/pncp-consulta/v1/instrumentoscobranca/inclusao\",\"message\":\"Nenhum instrumento de Cobrança encontrado.\",\"error\":\"404 NOT_FOUND\",\"timestamp\":\"2026-11-27T07:02:42.934639692-03:00\",\"status\":\"40": 1,
-    "HTTP 404: {\"path\":\"/pncp-consulta/v1/instrumentoscobranca/inclusao\",\"message\":\"Nenhum instrumento de Cobrança encontrado.\",\"error\":\"404 NOT_FOUND\",\"timestamp\":\"2026-11-27T07:02:50.273033493-03:00\",\"status\":\"40": 1
+    "não tentado: tempo do motor nesta rodada esgotado": 21,
+    "TimeoutError: The read operation timed out": 1
    }
   },
   {
