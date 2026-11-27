@@ -1,0 +1,4 @@
+{
+ "_leia": "Datas das contas de cada exercício, informadas pelo Tribunal de Contas dos Municípios e pela Câmara: exercicio, unidade (Município ou o nome da unidade como no parecer), entregue_em, parecer_em e julgada_em (AAAA-MM-DD). Sem a data, a falta vira ofício.",
+ "contas": []
+}
