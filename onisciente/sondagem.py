@@ -186,6 +186,37 @@ CANDIDATOS: dict[str, list[str]] = {
         "https://api.transferegov.gestao.gov.br/fundoafundo/",
         "https://api.transferegov.gestao.gov.br/ted/",
     ],
+    # Blocos 5 a 7 (27/11): execução da despesa de Goiânia, FNS, FNDE, Transferegov e sanções.
+    "goiania": [
+        "https://www10.goiania.go.gov.br/transweb/",
+        "https://www10.goiania.go.gov.br/transweb/Default.aspx",
+        "https://www10.goiania.go.gov.br/transweb/PerguntasFrequentes.aspx",
+        "https://www.goiania.go.gov.br/transparencia/",
+        "https://goiania.nucleogov.com.br/cidadao/",
+    ],
+    "fns2": [
+        "https://consultafns.saude.gov.br/",
+        "https://apifns.saude.gov.br/api/",
+        "https://apifns.saude.gov.br/api/v3/api-docs",
+        "https://apifns.saude.gov.br/v3/api-docs",
+        "https://apifns.saude.gov.br/api/swagger-ui.html",
+    ],
+    "fnde2": [
+        "https://www.fnde.gov.br/pls/simad/internet_fnde.liberacoes_01_pc",
+        "https://www.fnde.gov.br/pls/simad/internet_fnde.liberacoes_result_pc?p_ano=2025&p_programa=&p_uf=GO"
+        "&p_municipio=520870",
+        "https://www.fnde.gov.br/sigefweb/index.php/liberacoes",
+    ],
+    "transferegov2": [
+        "https://api.transferegov.gestao.gov.br/transferenciasespeciais/plano_acao_especial"
+        "?cnpj_beneficiario_plano_acao=eq.01612092000123&limit=5",
+        "https://api.transferegov.gestao.gov.br/transferenciasespeciais/programa_especial?limit=2",
+        "https://docs.api.transferegov.gestao.gov.br/transferenciasespeciais/",
+    ],
+    "sancoes": [
+        "https://portaldatransparencia.gov.br/download-de-dados/ceis/20261126",
+        "https://portaldatransparencia.gov.br/download-de-dados/cnep/20261126",
+    ],
 }
 
 
@@ -254,6 +285,19 @@ def _seguir(fonte: str, url: str, leitura) -> list:
         return []
     texto = leitura.texto
     novos: list = []
+    if fonte in ("goiania", "fns2", "fnde2"):
+        # As páginas dos portais: os links internos (.aspx, scripts com os endereços da API).
+        base = re.match(r"https?://[^/]+", url).group(0)
+        for href in re.findall(r"""(?:href|src)=["']([^"'#]+\.(?:aspx|js|php)[^"']*)["']""", texto, re.I):
+            if href.startswith("//"):
+                href = "https:" + href
+            elif href.startswith("/"):
+                href = base + href
+            elif not href.startswith("http"):
+                href = url.rsplit("/", 1)[0] + "/" + href
+            if href.startswith(base) and "jquery" not in href.lower():
+                novos.append(href)
+        return list(dict.fromkeys(novos))[:30]
     if "2_consultarItensContratacoes" in url:
         return _preco_dos_itens(texto)
     if "consleirespfiscal.php?UF=" in url:
