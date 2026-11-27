@@ -131,7 +131,12 @@ class Formulario:
 
     @property
     def aspnet(self) -> bool:
-        return "__VIEWSTATE" in self.campos
+        return "__VIEWSTATE" in self.campos or "__OSVSTATE" in self.campos
+
+    @property
+    def outsystems(self) -> bool:
+        """O TransWeb atual é OutSystems: o estado da tela vai no __OSVSTATE (o __VIEWSTATE vem vazio)."""
+        return "__OSVSTATE" in self.campos
 
     def estado(self) -> dict[str, str]:
         """Os campos escondidos que o ASP.NET exige de volta, como vieram."""
@@ -392,6 +397,7 @@ class Portal:
     wordpress: dict
     dotacao: str = ""
     arquivo: str = ""
+    menu_despesa: tuple[str, ...] = ()
 
     def consulta(self, cid: str) -> Consulta:
         for c in self.consultas:
@@ -425,7 +431,7 @@ def carregar_portal(caminho: Path | str) -> Portal:
         formato_data=tw.get("formato_data", "%d/%m/%Y"), paginas_maximas=int(tw.get("paginas_maximas", 200)),
         consultas=tuple(consultas), detalhe={k: tuple(v) for k, v in (tw.get("detalhe") or {}).items()},
         wordpress=dict(bruto.get("wordpress") or {}), dotacao=str(tw.get("dotacao", "") or DOTACAO_PADRAO),
-        arquivo=str(caminho))
+        arquivo=str(caminho), menu_despesa=tuple(tw.get("menu_despesa", ())))
 
 
 # --- Da tabela ao evento --------------------------------------------------------------------------
@@ -551,20 +557,52 @@ class Resultado:
     originais: list = field(default_factory=list)
 
 
+def paginas_do_menu(html, base: str, textos: Iterable[str]) -> list[str]:
+    """Os links .aspx do menu cujo texto casa com um dos textos dados, na ordem dos textos."""
+    links = [(urljoin(base, unescape(h)), norm(t)) for h, t in ler_html(html).links if h and ".aspx" in h.lower()]
+    out: list[str] = []
+    for alvo in (norm(t) for t in textos):
+        for url, texto in links:
+            if alvo and alvo in texto and url not in out:
+                out.append(url)
+    return out
+
+
 def abrir_consulta(ler: Ler, portal: Portal, c: Consulta) -> tuple[str, Formulario, Leitura] | str:
-    """A primeira página candidata que responde com um formulário que tem os campos da consulta."""
+    """A primeira página candidata que responde com um formulário que tem os campos da consulta.
+
+    Sem nenhuma candidata boa, procura no menu das páginas de entrada os links da despesa e tenta
+    cada um deles (o TransWeb atual não tem mais os caminhos do manual de 2010)."""
     obrigatorios = [k for k in c.campos if k not in ("orgao", "documento")]
-    erros = []
-    for pagina in c.paginas:
-        url = urljoin(portal.base, pagina)
-        leitura = ler(url)
-        if not leitura.ok:
-            erros.append(f"{pagina}: {leitura.erro or leitura.http}")
-            continue
-        for f in formularios(leitura.conteudo):
-            if all(f.achar(c.campos[k]) for k in obrigatorios):
-                return urljoin(url, f.acao or url), f, leitura
-        erros.append(f"{pagina}: formulário sem os campos {', '.join(obrigatorios)}")
+    erros: list[str] = []
+    candidatas = [urljoin(portal.base, p) for p in c.paginas]
+    tentadas: set[str] = set()
+    menu_lido = not portal.menu_despesa
+    while True:
+        while candidatas:
+            url = candidatas.pop(0)
+            if url in tentadas:
+                continue
+            tentadas.add(url)
+            pagina = url.rsplit("/", 1)[-1]
+            leitura = ler(url)
+            if not leitura.ok:
+                erros.append(f"{pagina}: {leitura.erro or leitura.http}")
+                continue
+            for f in formularios(leitura.conteudo):
+                if all(f.achar(c.campos[k]) for k in obrigatorios):
+                    return urljoin(url, f.acao or url), f, leitura
+            erros.append(f"{pagina}: formulário sem os campos {', '.join(obrigatorios)}")
+        if menu_lido:
+            break
+        menu_lido = True
+        for entrada in portal.entradas:
+            u = urljoin(portal.base, entrada)
+            lida = ler(u)
+            if lida.ok:
+                candidatas += [x for x in paginas_do_menu(lida.conteudo, u, portal.menu_despesa) if x not in tentadas]
+            else:
+                erros.append(f"{entrada}: {lida.erro or lida.http}")
     return "; ".join(erros) or "nenhuma página candidata"
 
 
@@ -687,6 +725,16 @@ def arquivos_da_categoria(html, base: str, formatos: Iterable[str] = ("csv", "xl
             vistos.add(url)
             out.append({"titulo": texto or url.rsplit("/", 1)[-1], "url": url,
                         "formato": caminho.rsplit(".", 1)[-1]})
+    return out
+
+
+def categorias_do_portal(html) -> dict[int, str]:
+    """As categorias do portal WordPress pelo filtro (``?filtro_simplificado=categoria&categoria=N``)."""
+    out: dict[int, str] = {}
+    for href, texto in ler_html(html).links:
+        m = re.search(r"filtro_simplificado=categoria&(?:amp;|#038;)?categoria=(\d+)", unescape(href or ""))
+        if m and texto:
+            out.setdefault(int(m.group(1)), " ".join(texto.split()))
     return out
 
 

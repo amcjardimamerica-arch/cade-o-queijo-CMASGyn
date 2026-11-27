@@ -195,13 +195,16 @@ CANDIDATOS: dict[str, list[str]] = {
         "https://goiania.nucleogov.com.br/cidadao/",
     ],
     # Frente D2 (execução da despesa de Goiânia): as páginas candidatas do TransWeb listadas em
-    # alvos/portais/goiania.toml (nenhum caminho de consulta confirmado) e o portal novo em WordPress.
-    # O que responder com formulário dá os nomes reais dos campos para ajustar o toml.
+    # alvos/portais/goiania.toml e o portal novo em WordPress. A sondagem de 27/11/2026 achou o menu
+    # em PortaldaTransparencia.aspx?Antigo=True (Home.aspx e Default.aspx dão 404); as páginas do
+    # menu ligadas à despesa vêm primeiro. O que responder com formulário dá os nomes reais dos campos.
     "d2_transweb": [
-        "https://www10.goiania.go.gov.br/transweb/Home.aspx",
+        "https://www10.goiania.go.gov.br/transweb/Portal_Despesas.aspx",
+        "https://www10.goiania.go.gov.br/transweb/Orcamento.aspx",
+        "https://www10.goiania.go.gov.br/transweb/ContratoseConvenios.aspx",
+        "https://www10.goiania.go.gov.br/transweb/Portal_DiariasPassagens.aspx",
+        "https://www10.goiania.go.gov.br/transweb/ListaOrgaos.aspx",
         "https://www10.goiania.go.gov.br/transweb/PortaldaTransparencia.aspx?Antigo=True",
-        "https://www10.goiania.go.gov.br/transweb/Default.aspx",
-        "https://www10.goiania.go.gov.br/transweb/PerguntasFrequentes.aspx",
         "https://www10.goiania.go.gov.br/transweb/EmpenhoOrgao.aspx",
         "https://www10.goiania.go.gov.br/transweb/ConsultaEmpenhoOrgao.aspx",
         "https://www10.goiania.go.gov.br/transweb/Empenho/EmpenhoPorOrgao.aspx",
@@ -218,6 +221,7 @@ CANDIDATOS: dict[str, list[str]] = {
     "d2_wordpress": [
         "https://www.goiania.go.gov.br/transparencia/",
         "https://www.goiania.go.gov.br/transparencia/?filtro_simplificado=categoria&categoria=49",
+        "https://www.goiania.go.gov.br/wp-json/wp/v2/pages?search=despesa&per_page=20",
         "https://www.goiania.go.gov.br/wp-json/wp/v2/categories?per_page=100",
         "https://www.goiania.go.gov.br/wp-json/wp/v2/media?per_page=20&search=despesa",
         "https://www.goiania.go.gov.br/wp-json/",
