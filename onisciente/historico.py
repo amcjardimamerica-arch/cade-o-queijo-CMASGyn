@@ -307,6 +307,10 @@ class Contexto:
     # e registra o resto como não tentado. Uma fonte fora do ar não pode prender a rodada.
     disjuntor: int = 6
     seguidas: dict[str, int] = field(default_factory=dict)
+    # Uma fonte que caiu (503 no início da rodada) não fica fora a rodada inteira: passado
+    # esse tempo, uma leitura de prova é feita; se falhar, a fonte desliga de novo pelo mesmo tempo.
+    pausa_do_disjuntor: float = 600.0
+    _desligada_em: dict = field(default_factory=dict, repr=False)
     fim_do_motor: float | None = None      # relógio monotônico; depois disso, nada é chamado
     # Leituras simultâneas nas vias que demoram por espera do servidor, não por volume
     # (a consulta de uma compra leva uns 10 s). Só a rede vai para as linhas paralelas:
@@ -331,7 +335,7 @@ class Contexto:
             pass                                # já lida (e contada) por ``antecipar``
         elif limite is not None and self.gastos.get(motor, 0) >= limite:
             motivo = "limite de chamadas da rodada atingido"
-        elif disjuntor and self.seguidas.get(_fonte_da_url(url), 0) >= self.disjuntor:
+        elif disjuntor and self._desligada(_fonte_da_url(url)):
             motivo = f"não tentado: {self.disjuntor} falhas de rede seguidas nesta fonte"
         elif disjuntor and self.recusas_fonte.get(_fonte_da_url(url), 0) >= self.disjuntor:
             motivo = (f"não tentado: a fonte pediu para esperar (HTTP 429) {self.disjuntor} vezes "
@@ -348,6 +352,17 @@ class Contexto:
             leitura, feitas, segundos = self._buscar(motor, url, tentativas, cabecalhos, tempo, formulario)
         return self._depois(motor, alvo, mes, url, leitura, feitas, segundos,
                             pausar=antecipada is None)
+
+    def _desligada(self, fonte: str) -> bool:
+        """Se o disjuntor da fonte está aberto. Passada a pausa, libera uma leitura de prova."""
+        if self.seguidas.get(fonte, 0) < self.disjuntor:
+            return False
+        desde = self._desligada_em.setdefault(fonte, time.monotonic())
+        if time.monotonic() - desde < self.pausa_do_disjuntor:
+            return True
+        self.seguidas[fonte] = self.disjuntor - 1      # uma falha a mais desliga de novo
+        self._desligada_em.pop(fonte, None)
+        return False
 
     def _buscar(self, motor, url, tentativas=3, cabecalhos=None, tempo=60, formulario=None):
         """Só a rede, com espera crescente em 429 e 5xx. Pode rodar fora da linha principal."""
@@ -401,6 +416,10 @@ class Contexto:
                 and not _ftp_sem_arquivo(url, leitura))
         fonte_url = _fonte_da_url(url)
         self.seguidas[fonte_url] = self.seguidas.get(fonte_url, 0) + 1 if rede else 0
+        if not rede:
+            self._desligada_em.pop(fonte_url, None)
+        elif self.seguidas[fonte_url] >= self.disjuntor:
+            self._desligada_em.setdefault(fonte_url, time.monotonic())
         if leitura.http is not None:
             fonte = _fonte_da_url(url)
             self.recusas_fonte[fonte] = self.recusas_fonte.get(fonte, 0) + 1 if leitura.http == 429 else 0
@@ -936,6 +955,25 @@ def _tempo_acabou(ctx: Contexto) -> bool:
     return ctx.fim_do_motor is not None and time.monotonic() > ctx.fim_do_motor
 
 
+class _Reserva:
+    """Dá a uma etapa só uma parte do tempo que resta ao motor, para a etapa seguinte nunca
+    ficar sem vez (os itens lentos dos dados abertos tomavam a rodada e o preço nacional,
+    que vem depois, nunca era lido)."""
+
+    def __init__(self, ctx: Contexto, fracao: float):
+        self.ctx, self.fracao, self.fim = ctx, fracao, ctx.fim_do_motor
+
+    def __enter__(self):
+        if self.fim is not None:
+            agora = time.monotonic()
+            self.ctx.fim_do_motor = min(self.fim, agora + max(0.0, self.fim - agora) * self.fracao)
+        return self
+
+    def __exit__(self, *_):
+        self.ctx.fim_do_motor = self.fim
+        return False
+
+
 def _itens_do_orgao(ctx: Contexto, cnpj: str, d1: str, d2: str, rotulo: str) -> bool:
     """Itens das contratações de um órgão incluídas no PNCP numa janela, com catálogo e resultado."""
     for pagina in range(1, 201):
@@ -1093,17 +1131,20 @@ def _termos_do_contrato(ctx: Contexto, contrato_id: str) -> bool:
     return True
 
 
-def _precos_nacionais(ctx: Contexto, catalogo: int, servico: bool, semestre: str) -> bool:
-    """Até 500 compras do país do mesmo item de catálogo no semestre (painel de preços)."""
+def _url_preco(catalogo: int, servico: bool, semestre: str) -> str:
     d1, d2 = _limites_do_semestre(semestre)
     if servico:
-        url = DADOS_ABERTOS + "modulo-pesquisa-preco/3_consultarServico?" + urlencode(
+        return DADOS_ABERTOS + "modulo-pesquisa-preco/3_consultarServico?" + urlencode(
             {"pagina": 1, "tamanhoPagina": 500, "codigoItemCatalogo": catalogo,
              "dataCompraInicio": d1, "dataCompraFim": d2})
-    else:
-        url = DADOS_ABERTOS + "modulo-pesquisa-preco/1_consultarMaterial?" + urlencode(
-            {"pagina": 1, "tamanhoPagina": 500, "tipo": "codigoItemCatalogo", "codigo": catalogo,
-             "dataCompraInicio": d1, "dataCompraFim": d2})
+    return DADOS_ABERTOS + "modulo-pesquisa-preco/1_consultarMaterial?" + urlencode(
+        {"pagina": 1, "tamanhoPagina": 500, "tipo": "codigoItemCatalogo", "codigo": catalogo,
+         "dataCompraInicio": d1, "dataCompraFim": d2})
+
+
+def _precos_nacionais(ctx: Contexto, catalogo: int, servico: bool, semestre: str) -> bool:
+    """Até 500 compras do país do mesmo item de catálogo no semestre (painel de preços)."""
+    url = _url_preco(catalogo, servico, semestre)
     leitura = ctx.ler("pncp_detalhe", f"preco {catalogo} {semestre}", url, mes=semestre, tempo=120)
     dados = _json(leitura) if leitura.ok else None
     if dados is None:
@@ -1279,104 +1320,134 @@ def motor_pncp_detalhe(ctx: Contexto, ibge: int | None = None) -> None:
             etapa([(f"compra {c[0]}", _url_compra(c[0]), lambda c=c: _detalhe_da_compra(ctx, c[0]))
                    for c in lista if c[0] not in com])
 
-        # 1. Amparo legal das contratações da pasta e de todas as dispensas (o que a conferência
-        #    de dispensas precisa); as demais modalidades ficam para depois dos contratos.
         primeiro = [c for c in compras if _da_pasta(c[2]) or c[3] == "Dispensa"]
-        amparos(primeiro)
-        # 2. Valor inicial e vínculo com a compra, depois os termos aditivos: a pasta, depois os maiores.
-        etapa([(f"contrato {c[0]}", _url_contrato(c[0]), lambda c=c: _detalhe_do_contrato(ctx, c[0]))
-               for c in contratos])
-        etapa([(f"termos {c[0]}", _url_contrato(c[0], "/termos"), lambda c=c: _termos_do_contrato(ctx, c[0]))
-               for c in contratos])
-        # 3. Itens e resultado de cada contratação da pasta pela via rápida do PNCP.
-        etapa([(f"itens da compra {c[0]}", _url_itens_da_compra(c[0]), lambda c=c: _itens_da_compra(ctx, c[0]))
-               for c in compras if _da_pasta(c[2])])
-        # 4. Notas fiscais: órgão a órgão (a pasta primeiro), mês a mês; três recusas seguidas param o órgão.
-        for cnpj in orgaos:
-            if _tempo_acabou(ctx):
-                break
-            ctx.antecipar("pncp_detalhe", [_url_cobrancas(cnpj, m) for m in ctx.meses
-                                           if f"cobrancas {cnpj} {m}" not in lidos])
-            recusas = 0
-            for mes in ctx.meses:
-                chave = f"cobrancas {cnpj} {mes}"
-                if chave in lidos:
-                    continue
-                if _tempo_acabou(ctx) or recusas >= 3:
-                    break
-                if _cobrancas_do_orgao(ctx, cnpj, mes):
-                    lidos.marcar(chave)
-                    recusas = 0
-                else:
-                    recusas += 1
-            lidos.guardar()
-            ctx._antecipadas.clear()           # meses de um órgão parado por recusas: descartados
-        # 4b. Amparo legal das demais contratações (inexigibilidades, pregões, concorrências):
-        #     primeiro pela listagem do mês (50 por leitura), depois uma a uma o que ela não trouxe.
         ja = {c[0] for c in primeiro}
-        if ibge:
-            com = {i for (i,) in ctx.banco.consultar("SELECT compra_id FROM pncp_amparos")}
-            faltam = {c[0] for c in compras if c[0] not in com}
-            janelas = sorted({(MODALIDADE_CODIGO[c[3]], c[5]) for c in compras
-                              if c[0] in faltam and c[3] in MODALIDADE_CODIGO and c[5]})
-            for modalidade, mes in janelas:
-                chave = f"amparos {modalidade} {mes}"
-                if chave in lidos:
-                    continue
+
+        def contratos_e_termos() -> None:
+            etapa([(f"contrato {c[0]}", _url_contrato(c[0]), lambda c=c: _detalhe_do_contrato(ctx, c[0]))
+                   for c in contratos])
+            etapa([(f"termos {c[0]}", _url_contrato(c[0], "/termos"),
+                    lambda c=c: _termos_do_contrato(ctx, c[0])) for c in contratos])
+
+        def itens_rapidos(lista) -> None:
+            etapa([(f"itens da compra {c[0]}", _url_itens_da_compra(c[0]),
+                    lambda c=c: _itens_da_compra(ctx, c[0])) for c in lista])
+
+        def notas_fiscais() -> None:
+            for cnpj in orgaos:
                 if _tempo_acabou(ctx):
                     break
-                if _amparos_pela_listagem(ctx, ibge, modalidade, mes, faltam):
-                    lidos.marcar(chave)
+                ctx.antecipar("pncp_detalhe", [_url_cobrancas(cnpj, m) for m in ctx.meses
+                                               if f"cobrancas {cnpj} {m}" not in lidos])
+                recusas = 0
+                for mes in ctx.meses:
+                    chave = f"cobrancas {cnpj} {mes}"
+                    if chave in lidos:
+                        continue
+                    if _tempo_acabou(ctx) or recusas >= 3:
+                        break
+                    if _cobrancas_do_orgao(ctx, cnpj, mes):
+                        lidos.marcar(chave)
+                        recusas = 0
+                    else:
+                        recusas += 1
                 lidos.guardar()
-        amparos([c for c in compras if c[0] not in ja])
-        # 5. Itens com catálogo e classe pela via de dados abertos (lenta): a pasta, depois os órgãos
-        #    com mais compras; um ano recusado é refeito mês a mês.
-        for cnpj in pasta + [c for c in orgaos if c not in pasta]:
-            for janela in _janelas_anuais(ctx.meses):
-                chave = f"itens {cnpj} {janela[0][:4]}"
-                if chave in lidos or _tempo_acabou(ctx):
-                    continue
-                d1, d2 = f"{janela[0]}-01", fim_do_mes(janela[-1]).isoformat()
-                ja_mes_a_mes = any(f"itens {cnpj} {m}" in lidos for m in janela)   # o ano já foi recusado
-                if not ja_mes_a_mes and _itens_do_orgao(ctx, cnpj, d1, d2, f"{janela[0]} a {janela[-1]}"):
-                    lidos.marcar(chave)
-                    continue
-                inteiro = True
-                for mes in janela:
-                    chave_mes = f"itens {cnpj} {mes}"
-                    if chave_mes in lidos:
+                ctx._antecipadas.clear()       # meses de um órgão parado por recusas: descartados
+
+        def demais_amparos() -> None:
+            if ibge:
+                com = {i for (i,) in ctx.banco.consultar("SELECT compra_id FROM pncp_amparos")}
+                faltam = {c[0] for c in compras if c[0] not in com}
+                janelas = sorted({(MODALIDADE_CODIGO[c[3]], c[5]) for c in compras
+                                  if c[0] in faltam and c[3] in MODALIDADE_CODIGO and c[5]})
+                for modalidade, mes in janelas:
+                    chave = f"amparos {modalidade} {mes}"
+                    if chave in lidos:
                         continue
                     if _tempo_acabou(ctx):
-                        inteiro = False
                         break
-                    if _itens_do_orgao(ctx, cnpj, f"{mes}-01", fim_do_mes(mes).isoformat(), mes):
-                        lidos.marcar(chave_mes)
-                    else:
-                        inteiro = False
-                if inteiro:
-                    lidos.marcar(chave)
-            lidos.guardar()
-        # 6. Preço nacional de cada item de catálogo homologado, no semestre da compra (a pasta primeiro).
-        alvos = ctx.banco.consultar(
-            "SELECT catalogo, material_servico, substr(COALESCE(data_resultado, data_inclusao), 1, 7), "
-            "SUM(COALESCE(total_resultado, total_estimado, 0)), MAX(orgao_cnpj IN (%s)) FROM pncp_itens "
-            "WHERE catalogo IS NOT NULL AND unitario_resultado IS NOT NULL GROUP BY 1, 2, 3 "
-            "ORDER BY 5 DESC, 4 DESC" % (",".join("?" * len(pasta)) or "''"), *pasta)
-        feitos: set[tuple] = set()
-        for catalogo, ms, mes, _valor, _pasta in alvos:
-            if not mes or not re.fullmatch(r"\d{4}-\d{2}", mes):
-                continue
-            semestre = _semestre(mes + "-01")
-            chave = f"preco {catalogo} {semestre}"
-            if (catalogo, semestre) in feitos or chave in lidos:
-                continue
-            feitos.add((catalogo, semestre))
-            if _tempo_acabou(ctx):
-                break
-            if _precos_nacionais(ctx, int(catalogo), ms == "S", semestre):
-                lidos.marcar(chave)
-            if len(feitos) % 50 == 0:
+                    if _amparos_pela_listagem(ctx, ibge, modalidade, mes, faltam):
+                        lidos.marcar(chave)
+                    lidos.guardar()
+            amparos([c for c in compras if c[0] not in ja])
+
+        def itens_com_catalogo() -> None:
+            for cnpj in pasta + [c for c in orgaos if c not in pasta]:
+                for janela in _janelas_anuais(ctx.meses):
+                    chave = f"itens {cnpj} {janela[0][:4]}"
+                    if chave in lidos or _tempo_acabou(ctx):
+                        continue
+                    d1, d2 = f"{janela[0]}-01", fim_do_mes(janela[-1]).isoformat()
+                    ja_mes_a_mes = any(f"itens {cnpj} {m}" in lidos for m in janela)   # ano já recusado
+                    if not ja_mes_a_mes and _itens_do_orgao(ctx, cnpj, d1, d2, f"{janela[0]} a {janela[-1]}"):
+                        lidos.marcar(chave)
+                        continue
+                    inteiro = True
+                    for mes in janela:
+                        chave_mes = f"itens {cnpj} {mes}"
+                        if chave_mes in lidos:
+                            continue
+                        if _tempo_acabou(ctx):
+                            inteiro = False
+                            break
+                        if _itens_do_orgao(ctx, cnpj, f"{mes}-01", fim_do_mes(mes).isoformat(), mes):
+                            lidos.marcar(chave_mes)
+                        else:
+                            inteiro = False
+                    if inteiro:
+                        lidos.marcar(chave)
                 lidos.guardar()
+
+        def precos() -> None:
+            alvos = ctx.banco.consultar(
+                "SELECT catalogo, material_servico, substr(COALESCE(data_resultado, data_inclusao), 1, 7), "
+                "SUM(COALESCE(total_resultado, total_estimado, 0)), MAX(orgao_cnpj IN (%s)) FROM pncp_itens "
+                "WHERE catalogo IS NOT NULL AND unitario_resultado IS NOT NULL GROUP BY 1, 2, 3 "
+                "ORDER BY 5 DESC, 4 DESC" % (",".join("?" * len(pasta)) or "''"), *pasta)
+            pedidos, feitos = [], set()
+            for catalogo, ms, mes, _valor, _pasta in alvos:
+                if not mes or not re.fullmatch(r"\d{4}-\d{2}", mes):
+                    continue
+                semestre = _semestre(mes + "-01")
+                if (catalogo, semestre) in feitos:
+                    continue
+                feitos.add((catalogo, semestre))
+                servico = ms == "S"
+                pedidos.append((f"preco {catalogo} {semestre}", _url_preco(int(catalogo), servico, semestre),
+                                lambda c=int(catalogo), s=servico, m=semestre: _precos_nacionais(ctx, c, s, m)))
+            etapa(pedidos)
+
+        # 1. Amparo legal das contratações da pasta e de todas as dispensas (o que a conferência
+        #    de dispensas precisa); as demais modalidades ficam para depois dos contratos.
+        amparos(primeiro)
+        # 2. Valor inicial e vínculo com a compra, depois os termos aditivos: a pasta, depois os maiores.
+        contratos_e_termos()
+        # 3. Itens e resultado de cada contratação da pasta pela via rápida do PNCP.
+        itens_rapidos([c for c in compras if _da_pasta(c[2])])
+        # 4. Notas fiscais: órgão a órgão (a pasta primeiro), mês a mês; três recusas seguidas param o órgão.
+        notas_fiscais()
+        # 4b. Amparo legal das demais contratações (inexigibilidades, pregões, concorrências):
+        #     primeiro pela listagem do mês (50 por leitura), depois uma a uma o que ela não trouxe.
+        demais_amparos()
+        # 5. Itens com catálogo e classe pela via de dados abertos (lenta): a pasta, depois os órgãos
+        #    com mais compras; um ano recusado é refeito mês a mês. Fica com metade do tempo que
+        #    resta, para o preço nacional (6) ter a outra metade.
+        with _Reserva(ctx, 0.5):
+            itens_com_catalogo()
+        # 6. Preço nacional de cada item de catálogo homologado, no semestre da compra (a pasta
+        #    primeiro), em paralelo como as demais vias de detalhe.
+        precos()
+        # 7. Segunda volta com o tempo que sobrar: o que uma fonte fora do ar deixou para trás
+        #    (o disjuntor libera uma prova depois da pausa), os itens das demais contratações pela
+        #    via rápida e o que ainda falta dos itens lentos.
+        if not _tempo_acabou(ctx):
+            amparos(primeiro)
+            contratos_e_termos()
+            notas_fiscais()
+            demais_amparos()
+            itens_rapidos([c for c in compras if not _da_pasta(c[2])])
+            itens_com_catalogo()
+            precos()
         lidos.guardar()
     finally:
         ctx.pausa = pausa

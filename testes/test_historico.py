@@ -661,7 +661,7 @@ def test_pncp_detalhe_le_amparo_itens_contrato_termos_preco_e_notas(tmp_path):
             corpo = {"resultado": [item] if q["dataInclusaoPncpInicial"].startswith("2024-11") else [],
                      "totalPaginas": 1}
             return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
-        if "/compras/2024/43" in url:
+        if url.endswith("/compras/2024/43"):
             corpo = {"amparoLegal": {"codigo": 19, "nome": "Lei 14.133/2021, Art. 75, II"}, "srp": False,
                      "valorTotalEstimado": 21124.98, "valorTotalHomologado": 19052.91}
             return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
@@ -743,9 +743,11 @@ def test_pncp_detalhe_le_a_pasta_primeiro_e_os_itens_dela_pela_via_rapida(tmp_pa
     assert "/orgaos/01393989000103/compras/2025/7" in pedidos[0]            # a pasta antes da compra maior
     assert banco.consultar("SELECT catalogo, ncm, fornecedor_ni, unitario_resultado FROM pncp_itens") == [
         (461540, "19059090", "11222333000144", 149.0)]
-    assert not any("/compras/2025/900/itens" in u for u in pedidos)        # via rápida só para a pasta
     primeiro_lento = next(i for i, u in enumerate(pedidos) if "dadosabertos" in u)
     assert "01393989000103" in pedidos[primeiro_lento]                     # e na via lenta também
+    # As demais contratações só passam pela via rápida na segunda volta, depois da pasta inteira.
+    rapida_demais = next(i for i, u in enumerate(pedidos) if "/compras/2025/900/itens" in u)
+    assert rapida_demais > primeiro_lento
 
 
 def test_pncp_detalhe_em_paralelo_guarda_o_mesmo_e_registra_cada_chamada_uma_vez(tmp_path):
@@ -915,3 +917,49 @@ def test_disjuntor_desliga_so_a_fonte_fora_do_ar_e_nao_o_motor_inteiro(tmp_path)
     assert sum("/api/pncp/" in u for u in chamadas) == 4 and sum("dadosabertos" in u for u in chamadas) == 4
     assert historico._fonte_da_url("https://pncp.gov.br/api/consulta/v1/x") == "pncp.gov.br/api/consulta"
     assert historico._fonte_da_url("https://dadosabertos.compras.gov.br/c/1") == "dadosabertos.compras.gov.br"
+
+
+def test_fonte_que_caiu_ganha_uma_prova_depois_da_pausa_e_nao_fica_fora_a_rodada_inteira(tmp_path):
+    """Na rodada de 27/11 a consulta do PNCP deu 503 no primeiro minuto e ficou fora as 2 h e 30:
+    1.489 amparos, 55 listagens e 30 meses de notas viraram "não tentado". Passada a pausa, uma
+    leitura de prova volta a chamar a fonte; se ela ainda estiver fora, desliga de novo."""
+    import time as relogio
+    no_ar = [False]
+
+    def rede(url, **_):
+        if no_ar[0]:
+            return base.Leitura(True, url, b"{}", http=200)
+        return base.Leitura(False, url, erro="HTTP 503", http=503)
+
+    banco = historico.Banco(tmp_path / "h.db")
+    ctx = historico.Contexto(banco, ["2025-01"], date(2026, 11, 27), ler_url=rede,
+                             dormir=lambda s: None, pausa=0, disjuntor=3, pausa_do_disjuntor=0.05)
+    for n in range(3):
+        assert not ctx.ler("pncp_detalhe", f"c{n}", f"https://pncp.gov.br/api/consulta/v1/c/{n}", tentativas=1).ok
+    assert "falhas de rede seguidas" in ctx.ler("pncp_detalhe", "c3", "https://pncp.gov.br/api/consulta/v1/c/3").erro
+    relogio.sleep(0.06)
+    prova = ctx.ler("pncp_detalhe", "c4", "https://pncp.gov.br/api/consulta/v1/c/4", tentativas=1)
+    assert prova.http == 503                                            # a prova foi feita de verdade
+    assert "falhas de rede seguidas" in ctx.ler("pncp_detalhe", "c5", "https://pncp.gov.br/api/consulta/v1/c/5").erro
+    relogio.sleep(0.06)
+    no_ar[0] = True
+    assert ctx.ler("pncp_detalhe", "c6", "https://pncp.gov.br/api/consulta/v1/c/6", tentativas=1).ok
+    assert ctx.ler("pncp_detalhe", "c7", "https://pncp.gov.br/api/consulta/v1/c/7", tentativas=1).ok
+    banco.fechar()
+
+
+def test_itens_lentos_ficam_com_metade_do_tempo_e_o_preco_nacional_com_a_outra(tmp_path):
+    """Na rodada de 27/11 os itens dos dados abertos (até 6 min por página) tomaram as 2 h e 30
+    e o preço nacional, a etapa seguinte, nunca foi lido em rodada nenhuma."""
+    import time as relogio
+    banco = historico.Banco(tmp_path / "h.db")
+    ctx = historico.Contexto(banco, ["2025-01"], date(2026, 11, 27))
+    ctx.fim_do_motor = relogio.monotonic() + 100
+    fim = ctx.fim_do_motor
+    with historico._Reserva(ctx, 0.5):
+        assert 45 < ctx.fim_do_motor - relogio.monotonic() <= 50.01
+    assert ctx.fim_do_motor == fim
+    ctx.fim_do_motor = None
+    with historico._Reserva(ctx, 0.5):                                     # sem relógio, sem corte
+        assert ctx.fim_do_motor is None
+    banco.fechar()
