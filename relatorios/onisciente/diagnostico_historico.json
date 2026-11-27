@@ -1,6 +1,6 @@
 {
  "intervalo": "2024-11 a 2026-11",
- "rodada": "2026-11-26T23:10:58+00:00",
+ "rodada": "2026-11-26T23:53:08+00:00",
  "meses": [
   "2024-11",
   "2024-12",
@@ -89,6 +89,20 @@
    "segundos": 17295.3,
    "erros": {
     "RemoteDisconnected: Remote end closed connection without response": 1
+   }
+  },
+  {
+   "motor": "pncp_detalhe",
+   "nome": "Detalhe das compras e contratos (PNCP e Compras.gov.br)",
+   "chamadas": 97,
+   "ok": 86,
+   "falhas": 11,
+   "tentativas": 109,
+   "http_429": 0,
+   "segundos": 6045.0,
+   "erros": {
+    "TimeoutError: The read operation timed out": 6,
+    "não tentado: tempo do motor nesta rodada esgotado": 5
    }
   },
   {
