@@ -29,6 +29,8 @@ def _situacao(ok: int, http: int | None, erro: str | None) -> str:
     erro = erro or ""
     if erro.startswith("não tentado"):
         return erro.split(":", 1)[-1].strip()[:70]
+    if http == 404 and "nenhum" in erro.lower():
+        return "sem registro (404 com \"nenhum\": lido)"
     if http:
         return f"HTTP {http}" + (f" ({erro.split(':', 1)[1].strip()[:60]})" if ":" in erro else "")
     return erro.split(":", 1)[0][:40] or "falha"
