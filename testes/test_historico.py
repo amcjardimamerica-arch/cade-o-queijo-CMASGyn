@@ -802,3 +802,93 @@ def test_pncp_detalhe_em_paralelo_guarda_o_mesmo_e_registra_cada_chamada_uma_vez
     primeiro_contrato = next(i for i, a in enumerate(ordem) if a.startswith("contrato "))
     assert all(int(a.split("-")[2][:6]) % 2 for a in ordem[:primeiro_contrato])
     assert any(a.startswith("compra ") and int(a.split("-")[2][:6]) % 2 == 0 for a in ordem[primeiro_contrato:])
+
+
+def test_nota_fiscal_nenhuma_no_mes_e_lida_mas_endereco_errado_continua_falha(tmp_path):
+    """O PNCP diz "nenhum instrumento de cobrança" com 404 e a mensagem no corpo: isso é o mês
+    lido (o órgão não publicou nota fiscal), não falha. Um 404 sem essa mensagem continua falha."""
+    def rede(url, **_):
+        if "instrumentoscobranca" in url and "cnpjOrgao=01393989000103" in url:
+            return base.Leitura(False, url, json.dumps({"message": "Nenhum instrumento de Cobrança encontrado."})
+                                .encode(), erro="HTTP 404", http=404)
+        if "instrumentoscobranca" in url:
+            return base.Leitura(False, url, b'{"status":404,"error":"Not Found","path":"/v1/x"}',
+                                erro="HTTP 404", http=404)
+        return base.Leitura(True, url, b"", http=204)
+
+    banco = historico.Banco(tmp_path / "h.db")
+    for cnpj, orgao in (("01393989000103", "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL-FMAS"),
+                        ("25141524000123", "SECRETARIA MUNICIPAL DE SAUDE")):
+        banco.inserir("contratos_pncp", {"pncp_id": f"{cnpj}-2-000001/2025", "mes": "2025-03",
+                                         "orgao_cnpj": cnpj, "orgao": orgao, "valor_global": 1.0})
+    ctx = historico.Contexto(banco, ["2025-03", "2025-04"], date(2026, 11, 26), ler_url=rede,
+                             dormir=lambda s: None, pausa=0)
+    historico.motor_pncp_detalhe(ctx)
+    lidos = json.loads(dict(banco.consultar("SELECT chave, valor FROM meta"))["pncp_detalhe_lidos"])
+    assert {"cobrancas 01393989000103 2025-03", "cobrancas 01393989000103 2025-04"} <= set(lidos)
+    assert not any(c.startswith("cobrancas 25141524000123") for c in lidos)
+
+
+def test_fonte_que_pede_calma_sai_do_paralelo_e_depois_espera_a_proxima_rodada(tmp_path):
+    """429 numa leitura antecipada tira a fonte do paralelo; lida uma a uma, se ela recusa de novo
+    ``disjuntor`` vezes seguidas, o resto dela fica para a próxima rodada, e as outras fontes do
+    mesmo motor seguem. A espera pedida pela fonte (Retry-After) é a usada."""
+    esperas, consultas = [], []
+
+    def rede(url, **_):
+        if "/api/consulta/" in url:
+            consultas.append(url)
+            return base.Leitura(False, url, b"", erro="HTTP 429", http=429, espera=7.0)
+        if "/contratos/" in url and not url.endswith("/termos"):
+            return base.Leitura(True, url, json.dumps({"valorInicial": 1.0}).encode(), http=200)
+        return base.Leitura(True, url, b"", http=204)
+
+    banco = historico.Banco(tmp_path / "h.db")
+    for n in range(1, 21):
+        banco.inserir("contratacoes_pncp", {"pncp_id": f"04973965000111-1-{n:06d}/2025", "mes": "2025-03",
+                                            "modalidade": "Dispensa", "orgao_cnpj": "04973965000111"})
+        banco.inserir("contratos_pncp", {"pncp_id": f"04973965000111-2-{n:06d}/2025", "mes": "2025-03",
+                                         "orgao_cnpj": "04973965000111", "valor_global": float(n)})
+    ctx = historico.Contexto(banco, ["2025-03"], date(2026, 11, 26), ler_url=rede, dormir=esperas.append,
+                             pausa=0, paralelo=4, disjuntor=3)
+    historico.motor_pncp_detalhe(ctx)
+    assert "pncp.gov.br/api/consulta" in ctx._lentas
+    assert set(esperas) >= {7.0}
+    # Antecipadas: o primeiro bloco (16), depois 3 leituras na fila de 3 tentativas cada; e mais nada.
+    assert len(consultas) == 16 * 3 + 3 * 3
+    erros = [e for (e,) in banco.consultar("SELECT erro FROM coletas WHERE alvo LIKE 'compra %' ORDER BY rowid")]
+    assert erros[:3] == ["HTTP 429"] * 3 and all("pediu para esperar" in e for e in erros[3:])
+    assert banco.consultar("SELECT COUNT(*) FROM pncp_contratos_detalhe") == [(20,)]   # outra fonte seguiu
+
+
+def test_amparo_das_demais_contratacoes_vem_da_listagem_do_mes(tmp_path):
+    """A listagem do PNCP traz o amparo legal de até 50 contratações por leitura: as que faltam
+    saem dela, e só o que ela não trouxe é consultado uma a uma."""
+    pedidos = []
+
+    def rede(url, **_):
+        pedidos.append(url)
+        if "contratacoes/publicacao" in url and "codigoModalidadeContratacao=9" in url:
+            corpo = {"data": [{"numeroControlePNCP": f"04973965000111-1-{n:06d}/2025",
+                               "amparoLegal": {"codigo": 4, "nome": "Lei 14.133/2021, Art. 74, I"},
+                               "srp": False, "processo": f"P{n}"} for n in (2, 4, 99)],
+                     "totalPaginas": 1}
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        if "/compras/2025/" in url:
+            corpo = {"amparoLegal": {"codigo": 19, "nome": "Lei 14.133/2021, Art. 75, II"}}
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        return base.Leitura(True, url, b"", http=204)
+
+    banco = historico.Banco(tmp_path / "h.db")
+    for n, modalidade in ((1, "Dispensa"), (2, "Inexigibilidade"), (4, "Inexigibilidade"), (6, "Inexigibilidade")):
+        banco.inserir("contratacoes_pncp", {"pncp_id": f"04973965000111-1-{n:06d}/2025", "mes": "2025-03",
+                                            "modalidade": modalidade, "orgao_cnpj": "04973965000111"})
+    ctx = historico.Contexto(banco, ["2025-03"], date(2026, 11, 26), ler_url=rede, dormir=lambda s: None,
+                             pausa=0)
+    historico.motor_pncp_detalhe(ctx, ibge=5208707)
+    assert banco.consultar("SELECT compra_id, codigo FROM pncp_amparos ORDER BY 1") == [
+        ("04973965000111-1-000001/2025", 19), ("04973965000111-1-000002/2025", 4),
+        ("04973965000111-1-000004/2025", 4), ("04973965000111-1-000006/2025", 19)]
+    um_a_um = sorted(int(u.rsplit("/", 1)[1]) for u in pedidos if re.search(r"/compras/2025/\d+$", u))
+    assert um_a_um == [1, 6]                       # a dispensa (etapa 1) e a que a listagem não trouxe
+    assert not any("99" in a for (a,) in banco.consultar("SELECT compra_id FROM pncp_amparos"))

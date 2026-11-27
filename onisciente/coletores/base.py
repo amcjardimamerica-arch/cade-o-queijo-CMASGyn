@@ -34,6 +34,7 @@ class Leitura:
     erro: str = ""
     original: Original | None = None
     http: int | None = None
+    espera: float | None = None        # segundos que a fonte pediu (Retry-After) numa recusa 429/503
 
     @property
     def texto(self) -> str:
@@ -57,7 +58,14 @@ def ler(url: str, *, tempo: int = 60, fonte: str = "",
                 codigo = getattr(resposta, "status", None)   # FTP não tem código HTTP
             break
         except urllib.error.HTTPError as e:
-            return Leitura(False, url, erro=f"HTTP {e.code}", http=e.code)
+            # O corpo da recusa fica guardado (até 64 KB): há fontes que respondem 404 para
+            # "nenhum registro" e dizem isso no corpo, e só o corpo separa isso de um endereço errado.
+            try:
+                corpo = e.read(65536) or b""
+            except Exception:  # noqa: BLE001 (corpo é complemento; a recusa já está descrita)
+                corpo = b""
+            return Leitura(False, url, corpo, erro=f"HTTP {e.code}", http=e.code,
+                           espera=_segundos_pedidos(e.headers.get("Retry-After") if e.headers else None))
         except (urllib.error.URLError, TimeoutError, OSError) as e:
             motivo = getattr(e, "reason", e)
             if tentativa == 1 and _aperto_de_mao_recusado(motivo):
@@ -67,6 +75,14 @@ def ler(url: str, *, tempo: int = 60, fonte: str = "",
     original = Original(url=url, coletado_em=date.today().isoformat(),
                         sha256=impressao(conteudo), fonte=fonte)
     return Leitura(True, url, conteudo, original=original, http=codigo)
+
+
+def _segundos_pedidos(valor: str | None) -> float | None:
+    """Retry-After em segundos (a forma com data não é usada pelas fontes do mapa)."""
+    try:
+        return max(0.0, float(str(valor).strip())) if valor else None
+    except ValueError:
+        return None
 
 
 def contexto_tls_compativel() -> ssl.SSLContext:
