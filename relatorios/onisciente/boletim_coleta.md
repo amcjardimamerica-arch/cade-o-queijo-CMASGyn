@@ -1,27 +1,27 @@
-# Coleta em andamento: boletim de 2026-11-27T11:22+00:00
+# Coleta em andamento: boletim de 2026-11-27T11:32+00:00
 
-Desde 2026-11-27T10:02:25+00:00: 443 chamadas registradas.
-Última chamada: 2026-11-27T11:21:47+00:00 (amparos m9).
+Desde 2026-11-27T10:02:25+00:00: 469 chamadas registradas.
+Última chamada: 2026-11-27T11:32:38+00:00 (amparos m9).
 
 ## Por fonte
 
 | fonte | situação | chamadas |
 |---|---|---|
 | pncp.gov.br/api/consulta | HTTP 404 ({"path":"/pncp-consulta/v1/instrumentoscobranca/inclusao","m) | 282 |
-| pncp.gov.br/api/consulta | ok | 160 |
+| pncp.gov.br/api/consulta | ok | 186 |
 | pncp.gov.br/api/consulta | RemoteDisconnected | 1 |
 
 ## Tempo das respostas boas (segundos)
 
 | fonte | n | mediana | p90 | máximo |
 |---|---|---|---|---|
-| pncp.gov.br/api/consulta | 160 | 23.6 | 30.9 | 45.7 |
+| pncp.gov.br/api/consulta | 186 | 23.6 | 30.6 | 45.7 |
 
 ## O que o banco tem agora
 
 | tabela | linhas |
 |---|---|
-| pncp_amparos | 1339 |
+| pncp_amparos | 2104 |
 | pncp_contratos_detalhe | 2118 |
 | pncp_termos | 65 |
 | pncp_itens | 5114 |
@@ -31,7 +31,7 @@ Desde 2026-11-27T10:02:25+00:00: 443 chamadas registradas.
 
 ## Lido por inteiro (acumulado)
 
-- amparos: 49
+- amparos: 52
 - cobrancas: 800
 - compra: 839
 - contrato: 2118
