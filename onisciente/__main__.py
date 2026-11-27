@@ -9,6 +9,7 @@
     python -m onisciente historico --desde 2024-11 --ate 2026-11   (rede; banco + diagnóstico)
     python -m onisciente diagnostico          # refaz o diagnóstico a partir do banco, sem rede
     python -m onisciente painel-banco         # refaz só a página do banco no site, sem rede
+    python -m onisciente telas                # gera as telas (docs/onisciente/app), sem rede
 """
 
 from __future__ import annotations
@@ -248,6 +249,8 @@ def main(argv: list[str] | None = None) -> int:
         .set_defaults(f=cmd_painel_banco)
     sub.add_parser("requisitos", help="reconta os 183 requisitos do projeto original") \
         .set_defaults(f=cmd_requisitos)
+    from .telas.cli import registrar as registrar_telas
+    registrar_telas(sub)
     args = p.parse_args(argv)
     return args.f(args)
 
