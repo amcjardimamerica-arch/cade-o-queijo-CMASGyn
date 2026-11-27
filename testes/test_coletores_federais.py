@@ -427,7 +427,9 @@ def test_limiares_documentados_com_valor_justificativa_e_base():
 
 def test_motores_prontos_para_o_historico(tmp_path):
     assert set(mf.MOTORES) == set(mf.TABELAS_DO_MOTOR) == set(mf.TEMPO_DO_MOTOR) == set(mf.CICLO_DIAS)
-    assert not set(mf.MOTORES) & set(historico.MOTORES)
+    assert set(mf.MOTORES) <= set(historico.MOTORES)          # ligados ao historico (integração do bloco 5)
+    assert set(mf.TEMPO_DO_MOTOR.items()) <= set(historico.TEMPO_DO_MOTOR.items())
+    assert all(t in historico.ESQUEMA for t in ('repasses_fns', 'sancoes', 'liberacoes_fnde'))
     ctx = _ctx(tmp_path, lambda url, **_: _nao(url))
     assert set(mf.chamadas(ctx, ALVO, cnpjs=[])) == set(mf.MOTORES)
     for motor in mf.MOTORES:                     # cada motor roda sem rede e deixa a situação registrada

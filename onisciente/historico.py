@@ -1826,6 +1826,13 @@ MOTORES = ("siconfi", "querido_diario", "sileg", "fnas", "pncp", "fontes", "norm
 # Minutos que cada motor pode usar numa rodada (o fluxo do GitHub para em 180).
 TEMPO_DO_MOTOR = {"pncp": 75, "siconfi": 20, "transferencias": 30, "msc": 20, "pncp_detalhe": 150}
 TEMPO_PADRAO = 12
+
+# Bloco 5: motores federais (FNS, FNDE, Transferegov, sanções, cota do Estado, TCU e TCM-GO).
+from .coletores import motores_federais as _mf  # noqa: E402  (o módulo não importa o historico)
+ESQUEMA += _mf.ESQUEMA
+TABELAS_DO_MOTOR.update(_mf.TABELAS_DO_MOTOR)
+MOTORES += _mf.MOTORES
+TEMPO_DO_MOTOR.update(_mf.TEMPO_DO_MOTOR)
 PARALELO = 6           # leituras simultâneas nas vias de detalhe (só onde o motor antecipa)
 
 
@@ -1886,6 +1893,7 @@ def rodar(desde: str, ate: str, *, motores=MOTORES, caminho=BANCO, hoje: date | 
         "msc": lambda: motor_msc(ctx, alvo.siconfi_id_ente),
         "pncp_detalhe": lambda: motor_pncp_detalhe(ctx, alvo.ibge),
     }
+    chamadas.update(_mf.chamadas(ctx, alvo))
     for nome in motores:
         inicio = time.monotonic()
         if tempo_limitado:
