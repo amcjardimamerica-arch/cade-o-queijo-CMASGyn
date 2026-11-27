@@ -1,0 +1,7 @@
+URL: https://portaldatransparencia.gov.br/download-de-dados/ceis/20261126
+POST: {}
+OK: False
+HTTP: 403
+ERRO: HTTP 403
+BYTES: 111
+

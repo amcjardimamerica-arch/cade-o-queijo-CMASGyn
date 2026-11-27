@@ -1,0 +1,394 @@
+URL: https://www10.goiania.go.gov.br/transweb/Blocks/WebPatterns/Javascript/SilkUICommon.en.js?60864
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 12651
+
+﻿//==============================================================
+//
+// SILK UI JS | 15-09-2015
+//
+//========================================================================
+//
+// CONTAINS:  SilkDevTools | DeviceDetect | LoadButtonScript
+//
+//========================================================================
+
+
+/********************************************************************************/
+/* SilkDevTools                                                                */
+/********************************************************************************/
+
+$(document).ready(function(){
+    // event click
+    $(".ButtonExecuteCMD").click(ExecuteComandLine);
+});
+
+function ExecuteComandLine(){
+    
+    try {
+        // get comand
+        //var result = SilkUI[$(".CommandField").val()].call();
+        var result = eval($(".CommandField").val());
+
+        // return result
+        $(".SilkUIDevTools_log").html($(".CommandField").val()+" : "+result+"<br/><br/>"+$(".SilkUIDevTools_log").html());
+        $(".CommandField").val("");
+    }
+    catch(exception){  // invalid
+        $(".SilkUIDevTools_log").html($(".CommandField").val()+" : Invalid command!<br/><br/>"+$(".SilkUIDevTools_log").html());
+        $(".CommandField").val("");
+    }
+    
+}
+
+
+/********************************************************************************/
+/* Detect Device                                                                */
+/********************************************************************************/
+
+function detectDevice() {
+
+    //Variables
+    var that = this; // This object
+    var serverDevice = undefined; // device by server
+    var serverPreviewindevices = false; // server detect preview in devices
+    var serverBrowser = undefined; // server detect browser
+    var device = undefined; // device
+    var cookieDeviceName = "DEVICE_TYPE"; // cookie name
+    var serverSimulationDevice = false; // server get cookie and check if device simulation active 
+    var serverDevelopmentMode = false; // server check if development mode (server development)
+    var serverMobile = false; // server check if tablet or phone by user agent
+    var serverUseClientSideResponsive = false; // server returns value of site property to use new client side responsive
+
+    function canSimulateDevice(){
+        // is server simulation and not mobile
+        if(serverSimulationDevice && !serverMobile){//only simulate if Simulation active and not mobile device
+            return true;
+        }
+    }
+
+    // Is internet explorer
+    function msIeVersion() {
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE ");
+
+        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+            return true;
+        }
+        else{ 
+            return false;
+        }
+     }
+
+    //PUBLIC FUNCTIONS
+
+    //Get browser version
+    that.getBrowserVersion = function(){
+        return serverBrowser;
+    }
+    
+    that.getUseClientSideResponsive = function(){
+        return serverUseClientSideResponsive;
+    }
+
+
+    // Get cookie
+    that.getCookie = function(w){       
+        cName = "";
+        pCOOKIES = new Array();
+        pCOOKIES = document.cookie.split('; ');
+        for(bb = 0; bb < pCOOKIES.length; bb++){
+            NmeVal  = new Array();
+            NmeVal  = pCOOKIES[bb].split('=');
+            if(NmeVal[0] == w){
+                cName = unescape(NmeVal[1]);
+            }
+        }
+        return cName;
+    }    
+
+    //Set cookie
+    that.setCookie = function (name,value,days) {
+        if (!days) {
+            days = 360;
+        }
+        
+        var date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        var expires = "; expires="+date.toGMTString();
+        
+        document.cookie = name+"="+value+expires+"; path=/";
+    }
+    
+    //clear cookie
+    that.clearCookie = function (name) {
+        var date = new Date("1970-01-01");
+        var expires = "; expires="+date.toGMTString();
+        var value = "";
+        document.cookie = name+"="+value+expires+"; path=/";
+    }   
+
+    //Is device simulation
+    that.isSimulationDevice = function () {
+        return serverSimulationDevice;
+    }
+
+    //Is development mode
+    that.isDevelopmentMode = function () {
+        return serverDevelopmentMode;
+    }   
+
+    //Get orientation
+    that.getOrientation = function(){
+        // get sizes
+        var windowW = window.innerWidth || document.documentElement.clientWidth;
+        var windowH = window.innerHeight || document.documentElement.clientHeight;
+
+        // return orientation
+        if(windowW > windowH) {
+            return "landscape";
+        } else {
+            return "portrait";
+        }    
+    }
+
+    //Is device simulation (cookie)
+    that.isDeviceSimulation = function(){
+        if(canSimulateDevice()) {
+            that.setCookie("DEVICE_SIMULATION", "true");
+            return true;
+        } else {
+            if(that.getCookie("DEVICE_SIMULATION") != ''){ //If Cookie Exists, Set to false
+                that.setCookie("DEVICE_SIMULATION", "false");
+            }
+            return false;
+        }
+    }    
+
+    //Is preview in devices
+    that.isPreviewInDevices = function(){
+        return serverPreviewindevices; 
+    }    
+
+    //Get device width
+    that.getDeviceWidth = function(){
+        return window.innerWidth || document.documentElement.clientWidth;
+    }    
+
+    // Get device Height
+    that.getDeviceHeight = function(){   
+        return window.innerHeight || document.documentElement.clientHeight;
+    }
+    
+    // Is Iframe
+    that.isIframe = function(){
+        try {
+            return window.self !== window.top;
+        } catch (e) {
+            return true;
+        }
+    }
+
+    // Is mobile (phone or tablet)
+    that.isMobile = function(){
+        return serverMobile;
+    }
+
+    // Get device by window size
+    that.getDevice = function(){
+        
+        var windowW = that.getDeviceWidth();
+        
+        // If is portrait
+        if( canSimulateDevice() || that.getOrientation() == "portrait"){
+            // if mobile
+            if(serverMobile){              
+                if (windowW >= 420) {
+                    device = "tablet";
+                } else{
+                    device = "phone";
+                }                
+            } else { // desktop
+                if (windowW >= 1920) {
+                    device = "desktop hd";
+                } else if (windowW >= 1600){
+                    device = "desktop big";
+                } else if (windowW >= 1366){
+                    device = "desktop";
+                } else if (windowW >= 1024){
+                    device = "desktop small";
+                } else if (windowW >= 420) {
+                    device = "tablet";    
+                } else{
+                    device = "phone";
+                }
+            }
+        } else { // landscape
+            // if mobile
+            if(serverMobile){
+                
+                if (windowW >= 740) {
+                    device = "tablet";
+                } else{
+                    device = "phone";
+                } 
+            }
+            else{
+                if (windowW >= 1920) {
+                    device = "desktop hd";
+                } else if (windowW >= 1600){
+                    device = "desktop big";
+                } else if (windowW >= 1366){
+                    device = "desktop";
+                } else if (windowW >= 1024){
+                    device = "desktop small";
+                } else if (windowW >= 740) {
+                    device = "tablet";
+                } else{
+                    device = "phone";
+                }
+            }
+        }
+        return device;
+    }
+
+    // device, previewindevices, simulation device, browser, development mode, ismobile
+    that.init = function(device, previewInDevices, simDevice, browser, devMode, mobile, clientSideResponsive){
+   
+        // set vars
+        serverDevice = device;
+        serverPreviewindevices = previewInDevices;
+        serverBrowser = browser;
+        serverSimulationDevice = simDevice; 
+        serverDevelopmentMode = devMode;
+        serverMobile = mobile;
+        serverUseClientSideResponsive = clientSideResponsive;
+        
+        // If preview in devices
+        if(serverPreviewindevices){
+            
+            // set device
+            var _device = "desktop";            
+
+            // set object for iframe
+            
+            var devicePage = window.parent.document.querySelector(".marvel-device");
+            
+            if(devicePage) {
+                if(devicePage.classList.contains("desktop")) {
+                    _device = "desktop";   
+                } else if(devicePage.classList.contains("ipad")) {
+                    _device = "tablet";
+                } else if(devicePage.classList.contains("iphone4s") || devicePage.classList.contains("iphone5s")
+                            || devicePage.classList.contains("iphone6") || devicePage.classList.contains("iphone6plus")
+                            || devicePage.classList.contains("nexus5") || devicePage.classList.contains("s5")) {
+                    _device = "phone";
+                }
+            }
+
+            // force cookie
+            that.setCookie(cookieDeviceName,_device);
+
+        } else if(serverUseClientSideResponsive){ //If the dev selected to use the new Client Side functionality, ignore everything else and run the new script
+            
+            var page = $(".Page");
+            page.removeClass("startHidden");
+            //this return will terminate the initialize. This happens because client side responsive is being handled by another script
+            return;
+            
+        } else if (canSimulateDevice() && !that.isIframe()) { // device simulation
+            // set cookie by window size
+            that.setCookie(cookieDeviceName,that.getDevice());
+
+            
+        } else if (!that.getCookie(cookieDeviceName)) { // no cookie
+            // if mobile (tablet or phone)
+            if(that.isMobile()) {
+                // set cookie by window size
+                that.setCookie(cookieDeviceName,that.getDevice());
+                
+            } else {
+                //Device is desktop
+                that.setCookie(cookieDeviceName,"desktop");
+            }
+            
+        }
+            
+        // set device by cookie
+        device = that.getCookie(cookieDeviceName);
+
+        // literally only used in case if you are while on mobile and set to get
+        // the desktop version
+        if(!that.isIframe()) {
+            device = that.getDevice();
+            serverDevice = that.getDevice();
+        }
+
+        if(device !== "") {
+            
+            // check if cookie = server device
+            if(serverDevice.length < 1 || device.indexOf(serverDevice) < 0 ){
+
+                // refresh page to set same device on server and client side
+                location.reload();
+                
+            }  else {
+                // Add cookie name on .Page and orientation                
+                var pageClass = device + " " + that.getOrientation();
+                var page = $(".Page");
+                page.addClass(pageClass);
+                
+                // remove the class that hides the screen
+                page.removeClass("startHidden");
+                that.setCookie(cookieDeviceName, device);
+            }            
+        }
+    } //END INIT
+
+    return that;
+
+}//END detectDevice FUNCTION
+
+
+var SilkDeviceDetect = new detectDevice();
+
+/********************************************************************************/
+/* Load button function                                                         */
+/********************************************************************************/
+
+function loadingButtons() {
+
+    this.init = function() {
+        $(document).ready(onReady);
+    };
+
+    function onReady() {
+        addEvents();
+        osAjaxBackend.BindAfterAjaxRequest(resetLoadingButtons);
+    }
+
+    function addEvents() {
+        $('.Button.Load').on('click', setLoadingButton);
+    }
+
+    function setLoadingButton() {
+        var hasValidation = $(this).attr("onclick") && $(this).attr("onclick").indexOf("ClientValidate") >= 0;
+        if(!hasValidation || (hasValidation && OsPage_ClientValidate(this.id))) {
+            $(this).addClass('Loading');
+        }
+    };
+
+    function resetLoadingButtons() {
+        $('.Button.Load.Loading').each(function() {
+            $(this).removeClass('Loading');
+        });
+        addEvents();
+    }
+
+    return this;
+
+}
+
+loadingButtons().init();

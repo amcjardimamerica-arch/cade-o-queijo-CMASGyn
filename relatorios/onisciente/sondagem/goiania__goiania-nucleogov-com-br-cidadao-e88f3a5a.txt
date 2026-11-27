@@ -1,0 +1,7 @@
+URL: https://goiania.nucleogov.com.br/cidadao/
+POST: {}
+OK: False
+HTTP: 403
+ERRO: HTTP 403
+BYTES: 485
+

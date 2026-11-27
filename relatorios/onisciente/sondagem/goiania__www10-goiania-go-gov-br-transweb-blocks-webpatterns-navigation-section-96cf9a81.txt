@@ -1,0 +1,134 @@
+URL: https://www10.goiania.go.gov.br/transweb/Blocks/WebPatterns/Navigation/SectionIndex.en.js?60864
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 4494
+
+﻿function SectionIndexObject(){
+    'use strict';
+     
+    var that = this;    
+    
+
+    that.init = function(){
+
+
+        var mSection = 40; /* margin to scroll anchor */
+        var minTop = $(".SectionIndex").offset().top-20; /* margin top to sectionindex */
+        var isFixed = $(".SectionIndex").attr("isFixed") == "True"; /*check if its fixed position*/
+        var offset = $(".SectionIndex").offset();
+        
+        // reset content
+        $(".SectionIndex").empty();
+       
+         /* rules for vertical IndexSection */
+        if($(".SectionIndex").hasClass("vertical")){     
+            mSection = 10 + parseInt($(".SectionIndex").attr("topmargin"));
+
+            /* set width inline for position fixed */
+            $(".SectionIndex").width($(".SectionIndex").width());
+        }
+
+        /* remove margin from de first section */
+        $(".Section:first").css("margin-top", "0px");
+
+        /* each all section anchor, get href */
+        var aArray = [];
+        $("Body a.Section-anchor").each(function(index){
+            
+            /* set name */
+            $(this).attr("name", "section"+index);
+            
+            /* id set anchor label */
+            if($(this).attr("title")){
+                 $(".SectionIndex").append("<a href='#section"+index+"'>"+$(this).attr("title")+"</a>");
+            }else{
+                 $(".SectionIndex").append("<a href='#section"+index+"'>"+$(this).next().children(".Heading2").text()+"</a>");
+            }
+           
+            aArray.push("section"+index);
+
+            
+            /* animate */
+            $(".SectionIndex a[href='#section"+index+"']").click(function(){
+                $("html, body").animate({scrollTop: $("a[name=section"+index+"]").offset().top-mSection}, 600, "easeOutCubic");
+                return false; 
+            });
+            
+        });
+        
+        
+        /* check first link */
+        $(".SectionIndex a:first-child").addClass("active");
+
+
+        /* if phone or tablet */
+        if($(".Page").hasClass("phone") || $(".Page").hasClass("tablet")){    
+            $(".SectionIndex").removeClass("vertical");    
+        }else{
+            
+            /* when scroll */
+            $(window).scroll(function() {          
+                
+                /* set global positions */
+                var windowPos = $(window).scrollTop(); 
+                var windowHeight = $(window).height(); 
+                var docHeight = $(document).height();
+
+                /* each array links */
+                for (var i=0; i < aArray.length; i++) {
+                    var theID = aArray[i];
+                    var divPos = $("a[name='"+theID+"']").offset().top;
+                    var divHeight = $("a[name='"+theID+"']").height();
+                       
+                    if ((windowPos+mSection+5) > divPos) {
+                        $(".SectionIndex a").removeClass("active");
+                        $(".SectionIndex a[href='#" + theID + "']").addClass("active");
+                    }
+                }
+        
+                /* check for last item */
+                if(windowPos + windowHeight == docHeight) {
+                    if (!$(".SectionIndex a:last-child").hasClass("active")) {
+                        $(".SectionIndex a").removeClass("active");
+                        $(".SectionIndex a:last-child").addClass("active");
+                    }
+                }
+
+                /*check if its fixed position*/
+                if(isFixed) {
+                    
+                    /* set fixed to window or absolute to top */
+                    if (offset.top - $(this).scrollTop() < mSection) {
+                        $(".SectionIndex").addClass("fixed");
+                        $(".SectionIndex.vertical").css("top", mSection  +"px");
+                    } else {
+                        $(".SectionIndex").removeClass("fixed");
+                        $(".SectionIndex.vertical").css("top", "0px");                     
+                    }
+                }
+
+            });
+        } 
+
+    // ensure the scroll position after ajax request
+    // $(window).scrollTop($(window).scrollTop()+1).scrollTop($(window).scrollTop()-1);
+
+    }
+    
+    $(document).ready(function(){
+        osAjaxBackend.BindAfterAjaxRequest(that.init);
+    });
+    
+    
+}
+
+    SilkUI.SectionIndex = new SectionIndexObject();
+
+    /* Execute by SilkUI */
+    SilkUI.Execute(SilkUI.SectionIndex.init, "Error on WebPatterns/Navigation/SectionIndex");
+    
+
+
+
