@@ -1,0 +1,229 @@
+URL: https://consultafns.saude.gov.br/app/app.js
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 8787
+
+/**
+ * @desc Define um módulo anonimo dependente dos componentes a serem utilizados
+ *       na aplicação
+ */
+define(
+        [ 'api-core', 'app-modal', 'app-menu', 'app-route', 'app-seguranca',
+                'app-modal', 'app-barra-acessibilidade', 'app-utils',
+                'app-notify', 'app-validator', 'ng-table', 'angular-bootstrap',
+                'app-mask', 'app-breadcrumb', 'app-translate', 'app-spinner',
+                'app-datepicker', 'd3', 'c3', 'angular-dropdown-multiselect' ],
+        function(app) {
+            'use strict';
+
+            /**
+             *
+             * @param appRouteProvider
+             * @param apiConfigProvider
+             * @param appLoginProvider
+             * @param appConfigProvider
+             * @param appPerfilProvider
+             * @constructor
+             */
+
+            var AppConfig = function(appRouteProvider, apiConfigProvider,
+                    appLoginProvider, appConfigProvider, appPerfilProvider, appNotifyProvider, $provide) {
+
+                $provide.decorator('apiHttpInterceptor', ['$delegate', '$q', function($delegate, $q) {
+                    var responseErrorGlobal = $delegate.responseError;
+
+                    $delegate.responseError = function(rejection) {
+                        if (rejection.config && rejection.config.tratarErroLocalmente) {
+                            return $q.reject(rejection);
+                        }
+
+                        return responseErrorGlobal(rejection);
+                    };
+
+                    return $delegate;
+                }]);
+
+                // Configuração da API para identificar o basePath da aplicação
+                var httpErrorsMessages = {
+                    "404" : "404-Não foi possível acessar o recurso solicitado."
+                };
+                apiConfigProvider.setAppBasePath('app').setHttpErrorsMessages(
+                        httpErrorsMessages);
+
+                // Configuração de basePath pra roteamento e rota padrão da
+                // aplicação
+                appRouteProvider.setBasePath('app').setDefaultRoute('repasse-dia');
+
+                // Configuração de dados da aplicação
+                appConfigProvider.setVersion('1.50.9')
+                				 .setTitle('Fundo Nacional de Saúde')
+                				 .setName('Consulta')
+                				 .setBustKey(('prod' == 'prod') ? '1.50.9' : (new Date()).getTime());
+
+                // Configurando a URL DE LOGIN
+
+                /**
+                 * @desc Variável de configuração de rota destino padrão por
+                 *       PERFIL
+                 * @example [ { perfilId : 'ADM', route: 'home' }, { perfilId:
+                 *          'GES', route: 'inicial' } ]
+                 * @default {perfilId: '*', route: 'home'}
+                 * @type {{perfilId: string, route: string}[]}
+                 */
+                var routeProfile = [ {
+                    perfilId : '*',
+                    route : 'inicio'
+                } ];
+
+                // Variável APENAS PARA CRIACAO DE PROTOTIPO. REMOVER NA
+                // IMPLEMENTAÇÃO DA APLICACAO;
+                var host = window.location.pathname;
+
+                // Configuração de dados de LOGIN
+                appLoginProvider.setLoginRoute('login').setLoginResourceUrl(
+                        "/oauth/token").setUserResourceUrl(
+                        "/api/autenticacao/usuario")
+                        .setLogoutResourceUrl(
+                                "/api/autenticacao/logout")
+                        .setRedirectRoute(routeProfile);
+
+                // Configuração de perfil
+                appPerfilProvider.init();
+                
+                //Configuração do temporizador das notificações
+                //appNotifyProvider.getProvider().globalTimeToLive(10000);
+                appNotifyProvider.getProvider().globalDisableCountDown(false);
+
+                // Configurações de Seguranca (secure/limit)
+                // appSegurancaProvider.setTimeLimit(0.5).isSecure(true);
+            }
+
+            /**
+             * @desc Dependency Injection for AppConfig
+             * @type {string[]}
+             */
+            AppConfig.$inject = [ 'appRouteProvider', 'apiConfigProvider',
+                    'appLoginProvider', 'appConfigProvider',
+                    'appPerfilProvider', 'appNotifyProvider', '$provide' ];
+
+            /**
+             *
+             * @param appConfigService
+             * @param apiConfigProvider
+             * @param $log
+             * @constructor
+             */
+            var AppRun = function($rootScope, appConfigService,
+                    apiConfigProvider, $log, utilService) {
+
+                // Build de ENV (dev, hmg, prototipo, prod)
+                apiConfigProvider.setEnv('prod');
+
+                $rootScope.ambiente = apiConfigProvider.getEnv();
+
+                // Propriedades adicionais á aplicação. Podem ser executadas em
+                // qualquer controle
+                appConfigService.setProperties({
+                    appTeste : 'Testando'
+                });
+
+                /**
+                 *
+                 * @param err
+                 */
+                requirejs.onError = function(err) {
+                    if (apiConfigProvider.getEnv() == 'dev') {
+                        $log
+                                .error('======== Ocorreu um erro ao carregar módulos pelo require ========');
+                        $log.error('======== Tipo: ' + err.requireType);
+                        $log.error('======== Módulo: ' + err.requireModules);
+                        throw err;
+                    }
+                };
+
+                // Implementação do virtualPage para informar ao analytics as mudanças de rotas.
+                $rootScope.$on("$stateChangeStart",function(event, next, current){
+
+                    if(next.templateUrl) {
+                        utilService.registrarAcesso(next.name.split(".")[0]);
+                        // interagindo com o Analytics através do objeto global ga
+                        ga('send', 'pageview', { page: next.url });
+                    }
+                });
+            }
+
+            /**
+             * @desc Dependency Injection para AppRun
+             * @type {string[]}
+             */
+            AppRun.$inject = [ '$rootScope', 'appConfigService', 'apiConfig',
+                    '$log', 'utilService' ];
+
+            app.factory('cacheInterceptor', ['$cacheFactory', '$timeout', function($cacheFactory, $timeout) {
+				var cacheReg = {};
+				var customCache = $cacheFactory('customCache', { capacity: 15 });
+				var hashCode = function(string) {
+					var hash = 0, i, chr;
+					if (string.length === 0) return hash;
+					for (i = 0; i < string.length; i++) {
+						chr   = string.charCodeAt(i);
+						hash  = ((hash << 5) - hash) + chr;
+						hash |= 0;
+					}
+					return hash;
+				};
+				var getKeyRequest = function(config) {
+					var key = config.method + config.url;
+					if (config.params) {
+						key += JSON.stringify(config.params); 
+					}
+					return hashCode(key);
+				}
+				var getTimeToLive = function(config) {
+					var timeToLive = 1000 * 60 * 10; // 5 minutos
+					if (config.timeToLive) {
+						timeToLive = config.timeToLive;
+						delete config.timeToLive;
+					}
+					return timeToLive;
+				}
+				return {
+					request: function(config) {
+						if (!/(html|js|css)$/.test(config.url)) {
+							config.cache = customCache;
+							var keyRequest = getKeyRequest(config);
+							if (!cacheReg[keyRequest]) {
+								cacheReg[keyRequest] = true;
+								$timeout(function() {
+									customCache.remove(config.url);
+									delete cacheReg[keyRequest];
+								}, getTimeToLive(config));
+							}
+						}
+						return config;
+					}
+				};
+			}])
+
+            /**
+             * @desc Criação do objeto angularJs para o module MsRestexemplo
+             */
+            return app.createModule(
+                    'portalfns',
+                    [ 'apiCore', 'appModal', 'appMenu', 'appRoute',
+                            'appSeguranca', 'appModal',
+                            'appBarraAcessibilidade', 'appUtils', 'appNotify',
+                            'appValidator', 'ngTable', 'ui.bootstrap',
+                            'appMask', 'appBreadcrumb', 'appTranslate',
+                            'appSpinner', 'appDatepicker', 'angularjs-dropdown-multiselect' ])
+
+            /* Bloco de configuração de dependências da aplicação */
+            .config(AppConfig)
+            .config(function($httpProvider) {
+				 $httpProvider.interceptors.push('cacheInterceptor');
+            })
+            /* Bloco de execução antes da inicialização da aplicação */
+            .run(AppRun);
+        });
