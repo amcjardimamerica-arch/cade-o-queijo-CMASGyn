@@ -1,0 +1,1186 @@
+/* Onisciente: as telas. Desenha cada tela a partir dos dados embutidos na página.
+   Toda conta que depende do recorte (período e secretaria) está nas funções puras de L, que os testes
+   rodam no Node; o resto é desenho. Nenhum número é desenhado sem a chave da sua fonte. */
+(function () {
+  'use strict';
+
+  // ===========================================================================================
+  // L: lógica pura (sem página). Exportada para os testes.
+  // ===========================================================================================
+  var L = {};
+  var MESES = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro',
+    'outubro', 'novembro', 'dezembro'];
+  var CURTOS = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+  var NF2 = new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  var NF1 = new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  var NF0 = new Intl.NumberFormat('pt-BR', { maximumFractionDigits: 0 });
+
+  L.brl = function (v) { return 'R$ ' + NF2.format(v); };
+  L.brlCurto = function (v) {
+    var a = Math.abs(v);
+    if (a >= 1e9) return 'R$ ' + NF1.format(v / 1e9) + ' bi';
+    if (a >= 1e6) return 'R$ ' + NF1.format(v / 1e6) + ' mi';
+    if (a >= 1e4) return 'R$ ' + NF0.format(v / 1e3) + ' mil';
+    return L.brl(v);
+  };
+  L.pct = function (v) { return NF2.format(v) + '%'; };
+  L.int = function (v) { return NF0.format(v); };
+  L.mes = function (c) { if (!c) return ''; var p = c.split('-'); return MESES[+p[1] - 1] + ' de ' + p[0]; };
+  L.mesCurto = function (c) { var p = c.split('-'); return CURTOS[+p[1] - 1] + '/' + p[0].slice(2); };
+  L.menos = function (c, n) {
+    var p = c.split('-'), t = (+p[0]) * 12 + (+p[1] - 1) - n;
+    return Math.floor(t / 12) + '-' + ('0' + (t % 12 + 1)).slice(-2);
+  };
+  L.data = function (iso) { if (!iso) return ''; var p = iso.slice(0, 10).split('-'); return p[2] + '/' + p[1] + '/' + p[0]; };
+
+  // --- fichas e recortes ---------------------------------------------------------------------
+  function g(fi, curto, longo) { return fi[curto] !== undefined ? fi[curto] : fi[longo]; }
+  L.periodoDa = function (fi) {
+    var cs = fi.cs;
+    if (cs && cs.length) return [cs[0], cs[cs.length - 1]];
+    return [fi.de || '0000-00', fi.ate || fi.de || '9999-99'];
+  };
+  L.ativa = function (fi, c) {
+    if (fi.cs && fi.cs.length) return fi.cs.indexOf(c) >= 0;
+    var p = L.periodoDa(fi);
+    return p[0] <= c && c <= p[1];
+  };
+  L.noPeriodo = function (fi, de, ate) { var p = L.periodoDa(fi); return p[0] <= ate && p[1] >= de; };
+  L.daSecretaria = function (fi, s) { return !s || (g(fi, 's', 'secretarias') || []).indexOf(s) >= 0; };
+  L.filtrar = function (lista, f) {
+    f = f || {};
+    var texto = (f.texto || '').toLowerCase();
+    return lista.filter(function (fi) {
+      if (!L.daSecretaria(fi, f.s)) return false;
+      if (f.de || f.ate) { if (!L.noPeriodo(fi, f.de || '0000-00', f.ate || '9999-99')) return false; }
+      else if (f.c && !L.ativa(fi, f.c)) return false;
+      if (f.familias && f.familias.length && f.familias.indexOf(g(fi, 'f', 'familia')) < 0) return false;
+      if (f.gravidades && f.gravidades.length && f.gravidades.indexOf(g(fi, 'g', 'gravidade')) < 0) return false;
+      if (f.temas && f.temas.length && f.temas.indexOf(g(fi, 't', 'tema')) < 0) return false;
+      if (f.estacao && f.estacoesDaFamilia) {
+        var est = f.estacoesDaFamilia[g(fi, 'f', 'familia')] || [];
+        if (est.indexOf(+f.estacao) < 0) return false;
+      }
+      if (texto) {
+        var alvo = [fi.codigo || fi.k, fi.titulo, fi.como_esta, fi.norma].join(' ').toLowerCase();
+        if (alvo.indexOf(texto) < 0) return false;
+      }
+      return true;
+    });
+  };
+  L.contar = function (indice, c, s) {
+    var out = {};
+    L.filtrar(indice, { c: c, s: s }).forEach(function (fi) {
+      var t = out[fi.t] || (out[fi.t] = { n: 0, critica: 0, alta: 0, media: 0 });
+      t.n++; t[fi.g] = (t[fi.g] || 0) + 1;
+    });
+    return out;
+  };
+  L.contarPagina = function (contagem, temas, pagina) {
+    var r = { n: 0, critica: 0 };
+    Object.keys(contagem).forEach(function (t) {
+      if (pagina === 'index' || (temas[t] && temas[t].pagina === pagina)) {
+        r.n += contagem[t].n; r.critica += contagem[t].critica || 0;
+      }
+    });
+    return r;
+  };
+
+  // --- o rio --------------------------------------------------------------------------------
+  L.mesesDoAno = function (meses, c) {
+    return Object.keys(meses).filter(function (m) { return m.slice(0, 4) === c.slice(0, 4) && m <= c; }).sort();
+  };
+  var CLASSES = { vinculada: 'Vinculada', livre: 'Livre', sem_catalogo: 'Sem catálogo' };
+  L.somarRio = function (rio, c, modo, funcao, nomesFuncao) {
+    modo = modo || 'todo';
+    var ms = L.mesesDoAno(rio.meses, c), ai = {}, bf = {};
+    ms.forEach(function (m) {
+      rio.meses[m].a.forEach(function (x) {
+        if (modo !== 'todo' && x[1] !== modo) return;
+        var k = x[0] + '|' + x[1]; ai[k] = (ai[k] || 0) + x[2];
+      });
+      rio.meses[m].b.forEach(function (x) {
+        if (modo !== 'todo' && x[0] !== modo) return;
+        var k = x[0] + '|' + x[1]; bf[k] = (bf[k] || 0) + x[2];
+      });
+    });
+    var links = [], entra = {}, sai = {}, af = {}, fz = {};
+    Object.keys(ai).forEach(function (k) {
+      var v = ai[k]; if (v <= 0.005) return;
+      var p = k.split('|'); af[p[0]] = (af[p[0]] || 0) + v; entra[p[1]] = (entra[p[1]] || 0) + v;
+      links.push({ de: 'a' + p[0], para: 'l' + p[1], v: v, cl: p[1] });
+    });
+    // afluentes pequenos viram "Demais receitas"
+    var ordemAf = Object.keys(af).sort(function (x, y) { return af[y] - af[x]; });
+    var manterAf = {}; ordemAf.slice(0, 11).forEach(function (i) { manterAf[i] = 1; });
+    var fozLinks = [];
+    Object.keys(bf).forEach(function (k) {
+      var v = bf[k]; if (v <= 0.005) return;
+      var p = k.split('|'); sai[p[0]] = (sai[p[0]] || 0) + v;
+      var destino = (!funcao || p[1] === funcao) ? p[1] : 'demais';
+      fz[destino] = (fz[destino] || 0) + v;
+      fozLinks.push({ de: 'l' + p[0], para: 'f' + destino, v: v, cl: p[0] });
+    });
+    var ordemFz = Object.keys(fz).filter(function (f) { return f !== 'demais'; }).sort(function (x, y) { return fz[y] - fz[x]; });
+    var manterFz = {}; ordemFz.slice(0, funcao ? 1 : 11).forEach(function (f) { manterFz[f] = 1; });
+    function junta(lista) {
+      var m = {};
+      lista.forEach(function (l) { var k = l.de + '>' + l.para + '>' + l.cl; if (m[k]) m[k].v += l.v; else m[k] = { de: l.de, para: l.para, v: l.v, cl: l.cl }; });
+      return Object.keys(m).map(function (k) { return m[k]; });
+    }
+    links = links.map(function (l) { var i = l.de.slice(1); return manterAf[i] ? l : { de: 'aoutras', para: l.para, v: l.v, cl: l.cl }; });
+    fozLinks = fozLinks.map(function (l) { var f = l.para.slice(1); return (manterFz[f] || f === 'demais') ? l : { de: l.de, para: 'fdemais', v: l.v, cl: l.cl }; });
+    links = junta(links).concat(junta(fozLinks));
+    Object.keys(CLASSES).forEach(function (cl) {
+      var dif = (entra[cl] || 0) - (sai[cl] || 0);
+      if (dif > 0.005 && entra[cl]) links.push({ de: 'l' + cl, para: 'fparada', v: dif, cl: 'parada' });
+      else if (dif < -0.005) links.push({ de: 'aanteriores', para: 'l' + cl, v: -dif, cl: cl });
+    });
+    var nos = {};
+    function no(id, col, nome) { if (!nos[id]) nos[id] = { id: id, col: col, nome: nome, entra: 0, sai: 0 }; return nos[id]; }
+    links.forEach(function (l) {
+      var a = no(l.de, l.de[0] === 'a' ? 0 : 1, ''), b = no(l.para, l.para[0] === 'l' ? 1 : 2, '');
+      a.sai += l.v; b.entra += l.v;
+    });
+    Object.keys(nos).forEach(function (id) {
+      var n = nos[id], r = id.slice(1);
+      n.v = Math.max(n.entra, n.sai);
+      if (id[0] === 'a') n.nome = r === 'outras' ? 'Demais receitas' : r === 'anteriores' ? 'Saldo de anos anteriores e ajustes' : rio.especies[+r].nome;
+      if (id[0] === 'a' && rio.especies[+r]) n.esfera = rio.especies[+r].esfera;
+      if (id[0] === 'l') n.nome = CLASSES[r] || r;
+      if (id[0] === 'f') n.nome = r === 'parada' ? 'Água parada (arrecadada e não empenhada)' : r === 'demais' ? 'Demais funções' : ((nomesFuncao && nomesFuncao[r]) || 'Função ' + r);
+      n.especial = (r === 'parada' || r === 'demais' || r === 'outras' || r === 'anteriores');
+    });
+    var total = 0; links.forEach(function (l) { if (l.de[0] === 'a') total += l.v; });
+    return { nos: nos, links: links, meses: ms, total: total, entra: entra, sai: sai };
+  };
+  L.layoutSankey = function (grafo, W, H) {
+    var cols = [[], [], []], pad = 10, nw = 14;
+    Object.keys(grafo.nos).forEach(function (id) { cols[grafo.nos[id].col].push(grafo.nos[id]); });
+    cols.forEach(function (c) { c.sort(function (a, b) { return (a.especial - b.especial) || (b.v - a.v); }); });
+    var k = Infinity;
+    cols.forEach(function (c) {
+      if (!c.length) return;
+      var s = c.reduce(function (t, n) { return t + n.v; }, 0);
+      k = Math.min(k, (H - pad * (c.length - 1)) / (s || 1));
+    });
+    if (!isFinite(k)) k = 0;
+    var xs = [210, W / 2 - nw / 2, W - 250];
+    cols.forEach(function (c, i) {
+      var y = 0;
+      c.forEach(function (n) { n.x = xs[i]; n.y = y; n.h = Math.max(1, n.v * k); n.w = nw; y += n.h + pad; n.oe = 0; n.os = 0; });
+    });
+    var ls = grafo.links.slice().sort(function (a, b) {
+      return (grafo.nos[a.para].y - grafo.nos[b.para].y) || (grafo.nos[a.de].y - grafo.nos[b.de].y);
+    });
+    ls.forEach(function (l) {
+      var a = grafo.nos[l.de], b = grafo.nos[l.para], w = Math.max(1, l.v * k);
+      l.w = w; l.y0 = a.y + a.os + w / 2; a.os += w;
+    });
+    ls.sort(function (a, b) { return grafo.nos[a.de].y - grafo.nos[b.de].y; });
+    ls.forEach(function (l) { var b = grafo.nos[l.para]; l.y1 = b.y + b.oe + l.w / 2; b.oe += l.w; });
+    var alto = 0; cols.forEach(function (c) { c.forEach(function (n) { alto = Math.max(alto, n.y + n.h); }); });
+    return { cols: cols, links: ls, k: k, alto: alto };
+  };
+
+  // --- séries -------------------------------------------------------------------------------
+  L.janela = function (c, n) { return [L.menos(c, n - 1), c]; };
+  L.somaPorMes = function (mapa, de, ate) {
+    var n = 0, v = 0;
+    Object.keys(mapa || {}).forEach(function (m) { if (m >= de && m <= ate) { n += mapa[m][0]; v += mapa[m][1].v; } });
+    return [n, v];
+  };
+
+  if (typeof module !== 'undefined' && module.exports) { module.exports = L; return; }
+
+  // ===========================================================================================
+  // Página: dados, recorte e componentes
+  // ===========================================================================================
+  function json(id) { var el = document.getElementById(id); return el ? JSON.parse(el.textContent) : null; }
+  var C = json('d-comum'), D = json('d-tela'), F = json('d-fontes') || {}, IND = json('d-indice') || [];
+  var PID = document.body.dataset.pagina;
+  var TEMAS = C.temas || {};
+  var ORDEM = C.paginas.map(function (p) { return p.id; });
+  var SEC = {}; C.secretarias.forEach(function (s) { SEC[s.id] = s; });
+  var depois = [];
+
+  function esc(t) {
+    return String(t === undefined || t === null ? '' : t).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function lerStorage(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function gravarStorage(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* sem armazenamento */ } }
+
+  // --- recorte --------------------------------------------------------------------------------
+  var U = new URLSearchParams(location.search);
+  var salvo = {}; try { salvo = JSON.parse(lerStorage('onisciente.recorte') || '{}'); } catch (e) { salvo = {}; }
+  var S = {
+    c: U.get('c') || salvo.c || C.padrao,
+    s: U.has('s') ? U.get('s') : (salvo.s || '')
+  };
+  if (C.competencias.indexOf(S.c) < 0) S.c = C.padrao;
+  if (S.s && !SEC[S.s]) S.s = '';
+  function funcaoDoRecorte() { return S.s && SEC[S.s] ? SEC[S.s].funcao : null; }
+  function qs(extra) {
+    var p = new URLSearchParams();
+    p.set('c', S.c); if (S.s) p.set('s', S.s);
+    Object.keys(extra || {}).forEach(function (k) { if (extra[k] !== null && extra[k] !== undefined && extra[k] !== '') p.set(k, extra[k]); });
+    return '?' + p.toString();
+  }
+  function link(pagina, extra, ancora) { return pagina + '.html' + qs(extra) + (ancora ? '#' + ancora : ''); }
+
+  // --- números com origem ---------------------------------------------------------------------
+  function fmt(v, modo) {
+    if (modo === 'pct') return L.pct(v);
+    if (modo === 'int') return L.int(v);
+    if (modo === 'brl') return L.brl(v);
+    if (modo === 'dias') return L.int(v) + (Math.round(v) === 1 ? ' dia' : ' dias');
+    if (modo === 'pp') return NF2.format(v) + ' p.p.';
+    if (modo === 'dec') return NF1.format(v);
+    return L.brlCurto(v);
+  }
+  function num(n, modo, extraClasse) {
+    if (!n || n.v === null || n.v === undefined) return '<span class="nd">sem dado</span>';
+    var f = F[n.f] || {};
+    return '<span class="n' + (f.u ? '' : ' sem') + (extraClasse ? ' ' + extraClasse : '') + '" tabindex="0" role="button" data-f="' +
+      esc(n.f) + '" data-v="' + n.v + '"' + (n.s ? ' data-s="' + n.s + '"' : '') + ' data-m="' + (modo || 'curto') + '">' +
+      fmt(n.v, modo) + '</span>';
+  }
+  function origem(chave, texto) {
+    if (!chave) return '';
+    var f = F[chave] || {};
+    return '<span class="n' + (f.u ? '' : ' sem') + '" tabindex="0" role="button" data-f="' + esc(chave) + '">' +
+      esc(texto || f.r || 'origem') + '</span>';
+  }
+  var SELOS = {
+    verde: ['verde', 'duas vias'], azul: ['azul', 'uma via'], roxo: ['roxo', 'não publicado'],
+    vermelho: ['vermelho', 'leitura falhou'], cinza: ['cinza', 'aguardando coleta'],
+    alerta: ['alerta', 'alerta'], indicio: ['indicio', 'indício'], critica: ['critica', 'indício crítico'],
+    ok: ['verde', 'conforme']
+  };
+  function selo(s, texto) {
+    var x = SELOS[s] || SELOS.azul;
+    return '<span class="selo ' + x[0] + '"><i aria-hidden="true"></i>' + esc(texto || x[1]) + '</span>';
+  }
+  function seloVias(o) { return o.divergencia ? selo('indicio', 'as vias divergem') : selo(o.selo, o.selo === 'verde' ? 'duas vias batem' : null); }
+  var GRAV = { critica: 'crítica', alta: 'alta', media: 'média' };
+  function grav(gv) { return '<span class="grav ' + esc(gv) + '">' + (GRAV[gv] || esc(gv)) + '</span>'; }
+  function vazio(titulo, texto, roxo) {
+    return '<div class="vazio' + (roxo ? ' roxo' : '') + '"><span class="ic" aria-hidden="true">' + (roxo ? '!' : '…') +
+      '</span><div><h3>' + esc(titulo) + '</h3><p>' + esc(texto) + '</p></div></div>';
+  }
+  function painel(id, titulo, sub, corpo, opts) {
+    opts = opts || {};
+    return '<section class="painel' + (opts.lamina === false ? '' : ' lamina') + (opts.classe ? ' ' + opts.classe : '') + '"' +
+      (id ? ' id="' + id + '"' : '') + ' aria-labelledby="t-' + (id || titulo.length) + '"><header><div>' +
+      (opts.eyebrow ? '<p class="eyebrow">' + esc(opts.eyebrow) + '</p>' : '') +
+      '<h2 id="t-' + (id || titulo.length) + '">' + esc(titulo) + '</h2>' + (sub ? '<p class="sub">' + sub + '</p>' : '') +
+      '</div>' + (opts.direita || '') + '</header>' + corpo + '</section>';
+  }
+  function kpi(rot, valor, det, classe) {
+    return '<div class="kpi ' + (classe || '') + '"><span class="rot">' + esc(rot) + '</span><span class="val">' + valor +
+      '</span>' + (det ? '<span class="det">' + det + '</span>' : '') + '</div>';
+  }
+  function nomeSec(id) { return SEC[id] ? SEC[id].nome : id; }
+  function nomeFuncao(f) { return (C.funcoes && C.funcoes[f]) || ('Função ' + f); }
+
+  // --- a dica (balão da origem) ---------------------------------------------------------------
+  var dica = document.getElementById('dica'), fixa = null, timer = null;
+  var toque = window.matchMedia && window.matchMedia('(hover: none)').matches;
+  function mostrar(el, fixar) {
+    var f = F[el.dataset.f] || { r: 'Fonte não registrada', n: 'o original deste número não está guardado no banco' };
+    var v = el.dataset.v !== undefined ? +el.dataset.v : null;
+    var s = el.dataset.s || f.s;
+    var html = '<b>' + esc(f.r) + '</b>';
+    if (v !== null && !isNaN(v) && (!el.dataset.m || el.dataset.m === 'curto' || el.dataset.m === 'brl')) html += '<div class="mono">' + L.brl(v) + '</div>';
+    html += '<div>' + selo(s) + (f.q ? ' lido em ' + L.data(f.q) : '') + '</div>';
+    if (f.h) html += '<div class="h">sha256 ' + esc(f.h) + '</div>';
+    if (f.n) html += '<div class="' + (f.u ? '' : 'falta') + '">' + esc(f.n) + '</div>';
+    if (f.u) html += '<div class="acao"><a href="' + esc(f.u) + '" target="_blank" rel="noopener">Abrir o original' + (f.c ? ' guardado' : '') + '</a>' +
+      (fixar ? '<button type="button" data-fechar>Fechar</button>' : '') + '</div>';
+    else if (fixar) html += '<div class="acao"><button type="button" data-fechar>Fechar</button></div>';
+    dica.innerHTML = html; dica.hidden = false;
+    var r = el.getBoundingClientRect(), d = dica.getBoundingClientRect();
+    var x = Math.min(Math.max(8, r.left), window.innerWidth - d.width - 8);
+    var y = r.bottom + 8; if (y + d.height > window.innerHeight - 8) y = Math.max(8, r.top - d.height - 8);
+    dica.style.left = x + 'px'; dica.style.top = y + 'px';
+    fixa = fixar ? el : null;
+  }
+  function esconder() { if (!fixa) dica.hidden = true; }
+  document.addEventListener('mouseover', function (e) {
+    var el = e.target.closest && e.target.closest('[data-f]');
+    if (el && !toque) { clearTimeout(timer); if (!fixa) mostrar(el, false); }
+  });
+  document.addEventListener('mouseout', function (e) {
+    var el = e.target.closest && e.target.closest('[data-f]');
+    if (el && !toque) { timer = setTimeout(esconder, 220); }
+  });
+  dica.addEventListener('mouseenter', function () { clearTimeout(timer); });
+  dica.addEventListener('mouseleave', function () { timer = setTimeout(esconder, 220); });
+  document.addEventListener('focusin', function (e) { var el = e.target.closest && e.target.closest('[data-f]'); if (el) mostrar(el, false); });
+  document.addEventListener('focusout', function (e) { if (e.target.closest && e.target.closest('[data-f]')) timer = setTimeout(esconder, 220); });
+  function ativar(el) {
+    var f = F[el.dataset.f] || {};
+    if (toque || !f.u) { mostrar(el, true); return; }
+    window.open(f.u, '_blank', 'noopener');
+  }
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-fechar]')) { fixa = null; dica.hidden = true; return; }
+    var el = e.target.closest('[data-f]');
+    if (el) { e.preventDefault(); e.stopPropagation(); ativar(el); return; }
+    if (fixa && !e.target.closest('#dica')) { fixa = null; dica.hidden = true; }
+  });
+  document.addEventListener('keydown', function (e) {
+    var el = e.target.closest && e.target.closest('[data-f]');
+    if (el && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); ativar(el); }
+  });
+
+  // ===========================================================================================
+  // Componentes de desenho
+  // ===========================================================================================
+  function ficha(fi) {
+    var secs = (fi.secretarias || []).map(nomeSec).join(', ') || 'Município inteiro';
+    var per = L.periodoDa(fi), periodo = per[0] === per[1] ? L.mes(per[0]) : L.mes(per[0]) + ' a ' + L.mes(per[1]);
+    var cust = (fi.custodia || []).filter(function (o) { return o.url; }).map(function (o) {
+      return '<li><a href="' + esc(o.url) + '" target="_blank" rel="noopener">' + esc(o.url) + '</a>' +
+        (o.quando ? ', lido em ' + L.data(o.quando) : '') + (o.sha256 ? ' <span class="mono">sha256 ' + esc(o.sha256.slice(0, 16)) + '…</span>' : '') + '</li>';
+    }).join('');
+    var corpo = [
+      ['Como deveria ser', fi.como_deveria], ['Como está', fi.como_esta], ['Norma', fi.norma],
+      ['Providência', fi.providencia], ['Caso semelhante', fi.caso], ['Observação', fi.observacao]
+    ].filter(function (x) { return x[1]; }).map(function (x, i) {
+      return '<div class="' + (i === 1 ? 'larga' : '') + '"><h4>' + x[0] + '</h4><p>' + esc(x[1]) + '</p></div>';
+    }).join('');
+    var prova = fi.fonte ? '<div class="larga custodia"><h4>Prova</h4>' + origem(fi.fonte) + '</div>' :
+      cust ? '<div class="larga custodia"><h4>Prova guardada</h4><ul>' + cust + '</ul></div>' :
+        '<div class="larga custodia"><h4>Prova</h4><p>' + selo('roxo', 'documento não publicado') + ' A ficha nasce da ausência do documento que a lei manda publicar.</p></div>';
+    return '<details class="ficha ' + esc(fi.gravidade) + '" id="ficha-' + esc(fi.codigo).replace(/[^A-Za-z0-9_-]/g, '_') + '">' +
+      '<summary><h3>' + esc(fi.titulo) + '</h3>' + grav(fi.gravidade) +
+      '<p class="meta"><span class="cod">' + esc(fi.codigo) + '</span><span>' + esc(fi.verificacao || '') + '</span><span>' +
+      esc(secs) + '</span><span>' + esc(periodo) + '</span></p></summary><div class="corpo">' + corpo + prova + '</div></details>';
+  }
+  function blocoFichas(lista, titulo, sub, id) {
+    var f = L.filtrar(lista || [], { c: S.c, s: S.s });
+    var ord = { critica: 0, alta: 1, media: 2 };
+    f.sort(function (a, b) { return (ord[a.gravidade] - ord[b.gravidade]) || (a.codigo < b.codigo ? -1 : 1); });
+    var corpo = f.length ? '<div class="fichas">' + f.slice(0, 40).map(ficha).join('') + '</div>' +
+      (f.length > 40 ? '<p class="nota">Mostrando 40 de ' + f.length + '. <a href="' + link('indicios') + '">Ver todas em Indícios</a>.</p>' : '')
+      : '<p class="sub">' + selo('ok', 'nenhum indício') + ' Nenhuma ficha deste tema no recorte escolhido.</p>';
+    return painel(id || 'fichas', titulo || 'As fichas desta tela', sub || (f.length + ' ficha(s) no recorte, como no Cadê o Queijo: como deveria ser, como está, a norma e a prova.'), corpo, { lamina: false });
+  }
+
+  // gráfico de séries genérico (barras e linhas), com a origem em cada ponto
+  function grafico(o) {
+    var W = o.largura || 760, H = o.altura || 260, m = { e: 64, d: 14, t: 14, b: 34 };
+    var n = o.x.length, iw = W - m.e - m.d, ih = H - m.t - m.b;
+    var max = o.max || 0;
+    o.series.forEach(function (s) { s.vals.forEach(function (v) { if (v && v.v > max) max = v.v; }); });
+    (o.linhas || []).forEach(function (l) { if (l.v > max) max = l.v; });
+    max = max * 1.08 || 1;
+    var mn = o.min || 0;
+    function y(v) { return m.t + ih - (v - mn) / (max - mn) * ih; }
+    var bw = iw / Math.max(n, 1), barras = o.series.filter(function (s) { return s.tipo !== 'linha'; });
+    var out = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(o.titulo || '') + '">';
+    for (var i = 0; i <= 4; i++) {
+      var v = mn + (max - mn) * i / 4, yy = y(v);
+      out += '<line class="eixo" x1="' + m.e + '" x2="' + (W - m.d) + '" y1="' + yy + '" y2="' + yy + '"/>' +
+        '<text x="' + (m.e - 6) + '" y="' + (yy + 4) + '" text-anchor="end">' + (o.fmt === 'pct' ? NF1.format(v) + '%' : L.brlCurto(v).replace('R$ ', '')) + '</text>';
+    }
+    o.x.forEach(function (rot, i) {
+      if (n > 14 && i % Math.ceil(n / 12)) return;
+      out += '<text x="' + (m.e + bw * i + bw / 2) + '" y="' + (H - 12) + '" text-anchor="middle">' + esc(rot) + '</text>';
+    });
+    if (o.agora !== undefined && o.agora >= 0) {
+      var xa = m.e + bw * o.agora + bw / 2;
+      out += '<line class="agora" x1="' + xa + '" x2="' + xa + '" y1="' + m.t + '" y2="' + (m.t + ih) + '"/>';
+    }
+    barras.forEach(function (s, j) {
+      var w = (bw * 0.76) / barras.length;
+      s.vals.forEach(function (v, i) {
+        if (!v) return;
+        var x = m.e + bw * i + bw * 0.12 + w * j, yy = y(Math.max(v.v, mn));
+        out += '<rect class="' + s.cl + ' n" data-f="' + esc(v.f) + '" data-v="' + v.v + '" data-m="' + (o.fmt || 'curto') + '" tabindex="0" x="' + x.toFixed(1) +
+          '" y="' + yy.toFixed(1) + '" width="' + Math.max(1, w - 2).toFixed(1) + '" height="' + Math.max(0, y(mn) - yy).toFixed(1) + '"><title>' +
+          esc(s.nome + ', ' + o.x[i] + ': ' + fmt(v.v, o.fmt)) + '</title></rect>';
+      });
+    });
+    o.series.filter(function (s) { return s.tipo === 'linha'; }).forEach(function (s) {
+      var pts = [];
+      s.vals.forEach(function (v, i) { if (v) pts.push([m.e + bw * i + bw / 2, y(v.v), v]); });
+      if (pts.length > 1) out += '<polyline class="' + s.cl + '" points="' + pts.map(function (p) { return p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' ') + '"/>';
+      pts.forEach(function (p) {
+        out += '<circle class="n" r="5" cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" data-f="' + esc(p[2].f) + '" data-v="' + p[2].v + '" data-m="' + (o.fmt || 'curto') +
+          '" tabindex="0" style="fill:var(--surface);stroke:currentColor;stroke-width:2.5" color="' + (s.cor || 'var(--royal)') + '"><title>' + esc(s.nome + ': ' + fmt(p[2].v, o.fmt)) + '</title></circle>';
+      });
+    });
+    (o.linhas || []).forEach(function (l) {
+      out += '<line class="' + l.cl + '" x1="' + m.e + '" x2="' + (W - m.d) + '" y1="' + y(l.v) + '" y2="' + y(l.v) + '"/>' +
+        '<text x="' + (W - m.d - 4) + '" y="' + (y(l.v) - 5) + '" text-anchor="end" style="fill:var(--ink-2)">' + esc(l.rot) + '</text>';
+    });
+    out += '</svg>';
+    var leg = '<p class="legenda">' + o.series.map(function (s) {
+      return '<span><i style="background:' + (s.cor || 'var(--royal)') + '"></i>' + esc(s.nome) + '</span>';
+    }).join('') + (o.linhas || []).map(function (l) { return '<span>' + esc(l.rot) + '</span>'; }).join(' · ') + '</p>';
+    return '<div class="serie rola">' + out + '</div>' + leg;
+  }
+
+  // ===========================================================================================
+  // As telas
+  // ===========================================================================================
+  var T = {};
+
+  // --- Início -------------------------------------------------------------------------------
+  T.index = function () {
+    var ini = D.inicio.por_c[S.c] || {};
+    var cont = L.contar(IND, S.c, S.s), tot = { critica: 0, alta: 0, media: 0, n: 0 };
+    Object.keys(cont).forEach(function (t) { tot.n += cont[t].n; ['critica', 'alta', 'media'].forEach(function (g2) { tot[g2] += cont[t][g2] || 0; }); });
+    var frase = (!S.s || (SEC[S.s] && SEC[S.s].pasta)) && ini.frase ? ini.frase :
+      'Em ' + L.mes(S.c) + (S.s ? ', em ' + nomeSec(S.s) : ', no Município inteiro') + ', o Onisciente tem ' + tot.n +
+      ' indício(s) abertos, ' + tot.critica + ' de gravidade crítica.';
+    var placar = ['critica', 'alta', 'media'].map(function (g2) {
+      return '<a class="' + g2 + '" href="' + link('indicios', { g: g2 }) + '"><b>' + tot[g2] + '</b><span>' + GRAV[g2] + '</span></a>';
+    }).join('');
+    var h = '<section class="painel frase lamina" aria-label="Em uma frase"><div><p class="eyebrow">Em uma frase · ' + esc(L.mes(S.c)) +
+      (ini.dominio && (!S.s || SEC[S.s].pasta) ? ' · ' + esc(ini.dominio) : '') + '</p><blockquote>' + esc(frase) + '</blockquote>' +
+      (ini.parecer ? '<p class="sub" style="margin-top:8px"><a href="' + ini.parecer + '">Abrir o parecer de ' + esc(L.mes(S.c)) + '</a></p>' : '') +
+      '</div><div><div class="placar" aria-label="Indícios por gravidade">' + placar + '</div><p class="nota" style="margin-top:6px;text-align:center">fichas abertas: ' + esc(S.s ? nomeSec(S.s) : 'Município inteiro') + '</p></div></section>';
+    h += '<section class="grade gk lamina painel" aria-label="Os números do recorte"><h2 class="sr">Os números do recorte</h2>' +
+      kpi('Arrecadado no ano', num(ini.receita), 'janeiro a ' + esc(L.mes(S.c)) + ', Município inteiro') +
+      kpi('Empenhado no ano', num(ini.empenhado), 'exceto intraorçamentário') +
+      kpi('Água fora do leito', num(ini.fora_do_leito), 'vinculado empenhado fora da finalidade', ini.fora_do_leito && ini.fora_do_leito.v ? 'critico' : 'bom') +
+      kpi('Contratos em 12 meses', ini.contratos ? L.int(ini.contratos[0]) + ' · ' + num(ini.contratos[1]) : '<span class="nd">sem dado</span>', 'publicados no PNCP pelo Município') +
+      (ini.integridade ? kpi('Integridade da trilha', num(ini.integridade, 'dec') + '<small> de 100</small>', 'na pasta fiscalizada; com o que foi medido, o máximo possível é ' + NF1.format(ini.integridade_max || 0), 'ruim') : '') +
+      '</section>';
+    h += painel('riomapa', 'O rio-mapa', 'As nove estações do dinheiro, da origem à prestação de contas. Cada marco é um indício do recorte no ponto da trilha onde acontece; o clique abre os indícios daquela estação.', riomapa(), { eyebrow: 'A trilha' });
+    h += painel('familias', 'Onde está cada desconformidade', 'Um quadro por tema. O número é o total de fichas no recorte; o clique leva à tela e à seção exata.', familias(cont));
+    h += painel('legenda', 'Como ler os sinais', '', '<div class="legenda" style="gap:10px 18px">' +
+      ['verde', 'azul', 'roxo', 'vermelho', 'cinza', 'alerta', 'indicio', 'critica'].map(function (s) { return selo(s); }).join('') +
+      '</div><p class="sub" style="margin-top:10px">A forma diz o mesmo que a cor: círculo cheio são duas vias que batem, círculo vazio é uma via oficial, quadrado pulsante é o que a lei manda publicar e não está publicado, triângulo é a leitura que falhou, losango é indício. Passe o mouse (ou toque) em qualquer número sublinhado para ver a origem; o clique abre o original.</p>' +
+      '<p class="sub" style="margin-top:6px"><a href="../index.html">Pareceres mensais</a> · <a href="../banco/index.html">O banco de dados</a></p>', { lamina: false });
+    return h;
+  };
+  function riomapa() {
+    var est = D.estacoes, porEst = {};
+    var lista = L.filtrar(IND, { c: S.c, s: S.s });
+    lista.forEach(function (fi) {
+      (D.estacoes_da_familia[fi.f] || []).forEach(function (n) {
+        var x = porEst[n] || (porEst[n] = { n: 0, c: 0 }); x.n++; if (fi.g === 'critica') x.c++;
+      });
+    });
+    var W = 1100, passo = W / 9, out = '<svg viewBox="0 0 ' + W + ' 210" role="img" aria-label="As nove estações e os indícios em cada uma">' +
+      '<defs><linearGradient id="agua" x1="0" x2="1"><stop offset="0" stop-color="var(--vinc)"/><stop offset="1" stop-color="var(--royal)"/></linearGradient></defs>' +
+      '<path d="M 0 100 C 120 70, 220 130, 340 100 S 560 70, 680 100 S 900 130, 1100 100" stroke="url(#agua)" stroke-width="16" fill="none" opacity=".35" stroke-linecap="round"/>';
+    est.forEach(function (e, i) {
+      var cx = passo * i + passo / 2, x = porEst[e.n] || { n: 0, c: 0 };
+      out += '<a href="' + link('indicios', { est: e.n }) + '" class="est' + (x.n ? '' : ' acesa') + '" aria-label="Estação ' + e.n + ', ' + esc(e.nome) + ': ' + x.n + ' indício(s)">' +
+        '<rect x="' + (cx - 52) + '" y="70" width="104" height="60" rx="12"/><text x="' + cx + '" y="95" text-anchor="middle">' + e.n + '. ' + esc(e.nome) + '</text>' +
+        '<text class="p" x="' + cx + '" y="115" text-anchor="middle">' + (x.n ? x.n + ' indício(s)' : 'sem indício') + '</text>';
+      if (x.n) {
+        var r = Math.min(26, 10 + Math.sqrt(x.n) * 3);
+        out += '<g transform="translate(' + cx + ',' + (40) + ') rotate(45)"><rect class="marco' + (x.c ? ' c' : '') + '" x="' + (-r / 2) + '" y="' + (-r / 2) + '" width="' + r + '" height="' + r + '"/></g>' +
+          '<text x="' + cx + '" y="44" text-anchor="middle" style="fill:#fff;font:700 11px var(--f-mono)">' + x.n + '</text>';
+      }
+      out += '<text class="p" x="' + cx + '" y="160" text-anchor="middle">' + esc(e.prova.split(',')[0]).slice(0, 26) + '</text></a>';
+    });
+    out += '</svg>';
+    return '<div class="riomapa rola">' + out + '</div>';
+  }
+  function familias(cont) {
+    var ordem = ['selo', 'precos', 'empresas', 'fnas', 'cosip', 'notas', 'execucao', 'pessoal', 'contas', 'oficios', 'rio', 'pisos', 'orcamento', 'sistema'];
+    var espera = { selo: 'selo_transparencia', empresas: 'empresas', execucao: 'execucao' };
+    return '<div class="familias">' + ordem.filter(function (t) { return TEMAS[t]; }).map(function (t) {
+      var x = cont[t] || { n: 0 }, tm = TEMAS[t], tot = x.n || 1;
+      var falta = espera[t] && (C.entradas || []).indexOf(espera[t]) < 0;
+      var barra = '<span class="barra" aria-hidden="true"><i class="c" style="width:' + ((x.critica || 0) / tot * 100) + '%"></i><i class="a" style="width:' +
+        ((x.alta || 0) / tot * 100) + '%"></i><i class="m" style="width:' + ((x.media || 0) / tot * 100) + '%"></i></span>';
+      return '<a class="familia' + (x.n ? '' : ' zero') + (falta && !x.n ? ' espera' : '') + '" href="' + link(tm.pagina, null, tm.ancora) + '">' +
+        '<h3>' + esc(tm.titulo) + '</h3><span class="q">' + x.n + ' <small>indício(s)' + (x.critica ? ', ' + x.critica + ' crítico(s)' : '') + '</small></span>' +
+        (x.n ? barra : '') + '<span class="onde">' + esc(tm.descricao) + '.' + (falta ? ' Parte aguarda a coleta.' : '') + '</span></a>';
+    }).join('') + '</div>';
+  }
+
+  // --- O rio --------------------------------------------------------------------------------
+  var modoRio = U.get('modo') || 'todo';
+  T.rio = function () {
+    var rc = D.por_c[S.c];
+    if (!rc) return vazio('Sem matriz para este período', 'A matriz de saldos contábeis de ' + L.mes(S.c) + ' não está no banco.', false);
+    var h = painel('sankey', 'Os afluentes, o leito e a foz', 'Receita realizada de janeiro a ' + esc(L.mes(S.c)) +
+      ' pela espécie (afluentes), separada em água vinculada e livre (leito), e o empenhado por função de governo (foz).',
+      '<div id="sankey-area"></div>', {
+        eyebrow: 'Nascente',
+        direita: '<div class="modos" role="group" aria-label="Modo do rio">' + [['todo', 'Todo o rio'], ['vinculada', 'Vinculada'], ['livre', 'Livre']].map(function (m) {
+          return '<button type="button" data-modo="' + m[0] + '" aria-pressed="' + (modoRio === m[0]) + '">' + m[1] + '</button>';
+        }).join('') + '</div>'
+      });
+    h += '<div class="grade g2">' + afluente(rc.cosip, 'cosip', 'COSIP: a iluminação pública', rc.cosip.lei) +
+      afluente(rc.fnas, 'fnas', 'FNAS: o Fundo Nacional de Assistência Social', 'Lei 8.742/1993, arts. 28 a 30') + '</div>';
+    h += painel('origem', 'O que a União diz que mandou e o que entrou', 'Cada transferência conferida em duas vias: o Portal da Transparência (o que saiu da União) e a matriz do Município (o que entrou na fonte).',
+      '<div class="rola"><table class="t cartoes"><thead><tr><th>Transferência</th><th class="num">União</th><th class="num">Município</th><th class="num">Diferença</th><th>Selo</th></tr></thead><tbody>' +
+      rc.origem.map(function (o) {
+        var a = o.vias[0], b = o.vias[1];
+        var dif = a && b && a.valor && b.valor ? { v: a.valor.v - b.valor.v, f: b.valor.f } : null;
+        return '<tr><td data-r="Transferência"><b>' + esc(o.titulo) + '</b><br><span class="nota">' + esc(o.norma || '') + '</span></td><td class="num" data-r="União">' + (a ? num(a.valor) : '') +
+          '</td><td class="num" data-r="Município">' + (b ? num(b.valor) : '') + '</td><td class="num" data-r="Diferença">' + (dif ? num(dif) : '') + '</td><td data-r="Selo">' + seloVias(o) + '</td></tr>';
+      }).join('') + '</tbody></table></div>');
+    var fed = D.federais;
+    if (!fed) {
+      h += painel('federais', 'Os repasses federais, programa por programa', '', vazio('Aguardando a coleta das transferências federais',
+        'Quando a frente das transferências entregar os repasses do Fundo Nacional de Saúde, do FNDE, do FNAS e do Transferegov, programa por programa, cada repasse aparece aqui ao lado do que o Município registrou na fonte de destino. A conferência por transferência, acima, já usa o Portal da Transparência.'), { lamina: false });
+    } else {
+      var fl = fed.filter(function (r) { return r.mes.slice(0, 4) === S.c.slice(0, 4) && r.mes <= S.c; });
+      h += painel('federais', 'Os repasses federais, programa por programa', fl.length + ' repasse(s) de janeiro a ' + esc(L.mes(S.c)) + '. O valor abre a leitura do órgão que repassou.',
+        fl.length ? '<div class="rola"><table class="t cartoes"><thead><tr><th>Origem e programa</th><th>Mês</th><th class="num">Repassado</th><th class="num">Registrado</th><th>Fonte de destino</th></tr></thead><tbody>' +
+          fl.map(function (r) {
+            var dif = r.registrado && Math.abs(r.valor.v - r.registrado.v) > 0.5;
+            return '<tr><td data-r="Programa"><b>' + esc(r.origem) + '</b> ' + esc(r.programa) + '</td><td data-r="Mês">' + esc(L.mesCurto(r.mes)) + '</td><td class="num" data-r="Repassado">' + num(r.valor) +
+              '</td><td class="num" data-r="Registrado">' + (r.registrado ? num(r.registrado) : selo('roxo', 'sem registro')) + (dif ? ' ' + selo('indicio', 'diverge') : '') + '</td><td data-r="Fonte">' + esc(r.fonte || '') + '</td></tr>';
+          }).join('') + '</tbody></table></div>' : '<p class="sub">Nenhum repasse no período.</p>', { lamina: false });
+    }
+    h += painel('desvios', 'Água vinculada fora do leito', 'Dinheiro que a lei amarra a uma finalidade e foi empenhado em função de governo fora do leito dela. ' +
+      'Indício, não acusação: a prova é a própria matriz contábil do Município.',
+      rc.desvios.length ? '<div class="rola"><table class="t cartoes"><thead><tr><th>Fonte</th><th>Onde foi empenhada</th><th class="num">Valor</th><th>Norma</th></tr></thead><tbody>' +
+        rc.desvios.filter(function (d) { return !funcaoDoRecorte() || d.funcao === funcaoDoRecorte(); }).map(function (d) {
+          return '<tr><td data-r="Fonte"><b>' + esc(d.fonte) + '</b> ' + esc(d.nome) + '</td><td data-r="Função">' + esc(nomeFuncao(d.funcao)) + ' (' + esc(d.funcao) + ')</td><td class="num" data-r="Valor">' +
+            num(d.valor) + '</td><td data-r="Norma">' + esc(d.norma) + '</td></tr>';
+        }).join('') + '</tbody></table></div>' : '<p>' + selo('ok', 'no leito') + ' Nenhuma água vinculada fora do leito no recorte.</p>');
+    if (rc.sem_catalogo && rc.sem_catalogo.length) {
+      h += painel('sem-catalogo', 'Fontes que o catálogo ainda não classifica', 'Água que o Onisciente ainda não sabe se é vinculada ou livre; aparece em cinza no rio.',
+        '<p>' + rc.sem_catalogo.slice(0, 12).map(function (x) { return '<span class="mono">' + esc(x[0]) + '</span> ' + num(x[1]); }).join(' · ') + '</p>', { lamina: false });
+    }
+    h += blocoFichas(D.fichas, 'As fichas do rio', 'Água fora do leito, COSIP e FNAS no recorte.');
+    depois.push(desenharSankey);
+    return h;
+  };
+  function afluente(a, id, titulo, lei) {
+    if (!a) return '';
+    var fun = funcaoDoRecorte();
+    var total = a.empenhado.reduce(function (t, x) { return t + x[1].v; }, 0) || 1;
+    var barras = a.empenhado.map(function (x) {
+      return '<div class="barra-l' + (x[2] ? '' : ' fora') + '"' + (fun && fun === x[0] ? ' style="outline:2px solid var(--gold);border-radius:6px"' : '') + '><span>' + esc(nomeFuncao(x[0])) +
+        '</span><span class="trilho"><i style="width:' + (x[1].v / total * 100).toFixed(1) + '%"></i></span><span class="r">' + num(x[1]) +
+        (x[2] ? '' : ' fora do leito') + '</span></div>';
+    }).join('');
+    var o = a.origem;
+    var extra = '';
+    if (o) extra = '<p style="margin-top:10px">' + seloVias(o) + ' União: ' + num(o.vias[0] && o.vias[0].valor) + ' · Município: ' + num(o.vias[1] && o.vias[1].valor) + '</p>';
+    if (a.planilha) extra += '<p class="sub">Planilha de repasses do FNAS no ano: ' + num(a.planilha) + '</p>';
+    return painel(id, titulo, 'Fonte ' + esc(a.fonte) + ', ' + esc(a.nome) + '. Leito da lei: ' +
+      (a.leito.length ? a.leito.map(function (f) { return esc(nomeFuncao(f)); }).join(', ') : 'não definido') + '.',
+      '<p class="lei">' + esc(lei || a.norma || '') + '</p><div class="grade gk" style="margin-top:10px">' + kpi('Entrou na fonte no ano', num(a.receita), 'receita realizada na fonte, janeiro até o período') +
+      kpi('Fora do leito', num({ v: a.desvios.reduce(function (t, d) { return t + d.valor.v; }, 0), f: a.receita.f }), 'empenhado em outras funções',
+        a.desvios.length ? 'critico' : 'bom') + '</div><div class="barras">' + barras + '</div>' + extra,
+      { classe: 'afluente', eyebrow: 'Afluente vinculado' });
+  }
+  function desenharSankey() {
+    var area = document.getElementById('sankey-area'); if (!area) return;
+    var g2 = L.somarRio(D, S.c, modoRio, funcaoDoRecorte(), C.funcoes);
+    var fa = (D.por_c[S.c] || {}).fonte;
+    if (!g2.links.length) { area.innerHTML = vazio('Rio seco neste recorte', 'Nenhuma receita ou empenho deste tipo no período.'); return; }
+    var W = 1000, H = Math.max(380, Object.keys(g2.nos).length * 22), lay = L.layoutSankey(g2, W, H);
+    var out = '<div class="rola"><svg class="sankey" viewBox="-4 -26 ' + (W + 8) + ' ' + (lay.alto + 34) + '" role="img" aria-label="Sankey do rio: ' + esc(L.brl(g2.total)) + ' de receita">';
+    out += '<text class="col" x="' + (lay.cols[0][0] ? 210 : 0) + '" y="-10" text-anchor="end">Afluentes</text><text class="col" x="' + (W / 2) + '" y="-10" text-anchor="middle">Leito</text><text class="col" x="' + (W - 250) + '" y="-10">Foz: funções</text>';
+    lay.links.forEach(function (l) {
+      var a = g2.nos[l.de], b = g2.nos[l.para], x0 = a.x + a.w, x1 = b.x, xm = (x0 + x1) / 2;
+      out += '<path class="' + l.cl + ' n" data-f="' + esc(fa) + '" data-v="' + l.v + '" tabindex="-1" d="M' + x0 + ',' + l.y0.toFixed(1) + ' C' + xm + ',' + l.y0.toFixed(1) + ' ' + xm + ',' + l.y1.toFixed(1) + ' ' + x1 + ',' + l.y1.toFixed(1) +
+        '" stroke-width="' + l.w.toFixed(1) + '"><title>' + esc(a.nome + ' para ' + b.nome + ': ' + L.brl(l.v)) + '</title></path>';
+    });
+    lay.cols.forEach(function (col, i) {
+      col.forEach(function (n) {
+        var cor = n.id[0] === 'l' ? (n.id === 'lvinculada' ? 'var(--vinc)' : n.id === 'llivre' ? 'var(--livre)' : 'var(--semcat)') :
+          n.id === 'fparada' ? 'var(--parado)' : n.esfera ? 'var(--' + n.esfera + ')' : 'var(--ink-3)';
+        out += '<g class="no"><rect x="' + n.x + '" y="' + n.y.toFixed(1) + '" width="' + n.w + '" height="' + n.h.toFixed(1) + '" fill="' + cor + '"/>';
+        var tx = i === 0 ? n.x - 6 : n.x + n.w + 6, anc = i === 0 ? 'end' : 'start', ty = n.y + n.h / 2;
+        if (n.h > 9 || i === 1) {
+          out += '<text x="' + tx + '" y="' + (ty - 1).toFixed(1) + '" text-anchor="' + anc + '">' + esc(n.nome.length > 34 ? n.nome.slice(0, 33) + '…' : n.nome) + '</text>' +
+            '<text class="v n" data-f="' + esc(fa) + '" data-v="' + n.v + '" tabindex="0" x="' + tx + '" y="' + (ty + 12).toFixed(1) + '" text-anchor="' + anc + '">' + L.brlCurto(n.v) + '</text>';
+        }
+        out += '</g>';
+      });
+    });
+    out += '</svg></div>';
+    out += '<p class="legenda"><span><i style="background:var(--vinc)"></i>Água vinculada</span><span><i style="background:var(--livre)"></i>Água livre</span>' +
+      '<span><i style="background:var(--semcat)"></i>Fonte sem catálogo</span><span><i style="background:var(--parado)"></i>Água parada</span>' +
+      '<span><i style="background:var(--federal)"></i>Federal</span><span><i style="background:var(--estadual)"></i>Estadual</span><span><i style="background:var(--municipal)"></i>Municipal</span></p>';
+    if (funcaoDoRecorte()) out += '<p class="nota">Com ' + esc(nomeSec(S.s)) + ' no recorte, a foz destaca a função ' + esc(nomeFuncao(funcaoDoRecorte())) + ' e junta as demais; a nascente é a do Município inteiro, porque a receita não tem secretaria.</p>';
+    var linhasTab = Object.keys(g2.nos).map(function (id) { return g2.nos[id]; }).sort(function (a, b) { return a.col - b.col || b.v - a.v; });
+    out += '<details style="margin-top:8px"><summary>O rio em tabela (' + g2.meses.length + ' mês(es), ' + (modoRio === 'todo' ? 'todo o rio' : 'água ' + modoRio) + ')</summary><table class="t"><thead><tr><th>Trecho</th><th>Nó</th><th class="num">Valor</th></tr></thead><tbody>' +
+      linhasTab.map(function (n) { return '<tr><td>' + ['Afluente', 'Leito', 'Foz'][n.col] + '</td><td>' + esc(n.nome) + '</td><td class="num">' + num({ v: n.v, f: fa }) + '</td></tr>'; }).join('') + '</tbody></table></details>';
+    area.innerHTML = out;
+    area.closest('section').querySelectorAll('[data-modo]').forEach(function (b) {
+      b.onclick = function () {
+        modoRio = b.dataset.modo;
+        area.closest('section').querySelectorAll('[data-modo]').forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+        var u = new URLSearchParams(location.search); u.set('modo', modoRio); history.replaceState(null, '', '?' + u.toString() + location.hash);
+        desenharSankey();
+      };
+    });
+  }
+
+  // --- Leis ---------------------------------------------------------------------------------
+  T.leis = function () {
+    var fun = funcaoDoRecorte();
+    var regras = D.regras.slice().sort(function (a, b) { return (b.funcao === fun) - (a.funcao === fun) || (a.familia < b.familia ? -1 : 1); });
+    var h = painel('regras', 'A régua de cada conferência', 'Cada regra que o Onisciente confere, com o parâmetro e a norma. ' + D.regras.length + ' regras na versão ' + esc(D.versao) + ' do mapa legal.',
+      '<div class="filtros" style="margin-bottom:10px"><label class="sr" for="busca-lei">Buscar</label><input type="search" id="busca-lei" placeholder="Buscar regra ou norma"></div>' +
+      '<div class="rola"><table class="t cartoes" id="tab-regras"><thead><tr><th>Regra</th><th class="num">Parâmetro</th><th>Norma</th><th>Família</th></tr></thead><tbody>' +
+      regras.map(function (r) {
+        return '<tr data-busca="' + esc((r.titulo + ' ' + r.norma + ' ' + r.id).toLowerCase()) + '"' + (fun && r.funcao === fun ? ' class="marcada"' : '') + '><td data-r="Regra"><b>' + esc(r.titulo) + '</b><br><span class="nota mono">' + esc(r.id) +
+          '</span></td><td class="num" data-r="Parâmetro">' + (r.valor ? num(r.valor, r.unidade === '%' || r.unidade === 'percentual' ? 'pct' : 'int') + (r.unidade && r.unidade !== '%' && r.unidade !== 'percentual' ? ' ' + esc(r.unidade) : '') : '') +
+          '</td><td data-r="Norma">' + esc(r.norma) + '</td><td data-r="Família">' + esc(r.familia || '') + '</td></tr>';
+      }).join('') + '</tbody></table></div>');
+    var areas = {};
+    D.normas.forEach(function (n) { (areas[n.area] = areas[n.area] || []).push(n); });
+    h += painel('normas', 'O acervo de normas', 'O texto de cada norma no acervo ctresb/leis ou no Sileg. O selo diz se a norma foi localizada e se foi revogada.',
+      Object.keys(areas).sort().map(function (a) {
+        return '<h3 style="margin:14px 0 6px;font-size:16px">' + esc(a) + '</h3><div class="rola"><table class="t cartoes"><tbody>' + areas[a].map(function (n) {
+          var est = n.revogada ? selo('vermelho', 'revogada') : n.localizada ? selo('verde', 'localizada') : selo('roxo', 'não localizada');
+          return '<tr data-busca="' + esc((n.norma + ' ' + n.assunto).toLowerCase()) + '"><td data-r="Norma"><b>' + esc(n.norma) + '</b><br><span class="sub">' + esc(n.assunto) + '</span></td><td data-r="Parâmetro">' + esc(n.parametro || '') +
+            '</td><td data-r="Situação">' + est + '</td><td data-r="Texto">' + n.links.map(function (l) { return '<a href="' + esc(l[1]) + '" target="_blank" rel="noopener">' + esc(l[0]) + '</a>'; }).join('<br>') + '</td></tr>';
+        }).join('') + '</tbody></table></div>';
+      }).join(''), { lamina: false });
+    depois.push(function () {
+      var b = document.getElementById('busca-lei');
+      if (b) b.oninput = function () {
+        var t = b.value.toLowerCase();
+        document.querySelectorAll('[data-busca]').forEach(function (tr) { tr.hidden = t && tr.dataset.busca.indexOf(t) < 0; });
+      };
+    });
+    return h;
+  };
+
+  // --- Trilha -------------------------------------------------------------------------------
+  var funTrilha = U.get('f');
+  T.trilha = function () {
+    var fun = funTrilha || funcaoDoRecorte() || '*';
+    var ex = (D.exemplos[S.c] || {})[fun];
+    var opcoes = '<option value="*">Todas as funções</option>' + D.funcoes.map(function (f) {
+      return '<option value="' + f + '"' + (f === fun ? ' selected' : '') + '>' + esc(nomeFuncao(f)) + '</option>';
+    }).join('');
+    var seletor = '<label class="filtros"><span class="sr">Função de governo</span><select id="sel-funcao">' + opcoes + '</select></label>';
+    if (!ex) return painel('estacoes', 'As nove estações', '', vazio('Sem matriz para ' + L.mes(S.c), 'A trilha agregada sai da matriz de saldos contábeis do mês, que não está no banco.'), { direita: seletor });
+    var desc = {}; D.estacoes.forEach(function (e) { desc[e.n] = e; });
+    var h = painel('estacoes', 'As nove estações em ' + L.mes(S.c), 'O dinheiro de ' + (fun === '*' ? 'todas as funções' : 'Função ' + esc(nomeFuncao(fun))) +
+      ' no mês, estação por estação. Estação acesa tem documento publicado com o nível mínimo de prova; apagada é o que falta.',
+      '<div class="estacoes">' + ex.linhas.map(function (l) {
+        var e = desc[l.n], cls = l.acesa ? 'acesa' : (l.n === 9 ? 'apagada' : 'espera');
+        var extra = l.vinculada ? '<span class="nota">vinculada ' + num(l.vinculada) + ' · livre ' + num(l.livre) + '</span>' : '';
+        if (l.variacao) extra += '<span class="nota">créditos: ' + num(l.variacao) + '</span>';
+        return '<div class="estacao ' + cls + '" id="est-' + l.n + '"><span class="pino" aria-hidden="true">' + l.n + '</span><div class="txt"><h3>' + esc(e.nome) + '</h3>' +
+          '<span class="v">' + (l.valor ? num(l.valor) : (l.n === 9 ? selo('roxo') : selo('cinza', 'sem valor'))) + '</span>' + extra + '<p>' + esc(l.nota) + '</p><p class="nota">Prova: ' + esc(e.prova) + '</p></div></div>';
+      }).join('') + '</div>' + (ex.ordem && ex.ordem.length ? '<p class="nota">' + selo('indicio', 'ordem violada') + ' ' + esc(ex.ordem.join('; ')) + '</p>' : ''),
+      { direita: seletor, eyebrow: 'Leito' });
+    // o ano inteiro: estações por mês
+    var meses = Object.keys(D.exemplos).filter(function (m) { return m.slice(0, 4) === S.c.slice(0, 4); }).sort();
+    h += painel('ano', 'O ano estação por estação', 'Cada linha é um mês; cada casa, uma estação. Cheia é estação com documento; vazia é estação sem documento no mês.',
+      '<div class="rola"><table class="t"><thead><tr><th>Mês</th>' + D.estacoes.map(function (e) { return '<th class="num" title="' + esc(e.nome) + '">' + e.n + '</th>'; }).join('') + '</tr></thead><tbody>' +
+      meses.map(function (m) {
+        var x = (D.exemplos[m] || {})[fun]; if (!x) return '';
+        return '<tr' + (m === S.c ? ' class="marcada"' : '') + '><td>' + esc(L.mesCurto(m)) + '</td>' + x.linhas.map(function (l) {
+          return '<td class="num">' + (l.acesa ? '<span class="selo verde" title="' + esc(desc[l.n].nome) + ' com documento"><i></i></span>' : '<span class="selo ' + (l.n === 9 ? 'roxo' : 'cinza') + '" title="' + esc(desc[l.n].nome) + ' sem documento"><i></i></span>') + '</td>';
+        }).join('') + '</tr>';
+      }).join('') + '</tbody></table></div>');
+    var exe = D.execucao;
+    if (!exe) {
+      h += painel('empenhos', 'Empenho a empenho', '', vazio('Aguardando a coleta da execução, empenho a empenho',
+        'Quando a frente da execução entregar os empenhos do portal da transparência do Município (número, credor, contrato, liquidação e pagamento), cada empenho aparece aqui com a sua trilha completa. Por enquanto a trilha acima é o agregado da matriz contábil, que é prova oficial do Tesouro.'));
+    } else {
+      var lista = exe.filter(function (e) { return e.mes === S.c && (!S.s || e.orgao === S.s) && (fun === '*' || e.funcao === fun); });
+      h += painel('empenhos', 'Empenho a empenho', lista.length + ' empenho(s) no recorte, cada um com as suas estações.',
+        lista.length ? '<div class="rola"><table class="t cartoes"><thead><tr><th>Empenho</th><th>Credor</th><th class="num">Valor</th><th>Estações</th></tr></thead><tbody>' +
+          lista.slice(0, 200).map(function (e) {
+            return '<tr><td data-r="Empenho"><b class="mono">' + esc(e.numero) + '</b><br><span class="nota">' + esc(L.data(e.data)) + (e.contrato ? ', contrato ' + esc(e.contrato) : ', sem contrato informado') + '</span></td><td data-r="Credor">' + esc(e.credor) +
+              '</td><td class="num" data-r="Valor">' + num(e.valor) + '</td><td data-r="Estações">' + ['empenho', 'liquidacao', 'pagamento'].map(function (st) {
+                var ev = e.eventos.filter(function (x) { return x.estacao === st; })[0];
+                return ev ? selo('verde', st === 'liquidacao' ? 'liquidação' : st) + ' ' + num(ev.valor) : selo('roxo', (st === 'liquidacao' ? 'liquidação' : st) + ' ausente');
+              }).join('<br>') + '</td></tr>';
+          }).join('') + '</tbody></table></div>' : vazio('Nenhum empenho neste recorte', 'A execução entregue não tem empenho do mês e da secretaria escolhidos.'));
+    }
+    h += blocoFichas(D.fichas, 'As fichas da execução', 'Empenho, liquidação e pagamento sem rastro publicado.');
+    depois.push(function () {
+      var sel = document.getElementById('sel-funcao');
+      if (sel) sel.onchange = function () { funTrilha = sel.value; var u = new URLSearchParams(location.search); u.set('f', funTrilha); history.replaceState(null, '', '?' + u.toString()); desenhar(); };
+    });
+    return h;
+  };
+
+  // --- Secretarias --------------------------------------------------------------------------
+  T.secretarias = function () {
+    var jan = L.janela(S.c, D.janela);
+    var linhas = C.secretarias.map(function (s) {
+      var o = D.orgaos[s.id] || { contratos: {}, achados: {} };
+      return { s: s, c: L.somaPorMes(o.contratos, jan[0], jan[1]), a: L.somaPorMes(o.achados, jan[0], jan[1]), semNota: o.sem_nota, chaveC: o.contratos, chaveA: o.achados, t: (D.transparencia || {})[s.id] };
+    }).sort(function (a, b) { return b.c[1] - a.c[1]; });
+    function n2(mapa, x) { var k = Object.keys(mapa || {})[0]; return { v: x, f: k ? mapa[k][1].f : '' }; }
+    var h = painel('quadro', 'As secretarias em 12 meses', 'De ' + esc(L.mes(jan[0])) + ' a ' + esc(L.mes(jan[1])) + '. O clique numa linha põe a secretaria no recorte de todas as telas.',
+      '<div class="rola"><table class="t cartoes"><thead><tr><th>Órgão</th><th>Função</th><th class="num">Contratos</th><th class="num">Valor contratado</th><th class="num">Indícios de compras</th><th>Notas fiscais</th><th>Transparência</th></tr></thead><tbody>' +
+      linhas.map(function (x) {
+        return '<tr class="clic' + (x.s.id === S.s ? ' marcada' : '') + '" data-sec="' + x.s.id + '" tabindex="0"><td data-r="Órgão"><b>' + esc(x.s.nome) + '</b>' + (x.s.pasta ? ' ' + selo('alerta', 'pasta fiscalizada') : '') +
+          '</td><td data-r="Função">' + (x.s.funcao ? esc(nomeFuncao(x.s.funcao)) : '<span class="nota">não identificada</span>') + '</td><td class="num" data-r="Contratos">' + L.int(x.c[0]) +
+          '</td><td class="num" data-r="Valor">' + (x.c[0] ? num(n2(x.chaveC, x.c[1])) : '') + '</td><td class="num" data-r="Indícios">' + (x.a[0] ? '<b style="color:var(--indicio)">' + L.int(x.a[0]) + '</b>' : '0') +
+          '</td><td data-r="Notas fiscais">' + (x.semNota ? selo('roxo', 'nenhuma publicada') : selo('cinza', 'sem leitura')) + '</td><td data-r="Transparência">' +
+          (x.t ? num(x.t.nota, 'int') + ' ' + esc(x.t.nivel || '') : selo('cinza', 'aguardando o selo')) + '</td></tr>';
+      }).join('') + '</tbody></table></div>');
+    if (S.s && SEC[S.s]) {
+      var s = SEC[S.s], fun = s.funcao, ex = (D.execucao || {})[fun] || {};
+      var meses = Object.keys(ex).filter(function (m) { return m.slice(0, 4) === S.c.slice(0, 4); }).sort();
+      h += painel('detalhe', s.nome, fun ? 'A execução da função ' + esc(nomeFuncao(fun)) + ' no ano, mês a mês, pela matriz contábil. A matriz traz a função, não o órgão: é a função inteira.' : 'A função deste órgão não foi identificada pelo nome.',
+        fun && meses.length ? grafico({
+          titulo: 'Execução mensal', x: meses.map(L.mesCurto), agora: meses.indexOf(S.c),
+          series: [{ nome: 'Empenhado', cl: 'b1', cor: 'var(--royal)', vals: meses.map(function (m) { return ex[m].emp; }) },
+          { nome: 'Liquidado', cl: 'b3', cor: 'var(--vinc)', vals: meses.map(function (m) { return ex[m].liq; }) },
+          { nome: 'Pago', cl: 'b2', cor: 'var(--gold)', vals: meses.map(function (m) { return ex[m].pago; }) }]
+        }) : vazio('Sem execução para mostrar', 'A matriz do ano não tem a função deste órgão.'), { eyebrow: 'Secretaria no recorte' });
+    }
+    depois.push(function () {
+      document.querySelectorAll('[data-sec]').forEach(function (tr) {
+        var ir = function (e) { if (e.target.closest('[data-f]')) return; mudar({ s: tr.dataset.sec === S.s ? '' : tr.dataset.sec }); };
+        tr.onclick = ir; tr.onkeydown = function (e) { if (e.key === 'Enter') ir(e); };
+      });
+    });
+    return h;
+  };
+
+  // --- Pisos e tetos ------------------------------------------------------------------------
+  T.pisos = function () {
+    var d = D.por_c[S.c];
+    if (!d) return vazio('Sem medição para este período', 'Não há demonstrativo no banco para ' + L.mes(S.c) + '.');
+    var fun = funcaoDoRecorte();
+    var h = painel('medidas', 'Os percentuais pelo cálculo próprio', 'Pelo ' + esc(d.rgf || 'RGF') + ' e pelo ' + esc(d.rreo || 'RREO') + '. O cálculo é refeito a partir das linhas do demonstrativo; o declarado pelo Município fica ao lado.',
+      '<div class="grade g3">' + d.medidas.map(function (m) { return medidor(m, fun); }).join('') + '</div>', { eyebrow: 'Leito' });
+    h += painel('vias', 'As duas vias', 'O mesmo número em dois demonstrativos oficiais. Quando divergem, o selo fica azul e vira ficha.',
+      d.vias.length ? '<div class="rola"><table class="t cartoes"><thead><tr><th>Conferência</th><th class="num">Primeira via</th><th class="num">Segunda via</th><th>Selo</th></tr></thead><tbody>' +
+        d.vias.map(function (v) {
+          return '<tr><td data-r="Conferência">' + esc(v.titulo) + '</td><td class="num" data-r="Primeira via">' + (v.vias[0] ? num(v.vias[0].valor) : '') + '<br><span class="nota">' + esc(v.vias[0] ? v.vias[0].rotulo : '') +
+            '</span></td><td class="num" data-r="Segunda via">' + (v.vias[1] ? num(v.vias[1].valor) : '') + '<br><span class="nota">' + esc(v.vias[1] ? v.vias[1].rotulo : '') + '</span></td><td data-r="Selo">' + seloVias(v) + '</td></tr>';
+        }).join('') + '</tbody></table></div>' : '<p class="sub">Sem conferência em duas vias neste período.</p>');
+    if (d.pasta && d.pasta.length) {
+      h += painel('pasta', 'Os pisos da pasta fiscalizada', 'Percentuais próprios da Assistência Social, do parecer mensal.',
+        '<div class="grade g3">' + d.pasta.map(function (m) {
+          return m.percentual ? medidor({ titulo: m.titulo, percentual: m.percentual, limite: m.limite, situacao: m.situacao, selo: m.selo, tipo: 'piso', funcao: m.funcao }, fun) :
+            '<div class="medidor">' + '<h3>' + esc(m.titulo) + '</h3>' + vazio('Demonstrativo não publicado', 'Piso de ' + L.pct(m.limite) + '. O Município não publicou o demonstrativo que permite a conta neste mês.', true) + origem(m.fonte_ausente, 'ver a origem') + '</div>';
+        }).join('') + '</div>');
+    }
+    if (d.notas && d.notas.length) h += '<p class="nota">' + d.notas.map(esc).join(' ') + '</p>';
+    h += blocoFichas(D.fichas, 'As fichas dos pisos e tetos');
+    return h;
+  };
+  function medidor(m, fun) {
+    var p = m.percentual ? m.percentual.v : null, lim = m.limite || 0;
+    var teto = m.tipo === 'teto' || (m.tipo !== 'piso' && /PESSOAL|DIVIDA|OPERACOES|CAMARA|SALDO/.test(m.id || ''));
+    var escala = Math.max(lim * 1.35, p || 0, m.alerta || 0) || 100;
+    var ruim = m.situacao === 'descumpre' || m.situacao === 'nao_cumpre', alerta = m.situacao === 'alerta' || m.situacao === 'acompanha';
+    var sit = { cumpre: ['ok', 'cumpre'], descumpre: ['critica', 'descumpre'], nao_cumpre: ['critica', 'não cumpre'], alerta: ['alerta', 'no alerta'], acompanha: ['alerta', 'acompanhar'], sem_dado: ['roxo', 'sem dado'] }[m.situacao] || ['azul', m.situacao];
+    var marcas = '<span class="lim" style="left:' + (lim / escala * 100).toFixed(1) + '%"><span>' + (teto ? 'teto ' : 'piso ') + NF1.format(lim) + '%</span></span>';
+    if (m.alerta) marcas += '<span class="lim al" style="left:' + (m.alerta / escala * 100).toFixed(1) + '%"><span>alerta ' + NF1.format(m.alerta) + '</span></span>';
+    if (m.prudencial) marcas += '<span class="lim al" style="left:' + (m.prudencial / escala * 100).toFixed(1) + '%;top:-2px"></span>';
+    return '<div class="medidor' + (ruim ? ' ruim' : alerta ? ' alerta' : '') + (fun && m.funcao === fun ? ' foco' : '') + '"><h3>' + esc(m.titulo) + '</h3>' +
+      '<span class="grande">' + num(m.percentual, 'pct') + '</span><div class="regua-m" aria-hidden="true"><span class="enche" style="width:' + Math.min(100, (p || 0) / escala * 100).toFixed(1) + '%"></span>' + marcas + '</div>' +
+      '<p>' + selo(sit[0], sit[1]) + ' ' + (m.selo ? selo(m.selo) : '') + '</p>' +
+      (m.declarado ? '<p class="sub">Declarado pelo Município: ' + num(m.declarado, 'pct') + (m.divergencia ? ', diferença de ' + NF2.format(m.divergencia) + ' p.p.' : '') + '</p>' : '') +
+      (m.norma ? '<p class="nota">' + esc(m.norma) + '</p>' : '') +
+      (m.memoria ? '<details><summary class="nota">Memória de cálculo</summary><p class="sub">' + esc(m.memoria) + '</p></details>' : '') + '</div>';
+  }
+
+  // --- Pessoal ------------------------------------------------------------------------------
+  T.pessoal = function () {
+    var serie = D.serie.filter(function (x) { return x.ate <= S.c; });
+    var ult = serie[serie.length - 1];
+    var h = '';
+    if (ult) {
+      var folga = { v: D.limite - ult.percentual.v, f: ult.percentual.f };
+      h += painel('teto', 'A despesa com pessoal do Executivo', 'Pelo ' + esc(ult.rotulo) + ', contra o limite de ' + NF1.format(D.limite) + '% da receita corrente líquida (' + esc(D.norma) + ').',
+        '<div class="grade gk">' + kpi('Despesa com pessoal', num(ult.percentual, 'pct'), 'cálculo próprio sobre a RCL', ult.percentual.v >= (D.prudencial || 99) ? 'critico' : ult.percentual.v >= (D.alerta || 99) ? 'ruim' : 'bom') +
+        kpi('Declarado no RGF', num(ult.declarado, 'pct')) + kpi('Folga até o limite', num(folga, 'pp')) + '</div>' +
+        grafico({
+          titulo: 'Pessoal por quadrimestre', fmt: 'pct', min: 30, x: serie.map(function (x) { return x.rotulo.replace('RGF do ', '').replace(' quadrimestre de ', 'º q. '); }),
+          series: [{ nome: 'Cálculo próprio', tipo: 'linha', cl: 'l1', cor: 'var(--royal)', vals: serie.map(function (x) { return x.percentual; }) },
+          { nome: 'Declarado', tipo: 'linha', cl: 'l2', cor: 'var(--gold)', vals: serie.map(function (x) { return x.declarado; }) }],
+          linhas: [{ v: D.limite, rot: 'limite ' + NF1.format(D.limite) + '%', cl: 'lim' }].concat(D.prudencial ? [{ v: D.prudencial, rot: 'prudencial ' + NF1.format(D.prudencial) + '%', cl: 'alr' }] : []).concat(D.alerta ? [{ v: D.alerta, rot: 'alerta ' + NF1.format(D.alerta) + '%', cl: 'alr' }] : [])
+        }) + '<details><summary class="nota">Memória de cálculo</summary><p class="sub">' + esc(ult.memoria) + '</p></details>', { eyebrow: 'Leito' });
+    } else h += vazio('Sem RGF até este período', 'O primeiro RGF no banco é posterior a ' + L.mes(S.c) + '.');
+    var fun = funcaoDoRecorte();
+    var meses = Object.keys(D.mensal).filter(function (m) { return m.slice(0, 4) === S.c.slice(0, 4) && m <= S.c; }).sort();
+    h += painel('folha', 'A folha mês a mês', 'Liquidado em pessoal e encargos (grupo 31) no mês, ' + (fun ? 'na função ' + esc(nomeFuncao(fun)) : 'em todas as funções') + ', pela matriz contábil.',
+      meses.length ? grafico({
+        titulo: 'Folha mensal', x: meses.map(L.mesCurto), agora: meses.indexOf(S.c),
+        series: [{ nome: fun ? nomeFuncao(fun) : 'Todas as funções', cl: 'b1', cor: 'var(--royal)', vals: meses.map(function (m) {
+          var pf = D.mensal[m].por_funcao, f = D.mensal[m].fonte;
+          if (fun) return pf[fun] || null;
+          return { v: Object.keys(pf).reduce(function (t, k) { return t + pf[k].v; }, 0), f: f };
+        }) }]
+      }) : vazio('Sem matriz no ano', 'A matriz do ano ainda não está no banco.'));
+    var nm = D.nomeacoes;
+    if (nm) {
+      var ms = Object.keys(nm.meses).filter(function (m) { return m <= S.c; }).sort().slice(-12), atos = {};
+      ms.forEach(function (m) { Object.keys(nm.meses[m]).forEach(function (a) { atos[a] = 1; }); });
+      atos = Object.keys(atos).sort();
+      h += painel('atos', 'Atos de pessoal da pasta no Diário Oficial', 'Contagem dos atos publicados nos últimos 12 meses com ato, por tipo. Só contagens: nenhum nome, matrícula ou CPF aparece nas telas.',
+        ms.length ? '<div class="rola"><table class="t"><thead><tr><th>Mês</th>' + atos.map(function (a) { return '<th class="num">' + esc(a) + '</th>'; }).join('') + '</tr></thead><tbody>' +
+          ms.map(function (m) { return '<tr><td>' + esc(L.mesCurto(m)) + '</td>' + atos.map(function (a) { return '<td class="num">' + (nm.meses[m][a] ? num(nm.meses[m][a], 'int') : '') + '</td>'; }).join('') + '</tr>'; }).join('') +
+          '</tbody></table></div>' : '<p class="sub">Nenhum ato até este período.</p>', { lamina: false });
+    }
+    h += blocoFichas(D.fichas, 'O que a lei manda pagar e não foi pago', 'As fichas de pessoal no recorte.', 'fichas');
+    return h;
+  };
+
+  // --- Preço e entrega ----------------------------------------------------------------------
+  var buscaContrato = '', estadoContrato = '', paginaContrato = 0;
+  T.precos = function () {
+    var jan = L.janela(S.c, D.janela);
+    var cs = D.contratos.filter(function (x) { return x[1] >= jan[0] && x[1] <= jan[1] && (!S.s || x[2] === S.s); });
+    var cont = { preco: {}, entrega: {}, prest: {} };
+    cs.forEach(function (x) { cont.preco[x[7]] = (cont.preco[x[7]] || 0) + 1; cont.entrega[x[9]] = (cont.entrega[x[9]] || 0) + 1; cont.prest[x[10]] = (cont.prest[x[10]] || 0) + 1; });
+    var h = painel('triangulo', 'O triângulo: preço, entrega e prestação', cs.length + ' contrato(s) de ' + esc(L.mes(jan[0])) + ' a ' + esc(L.mes(jan[1])) + (S.s ? ' de ' + esc(nomeSec(S.s)) : ' no Município') +
+      '. Um contrato só fecha quando os três vértices estão conferidos: o preço bate com o país, a entrega tem nota fiscal e a conta foi prestada.',
+      '<div class="grade g2"><div class="triangulo">' + triangulo(cont, cs.length) + '</div><div class="grade gk" style="align-content:start">' +
+      kpi('Preço com indício', L.int(cont.preco.indicio || 0), 'contratos com item acima da mediana nacional', cont.preco.indicio ? 'ruim' : 'bom') +
+      kpi('Preço conferido sem indício', L.int(cont.preco.conferido || 0), 'itens comparados com o catálogo') +
+      kpi('Entrega sem nota publicada', L.int(cont.entrega.ausente || 0), 'órgão sem nenhuma nota fiscal no PNCP', cont.entrega.ausente ? 'falta' : '') +
+      kpi('Prestação de contas', (C.entradas || []).indexOf('execucao') >= 0 ? L.int(cont.prest.conferido || 0) + ' conferida(s)' : 'aguardando', 'liquidação do empenho do contrato') + '</div></div>', { eyebrow: 'Foz' });
+    var achados = D.achados.filter(function (a) { return a[3] >= jan[0] && a[3] <= jan[1] && (!S.s || a[1] === S.s); });
+    var precos = achados.filter(function (a) { return a[0] === 'preco'; });
+    h += painel('preco', 'Preço acima do país', precos.length + ' item(ns) com preço unitário acima da mediana nacional para o mesmo item e unidade, depois de descartar os de unidade diferente.',
+      precos.length ? '<div class="rola"><table class="t cartoes"><thead><tr><th>Item e órgão</th><th class="num">Pago</th><th class="num">Mediana do país</th><th>Mês</th></tr></thead><tbody>' +
+        precos.slice(0, 60).map(function (a) {
+          return '<tr><td data-r="Item">' + esc(a[4]) + '<br><span class="nota">' + esc(nomeSec(a[1])) + '</span></td><td class="num" data-r="Pago">' + num(a[5], 'brl') + '</td><td class="num" data-r="Mediana">' + num(a[6], 'brl') + '</td><td data-r="Mês">' + esc(L.mesCurto(a[3])) + '</td></tr>';
+        }).join('') + '</tbody></table></div>' + (precos.length > 60 ? '<p class="nota">Mostrando 60 de ' + precos.length + '; todos estão em <a href="' + link('indicios', { tema: 'precos' }) + '">Indícios</a>.</p>' : '')
+        : '<p>' + selo('ok', 'sem indício') + ' Nenhum preço acima do país no recorte.</p>');
+    var nf = achados.filter(function (a) { return a[0] === 'nf_ausente'; });
+    var nfTodas = D.achados.filter(function (a) { return a[0] === 'nf_ausente' && (!S.s || a[1] === S.s) && a[7] <= S.c; });
+    var porOrgao = {}; nfTodas.forEach(function (a) { porOrgao[a[1]] = a; });
+    h += painel('notas', 'Notas fiscais nunca publicadas', 'A Lei 14.133/2021 manda publicar no PNCP as notas fiscais de cada contrato. Os órgãos abaixo não publicaram nenhuma no período lido.',
+      Object.keys(porOrgao).length ? '<div class="grade g2">' + Object.keys(porOrgao).map(function (o) {
+        var a = porOrgao[o];
+        return '<div class="vazio roxo"><span class="ic" aria-hidden="true">!</span><div><h3>' + esc(nomeSec(o)) + '</h3><p>' + esc(a[4]) + '</p><p class="nota">Desde ' + esc(L.mes(a[7])) + '. ' + origem(a[5] && a[5].f, 'a leitura do PNCP') + '</p></div></div>';
+      }).join('') + '</div>' : '<p class="sub">' + (nf.length ? '' : selo('cinza', 'sem leitura') + ' Nenhum órgão do recorte foi lido sem nota.') + '</p>');
+    h += painel('contratos', 'Os contratos, um a um', 'Cada contrato com o estado dos três vértices. O valor abre a leitura do PNCP.',
+      '<div class="filtros" style="margin-bottom:10px"><label><span class="sr">Buscar contrato</span><input type="search" id="busca-contrato" placeholder="Buscar fornecedor ou objeto" value="' + esc(buscaContrato) + '"></label>' +
+      '<label><span class="sr">Estado</span><select id="estado-contrato"><option value="">Todos os estados</option><option value="indicio">Preço com indício</option><option value="ausente">Entrega sem nota</option><option value="conferido">Preço conferido</option></select></label></div><div id="lista-contratos"></div>', { lamina: false });
+    h += blocoFichas(D.fichas, 'As fichas de preço e de notas');
+    depois.push(function () {
+      var b = document.getElementById('busca-contrato'), e = document.getElementById('estado-contrato');
+      e.value = estadoContrato;
+      var desenha = function () {
+        var t = buscaContrato.toLowerCase();
+        var f = cs.filter(function (x) { return (!t || (x[3] + ' ' + x[5]).toLowerCase().indexOf(t) >= 0) && (!estadoContrato || x[7] === estadoContrato || x[9] === estadoContrato); });
+        var pp = 25, tot = Math.ceil(f.length / pp) || 1; paginaContrato = Math.min(paginaContrato, tot - 1);
+        var est = { indicio: 'indício', conferido: 'conferido', sem_comparacao: 'sem comparação', ausente: 'nota não publicada', sem_leitura: 'sem leitura', aguardando: 'aguardando a execução' };
+        document.getElementById('lista-contratos').innerHTML = '<div class="rola"><table class="t cartoes"><thead><tr><th>Fornecedor e objeto</th><th class="num">Valor</th><th>Preço</th><th>Entrega</th><th>Prestação</th></tr></thead><tbody>' +
+          f.slice(paginaContrato * pp, paginaContrato * pp + pp).map(function (x) {
+            return '<tr><td data-r="Contrato"><b>' + esc(x[3]) + '</b><br><span class="sub">' + esc(x[5]) + '</span><br><span class="nota">' + esc(nomeSec(x[2])) + ', ' + esc(L.mesCurto(x[1])) + ', <span class="mono">' + esc(x[0]) + '</span></span></td>' +
+              '<td class="num" data-r="Valor">' + num(x[6]) + '</td><td data-r="Preço"><span class="estado ' + x[7] + '">' + est[x[7]] + (x[8] ? ' (' + x[8] + ')' : '') + '</span></td><td data-r="Entrega"><span class="estado ' + x[9] + '">' + est[x[9]] +
+              '</span></td><td data-r="Prestação"><span class="estado ' + x[10] + '">' + est[x[10]] + '</span></td></tr>';
+          }).join('') + '</tbody></table></div><div class="paginacao"><button class="bt" data-pg="-1"' + (paginaContrato ? '' : ' disabled') + '>Anterior</button><span>' + (paginaContrato + 1) + ' de ' + tot + ' (' + f.length + ' contratos)</span><button class="bt" data-pg="1"' + (paginaContrato < tot - 1 ? '' : ' disabled') + '>Próxima</button></div>';
+        document.querySelectorAll('[data-pg]').forEach(function (bt) { bt.onclick = function () { paginaContrato += +bt.dataset.pg; desenha(); }; });
+      };
+      b.oninput = function () { buscaContrato = b.value; paginaContrato = 0; desenha(); };
+      e.onchange = function () { estadoContrato = e.value; paginaContrato = 0; desenha(); };
+      desenha();
+    });
+    return h;
+  };
+  function triangulo(cont, total) {
+    function cor(st) { return st === 'ruim' ? 'var(--critico)' : st === 'falta' ? 'var(--ausencia)' : st === 'ok' ? 'var(--ok)' : 'var(--neutro)'; }
+    var pr = cont.preco.indicio ? 'ruim' : cont.preco.conferido ? 'ok' : 'espera';
+    var en = cont.entrega.ausente ? 'falta' : cont.entrega.conferido ? 'ok' : 'espera';
+    var ps = cont.prest.ausente ? 'falta' : cont.prest.conferido ? 'ok' : 'espera';
+    var v = [[220, 40, 'Preço', pr, (cont.preco.indicio || 0) + ' com indício'], [60, 300, 'Entrega', en, (cont.entrega.ausente || 0) + ' sem nota'], [380, 300, 'Prestação', ps, ps === 'espera' ? 'aguardando a execução' : (cont.prest.ausente || 0) + ' sem prestação']];
+    var out = '<svg viewBox="0 0 440 360" role="img" aria-label="Triângulo preço, entrega e prestação de ' + total + ' contratos">' +
+      '<polygon points="220,40 60,300 380,300" fill="var(--agua)" stroke="var(--line)" stroke-width="3"/>' +
+      '<text x="220" y="215" text-anchor="middle" style="font:700 34px var(--f-mono)">' + total + '</text><text x="220" y="238" text-anchor="middle" class="vt">contratos no recorte</text>';
+    v.forEach(function (p) {
+      out += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="22" fill="' + cor(p[3]) + '"' + (p[3] === 'espera' ? ' fill-opacity=".25" stroke="var(--neutro)" stroke-dasharray="4 3" stroke-width="2"' : '') + '/>' +
+        '<text x="' + p[0] + '" y="' + (p[1] + (p[1] < 100 ? -30 : 44)) + '" text-anchor="middle">' + p[2] + '</text><text class="vt" x="' + p[0] + '" y="' + (p[1] + (p[1] < 100 ? -14 : 60)) + '" text-anchor="middle">' + esc(p[4]) + '</text>';
+    });
+    return out + '</svg>';
+  }
+
+  // --- Contratos e empresas -----------------------------------------------------------------
+  T.empresas = function () {
+    var jan = L.janela(S.c, 12);
+    var forn = D.fornecedores.map(function (f) {
+      var cs = f.contratos.filter(function (x) { return x[1] >= jan[0] && x[1] <= jan[1] && (!S.s || x[2] === S.s); });
+      return { f: f, cs: cs, v: cs.reduce(function (t, x) { return t + x[3].v; }, 0) };
+    }).filter(function (x) { return x.cs.length; }).sort(function (a, b) { return b.v - a.v; });
+    var h = painel('fornecedores', 'Quem recebeu', forn.length + ' fornecedor(es) com contrato assinado de ' + esc(L.mes(jan[0])) + ' a ' + esc(L.mes(jan[1])) + (S.s ? ' em ' + esc(nomeSec(S.s)) : '') + '. Pessoas físicas aparecem sem documento.',
+      '<div class="rola"><table class="t cartoes"><thead><tr><th>Fornecedor</th><th class="num">Contratos</th><th class="num">Valor</th><th>Receita Federal</th></tr></thead><tbody>' +
+      forn.slice(0, 80).map(function (x) {
+        var r = x.f.receita, alertas = r ? (r.alertas || []).map(function (a) { return selo(a.gravidade === 'critica' ? 'critica' : 'indicio', a.texto); }).join(' ') : '';
+        return '<tr><td data-r="Fornecedor"><b>' + esc(x.f.nome) + '</b><br><span class="nota mono">' + esc(x.f.ni) + '</span></td><td class="num" data-r="Contratos">' + x.cs.length + '</td><td class="num" data-r="Valor">' +
+          num({ v: x.v, f: x.cs[0][3].f }) + '</td><td data-r="Receita">' + (r ? (r.abertura ? 'Aberta em ' + esc(L.data(r.abertura)) + '. ' : '') + esc(r.situacao || '') + ' ' + alertas + (r.socios && r.socios.length ? '<br><span class="nota">Sócios e administradores: ' +
+            r.socios.map(function (s) { return esc(s.nome) + (s.qualificacao ? ' (' + esc(s.qualificacao) + ')' : ''); }).join(', ') + '</span>' : '') + ' ' + origem(r.fonte, 'cartão do CNPJ') : selo('cinza', 'aguardando')) + '</td></tr>';
+      }).join('') + '</tbody></table></div>' + (forn.length > 80 ? '<p class="nota">Os 80 maiores de ' + forn.length + '.</p>' : ''), { eyebrow: 'Foz' });
+    if (!D.receita) {
+      h += painel('receita', 'A empresa por trás do contrato', '', vazio('Aguardando a coleta das empresas na Receita Federal',
+        'Quando a frente das empresas entregar o cartão do CNPJ, o quadro de sócios e administradores e as sanções (CEIS e CNEP), cada fornecedor acima ganha a idade da empresa, quem a administra, se podia contratar com o Município e os alertas de empresa recente e sem experiência. Nenhum CPF aparece.'));
+    }
+    var conc = D.concentracao.filter(function (x) { return x.mes <= S.c && x.mes >= jan[0] && (!S.s || x.orgao === S.s); });
+    h += painel('concentracao', 'Poucos levam quase tudo', 'Órgãos em que poucos credores levam a maior parte do contratado no ano.',
+      conc.length ? '<div class="grade g2">' + conc.map(function (x) {
+        return '<div class="kpi ruim"><span class="rot">' + esc(nomeSec(x.orgao)) + ', ' + esc(x.ano) + '</span><span class="val">' + esc(x.levam) + ' de ' + esc(x.credores) + ' credores</span><span class="det">levam ' + esc(x.corte) + '% de ' + num(x.total) + '</span></div>';
+      }).join('') + '</div>' : '<p>' + selo('ok', 'sem concentração') + ' Nenhuma concentração acima do corte no recorte.</p>');
+    h += blocoFichas(D.fichas, 'As fichas dos contratos', 'Dispensas no teto, fracionamento, emergenciais, aditivos e concentração.');
+    return h;
+  };
+
+  // --- Contas -------------------------------------------------------------------------------
+  T.contas = function () {
+    var ano = +S.c.slice(0, 4);
+    var ent = D.entregas.filter(function (e) { return e.exercicio >= ano - 1 && e.exercicio <= ano && e.mes <= S.c; });
+    var atrasadas = ent.filter(function (e) { return !e.no_prazo; });
+    var h = painel('entregas', 'As entregas ao Tesouro', 'Cada demonstrativo de ' + (ano - 1) + ' e ' + ano + ' com o prazo e a data da entrega no SICONFI.',
+      '<div class="grade gk" style="margin-bottom:12px">' + kpi('Entregas no período', L.int(ent.length)) + kpi('Fora do prazo', L.int(atrasadas.length), 'pelo extrato do SICONFI', atrasadas.length ? 'ruim' : 'bom') + '</div>' +
+      '<div class="rola"><table class="t cartoes"><thead><tr><th>Demonstrativo</th><th>Prazo</th><th>Entregue</th><th class="num">Atraso</th></tr></thead><tbody>' +
+      ent.slice().reverse().map(function (e) {
+        return '<tr><td data-r="Demonstrativo">' + esc(e.rotulo) + '</td><td data-r="Prazo">' + esc(L.data(e.prazo)) + '</td><td data-r="Entregue">' + esc(L.data(e.entregue)) + '</td><td class="num" data-r="Atraso">' +
+          (e.no_prazo ? selo('ok', 'no prazo') : num(e.atraso, 'dias')) + '</td></tr>';
+      }).join('') + '</tbody></table></div>', { eyebrow: 'Foz' });
+    h += painel('anuais', 'As contas anuais', 'Prazos da ' + esc(D.norma) + '. A conferência é possível quando o banco tem os demonstrativos do exercício.',
+      '<div class="rola"><table class="t cartoes"><thead><tr><th>Exercício</th><th>Entrega ao TCM</th><th>Parecer prévio até</th><th>Julgamento até</th><th>Conferência</th><th>Situação</th></tr></thead><tbody>' +
+      D.anuais.filter(function (a) { return a.exercicio < ano; }).reverse().map(function (a) {
+        return '<tr><td data-r="Exercício"><b>' + a.exercicio + '</b></td><td data-r="Entrega">' + esc(L.data(a.prazo_entrega)) + '</td><td data-r="Parecer">' + esc(L.data(a.parecer_ate)) + '</td><td data-r="Julgamento">' + esc(L.data(a.julgamento_ate)) +
+          '</td><td data-r="Conferência">' + (a.conferencia === 'possível' ? selo('verde', 'possível') : selo('cinza', 'sem demonstrativos no banco')) + '</td><td data-r="Situação">' + selo('cinza', 'aguardando o TCM') + ' ' + origem(a.fonte, 'por quê') + '</td></tr>';
+      }).join('') + '</tbody></table></div>');
+    h += blocoFichas(D.fichas, 'As fichas de contas e prestações');
+    return h;
+  };
+
+  // --- Indícios -----------------------------------------------------------------------------
+  var FI = {
+    familias: (U.get('fam') || '').split(',').filter(Boolean), gravidades: (U.get('g') || '').split(',').filter(Boolean),
+    temas: (U.get('tema') || '').split(',').filter(Boolean), texto: U.get('q') || '', estacao: U.get('est') || '',
+    de: U.get('de') || '', ate: U.get('ate') || '', mostrar: 30
+  };
+  T.indicios = function () {
+    var fams = Object.keys(D.familias);
+    var periodos = C.competencias.slice().reverse();
+    var opt = function (sel) { return '<option value="">Competência do recorte</option>' + periodos.map(function (c) { return '<option value="' + c + '"' + (c === sel ? ' selected' : '') + '>' + esc(L.mes(c)) + '</option>'; }).join(''); };
+    var h = '<section class="painel" aria-label="Filtros dos indícios"><div class="filtros">' +
+      '<fieldset><legend>Família</legend>' + fams.map(function (f) { return '<button type="button" class="chip" data-fam="' + f + '" aria-pressed="' + (FI.familias.indexOf(f) >= 0) + '" title="' + esc(D.familias[f]) + '">' + f + '</button>'; }).join('') + '</fieldset>' +
+      '<fieldset><legend>Gravidade</legend>' + ['critica', 'alta', 'media'].map(function (g2) { return '<button type="button" class="chip" data-grav="' + g2 + '" aria-pressed="' + (FI.gravidades.indexOf(g2) >= 0) + '">' + GRAV[g2] + '</button>'; }).join('') + '</fieldset>' +
+      '<fieldset><legend>Tema</legend><select id="f-tema"><option value="">Todos os temas</option>' + Object.keys(TEMAS).map(function (t) { return '<option value="' + t + '"' + (FI.temas[0] === t ? ' selected' : '') + '>' + esc(TEMAS[t].titulo) + '</option>'; }).join('') + '</select></fieldset>' +
+      '<fieldset><legend>Período</legend><select id="f-de" aria-label="De">' + opt(FI.de) + '</select><select id="f-ate" aria-label="Até">' + opt(FI.ate) + '</select></fieldset>' +
+      '<fieldset><legend>Texto</legend><input type="search" id="f-texto" placeholder="Código, título ou norma" value="' + esc(FI.texto) + '"></fieldset>' +
+      (FI.estacao ? '<fieldset><legend>Estação</legend><button type="button" class="chip" data-limpa-est aria-pressed="true">Estação ' + esc(FI.estacao) + ' ×</button></fieldset>' : '') +
+      '</div></section><div id="lista-fichas"></div>';
+    depois.push(function () {
+      function sync() {
+        var u = new URLSearchParams(); u.set('c', S.c); if (S.s) u.set('s', S.s);
+        if (FI.familias.length) u.set('fam', FI.familias.join(',')); if (FI.gravidades.length) u.set('g', FI.gravidades.join(','));
+        if (FI.temas.length) u.set('tema', FI.temas.join(',')); if (FI.texto) u.set('q', FI.texto); if (FI.estacao) u.set('est', FI.estacao);
+        if (FI.de) u.set('de', FI.de); if (FI.ate) u.set('ate', FI.ate);
+        history.replaceState(null, '', '?' + u.toString());
+      }
+      function lista() {
+        var f = L.filtrar(D.fichas, { c: S.c, s: S.s, de: FI.de || (FI.ate ? '0000-00' : ''), ate: FI.ate || (FI.de ? S.c : ''), familias: FI.familias, gravidades: FI.gravidades, temas: FI.temas, texto: FI.texto, estacao: FI.estacao, estacoesDaFamilia: D.estacoes_da_familia });
+        var ord = { critica: 0, alta: 1, media: 2 };
+        f.sort(function (a, b) { return (ord[a.gravidade] - ord[b.gravidade]) || (L.periodoDa(b)[1] > L.periodoDa(a)[1] ? 1 : -1); });
+        var periodo = FI.de || FI.ate ? 'de ' + L.mes(FI.de || C.competencias[0]) + ' a ' + L.mes(FI.ate || S.c) : 'em ' + L.mes(S.c);
+        document.getElementById('lista-fichas').innerHTML = '<p class="sub" aria-live="polite" style="margin-bottom:10px"><b>' + f.length + '</b> ficha(s) ' + esc(periodo) + (S.s ? ', ' + esc(nomeSec(S.s)) : '') + '.</p>' +
+          (f.length ? '<div class="fichas">' + f.slice(0, FI.mostrar).map(ficha).join('') + '</div>' + (f.length > FI.mostrar ? '<p style="margin-top:12px"><button type="button" class="bt" id="mais">Mostrar mais ' + Math.min(30, f.length - FI.mostrar) + '</button></p>' : '')
+            : vazio('Nenhuma ficha com estes filtros', 'Tire um filtro ou mude o período.'));
+        var m = document.getElementById('mais'); if (m) m.onclick = function () { FI.mostrar += 30; lista(); };
+        marcarLaminas();
+      }
+      document.querySelectorAll('[data-fam]').forEach(function (b) { b.onclick = function () { tog(FI.familias, b.dataset.fam); b.setAttribute('aria-pressed', FI.familias.indexOf(b.dataset.fam) >= 0); FI.mostrar = 30; sync(); lista(); }; });
+      document.querySelectorAll('[data-grav]').forEach(function (b) { b.onclick = function () { tog(FI.gravidades, b.dataset.grav); b.setAttribute('aria-pressed', FI.gravidades.indexOf(b.dataset.grav) >= 0); FI.mostrar = 30; sync(); lista(); }; });
+      document.getElementById('f-tema').onchange = function () { FI.temas = this.value ? [this.value] : []; sync(); lista(); };
+      document.getElementById('f-de').onchange = function () { FI.de = this.value; sync(); lista(); };
+      document.getElementById('f-ate').onchange = function () { FI.ate = this.value; sync(); lista(); };
+      document.getElementById('f-texto').oninput = function () { FI.texto = this.value; sync(); lista(); };
+      var le = document.querySelector('[data-limpa-est]'); if (le) le.onclick = function () { FI.estacao = ''; sync(); desenhar(); };
+      lista();
+    });
+    return h;
+  };
+  function tog(lista, v) { var i = lista.indexOf(v); if (i >= 0) lista.splice(i, 1); else lista.push(v); }
+
+  // --- Transparência ------------------------------------------------------------------------
+  T.transparencia = function () {
+    var h = '';
+    if (D.selo) {
+      var sl = D.selo;
+      h += painel('selo', 'O selo declarado e o selo refeito', esc(sl.programa || '') + ' ' + esc(sl.ciclo || '') + '. O Onisciente refaz a avaliação critério por critério, como auditor independente; cada critério abre a prova.',
+        '<div class="grade g2">' + kpi('Declarado', esc(sl.declarado.nivel || '') + ' · ' + num(sl.declarado.nota, 'int'), 'o que o Município apresenta') +
+        kpi('Refeito pelo Onisciente', esc(sl.auditado.nivel || '') + ' · ' + num(sl.auditado.nota, 'int'), 'com as provas abaixo', sl.auditado.nota && sl.declarado.nota && sl.auditado.nota.v < sl.declarado.nota.v ? 'critico' : 'bom') + '</div>' +
+        '<div class="rola" style="margin-top:12px"><table class="t cartoes"><thead><tr><th>Critério</th><th class="num">Peso</th><th>Declarado</th><th>Auditado</th><th>Prova</th></tr></thead><tbody>' +
+        sl.criterios.map(function (c) {
+          var a = { cumpre: selo('verde', 'cumpre'), falha: selo('critica', 'falha'), sem_dado: selo('roxo', 'sem dado') }[c.auditado] || esc(c.auditado);
+          return '<tr><td data-r="Critério"><b>' + esc(c.id) + '</b> ' + esc(c.criterio) + (c.nota ? '<br><span class="nota">' + esc(c.nota) + '</span>' : '') + '</td><td class="num" data-r="Peso">' + esc(c.peso) + '</td><td data-r="Declarado">' + esc(c.declarado) + '</td><td data-r="Auditado">' + a + '</td><td data-r="Prova">' + origem(c.fonte, 'abrir') + '</td></tr>';
+        }).join('') + '</tbody></table></div>', { eyebrow: 'Margens' });
+    } else {
+      h += painel('selo', 'O selo de transparência, auditado', '', vazio('Aguardando a coleta do selo de transparência',
+        'O Município apresenta um selo de transparência. Quando a frente do selo entregar a metodologia replicada e as provas de cada critério, esta seção mostra o selo declarado ao lado do selo refeito pelo Onisciente, critério por critério, e a nota de cada secretaria. Enquanto isso, o que a lei manda publicar e não está publicado aparece logo abaixo.'), { eyebrow: 'Margens' });
+    }
+    var aus = D.ausencias.filter(function (a) { return a.cs.indexOf(S.c) >= 0 && (!S.s || a.secretarias.indexOf(S.s) >= 0); });
+    var mun = D.municipio.filter(function (a) { return a.mes <= S.c; });
+    h += painel('ausencias', 'O que a lei manda publicar e não está publicado', (aus.length + mun.length) + ' ausência(s) no recorte. Cada uma impede uma conferência e vira item de ofício.',
+      (aus.length || mun.length ? '<div class="rola"><table class="t cartoes"><thead><tr><th>O que falta</th><th>Onde deveria estar</th><th>Conferência impedida</th><th>Fundamento</th></tr></thead><tbody>' +
+        aus.map(function (a) {
+          return '<tr><td data-r="O que falta">' + selo('roxo') + ' <b>' + esc(a.o_que_falta) + '</b>' + (a.periodo ? '<br><span class="nota">' + esc(a.periodo) + '</span>' : '') + '</td><td data-r="Onde">' + esc(a.onde_deveria_estar) + '</td><td data-r="Conferência">' + esc(a.conferencia_impedida) + '</td><td data-r="Fundamento">' + esc(a.fundamento) + '</td></tr>';
+        }).join('') + mun.map(function (a) {
+          return '<tr><td data-r="O que falta">' + selo('roxo') + ' <b>' + esc(a.o_que_falta) + '</b><br><span class="nota">prazo ' + esc(L.data(a.prazo)) + '</span></td><td data-r="Onde">' + esc(a.onde) + '</td><td data-r="Conferência">' + origem(a.fonte, 'ver') + '</td><td data-r="Fundamento">' + esc(a.fundamento) + '</td></tr>';
+        }).join('') + '</tbody></table></div>' : '<p>' + selo('ok', 'nada faltando') + ' Nenhuma ausência registrada neste recorte.</p>'));
+    var ofs = D.oficios[S.c] || [];
+    h += painel('oficios', 'Os ofícios prontos', 'Pedido de acesso à informação pronto para protocolo, um por órgão, com os itens que faltam.',
+      ofs.length ? ofs.map(function (o, i) {
+        return '<h3 style="font-size:16px;margin:10px 0 6px">' + esc(o.destinatario) + ' · ' + o.itens + ' item(ns) <button type="button" class="bt" data-copiar="of-' + i + '">Copiar o texto</button></h3><pre class="oficio" id="of-' + i + '">' + esc(o.texto) + '</pre>';
+      }).join('') : '<p class="sub">Nenhum ofício gerado para ' + esc(L.mes(S.c)) + '.</p>');
+    h += painel('escada', 'Se não responderem', 'A escada contra a não resposta, degrau por degrau.',
+      '<div class="escada">' + D.escada.map(function (d) {
+        return '<div class="degrau"><p class="eyebrow">Degrau ' + d.n + '</p><h3>' + esc(d.nome) + '</h3><p>' + esc(d.fundamento) + '</p><p>' + (d.decidir ? 'Resposta em ' + d.decidir + ' dias. ' : '') + (d.agir ? 'Recurso em ' + d.agir + ' dias. ' : '') + esc(d.obs || '') + '</p></div>';
+      }).join('') + '</div>');
+    var falhas = D.falhas.filter(function (x) { return !x.mes || x.mes.slice(0, 4) === S.c.slice(0, 4); });
+    h += painel('falhas', 'O que o próprio sistema não conseguiu ler', 'Falha do Onisciente, nunca imputada ao Município: ' + falhas.length + ' leitura(s) falharam no ano. Cada uma é refeita na próxima coleta.',
+      falhas.length ? '<details><summary>Ver as leituras que falharam</summary><div class="rola"><table class="t"><thead><tr><th>Fonte</th><th>O que</th><th>Erro</th></tr></thead><tbody>' + falhas.slice(0, 100).map(function (x) {
+        return '<tr><td>' + selo('vermelho') + ' ' + esc(x.motor) + '</td><td>' + esc(x.alvo) + ' ' + esc(x.mes) + '</td><td class="nota">' + esc(x.erro) + '</td></tr>';
+      }).join('') + '</tbody></table></div></details>' : '<p>' + selo('ok', 'sem falhas') + ' Todas as leituras do ano deram certo.</p>', { lamina: false });
+    h += blocoFichas(D.fichas, 'As fichas de transparência, leis e sistema');
+    depois.push(function () {
+      document.querySelectorAll('[data-copiar]').forEach(function (b) {
+        b.onclick = function () {
+          var t = document.getElementById(b.dataset.copiar).textContent;
+          (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () { b.textContent = 'Copiado'; }, function () { b.textContent = 'Selecione e copie'; });
+        };
+      });
+    });
+    return h;
+  };
+
+  // --- Máquina do tempo ---------------------------------------------------------------------
+  T.tempo = function () {
+    var fun = funcaoDoRecorte();
+    var anos = D.anos;
+    var h = '';
+    var x = anos.map(function (a) { return String(a.ano); });
+    var proj = {}; (fun ? (D.projecao_funcao[fun] || []) : D.projecao).forEach(function (p) { proj[p.ano] = p; });
+    var serieDot = anos.map(function (a) { return fun ? (a.funcoes && a.funcoes[fun] ? a.funcoes[fun].dotacao : null) : a.dotacao || null; });
+    var serieReal = anos.map(function (a) { return fun ? (a.funcoes && a.funcoes[fun] ? a.funcoes[fun].liquidado : null) : a.pago || null; });
+    var serieProj = anos.map(function (a) { return proj[a.ano] && proj[a.ano].projetado && proj[a.ano].projetado.v !== null ? proj[a.ano].projetado : null; });
+    h += painel('linha', 'Previsto e realizado, de ' + D.primeiro + ' a ' + D.ultimo_ppa, (fun ? 'Função ' + esc(nomeFuncao(fun)) + ': dotação atualizada e liquidado' : 'Município: dotação atualizada e despesa paga') +
+      ' por exercício, pelo RREO; os anos futuros e o ano corrente trazem a projeção pela ' + esc(D.regua) + '.',
+      grafico({
+        titulo: 'Máquina do tempo', x: x, agora: x.indexOf(S.c.slice(0, 4)),
+        series: [{ nome: 'Previsto (dotação atualizada)', cl: 'b1', cor: 'var(--royal)', vals: serieDot },
+        { nome: fun ? 'Realizado (liquidado)' : 'Realizado (pago)', cl: 'b2', cor: 'var(--gold)', vals: serieReal },
+        { nome: 'Projetado', cl: 'b3', cor: 'var(--vinc)', vals: serieProj }]
+      }) + (D.falta ? '<p style="margin-top:10px">' + selo('alerta', 'projeção limitada') + ' ' + esc(D.falta) + '</p>' : ''), { eyebrow: 'Margens' });
+    h += painel('anos', 'Ano a ano', 'Os exercícios sem RREO no banco aparecem como lacuna da coleta, em cinza.',
+      '<div class="rola"><table class="t cartoes"><thead><tr><th>Ano</th><th>Situação</th><th class="num">Receita prevista</th><th class="num">Receita realizada</th><th class="num">Dotação</th><th class="num">Empenhado</th><th class="num">Pago</th></tr></thead><tbody>' +
+      anos.map(function (a) {
+        var sit = { fechado: selo('verde', 'fechado'), parcial: selo('azul', 'até o ' + a.bimestre + 'º bimestre'), sem_dado: selo('cinza', 'fora do banco'), futuro: selo('cinza', 'futuro') }[a.tipo];
+        return '<tr' + (String(a.ano) === S.c.slice(0, 4) ? ' class="marcada"' : '') + '><td data-r="Ano"><b>' + a.ano + '</b></td><td data-r="Situação">' + sit + ' ' + origem(a.fonte, 'origem') + '</td>' +
+          ['receita_prevista', 'receita_realizada', 'dotacao', 'empenhado', 'pago'].map(function (k) { return '<td class="num" data-r="' + k.replace('_', ' ') + '">' + (a[k] ? num(a[k]) : '') + '</td>'; }).join('') + '</tr>';
+      }).join('') + '</tbody></table></div>');
+    h += blocoFichas(D.fichas, 'As fichas do orçamento e da receita', 'Previsão, dotação e o ritmo da arrecadação.');
+    return h;
+  };
+
+  // ===========================================================================================
+  // Moldura: recorte, régua, caminho, apresentação
+  // ===========================================================================================
+  function montarSeletores() {
+    var sa = document.getElementById('sel-alvo'), sp = document.getElementById('sel-periodo'), ss = document.getElementById('sel-secretaria');
+    sa.innerHTML = (C.alvos.length ? C.alvos : [C.alvo]).map(function (a) { return '<option value="' + esc(a.id) + '">' + esc(a.nome) + '</option>'; }).join('');
+    sa.onchange = function () { var a = C.alvos.filter(function (x) { return x.id === sa.value; })[0]; if (a && a.url) location.href = a.url; };
+    sp.innerHTML = C.competencias.slice().reverse().map(function (c) {
+      return '<option value="' + c + '"' + (c === S.c ? ' selected' : '') + '>' + esc(L.mes(c)) + (C.pareceres.indexOf(c) >= 0 ? ' · parecer' : '') + '</option>';
+    }).join('');
+    var pasta = C.secretarias.filter(function (s) { return s.pasta; }), outras = C.secretarias.filter(function (s) { return !s.pasta; });
+    function op(s) { return '<option value="' + s.id + '"' + (s.id === S.s ? ' selected' : '') + '>' + esc(s.nome) + '</option>'; }
+    ss.innerHTML = '<option value="">Município inteiro</option>' + (pasta.length ? '<optgroup label="Pasta fiscalizada">' + pasta.map(op).join('') + '</optgroup>' : '') +
+      '<optgroup label="Demais órgãos">' + outras.map(op).join('') + '</optgroup>';
+    sp.onchange = function () { mudar({ c: sp.value }); };
+    ss.onchange = function () { mudar({ s: ss.value }); };
+    var br = document.getElementById('bt-recorte'), rec = document.getElementById('recorte');
+    if (window.matchMedia('(max-width: 760px)').matches) {
+      br.hidden = false;
+      br.onclick = function () { var ab = rec.dataset.aberto !== 'true'; rec.dataset.aberto = ab; br.setAttribute('aria-expanded', ab); };
+    }
+  }
+  function mudar(novo) {
+    if (novo.c !== undefined) S.c = novo.c;
+    if (novo.s !== undefined) S.s = novo.s;
+    gravarStorage('onisciente.recorte', JSON.stringify(S));
+    var u = new URLSearchParams(location.search); u.set('c', S.c); if (S.s) u.set('s', S.s); else u.delete('s');
+    history.replaceState(null, '', '?' + u.toString() + location.hash);
+    document.getElementById('sel-periodo').value = S.c; document.getElementById('sel-secretaria').value = S.s;
+    desenhar();
+  }
+  function atualizarMoldura() {
+    var cont = L.contar(IND, S.c, S.s);
+    document.querySelectorAll('[data-cont]').forEach(function (el) {
+      var r = L.contarPagina(cont, TEMAS, el.dataset.cont);
+      el.innerHTML = r.n ? '<i' + (r.critica ? ' class="c"' : '') + ' aria-hidden="true"></i>' + r.n + '<span class="sr"> indício(s)</span>' : (el.dataset.cont === 'leis' ? '' : '<i class="z" aria-hidden="true"></i>0');
+    });
+    document.querySelectorAll('a[data-pagina]').forEach(function (a) { a.href = link(a.dataset.pagina); });
+    var resumo = L.mes(S.c) + ' · ' + (S.s ? nomeSec(S.s) : 'Município inteiro');
+    document.getElementById('onde').textContent = 'Recorte: ' + resumo + '. ' + C.alvo.nome + '.';
+    document.getElementById('resumo-recorte').textContent = resumo;
+    document.getElementById('gerado').textContent = 'Gerado em ' + L.data(C.gerado_em) + ' a partir do banco histórico, versão ' + C.versao + '.';
+    var i = ORDEM.indexOf(PID), ant = ORDEM[i - 1], prox = ORDEM[i + 1];
+    var tit = {}; C.paginas.forEach(function (p) { tit[p.id] = p.titulo; });
+    document.getElementById('caminho').innerHTML = (ant ? '<a href="' + link(ant) + '"><small>Antes, no rio</small><b>' + esc(tit[ant]) + '</b></a>' : '<span></span>') +
+      (prox ? '<a class="prox" href="' + link(prox) + '"><small>Seguindo o dinheiro</small><b>' + esc(tit[prox]) + '</b></a>' : '');
+  }
+  function desenhar() {
+    depois = [];
+    var tela = document.getElementById('tela');
+    try { tela.innerHTML = (T[PID] || function () { return ''; })(); }
+    catch (e) { tela.innerHTML = vazio('Esta tela não pôde ser desenhada', 'Erro: ' + e.message, false); if (window.console) console.error(e); }
+    depois.forEach(function (f) { f(); });
+    atualizarMoldura();
+    marcarLaminas();
+  }
+
+  // --- modo apresentação --------------------------------------------------------------------
+  var lam = [], li = 0, apresentando = false;
+  function marcarLaminas() { lam = Array.prototype.slice.call(document.querySelectorAll('#tela .lamina')); if (apresentando) irPara(Math.min(li, lam.length - 1)); }
+  function irPara(i) {
+    if (!lam.length) return;
+    lam.forEach(function (l) { l.classList.remove('agora'); });
+    li = Math.max(0, Math.min(i, lam.length - 1));
+    lam[li].classList.add('agora');
+    document.getElementById('palco-cont').textContent = (li + 1) + ' de ' + lam.length;
+    var tit = C.paginas.filter(function (p) { return p.id === PID; })[0];
+    document.getElementById('palco-tela').textContent = tit.titulo + ' · ' + L.mes(S.c) + (S.s ? ' · ' + nomeSec(S.s) : '') + '. Passe o mouse nos números para ver a origem.';
+    if (PID === 'rio' && lam[li].id === 'sankey') desenharSankey();
+  }
+  function apresentar(liga, inicio) {
+    apresentando = liga; document.body.classList.toggle('apresentando', liga);
+    document.getElementById('bt-apresentar').setAttribute('aria-pressed', liga);
+    if (liga) { marcarLaminas(); irPara(inicio === -1 ? lam.length - 1 : (inicio || 0)); if (document.documentElement.requestFullscreen && !document.fullscreenElement) document.documentElement.requestFullscreen().catch(function () { }); }
+    else { lam.forEach(function (l) { l.classList.remove('agora'); }); if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(function () { }); }
+    var u = new URLSearchParams(location.search); if (liga) u.set('apresentar', '1'); else { u.delete('apresentar'); u.delete('l'); } history.replaceState(null, '', '?' + u.toString());
+  }
+  function passo(d) {
+    if (li + d >= lam.length) { var i = ORDEM.indexOf(PID); if (ORDEM[i + 1]) location.href = link(ORDEM[i + 1], { apresentar: 1, l: 0 }); return; }
+    if (li + d < 0) { var j = ORDEM.indexOf(PID); if (j > 0) location.href = link(ORDEM[j - 1], { apresentar: 1, l: -1 }); return; }
+    irPara(li + d);
+  }
+  document.addEventListener('keydown', function (e) {
+    if (e.target.closest && e.target.closest('input,select,textarea')) return;
+    if (apresentando) {
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); passo(1); }
+      else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); passo(-1); }
+      else if (e.key === 'Escape') apresentar(false);
+    } else if ((e.key === 'p' || e.key === 'P') && !e.ctrlKey && !e.metaKey && !e.altKey) apresentar(true);
+  });
+  document.addEventListener('fullscreenchange', function () { if (!document.fullscreenElement && apresentando) apresentar(false); });
+
+  // --- partida ------------------------------------------------------------------------------
+  montarSeletores();
+  document.getElementById('bt-apresentar').onclick = function () { apresentar(!apresentando); };
+  document.getElementById('palco-sair').onclick = function () { apresentar(false); };
+  document.getElementById('bt-tema').onclick = function () {
+    var r = document.documentElement, escuro = r.dataset.theme ? r.dataset.theme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    r.dataset.theme = escuro ? 'light' : 'dark'; gravarStorage('onisciente.tema', r.dataset.theme);
+  };
+  var topo = document.querySelector('.topo');
+  function altura() { document.documentElement.style.setProperty('--alto-topo', topo.offsetHeight + 'px'); }
+  altura(); window.addEventListener('resize', altura);
+  desenhar();
+  if (U.get('apresentar') === '1') apresentar(true, +(U.get('l') || 0));
+  if (location.hash) { var alvo = document.getElementById(location.hash.slice(1)); if (alvo) setTimeout(function () { alvo.scrollIntoView(); if (alvo.tagName === 'DETAILS') alvo.open = true; }, 30); }
+})();

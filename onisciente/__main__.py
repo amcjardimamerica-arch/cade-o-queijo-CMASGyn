@@ -12,6 +12,7 @@
     python -m onisciente selo                 # auditoria independente do selo de transparência (PNTP)
     python -m onisciente selo --sondar        # lê antes o portal, o Radar e o sítio do Conselho (rede)
     python -m onisciente empresas             # confere as contratadas e escreve docs/onisciente/empresas.html
+    python -m onisciente telas                # gera as telas (docs/onisciente/app), sem rede
 """
 
 from __future__ import annotations
@@ -282,6 +283,8 @@ def main(argv: list[str] | None = None) -> int:
     pe.add_argument("--banco", help="caminho do banco (padrão: dados/onisciente/historico.db)")
     pe.add_argument("--saida", help="página a escrever (padrão: docs/onisciente/empresas.html)")
     pe.set_defaults(f=lambda a: __import__("onisciente.conferencias.empresas", fromlist=["cmd"]).cmd(a))
+    from .telas.cli import registrar as registrar_telas
+    registrar_telas(sub)
     args = p.parse_args(argv)
     return args.f(args)
 
