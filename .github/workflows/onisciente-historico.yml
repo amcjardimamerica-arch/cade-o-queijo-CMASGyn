@@ -16,7 +16,7 @@ concurrency: {group: onisciente-historico, cancel-in-progress: false}
 jobs:
   coletar:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 300
     env:
       DESDE: ${{ inputs.desde || '2024-11' }}
       ATE: ${{ inputs.ate || '2026-11' }}

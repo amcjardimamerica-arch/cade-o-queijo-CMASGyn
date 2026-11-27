@@ -709,3 +709,40 @@ def test_pncp_detalhe_le_amparo_itens_contrato_termos_preco_e_notas(tmp_path):
     antes = len(pedidos)
     historico.motor_pncp_detalhe(ctx)                      # tudo lido por inteiro: nada de novo
     assert len(pedidos) == antes
+
+
+def test_pncp_detalhe_le_a_pasta_primeiro_e_os_itens_dela_pela_via_rapida(tmp_path):
+    """A pasta vem antes de tudo, e os itens dela saem da API do PNCP com o resultado homologado."""
+    pedidos = []
+
+    def rede(url, **_):
+        pedidos.append(url)
+        if url.endswith("/compras/2025/7/itens?pagina=1&tamanhoPagina=500"):
+            corpo = [{"numeroItem": 1, "descricao": "Cesta básica", "materialOuServico": "M",
+                      "catalogoCodigoItem": "461540", "ncmNbsCodigo": "19059090", "unidadeMedida": "Unidade",
+                      "quantidade": 100, "valorUnitarioEstimado": 150.0, "valorTotal": 15000.0, "temResultado": True,
+                      "dataInclusao": "2025-03-02T10:00:00"}]
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        if url.endswith("/compras/2025/7/itens/1/resultados"):
+            corpo = [{"niFornecedor": "11222333000144", "nomeRazaoSocialFornecedor": "Mercado X",
+                      "quantidadeHomologada": 100, "valorUnitarioHomologado": 149.0,
+                      "valorTotalHomologado": 14900.0, "dataResultado": "2025-03-10"}]
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        return base.Leitura(True, url, b"", http=204)
+
+    banco = historico.Banco(tmp_path / "h.db")
+    banco.inserir("contratacoes_pncp", {"pncp_id": "25141524000123-1-000900/2025", "mes": "2025-03",
+                                        "modalidade": "Dispensa", "orgao_cnpj": "25141524000123",
+                                        "orgao": "SECRETARIA MUNICIPAL DE SAUDE", "valor_homologado": 9e6})
+    banco.inserir("contratacoes_pncp", {"pncp_id": "01393989000103-1-000007/2025", "mes": "2025-03",
+                                        "modalidade": "Pregão - Eletrônico", "orgao_cnpj": "01393989000103",
+                                        "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL-FMAS", "valor_homologado": 1.0})
+    ctx = historico.Contexto(banco, historico.meses("2025-03", "2025-03"), date(2026, 11, 26),
+                             ler_url=rede, dormir=lambda s: None, pausa=0)
+    historico.motor_pncp_detalhe(ctx)
+    assert "/orgaos/01393989000103/compras/2025/7" in pedidos[0]            # a pasta antes da compra maior
+    assert banco.consultar("SELECT catalogo, ncm, fornecedor_ni, unitario_resultado FROM pncp_itens") == [
+        (461540, "19059090", "11222333000144", 149.0)]
+    assert not any("/compras/2025/900/itens" in u for u in pedidos)        # via rápida só para a pasta
+    primeiro_lento = next(i for i, u in enumerate(pedidos) if "dadosabertos" in u)
+    assert "01393989000103" in pedidos[primeiro_lento]                     # e na via lenta também

@@ -1031,93 +1031,118 @@ def _cobrancas_do_orgao(ctx: Contexto, cnpj: str, mes: str) -> bool:
     return False
 
 
+def _da_pasta(orgao: str | None) -> bool:
+    from .conferencias.compras import da_pasta      # tardio: a conferência lê este módulo
+    return da_pasta(orgao or "")
+
+
+def _itens_da_compra(ctx: Contexto, compra_id: str) -> bool:
+    """Itens e resultado de uma contratação pela API do PNCP (via rápida, por compra).
+
+    Não substitui o que a via de dados abertos já guardou (ela traz o código de catálogo
+    e a classe); só preenche o que falta.
+    """
+    partes = _id_pncp(compra_id)
+    if not partes:
+        return True
+    cnpj, ano, seq = partes
+    base = f"{PNCP_API}orgaos/{cnpj}/compras/{ano}/{seq}/itens"
+    leitura = ctx.ler("pncp_detalhe", f"itens da compra {compra_id}",
+                      base + "?" + urlencode({"pagina": 1, "tamanhoPagina": 500}), tempo=60)
+    if leitura.http == 204:
+        return True
+    dados = _json(leitura) if leitura.ok else None
+    if not isinstance(dados, list):
+        return leitura.http == 404
+    ja = {n for (n,) in ctx.banco.consultar(
+        "SELECT numero_item FROM pncp_itens WHERE compra_id = ? AND catalogo IS NOT NULL", compra_id)}
+    inteiro = True
+    for it in dados:
+        numero = it.get("numeroItem")
+        if numero is None or numero in ja:
+            continue
+        resultado: dict = {}
+        if it.get("temResultado"):
+            r = ctx.ler("pncp_detalhe", f"resultado {compra_id} {numero}", f"{base}/{numero}/resultados",
+                        tempo=60)
+            lista = _json(r) if r.ok else None
+            if isinstance(lista, list) and lista:
+                resultado = lista[0]
+            elif r.http not in (204, 404):
+                inteiro = False
+        cat = str(it.get("catalogoCodigoItem") or "").strip()
+        ctx.banco.inserir("pncp_itens", {
+            "compra_id": compra_id, "numero_item": numero, "orgao_cnpj": cnpj, "unidade": None,
+            "descricao": (it.get("descricao") or "")[:300],
+            "detalhe": (it.get("informacaoComplementar") or "")[:500],
+            "material_servico": it.get("materialOuServico"), "classe": None, "grupo": None,
+            "catalogo": int(cat) if cat.isdigit() else None, "pdm": None,
+            "nome_pdm": it.get("itemCategoriaNome"), "ncm": it.get("ncmNbsCodigo"),
+            "unidade_medida": (it.get("unidadeMedida") or "").strip(),
+            "quantidade": _num(it.get("quantidade")),
+            "unitario_estimado": _num(it.get("valorUnitarioEstimado")),
+            "total_estimado": _num(it.get("valorTotal")),
+            "situacao": it.get("situacaoCompraItemNome"),
+            "fornecedor_ni": resultado.get("niFornecedor"),
+            "fornecedor": resultado.get("nomeRazaoSocialFornecedor"),
+            "quantidade_resultado": _num(resultado.get("quantidadeHomologada")),
+            "unitario_resultado": _num(resultado.get("valorUnitarioHomologado")),
+            "total_resultado": _num(resultado.get("valorTotalHomologado")),
+            "data_inclusao": str(it.get("dataInclusao") or "")[:10],
+            "data_resultado": str(resultado.get("dataResultado") or "")[:10] or None})
+    return inteiro
+
+
 def motor_pncp_detalhe(ctx: Contexto) -> None:
     """O detalhe do que o motor do PNCP achou: amparo legal de cada contratação, itens com
     catálogo e preço homologado, valor inicial e aditivos de cada contrato, o preço nacional
     do mesmo item no semestre e as notas fiscais publicadas.
 
-    Lê das contratações e contratos já guardados no banco. Continua de onde a rodada anterior
-    parou: cada etapa marca o que leu por inteiro, e as que falharam são refeitas.
+    Lê das contratações e contratos já guardados no banco. A pasta (assistência social e
+    direitos humanos) vem sempre primeiro, e as vias rápidas do PNCP antes da via lenta dos
+    dados abertos, para o tempo da rodada nunca acabar antes do que o parecer precisa.
+    Continua de onde a rodada anterior parou: cada etapa marca o que leu por inteiro, e as
+    que falharam são refeitas.
     """
     lidos = _Lidos(ctx.banco)
     pausa, ctx.pausa = ctx.pausa, min(ctx.pausa, 0.3)    # as vias de detalhe respondem em segundos
-    compras = ctx.banco.consultar(
-        "SELECT pncp_id, orgao_cnpj, modalidade FROM contratacoes_pncp ORDER BY "
-        "CASE WHEN modalidade = 'Dispensa' THEN 0 WHEN modalidade = 'Inexigibilidade' THEN 1 ELSE 2 END, "
-        "COALESCE(valor_homologado, valor_estimado, 0) DESC")
-    contratos = ctx.banco.consultar("SELECT pncp_id FROM contratos_pncp ORDER BY valor_global DESC")
-    orgaos = sorted({c for (c,) in ctx.banco.consultar(
-        "SELECT orgao_cnpj FROM contratacoes_pncp UNION SELECT orgao_cnpj FROM contratos_pncp") if c})
-    try:
-        # 1. Itens de cada órgão, um ano por consulta; um ano recusado é refeito mês a mês.
-        for cnpj in orgaos:
-            for janela in _janelas_anuais(ctx.meses):
-                chave = f"itens {cnpj} {janela[0][:4]}"
-                if chave in lidos or _tempo_acabou(ctx):
-                    continue
-                d1, d2 = f"{janela[0]}-01", fim_do_mes(janela[-1]).isoformat()
-                if _itens_do_orgao(ctx, cnpj, d1, d2, f"{janela[0]} a {janela[-1]}"):
-                    lidos.marcar(chave)
-                    continue
-                inteiro = True
-                for mes in janela:
-                    chave_mes = f"itens {cnpj} {mes}"
-                    if chave_mes in lidos:
-                        continue
-                    if _itens_do_orgao(ctx, cnpj, f"{mes}-01", fim_do_mes(mes).isoformat(), mes):
-                        lidos.marcar(chave_mes)
-                    else:
-                        inteiro = False
-                if inteiro:
-                    lidos.marcar(chave)
-            lidos.guardar()
-        # 2. Amparo legal de cada contratação: dispensas e inexigibilidades primeiro.
-        for n, (compra_id, _cnpj, _mod) in enumerate(compras):
-            chave = f"compra {compra_id}"
+
+    def etapa(chaves_e_leitores) -> None:
+        for n, (chave, ler) in enumerate(chaves_e_leitores):
             if chave in lidos:
                 continue
             if _tempo_acabou(ctx):
                 break
-            if _detalhe_da_compra(ctx, compra_id):
+            if ler():
                 lidos.marcar(chave)
-            if n % 100 == 0:
+            if n % 50 == 0:
                 lidos.guardar()
         lidos.guardar()
-        # 3. Valor inicial e vínculo com a compra, depois os termos aditivos, dos maiores primeiro.
-        for etapa, ler in (("contrato", _detalhe_do_contrato), ("termos", _termos_do_contrato)):
-            for n, (contrato_id,) in enumerate(contratos):
-                chave = f"{etapa} {contrato_id}"
-                if chave in lidos:
-                    continue
-                if _tempo_acabou(ctx):
-                    break
-                if ler(ctx, contrato_id):
-                    lidos.marcar(chave)
-                if n % 100 == 0:
-                    lidos.guardar()
-            lidos.guardar()
-        # 4. Preço nacional de cada item de catálogo homologado, no semestre da compra.
-        alvos = ctx.banco.consultar(
-            "SELECT catalogo, material_servico, substr(COALESCE(data_resultado, data_inclusao), 1, 7), "
-            "SUM(COALESCE(total_resultado, total_estimado, 0)) FROM pncp_itens "
-            "WHERE catalogo IS NOT NULL AND unitario_resultado IS NOT NULL GROUP BY 1, 2, 3 ORDER BY 4 DESC")
-        feitos: set[tuple] = set()
-        for catalogo, ms, mes, _valor in alvos:
-            if not mes or not re.fullmatch(r"\d{4}-\d{2}", mes):
-                continue
-            semestre = _semestre(mes + "-01")
-            chave = f"preco {catalogo} {semestre}"
-            if (catalogo, semestre) in feitos or chave in lidos:
-                continue
-            feitos.add((catalogo, semestre))
-            if _tempo_acabou(ctx):
-                break
-            if _precos_nacionais(ctx, int(catalogo), ms == "S", semestre):
-                lidos.marcar(chave)
-            if len(feitos) % 50 == 0:
-                lidos.guardar()
-        lidos.guardar()
-        # 5. Notas fiscais: órgão a órgão, mês a mês; um órgão que recusa três meses seguidos é deixado.
+
+    compras = sorted(ctx.banco.consultar(
+        "SELECT pncp_id, orgao_cnpj, orgao, modalidade, COALESCE(valor_homologado, valor_estimado, 0) "
+        "FROM contratacoes_pncp"),
+        key=lambda c: (not _da_pasta(c[2]), {"Dispensa": 0, "Inexigibilidade": 1}.get(c[3], 2), -c[4]))
+    contratos = sorted(ctx.banco.consultar(
+        "SELECT pncp_id, orgao, COALESCE(valor_global, 0) FROM contratos_pncp"),
+        key=lambda c: (not _da_pasta(c[1]), -c[2]))
+    peso: dict[str, tuple] = {}
+    for cnpj, orgao, n in ctx.banco.consultar(
+            "SELECT orgao_cnpj, MAX(orgao), COUNT(*) FROM (SELECT orgao_cnpj, orgao FROM contratacoes_pncp "
+            "UNION ALL SELECT orgao_cnpj, orgao FROM contratos_pncp) WHERE orgao_cnpj IS NOT NULL GROUP BY 1"):
+        peso[cnpj] = (not _da_pasta(orgao), -n)
+    orgaos = sorted(peso, key=lambda c: (peso[c], c))
+    pasta = [c for c in orgaos if not peso[c][0]]
+    try:
+        # 1. Amparo legal de cada contratação: a pasta, depois dispensas e inexigibilidades.
+        etapa((f"compra {c[0]}", lambda c=c: _detalhe_da_compra(ctx, c[0])) for c in compras)
+        # 2. Valor inicial e vínculo com a compra, depois os termos aditivos: a pasta, depois os maiores.
+        etapa((f"contrato {c[0]}", lambda c=c: _detalhe_do_contrato(ctx, c[0])) for c in contratos)
+        etapa((f"termos {c[0]}", lambda c=c: _termos_do_contrato(ctx, c[0])) for c in contratos)
+        # 3. Itens e resultado de cada contratação da pasta pela via rápida do PNCP.
+        etapa((f"itens da compra {c[0]}", lambda c=c: _itens_da_compra(ctx, c[0]))
+              for c in compras if _da_pasta(c[2]))
+        # 4. Notas fiscais: órgão a órgão (a pasta primeiro), mês a mês; três recusas seguidas param o órgão.
         for cnpj in orgaos:
             recusas = 0
             for mes in ctx.meses:
@@ -1132,6 +1157,55 @@ def motor_pncp_detalhe(ctx: Contexto) -> None:
                 else:
                     recusas += 1
             lidos.guardar()
+        # 5. Itens com catálogo e classe pela via de dados abertos (lenta): a pasta, depois os órgãos
+        #    com mais compras; um ano recusado é refeito mês a mês.
+        for cnpj in pasta + [c for c in orgaos if c not in pasta]:
+            for janela in _janelas_anuais(ctx.meses):
+                chave = f"itens {cnpj} {janela[0][:4]}"
+                if chave in lidos or _tempo_acabou(ctx):
+                    continue
+                d1, d2 = f"{janela[0]}-01", fim_do_mes(janela[-1]).isoformat()
+                ja_mes_a_mes = any(f"itens {cnpj} {m}" in lidos for m in janela)   # o ano já foi recusado
+                if not ja_mes_a_mes and _itens_do_orgao(ctx, cnpj, d1, d2, f"{janela[0]} a {janela[-1]}"):
+                    lidos.marcar(chave)
+                    continue
+                inteiro = True
+                for mes in janela:
+                    chave_mes = f"itens {cnpj} {mes}"
+                    if chave_mes in lidos:
+                        continue
+                    if _tempo_acabou(ctx):
+                        inteiro = False
+                        break
+                    if _itens_do_orgao(ctx, cnpj, f"{mes}-01", fim_do_mes(mes).isoformat(), mes):
+                        lidos.marcar(chave_mes)
+                    else:
+                        inteiro = False
+                if inteiro:
+                    lidos.marcar(chave)
+            lidos.guardar()
+        # 6. Preço nacional de cada item de catálogo homologado, no semestre da compra (a pasta primeiro).
+        alvos = ctx.banco.consultar(
+            "SELECT catalogo, material_servico, substr(COALESCE(data_resultado, data_inclusao), 1, 7), "
+            "SUM(COALESCE(total_resultado, total_estimado, 0)), MAX(orgao_cnpj IN (%s)) FROM pncp_itens "
+            "WHERE catalogo IS NOT NULL AND unitario_resultado IS NOT NULL GROUP BY 1, 2, 3 "
+            "ORDER BY 5 DESC, 4 DESC" % (",".join("?" * len(pasta)) or "''"), *pasta)
+        feitos: set[tuple] = set()
+        for catalogo, ms, mes, _valor, _pasta in alvos:
+            if not mes or not re.fullmatch(r"\d{4}-\d{2}", mes):
+                continue
+            semestre = _semestre(mes + "-01")
+            chave = f"preco {catalogo} {semestre}"
+            if (catalogo, semestre) in feitos or chave in lidos:
+                continue
+            feitos.add((catalogo, semestre))
+            if _tempo_acabou(ctx):
+                break
+            if _precos_nacionais(ctx, int(catalogo), ms == "S", semestre):
+                lidos.marcar(chave)
+            if len(feitos) % 50 == 0:
+                lidos.guardar()
+        lidos.guardar()
     finally:
         ctx.pausa = pausa
         lidos.guardar()
@@ -1458,7 +1532,7 @@ def motor_normas(ctx: Contexto) -> None:
 MOTORES = ("siconfi", "querido_diario", "sileg", "fnas", "pncp", "fontes", "normas", "tesouro", "siops", "siope",
            "transferencias", "msc", "pncp_detalhe")
 # Minutos que cada motor pode usar numa rodada (o fluxo do GitHub para em 180).
-TEMPO_DO_MOTOR = {"pncp": 75, "siconfi": 20, "transferencias": 30, "msc": 20, "pncp_detalhe": 100}
+TEMPO_DO_MOTOR = {"pncp": 75, "siconfi": 20, "transferencias": 30, "msc": 20, "pncp_detalhe": 150}
 TEMPO_PADRAO = 12
 
 
