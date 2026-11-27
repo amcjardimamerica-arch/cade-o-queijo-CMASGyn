@@ -1,0 +1,4 @@
+{"content": [
+  {"dataPagamento": "2025-01-15", "competencia": "01/2025", "bloco": "MANUTENÇÃO DAS AÇÕES E SERVIÇOS PÚBLICOS DE SAÚDE (CUSTEIO)", "acao": "ATENÇÃO DE MÉDIA E ALTA COMPLEXIDADE", "cnpj": "37.623.352/0001-03", "noEntidade": "FUNDO MUNICIPAL DE SAUDE", "valorBruto": "1.000.000,00", "valorDesconto": "0,00", "valorLiquido": "1.000.000,00", "nuBanco": "001", "nuAgencia": "1234", "nuConta": "55555-1", "nuOrdemBancaria": "2025OB000123", "situacao": "PAGO"},
+  {"dataPagamento": "2025-02-10", "competencia": "02/2025", "bloco": "MANUTENÇÃO DAS AÇÕES E SERVIÇOS PÚBLICOS DE SAÚDE (CUSTEIO)", "acao": "PISO DA ATENÇÃO PRIMÁRIA", "cnpj": "37623352000103", "noEntidade": "FUNDO MUNICIPAL DE SAUDE", "valorBruto": 500000.0, "valorDesconto": 20000.0, "valorLiquido": 480000.0, "nuBanco": "001", "nuAgencia": "1234", "nuConta": "55555-2", "nuOrdemBancaria": "2025OB000456", "situacao": "PAGO"}
+], "number": 0, "size": 2, "totalPages": 2, "totalElements": 3, "last": false}

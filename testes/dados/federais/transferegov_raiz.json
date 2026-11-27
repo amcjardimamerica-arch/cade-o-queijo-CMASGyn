@@ -1,0 +1,5 @@
+{"swagger": "2.0", "info": {"title": "PostgREST API"}, "paths": {"/plano_acao_especial": {}, "/programa_especial": {}},
+ "definitions": {
+  "plano_acao_especial": {"properties": {"id_plano_acao": {"type": "integer"}, "codigo_plano_acao": {"type": "string"}, "ano_plano_acao": {"type": "integer"}, "cnpj_beneficiario_plano_acao": {"type": "string"}, "valor_custeio_plano_acao": {"type": "number"}, "valor_investimento_plano_acao": {"type": "number"}}},
+  "programa_especial": {"properties": {"id_programa": {"type": "integer"}, "nome_programa": {"type": "string"}}}
+ }}
