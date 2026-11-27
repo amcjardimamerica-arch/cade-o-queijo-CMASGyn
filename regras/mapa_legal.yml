@@ -170,6 +170,7 @@ regras:
   titulo: Acréscimo por aditivo
   tipo: maximo
   valor: 25.0
+  reforma: 50.0   # reforma de edifício ou de equipamento (art. 125, parte final)
   unidade: '% do valor original'
   base: valor inicial atualizado do contrato
   norma: Lei 14.133/2021, art. 125
@@ -195,6 +196,18 @@ regras:
   fonte_dado:
   - extratos de dispensa no Diário Oficial
   - PNCP
+  familia: PRC
+  gravidade: alta
+- id: EMERGENCIAL
+  titulo: Contratação emergencial por até um ano, sem prorrogação nem recontratação
+  tipo: prazo
+  valor: 365
+  unidade: dias de vigência
+  base: vigência do contrato, termos de prorrogação e contratos emergenciais anteriores do mesmo fornecedor
+  norma: Lei 14.133/2021, art. 75, VIII
+  fonte_dado:
+  - PNCP
+  - Diário Oficial
   familia: PRC
   gravidade: alta
 - id: ORDEM-DESPESA
@@ -247,6 +260,7 @@ regras:
   tipo: maximo
   valor: 80.0
   credores: 5
+  minimo_de_credores: 10   # abaixo disso, poucos fornecedores é o tamanho do órgão, não concentração
   unidade: '% do pago'
   base: total pago na ação ou fonte no exercício
   norma: CF, art. 37, caput (impessoalidade)
@@ -394,12 +408,16 @@ normas:
   norma: Lei 14.133/2021, arts. 23, 75, 94 e 125
   assunto: Licitações e contratos
   parametro: Preço estimado por pesquisa em bases oficiais; dispensa somada por objeto no ano; contrato só tem eficácia
-    depois de publicado no PNCP; acréscimo até 25%.
+    depois de publicado no PNCP; acréscimo até 25% (50% na reforma); emergencial por até um ano, sem prorrogação
+    nem recontratação.
   conferencias:
   - Preço
   - VIN-01
   - PRC-02
   - PRC-03
+  - DISPENSA-LIMITE
+  - EMERGENCIAL
+  - ADITIVO-LIMITE
   localizada: true
   revogada: false
   ctresb:

@@ -14,6 +14,7 @@ from .pisos import Medida
 from .rio.afluentes import Margens, Rio
 
 if TYPE_CHECKING:
+    from .conferencias.compras import Conferencias
     from .fiscal import Fiscal
 
 
@@ -32,6 +33,7 @@ class Panorama:
     leitura_falhou: list[str] = field(default_factory=list)  # trechos em vermelho
     notas: list[str] = field(default_factory=list)
     fiscal: "Fiscal | None" = None   # o Município pelo RGF e pelo RREO do banco histórico
+    compras: "Conferencias | None" = None   # compras e contratos do Município conferidos no banco
 
     def fichas_ordenadas(self) -> list[Ficha]:
         return ordenar(self.fichas)
@@ -90,6 +92,13 @@ class Panorama:
                 "duas_vias": [c.como_dict() for c in self.fiscal.conferencias],
                 "rio": self.fiscal.rio.como_dict() if self.fiscal.rio is not None else None,
                 "notas": self.fiscal.notas,
+            },
+            "compras": None if self.compras is None else {
+                **{k: v for k, v in self.compras.como_dict().items() if k != "achados"},
+                "da_pasta_na_competencia": [
+                    {"tipo": a.tipo, "orgao": a.orgao, "chave": a.chave, "mes": a.mes,
+                     "descricao": a.descricao, "valor": a.valor, "limite": a.limite}
+                    for a in self.compras.da_competencia(self.competencia)],
             },
             "fichas": [f.como_dict() for f in self.fichas_ordenadas()],
             "ausencias": [a.como_dict() for a in self.ausencias],

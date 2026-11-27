@@ -114,6 +114,38 @@ def _ficha(f: Ficha) -> str:
     )
 
 
+def _secao_compras(p: Panorama) -> str:
+    """As compras e os contratos: o que fechou e o que não fechou, na pasta e no Município."""
+    from ..conferencias.compras import TITULOS
+    c = p.compras
+    s = []
+    da_pasta = c.da_competencia(p.competencia)
+    cont = {t: sum(1 for a in da_pasta if a.tipo == t) for t in TITULOS}
+    linhas = "".join(f"<tr><td>{escape(TITULOS[t])}</td><td class=\"num\">{n}</td></tr>" for t, n in cont.items())
+    s.append('<p>As compras e os contratos publicados no PNCP pelos órgãos da pasta, conferidos nos últimos '
+             "12 meses até a competência (Lei 14.133/2021, arts. 23, 75 e 125; Lei 4.320/1964, art. 63).</p>")
+    s.append('<div class="tabela"><table><tr><th>Conferência</th><th>Achados da pasta</th></tr>'
+             + linhas + "</table></div>")
+    orgaos = c.por_orgao()[:10]
+    if orgaos:
+        s.append('<details><summary>O Município inteiro: os órgãos com mais achados nos dois anos</summary>'
+                 '<div class="tabela"><table><tr><th>Órgão</th><th>Achados</th><th>Valor em jogo</th></tr>'
+                 + "".join(f"<tr><td>{escape(o.title())}</td><td class=\"num\">{n}</td>"
+                           f'<td class="num">{svg.moeda(v)}</td></tr>' for o, n, v in orgaos)
+                 + "</table></div></details>")
+    cob = c.cobertura
+    if cob.get("compras"):
+        s.append(f'<p class="omitido">Base: {cob["compras"]} compras e {cob.get("contratos", 0)} contratos do '
+                 f'Município; amparo legal lido em {cob.get("amparo_lido", 0)} de '
+                 f'{cob.get("dispensas_e_inexigibilidades", 0)} dispensas e inexigibilidades; '
+                 f'{cob.get("contratos_com_detalhe", 0)} contratos com valor inicial e vigência; '
+                 f'{cob.get("termos", 0)} termos aditivos; {cob.get("itens_comparados_com_o_pais", 0)} itens '
+                 f'comparados com o preço do país; {cob.get("notas_fiscais", 0)} notas fiscais.</p>')
+    for lacuna in cob.get("lacunas_da_pasta") or []:
+        s.append(f'<p class="omitido">{_selo(Selo.VERMELHO)}Falta no banco: {escape(lacuna)}.</p>')
+    return "".join(s)
+
+
 def _secao_familias(p: Panorama, familias: set[Familia], vazio: str) -> str:
     fichas = [f for f in p.fichas_ordenadas() if f.familia in familias]
     if not fichas:
@@ -222,6 +254,8 @@ def gerar(p: Panorama, *, hoje: date | None = None) -> str:
 
     # 5. Preço e entrega
     s.append("<h2>5. Preço e entrega</h2>")
+    if p.compras is not None:
+        s.append(_secao_compras(p))
     s.append(_secao_familias(p, {Familia.PRC, Familia.ENT},
                              "Nenhum contrato fora da curva com os dados publicados; sem medição e "
                              "liquidação publicadas, preço e entrega não se confrontam."))
