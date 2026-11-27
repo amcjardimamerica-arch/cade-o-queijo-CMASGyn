@@ -12,7 +12,8 @@ on:
       ate: {description: "Último mês (AAAA-MM)", default: "2026-11"}
       motores: {description: "Motores, separados por vírgula (vazio = todos)", default: ""}
 permissions: {contents: write}
-concurrency: {group: onisciente-historico, cancel-in-progress: false}
+# O mesmo grupo dos fluxos da agenda (onisciente-agenda-*.yml): nunca dois gravando o banco.
+concurrency: {group: onisciente-banco, cancel-in-progress: false}
 jobs:
   coletar:
     runs-on: ubuntu-latest
@@ -26,16 +27,15 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
       - run: pip install --quiet PyYAML openpyxl pypdf
-      - name: Conferir o aperto de mão com o Querido Diário
-        # O servidor recusou o TLS do robô nas duas rodadas; isto grava no log da execução
-        # o que o servidor aceita, para a próxima correção não ser no escuro.
+      - name: Conferir as duas vias do Querido Diário
+        # O subdomínio antigo recusou o TLS do robô nas duas rodadas de novembro; o motor agora
+        # tenta primeiro a API no próprio domínio (queridodiario.ok.org.br/api). Isto só grava no
+        # log da execução o que cada via responde; quem decide a via é o motor (meta qd_via).
         if: ${{ env.MOTORES == '' || contains(env.MOTORES, 'querido_diario') }}
-        continue-on-error: true
         run: |
-          H=api.queridodiario.ok.org.br
-          curl -sSv --max-time 30 -o /dev/null "https://$H/gazettes?territory_ids=5208707&size=1" 2>&1 | grep -E '^\* |^< HTTP' | head -30 || true
-          for v in tls1_3 tls1_2; do
-            echo "== openssl $v"; timeout 20 openssl s_client -$v -connect $H:443 -servername $H </dev/null 2>&1 | grep -E 'Protocol|Cipher|alert|error|Verify' | head -8 || true
+          for U in "https://queridodiario.ok.org.br/api/gazettes" "https://api.queridodiario.ok.org.br/gazettes"; do
+            echo "== $U"
+            curl -sS --max-time 30 -o /dev/null -w '%{http_code} %{ssl_verify_result}\n' "$U?territory_ids=5208707&size=1" 2>&1 | head -5 || echo "sem resposta"
           done
       - name: Ligar os motores
         # Enquanto os motores correm, um boletim (o que cada fonte respondeu, erros e tempos)

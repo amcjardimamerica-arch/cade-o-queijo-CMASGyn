@@ -26,11 +26,9 @@ jobs:
         run: python cadeoqueijo/cruza_vinculos.py || true
       - name: Via federal da folha — SICONFI/RGF (2ª etapa oficial)
         run: python cadeoqueijo/coleta_siconfi.py || true
-      - name: Onisciente — conferir as normas federais no ctresb/leis (revogação, endereço)
-        run: |
-          python -m onisciente coletar leis || echo "::warning::Onisciente encontrou norma revogada ou fora do ar no ctresb/leis"
-      - name: Onisciente — via federal dos pisos (SICONFI)
-        run: python -m onisciente coletar siconfi || true
+      # As normas (ctresb/leis e Sileg) e a via federal dos pisos (SICONFI) do Onisciente saíram
+      # daqui: rodam nos fluxos onisciente-agenda-leis.yml (semanal) e onisciente-agenda-mensal.yml,
+      # sem engolir erro.
       - name: Publicar corpus
         run: |
           git config user.name "vigilancia-bot"; git config user.email "bot@users.noreply.github.com"

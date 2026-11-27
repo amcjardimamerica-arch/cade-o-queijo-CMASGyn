@@ -1,0 +1,51 @@
+name: Onisciente — agenda do parecer
+# Todo domingo às 15h UTC (12h em Goiânia, depois da avaliação dominical) e todo dia 5 (o parecer
+# do mês fechado): o parecer da última competência, os ofícios e o índice das páginas.
+# O parecer que não sai é falha do sistema: o passo não engole o erro, o fluxo fica vermelho e
+# o registro fica em relatorios/onisciente/agenda_estado.json, na página docs/onisciente/agenda.html
+# e no estado de coleta (estado/onisciente_coleta.json), de onde o parecer seguinte tira a ficha
+# vermelha "Coleta da fonte agenda-parecer parada".
+on:
+  schedule: [{cron: "0 15 * * 0"}, {cron: "0 15 5 * *"}]
+  workflow_dispatch:
+permissions: {contents: write, actions: write}
+concurrency: {group: onisciente-banco, cancel-in-progress: false}
+jobs:
+  parecer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install --quiet PyYAML requests pypdf
+      - name: Parecer da última competência
+        run: python -m onisciente.agenda parecer
+      - name: Resultado na página da execução
+        if: ${{ !cancelled() }}
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          e = json.load(open("relatorios/onisciente/agenda_estado.json", encoding="utf-8"))
+          r = e["rodadas"].get("parecer", {})
+          print("## Agenda: parecer\n")
+          print("Resultado:", "funcionou" if r.get("ok") else "FALHOU (falha do sistema)")
+          if r.get("erro"):
+              print("\nErro:", r["erro"])
+          PY
+      - name: Publicar parecer, estado e páginas
+        if: ${{ !cancelled() }}
+        run: |
+          git config user.name "vigilancia-bot"; git config user.email "bot@users.noreply.github.com"
+          git add relatorios/onisciente docs/onisciente estado/onisciente_coleta.json
+          git diff --staged --quiet && exit 0
+          git commit -m "Onisciente: parecer $(date -u +%F)"
+          for n in 1 2 3; do
+            git pull --rebase origin "$GITHUB_REF_NAME" && git push origin "HEAD:$GITHUB_REF_NAME" && exit 0
+            sleep $((n * 10))
+          done
+          exit 1
+      - name: Atualizar o painel publicado
+        if: ${{ !cancelled() && github.ref == 'refs/heads/main' }}
+        env: {GH_TOKEN: "${{ github.token }}"}
+        run: gh workflow run publicar-painel.yml --ref main
