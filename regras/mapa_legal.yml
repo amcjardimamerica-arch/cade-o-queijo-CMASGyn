@@ -158,6 +158,7 @@ regras:
   tipo: maximo
   valor: 40.0
   percentil: 95
+  fator_de_unidade: 20   # acima de 20 vezes a mediana a unidade não é a mesma (lote, caixa): não compara
   unidade: '% acima da mediana'
   base: mediana nacional do mesmo item no semestre
   norma: Lei 14.133/2021, art. 23

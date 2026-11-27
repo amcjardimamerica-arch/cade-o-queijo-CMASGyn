@@ -140,7 +140,11 @@ def _secao_compras(p: Panorama) -> str:
                  f'{cob.get("dispensas_e_inexigibilidades", 0)} dispensas e inexigibilidades; '
                  f'{cob.get("contratos_com_detalhe", 0)} contratos com valor inicial e vigência; '
                  f'{cob.get("termos", 0)} termos aditivos; {cob.get("itens_comparados_com_o_pais", 0)} itens '
-                 f'comparados com o preço do país; {cob.get("notas_fiscais", 0)} notas fiscais.</p>')
+                 f'comparados com o preço do país ({cob.get("servicos_contratados_por_lote", 0)} serviços '
+                 f'contratados por lote e {cob.get("itens_com_unidade_incompativel", 0)} itens com unidade '
+                 f'diferente da referência ficam fora da comparação); {cob.get("notas_fiscais", 0)} notas '
+                 f'fiscais publicadas; {cob.get("orgaos_sem_nota_fiscal_publicada", 0)} órgãos sem nenhuma '
+                 f'nota fiscal nos meses lidos.</p>')
     for lacuna in cob.get("lacunas_da_pasta") or []:
         s.append(f'<p class="omitido">{_selo(Selo.VERMELHO)}Falta no banco: {escape(lacuna)}.</p>')
     return "".join(s)

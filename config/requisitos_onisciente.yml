@@ -356,9 +356,12 @@
 - id: 53
   bloco: Preço, entrega e prestação
   requisito: Preço × mediana nacional pelo código de catálogo (40% ou p95)
-  situacao: parcial
-  evidencia: conferencias/precos.py só nos testes; os 1.976 contratos do PNCP vieram sem itens de catálogo
-  falta: Ler itens do PNCP e o painel de preços
+  situacao: cumprido
+  evidencia: 'Rodado no banco em 27/11: 8.543 itens das 2.328 compras (4.777 com código de catálogo) contra 176.057 preços do país em
+    2.504 itens-semestre; 1.850 itens comparados, 411 acima da curva (7 da pasta); 439 serviços por lote e 43 itens de unidade diferente
+    ficam fora, contados na cobertura'
+  falta: ''
+  trava: testes/test_conferencias_compras.py::test_preco_contra_a_mediana_nacional_na_mesma_unidade
 - id: 54
   bloco: Preço, entrega e prestação
   requisito: Aluguel por m²
@@ -369,8 +372,9 @@
   bloco: Preço, entrega e prestação
   requisito: Liquidado × contratado
   situacao: parcial
-  evidencia: execucao.py só nos testes
-  falta: Execução real
+  evidencia: 'Notas fiscais × contrato rodado no banco: os 800 meses dos 32 órgãos lidos no PNCP e nenhuma nota publicada, o que vira
+    alerta de transparência (ENT-NF00, 27 órgãos, 3 da pasta); a liquidação ainda não é lida'
+  falta: Execução real (liquidações)
 - id: 56
   bloco: Preço, entrega e prestação
   requisito: Medições repetidas
@@ -386,15 +390,19 @@
 - id: 58
   bloco: Preço, entrega e prestação
   requisito: Aditivo acima de 25%
-  situacao: parcial
-  evidencia: Regra ADITIVO-LIMITE; só nos testes
-  falta: Ler aditivos do PNCP
+  situacao: cumprido
+  evidencia: 'Rodado no banco em 27/11: 2.118 contratos com valor inicial e vigência e os 65 termos aditivos publicados; nenhum acréscimo
+    acima de 25% (ou 50% na reforma)'
+  falta: ''
+  trava: testes/test_conferencias_compras.py::test_aditivo_25_por_cento_e_reforma_50
 - id: 59
   bloco: Preço, entrega e prestação
   requisito: Fracionamento
-  situacao: parcial
-  evidencia: Regra DISPENSA-LIMITE; só nos testes (334 dispensas no banco, não conferidas)
-  falta: Rodar sobre o banco
+  situacao: cumprido
+  evidencia: 'Rodado no banco em 27/11: amparo legal lido nas 2.105 dispensas e inexigibilidades; 16 fracionamentos (4 da pasta) e 30
+    dispensas ajustadas ao teto (10 da pasta)'
+  falta: ''
+  trava: testes/test_conferencias_compras.py::test_fracionamento_soma_o_mesmo_ramo_e_ignora_emergencial
 - id: 60
   bloco: Preço, entrega e prestação
   requisito: Prestação das parcerias (Lei 13.019)
@@ -417,8 +425,9 @@
   bloco: Padrões de gasto
   requisito: Concentração de 80%
   situacao: parcial
-  evidencia: Regra CONCENTRACAO; padroes.concentracao só nos testes
-  falta: Rodar sobre pagamentos
+  evidencia: 'Rodado sobre os 2.118 contratos do banco: 11 órgãos com 80% em poucos fornecedores; sobre pagamentos ainda não, porque
+    a execução não é lida'
+  falta: Rodar sobre pagamentos (execução)
 - id: 64
   bloco: Padrões de gasto
   requisito: Credor recorrente sem contrato
@@ -843,9 +852,11 @@
 - id: 133
   bloco: Parecer
   requisito: Preço e entrega
-  situacao: parcial
-  evidencia: Seção vazia
-  falta: Conferências
+  situacao: cumprido
+  evidencia: 'Seção 5 de todos os pareceres de 2026 com a tabela das conferências da pasta, os órgãos do Município, a base lida e as
+    fichas PRC e ENT (out/2026: 3 alertas de notas fiscais não publicadas e 1 preço fora da curva)'
+  falta: ''
+  trava: testes/test_conferencias_compras.py::test_secao_preco_e_entrega_do_parecer_mostra_as_conferencias_e_a_base
 - id: 134
   bloco: Parecer
   requisito: Prestação
@@ -958,14 +969,16 @@
   bloco: Fontes e cadência
   requisito: PNCP (diário)
   situacao: parcial
-  evidencia: 294 de 586 chamadas; 17 de 26 órgãos; 9 nunca lidos (Sefin, Amma, Sedhs, Seinfra, Segov e outros)
-  falta: Terminar a coleta, já em andamento em outra conversa
+  evidencia: 'Coleta completa dos 2 anos em 27/11: 32 órgãos, 25 meses, 2.328 contratações e 2.118 contratos, com amparo, itens, termos
+    e notas de todos (13.423 chamadas, 22 falhas, todas refeitas)'
+  falta: Agenda diária (bloco 6)
 - id: 152
   bloco: Fontes e cadência
   requisito: Painel de preços
-  situacao: ausente
-  evidencia: Não coletado
-  falta: Coletor
+  situacao: parcial
+  evidencia: 'Pesquisa de preço do Compras.gov.br lida pelo motor de detalhe: 176.057 preços do país para os 2.504 itens-semestre do
+    banco'
+  falta: Agenda própria (bloco 6)
 - id: 153
   bloco: Fontes e cadência
   requisito: CNPJ e sanções
@@ -1042,9 +1055,11 @@
 - id: 165
   bloco: Roteiro e portões
   requisito: 'Fase 5: cada contrato com item de catálogo comparado à mediana'
-  situacao: ausente
-  evidencia: Sem itens
-  falta: Itens de catálogo dos contratos do PNCP e painel de preços (bloco 4)
+  situacao: cumprido
+  evidencia: Cada item de catálogo homologado das 2.328 compras comparado à mediana do país no semestre, quando há amostra na mesma
+    unidade (1.850); os demais contados na cobertura
+  falta: ''
+  trava: testes/test_conferencias_compras.py::test_servico_por_lote_e_unidade_diferente_nao_viram_sobrepreco
 - id: 166
   bloco: Roteiro e portões
   requisito: 'Fase 6: 2º município só por configuração'
@@ -1085,8 +1100,8 @@
   bloco: Telas do protótipo
   requisito: Preço e entrega
   situacao: parcial
-  evidencia: Seção vazia no parecer
-  falta: Tela
+  evidencia: Seção 5 do parecer preenchida com os dados reais do banco
+  falta: Tela do protótipo (bloco 7)
 - id: 173
   bloco: Telas do protótipo
   requisito: Secretarias

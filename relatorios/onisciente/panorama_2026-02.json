@@ -2,11 +2,11 @@
  "competencia": "2026-02",
  "alvo": "Prefeitura de Goiânia",
  "dominio": "Assistência Social",
- "em_uma_frase": "48 indícios: 10 críticos, 26 de gravidade alta, 12 de gravidade média. Integridade da trilha: 27 de 85 pontos medidos (tempestividade sem medida nesta competência). 29 documentos que a lei manda publicar não estão publicados.",
+ "em_uma_frase": "61 indícios: 10 críticos, 31 de gravidade alta, 20 de gravidade média. Integridade da trilha: 27 de 85 pontos medidos (tempestividade sem medida nesta competência). 29 documentos que a lei manda publicar não estão publicados.",
  "contagem": {
   "critica": 10,
-  "alta": 26,
-  "media": 12
+  "alta": 31,
+  "media": 20
  },
  "integridade": {
   "nota": 27.4,
@@ -1935,6 +1935,250 @@
   },
   "notas": []
  },
+ "compras": {
+  "por_tipo": {
+   "dispensa_acima": 0,
+   "dispensa_no_teto": 30,
+   "fracionamento": 16,
+   "emergencial": 32,
+   "aditivo": 0,
+   "concentracao": 11,
+   "preco": 411,
+   "nota_acima": 0,
+   "nota_preco": 0,
+   "nf_ausente": 27
+  },
+  "por_tipo_da_pasta": {
+   "dispensa_acima": 0,
+   "dispensa_no_teto": 10,
+   "fracionamento": 4,
+   "emergencial": 0,
+   "aditivo": 0,
+   "concentracao": 0,
+   "preco": 7,
+   "nota_acima": 0,
+   "nota_preco": 0,
+   "nf_ausente": 3
+  },
+  "por_orgao": [
+   {
+    "orgao": "SECRETARIA MUNICIPAL DE SAUDE",
+    "achados": 206,
+    "valor": 1589584482.57
+   },
+   {
+    "orgao": "SECRETARIA MUNICIPAL DE ADMINISTRACAO",
+    "achados": 84,
+    "valor": 774655140.31
+   },
+   {
+    "orgao": "FUNDO MUNICIPAL DE MANUTENCAO E DESENVOLVIMENTO DO ENSINO",
+    "achados": 64,
+    "valor": 226609779.62
+   },
+   {
+    "orgao": "SECRETARIA MUNICIPAL DE ENGENHARIA DE TRANSITO",
+    "achados": 41,
+    "valor": 320282292.83
+   },
+   {
+    "orgao": "GOIANIA CAMARA MUNICIPAL DE GOIANIA",
+    "achados": 20,
+    "valor": 30179500.04
+   },
+   {
+    "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL-FMAS",
+    "achados": 18,
+    "valor": 9552762.76
+   },
+   {
+    "orgao": "SECRETARIA MUNICIPAL DOS ESPORTES",
+    "achados": 14,
+    "valor": 2867328.62
+   },
+   {
+    "orgao": "INSTITUTO DE PREVIDENCIA DOS SERVIDORES DO MUNICIPIO DE GOIANIA - GOIANIAPREV",
+    "achados": 14,
+    "valor": 8445318.01
+   },
+   {
+    "orgao": "CONTROLADORIA GERAL DO MUNICIPIO DE GOIANIA",
+    "achados": 12,
+    "valor": 43350.68
+   },
+   {
+    "orgao": "AGENCIA MUNICIPAL DE TURISMO, EVENTOS E LAZER",
+    "achados": 7,
+    "valor": 116797.53
+   },
+   {
+    "orgao": "ESCRITORIO DE PRIORIDADES ESTRATEGICAS",
+    "achados": 6,
+    "valor": 11775018.28
+   },
+   {
+    "orgao": "SECRETARIA MUNICIPAL DE COMUNICACAO",
+    "achados": 4,
+    "valor": 81053216.2
+   },
+   {
+    "orgao": "AGENCIA MUNICIPAL DE MEIO AMBIENTE - AMMA",
+    "achados": 4,
+    "valor": 8413094.32
+   },
+   {
+    "orgao": "SECRETARIA MUNICIPAL DE DESENVOLVIMENTO  HUMANO E SOCIAL",
+    "achados": 4,
+    "valor": 35155230.71
+   },
+   {
+    "orgao": "SECRETARIA MUNICIPAL DE INFRAESTRUTURA URBANA",
+    "achados": 4,
+    "valor": 15101929828.08
+   }
+  ],
+  "cobertura": {
+   "dispensas_sem_ramo": 133,
+   "dispensas_sem_resultado": 100,
+   "aditivos_sem_termo_publicado": 0,
+   "itens_comparados_com_o_pais": 1850,
+   "itens_sem_referencia_suficiente": 1785,
+   "servicos_contratados_por_lote": 439,
+   "itens_com_unidade_incompativel": 43,
+   "contratos_com_nota_fiscal": 0,
+   "orgaos_sem_nota_fiscal_publicada": 27,
+   "compras": 2328,
+   "dispensas_e_inexigibilidades": 2105,
+   "amparo_lido": 2105,
+   "contratos": 2118,
+   "contratos_com_detalhe": 2118,
+   "itens": 8543,
+   "itens_com_catalogo": 4777,
+   "termos": 65,
+   "precos_nacionais": 176057,
+   "notas_fiscais": 0,
+   "lacunas_da_pasta": []
+  },
+  "da_pasta_na_competencia": [
+   {
+    "tipo": "dispensa_no_teto",
+    "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL-FMAS",
+    "chave": "01393989000103-1-000001/2025",
+    "mes": "2025-03",
+    "descricao": "Contratação de empresa especializada para prestação de serviços de agenciamento de passagens aéreas e terrestres, sob demanda, compreendendo emissão, remarcação: 62,725.59, 100.0% do limite de compras e serviços de 2025 (62,725.59)",
+    "valor": 62725.59,
+    "limite": 62725.59
+   },
+   {
+    "tipo": "dispensa_no_teto",
+    "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL-FMAS",
+    "chave": "01393989000103-1-000004/2025",
+    "mes": "2025-03",
+    "descricao": "Fornecimento de água mineral em galões de 20 litros sem gás. : 61,965.00, 98.8% do limite de compras e serviços de 2025 (62,725.59)",
+    "valor": 61965.0,
+    "limite": 62725.59
+   },
+   {
+    "tipo": "dispensa_no_teto",
+    "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL-FMAS",
+    "chave": "01393989000103-1-000011/2025",
+    "mes": "2025-04",
+    "descricao": "Contratação de empresa para fornecimento de gêneros alimentícios básicos de estoque em temperatura ambiente, em lote  único, para suprir as necessidades das uni: 62,238.38, 99.2% do limite de compras e serviços de 2025 (62,725.59)",
+    "valor": 62238.38,
+    "limite": 62725.59
+   },
+   {
+    "tipo": "preco",
+    "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL-FMAS",
+    "chave": "01393989000103-1-000012/2025-3",
+    "mes": "2025-04",
+    "descricao": "Carne suína in natura (VERTENTE DISTRIBUICAO E SERVICOS LTDA): 32.50 por Quilograma, mediana nacional 18.05 em 167 compras; 80.1% acima da mediana nacional (limite 40%); acima do percentil 95 das compras do país",
+    "valor": 32.5,
+    "limite": 18.05
+   },
+   {
+    "tipo": "fracionamento",
+    "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL-FMAS",
+    "chave": "01393989000103-2025-limpeza e higiene",
+    "mes": "2025-06",
+    "descricao": "3 dispensas de limpeza e higiene em 2025 somam 161,170.25, acima do limite de 62,725.59 (Decreto 12.343/2024)",
+    "valor": 161170.25,
+    "limite": 62725.59
+   },
+   {
+    "tipo": "dispensa_no_teto",
+    "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL-FMAS",
+    "chave": "01393989000103-1-000018/2025",
+    "mes": "2025-08",
+    "descricao": "Toalha de banho descartável 45cm X 80 cm  Rolo com 100 toalhas destacáveis  Medidas: 45cm X 80 cm Composição: 70% viscose e 30% poliéster  Indicação: A: 61,960.99, 98.8% do limite de compras e serviços de 2025 (62,725.59)",
+    "valor": 61960.99,
+    "limite": 62725.59
+   },
+   {
+    "tipo": "preco",
+    "orgao": "SECRETARIA MUNICIPAL DE DESENVOLVIMENTO  HUMANO E SOCIAL",
+    "chave": "08932623000104-1-000001/2026-2",
+    "mes": "2025-11",
+    "descricao": "Curso profissionalizante Curso profissionalizante Operação de Drone Profissionais - 20h - 16 vagas p (SERVICO NACIONAL DE APRENDIZAGEM INDUSTRIAL SENAI): 11,204.50 por UNIDADE, mediana nacional 1,424.95 em 312 compras; 686.3% acima da mediana nacional (limite 40%)",
+    "valor": 11204.5,
+    "limite": 1424.955
+   },
+   {
+    "tipo": "preco",
+    "orgao": "SECRETARIA MUNICIPAL DE DESENVOLVIMENTO  HUMANO E SOCIAL",
+    "chave": "08932623000104-1-000001/2026-3",
+    "mes": "2025-11",
+    "descricao": "Curso profissionalizante Curso profissionalizante Soldagem a Arco Elétrico – Processo MIG/MAG - 100h (SERVICO NACIONAL DE APRENDIZAGEM INDUSTRIAL SENAI): 24,352.50 por UNIDADE, mediana nacional 1,424.95 em 312 compras; 1609.0% acima da mediana nacional (limite 40%); acima do percentil 95 das compras do país",
+    "valor": 24352.5,
+    "limite": 1424.955
+   },
+   {
+    "tipo": "preco",
+    "orgao": "SECRETARIA MUNICIPAL DE DESENVOLVIMENTO  HUMANO E SOCIAL",
+    "chave": "08932623000104-1-000001/2026-6",
+    "mes": "2025-11",
+    "descricao": "Curso profissionalizante Curso profissionalizante Instalações de Sistemas Fotovoltaicos On-grid e Of (SERVICO NACIONAL DE APRENDIZAGEM INDUSTRIAL SENAI): 13,986.90 por UNIDADE, mediana nacional 1,424.95 em 312 compras; 881.6% acima da mediana nacional (limite 40%); acima do percentil 95 das compras do país",
+    "valor": 13986.9,
+    "limite": 1424.955
+   },
+   {
+    "tipo": "dispensa_no_teto",
+    "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL-FMAS",
+    "chave": "01393989000103-1-000003/2026",
+    "mes": "2026-02",
+    "descricao": "Contratação de empresa para fornecimento de gêneros alimentícios básicos (lote único), para suprir as necessidades das unidades, Casas da Acolhida Cidadã 1 e 2,: 65,067.58, 99.4% do limite de compras e serviços de 2026 (65,492.11)",
+    "valor": 65067.58,
+    "limite": 65492.11
+   },
+   {
+    "tipo": "nf_ausente",
+    "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL-FMAS",
+    "chave": "01393989000103-notas",
+    "mes": "2026-11",
+    "descricao": "o PNCP foi lido em 25 meses (2024-11 a 2026-11) e não traz nenhuma nota fiscal dos 51 contratos assinados no período, que somam 8,454,752.68",
+    "valor": 8454752.68,
+    "limite": 0.0
+   },
+   {
+    "tipo": "nf_ausente",
+    "orgao": "SECRETARIA MUNICIPAL DE DESENVOLVIMENTO  HUMANO E SOCIAL",
+    "chave": "08932623000104-notas",
+    "mes": "2026-11",
+    "descricao": "o PNCP foi lido em 25 meses (2024-11 a 2026-11) e não traz nenhuma nota fiscal dos 5 contratos assinados no período, que somam 35,105,686.81",
+    "valor": 35105686.81,
+    "limite": 0.0
+   },
+   {
+    "tipo": "nf_ausente",
+    "orgao": "SECRETARIA MUNICIPAL DE DIREITOS HUMANOS E POLITICAS AFIRMATIVAS",
+    "chave": "17596132000120-notas",
+    "mes": "2026-11",
+    "descricao": "o PNCP foi lido em 25 meses (2024-11 a 2026-11) e não traz nenhuma nota fiscal do contrato assinado no período, de 57,998.72",
+    "valor": 57998.72,
+    "limite": 0.0
+   }
+  ]
+ },
  "fichas": [
   {
    "codigo": "EXE-M-2026-02",
@@ -2396,6 +2640,91 @@
    "observacao": ""
   },
   {
+   "codigo": "PRC-FRAC01-01393989000103-2025-limpeza e higiene",
+   "familia": "PRC",
+   "titulo": "Fracionamento de despesa (dispensas do mesmo ramo somadas): Fundo Municipal De Assistencia Social-Fmas",
+   "gravidade": "alta",
+   "como_deveria": "As dispensas de objetos da mesma natureza, no mesmo órgão e exercício, somam-se para o limite; passando dele, a regra é licitar.",
+   "norma": "Lei 14.133/2021, art. 75, § 1º",
+   "como_esta": "3 dispensas de limpeza e higiene em 2025 somam 161,170.25, acima do limite de 62,725.59 (Decreto 12.343/2024).",
+   "verificacao": "INDICIARIO",
+   "providencia": "Pedir o planejamento anual de compras (PCA) e os processos das dispensas somadas.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": "2026-02",
+   "origem": "onisciente",
+   "observacao": ""
+  },
+  {
+   "codigo": "PRC-SOB02-01393989000103-1-000012/2025-3",
+   "familia": "PRC",
+   "titulo": "Preço de Carne suína in natura fora da curva nacional",
+   "gravidade": "alta",
+   "como_deveria": "O preço contratado deve ficar na faixa praticada no país para o mesmo item, com pesquisa de preço publicada.",
+   "norma": "Lei 14.133/2021, art. 23",
+   "como_esta": "Preço unitário 32.50; mediana nacional 18.05 em 167 compras; 80.1% acima da mediana nacional (limite 40%); acima do percentil 95 das compras do país.",
+   "verificacao": "CONFIRMADO",
+   "providencia": "Pedir a pesquisa de preços do processo e a justificativa do valor contratado.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": "2026-02",
+   "origem": "onisciente",
+   "observacao": ""
+  },
+  {
+   "codigo": "PRC-SOB02-08932623000104-1-000001/2026-2",
+   "familia": "PRC",
+   "titulo": "Preço de Curso profissionalizante Curso profissionalizante Operação de Drone Profissionais - 20h - 16 vagas por turma - 2 turmas (total de 32 vagas). Curso profissionalizante Operação de Drone Profissionais - 20h - 16 vagas por turma - 2 turmas (total de 32 vagas). fora da curva nacional",
+   "gravidade": "alta",
+   "como_deveria": "O preço contratado deve ficar na faixa praticada no país para o mesmo item, com pesquisa de preço publicada.",
+   "norma": "Lei 14.133/2021, art. 23",
+   "como_esta": "Preço unitário 11,204.50; mediana nacional 1,424.95 em 312 compras; 686.3% acima da mediana nacional (limite 40%).",
+   "verificacao": "CONFIRMADO",
+   "providencia": "Pedir a pesquisa de preços do processo e a justificativa do valor contratado.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": "2026-02",
+   "origem": "onisciente",
+   "observacao": ""
+  },
+  {
+   "codigo": "PRC-SOB02-08932623000104-1-000001/2026-3",
+   "familia": "PRC",
+   "titulo": "Preço de Curso profissionalizante Curso profissionalizante Soldagem a Arco Elétrico – Processo MIG/MAG - 100h - 16 vagas por turma - 2 turmas (total de 32 vagas). Curso profissionalizante Soldagem a Arco Elétrico – Processo MIG/MAG - 100h - 16 vagas por turma - 2 turmas (total de 32 vagas). fora da curva nacional",
+   "gravidade": "alta",
+   "como_deveria": "O preço contratado deve ficar na faixa praticada no país para o mesmo item, com pesquisa de preço publicada.",
+   "norma": "Lei 14.133/2021, art. 23",
+   "como_esta": "Preço unitário 24,352.50; mediana nacional 1,424.95 em 312 compras; 1609.0% acima da mediana nacional (limite 40%); acima do percentil 95 das compras do país.",
+   "verificacao": "CONFIRMADO",
+   "providencia": "Pedir a pesquisa de preços do processo e a justificativa do valor contratado.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": "2026-02",
+   "origem": "onisciente",
+   "observacao": ""
+  },
+  {
+   "codigo": "PRC-SOB02-08932623000104-1-000001/2026-6",
+   "familia": "PRC",
+   "titulo": "Preço de Curso profissionalizante Curso profissionalizante Instalações de Sistemas Fotovoltaicos On-grid e Off-grid - 56h - 16 vagas por turma - 2 turmas (total de 32 vagas). Curso profissionalizante Instalações de Sistemas Fotovoltaicos On-grid e Off-grid - 56h - 16 vagas por turma - 2 turmas (total de 32 v fora da curva nacional",
+   "gravidade": "alta",
+   "como_deveria": "O preço contratado deve ficar na faixa praticada no país para o mesmo item, com pesquisa de preço publicada.",
+   "norma": "Lei 14.133/2021, art. 23",
+   "como_esta": "Preço unitário 13,986.90; mediana nacional 1,424.95 em 312 compras; 881.6% acima da mediana nacional (limite 40%); acima do percentil 95 das compras do país.",
+   "verificacao": "CONFIRMADO",
+   "providencia": "Pedir a pesquisa de preços do processo e a justificativa do valor contratado.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": "2026-02",
+   "origem": "onisciente",
+   "observacao": ""
+  },
+  {
    "codigo": "REC-02",
    "familia": "RIO",
    "titulo": "Transferências sem ente de origem identificável",
@@ -2541,6 +2870,57 @@
    "como_esta": "Matriz de saldos contábeis, empenhos de jan/2026 a fev/2026: destinação 751 (Contribuição de iluminação pública) na função 04, R$ 9.042.713,82. Maiores itens: subfunção 122, natureza 31901100: R$ 7.800.000,00; subfunção 122, natureza 33909200: R$ 695.713,82; subfunção 122, natureza 33904600: R$ 480.000,00; subfunção 122, natureza 33904900: R$ 67.000,00; subfunção 122, natureza 44904000: R$ 0,00.",
    "verificacao": "INDICIARIO",
    "providencia": "Pedir as notas de empenho e o enquadramento da despesa na finalidade da fonte; se não houver, a recomposição da conta vinculada.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": "2026-02",
+   "origem": "onisciente",
+   "observacao": ""
+  },
+  {
+   "codigo": "ENT-NF00-01393989000103-notas",
+   "familia": "ENT",
+   "titulo": "Notas fiscais dos contratos não publicadas no PNCP: Fundo Municipal De Assistencia Social-Fmas",
+   "gravidade": "media",
+   "como_deveria": "As notas fiscais eletrônicas de cada contrato ficam no PNCP, onde qualquer um confere o que foi cobrado contra o que foi contratado.",
+   "norma": "Lei 14.133/2021, art. 174, § 2º, V; Lei 12.527/2011, art. 8º",
+   "como_esta": "O PNCP foi lido em 25 meses (2024-11 a 2026-11) e não traz nenhuma nota fiscal dos 51 contratos assinados no período, que somam 8,454,752.68.",
+   "verificacao": "INCONCLUSIVO",
+   "providencia": "Pedir por LAI as notas fiscais e as liquidações dos contratos do período e cobrar a publicação no PNCP.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": "2026-02",
+   "origem": "onisciente",
+   "observacao": ""
+  },
+  {
+   "codigo": "ENT-NF00-08932623000104-notas",
+   "familia": "ENT",
+   "titulo": "Notas fiscais dos contratos não publicadas no PNCP: Secretaria Municipal De Desenvolvimento  Humano E Social",
+   "gravidade": "media",
+   "como_deveria": "As notas fiscais eletrônicas de cada contrato ficam no PNCP, onde qualquer um confere o que foi cobrado contra o que foi contratado.",
+   "norma": "Lei 14.133/2021, art. 174, § 2º, V; Lei 12.527/2011, art. 8º",
+   "como_esta": "O PNCP foi lido em 25 meses (2024-11 a 2026-11) e não traz nenhuma nota fiscal dos 5 contratos assinados no período, que somam 35,105,686.81.",
+   "verificacao": "INCONCLUSIVO",
+   "providencia": "Pedir por LAI as notas fiscais e as liquidações dos contratos do período e cobrar a publicação no PNCP.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": "2026-02",
+   "origem": "onisciente",
+   "observacao": ""
+  },
+  {
+   "codigo": "ENT-NF00-17596132000120-notas",
+   "familia": "ENT",
+   "titulo": "Notas fiscais dos contratos não publicadas no PNCP: Secretaria Municipal De Direitos Humanos E Politicas Afirmativas",
+   "gravidade": "media",
+   "como_deveria": "As notas fiscais eletrônicas de cada contrato ficam no PNCP, onde qualquer um confere o que foi cobrado contra o que foi contratado.",
+   "norma": "Lei 14.133/2021, art. 174, § 2º, V; Lei 12.527/2011, art. 8º",
+   "como_esta": "O PNCP foi lido em 25 meses (2024-11 a 2026-11) e não traz nenhuma nota fiscal do contrato assinado no período, de 57,998.72.",
+   "verificacao": "INCONCLUSIVO",
+   "providencia": "Pedir por LAI as notas fiscais e as liquidações dos contratos do período e cobrar a publicação no PNCP.",
    "caso_semelhante": "",
    "dados": [],
    "custodia": [],
@@ -2717,6 +3097,91 @@
    "competencia": "2026-02",
    "origem": "onisciente",
    "observacao": "Aplicado em ações e serviços públicos de saúde (liquidado até o bimestre): R$ 145.932.934,82, sobre a receita de impostos e transferências refeita pelo RREO: R$ 1.367.749.763,45 (IPTU R$ 507.010.370,60, ISS R$ 268.438.564,93, ITBI R$ 55.011.093,42, IRRF R$ 64.201.062,41, cota-parte do ICMS R$ 167.253.458,73, cota-parte do IPVA R$ 140.254.969,90, cota-parte do ITR R$ 93.153,50, IPI-exportação R$ 1.085.407,07, FPM R$ 164.401.682,89 (FPM inteiro do RREO Anexo 3 (as cotas extraordinárias só se separam na DCA))). O SIOPS declara a base de R$ 1.367.749.763,45 e 10.66%. Antes do 6º bimestre é acompanhamento: o mínimo de 15% vale para o ano. No 1º bimestre de 2025 o SIOPS declarava 17.43% (o ano fechou em 21.54%): 2026 está abaixo desse ritmo, então é alerta. Fonte: SIOPS, 1º bimestre de 2026, homologado em 30/04/26 11:41:27; RREO Anexos 2 e 3."
+  },
+  {
+   "codigo": "PRC-DISP02-01393989000103-1-000001/2025",
+   "familia": "PRC",
+   "titulo": "Dispensa ajustada ao teto do limite: Fundo Municipal De Assistencia Social-Fmas",
+   "gravidade": "media",
+   "como_deveria": "A compra é dimensionada pela necessidade, não pelo limite que dispensa a licitação; valor colado no teto pede a memória do quantitativo.",
+   "norma": "Lei 14.133/2021, art. 75, I e II, e § 1º",
+   "como_esta": "Contratação de empresa especializada para prestação de serviços de agenciamento de passagens aéreas e terrestres, sob demanda, compreendendo emissão, remarcação: 62,725.59, 100.0% do limite de compras e serviços de 2025 (62,725.59).",
+   "verificacao": "INDICIARIO",
+   "providencia": "Pedir a memória de cálculo do quantitativo e as demais dispensas do mesmo ramo no exercício.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": "2026-02",
+   "origem": "onisciente",
+   "observacao": ""
+  },
+  {
+   "codigo": "PRC-DISP02-01393989000103-1-000003/2026",
+   "familia": "PRC",
+   "titulo": "Dispensa ajustada ao teto do limite: Fundo Municipal De Assistencia Social-Fmas",
+   "gravidade": "media",
+   "como_deveria": "A compra é dimensionada pela necessidade, não pelo limite que dispensa a licitação; valor colado no teto pede a memória do quantitativo.",
+   "norma": "Lei 14.133/2021, art. 75, I e II, e § 1º",
+   "como_esta": "Contratação de empresa para fornecimento de gêneros alimentícios básicos (lote único), para suprir as necessidades das unidades, Casas da Acolhida Cidadã 1 e 2,: 65,067.58, 99.4% do limite de compras e serviços de 2026 (65,492.11).",
+   "verificacao": "INDICIARIO",
+   "providencia": "Pedir a memória de cálculo do quantitativo e as demais dispensas do mesmo ramo no exercício.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": "2026-02",
+   "origem": "onisciente",
+   "observacao": ""
+  },
+  {
+   "codigo": "PRC-DISP02-01393989000103-1-000004/2025",
+   "familia": "PRC",
+   "titulo": "Dispensa ajustada ao teto do limite: Fundo Municipal De Assistencia Social-Fmas",
+   "gravidade": "media",
+   "como_deveria": "A compra é dimensionada pela necessidade, não pelo limite que dispensa a licitação; valor colado no teto pede a memória do quantitativo.",
+   "norma": "Lei 14.133/2021, art. 75, I e II, e § 1º",
+   "como_esta": "Fornecimento de água mineral em galões de 20 litros sem gás. : 61,965.00, 98.8% do limite de compras e serviços de 2025 (62,725.59).",
+   "verificacao": "INDICIARIO",
+   "providencia": "Pedir a memória de cálculo do quantitativo e as demais dispensas do mesmo ramo no exercício.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": "2026-02",
+   "origem": "onisciente",
+   "observacao": ""
+  },
+  {
+   "codigo": "PRC-DISP02-01393989000103-1-000011/2025",
+   "familia": "PRC",
+   "titulo": "Dispensa ajustada ao teto do limite: Fundo Municipal De Assistencia Social-Fmas",
+   "gravidade": "media",
+   "como_deveria": "A compra é dimensionada pela necessidade, não pelo limite que dispensa a licitação; valor colado no teto pede a memória do quantitativo.",
+   "norma": "Lei 14.133/2021, art. 75, I e II, e § 1º",
+   "como_esta": "Contratação de empresa para fornecimento de gêneros alimentícios básicos de estoque em temperatura ambiente, em lote  único, para suprir as necessidades das uni: 62,238.38, 99.2% do limite de compras e serviços de 2025 (62,725.59).",
+   "verificacao": "INDICIARIO",
+   "providencia": "Pedir a memória de cálculo do quantitativo e as demais dispensas do mesmo ramo no exercício.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": "2026-02",
+   "origem": "onisciente",
+   "observacao": ""
+  },
+  {
+   "codigo": "PRC-DISP02-01393989000103-1-000018/2025",
+   "familia": "PRC",
+   "titulo": "Dispensa ajustada ao teto do limite: Fundo Municipal De Assistencia Social-Fmas",
+   "gravidade": "media",
+   "como_deveria": "A compra é dimensionada pela necessidade, não pelo limite que dispensa a licitação; valor colado no teto pede a memória do quantitativo.",
+   "norma": "Lei 14.133/2021, art. 75, I e II, e § 1º",
+   "como_esta": "Toalha de banho descartável 45cm X 80 cm  Rolo com 100 toalhas destacáveis  Medidas: 45cm X 80 cm Composição: 70% viscose e 30% poliéster  Indicação: A: 61,960.99, 98.8% do limite de compras e serviços de 2025 (62,725.59).",
+   "verificacao": "INDICIARIO",
+   "providencia": "Pedir a memória de cálculo do quantitativo e as demais dispensas do mesmo ramo no exercício.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": "2026-02",
+   "origem": "onisciente",
+   "observacao": ""
   },
   {
    "codigo": "REC-03",
@@ -3127,6 +3592,6 @@
   "O rio mostra o previsto na LOA para o mês: a receita realizada da competência não foi publicada.",
   "O Relatório Resumido da Execução Orçamentária está publicado no SICONFI (RREO do 1º bimestre de 2026) e não entra como ausência.",
   "O vínculo é a parte das 89 entidades com lançamento em 2026 que têm contrato, termo ou convênio localizado; a trilha não separa os valores por exercício, então a medida é por entidade, não por real.",
-  "Montado a partir do Cadê o Queijo em 26/11/2026."
+  "Montado a partir do Cadê o Queijo em 27/11/2026."
  ]
 }

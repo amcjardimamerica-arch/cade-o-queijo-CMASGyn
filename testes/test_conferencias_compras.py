@@ -155,6 +155,64 @@ def test_preco_contra_a_mediana_nacional_na_mesma_unidade(banco):
     assert cmp.amostra == 6 and cmp.mediana == pytest.approx(27.5)
 
 
+def test_servico_por_lote_e_unidade_diferente_nao_viram_sobrepreco(banco):
+    """27/11: 514 dos 770 sobrepreços do banco real eram um serviço contratado como "1 unidade" (o
+    contrato inteiro) ou uma unidade diferente (lote, caixa) contra a mediana do item no país."""
+    import sqlite3
+    con = sqlite3.connect(banco)
+    cols = "compra_id, numero_item, orgao_cnpj, descricao, catalogo, material_servico, unidade_medida, " \
+           "quantidade, unitario_resultado, data_resultado"
+    con.execute(f"insert into pncp_itens ({cols}) values (?,?,?,?,?,?,?,?,?,?)",
+                ("01393989000103-1-000002/2025", 2, FMAS[0], "Lavanderia", 26000, "S", "Unidade", 1, 900000.0,
+                 "2025-04-20"))   # um lote de serviço: 1 "unidade" de 900 mil
+    con.execute(f"insert into pncp_itens ({cols}) values (?,?,?,?,?,?,?,?,?,?)",
+                ("01393989000103-1-000002/2025", 3, FMAS[0], "Brinquedo", 150000, "M", "Unidade", 10, 3000.0,
+                 "2025-04-20"))   # 3.000 a unidade contra 30 no país: o "item" é um kit
+    for i in range(6):
+        con.execute("insert into precos_referencia (catalogo, semestre, id_item, material_servico, preco, "
+                    "quantidade, unidade, municipio, esfera) values (?,?,?,?,?,?,?,?,?)",
+                    (26000, "2025-1", f"l{i}", "S", 20.0 + i, 500, "UNIDADE", "Anápolis", "M"))
+        con.execute("insert into precos_referencia (catalogo, semestre, id_item, material_servico, preco, "
+                    "quantidade, unidade, municipio, esfera) values (?,?,?,?,?,?,?,?,?)",
+                    (150000, "2025-1", f"b{i}", "M", 28.0 + i, 20, "UNIDADE", "Anápolis", "M"))
+    con.execute("insert into precos_referencia (catalogo, semestre, id_item, material_servico, preco, quantidade, "
+                "unidade, municipio, esfera) values (26000, '2025-1', 'lote', 'S', 800000.0, 1, 'UNIDADE', 'Recife', 'M')")
+    con.commit()
+    con.close()
+    c = compras.conferir(banco)
+    precos = _tipos(c, "preco")
+    assert [a.chave for a in precos] == ["01393989000103-1-000002/2025-1"]     # só o arroz, como antes
+    assert c.cobertura["servicos_contratados_por_lote"] == 1
+    assert c.cobertura["itens_com_unidade_incompativel"] == 1
+
+
+def test_orgao_lido_no_pncp_sem_nenhuma_nota_fiscal_e_alerta_de_transparencia(banco):
+    """A ausência do dado é o alerta: o órgão cujos meses foram lidos sem nenhuma nota fiscal de
+    nenhum contrato não publicou o que a Lei 14.133/2021 (art. 174, § 2º, V) manda; mês não lido
+    não acusa ninguém."""
+    import json
+    import sqlite3
+    con = sqlite3.connect(banco)
+    lidos = [f"cobrancas {SMS[0]} 2025-{m:02d}" for m in range(1, 13)] + \
+            [f"cobrancas {FMAS[0]} 2025-{m:02d}" for m in range(1, 13)]
+    con.execute("insert or replace into meta (chave, valor) values ('pncp_detalhe_lidos', ?)", (json.dumps(lidos),))
+    con.commit()
+    con.close()
+    c = compras.conferir(banco)
+    ausentes = _tipos(c, "nf_ausente")
+    assert [a.orgao_cnpj for a in ausentes] == [SMS[0]]                  # o FMAS publicou notas
+    assert ausentes[0].dados == {"meses": 12, "contratos": 12, "desde": "2025-01"} and ausentes[0].mes == "2025-12"
+    assert ausentes[0] in c.da_competencia("2025-06", so_da_pasta=False)     # vale no período lido inteiro
+    assert ausentes[0] not in c.da_competencia("2024-12", so_da_pasta=False)
+    assert c.cobertura["orgaos_sem_nota_fiscal_publicada"] == 1
+    f = compras.ficha(ausentes[0], "2025-12")
+    assert f.codigo.startswith("ENT-NF00-") and f.familia is Familia.ENT
+
+
+def test_sem_meses_lidos_nao_ha_alerta_de_nota_fiscal(banco):
+    assert not _tipos(compras.conferir(banco), "nf_ausente")
+
+
 def test_fichas_so_da_pasta_na_janela_da_competencia(banco):
     c = compras.conferir(banco)
     fichas = c.fichas("2025-12")
@@ -197,3 +255,15 @@ def test_classificador_de_ramo_e_inciso():
     assert compras.inciso("Lei 14.133/2021, Art. 75, II") == (75, "II")
     assert compras.inciso("Lei 14.133/2021, Art. 75, VIII") == (75, "VIII")
     assert compras.inciso("Lei 14.133/2021, Art. 74, I") == (74, "I")
+
+
+def test_secao_preco_e_entrega_do_parecer_mostra_as_conferencias_e_a_base(banco):
+    """Seção 5 do parecer: a tabela das conferências da pasta, o Município por órgão e a base lida."""
+    from types import SimpleNamespace
+
+    from onisciente.parecer import html
+    c = compras.conferir(banco)
+    texto = html._secao_compras(SimpleNamespace(compras=c, competencia="2025-12"))
+    assert "Fracionamento de despesa" in texto and "Preço unitário acima da curva nacional" in texto
+    assert "O Município inteiro" in texto and "Secretaria Municipal De Saude" in texto
+    assert "itens comparados com o preço do país" in texto and "ficam fora da comparação" in texto

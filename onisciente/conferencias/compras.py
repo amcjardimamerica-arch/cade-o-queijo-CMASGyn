@@ -21,6 +21,7 @@ cobertura, e a cobertura incompleta da pasta vira ficha SIS, porque é falha do 
 
 from __future__ import annotations
 
+import json
 import re
 import sqlite3
 import unicodedata
@@ -179,6 +180,7 @@ TITULOS = {
     "preco": "Preço unitário acima da curva nacional",
     "nota_acima": "Notas fiscais acima do valor contratado",
     "nota_preco": "Preço da nota fiscal acima do homologado",
+    "nf_ausente": "Notas fiscais dos contratos não publicadas no PNCP",
 }
 
 
@@ -202,7 +204,10 @@ class Conferencias:
 
     def da_competencia(self, competencia: str, so_da_pasta: bool = True) -> list[Achado]:
         inicio = _mes_menos(competencia, JANELA_DE_MESES - 1)
-        return [a for a in self.achados if (a.da_pasta or not so_da_pasta) and inicio <= a.mes <= competencia]
+        # A falta de notas fiscais vale para todo o período lido, não só para o mês da última leitura.
+        return [a for a in self.achados if (a.da_pasta or not so_da_pasta)
+                and (inicio <= a.mes <= competencia
+                     or (a.tipo == "nf_ausente" and a.dados.get("desde", a.mes) <= competencia <= a.mes))]
 
     def fichas(self, competencia: str | None = None) -> list[Ficha]:
         lista = self.da_competencia(competencia) if competencia else [a for a in self.achados if a.da_pasta]
@@ -467,18 +472,30 @@ def _precos(con: sqlite3.Connection, mapa: MapaLegal, achados: list[Achado], cob
             orgaos: dict[str, tuple[str, str]]) -> None:
     if not (_tabela(con, "pncp_itens") and _tabela(con, "precos_referencia")):
         return
+    # Serviço contratado por lote (uma "unidade" que é o contrato inteiro) não tem preço unitário:
+    # compará-lo com a mediana do país mede o tamanho do lote, não o preço. Sai dos dois lados.
+    # Acima de 20 vezes a mediana a unidade também não é a mesma (lote, caixa, kit) e não vira
+    # indício de sobrepreço: fica contada na cobertura (27/11: 514 de 770 "sobrepreços" eram isso).
+    fator = float(mapa.regra("PRECO-MEDIANA").get("fator_de_unidade", 20))
     refs: dict[tuple, list[tuple[float, str]]] = defaultdict(list)
-    for cat, sem, preco, unid, mun, esfera in con.execute(
-            "select catalogo, semestre, preco, unidade, municipio, esfera from precos_referencia where preco > 0"):
+    for cat, sem, preco, unid, mun, esfera, ms, qtd in con.execute(
+            "select catalogo, semestre, preco, unidade, municipio, esfera, material_servico, quantidade "
+            "from precos_referencia where preco > 0"):
         if _norm(mun) == "GOIANIA" and _norm(esfera).startswith("M"):
             continue  # a referência é o país, não a própria prefeitura
+        if _por_lote(ms, qtd):
+            continue
         refs[(int(cat), sem)].append((float(preco), _unidade(unid)))
-    comparados = sem_ref = 0
-    for cid, n, cnpj, desc, cat, unid, unit, data, forn in con.execute(
+    comparados = sem_ref = por_lote = incompativel = 0
+    for cid, n, cnpj, desc, cat, unid, unit, data, forn, ms, qtd in con.execute(
             "select compra_id, numero_item, orgao_cnpj, descricao, catalogo, unidade_medida, "
-            "coalesce(unitario_resultado, unitario_estimado), coalesce(data_resultado, data_inclusao), fornecedor "
+            "coalesce(unitario_resultado, unitario_estimado), coalesce(data_resultado, data_inclusao), fornecedor, "
+            "material_servico, coalesce(quantidade_resultado, quantidade) "
             "from pncp_itens where catalogo is not null and coalesce(unitario_resultado, unitario_estimado) > 0"):
         if not data:
+            continue
+        if _por_lote(ms, qtd):
+            por_lote += 1
             continue
         lista = refs.get((int(cat), _semestre(data)), [])
         u = _unidade(unid)
@@ -486,6 +503,9 @@ def _precos(con: sqlite3.Connection, mapa: MapaLegal, achados: list[Achado], cob
         c = comparar(desc or f"item {cat}", float(unit), mesma, mapa=mapa)
         if c is None:
             sem_ref += 1
+            continue
+        if c.mediana and c.preco > c.mediana * fator:
+            incompativel += 1
             continue
         comparados += 1
         if c.destoa:
@@ -496,6 +516,12 @@ def _precos(con: sqlite3.Connection, mapa: MapaLegal, achados: list[Achado], cob
                                   f"{c.motivo}", c.preco, c.mediana, {"comparacao": c, "catalogo": int(cat)}))
     cobertura["itens_comparados_com_o_pais"] = comparados
     cobertura["itens_sem_referencia_suficiente"] = sem_ref
+    cobertura["servicos_contratados_por_lote"] = por_lote
+    cobertura["itens_com_unidade_incompativel"] = incompativel
+
+
+def _por_lote(material_servico, quantidade) -> bool:
+    return (material_servico or "").upper() == "S" and quantidade is not None and float(quantidade) <= 1
 
 
 def _notas(con: sqlite3.Connection, contratos: dict[str, dict], achados: list[Achado], cobertura: dict) -> None:
@@ -505,6 +531,7 @@ def _notas(con: sqlite3.Connection, contratos: dict[str, dict], achados: list[Ac
         "select contrato_id, sum(valor_nf), count(*), max(data_emissao) from pncp_cobrancas "
         "where coalesce(evento, '') not like '%ancel%' group by 1")}
     cobertura["contratos_com_nota_fiscal"] = len(cobrado)
+    _notas_ausentes(con, contratos, cobrado, achados, cobertura)
     for cid, (valor, n, ult) in cobrado.items():
         c = contratos.get(cid)
         if not c:
@@ -532,6 +559,49 @@ def _notas(con: sqlite3.Connection, contratos: dict[str, dict], achados: list[Ac
                                   f"{c['fornecedor']}, {(desc or '')[:80]}: nota a {unit:,.2f} a unidade, "
                                   f"homologado a {homologado:,.2f}", round((unit - homologado) * (qtd or 1), 2),
                                   float(homologado), {"ncm": ncm}))
+
+
+def _notas_ausentes(con: sqlite3.Connection, contratos: dict[str, dict], cobrado: dict, achados: list[Achado],
+                    cobertura: dict) -> None:
+    """A fonte certifica por si: o órgão cujos meses o motor leu no PNCP sem achar nenhuma nota fiscal
+    de nenhum dos seus contratos não publicou o que a lei manda publicar (Lei 14.133/2021, art. 174,
+    § 2º, V). Mês não lido não conta: falta de leitura é lacuna do sistema, não do Município."""
+    if not _tabela(con, "meta"):
+        return
+    linha = con.execute("select valor from meta where chave = 'pncp_detalhe_lidos'").fetchone()
+    if not linha:
+        return
+    try:
+        lidos = json.loads(linha[0])
+    except (TypeError, ValueError):
+        return
+    meses: dict[str, list[str]] = defaultdict(list)
+    for chave in lidos:
+        partes = chave.split()
+        if len(partes) == 3 and partes[0] == "cobrancas":
+            meses[partes[1]].append(partes[2])
+    por_orgao: dict[str, list[dict]] = defaultdict(list)
+    for c in contratos.values():
+        por_orgao[c["cnpj"]].append(c)
+    sem = 0
+    for cnpj, lista in por_orgao.items():
+        lidos_do_orgao = sorted(meses.get(cnpj, []))
+        if not lidos_do_orgao or any(c["id"] in cobrado for c in lista):
+            continue
+        no_periodo = [c for c in lista if c["mes"] and lidos_do_orgao[0] <= c["mes"] <= lidos_do_orgao[-1]]
+        if not no_periodo:
+            continue
+        sem += 1
+        total = sum(c["valor"] for c in no_periodo)
+        achados.append(Achado("nf_ausente", cnpj, no_periodo[0]["orgao"], f"{cnpj}-notas", lidos_do_orgao[-1],
+                              f"o PNCP foi lido em {len(lidos_do_orgao)} meses ({lidos_do_orgao[0]} a "
+                              f"{lidos_do_orgao[-1]}) e não traz nenhuma nota fiscal "
+                              + ("do contrato assinado no período, de " if len(no_periodo) == 1 else
+                                 f"dos {len(no_periodo)} contratos assinados no período, que somam ")
+                              + f"{total:,.2f}",
+                              total, 0.0, {"meses": len(lidos_do_orgao), "contratos": len(no_periodo),
+                                                "desde": lidos_do_orgao[0]}))
+    cobertura["orgaos_sem_nota_fiscal_publicada"] = sem
 
 
 def conferir(banco: Path | sqlite3.Connection, *, mapa: MapaLegal | None = None) -> Conferencias:
@@ -631,6 +701,13 @@ def ficha(a: Achado, competencia: str | None = None) -> Ficha | None:
             como_deveria="O que o fornecedor fatura cabe no valor contratado com os aditivos publicados.",
             niveis=[Nivel.B, Nivel.C], providencia="Pedir as liquidações e os atestos das notas e os aditivos "
                                                    "que as cobrem."),
+        "nf_ausente": dict(
+            familia=Familia.ENT, gravidade="media", norma="Lei 14.133/2021, art. 174, § 2º, V; Lei 12.527/2011, art. 8º",
+            como_deveria="As notas fiscais eletrônicas de cada contrato ficam no PNCP, onde qualquer um confere o "
+                         "que foi cobrado contra o que foi contratado.",
+            niveis=[Nivel.F], documento_faltante=True,
+            providencia="Pedir por LAI as notas fiscais e as liquidações dos contratos do período e cobrar a "
+                        "publicação no PNCP."),
         "nota_preco": dict(
             familia=Familia.ENT, gravidade="alta", norma="Lei 4.320/1964, art. 63; Lei 14.133/2021, art. 92, V",
             como_deveria="A nota fiscal cobra o preço homologado no contrato.",
@@ -641,6 +718,6 @@ def ficha(a: Achado, competencia: str | None = None) -> Ficha | None:
         return None
     codigo = {"dispensa_acima": "PRC-DISP01", "dispensa_no_teto": "PRC-DISP02", "fracionamento": "PRC-FRAC01",
               "emergencial": "PRC-EMERG01", "aditivo": "PRC-SOB04", "concentracao": "PRC-CONC01",
-              "nota_acima": "ENT-NF01", "nota_preco": "ENT-NF02"}[a.tipo]
+              "nota_acima": "ENT-NF01", "nota_preco": "ENT-NF02", "nf_ausente": "ENT-NF00"}[a.tipo]
     return emitir(codigo=f"{codigo}-{a.chave}", titulo=f"{TITULOS[a.tipo]}: {a.orgao.title()}",
                   como_esta=a.descricao[:1].upper() + a.descricao[1:] + ".", competencia=competencia, **base)

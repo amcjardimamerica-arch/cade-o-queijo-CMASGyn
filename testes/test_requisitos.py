@@ -28,6 +28,12 @@ def test_bloco_3_conta_como_cumprido_so_com_trava():
         assert por[n]["situacao"] == "cumprido" and por[n].get("trava"), n
 
 
+def test_bloco_4_conta_como_cumprido_so_com_trava():
+    por = {i["id"]: i for i in requisitos.carregar()}
+    for n in (53, 58, 59, 133, 165):
+        assert por[n]["situacao"] == "cumprido" and por[n].get("trava"), n
+
+
 def test_trava_inexistente_e_problema(tmp_path):
     item = {"id": 1, "bloco": "x", "requisito": "r", "situacao": "cumprido", "evidencia": "e",
             "falta": "", "trava": "testes/nao_existe.py::test_x"}
