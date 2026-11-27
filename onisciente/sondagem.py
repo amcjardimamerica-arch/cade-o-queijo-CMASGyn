@@ -217,6 +217,59 @@ CANDIDATOS: dict[str, list[str]] = {
         "https://portaldatransparencia.gov.br/download-de-dados/ceis/20261126",
         "https://portaldatransparencia.gov.br/download-de-dados/cnep/20261126",
     ],
+    # Frente E (27/11): auditoria independente do Selo de Transparência (PNTP). As páginas que cada critério
+    # da matriz (regras/pntp/matriz_2026.yml) manda olhar; onisciente/selo/coleta.py segue os links internos.
+    "e_home": ["https://www.goiania.go.gov.br/"],
+    "e_portal": ["https://www.goiania.go.gov.br/transparencia/"]
+    + [f"https://www.goiania.go.gov.br/transparencia/?filtro_simplificado=categoria&categoria={n}"
+       for n in range(40, 71)]
+    + ["https://www.goiania.go.gov.br/transparencia/?s=" + quote(t)
+       for t in ("empenho", "diárias", "convênio", "contrato", "licitação", "obras", "renúncia", "emenda",
+                 "dívida ativa", "assistência social", "conselho", "relatório de gestão fiscal",
+                 "relatório resumido", "plano plurianual", "estagiários", "terceirizados", "ordem cronológica")],
+    "e_transweb": [
+        "https://www10.goiania.go.gov.br/transweb/",
+        "https://www10.goiania.go.gov.br/transweb/Default.aspx",
+        "https://www10.goiania.go.gov.br/transweb/PerguntasFrequentes.aspx",
+    ],
+    "e_folha": ["https://www.goiania.go.gov.br/sing_transparencia/folha-de-pagamento-dados-gerais/"],
+    "e_legislacao": [
+        "https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2025/lo_20251022_000011510.html",
+        "https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2026/lo_20260109_000011589.html",
+        "https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2026/lo_20260109_000011590.html",
+        "https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2013/lo_20130522_000009262.html",
+        "https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2026/dc_20260817_000000147.html",
+    ],
+    "e_esic": [
+        "https://esic.goiania.go.gov.br/",
+        "https://www.goiania.go.gov.br/transparencia/?filtro_simplificado=categoria&categoria=50",
+    ],
+    "e_cmas": [
+        "https://cmasgyn.com.br/Conselho/Conselheiros",
+        "https://cmasgyn.com.br/Conselho/Plenarias",
+        "https://cmasgyn.com.br/Conselho/Entidades",
+        "https://cmasgyn.com.br/Documentos",
+        "https://cmasgyn.com.br/Documentos/Legislacao",
+    ],
+    "e_saude": ["https://saude.goiania.go.gov.br/"],
+    "e_educacao": ["https://sme.goiania.go.gov.br/"],
+    "e_dados": [
+        "https://dados.gov.br/dados/conjuntos-dados?organizacao=goiania",
+        "https://goiania.nucleogov.com.br/api",
+    ],
+    # O resultado oficial (Radar, painel por entidade) e a metodologia, para confrontar e guardar.
+    "e_radar": [
+        "https://radardatransparencia.atricon.org.br/",
+        "https://radardatransparencia.atricon.org.br/painel-6/",
+        "https://pntp.atricon.org.br/dados-abertos/",
+        "https://pntp.atricon.org.br/o-programa/",
+    ],
+    "e_metodo": [
+        "https://www.mpma.mp.br/wp-content/uploads/2026/04/Cartilha-PNTP-2026-versao-08.04.2026.pdf",
+        "https://sistema.pelotas.com.br/transparencia/arquivos/" + quote("Matriz de Criterios 2026 PDF.pdf"),
+        "https://cdn.atricon.org.br/uploads/2026/02/Cronograma-PNTP-2026.pdf",
+        "https://www.tcepi.tc.br/wp-content/uploads/2026/04/Metodologia-PNTP-2026.pdf",
+    ],
 }
 
 
