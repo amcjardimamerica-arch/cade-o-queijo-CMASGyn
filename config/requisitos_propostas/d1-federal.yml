@@ -1,0 +1,48 @@
+# Propostas da Frente D1 (coletores federais) para config/requisitos_onisciente.yml.
+# Os coletores foram escritos e testados sem rede, com respostas fictícias em testes/dados/federais/.
+# O que depende da primeira coleta real fica parcial, com a falta descrita.
+- id: 145
+  situacao: cumprido
+  evidencia: "A cota do ICMS, do IPVA e do IPI-exportação é receita do Estado entregue ao Município; a conferência _cota_estadual (onisciente/conferencias/federais.py) tem a via do Município (matriz de saldos, naturezas 1.7.2.1.50, 1.7.2.1.51 e 1.7.2.1.52) e a segunda via do Estado (coletor economia_go). Os repasses da União têm a segunda via no SIAFI e no RREO Anexo 12."
+  falta: ""
+  trava: "testes/test_coletores_federais.py::test_transferencias_do_tesouro_e_do_estado_tem_cada_uma_a_sua_segunda_via"
+- id: 146
+  situacao: parcial
+  evidencia: "Coletor onisciente/coletores/fns.py (seis modelos de endereço do FNS, leitura pelo sentido dos campos e paginação), motor_fns em motores_federais.py e conferência FNS x SIAFI x RREO Anexo 12 em conferencias/federais.py."
+  falta: "Primeira coleta real no GitHub: rodar a sondagem d1_fns para confirmar qual modelo de endereço do FNS responde e o formato, e depois o motor fns. Sem rede aqui, o formato foi presumido."
+  trava: "testes/test_coletores_federais.py::test_fns_conferido_com_siafi_e_rreo_anexo_12"
+- id: 147
+  situacao: parcial
+  evidencia: "Coletor onisciente/coletores/fnde.py (SIMAD: POST por município, GET por CNPJ, soma conferida com a linha Total), motor_fnde e conferência FNDE x SIAFI por programa (PNAE, PNATE, PDDE, salário-educação)."
+  falta: "Primeira coleta real no GitHub: rodar a sondagem d1_fnde (o POST do formulário) para confirmar os campos e o HTML do SIMAD, e depois o motor fnde."
+  trava: "testes/test_coletores_federais.py::test_fnde_conferido_com_siafi_por_programa"
+- id: 149
+  situacao: parcial
+  evidencia: "Coletor onisciente/coletores/economia_go.py (cinco candidatos do Estado, leitura em forma larga ou longa), conferência _cota_estadual com a matriz do Município e, quando o Estado não publica, alerta roxo com ofício à Secretaria de Estado da Economia (CF, art. 162)."
+  falta: "Nenhuma fonte pública do Estado foi confirmada. Rodar a sondagem d1_economia_go no GitHub; se nenhum candidato trouxer a cota, a ausência já vira ofício ao Estado, e o requisito fecha quando a fonte (ou a resposta ao ofício) for lida."
+  trava: "testes/test_coletores_federais.py::test_cota_estadual_ausente_vira_alerta_roxo_com_oficio_ao_estado"
+- id: 150
+  situacao: parcial
+  evidencia: "Coletor onisciente/coletores/transferegov.py (API PostgREST: raiz OpenAPI, tabelas com CNPJ, paginação limit e offset; módulos transferências especiais, fundo a fundo e TED) e motor_transferegov pelos CNPJs do Município."
+  falta: "Primeira coleta real no GitHub: rodar a sondagem d1_transferegov para confirmar os nomes das tabelas e colunas da API, e depois o motor transferegov."
+  trava: "testes/test_coletores_federais.py::test_transferegov_raiz_planos_e_paginas"
+- id: 48
+  situacao: parcial
+  evidencia: "Conferência _emendas em conferencias/federais.py: 70% em capital (CF, art. 166-A, § 5º) conferido plano de ação a plano de ação e no total do ano, pela regra EMENDA-CAPITAL do mapa legal, com os planos lidos do Transferegov."
+  falta: "Depende da primeira coleta real dos planos de ação especiais no Transferegov (id 150)."
+  trava: "testes/test_coletores_federais.py::test_emendas_70_por_cento_em_capital_plano_a_plano_e_no_ano"
+- id: 153
+  situacao: parcial
+  evidencia: "Coletor onisciente/coletores/sancoes.py (CEIS e CNEP, CSV em zip), tabela sancoes(cnpj_cpf, cadastro, inicio, fim, orgao, tipo, ...) lida também pela Frente F, e conferência contratada x sancionada: sanção vigente em qualquer dia do contrato é alerta, pelo CNPJ raiz."
+  falta: "Primeira coleta real no GitHub: rodar a sondagem d1_sancoes para confirmar o endereço do arquivo do dia no Portal da Transparência, e depois o motor sancoes (diário)."
+  trava: "testes/test_coletores_federais.py::test_contratada_sancionada_em_qualquer_dia_do_contrato"
+- id: 154
+  situacao: parcial
+  evidencia: "Coletores onisciente/coletores/tcu.py (dados abertos e pesquisa de acórdãos) e tcm.py (busca no portal do TCM-GO), tabela decisoes_controle e conferência _decisoes que transforma ressalvas, determinações e irregularidades sobre Goiânia em alerta."
+  falta: "Primeira coleta real no GitHub: rodar as sondagens d1_tcu e d1_tcm para confirmar os endereços e o formato, e depois os motores tcu e tcm."
+  trava: "testes/test_coletores_federais.py::test_tcu_e_tcm_leem_decisoes_sobre_goiania_e_viram_alerta"
+- id: 164
+  situacao: parcial
+  evidencia: "Parte FNS e FNDE: coletores, motores e conferências prontos (ids 146 e 147)."
+  falta: "A ativação dos domínios pela Frente D2 e a primeira coleta real do FNS e do FNDE no GitHub."
+  trava: "testes/test_coletores_federais.py::test_motores_prontos_para_o_historico"

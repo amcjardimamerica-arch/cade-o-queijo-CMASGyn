@@ -1,0 +1,4 @@
+[
+ {"id_plano_acao": 101, "codigo_plano_acao": "09032025-001", "ano_plano_acao": 2025, "situacao_plano_acao": "CIENTE", "cnpj_beneficiario_plano_acao": "01612092000123", "nome_beneficiario_plano_acao": "MUNICIPIO DE GOIANIA", "nome_parlamentar_emenda_plano_acao": "PARLAMENTAR A", "numero_emenda_parlamentar_plano_acao": "202541230001", "ano_emenda_parlamentar_plano_acao": 2025, "valor_custeio_plano_acao": 100000.0, "valor_investimento_plano_acao": 900000.0},
+ {"id_plano_acao": 102, "codigo_plano_acao": "09032025-002", "ano_plano_acao": 2025, "situacao_plano_acao": "CIENTE", "cnpj_beneficiario_plano_acao": "01612092000123", "nome_beneficiario_plano_acao": "MUNICIPIO DE GOIANIA", "nome_parlamentar_emenda_plano_acao": "PARLAMENTAR B", "numero_emenda_parlamentar_plano_acao": "202541230002", "ano_emenda_parlamentar_plano_acao": 2025, "valor_custeio_plano_acao": 400000.0, "valor_investimento_plano_acao": 600000.0}
+]

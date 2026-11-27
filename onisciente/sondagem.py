@@ -217,6 +217,63 @@ CANDIDATOS: dict[str, list[str]] = {
         "https://portaldatransparencia.gov.br/download-de-dados/ceis/20261126",
         "https://portaldatransparencia.gov.br/download-de-dados/cnep/20261126",
     ],
+    # Frente D1 (bloco 5): os modelos de endereço que os coletores federais tentam, para confirmar
+    # qual responde e com que formato (onisciente/coletores/{fns,fnde,transferegov,sancoes,...}.py).
+    "d1_fns": [
+        "https://apifns.saude.gov.br/api/",
+        "https://apifns.saude.gov.br/api/v1/",
+        "https://apifns.saude.gov.br/api/v1/repasses?municipio_ibge=520870&ano=2025&pagina=1&tamanho=1000",
+        "https://apifns.saude.gov.br/api/repasses?municipio_ibge=520870&ano=2025&pagina=1&tamanho=1000",
+        "https://apifns.saude.gov.br/api/v1/pagamentos?municipio_ibge=520870&ano=2025&pagina=1&tamanho=1000",
+        "https://apifns.saude.gov.br/api/repasses-fundo-a-fundo?municipio_ibge=520870&ano=2025&page=1&size=1000",
+        "https://apifns.saude.gov.br/swagger-ui/index.html",
+        "https://apifns.saude.gov.br/v3/api-docs",
+        "https://consultafns.saude.gov.br/recursos/repasse-dia/detalhar-pagamento?codigoMunicipio=520870&ano=2025"
+        "&page=1&count=1000",
+        "https://consultafns.saude.gov.br/recursos/consolidado/municipio?codigoMunicipio=520870&ano=2025",
+        "https://consultafns.saude.gov.br/app/app.js",
+        "https://consultafns.saude.gov.br/app/main.js",
+    ],
+    "d1_fnde": [
+        "https://www.fnde.gov.br/pls/simad/internet_fnde.liberacoes_01_pc",
+        ("https://www.fnde.gov.br/pls/simad/internet_fnde.liberacoes_result_pc",
+         {"p_ano": "2025", "p_programa": "", "p_uf": "GO", "p_municipio": "520870", "p_tp_entidade": ""}),
+        "https://www.fnde.gov.br/pls/simad/internet_fnde.liberacoes_01_result_pc?p_ano=2025"
+        "&p_cgc=01612092000123&p_programa=",
+    ],
+    "d1_transferegov": [
+        "https://api.transferegov.gestao.gov.br/transferenciasespeciais/",
+        "https://api.transferegov.gestao.gov.br/transferenciasespeciais/plano_acao_especial"
+        "?cnpj_beneficiario_plano_acao=eq.01612092000123&limit=1000&offset=0",
+        "https://api.transferegov.gestao.gov.br/transferenciasespeciais/programa_especial?limit=5",
+        "https://api.transferegov.gestao.gov.br/fundoafundo/",
+        "https://api.transferegov.gestao.gov.br/ted/",
+    ],
+    "d1_sancoes": [
+        "https://portaldatransparencia.gov.br/download-de-dados/ceis/20261126",
+        "https://portaldatransparencia.gov.br/download-de-dados/cnep/20261126",
+        "https://portaldatransparencia.gov.br/download-de-dados/ceis/20261125",
+    ],
+    "d1_economia_go": [
+        "https://www.transparencia.go.gov.br/api/repasses-municipios?ano=2025&municipio=5208707",
+        "https://www.transparencia.go.gov.br/portaldatransparencia/repasses-aos-municipios/?ano=2025",
+        "https://dadosabertos.go.gov.br/api/3/action/package_search?q=repasse%20municipios%20icms&rows=20",
+        "https://goias.gov.br/economia/repasses-aos-municipios/",
+        "https://www.economia.go.gov.br/repasses-aos-municipios.html",
+        "https://goias.gov.br/economia/",
+    ],
+    "d1_tcu": [
+        "https://dados-abertos.apps.tcu.gov.br/api/acordao/recupera-acordaos?inicio=0&quantidade=5",
+        "https://pesquisa.apps.tcu.gov.br/rest/publico/base/acordao-completo/documentosResumidos?termo=%22Goi%C3%A2nia%22"
+        "&ordenacao=DTRELEVANCIA+desc%2C+NUMACORDAOINT+desc&quantidade=5&inicio=0&sinonimos=true",
+    ],
+    "d1_tcm": [
+        "https://www.tcmgo.tc.br/",
+        "https://www.tcmgo.tc.br/pesquisaJurisprudencia/rest/pesquisa?termo=Goi%C3%A2nia&pagina=1",
+        "https://www.tcmgo.tc.br/site/jurisprudencia/?pesquisa=Goi%C3%A2nia&pagina=1",
+        "https://www.tcmgo.tc.br/site/?s=Goi%C3%A2nia&paged=1",
+        "https://www.tcm.go.gov.br/doc/",
+    ],
 }
 
 
