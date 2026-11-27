@@ -1,0 +1,109 @@
+URL: https://www10.goiania.go.gov.br/transweb/Abre_anexo.aspx?IdOrgao=165&amp;Ordem=2
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 4477
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" >
+  <head><script type="text/javascript" charset="UTF-8">
+(function (global) {
+    global.outsystems = global.outsystems || {};
+    global.outsystems.internal = global.outsystems.internal || {};
+})(this);
+outsystems.internal.timerspolyfillResponseStart = new Date().getTime();
+outsystems.internal.startInstant = new Date();
+outsystems.internal.requestEventName = 'WebScreenClientExecuted';
+outsystems.internal.beaconRESTURL = '/PerformanceProbe/rest/BeaconInternal/WebScreenClientExecutedEvent';
+</script><title>
+	Abre anexo
+</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" /><meta http-equiv="Content-Style-Type" content="text/css" />
+<style>
+.OSFillParent { 
+ display: block;
+ width: 100%;
+}
+table.OSFillParent {
+ display: table;
+}
+input.OSFillParent,
+button.OSFillParent,
+select.OSFillParent,
+textarea.OSFillParent {
+ display: inline-block;
+ box-sizing: border-box;
+ -moz-box-sizing: border-box;
+ -webkit-box-sizing: border-box;
+}
+.OSInline {
+ display: inline-block;
+ *zoom: 1;
+ *display: inline;
+ vertical-align: top;
+}
+table.OSInline {
+ display: inline-table;
+}
+.OSAutoMarginTop {
+ margin-top: 10px;
+}
+table[class*="ThemeGrid_Width"] {
+ display: inline-table;
+ vertical-align: top;
+}
+div[class*="ThemeGrid_Width"] {
+ vertical-align: top;
+}
+th[class*="ThemeGrid_Width"],
+td[class*="ThemeGrid_Width"] {
+ display: table-cell;
+}
+[class*="ThemeGrid_Width"] {
+ display: inline-block;
+ box-sizing: border-box;
+ -webkit-box-sizing: border-box;
+ -moz-box-sizing: border-box;
+ *zoom: 1;
+ *display: inline;
+}
+.ThemeGrid_Container {
+ box-sizing: border-box;
+ -webkit-box-sizing: border-box;
+ -moz-box-sizing: border-box;
+}
+
+</style>
+    <link href="Theme.TransWeb.css?67404" type="text/css" rel="stylesheet" />
+    <link href="Abre_anexo.css?67404" type="text/css" rel="stylesheet" />
+    <link href="/GoianiaTheme/Theme.GoianiaTheme.extra.css?56763" type="text/css" rel="stylesheet" />
+    <script id="_OSrequestInfoScript" type="text/javascript">(function(global) { global.outsystems = global.outsystems || {};global.outsystems.internal = global.outsystems.internal || {};global.outsystems.internal.requestInfo = {visitorKey:'593ef8e4-3df1-4bd7-b532-0cdf2d82dc04',visitKey:'0e44caf2-ce3c-43d0-a9ab-f4042d9a2c8f',sessionKey:'BWNqma6Pl0qVTh3o3rIgpg==',userKey:'',requestKey:'b6b10208-7b5f-4960-95e2-75cad38dd86b',webScreenKey:'cf2b8194-f9f0-42c9-88c5-87c302bdbe4c',webScreenName:'Abre_anexo',espaceKey:'ef7726c9-e6bf-4bae-bbce-2e7d6846b63d',espaceName:'TransWeb',applicationKey:'3bbec277-705f-4708-9caa-9bd99325c137',applicationName:'AP_Portal da Transparencia',tenantKey:'6284e8bf-2aa5-50a4-f1bc-9918c2801df6',tenantName:'Users',environmentKey:'a513bd7b-8ea6-477a-96cb-f818aa61334a',environmentName:'Produção',frontendKey:'$1$o7KJA0Cuby3fMVwddOH5fQ==ZenrwoCWLqB3gWt69OY6sUdPjaITp3w0hx5b0NUMKhg='}})(this);</script>
+    <script src="_osjs.js?11_29_0_43552" type="text/javascript" charset="UTF-8"></script>
+
+</head>
+  <body data-os-cookie-policy="Secure">
+    <form method="post" action="Abre_anexo.aspx" id="WebForm1" name="WebForm1">
+<input type="hidden" name="__OSVSTATE" id="__OSVSTATE" value="NyJvqg515FW9KoFRDztCs+rfsPXduFdDJEMS5bGHYft3lerCrM1t9+nWnyUKbU268/pPeTbHI4MT+aD6trmUImiMgQm8itBpBaD829UtMz8=" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="" />
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="853B042C" />
+
+    <script type="text/javascript">outsystems.internal.$.get("/TransWeb/_status.aspx")</script>
+
+<script type="text/javascript">
+//<![CDATA[
+var OsPage_ValidationActive = false;
+OsValidatorOnLoad();
+
+function OsValidatorOnSubmit() {
+  if (OsPage_ValidationActive) { return OsValidatorCommonOnSubmit(); }
+  return true;
+}
+// ]]>
+</script>
+</form><script src="/PerformanceProbe/performanceprobe.js?11_29_0_43552" type="text/javascript" charset="UTF-8"></script>
+  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"8d7ec16f5090428486d4568efe8ca4fc","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+URL: https://www.goiania.go.gov.br/xmlrpc.php?rsd
+POST: {}
+OK: False
+HTTP: 403
+ERRO: HTTP 403
+BYTES: 513
+

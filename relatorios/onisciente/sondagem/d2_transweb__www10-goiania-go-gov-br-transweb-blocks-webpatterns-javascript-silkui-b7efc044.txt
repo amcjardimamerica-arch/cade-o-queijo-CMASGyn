@@ -1,0 +1,536 @@
+URL: https://www10.goiania.go.gov.br/transweb/Blocks/WebPatterns/Javascript/SilkUI.en.js?60864
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 14117
+
+﻿// Silk UI Class
+function SilkUIObject(){
+
+    // that object
+    var that = this;
+
+    // Current Version
+    var Version = "4.1.2 (2019-03-25)";
+
+    // page Overlay for device emulation
+    var PageOverlay = false;
+
+    // page size
+    var deviceWidth = 0 ;
+
+    // timers controll
+    var timers = {};
+
+    // Debug Mode
+    var DebugMode = false;
+
+
+
+
+
+
+
+
+
+
+    // PATTERNS ************************************************************************************
+
+    // Silk UI Modal
+    var Modal;
+    
+    // Dropdowns
+    var Dropdowns;
+    
+    // Accordion vertical
+    var AccordionVertical;
+    
+    // SectionIndex
+    var SectionIndex;
+    
+    // Range Sliders
+    var RangeSlider;
+
+    // SectionExpandable
+    var SectionExpandable;
+
+
+
+
+
+
+    // PUBLIC FUNCTIONS ***************************************************************************
+    
+
+
+
+    // Function to debug on browser console
+    // Only debug when debug mode is true
+    that.DebugConsole = function(msg, flag){
+        
+        // If debug active or flag true
+        if(DebugMode || flag == true){
+            /*console.debug("Silk UI Debug : "+msg);*/
+            console.log("Silk UI Debug : "+msg);
+        }
+    }
+    
+
+    // Get Device
+    that.GetDevice = function(){
+
+        return SilkDeviceDetect.getDevice();
+    }
+    
+
+    // IE11 and IE10 Metro for tablet
+    that.isMetro = function() {
+        
+        var errorName = null;
+        var supported = null; 
+        
+        try {
+            new ActiveXObject("");
+        }
+        catch (e) {
+            // FF has ReferenceError here
+            errorName = e.name; 
+        }     
+        try {
+            supported = !!new ActiveXObject("htmlfile");
+        } catch (e) {
+            supported = false;
+        }
+        if(errorName != 'ReferenceError' && supported==false){
+            supported = false;
+        }else{
+            supported =true;
+        }
+        
+        if(!supported && (SilkDeviceDetect.getBrowserVersion() == "ie11" || SilkDeviceDetect.getBrowserVersion() == "ie10")){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
+    
+
+
+    // return browser version
+    that.GetBrowserVersion = function(){
+        var bversion = SilkDeviceDetect.getBrowserVersion();
+        return bversion;
+    }   
+       
+    
+    // Get version
+    that.GetVersion = function(){
+        return Version;
+    }
+
+
+    // Clear browser cookies
+    that.ClearCookies = function(){
+        SilkDeviceDetect.setCookie("DEVICE_SIMULATION", "false");
+        SilkDeviceDetect.clearCookie("DEVICE_TYPE"); 
+        return "Done!";
+    };
+    
+    
+    
+    // Get Transition callback to use
+    // Function from David Walsh: http://davidwalsh.name/css-animation-callback
+    that.whichTransitionEvent = function(){
+      var t,
+          el = document.createElement("fakeelement");
+
+      var transitions = {
+        "transition"      : "transitionend",
+        "OTransition"     : "oTransitionEnd",
+        "MozTransition"   : "transitionend",
+        "WebkitTransition": "webkitTransitionEnd"
+      }
+
+      for (t in transitions){
+        if (el.style[t] !== undefined){
+          return transitions[t];
+        }
+      }
+    }
+
+        
+    
+    
+    
+    
+    
+
+    // PRIVATE FUNCIONS ***********************************************************************************************************************
+
+    // add overlay for device emulation
+    function addOverlay() {
+        
+
+        // if simulation device
+        if(SilkDeviceDetect.isSimulationDevice()){
+            
+            /* set size and device  */    
+            $(".ResponsiveOverlay_Device").html(SilkDeviceDetect.getDevice()+ " " + SilkDeviceDetect.getDeviceWidth()+ "x" + SilkDeviceDetect.getDeviceHeight());
+        }
+        else{
+
+            /* set size and device  */    
+            $(".ResponsiveOverlay_Device").html(SilkDeviceDetect.getDeviceWidth() + "x" + SilkDeviceDetect.getDeviceHeight());            
+        }
+
+        // reset delay event
+        waitForFinalEvent(removeOverlay, 2000, 'removeOverlay');
+
+        // check if overlay
+        if (PageOverlay == false) {
+            
+            // show overlay overlay
+            $('.ResponsiveOverlay').css("display", "block");
+            setTimeout(function(){ $('.ResponsiveOverlay').addClass("show"); }, 1);
+            
+            // disable scroll
+            $(document.body).css("overflow", "hidden");
+
+            // if device simulation
+            if(SilkDeviceDetect.isDeviceSimulation()){
+
+                // show background        
+                $('.ResponsiveOverlay_bg').css("display", "block");
+                setTimeout(function(){ $('.ResponsiveOverlay_bg').addClass("show"); }, 1);
+            }
+
+            // set false
+            PageOverlay = true;
+        }
+
+  
+
+
+    }
+    
+    
+
+    // remove overlay for device emulation
+    function removeOverlay() {
+
+        // check overlay
+        if (PageOverlay == true) {
+
+            // enable scroll
+            $(document.body).css("overflow", "visible");    
+
+            // hide background        
+            $('.ResponsiveOverlay_bg').removeClass("show");
+            setTimeout(function(){ $('.ResponsiveOverlay_bg').css("display", "none"); }, 250);
+ 
+            // hide device simulation controll       
+            $('.ResponsiveOverlay').removeClass("show");
+            setTimeout(function(){ $('.ResponsiveOverlay').css("display", "none"); }, 250);
+
+            // se false
+            PageOverlay = false;
+        }
+    }
+
+
+
+    // mmanage timers
+    function waitForFinalEvent(callback, ms, uniqueId) {        
+        if (timers[uniqueId]) {
+            clearTimeout (timers[uniqueId]);
+        }        
+        timers[uniqueId] = setTimeout(callback, ms);
+    };
+
+
+    // refresh page
+    function debugRefreshPage(){
+
+        // set event timer to refresh page
+        if(Math.abs(deviceWidth - SilkDeviceDetect.getDeviceWidth()) >= 30) {
+
+            // if device simulation
+            if(SilkDeviceDetect.isDeviceSimulation()){
+                location.reload();
+            }else{
+                removeOverlay();
+            }
+        }
+
+        // set device size
+        deviceWidth = SilkDeviceDetect.getDeviceWidth();
+    }
+
+
+
+
+
+    // add orientation class on .Page
+    function addOrientation() {
+
+        
+        // remove classes
+        $(".Page").removeClass('landscape').removeClass('portrait');
+        
+        // add class
+        $(".Page").addClass(SilkDeviceDetect.getOrientation());
+        return true;
+    };
+    
+
+    // set orientation event
+    that.orientationChange = function(event)  {
+        setTimeout(function(){ addOrientation(); }, 500);
+
+    };  
+    
+
+
+     // event change width window
+    function onWindowResize(event) {
+        // if not iframe
+        if(!SilkDeviceDetect.isIframe() && !SilkDeviceDetect.isMobile()){
+            
+            if(Math.abs(deviceWidth - SilkDeviceDetect.getDeviceWidth()) >= 30){
+                // add overlay
+                addOverlay();
+                
+                // add delay to refresh page
+                waitForFinalEvent(debugRefreshPage, 1500, 'refreshPage');
+            }
+            else{
+                //check page Orientation
+                addOrientation();
+            }
+        }
+    };
+    
+    // events to simulation device
+    function initSimulationDevice(){
+            
+
+        // add event to show/hide simulation device options
+        $(".ResponsiveOverlay .OpenClose").click(function(){
+
+            // if visible
+            if($(".ResponsiveOverlay .ResponsiveOverlay_Bottom").css('display') == "block"){
+                $(".ResponsiveOverlay .ResponsiveOverlay_Bottom").hide();
+              }else{
+                $(".ResponsiveOverlay .ResponsiveOverlay_Bottom").show();
+            }
+        });
+
+         // add event to active/desable simulation device
+        $(".ResponsiveOverlay_Bottom input.BtnRespOverlay").change(function(){
+
+            // if selected
+            if($(this).is(':checked')){
+                SilkDeviceDetect.setCookie("DEVICE_SIMULATION", "true");
+            }else{
+                that.ClearCookies();
+            }
+
+            // reload page
+            location.reload();
+        });
+
+
+        // cancel remve overlay on mouseOver
+        $(".ResponsiveOverlay").mouseover(function() {
+            clearTimeout (timers['removeOverlay']);
+            clearTimeout (timers['refreshPage']);
+        });
+
+        // add evento to remove overlay
+        $(".ResponsiveOverlay").mouseout(function() {
+            waitForFinalEvent(removeOverlay, 1000, 'removeOverlay');
+            waitForFinalEvent(debugRefreshPage, 1000, 'refreshPage');
+        });
+
+
+        // if addEventListener resize
+        if (window.addEventListener) {
+            window.addEventListener("resize", onWindowResize, false);                
+        } else if (window.attachEvent) { // IE 8 and addEventListener not supported browsers
+            window.attachEvent('onresize', function() {
+                onWindowResize();
+            });
+        }  
+    }
+
+
+
+
+
+    // Change  desktop class on .Page when resizing
+    setDesktopSizeClass = function(){
+        
+        // get window size
+        var windowW = SilkDeviceDetect.getDeviceWidth();
+
+        // set device default
+        var ndevice = "desktop small";
+
+        if (windowW >= 1920) {
+            ndevice = "desktop hd";
+        } else if (windowW >= 1600){
+            ndevice = "desktop big";
+        } else if (windowW >= 1366){
+            ndevice = "desktop";
+        } else { 
+           ndevice = "desktop small";
+        }
+        
+        // remove classes
+        $(".Page").removeClass("desktop small hd big tablet phone");
+        
+        // add new class
+        $(".Page").addClass(ndevice);
+        
+    }
+
+
+
+
+
+    // Execute for debug 
+        
+    // object: function (required)
+    // msg: string (required)
+    // patameters: array      
+    // behavior: string 
+    
+    that.Execute = function(func, msg, parameters, behavior){
+
+        
+        // check parameters
+        if(!parameters){ parameters = []; }
+        if(!behavior){ behavior = "AllDevices"; }
+
+        // Only on page loaded
+        $(document).ready(function(){
+
+            // execute funcion
+            try {
+                func.parameters = parameters;
+                func.call();
+            }
+            catch(exception){ 
+                // Send log to console
+                that.DebugConsole(msg, true);
+            } 
+        });
+
+    }    
+   
+   
+   
+    // Attach FastClick    
+    if(($(".Page").hasClass("phone") || $(".Page").hasClass("tablet")) && typeof(FastClick) != "undefined") {
+        window.addEventListener('load', function() {
+           new FastClick(document.body);
+        }, false);
+    }
+
+    
+    // add SilkUI version class on .Page
+    function addVersion() {
+ 
+    var SilkUIVersionString = Version.split(' ')[0];
+       
+        // add/update attribute
+        $(".Page").attr('data-silkversion', SilkUIVersionString );
+        
+        return true;
+    };
+    
+    
+    //add ClientSideResponsive data attribute on .Page
+    function addCientSideResponsive(){
+     
+        //add/update attribute
+        $(".Page").attr('data-client-responsive', SilkDeviceDetect.getUseClientSideResponsive());
+        
+        return true;
+    }
+    
+    // On page loaded
+    $(document).ready(function() { 
+
+
+        if(!SilkDeviceDetect.getUseClientSideResponsive()){
+
+            //if desktop, set desktop size
+            if($(".Page").hasClass("desktop")){
+                setDesktopSizeClass();
+            }
+            
+            // set device size
+            deviceWidth = SilkDeviceDetect.getDeviceWidth();
+            
+            
+            // check if is device simulation or development mode
+            if((SilkDeviceDetect.isDeviceSimulation() || SilkDeviceDetect.isDevelopmentMode())){
+
+                initSimulationDevice();
+
+            }
+            
+            var ratio = window.devicePixelRatio || 1;
+            var width = window.screen.width * ratio;
+            var height = window.screen.height * ratio;
+            var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            
+            if(width === 1125 && height === 2436 && SilkDeviceDetect.isMobile() && iOS) {
+                document.querySelector(".Page").classList.add("iphonex");
+            }
+            
+             // orientation
+            // if metro
+            if(that.isMetro()){
+                
+                var matchMediaQuery = window.matchMedia("(min-width: " + ((SilkDeviceDetect.getDeviceWidth() + SilkDeviceDetect.getDeviceHeight()) / 2) + "px)");
+                matchMediaQuery.addListener(that.orientationChange);
+                
+            }else{
+                
+                if (window.addEventListener) {
+                    window.addEventListener("orientationchange", that.orientationChange, false);
+                } else if (window.attachEvent) { // IE 8 and addEventListener not supported browsers
+                    window.attachEvent("orientationchange", that.orientationChange, false);
+                }
+            
+            }
+            
+            
+            // windows resize to change small desktop, desktop, desktop big, desktop hd
+            if(!SilkDeviceDetect.isMobile() && !SilkDeviceDetect.isSimulationDevice())
+            {
+                if (window.addEventListener) {
+                    window.addEventListener("resize", setDesktopSizeClass, false);                
+                } else if (window.attachEvent) { // IE 8 and addEventListener not supported browsers
+                    window.attachEvent('onresize', function() {
+                        setDesktopSizeClass();
+                    });
+                }
+            }
+        }
+        addVersion();
+        addCientSideResponsive();
+    });
+}
+
+
+// console debug - exception for browsers with console closed
+if (!window.console) console = { log: function(){} };
+
+
+// Create Silk UI 
+var SilkUI = new SilkUIObject();

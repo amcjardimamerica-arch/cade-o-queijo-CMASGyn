@@ -1,0 +1,191 @@
+URL: https://www10.goiania.go.gov.br/PreviewInDevices/Preview.aspx?URL=/transweb/Portal_DiariasPassagens.aspx
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 15990
+
+<!DOCTYPE html>
+<html lang="en-EN" xmlns="http://www.w3.org/1999/xhtml" >
+  <head><title>
+	Preview In Devices
+</title><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" /><meta http-equiv="Content-Style-Type" content="text/css" />
+<style>
+.OSFillParent { 
+ display: block;
+ width: 100%;
+}
+table.OSFillParent {
+ display: table;
+}
+input.OSFillParent,
+button.OSFillParent,
+select.OSFillParent,
+textarea.OSFillParent {
+ display: inline-block;
+ box-sizing: border-box;
+ -moz-box-sizing: border-box;
+ -webkit-box-sizing: border-box;
+}
+.OSInline {
+ display: inline-block;
+ *zoom: 1;
+ *display: inline;
+ vertical-align: top;
+}
+table.OSInline {
+ display: inline-table;
+}
+.OSAutoMarginTop {
+ margin-top: 10px;
+}
+table[class*="ThemeGrid_Width"] {
+ display: inline-table;
+ vertical-align: top;
+}
+div[class*="ThemeGrid_Width"] {
+ vertical-align: top;
+}
+th[class*="ThemeGrid_Width"],
+td[class*="ThemeGrid_Width"] {
+ display: table-cell;
+}
+[class*="ThemeGrid_Width"] {
+ display: inline-block;
+ box-sizing: border-box;
+ -webkit-box-sizing: border-box;
+ -moz-box-sizing: border-box;
+ *zoom: 1;
+ *display: inline;
+}
+.ThemeGrid_Container {
+ box-sizing: border-box;
+ -webkit-box-sizing: border-box;
+ -moz-box-sizing: border-box;
+}
+
+</style>
+<link href="/PreviewInDevices/Blocks/PreviewInDevices/Utilities/ServiceStudioPreviewCSS.css?34345" type="text/css" rel="stylesheet" />
+<link href="/RichWidgets/Blocks/RichWidgets/RichWidgets/Feedback_AjaxWait.css?46563" type="text/css" rel="stylesheet" />
+<link href="/RichWidgets/Blocks/RichWidgets/jQueryUI/jQueryUIInternal.css?46563" type="text/css" rel="stylesheet" />
+<link href="/RichWidgets/Blocks/RichWidgets/RichWidgets/Feedback_Message.css?46563" type="text/css" rel="stylesheet" />
+    <link href="/PreviewInDevices/Theme.Theme.css?34345" type="text/css" rel="stylesheet" />
+    <link href="/PreviewInDevices/Theme.Theme.extra.css?34345" type="text/css" rel="stylesheet" />
+    <script id="_OSrequestInfoScript" type="text/javascript">(function(global) { global.outsystems = global.outsystems || {};global.outsystems.internal = global.outsystems.internal || {};global.outsystems.internal.requestInfo = {visitorKey:'593ef8e4-3df1-4bd7-b532-0cdf2d82dc04',visitKey:'0e44caf2-ce3c-43d0-a9ab-f4042d9a2c8f',sessionKey:'9xyxXIhWqkCt3BV+ofZStw==',userKey:'',requestKey:'5cb84dc4-5e31-4a57-a465-adb17b5c665a',webScreenKey:'13dab84f-e07e-4118-a1b6-2ba2c5bc7ed0',webScreenName:'Preview',espaceKey:'0ea09e7f-1650-476f-b19d-d35f9e3a2e2d',espaceName:'PreviewInDevices',applicationKey:'95af914d-681a-4adc-b2bd-f546de23e411',applicationName:'System Components',tenantKey:'7f2f5287-9dba-31d5-3292-3fc8d9489b40',tenantName:'ServiceCenter',environmentKey:'a513bd7b-8ea6-477a-96cb-f818aa61334a',environmentName:'Produção',frontendKey:'$1$4YGQebL/iq3BsJAy8zVc5Q==DLLOyiTCIxlNEwJnVF3itZODZ32dNR6Kn/kUqxAhmXY='}})(this);</script>
+    <script src="/PreviewInDevices/_osjs.js?11_29_0_43552" type="text/javascript" charset="UTF-8"></script>
+    <script src="/PreviewInDevices/Blocks/RichWidgets/RichWidgets/Feedback_AjaxWait.en.js?46563" type="text/javascript" charset="UTF-8"></script>
+    <script src="/PreviewInDevices/Blocks/RichWidgets/jQueryUI/jQueryUIInternal.en.js?46563" type="text/javascript" charset="UTF-8"></script>
+    <script src="/PreviewInDevices/Blocks/RichWidgets/jQueryUI/jQueryComponents.en.js?46563" type="text/javascript" charset="UTF-8"></script>
+    <script src="/PreviewInDevices/Blocks/RichWidgets/RichWidgets/Feedback_Message.en.js?46563" type="text/javascript" charset="UTF-8"></script>
+    <script src="/PreviewInDevices/Blocks/PreviewInDevices/Utilities/SetBackgroundColor.js?34345" type="text/javascript" charset="UTF-8"></script>
+    <script src="/PreviewInDevices/Blocks/PreviewInDevices/Utilities/OnScreenLoad.js?34345" type="text/javascript" charset="UTF-8"></script>
+    <script src="/PreviewInDevices/Preview.js?34345" type="text/javascript" charset="UTF-8"></script>
+
+</head>
+  <body data-os-cookie-policy="Secure">
+    <form method="post" action="/PreviewInDevices/Preview.aspx" id="WebForm1" name="WebForm1">
+<input type="hidden" name="__OSVSTATE" id="__OSVSTATE" value="3ZjVoJKiJB5sFz9QM3GBtWChydyUZotJ7raCpY4JxKK/jNUCwQDIMbcIOCwp/YTstOVs7j5hg46DKiZ4NmwLy1HYghBvj5UUceUFLPOI5Rl+HQN9TCS6TRD/Ru9DB0XFXQzHP1VohxEENtCrr93ubUZAE+hJ9zqim98Rq5/goiX4EZQRbJjSXRFkbM6WQLAkQ7RP2RcpPKifCoCFV6b+bnz2uTn2zzPcvCyARX2haQbBDjOEK0T0/5kqd1oOfXfGVtEE26rNzv4VWICJ4eyOFsGwCVBwGWGXlyqDtGm7rbAiqZ9VK+8b/dR9n5oF9gS+c+W/iUcmOO73/WjvKu1jF/FbcXFhIbVFF/CCjKLQKxKqeO7A/jEBxyeiMqNuDdaCHpdbuH/WV2YOCciphcbYvZBOIs608JI5bnDvbzeF3tu9MhdKC/AIAGSilUEL49qkPrtNLyWH7+E2Dz2JSOrxdAEgI+fO9R77fSv8hc0uEKIC9DlTA+lhxoiQvjPFp/xH0thqiJcW+MuPC1OXrpUYP95cGLYEpXu9JEH/8CoLdALVlb9hP8ZbACLHusLce1B9oWcZHdkoxqI45dCWISdKaLNcgbrJWYTuQ1sy61F+P/3ukU05v+Npy2Zv5sHydCgxwl8iZqftApVL1uWvG9eHr0KE3YNRquXWcnjhonQ/Fs+DhjEtXqNdQX1OhVZknv5xkbJ+ziBAsZL5tiNQbosUrX6m4I2k5Qi3AfyZFfqid929lHQSztPdT5mfz6mN84XJLtYd+RWjyabAiJNvSE9BFqsRvb0jhHBE4uPLBUnBtp0SXavxwGyagKGQCRXUXUnCQYCBVf0YkeOoj8lOZko0czuHoPLBmlSN/zIFfWSIrofPOTt2alDtcQuJK/xYe7al8hrR1YI0NkrYUM6TAV1keUCOG9ExayTs50o3K/DUSQ+SLe84KWhqUJepuex28yKDSktf092BQCjlhp1lDxDm2QX0C0I+Zsxm3gkUMUkAgu+X6zKI4iDB+191sTKs/CckCj0gslka/vgCpekWCvbqj2DBmZp2EuRdSLt4ee20poB28PPou4pxqaVLw778kWMwgtXymEIfotb4JuNMwuXFamytRJPX8c31J2ynpXQtWMnCBeKyk1aPJWjNH6f7LfaENSBKVQZbN2G/AjFyBb7BEBN3FHox6m1KgoogNH1UMUSxT9BjiQiYipBBBbmMrvrQ" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="" />
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="9236C94F" />
+<div  id="wt5_wtMainContent"><div  id="wt5_wtMainContent_wtScreen" class="screen-preview is--sidebar-collapsed is--sidebar-hidden"><main  id="wt5_wtMainContent_wtMain"><a id="wt5_wtMainContent_wt46" tabindex="1" class="logo" title="www.outsystems.com" target="_blank" href="http://www.outsystems.com"><img title="www.outsystems.com" alt="" src="/PreviewInDevices/img/OutSystemsLogo.svg?34345" style="width:150px;" /></a><header  id="wt5_wtMainContent_wtHeader"><div  id="wt5_wtMainContent_wtDevicesWrapper" class="card desktop"><div  class="dropdown-container"><select name="wt5$wtMainContent$wtDevicesComboBox" id="wt5_wtMainContent_wtDevicesComboBox" tabindex="2" class="dropdown-display dropdown" aria-invalid="false" onchange="OsAjax(arguments[0] || window.event,&#39;wt5_wtMainContent_wtDevicesComboBox&#39;,&#39;wt5$wtMainContent$wtDevicesComboBox&#39;,&#39;Change&#39;,&#39;__OSVSTATE,&#39;,&#39;&#39;);" onkeyup="this.onchange();">
+	<option value="0">Smartphone</option>
+	<option value="21">iPhone 12 Mini (375x812)</option>
+	<option value="22">iPhone 12/12 Pro (390x844)</option>
+	<option value="16">iPhone 12 Max (428x926)</option>
+	<option value="20">Samsung Galaxy S21 (360x800)</option>
+	<option value="17">Samsung Galaxy S21 Ultra (384x854)</option>
+	<option value="15">Google Pixel 5 (390x844)</option>
+	<option value="14">Samsumg Note 20 (412 x 915)</option>
+	<option value="0">Tablet</option>
+	<option value="18">iPad Pro 11&#39;&#39; (834x1112)</option>
+	<option value="13">iPad Pro 12.9&#39;&#39; (1024x1366)</option>
+	<option value="19">Samsung Galaxy Tab S7 (585 x 902)</option>
+	<option value="0">Desktop</option>
+	<option value="4">Laptop (1366x768)</option>
+	<option selected="selected" value="5">Desktop (1600x900)</option>
+	<option value="12">DesktopHD (1920x1080)</option>
+
+</select><span style="display: none;" class="ValidationMessage" role="alert" id="ValidationMessage_wt5_wtMainContent_wtDevicesComboBox"></span></div ><div  id="wt5_wtMainContent_wtRotate" class="OSInline" style="display:none"><a id="wt5_wtMainContent_wtLandscape" tabindex="3" class="btn-small icon-link icon-rotate" title="Rotate device" onclick="OsAjax(arguments[0] || window.event,&#39;wt5_wtMainContent_wtLandscape&#39;,&#39;wt5$wtMainContent$wtLandscape&#39;,&#39;&#39;,&#39;__OSVSTATE,&#39;,&#39;&#39;); return false;" href="#"><svg width='14' height='14' viewBox='0 0 14 14' fill='none'>
+<path fill-rule='evenodd' clip-rule='evenodd' d='M11 6L1 6C0.447715 6 -2.41411e-08 6.44772 0 7L2.62269e-07 13C2.8641e-07 13.5523 0.447716 14 1 14L11 14C11.5523 14 12 13.5523 12 13V7C12 6.44772 11.5523 6 11 6ZM1 13L1 7L11 7V13L1 13Z' fill='#626568'/>
+<path d='M4.99998 0.290039C2.7422 0.961987 0.961804 2.74238 0.289856 5.00016H1.34139C1.94396 3.29533 3.29515 1.94414 4.99998 1.34157V0.290039Z' fill='#626568'/>
+<path d='M14 11V1C14 0.447715 13.5523 0 13 0H7C6.44772 0 6 0.447715 6 1V5H7V1H13V11H14Z' fill='#626568'/>
+</svg>
+</a></div ><div  class="separator OSInline"></div ><div  class="OSInline"><a id="wt5_wtMainContent_wtOpenInNewTabLink" tabindex="4" class="icon-link btn-small" title="View in browser" aria-label="View in browser" href="javascript:__doPostBack(&#39;wt5$wtMainContent$wtOpenInNewTabLink&#39;,&#39;&#39;)"><svg width='13' height='13' viewBox='0 0 13 13' fill='none' xmlns='http://www.w3.org/2000/svg'>
+<path d='M11 13H1C0.734784 13 0.48043 12.8946 0.292893 12.7071C0.105357 12.5196 0 12.2652 0 12V2C0 1.73478 0.105357 1.48043 0.292893 1.29289C0.48043 1.10536 0.734784 1 1 1H5.5V2H1V12H11V7.5H12V12C12 12.2652 11.8946 12.5196 11.7071 12.7071C11.5196 12.8946 11.2652 13 11 13Z' fill='#626568'/>
+<path d='M9 0V1H11.295L7 5.295L7.705 6L12 1.705V4H13V0H9Z' fill='#626568'/>
+</svg>
+</a></div ></div ></header ><article  id="wt5_wtMainContent_wtPreviewFrame" class="desktop" style="--device-border-width: 0px;--screen-width:1600px;--screen-height:900px;--device-width:1600px;--device-height:900px"><div  class="iframe-wrapper" style="--device-outer-border-radius: 0px;--device-inner-border-radius: 0px"><span id="wt5_wtMainContent_wt49"><iframe id='contents_frame' title='Application preview frame' frameborder='0' tabindex='1' src='https://www10.goiania.go.gov.br/transweb/Portal_DiariasPassagens.aspx'></iframe><script type='text/javascript'>
+    $('#contents_frame').ready(function(evt) {
+        // show the frame already rendered and with the new vertical scroll bar
+        $('#contents_frame').css('opacity', '1');
+})
+;</script></span></div ></article ></main ></div ><div  id="wt5_wtMainContent_RichWidgets_wt29_block_wtdivWait" class="Feedback_AjaxWait" role="status" aria-live="polite" aria-atomic="true" style="display:none"><img alt="" src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" height="16" width="16" /> Loading...</div ><script type='text/javascript'>
+     RichWidgets_Feedback_AjaxWait_init('wt5_wtMainContent_RichWidgets_wt29_block_wtdivWait');
+ </script><span id="wt5_wtMainContent_RichWidgets_wt13_block"><script type='text/javascript'>
+OsRegisterExceptionHandler(RichWidgets_Feedback_Message_ErrorHandler)
+</script><div  id="wt5_wtMainContent_RichWidgets_wt13_block_wtFeedback_Wrapper" class="Feedback_Message_Wrapper" aria-atomic="True" aria-live="polite"><span id="wt5_wtMainContent_RichWidgets_wt13_block_wtnotify"><span class="NotifyWidget"></span><SCRIPT type="text/javascript">
+//<![CDATA[
+RichWidgets_Feedback_Message_notifyWidget ='wt5_wtMainContent_RichWidgets_wt13_block_wtnotify';
+//]]>
+</SCRIPT></span></div ></span><span id="wt5_wtMainContent_wtSetGroups"><script type='text/javascript'>
+var dropDown = document.getElementById('wt5_wtMainContent_wtDevicesComboBox');
+var options = dropDown.querySelectorAll('option');
+
+for (var i = 0; i < options.length; i++) {
+    if(options[i].value == 0) {
+        var group_ = document.createElement('optgroup');
+        var group_label = options[i].label;
+        if (group_label == 'Smartphone') { group_label = 'Phone' };
+        group_.setAttribute('label', group_label);
+        dropDown.insertBefore(group_, options[i]);
+        options[i].remove();
+    }
+}
+</script></span><script>// Waits elements render to init
+var setBackgroundColorHandler = function() {
+    var setMainBackgroundColor = new SetMainBackgroundColor();
+    setMainBackgroundColor.init();
+};
+
+if(document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setBackgroundColorHandler);
+} else {
+    setBackgroundColorHandler();
+}
+</script><span id="wt5_wtMainContent_wtOnScreenLoad"><script>
+// Waits elements render to init
+var onScreenLoadHandler = function() {
+    var onScreenLoad = new OnScreenLoad();
+    onScreenLoad.init();
+};
+
+if(document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', onScreenLoadHandler);
+} else {
+    onScreenLoadHandler();
+}
+</script></span></div >
+    
+
+<script type="text/javascript">
+//<![CDATA[
+var OsPage_ValidationActive = false;
+OsValidatorOnLoad();
+
+function OsValidatorOnSubmit() {
+  if (OsPage_ValidationActive) { return OsValidatorCommonOnSubmit(); }
+  return true;
+}
+// ]]>
+</script>
+</form><script type="text/javascript">outsystems.internal.$._waitForViewstate = true;outsystems.internal.$(document).ready(function() {outsystems.internal.$('input[name=__OSVSTATE]').val('3ZjVoJKiJB5sFz9QM3GBtWChydyUZotJ7raCpY4JxKK/jNUCwQDIMbcIOCwp/YTstOVs7j5hg46DKiZ4NmwLy1HYghBvj5UUceUFLPOI5Rl+HQN9TCS6TRD/Ru9DB0XFXQzHP1VohxEENtCrr93ubUZAE+hJ9zqim98Rq5/goiX4EZQRbJjSXRFkbM6WQLAkQ7RP2RcpPKifCoCFV6b+bnz2uTn2zzPcvCyARX2haQbBDjOEK0T0/5kqd1oOfXfGVtEE26rNzv4VWICJ4eyOFsGwCVBwGWGXlyqDtGm7rbAiqZ9VK+8b/dR9n5oF9gS+c+W/iUcmOO73/WjvKu1jF/FbcXFhIbVFF/CCjKLQKxKqeO7A/jEBxyeiMqNuDdaCHpdbuH/WV2YOCciphcbYvZBOIs608JI5bnDvbzeF3tu9MhdKC/AIAGSilUEL49qkPrtNLyWH7+E2Dz2JSOrxdAEgI+fO9R77fSv8hc0uEKIC9DlTA+lhxoiQvjPFp/xH0thqiJcW+MuPC1OXrpUYP95cGLYEpXu9JEH/8CoLdALVlb9hP8ZbACLHusLce1B9oWcZHdkoxqI45dCWISdKaLNcgbrJWYTuQ1sy61F+P/3ukU05v+Npy2Zv5sHydCgxwl8iZqftApVL1uWvG9eHr0KE3YNRquXWcnjhonQ/Fs+DhjEtXqNdQX1OhVZknv5xkbJ+ziBAsZL5tiNQbosUrX6m4I2k5Qi3AfyZFfqid929lHQSztPdT5mfz6mN84XJLtYd+RWjyabAiJNvSE9BFqsRvb0jhHBE4uPLBUnBtp0SXavxwGyagKGQCRXUXUnCQYCBVf0YkeOoj8lOZko0czuHoPLBmlSN/zIFfWSIrofPOTt2alDtcQuJK/xYe7al8hrR1YI0NkrYUM6TAV1keUCOG9ExayTs50o3K/DUSQ+SLe84KWhqUJepuex28yKDSktf092BQCjlhp1lDxDm2QX0C0I+Zsxm3gkUMUkAgu+X6zKI4iDB+191sTKs/CckCj0gslka/vgCpekWCvbqj2DBmZp2EuRdSLt4ee20poB28PPou4pxqaVLw778kWMwgtXymEIfotb4JuNMwuXFamytRJPX8c31J2ynpXQtWMnCBeKyk1aPJWjNH6f7LfaENSBKVQZbN2G/AjFyBb7BEBN3FHox6m1KgoogNH1UMUSxT9BjiQiYipBBBbmMrvrQ');outsystems.internal.$._waitForViewstate = false;});</script>
+<script type="text/javascript">//<![CDATA[
+if(!window.OsJSONUpdate){do{try {if(window.parent && window.parent.OsJSONUpdate)window.OsJSONUpdate = window.parent.OsJSONUpdate;}catch(ex){d = document.domain.indexOf('.')+1;document.domain = document.domain.substr(d, document.domain.length - d);}}while(!window.OsJSONUpdate && document.domain.indexOf('.')!=document.domain.lastIndexOf('.'));if (!window.OsJSONUpdate){try{document.domain = window.location.hostname;}catch(ex){}window.OsJSONUpdate = function() {};}}
+//]]></script><script type="text/javascript">//<![CDATA[
+OsJSONUpdate({"js":["outsystems.internal.$(document).ready(function() {OsJSONUpdate({\"js\":[\"\\r\\n    var resetTabindex = function(){\\r\\n        var tabIndexItems = document.querySelectorAll('[tabindex]');\\r\\n        tabIndexItems = [].slice.call(tabIndexItems);\\r\\n        tabIndexItems.forEach(function(item) {\\r\\n            if(item.getAttribute('tabindex') > 0 && item.tagName !== 'IFRAME') {\\r\\n                item.setAttribute('tabindex', '0');\\r\\n            }\\r\\n        });\\r\\n    }\\r\\n\\r\\n    resetTabindex();\\r\\n    osAjaxBackend.BindAfterAjaxRequest(resetTabindex);\\r\\n\"]})});"]})//]]></script>
+  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"8d7ec16f5090428486d4568efe8ca4fc","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>

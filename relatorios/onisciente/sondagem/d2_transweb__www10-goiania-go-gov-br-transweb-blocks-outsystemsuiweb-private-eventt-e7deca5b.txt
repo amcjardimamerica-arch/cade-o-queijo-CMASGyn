@@ -1,0 +1,20 @@
+URL: https://www10.goiania.go.gov.br/transweb/Blocks/OutSystemsUIWeb/Private/EventThroughExtensibility.en.js?36268
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 470
+
+﻿function TriggerEvents(blockId) {
+    var blk = document.getElementById(blockId);
+    var values = Array.prototype.slice.call(arguments, 1);
+    values.forEach(function(n,i) {
+        var w = blk.querySelector(['[data-p="', i+1, '"]'].join(''));
+        if (w) { w.value = n || ""; }
+    });
+    blk.querySelector('[data-p="btn"]').click();
+}
+TriggerEvents.cb = {};
+TriggerEvents.register = function register(blockId, btnId) {
+    TriggerEvents.cb[blockId] = btnId;
+}

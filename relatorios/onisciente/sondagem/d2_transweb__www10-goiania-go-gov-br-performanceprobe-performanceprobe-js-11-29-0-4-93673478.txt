@@ -1,0 +1,166 @@
+URL: https://www10.goiania.go.gov.br/PerformanceProbe/performanceprobe.js?11_29_0_43552
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 28282
+
+/* --- minified js --- */
+window.outsystems=window.outsystems||{};window.outsystems.internal=window.outsystems.internal||{};outsystems.internal.BOOMR_start=new Date().getTime();(function(w){if(w.parent!=w&&document.getElementById('boomr-if-as')&&document.getElementById('boomr-if-as').nodeName.toLowerCase()=='script'){w=w.parent;}
+var impl,boomr,k,d=w.document;if(typeof w.outsystems.internal.BOOMR==="undefined"){w.outsystems.internal.BOOMR={};}
+outsystems.internal.BOOMR=w.outsystems.internal.BOOMR;if(outsystems.internal.BOOMR.version){return;}
+outsystems.internal.BOOMR.version="0.9.132569333655618329";outsystems.internal.BOOMR.window=w;impl={beacon_url:"",site_domain:w.location.hostname.replace(/.*?([^.]+\.[^.]+)\.?$/,'$1').toLowerCase(),//! User's ip address determined on the server.  Used for the BA cookie
+user_ip:'',events:{"page_ready":[],"page_unload":[],"dom_loaded":[],"visibility_changed":[],"before_beacon":[],"click":[]},vars:{},disabled_plugins:{},onclick_handler:function(ev){var target;if(!ev)ev=w.event;if(ev.target)target=ev.target;else if(ev.srcElement)target=ev.srcElement;if(target.nodeType==3)
+target=target.parentNode;impl.fireEvent("click",target);},fireEvent:function(e_name,data){var i,h,e;if(!this.events.hasOwnProperty(e_name)){return false;}
+e=this.events[e_name];for(i=0;i<e.length;i++){h=e[i];h[0].call(h[2],data,h[1]);}
+return true;},addListener:function(el,sType,fn){if(el.addEventListener){el.addEventListener(sType,fn,false);}
+else if(el.attachEvent){el.attachEvent("on"+sType,fn);}}};boomr={t_start:outsystems.internal.BOOMR_start,t_end:null,utils:{getCookie:function(name){if(!name){return null;}
+name=' '+name+'=';var i,cookies;cookies=' '+d.cookie+';';if((i=cookies.indexOf(name))>=0){i+=name.length;cookies=cookies.substring(i,cookies.indexOf(';',i));return cookies;}
+return null;},setCookie:function(name,subcookies,max_age){var value=[],k,nameval,c,exp;if(!name){return false;}
+for(k in subcookies){if(subcookies.hasOwnProperty(k)){value.push(encodeURIComponent(k)+'='+encodeURIComponent(subcookies[k]));}}
+value=value.join('&');nameval=name+'='+value;c=[nameval,"path=/","domain="+impl.site_domain];if(max_age){exp=new Date();exp.setTime(exp.getTime()+max_age*1000);exp=exp.toGMTString();c.push("expires="+exp);}
+if(nameval.length<4000){d.cookie=c.join('; ');return(value===this.getCookie(name));}
+return false;},getSubCookies:function(cookie){var cookies_a,i,l,kv,cookies={};if(!cookie){return null;}
+cookies_a=cookie.split('&');if(cookies_a.length===0){return null;}
+for(i=0,l=cookies_a.length;i<l;i++){kv=cookies_a[i].split('=');kv.push("");cookies[decodeURIComponent(kv[0])]=decodeURIComponent(kv[1]);}
+return cookies;},removeCookie:function(name){return this.setCookie(name,{},0);},pluginConfig:function(o,config,plugin_name,properties){var i,props=0;if(!config||!config[plugin_name]){return false;}
+for(i=0;i<properties.length;i++){if(typeof config[plugin_name][properties[i]]!=="undefined"){o[properties[i]]=config[plugin_name][properties[i]];props++;}}
+return(props>0);}},init:function(config){var i,k,properties=["beacon_url","site_domain","user_ip"];if(!config){config={};}
+for(i=0;i<properties.length;i++){if(typeof config[properties[i]]!=="undefined"){impl[properties[i]]=config[properties[i]];}}
+if(typeof config.log!=="undefined"){this.log=config.log;}
+if(!this.log){this.log=function(m,l,s){};}
+for(k in this.plugins){if(config[k]&&("enabled"in config[k])&&config[k].enabled===false){impl.disabled_plugins[k]=1;continue;}
+else if(impl.disabled_plugins[k]){delete impl.disabled_plugins[k];}
+if(this.plugins.hasOwnProperty(k)&&typeof this.plugins[k].init==="function"){this.plugins[k].init(config);}}
+if(!("autorun"in config)||config.autorun!==false){if("onpagehide"in w){impl.addListener(w,"pageshow",outsystems.internal.BOOMR.page_ready);}
+else{impl.addListener(w,"load",outsystems.internal.BOOMR.page_ready);}}
+impl.addListener(w,"DOMContentLoaded",function(){impl.fireEvent("dom_loaded");});var fire_visible=function(){impl.fireEvent("visibility_changed");}
+if(d.webkitVisibilityState)
+impl.addListener(d,"webkitvisibilitychange",fire_visible);else if(d.msVisibilityState)
+impl.addListener(d,"msvisibilitychange",fire_visible);else if(d.visibilityState)
+impl.addListener(d,"visibilitychange",fire_visible);impl.addListener(d,"mouseup",impl.onclick_handler);if(!("onpagehide"in w)){impl.addListener(w,"unload",function(){outsystems.internal.BOOMR.window=w=null;});}
+return this;},page_ready:function(){impl.fireEvent("page_ready");return this;},subscribe:function(e_name,fn,cb_data,cb_scope){var i,h,e;if(!impl.events.hasOwnProperty(e_name)){return this;}
+e=impl.events[e_name];for(i=0;i<e.length;i++){h=e[i];if(h[0]===fn&&h[1]===cb_data&&h[2]===cb_scope){return this;}}
+e.push([fn,cb_data||{},cb_scope||null]);if(e_name==='page_unload'){var unload_handler=function(){if(fn){fn.call(cb_scope,null,cb_data);}
+fn=cb_scope=cb_data=null;};if("onpagehide"in w){impl.addListener(w,"pagehide",unload_handler);}
+else{impl.addListener(w,"unload",unload_handler);impl.addListener(w,"beforeunload",unload_handler);}}
+return this;},addVar:function(name,value){if(typeof name==="string"){impl.vars[name]=value;}
+else if(typeof name==="object"){var o=name,k;for(k in o){if(o.hasOwnProperty(k)){impl.vars[k]=o[k];}}}
+return this;},removeVar:function(){var i,params;if(!arguments.length){return this;}
+if(arguments.length===1&&Object.prototype.toString.apply(arguments[0])==="[object Array]"){params=arguments[0];}
+else{params=arguments;}
+for(i=0;i<params.length;i++){if(impl.vars.hasOwnProperty(params[i])){delete impl.vars[params[i]];}}
+return this;},sendBeacon:function(){var k,url,img,nparams=0;for(k in this.plugins){if(this.plugins.hasOwnProperty(k)){if(impl.disabled_plugins[k]){continue;}
+if(!this.plugins[k].is_complete()){return this;}}}
+impl.vars.v=outsystems.internal.BOOMR.version;impl.vars.u=d.URL.replace(/#.*/,'');if(w!=window){impl.vars["if"]="";}
+impl.fireEvent("before_beacon",impl.vars);if(!impl.beacon_url){return this;}
+url=[];for(k in impl.vars){if(impl.vars.hasOwnProperty(k)){nparams++;url.push(encodeURIComponent(k)
++"="
++(impl.vars[k]===undefined||impl.vars[k]===null?'':encodeURIComponent(impl.vars[k])));}}
+url=impl.beacon_url+((impl.beacon_url.indexOf('?')>-1)?'&':'?')+url.join('&');if(nparams){img=new Image();img.src=url;}
+return this;}};delete outsystems.internal.BOOMR_start;var make_logger=function(l){return function(m,s){this.log(m,l,"boomerang"+(s?"."+s:""));return this;};};boomr.debug=make_logger("debug");boomr.info=make_logger("info");boomr.warn=make_logger("warn");boomr.error=make_logger("error");if(w.YAHOO&&w.YAHOO.widget&&w.YAHOO.widget.Logger){boomr.log=w.YAHOO.log;}
+else if(typeof w.Y!=="undefined"&&typeof w.Y.log!=="undefined"){boomr.log=w.Y.log;}
+else if(typeof console!=="undefined"&&typeof console.log!=="undefined"){boomr.log=function(m,l,s){console.log(s+": ["+l+"] "+m);};}
+for(k in boomr){if(boomr.hasOwnProperty(k)){outsystems.internal.BOOMR[k]=boomr[k];}}
+outsystems.internal.BOOMR.plugins=outsystems.internal.BOOMR.plugins||{};}(window));(function(w){var d=w.document;var wAddEventListener=w.addEventListener?w.addEventListener:function(eventName,fn){w.attachEvent('on'+eventName,fn);};outsystems.internal.BOOMR=outsystems.internal.BOOMR||{};outsystems.internal.BOOMR.plugins=outsystems.internal.BOOMR.plugins||{};var impl={complete:false,//! Set when this plugin has completed
+timers:{},//! Custom timers that the developer can use
+cookie:'RT',//! Name of the cookie that stores the start time and referrer
+cookie_exp:600,//! Cookie expiry in seconds
+cookieWasSet:false,strict_referrer:true,//! By default, don't beacon if referrers don't match.
+navigationType:0,navigationStart:undefined,responseStart:undefined,responseEnd:undefined,t_start:undefined,r:undefined,r2:undefined,setCookie:function(){var t_end,t_start=new Date().getTime();if(!this.cookie){return this;}
+var cookieValue={s:t_start,r:d.URL.replace(/#.*/,'')};if(!outsystems.internal.BOOMR.utils.setCookie(this.cookie,cookieValue,this.cookie_exp)){var cookieValueStr='s='+encodeURIComponent(cookieValue.s)+'&r='+encodeURIComponent(cookieValue.r);var cookieStr=this.cookie+'='+cookieValueStr;cookieStr+=';path=/';if(this.cookie_exp){var now=new Date();now.setTime(now.getTime()+this.cookie_exp*1000);cookieStr+=';expires='+now.toGMTString();}
+document.cookie=cookieStr;if(outsystems.internal.BOOMR.utils.getCookie(this.cookie)!==cookieValueStr){outsystems.internal.BOOMR.error("cannot set start cookie","rt");return this;}}
+t_end=new Date().getTime();if(t_end-t_start>50){outsystems.internal.BOOMR.utils.removeCookie(this.cookie);outsystems.internal.BOOMR.error("took more than 50ms to set cookie... aborting: "
++t_start+" -> "+t_end,"rt");}
+return this;},initFromCookie:function(){var subcookies;if(!this.cookie){return;}
+subcookies=outsystems.internal.BOOMR.utils.getSubCookies(outsystems.internal.BOOMR.utils.getCookie(this.cookie));if(!subcookies){return;}
+if(subcookies.s&&subcookies.r){this.r=subcookies.r;if(!this.strict_referrer||this.r===this.r2){this.t_start=parseInt(subcookies.s,10);}}},checkPreRender:function(){if(!(d.webkitVisibilityState&&d.webkitVisibilityState==="prerender")&&!(d.msVisibilityState&&d.msVisibilityState===3)){return false;}
+outsystems.internal.BOOMR.plugins.RT.startTimer("t_load",this.navigationStart);outsystems.internal.BOOMR.plugins.RT.endTimer("t_load");outsystems.internal.BOOMR.plugins.RT.startTimer("t_prerender",this.navigationStart);outsystems.internal.BOOMR.plugins.RT.startTimer("t_postrender");outsystems.internal.BOOMR.subscribe("visibility_changed",outsystems.internal.BOOMR.plugins.RT.done,null,outsystems.internal.BOOMR.plugins.RT);return true;},initNavTiming:function(){var ti,p,source;if(this.navigationStart){return;}
+p=w.performance||w.msPerformance||w.webkitPerformance||w.mozPerformance;if(p&&p.navigation){this.navigationType=p.navigation.type;}
+if(p&&p.timing){ti=p.timing;}
+else if(w.chrome&&w.chrome.csi&&w.chrome.csi().startE){ti={navigationStart:w.chrome.csi().startE};source="csi";}
+else if(w.gtbExternal&&w.gtbExternal.startE()){ti={navigationStart:w.gtbExternal.startE()};source='gtb';}
+if(ti){outsystems.internal.BOOMR.addVar("rt.start",source||"navigation");this.navigationStart=ti.navigationStart||ti.fetchStart||undefined;this.responseStart=ti.responseStart||undefined;this.responseEnd=ti.responseEnd||undefined;if(navigator.userAgent.match(/Firefox\/[78]\./)){this.navigationStart=ti.unloadEventStart||ti.fetchStart||undefined;}}
+else{outsystems.internal.BOOMR.warn("This browser doesn't support the WebTiming API","rt");}
+return;},domloaded:function(){outsystems.internal.BOOMR.plugins.RT.endTimer("t_domloaded");}};outsystems.internal.BOOMR.plugins.RT={init:function(config){if(w!=outsystems.internal.BOOMR.window){w=outsystems.internal.BOOMR.window;d=w.document;}
+outsystems.internal.BOOMR.utils.pluginConfig(impl,config,"RT",["cookie","cookie_exp","strict_referrer"]);if(impl.complete){return this;}
+impl.complete=false;impl.timers={};outsystems.internal.BOOMR.subscribe("page_ready",this.done,null,this);outsystems.internal.BOOMR.subscribe("dom_loaded",impl.domloaded,null,impl);var setCookieIfNotSet=function(){if(!impl.cookieWasSet){impl.setCookie();}
+impl.cookieWasSet=true;}
+wAddEventListener('beforeunload',setCookieIfNotSet);wAddEventListener('pagehide',setCookieIfNotSet);wAddEventListener('unload',setCookieIfNotSet);if(outsystems.internal.BOOMR.t_start){this.startTimer('boomerang',outsystems.internal.BOOMR.t_start);this.endTimer('boomerang',outsystems.internal.BOOMR.t_end);this.endTimer('boomr_fb',outsystems.internal.BOOMR.t_start);}
+impl.r=impl.r2=d.referrer.replace(/#.*/,'');impl.initFromCookie();return this;},startTimer:function(timer_name,time_value){if(timer_name){if(timer_name==='t_page'){this.endTimer('t_resp',time_value);}
+impl.timers[timer_name]={start:(typeof time_value==="number"?time_value:new Date().getTime())};impl.complete=false;}
+return this;},endTimer:function(timer_name,time_value){if(timer_name){impl.timers[timer_name]=impl.timers[timer_name]||{};if(!("end"in impl.timers[timer_name])){impl.timers[timer_name].end=(typeof time_value==="number"?time_value:new Date().getTime());}}
+return this;},setTimer:function(timer_name,time_delta){if(timer_name){impl.timers[timer_name]={delta:time_delta};}
+return this;},done:function(){var t_start,t_done=new Date().getTime(),basic_timers={t_done:1,t_resp:1,t_page:1,t_lastByte:1},ntimers=0,t_name,timer,t_other=[];impl.complete=false;impl.initNavTiming();if(impl.checkPreRender()){return this;}
+if(impl.responseStart){this.endTimer("t_resp",impl.responseStart);if(impl.timers.t_load){this.setTimer("t_page",impl.timers.t_load.end-impl.responseStart);}
+else{this.setTimer("t_page",t_done-impl.responseStart);}
+if(impl.responseEnd){this.setTimer("t_lastByte",impl.responseEnd-impl.navigationStart);}}
+else if(impl.timers.hasOwnProperty('t_page')){this.endTimer("t_page");}
+if(impl.timers.hasOwnProperty('t_postrender')){this.endTimer("t_postrender");this.endTimer("t_prerender");}
+if(impl.navigationStart){t_start=impl.navigationStart;}
+else if(impl.t_start&&impl.navigationType!==2){t_start=impl.t_start;outsystems.internal.BOOMR.addVar("rt.start","cookie");}
+else{outsystems.internal.BOOMR.addVar("rt.start","none");t_start=undefined;}
+this.endTimer("t_done",t_done);outsystems.internal.BOOMR.removeVar('t_done','t_page','t_resp','t_lastByte','r','r2','rt.tstart','rt.bstart','rt.end','t_postrender','t_prerender','t_load');outsystems.internal.BOOMR.addVar('rt.tstart',t_start);outsystems.internal.BOOMR.addVar('rt.bstart',outsystems.internal.BOOMR.t_start);outsystems.internal.BOOMR.addVar('rt.end',impl.timers.t_done.end);for(t_name in impl.timers){if(!impl.timers.hasOwnProperty(t_name)){continue;}
+timer=impl.timers[t_name];if(typeof timer.delta!=="number"){if(typeof timer.start!=="number"){timer.start=t_start;}
+timer.delta=timer.end-timer.start;}
+if(isNaN(timer.delta)){continue;}
+if(basic_timers.hasOwnProperty(t_name)){outsystems.internal.BOOMR.addVar(t_name,timer.delta);}
+else{t_other.push(t_name+'|'+timer.delta);}
+ntimers++;}
+if(ntimers){outsystems.internal.BOOMR.addVar("r",impl.r);if(impl.r2!==impl.r){outsystems.internal.BOOMR.addVar("r2",impl.r2);}
+if(t_other.length){outsystems.internal.BOOMR.addVar("t_other",t_other.join(','));}}
+impl.timers={};impl.complete=true;outsystems.internal.BOOMR.sendBeacon();return this;},is_complete:function(){return impl.complete;}};}(window));(function(w){var d=w.document;outsystems.internal.BOOMR=outsystems.internal.BOOMR||{};outsystems.internal.BOOMR.plugins=outsystems.internal.BOOMR.plugins||{};var RTPlugin=outsystems.internal.BOOMR.plugins.RT;var impl={cookieName:'RT',cookieExp:600,cookieWasSet:false,setCookie:function(){if(this.cookieWasSet)
+return this;var t_end,t_start=new Date().getTime();if(!outsystems.internal.BOOMR.utils.setCookie(this.cookieName,{s:t_start,r:d.URL.replace(/#.*/,'')},this.cookieExp)){outsystems.internal.BOOMR.error("cannot set start cookie","rt");return this;}
+t_end=new Date().getTime();if(t_end-t_start>50){outsystems.internal.BOOMR.addVar('cookie_failed',"1");outsystems.internal.BOOMR.utils.removeCookie(this.cookieName);outsystems.internal.BOOMR.error("took more than 50ms to set cookie... aborting: "
++t_start+" -> "+t_end,"rt");return this;}
+this.cookieWasSet=true;return this;}};}(window));var OSNowMonitoringAPI=new function(){this.version="v1.0.2";this.preparation=function(errorFallback){if(!('OutSystemsNowMonitoring'in window)){window.OutSystemsNowMonitoring=true;head=document.getElementsByTagName('head')[0];script=document.createElement('script');script.type='text/javascript';script.src='';script.onerror=function(){errorFallback();}
+head.appendChild(script);}};this.getDeviceInfo=function(success,error){error("OSNowMonitoring api is deprecated");};this.getSimInfo=function(success,error){error("OSNowMonitoring api is deprecated");};this.getNetworkInfo=function(success,error){error("OSNowMonitoring api is deprecated");};this.getLocationInfo=function(success,error){error("OSNowMonitoring api is deprecated");};}
+if(!Date.prototype.toISOString){(function(){function pad(number){if(number<10){return'0'+number;}
+return number;}
+Date.prototype.toISOString=function(){return this.getUTCFullYear()+'-'+pad(this.getUTCMonth()+1)+'-'+pad(this.getUTCDate())+'T'+pad(this.getUTCHours())+':'+pad(this.getUTCMinutes())+':'+pad(this.getUTCSeconds())+'.'+(this.getUTCMilliseconds()/1000).toFixed(3).slice(2,5)+'Z';};}());}
+outsystems.internal.ProbeCore=function(){this.responseStart=0;}
+outsystems.internal.ProbeCore.prototype.addDataToBoomerang=function(){if(typeof outsystems.internal.BOOMR!='undefined'){outsystems.internal.BOOMR.addVar('SR',this.SR);outsystems.internal.BOOMR.addVar('RK',this.RK);outsystems.internal.BOOMR.addVar('VK',this.VK);outsystems.internal.BOOMR.addVar('ViK',this.ViK);outsystems.internal.BOOMR.addVar('SK',this.SK);outsystems.internal.BOOMR.addVar('UK',this.UK);outsystems.internal.BOOMR.addVar('AK',this.AK);outsystems.internal.BOOMR.addVar('EK',this.EK);outsystems.internal.BOOMR.addVar('WK',this.WK);outsystems.internal.BOOMR.addVar('WN',this.WN);outsystems.internal.BOOMR.addVar('TK',this.TK);outsystems.internal.BOOMR.addVar('EvK',this.EvK);outsystems.internal.BOOMR.addVar('FK',this.FK);}}
+outsystems.internal.ProbeCore.prototype.collectData=function(){var api=this.getOutsystemsAPI();this.SR=this.getScreen().width+'x'+this.getScreen().height;this.RK=api.requestInfo.getRequestKey();this.VK=api.requestInfo.getVisitorKey();this.ViK=api.requestInfo.getVisitKey()
+this.SK=api.requestInfo.getSessionKey();this.UK=api.requestInfo.getUserKey();this.AK=api.requestInfo.getApplicationKey();this.EK=api.requestInfo.getEspaceKey();this.WK=api.requestInfo.getWebScreenKey();this.WN=api.requestInfo.getWebScreenName()
+this.TK=api.requestInfo.getTenantKey();this.EvK=api.requestInfo.getEnvironmentKey();this.FK=api.requestInfo.getFrontendKey();this.collectTimers();}
+outsystems.internal.ProbeCore.prototype.collectTimers=function(){this.responseStart=this.getOutsystemsInternal().timerspolyfillResponseStart;}
+outsystems.internal.ProbeCore.prototype.getOutsystemsAPI=function(){return outsystems.api;}
+outsystems.internal.ProbeCore.prototype.getOutsystemsInternal=function(){return outsystems.internal;}
+outsystems.internal.ProbeCore.prototype.getScreen=function(){return screen;}
+outsystems.internal.ProbeCore.prototype.getNavigator=function(){return navigator;}
+outsystems.internal.ProbeCore.prototype.getOSNowMonitoringAPI=function(){return OSNowMonitoringAPI;}
+outsystems.internal.ProbeCore.prototype.getRequestEventBody=function(data){var reqEvent=data.ajaxReqEvent;var api=this.getOutsystemsAPI().requestInfo;return{"Instant":(reqEvent)?(new Date(reqEvent.requestStart)).toISOString():this.getOutsystemsInternal().startInstant.toISOString(),"RequestKey":(reqEvent)?reqEvent.requestKey:api.getRequestKey(),"RequestEventName":this.getOutsystemsInternal().requestEventName,"ModuleKey":api.getEspaceKey(),"ModuleName":api.getEspaceName(),"ApplicationKey":api.getApplicationKey(),"ApplicationName":api.getApplicationName(),"RequestEventDetails":{}};}
+outsystems.internal.ProbeCore.prototype.getRequestEventDetails=function(details,data){var reqEvent=data.ajaxReqEvent;var api=this.getOutsystemsAPI().requestInfo;details["AK"]=(reqEvent)?reqEvent.screenActionKey:api.getWebScreenKey()+".#Preparation";details["AN"]=(reqEvent)?reqEvent.screenActionName:"Preparation";details["EPK"]=api.getWebScreenKey();details["EPN"]=api.getWebScreenName();details["TK"]=api.getTenantKey();details["TN"]=api.getTenantName();details["EK"]=api.getEnvironmentKey();details["EN"]=api.getEnvironmentName();details["FN"]=api.getFrontendKey();details["VK"]=api.getVisitorKey();details["ViK"]=api.getVisitKey();details["SK"]=api.getSessionKey();details["UK"]=api.getUserKey();details["SR"]=this.getScreen().width+'x'+this.getScreen().height;details["D"]=(reqEvent)?reqEvent.requestEnd-reqEvent.requestStart:data["t_done"];details["LT"]=(reqEvent)?reqEvent.requestEnd-reqEvent.requestLoadStart:data["t_page"];details["TTFB"]=(reqEvent)?reqEvent.requestLoadStart-reqEvent.requestStart:data["t_resp"];details["TTLB"]=(reqEvent)?reqEvent.responseEnd-reqEvent.requestStart:data["t_lastByte"];details["BGTD"]="-"+data["t_done"];details["BGCK"]="-"+data["cookie_failed"];details["BGVR"]="-"+data["isValidReferrer"];details["BGBC"]="-"+data["FromBrowserCache"];if(typeof outsystems.internal.BOOMR!='undefined'){outsystems.internal.BOOMR.removeVar("cookie_failed");outsystems.internal.BOOMR.removeVar("isValidReferrer");outsystems.internal.BOOMR.removeVar("FromBrowserCache");}
+for(var i in details){if(details.hasOwnProperty(i)&&typeof details[i]==="number"&&(details[i]<0||details[i]>2147483647)){details[i]=-1;}}}
+outsystems.internal.ProbeCore.prototype.getRequestOSNowDetails=function(details){if(this.isOSNowAgent()){var OSNowErrorHandler=function(){}
+this.getOSNowMonitoringAPI().getDeviceInfo(function(deviceInfo){details["DMan"]=deviceInfo.manufacturer;details["DMod"]=deviceInfo.model;details["DPlat"]=deviceInfo.platform;details["DPlatV"]=deviceInfo.platformVersion;},OSNowErrorHandler);this.getOSNowMonitoringAPI().getSimInfo(function(simInfo){details["CN"]=simInfo.carrierName;details["CCC"]=simInfo.countryCode;details["CNT"]=simInfo.networkType;},OSNowErrorHandler);this.getOSNowMonitoringAPI().getNetworkInfo(function(networkInfo){details["NT"]=networkInfo.type;},OSNowErrorHandler);}}
+outsystems.internal.ProbeCore.prototype.generateRequestEvent=function(data){var result=this.getRequestEventBody(data);this.getRequestEventDetails(result.RequestEventDetails,data);this.getRequestOSNowDetails(result.RequestEventDetails);return result;};outsystems.internal.ProbeCore.prototype.isOSNowAgent=function(){return this.getNavigator().userAgent.indexOf("OutSystemsApp")!=-1;}
+outsystems.internal.ProbeCore.prototype.isWindowsPhoneOSNow=function(){var usrAgent=this.getNavigator().userAgent;return((usrAgent.indexOf("Windows Phone 8.1")!=-1)||(usrAgent.indexOf("Windows Phone 10.0")!=-1))&&usrAgent.indexOf("MSAppHost")!=-1;}
+outsystems.internal.ProbeCore.windowsOSNowDetected=false;outsystems.internal.ProbeCore.prototype.windowsCallback=function(){outsystems.internal.ProbeCore.windowsOSNowDetected=true;}
+if(typeof(define)!=='undefined'){define([],function(){return outsystems.internal.ProbeCore;});}
+outsystems.internal.ProbeInit=function(){this.ajaxcount=0;this.beaconSent=false;this.hasNavigationAPI=typeof performance!='undefined'&&performance!=null;this.requestTrackLimit=100;this.utils={getCookie:outsystems.internal.BOOMR.utils.getCookie,setCookie:function(key,value){document.cookie=[key,'=',value].join('');}}
+this.probeCore=new outsystems.internal.ProbeCore();this.bindToEvents();this.initBoomerang();}
+outsystems.internal.ProbeInit.prototype.initBoomerang=function(){outsystems.internal.BOOMR.init({beacon_url:'',user_ip:outsystems.api.requestInfo.getVisitorKey(),autorun:false,RT:{enabled:true,strict_referrer:!this.isValidReferrer()}});}
+outsystems.internal.ProbeInit.prototype.stopBoomerang=function(boomerangObject){var paramNames=[],key;for(key in boomerangObject){if(boomerangObject.hasOwnProperty(key)){paramNames.push(key);}}
+outsystems.internal.BOOMR.removeVar(paramNames);}
+outsystems.internal.ProbeInit.prototype.pageIsReady=function(){this.probeCore.collectData();this.probeCore.addDataToBoomerang();}
+outsystems.internal.ProbeInit.prototype.sendToBeacon=function(){if(!this.beaconSent){if(!this.hasNavigationAPI){outsystems.internal.BOOMR.plugins.RT.startTimer("t_page",this.probeCore.responseStart);}
+outsystems.internal.BOOMR.page_ready();}
+this.beaconSent=true;}
+outsystems.internal.ProbeInit.prototype.isValidReferrer=function(){if(!this.hasNavigationAPI){var rtCookie=outsystems.internal.BOOMR.utils.getCookie('RT');if(rtCookie){var subcookies=outsystems.internal.BOOMR.utils.getSubCookies(rtCookie);if(subcookies.r===document.URL){var today=new Date();var now=today.getTime();if(Math.abs(now-subcookies.s)>=5000){return false;}}}}
+return true;}
+outsystems.internal.ProbeInit.prototype.requestWasSent=function(requestKey,storage){var requestsSent=storage.getItem('requestsSent');var requestsSentArray;if(requestsSent!=null){if(requestsSent.indexOf(requestKey)>=0)return true;requestsSentArray=requestsSent.split(",");}
+else{requestsSentArray=[];}
+requestsSentArray.push(requestKey);if(requestsSentArray.length>this.requestTrackLimit)requestsSentArray.shift();storage.setItem('requestsSent',requestsSentArray.join(","));return false;}
+outsystems.internal.ProbeInit.prototype.wasLoadedFromBrowserCache=function(){return this.hasNavigationAPI&&performance.navigation.type==performance.navigation.TYPE_BACK_FORWARD;};outsystems.internal.ProbeInit.prototype.bindToEvents=function(){var thatProbeInit=this;outsystems.internal.BOOMR.subscribe("before_beacon",function(data){if(data["t_page"]<0){data["t_page"]=data["rt.end"]-thatProbeInit.probeCore.responseStart;}
+var result=thatProbeInit.probeCore.generateRequestEvent(data);var sendOSBeacon=function(){if(result.RequestKey=="")return;if(thatProbeInit.requestWasSent(result.RequestKey,sessionStorage)){result.RequestKey="";}
+result.RequestEventDetails=JSON.stringify(removeEmptyItems(result.RequestEventDetails));result=JSON.stringify(result);outsystems.internal.$.ajax({type:"POST",url:outsystems.internal.beaconRESTURL,data:result,contentType:"application/json; charset=utf-8",dataType:"json"});};var resultReady=function(result){if(!thatProbeInit.probeCore.isOSNowAgent()){return true;}
+if(result==undefined){return false;}
+return typeof(result.RequestEventDetails.DMan)!='undefined'&&typeof(result.RequestEventDetails.CN)!='undefined'&&typeof(result.RequestEventDetails.NT)!='undefined';};var maxPolls=16;var pollingPeriod=200;var waitForResultReady=function(maxTime){if(resultReady(result)||maxTime<=0){sendOSBeacon();}else{setTimeout(function(){waitForResultReady(maxTime-pollingPeriod)},pollingPeriod);}}
+waitForResultReady(maxPolls*pollingPeriod);outsystems.internal.BOOMR.removeVar("rt.start","rt.tstart","rt.bstart","rt.end","t_resp","t_lastByte","t_other","r","v","u","r2");if(data.ajaxReqEvent){outsystems.internal.BOOMR.removeVar("ajaxReqEvent");}
+if(!thatProbeInit.isValidReferrer()||thatProbeInit.wasLoadedFromBrowserCache()){outsystems.internal.BOOMR.addVar('isValidReferrer',thatProbeInit.isValidReferrer());outsystems.internal.BOOMR.addVar('FromBrowserCache',thatProbeInit.wasLoadedFromBrowserCache());outsystems.internal.BOOMR.removeVar("t_done");}});var removeEmptyItems=function(json){for(var property in json){if(json[property]==null||json[property]==""){delete json[property];}}
+return json;};var startBeaconResponse=function(){thatProbeInit.pageIsReady();OSNowFallback=function(){thatProbeInit.probeCore.isOSNowAgent=function(){return false;};thatProbeInit.probeCore.isWindowsPhoneOSNow=function(){return false;};setTimeout(outsystems.internal.$.proxy(thatProbeInit.sendToBeacon,thatProbeInit),10);};if(thatProbeInit.probeCore.isOSNowAgent()){OSNowMonitoringAPI.preparation(OSNowFallback);document.addEventListener('deviceready',function(){thatProbeInit.sendToBeacon();});}else if(thatProbeInit.probeCore.isWindowsPhoneOSNow()){OSNowMonitoringAPI.preparation(OSNowFallback);try{var jsonWin={plugin_name:"DeviceReady",plugin_params:"outsystems.internal.ProbeCore.prototype.windowsCallback();"};window.external.notify(JSON.stringify(jsonWin));}catch(e){}
+setTimeout(function(){if(outsystems.internal.ProbeCore.windowsOSNowDetected){thatProbeInit.probeCore.isOSNowAgent=function(){return true;};}
+thatProbeInit.sendToBeacon();},200);}else{setTimeout(outsystems.internal.$.proxy(thatProbeInit.sendToBeacon,thatProbeInit),10);}};outsystems.internal.$(window).ready(function(){osAjaxBackend.BindAfterAjaxRequest(function(){var ajaxReqEvent=this[0].requestEvent;ajaxReqEvent.requestEnd=(new Date()).getTime();outsystems.internal.BOOMR.addVar('ajaxReqEvent',ajaxReqEvent);thatProbeInit.beaconSent=false;startBeaconResponse();});outsystems.internal.$(window).load(function(){startBeaconResponse();});});};if(typeof outsystems!=='undefined'){outsystems.internal.probe=new outsystems.internal.ProbeInit();}
+if(typeof(define)!=='undefined'){define([],function(){return outsystems.internal.ProbeInit;});}
+outsystems.internal.BOOMR.t_end=new Date().getTime();

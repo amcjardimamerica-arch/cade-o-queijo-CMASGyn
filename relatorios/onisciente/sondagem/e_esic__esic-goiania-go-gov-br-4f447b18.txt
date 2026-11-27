@@ -1,0 +1,7 @@
+URL: https://esic.goiania.go.gov.br/
+POST: {}
+OK: False
+HTTP: None
+ERRO: URLError: [Errno -2] Name or service not known
+BYTES: 0
+
