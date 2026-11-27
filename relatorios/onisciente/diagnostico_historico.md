@@ -1,6 +1,6 @@
 # Diagnóstico da coleta histórica (2024-11 a 2026-11)
 
-Rodada de 2026-11-26T23:53:08+00:00. Banco: `dados/onisciente/historico.db`.
+Rodada de 2026-11-27T01:38:10+00:00. Banco: `dados/onisciente/historico.db`.
 
 Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna na fonte (ela respondeu e o dado não estava lá). As duas nunca se misturam.
 
@@ -13,7 +13,7 @@ Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna na fonte (
 | Portais e endereços configurados | 25 | 20 | 5 | 0 | 253.3 |
 | Matriz de Saldos Contábeis (SICONFI) | 24 | 24 | 0 | 0 | 38.7 |
 | Contratações (PNCP) | 618 | 617 | 1 | 0 | 17295.3 |
-| Detalhe das compras e contratos (PNCP e Compras.gov.br) | 97 | 86 | 11 | 0 | 6045.0 |
+| Detalhe das compras e contratos (PNCP e Compras.gov.br) | 919 | 917 | 2 | 0 | 12424.9 |
 | Diário Oficial pelo Querido Diário | 50 | 0 | 50 | 0 | 210.6 |
 | SICONFI (Tesouro Nacional) | 23 | 23 | 0 | 0 | 5.9 |
 | SICONFI pelos endereços antigos | 2 | 0 | 2 | 0 | 1.2 |
