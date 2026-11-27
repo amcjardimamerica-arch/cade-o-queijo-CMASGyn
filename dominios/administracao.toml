@@ -1,0 +1,18 @@
+# Domínio: Administração. A máquina da Prefeitura: administração geral, financeira, controle interno,
+# recursos humanos e comunicação social (função 04 inteira).
+id = "administracao"
+nome = "Administração"
+ativo = true
+funcao = "04"
+recorte = ["04"]
+orgaos = ["ADMINISTRACAO", "FINANCAS", "CONTROLADORIA", "COMUNICACAO", "PROCURADORIA"]
+dados = "siconfi"
+# Nenhuma fonte vinculada tem a administração como leito: a água aqui é livre.
+fontes_vinculadas = []
+regras = []
+
+[qualidade]
+plano = "Plano Plurianual, programas de gestão"
+norma_do_plano = "CF, art. 165, § 1º; LC 101/2000, art. 4º"
+indicador = "despesa administrativa sobre a despesa total"
+fonte = "RREO Anexo 2 (função 04 sobre o total)"

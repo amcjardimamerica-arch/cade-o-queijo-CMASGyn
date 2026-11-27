@@ -1,12 +1,16 @@
-# Domínio: Educação e Fundeb. Entra na trilha completa na fase 4 do roteiro.
+# Domínio: Educação e Fundeb. Ativo desde a fase 4 do roteiro (27/11/2026): execução da função 12
+# pelo RREO e pela matriz, a origem do FNDE e os pisos do art. 212 da CF e do FUNDEB.
 id = "educacao"
 nome = "Educação"
-ativo = false
+ativo = true
 funcao = "12"
 fundo = "Fundeb"
 dados = "siconfi"
 fontes_vinculadas = ["1540", "1541", "1542", "1543", "1550", "1551", "1552", "1553", "1569"]
 regras = ["PISO-EDUCACAO", "FUNDEB-PROFISSIONAIS", "FUNDEB-SALDO"]
+recorte = ["12"]
+orgaos = ["EDUCACAO", "MANUTENCAO E DESENVOLVIMENTO DO ENSINO"]
+origem = "FNDE (salário-educação, alimentação e transporte escolar)"
 
 [siconfi]
 demonstrativo = "rreo"
@@ -14,5 +18,7 @@ anexo = "RREO-Anexo 8"
 periodo = 6
 
 [qualidade]
+plano = "Plano Municipal de Educação"
+norma_do_plano = "Lei 13.005/2014, art. 8º"
 indicador = "vagas em creche"
 fonte = "Censo Escolar, INEP"

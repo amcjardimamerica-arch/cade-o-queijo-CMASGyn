@@ -1,0 +1,30 @@
+# Segundo alvo do Onisciente (requisito 166): outro Município é outro arquivo, nenhuma linha de código.
+# As secretarias reusam os mesmos dominios/*.toml; o recorte por função e subfunção vale para
+# qualquer ente, porque a classificação funcional (Portaria MOG 42/1999) é nacional.
+nome = "Prefeitura de Anápolis"
+municipio = "Anápolis"
+uf = "GO"
+ibge = 5201108
+siconfi_id_ente = 5201108
+# CF, art. 29-A, inciso III (de 300.001 a 500.000 habitantes). Anápolis tem perto de 400 mil
+# habitantes no Censo 2022: conferir a população do ano anterior no IBGE antes de usar em ofício.
+faixa_camara = "III"
+orgao_lai = "Controladoria-Geral do Município de Anápolis"   # conferir a lei municipal de acesso
+abertura_sessao_legislativa = [2, 1]                          # conferir no Regimento da Câmara
+# Sem coletor do portal da execução para este ente ainda: as conferências item a item ficam sem
+# medida e o parecer diz o motivo. Basta escrever alvos/portais/anapolis.toml para ligar.
+portal_despesa = ""
+primeiro_exercicio = 2019
+ultimo_exercicio_ppa = 2029
+
+[dominios]
+saude          = "dominios/saude.toml"
+educacao       = "dominios/educacao.toml"
+assistencia    = "dominios/assistencia.toml"
+infraestrutura = "dominios/infraestrutura.toml"
+comurg         = "dominios/comurg.toml"
+administracao  = "dominios/administracao.toml"
+
+# O nome da pasta como o ente a chama (o recorte não muda).
+[nomes_dominios]
+comurg = "Limpeza urbana"

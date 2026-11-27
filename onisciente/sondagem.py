@@ -194,6 +194,34 @@ CANDIDATOS: dict[str, list[str]] = {
         "https://www.goiania.go.gov.br/transparencia/",
         "https://goiania.nucleogov.com.br/cidadao/",
     ],
+    # Frente D2 (execução da despesa de Goiânia): as páginas candidatas do TransWeb listadas em
+    # alvos/portais/goiania.toml (nenhum caminho de consulta confirmado) e o portal novo em WordPress.
+    # O que responder com formulário dá os nomes reais dos campos para ajustar o toml.
+    "d2_transweb": [
+        "https://www10.goiania.go.gov.br/transweb/Home.aspx",
+        "https://www10.goiania.go.gov.br/transweb/PortaldaTransparencia.aspx?Antigo=True",
+        "https://www10.goiania.go.gov.br/transweb/Default.aspx",
+        "https://www10.goiania.go.gov.br/transweb/PerguntasFrequentes.aspx",
+        "https://www10.goiania.go.gov.br/transweb/EmpenhoOrgao.aspx",
+        "https://www10.goiania.go.gov.br/transweb/ConsultaEmpenhoOrgao.aspx",
+        "https://www10.goiania.go.gov.br/transweb/Empenho/EmpenhoPorOrgao.aspx",
+        "https://www10.goiania.go.gov.br/transweb/EmpenhoPorOrgao.aspx",
+        "https://www10.goiania.go.gov.br/transweb/Consultas/EmpenhoOrgao.aspx",
+        "https://www10.goiania.go.gov.br/transweb/EmpenhoCredor.aspx",
+        "https://www10.goiania.go.gov.br/transweb/ConsultaEmpenhoCredor.aspx",
+        "https://www10.goiania.go.gov.br/transweb/EmpenhoPorCredor.aspx",
+        "https://www10.goiania.go.gov.br/transweb/OrdemPagamentoOrgao.aspx",
+        "https://www10.goiania.go.gov.br/transweb/ConsultaOrdemPagamento.aspx",
+        "https://www10.goiania.go.gov.br/transweb/OrdemPagamento.aspx",
+        "https://www10.goiania.go.gov.br/transweb/OrdemDePagamentoPorOrgao.aspx",
+    ],
+    "d2_wordpress": [
+        "https://www.goiania.go.gov.br/transparencia/",
+        "https://www.goiania.go.gov.br/transparencia/?filtro_simplificado=categoria&categoria=49",
+        "https://www.goiania.go.gov.br/wp-json/wp/v2/categories?per_page=100",
+        "https://www.goiania.go.gov.br/wp-json/wp/v2/media?per_page=20&search=despesa",
+        "https://www.goiania.go.gov.br/wp-json/",
+    ],
     "fns2": [
         "https://consultafns.saude.gov.br/",
         "https://apifns.saude.gov.br/api/",

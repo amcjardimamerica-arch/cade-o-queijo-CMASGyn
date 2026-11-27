@@ -1,0 +1,19 @@
+# Domínio: Comurg (Companhia de Urbanização de Goiânia). Limpeza urbana e resíduos sólidos: os
+# serviços urbanos da função 15 (subfunção 452) e o saneamento básico urbano da função 17
+# (subfunção 512), onde o Município registra a coleta e a limpeza que contrata da companhia.
+# O recorte foi lido na matriz de saldos contábeis de 2025 e se ajusta aqui, sem mudar código.
+id = "comurg"
+nome = "Comurg (limpeza urbana)"
+ativo = true
+funcao = "17"
+recorte = ["17.512", "15.452"]
+orgaos = ["COMURG", "COMPANHIA DE URBANIZACAO", "LIMPEZA URBANA"]
+dados = "siconfi"
+fontes_vinculadas = []
+regras = []
+
+[qualidade]
+plano = "Plano Municipal de Gestão Integrada de Resíduos Sólidos"
+norma_do_plano = "Lei 12.305/2010, art. 19; Lei 14.026/2020"
+indicador = "custo da limpeza urbana por habitante"
+fonte = "SNIS / SINISA, Ministério das Cidades"

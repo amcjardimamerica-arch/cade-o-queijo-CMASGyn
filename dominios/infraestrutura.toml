@@ -1,0 +1,19 @@
+# Domínio: Infraestrutura. Obras e transporte: a infraestrutura urbana da função 15 (subfunção 451)
+# e a função 26 inteira (transporte), onde Goiânia registra a pavimentação e a manutenção viária.
+# O recorte foi lido na matriz de saldos contábeis de 2025 (funções e subfunções com empenho) e
+# se ajusta aqui, sem mudar código, quando o QDD ou o portal mostrar outra classificação.
+id = "infraestrutura"
+nome = "Infraestrutura"
+ativo = true
+funcao = "26"
+recorte = ["26", "15.451"]
+orgaos = ["INFRAESTRUTURA", "OBRAS", "ENGENHARIA DE TRANSITO", "MOBILIDADE"]
+dados = "siconfi"
+fontes_vinculadas = []
+regras = []
+
+[qualidade]
+plano = "Plano Diretor e Plano de Mobilidade Urbana"
+norma_do_plano = "Lei 10.257/2001, art. 40; Lei 12.587/2012, art. 24"
+indicador = "obras com medição publicada sobre obras contratadas"
+fonte = "PNCP (contratos de obras) e portal da execução (liquidações)"
