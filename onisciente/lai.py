@@ -114,6 +114,14 @@ def lei_estadual_de_acesso() -> str:
     return ""
 
 
+def _fundamento(texto: str, esfera_: str) -> str:
+    """Para o Estado e a União, sai a lei municipal de acesso (não os obriga); fica a Lei 12.527/2011."""
+    if esfera_ == "municipal":
+        return texto
+    partes = [x.strip() for x in texto.split(";") if "9.262" not in x]
+    return "; ".join(partes) or "Lei 12.527/2011, art. 8º"
+
+
 def orgao_competente(a: Ausencia) -> str:
     if a.orgao and a.orgao != CGM:
         return a.orgao
@@ -205,7 +213,7 @@ class Oficio:
             periodo = f" ({a.periodo})" if a.periodo else ""
             linhas.append(f"  {i}. {a.o_que_falta}{periodo}. Sem ele fica impedida a conferência: "
                           f"{a.conferencia_impedida}. Deveria estar em: {a.onde_deveria_estar}. "
-                          f"Fundamento: {a.fundamento}.")
+                          f"Fundamento: {_fundamento(a.fundamento, esfera(self.destinatario))}.")
         linhas += [
             "",
             "O prazo de resposta é de 20 dias, prorrogável por mais 10 mediante justificativa "

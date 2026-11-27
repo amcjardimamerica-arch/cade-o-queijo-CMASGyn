@@ -44,9 +44,12 @@ h3{font-size:18px;margin:0 0 6px}
 .grafico .th{font-size:15px;font-weight:600;fill:#1F2933}
 .ficha{background:var(--cartao);border:1px solid var(--linha);border-left:6px solid var(--alta);
 border-radius:10px;padding:14px 16px;margin:12px 0}
-.ficha.critica{border-left-color:var(--critica)}.ficha.media{border-left-color:var(--media)}
-.ficha dl{display:grid;grid-template-columns:150px 1fr;gap:4px 12px;margin:8px 0 0}
-.ficha dt{color:var(--apagado);font-size:14px}.ficha dd{margin:0}
+.ficha-selo{background:var(--cartao);border:1px solid var(--linha);border-left:6px solid var(--alta);
+border-radius:10px;padding:14px 16px;margin:12px 0}
+.ficha.critica,.ficha-selo.critica{border-left-color:var(--critica)}
+.ficha.media,.ficha-selo.media{border-left-color:var(--media)}
+.ficha dl,.ficha-selo dl{display:grid;grid-template-columns:150px 1fr;gap:4px 12px;margin:8px 0 0}
+.ficha dt,.ficha-selo dt{color:var(--apagado);font-size:14px}.ficha dd,.ficha-selo dd{margin:0}
 .etiqueta{display:inline-block;font-size:12px;font-weight:600;border-radius:999px;padding:1px 9px;
 margin-right:6px;color:#fff;vertical-align:middle}
 .g-critica{background:var(--critica)}.g-alta{background:var(--alta)}.g-media{background:var(--media)}
@@ -67,7 +70,7 @@ details{margin:10px 0}summary{cursor:pointer;font-weight:600}
 pre{white-space:pre-wrap;background:var(--cartao);border:1px solid var(--linha);border-radius:8px;padding:12px;font-size:13px}
 .hash{font-family:ui-monospace,Menlo,monospace;font-size:12px;word-break:break-all}
 footer{margin-top:48px;color:var(--apagado);font-size:13px}
-@media (max-width:600px){.ficha dl{grid-template-columns:1fr}h1{font-size:25px}}
+@media (max-width:600px){.ficha dl,.ficha-selo dl{grid-template-columns:1fr}h1{font-size:25px}}
 @media print{.s-roxo{animation:none}details{display:block}}
 """
 
@@ -139,6 +142,16 @@ def _federais(p: Panorama) -> list[str]:
             "(FNS, FNDE, Transferegov, cota estadual). Alerta é indício, não acusação.</p>",
             '<div class="tabela"><table><tr><th>Conferência</th><th>Via 1</th><th>Via 2</th><th>Via 3</th>'
             "<th>Resultado</th></tr>" + linhas + "</table></div>"]
+
+
+def _rotulo_do_valor(p: Panorama) -> str:
+    """O cabeçalho da coluna de valor segue a origem dos afluentes: previsto, realizado ou pago."""
+    origens = " ".join(a.origem.lower() for a in p.rio.afluentes)
+    if origens.startswith("pago") or " pago no" in origens:
+        return "Pago no exercício"
+    if "realizad" in origens:
+        return "Realizado no exercício"
+    return "Previsto no mês"
 
 
 def _mes(competencia: str) -> str:
@@ -318,23 +331,33 @@ def gerar(p: Panorama, *, hoje: date | None = None) -> str:
         linhas = []
         for a in sorted(p.rio.afluentes, key=lambda a: -a.valor):
             fonte = classificar(a.fonte) if a.fonte else None
-            leito = ", ".join(fonte.destinacao.leito) if fonte and fonte.destinacao and fonte.destinacao.leito else "livre"
             if fonte is None:
                 leito = "sem fonte declarada"
+            elif fonte.destinacao is None:
+                leito = "fora do catálogo"
+            else:
+                leito = ", ".join(fonte.destinacao.leito) if fonte.destinacao.leito else "livre"
             linhas.append(f"<tr><td>{_selo(a.selo)}{escape(a.nome)}</td><td>{escape(a.fonte or '—')}</td>"
                           f"<td>{escape(a.esfera.value)}</td><td>{escape(leito)}</td>"
                           f'<td class="num">{svg.moeda(a.valor)}</td></tr>')
         s.append('<div class="tabela"><table><tr><th>Entrada</th><th>Fonte</th><th>Esfera</th>'
-                 '<th>Leito (função)</th><th>Previsto no mês</th></tr>' + "".join(linhas) + "</table></div>")
+                 f'<th>Leito (função)</th><th>{_rotulo_do_valor(p)}</th></tr>' + "".join(linhas) + "</table></div>")
+    if p.execucao is not None:
+        from ..rio.parecer_dominio import secao_execucao
+        s.append(secao_execucao(p.execucao, p.contas or {}, p.qualidade))
+    else:
+        s.append('<p class="omitido">As saídas, as quatro estações legais e a cronologia evento a evento '
+                 "aparecem quando a execução da despesa é publicada.</p>")
     s.extend(_quadros(p, 4))
     s.extend(_federais(p))
-    s.append('<p class="omitido">As saídas, as quatro estações legais e a cronologia evento a evento '
-             "aparecem quando a execução da despesa é publicada.</p>")
 
     # 5. Preço e entrega
     s.append("<h2>5. Preço e entrega</h2>")
     if p.compras is not None:
         s.append(_secao_compras(p))
+    if getattr(p, "empresas", None) is not None:
+        from ..conferencias import empresas
+        s.append("<h3>Empresas contratadas</h3>" + empresas.secao_parecer(p.empresas, p.competencia))
     s.extend(_quadros(p, 5))
     s.append(_secao_familias(p, {Familia.PRC, Familia.ENT},
                              "Nenhum contrato fora da curva com os dados publicados; sem medição e "
@@ -382,6 +405,12 @@ def gerar(p: Panorama, *, hoje: date | None = None) -> str:
             f"<li><strong>{escape(d.nome)}</strong> ({escape(d.fundamento)})"
             + (f": {escape(d.observacao)}" if d.observacao else "") + "</li>" for d in ESCADA)
             + "</ol></details>")
+
+    from ..selo.relatorio import secao_parecer   # importa daqui (CSS e _ficha): por isso fica aqui dentro
+    selo = secao_parecer() if p.do_alvo_configurado() else ""
+    if selo:
+        # As fichas da auditoria do selo não são fichas do panorama: a seção 7 é a única lista de fichas.
+        s.append(selo.replace('class="ficha ', 'class="ficha-selo '))
 
     # 9. Custódia
     s.append("<h2>9. Custódia</h2>")

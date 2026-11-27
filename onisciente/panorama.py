@@ -41,6 +41,11 @@ class Panorama:
     compras: "Conferencias | None" = None   # compras e contratos do Município conferidos no banco
     auditoria: "Auditoria | None" = None    # as conferências sobre o banco inteiro (conferencias/banco.py)
     federais: "ConferenciasFederais | None" = None   # fontes federais e estaduais (conferencias/federais.py)
+    empresas: object | None = None          # empresas contratadas (conferencias/empresas.py, Frente F)
+    execucao: object | None = None          # execução da pasta (rio/secretarias.py, Frente D2)
+    contas: dict | None = None              # contas uma a uma da pasta (Frente D2)
+    qualidade: object | None = None         # qualidade do plano da pasta (Frente D2)
+    banco: "Path | str | None" = None       # o banco histórico de onde o panorama saiu (padrão: o do alvo)
     completo: bool = False
 
     def completar(self, *, banco: "Path | str | None" = None, mapa: "MapaLegal | None" = None,
@@ -63,12 +68,19 @@ class Panorama:
         from .legal.mapa import carregar
         raiz = raiz or RAIZ
         mapa = mapa or carregar()
-        if self.fiscal is not None:
+        do_alvo = self.do_alvo_configurado()
+        if self.fiscal is not None and not do_alvo:
+            # As conferências do banco (órgãos, Lei Orgânica, lei de acesso local) estão escritas para o
+            # alvo configurado; outro Município pede a configuração dele antes de rodá-las.
+            self.notas.append("As conferências sobre o banco inteiro (restos a pagar, pessoal, fim de mandato, "
+                              "contas, prazos e fontes federais) ainda não estão configuradas para este "
+                              "Município e não rodaram neste parecer.")
+        if self.fiscal is not None and do_alvo:
             from .conferencias import banco as conferencias_do_banco
             from .conferencias import federais
             from .fiscal import BANCO, Leitor
             from .legal import normas
-            caminho = banco or BANCO
+            caminho = banco or self.banco or BANCO
             ano, mes = (int(x) for x in self.competencia.split("-"))
             ate = date(ano, mes, monthrange(ano, mes)[1])
             try:
@@ -79,11 +91,15 @@ class Panorama:
                 try:
                     self.auditoria = conferencias_do_banco.conferir(leitor, ate, mapa, raiz=raiz)
                     self.federais = federais.conferir(leitor.con, ate=ate, mapa=mapa)
+                    if self.empresas is None:
+                        from .conferencias import empresas
+                        self.empresas = empresas.conferir(leitor.con, hoje=ate)
                 finally:
                     leitor.fechar()
                 vistos = {f.codigo for f in self.fichas}
                 novas = self.auditoria.fichas(self.competencia)
                 novas += [f for f in self.federais.fichas(self.competencia) if f.origem == "onisciente"]
+                novas += list(self.empresas.fichas(self.competencia))
                 for f in novas:
                     if f.codigo not in vistos:
                         vistos.add(f.codigo)
@@ -96,6 +112,15 @@ class Panorama:
                 if not f.caso_semelhante:
                     f.caso_semelhante = heranca.caso_semelhante(f, itens)
         return self
+
+    def do_alvo_configurado(self) -> bool:
+        """True se o panorama é do alvo padrão (alvos/goiania.toml), para o qual as conferências do banco,
+        a auditoria do selo e a lei de acesso local estão escritas."""
+        from .config import carregar_alvo
+        try:
+            return carregar_alvo().nome == self.alvo
+        except Exception:  # noqa: BLE001 - sem alvo configurado, não há conferências do Município
+            return False
 
     def _juntar_ausencias(self, novas: list[Ausencia]) -> None:
         chave = lambda a: (a.o_que_falta, a.periodo, a.orgao)  # noqa: E731
@@ -172,6 +197,7 @@ class Panorama:
             },
             "auditoria": self.auditoria.como_dict() if self.auditoria else None,
             "federais": self.federais.como_dict() if self.federais else None,
+            "empresas": self.empresas.como_dict() if hasattr(self.empresas, "como_dict") else None,
             "fichas": [f.como_dict() for f in self.fichas_ordenadas()],
             "ausencias": [a.como_dict() for a in self.ausencias],
             "custodia": [o.como_dict() for o in self.custodia],

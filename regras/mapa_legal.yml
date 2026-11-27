@@ -778,13 +778,13 @@ regras:
 - id: PRAZO-DCA
   area: Transparência e acesso à informação
   titulo: Contas anuais (DCA) entregues à União até 30 de abril
-  tipo: prazo
+  tipo: ordem
   data_limite: {mes: 4, dia: 30}
   unidade: data fixa do exercício seguinte
   base: data de homologação da DCA no SICONFI
   justificativa: >-
-    A data é fixa e é a da lei; por isso a regra não tem número de dias (sem valor, a agenda usa a
-    data de 30 de abril, sem margem).
+    A data é fixa e é a da lei; por isso a regra não tem número de dias e fica como regra de ordem
+    (a data em data_limite): sem valor, a agenda usa a data de 30 de abril, sem margem.
   base_do_limiar: LC 101/2000, art. 51, § 1º, I.
   norma: LC 101/2000, art. 51, § 1º, I
   fonte_dado:
@@ -794,13 +794,13 @@ regras:
 - id: PRAZO-MSC
   area: Transparência e acesso à informação
   titulo: Matriz de saldos contábeis entregue até o fim do mês seguinte
-  tipo: prazo
+  tipo: ordem
   meses_depois: 1
   unidade: último dia do mês seguinte ao de referência
   base: data de homologação da matriz no SICONFI
   justificativa: >-
-    O prazo vence no último dia do mês seguinte; por isso a regra não tem número de dias (sem
-    valor, a agenda usa o fim do mês seguinte, sem margem).
+    O prazo vence no último dia do mês seguinte; por isso a regra não tem número de dias e fica como
+    regra de ordem: sem valor, a agenda usa o fim do mês seguinte, sem margem.
   base_do_limiar: Portaria STN 642/2019, art. 5º.
   norma: Portaria STN 642/2019, art. 5º
   fonte_dado:
@@ -844,10 +844,10 @@ regras:
 - id: COTA-ESTADUAL-PUBLICACAO
   area: Orçamento e responsabilidade fiscal
   titulo: Cota-parte estadual publicada e igual à registrada pelo Município
-  tipo: prazo
+  tipo: tolerancia
+  valor: 0.001
   meses_depois: 1
-  tolerancia_fracao: 0.001
-  unidade: último dia do mês seguinte ao da arrecadação
+  unidade: fração da maior via (a publicação vence no último dia do mês seguinte ao da arrecadação)
   base: >-
     ICMS e IPVA que o Estado diz ter entregue ao Município contra o que o Município registrou na
     matriz de saldos contábeis, mês a mês
@@ -884,6 +884,105 @@ regras:
   - RREO
   familia: RIO
   gravidade: alta
+- id: EMPENHO-FIM-DE-ANO
+  area: Orçamento e responsabilidade fiscal
+  titulo: Empenho concentrado nos últimos quinze dias de dezembro
+  tipo: maximo
+  valor: 1.5
+  dias: 15
+  multiplo_mensal: 1.5
+  empenhado_minimo: 0.0
+  unidade: vezes a parcela uniforme do período (15 dias, 4,1% do ano)
+  base: empenhado de cada órgão e função nos últimos 15 dias de dezembro, pelos empenhos e pela matriz mensal
+  justificativa: >-
+    Num ano uniforme, 15 dias são 4,1% do empenhado; passar de 1,5 vez isso (6,2%) já é alerta. Na
+    matriz mensal, dezembro com mais de 1,5 vez a média do mês numa função. Um múltiplo menor
+    marcaria a sazonalidade normal de dezembro e esconderia os casos reais. Valores de
+    config/limiares_execucao.yml (fim_de_ano).
+  base_do_limiar: Lei 4.320/1964, art. 35, II; LC 101/2000, art. 42 (no último ano do mandato).
+  norma: Lei 4.320/1964, art. 35, II; LC 101/2000, art. 42
+  fonte_dado:
+  - empenhos do portal de Goiânia
+  - matriz de saldos contábeis
+  familia: ORC
+  gravidade: media
+- id: CREDOR-SEM-CONTRATO
+  area: Licitações, contratos e parcerias
+  titulo: Credor pago em meses distintos sem contrato, ata ou termo publicado
+  tipo: maximo
+  valor: 2
+  valor_minimo: 0.0
+  unidade: meses distintos de pagamento sem instrumento (a partir de dois, alerta)
+  base: >-
+    pagamentos a um mesmo credor sem contrato, ata ou termo publicado, fora dos elementos cujo direito
+    não nasce de contrato (pessoal, dívida, benefícios a pessoa física e transferências)
+  justificativa: >-
+    O mesmo credor pago em dois meses distintos sem instrumento publicado já é despesa continuada sem
+    contrato; nenhum piso de valor. Valores de config/limiares_execucao.yml (recorrente_sem_contrato).
+  base_do_limiar: Lei 14.133/2021, arts. 72, 89 e 95; Lei 4.320/1964, art. 63, § 2º, I.
+  norma: Lei 14.133/2021, arts. 72, 89 e 95; Lei 4.320/1964, art. 63, § 2º, I
+  fonte_dado:
+  - pagamentos do portal de Goiânia
+  - PNCP
+  familia: PRC
+  gravidade: alta
+- id: MEDICOES-REPETIDAS
+  area: Licitações, contratos e parcerias
+  titulo: Liquidações seguidas com o mesmo valor ao centavo no mesmo empenho
+  tipo: maximo
+  valor: 3
+  tolerancia_relativa: 0.0
+  unidade: liquidações seguidas iguais ao centavo
+  base: liquidações de cada empenho, em ordem de data
+  justificativa: >-
+    Três liquidações seguidas iguais ao centavo já são padrão de medição copiada; com duas, todo
+    contrato de preço mensal fixo viraria alerta todo mês. Nenhuma tolerância. Valores de
+    config/limiares_execucao.yml (medicoes_repetidas).
+  base_do_limiar: Lei 4.320/1964, art. 63; Lei 14.133/2021, art. 140.
+  norma: Lei 4.320/1964, art. 63; Lei 14.133/2021, art. 140
+  fonte_dado:
+  - liquidações do portal de Goiânia
+  familia: ENT
+  gravidade: media
+- id: LIQUIDADO-CONTRATADO
+  area: Licitações, contratos e parcerias
+  titulo: Liquidado acima do contratado com os aditivos publicados
+  tipo: tolerancia
+  valor: 0.01
+  unidade: R$ acima do contratado
+  base: >-
+    liquidado acumulado de cada contrato contra o maior entre o valor global publicado, o acumulado dos
+    aditivos e o valor inicial
+  justificativa: >-
+    Um centavo acima do contratado já é alerta; o contratado é o maior valor publicado, para nunca
+    acusar excesso que um aditivo publicado cobre. Valores de config/limiares_execucao.yml
+    (liquidado_acima_do_contratado).
+  base_do_limiar: Lei 4.320/1964, arts. 62 e 63; Lei 14.133/2021, arts. 124 a 126.
+  norma: Lei 4.320/1964, arts. 62 e 63; Lei 14.133/2021, art. 125
+  fonte_dado:
+  - liquidações do portal de Goiânia
+  - PNCP
+  familia: PRC
+  gravidade: alta
+- id: CREDOR-UNICO
+  area: Licitações, contratos e parcerias
+  titulo: Um único credor com 40% ou mais do pago do órgão no exercício
+  tipo: maximo
+  valor: 40.0
+  minimo_de_credores: 5
+  pago_minimo: 0.0
+  unidade: '% do pago do órgão no exercício'
+  base: pago de cada órgão no exercício, por credor
+  justificativa: >-
+    Um único credor com 40% ou mais do pago do órgão é alerta por si, mesmo sem a regra dos 80%: é o
+    desenho do contrato guarda-chuva que concentra sem aparecer na contagem de credores. Valores de
+    config/limiares_execucao.yml (concentracao).
+  base_do_limiar: CF, art. 37, caput; Lei 14.133/2021, art. 40, V, b.
+  norma: CF, art. 37, caput; Lei 14.133/2021, art. 40, V, b
+  fonte_dado:
+  - pagamentos do portal de Goiânia
+  familia: PRC
+  gravidade: media
 normas:
 - id: cf-art-212
   area: Orçamento e responsabilidade fiscal

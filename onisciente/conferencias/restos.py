@@ -55,27 +55,38 @@ def cancelados_na_matriz(base: Base, exercicio: int) -> float | None:
 
 
 def saldo_por_inscricao(base: Base) -> tuple[str | None, dict[int, float]]:
-    """Saldo a liquidar dos restos não processados por ano de inscrição, no último mês da matriz."""
+    """Saldo a liquidar dos restos não processados por ano de inscrição, no último mês da matriz.
+
+    A matriz guarda o movimento de cada mês. O saldo de um ano de inscrição passa de um exercício
+    para o outro somado ao que foi inscrito no fim do ano anterior (conta 6.3.1.7). Quando a matriz
+    de janeiro reabre o saldo daquele ano de inscrição (crédito na 6.3.1.1 de pelo menos metade do
+    que vinha), o saldo recomeça do movimento, para não contar duas vezes.
+    """
     meses = base.meses_msc()
     if not meses:
         return None, {}
     saldo: dict[int, float] = {}
-    inscricao_anterior: dict[int, float] = {}
+    inscrito: dict[int, float] = {}
     for ano in sorted({m[:4] for m in meses}):
         do_ano = [m for m in meses if m.startswith(ano)]
         marcas = ",".join("?" for _ in do_ano)
-        abertura = base.con.execute(
-            "select sum(valor) from msc_itens where conta_contabil like '6311%' and natureza_conta = 'C' "
-            "and mes = ?", (f"{ano}-01",)).fetchone()[0] or 0.0
+        reaberto = {int(a): float(v or 0.0) for a, v in base.con.execute(
+            "select ano_inscricao, sum(valor) from msc_itens where conta_contabil like '6311%' and "
+            "natureza_conta = 'C' and mes = ? and ano_inscricao is not null group by 1", (f"{ano}-01",))} \
+            if f"{ano}-01" in do_ano else {}
         movimento = {int(a): float(v or 0.0) for a, v in base.con.execute(
             f"select ano_inscricao, {SOMA} from msc_itens where conta_contabil like '6311%' and mes in ({marcas}) "
             "and ano_inscricao is not null group by 1", do_ano)}
-        if f"{ano}-01" in do_ano and abertura > 0:
-            saldo = movimento                       # a matriz trouxe a abertura em janeiro
-        else:
-            chaves = set(saldo) | set(inscricao_anterior) | set(movimento)
-            saldo = {a: saldo.get(a, 0.0) + inscricao_anterior.get(a, 0.0) + movimento.get(a, 0.0) for a in chaves}
-        inscricao_anterior = {int(a): float(v or 0.0) for a, v in base.con.execute(
+        anterior = {a: saldo.get(a, 0.0) + inscrito.get(a, 0.0) for a in set(saldo) | set(inscrito)}
+        novo: dict[int, float] = {}
+        for a in set(anterior) | set(movimento):
+            vinha = anterior.get(a, 0.0)
+            if reaberto.get(a, 0.0) > 0 and reaberto[a] >= 0.5 * vinha:
+                novo[a] = movimento.get(a, 0.0)
+            else:
+                novo[a] = vinha + movimento.get(a, 0.0)
+        saldo = novo
+        inscrito = {int(a): float(v or 0.0) for a, v in base.con.execute(
             f"select ano_inscricao, {SOMA} from msc_itens where conta_contabil like '6317%' and mes in ({marcas}) "
             "and ano_inscricao is not null group by 1", do_ano)}
     return meses[-1], {a: round(v, 2) for a, v in saldo.items()}
