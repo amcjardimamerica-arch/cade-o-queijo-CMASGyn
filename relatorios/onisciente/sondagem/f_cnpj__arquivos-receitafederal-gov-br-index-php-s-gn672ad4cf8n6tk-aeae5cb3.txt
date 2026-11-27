@@ -1,0 +1,7 @@
+URL: https://arquivos.receitafederal.gov.br/index.php/s/gn672Ad4CF8N6TK
+POST: {}
+OK: False
+HTTP: None
+ERRO: URLError: [Errno 104] Connection reset by peer
+BYTES: 0
+

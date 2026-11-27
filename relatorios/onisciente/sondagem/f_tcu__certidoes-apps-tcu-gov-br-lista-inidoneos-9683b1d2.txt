@@ -1,0 +1,43 @@
+URL: https://certidoes.apps.tcu.gov.br/lista-inidoneos
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 1231
+
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Google tag (gtag.js) -->
+    <script
+      id="google-analytics-script"
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-HG569SWRW8"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      if (!['localhost', '127.0.0.1'].includes(window.location.hostname)) {
+        gtag('config', 'G-HG569SWRW8');
+      }
+    </script>
+    <title>Plataforma de Certidões</title>
+    <script type="module" crossorigin src="/assets/index-BYlpM_Uj.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CpSN50TK.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

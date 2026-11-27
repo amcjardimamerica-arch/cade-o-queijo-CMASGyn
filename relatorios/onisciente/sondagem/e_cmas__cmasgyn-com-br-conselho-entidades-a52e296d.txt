@@ -1,0 +1,267 @@
+URL: https://cmasgyn.com.br/Conselho/Entidades
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 13636
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head profile="http://gmpg.org/xfn/11">
+	<meta name="viewport" content="width=device-width" />
+    <title>Entidades</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Corporated, XHTML, Theme" />
+	<meta name="description" content="Corporated XHTML Theme" />
+	<meta name="author" content="Bogdan Rosu - http://www.bogdanrosu.com" />
+	<meta name="copyright" content="&copy; 2010 Bogdan Rosu. All rights reserved." />
+    <link rel="shortcut icon" href="favicon.html" type="image/x-icon" />
+
+    <!-- Load Jquery from Google -->
+    <script src="/Resources/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <!-- End Load -->
+
+    <!-- for IE6 i'm sorry but there is too much wrong with it, needs warning at least, you can disable it by delething this load. -->
+    <script src="/Resources/js/jquery.badBrowser.js" type="text/javascript" charset="utf-8"></script>
+    <!-- End Load -->
+
+    <!-- ALL jQuery Tools. No jQuery library -->
+    <script src="/Resources/js/jquery.tools.js" type="text/javascript" charset="utf-8"></script>
+    <!-- End Load -->
+
+    <!-- Load Jquery Easing -->
+    <script src="/Resources/js/jquery.easing.js" type="text/javascript"></script>
+    <!-- End Load -->
+
+    <script src="/Resources/js/Vera_400-Vera_700-Vera_oblique_400-Vera_oblique_700.font.js" type="text/javascript"></script>
+    <!-- End Load -->
+
+    <!-- Load Pretty Photo -->
+    <link rel="stylesheet" href="/Resources/css/jquery.prettyPhoto.css" type="text/css" media="screen" />
+    <script src="/Resources/js/jquery.prettyPhoto.js" type="text/javascript"></script>
+    <!-- End Load -->
+
+    <!-- Load Superfish Drowpdown Menu, and run it -->
+    <script src="/Resources/js/jquery.hoverInt.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/Resources/js/jquery.bgiframe.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/Resources/js/superfish.js" type="text/javascript" charset="utf-8"></script>
+    <!-- End Load -->
+
+    <!-- Load SWFObject, used for video embedding -->
+    <script src="/Resources/js/swfobject.js" type="text/javascript" charset="utf-8"></script>
+    <!-- End Load -->
+
+    <!-- Load Captify -->
+    <script src="/Resources/js/jquery.captify.js" type="text/javascript"></script>
+    <!-- End Load -->
+
+    <!-- Load some small custom scripts -->
+    <script src="/Resources/js/custom.js" type="text/javascript"></script>
+    <!-- End Load -->
+
+    <!-- Load Main Stylesheets and Default Color and Style -->
+    <link rel="stylesheet" href="/Resources/css/style.css" type="text/css" media="screen" />
+    <!-- IMPORTANT: This line above generic should be left alone -->
+    <link rel="stylesheet" type="text/css" media="screen" title="mint" href="/Resources/css/style-mint.css" />
+    <!-- IMPORTANT: This line above is the line that sets wich style you use by default, after you select wich you like plug it in the line above the disable the style switcher, to do that either read the documentation or folow the note below referign to this -->
+    <!-- End Load -->
+
+    <!-- Load Alternate Stylesheets, can be disabled if not used -->
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="blue-bs" href="/Resources/css/style-blue-bs.css" />
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="mint-bs" href="/Resources/css/style-mint-bs.css" />
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="green-bs" href="/Resources/css/style-green-bs.css" />
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="magenta-bs" href="/Resources/css/style-magenta-bs.css" />
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="orange-bs" href="/Resources/css/style-orange-bs.css" />
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="black-bs" href="/Resources/css/style-black-bs.css" />
+
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="blue" href="/Resources/css/style-blue.css" />
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="mint" href="/Resources/css/style-mint.css" />
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="green" href="/Resources/css/style-green.css" />
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="magenta" href="/Resources/css/style-magenta.css" />
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="orange" href="/Resources/css/style-orange.css" />
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="black" href="/Resources/css/style-black.css" />
+    <script src="/Resources/js/styleswitch.js" type="text/javascript" charset="utf-8"></script>
+    <!-- End Load -->
+
+    <!-- NOTE: Uncomment this following comment if you want to hide Style Switcher -->
+    <!--
+    <style type="text/css">
+        .style-switcher { display:none !important;  }
+    </style>
+    -->
+
+    <!-- Load Main Enhancements Stylesheet border radius, transparency and such things -->
+    <link rel="stylesheet" href="/Resources/css/style-enhance.css" type="text/css" media="screen" />
+    <!-- End Load -->
+
+    <!-- Load IE Stylesheet -->
+    <!--[if IE]>
+        <link rel="stylesheet" href="/Resources/css/ie.css" type="text/css" media="screen" />
+    <![endif]-->
+    <!-- End Load -->
+
+    <!-- Load IE6 Stylesheet -->
+    <!--[if IE 6]>
+        <link rel="stylesheet" href="/Resources/css/ie6.css" type="text/css" media="screen" />
+    <![endif]-->
+    <!-- End Load -->
+
+    <!-- Load IE7 Stylesheet -->
+    <!--[if IE 7]>
+        <link rel="stylesheet" href="/Resources/css/ie7.css" type="text/css" media="screen" />
+    <![endif]-->
+    <!-- End Load -->
+
+    <!-- Load PNG Fix older IE Versions -->
+    <!--[if lt IE 7]>
+        <script type="text/javascript" src="/Resources/js/pngfix.js"></script>
+        <script type="text/javascript">DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+    <!-- End Load -->
+
+    <!-- load jqplot -->
+    <link rel="stylesheet" type="text/css" href="/Resources/css/jquery.jqplot.css" />
+    <script  type="text/javascript" src="/Resources/js/jqplot/jquery.jqplot.js"></script>
+    <script  type="text/javascript" src="/Resources/js/jqplot/plugins/jqplot.canvasTextRenderer.js"></script>
+    <script  type="text/javascript" src="/Resources/js/jqplot/plugins/jqplot.canvasAxisTickRenderer.js"></script>
+    <script  type="text/javascript" src="/Resources/js/jqplot/plugins/jqplot.dateAxisRenderer.js"></script>
+    <script  type="text/javascript" src="/Resources/js/jqplot/plugins/jqplot.barRenderer.js"></script>
+    <script  type="text/javascript" src="/Resources/js/jqplot/plugins/jqplot.categoryAxisRenderer.js"></script>
+    <script  type="text/javascript" src="/Resources/js/jqplot/plugins/jqplot.pieRenderer.js"></script>
+    <!--[if IE]><script  type="text/javascript" src="/Resources/js/jqplot/excanvas.js"></script><![endif]-->
+    <!-- end load jqplot -->
+
+    <!-- Load google Analytics -->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-19270306-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <!-- End Load google Analytics -->
+    <!-- Be sure to CHANGE _setAccount to your UA Number  -->
+
+    <!-- start load cycle slideshow -->
+    <script src="/Resources/js/jquery.cycle.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/Resources/css/jquery.cycle.css" type="text/css" media="screen" />
+    <script type="text/javascript">
+	$(function() {
+	    $('#slideshow').cycle({
+	        fx:     'scrollHorz',  // effect
+	        speed:  400,    // speed of transition
+	        timeout: 7000,    // timeout of the slide
+            pause:       false,     // true to enable "pause on hover"
+            pauseOnPagerHover: false, // true to pause when hovering over pager link
+            next:   '#slideshownext',
+            prev:   '#slideshowprev',
+            cleartypeNoBg: true,  // fix cleartype inside slides
+            cleartype: true  // fix cleartype inside slides
+	    });
+        $('#slideshownav li a').click(function() {   $('#slideshow').cycle('pause');   });
+        $('.slide').click(function() {   $('#slideshow').cycle('pause'); 	 });
+	});
+ 	</script>
+    <!-- stop load cycle -->
+
+</head>
+<body>
+    <div class="full-width">
+    <!-- start top -->
+        <div class="fl one-third">
+            <div class="logo"><a href="https://cmasgyn.com.br/Home"><img src="/Resources/images/logo.png" width="286" height="69" alt="" /></a></div>
+        </div>
+        <div class="fr two-third-last clearfix">
+            <div class="main-menu clearfix">
+        		    <!-- navigation start -->
+        			<div id="navigation">
+                		 <ul class="sf-menu">
+                            <li class="first"><a href="/Home" class="applyfont">Home</a>
+                            </li>
+                            <li><a href="/Conselho/OConselho" class="applyfont">Conselho</a>
+                                 <ul>
+                                    <li><a href="/Conselho/OConselho">O Conselho</a></li>
+                                    <li><a href="/Conselho/Conselheiros">Conselheiros</a></li>
+                                    <li><a href="/Conselho/Entidades">Entidades</a></li>
+                                    <li><a href="/Conselho/Plenarias">Plenárias</a></li>
+                                    
+                                </ul>
+
+                            </li>
+
+
+                            <li><a href="/Documentos" class="applyfont">Documentos</a>
+                             <ul>
+                                 <li><a href="/Documentos">Geral</a></li>
+                                 <li><a href="/Documentos/Legislacao">Legislação</a></li>
+
+                               
+
+
+                             </ul>
+                                </li>
+                            <li><a href="/Inscricao" class="applyfont">Inscrição</a></li>
+                            <li class="last"><a href="/Contato" class="applyfont">Contato</a></li>
+                        </ul>
+
+        			</div>
+                    <!-- navigation end -->
+            </div>
+        </div>
+        <div class="clear"></div>
+    <!-- end top -->
+</div>
+
+    
+
+<div class="full-width">
+    <!-- start header -->
+    <div class="header-inner clearfix">
+        <h1>Entidades</h1>
+        <p>Goiânia-GO</p>
+    </div>
+    <!-- end header -->
+</div>
+
+<div class="white-bg-bordered">
+    <div class="full-width">
+
+        <div class="white-bg">
+            <div id="texto1" style="padding: 20px 20px 20px 20px;">
+                <h4>Conselho Municipal de Assistência Social</h4>
+                Relação de Entidades Registradas no CMASGyn, com o Número de Registro, Responsável, Nome da Entidade, Endereço, Fone, Data do Atestado, Área de Atuação e E-mail. Atentar para: - Data do Atestado, pois o mesmo tem validade de 01 (um) ano a contar da data de sua expedição; - Observar entidades (Canceladas e/ou Desativada).
+
+                Informamos que a partir da Resolução Nº 045/2010-CMASGyn, "Dipõe sobre parâmetros para inscrição das entidades e organizações de assistência social, bem como dos serviços, programas, projetos e benefícios, socioassistenciais no CMASGyn, de acordo com Resolução Nº 16, de 05 de maio de 2010 do Conselho Nacional de Assistência Social", o CMASGyn passou a padronizar e utilizar exclusivamente o termo INSCRIÇÃO para os documentos emitidos por este, a fim de atestar a condição da entidade em substituição ao Certificado e Atestado de Funcionamento.
+
+                <br /> <br />
+                
+                <a href="\Resources\documentos\entida_inscritas_cmasgyn.pdf" class="style19">Relação de Entidades Inscritas no CMASGyn</a>
+
+
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+
+<div class="clear"></div>
+
+<div class="small-footer">
+    <div class="full-width clearfix">
+        <div class="one-half"><div class="firstone pad-top pad-right">&copy; 2023<a href="http://www.selectasistemas.com.br/"> Selecta Sistemas. Todos os direitos reservados.</a></div></div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<!-- end footer -->
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"f6773055acb945d8b27e17c00d61dbbb","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+
+<!-- Mirrored from www.bogdanrosu.com/themeforest/corporated/html/index-cycle.html by HTTrack Website Copier/3.x [XR&CO'2010], Sat, 13 Jul 2013 12:57:01 GMT -->
+</html>

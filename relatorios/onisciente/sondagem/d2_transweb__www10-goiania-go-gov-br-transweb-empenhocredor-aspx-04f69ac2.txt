@@ -1,0 +1,7 @@
+URL: https://www10.goiania.go.gov.br/transweb/EmpenhoCredor.aspx
+POST: {}
+OK: False
+HTTP: 404
+ERRO: HTTP 404
+BYTES: 563
+

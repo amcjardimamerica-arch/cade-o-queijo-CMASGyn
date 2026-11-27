@@ -172,7 +172,7 @@ def motor_fnde(ctx, uf: str, ibge6: str) -> None:
             _anotar(ctx, "fnde", f"entidades {ano}", f"{ano}-01", lista.url, f"formato: {e}")
             _situacao(ctx, "fnde", str(ano), "formato", erro=str(e))
             continue
-        enderecos = {e["cnpj"]: e.get("url") or fnde.url_liberacoes(ano, e["cnpj"]) for e in ents}
+        enderecos = {e["cnpj"]: e.get("url") or fnde.url_liberacoes(ano, e["cnpj"], uf, ibge6) for e in ents}
         ctx.antecipar("fnde", list(enderecos.values()), tempo=120)
         ctx.banco.con.execute("DELETE FROM liberacoes_fnde WHERE ano = ?", (ano,))
         ctx.banco.con.execute("DELETE FROM fnde_entidades WHERE ano = ?", (ano,))
@@ -285,34 +285,47 @@ def motor_transferegov(ctx, cnpjs) -> None:
 # --- CEIS e CNEP --------------------------------------------------------------------------
 
 def motor_sancoes(ctx) -> None:
-    """O arquivo mais recente de cada cadastro (recuando até uma semana), inteiro, na tabela ``sancoes``."""
+    """O arquivo mais recente de cada cadastro, inteiro, na tabela ``sancoes``. As datas vêm da
+    página de download do cadastro; sem ela, recua até uma semana. Cada data é tentada no portal
+    e no repositório da CGU."""
     preparar(ctx.banco)
     for cadastro in sancoes.CADASTROS:
         situacao, erro = "nao_publicado", "nenhum arquivo na última semana"
-        for dia in sancoes.dias_para_tentar(ctx.hoje):
-            url = sancoes.url(cadastro, dia)
-            leitura = ctx.ler("sancoes", f"{cadastro} {dia:%Y%m%d}", url, mes=f"{dia:%Y-%m}", tempo=180)
-            if not leitura.ok or cf.parece_pagina(leitura.conteudo):
-                if leitura.ok or _ausente(leitura):
-                    continue                     # arquivo do dia ainda não saiu: o dia anterior
-                situacao, erro = "falha", leitura.erro
+        indice = ctx.ler("sancoes", f"{cadastro} indice", sancoes.url_indice(cadastro), tempo=60)
+        publicadas = sancoes.datas_publicadas(cf.decodificar(indice.conteudo), cadastro) if indice.ok else []
+        dias = publicadas[:3] or sancoes.dias_para_tentar(ctx.hoje)
+        codigos: set[str] = set()
+        lido = False
+        for dia in dias:
+            for url in sancoes.urls(cadastro, dia):
+                leitura = ctx.ler("sancoes", f"{cadastro} {dia:%Y%m%d}", url, mes=f"{dia:%Y-%m}", tempo=180)
+                if not leitura.ok or cf.parece_pagina(leitura.conteudo):
+                    if leitura.ok or _ausente(leitura):
+                        codigos.add(str(leitura.http or "página"))
+                        continue                 # arquivo do dia ainda não saiu, ou esta via o recusa
+                    situacao, erro = "falha", leitura.erro
+                    break
+                try:
+                    linhas = sancoes.ler(leitura.conteudo, cadastro)
+                except ValueError as e:
+                    _anotar(ctx, "sancoes", f"{cadastro} {dia:%Y%m%d}", f"{dia:%Y-%m}", url, f"formato: {e}")
+                    situacao, erro = "formato", str(e)
+                    break
+                ctx.banco.con.execute("DELETE FROM sancoes WHERE cadastro = ?", (cadastro,))
+                for l in linhas:
+                    ctx.banco.inserir("sancoes", {**l, "arquivo": f"{dia:%Y%m%d}"})
+                _situacao(ctx, "sancoes", cadastro, "lido" if linhas else "vazio", via=url, registros=len(linhas))
+                lido = True
                 break
-            try:
-                linhas = sancoes.ler(leitura.conteudo, cadastro)
-            except ValueError as e:
-                _anotar(ctx, "sancoes", f"{cadastro} {dia:%Y%m%d}", f"{dia:%Y-%m}", url, f"formato: {e}")
-                situacao, erro = "formato", str(e)
+            if lido or situacao in ("falha", "formato"):
                 break
-            ctx.banco.con.execute("DELETE FROM sancoes WHERE cadastro = ?", (cadastro,))
-            for l in linhas:
-                ctx.banco.inserir("sancoes", {**l, "arquivo": f"{dia:%Y%m%d}"})
-            _situacao(ctx, "sancoes", cadastro, "lido" if linhas else "vazio", via=url, registros=len(linhas))
-            break
-        else:
-            _situacao(ctx, "sancoes", cadastro, situacao, erro=erro)
+        if lido:
             continue
-        if situacao in ("falha", "formato"):
-            _situacao(ctx, "sancoes", cadastro, situacao, erro=erro)
+        if situacao == "nao_publicado":
+            origem = "nas datas da página de download" if publicadas else "na última semana"
+            erro = (f"nenhum arquivo {origem}, no portal nem no repositório da CGU"
+                    + (f" (respostas: {', '.join(sorted(codigos))})" if codigos else ""))
+        _situacao(ctx, "sancoes", cadastro, situacao, erro=erro)
 
 
 # --- Economia GO --------------------------------------------------------------------------
@@ -330,24 +343,34 @@ def _recursos_ckan(conteudo: bytes) -> list[str]:
     return urls
 
 
-def motor_economia_go(ctx, municipio: str, ibge: int) -> None:
+def motor_economia_go(ctx, municipio: str, ibge: int, leituras_max: int = 25) -> None:
     """A cota de ICMS e de IPVA do Município pela via do Estado, ano a ano. Nenhum candidato com o
-    dado: ``nao_publicado`` (ausência, que a conferência transforma em alerta com ofício)."""
+    dado: ``nao_publicado`` (ausência, que a conferência transforma em alerta com ofício). Arquivo do
+    Estado que o coletor ainda não lê (PDF, planilha): ``formato``, porque a falta é do sistema, e
+    não do Estado. Tudo bloqueado ou fora do ar: ``falha``."""
     preparar(ctx.banco)
     for ano in _anos(ctx):
         achadas: list[dict] = []
         via = None
-        falhas_de_rede = 0
+        falhas_de_rede, bloqueios = 0, 0
+        nao_lidos: list[str] = []
         fila = list(economia_go.urls(ano, ibge))
         vistos: set[str] = set()
-        while fila and not achadas:
+        while fila and not achadas and len(vistos) < leituras_max:
             url = fila.pop(0)
             if url in vistos:
                 continue
             vistos.add(url)
+            if not economia_go.legivel(url):
+                nao_lidos.append(url)            # existe, mas o coletor não lê PDF nem planilha
+                continue
             leitura = ctx.ler("economia_go", f"{ano}", url, mes=f"{ano}-01", tempo=90)
             if not leitura.ok:
                 falhas_de_rede += 0 if _ausente(leitura) else 1
+                continue
+            if economia_go.bloqueado(leitura.conteudo):
+                bloqueios += 1
+                _anotar(ctx, "economia_go", f"{ano}", f"{ano}-01", url, "bloqueado pelo firewall do Estado (Acesso Negado)")
                 continue
             if "/api/3/action/" in url:
                 fila.extend(_recursos_ckan(leitura.conteudo))
@@ -355,15 +378,23 @@ def motor_economia_go(ctx, municipio: str, ibge: int) -> None:
             linhas = [l for l in economia_go.ler(leitura.conteudo, municipio, ano) if l["mes"].startswith(str(ano))]
             if linhas:
                 achadas, via = linhas, url
+            elif cf.parece_pagina(leitura.conteudo) or "<a" in cf.decodificar(leitura.conteudo[:200000]).lower():
+                fila.extend(economia_go.links_de_repasse(cf.decodificar(leitura.conteudo), url))
         if achadas:
             for l in achadas:
                 ctx.banco.inserir("repasses_estado", {**l, "url": via})
             _situacao(ctx, "economia_go", str(ano), "lido", via=via, registros=len(achadas))
-        elif falhas_de_rede and falhas_de_rede == len(vistos):
-            _situacao(ctx, "economia_go", str(ano), "falha", erro="todos os candidatos falharam por rede")
+        elif nao_lidos:
+            _situacao(ctx, "economia_go", str(ano), "formato", via=nao_lidos[0],
+                      erro=f"o Estado publica em arquivo que o coletor ainda não lê: {', '.join(nao_lidos[:5])}")
+        elif (falhas_de_rede + bloqueios) and falhas_de_rede + bloqueios == len(vistos):
+            _situacao(ctx, "economia_go", str(ano), "falha",
+                      erro=f"{bloqueios} endereço(s) bloqueado(s) pelo firewall do Estado e {falhas_de_rede} "
+                           f"fora do ar ou com erro de rede")
         else:
+            extra = f"; {bloqueios} bloqueado(s) pelo firewall do Estado" if bloqueios else ""
             _situacao(ctx, "economia_go", str(ano), "nao_publicado",
-                      erro=f"{len(vistos)} endereços tentados, nenhum com a cota de ICMS e IPVA de {municipio}")
+                      erro=f"{len(vistos)} endereços tentados, nenhum com a cota de ICMS e IPVA de {municipio}{extra}")
 
 
 # --- TCU e TCM-GO -------------------------------------------------------------------------
@@ -394,14 +425,11 @@ def motor_tcu(ctx, termo: str = "Goiânia", paginas: int = 10) -> None:
                 situacao, erro = ("nao_publicado" if _ausente(leitura) else "falha"), leitura.erro
                 break
             try:
-                decisoes = tcu.ler(leitura.conteudo)
+                decisoes = tcu.ler(leitura.conteudo, pesquisa=alvo == "pesquisa")
             except ValueError as e:
                 _anotar(ctx, "tcu", f"{alvo} {p}", "", url, f"formato: {e}")
                 situacao, erro = "formato", str(e)
                 break
-            if alvo == "pesquisa":
-                for d in decisoes:
-                    d["sobre_goiania"] = 1               # a pesquisa já casou o termo no inteiro teor
             guardadas += _guardar_decisoes(ctx, decisoes, so_goiania)
             situacao = "lido" if guardadas else "vazio"
             datas = [d["data"] for d in decisoes if d.get("data")]
@@ -416,6 +444,7 @@ def motor_tcm(ctx, termo: str = "Goiânia", paginas: int = 5) -> None:
     """As decisões do TCM-GO sobre Goiânia, pelo primeiro candidato que responder."""
     preparar(ctx.banco)
     ultimo_erro, situacao = "nenhum candidato respondeu", "nao_publicado"
+    sem_decisoes: list[str] = []                 # responderam, mas nenhuma decisão na página
     for indice in range(len(tcm.CANDIDATOS)):
         guardadas, ok, chaves = 0, False, set()
         for p in range(1, paginas + 1):
@@ -442,6 +471,12 @@ def motor_tcm(ctx, termo: str = "Goiânia", paginas: int = 5) -> None:
             _situacao(ctx, "tcm", "decisoes", "lido" if guardadas else "vazio", via=tcm.CANDIDATOS[indice],
                       registros=guardadas)
             return
+        if ok:
+            sem_decisoes.append(tcm.CANDIDATOS[indice].split("?")[0])
+    if sem_decisoes:
+        ultimo_erro = (f"{len(sem_decisoes)} endereço(s) responderam sem nenhuma decisão (páginas de serviço ou "
+                       f"notícia, não resultado de pesquisa): " + ", ".join(sem_decisoes))
+        situacao = "nao_publicado"
     _situacao(ctx, "tcm", "decisoes", situacao, erro=ultimo_erro)
 
 

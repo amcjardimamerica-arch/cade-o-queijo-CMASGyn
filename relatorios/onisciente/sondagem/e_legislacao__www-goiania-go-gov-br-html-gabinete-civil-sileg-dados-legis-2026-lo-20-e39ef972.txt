@@ -1,0 +1,1327 @@
+URL: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2026/lo_20260109_000011589.html
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 51020
+
+<html lang="br">
+<head>   
+	<meta charset="utf-8">
+	<title>LEI Nº 11.589, DE 9 DE JANEIRO DE 2026 </title>
+	<link rel="shortcut icon" href="../web/favicon.ico" />
+	<link type="text/css" href="../web/css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet" />	 	
+	<link type="text/css" href="../web/css/jquery.ui.datepicker.css" rel="stylesheet" />	
+	<link type="text/css" href="../web/css/estiloleis.css" rel="stylesheet" />	
+	
+	<script type="text/javascript" src="../web/js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="../web/js/jquery-ui-1.10.3.custom.js"></script>
+	<script type="text/javascript" src="../web/js/jquery.ui.datepicker-br.js"></script>
+	<script type="text/javascript" src="../web/js/eventos.js"></script>		
+</head>
+
+<!--  
+*************************************************************
+---------------------- BRASÃO --------------------------
+**************************************************************--> 
+
+<div class="brasao">
+	<img src="../web/brasao_sei.png" alt="Brasão da Prefeitura de Goiânia">
+	<p>Prefeitura de Goiânia</p>
+	<p class="brasao">Secretaria Municipal da Casa Civil</p>
+</div>
+
+<!--  
+*************************************************************
+---------------------- EPÍGRAFE --------------------------
+**************************************************************--> 
+
+<h1 class="epigrafe">
+	<p>
+    <a target="_blank" href="https://www.goiania.go.gov.br/sistemas/sileg/asp/sileg01020r1.asp?txt_cd_leg=151547&txt_ano=2026">
+	LEI Nº 11.589, DE 9 DE JANEIRO DE 2026 </h1>
+	</a>
+		</p>
+	</h1>
+<!--  
+*************************************************************
+---------------------- EMENTA DA LEI --------------------------
+**************************************************************--> 
+
+<table width=100%>
+ <tr width=100% >
+	<td width=50%>
+
+		<a target="_blank" href="../2026/lo_20260109_000011589_men_000000011.pdf">Mensagem de veto</a>
+
+
+	</td>
+	<td width=50%>
+
+		<p class="ementasemitalico"> 
+		Dispõe sobre as diretrizes para a elaboração da Lei Orçamentária para o exercício de 2026.
+		</p>
+
+	</td>
+ </tr>  
+
+</table>
+
+<br>
+
+<p class="nota">     
+	<b>Nota:</b> ver
+	<a href="../2026/lo_20260109_000011590.html">Lei nº 11.590, de 2026</a> - 
+	Lei Orçamentária Anual - Exercício 2026.
+	</p>
+
+<!--  
+*************************************************************
+--------------------- PREÂMBULO ------------------------------
+**************************************************************--> 
+
+<h3 class="preambulo2">
+<b>O PREFEITO DE GOIÂNIA</b> Faço saber que a Câmara Municipal de Goiânia, Estado de Goiás, aprova e eu sanciono a seguinte Lei:
+</h3>
+
+<!--  
+*************************************************************
+--------------------- CORPO DA LEI ------------------------------
+**************************************************************-->
+
+<h2 class="capitulo2">
+<a id="CAP000001"> </a>	
+<p>CAPÍTULO I</p>
+<p>DISPOSIÇÕES PRELIMINARES</p>
+</h2>
+
+
+<p class="artigo">
+<a id="ART000001"> </a>
+Art. 1º Ficam estabelecidas as diretrizes para a elaboração do orçamento do Município para o exercício de 2026, em cumprimento ao disposto 
+no <a class="link" onclick="leiFederal()" >art. 165, inciso II, e § 2º da Constituição Federal</a>; 
+na <a class="link" onclick="leiFederal()" >Lei Complementar federal nº 101, de 4 de maio de 2000</a>, e 
+nos art. 136, § 2º, e art. 137, inciso II, parágrafo único, da <a class="link" onclick="leiOrganica()" >Lei Orgânica do Município de Goiânia</a>, compreendendo:
+</p>
+
+
+<p class="inciso">
+<a id="ART000001INC000001"> </a>  
+I - as metas e prioridades da administração pública municipal;
+</p>
+
+<p class="inciso">
+<a id="ART000001INC000002"> </a>  
+II -  a estrutura e organização do orçamento;
+</p>
+
+<p class="inciso">
+<a id="ART000001INC000003"> </a>  
+III - as diretrizes para a elaboração do orçamento e suas alterações;
+</p>
+
+<p class="inciso">
+<a id="ART000001INC000004"> </a>  
+IV - as disposições relativas às despesas do Município com pessoal e encargos sociais;
+</p>
+
+<p class="inciso">
+<a id="ART000001INC000005"> </a>  
+V - as normas de execução do orçamento e suas alterações;
+</p>
+
+<p class="inciso">
+<a id="ART000001INC000006"> </a>  
+VI - as disposições relativas às alterações na legislação tributária do Município e à adequação orçamentária delas decorrente; e
+</p>
+
+<p class="inciso">
+<a id="ART000001INC000007"> </a>  
+VII - as disposições gerais.
+</p>
+
+<p class="paragrafo">
+<a id="ART000001PAR000001"> </a>  
+Parágrafo único. As condições e exigências para transferências de recursos a entidades públicas e privadas serão estabelecidas em regulamento.
+</p>
+
+<p class="artigo">
+<a id="ART000002"> </a>
+Art. 2º Em cumprimento ao disposto na 
+<a class="link" onclick="leiFederal()" > Lei Complementar federal nº 101, de 2000</a>, integram esta lei os seguintes Anexos:
+</p>
+
+
+<p class="inciso">
+<a id="ART000002INC000001"> </a>  
+I - Riscos Fiscais;
+</p>
+
+<p class="inciso">
+<a id="ART000002INC000002"> </a>  
+II - Metas Fiscais, composto de:
+</p>
+
+<p class="inciso">
+<a id="ART000002INC000002ALI000001"> </a>  
+a) demonstrativo de metas anuais de receitas, despesas, resultado primário e nominal e montante da dívida pública para os exercícios de 2026, 2027 e 2028, em valores
+correntes e constantes, acompanhados das respectivas metodologias e memórias de cálculo;
+</p>
+
+
+<p class="inciso">
+<a id="ART000002INC000002ALI000002"> </a>  
+b) demonstrativo da avaliação do cumprimento das metas fiscais do exercício de 2024;
+</p>
+
+<p class="inciso">
+<a id="ART000002INC000002ALI000003"> </a>  
+c) demonstrativo das metas atuais, comparadas com as metas fixadas nos três exercícios anteriores;
+</p>
+
+<p class="inciso">
+<a id="ART000002INC000002ALI000004"> </a>  
+d) demonstrativo da evolução do patrimônio líquido dos exercícios de 2022, 2023 e 2024;
+</p>
+
+<p class="inciso">
+<a id="ART000002INC000002ALI000005"> </a>  
+e) demonstrativo da origem e da aplicação dos recursos obtidos com a alienação de ativos dos exercícios de 2022, 2023 e 2024;
+</p>
+
+<p class="inciso">
+<a id="ART000002INC000002ALI000006"> </a>  
+f)  demonstrativo da avaliação financeira e atuarial do regime próprio de previdência dos servidores municipais, sob gestão do Instituto de Previdência dos Servidores do
+Município de Goiânia - GOIANIAPREV;
+</p>
+
+<p class="inciso">
+<a id="ART000002INC000002ALI000007"> </a>  
+g) demonstrativo da estimativa e compensação da renúncia de receita; e
+</p>
+
+<p class="inciso">
+<a id="ART000002INC00002ALI000008"> </a>  
+h) demonstrativo da margem de expansão das despesas obrigatórias de caráter continuado; e
+</p>
+
+<p class="inciso">
+<a id="ART000002INC000003"> </a>  
+III - Metas e Prioridades.
+</p>
+
+
+<h2 class="capitulo2" >
+<a id="CAP000002"> </a>	
+<p>CAPÍTULO II</p>
+<p>DAS METAS E DAS PRIORIDADES DA ADMINISTRAÇÃO PÚBLICA MUNICIPAL</p>
+</h2>	
+
+<p class="artigo" >
+<a id="ART000003"> </a>
+Art. 3º As metas e prioridades da administração pública municipal para o  exercício de 2026 estão estabelecidas no Anexo III em consonância com as diretrizes de governo definidas 
+no <a href="../2025/lo_20251022_000011510.html">Plano Plurianual - PPA</a> para o quadriênio 2026-2029 e servirão de orientação para a alocação de recursos no projeto de Lei Orçamentária Anual - LOA para o exercício de 2026.
+</p>
+
+<p class="artigo" >
+<a id="ART000004"> </a>
+Art. 4º As prioridades especificadas terão precedência na alocação de recursos, não se constituindo limites à programação das despesas na elaboração do Orçamento para o
+exercício de 2026, tendo como parâmetros:
+</p>
+
+	<p class="inciso">
+	<a id="ART000004INC000001"> </a>  
+	I - os dispositivos constitucionais e legais;
+	</p>
+
+	<p class="inciso">
+	<a id="ART000004INC000002"> </a>  
+	II - o atendimento às despesas obrigatórias dos órgãos e entidades; e
+	</p>
+
+	<p class="inciso">
+	<a id="ART000004INC000003"> </a>  
+	III - a garantia dos serviços essenciais.
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000004INC000004"> </a>  
+	IV - (VETADO).
+	</p>
+
+<p class="artigo" >
+<a id="ART000005"> </a>
+Art. 5º Os projetos em fase de execução, desde que validados conforme as prioridades estabelecidas nesta Lei, terão preferência sobre os novos projetos, observados os
+limites da Lei Orçamentária Anual - LOA para 2026. 
+</p>
+
+<p class="artigo" >
+<a id="ART000006"> </a>
+Art. 6º A manutenção de atividades e de serviços terá prioridade sobre as ações de expansão à luz da responsabilidade na gestão fiscal.
+</p>
+
+<h2 class="capitulo2" >
+<a id="CAP000003"> </a>	
+<p>CAPÍTULO III</p>
+<p>DA ESTRUTURA E ORGANIZAÇÃO DO ORÇAMENTO</p>
+</h2>
+
+<p class="artigo" >
+<a id="ART000007"> </a>
+Art. 7º Projeto de Lei Orçamentária Anual - LOA para 2026, que será encaminhado à Câmara Municipal de Goiânia, abrangerá os Poderes Executivo e Legislativo e
+será constituído pelo texto do Projeto de Lei e pelos seus Anexos, devendo conter:
+</p>
+
+		<p class="inciso">
+		<a id="ART000007PAR000001INC000001"> </a>  
+		I - a mensagem do Chefe do Poder Executivo municipal;
+		</p>
+
+		<p class="inciso">
+		<a id="ART000007PAR000001INC000002"> </a>  
+		II - o demonstrativo da despesa por órgãos e categorias econômicas;
+		</p>
+
+		<p class="inciso">
+		<a id="ART000007PAR000001INC000003"> </a>  
+		III -  o sumário geral da receita por fontes e da despesa por função de governo;
+		</p>
+
+		<p class="inciso">
+		<a id="ART000007PAR000001INC000004"> </a>  
+		IV - o demonstrativo da receita e despesa segundo as categorias econômicas;
+		</p>
+
+		<p class="inciso">
+		<a id="ART000007PAR000001INC000005"> </a>  
+		V - as tabelas explicativas da evolução da receita e despesa;
+		</p>
+
+		<p class="inciso">
+		<a id="ART000007PAR000001INC000006"> </a>  
+		VI -  a receita segundo as categorias econômicas, nos termos do Anexo 2 da <a class="link" onclick="leiFederal()" >Lei federal nº 4.320, de 17 de março de 1964</a>;
+		</p>
+		
+		<p class="inciso">
+		<a id="ART000007PAR000001INC000007"> </a>  
+		VII - a legislação da Receita;
+		</p>
+
+		<p class="inciso">
+		<a id="ART000007PAR000001INC000008"> </a>  
+		VIII - o demonstrativo regionalizado do efeito sobre as receitas e despesas decorrentes de isenções, anistias, remissões, subsídios e benefícios de natureza financeira,
+		tributária e creditícia, conforme disposto no art. 136, § 6º, da <a class="link" onclick="leiOrganica()" >Lei Orgânica do Município de Goiânia</a>;
+		</p>
+
+		<p class="inciso">
+		<a id="ART000007PAR000001INC000009"> </a>  
+		IX -  a descrição sucinta das principais finalidades de cada unidade administrativa, com indicação de sua respectiva legislação;
+		</p>
+
+		<p class="inciso">
+		<a id="ART000007PAR000001INC000010"> </a>  
+		X - os demonstrativos da receita e planos de aplicação dos Fundos Especiais;
+		</p>
+
+		<p class="inciso">
+		<a id="ART000007PAR000001INC000011"> </a>  
+		XI - o demonstrativo da compatibilidade da programação dos orçamentos com as metas constantes do Anexo de Metas Fiscais, nos termos do 
+		art. 5º, inciso I, da <a class="link" onclick="leiFederal()" >Lei Complementar federal nº 101, de 2000</a>;
+		</p>
+
+		<p class="inciso">
+		<a id="ART000007PAR000001INC000012"> </a>  
+		XII - a consolidação dos Orçamentos;
+		</p>
+
+		<p class="inciso">
+		<a id="ART000007PAR000001INC000013"> </a>  
+		XIII - o demonstrativo da natureza da despesa segundo as categorias econômicas - consolidação geral, conforme disposto no Anexo 2 da 
+		<a class="link" onclick="leiFederal()" >Lei federal nº 4.320, de 1964</a>;
+		</p>
+
+		<p class="inciso">
+		<a id="ART000007PAR000001INC000014"> </a>  
+		XIV - o demonstrativo da natureza da despesa segundo as categorias econômicas por órgão, conforme disposto no Anexo 2 da 
+		<a class="link" onclick="leiFederal()" >Lei federal nº 4.320, de 1964</a>;
+		</p>
+
+		<p class="inciso">
+		<a id="ART000007PAR000001INC000015"> </a>  
+		XV - os demonstrativos de programa de trabalho, conforme disposto no Anexo 6 da 
+		<a class="link" onclick="leiFederal()" >Lei federal nº 4.320, de 1964</a>;
+		</p>
+
+		<p class="inciso">
+		<a id="ART000007PAR000001INC000016"> </a>  
+		XVI - o demonstrativo de funções, subfunções e programas por projetos e atividades, conforme disposto no Anexo 7 da 
+		<a class="link" onclick="leiFederal()" >Lei federal nº 4.320, de 1964</a>;
+		</p>
+
+		<p class="inciso">
+		<a id="ART000007PAR000001INC000017"> </a>  
+		XVII - o demonstrativo de funções, subfunções e programas conforme vínculo com as fontes de recursos, nos termos do Anexo 8 da 
+		<a class="link" onclick="leiFederal()" >Lei federal nº 4.320, de 1964</a>;
+		</p>
+
+		<p class="inciso">
+		<a id="ART000007PAR000001INC000018"> </a>  
+		XVIII -  o demonstrativo da despesa por órgãos e funções, conforme disposto no Anexo 9 da 
+		<a class="link" onclick="leiFederal()" >Lei federal nº 4.320, de 1964</a>;
+		</p>
+
+		<p class="inciso">
+		<a id="ART000007PAR000001INC000019"> </a>  
+		XIX - o quadro demonstrativo do programa anual de trabalho do governo em termos de realização de obras e de prestação de serviços.
+		</p>
+
+<p class="artigo" >
+<a id="ART000008"> </a>
+Art. 8º A Lei Orçamentária para o exercício de 2026, compreenderá os Orçamentos Fiscal e da Seguridade Social com a programação dos Poderes Executivo e
+Legislativo do Município, incluindo todos os órgãos, as entidades e os fundos da administração pública municipal direta e indireta a eles vinculados, devendo a correspondente execução
+orçamentária e financeira ser registrada na sua totalidade em sistema consolidado e integrado.
+</p>
+
+<p class="paragrafo">
+<a id="ART000008PAR000001"> </a>  
+Parágrafo único. Para fins de consolidação do Orçamento, o Poder Legislativo municipal encaminhará sua proposta orçamentária ao órgão municipal fazendário, por meio de
+sistema consolidado e integrado de elaboração orçamentária, observados os parâmetros e as diretrizes estabelecidas nesta Lei.
+</p>
+
+
+<p class="artigo" >
+<a id="ART000009"> </a>
+Art. 9º A elaboração da proposta orçamentária do Município observará as metas propostas no Plano Plurianual, no Plano Diretor do Município de Goiânia e deverá:
+</p>
+
+	<p class="inciso">
+	<a id="ART000009INC000001"> </a>  
+	I - assegurar os princípios da justiça fiscal;
+	</p>
+
+	<p class="inciso">
+	<a id="ART000009INC000002"> </a>  
+	II - pautar-se pela transparência da gestão fiscal, observando-se os princípios da publicidade e da transparência na elaboração e execução do orçamento; e
+	</p>
+
+	<p class="inciso">
+	<a id="ART000009INC000003"> </a>  
+	III - assegurar o amplo acesso da população do Município às informações relativas às suas diversas etapas.
+	</p>
+
+<p class="artigo" >
+<a id="ART000010"> </a>
+Art. 10. A receita e a despesa orçamentárias serão estruturadas conforme o disposto:
+</p>
+
+	<p class="inciso">
+	<a id="ART000010INC000001"> </a>  
+	I - no Manual de Contabilidade Aplicada ao Setor Público;
+	</p>
+
+	<p class="inciso">
+	<a id="ART000010INC000002"> </a>  
+	II - nas normas editadas pela Secretaria do Tesouro Nacional - STN, do Ministério da Fazenda, ou sucedâneos, contidas no Manual de Demonstrativos Fiscais - MDF; e
+	</p>
+
+	<p class="inciso">
+	<a id="ART000010INC000003"> </a>  
+	III - nas Instruções Normativas editadas pelo Tribunal de Contas dos Municípios do Estado de Goiás - TCMGO.
+	</p>
+
+<p class="artigo">
+<a id="ART000011"> </a>
+Art. 11. O órgão municipal fazendário publicará junto à Lei Orçamentária Anual os Quadros de Detalhamento de Despesas - QDD, especificando os projetos, atividades e
+operações especiais para o exercício de 2026.
+</p>
+
+
+<h2 class="capitulo2" >
+<a id="CAP000004"> </a>	
+<p>CAPÍTULO IV</p>
+<p>DAS DIRETRIZES PARA ELABORAÇÃO DO ORÇAMENTO MUNICIPAL</p>
+</h2>
+
+<p class="artigo">
+<a id="ART000012"> </a>
+Art. 12. Em cumprimento ao disposto no art. 4º, <i>caput</i> e inciso I, alínea "e", da 
+<a class="link" onclick="leiFederal()" >Lei Complementar federal nº 101, de 2000</a>, a alocação dos recursos na lei orçamentária será feita
+para propiciar o controle de custos das ações e a avaliação dos resultados dos programas de governo.
+</p>
+
+<p class="artigo">
+<a id="ART000013"> </a>
+Art. 13. Serão classificadas como operações especiais, na Lei Orçamentária Anual 
+para o exercício de 2026, as despesas que, por sua natureza, não resultem em contraprestação
+direta de bens ou serviços à sociedade e que, portanto, não integram os programas do Plano
+Plurianual, compreendendo notadamente:
+</p>
+
+<p class="inciso">
+	<a id="ART000013INC000001"> </a>  
+	I - o serviço da dívida pública, incluindo juros, encargos e amortização;
+	</p>
+
+	<p class="inciso">
+	<a id="ART000013INC000002"> </a>  
+	II - o pagamento de inativos e pensionistas;
+	</p>
+
+	<p class="inciso">
+	<a id="ART000013INC000003"> </a>  
+	III - o cumprimento de sentenças judiciais, abrangendo precatórios e requisições de pequeno valor; e
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000013INC000004"> </a>  
+	IV - a transferência de recursos a consórcios públicos quando destinados às referidas finalidades, observado o disposto na Portaria nº 42, de 14 de abril de 1999, do
+Ministério do Orçamento e Gestão, ou sucedânea, e as normas expedidas pela Secretaria do Tesouro Nacional.
+	</p>
+
+<p class="artigo">
+<a id="ART000014"> </a>
+Art. 14. A estimativa da receita do Tesouro Municipal será realizada pelo órgão municipal fazendário.
+</p>
+
+<p class="artigo">
+<a id="ART000015"> </a>
+Art. 15. As estimativas das receitas de convênios e instrumentos congêneres deverão ser informadas ao órgão municipal fazendário pelos órgãos e entidades conveniados,
+considerando o cronograma de liberação de recursos para o exercício de 2026, e as propostas em andamento protocoladas junto aos órgãos federais e outras entidades congêneres.
+</p>
+
+<p class="artigo">
+<a id="ART000016"> </a>
+Art. 16. Na estimativa das receitas, poderão ser considerados:
+</p>
+
+	<p class="inciso">
+	<a id="ART000016INC000001"> </a>
+	I - os efeitos das modificações na legislação tributária e incentivos fiscais autorizados, objeto de projetos de lei enviados ao Poder Legislativo municipal antes do
+	encerramento do exercício financeiro de elaboração desta Lei;
+	</p>
+
+	<p class="inciso">
+	<a id="ART000016INC000002"> </a>
+	II - a inflação projetada para o exercício financeiro do orçamento;
+	</p>
+
+	<p class="inciso">
+	<a id="ART000016INC000003"> </a>
+	III - os agregados macroeconômicos para o exercício financeiro do orçamento; e
+	</p>
+
+	<p class="inciso">
+	<a id="ART000016INC000004"> </a>
+	IV - a ampliação da base de cálculo e a inclusão de novos tributos de competência do Município para o exercício financeiro.
+	</p>
+
+<p class="artigo">
+<a id="ART000017"> </a>
+Art. 17. O Projeto de Lei Orçamentária Anual - LOA para 2026 poderá prever, na estimativa da receita:
+</p>
+
+<p class="inciso">
+<a id="ART000017INC000001"> </a>
+I - os recursos provenientes das operações de crédito autorizadas por lei
+específica, nos termos do art. 7º, § 2º, da <a class="link" onclick="leiFederal()" >Lei federal nº 4.320, de 1964</a>; 
+do art. 12, § 2º, e do art. 32, da <a class="link" onclick="leiFederal()" >Lei Complementar federal nº 101, de 2000</a>; 
+e no art. 167, <i>caput</i>, inciso III, da <a class="link" onclick="leiFederal()" >Constituição Federal</a>, observados:
+
+</p>
+
+<p class="alinea">
+<a id="ART000017INC000001ALI000001"> </a>
+a) os limites e as condições fixados pelo Senado Federal, sendo a execução orçamentária condicionada à efetiva realização da receita; e
+</p>
+
+<p class="alinea">
+<a id="ART000017INC000001ALI000002"> </a>
+b)  os recursos previstos em operações de crédito não contratadas, tendo como base o número da lei autorizativa dos empréstimos; o órgão financiador; o valor estimado para
+o exercício e o valor da contrapartida; e
+</p>
+
+<p class="inciso">
+<a id="ART000017INC000002"> </a>
+II - os efeitos de incentivo ao pagamento de débitos inscritos na dívida ativa do Município.
+</p>
+
+<p class="paragrafo">
+<a id="ART000017PAR000001"> </a>
+Parágrafo único.  As operações de crédito de que trata o inciso I do <i>caput</i>, que forem contratadas após a aprovação do Projeto de Lei Orçamentária Anual, serão incorporadas
+ao orçamento por meio de crédito adicional de natureza suplementar.
+</p>
+
+<p class="artigo">
+<a id="ART000018"> </a>
+Art. 18. É vedada a utilização das Receitas de Capital derivadas da alienação de bens e direitos que integram o patrimônio público para o financiamento de despesas correntes,
+salvo se destinadas, por lei, a Fundo de Previdência de Servidores, conforme o disposto no art. 44 da <a class="link" onclick="leiFederal()" >Lei Complementar federal nº 101, de 2000.</a>
+</p>
+
+<p class="artigo">
+<a id="ART000019"> </a>
+Art. 19. As despesas do Poder Legislativo municipal deverão ser discriminadas respeitando o percentual de 4,5% (quatro inteiros e cinco décimos por cento) de recursos,
+conforme disposto no art. 29-A, inciso IV, da <a class="link" onclick="leiFederal()" >Constituição Federal.</a>
+</p>
+
+<p class="artigo">
+<a id="ART000020"> </a>
+Art. 20. As despesas cujas fontes de custeio sejam provenientes de Operações de Crédito, Convênios e instrumentos congêneres somente serão efetivadas com a assinatura dos
+atos e o consequente ingresso do recurso.
+</p>
+
+<p class="artigo">
+<a id="ART000021"> </a>
+Art. 21. A previsão das despesas com juros, encargos e amortizações da dívida deve considerar as operações de crédito contratadas e a contratar, e as autorizações concedidas
+até a data do encaminhamento do projeto de Lei Orçamentária ao Poder Legislativo municipal.
+</p>
+
+<p class="artigo">
+<a id="ART000022"> </a>
+Art. 22. Os investimentos com duração superior a 12 (doze) meses somente constarão da Lei Orçamentária Anual se estiverem contemplados no Plano Plurianual vigente.
+</p>
+
+<p class="artigo">
+<a id="ART000023"> </a>
+Art. 23. Na programação orçamentária, não poderá ocorrer fixação de despesas em Unidades Orçamentárias executoras não legalmente instituídas e sem definição das
+respectivas fontes de recursos.
+</p>
+
+<p class="artigo">
+<a id="ART000024"> </a>
+Art. 24.  A lei orçamentária não consignará recursos para início de novos projetos sem que estejam adequadamente atendidos os projetos em andamento e contempladas as
+despesas de conservação do patrimônio público, no âmbito de cada fonte de recursos e conforme vinculações legalmente estabelecidas.
+</p>
+
+<p class="paragrafo">
+<a id="ART000024PAR000001"> </a>
+Parágrafo único.  Para fins desta Lei, entende-se por adequadamente atendidos os projetos cuja alocação de recursos orçamentários esteja compatível com os cronogramas físico
+financeiros.
+</p>
+
+<p class="artigo">
+<a id="ART000025"> </a>
+Art. 25. Ficam autorizados os Poderes Executivo e Legislativo do Município, seus fundos, órgãos e entidades da administração direta e indireta, mediante decreto, a abrirem
+créditos adicionais suplementares, até o limite de 23% (vinte e três por cento) da despesa total fixada na Lei Orçamentária Anual - LOA para 2026, conforme 
+art. 7º, inciso I, da <a class="link" onclick="leiFederal()" >Lei federal nº 4.320, de 1964</a>.
+</p>
+
+	<p class="paragrafo">
+	<a id="ART000025PAR000001"> </a>
+	§ 1º Os projetos de lei relativos a créditos adicionais especiais ou extraordinários, ou ambos, serão apresentados na forma e com o detalhamento estabelecido na Lei
+	Orçamentária Anual - LOA para 2026.
+	</p>
+	
+	<p class="paragrafo">
+	<a id="ART000025PAR000002"> </a>
+	§ 2º Ficam excluídos do limite estabelecido no <i>caput</i> os créditos adicionais suplementares que se destinarem:
+	</p>
+	
+	<p class="paragrafo">
+	<a id="ART000025PAR000002INC000001"> </a>
+	I - suprir insuficiência de dotações do Grupo de Natureza de Despesa "1" (um), Pessoal e Encargos Sociais, mediante a utilização de recursos oriundos de anulação de despesas
+	consignadas no mesmo grupo;
+	</p>
+	
+	<p class="paragrafo">
+	<a id="ART000025PAR000002INC000002"> </a>
+	II - suprir insuficiências nas dotações decorrentes de sentenças judiciais, amortização e juros e encargos da dívida;
+	</p>
+	
+	<p class="paragrafo">
+	<a id="ART000025PAR000002INC000003"> </a>
+	III - suprir insuficiências nas dotações das funções Educação, Saúde, Assistência Social e Previdência Social;
+	</p>
+	
+	<p class="paragrafo">
+	<a id="ART000025PAR000002INC000004"> </a>
+	IV - incremento de dotações decorrentes da anulação do valor alocado na Reserva de Contingência, conforme o disposto no 
+	<a class="link" onclick="leiFederal()" >Decreto-Lei federal nº 1.763, de 16 de janeiro de 1980</a>;
+	</p>
+	
+	<p class="paragrafo">
+	<a id="ART000025PAR000002INC000005"> </a>
+	V - alterações parciais ou totais nas dotações fixadas na fonte das emendas parlamentares impositivas;
+	</p>
+	
+	<p class="paragrafo">
+	<a id="ART000025PAR000002INC000006"> </a>
+	VI - atender às despesas financiadas com recursos de operações de crédito autorizadas e contratadas durante o exercício, convênios ou emendas parlamentares estaduais
+	ou federais;
+	</p>
+	
+	<p class="paragrafo">
+	<a id="ART000025PAR000002INC000007"> </a>
+	VII - superávit financeiro apurado em balanço patrimonial do exercício anterior, até o valor total do superávit apurado, nos termos do 
+	art. 43, § 1º, inciso I e § 2º, da <a class="link" onclick="leiFederal()" >Lei federal nº 4.320, de 1964</a>;
+	</p>
+	
+	<p class="paragrafo">
+	<a id="ART000025PAR000002INC000008"> </a>
+	VIII - excesso de arrecadação nos valores apurados no exercício financeiro corrente, nos termos do 
+	art. 43, § 1º, inciso II e §§ 3º e 4º, da <a class="link" onclick="leiFederal()" >Lei federal nº 4.320, de 1964</a>;
+	</p>
+	
+	<p class="paragrafo">
+	<a id="ART000025PAR000002INC000009"> </a>
+	IX - recursos de operações de crédito autorizadas e/ou contratadas durante o exercício, até o limite dos recursos autorizados nos termos do 
+	art. 43, § 1º, inciso IV, da <a class="link" onclick="leiFederal()" >Lei federal nº 4.320, de 1964</a>;
+	</p>
+	
+	<p class="paragrafo">
+	<a id="ART000025PAR000002INC000010"> </a>
+	X - recursos alocados na Reserva de Contingência, até o limite da dotação consignada;
+	</p>
+	
+	<p class="paragrafo">
+	<a id="ART000025PAR000002INC000011"> </a>
+	XI - recursos provenientes de emendas parlamentares estaduais ou federais até o valor total dos recursos recebidos; 
+	</p>
+	
+	<p class="paragrafo">
+	<a id="ART000025PAR000002INC000012"> </a>
+	XII - recursos provenientes dos orçamentos federal ou estadual para a cobertura de quaisquer despesas até o valor total dos recursos disponibilizados por estes entes; e 
+	</p>
+	
+	<p class="paragrafo">
+	<a id="ART000025PAR000002INC000013"> </a>
+	XIII - suplementações à Câmara Municipal de Goiânia.
+	</p>
+
+<p class="artigo">
+<a id="ART000026"> </a>
+Art. 26. É vedada, na LOA e em seus créditos adicionais, a inclusão de dotações a títulos de subvenções sociais, ressalvadas aquelas destinadas a entidades privadas sem fins
+lucrativos, de atividades de natureza continuada, que atendam diretamente ao público, de forma gratuita, nas áreas de assistência social, saúde e educação, esporte, cultura e meio ambiente.
+</p>
+
+<p class="artigo">
+<a id="ART000027"> </a>
+Art. 27. A Lei Orçamentária Anual conterá reserva de contingência em montante de até 5% (cinco por cento) da Receita Corrente Líquida, prevista para o exercício de 2026,
+destinada ao atendimento de:
+</p>
+
+	<p class="inciso">
+	<a id="ART000027INC000001"> </a>
+	I - passivos contingentes;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000027INC000002"> </a>
+	II - riscos fiscais imprevistos;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000027INC000003"> </a>
+	III - abertura de créditos adicionais de natureza suplementar ou especial; e
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000027INC000004"> </a>
+	IV - emendas parlamentares individuais impositivas.
+	</p>
+	
+<p class="paragrafo">
+<a id="ART000027PAR000001"> </a>
+Parágrafo único.  Os riscos fiscais, caso se concretizem, serão atendidos com recursos da Reserva de Contingência e também, se houver, do excesso de arrecadação e do
+superávit financeiro do exercício de 2025.
+</p>
+
+
+<p class="artigo">
+<a id="ART000028"> </a>
+Art. 28. As metas fixadas no Anexo de Metas Fiscais desta Lei poderão ser ajustadas no Projeto de Lei Orçamentária Anual, desde que se verifiquem alterações nos
+parâmetros macroeconômicos utilizados na estimativa das receitas e despesas ou no comportamento da execução orçamentária do exercício em curso.
+</p>
+
+<h2 class="capitulo2" >
+<a id="CAP000005"> </a>
+<p>CAPÍTULO V</p>
+<p>DAS DISPOSIÇÕES RELATIVAS ÀS DESPESAS COM PESSOAL E ENCARGOS SOCIAIS</p>
+</h2>
+
+<p class="artigo">
+<a id="ART000029"> </a>
+Art. 29. As despesas com pessoal dos Poderes Executivo e Legislativo, para fins de fixação na Lei Orçamentária Anual e de sua execução, observarão as disposições contidas nos
+arts. 18, 19 e 20, da <a class="link" onclick="leiFederal()" >Lei Complementar federal nº 101, de 2000</a>, e sucedâneos, e na legislação municipal vigente.
+</p>
+
+<p class="artigo">
+<a id="ART000030"> </a>
+Art. 30. O Poder Executivo municipal adotará medidas para reduzir as despesas com pessoal, caso ultrapassados os limites estabelecidos 
+no art. 22 da <a class="link" onclick="leiFederal()" >Lei Complementar federal nº 101, de 2000</a>, ou sucedânea, tais como:
+</p>
+
+	<p class="inciso">
+	<a id="ART000030INC000001"> </a>
+	I - a vedação da concessão de vantagens, a qualquer título, a servidores, salvo os derivados de sentença judicial, determinação legal, ou contratual, ressalvada a revisão geral
+	anual prevista no art. 37, inciso X, da <a class="link" onclick="leiFederal()" >Constituição Federal</a>;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000030INC000002"> </a>
+	II - a eliminação das despesas com horas extras, salvo nos casos de necessidade justificada nas áreas de saúde, educação e segurança ou para atendimento de situações
+	urgentes e imprevisíveis;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000030INC000003"> </a>
+	III - a suspensão de alterações na estrutura de carreira que impliquem aumento de despesa;
+
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000030INC000004"> </a>
+	IV - a exoneração de servidores ocupantes de cargos em comissão; e
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000030INC000005"> </a>
+	V - a demissão de servidores admitidos em caráter temporário.
+	</p>
+
+<p class="artigo">
+<a id="ART000031"> </a>
+Art. 31. O Poder Executivo e o Poder Legislativo municipal poderão, mediante lei autorizativa e observando os limites e as regras da 
+<a class="link" onclick="leiFederal()" >Lei Complementar federal nº 101, de 2000</a>:
+</p>
+
+	<p class="inciso">
+	<a id="ART000031INC000001"> </a>
+	I - criar ou ampliar cargos e funções;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000031INC000002"> </a>
+	II - alterar ou modificar a estrutura de carreiras;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000031INC000003"> </a>
+	III - corrigir ou aumentar a remuneração dos servidores; 
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000031INC000004"> </a>
+	IV - conceder vantagens; e
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000031INC000005"> </a>
+	V - admitir pessoal aprovado em concurso público e processos seletivos em caráter permanente ou temporário, na forma da lei.
+	</p>
+	
+<p class="paragrafo">
+<a id="ART000031PAR000001"> </a>
+Parágrafo único.  Os recursos para as despesas decorrentes destes atos deverão estar previstos na Lei Orçamentária Anual para 2026 ou em créditos adicionais.
+</p>
+
+<p class="artigo">
+<a id="ART000032"> </a>
+Art. 32. Caso seja atingido o limite prudencial de que trata o art. 22 da 
+<a class="link" onclick="leiFederal()" >Lei Complementar federal nº 101, de 2000</a>, a convocação para prestação de horas extraordinárias de trabalho somente poderá ocorrer:
+</p>
+
+	<p class="inciso">
+	<a id="ART000032INC000001"> </a>
+	I - nos casos de calamidade pública;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000032INC000002"> </a>
+	II - na execução de programas emergenciais de saúde pública; ou
+	</p>
+
+	<p class="inciso">
+	<a id="ART000032INC000003"> </a>
+	III - em situações de extrema gravidade, devidamente reconhecidas pelo Chefe do Poder Executivo municipal. 
+	</p>
+	
+<h2 class="capitulo2" >
+<a id="CAP000006"> </a>
+<p>CAPÍTULO VI</p>
+<p>DAS NORMAS DE EXECUÇÃO DO ORÇAMENTO E CUMPRIMENTO DAS METAS</p>
+</h2>
+
+
+<p class="artigo">
+<a id="ART000033"> </a>
+Art. 33. No prazo de até 30 (trinta) dias após a publicação da Lei Orçamentária Anual - LOA 2026, o Poder Executivo municipal deverá fixar a programação financeira e o
+cronograma de desembolso, visando compatibilizar a realização da despesa com o efetivo ingresso das receitas municipais.
+</p>
+
+<p class="paragrafo">
+<a id="ART000031PAR000001"> </a>
+Parágrafo único.  O ato de que trata o <i>caput</i> e aqueles que o modificarem deverá conter, no mínimo:
+</p>
+
+	<p class="inciso">
+	<a id="ART000033PAR000001INC000001"> </a>
+	I - o desdobramento da receita prevista em metas bimestrais de arrecadação;
+	</p>
+	
+	
+	<p class="inciso">
+	<a id="ART000033PAR000001INC000002"> </a>
+	II - a programação financeira das receitas e despesas, que poderá ser modificada segundo o comportamento da execução orçamentária; e
+	</p>
+	
+	
+	<p class="inciso">
+	<a id="ART000033PAR000001INC000003"> </a>
+	III - o cronograma de desembolso mensal para as Unidades Gestoras.
+	</p>
+
+
+<p class="artigo">
+<a id="ART000034"> </a>
+Art. 34. Na execução orçamentária, caso seja verificado que o comportamento da receita ordinária poderá afetar o cumprimento das metas de resultados primário e nominal, o
+Poder Executivo adotará o mecanismo da limitação de empenho e movimentação financeira, observando-se a vinculação das destinações dos recursos e o resultado financeiro apurado no
+balanço patrimonial do exercício anterior.
+</p>
+
+<p class="artigo">
+<a id="ART000035"> </a>
+Art. 35. Caso seja necessária a limitação de empenho das dotações orçamentárias e da movimentação financeira para atingir as metas fiscais, esta será feita sobre o
+montante dos recursos alocados para atender às despesas correntes e investimentos.
+</p>
+
+	<p class="paragrafo">
+	<a id="ART000035PAR000001"> </a>
+	§ 1º A limitação de empenho para fins de alcançar o equilíbrio fiscal ficará vinculada ao contingenciamento orçamentário, com exceção das dotações orçamentárias
+	referentes às despesas de pessoal, amortizações, juros e encargos da dívida e sentenças judiciais.
+	</p>
+	
+	
+	<p class="paragrafo">
+	<a id="ART000035PAR000002"> </a>
+	§ 2º Deverão ser observadas as normas relativas à avaliação dos resultados dos programas estabelecidos na Lei do <a href="../2025/lo_20251022_000011510.html">Plano Plurianual</a> 2026-2029.
+	</p>
+	
+	<p class="paragrafo">
+	<a id="ART000035PAR000003"> </a>
+	§ 3º Os órgãos, entidades e fundos da administração pública direta e indireta do Poder Executivo municipal serão responsáveis pela análise periódica das metas e programas de
+	governo para manter o equilíbrio fiscal.
+	</p>
+
+
+<p class="artigo">
+<a id="ART000036"> </a>
+Art. 36. (VETADO).
+</p>
+
+<p class="artigo">
+<a id="ART000037"> </a>
+Art. 37. (VETADO).
+</p>
+
+<p class="artigo">
+<a id="ART000038"> </a>
+Art. 38. São vedados quaisquer procedimentos, pelos ordenadores de despesas, que viabilizem a execução de despesas sem o cumprimento 
+dos arts. 15 e 16, da <a class="link" onclick="leiFederal()" >Lei Complementar federal nº 101, de 2000</a>, e sem a comprovação da suficiente disponibilidade de
+dotação orçamentária.
+</p>
+
+<p class="artigo">
+<a id="ART000039"> </a>
+Art. 39. A administração pública municipal poderá destinar recursos direta ou indiretamente, por meio de contribuições, auxílios, subvenções sociais e materiais de
+distribuição gratuita, para entidades sem fins lucrativos, que realizarem serviços de interesse público, desde que sejam compatíveis com os programas constantes da Lei Orçamentária Anual.
+</p>
+
+<p class="paragrafo">
+<a id="ART000039PAR000001"> </a>
+§ 1º Para fins do disposto neste artigo, entende-se por:
+</p>
+	
+	<p class="inciso">
+	<a id="ART000039PAR000001INC000001"> </a>
+	I - contribuições: dotações destinadas a atender despesas de manutenção de entidades de direito público e privado, em razão das suas atividades de caráter social, para as
+	quais não se exige a contraprestação direta em bens e serviços;
+	</p>
+	
+		<p class="inciso">
+	<a id="ART000039PAR000001INC000002"> </a>
+	II -  auxílios: dotações destinadas a atender despesas de investimentos ou inversões financeiras, ou ambos, que outras pessoas de direito público ou privado sem fins
+	lucrativos devam realizar, independente da contraprestação direta em bens e serviços;
+	</p>
+
+
+		<p class="inciso">
+	<a id="ART000039PAR000001INC000003"> </a>
+	III - subvenções sociais: dotações destinadas a atender despesas de instituições públicas ou privadas, de caráter assistencial ou cultural, observado o 
+	art. 26, sem finalidade lucrativa, conforme art. 12, § 3º, inciso I, e observado o disposto no art. 16, parágrafo único, da 
+	<a class="link" onclick="leiFederal()" >Lei federal nº 4.320, de 1964</a>; e
+
+	</p>
+
+		<p class="inciso">
+	<a id="ART000039PAR000001INC000004"> </a>
+	IV - material de distribuição gratuita: dotações destinadas a atender despesa com a aquisição de materiais de distribuição gratuita, tais como livros didáticos, medicamentos,
+	gêneros alimentícios e outros materiais, bens e serviços que possam ser distribuídos gratuitamente, exceto se destinados a premiações culturais, artísticas, científicas, desportivas e outras.
+	</p>
+
+<p class="paragrafo">
+<a id="ART000039PAR000002"> </a>
+§ 2º Fica vedada a realização, pelo Poder Executivo municipal, de quaisquer despesas decorrentes de convênios, contratos de gestão e termos de parceria celebrados com
+entidades sem fins lucrativos que deixarem de prestar contas, periodicamente e com informações detalhadas sobre a utilização dos recursos públicos municipais, na forma prevista
+na legislação vigente.
+</p>
+
+
+<p class="artigo">
+<a id="ART000040"> </a>
+Art. 40. Ficam autorizadas as transferências de recursos a título de subvenções econômicas a empresas públicas, de natureza autárquica, ou não, para a cobertura dos déficits
+de manutenção, conforme o art. 18 da <a class="link" onclick="leiFederal()" >Lei federal nº 4.320, de 1964.</a>
+</p>
+
+<p class="artigo">
+<a id="ART000041"> </a>
+Art. 41. A contabilidade registrará os atos e fatos relativos à gestão orçamentária e financeira, efetivamente ocorridos, sendo obrigada a comunicar ao Poder Legislativo e ao
+Sistema de Controle Interno do Poder Executivo a ocorrência de quaisquer falhas, num prazo máximo de 10 (dez) dias corridos de sua ciência.
+</p>
+
+<h2 class="capitulo2" >
+<a id="CAP000007"> </a>
+<p>CAPÍTULO VII</p>
+<p>DAS DISPOSIÇÕES SOBRE ALTERAÇÕES NA LEGISLAÇÃO TRIBUTÁRIA</p>
+</h2>
+
+
+
+<p class="artigo">
+<a id="ART000042"> </a>
+Art. 42. O Poder Executivo municipal poderá encaminhar ao Poder Legislativo municipal projetos de lei que proponham alterações na legislação, incluída a que dispõe sobre
+tributos municipais, quando necessárias à preservação do equilíbrio das contas públicas, à modernização dos sistemas de arrecadação tributária e com vistas à consecução de justiça
+fiscal, podendo dispor sobre:
+
+
+	<p class="inciso">
+	<a id="ART000042INC000001"> </a>
+	I - a revisão do Código Tributário do Município de Goiânia com o objetivo de criação ou atualização de impostos, taxas e preços públicos, para aprimorar a prestação de
+	serviços e garantir a cobertura dos custos realizados;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000042INC000002"> </a>
+	II - a adequação da legislação tributária municipal às normas federais ou estaduais, que tiveram alterações; e 
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000042INC000003"> </a>
+	III - alteração das normas que definem exigências a serem cumpridas pelos beneficiários, para a concessão ou manutenção de benefícios de natureza tributária.
+	</p>
+
+
+<p class="artigo">
+<a id="ART000043"> </a>
+Art. 43. O Poder Executivo municipal, autorizado em lei, poderá conceder ou ampliar benefícios fiscais de natureza tributária com vistas a:
+</p>
+
+	<p class="inciso">
+	<a id="ART000043INC000001"> </a>
+	I - estimular o crescimento econômico;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000043INC000002"> </a>
+	II - estimular a geração de emprego e renda;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000043INC000003"> </a>
+	III - beneficiar contribuintes integrantes de classes menos favorecidas; e
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000043INC000004"> </a>
+	IV - conceder anistia para estimular a cobrança da dívida ativa.
+	</p>
+	
+
+<p class="paragrafo">
+<a id="ART000043PAR000001"> </a>
+Parágrafo único.  A renúncia de receita decorrente dos benefícios de que trata este artigo será considerada nos cálculos da estimativa da receita e será objeto de estudo do
+seu impacto orçamentário e financeiro.
+</p>
+
+
+<p class="artigo">
+<a id="ART000044"> </a>
+Art. 44.  O projeto de lei que conceder ou ampliar incentivo, ou benefício de natureza tributária somente poderá ser aprovado se atendidas as exigências 
+do art. 14 da <a class="link" onclick="leiFederal()" >Lei Complementar federal nº 101, de 2000</a>, devendo ser instruído com demonstrativo evidenciando
+que não serão afetadas as metas de resultado primário e nominal.
+</p>
+
+	<p class="paragrafo">
+	<a id="ART000044PAR000002"> </a>
+	§ 1º A estimativa do impacto orçamentário-financeiro previsto neste artigo deverá ser acompanhada da respectiva memória de cálculo e homologada pelo órgão municipal
+	fazendário.
+	</p>
+	
+	<p class="paragrafo">
+	<a id="ART000044PAR000001"> </a>
+	§ 2º As propostas que criarem ou prorrogarem benefícios tributários devem estar acompanhadas dos objetivos, metas e indicadores relativos à política pública fomentada, com
+	devido acompanhamento e avaliação de sua eficácia.
+	</p>
+	
+
+<h2 class="capitulo2" >
+<a id="CAP000008"> </a>
+<p>CAPÍTULO VIII</p>
+<p>DISPOSIÇÕES GERAIS</p>
+</h2>
+	
+
+<p class="artigo">
+<a id="ART000045"> </a>
+Art. 45.  As emendas ao Projeto de Lei Orçamentária Anual - LOA para 2026, para serem acatadas, deverão:
+</p>
+
+	<p class="inciso">
+	<a id="ART000045INC000001"> </a>
+	I - ser compatíveis com a presente Lei;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000045INC000002"> </a>
+	II - indicar os recursos necessários, admitidos apenas os provenientes de anulação parcial ou total de despesas, excluídas as que incidam sobre: 
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000045INC000002ALI000001"> </a>
+	a) dotações para pessoal e seus encargos;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000045INC000002ALI000002"> </a>
+	b) serviços da dívida;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000045INC000002ALI000003"> </a>
+	c) transferências da União, convênios, operações de crédito, contratos, acordos, ajustes e instrumentos similares; e
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000045INC000002ALI000004"> </a>
+	d) despesas referentes a vinculações constitucionais; e
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000045INC000003"> </a>
+	III - ser relacionadas:
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000045INC000003ALI000001"> </a>
+	a) à correção de erros ou omissões; e
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000045INC000003ALI000002"> </a>
+	b) aos dispositivos do texto do Projeto de Lei Orçamentária Anual - LOA para 2026.
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000045PAR000001"> </a>
+	§ 1º Não serão admitidas emendas ao orçamento que:
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000045PAR000001INC000001"> </a>
+	I - não apresentarem objetivos e metas compatíveis com a unidade orçamentária, o projeto ou atividade, a esfera orçamentária, o grupo de natureza de despesa e a destinação de
+	recursos; e
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000045PAR000001INC000002"> </a>
+	II - incluam quaisquer despesas que não sejam de competência e atribuição do Município.
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000045PAR000002"> </a>
+	§ 2º Não serão admitidas emendas cujos valores se mostrem incompatíveis e insuficientes à cobertura das atividades, dos projetos, das operações especiais, das metas ou
+	despesas que se pretendam alcançar e desenvolver.
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000045PAR000003"> </a>
+	§ 3º O Projeto de Lei Orçamentária para o exercício de 2026 conterá reservas específicas destinadas à execução obrigatória de atendimento de emendas parlamentares
+	individuais impositivas, com base na Receita Corrente Líquida, observado o limite de 2% (dois por cento), assegurada a aplicação de, no mínimo, 1/2 (um meio) do valor total aprovado em
+	ações e serviços públicos de saúde.
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000045PAR000004"> </a>
+	§ 4º Para fins de atendimento aos dispositivos relacionados às emendas parlamentares individuais impositivas, os órgãos serão os responsáveis pela análise e verificação
+	de eventuais impedimentos de viabilidade de execução nos termos previstos na legislação que regulamenta os procedimentos para execução das emendas parlamentares individuais
+	impositivas.
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000045PAR000005"> </a>
+	§ 5º As programações orçamentárias para emendas individuais impositivas não serão de execução obrigatória nos casos de impedimentos de ordem técnica insuperáveis.
+	</p>
+	
+	
+<p class="artigo">
+<a id="ART000046"> </a>
+Art. 46. (VETADO).
+</p>
+
+<p class="artigo">
+<a id="ART000047"> </a>
+Art. 47. O equilíbrio das finanças públicas deverá ser alcançado por meio de ajuste fiscal, destacando-se:
+</p>
+
+<p class="inciso">
+<a id="ART000047INC000001"> </a>
+I - o incremento da arrecadação mediante:
+</p>
+
+	<p class="inciso">
+	<a id="ART000047INC000001ALI000001"> </a>
+	a) aumento real da arrecadação tributária;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000047INC000001ALI000002"> </a>
+	b) recebimento da dívida ativa tributária; e
+	</p>
+	
+<p class="inciso">
+<a id="ART000047INC000002"> </a>
+II - o controle de despesas mediante:
+</p>
+
+	<p class="inciso">
+	<a id="ART000047INC000002ALI000001"> </a>
+	a) administração e controle de despesas com custeio administrativo e operacional;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000047INC000002ALI000002"> </a>
+	b) administração e controle do pagamento da dívida bancária intra e extra limite, inclusive renegociação e aproveitamento de créditos; e
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000047INC000002ALI000003"> </a>
+	c) execução de investimentos dentro da capacidade de desembolso do Município.
+	</p>
+
+
+<p class="artigo">
+<a id="ART000048"> </a>
+Art. 48. Caso o Projeto de Lei Orçamentária Anual - LOA para 2026 não seja aprovado até o término do período legislativo, a Câmara Municipal de Goiânia convocará
+imediatamente sessões extraordinárias até que a matéria seja apreciada.
+</p>
+
+	<p class="paragrafo">
+	<a id="ART000048PAR000001"> </a>
+	Parágrafo único.  Na hipótese de o Projeto de Lei Orçamentária Anual - LOA para 2026 não ser devolvido para sanção do Poder Executivo municipal até o dia 31 de dezembro de
+	2025, fica autorizada a execução de 1/12 (um doze avos) da programação dele constante, multiplicado pelo número de meses decorridos até a data de publicação da respectiva Lei.
+	</p>
+
+<p class="artigo">
+<a id="ART000049"> </a>
+Art. 49. A reabertura dos créditos especiais e extraordinários, conforme odisposto no 
+art. 167, § 2º, da <a class="link" onclick="leiFederal()" >Constituição Federal,</a> será efetivada mediante decreto do Poder Executivo municipal.
+</p>
+
+
+<p class="artigo">
+<a id="ART000050"> </a>
+Art. 50. O orçamento da Câmara Municipal de Goiânia deverá ser 4,5% (quatro inteiros e cinco por cento) da receita tributária e das transferências previstas 
+no art. 29-A da <a class="link" onclick="leiFederal()" >Constituição Federal.</a>
+</p>
+
+<p class="artigo">
+<a id="ART000051"> </a>
+Art. 51. A Lei Orçamentária Anual - LOA poderá conter dotações relativas a projetos a serem desenvolvidos por meio de:
+</p>
+
+	<p class="inciso">
+	<a id="ART000051INC000001"> </a>
+	I - parcerias público-privadas, nos termos da Lei federal nº 11.079, de 30 de dezembro de 2004; e 
+	</p>
+
+	<p class="inciso">
+	<a id="ART000051INC000002"> </a>
+	II - consórcios públicos, nos termos da <a class="link" onclick="leiFederal()" >Lei federal nº 11.107, de 6 de abril de 2005</a>, e Portaria nº 72, de 1º de fevereiro de 2012, da Secretaria do Tesouro Nacional.
+	</p>
+
+
+<p class="artigo">
+<a id="ART000052"> </a>
+Art. 52. (VETADO).
+</p>
+
+<p class="artigo">
+<a id="ART000053"> </a>
+Art. 53. Esta Lei entra em vigor na data de sua publicação. 
+
+
+</p>
+
+
+</html>
+
+	
+	
+	
+	
+<!--  
+*************************************************************
+---------------------------FECHO DA LEI ------------------------------
+**************************************************************--> 				
+<p class="fecho2">
+Goiânia, 9 de janeiro de 2026.
+</p>
+
+<!--  
+*************************************************************
+--------------------------- ASSINATURA ------------------------------
+**************************************************************-->
+
+<div class="assinaturaprefeitosemnegrito" >
+<p>SANDRO MABEL</p>
+<p>Prefeito de Goiânia 
+</p>
+</div>
+
+<!--  
+*************************************************************
+------------------------- AUTORIA DO PROJETO DE LEI ------------------------
+**************************************************************-->
+
+<div class="autoriadoprojeto" >
+<p>Projeto de lei de autoria do Poder Executivo.</p>
+</div>
+
+<!--  
+*************************************************************
+------------------------- PUBLICAÇÃO NO DOM ------------------------
+**************************************************************-->
+
+<p class="diariooficial">
+Este texto não substitui o publicado no 
+<a target="_blank" href="https://www.goiania.go.gov.br/Download/legislacao/diariooficial/2026/do_20260109_000008697.pdf">
+DOM 8697 de 09/01/2026.</a>
+</p>
+
+<h2 class="anexo2">
+	<p>ANEXOS</p>
+</h2>
+
+<p class="comentario2" style="margin-top: 15px">
+<a target="_blank"  href="../2026/lo_20260109_000011589_ane_000000001.pdf">Download para os anexos</a>
+</p>
+
+
+
+<br>
+</body>
+</html>
+
+
+
+
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"8d7ec16f5090428486d4568efe8ca4fc","r":1,"spa":2}' crossorigin="anonymous"></script>

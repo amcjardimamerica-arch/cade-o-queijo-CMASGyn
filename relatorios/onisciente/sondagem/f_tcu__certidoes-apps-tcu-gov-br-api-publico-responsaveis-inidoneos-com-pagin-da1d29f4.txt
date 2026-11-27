@@ -1,0 +1,7 @@
+URL: https://certidoes.apps.tcu.gov.br/api/publico/responsaveis-inidoneos-com-paginacao
+POST: {}
+OK: False
+HTTP: None
+ERRO: URLError: [Errno 104] Connection reset by peer
+BYTES: 0
+

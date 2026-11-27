@@ -1,0 +1,217 @@
+URL: https://www10.goiania.go.gov.br/transweb/GestaoMunicipal.aspx
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 38669
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" >
+  <head><script type="text/javascript" charset="UTF-8">
+(function (global) {
+    global.outsystems = global.outsystems || {};
+    global.outsystems.internal = global.outsystems.internal || {};
+})(this);
+outsystems.internal.timerspolyfillResponseStart = new Date().getTime();
+outsystems.internal.startInstant = new Date();
+outsystems.internal.requestEventName = 'WebScreenClientExecuted';
+outsystems.internal.beaconRESTURL = '/PerformanceProbe/rest/BeaconInternal/WebScreenClientExecutedEvent';
+</script><title>
+	GestaoMunicipal
+</title><meta name="msapplication-tap-highlight" content="no" /><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" /><meta name="apple-mobile-web-app-capable" content="yes" /><meta name="mobile-web-app-capable" content="yes" /><meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" /><meta http-equiv="Content-Style-Type" content="text/css" />
+<style>
+.OSFillParent { 
+ display: block;
+ width: 100%;
+}
+table.OSFillParent {
+ display: table;
+}
+input.OSFillParent,
+button.OSFillParent,
+select.OSFillParent,
+textarea.OSFillParent {
+ display: inline-block;
+ box-sizing: border-box;
+ -moz-box-sizing: border-box;
+ -webkit-box-sizing: border-box;
+}
+.OSInline {
+ display: inline-block;
+ *zoom: 1;
+ *display: inline;
+ vertical-align: top;
+}
+table.OSInline {
+ display: inline-table;
+}
+.OSAutoMarginTop {
+ margin-top: 10px;
+}
+table[class*="ThemeGrid_Width"] {
+ display: inline-table;
+ vertical-align: top;
+}
+div[class*="ThemeGrid_Width"] {
+ vertical-align: top;
+}
+th[class*="ThemeGrid_Width"],
+td[class*="ThemeGrid_Width"] {
+ display: table-cell;
+}
+[class*="ThemeGrid_Width"] {
+ display: inline-block;
+ box-sizing: border-box;
+ -webkit-box-sizing: border-box;
+ -moz-box-sizing: border-box;
+ *zoom: 1;
+ *display: inline;
+}
+.ThemeGrid_Container {
+ box-sizing: border-box;
+ -webkit-box-sizing: border-box;
+ -moz-box-sizing: border-box;
+}
+
+</style>
+<link href="/RichWidgets/Blocks/RichWidgets/RichWidgets/Icon.css?46563" type="text/css" rel="stylesheet" />
+<link href="/WebPatterns/Blocks/WebPatterns/Private/Tooltipster_3_0_6.css?60864" type="text/css" rel="stylesheet" />
+<link href="/WebPatterns/Blocks/WebPatterns/Javascript/SilkUI.css?60864" type="text/css" rel="stylesheet" />
+<link href="/RichWidgets/Blocks/RichWidgets/jQueryUI/jQueryUIInternal.css?46563" type="text/css" rel="stylesheet" />
+<link href="/RichWidgets/Blocks/RichWidgets/RichWidgets/Feedback_Message.css?46563" type="text/css" rel="stylesheet" />
+<link href="/transweb/Blocks/TransWeb/CommonFlow/JQueryJFontSize.css?67404" type="text/css" rel="stylesheet" />
+<link href="/transweb/Blocks/TransWeb/CommonFlow/Contraste.css?67404" type="text/css" rel="stylesheet" />
+<link href="/GoianiaTheme/Blocks/GoianiaTheme/ZebraResource/CSS_ZEBRA_MATERIALIZE.css?56763" type="text/css" rel="stylesheet" />
+<link href="/GoianiaTheme/Blocks/GoianiaTheme/Base/Header.css?56763" type="text/css" rel="stylesheet" />
+<link href="/transweb/Blocks/TransWeb/CommonFlow/Header.css?67404" type="text/css" rel="stylesheet" />
+<link href="/RichWidgets/Blocks/RichWidgets/RichWidgets/DropDownMenu.css?46563" type="text/css" rel="stylesheet" />
+<link href="/WebPatterns/Blocks/WebPatterns/Private/ColumnsCSS.css?60864" type="text/css" rel="stylesheet" />
+<link href="/RichWidgets/Blocks/RichWidgets/RichWidgets/List_SortColumn.css?46563" type="text/css" rel="stylesheet" />
+<link href="/RichWidgets/Blocks/RichWidgets/RichWidgets/List_Navigation.css?46563" type="text/css" rel="stylesheet" />
+<link href="/TransWebBlocks/Blocks/TransWebBlocks/WebBlocks/MostraAnexos.css?57178" type="text/css" rel="stylesheet" />
+    <link href="Theme.TransWeb.css?67404" type="text/css" rel="stylesheet" />
+    <link href="GestaoMunicipal.css?67404" type="text/css" rel="stylesheet" />
+    <link href="/GoianiaTheme/Theme.GoianiaTheme.extra.css?56763" type="text/css" rel="stylesheet" />
+    <script id="_OSrequestInfoScript" type="text/javascript">(function(global) { global.outsystems = global.outsystems || {};global.outsystems.internal = global.outsystems.internal || {};global.outsystems.internal.requestInfo = {visitorKey:'593ef8e4-3df1-4bd7-b532-0cdf2d82dc04',visitKey:'0e44caf2-ce3c-43d0-a9ab-f4042d9a2c8f',sessionKey:'BWNqma6Pl0qVTh3o3rIgpg==',userKey:'',requestKey:'14c70a0d-4e3e-4214-be0b-93beda877a39',webScreenKey:'0ca41a4b-03f9-4c79-9b80-613bd133f242',webScreenName:'GestaoMunicipal',espaceKey:'ef7726c9-e6bf-4bae-bbce-2e7d6846b63d',espaceName:'TransWeb',applicationKey:'3bbec277-705f-4708-9caa-9bd99325c137',applicationName:'AP_Portal da Transparencia',tenantKey:'6284e8bf-2aa5-50a4-f1bc-9918c2801df6',tenantName:'Users',environmentKey:'a513bd7b-8ea6-477a-96cb-f818aa61334a',environmentName:'Produção',frontendKey:'$1$swTjKNP2EzCxGCJYKc3gxg==MCB1Xwu5ClA1Ha5/q6mV1zA46HIsNYxoURZ79fXJ05Y='}})(this);</script>
+    <script src="_osjs.js?11_29_0_43552" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/WebPatterns/Javascript/SilkUICommon.pt-BR.js?60864" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/WebPatterns/Private/ToggleScript.pt-BR.js?60864" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/WebPatterns/Private/Tooltipster_3_0_6.pt-BR.js?60864" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/WebPatterns/Javascript/SilkUI.pt-BR.js?60864" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/WebPatterns/Utilities/Feedback_AjaxWait.pt-BR.js?60864" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/RichWidgets/jQueryUI/jQueryUIInternal.pt-BR.js?46563" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/RichWidgets/jQueryUI/jQueryComponents.pt-BR.js?46563" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/RichWidgets/RichWidgets/Feedback_Message.pt-BR.js?46563" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/GoianiaTheme/Base/Layout.js?56763" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/TransWeb/CommonFlow/JQuery19.js?67404" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/TransWeb/CommonFlow/JQueryJFontSize.js?67404" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/TransWeb/CommonFlow/JStorage.js?67404" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/TransWeb/CommonFlow/Contraste.js?67404" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/GoianiaTheme/ZebraResource/JS.js?56763" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/GoianiaTheme/Base/fontSizeJs.js?56763" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/RichWidgets/RichWidgets/DropDownMenu.pt-BR.js?46563" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/WebPatterns/Navigation/Breadcrumbs.pt-BR.js?60864" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/WebPatterns/Private/ColumnsJS.pt-BR.js?60864" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/RichWidgets/RichWidgets/List_SortColumn.pt-BR.js?46563" type="text/javascript" charset="UTF-8"></script>
+
+</head>
+  <body data-os-cookie-policy="Secure">
+    <form method="post" action="GestaoMunicipal.aspx" id="WebForm1" name="WebForm1">
+<input type="hidden" name="__OSVSTATE" id="__OSVSTATE" value="OY9roQr52hUvQK0412bNkAnlwIfjEndi19ME9tAns2Ix7tTlg9OtapH4gx2bThp49sGKn4bQcGtsUrVrkSdfVHU2uovN65eFgfLDKWZn/uK7RW/O480u47VCuqp8bI/1rNM2DKb0u4B9FGj4+/hLho1dazYFc+xz3vsphTMs17EQzA7aX/AroewjYJue/AxanfRKlx+/HP4oFDkjKACICTBCYNcaoXOxQrIBkoL0VGtc6KlVwYUFADI8JPs1UQPfSaXxyfW0FJD/UXbHNpG6t0Hd6+GozjkAw26YrnNlcDnxcJYGt5AA3pqyzzgO+4nDrrZWVge9Q9XYWp9DDQvS6bYgP0siBXKoGW2Bv/v8xdwOOvX3WOcEbijyFax7jgazavDzLwZVgDgOkFdI6fEkDBaJI9aTAbRiNaxYW4+YVOnfRQXItt4FnofS3Nd0zG1dp8TSBjJ3r7nn5wCuCJoISLTJuYjq35J9hZ8HgQHJAJ54wAqiy+ayhzHukk1wlVi1eKGXmQNMW+LL7+1/12ZLrMV3czaYo6KIAxHgmrzoVB8dS9a7xcePEJvcRrsN7DlHGivLVqATbL3mPcxeeeeajqcYenb19F1yBW52aIb182r0wX1FaRzLT19epFrj4bjR+h+IfCbUVcsZmCbeXoNsVwA7R8URpbtDvLq1yXIr9Xd3J2LtMSb0H5yFaHyscMWIC8hvqdxZRRfa8/KNhvRWs7G03+4g7+PRQe8xxJDF110bsj8DUL4JB/3sBJHEAF7cqW3CCQqEvN6rzITEOXKysA==" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="" />
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="10B52962" />
+<div  class="Page startHidden unknownos  pt LiverpoolTheme"><div  class="Header ThemeGrid_Wrapper No_Print"><div  class="ThemeGrid_Container"><div  class="Header_RightSection HiddenInDesktop" align="center"><a id="GoianiaTheme_wt6_block_wt2" tabindex="1" class="Header_ButtonMenu" href="#"><span class="fa fa-fw fa-bars"></span></a></div ><div  id="GoianiaTheme_wt6_block_wtHeader" class="Header_LeftSection PH"><div >
+<script type="text/javascript">
+
+function contraste() {
+    window.toggleContrast();
+}
+
+(function ($) {
+        $().ready(function () {
+             $('body').jfontsize({
+                 btnMinusClasseId: '#GoianiaTheme_wt6_block_wtHeader_wt38_wtjfontsizeminus',
+                 btnDefaultClasseId: '#GoianiaTheme_wt6_block_wtHeader_wt38_wtjfontsizedefault',
+                 btnPlusClasseId: '#GoianiaTheme_wt6_block_wtHeader_wt38_wtjfontsizeplus',
+                 btnMinusMaxHits: 10,
+                 btnPlusMaxHits: 10,
+                 sizeChange: 1
+             });
+
+            document.getElementById('GoianiaTheme_wt6_block_wtHeader_wt38_wtlnkHome').accessKey = '1';
+            document.getElementById('GoianiaTheme_wt6_block_wtHeader_wt38_wtlnkAcessibilidade').accessKey = '2';
+            document.getElementById('GoianiaTheme_wt6_block_wtHeader_wt38_wtContraste').accessKey = '3';
+            document.getElementById('GoianiaTheme_wt6_block_wtHeader_wt38_wtjfontsizeminus').accessKey = '4';
+            document.getElementById('GoianiaTheme_wt6_block_wtHeader_wt38_wtjfontsizedefault').accessKey = '5';
+            document.getElementById('GoianiaTheme_wt6_block_wtHeader_wt38_wtjfontsizeplus').accessKey = '6';
+
+            jQuery(document).keypress(function (e) {
+         //       alert('code: ' + e.keyCode + 'Wich: ' + e.wich);
+        //       Alt + 1
+                
+                if (e.keyCode == 9786) {
+                    document.location.href = '/TransWeb/Home.aspx';
+
+                }
+                if (e.keyCode == 9787) {
+                    document.location.href = '/TransWeb/Acessibilidade.aspx';
+
+                }
+                //       Alt + 3
+                if (e.keyCode == 9829) {
+                    contraste();
+                }
+            })
+ 
+       });
+    })(jQuery)
+</script>
+
+</div ><div  class="OSInline" style="width: 74%"><div  id="GoianiaTheme_wt6_block_wtHeader_wt38_GoianiaTheme_wtlnkheader_block_wtApplication_Header" style="height: 55px; margin-top: 0px;"><a id="GoianiaTheme_wt6_block_wtHeader_wt38_GoianiaTheme_wtlnkheader_block_wt4" tabindex="2" href="/Internet"><img alt="" src="/GoianiaTheme/img/brasaohorizontalpreto307x124.png?56763" style="height:50px;width:115px;margin-left: 2px;margin-top: 2px;" /></a><div  id="GoianiaTheme_wt6_block_wtHeader_wt38_GoianiaTheme_wtlnkheader_block_wtApplication_Title" class="Application_Title OSInline ThemeGrid_MarginGutter" style="margin-top: 0px;"><a id="GoianiaTheme_wt6_block_wtHeader_wt38_GoianiaTheme_wtlnkheader_block_wt2" tabindex="4" href="Home.aspx">Portal da Transpar&#234;ncia</a></div ><div  class="ThemeGrid_Width7 ThemeGrid_MarginGutter" align="right" style="margin-top: 10px;"><div  class="ThemeGrid_Width2"><div  class="ThemeGrid_Width2" title="Aumentar tamanho do texto"><a id="GoianiaTheme_wt6_block_wtHeader_wt38_GoianiaTheme_wtlnkheader_block_wt3_wt5" tabindex="5" onclick="OsAjax(arguments[0] || window.event,&#39;GoianiaTheme_wt6_block_wtHeader_wt38_GoianiaTheme_wtlnkheader_block_wt3_wt5&#39;,&#39;GoianiaTheme_wt6$block$wtHeader$wt38$GoianiaTheme_wtlnkheader$block$wt3$wt5&#39;,&#39;&#39;,&#39;__OSVSTATE,&#39;,&#39;&#39;); return false;" href="#"><img class="img2" alt="" src="/GoianiaTheme/img/aplus.png?56763" /></a></div ><div  class="ThemeGrid_Width2" title="Diminuir tamanho do texto" style="margin-left: 20px"><a id="GoianiaTheme_wt6_block_wtHeader_wt38_GoianiaTheme_wtlnkheader_block_wt3_wt9" tabindex="6" onclick="OsAjax(arguments[0] || window.event,&#39;GoianiaTheme_wt6_block_wtHeader_wt38_GoianiaTheme_wtlnkheader_block_wt3_wt9&#39;,&#39;GoianiaTheme_wt6$block$wtHeader$wt38$GoianiaTheme_wtlnkheader$block$wt3$wt9&#39;,&#39;&#39;,&#39;__OSVSTATE,&#39;,&#39;&#39;); return false;" href="#"><img class="img2" alt="" src="/GoianiaTheme/img/aminus.png?56763" style="margin-left: 5px" /></a></div ><div  id="GoianiaTheme_wt6_block_wtHeader_wt38_GoianiaTheme_wtlnkheader_block_wt3_wtdiv_fontsize" class="OSInline ThemeGrid_MarginGutter" style="visibility:hidden;"><input name="GoianiaTheme_wt6$block$wtHeader$wt38$GoianiaTheme_wtlnkheader$block$wt3$wttxt_fontsize" type="text" maxlength="50" id="GoianiaTheme_wt6_block_wtHeader_wt38_GoianiaTheme_wtlnkheader_block_wt3_wttxt_fontsize" tabindex="7" class="input ThemeGrid_Width1" aria-invalid="false" onoschange="OsAjaxDelayed(null,&#39;GoianiaTheme_wt6_block_wtHeader_wt38_GoianiaTheme_wtlnkheader_block_wt3_wttxt_fontsize&#39;,&#39;GoianiaTheme_wt6$block$wtHeader$wt38$GoianiaTheme_wtlnkheader$block$wt3$wttxt_fontsize&#39;,&#39;Change&#39;,&#39;__OSVSTATE,&#39;,osOnChangeTimerDelay);" onchange="OsAjaxDelayed(null,&#39;GoianiaTheme_wt6_block_wtHeader_wt38_GoianiaTheme_wtlnkheader_block_wt3_wttxt_fontsize&#39;,&#39;GoianiaTheme_wt6$block$wtHeader$wt38$GoianiaTheme_wtlnkheader$block$wt3$wttxt_fontsize&#39;,&#39;Change&#39;,&#39;__OSVSTATE,&#39;,0);" /><span style="display: none;" class="ValidationMessage" role="alert" id="ValidationMessage_GoianiaTheme_wt6_block_wtHeader_wt38_GoianiaTheme_wtlnkheader_block_wt3_wttxt_fontsize"></span><a id="GoianiaTheme_wt6_block_wtHeader_wt38_GoianiaTheme_wtlnkheader_block_wt3_wtlink_salva" tabindex="8" onclick="OsAjax(arguments[0] || window.event,&#39;GoianiaTheme_wt6_block_wtHeader_wt38_GoianiaTheme_wtlnkheader_block_wt3_wtlink_salva&#39;,&#39;GoianiaTheme_wt6$block$wtHeader$wt38$GoianiaTheme_wtlnkheader$block$wt3$wtlink_salva&#39;,&#39;&#39;,&#39;__OSVSTATE,&#39;,&#39;&#39;); return false;" href="#">salva</a></div ></div ></div ></div ></div ><a id="GoianiaTheme_wt6_block_wtHeader_wt38_wtlnkHome" tabindex="9" href="PortaldaTransparencia.aspx?Antigo=True"></a><a id="GoianiaTheme_wt6_block_wtHeader_wt38_wtlnkAcessibilidade" tabindex="10" href="Acessibilidade.aspx"><div  id="GoianiaTheme_wt6_block_wtHeader_wt38_wtacessibilidade" class="jfontsize-button OSInline" style="width: 8%; margin-left: 1%">Acessibilidade</div ></a><div  id="GoianiaTheme_wt6_block_wtHeader_wt38_wtContraste" class="jfontsize-button OSInline" onclick="javascript:contraste();" title="Aplicar Contraste" style="width: 6%; margin-left: 1%">Contraste <span style="width:30px;"><i class='fa fa-adjust'></i></span></div ><div  id="GoianiaTheme_wt6_block_wtHeader_wt38_wtjfontsizeminus" class="jfontsize-button OSInline" title="Diminuir tamanho da fonte" style="width: 2%; margin-left: 1%">A-</div ><div  id="GoianiaTheme_wt6_block_wtHeader_wt38_wtjfontsizedefault" class="jfontsize-button OSInline" title="Restaurar o tamanho original da fonte" style="width: 2%; margin-left: 1%">A</div ><div  id="GoianiaTheme_wt6_block_wtHeader_wt38_wtjfontsizeplus" class="jfontsize-button OSInline" title="Aumentar o tamanho da fonte" style="width: 2%; margin-left: 1%">A+</div ></div ></div ><div  class="Header_Menu_Bar" style="margin-top: 0px;"><div  class="ThemeGrid_Container "><div  id="GoianiaTheme_wt6_block_wtMenu" class="Header_Menu"><div  class="Application_Menu"><div ><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt5_block_wtDropDownButtonRoot" class="Menu_DropDownButton OSInline" aria-expanded="false" role="menuitem"><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt5_block_wtDropDownButtonElement" class="Menu_TopMenu Menu_TopMenu" aria-controls="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt5_block_wtDropDownPanel" role="button"><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt5_block_wtMenuItem"><a id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt5_block_wtMenuItem_wt17" tabindex="11" href="Atendimento.aspx">Atendimento</a></div ></div ><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt5_block_wtDropDownPanel" class="Menu_DropDownPanel"><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt5_block_wtMenuSubItems" class="Menu_SubItemsPlaceholder"></div ></div ></div ><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt4_block_wtDropDownButtonRoot" class="Menu_DropDownButton OSInline" aria-expanded="false" role="menuitem"><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt4_block_wtDropDownButtonElement" class="Menu_TopMenu Menu_TopMenu" aria-controls="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt4_block_wtDropDownPanel" role="button"><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt4_block_wtMenuItem"><a id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt4_block_wtMenuItem_wt12" tabindex="12" target="_blank" href="http://www.goiania.go.gov.br/download/transparencia/Organograma%20Geral%202016%20Visio%20Basico%201.pdf">Organograma</a></div ></div ><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt4_block_wtDropDownPanel" class="Menu_DropDownPanel"><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt4_block_wtMenuSubItems" class="Menu_SubItemsPlaceholder"></div ></div ></div ><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt3_block_wtDropDownButtonRoot" class="Menu_DropDownButton OSInline" aria-expanded="false" role="menuitem"><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt3_block_wtDropDownButtonElement" class="Menu_TopMenu Menu_TopMenu" aria-controls="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt3_block_wtDropDownPanel" role="button"><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt3_block_wtMenuItem"><a id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt3_block_wtMenuItem_wt31" tabindex="13" href="PerguntasFrequentes.aspx">Perguntas Frequentes</a></div ></div ><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt3_block_wtDropDownPanel" class="Menu_DropDownPanel"><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt3_block_wtMenuSubItems" class="Menu_SubItemsPlaceholder"></div ></div ></div ><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt25_block_wtDropDownButtonRoot" class="Menu_DropDownButton OSInline" aria-expanded="false" role="menuitem"><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt25_block_wtDropDownButtonElement" class="Menu_TopMenu Menu_TopMenu" aria-controls="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt25_block_wtDropDownPanel" role="button"><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt25_block_wtMenuItem"><a id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt25_block_wtMenuItem_wt24" tabindex="14" href="Glossario.aspx">Gloss&#225;rio</a></div ></div ><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt25_block_wtDropDownPanel" class="Menu_DropDownPanel"><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt25_block_wtMenuSubItems" class="Menu_SubItemsPlaceholder"></div ></div ></div ><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt32_block_wtDropDownButtonRoot" class="Menu_DropDownButton OSInline" aria-expanded="false" role="menuitem"><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt32_block_wtDropDownButtonElement" class="Menu_TopMenu Menu_TopMenu" aria-controls="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt32_block_wtDropDownPanel" role="button"><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt32_block_wtMenuItem"><a id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt32_block_wtMenuItem_wt14" tabindex="15" href="Estatisticas.aspx">Estat&#237;stica do e-Sic</a></div ></div ><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt32_block_wtDropDownPanel" class="Menu_DropDownPanel"><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt32_block_wtMenuSubItems" class="Menu_SubItemsPlaceholder"></div ></div ></div ><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt16_block_wtDropDownButtonRoot" class="Menu_DropDownButton OSInline" aria-expanded="false" role="menuitem"><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt16_block_wtDropDownButtonElement" class="Menu_TopMenu Menu_TopMenu" aria-controls="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt16_block_wtDropDownPanel" role="button"><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt16_block_wtMenuItem"><a id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt16_block_wtMenuItem_wt6" tabindex="16" target="_blank" href="http://www.goiania.go.gov.br/download/transparencia/navegacao%20portal%20da%20transparencia.doc">Manual de Navega&#231;&#227;o</a></div ></div ><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt16_block_wtDropDownPanel" class="Menu_DropDownPanel"><div  id="GoianiaTheme_wt6_block_wtMenu_wt29_RichWidgets_wt16_block_wtMenuSubItems" class="Menu_SubItemsPlaceholder"></div ></div ></div ></div ></div ></div ></div ></div ></div ><div  class="Content ThemeGrid_Wrapper"><div  class="ThemeGrid_Container" style="margin-top: 0px;"><div  class="Title_Section"><div  id="GoianiaTheme_wt6_block_wtTitle" class="Heading1 Title PH OSInline">Gest&#227;o Municipal</div ><div  id="GoianiaTheme_wt6_block_wtActions" class="Actions PH OSInline"></div ></div ><div  id="GoianiaTheme_wt6_block_wtMainContent" class="MainContent"><div  class="Breadcrumbs"><div  id="GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt13_block_wtLevel1" class="OSInline"><a id="GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt13_block_wtLevel1_wt23" tabindex="17" href="PortaldaTransparencia.aspx?Antigo=True">Inicio</a></div ><div  class="OSInline"><span class="fa fa-fw fa-angle-right"></span><div  id="GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt13_block_wtLevel2" class="OSInline"><a id="GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt13_block_wtLevel2_wt9" tabindex="18" href="GestaoMunicipal.aspx">Gest&#227;o Municipal</a></div ></div ><div  class="OSInline"><span class="fa fa-fw fa-angle-right"></span><div  id="GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt13_block_wtLevel3" class="OSInline"></div ></div ><div  class="OSInline"><span class="fa fa-fw fa-angle-right"></span><div  id="GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt13_block_wtLevel4" class="OSInline"></div ></div ><div  class="OSInline"><span class="fa fa-fw fa-angle-right"></span><div  id="GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt13_block_wtLevel5" class="OSInline"></div ></div ><script>if($('#GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt13_block_wtLevel2').html() == '') $('#GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt13_block_wtLevel2').parent().hide();if($('#GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt13_block_wtLevel3').html() == '') $('#GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt13_block_wtLevel3').parent().hide();if($('#GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt13_block_wtLevel4').html() == '') $('#GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt13_block_wtLevel4').parent().hide();if($('#GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt13_block_wtLevel5').html() == '') $('#GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt13_block_wtLevel5').parent().hide();</script></div ><div  style="min-height: 90%;"><div  class="Columns MediumLeftColumns MarginBottom tab_DontBreak mob_BreakAll"><div  class="Column ColFirst"><div  id="GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt40_block_wtColumn1" class="OSInline"><a id="GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt40_block_wtColumn1_wt44" tabindex="19" onclick="OsAjax(arguments[0] || window.event,&#39;GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt40_block_wtColumn1_wt44&#39;,&#39;GoianiaTheme_wt6$block$wtMainContent$WebPatterns_wt40$block$wtColumn1$wt44&#39;,&#39;&#39;,&#39;__OSVSTATE,&#39;,&#39;&#39;); return false;" href="#"><span class="ListaCinza">Plano Municipal da Educa&#231;&#227;o - Lei 9.606 de 24 de junho de 2015</span></a><br/><a id="GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt40_block_wtColumn1_wt46" tabindex="20" onclick="OsAjax(arguments[0] || window.event,&#39;GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt40_block_wtColumn1_wt46&#39;,&#39;GoianiaTheme_wt6$block$wtMainContent$WebPatterns_wt40$block$wtColumn1$wt46&#39;,&#39;&#39;,&#39;__OSVSTATE,&#39;,&#39;&#39;); return false;" href="#"><span class="ListaCinza">Plano Municipal da Sa&#250;de - Resolu&#231;&#227;o 104/2018 de 28 de mar&#231;o de 2018</span></a><br/><a id="GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt40_block_wtColumn1_wt47" tabindex="21" onclick="OsAjax(arguments[0] || window.event,&#39;GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt40_block_wtColumn1_wt47&#39;,&#39;GoianiaTheme_wt6$block$wtMainContent$WebPatterns_wt40$block$wtColumn1$wt47&#39;,&#39;&#39;,&#39;__OSVSTATE,&#39;,&#39;&#39;); return false;" href="#"><span class="ListaCinza">Parecer Pr&#233;vio TCM - 2018</span></a><br/><a id="GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt40_block_wtColumn1_wt45" tabindex="22" onclick="OsAjax(arguments[0] || window.event,&#39;GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt40_block_wtColumn1_wt45&#39;,&#39;GoianiaTheme_wt6$block$wtMainContent$WebPatterns_wt40$block$wtColumn1$wt45&#39;,&#39;&#39;,&#39;__OSVSTATE,&#39;,&#39;&#39;); return false;" href="#"><span class="ListaCinza">Parecer Pr&#233;vio TCM - 2017</span></a><br/><a id="GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt40_block_wtColumn1_wt43" tabindex="23" onclick="OsAjax(arguments[0] || window.event,&#39;GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt40_block_wtColumn1_wt43&#39;,&#39;GoianiaTheme_wt6$block$wtMainContent$WebPatterns_wt40$block$wtColumn1$wt43&#39;,&#39;&#39;,&#39;__OSVSTATE,&#39;,&#39;&#39;); return false;" href="#"><span class="ListaCinza">Parecer Pr&#233;vio TCM - 2016</span></a><br/><a id="GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt40_block_wtColumn1_wt30" tabindex="24" onclick="OsAjax(arguments[0] || window.event,&#39;GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt40_block_wtColumn1_wt30&#39;,&#39;GoianiaTheme_wt6$block$wtMainContent$WebPatterns_wt40$block$wtColumn1$wt30&#39;,&#39;&#39;,&#39;__OSVSTATE,&#39;,&#39;&#39;); return false;" href="#"><span class="ListaCinza">Parecer Pr&#233;vio TCM - 2015</span></a><br/><a id="GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt40_block_wtColumn1_wt32" tabindex="25" onclick="OsAjax(arguments[0] || window.event,&#39;GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt40_block_wtColumn1_wt32&#39;,&#39;GoianiaTheme_wt6$block$wtMainContent$WebPatterns_wt40$block$wtColumn1$wt32&#39;,&#39;&#39;,&#39;__OSVSTATE,&#39;,&#39;&#39;); return false;" href="#"><span class="ListaCinza">Termo de Ajustamento de Conduta 001/2019 - Prefeitura de Goi&#226;nia e Empresa ITA</span></a></div ></div ><div  class="Column ColLast"><div  id="GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt40_block_wtColumn2" class="OSInline"><div  class="TituloOpcao"><span id="GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt40_block_wtColumn2_wtexpTitulo"></span></div ><div ><span id="GoianiaTheme_wt6_block_wtMainContent_WebPatterns_wt40_block_wtColumn2_WebPatterns_wtifmVisualizar_block"><div  class="iframeContainer" style="-webkit-transform:translate3d(0,0,0); height: 600px; width: 100%; "><iframe frameborder='0' src='' width='100%' height='100%'></iframe></div ></span></div ></div ></div ></div ></div ><div  class="OSAutoMarginTop" style="display:none"><div  id="GoianiaTheme_wt6_block_wtMainContent_TransWebBlocks_wt33_block_wtAnexoTable_Wrapper" class="TableRecords_Wrapper"><div  style="display:none"><span class="Heading2">Plano Municipal</span></div ><div  id="GoianiaTheme_wt6_block_wtMainContent_TransWebBlocks_wt33_block_wtFilters_Wrapper" class="Filters_Wrapper" style="margin-top: 0px;"><div  class="ThemeGrid_Width4"><select name="GoianiaTheme_wt6$block$wtMainContent$TransWebBlocks_wt33$block$wtCboGrupo" id="GoianiaTheme_wt6_block_wtMainContent_TransWebBlocks_wt33_block_wtCboGrupo" tabindex="26" class="ThemeGrid_Width8" onkeydown="return OsEnterKey(&#39;GoianiaTheme_wt6_block_wtMainContent_TransWebBlocks_wt33_block_wt3&#39;, arguments[0] || window.event);" aria-invalid="false" onchange="OsAjax(arguments[0] || window.event,&#39;GoianiaTheme_wt6_block_wtMainContent_TransWebBlocks_wt33_block_wtCboGrupo&#39;,&#39;GoianiaTheme_wt6$block$wtMainContent$TransWebBlocks_wt33$block$wtCboGrupo&#39;,&#39;Change&#39;,&#39;__OSVSTATE,&#39;,&#39;&#39;);" onkeyup="this.onchange();">
+	<option value="__ossli_0">Grupo</option>
+	<option value="14">Secretaria Municipal de Educa&#231;&#227;o</option>
+	<option value="15">Secretaria Municipal de Sa&#250;de</option>
+	<option value="17">Outros - Gest&#227;o Municipal</option>
+
+</select><span style="display: none;" class="ValidationMessage" role="alert" id="ValidationMessage_GoianiaTheme_wt6_block_wtMainContent_TransWebBlocks_wt33_block_wtCboGrupo"></span><select name="GoianiaTheme_wt6$block$wtMainContent$TransWebBlocks_wt33$block$wt12" id="GoianiaTheme_wt6_block_wtMainContent_TransWebBlocks_wt33_block_wt12" tabindex="27" class="ThemeGrid_Width4 ThemeGrid_MarginGutter" onkeydown="return OsEnterKey(&#39;GoianiaTheme_wt6_block_wtMainContent_TransWebBlocks_wt33_block_wt3&#39;, arguments[0] || window.event);" aria-invalid="false">
+	<option value="__ossli_0">Ano</option>
+
+</select><span style="display: none;" class="ValidationMessage" role="alert" id="ValidationMessage_GoianiaTheme_wt6_block_wtMainContent_TransWebBlocks_wt33_block_wt12"></span></div ><div  class="ThemeGrid_Width4 ThemeGrid_MarginGutter"></div ><div  class="ThemeGrid_Width4 ThemeGrid_MarginGutter" align="left" style="margin-top: 0px;"><input onclick="if (OsPage_ClientValidate(&#39;GoianiaTheme_wt6_block_wtMainContent_TransWebBlocks_wt33_block_wt3&#39;)) OsAjax(arguments[0] || window.event,&#39;GoianiaTheme_wt6_block_wtMainContent_TransWebBlocks_wt33_block_wt3&#39;,&#39;GoianiaTheme_wt6$block$wtMainContent$TransWebBlocks_wt33$block$wt3&#39;,&#39;&#39;,&#39;__OSVSTATE,&#39;,&#39;&#39;); return false;" type="submit" name="GoianiaTheme_wt6$block$wtMainContent$TransWebBlocks_wt33$block$wt3" value="Pesquisar" id="GoianiaTheme_wt6_block_wtMainContent_TransWebBlocks_wt33_block_wt3" tabindex="28" class="Button Is_Default ThemeGrid_Width6" style="margin-left: 0px" /><input onclick="OsAjax(arguments[0] || window.event,&#39;GoianiaTheme_wt6_block_wtMainContent_TransWebBlocks_wt33_block_wt16&#39;,&#39;GoianiaTheme_wt6$block$wtMainContent$TransWebBlocks_wt33$block$wt16&#39;,&#39;&#39;,&#39;__OSVSTATE,&#39;,&#39;&#39;); return false;" type="submit" name="GoianiaTheme_wt6$block$wtMainContent$TransWebBlocks_wt33$block$wt16" value="Limpar" id="GoianiaTheme_wt6_block_wtMainContent_TransWebBlocks_wt33_block_wt16" tabindex="29" class="Button ThemeGrid_Width6 ThemeGrid_MarginGutter" /></div ></div ><table class="TableRecords OSAutoMarginTop OSFillParent Empty" cellspacing="0" id="GoianiaTheme_wt6_block_wtMainContent_TransWebBlocks_wt33_block_wtAnexoTable">
+	<tr>
+		<td class="TableRecords_OddLine" colspan="1">Nenhum item encontrado...</td>
+	</tr>
+</table><div  class="TableRecords_BottomNavigation OSAutoMarginTop" align="right"><div  class="OSInline" align="right" style="width: 60%; margin-left: 0px"><nav  class="ListNavigation_Wrapper" aria-label="Pagination Navigation"></nav ></div ></div ></div ></div ></div ></div ></div ><div  class="Footer ThemeGrid_Wrapper No_Print" style="margin-top: 0px;"><div  class="ThemeGrid_Container"></div ></div ><script>SilkDeviceDetect.init('desktop', false, true, '', true, false, false)</script><div  class="ResponsiveOverlay"><div  class="ResponsiveOverlay_Top"><div  class="OSInline" style="width: 30px"><span id="GoianiaTheme_wt6_block_WebPatterns_wt4_block_wt4_RichWidgets_wttt_trigger_block"><span class="fa fa-fw fa-question-circle fa-lg"></span></span></div ><div  class="ResponsiveOverlay_Device OSInline" style="width: 170px"></div ><div  class="OpenClose OSInline" style="width: 20px; margin-left: 10px"><span class="fa fa-fw fa-cog fa-lg"></span></div ></div ><div  id="GoianiaTheme_wt6_block_WebPatterns_wt4_block_wt4_wtOverlay_Bottom" class="ResponsiveOverlay_Bottom" style="display:none"><div  class="OSInline" style="width: 150px">Device Emulation</div ><div  class="OSInline" style="width: 70px; margin-left: 10px;text-align: right;"><div  class="ToggleButton OSInline"><label  id="GoianiaTheme_wt6_block_WebPatterns_wt4_block_wt4_wt43_wtCheckbox" class="PH ToggleButton_label"><input type="checkbox" name="GoianiaTheme_wt6$block$WebPatterns_wt4$block$wt4$wt43$wtCheckbox$wt37" checked="checked" id="GoianiaTheme_wt6_block_WebPatterns_wt4_block_wt4_wt43_wtCheckbox_wt37" tabindex="39" class="BtnRespOverlay" aria-invalid="false" onclick="OsAjax(arguments[0] || window.event,&#39;GoianiaTheme_wt6_block_WebPatterns_wt4_block_wt4_wt43_wtCheckbox_wt37&#39;,&#39;GoianiaTheme_wt6$block$WebPatterns_wt4$block$wt4$wt43$wtCheckbox$wt37&#39;,&#39;Change&#39;,&#39;__OSVSTATE,&#39;,&#39;&#39;);" /><span style="display: none;" class="ValidationMessage" role="alert" id="ValidationMessage_GoianiaTheme_wt6_block_WebPatterns_wt4_block_wt4_wt43_wtCheckbox_wt37"></span></label ></div ></div ><div  class="ResponsiveOverlay_Preview"><div  class="OSInline" style="width: 50%">Preview</div ><div  class="OSInline" style="width: 50%;text-align: right;"><a id="GoianiaTheme_wt6_block_WebPatterns_wt4_block_wt4_wt11" tabindex="40" href="/PreviewInDevices/Preview.aspx?URL=/transweb/GestaoMunicipal.aspx"><span class="fa fa-fw fa-mobile"></span><span class="fa fa-fw fa-tablet"></span><span class="fa fa-fw fa-desktop"></span></a></div ></div ><div  style="margin-top: 5px;"><a id="GoianiaTheme_wt6_block_WebPatterns_wt4_block_wt4_wt35" tabindex="41" target="_blank" href="http://silkui.outsystems.com/"><span class="Text_Note">silkui.outsystems.com</span></a></div ></div ></div ><div  id="GoianiaTheme_wt6_block_WebPatterns_wt4_block_wt4_wtResponsiveOverlay_bg" class="ResponsiveOverlay_bg"><img alt="" src="/WebPatterns/img/deviceGrid.png?60864" /><span class='fa fa-fw fa-refresh fa-spin ResponsiveOverlay__loading'></span></div ><div  style="display:none"><div  id="GoianiaTheme_wt6_block_WebPatterns_wt4_block_wt4_wt17_wtContent" class="tooltip-content">Silk UI Framework Simulation Device<br/>Resize the window to preview the page in target devices.<br/>Open the settings to change the simulation device options.</div ><script>$('#GoianiaTheme_wt6_block_WebPatterns_wt4_block_wt4_RichWidgets_wttt_trigger_block').tooltipster({
+    content: $( '<span>' + $('#GoianiaTheme_wt6_block_WebPatterns_wt4_block_wt4_wt17_wtContent').html() + '</span>' ),
+    trigger: 'hover',
+    position: 'top',
+    maxWidth: '400',
+    theme: 'tooltip_style'
+});
+$('#GoianiaTheme_wt6_block_WebPatterns_wt4_block_wt4_wt17_wtContent').remove();</script></div ><div  id="GoianiaTheme_wt6_block_WebPatterns_wt4_block_wt13_wtdivWait" class="Feedback_AjaxWait" style="text-align: center;text-align: center;display:none"><div  id="GoianiaTheme_wt6_block_WebPatterns_wt4_block_wt13_wtloader" class="Loader"></div > Carregando...</div ><script>RichWidgets_Feedback_AjaxWait_init('GoianiaTheme_wt6_block_WebPatterns_wt4_block_wt13_wtdivWait');</script><span id="GoianiaTheme_wt6_block_WebPatterns_wt4_block_RichWidgets_wt9_block"><script type='text/javascript'>
+OsRegisterExceptionHandler(RichWidgets_Feedback_Message_ErrorHandler)
+</script><div  id="GoianiaTheme_wt6_block_WebPatterns_wt4_block_RichWidgets_wt9_block_wtFeedback_Wrapper" class="Feedback_Message_Wrapper" aria-atomic="True" aria-live="polite"><span id="GoianiaTheme_wt6_block_WebPatterns_wt4_block_RichWidgets_wt9_block_wtnotify"><span class="NotifyWidget"></span><SCRIPT type="text/javascript">
+//<![CDATA[
+RichWidgets_Feedback_Message_notifyWidget ='GoianiaTheme_wt6_block_WebPatterns_wt4_block_RichWidgets_wt9_block_wtnotify';
+//]]>
+</SCRIPT></span></div ></span></div >
+    <script type="text/javascript">outsystems.internal.$.get("/TransWeb/_status.aspx")</script>
+
+<script type="text/javascript">
+//<![CDATA[
+var OsPage_ValidationActive = false;
+OsValidatorOnLoad();
+
+function OsValidatorOnSubmit() {
+  if (OsPage_ValidationActive) { return OsValidatorCommonOnSubmit(); }
+  return true;
+}
+// ]]>
+</script>
+</form><script type="text/javascript">outsystems.internal.$._waitForViewstate = true;outsystems.internal.$(document).ready(function() {outsystems.internal.$('input[name=__OSVSTATE]').val('OY9roQr52hUvQK0412bNkAnlwIfjEndi19ME9tAns2Ix7tTlg9OtapH4gx2bThp49sGKn4bQcGtsUrVrkSdfVHU2uovN65eFgfLDKWZn/uK7RW/O480u47VCuqp8bI/1rNM2DKb0u4B9FGj4+/hLho1dazYFc+xz3vsphTMs17EQzA7aX/AroewjYJue/AxanfRKlx+/HP4oFDkjKACICTBCYNcaoXOxQrIBkoL0VGtc6KlVwYUFADI8JPs1UQPfSaXxyfW0FJD/UXbHNpG6t0Hd6+GozjkAw26YrnNlcDnxcJYGt5AA3pqyzzgO+4nDrrZWVge9Q9XYWp9DDQvS6bYgP0siBXKoGW2Bv/v8xdwOOvX3WOcEbijyFax7jgazavDzLwZVgDgOkFdI6fEkDBaJI9aTAbRiNaxYW4+YVOnfRQXItt4FnofS3Nd0zG1dp8TSBjJ3r7nn5wCuCJoISLTJuYjq35J9hZ8HgQHJAJ54wAqiy+ayhzHukk1wlVi1eKGXmQNMW+LL7+1/12ZLrMV3czaYo6KIAxHgmrzoVB8dS9a7xcePEJvcRrsN7DlHGivLVqATbL3mPcxeeeeajqcYenb19F1yBW52aIb182r0wX1FaRzLT19epFrj4bjR+h+IfCbUVcsZmCbeXoNsVwA7R8URpbtDvLq1yXIr9Xd3J2LtMSb0H5yFaHyscMWIC8hvqdxZRRfa8/KNhvRWs7G03+4g7+PRQe8xxJDF110bsj8DUL4JB/3sBJHEAF7cqW3CCQqEvN6rzITEOXKysA==');outsystems.internal.$._waitForViewstate = false;});</script>
+<script src="/PerformanceProbe/performanceprobe.js?11_29_0_43552" type="text/javascript" charset="UTF-8"></script>
+  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"8d7ec16f5090428486d4568efe8ca4fc","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>

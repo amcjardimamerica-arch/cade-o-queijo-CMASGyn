@@ -1,0 +1,7 @@
+URL: https://radardatransparencia.atricon.org.br/painel-6/
+POST: {}
+OK: False
+HTTP: 403
+ERRO: HTTP 403
+BYTES: 5612
+

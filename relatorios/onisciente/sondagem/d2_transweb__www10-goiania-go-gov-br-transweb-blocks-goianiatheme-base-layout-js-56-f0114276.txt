@@ -1,0 +1,26 @@
+URL: https://www10.goiania.go.gov.br/transweb/Blocks/GoianiaTheme/Base/Layout.js?56763
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 478
+
+﻿$(function($) {
+        
+        /* click event menu */
+        $("a.Header_ButtonMenu").click(function(){
+        
+            /* check if open */
+            $(".Page").toggleClass("active");
+            
+            /* don´t release url */
+            return false;
+        });
+        
+        /* click event outside menu */
+        $(".Content.ThemeGrid_Wrapper").click(function(){
+            /* remove */
+            $(".Page").removeClass("active");
+        });
+
+});

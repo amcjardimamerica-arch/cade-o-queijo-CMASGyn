@@ -1,0 +1,929 @@
+URL: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2026/dc_20260817_000000147.html
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 37869
+
+<html lang="br">
+<!--  
+*************************************************************
+---------------------- NOME DA NORMA --------------------------
+**************************************************************-->
+<head>   
+	<meta charset="utf-8">
+	<title>DC Nº 147, DE 17 AGOSTO DE 2026</title>
+	<link rel="shortcut icon" href="../web/favicon.ico" />
+	<link type="text/css" href="../web/css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet" />	 	
+	<link type="text/css" href="../web/css/jquery.ui.datepicker.css" rel="stylesheet" />	
+	<link type="text/css" href="../web/css/estiloleis.css" rel="stylesheet" />	
+	
+	<script type="text/javascript" src="../web/js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="../web/js/jquery-ui-1.10.3.custom.js"></script>
+	<script type="text/javascript" src="../web/js/jquery.ui.datepicker-br.js"></script>
+
+	<script type="text/javascript" src="../web/js/eventos.js"></script>		
+		
+</head>
+
+
+
+<!--  
+*************************************************************
+---------------------- BRASÃO --------------------------
+**************************************************************--> 
+
+<div class="brasao">
+	<img src="../web/brasao_sei.png" alt="Brasão da Prefeitura de Goiânia">
+	<p>Prefeitura de Goiânia</p>
+	<p class="brasao">Secretaria Municipal da Casa Civil</p>
+</div>
+
+<!--  
+*************************************************************
+---------------------- EPÍGRAFE --------------------------
+**************************************************************--> 
+
+<h1 class="epigrafe">﻿DECRETO Nº 147, DE 2026</h1>
+
+
+
+<!--  
+*************************************************************
+---------------------- EMENTA DA LEI --------------------------
+**************************************************************--> 
+
+<table width=100%>
+ <tr width=100% >
+	<td width=50%>
+	
+	<!--  
+		*************************************************************
+		---------------------- REDAÇÕES ANTERIORES  --------------------------
+		**************************************************************--> 
+		<form id="frmParametros" >
+		<div id="format">
+		<input type="checkbox" id="ckRedacoes"/><label for="ckRedacoes">Redações Anteriores</label>
+		</div>
+		</form>
+	
+	
+	</td>
+	<td width=50%>
+	
+	<p class="ementasemitalico">
+	
+	Dispõe, em caráter transitório, sobre a coordenação e administrativa da operacionalização emendas impositivas municipais no âmbito do Poder Executivo do Município de Goiânia.
+	</p>
+
+	</td>
+	
+ </tr>  
+ 
+</table>
+
+
+
+<!--  
+*************************************************************
+--------------------- PREÂMBULO ------------------------------
+**************************************************************--> 
+
+<p class="artigo">
+<b>O PREFEITO DE GOIÂNIA</b> no uso das atribuições que lhe confere o art. 115, incisos II, IV e VIII, da 
+<a class="link" onclick="leiOrganica()" >Lei Orgânica do Município de Goiânia</a>, tendo em vista o disposto no 
+<a href="../2021/lc_20210101_000000335.html#ART000028">art. 28, <i>caput</i> e § 1º, inciso IV, da Lei Complementar nº 335, de 1º de janeiro de 2021</a>, no 
+<a href="../2024/lc_20241230_000000382.html#ART000008">art. 8º da Lei Complementar nº 382, de 30 de dezembro de 2024</a>, e o contido no Processo SEI nº 26.4.000001710-6,
+</p>
+
+
+
+
+<!--  
+*************************************************************
+---------------------- CORPO DO DECRETO --------------------------
+**************************************************************--> 
+	
+<p class="artigo">
+DECRETA:
+</p>
+
+<!--  
+*************************************************************
+---------------------- CORPO DO DECRETO --------------------------
+**************************************************************--> 
+
+<p class="artigo" >
+<a id="ART000001"> </a>
+Art. 1º 
+<a href="../2026/dc_20261005_000000180.html#ART000002INC000013">(Revogado pelo Decreto nº 180, de 2026).</a> 
+</p>
+
+	<p class="artigoalterado">
+	<a id="ART000001"> </a>
+	Art. 1º Ficam atribuídas, em caráter transitório, ao órgão municipal de governo a
+	coordenação central e a operacionalização administrativa das atividades relativas às emendas
+	impositivas municipais destinadas aos órgãos e às entidades do Poder Executivo do Município
+	de Goiânia.
+	</p>
+
+		<p class="paragrafoalterado">
+		<a id="ART000001PAR000001"> </a>
+		§ 1º Para fins do disposto neste Decreto, consideram-se emendas impositivas
+		municipais as programações orçamentárias incluídas na Lei Orçamentária Anual do Município
+		de Goiânia por iniciativa de vereadores, na forma da legislação aplicável.
+		</p>
+		
+		<p class="paragrafoalterado">
+		<a id="ART000001PAR000002"> </a>
+		§ 2º Não integram o objeto deste Decreto:
+		</p>
+
+		<p class="incisoalterado">
+		<a id="ART000001PAR000002INC000001"> </a>
+		I - as emendas individuais, de bancada ou de comissão aos orçamentos da União ou do Estado de Goiás;
+		</p>
+
+		<p class="incisoalterado">
+		<a id="ART000001PAR000002INC000002"> </a>
+		II - os recursos federais ou estaduais transferidos ao Município por meio de convênios, contratos de repasse, termos de transferência especial ou instrumentos congêneres;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000001PAR000002INC000003"> </a>
+		III - os demais convênios, contratos de repasse, acordos, ajustes e parcerias não financiados por emendas impositivas municipais; e
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000001PAR000002INC000004"> </a>
+		IV - as atividades gerais de captação de recursos e de gestão de instrumentos de transferência não abrangidas por este Decreto, observado o disposto no art. 7º.
+		</p>
+		
+		<p class="paragrafoalterado">
+		<a id="ART000001PAR000003"> </a>
+		§ 3º A atuação do órgão municipal de governo não compreende a execução
+		finalística dos objetos financiados pelas emendas impositivas municipais, que permanecerá sob
+		responsabilidade dos órgãos e entidades competentes pela respectiva política pública.
+		</p>
+		
+<p class="artigo" >
+<a id="ART000002"> </a>
+Art. 2º 
+<a href="../2026/dc_20261005_000000180.html#ART000002INC000013">(Revogado pelo Decreto nº 180, de 2026).</a> 
+</p>		
+
+	<p class="artigoalterado">
+	<a id="ART000002"> </a>
+	Art. 2º Compete ao órgão municipal de governo, no âmbito das emendas impositivas municipais:
+	</p>
+
+		<p class="incisoalterado">
+		<a id="ART000002INC000001"> </a>
+		I - promover a articulação institucional com o Poder Legislativo municipal, os parlamentares e os respectivos gabinetes, sem interferência nas competências técnicas e administrativas dos órgãos e das entidades responsáveis pela execução;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000002INC000002"> </a>
+		II - coordenar o fluxo administrativo de recebimento, análise formal, cadastramento e tramitação das indicações, propostas, planos de trabalho e demais documentos relativos às emendas;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000002INC000003"> </a>
+		III - organizar e manter atualizados os registros e os controles centralizados das emendas, inclusive quanto à indicação do beneficiário, do objeto, do órgão ou da entidade responsável pela execução, da dotação orçamentária, do estágio de execução e da situação da prestação de contas;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000002INC000004"> </a>
+		IV - acompanhar os prazos e as providências administrativas necessárias à execução das programações;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000002INC000005"> </a>
+		V - articular a atuação dos órgãos e das entidades responsáveis pela execução, do órgão municipal fazendário e das demais unidades administrativas envolvidas;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000002INC000006"> </a>
+		VI - acompanhar, de forma centralizada, a execução física e financeira das programações, com base nas informações prestadas pelos órgãos e pelas entidades responsáveis pela execução;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000002INC000007"> </a>
+		VII - consolidar informações gerenciais e elaborar relatórios de acompanhamento;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000002INC000008"> </a>
+		VIII - atender, em articulação com o órgão ou a entidade responsável pela execução, às diligências do Poder Legislativo municipal, dos órgãos de controle interno e externo e das demais instituições competentes; e
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000002INC000009"> </a>
+		IX - propor medidas destinadas à superação de impedimentos técnicos, administrativos ou orçamentários à execução das emendas.
+		</p>
+		
+		<p class="paragrafoalterado">
+		<a id="ART000002PAR000001"> </a>
+		Parágrafo único. A coordenação prevista neste artigo não substitui as competências legais e regimentais dos órgãos e entidades responsáveis pela execução, nem transfere ao órgão municipal de governo a responsabilidade pela execução da política pública correspondente.
+		</p>
+		
+<p class="artigo" >
+<a id="ART000003"> </a>
+Art. 3º 
+<a href="../2026/dc_20261005_000000180.html#ART000002INC000013">(Revogado pelo Decreto nº 180, de 2026).</a> 
+</p>		
+		
+	<p class="artigoalterado">
+	<a id="ART000003"> </a>
+	Art. 3º Compete aos órgãos e entidades municipais responsáveis pela execução,
+	no âmbito de suas respectivas áreas de atuação:
+	</p>
+
+		<p class="incisoalterado">
+		<a id="ART000003INC000001"> </a>
+		I - elaborar, aprovar e subscrever as informações técnicas, os projetos, os planos de trabalho e os documentos necessários à execução do objeto;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000003INC000002"> </a>
+		II - realizar a análise do mérito da proposta e da viabilidade técnica da execução do objeto;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000003INC000003"> </a>
+		III - adotar as providências relativas à execução orçamentária e financeira, observadas as competências do ordenador de despesas e do órgão municipal fazendário;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000003INC000004"> </a>
+		IV - celebrar, quando cabível, os instrumentos administrativos necessários à execução do objeto;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000003INC000005"> </a>
+		V - acompanhar e fiscalizar a execução física e financeira do objeto;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000003INC000006"> </a>
+		VI - designar gestores, fiscais e responsáveis técnicos, quando exigido pela legislação aplicável;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000003INC000007"> </a>
+		VII - manter os documentos comprobatórios da execução;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000003INC000008"> </a>
+		VIII - elaborar e encaminhar as prestações de contas parciais e finais, quando cabíveis, observadas as competências do órgão municipal fazendário; e
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000003INC000009"> </a>
+		IX - responder pelas informações técnicas e finalísticas relativas ao objeto executado.
+		</p>
+
+		<p class="paragrafoalterado">
+		<a id="ART000003PAR000001"> </a>
+		Parágrafo único. A atuação de coordenação e o acompanhamento administrativo
+		do órgão municipal de governo não afastam a responsabilidade dos órgãos e das entidades
+		municipais responsáveis pela execução quanto ao exercício das competências previstas neste artigo.
+		</p>
+		
+<p class="artigo" >
+<a id="ART000004"> </a>
+Art. 4º 
+<a href="../2026/dc_20261005_000000180.html#ART000002INC000013">(Revogado pelo Decreto nº 180, de 2026).</a> 
+</p>		
+		
+	<p class="artigoalterado">
+	<a id="ART000004"> </a>
+	Art. 4º Nas parcerias com organizações da sociedade civil celebradas para a execução de emendas impositivas municipais, inclusive aquelas formalizadas por meio de termos de fomento ou de colaboração regidos pela 
+	<a href="https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l13019.htm"> Lei federal nº 13.019, de 31 de julho de 2014</a>, ou sucedânea, o órgão municipal de governo exercerá as seguintes funções:
+	</p>	
+
+		<p class="incisoalterado">
+		<a id="ART000004INC000001"> </a>
+		I - coordenação central;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000004INC000002"> </a>
+		II - acompanhamento do fluxo administrativo; e
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000004INC000003"> </a>
+		III - consolidação das informações relativas às emendas.
+		</p>
+		
+		<p class="paragrafoalterado">
+		<a id="ART000004PAR000001"> </a>
+		§ 1º Permanecerão sob a responsabilidade do órgão ou entidade setorial competente:
+		</p>
+
+		<p class="incisoalterado">
+		<a id="ART000004PAR000001INC000001"> </a>
+		I - a análise técnica do plano de trabalho;
+		</p>
+
+		<p class="incisoalterado">
+		<a id="ART000004PAR000001INC000002"> </a>
+		II - a verificação da compatibilidade do objeto com a política pública correspondente;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000004PAR000001INC000003"> </a>
+		III - a análise da capacidade técnica e operacional da organização da sociedade civil;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000004PAR000001INC000004"> </a>
+		IV - a realização do chamamento público ou a formalização de sua dispensa ou inexigibilidade, conforme o caso;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000004PAR000001INC000005"> </a>
+		V - a celebração, a gestão, o monitoramento e a avaliação da parceria; e
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000004PAR000001INC000006"> </a>
+		VI - a análise e o julgamento da prestação de contas.
+		</p>
+		
+		<p class="paragrafoalterado">
+		<a id="ART000004PAR000001"> </a>
+		§ 2º O órgão municipal de governo não realizará a análise técnica nem exercerá
+		as competências de celebração ou de gestão das parcerias relacionadas às áreas de saúde,
+		educação, assistência social, esporte, cultura ou a outras áreas finalísticas, salvo mediante
+		delegação expressa, específica e devidamente motivada da autoridade competente, formalizada 	nos termos dos 
+		<a href="../2016/lo_20160630_000009861.html#ART000012">arts. 12 a 15 da Lei nº 9.861, de 30 de junho de 2016</a>, ou sucedâneos.
+		</p>
+		
+<p class="artigo" >
+<a id="ART000005"> </a>
+Art. 5º 
+<a href="../2026/dc_20261005_000000180.html#ART000002INC000013">(Revogado pelo Decreto nº 180, de 2026).</a> 
+</p>		
+
+	<p class="artigoalterado">
+	<a id="ART000005"> </a>
+	Art. 5º O exercício das atribuições previstas neste Decreto observará a legislação aplicável a cada objeto, especialmente quanto:
+	</p>
+
+		<p class="incisoalterado">
+		<a id="ART000005INC000001"> </a>
+		I - aos aspectos orçamentários e financeiros;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000005INC000002"> </a>
+		II - às licitações e aos contratos administrativos;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000005INC000003"> </a>
+		III - às parcerias com organizações da sociedade civil;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000005INC000004"> </a>
+		IV - à transparência;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000005INC000005"> </a>
+		V - à proteção de dados pessoais; e
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000005INC000006"> </a>
+		VI - ao controle interno e externo.
+		</p>
+		
+		<p class="paragrafoalterado">
+		<a id="ART000005PAR000001"> </a>
+		Parágrafo único. A atuação do órgão municipal de governo preservará:
+		</p>
+
+		<p class="incisoalterado">
+		<a id="ART000005PAR000001INC000001"> </a>
+		I - a segregação de funções;
+		</p>
+
+		<p class="incisoalterado">
+		<a id="ART000005PAR000001INC000002"> </a>
+		II - a competência do ordenador de despesas;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000005PAR000001INC000003"> </a>
+		III - a responsabilidade do órgão ou da entidade responsável pela política pública correspondente;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000005PAR000001INC000004"> </a>
+		IV - a regularidade da execução orçamentária e financeira; e
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000005PAR000001INC000005"> </a>
+		V - a rastreabilidade dos atos, dos documentos e dos recursos públicos.
+		</p>
+
+<p class="artigo" >
+<a id="ART000006"> </a>
+Art. 6º 
+<a href="../2026/dc_20261005_000000180.html#ART000002INC000013">(Revogado pelo Decreto nº 180, de 2026).</a> 
+</p>		
+		
+	<p class="artigoalterado">
+	<a id="ART000002"> </a>
+	Art. 6º Fica atribuída ao titular do órgão municipal de governo a interlocução
+	institucional e administrativa do Município nos assuntos relacionados à coordenação das
+	emendas impositivas municipais, para o exercício das seguintes atribuições:
+	</p>
+
+		<p class="incisoalterado">
+		<a id="ART000006INC000001"> </a>
+		I - encaminhar comunicações, solicitações e respostas ao Poder Legislativo municipal e aos órgãos de controle interno e externo;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000006INC000002"> </a>
+		II - acompanhar o cadastramento e a tramitação das propostas e dos planos de trabalho;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000006INC000003"> </a>
+		III - praticar atos de coordenação administrativa; e
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000006INC000004"> </a>
+		IV - assinar documentos de encaminhamento, comunicações, declarações e
+		outros documentos de natureza administrativa que não impliquem a assunção de obrigação
+		financeira nem a transferência da responsabilidade técnica e finalística do órgão ou da entidade
+		responsável pela execução.
+		</p>
+		
+		<p class="paragrafoalterado">
+		<a id="ART000006PAR000001"> </a>
+		§ 1º A assinatura de convênios, contratos, termos de fomento, termos de colaboração, acordos, ajustes e instrumentos congêneres caberá:
+		</p>
+
+		<p class="incisoalterado">
+		<a id="ART000006PAR000001INC000001"> </a>
+		I - ao titular do órgão ou entidade responsável pela execução;
+		</p>
+
+		<p class="incisoalterado">
+		<a id="ART000006PAR000001INC000002"> </a>
+		II - ao ordenador de despesas; ou
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000006PAR000001INC000003"> </a>
+		III - à autoridade competente, conforme a legislação aplicável e as normas internas do Município.
+		</p>
+		
+		<p class="paragrafoalterado">
+		<a id="ART000006PAR000002"> </a>
+		§ 2º O órgão municipal de governo somente poderá assinar os instrumentos de que trata o § 1º mediante delegação expressa, específica e formalizada em ato próprio pela autoridade competente, após a emissão das manifestações técnica, orçamentária, financeira e jurídica exigíveis.
+		</p>
+		
+		<p class="paragrafoalterado">
+		<a id="ART000006PAR000003"> </a>
+		§ 3º A atuação do órgão municipal de governo na interlocução institucional e
+		administrativa não implica responsabilidade pela execução orçamentária e financeira, pela
+		fiscalização do objeto nem pela prestação de contas relativa à execução finalística, atribuições
+		que permanecerão a cargo das unidades competentes.
+		</p>
+		
+<p class="artigo" >
+<a id="ART000007"> </a>
+Art. 7º 
+<a href="../2026/dc_20261005_000000180.html#ART000002INC000013">(Revogado pelo Decreto nº 180, de 2026).</a> 
+</p>		
+		
+	<p class="artigoalterado">
+	<a id="ART000002"> </a>
+	Art. 7º Durante a vigência deste Decreto, as atividades operacionais e de
+	captação de recursos vinculadas especificamente às emendas parlamentares impositivas
+	municipais, atualmente desenvolvidas no âmbito da Secretaria Municipal de Articulação
+	Institucional e Captação, ficam sujeitas à supervisão técnica e orientação da Secretaria
+	Municipal de Governo.
+	</p>
+
+		<p class="paragrafoalterado">
+		<a id="ART000007PAR000001"> </a>
+		§ 1º A transição de que trata o <i>caput</i> dar-se-á mediante o aproveitamento da estrutura pessoal, material e tecnológica atualmente alocada na Secretaria Municipal de Articulação Institucional e Captação, com a finalidade de:
+		</p>
+
+		<p class="incisoalterado">
+		<a id="ART000007PAR000001INC000001"> </a>
+		I - assegurar a continuidade administrativa dos fluxos procedimentais; e
+		</p>
+
+		<p class="incisoalterado">
+		<a id="ART000007PAR000001INC000002"> </a>
+		II - obstar a duplicidade de atribuições entre os órgãos; e
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000007PAR000001INC000003"> </a>
+		III - afastar o risco de ausência de titular nas unidades administrativas.
+		</p>
+		
+		<p class="paragrafoalterado">
+		<a id="ART000007PAR000002"> </a>
+		§ 2º O arranjo estrutural e procedimental previsto neste artigo persistirá de
+		forma transitória até que os novos Regimentos Internos da Secretaria Municipal de Governo e
+		da Secretaria Municipal de Articulação Institucional e Captação, em vias de aprovação formal,
+		estabeleçam de maneira definitiva a distribuição de atribuições relativas ao tema das emendas
+		parlamentares impositivas municipais.
+		</p>
+		
+		<p class="paragrafoalterado">
+		<a id="ART000007PAR000003"> </a>
+		§ 3º Permanecem sob a competência exclusiva da Secretaria Municipal de Articulação Institucional e Captação:
+		</p>
+
+		<p class="incisoalterado">
+		<a id="ART000007PAR000003INC000001"> </a>
+		I - as atividades gerais de captação de recursos externos não associados às emendas impositivas municipais; e
+		</p>
+
+		<p class="incisoalterado">
+		<a id="ART000007PAR000003INC000002"> </a>
+		II - a gestão de emendas parlamentares federais e estaduais, e demais instrumentos de transferência externa não previstos neste Decreto.
+		</p>
+		
+<p class="artigo" >
+<a id="ART000008"> </a>
+Art. 8º 
+<a href="../2026/dc_20261005_000000180.html#ART000002INC000013">(Revogado pelo Decreto nº 180, de 2026).</a> 
+</p>		
+
+	<p class="artigoalterado">
+	<a id="ART000008"> </a>
+	Art. 8º A transição das atividades relativas às emendas impositivas municipais
+	será realizada gradualmente e compreenderá:
+	</p>
+
+		<p class="incisoalterado">
+		<a id="ART000008INC000001"> </a>
+		I - a elaboração de inventário das emendas, dos processos e dos instrumentos abrangidos por este Decreto;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000008INC000002"> </a>
+		II - a identificação do estágio de tramitação ou de execução de cada processo;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000008INC000003"> </a>
+		III - a indicação dos prazos em curso, das pendências, das diligências e das prestações de contas existentes;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000008INC000004"> </a>
+		IV - a identificação dos responsáveis, dos gestores, dos fiscais, dos ordenadores de despesas e dos usuários cadastrados nos sistemas pertinentes;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000008INC000005"> </a>
+		V - a definição dos acessos necessários aos sistemas corporativos e às plataformas oficiais;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000008INC000006"> </a>
+		VI - a indicação dos documentos, dos acervos, dos sistemas, dos equipamentos, dos créditos orçamentários e dos demais recursos indispensáveis à continuidade das atividades; e
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000008INC000007"> </a>
+		VII - a formalização da transferência por meio de termo de transição e entrega, a ser assinado pelos titulares do órgão municipal de governo e do órgão municipal de articulação institucional e captação, assegurando-se a supervisão técnica imediata de que trata o art. 7º desde a data de publicação deste ato.
+		</p>
+		
+		<p class="paragrafoalterado">
+		<a id="ART000008PAR000001"> </a>
+		§ 1º A transferência dos processos e das atividades somente produzirá efeitos
+		após a formalização do termo de transição e entrega correspondente, ressalvadas as
+		providências urgentes necessárias à preservação de prazo ou de direito do Município.
+		</p>
+		
+		<p class="paragrafoalterado">
+		<a id="ART000008PAR000002"> </a>
+		§ 2º Até a formalização da transição, cada processo ou atividade permanecerá sob a responsabilidade da unidade encarregada de sua condução, sem prejuízo da atuação coordenadora do órgão municipal de governo.
+		</p>
+		
+		<p class="paragrafoalterado">
+		<a id="ART000008PAR000003"> </a>
+		§ 3º A formalização do termo de transição e entrega não prejudicará a validade dos atos regularmente praticados, e o termo indicará a autoridade responsável pela prática dos atos subsequentes.
+		</p>
+		
+		<p class="paragrafoalterado">
+		<a id="ART000008PAR000004"> </a>
+		§ 4º A transição será concluída no prazo de sessenta dias, contado da data de publicação deste Decreto, admitida a prorrogação mediante ato conjunto e motivado dos titulares do órgão municipal de governo e do órgão municipal de articulação institucional e captação.
+		</p>
+		
+<p class="artigo" >
+<a id="ART000009"> </a>
+Art. 9º 
+<a href="../2026/dc_20261005_000000180.html#ART000002INC000013">(Revogado pelo Decreto nº 180, de 2026).</a> 
+</p>		
+		
+	<p class="artigoalterado">
+	<a id="ART000009"> </a>
+	Art. 9º Os órgãos e as entidades da administração pública municipal deverão
+	prestar apoio técnico e operacional necessário ao órgão municipal de governo para o
+	cumprimento deste Decreto, especialmente mediante as seguintes providências:
+	</p>
+
+		<p class="incisoalterado">
+		<a id="ART000009INC000001"> </a>
+		I - o fornecimento das informações, dos documentos e dos expedientes necessários à elaboração do inventário;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000009INC000002"> </a>
+		II - a indicação dos servidores responsáveis pelas análises técnica, orçamentária, financeira e finalística;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000009INC000003"> </a>
+		III - a habilitação e a manutenção dos acessos aos sistemas oficiais;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000009INC000004"> </a>
+		IV - a identificação das dotações e dos créditos orçamentários relacionados às emendas;
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000009INC000005"> </a>
+		V - a designação dos gestores e dos fiscais dos instrumentos, quando cabível; e
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000009INC000006"> </a>
+		VI - a comunicação, aos órgãos e às entidades pertinentes, da unidade responsável por cada etapa da transição.
+		</p>
+		
+		<p class="paragrafoalterado">
+		<a id="ART000009PAR000001"> </a>
+		Parágrafo único. A eventual transferência de pessoal, de patrimônio, de sistemas,
+		de créditos orçamentários ou de outros recursos dependerá da edição dos atos específicos e da
+		obtenção das autorizações exigidas pela legislação aplicável, observadas as exigências legais,
+		orçamentárias e administrativas pertinentes.
+		</p>
+		
+<p class="artigo" >
+<a id="ART000010"> </a>
+Art. 10. 
+<a href="../2026/dc_20261005_000000180.html#ART000002INC000013">(Revogado pelo Decreto nº 180, de 2026).</a> 
+</p>		
+
+	<p class="artigoalterado">
+	<a id="ART000010"> </a>
+	Art. 10. O termo de transição e entrega relativo aos instrumentos e aos processos
+	relacionados às emendas impositivas municipais que estejam em tramitação ou em execução na
+	data de publicação deste Decreto conterá, sem prejuízo do disposto no art. 8º:
+	</p>
+
+		<p class="incisoalterado">
+		<a id="ART000010INC000001"> </a>
+		I - o registro dos atos já praticados; e
+		</p>
+		
+		<p class="incisoalterado">
+		<a id="ART000010INC000002"> </a>
+		II - a identificação dos responsáveis pela condução antes e após a formalização da transição.
+		</p>
+		
+<p class="artigo" >
+<a id="ART000011"> </a>
+Art. 11. 
+<a href="../2026/dc_20261005_000000180.html#ART000002INC000013">(Revogado pelo Decreto nº 180, de 2026).</a> 
+</p>		
+
+	<p class="artigoalterado">
+	<a id="ART000011"> </a>
+	Art. 11. Os casos omissos relativos à aplicação deste Decreto serão resolvidos
+	conjuntamente pelos titulares do órgão municipal de governo e do órgão municipal de
+	articulação institucional e captação, observadas as competências legais e regulamentares de cada órgão.
+	</p>
+
+		<p class="paragrafoalterado">
+		<a id="ART000011PAR000001"> </a>
+		§ 1º O órgão municipal da casa civil será ouvido quando o caso omisso envolver matéria inserida em seu âmbito de competência.
+		</p>
+		
+		<p class="paragrafoalterado">
+		<a id="ART000011PAR000001"> </a>
+		§ 2º A Procuradoria-Geral do Município será ouvida quando o caso omisso envolver questão de natureza jurídica.
+		</p>
+		
+<p class="artigo" >
+<a id="ART000012"> </a>
+Art. 12. 
+<a href="../2026/dc_20261005_000000180.html#ART000002INC000013">(Revogado pelo Decreto nº 180, de 2026).</a> 
+</p>		
+		
+	<p class="artigoalterado">
+	<a id="ART000012"> </a>
+	Art. 12. Este Decreto entra em vigor na data de sua publicação e terá vigência por cento e oitenta dias.
+	</p>	
+
+		<p class="paragrafoalterado">
+		<a id="ART000012PAR000001"> </a>
+		Parágrafo único. O prazo de vigência deste Decreto poderá ser prorrogado, uma única vez, por até noventa dias, desde que demonstrada e justificada a necessidade de continuidade do regime transitório.
+		</p>
+
+<!--  
+*************************************************************
+---------------------------FECHO DO DECRETO ------------------------------
+**************************************************************--> 
+			
+
+<p class="fecho2">
+Goiânia, data da publicação.
+</p>
+
+<!--  
+*************************************************************
+--------------------------- ASSINATURA ------------------------------
+**************************************************************-->
+
+<div class="assinaturaprefeitosemnegrito" >
+
+	<p>SANDRO MABEL</p>
+
+	<p>Prefeito de Goiânia</p>
+
+</div>
+
+
+<!--  
+*************************************************************
+------------------------- PUBLICAÇÃO NO DOM ------------------------
+**************************************************************-->
+
+<p class="diariooficial">
+    Este texto não substitui o publicado no 
+	<a target="_blank" href="https://www.goiania.go.gov.br/Download/legislacao/diariooficial/2026/do_20260817_000008843.pdf">
+	DOM 8.843, de 17 de agosto de 2026.
+	</a>
+</p>
+
+
+
+<!--  
+*************************************************************
+------------------ EXPOSIÇÃO DE MOTIVOS ------------------------------
+**************************************************************--> 
+
+<!--- Quebra de página na impressão do HTML ------->
+<div style="page-break-after: always"></div> 
+
+<div class="tabelaalterada">
+
+<h2 class="exposicao" >
+<a id="EXP000001"> </a>	
+Exposição de Motivos - Processo nº 26.4.000001710-6
+</h2>
+
+<p class="data_exposicao" style="margin-top: 40px">
+Goiânia, data da publicação.
+</p>
+
+<p class="despedida_exposicao"  >
+Excelentíssimo Senhor Prefeito,
+</p>
+
+<p class="item_exposicao" style="margin-top: 40px">
+1&emsp;&emsp; Submeto à elevada consideração de Vossa Excelência a minuta de Decreto, que
+dispõe, em caráter transitório, sobre a coordenação central e a operacionalização administrativa
+das emendas impositivas municipais no âmbito do Poder Executivo do Município de Goiânia.
+</p>
+
+<p class="item_exposicao">
+2&emsp;&emsp; A proposta decorre da reestruturação administrativa iniciada pelo 
+<a href="../2025/dc_20250110_000000133.html">Decreto nº 133, de 10 de janeiro de 2025</a>, e da decisão administrativa de desmembrar, da gestão geral de
+convênios e instrumentos congêneres, as atividades relacionadas às emendas impositivas
+municipais, transferindo sua coordenação central e operacionalização administrativa ao órgão
+municipal de governo.
+</p>
+
+<p class="item_exposicao">
+3&emsp;&emsp; O alcance do Decreto foi delimitado às programações orçamentárias incluídas na
+Lei Orçamentária Anual do Município por iniciativa dos parlamentares. Não estão abrangidas as
+emendas federais ou estaduais, as transferências especiais previstas no art. 166-A da
+<a href="https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm"> Constituição Federal</a>, os convênios e contratos de repasse não financiados por emendas
+municipais, nem as demais atividades de captação e gestão de instrumentos de transferência
+atribuídas ao órgão municipal de articulação institucional e captação.
+</p>
+
+<p class="item_exposicao">
+4&emsp;&emsp; A delimitação é necessária para que o ato corresponda à decisão administrativa
+que fundamenta a alteração e para evitar a transferência genérica de atribuições relacionadas à
+política geral de convênios e à gestão de recursos de outras esferas federativas.
+</p>
+
+<p class="item_exposicao">
+5&emsp;&emsp; A minuta de decreto também distingue a coordenação administrativa da
+execução finalística. Caberá ao órgão municipal de governo a organização do fluxo, o
+acompanhamento centralizado, o controle de prazos, a consolidação de informações e a
+articulação institucional. Permanecerão com os órgãos e entidades executores a análise técnica
+dos projetos e planos de trabalho, a execução orçamentária e financeira, a fiscalização, o
+monitoramento, a prestação de contas e a responsabilidade pela política pública
+correspondente, inclusive quanto à atuação do ordenador de despesas.
+</p>
+
+<p class="item_exposicao">
+6&emsp;&emsp; Foi conferido tratamento específico às parcerias com organizações da sociedade civil, regidas pela
+<a href="https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l13019.htm"> Lei federal nº 13.019, de 31 de julho de 2014</a>. Nesses casos, o órgão municipal
+de governo poderá coordenar o fluxo e acompanhar a execução administrativa das emendas,
+mas permanecerão com o órgão setorial competente a análise técnica, a verificação da
+compatibilidade do objeto, a celebração, a gestão, o monitoramento e a avaliação da parceria, bem como a análise da prestação de contas.
+</p>
+
+<p class="item_exposicao">
+7&emsp;&emsp; A minuta de Decreto limita-se igualmente à competência de assinatura da titular
+do órgão municipal de governo, que poderá praticar atos de coordenação e representação
+institucional, mas a celebração de convênios, termos de fomento, termos de colaboração e
+instrumentos congêneres continuará a cargo do órgão executor, do ordenador de despesas ou
+da autoridade competente, conforme o caso, salvo delegação expressa, específica e
+juridicamente fundamentada.
+</p>
+
+<p class="item_exposicao">
+8&emsp;&emsp; Para evitar riscos decorrentes da transferência automática de processos em
+andamento, foi prevista transição formal, mediante inventário, identificação de prazos,
+responsáveis, pendências, acessos sistêmicos, dotações e demais recursos necessários à
+continuidade dos trabalhos. A transferência somente produzirá efeitos após a formalização de
+termo de transição e entrega, preservando-se, até então, a responsabilidade da unidade que
+estiver conduzindo o processo.
+</p>
+
+<p class="item_exposicao">
+9&emsp;&emsp; A medida encontra fundamento no 
+<a href="../2021/lc_20210101_000000335.html#ART000028">art. 28, <i>caput</i> e § 1º, inciso IV, da Lei Complementar nº 335, de 1º de janeiro de 2021</a>, que autoriza o Chefe do Poder Executivo a
+dispor, por decreto, sobre a distribuição e a redistribuição de atribuições da estrutura
+organizacional, sem implicar aumento de despesa, criação de cargos ou criação de órgãos.
+</p>
+
+<p class="item_exposicao">
+10&emsp;&emsp; A minuta de Decreto prevê ainda a suspensão, durante sua vigência, das disposições do 
+<a href="../2025/dc_20251013_000002840.html">Decreto nº 2.840, de 2025</a>, que sejam incompatíveis com a atribuição transitória
+conferida ao órgão municipal de governo quanto às emendas impositivas municipais,
+preservando-se as competências do órgão municipal de articulação institucional e captação
+relativas às emendas federais e estaduais, à captação de recursos e à gestão dos demais
+instrumentos de transferência.
+</p>
+
+<p class="item_exposicao">
+11&emsp;&emsp; Por fim, a vigência foi limitada a cento e oitenta dias, admitida uma única
+prorrogação fundamentada por até noventa dias. A solução evita que uma medida qualificada
+como transitória permaneça em vigor por prazo indefinido, sem impedir a conclusão ordenada
+da transição administrativa e da aprovação do novo Regimento Interno da Secretaria Municipal
+de Governo.
+</p>
+
+<p class="item_exposicao">
+12&emsp;&emsp; Ressalta-se que a situação atualmente existente não configura vácuo de
+competência. As atribuições permanecem formalmente previstas na estrutura administrativa
+vigente, especialmente no âmbito do órgão municipal de articulação institucional e captação. O
+que se pretende disciplinar é a implementação gradual de decisão administrativa de
+redistribuição de atribuições, durante o período necessário à conclusão da reestruturação e à
+aprovação do novo Regimento Interno da Secretaria Municipal de Governo.
+</p>
+
+<p class="item_exposicao">
+13&emsp;&emsp; Essas são as razões que justificam, Senhor Prefeito, o encaminhamento da
+presente proposta de ato normativo à superior consideração de Vossa Excelência.
+</p>
+
+
+
+	<p class="despedida_exposicao"  >
+	Respeitosamente,
+	</p>
+		
+	<div class="assinatura_exposicao" >
+	<p>SABRINA GARCEZ</p>
+	<p>Secretária Municipal de Governo</p>
+	</div>
+
+
+
+
+
+
+
+
+
+</html><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"8d7ec16f5090428486d4568efe8ca4fc","r":1,"spa":2}' crossorigin="anonymous"></script>

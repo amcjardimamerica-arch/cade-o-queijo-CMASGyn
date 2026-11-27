@@ -1,0 +1,306 @@
+URL: https://www10.goiania.go.gov.br/transweb/listalotacaos.aspx?OrgaoId=165
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 50614
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" >
+  <head><script type="text/javascript" charset="UTF-8">
+(function (global) {
+    global.outsystems = global.outsystems || {};
+    global.outsystems.internal = global.outsystems.internal || {};
+})(this);
+outsystems.internal.timerspolyfillResponseStart = new Date().getTime();
+outsystems.internal.startInstant = new Date();
+outsystems.internal.requestEventName = 'WebScreenClientExecuted';
+outsystems.internal.beaconRESTURL = '/PerformanceProbe/rest/BeaconInternal/WebScreenClientExecutedEvent';
+</script><title>
+	listalotacaos
+</title><meta name="msapplication-tap-highlight" content="no" /><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" /><meta name="apple-mobile-web-app-capable" content="yes" /><meta name="mobile-web-app-capable" content="yes" /><meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" /><meta http-equiv="Content-Style-Type" content="text/css" />
+<style>
+.OSFillParent { 
+ display: block;
+ width: 100%;
+}
+table.OSFillParent {
+ display: table;
+}
+input.OSFillParent,
+button.OSFillParent,
+select.OSFillParent,
+textarea.OSFillParent {
+ display: inline-block;
+ box-sizing: border-box;
+ -moz-box-sizing: border-box;
+ -webkit-box-sizing: border-box;
+}
+.OSInline {
+ display: inline-block;
+ *zoom: 1;
+ *display: inline;
+ vertical-align: top;
+}
+table.OSInline {
+ display: inline-table;
+}
+.OSAutoMarginTop {
+ margin-top: 10px;
+}
+table[class*="ThemeGrid_Width"] {
+ display: inline-table;
+ vertical-align: top;
+}
+div[class*="ThemeGrid_Width"] {
+ vertical-align: top;
+}
+th[class*="ThemeGrid_Width"],
+td[class*="ThemeGrid_Width"] {
+ display: table-cell;
+}
+[class*="ThemeGrid_Width"] {
+ display: inline-block;
+ box-sizing: border-box;
+ -webkit-box-sizing: border-box;
+ -moz-box-sizing: border-box;
+ *zoom: 1;
+ *display: inline;
+}
+.ThemeGrid_Container {
+ box-sizing: border-box;
+ -webkit-box-sizing: border-box;
+ -moz-box-sizing: border-box;
+}
+
+</style>
+<link href="/RichWidgets/Blocks/RichWidgets/RichWidgets/Icon.css?46563" type="text/css" rel="stylesheet" />
+<link href="/WebPatterns/Blocks/WebPatterns/Private/Tooltipster_3_0_6.css?60864" type="text/css" rel="stylesheet" />
+<link href="/WebPatterns/Blocks/WebPatterns/Javascript/SilkUI.css?60864" type="text/css" rel="stylesheet" />
+<link href="/RichWidgets/Blocks/RichWidgets/jQueryUI/jQueryUIInternal.css?46563" type="text/css" rel="stylesheet" />
+<link href="/RichWidgets/Blocks/RichWidgets/RichWidgets/Feedback_Message.css?46563" type="text/css" rel="stylesheet" />
+<link href="/transweb/Blocks/TransWeb/CommonFlow/JQueryJFontSize.css?67404" type="text/css" rel="stylesheet" />
+<link href="/transweb/Blocks/TransWeb/CommonFlow/Contraste.css?67404" type="text/css" rel="stylesheet" />
+<link href="/GoianiaTheme/Blocks/GoianiaTheme/ZebraResource/CSS_ZEBRA_MATERIALIZE.css?56763" type="text/css" rel="stylesheet" />
+<link href="/GoianiaTheme/Blocks/GoianiaTheme/Base/Header.css?56763" type="text/css" rel="stylesheet" />
+<link href="/transweb/Blocks/TransWeb/CommonFlow/Header.css?67404" type="text/css" rel="stylesheet" />
+<link href="/RichWidgets/Blocks/RichWidgets/RichWidgets/DropDownMenu.css?46563" type="text/css" rel="stylesheet" />
+<link href="/RichWidgets/Blocks/RichWidgets/RichWidgets/List_Counter.css?46563" type="text/css" rel="stylesheet" />
+<link href="/RichWidgets/Blocks/RichWidgets/RichWidgets/List_Navigation.css?46563" type="text/css" rel="stylesheet" />
+    <link href="Theme.TransWeb.css?67404" type="text/css" rel="stylesheet" />
+    <link href="/GoianiaTheme/Theme.GoianiaTheme.extra.css?56763" type="text/css" rel="stylesheet" />
+    <script id="_OSrequestInfoScript" type="text/javascript">(function(global) { global.outsystems = global.outsystems || {};global.outsystems.internal = global.outsystems.internal || {};global.outsystems.internal.requestInfo = {visitorKey:'593ef8e4-3df1-4bd7-b532-0cdf2d82dc04',visitKey:'0e44caf2-ce3c-43d0-a9ab-f4042d9a2c8f',sessionKey:'BWNqma6Pl0qVTh3o3rIgpg==',userKey:'',requestKey:'36f86b42-4290-4ce7-924b-036bacd6b089',webScreenKey:'08a3f0a3-92b7-4201-968b-4354fd54adf5',webScreenName:'listalotacaos',espaceKey:'ef7726c9-e6bf-4bae-bbce-2e7d6846b63d',espaceName:'TransWeb',applicationKey:'3bbec277-705f-4708-9caa-9bd99325c137',applicationName:'AP_Portal da Transparencia',tenantKey:'6284e8bf-2aa5-50a4-f1bc-9918c2801df6',tenantName:'Users',environmentKey:'a513bd7b-8ea6-477a-96cb-f818aa61334a',environmentName:'Produção',frontendKey:'$1$2Iv9QwrG5ETurdcQ+IP7Ew==MQ+azISmHgjp0wglSPx4lvOw5Um9pYQSs9CiunpR7uc='}})(this);</script>
+    <script src="_osjs.js?11_29_0_43552" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/WebPatterns/Javascript/SilkUICommon.en.js?60864" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/WebPatterns/Private/ToggleScript.en.js?60864" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/WebPatterns/Private/Tooltipster_3_0_6.en.js?60864" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/WebPatterns/Javascript/SilkUI.en.js?60864" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/WebPatterns/Utilities/Feedback_AjaxWait.en.js?60864" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/RichWidgets/jQueryUI/jQueryUIInternal.en.js?46563" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/RichWidgets/jQueryUI/jQueryComponents.en.js?46563" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/RichWidgets/RichWidgets/Feedback_Message.en.js?46563" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/GoianiaTheme/Base/Layout.js?56763" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/TransWeb/CommonFlow/JQuery19.js?67404" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/TransWeb/CommonFlow/JQueryJFontSize.js?67404" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/TransWeb/CommonFlow/JStorage.js?67404" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/TransWeb/CommonFlow/Contraste.js?67404" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/GoianiaTheme/ZebraResource/JS.js?56763" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/GoianiaTheme/Base/fontSizeJs.js?56763" type="text/javascript" charset="UTF-8"></script>
+    <script src="/transweb/Blocks/RichWidgets/RichWidgets/DropDownMenu.en.js?46563" type="text/javascript" charset="UTF-8"></script>
+
+</head>
+  <body data-os-cookie-policy="Secure">
+    <form method="post" action="listalotacaos.aspx" id="WebForm1" name="WebForm1">
+<input type="hidden" name="__OSVSTATE" id="__OSVSTATE" value="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" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="" />
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="A93DB89A" />
+<div  class="Page startHidden unknownos  en LiverpoolTheme"><div  class="Header ThemeGrid_Wrapper No_Print"><div  class="ThemeGrid_Container"><div  class="Header_RightSection HiddenInDesktop" align="center"><a id="GoianiaTheme_wt27_block_wt2" tabindex="1" class="Header_ButtonMenu" href="#"><span class="fa fa-fw fa-bars"></span></a></div ><div  id="GoianiaTheme_wt27_block_wtHeader" class="Header_LeftSection PH"><div >
+<script type="text/javascript">
+
+function contraste() {
+    window.toggleContrast();
+}
+
+(function ($) {
+        $().ready(function () {
+             $('body').jfontsize({
+                 btnMinusClasseId: '#GoianiaTheme_wt27_block_wtHeader_wt25_wtjfontsizeminus',
+                 btnDefaultClasseId: '#GoianiaTheme_wt27_block_wtHeader_wt25_wtjfontsizedefault',
+                 btnPlusClasseId: '#GoianiaTheme_wt27_block_wtHeader_wt25_wtjfontsizeplus',
+                 btnMinusMaxHits: 10,
+                 btnPlusMaxHits: 10,
+                 sizeChange: 1
+             });
+
+            document.getElementById('GoianiaTheme_wt27_block_wtHeader_wt25_wtlnkHome').accessKey = '1';
+            document.getElementById('GoianiaTheme_wt27_block_wtHeader_wt25_wtlnkAcessibilidade').accessKey = '2';
+            document.getElementById('GoianiaTheme_wt27_block_wtHeader_wt25_wtContraste').accessKey = '3';
+            document.getElementById('GoianiaTheme_wt27_block_wtHeader_wt25_wtjfontsizeminus').accessKey = '4';
+            document.getElementById('GoianiaTheme_wt27_block_wtHeader_wt25_wtjfontsizedefault').accessKey = '5';
+            document.getElementById('GoianiaTheme_wt27_block_wtHeader_wt25_wtjfontsizeplus').accessKey = '6';
+
+            jQuery(document).keypress(function (e) {
+         //       alert('code: ' + e.keyCode + 'Wich: ' + e.wich);
+        //       Alt + 1
+                
+                if (e.keyCode == 9786) {
+                    document.location.href = '/TransWeb/Home.aspx';
+
+                }
+                if (e.keyCode == 9787) {
+                    document.location.href = '/TransWeb/Acessibilidade.aspx';
+
+                }
+                //       Alt + 3
+                if (e.keyCode == 9829) {
+                    contraste();
+                }
+            })
+ 
+       });
+    })(jQuery)
+</script>
+
+</div ><div  class="OSInline" style="width: 74%"><div  id="GoianiaTheme_wt27_block_wtHeader_wt25_GoianiaTheme_wtlnkheader_block_wtApplication_Header" style="height: 55px; margin-top: 0px;"><a id="GoianiaTheme_wt27_block_wtHeader_wt25_GoianiaTheme_wtlnkheader_block_wt4" tabindex="2" href="/Internet"><img alt="" src="/GoianiaTheme/img/brasaohorizontalpreto307x124.png?56763" style="height:50px;width:115px;margin-left: 2px;margin-top: 2px;" /></a><div  id="GoianiaTheme_wt27_block_wtHeader_wt25_GoianiaTheme_wtlnkheader_block_wtApplication_Title" class="Application_Title OSInline ThemeGrid_MarginGutter" style="margin-top: 0px;"><a id="GoianiaTheme_wt27_block_wtHeader_wt25_GoianiaTheme_wtlnkheader_block_wt2" tabindex="4" href="Home.aspx">Portal da Transpar&#234;ncia</a></div ><div  class="ThemeGrid_Width7 ThemeGrid_MarginGutter" align="right" style="margin-top: 10px;"><div  class="ThemeGrid_Width2"><div  class="ThemeGrid_Width2" title="Aumentar tamanho do texto"><a id="GoianiaTheme_wt27_block_wtHeader_wt25_GoianiaTheme_wtlnkheader_block_wt3_wt5" tabindex="5" onclick="OsAjax(arguments[0] || window.event,&#39;GoianiaTheme_wt27_block_wtHeader_wt25_GoianiaTheme_wtlnkheader_block_wt3_wt5&#39;,&#39;GoianiaTheme_wt27$block$wtHeader$wt25$GoianiaTheme_wtlnkheader$block$wt3$wt5&#39;,&#39;&#39;,&#39;__OSVSTATE,&#39;,&#39;&#39;); return false;" href="#"><img class="img2" alt="" src="/GoianiaTheme/img/aplus.png?56763" /></a></div ><div  class="ThemeGrid_Width2" title="Diminuir tamanho do texto" style="margin-left: 20px"><a id="GoianiaTheme_wt27_block_wtHeader_wt25_GoianiaTheme_wtlnkheader_block_wt3_wt9" tabindex="6" onclick="OsAjax(arguments[0] || window.event,&#39;GoianiaTheme_wt27_block_wtHeader_wt25_GoianiaTheme_wtlnkheader_block_wt3_wt9&#39;,&#39;GoianiaTheme_wt27$block$wtHeader$wt25$GoianiaTheme_wtlnkheader$block$wt3$wt9&#39;,&#39;&#39;,&#39;__OSVSTATE,&#39;,&#39;&#39;); return false;" href="#"><img class="img2" alt="" src="/GoianiaTheme/img/aminus.png?56763" style="margin-left: 5px" /></a></div ><div  id="GoianiaTheme_wt27_block_wtHeader_wt25_GoianiaTheme_wtlnkheader_block_wt3_wtdiv_fontsize" class="OSInline ThemeGrid_MarginGutter" style="visibility:hidden;"><input name="GoianiaTheme_wt27$block$wtHeader$wt25$GoianiaTheme_wtlnkheader$block$wt3$wttxt_fontsize" type="text" maxlength="50" id="GoianiaTheme_wt27_block_wtHeader_wt25_GoianiaTheme_wtlnkheader_block_wt3_wttxt_fontsize" tabindex="7" class="input ThemeGrid_Width1" aria-invalid="false" onoschange="OsAjaxDelayed(null,&#39;GoianiaTheme_wt27_block_wtHeader_wt25_GoianiaTheme_wtlnkheader_block_wt3_wttxt_fontsize&#39;,&#39;GoianiaTheme_wt27$block$wtHeader$wt25$GoianiaTheme_wtlnkheader$block$wt3$wttxt_fontsize&#39;,&#39;Change&#39;,&#39;__OSVSTATE,&#39;,osOnChangeTimerDelay);" onchange="OsAjaxDelayed(null,&#39;GoianiaTheme_wt27_block_wtHeader_wt25_GoianiaTheme_wtlnkheader_block_wt3_wttxt_fontsize&#39;,&#39;GoianiaTheme_wt27$block$wtHeader$wt25$GoianiaTheme_wtlnkheader$block$wt3$wttxt_fontsize&#39;,&#39;Change&#39;,&#39;__OSVSTATE,&#39;,0);" /><span style="display: none;" class="ValidationMessage" role="alert" id="ValidationMessage_GoianiaTheme_wt27_block_wtHeader_wt25_GoianiaTheme_wtlnkheader_block_wt3_wttxt_fontsize"></span><a id="GoianiaTheme_wt27_block_wtHeader_wt25_GoianiaTheme_wtlnkheader_block_wt3_wtlink_salva" tabindex="8" onclick="OsAjax(arguments[0] || window.event,&#39;GoianiaTheme_wt27_block_wtHeader_wt25_GoianiaTheme_wtlnkheader_block_wt3_wtlink_salva&#39;,&#39;GoianiaTheme_wt27$block$wtHeader$wt25$GoianiaTheme_wtlnkheader$block$wt3$wtlink_salva&#39;,&#39;&#39;,&#39;__OSVSTATE,&#39;,&#39;&#39;); return false;" href="#">salva</a></div ></div ></div ></div ></div ><a id="GoianiaTheme_wt27_block_wtHeader_wt25_wtlnkHome" tabindex="9" href="PortaldaTransparencia.aspx?Antigo=True"></a><a id="GoianiaTheme_wt27_block_wtHeader_wt25_wtlnkAcessibilidade" tabindex="10" href="Acessibilidade.aspx"><div  id="GoianiaTheme_wt27_block_wtHeader_wt25_wtacessibilidade" class="jfontsize-button OSInline" style="width: 8%; margin-left: 1%">Acessibilidade</div ></a><div  id="GoianiaTheme_wt27_block_wtHeader_wt25_wtContraste" class="jfontsize-button OSInline" onclick="javascript:contraste();" title="Aplicar Contraste" style="width: 6%; margin-left: 1%">Contraste <span style="width:30px;"><i class='fa fa-adjust'></i></span></div ><div  id="GoianiaTheme_wt27_block_wtHeader_wt25_wtjfontsizeminus" class="jfontsize-button OSInline" title="Diminuir tamanho da fonte" style="width: 2%; margin-left: 1%">A-</div ><div  id="GoianiaTheme_wt27_block_wtHeader_wt25_wtjfontsizedefault" class="jfontsize-button OSInline" title="Restaurar o tamanho original da fonte" style="width: 2%; margin-left: 1%">A</div ><div  id="GoianiaTheme_wt27_block_wtHeader_wt25_wtjfontsizeplus" class="jfontsize-button OSInline" title="Aumentar o tamanho da fonte" style="width: 2%; margin-left: 1%">A+</div ></div ></div ><div  class="Header_Menu_Bar" style="margin-top: 0px;"><div  class="ThemeGrid_Container "><div  id="GoianiaTheme_wt27_block_wtMenu" class="Header_Menu"><div  class="Application_Menu"><div ><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt5_block_wtDropDownButtonRoot" class="Menu_DropDownButton OSInline" aria-expanded="false" role="menuitem"><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt5_block_wtDropDownButtonElement" class="Menu_TopMenu Menu_TopMenu" aria-controls="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt5_block_wtDropDownPanel" role="button"><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt5_block_wtMenuItem"><a id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt5_block_wtMenuItem_wt17" tabindex="11" href="Atendimento.aspx">Atendimento</a></div ></div ><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt5_block_wtDropDownPanel" class="Menu_DropDownPanel"><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt5_block_wtMenuSubItems" class="Menu_SubItemsPlaceholder"></div ></div ></div ><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt4_block_wtDropDownButtonRoot" class="Menu_DropDownButton OSInline" aria-expanded="false" role="menuitem"><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt4_block_wtDropDownButtonElement" class="Menu_TopMenu Menu_TopMenu" aria-controls="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt4_block_wtDropDownPanel" role="button"><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt4_block_wtMenuItem"><a id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt4_block_wtMenuItem_wt12" tabindex="12" target="_blank" href="http://www.goiania.go.gov.br/download/transparencia/Organograma%20Geral%202016%20Visio%20Basico%201.pdf">Organograma</a></div ></div ><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt4_block_wtDropDownPanel" class="Menu_DropDownPanel"><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt4_block_wtMenuSubItems" class="Menu_SubItemsPlaceholder"></div ></div ></div ><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt3_block_wtDropDownButtonRoot" class="Menu_DropDownButton OSInline" aria-expanded="false" role="menuitem"><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt3_block_wtDropDownButtonElement" class="Menu_TopMenu Menu_TopMenu" aria-controls="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt3_block_wtDropDownPanel" role="button"><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt3_block_wtMenuItem"><a id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt3_block_wtMenuItem_wt31" tabindex="13" href="PerguntasFrequentes.aspx">Perguntas Frequentes</a></div ></div ><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt3_block_wtDropDownPanel" class="Menu_DropDownPanel"><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt3_block_wtMenuSubItems" class="Menu_SubItemsPlaceholder"></div ></div ></div ><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt25_block_wtDropDownButtonRoot" class="Menu_DropDownButton OSInline" aria-expanded="false" role="menuitem"><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt25_block_wtDropDownButtonElement" class="Menu_TopMenu Menu_TopMenu" aria-controls="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt25_block_wtDropDownPanel" role="button"><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt25_block_wtMenuItem"><a id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt25_block_wtMenuItem_wt24" tabindex="14" href="Glossario.aspx">Gloss&#225;rio</a></div ></div ><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt25_block_wtDropDownPanel" class="Menu_DropDownPanel"><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt25_block_wtMenuSubItems" class="Menu_SubItemsPlaceholder"></div ></div ></div ><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt32_block_wtDropDownButtonRoot" class="Menu_DropDownButton OSInline" aria-expanded="false" role="menuitem"><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt32_block_wtDropDownButtonElement" class="Menu_TopMenu Menu_TopMenu" aria-controls="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt32_block_wtDropDownPanel" role="button"><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt32_block_wtMenuItem"><a id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt32_block_wtMenuItem_wt14" tabindex="15" href="Estatisticas.aspx">Estat&#237;stica do e-Sic</a></div ></div ><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt32_block_wtDropDownPanel" class="Menu_DropDownPanel"><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt32_block_wtMenuSubItems" class="Menu_SubItemsPlaceholder"></div ></div ></div ><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt16_block_wtDropDownButtonRoot" class="Menu_DropDownButton OSInline" aria-expanded="false" role="menuitem"><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt16_block_wtDropDownButtonElement" class="Menu_TopMenu Menu_TopMenu" aria-controls="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt16_block_wtDropDownPanel" role="button"><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt16_block_wtMenuItem"><a id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt16_block_wtMenuItem_wt6" tabindex="16" target="_blank" href="http://www.goiania.go.gov.br/download/transparencia/navegacao%20portal%20da%20transparencia.doc">Manual de Navega&#231;&#227;o</a></div ></div ><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt16_block_wtDropDownPanel" class="Menu_DropDownPanel"><div  id="GoianiaTheme_wt27_block_wtMenu_wt23_RichWidgets_wt16_block_wtMenuSubItems" class="Menu_SubItemsPlaceholder"></div ></div ></div ></div ></div ></div ></div ></div ></div ><div  class="Content ThemeGrid_Wrapper"><div  class="ThemeGrid_Container" style="margin-top: 0px;"><div  class="Title_Section"><div  id="GoianiaTheme_wt27_block_wtTitle" class="Heading1 Title PH OSInline">Lista Lota&#231;&#245;es</div ><div  id="GoianiaTheme_wt27_block_wtActions" class="Actions PH OSInline"><div  align="right"><a id="GoianiaTheme_wt27_block_wtActions_wt33" tabindex="17" href="ListaOrgaos.aspx">Voltar</a></div ></div ></div ><div  id="GoianiaTheme_wt27_block_wtMainContent" class="MainContent"><div ><div  id="GoianiaTheme_wt27_block_wtMainContent_wtLotacaoTable_Wrapper" class="TableRecords_Wrapper"><table class="TableRecords OSFillParent" cellspacing="0" id="GoianiaTheme_wt27_block_wtMainContent_wtLotacaoTable">
+	<thead>
+		<tr>
+			<th class="TableRecords_Header">Sigla</th><th class="TableRecords_Header">Nome</th><th class="TableRecords_Header">Endere&#231;o </th><th class="TableRecords_Header"><div  align="center">Telefone </div ></th><th class="TableRecords_Header">Atendimento</th>
+		</tr>
+	</thead><tbody>
+		<tr>
+			<td class="TableRecords_OddLine">GAB</td><td class="TableRecords_OddLine">GABINETE DO PRESIDENTE COMANDANTE</td><td class="TableRecords_OddLine"><div ><div ></div ></div ></td><td class="TableRecords_OddLine"><div  align="center">0</div ></td><td class="TableRecords_OddLine"></td>
+		</tr><tr>
+			<td class="TableRecords_EvenLine">DVEX</td><td class="TableRecords_EvenLine">DIVISAO DE EXPEDIENTE</td><td class="TableRecords_EvenLine"><div ><div ></div ></div ></td><td class="TableRecords_EvenLine"><div  align="center">0</div ></td><td class="TableRecords_EvenLine"></td>
+		</tr><tr>
+			<td class="TableRecords_OddLine">AJUR</td><td class="TableRecords_OddLine">DIVISAO DE ASSESSORAMENTO JURIDICO</td><td class="TableRecords_OddLine"><div ><div ></div ></div ></td><td class="TableRecords_OddLine"><div  align="center">0</div ></td><td class="TableRecords_OddLine"></td>
+		</tr><tr>
+			<td class="TableRecords_EvenLine">ASPLAN</td><td class="TableRecords_EvenLine">DIVISAO DE PLANEJAMENTO, QUALIDADE E CONTROLE</td><td class="TableRecords_EvenLine"><div ><div ></div ></div ></td><td class="TableRecords_EvenLine"><div  align="center">0</div ></td><td class="TableRecords_EvenLine"></td>
+		</tr><tr>
+			<td class="TableRecords_OddLine">DVCOM</td><td class="TableRecords_OddLine">DIVISAO DE COMUNICACAO SOCIAL</td><td class="TableRecords_OddLine"><div ><div ></div ></div ></td><td class="TableRecords_OddLine"><div  align="center">0</div ></td><td class="TableRecords_OddLine"></td>
+		</tr><tr>
+			<td class="TableRecords_EvenLine">DPGFMPPD</td><td class="TableRecords_EvenLine">DEP. GESTAO FUNDO M. DE POL. PUBLICAS SOBRE DROGA</td><td class="TableRecords_EvenLine"><div ><div ></div ></div ></td><td class="TableRecords_EvenLine"><div  align="center">35248661</div ></td><td class="TableRecords_EvenLine"></td>
+		</tr><tr>
+			<td class="TableRecords_OddLine">DPO</td><td class="TableRecords_OddLine">DEPARTAMENTO OPERACIONAL</td><td class="TableRecords_OddLine"><div ><div ></div ></div ></td><td class="TableRecords_OddLine"><div  align="center">0</div ></td><td class="TableRecords_OddLine"></td>
+		</tr><tr>
+			<td class="TableRecords_EvenLine">DVAPO</td><td class="TableRecords_EvenLine">DIVISAO DE APOIO OPERACIONAL</td><td class="TableRecords_EvenLine"><div ><div ></div ></div ></td><td class="TableRecords_EvenLine"><div  align="center">0</div ></td><td class="TableRecords_EvenLine"></td>
+		</tr><tr>
+			<td class="TableRecords_OddLine">CECO</td><td class="TableRecords_OddLine">CENTRAL DE COMUNICACAO OPERACIONAL</td><td class="TableRecords_OddLine"><div ><div ></div ></div ></td><td class="TableRecords_OddLine"><div  align="center">0</div ></td><td class="TableRecords_OddLine"></td>
+		</tr><tr>
+			<td class="TableRecords_EvenLine">UCR</td><td class="TableRecords_EvenLine">UNIDADE DE COMANDO REGIONAL</td><td class="TableRecords_EvenLine"><div ><div ></div ></div ></td><td class="TableRecords_EvenLine"><div  align="center">0</div ></td><td class="TableRecords_EvenLine"></td>
+		</tr><tr>
+			<td class="TableRecords_OddLine">1UCR</td><td class="TableRecords_OddLine">1A UNIDADE DE COMANDO REGIONAL</td><td class="TableRecords_OddLine"><div ><div ></div ></div ></td><td class="TableRecords_OddLine"><div  align="center">0</div ></td><td class="TableRecords_OddLine"></td>
+		</tr><tr>
+			<td class="TableRecords_EvenLine">2UCR</td><td class="TableRecords_EvenLine">2A UNIDADE DE COMANDO REGIONAL</td><td class="TableRecords_EvenLine"><div ><div ></div ></div ></td><td class="TableRecords_EvenLine"><div  align="center">0</div ></td><td class="TableRecords_EvenLine"></td>
+		</tr><tr>
+			<td class="TableRecords_OddLine">3UCR</td><td class="TableRecords_OddLine">3A UNIDADE DE COMANDO REGIONAL</td><td class="TableRecords_OddLine"><div ><div ></div ></div ></td><td class="TableRecords_OddLine"><div  align="center">0</div ></td><td class="TableRecords_OddLine"></td>
+		</tr><tr>
+			<td class="TableRecords_EvenLine">4UCR</td><td class="TableRecords_EvenLine">4A UNIDADE DE COMANDO REGIONAL</td><td class="TableRecords_EvenLine"><div ><div ></div ></div ></td><td class="TableRecords_EvenLine"><div  align="center">0</div ></td><td class="TableRecords_EvenLine"></td>
+		</tr><tr>
+			<td class="TableRecords_OddLine">5UCR</td><td class="TableRecords_OddLine">5A UNIDADE DE COMANDO REGIONAL</td><td class="TableRecords_OddLine"><div ><div ></div ></div ></td><td class="TableRecords_OddLine"><div  align="center">0</div ></td><td class="TableRecords_OddLine"></td>
+		</tr><tr>
+			<td class="TableRecords_EvenLine">6UCR</td><td class="TableRecords_EvenLine">6A UNIDADE DE COMANDO REGIONAL</td><td class="TableRecords_EvenLine"><div ><div ></div ></div ></td><td class="TableRecords_EvenLine"><div  align="center">0</div ></td><td class="TableRecords_EvenLine"></td>
+		</tr><tr>
+			<td class="TableRecords_OddLine">7UCR</td><td class="TableRecords_OddLine">7A UNIDADE DE COMANDO REGIONAL</td><td class="TableRecords_OddLine"><div ><div ></div ></div ></td><td class="TableRecords_OddLine"><div  align="center">0</div ></td><td class="TableRecords_OddLine"></td>
+		</tr><tr>
+			<td class="TableRecords_EvenLine">DVGA</td><td class="TableRecords_EvenLine">DIVISAO DA GUARDA AMBIENTAL</td><td class="TableRecords_EvenLine"><div ><div ></div ></div ></td><td class="TableRecords_EvenLine"><div  align="center">0</div ></td><td class="TableRecords_EvenLine"></td>
+		</tr><tr>
+			<td class="TableRecords_OddLine">DISDS</td><td class="TableRecords_OddLine">DIRETORIA DE INTEGRACAO DO SISTEMA DE DEF.SOCIAL</td><td class="TableRecords_OddLine"><div ><div ></div ></div ></td><td class="TableRecords_OddLine"><div  align="center">35248661</div ></td><td class="TableRecords_OddLine"></td>
+		</tr><tr>
+			<td class="TableRecords_EvenLine">DVOVSSME</td><td class="TableRecords_EvenLine">DIV.DO OBSERV.VIOLENCIA E SEG.DO SIST.DE MON.ELET</td><td class="TableRecords_EvenLine"><div ><div ></div ></div ></td><td class="TableRecords_EvenLine"><div  align="center">35248661</div ></td><td class="TableRecords_EvenLine"></td>
+		</tr><tr>
+			<td class="TableRecords_OddLine">DPAF</td><td class="TableRecords_OddLine">DEPARTAMENTO ADMINSTRATIVO E FINANCEIRO</td><td class="TableRecords_OddLine"><div ><div ></div ></div ></td><td class="TableRecords_OddLine"><div  align="center">0</div ></td><td class="TableRecords_OddLine"></td>
+		</tr><tr>
+			<td class="TableRecords_EvenLine">DVGP</td><td class="TableRecords_EvenLine">DIVISAO DE GESTAO DE PESSOAS</td><td class="TableRecords_EvenLine"><div ><div ></div ></div ></td><td class="TableRecords_EvenLine"><div  align="center">35248661</div ></td><td class="TableRecords_EvenLine"></td>
+		</tr><tr>
+			<td class="TableRecords_OddLine">DVSTAS</td><td class="TableRecords_OddLine">DIVSAO DE SEG. DO TRABALHO E ASSISTENCIA SOCIAL</td><td class="TableRecords_OddLine"><div ><div ></div ></div ></td><td class="TableRecords_OddLine"><div  align="center">0</div ></td><td class="TableRecords_OddLine"></td>
+		</tr><tr>
+			<td class="TableRecords_EvenLine">DVMAT</td><td class="TableRecords_EvenLine">DIVISAO DE MATERIAL DE PATRIMONIO</td><td class="TableRecords_EvenLine"><div ><div ></div ></div ></td><td class="TableRecords_EvenLine"><div  align="center">0</div ></td><td class="TableRecords_EvenLine"></td>
+		</tr><tr>
+			<td class="TableRecords_OddLine">DVAFC</td><td class="TableRecords_OddLine">DIVISAO DE ADMINISTRACAO FINANCEIRA E CONTABIL</td><td class="TableRecords_OddLine"><div ><div ></div ></div ></td><td class="TableRecords_OddLine"><div  align="center">0</div ></td><td class="TableRecords_OddLine"></td>
+		</tr><tr>
+			<td class="TableRecords_EvenLine">DVAUX</td><td class="TableRecords_EvenLine">DIVISAO DE SERVICOS AUXILIARES</td><td class="TableRecords_EvenLine"><div ><div ></div ></div ></td><td class="TableRecords_EvenLine"><div  align="center">0</div ></td><td class="TableRecords_EvenLine"></td>
+		</tr><tr>
+			<td class="TableRecords_OddLine">DMPSD</td><td class="TableRecords_OddLine">DIRETORIA MUNICIPAL DE POLITICAS SOBRE DROGAS</td><td class="TableRecords_OddLine"><div ><div ></div ></div ></td><td class="TableRecords_OddLine"><div  align="center">35248661</div ></td><td class="TableRecords_OddLine"></td>
+		</tr><tr>
+			<td class="TableRecords_EvenLine">DVACOMAD</td><td class="TableRecords_EvenLine">DIVISAO DE APOIO AO COMAD</td><td class="TableRecords_EvenLine"><div ><div ></div ></div ></td><td class="TableRecords_EvenLine"><div  align="center">35248661</div ></td><td class="TableRecords_EvenLine"></td>
+		</tr><tr>
+			<td class="TableRecords_OddLine">COR</td><td class="TableRecords_OddLine">CORREGEDORIA GERAL DA AG.DA GUARDA CIV.METROPOL</td><td class="TableRecords_OddLine"><div ><div ></div ></div ></td><td class="TableRecords_OddLine"><div  align="center">35248661</div ></td><td class="TableRecords_OddLine"></td>
+		</tr><tr>
+			<td class="TableRecords_EvenLine">DVTEC</td><td class="TableRecords_EvenLine">DIV. TEC. PREVENCAO, CORREICOES E INF. FUN. DISC</td><td class="TableRecords_EvenLine"><div ><div ></div ></div ></td><td class="TableRecords_EvenLine"><div  align="center">0</div ></td><td class="TableRecords_EvenLine"></td>
+		</tr><tr>
+			<td class="TableRecords_OddLine">PROGSEG</td><td class="TableRecords_OddLine">PROGRAMA GOIANIA MAIS SEGURA</td><td class="TableRecords_OddLine"><div ><div ></div ></div ></td><td class="TableRecords_OddLine"><div  align="center">0</div ></td><td class="TableRecords_OddLine"></td>
+		</tr><tr>
+			<td class="TableRecords_EvenLine">2OPECA</td><td class="TableRecords_EvenLine">2 GRUPAMENTO DE OPERACOES COM CAES</td><td class="TableRecords_EvenLine"><div ><div ></div ></div ></td><td class="TableRecords_EvenLine"><div  align="center">0</div ></td><td class="TableRecords_EvenLine"></td>
+		</tr><tr>
+			<td class="TableRecords_OddLine">AGCMG</td><td class="TableRecords_OddLine">AGENCIA DA GUARDA CIVIL METROPOLITANA DE GOIANIA</td><td class="TableRecords_OddLine"><div ><div ></div ></div ></td><td class="TableRecords_OddLine"><div  align="center">35248661</div ></td><td class="TableRecords_OddLine"></td>
+		</tr><tr>
+			<td class="TableRecords_EvenLine">CFEA</td><td class="TableRecords_EvenLine">CENTRO DE FORM.ESTUDOS-APERF. DA GUARDA MUNICIPAL</td><td class="TableRecords_EvenLine"><div ><div ></div ></div ></td><td class="TableRecords_EvenLine"><div  align="center">0</div ></td><td class="TableRecords_EvenLine"></td>
+		</tr><tr>
+			<td class="TableRecords_OddLine">DVEN</td><td class="TableRecords_OddLine">DIVISAO DE ENSINO</td><td class="TableRecords_OddLine"><div ><div ></div ></div ></td><td class="TableRecords_OddLine"><div  align="center">0</div ></td><td class="TableRecords_OddLine"></td>
+		</tr><tr>
+			<td class="TableRecords_EvenLine">SEGER</td><td class="TableRecords_EvenLine">SECRETARIA GERAL</td><td class="TableRecords_EvenLine"><div ><div ></div ></div ></td><td class="TableRecords_EvenLine"><div  align="center">0</div ></td><td class="TableRecords_EvenLine"></td>
+		</tr><tr>
+			<td class="TableRecords_OddLine">BMCOR</td><td class="TableRecords_OddLine">BANDA DE MUSICA E CORAL</td><td class="TableRecords_OddLine"><div ><div ></div ></div ></td><td class="TableRecords_OddLine"><div  align="center">0</div ></td><td class="TableRecords_OddLine"></td>
+		</tr><tr>
+			<td class="TableRecords_EvenLine">OUVI</td><td class="TableRecords_EvenLine">SERVICO DE OUVIDORIA DA AGENCIA GUARDA CIV.METROP</td><td class="TableRecords_EvenLine"><div ><div ></div ></div ></td><td class="TableRecords_EvenLine"><div  align="center">35248661</div ></td><td class="TableRecords_EvenLine"></td>
+		</tr><tr>
+			<td class="TableRecords_OddLine">COMDEC</td><td class="TableRecords_OddLine">COMISSAO MUNICIPAL DE DEFESA CIVIL</td><td class="TableRecords_OddLine"><div ><div ></div ></div ></td><td class="TableRecords_OddLine"><div  align="center">35248661</div ></td><td class="TableRecords_OddLine"></td>
+		</tr><tr>
+			<td class="TableRecords_EvenLine">COEX</td><td class="TableRecords_EvenLine">COORDENACAO EXECUTIVA</td><td class="TableRecords_EvenLine"><div ><div ></div ></div ></td><td class="TableRecords_EvenLine"><div  align="center">35248661</div ></td><td class="TableRecords_EvenLine"></td>
+		</tr><tr>
+			<td class="TableRecords_OddLine">STAT</td><td class="TableRecords_OddLine">SETOR DE APOIO TECNICO</td><td class="TableRecords_OddLine"><div ><div ></div ></div ></td><td class="TableRecords_OddLine"><div  align="center">35248661</div ></td><td class="TableRecords_OddLine"></td>
+		</tr><tr>
+			<td class="TableRecords_EvenLine">COMAD</td><td class="TableRecords_EvenLine">CONSELHO MUNICIPAL DE POLIT.PUBLICAS SOBRE DROGAS</td><td class="TableRecords_EvenLine"><div ><div ></div ></div ></td><td class="TableRecords_EvenLine"><div  align="center">35248661</div ></td><td class="TableRecords_EvenLine"></td>
+		</tr><tr>
+			<td class="TableRecords_OddLine">FMPPSD</td><td class="TableRecords_OddLine">FUNDO MUNICIPAL DE POLITICAS PUBLICAS SOBRE DROGAS</td><td class="TableRecords_OddLine"><div ><div ></div ></div ></td><td class="TableRecords_OddLine"><div  align="center">35248661</div ></td><td class="TableRecords_OddLine"></td>
+		</tr><tr>
+			<td class="TableRecords_EvenLine">GABSEC</td><td class="TableRecords_EvenLine">GABINETE DO PRESIDENTE</td><td class="TableRecords_EvenLine"><div ><div ></div ></div ></td><td class="TableRecords_EvenLine"><div  align="center">35248661</div ></td><td class="TableRecords_EvenLine"></td>
+		</tr><tr>
+			<td class="TableRecords_OddLine">CHEGAB22</td><td class="TableRecords_OddLine">CHEFIA DE GABINETE</td><td class="TableRecords_OddLine"><div ><div ></div ></div ></td><td class="TableRecords_OddLine"><div  align="center">35248661</div ></td><td class="TableRecords_OddLine"></td>
+		</tr><tr>
+			<td class="TableRecords_EvenLine">SECGER22</td><td class="TableRecords_EvenLine">SECRETARIA-GERAL</td><td class="TableRecords_EvenLine"><div ><div ></div ></div ></td><td class="TableRecords_EvenLine"><div  align="center">35248661</div ></td><td class="TableRecords_EvenLine"></td>
+		</tr><tr>
+			<td class="TableRecords_OddLine">GERCOR22</td><td class="TableRecords_OddLine">GERENCIA DA CORREGEDORIA-GERAL</td><td class="TableRecords_OddLine"><div ><div ></div ></div ></td><td class="TableRecords_OddLine"><div  align="center">35248661</div ></td><td class="TableRecords_OddLine"></td>
+		</tr><tr>
+			<td class="TableRecords_EvenLine">COMGUM</td><td class="TableRecords_EvenLine">COMANDO OPERACIONAL DA GUARDA MUNICIPAL</td><td class="TableRecords_EvenLine"><div ><div ></div ></div ></td><td class="TableRecords_EvenLine"><div  align="center">35248661</div ></td><td class="TableRecords_EvenLine"></td>
+		</tr><tr>
+			<td class="TableRecords_OddLine">CMDCIVIL</td><td class="TableRecords_OddLine">COMISSAO MUNICIPAL DE DEFESA CIVIL</td><td class="TableRecords_OddLine"><div ><div ></div ></div ></td><td class="TableRecords_OddLine"><div  align="center">35248661</div ></td><td class="TableRecords_OddLine"></td>
+		</tr><tr>
+			<td class="TableRecords_EvenLine">ASSPSD22</td><td class="TableRecords_EvenLine">ASSESSORIA DE POLITICAS SOBRE DROGAS</td><td class="TableRecords_EvenLine"><div ><div ></div ></div ></td><td class="TableRecords_EvenLine"><div  align="center">35248661</div ></td><td class="TableRecords_EvenLine"></td>
+		</tr>
+	</tbody>
+</table><div  class="TableRecords_BottomNavigation OSAutoMarginTop"><div  class="OSInline" style="width: 40%"><div  class="Counter_Message">1 to 50 of 114 records</div ></div ><div  class="OSInline" align="right" style="width: 60%; margin-left: 0px"><nav  class="ListNavigation_Wrapper" aria-label="Pagination Navigation"><span class="ListNavigation_DisabledPrevious">previous</span><span id="GoianiaTheme_wt27_block_wtMainContent_RichWidgets_wt14_block_wtPageNavigator"><span class="ListNavigation_CurrentPageNumber" aria-label="Current Page, Page 1" tabindex="0">1</span><a id="GoianiaTheme_wt27_block_wtMainContent_RichWidgets_wt14_block_wtPageNavigator_ctl02_wtLink8" tabindex="25" class="ListNavigation_PageNumber" onclick="OsAjax(arguments[0] || window.event,&#39;GoianiaTheme_wt27_block_wtMainContent_RichWidgets_wt14_block_wtPageNavigator_ctl02_wtLink8&#39;,&#39;GoianiaTheme_wt27$block$wtMainContent$RichWidgets_wt14$block$wtPageNavigator$ctl02$wtLink8&#39;,&#39;&#39;,&#39;__OSVSTATE,&#39;,&#39;&#39;); return false;" href="#">2</a><a id="GoianiaTheme_wt27_block_wtMainContent_RichWidgets_wt14_block_wtPageNavigator_ctl04_wtLink8" tabindex="26" class="ListNavigation_PageNumber" onclick="OsAjax(arguments[0] || window.event,&#39;GoianiaTheme_wt27_block_wtMainContent_RichWidgets_wt14_block_wtPageNavigator_ctl04_wtLink8&#39;,&#39;GoianiaTheme_wt27$block$wtMainContent$RichWidgets_wt14$block$wtPageNavigator$ctl04$wtLink8&#39;,&#39;&#39;,&#39;__OSVSTATE,&#39;,&#39;&#39;); return false;" href="#">3</a></span><a id="GoianiaTheme_wt27_block_wtMainContent_RichWidgets_wt14_block_wt28" tabindex="27" class="ListNavigation_Next" aria-label="Go to next page..." onclick="OsAjax(arguments[0] || window.event,&#39;GoianiaTheme_wt27_block_wtMainContent_RichWidgets_wt14_block_wt28&#39;,&#39;GoianiaTheme_wt27$block$wtMainContent$RichWidgets_wt14$block$wt28&#39;,&#39;&#39;,&#39;__OSVSTATE,&#39;,&#39;&#39;); return false;" href="#">next</a></nav ></div ></div ></div ></div ></div ></div ></div ><div  class="Footer ThemeGrid_Wrapper No_Print" style="margin-top: 0px;"><div  class="ThemeGrid_Container"></div ></div ><script>SilkDeviceDetect.init('desktop', false, true, '', true, false, false)</script><div  class="ResponsiveOverlay"><div  class="ResponsiveOverlay_Top"><div  class="OSInline" style="width: 30px"><span id="GoianiaTheme_wt27_block_WebPatterns_wt4_block_wt4_RichWidgets_wttt_trigger_block"><span class="fa fa-fw fa-question-circle fa-lg"></span></span></div ><div  class="ResponsiveOverlay_Device OSInline" style="width: 170px"></div ><div  class="OpenClose OSInline" style="width: 20px; margin-left: 10px"><span class="fa fa-fw fa-cog fa-lg"></span></div ></div ><div  id="GoianiaTheme_wt27_block_WebPatterns_wt4_block_wt4_wtOverlay_Bottom" class="ResponsiveOverlay_Bottom" style="display:none"><div  class="OSInline" style="width: 150px">Device Emulation</div ><div  class="OSInline" style="width: 70px; margin-left: 10px;text-align: right;"><div  class="ToggleButton OSInline"><label  id="GoianiaTheme_wt27_block_WebPatterns_wt4_block_wt4_wt43_wtCheckbox" class="PH ToggleButton_label"><input type="checkbox" name="GoianiaTheme_wt27$block$WebPatterns_wt4$block$wt4$wt43$wtCheckbox$wt37" checked="checked" id="GoianiaTheme_wt27_block_WebPatterns_wt4_block_wt4_wt43_wtCheckbox_wt37" tabindex="28" class="BtnRespOverlay" aria-invalid="false" onclick="OsAjax(arguments[0] || window.event,&#39;GoianiaTheme_wt27_block_WebPatterns_wt4_block_wt4_wt43_wtCheckbox_wt37&#39;,&#39;GoianiaTheme_wt27$block$WebPatterns_wt4$block$wt4$wt43$wtCheckbox$wt37&#39;,&#39;Change&#39;,&#39;__OSVSTATE,&#39;,&#39;&#39;);" /><span style="display: none;" class="ValidationMessage" role="alert" id="ValidationMessage_GoianiaTheme_wt27_block_WebPatterns_wt4_block_wt4_wt43_wtCheckbox_wt37"></span></label ></div ></div ><div  class="ResponsiveOverlay_Preview"><div  class="OSInline" style="width: 50%">Preview</div ><div  class="OSInline" style="width: 50%;text-align: right;"><a id="GoianiaTheme_wt27_block_WebPatterns_wt4_block_wt4_wt11" tabindex="29" href="/PreviewInDevices/Preview.aspx?URL=/transweb/listalotacaos.aspx?OrgaoId=165"><span class="fa fa-fw fa-mobile"></span><span class="fa fa-fw fa-tablet"></span><span class="fa fa-fw fa-desktop"></span></a></div ></div ><div  style="margin-top: 5px;"><a id="GoianiaTheme_wt27_block_WebPatterns_wt4_block_wt4_wt35" tabindex="30" target="_blank" href="http://silkui.outsystems.com/"><span class="Text_Note">silkui.outsystems.com</span></a></div ></div ></div ><div  id="GoianiaTheme_wt27_block_WebPatterns_wt4_block_wt4_wtResponsiveOverlay_bg" class="ResponsiveOverlay_bg"><img alt="" src="/WebPatterns/img/deviceGrid.png?60864" /><span class='fa fa-fw fa-refresh fa-spin ResponsiveOverlay__loading'></span></div ><div  style="display:none"><div  id="GoianiaTheme_wt27_block_WebPatterns_wt4_block_wt4_wt17_wtContent" class="tooltip-content">Silk UI Framework Simulation Device<br/>Resize the window to preview the page in target devices.<br/>Open the settings to change the simulation device options.</div ><script>$('#GoianiaTheme_wt27_block_WebPatterns_wt4_block_wt4_RichWidgets_wttt_trigger_block').tooltipster({
+    content: $( '<span>' + $('#GoianiaTheme_wt27_block_WebPatterns_wt4_block_wt4_wt17_wtContent').html() + '</span>' ),
+    trigger: 'hover',
+    position: 'top',
+    maxWidth: '400',
+    theme: 'tooltip_style'
+});
+$('#GoianiaTheme_wt27_block_WebPatterns_wt4_block_wt4_wt17_wtContent').remove();</script></div ><div  id="GoianiaTheme_wt27_block_WebPatterns_wt4_block_wt13_wtdivWait" class="Feedback_AjaxWait" style="text-align: center;text-align: center;display:none"><div  id="GoianiaTheme_wt27_block_WebPatterns_wt4_block_wt13_wtloader" class="Loader"></div >Loading</div ><script>RichWidgets_Feedback_AjaxWait_init('GoianiaTheme_wt27_block_WebPatterns_wt4_block_wt13_wtdivWait');</script><span id="GoianiaTheme_wt27_block_WebPatterns_wt4_block_RichWidgets_wt9_block"><script type='text/javascript'>
+OsRegisterExceptionHandler(RichWidgets_Feedback_Message_ErrorHandler)
+</script><div  id="GoianiaTheme_wt27_block_WebPatterns_wt4_block_RichWidgets_wt9_block_wtFeedback_Wrapper" class="Feedback_Message_Wrapper" aria-atomic="True" aria-live="polite"><span id="GoianiaTheme_wt27_block_WebPatterns_wt4_block_RichWidgets_wt9_block_wtnotify"><span class="NotifyWidget"></span><SCRIPT type="text/javascript">
+//<![CDATA[
+RichWidgets_Feedback_Message_notifyWidget ='GoianiaTheme_wt27_block_WebPatterns_wt4_block_RichWidgets_wt9_block_wtnotify';
+//]]>
+</SCRIPT></span></div ></span></div >
+    <script type="text/javascript">outsystems.internal.$.get("/TransWeb/_status.aspx")</script>
+
+<script type="text/javascript">
+//<![CDATA[
+var OsPage_ValidationActive = false;
+OsValidatorOnLoad();
+
+function OsValidatorOnSubmit() {
+  if (OsPage_ValidationActive) { return OsValidatorCommonOnSubmit(); }
+  return true;
+}
+// ]]>
+</script>
+</form><script type="text/javascript">outsystems.internal.$._waitForViewstate = true;outsystems.internal.$(document).ready(function() {outsystems.internal.$('input[name=__OSVSTATE]').val('EPwLM/Z089bKgcdrs5GYjyg82FXSmedif3PZnlEl/IriBsQ59umqFArk9iSrFw1mGpPictU8z4pRSJTMcl3y5klNeC/FKUN6Z8d11vGTUuKGPUbixBp26tOYsxUoF0gNY6d4D5dmrq3bmOYNreN0qKR5AODHijZ6JGCDuKIpTmNaLLqpCs27wW6c+GYYpe9ZNF/9vhbzzzuSX5IAfuMX5OUwDsFwUEqOJBeCaZ9mDHdKuK4Dek43DG7LL7jpbEBrBynPX+DHHkyXSpkh/HcsKoxIonmrDz17EEWyco5CMpkLqMTCs3J846hzidShUqfRbgeVI3orT+So6Lt+0aPMsErVhe7YKLWAH+3XxCveiDx6To6thcHpIufE4PWwYx7nvZWT8oAgjNuBCZKuOqSF9VlaF2Ie0QRMoP9LHQIZz98cFoawR9liOO/c8HVtU0gDMxia+1F7gxTw9hns0+odt+HOL2S5LNopjFtBFyrhDEAMxUcs/G68xctavmfJ6scLAQxs71GdYP1TzHDLSoKYPiQBYstFIL3lIeFvG3wli2qs2JAEQEMjFq+S03P7iG+4gBovXYa11UVSkQoEnQyJHNqyW6KfdoUtl7HbimLn2jr6I0cBsi/g1F473SqJQ8dOhTSh6a96UnpBm5dnY2G4gYdzbjeBpHoVw2RadFWD5GDZCZtQt9d3jBQFcUmdbSq59BByOZznNQgLPxcH8x92wrNSwqY9g0SyOZ/88A/7R1Uz67q5KJcQPXIMbk+LDIg+8pVcuNOu79/E7BZS/62E9AxGWjxv9PcV3CU2e2AScMHCTRc7AS8XO8mvWy4P1l7QVcrPOu4g18z1lH/gRhyY/g7T7V0ZZ+dg3RLTzTExVV+B845b1zL7RwGixAfcN2cUSDEvcokzixL5kJ/E5KqN6Y6njMn5+F0GVsKPN+RdlgklJnWxb7mLYYAehUfBiIGESppByc1swFv7JRH6LUaivcbztfgdD93pzAY9tr95xrQGXkQXLtqqoTeSiWPX9hbUkAo6O6Z9lD78JNX5/p1feGAa8ZAy1kwPefyBL9+P8HYmDWIwHA6hkILg9djIuiZ/iF7+EP27UFyia3Eljs7SjHNGfzGYR33gcngT6z6AwkgI56/N+v/RCBrTsIPhdAEcqMzQOIrSQ/jiPOjbSQGeXtepqxDXN2/0HKB9AAscB1BMkJPJPVNk6ANnSQI2zhFyiTVTzLmEegdnFJ9MlHSiXGfwxIwL/iEu3CmXg2aH3Sczy4xwp7QlcNlKFVjqg/MsNzWDOv7RS2reydb6hI6H+cmzqHz05e4KBUeKW1QzZhy0WgH3s297svnJ6B6Ge1wkEIStfAYwreYw/NeFvwuOjfA1Szi6FKoOZJBS37L+ibLg04lGCULXkpb8Iqfrh2+/1bgFR8LZ8UJHL5/MQtFGZWqcj2hSeXk/VRlh+77j6bS+m6+qGqb5Y8JTosnqDcZvYbV4qnCY1+Ts5Kc88n9doXiqJ/5MKacrC2rR4xHcssmrLcTGAGJiWYlOQ/Hn3IY+2pfdGpYDFzwsE2zqU/aBZa396NYWHhb4Gv63N7eEfRjF/JygI0KrbJ4hd/oB2fGN6TG8G7ES+U2SwOCN0ULg+51IWR9mLfBSMJZdGuMuJp0/yZ+ccGn/SUcLlWjjHFrSjoKf29/kllXclpqZTnyx2U7iZ+YJfd3G2F6zJecc70pvbYVkcrm3jz7NaTea5ML54+t1MgZIMEIxOc1c2yNCFvFZLtgHjv1nNlREA4WqwVKbSojlYGHCJcqHs8N5jk52Uk0bK2cBY0n4bOUL4WSIyhh8VcGycQULJqkIbYKhwd2CphqzqFemlA3G+1ZBhiqMGxz+RVfnzezeCqS/4kZojBhuprXZL2ju5y/+1J9lOZ7bpiYduvP9A2aKi+sD7eZhMJXB9vC6q3anu4FgrsG5x9gjPgzdfSCxln4ghQDXn6mA3jWzc4BvExPJqIUgPPV61v4t5Vz1wRRS7yzicis7877zsJEvhtvwWUFrHrt+EkKlstHye2+OPoO7Ti8qmMeyOomyqAmOHcQjaV+Py+KpHL9t9FI/yoxQMCGudFjGkxITk3IAtnOzTHCF82BUZBjpeHPWMMfXOQq8HlqqAiYli2PbWL/Ks3KOihA49mChH7RnpGwIksfoMq+eKu6jYeTRSXiaTmoF0OLs4syq6OvYXUiAMGzLfrQxWutxBQZ7katue8iDBX8kQGj4QLnPCOGRNkgmhpHnhkKUXa/m5h7fYfnadHf6mwRkkc6YDW2bRMcdkEWQWnZH8rUKLgh4/CVHrOqWZd7+J4KpN+SUfa0l2pVz5mD1titc/bG3YMfO21qMs0zlt+IlZ/D3DheST+/7RM/AJN21e21QaZIBIDnoAjDpqxaiqcXJu/hpfG2FDanXNRTrv3xwLWeHZU8E2xmhcODrasjR8n16lYsLUYoLbCha6FEi6ZY+KQfP0nCUeiK22H4DkaSKMK2UHfHiSuLafUXHJDT7Ozx0qPd8jxi8nBwkLdiE44AU1dGUucpsGT9QXbDhI3Vz65CAc9Am9oGuR3un4saUdzrcXMlL9O7E60Fe5ZXWu9iDcGliYfknpHOPAwIwng6m5N6uhUMXoQojV2N9TOEFDE7rNvj6ofrQBRVEY9lyn9uFn3dkDmjwxOG3TCLNfm6N7Mi/imjxI90yAvAtAbQfemuIZ7P8eu3U4k1D7R7xIIZtz7nAVACXDqeOk4WfxlRXt+zZywpUb+C/r6JG/GdO8ACYzKJ7l2dqJe0wZ1h9SbW0bw5KyDbM43rc1xtliXlxwF0KxG1Pf1OkDJulUnDjnA9GeeCIlyxm9/Fdue2zTieUCjJs11JaZPRaaWC7fp5UJdxJazz/1u6ixa6IpTzMaCOndnOyWNUyGsFHytIL0caaU0478Zd8Dj4Yb9ev+t9wg0gI+kcdySFZHYEY7UHZDRLGuijyOeCjht41tD0pi181HIt28jibCojPZn/uJksiEZecDT2v8TJVskDAxmEtpQuLMsws3/pH3MONagD6y9sntEDdliiq3f3GDsQW0KgQtNOZhk6vwCDkj9+xT5+dS4w6wzMEwA1DbA==');outsystems.internal.$._waitForViewstate = false;});</script>
+<script src="/PerformanceProbe/performanceprobe.js?11_29_0_43552" type="text/javascript" charset="UTF-8"></script>
+  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"8d7ec16f5090428486d4568efe8ca4fc","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>

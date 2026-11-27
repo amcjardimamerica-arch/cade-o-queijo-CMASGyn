@@ -7,17 +7,27 @@ entregar e os critérios de rateio (CF, art. 162; LC 63/1990, art. 5º). É a vi
 da contabilidade do Município (RREO Anexo 3 e matriz de saldos contábeis, naturezas 1.7.2.1.50 e
 1.7.2.1.51).
 
-Nenhuma fonte pública do Estado foi confirmada até agora (nem no repositório, nem na sondagem).
 O coletor tenta os endereços de ``CANDIDATOS`` e lê o que vier em CSV, JSON ou tabela HTML,
-procurando a linha do município e as colunas (ou linhas) de ICMS e IPVA. Se nenhum candidato
-trouxer o dado, a ausência é descumprimento de transparência do Estado (CF, art. 162) e vira
-alerta roxo com ofício à Secretaria de Estado da Economia; a conferência segue com a via do
-Município, que já está no banco.
+procurando a linha do município e as colunas (ou linhas) de ICMS e IPVA. Numa página sem o dado,
+segue os links do próprio Estado que falam de repasse aos municípios, de ICMS, de IPVA ou de índice
+de participação. Se nenhum candidato trouxer o dado, a ausência é descumprimento de transparência
+do Estado (CF, art. 162) e vira alerta roxo com ofício à Secretaria de Estado da Economia; a
+conferência segue com a via do Município, que já está no banco.
+
+Sondagem de 27/11/2026: a API e a página do Portal da Transparência de Goiás deram 404; o endereço
+antigo da Economia (``www.economia.go.gov.br/...``) cai na página inicial do novo portal
+(``goias.gov.br/economia/``), cujo menu aponta "Repasses de Recursos aos Municípios" para
+``goias.gov.br/economia/repasse-aos-municipios/`` (no singular; o plural deu 404). O CKAN de dados
+abertos (``dadosabertos.go.gov.br``) respondeu HTTP 200 com a página "Acesso Negado" do firewall do
+Estado: isso é bloqueio, não ausência do dado, e o coletor o separa (``bloqueado``). As duas
+respostas reais, reduzidas, estão em ``testes/dados/federais/economia_go_*_real.html``.
 """
 
 from __future__ import annotations
 
+import html as html_lib
 import re
+import urllib.parse
 
 from . import comum_federal as cf
 
@@ -27,12 +37,16 @@ TRIBUTOS = ("ICMS", "IPVA", "IPI")   # IPI: a cota do IPI-exportação que o Est
 
 # {ano}, {ibge} e {ibge6} são preenchidos. Ordem: dados abertos antes de páginas.
 CANDIDATOS = (
-    "https://www.transparencia.go.gov.br/api/repasses-municipios?ano={ano}&municipio={ibge}",
-    "https://www.transparencia.go.gov.br/portaldatransparencia/repasses-aos-municipios/?ano={ano}",
+    "https://goias.gov.br/economia/repasse-aos-municipios/",
     "https://dadosabertos.go.gov.br/api/3/action/package_search?q=repasse%20municipios%20icms&rows=20",
-    "https://goias.gov.br/economia/repasses-aos-municipios/",
-    "https://www.economia.go.gov.br/repasses-aos-municipios.html",
+    "https://dadosabertos.go.gov.br/api/3/action/package_search?q=cota%20parte%20icms&rows=20",
+    "https://goias.gov.br/economia/",
 )
+# Os sites do Estado cujos links o coletor segue.
+SITES_DO_ESTADO = ("goias.gov.br", "economia.go.gov.br", "transparencia.go.gov.br", "dadosabertos.go.gov.br")
+ARQUIVOS = (".csv", ".json", ".xls", ".xlsx", ".ods", ".pdf", ".zip", ".txt")
+LEGIVEIS = (".csv", ".json", ".txt")
+
 
 
 def urls(ano: int, ibge: int | str) -> list[str]:
@@ -105,3 +119,36 @@ def ler(conteudo: bytes, municipio: str, ano: int | None = None) -> list[dict]:
     for tabela in cf.tabelas_html(texto):
         saida.extend(repasses(cf.tabela_como_registros(tabela), municipio, ano))
     return saida
+
+
+def bloqueado(conteudo: bytes) -> bool:
+    """A página de bloqueio do firewall do Estado ("Acesso Negado"), que vem com HTTP 200."""
+    t = cf.norm(re.sub(r"<[^>]+>", " ", cf.decodificar(conteudo[:20000])))
+    return "ACESSO NEGADO" in t and ("BLOQUEAD" in t or "POLITICA DE SEGURANCA" in t)
+
+
+def links_de_repasse(pagina: str, base: str) -> list[str]:
+    """Os links da página, nos sites do Estado, que levam à cota dos municípios: o texto ou o
+    endereço fala de repasse aos municípios, de ICMS ou IPVA, de cota-parte ou de índice de
+    participação. Arquivos de dados vêm primeiro."""
+    achados: list[str] = []
+    for href, rotulo in cf.links(pagina, ""):
+        alvo = urllib.parse.urljoin(base, html_lib.unescape(href.strip()))
+        if not alvo.startswith("http"):
+            continue
+        host = urllib.parse.urlparse(alvo).netloc.lower()
+        if not any(host == s or host.endswith("." + s) for s in SITES_DO_ESTADO):
+            continue
+        texto = cf.norm(f"{rotulo} {urllib.parse.unquote(alvo)}").replace("-", " ").replace("_", " ")
+        repasse = "REPASSE" in texto and "MUNIC" in texto
+        tributo = re.search(r"\b(ICMS|IPVA)\b", texto) and re.search(r"MUNIC|REPASSE|COTA|INDICE|PARTICIPA", texto)
+        if repasse or tributo or ("INDICE" in texto and "PARTICIPA" in texto):
+            achados.append(alvo.split("#")[0])
+    arquivos = [u for u in achados if urllib.parse.urlparse(u).path.lower().endswith(ARQUIVOS)]
+    return list(dict.fromkeys(arquivos + [u for u in achados if u not in arquivos]))
+
+
+def legivel(url: str) -> bool:
+    """Se o coletor lê o arquivo (CSV, JSON, texto) ou só registra que existe (PDF, planilha, zip)."""
+    caminho = urllib.parse.urlparse(url).path.lower()
+    return not caminho.endswith(ARQUIVOS) or caminho.endswith(LEGIVEIS)

@@ -1,0 +1,1513 @@
+URL: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2013/lo_20130522_000009262.html
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 60626
+
+﻿<html lang="br">
+<!--  
+*************************************************************
+---------------------- NOME DA NORMA --------------------------
+**************************************************************-->
+<head>   
+	<meta charset="utf-8">
+	<title>LO Nº 9.262, DE 22 DE MAIO DE 2013</title>
+	<link rel="shortcut icon" href="../web/favicon.ico" />
+	<link type="text/css" href="../web/css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet" />	 	
+	<link type="text/css" href="../web/css/jquery.ui.datepicker.css" rel="stylesheet" />	
+	<link type="text/css" href="../web/css/estiloleis.css" rel="stylesheet" />	
+	
+	<script type="text/javascript" src="../web/js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="../web/js/jquery-ui-1.10.3.custom.js"></script>
+	<script type="text/javascript" src="../web/js/jquery.ui.datepicker-br.js"></script>
+
+	<script type="text/javascript" src="../web/js/eventos.js"></script>	
+		
+</head>
+
+<!--  
+*************************************************************
+---------------------- BRASÃO --------------------------
+**************************************************************--> 
+<!-- style="width=100%;"   -->
+<table width=100%>
+ <tr width=100% >
+	<td width=50%>
+		<img width=237 height=94 src="../web/brasao.png" >
+	</td>
+	<td width=50%>
+		<h4 class="secretaria">
+		Secretaria Municipal da Casa Civil
+		<h4>
+	</td>
+	
+ </tr>  
+</table>
+
+<!--  
+*************************************************************
+---------------------- EPÍGRAFE --------------------------
+**************************************************************--> 
+
+<h3 class="lei">LEI  Nº 9.262, DE 22 DE MAIO DE 2013 </h3>
+
+<!--  
+*************************************************************
+---------------------- EMENTA DA LEI --------------------------
+**************************************************************--> 
+
+<table width=100%>
+ <tr width=100% >
+	<td width=50%>
+	
+	<!--  
+		*************************************************************
+		---------------------- REDAÇÕES ANTERIORES  --------------------------
+		**************************************************************--> 
+		<form id="frmParametros" >
+		<div id="format">
+		<input type="checkbox" id="ckRedacoes" /><label for="ckRedacoes">Redações Anteriores</label>
+		</div>
+		</form>
+			
+	</td>
+	<td width=50%>
+	
+		<p class="ementa">
+			Regulamenta, no âmbito do Poder Executivo Municipal de Goiânia, o atendimento à Lei Federal nº 12.527, de 18 de novembro de 2011, que dispõe sobre o acesso a informações.
+		</p>
+
+	</td>
+	
+ </tr>  
+ 
+</table>
+
+
+<p class="nota" style="margin: 0; margin-top: 20px">     
+	<b>Nota:</b> ver
+	</p>
+	
+	<p class="nota" style="margin: 0;">
+	1 - <a href="../2026/lo_20261116_000011744.html">Lei nº 11.744, de 2026</a> - Institui normas suplementares destinadas a promover o controle e a transparência sobre incentivos fiscais;
+	</p>
+	
+	<p class="nota" style="margin: 0;">
+	2 - <a href="../2026/lo_20260708_000011662.html">Lei nº 11.662, de 2026</a> - placas de inauguração, reforma ou ampliação de obras públicas, provenientes de emendas parlamentares;
+	</p>
+	
+	<p class="nota" style="margin: 0;">
+	3 - <a href="../2026/lo_20260522_000011633.html">Lei nº 11.633, de 2026</a> - Institui a Política Municipal de Avaliação de Políticas Públicas;
+	</p>
+
+	<p class="nota" style="margin: 0;">
+	4 - <a href="../2010/lo_20100407_000008902.html">Lei nº 8.902, de 2010</a> - Portal da Transparência;
+	</p>
+
+	<p class="nota" style="margin: 0;">
+	5 - <a href="../2025/dc_20250702_000002793.html">Decreto nº 2.793, de 2025</a> - regulamenta a aplicação da Lei Geral de Proteção de Dados Pessoais - LGPD;
+	</p>
+
+	<p class="nota" style="margin: 0;">
+	6 - <a href="../2025/dc_20250604_000002713.html">Decreto nº 2.713, de 2025</a> - Governo Digital e aumento da eficiência pública;
+	</p>
+
+	<p class="nota" style="margin: 0;">
+	7 - <a href="../2012/dc_20121016_000002279.html">Decreto nº 2.279, de 2012</a> - determina a divulgação de informações no sítio eletrônico do Município de Goiânia; e
+	</p>
+
+	<p class="nota" style="margin: 0;">
+	8 - <a href="../2010/dc_20100525_000001201.html">Decreto nº 1.201, de 2010</a> - dispõe sobre o Portal da Transparência.
+	</p>
+
+<!--  
+*************************************************************
+--------------------- PREÂMBULO ------------------------------
+**************************************************************--> 
+<h3 class="preambulo" >
+A CÂMARA MUNICIPAL DE GOIÂNIA APROVA E EU SANCIONO A SEGUINTE LEI:
+</h3>
+<!--  
+*************************************************************
+-----CORPO DA LEI ------------------------------
+**************************************************************-->
+						
+<h2 class="capitulo" >
+<a id="CAP000001"> </a>	
+ <p>CAPÍTULO I</p>
+ <p>DISPOSIÇÕES GERAIS</p>
+</h2>
+
+<p class="artigo">
+<a id="ART000001"> </a>	 
+<b>Art. 1º</b> 
+Esta Lei estabelece os procedimentos, no âmbito do Poder Executivo Municipal de Goiânia, para a garantia do acesso à informação, conforme o disposto na 
+<a class="link" onclick="leiFederal()" >Lei Federal nº 12.527, de 18 de novembro de 2011</a>, que dispõe sobre o acesso a informações previsto no inciso XXXIII, do art. 5º; no inciso II, do § 3º, do art. 37 e no § 2º, do art. 216 da 
+<a class="link" onclick="leiFederal()" >Constituição Federal</a>.
+ </p>
+ 
+ 
+<p class="artigo">
+<a id="ART000002"> </a>	 
+<b>Art. 2º</b> 
+Os órgãos e as entidades do Poder Executivo Municipal de Goiânia assegurarão, às pessoas naturais e jurídicas, o direito de acesso à informação, que será proporcionado mediante procedimentos objetivos e ágeis, de forma transparente, clara e em linguagem de fácil compreensão, observados os princípios da Administração Pública e as diretrizes previstas na 
+<a class="link" onclick="leiFederal()" >Lei nº 12.527/2011</a>.
+</p>
+
+<p class="artigo">
+<a id="ART000003"> </a>	 
+<b>Art. 3º</b> 
+Para os efeitos desta Lei considera-se:
+</p>
+
+	<p class="inciso">
+	<a id="ART000003INC000001"> </a>  
+	<b>I</b> - informação - dados, processados ou não, que podem ser utilizados para produção e transmissão de conhecimento, contidos em qualquer meio, suporte ou formato;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000003INC000002"> </a>  
+	<b>II</b> - dados processados - dados submetidos a qualquer operação ou tratamento por meio de processamento eletrônico ou por meio automatizado com o emprego de tecnologia da informação;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000003INC000003"> </a>  
+	<b>III</b> - documento - unidade de registro de informações, qualquer que seja o suporte ou formato;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000003INC000004"> </a>  
+	<b>IV</b> - informação sigilosa - informação submetida à restrição de acesso público em razão de previsão legal de sigilo;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000003INC000005"> </a>  
+	<b>V</b> - informação pessoal - informação relacionada à pessoa natural identificada ou identificável, relativa à intimidade, vida privada, honra e imagem;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000003INC000006"> </a>  
+	<b>VI</b> - tratamento da informação - conjunto de ações referentes à produção, recepção, classificação, utilização, acesso, reprodução, transporte, transmissão, distribuição, arquivamento, armazenamento, eliminação, avaliação, destinação ou controle da informação;
+	</p>	
+
+	<p class="inciso">
+	<a id="ART000003INC000007"> </a>  
+	<b>VII</b> - disponibilidade - qualidade da informação que pode ser conhecida e utilizada por indivíduos, equipamentos ou sistemas autorizados;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000003INC000008"> </a>  
+	<b>VIII</b> - autenticidade - qualidade da informação que tenha sido produzida, expedida, recebida ou modificada por determinado indivíduo, equipamento ou sistema;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000003INC000009"> </a>  
+	<b>IX</b> - integridade - qualidade da informação não modificada, inclusive quanto à origem, trânsito e destino;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000003INC000010"> </a>  
+	<b>X</b> - primariedade - qualidade da informação coletada na fonte, com o máximo de detalhamento possível, sem modificações;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000003INC000011"> </a>  
+	<b>XI</b> - informação atualizada - informação que reúne os dados mais recentes sobre o tema, de acordo com sua natureza, com os prazos previstos em normas específicas ou conforme a periodicidade estabelecida nos sistemas informatizados que a organizam; 
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000003INC000012"> </a>  
+	<b>XII</b> - documento preparatório - documento formal utilizado como fundamento da tomada de decisão ou de ato administrativo, a exemplo de pareceres e notas técnicas;
+	</p>
+
+	<p class="inciso">
+	<a id="ART000003INC000013"> </a>  
+	<b>XIII</b> - contexto de transparência- conjunto dos equipamentos disponibilizados ao cidadão para a utilização na obtenção de informações sobre o Poder Executivo Municipal, compreendendo:
+	</p>
+
+		<p class="alinea">
+		<a id="ART000003INC000013ALI000001"> </a>  
+		<b>a)</b> o Portal da Transparência - www.transparencia.goiania.go.gov.br;
+		</p>
+		
+		<p class="alinea">
+		<a id="ART000003INC000013ALI000002"> </a>  
+		<b>b)</b> SIC – Sistema de Informação ao Cidadão;
+		</p>
+
+		<p class="alinea">
+		<a id="ART000003INC000013ALI000003"> </a>  
+		<b>c)</b> o telefone do Serviço de Atendimento - 0800-6460-156;
+		</p>
+
+		<p class="alinea">
+		<a id="ART000003INC000013ALI000004"> </a>  
+		<b>d)</b> a Rede de Atendimento Físico - Lojas de Atendimento ao Contribuinte;
+		</p>	
+
+		<p class="alinea">
+		<a id="ART000003INC000013ALI000005"> </a>  
+		<b>e)</b> os Setores de Protocolo dos órgãos.
+		</p>		
+	
+<p class="artigo">
+<a id="ART000004"> </a>	 
+<b>Art. 4º</b> 
+A busca e o fornecimento da informação são gratuitos, ressalvada a cobrança do valor referente ao custo dos serviços e dos materiais utilizados, tais como reprodução de documentos, mídias digitais e postagem.
+</p>
+
+    <p class="paragrafo">
+	<a id="ART000004PAR000001"> </a>  
+	<b>Parágrafo único.</b> Está isento de ressarcir os custos dos serviços e dos materiais utilizados, aquele cuja situação econômica não lhe permita fazê-lo, sem prejuízo do sustento próprio ou da família, declarada nos termos da 
+	<a class="link" onclick="leiFederal()" >Lei Federal nº 7.115, de 29 de agosto de 1983</a>.
+	</p>
+	
+<h2 class="capitulo" >
+<a id="CAP000002"> </a>	
+ <p>CAPÍTULO II</p>
+ <p>DA ABRANGÊNCIA</p>
+</h2>
+	
+<p class="artigo">
+<a id="ART000005"> </a>	 
+<b>Art. 5º</b> 
+Sujeitam-se ao disposto nesta Lei os órgãos da Administração Direta, as autarquias, as fundações públicas, as empresas públicas, as sociedades de economia mista e as demais entidades onde o Município de Goiânia é detentor da maioria da participação acionária.
+</p>
+
+<p class="artigo">
+<a id="ART000006"> </a>	 
+<b>Art. 6º</b> 
+O acesso à informação disciplinado nesta Lei não se aplica às hipóteses de sigilo previstas na legislação, como fiscal; de operações e serviços no mercado de capitais; empresarial; profissional e segredo de justiça.
+</p>
+
+    <p class="paragrafo">
+	<a id="ART000004PAR000001"> </a>  
+	<b>Parágrafo único.</b> Sempre que o fornecimento da informação for negado com base neste artigo, o requerente será comunicado acerca da respectiva fundamentação legal.
+	</p>
+
+<h2 class="capitulo" >
+<a id="CAP000003"> </a>	
+ <p>CAPÍTULO III</p>
+ <p>DA TRANSPARÊNCIA ATIVA</p>
+</h2>
+
+<p class="artigo">
+<a id="ART000007"> </a>	 
+<b>Art. 7º</b> 
+É dever dos órgãos e entidades promover, independente de requerimento, a divulgação, no sítio do Poder Executivo Municipal na Internet, de informações de interesse coletivo ou geral por eles produzidas ou custodiadas, observado o disposto nos arts. 7º e 8º da 
+<a class="link" onclick="leiFederal()" >Lei nº 12.527/2011</a>.
+</p>
+
+    <p class="paragrafo">
+	<a id="ART000007PAR000001"> </a>  
+	<b>§ 1º</b> O Poder Executivo Municipal deverá implementar em seu sítio na Internet seção específica para a divulgação das informações de que trata este artigo.
+	</p>
+	
+    <p class="paragrafo">
+	<a id="ART000007PAR000002"> </a>  
+	<b>§ 2º</b> Será disponibilizado pelo Poder Executivo Municipal, em seu sítio na Internet, conforme padrão estabelecido pela Secretaria Municipal de Comunicação e Agência Municipal de Ciência, Tecnologia e Inovação/AMTEC, banner na página inicial, que dará acesso à seção específica de que trata o § 1º.
+	</p>
+	
+    <p class="paragrafo">
+	<a id="ART000007PAR000003"> </a>  
+	<b>§ 3º</b> Deverão ser divulgadas, na seção específica de que trata o § 1º, informações sobre os órgãos e entidades do Poder Executivo Municipal, em especial sobre:
+	</p>	
+
+	<p class="inciso">
+	<a id="ART000007PAR000003INC000001"> </a>  
+	<b>I</b> - estrutura organizacional, competências, legislação aplicável, principais cargos e seus ocupantes, endereço e telefones das unidades, horários de atendimento ao público;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000007PAR000003INC000002"> </a>  
+	<b>II</b> - programas, projetos, ações, obras e atividades, com indicação da unidade responsável, principais metas e resultados e, quando existentes, indicadores de resultado e impacto;
+	</p>
+	
+<p class="inciso">
+<a id="ART000007PAR000003INC000003"> </a>  
+<b>III</b> - repasses ou transferências de recursos financeiros, além da disponibilização do contrato ou termo integralmente digitalizado; 
+<a href="../2016/lo_20161013_000009923.html#ART000001">(Redação conferida pelo art. 1º da Lei nº 9.923, de 13 de outubro de 2016.)</a>
+</p>
+
+	<p class="incisoalterado">
+	<a id="ART000007PAR000003INC000003_lo_20130522_000009262"> </a>  
+	<b>III</b> - repasses ou transferências de recursos financeiros; (Redação da Lei nº 9.262, de 22 de maio de 2013.)
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000007PAR000003INC000004"> </a>  
+	<b>IV</b> - execução orçamentária e financeira detalhada;
+	</p>
+
+<p class="inciso">
+<a id="ART000007PAR000003INC000005"> </a>  
+<b>V</b> - licitações realizadas e em andamento, com editais, anexos, recursos e resultados, além dos contratos firmados, notas de empenho emitidas e liquidação das faturas, garantidas as seguintes informações;
+<a href="../2016/lo_20161013_000009923.html#ART000001">(Redação conferida pelo art. 1º da Lei nº 9.923, de 13 de outubro de 2016.)</a>
+</p>
+
+	<p class="incisoalterado">
+	<a id="ART000007PAR000003INC000005_lo_20130522_000009262"> </a>  
+	<b>V</b> - licitações realizadas e em andamento, com editais, anexos e resultados, além dos contratos firmados e notas de empenho emitidas; (Redação da Lei nº 9.262, de 22 de maio de 2013.)
+	</p>
+
+<p class="alinea">
+<a id="ART000007PAR000003INC000005ALI000001"> </a>  
+<b>a)</b> todos contratos deverão ser digitalizados e disponibilizados, juntamente com as notas fiscais de sua execução que resultem em pagamentos;
+<a href="../2016/lo_20161013_000009923.html#ART000001">(Redação acrescida pelo art. 1º da Lei nº 9.923, de 13 de outubro de 2016.)</a>
+</p>
+
+<p class="alinea">
+<a id="ART000007PAR000003INC000005ALI000002"> </a>  
+<b>b)</b> o processo licitatório ou dispensa deverá ser integralmente digitalizado e disponibilizado.
+<a href="../2016/lo_20161013_000009923.html#ART000001">(Redação acrescida pelo art. 1º da Lei nº 9.923, de 13 de outubro de 2016.)</a>
+</p>
+	
+		
+	<p class="inciso">
+	<a id="ART000007PAR000003INC000006"> </a>  
+	<b>VI</b> - remuneração e subsídio recebidos por ocupante de cargo, função e emprego público, incluindo auxílios, ajudas de custo, jetons e quaisquer outras vantagens pecuniárias, bem como proventos de aposentadoria e pensões de maneira individualizada;
+	</p>	
+
+	<p class="inciso">
+	<a id="ART000007PAR000003INC000007"> </a>  
+	<b>VII</b> - respostas a perguntas mais frequentes da sociedade; 
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000007PAR000003INC000008"> </a>  
+	<b>VIII</b> - telefone e correio eletrônico do Serviço de Informações ao Cidadão - SIC.
+	</p>
+
+	<p class="inciso">
+	<a id="ART000007PAR000003INC000009"> </a>  
+	<b>IX</b> - relação de contratos de locação de imóveis celebrados por órgãos da administração pública municipal, direta e indireta, na condição de locatários e locadores, indicando:
+	<a href="../2025/lo_20250918_000011478.html#ART000002">(Incluído pela Lei nº 11.478, de 2025.)</a>
+	</p>	
+	
+		<p class="alinea">
+		<a id="ART000007PAR000003INC000009ALI000001"> </a>  
+		<b>a)</b> a qualificação das partes; 
+		<a href="../2025/lo_20250918_000011478.html#ART000002">(Incluída pela Lei nº 11.478, de 2025.)</a>
+		</p>
+
+		<p class="alinea">
+		<a id="ART000007PAR000003INC000009ALI000002"> </a>  
+		<b>b)</b> o endereço e a descrição do imóvel;
+		<a href="../2025/lo_20250918_000011478.html#ART000002">(Incluída pela Lei nº 11.478, de 2025.)</a>
+		</p>
+
+		<p class="alinea">
+		<a id="ART000007PAR000003INC000009ALI000003"> </a>  
+		<b>c)</b> a finalidade e o prazo da locação; e
+		<a href="../2025/lo_20250918_000011478.html#ART000002">(Incluída pela Lei nº 11.478, de 2025.)</a>
+		</p>
+
+		<p class="alinea">
+		<a id="ART000007PAR000003INC000009ALI000004"> </a>  
+		<b>d)</b> o valor do aluguel e o índice de reajuste.
+		<a href="../2025/lo_20250918_000011478.html#ART000002">(Incluída pela Lei nº 11.478, de 2025.)</a>
+		</p>	
+	
+    <p class="paragrafo">
+	<a id="ART000007PAR000004"> </a>  
+	<b>§ 4º</b> As informações poderão ser disponibilizadas por meio de ferramenta de redirecionamento de página na Internet. 
+	</p>	
+	
+<p class="artigo">
+<a id="ART000008"> </a>	 
+<b>Art. 8º</b> 
+O sítio do Poder Executivo Municipal na Internet deverá atender aos seguintes requisitos, entre outros:
+</p>
+
+	<p class="inciso">
+	<a id="ART000008INC000001"> </a>  
+	<b>I</b> - conter formulário para pedido de acesso à informação;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000008INC000002"> </a>  
+	<b>II</b> - conter ferramenta de pesquisa de conteúdo que permita o acesso à informação de forma objetiva, transparente, clara e em linguagem de fácil compreensão;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000008INC000003"> </a>  
+	<b>III</b> - possibilitar gravação de relatórios em diversos formatos eletrônicos, inclusive abertos e não proprietários, tais como planilhas e texto, de modo a facilitar a análise das informações;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000008INC000004"> </a>  
+	<b>IV</b> - possibilitar acesso automatizado por sistemas externos em formatos abertos, estruturados e legíveis por máquina;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000008INC000005"> </a>  
+	<b>V</b> - divulgar em detalhes os formatos utilizados para estruturação da informação;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000008INC000006"> </a>  
+	<b>VI</b> - garantir autenticidade e integridade das informações disponíveis para acesso;
+	</p>	
+
+	<p class="inciso">
+	<a id="ART000008INC000007"> </a>  
+	<b>VII</b> - indicar instruções que permitam ao requerente comunicar-se, por via eletrônica ou telefônica, com o órgão ou entidade;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000008INC000008"> </a>  
+	<b>VIII</b> - garantir a acessibilidade de conteúdo para pessoas com deficiência.
+	</p>
+
+<h2 class="capitulo" >
+<a id="CAP000004"> </a>	
+ <p>CAPÍTULO IV</p>
+ <p>DA TRANSPARÊNCIA PASSIVA</p>
+</h2>
+
+<h2 class="secao" >
+<a id="CAP000004SEC000001"> </a>	
+ <p>Seção I</p>
+ <p>Do Serviço de Informação ao Cidadão</p>
+</h2>
+	
+<p class="artigo">
+<a id="ART000009"> </a>	 
+<b>Art. 9º</b> 
+O Poder Executivo Municipal deverá criar Serviço de Informações ao Cidadão - SIC, com o objetivo de:
+</p>
+
+	<p class="inciso">
+	<a id="ART000009INC000001"> </a>  
+	<b>I</b> - atender e orientar o público quanto ao acesso à informação;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000009INC000002"> </a>  
+	<b>II</b> - informar sobre a tramitação de documentos nas unidades; 
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000009INC000003"> </a>  
+	<b>III</b> - receber e registrar pedidos de acesso à informação.
+	</p>
+	
+		<p class="paragrafo">
+		<a id="ART000009PAR000001"> </a>  
+		<b>§ 1º</b> Compete ao SIC:
+		<a href="../2019/lo_20191031_000010416.html#ART000001"> (Parágrafo renumerado de parágrafo único para § 1º pelo art. 1º da Lei nº 10.416, de 31 de outubro de 2019.)
+		</p>
+		
+			<p class="inciso">
+			<a id="ART000009PAR000001INC000001"> </a>  
+			<b>I</b> - o recebimento do pedido de acesso e, sempre que possível, o fornecimento imediato da informação;
+			</p>
+	
+			<p class="inciso">
+			<a id="ART000009PAR000001INC000002"> </a>  
+			<b>II</b> - o registro do pedido de acesso em sistema eletrônico específico e a entrega de número do protocolo, que conterá a data de apresentação do pedido, a partir da qual se inicia o prazo para resposta; 
+			</p>
+	
+			<p class="inciso">
+			<a id="ART000009PAR000001INC000003"> </a>  
+			<b>III</b> - o encaminhamento do pedido recebido e registrado à unidade responsável pelo fornecimento da informação, quando couber.
+			</p>
+			
+		<p class="paragrafo">
+		<a id="ART000009PAR000002"> </a>  
+		<b>§ 2º</b> Salvo nos casos em que o pedido implique em violação de sigilo determinado por autoridade judicial competente, as informações produzidas pela administração pública ao cidadão devem ser disponibilizadas para acesso e consulta pública de acordo com a natureza da demanda, devendo ainda conter: 
+		<a href="../2019/lo_20191031_000010416.html#ART000001">(Redação acrescida pelo art. 1º da Lei nº 10.416, de 31 de outubro de 2019.)
+		</p>
+		
+		<p class="inciso">
+		<a id="ART000009PAR000002INC000001"> </a>  
+		<b>I</b> - nome do órgão; 
+		<a href="../2019/lo_20191031_000010416.html#ART000001">(Redação acrescida pelo art. 1º da Lei nº 10.416, de 31 de outubro de 2019.)
+		</p>
+		
+		<p class="inciso">
+		<a id="ART000009PAR000002INC000002"> </a>  
+		<b>II</b> - gráfico; 
+		<a href="../2019/lo_20191031_000010416.html#ART000001">(Redação acrescida pelo art. 1º da Lei nº 10.416, de 31 de outubro de 2019.)
+		</p>
+		
+		<p class="inciso">
+		<a id="ART000009PAR000002INC000003"> </a>  
+		<b>III</b> - tabela;  
+		<a href="../2019/lo_20191031_000010416.html#ART000001">(Redação acrescida pelo art. 1º da Lei nº 10.416, de 31 de outubro de 2019.)
+		</p>
+		
+		<p class="inciso">
+		<a id="ART000009PAR000002INC000004"> </a>  
+		<b>IV</b> - data da atualização.  
+		<a href="../2019/lo_20191031_000010416.html#ART000001">(Redação acrescida pelo art. 1º da Lei nº 10.416, de 31 de outubro de 2019.)
+		</p>
+		
+		<p class="artigo">
+		<a id="ART000009ART000009"> </a>	 
+		<b>Art. 9º-A</b> As informações devem ser atualizadas a cada 90 (noventa) dias.
+		<a href="../2019/lo_20191031_000010416.html#ART000001">(Redação acrescida pelo art. 1º da Lei nº 10.416, de 31 de outubro de 2019.)
+		</p>
+		
+<p class="artigo">
+<a id="ART000010"> </a>	 
+<b>Art. 10.</b> 
+O SIC será instalado em unidade física identificada, de fácil acesso e aberta ao público, vinculada à Controladoria Geral do Município.
+</p>
+
+<h2 class="secao" >
+<a id="CAP000004SEC000002"> </a>	
+ <p>Seção II</p>
+ <p>Do Pedido de Acesso à Informação</p>
+</h2>
+
+<p class="artigo">
+<a id="ART000011"> </a>	 
+<b>Art. 11.</b> 
+Qualquer pessoa, natural ou jurídica, poderá formular pedido de acesso à informação.
+</p>
+
+    <p class="paragrafo">
+	<a id="ART000011PAR000001"> </a>  
+	<b>§ 1º</b> O pedido será apresentado em formulário padrão, disponibilizado em meio eletrônico e físico, no sítio na Internet e no SIC, bem como nas lojas de atendimento ao público da Prefeitura Municipal de Goiânia.
+	</p>
+	
+    <p class="paragrafo">
+	<a id="ART000011PAR000002"> </a>  
+	<b>§ 2º</b> É facultado aos órgãos e entidades o recebimento de pedidos de acesso à informação por qualquer outro meio legítimo, como contato telefônico, correspondência eletrônica ou física, desde que atendidos os requisitos do art. 12.
+	</p>
+	
+    <p class="paragrafo">
+	<a id="ART000011PAR000003"> </a>  
+	<b>§ 3º</b> Na hipótese do §2º, o pedido deverá ser encaminhado ao SIC e será enviada ao requerente comunicação com o número de protocolo e a data do recebimento do pedido pelo SIC, a partir da qual se inicia o prazo de resposta.
+	</p>	
+	
+<p class="artigo">
+<a id="ART000012"> </a>	 
+<b>Art. 12.</b> 
+O pedido de acesso à informação deverá conter:
+</p>
+
+	<p class="inciso">
+	<a id="ART000012INC000001"> </a>  
+	<b>I</b> - nome do requerente;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000012INC000002"> </a>  
+	<b>II</b> - número de documento de identificação válido;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000012INC000003"> </a>  
+	<b>III</b> - especificação, de forma clara e precisa, da informação requerida; 
+	</p>
+
+	<p class="inciso">
+	<a id="ART000012INC000004"> </a>  
+	<b>IV</b> - endereço físico ou eletrônico do requerente, para recebimento de comunicações ou da informação requerida.
+	</p>
+	
+<p class="artigo">
+<a id="ART000013"> </a>	 
+<b>Art. 13.</b> Não serão atendidos pedidos de acesso à informação:
+</p>
+
+	<p class="inciso">
+	<a id="ART000013INC000001"> </a>  
+	<b>I</b> - genéricos;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000013INC000002"> </a>  
+	<b>II</b> - desproporcionais ou desarrazoados; 
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000013INC000003"> </a>  
+	<b>III</b> - que exijam trabalhos adicionais de análise, interpretação ou consolidação de dados e informações, ou serviço de produção ou tratamento de dados que não seja de competência da Controladoria Geral do Município.
+	</p>
+	
+		<p class="paragrafo">
+		<a id="ART000013PAR000001"> </a>  
+		<b>Parágrafo único.</b> Na hipótese do inciso III, a Controladoria Geral do Município deverá, caso tenha conhecimento, indicar o local onde se encontram as informações a partir das quais o requerente poderá realizar a interpretação, consolidação ou tratamento de dados.
+		</p>
+		
+<p class="artigo">
+<a id="ART000014"> </a>	 
+<b>Art. 14.</b> 
+São vedadas exigências relativas aos motivos do pedido de acesso à informação.
+</p>
+
+<h2 class="secao" >
+<a id="CAP000004SEC000003"> </a>	
+ <p>Seção III</p>
+ <p>Do Procedimento de Acesso à Informação</p>
+</h2>
+
+<p class="artigo">
+<a id="ART000015"> </a>	 
+<b>Art. 15.</b> 
+Recebido o pedido e estando a informação disponível, o acesso será imediato.
+</p>
+
+    <p class="paragrafo">
+	<a id="ART000015PAR000001"> </a>  
+	<b>§ 1º</b> Caso não seja possível o acesso imediato, o SIC deverá, no prazo de até 20 (vinte) dias:
+	</p>
+
+		<p class="inciso">
+		<a id="ART000015PAR000001INC000001"> </a>  
+		<b>I</b> - enviar a informação ao endereço físico ou eletrônico informado;
+		</p>
+		
+		<p class="inciso">
+		<a id="ART000015PAR000001INC000002"> </a>  
+		<b>II</b> - comunicar data, local e modo para realizar consulta à informação, efetuar reprodução ou obter certidão relativa à informação;
+		</p>
+		
+		<p class="inciso">
+		<a id="ART000015PAR000001INC000003"> </a>  
+		<b>III</b> - comunicar que não possui a informação ou que não tem conhecimento de sua existência;
+		</p>
+		
+		<p class="inciso">
+		<a id="ART000015PAR000001INC000004"> </a>  
+		<b>IV</b> - indicar, caso tenha conhecimento, o órgão ou entidade responsável pela informação ou que a detenha; 
+		</p>
+		
+		<p class="inciso">
+		<a id="ART000015PAR000001INC000005"> </a>  
+		<b>V</b> - indicar as razões da negativa, total ou parcial, do acesso.
+		</p>
+	
+    <p class="paragrafo">
+	<a id="ART000015PAR000002"> </a>  
+	<b>§ 2º</b> Nas hipóteses em que o pedido de acesso demandar manuseio de grande volume de documentos, ou a movimentação do documento puder comprometer sua regular tramitação, será adotada a medida prevista no inciso II, do § 1º.
+	</p>
+
+    <p class="paragrafo">
+	<a id="ART000015PAR000003"> </a>  
+	<b>§ 3º</b> Quando a manipulação puder prejudicar a integridade da informação ou do documento, o SIC deverá indicar data, local e modo para consulta, ou disponibilizar cópia, com certificação de que confere com o original.
+	</p>
+
+    <p class="paragrafo">
+	<a id="ART000015PAR000004"> </a>  
+	<b>§ 4º</b> Na impossibilidade de obtenção de cópia de que trata o §3º, o requerente poderá solicitar que, às suas expensas e sob supervisão de servidor público, a reprodução seja feita por outro meio que não ponha em risco a integridade do documento original.
+	</p>	
+	
+<p class="artigo">
+<a id="ART000016"> </a>	 
+<b>Art. 16.</b> 
+O prazo para resposta do pedido poderá ser prorrogado por 10 (dez) dias, mediante justificativa encaminhada ao requerente antes do término do prazo inicial de 20 (vinte) dias.
+</p>
+
+<p class="artigo">
+<a id="ART000017"> </a>	 
+<b>Art. 17.</b> 
+Caso a informação esteja disponível ao público em formato impresso, eletrônico ou em outro meio de acesso universal, o SIC deverá orientar o requerente quanto ao local e modo para consultar, obter ou reproduzir a informação.
+</p>
+
+	<p class="paragrafo">
+	<a id="ART000017PAR000001"> </a>  
+	<b>Parágrafo único.</b> Na hipótese deste artigo, o SIC desobriga-se do fornecimento direto da informação, salvo se o requerente declarar não dispor de meios para consultar, obter ou reproduzir a informação.
+	</p>
+
+<p class="artigo">
+<a id="ART000018"> </a>	 
+<b>Art. 18.</b> 
+Quando o fornecimento da informação implicar reprodução de documentos, o SIC, observado o prazo de resposta ao pedido, disponibilizará ao requerente Guia de Recolhimento ou documento equivalente, para pagamento dos custos dos serviços e dos materiais utilizados, cujos valores serão estabelecidos em regulamento próprio.
+</p>
+
+	<p class="paragrafo">
+	<a id="ART000018PAR000001"> </a>  
+	<b>Parágrafo único.</b> A reprodução de documentos ocorrerá no prazo de 10 (dez) dias, contado da comprovação do pagamento pelo requerente ou da entrega de declaração de pobreza por ele firmada, nos termos da 
+	<a class="link" onclick="leiFederal()" >Lei Federal nº 7.115, de 29 de agosto de 1983</a>, ressalvadas hipóteses justificadas em que, devido ao volume ou ao estado dos documentos, a reprodução demande prazo superior.
+	</p>
+
+<p class="artigo">
+<a id="ART000019"> </a>	 
+<b>Art. 19.</b> 
+Negado o pedido de acesso à informação, será enviada ao requerente, no prazo de resposta, comunicação com:
+</p>
+
+	<p class="inciso">
+	<a id="ART000019INC000001"> </a>  
+	<b>I</b> - razões da negativa de acesso e seu fundamento legal;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000019INC000002"> </a>  
+	<b>II</b> - possibilidade e prazo de recurso, com indicação da autoridade que o apreciará; 
+	</p>
+
+<p class="artigo">
+<a id="ART000020"> </a>	 
+<b>Art. 20.</b> 
+O acesso a documento preparatório ou informação nele contida, utilizados como fundamento de tomada de decisão ou de ato administrativo, será assegurado a partir da edição do ato ou decisão.
+</p>	
+
+<h2 class="secao" >
+<a id="CAP000004SEC000004"> </a>	
+ <p>Seção IV</p>
+ <p>Dos Recursos</p>
+</h2>
+	
+<p class="artigo">
+<a id="ART000021"> </a>	 
+<b>Art. 21.</b> 
+No caso de negativa de acesso à informação ou de não fornecimento das razões da negativa do acesso, poderá o requerente apresentar recurso no prazo de 10 (dez) dias, contado da ciência da decisão, à Comissão Mista de Reavaliação de Informações, que deverá apreciá-lo no prazo de 10 (dez) dias, contado da sua apresentação.
+</p>	
+
+	<p class="paragrafo">
+	<a id="ART000021PAR000001"> </a>  
+	<b>Parágrafo único.</b> Desprovido o recurso de que trata este artigo, poderá o requerente apresentar recurso no prazo de 10 (dez) dias, contado da ciência da decisão, ao Chefe do Poder Executivo, que deverá se manifestar em 10 (dez) dias contados do recebimento do recurso.
+	</p>
+
+<h2 class="secao" >
+<a id="CAP000004SEC000005"> </a>	
+ <p>Seção V</p>
+ <p>Disposições Gerais</p>
+</h2>
+
+<p class="artigo">
+<a id="ART000022"> </a>	 
+<b>Art. 22.</b> 
+As informações sobre condutas que impliquem violação dos direitos humanos praticada por agentes públicos ou a mando de autoridades públicas não poderão ter seu acesso negado.
+</p>
+
+<p class="artigo">
+<a id="ART000023"> </a>	 
+<b>Art. 23.</b> 
+Não poderá ser negado acesso às informações necessárias à tutela judicial ou administrativa de direitos fundamentais.
+</p>
+
+	<p class="paragrafo">
+	<a id="ART000023PAR000001"> </a>  
+	<b>Parágrafo único.</b> O requerente deverá apresentar razões que demonstrem a existência de nexo entre as informações requeridas e o direito que se pretende proteger.
+	</p>
+
+<h2 class="capitulo" >
+<a id="CAP000005"> </a>	
+ <p>CAPÍTULO V</p>
+ <p>DA COMISSÃO MISTA DE REAVALIAÇÃO DE INFORMAÇÕES</p>
+</h2>
+	
+<p class="artigo">
+<a id="ART000024"> </a>	 
+<b>Art. 24.</b> 
+Fica instituída a Comissão Mista de Reavaliação de Informações, que será integrada pelos titulares dos seguintes órgãos:
+</p>
+
+	<p class="inciso">
+	<a id="ART000024INC000001"> </a>  
+	<b>I</b> - Controladoria Geral do Município, que a presidirá;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000024INC000002"> </a>  
+	<b>II</b> - Gabinete Civil;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000024INC000003"> </a>  
+	<b>III</b> - Procuradoria Geral do Município;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000024INC000004"> </a>  
+	<b>IV</b> - Secretaria Municipal de Finanças;
+	</p>
+
+	<p class="inciso">
+	<a id="ART000024INC000005"> </a>  
+	<b>V</b> - Secretaria Municipal de Planejamento e Urbanismo;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000024INC000006"> </a>  
+	<b>VI</b> - Secretaria Municipal de Comunicação;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000024INC000007"> </a>  
+	<b>VII</b> - Secretaria Municipal de Administração e Recursos Humanos;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000024INC000008"> </a>  
+	<b>VIII</b> - Secretaria Municipal de Compras e Licitações;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000024INC000009"> </a>  
+	<b>IX</b> - Agência Municipal de Ciência, Tecnologia e Inovação/AMTEC.
+	</p>
+
+		<p class="paragrafo">
+		<a id="ART000024PAR000001"> </a>  
+		<b>Parágrafo único.</b> Cada integrante indicará suplente a ser designado por ato próprio.
+		</p>
+	
+<p class="artigo">
+<a id="ART000025"> </a>	 
+<b>Art. 25.</b> 
+Compete à Comissão Mista de Reavaliação de Informações:
+</p>
+
+	<p class="inciso">
+	<a id="ART000025INC000001"> </a>  
+	<b>I</b> - deliberar sobre os recursos previstos na Seção IV, do Capítulo IV;  
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000025INC000002"> </a>  
+	<b>II</b> - estabelecer orientações normativas de caráter geral a fim de suprir eventuais lacunas na aplicação desta Lei.
+	</p>
+
+<p class="artigo">
+<a id="ART000026"> </a>	 
+<b>Art. 26.</b> 
+A Comissão Mista de Reavaliação de Informações se reunirá sempre que convocada por seu Presidente e as reuniões serão realizadas com a presença de, no mínimo, 05 (cinco) de seus membros. 
+</p>
+
+<p class="artigo">
+<a id="ART000027"> </a>	 
+<b>Art. 27.</b> 
+As deliberações da Comissão Mista de Reavaliação de Informações serão tomadas por maioria simples dos votos. 
+</p>
+
+	<p class="paragrafo">
+	<a id="ART000027PAR000001"> </a>  
+	<b>Parágrafo único.</b> A Controladoria Geral do Município poderá exercer, além do voto ordinário, o voto de qualidade para desempate.
+	</p>
+
+<p class="artigo">
+<a id="ART000028"> </a>	 
+<b>Art. 28.</b> 
+A Comissão Mista de Reavaliação de Informações aprovará, por maioria absoluta, regimento interno que disporá sobre sua organização e funcionamento.
+</p>
+
+	<p class="paragrafo">
+	<a id="ART000028PAR000001"> </a>  
+	<b>Parágrafo único.</b> O regimento interno deverá ser publicado no Diário Oficial do Município no prazo de noventa dias após a instalação da Comissão.
+	</p>
+
+<p class="artigo">
+<a id="ART000029"> </a>	 
+<b>Art. 29.</b> 
+A Controladoria Geral do Município exercerá as funções de Secretaria-Executiva da Comissão Mista de Reavaliação de Informações, cujas competências serão definidas em regimento interno.
+</p>
+
+<h2 class="capitulo" >
+<a id="CAP000006"> </a>	
+ <p>CAPÍTULO VI</p>
+ <p>DAS INFORMAÇÕES PESSOAIS</p>
+</h2>
+
+<p class="artigo">
+<a id="ART000030"> </a>	 
+<b>Art. 30.</b> 
+As informações pessoais relativas à intimidade, vida privada, honra e imagem detidas pelos órgãos e entidades:
+</p>	
+
+	<p class="inciso">
+	<a id="ART000030INC000001"> </a>  
+	<b>I</b> - terão acesso restrito a agentes públicos legalmente autorizados e a pessoa a que se referirem, pelo prazo máximo de cem anos a contar da data de sua produção; 
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000030INC000002"> </a>  
+	<b>II</b> - poderão ter sua divulgação ou acesso por terceiros autorizados por previsão legal ou consentimento expresso da pessoa a que se referirem.
+	</p>
+
+		<p class="paragrafo">
+		<a id="ART000030PAR000001"> </a>  
+		<b>Parágrafo único.</b> Caso o titular das informações pessoais esteja morto ou ausente, os direitos de que trata este artigo assistem ao cônjuge ou companheiro, aos descendentes ou ascendentes, conforme o disposto no parágrafo único do art. 20 da 
+		<a class="link" onclick="leiFederal()" >Lei nº. 10.406, de 10 de janeiro de 2002</a>, e na 
+		<a class="link" onclick="leiFederal()" >Lei nº. 9.278, de 10 de maio de 1996</a>.
+		</p>	
+	
+<p class="artigo">
+<a id="ART000031"> </a>	 
+<b>Art. 31.</b> 
+O tratamento das informações pessoais deve ser feito de forma transparente e com respeito à intimidade, vida privada, honra e imagem das pessoas, bem como às liberdades e garantias individuais.
+</p>
+
+<p class="artigo">
+<a id="ART000032"> </a>	 
+<b>Art. 32.</b> 
+O consentimento referido no inciso II, do art. 30, não será exigido quando o acesso à informação pessoal for necessário:
+</p>
+
+	<p class="inciso">
+	<a id="ART000032INC000001"> </a>  
+	<b>I</b> - à prevenção e diagnóstico médico, quando a pessoa estiver física ou legalmente incapaz, e para utilização exclusivamente para o tratamento médico;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000032INC000002"> </a>  
+	<b>II</b> - à realização de estatísticas e pesquisas científicas de evidente interesse público ou geral, previstos em lei, vedada a identificação da pessoa a que a informação se referir;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000032INC000003"> </a>  
+	<b>III</b> - ao cumprimento de decisão judicial;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000032INC000004"> </a>  
+	<b>IV</b> - à defesa de direitos humanos de terceiros; 
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000032INC000005"> </a>  
+	<b>V</b> - à proteção do interesse público geral e preponderante.
+	</p>
+	
+<p class="artigo">
+<a id="ART000033"> </a>	 
+<b>Art. 33.</b> 
+A restrição de acesso a informações pessoais de que trata o art. 30 não poderá ser invocada:
+</p>
+
+	<p class="inciso">
+	<a id="ART000033INC000001"> </a>  
+	<b>I</b> - com o intuito de prejudicar processo de apuração de irregularidades, conduzido pelo Poder Público, em que o titular das informações for parte ou interessado; ou
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000033INC000002"> </a>  
+	<b>II</b> - quando as informações pessoais estiverem contidas em conjuntos de documentos necessários à recuperação de fatos históricos de maior relevância.
+	</p>
+
+<p class="artigo">
+<a id="ART000034"> </a>	 
+<b>Art. 34.</b> 
+O dirigente máximo do órgão ou entidade poderá, de ofício ou mediante provocação, reconhecer a incidência da hipótese do inciso II, do art. 33, de forma fundamentada, sobre documentos que tenha produzido ou acumulado, e que estejam sob sua guarda.
+</p>
+
+    <p class="paragrafo">
+	<a id="ART000034PAR000001"> </a>  
+	<b>§ 1º</b> Para subsidiar a decisão de reconhecimento de que trata este artigo, o órgão ou entidade poderá solicitar a universidades, instituições de pesquisa ou outras entidades com notória experiência em pesquisa historiográfica a emissão de parecer sobre a questão.
+	</p>
+
+    <p class="paragrafo">
+	<a id="ART000034PAR000002"> </a>  
+	<b>§ 2º</b> A decisão de reconhecimento de que trata este artigo será precedida de publicação de extrato da informação, com descrição resumida do assunto, origem e período do conjunto de documentos a serem considerados de acesso irrestrito, com antecedência de no mínimo 30 (trinta) dias.
+	</p>
+
+    <p class="paragrafo">
+	<a id="ART000034PAR000003"> </a>  
+	<b>§ 3º</b> Após a decisão de reconhecimento de que trata o §2º, os documentos serão considerados de acesso irrestrito ao público.
+	</p>
+	
+	<p class="paragrafo">
+	<a id="ART000034PAR000004"> </a>  
+	<b>§ 4º</b> Na hipótese de documentos de elevado valor histórico destinados à guarda permanente, caberá à autoridade máxima do órgão ou entidade pública que os receber, decidir, após seu recolhimento, sobre o reconhecimento previsto neste artigo, observado o devido procedimento.
+	</p>
+	
+<p class="artigo">
+<a id="ART000035"> </a>	 
+<b>Art. 35.</b> 
+O pedido de acesso a informações pessoais observará os procedimentos previstos no Capítulo IV e estará condicionado à comprovação da identidade do requerente.
+</p>
+
+	<p class="paragrafo">
+	<a id="ART000035PAR000001"> </a>  
+	<b>Parágrafo único.</b> O pedido de acesso a informações pessoais por terceiros deverá ainda estar acompanhado de:
+	</p>
+
+		<p class="inciso">
+		<a id="ART000035PAR000001INC000001"> </a>  
+		<b>I</b> - comprovação do consentimento expresso de que trata o inciso II, do art. 30, por meio de procuração;
+		</p>
+	
+		<p class="inciso">
+		<a id="ART000035PAR000001INC000002"> </a>  
+		<b>II</b> - comprovação das hipóteses previstas no art. 32;
+		</p>
+		
+		<p class="inciso">
+		<a id="ART000035PAR000001INC000003"> </a>  
+		<b>III</b> - demonstração do interesse pela recuperação de fatos históricos de maior relevância, observados os procedimentos previstos no art. 33;
+		</p>
+	
+		<p class="inciso">
+		<a id="ART000035PAR000001INC000004"> </a>  
+		<b>IV</b> - demonstração da necessidade do acesso à informação requerida para a defesa dos direitos humanos ou para a proteção do interesse público e geral preponderante.
+		</p>
+	
+<p class="artigo">
+<a id="ART000036"> </a>	 
+<b>Art. 36.</b> 
+O acesso à informação pessoal por terceiros será condicionado à assinatura de um termo de responsabilidade, que disporá sobre a finalidade e a destinação que fundamentaram sua autorização, sobre as obrigações a que se submeterá o requerente.
+</p>
+
+    <p class="paragrafo">
+	<a id="ART000036PAR000001"> </a>  
+	<b>§ 1º</b> A utilização de informação pessoal por terceiros vincula-se à finalidade e à destinação que fundamentaram a autorização do acesso, vedada sua utilização de maneira diversa.
+	</p>
+
+    <p class="paragrafo">
+	<a id="ART000036PAR000002"> </a>  
+	<b>§ 2º</b> Aquele que obtiver acesso às informações pessoais de terceiros será responsabilizado por seu uso indevido, na forma da lei.
+	</p>
+	
+<p class="artigo">
+<a id="ART000037"> </a>	 
+<b>Art. 37.</b> 
+Aplica-se, no que couber, a 
+<a class="link" onclick="leiFederal()" >Lei Federal nº 9.507, de 12 de novembro de 1997</a>, em relação à informação de pessoa, natural ou jurídica, constante de registro ou banco de dados de órgãos ou entidades governamentais ou de caráter público.
+</p>
+
+<h2 class="capitulo" >
+<a id="CAP000007"> </a>	
+ <p>CAPÍTULO VII</p>
+ <p>DAS ENTIDADES PRIVADAS SEM FINS LUCRATIVOS</p>
+</h2>
+
+<p class="artigo">
+<a id="ART000038"> </a>	 
+<b>Art. 38.</b> 
+As entidades privadas sem fins lucrativos que receberem recursos públicos para realização de ações de interesse público deverão dar publicidade às seguintes informações:
+</p>
+
+	<p class="inciso">
+	<a id="ART000038INC000001"> </a>  
+	<b>I</b> - cópia do estatuto social atualizado da entidade;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000038INC000002"> </a>  
+	<b>II</b> - relação nominal atualizada dos dirigentes da entidade;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000038INC000003"> </a>  
+	<b>III</b> - cópia integral dos convênios, contratos, termos de parcerias, acordos, ajustes ou instrumentos congêneres realizados com o Poder Executivo Municipal, respectivos aditivos, e relatórios finais de prestação de contas, na forma da legislação aplicável.
+	</p>
+
+	    <p class="paragrafo">
+		<a id="ART000038PAR000001"> </a>  
+		<b>§ 1º</b> As informações de que trata este artigo serão divulgadas em sítio na Internet da entidade privada e em quadro de avisos de amplo acesso público em sua sede.
+		</p>
+
+		<p class="paragrafo">
+		<a id="ART000038PAR000002"> </a>  
+		<b>§ 2º</b> A divulgação em sítio na Internet referida no §1º poderá ser dispensada, por decisão do órgão ou entidade pública, e mediante expressa justificação da entidade, nos casos de entidades privadas sem fins lucrativos que não disponham de meios para realizá-la.
+		</p>
+		
+		<p class="paragrafo">
+		<a id="ART000038PAR000003"> </a>  
+		<b>§ 3º</b> As informações de que trata este artigo deverão ser publicadas a partir da celebração do convênio, contrato, termo de parceria, acordo, ajuste ou instrumento congênere, serão atualizadas periodicamente e ficarão disponíveis até cento e oitenta dias após a entrega da prestação de contas final.
+		</p>
+	
+<p class="artigo">
+<a id="ART000039"> </a>	 
+<b>Art. 39.</b> 
+Os pedidos de informação referentes aos convênios, contratos, termos de parcerias, acordos, ajustes ou instrumentos congêneres previstos no art. 38 deverão ser apresentados diretamente aos órgãos e entidades responsáveis pelo repasse de recursos, desde que atendidos os requisitos do art. 12.
+</p>
+
+	<p class="paragrafo">
+	<a id="ART000039PAR000001"> </a>  
+	<b>Parágrafo único.</b> Excetuam-se do disposto no art. 11, §3º, os pedidos de que tratam este artigo.
+	</p>
+
+<h2 class="capitulo" >
+<a id="CAP000008"> </a>	
+ <p>CAPÍTULO VIII</p>
+ <p>DAS RESPONSABILIDADES</p>
+</h2>
+	
+<p class="artigo">
+<a id="ART000040"> </a>	 
+<b>Art. 40.</b> 
+Constituem condutas ilícitas que ensejam responsabilidade do agente público:
+</p>
+
+	<p class="inciso">
+	<a id="ART000040INC000001"> </a>  
+	<b>I</b> - recusar-se a fornecer informação requerida nos termos desta Lei, retardar deliberadamente o seu fornecimento ou fornecê-la intencionalmente de forma incorreta, incompleta ou imprecisa;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000040INC000002"> </a>  
+	<b>II</b> - utilizar indevidamente, subtrair, destruir, inutilizar, desfigurar, alterar ou ocultar, total ou parcialmente, informação que se encontre sob sua guarda, a que tenha acesso ou sobre que tenha conhecimento em razão do exercício das atribuições de cargo, emprego ou função pública;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000040INC000003"> </a>  
+	<b>III</b> - agir com dolo ou má-fé na análise dos pedidos de acesso à informação;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000040INC000004"> </a>  
+	<b>IV</b> - divulgar, permitir a divulgação, acessar ou permitir acesso indevido a informação restrita ou informação pessoal;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000040INC000005"> </a>  
+	<b>V</b> - impor restrição a informação para obter proveito pessoal ou de terceiro, ou para fins de ocultação de ato ilegal cometido por si ou por outrem;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000040INC000006"> </a>  
+	<b>VI</b> - destruir ou subtrair, por qualquer meio, documentos concernentes a possíveis violações de direitos humanos por parte de agentes do Município.
+	</p>	
+
+	    <p class="paragrafo">
+		<a id="ART000038PAR000001"> </a>  
+		<b>§ 1º</b> Atendido o princípio do contraditório, da ampla defesa e do devido processo legal, as condutas descritas neste artigo serão consideradas, para fins do disposto na 
+		<a href="../1992/lc_19920511_000000011.html">Lei Complementar nº 011, de 11 de maio de 1992</a>, Estatuto do Servidor Público Municipal, como infrações administrativas, que deverão ser apenadas, no mínimo, com suspensão, segundo os critérios estabelecidos na referida Lei Complementar.
+		</p>
+
+		<p class="paragrafo">
+		<a id="ART000038PAR000002"> </a>  
+		<b>§ 2º</b> Pelas condutas descritas neste artigo, poderá o agente público responder, também, por improbidade administrativa, conforme o disposto nas 
+		<a class="link" onclick="leiFederal()" >Leis Federais nº1.079, de 10 de abril de 1950</a> e 
+		<a class="link" onclick="leiFederal()" >nº 8.429, de 2 de junho de 1992</a>.
+		</p>
+		
+<p class="artigo">
+<a id="ART000041"> </a>	 
+<b>Art. 41.</b> 
+A pessoa natural ou entidade privada que detiver informações em virtude de vínculo de qualquer natureza com o Poder Público e praticar conduta prevista no art. 40, estará sujeita às seguintes sanções:
+</p>
+
+	<p class="inciso">
+	<a id="ART000041INC000001"> </a>  
+	<b>I</b> - advertência;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000041INC000002"> </a>  
+	<b>II</b> - multa;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000041INC000003"> </a>  
+	<b>III</b> - rescisão do vínculo com o Poder Público;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000041INC000004"> </a>  
+	<b>IV</b> - suspensão temporária de participar em licitação e impedimento de contratar com o Poder Publico Municipal por prazo não superior a 02 (dois) anos; 
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000041INC000005"> </a>  
+	<b>V</b> - declaração de inidoneidade para licitar ou contratar com o Poder Público Municipal, até que seja promovida a reabilitação perante a autoridade que aplicou a penalidade.
+	</p>
+
+	    <p class="paragrafo">
+		<a id="ART000041PAR000001"> </a>  
+		<b>§ 1º</b> A sanção de multa poderá ser aplicada juntamente com as sanções previstas nos incisos I, III e IV, deste artigo.
+		</p>
+
+		<p class="paragrafo">
+		<a id="ART000041PAR000002"> </a>  
+		<b>§ 2º</b> A multa prevista no inciso II, deste artigo, será aplicada sem prejuízo da reparação pelos danos e não poderá ser:
+		</p>	
+
+			<p class="inciso">
+			<a id="ART000041PAR000001INC000001"> </a>  
+			<b>I</b> - inferior a R$ 100,00 (cem reais) nem superior a R$ 1.000,00 (mil reais), no caso de pessoa natural;
+			</p>
+	
+			<p class="inciso">
+			<a id="ART000041PAR000001INC000002"> </a>  
+			<b>II</b> - inferior a R$ 500,00 (quinhentos reais) nem superior a R$ 5.000,00 (cinco mil reais), no caso de pessoa jurídica.
+			</p>
+
+		<p class="paragrafo">
+		<a id="ART000041PAR000003"> </a>  
+		<b>§ 3º</b> A reabilitação referida no inciso V, deste artigo, será autorizada somente quando a pessoa natural ou entidade privada efetivar o ressarcimento ao órgão ou entidade dos prejuízos resultantes e depois de decorrido o prazo da sanção aplicada com base no inciso IV.
+		</p>
+
+		<p class="paragrafo">
+		<a id="ART000041PAR000004"> </a>  
+		<b>§ 4º</b> A aplicação da sanção prevista no inciso V, deste artigo, é de competência exclusiva do Chefe do Poder Executivo Municipal.
+		</p>
+		
+		<p class="paragrafo">
+		<a id="ART000041PAR000005"> </a>  
+		<b>§ 5º</b> O prazo para apresentação de defesa nas hipóteses previstas neste artigo é de 10 (dez) dias, contado da ciência do ato.
+		</p>
+
+<h2 class="capitulo" >
+<a id="CAP000009"> </a>	
+ <p>CAPÍTULO IX</p>
+ <p>DO MONITORAMENTO DA APLICAÇÃO DA LEI</p>
+</h2>
+
+<h2 class="secao" >
+<a id="CAP000009SEC000001"> </a>	
+ <p>Seção I</p>
+ <p>Da Autoridade de Monitoramento</p>
+</h2>
+
+<p class="artigo">
+<a id="ART000042"> </a>	 
+<b>Art. 42.</b> 
+O dirigente máximo de cada órgão ou entidade designará autoridade que lhe seja diretamente subordinada para exercer as seguintes atribuições:
+</p>
+
+	<p class="inciso">
+	<a id="ART000042INC000001"> </a>  
+	<b>I</b> - assegurar o cumprimento das normas relativas ao acesso à informação, de forma eficiente e adequada aos objetivos desta Lei;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000042INC000002"> </a>  
+	<b>II</b> - avaliar e monitorar a implementação do disposto nesta Lei e relatório sobre o seu cumprimento sempre que solicitado pela Controladoria Geral do Município;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000042INC000003"> </a>  
+	<b>III</b> - recomendar medidas para aperfeiçoar as normas e procedimentos necessários à implementação desta Lei;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000042INC000004"> </a>  
+	<b>IV</b> - orientar as unidades no que se refere ao cumprimento desta Lei; 
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000042INC000005"> </a>  
+	<b>V</b> - manifestar-se sobre os recursos previstos na Seção IV, do Capítulo IV.
+	</p>
+
+<h2 class="secao" >
+<a id="CAP000009SEC000002"> </a>	
+ <p>Seção II</p>
+ <p>Das Competências Relativas ao Monitoramento</p>
+</h2>
+	
+<p class="artigo">
+<a id="ART000043"> </a>	 
+<b>Art. 43.</b> 
+Compete à Controladoria Geral do Município, observadas as competências dos demais órgãos e entidades e as previsões específicas nesta Lei:
+</p>
+
+	<p class="inciso">
+	<a id="ART000043INC000001"> </a>  
+	<b>I</b> - definir o formulário padrão, disponibilizado em meio físico e eletrônico, que estará à disposição no sítio na Internet e no SIC, de acordo com o § 1º, do art. 11;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000043INC000002"> </a>  
+	<b>II</b> - promover campanhas de fomento à cultura da transparência no Poder Executivo Municipal e conscientização sobre o direito fundamental de acesso à informação;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000043INC000003"> </a>  
+	<b>III</b> - promover o treinamento dos agentes públicos e, no que couber, a capacitação das entidades privadas sem fins lucrativos, no que se refere ao desenvolvimento de práticas relacionadas à transparência no Poder Executivo Municipal;
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000043INC000004"> </a>  
+	<b>IV</b> - monitorar a implementação desta Lei, concentrando e consolidando publicação anual, até o dia 1º de junho, no sítio do Poder Executivo Municipal na Internet: 
+	</p>
+
+		<p class="alinea">
+		<a id="ART000043INC000004ALI000001"> </a>  
+		<b>a)</b> de relatório estatístico com a quantidade de pedidos de acesso à informação recebidos, atendidos e indeferidos;
+		</p>
+		
+		<p class="alinea">
+		<a id="ART000043INC000004ALI000002"> </a>  
+		<b>b)</b> de informações estatísticas agregadas dos requerentes;
+		</p>
+			
+	<p class="inciso">
+	<a id="ART000043INC000005"> </a>  
+	<b>V</b> - monitorar a aplicação desta Lei, especialmente o cumprimento dos prazos e procedimentos; 
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000043INC000006"> </a>  
+	<b>VI</b> - definir diretrizes e procedimentos complementares necessários à implementação desta Lei.
+	</p>
+	
+<p class="artigo">
+<a id="ART000044"> </a>	 
+<b>Art. 44.</b> 
+Regulamento próprio deverá determinar normas e competências para:
+</p>
+
+	<p class="inciso">
+	<a id="ART000044INC000001"> </a>  
+	<b>I</b> - estabelecer procedimentos, regras e padrões de divulgação de informações ao público, fixando prazo máximo para atualização; 
+	</p>
+	
+	<p class="inciso">
+	<a id="ART000044INC000002"> </a>  
+	<b>II</b> - detalhar os procedimentos necessários à busca, estruturação e prestação de informações no âmbito do SIC.
+	</p>
+
+<h2 class="capitulo" >
+<a id="CAP000010"> </a>	
+ <p>CAPÍTULO X</p>
+ <p>DISPOSIÇÕES TRANSITÓRIAS E FINAIS</p>
+</h2>
+	
+<p class="artigo">
+<a id="ART000045"> </a>	 
+<b>Art. 45.</b> 
+Os órgãos e entidades adequarão suas políticas de gestão da informação, promovendo os ajustes necessários aos processos de registro, processamento, trâmite e arquivamento de documentos e informações.
+</p>
+
+<p class="artigo">
+<a id="ART000046"> </a>	 
+<b>Art. 46.</b> 
+A publicação anual de que trata o art. 42, inciso IV, terá início em junho de 2013 e a Controladoria Geral do Município deverá manter as informações nela contidas em meio físico para consultas públicas.
+</p>
+
+<p class="artigo">
+<a id="ART000047"> </a>	 
+<b>Art. 47.</b> 
+Aplica-se subsidiariamente a 
+<a class="link" onclick="leiFederal()" >Lei Federal nº 9.784, de 29 de janeiro de 1999</a>, aos procedimentos previstos nesta Lei.
+</p>
+
+<p class="artigo">
+<a id="ART000048"> </a>	 
+<b>Art. 48.</b> 
+Esta Lei será regulamentada, no que couber, por ato próprio do Chefe do Executivo.
+</p>
+
+<p class="artigo">
+<a id="ART000049"> </a>	 
+<b>Art. 49.</b> 
+Esta Lei entra em vigor na data de sua publicação.
+</p>
+<!--  
+*************************************************************
+---------------------------FECHO DA LEI ------------------------------
+**************************************************************--> 				
+<p class="fecho">
+GABINETE DO PREFEITO DE GOIÂNIA, aos 22 dias do mês de maio de 2013. 
+</p>
+
+<!--  
+*************************************************************
+--------------------------- ASSINATURA ------------------------------
+**************************************************************-->
+
+<div class="assinaturaprefeito" >
+	<p> 
+	PAULO GARCIA
+	</p>
+	<p> 
+	Prefeito de Goiânia
+	</p>
+</div>
+
+<div class="assinaturasecretario" >
+	<p> 
+	OSMAR DE LIMA MAGALHÃES
+	</p>
+	<p> 
+	Secretário do Governo Municipal
+	</p>
+</div>
+
+<!--  
+*************************************************************
+--------------------------- REFERENDO ------------------------------
+**************************************************************-->
+
+<div class="assinatura" >
+	<p> 
+	Adriana Sauthier Accorsi 
+	</p>
+	<p> 
+	Allen Anderson Viana
+	</p>
+	<p> 
+	Ana Rita Marcelo de Castro 
+	</p>
+	<p> 
+	Cristiano Meireles Rocha
+	</p>
+	<p> 
+	Dário Délio Campos 
+	</p>
+	<p> 
+	Dineuvan Ramos de Oliveira 
+	</p>
+	<p> 
+	Edmilson Divino dos Santos 
+	</p>
+	<p> 
+	Fernando Machado de Araújo 
+	</p>
+	<p> 
+	Francisco Bento da Silva
+	</p>
+	<p> 
+	Glaci Antunes de Oliveira
+	</p>
+	<p> 
+	José Geraldo Fagundes Freire
+	</p>
+	<p> 
+	Luciano Henrique de Castro
+	</p>
+	<p> 
+	Lyvio Luciano Carneiro de Queiroz
+	</p>
+	<p> 
+	Maria Aparecida de Siqueira
+	</p>
+	<p> 
+	Maristela Alencar de Melo Bueno
+	</p>
+	<p> 
+	Nelcivone Soares de Melo
+	</p>
+	<p> 
+	Neyde Aparecida da Silva
+	</p>
+	<p> 
+	Pablo Henrique Silva Rezende
+	</p>
+	<p> 
+	Patrícia Pereira Veras
+	</p>
+	<p> 
+	Reinaldo Siqueira Barreto
+	</p>
+	<p> 
+	Rogério Oliveira da Cruz
+	</p>
+	<p> 
+	Sebastião Peixoto Moura
+	</p>
+	<p> 
+	Teresa Cristina Nascimento Sousa
+	</p>
+	<p> 
+	Valdi Camárcio Bezerra
+	</p>
+	<p> 
+	Wolney Wagner de Siqueira Júnior
+	</p>
+	
+</div>
+
+<!--  
+*************************************************************
+------------------------- PUBLICAÇÃO NO DOM ------------------------
+**************************************************************-->
+
+<p class="diariooficial">
+    Este texto não substitui o publicado no 
+	<a target="_blank" href="/Download/legislacao/DiarioOficial/2013/do_20130613_000005610.pdf">				
+	DOM 5610 de 13/06/2013.
+	</a>
+</p>
+
+</html><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"8d7ec16f5090428486d4568efe8ca4fc","r":1,"spa":2}' crossorigin="anonymous"></script>
