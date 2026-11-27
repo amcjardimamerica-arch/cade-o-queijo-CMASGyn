@@ -1,13 +1,13 @@
-# Coleta em andamento: boletim de 2026-11-27T12:12+00:00
+# Coleta em andamento: boletim de 2026-11-27T12:22+00:00
 
-Desde 2026-11-27T10:02:25+00:00: 785 chamadas registradas.
-Última chamada: 2026-11-27T12:12:15+00:00 (preco 267282 2025-2).
+Desde 2026-11-27T10:02:25+00:00: 1121 chamadas registradas.
+Última chamada: 2026-11-27T12:22:18+00:00 (preco 247711 2026-1).
 
 ## Por fonte
 
 | fonte | situação | chamadas |
 |---|---|---|
-| dadosabertos.compras.gov.br | ok | 290 |
+| dadosabertos.compras.gov.br | ok | 626 |
 | dadosabertos.compras.gov.br | TimeoutError | 1 |
 | pncp.gov.br/api/consulta | HTTP 404 ({"path":"/pncp-consulta/v1/instrumentoscobranca/inclusao","m) | 282 |
 | pncp.gov.br/api/consulta | ok | 204 |
@@ -18,7 +18,7 @@ Desde 2026-11-27T10:02:25+00:00: 785 chamadas registradas.
 
 | fonte | n | mediana | p90 | máximo |
 |---|---|---|---|---|
-| dadosabertos.compras.gov.br | 290 | 1.8 | 4.0 | 243.9 |
+| dadosabertos.compras.gov.br | 626 | 1.5 | 3.1 | 243.9 |
 | pncp.gov.br/api/consulta | 204 | 23.4 | 30.6 | 45.7 |
 
 ## O que o banco tem agora
@@ -31,7 +31,7 @@ Desde 2026-11-27T10:02:25+00:00: 785 chamadas registradas.
 | pncp_itens | 6640 |
 | pncp_cobrancas | 0 |
 | pncp_nf_itens | 0 |
-| precos_referencia | 37588 |
+| precos_referencia | 64207 |
 
 ## Lido por inteiro (acumulado)
 
@@ -41,5 +41,5 @@ Desde 2026-11-27T10:02:25+00:00: 785 chamadas registradas.
 - contrato: 2118
 - itens: 216
 - itens da compra: 71
-- preco: 264
+- preco: 600
 - termos: 2118
