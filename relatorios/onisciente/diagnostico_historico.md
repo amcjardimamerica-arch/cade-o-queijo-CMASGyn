@@ -1,6 +1,6 @@
 # Diagnóstico da coleta histórica (2024-11 a 2026-11)
 
-Rodada de 2026-11-27T01:38:10+00:00. Banco: `dados/onisciente/historico.db`.
+Rodada de 2026-11-27T04:12:26+00:00. Banco: `dados/onisciente/historico.db`.
 
 Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna na fonte (ela respondeu e o dado não estava lá). As duas nunca se misturam.
 
@@ -13,7 +13,7 @@ Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna na fonte (
 | Portais e endereços configurados | 25 | 20 | 5 | 0 | 253.3 |
 | Matriz de Saldos Contábeis (SICONFI) | 24 | 24 | 0 | 0 | 38.7 |
 | Contratações (PNCP) | 618 | 617 | 1 | 0 | 17295.3 |
-| Detalhe das compras e contratos (PNCP e Compras.gov.br) | 919 | 917 | 2 | 0 | 12424.9 |
+| Detalhe das compras e contratos (PNCP e Compras.gov.br) | 6601 | 5311 | 1290 | 1194 | 60112.5 |
 | Diário Oficial pelo Querido Diário | 50 | 0 | 50 | 0 | 210.6 |
 | SICONFI (Tesouro Nacional) | 23 | 23 | 0 | 0 | 5.9 |
 | SICONFI pelos endereços antigos | 2 | 0 | 2 | 0 | 1.2 |
@@ -45,14 +45,15 @@ Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna na fonte (
 
 ## Onde o sistema pode melhorar
 
-1. **O domínio educacao procura o anexo “RREO-Anexo 8”, que não veio do SICONFI.** Nenhum período coletado traz um anexo com esse número; a consulta volta vazia e a segunda via do piso fica sem dado. Provavelmente porque esse anexo nasce no SIOPE (educação, FNDE) e não chega à base de dados abertos do SICONFI (a conferir). *Proposta:* Ler o piso direto do SIOPE (educação, FNDE) e manter o SICONFI como conferência.
-2. **O domínio saude procura o anexo “RREO-Anexo 12”, que não veio do SICONFI.** Nenhum período coletado traz um anexo com esse número; a consulta volta vazia e a segunda via do piso fica sem dado. Provavelmente porque esse anexo nasce no SIOPS (saúde, Ministério da Saúde) e não chega à base de dados abertos do SICONFI (a conferir). *Proposta:* Ler o piso direto do SIOPS (saúde, Ministério da Saúde) e manter o SICONFI como conferência.
-3. **As duas vias do Diário Oficial contam edições diferentes em 25 meses.** Querido Diário × SILEG: 2024-11 (0 × 20); 2024-12 (0 × 20); 2025-01 (0 × 24); 2025-02 (0 × 21); 2025-03 (0 × 20); 2025-04 (0 × 19); 2025-05 (0 × 20); 2025-06 (0 × 20); 2025-07 (0 × 26); 2025-08 (0 × 22); 2025-09 (0 × 24); 2025-10 (0 × 21)… *Proposta:* Conferir edição a edição: a que falta numa via é lida pela outra, e a diferença persistente vira alerta de publicação incompleta.
-4. **Sem repasse federal registrado em 11 meses.** Meses sem nenhuma linha de repasse para o município: 2026-01 a 2026-11. *Proposta:* Para os meses do ano corrente, usar o Portal da Transparência da União (transferências) como segunda via enquanto a planilha anual não sai.
-5. **Educação: 5º bimestre de 2026 ainda não publicado no SIOPE.** O prazo de 30 dias depois do bimestre ainda corre. *Proposta:* A próxima coleta confere de novo; passado o prazo, vira lacuna.
-6. **1 endereços dados como mortos voltaram a responder.** https://aplicacoes.mds.gov.br/sagi/FV/parcelas.php *Proposta:* Reavaliar se voltam a ser fonte.
-7. **Não há verificação mensal em 15 dos 25 meses.** Meses sem verificação do Cadê o Queijo: 2024-11 a 2025-12, 2026-11. *Proposta:* Com o banco histórico, refazer as verificações retroativas desses meses (o motor antigo só roda o exercício corrente).
-8. **O coletor antigo do FNAS só conhece as planilhas até 2025.** cadeoqueijo/coleta_federal.py tem os endereços escritos à mão e roda com anos=(2024, 2025) fixos. *Proposta:* Achar as planilhas na própria página do FNAS, como faz a coleta histórica.
+1. **Detalhe das compras e contratos (PNCP e Compras.gov.br) pediu para ir mais devagar.** 1194 respostas 429 (muitas requisições). *Proposta:* Aumentar a pausa entre chamadas e coletar em janelas menores, todo dia, em vez de tudo de uma vez.
+2. **O domínio educacao procura o anexo “RREO-Anexo 8”, que não veio do SICONFI.** Nenhum período coletado traz um anexo com esse número; a consulta volta vazia e a segunda via do piso fica sem dado. Provavelmente porque esse anexo nasce no SIOPE (educação, FNDE) e não chega à base de dados abertos do SICONFI (a conferir). *Proposta:* Ler o piso direto do SIOPE (educação, FNDE) e manter o SICONFI como conferência.
+3. **O domínio saude procura o anexo “RREO-Anexo 12”, que não veio do SICONFI.** Nenhum período coletado traz um anexo com esse número; a consulta volta vazia e a segunda via do piso fica sem dado. Provavelmente porque esse anexo nasce no SIOPS (saúde, Ministério da Saúde) e não chega à base de dados abertos do SICONFI (a conferir). *Proposta:* Ler o piso direto do SIOPS (saúde, Ministério da Saúde) e manter o SICONFI como conferência.
+4. **As duas vias do Diário Oficial contam edições diferentes em 25 meses.** Querido Diário × SILEG: 2024-11 (0 × 20); 2024-12 (0 × 20); 2025-01 (0 × 24); 2025-02 (0 × 21); 2025-03 (0 × 20); 2025-04 (0 × 19); 2025-05 (0 × 20); 2025-06 (0 × 20); 2025-07 (0 × 26); 2025-08 (0 × 22); 2025-09 (0 × 24); 2025-10 (0 × 21)… *Proposta:* Conferir edição a edição: a que falta numa via é lida pela outra, e a diferença persistente vira alerta de publicação incompleta.
+5. **Sem repasse federal registrado em 11 meses.** Meses sem nenhuma linha de repasse para o município: 2026-01 a 2026-11. *Proposta:* Para os meses do ano corrente, usar o Portal da Transparência da União (transferências) como segunda via enquanto a planilha anual não sai.
+6. **Educação: 5º bimestre de 2026 ainda não publicado no SIOPE.** O prazo de 30 dias depois do bimestre ainda corre. *Proposta:* A próxima coleta confere de novo; passado o prazo, vira lacuna.
+7. **1 endereços dados como mortos voltaram a responder.** https://aplicacoes.mds.gov.br/sagi/FV/parcelas.php *Proposta:* Reavaliar se voltam a ser fonte.
+8. **Não há verificação mensal em 15 dos 25 meses.** Meses sem verificação do Cadê o Queijo: 2024-11 a 2025-12, 2026-11. *Proposta:* Com o banco histórico, refazer as verificações retroativas desses meses (o motor antigo só roda o exercício corrente).
+9. **O coletor antigo do FNAS só conhece as planilhas até 2025.** cadeoqueijo/coleta_federal.py tem os endereços escritos à mão e roda com anos=(2024, 2025) fixos. *Proposta:* Achar as planilhas na própria página do FNAS, como faz a coleta histórica.
 
 ## Cobertura mês a mês
 
