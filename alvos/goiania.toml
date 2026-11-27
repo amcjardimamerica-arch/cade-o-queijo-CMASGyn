@@ -34,11 +34,19 @@ orgao_lai = "Controladoria Geral do Município de Goiânia"   # Lei municipal 9.
 # (Lei Orgânica, art. 103). Conferir no Regimento da Câmara antes de usar em ofício.
 abertura_sessao_legislativa = [2, 1]
 
+# A execução da despesa item a item (empenhos, liquidações, ordens de pagamento e pagamentos):
+# endereços, campos e colunas do portal ficam neste arquivo, para ajustar sem mudar código.
+portal_despesa = "alvos/goiania_portal.toml"
+
 # Período global do sistema: um exercício, um intervalo ou todos.
 primeiro_exercicio = 2019
 ultimo_exercicio_ppa = 2029
 
+# As seis secretarias da trilha (requisito 108), na ordem em que aparecem no parecer.
 [dominios]
-assistencia = "dominios/assistencia.toml"   # o Cadê o Queijo de hoje
-saude       = "dominios/saude.toml"
-educacao    = "dominios/educacao.toml"
+assistencia    = "dominios/assistencia.toml"   # o Cadê o Queijo de hoje
+saude          = "dominios/saude.toml"
+educacao       = "dominios/educacao.toml"
+infraestrutura = "dominios/infraestrutura.toml"
+comurg         = "dominios/comurg.toml"
+administracao  = "dominios/administracao.toml"

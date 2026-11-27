@@ -1,12 +1,17 @@
-# Domínio: Saúde. Entra na trilha completa na fase 4 do roteiro.
+# Domínio: Saúde. Ativo desde a fase 4 do roteiro (27/11/2026): execução da função 10 pelo RREO
+# e pela matriz de saldos contábeis, a origem do SUS fundo a fundo e o piso da LC 141/2012.
 id = "saude"
 nome = "Saúde"
-ativo = false
+ativo = true
 funcao = "10"
 fundo = "Fundo Municipal de Saúde"
 dados = "siconfi"
 fontes_vinculadas = ["1600", "1601", "1621"]
 regras = ["PISO-SAUDE"]
+recorte = ["10"]
+orgaos = ["SAUDE", "FUNDO MUNICIPAL DE SAUDE"]
+# A transferência da União que alimenta a pasta, conferida na origem (rio/municipio.py, ORIGENS).
+origem = "SUS fundo a fundo"
 
 [siconfi]
 demonstrativo = "rreo"
@@ -14,5 +19,10 @@ anexo = "RREO-Anexo 12"
 periodo = 6   # último bimestre
 
 [qualidade]
+# O plano da pasta é o Plano Municipal de Saúde (Lei 8.080/1990, art. 36; LC 141/2012, art. 30):
+# a qualidade se mede pelo quanto o orçamento planejado se cumpre (aderência e execução) e
+# pelo indicador de resultado do plano, lido da fonte nacional.
+plano = "Plano Municipal de Saúde"
+norma_do_plano = "Lei 8.080/1990, art. 36; LC 141/2012, art. 30"
 indicador = "cobertura da atenção primária"
 fonte = "e-Gestor AB, Ministério da Saúde"
