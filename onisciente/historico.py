@@ -18,8 +18,10 @@ from __future__ import annotations
 import json
 import re
 import sqlite3
+import threading
 import time
 import unicodedata
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
@@ -302,14 +304,23 @@ class Contexto:
     disjuntor: int = 6
     seguidas: dict[str, int] = field(default_factory=dict)
     fim_do_motor: float | None = None      # relógio monotônico; depois disso, nada é chamado
+    # Leituras simultâneas nas vias que demoram por espera do servidor, não por volume
+    # (a consulta de uma compra leva uns 10 s). Só a rede vai para as linhas paralelas:
+    # o registro no banco e o tratamento da resposta seguem na ordem, na linha principal.
+    paralelo: int = 1
+    _antecipadas: dict = field(default_factory=dict, repr=False)
+    _trava: threading.Lock = field(default_factory=threading.Lock, repr=False)
 
     def ler(self, motor: str, alvo: str, url: str, *, mes: str = "", tentativas: int = 3,
             cabecalhos: dict | None = None, tempo: int = 60,
             disjuntor: bool = True, formulario: dict | None = None) -> base.Leitura:
         """Lê com espera crescente em 429 e 5xx, e registra a chamada no banco."""
+        antecipada = self._antecipadas.pop((motor, url), None)
         limite = self.limites.get(motor)
         motivo = None
-        if limite is not None and self.gastos.get(motor, 0) >= limite:
+        if antecipada is not None:
+            pass                                # já lida (e contada) por ``antecipar``
+        elif limite is not None and self.gastos.get(motor, 0) >= limite:
             motivo = "limite de chamadas da rodada atingido"
         elif disjuntor and self.seguidas.get(motor, 0) >= self.disjuntor:
             motivo = f"não tentado: {self.disjuntor} falhas de rede seguidas nesta fonte"
@@ -319,12 +330,22 @@ class Contexto:
             leitura = base.Leitura(False, url, erro=motivo)
             self._registrar(motor, alvo, mes, leitura, 0, 0.0)
             return leitura
+        if antecipada is not None:
+            leitura, feitas, segundos = antecipada
+        else:
+            leitura, feitas, segundos = self._buscar(motor, url, tentativas, cabecalhos, tempo, formulario)
+        return self._depois(motor, alvo, mes, url, leitura, feitas, segundos,
+                            pausar=antecipada is None)
+
+    def _buscar(self, motor, url, tentativas=3, cabecalhos=None, tempo=60, formulario=None):
+        """Só a rede, com espera crescente em 429 e 5xx. Pode rodar fora da linha principal."""
         inicio = time.monotonic()
         leitura = base.Leitura(False, url, erro="não tentado")
         feitas = 0
         for n in range(tentativas):
             feitas = n + 1
-            self.gastos[motor] = self.gastos.get(motor, 0) + 1
+            with self._trava:
+                self.gastos[motor] = self.gastos.get(motor, 0) + 1
             extra = {"formulario": formulario} if formulario else {}
             leitura = self.ler_url(url, tempo=tempo, cabecalhos=cabecalhos, **extra)
             codigo = leitura.http
@@ -333,11 +354,32 @@ class Contexto:
                     or leitura.erro.startswith(("TimeoutError", "URLError"))):
                 break
             self.dormir(min(5 * 2 ** n, 60))
+        return leitura, feitas, time.monotonic() - inicio
+
+    def antecipar(self, motor: str, urls, *, tempo: int = 60) -> None:
+        """Busca de uma vez, em linhas paralelas, as próximas leituras de um motor. Cada uma é
+        entregue depois pelo ``ler`` da mesma URL, que a registra como se tivesse lido agora.
+        Respeita o limite de chamadas, o disjuntor e o tempo do motor; com ``paralelo`` 1, nada faz."""
+        if self.paralelo <= 1:
+            return
+        pendentes = list(dict.fromkeys(u for u in urls if u and (motor, u) not in self._antecipadas))
+        limite = self.limites.get(motor)
+        if limite is not None:
+            pendentes = pendentes[:max(0, limite - self.gastos.get(motor, 0))]
+        if (not pendentes or self.seguidas.get(motor, 0) >= self.disjuntor
+                or (self.fim_do_motor is not None and time.monotonic() > self.fim_do_motor)):
+            return
+        with ThreadPoolExecutor(max_workers=self.paralelo) as linhas:
+            for url, resultado in zip(pendentes, linhas.map(
+                    lambda u: self._buscar(motor, u, 3, None, tempo, None), pendentes)):
+                self._antecipadas[(motor, url)] = resultado
+
+    def _depois(self, motor, alvo, mes, url, leitura, feitas, segundos, *, pausar=True):
         rede = (not leitura.ok and (leitura.http is None or leitura.http >= 500)
                 and not _ftp_sem_arquivo(url, leitura))
         self.seguidas[motor] = self.seguidas.get(motor, 0) + 1 if rede else 0
-        self._registrar(motor, alvo, mes, leitura, feitas, time.monotonic() - inicio)
-        if self.pausa:
+        self._registrar(motor, alvo, mes, leitura, feitas, segundos)
+        if self.pausa and pausar:
             self.dormir(self.pausa)
         if leitura.ok and self.brutos is not None:
             nome = re.sub(r"[^A-Za-z0-9._-]+", "_", f"{motor}_{alvo}_{mes}")[:150]
@@ -896,13 +938,35 @@ def _itens_do_orgao(ctx: Contexto, cnpj: str, d1: str, d2: str, rotulo: str) -> 
     return False
 
 
-def _detalhe_da_compra(ctx: Contexto, compra_id: str) -> bool:
+def _url_compra(compra_id: str) -> str | None:
+    partes = _id_pncp(compra_id)
+    return f"{PNCP}orgaos/{partes[0]}/compras/{partes[1]}/{partes[2]}" if partes else None
+
+
+def _url_contrato(contrato_id: str, sufixo: str = "") -> str | None:
+    partes = _id_pncp(contrato_id)
+    return f"{PNCP_API}orgaos/{partes[0]}/contratos/{partes[1]}/{partes[2]}{sufixo}" if partes else None
+
+
+def _url_itens_da_compra(compra_id: str) -> str | None:
     partes = _id_pncp(compra_id)
     if not partes:
+        return None
+    return (f"{PNCP_API}orgaos/{partes[0]}/compras/{partes[1]}/{partes[2]}/itens?"
+            + urlencode({"pagina": 1, "tamanhoPagina": 500}))
+
+
+def _url_cobrancas(cnpj: str, mes: str, pagina: int = 1) -> str:
+    d1, d2 = f"{mes.replace('-', '')}01", fim_do_mes(mes).strftime("%Y%m%d")
+    return PNCP + "instrumentoscobranca/inclusao?" + urlencode(
+        {"dataInicial": d1, "dataFinal": d2, "cnpjOrgao": cnpj, "pagina": pagina, "tamanhoPagina": 100})
+
+
+def _detalhe_da_compra(ctx: Contexto, compra_id: str) -> bool:
+    url = _url_compra(compra_id)
+    if not url:
         return True
-    cnpj, ano, seq = partes
-    leitura = ctx.ler("pncp_detalhe", f"compra {compra_id}", f"{PNCP}orgaos/{cnpj}/compras/{ano}/{seq}",
-                      tempo=60)
+    leitura = ctx.ler("pncp_detalhe", f"compra {compra_id}", url, tempo=60)
     c = _json(leitura) if leitura.ok else None
     if not isinstance(c, dict):
         return leitura.http in (204, 404)
@@ -918,12 +982,10 @@ def _detalhe_da_compra(ctx: Contexto, compra_id: str) -> bool:
 
 
 def _detalhe_do_contrato(ctx: Contexto, contrato_id: str) -> bool:
-    partes = _id_pncp(contrato_id)
-    if not partes:
+    url = _url_contrato(contrato_id)
+    if not url:
         return True
-    cnpj, ano, seq = partes
-    leitura = ctx.ler("pncp_detalhe", f"contrato {contrato_id}",
-                      f"{PNCP_API}orgaos/{cnpj}/contratos/{ano}/{seq}", tempo=60)
+    leitura = ctx.ler("pncp_detalhe", f"contrato {contrato_id}", url, tempo=60)
     c = _json(leitura) if leitura.ok else None
     if not isinstance(c, dict):
         return leitura.http in (204, 404)
@@ -939,12 +1001,10 @@ def _detalhe_do_contrato(ctx: Contexto, contrato_id: str) -> bool:
 
 
 def _termos_do_contrato(ctx: Contexto, contrato_id: str) -> bool:
-    partes = _id_pncp(contrato_id)
-    if not partes:
+    url = _url_contrato(contrato_id, "/termos")
+    if not url:
         return True
-    cnpj, ano, seq = partes
-    leitura = ctx.ler("pncp_detalhe", f"termos {contrato_id}",
-                      f"{PNCP_API}orgaos/{cnpj}/contratos/{ano}/{seq}/termos", tempo=60)
+    leitura = ctx.ler("pncp_detalhe", f"termos {contrato_id}", url, tempo=60)
     if leitura.http == 204:
         return True                            # a API respondeu: nenhum termo publicado
     dados = _json(leitura) if leitura.ok else None
@@ -997,12 +1057,9 @@ def _precos_nacionais(ctx: Contexto, catalogo: int, servico: bool, semestre: str
 
 def _cobrancas_do_orgao(ctx: Contexto, cnpj: str, mes: str) -> bool:
     """Instrumentos de cobrança (notas fiscais) que o órgão incluiu no PNCP no mês."""
-    d1, d2 = f"{mes.replace('-', '')}01", fim_do_mes(mes).strftime("%Y%m%d")
     for pagina in range(1, 21):
-        params = {"dataInicial": d1, "dataFinal": d2, "cnpjOrgao": cnpj, "pagina": pagina,
-                  "tamanhoPagina": 100}
-        leitura = ctx.ler("pncp_detalhe", f"cobrancas {cnpj} {mes}",
-                          PNCP + "instrumentoscobranca/inclusao?" + urlencode(params), mes=mes)
+        leitura = ctx.ler("pncp_detalhe", f"cobrancas {cnpj} {mes}", _url_cobrancas(cnpj, mes, pagina),
+                          mes=mes)
         if leitura.http == 204:
             return True
         dados = _json(leitura) if leitura.ok else None
@@ -1047,8 +1104,8 @@ def _itens_da_compra(ctx: Contexto, compra_id: str) -> bool:
         return True
     cnpj, ano, seq = partes
     base = f"{PNCP_API}orgaos/{cnpj}/compras/{ano}/{seq}/itens"
-    leitura = ctx.ler("pncp_detalhe", f"itens da compra {compra_id}",
-                      base + "?" + urlencode({"pagina": 1, "tamanhoPagina": 500}), tempo=60)
+    leitura = ctx.ler("pncp_detalhe", f"itens da compra {compra_id}", _url_itens_da_compra(compra_id),
+                      tempo=60)
     if leitura.http == 204:
         return True
     dados = _json(leitura) if leitura.ok else None
@@ -1107,16 +1164,20 @@ def motor_pncp_detalhe(ctx: Contexto) -> None:
     lidos = _Lidos(ctx.banco)
     pausa, ctx.pausa = ctx.pausa, min(ctx.pausa, 0.3)    # as vias de detalhe respondem em segundos
 
-    def etapa(chaves_e_leitores) -> None:
-        for n, (chave, ler) in enumerate(chaves_e_leitores):
-            if chave in lidos:
-                continue
+    def etapa(pedidos) -> None:
+        """(chave, url da primeira leitura, leitor): o que falta é lido em blocos, com a rede
+        do bloco antecipada em paralelo e o tratamento na ordem."""
+        faltam = [p for p in pedidos if p[0] not in lidos]
+        bloco = max(1, ctx.paralelo * 4)
+        for i in range(0, len(faltam), bloco):
             if _tempo_acabou(ctx):
                 break
-            if ler():
-                lidos.marcar(chave)
-            if n % 50 == 0:
-                lidos.guardar()
+            parte = faltam[i:i + bloco]
+            ctx.antecipar("pncp_detalhe", [url for _, url, _ in parte])
+            for chave, _url, ler in parte:
+                if ler():
+                    lidos.marcar(chave)
+            lidos.guardar()
         lidos.guardar()
 
     compras = sorted(ctx.banco.consultar(
@@ -1134,16 +1195,28 @@ def motor_pncp_detalhe(ctx: Contexto) -> None:
     orgaos = sorted(peso, key=lambda c: (peso[c], c))
     pasta = [c for c in orgaos if not peso[c][0]]
     try:
-        # 1. Amparo legal de cada contratação: a pasta, depois dispensas e inexigibilidades.
-        etapa((f"compra {c[0]}", lambda c=c: _detalhe_da_compra(ctx, c[0])) for c in compras)
+        def amparos(lista):
+            etapa([(f"compra {c[0]}", _url_compra(c[0]), lambda c=c: _detalhe_da_compra(ctx, c[0]))
+                   for c in lista])
+
+        # 1. Amparo legal das contratações da pasta e de todas as dispensas (o que a conferência
+        #    de dispensas precisa); as demais modalidades ficam para depois dos contratos.
+        primeiro = [c for c in compras if _da_pasta(c[2]) or c[3] == "Dispensa"]
+        amparos(primeiro)
         # 2. Valor inicial e vínculo com a compra, depois os termos aditivos: a pasta, depois os maiores.
-        etapa((f"contrato {c[0]}", lambda c=c: _detalhe_do_contrato(ctx, c[0])) for c in contratos)
-        etapa((f"termos {c[0]}", lambda c=c: _termos_do_contrato(ctx, c[0])) for c in contratos)
+        etapa([(f"contrato {c[0]}", _url_contrato(c[0]), lambda c=c: _detalhe_do_contrato(ctx, c[0]))
+               for c in contratos])
+        etapa([(f"termos {c[0]}", _url_contrato(c[0], "/termos"), lambda c=c: _termos_do_contrato(ctx, c[0]))
+               for c in contratos])
         # 3. Itens e resultado de cada contratação da pasta pela via rápida do PNCP.
-        etapa((f"itens da compra {c[0]}", lambda c=c: _itens_da_compra(ctx, c[0]))
-              for c in compras if _da_pasta(c[2]))
+        etapa([(f"itens da compra {c[0]}", _url_itens_da_compra(c[0]), lambda c=c: _itens_da_compra(ctx, c[0]))
+               for c in compras if _da_pasta(c[2])])
         # 4. Notas fiscais: órgão a órgão (a pasta primeiro), mês a mês; três recusas seguidas param o órgão.
         for cnpj in orgaos:
+            if _tempo_acabou(ctx):
+                break
+            ctx.antecipar("pncp_detalhe", [_url_cobrancas(cnpj, m) for m in ctx.meses
+                                           if f"cobrancas {cnpj} {m}" not in lidos])
             recusas = 0
             for mes in ctx.meses:
                 chave = f"cobrancas {cnpj} {mes}"
@@ -1157,6 +1230,10 @@ def motor_pncp_detalhe(ctx: Contexto) -> None:
                 else:
                     recusas += 1
             lidos.guardar()
+            ctx._antecipadas.clear()           # meses de um órgão parado por recusas: descartados
+        # 4b. Amparo legal das demais contratações (inexigibilidades, pregões, concorrências).
+        ja = {c[0] for c in primeiro}
+        amparos([c for c in compras if c[0] not in ja])
         # 5. Itens com catálogo e classe pela via de dados abertos (lenta): a pasta, depois os órgãos
         #    com mais compras; um ano recusado é refeito mês a mês.
         for cnpj in pasta + [c for c in orgaos if c not in pasta]:
@@ -1208,6 +1285,7 @@ def motor_pncp_detalhe(ctx: Contexto) -> None:
         lidos.guardar()
     finally:
         ctx.pausa = pausa
+        ctx._antecipadas.clear()
         lidos.guardar()
 
 
@@ -1534,6 +1612,7 @@ MOTORES = ("siconfi", "querido_diario", "sileg", "fnas", "pncp", "fontes", "norm
 # Minutos que cada motor pode usar numa rodada (o fluxo do GitHub para em 180).
 TEMPO_DO_MOTOR = {"pncp": 75, "siconfi": 20, "transferencias": 30, "msc": 20, "pncp_detalhe": 150}
 TEMPO_PADRAO = 12
+PARALELO = 6           # leituras simultâneas nas vias de detalhe (só onde o motor antecipa)
 
 
 def rodar(desde: str, ate: str, *, motores=MOTORES, caminho=BANCO, hoje: date | None = None,
@@ -1572,6 +1651,7 @@ def rodar(desde: str, ate: str, *, motores=MOTORES, caminho=BANCO, hoje: date | 
                 banco.apagar_motor(nome)
     else:
         banco = Banco(caminho)
+    kw.setdefault("paralelo", PARALELO)
     ctx = Contexto(banco, meses(desde, ate), hoje or date.today(), brutos=brutos, **kw)
     banco.inserir("meta", {"chave": "intervalo", "valor": f"{desde} a {ate}"})
     banco.inserir("meta", {"chave": "rodada", "valor": datetime.now(timezone.utc).isoformat(

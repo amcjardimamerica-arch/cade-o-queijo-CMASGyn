@@ -746,3 +746,59 @@ def test_pncp_detalhe_le_a_pasta_primeiro_e_os_itens_dela_pela_via_rapida(tmp_pa
     assert not any("/compras/2025/900/itens" in u for u in pedidos)        # via rápida só para a pasta
     primeiro_lento = next(i for i, u in enumerate(pedidos) if "dadosabertos" in u)
     assert "01393989000103" in pedidos[primeiro_lento]                     # e na via lenta também
+
+
+def test_pncp_detalhe_em_paralelo_guarda_o_mesmo_e_registra_cada_chamada_uma_vez(tmp_path):
+    """As vias de detalhe esperam pelo servidor (uns 10 s por compra): a rede do bloco vai em
+    linhas paralelas, mas o banco recebe o mesmo que na leitura em fila, cada chamada uma vez só."""
+    import threading
+    import time as relogio
+
+    ao_mesmo_tempo, maximo, trava = [0], [0], threading.Lock()
+
+    def rede(url, **_):
+        with trava:
+            ao_mesmo_tempo[0] += 1
+            maximo[0] = max(maximo[0], ao_mesmo_tempo[0])
+        relogio.sleep(0.02)
+        with trava:
+            ao_mesmo_tempo[0] -= 1
+        if "/compras/" in url and "/itens" not in url:
+            seq = int(url.rsplit("/", 1)[1])
+            corpo = {"amparoLegal": {"codigo": 19, "nome": f"Art. 75, II ({seq})"}, "srp": False}
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        if "/contratos/" in url and not url.endswith("/termos"):
+            seq = int(url.rsplit("/", 1)[1])
+            corpo = {"valorInicial": float(seq), "valorGlobal": float(seq)}
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        return base.Leitura(True, url, b"", http=204)
+
+    def rodada(paralelo):
+        banco = historico.Banco(tmp_path / f"p{paralelo}.db")
+        for n in range(1, 31):
+            banco.inserir("contratacoes_pncp", {"pncp_id": f"04973965000111-1-{n:06d}/2025", "mes": "2025-03",
+                                                "modalidade": "Dispensa" if n % 2 else "Inexigibilidade",
+                                                "orgao_cnpj": "04973965000111", "valor_homologado": float(n)})
+            banco.inserir("contratos_pncp", {"pncp_id": f"04973965000111-2-{n:06d}/2025", "mes": "2025-03",
+                                             "orgao_cnpj": "04973965000111", "valor_global": float(n)})
+        ctx = historico.Contexto(banco, ["2025-03"], date(2026, 11, 26), ler_url=rede,
+                                 dormir=lambda s: None, pausa=0, paralelo=paralelo)
+        historico.motor_pncp_detalhe(ctx)
+        return banco
+
+    fila, linhas = rodada(1), rodada(5)
+    assert maximo[0] > 1                                          # a rede foi mesmo em paralelo
+    for consulta in ("SELECT compra_id, nome FROM pncp_amparos ORDER BY 1",
+                     "SELECT contrato_id, valor_inicial FROM pncp_contratos_detalhe ORDER BY 1"):
+        assert linhas.consultar(consulta) == fila.consultar(consulta)
+    assert len(linhas.consultar("SELECT * FROM pncp_amparos")) == 30
+    repetidas = linhas.consultar("SELECT url, COUNT(*) FROM coletas WHERE motor = 'pncp_detalhe' "
+                                 "AND url LIKE '%pncp.gov.br%' GROUP BY url HAVING COUNT(*) > 1")
+    assert repetidas == []
+    assert linhas.consultar("SELECT COUNT(*) FROM coletas WHERE motor = 'pncp_detalhe'") == \
+        fila.consultar("SELECT COUNT(*) FROM coletas WHERE motor = 'pncp_detalhe'")
+    # As dispensas vêm antes dos contratos; as inexigibilidades, depois deles.
+    ordem = [u for (u,) in linhas.consultar("SELECT alvo FROM coletas WHERE motor = 'pncp_detalhe' ORDER BY rowid")]
+    primeiro_contrato = next(i for i, a in enumerate(ordem) if a.startswith("contrato "))
+    assert all(int(a.split("-")[2][:6]) % 2 for a in ordem[:primeiro_contrato])
+    assert any(a.startswith("compra ") and int(a.split("-")[2][:6]) % 2 == 0 for a in ordem[primeiro_contrato:])
