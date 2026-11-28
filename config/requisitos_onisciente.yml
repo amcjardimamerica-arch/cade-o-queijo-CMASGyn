@@ -1096,11 +1096,19 @@
     a ser conferida linha a linha pelo número. Nona rodada: no banco real (coleta d532c1d), despesa_consultas tem os 25 meses
     de 2024-11 a 2026-11 com a última leitura lida (990 a 12.097 linhas da planilha por mês) e despesa_eventos tem 155.879
     eventos de 04/11/2024 a 26/11/2026; a amostra lê o popup inteiro, página a página, pelo next do navegador da lista (OsAjax
-    com o __OSVSTATE), e confere a soma das páginas com a exportação (testado com popup sintético na navegação real da lista).'
-  falta: 'Rodar de novo a sondagem d2_transweb_popup (a do commit 1e36935 não leu nada: o fluxo passou as fontes numa palavra
-    só, separadas por vírgula, o que agora a sondagem aceita) e conferir, com o recorte real da navegação do popup, que ler_popup
-    soma as páginas como a exportação; depois, a coleta diária: a agenda já tem o grupo execucao_goiania, mas o cron só roda
-    quando a versão nova entrar na main, o que depende do sim do usuário.'
+    com o __OSVSTATE), e confere a soma das páginas com a exportação (testado com popup sintético na navegação real da lista).
+    Décima rodada: a sondagem de 28/11/2026 06:50Z (a8761d9) leu a página 1 real dos popups de 4 empenhos (HTTP 200, 41 a
+    55 KB, totais de 54 a 1.718 linhas), e o pedido da página 2 voltou HTTP 500 com 894 bytes nos 8 casos; o mesmo 500 veio
+    em todos os OsAjax já mandados, inclusive os da lista. O _osjs.js guardado mostra que o __AJAX leva o contexto do evento
+    (largura, altura, id de origem, posições), e não os baldes que o coletor mandava; o pedido da página seguinte do popup
+    agora leva o contexto, a caixa marcada como on e os cabeçalhos do OsAjax (X-Requested-With, Accept, Referer, Origin),
+    e a sondagem guarda o pedido inteiro (cabeçalhos, nomes dos cookies sem valor) e o corpo do 500 (trava com o recorte real:
+    test_pedido_da_pagina_2_do_popup_real_leva_o_contexto_do_evento_e_os_cabecalhos_do_osajax).'
+  falta: 'Rodar de novo a sondagem d2_transweb_popup com o pedido novo e ver a página 2 abrir de verdade (HTTP 200 com as
+    linhas 51 em diante) e a soma das páginas bater com a exportação; se voltar 500, o corpo da recusa e o pedido inteiro
+    ficam guardados para a próxima prova (o ?_ts= no endereço é a diferença que sobra com o navegador). Depois, a coleta diária:
+    a agenda já tem o grupo execucao_goiania, mas o cron só roda quando a versão nova entrar na main, o que depende do sim
+    do usuário.'
   trava: testes/test_execucao.py::test_popup_paginado_e_lido_inteiro_pelo_next_e_a_soma_confere
 - id: 142
   bloco: Fontes e cadência
@@ -1152,15 +1160,16 @@
     é lido dia a dia e fecha as somas. Na coleta d532c1d, real: 197, 191 e 181 entidades em 2024, 2025 e 2026; 42, 40 e 43
     ações (125 em fns_acoes); 527, 481 e 474 ordens fundo a fundo do Fundo (1.482 em repasses_fns); 777 dias do repasse nacional.
     A paginação da listagem repete ordens entre páginas e perde outras: a linha que reaparece em outra página não conta de
-    novo, a listagem curta é relida (RELEITURAS_FNS) e, se ainda faltar ordem, o motor lê por ação e anota por quê.'
-  falta: 'Provar que a listagem relida fecha sem repetição: na coleta d532c1d as 7 páginas de 2025 tinham hashes diferentes
-    (page conta de 1 e não repete a primeira) e somaram as 676 ordens (481 fundo a fundo e 195 fora), mas com 4 ordens fundo
-    a fundo repetidas entre páginas em 2025 (14 em 2024, 20 em 2026) e outras faltando; as repetidas explicam exatamente a
-    diferença de várias ações (68058 em 2025: R$ 1.309.828,83, duas ordens; 69166: R$ 39.800,00; 67478: R$ 1.244,32). A diferença
-    de R$ 5.838.778,09 da ação 61659 em 2025 não vem das ordens fundo a fundo guardadas e segue sem explicação (pode estar
-    nas 195 ordens fora do fundo a fundo, que não são guardadas, ou nas que a paginação perdeu). A sondagem pede count=1000
-    (as 676 numa página) e acoes=61659; a coleta ainda não as viu.'
-  trava: testes/test_coletores_federais_nona.py::test_fns_ordem_repetida_em_outra_pagina_nao_conta_e_a_releitura_traz_a_que_faltou
+    novo, a listagem curta é relida (RELEITURAS_FNS) e, se ainda faltar ordem, o motor lê por ação e anota por quê. Na sondagem
+    a8761d9, as páginas 1, 2 e 7 da listagem de 2025 vieram byte a byte iguais às da coleta (sha256 b773ee82, dee7cb79, f0bc6bcb,
+    35 minutos depois): a repetição de ordens entre páginas é fixa, por isso fica uma releitura só (RELEITURAS_FNS = 1) antes
+    de ir por ação. O filtro por ação respondeu de verdade: acoes=61659 trouxe só ordens da ação 61659, 166 no total, em 2
+    páginas (a 1: 100 ordens, 27 fundo a fundo, R$ 427.949.655,59).'
+  falta: 'count=1000 (as 676 ordens numa página só, sem paginação) ainda não foi lido: a sondagem de 06:50Z rodou antes de
+    essa leitura entrar, e a sondagem d1_fns a pede de novo, com a página 2 de acoes=61659. Sem a página 2, a diferença de
+    R$ 5.838.778,09 da ação 61659 em 2025 segue sem explicação: as 100 primeiras ordens filtradas não bastam para fechar a
+    ação, e 52 delas aparecem também nas páginas 1, 2 e 7 da listagem.'
+  trava: testes/test_coletores_federais_decima.py::test_fns_filtro_por_acao_real_traz_so_a_acao_e_o_total_dela
 - id: 147
   bloco: Fontes e cadência
   requisito: FNDE
@@ -1246,14 +1255,19 @@
     de verdade: 5 páginas de 100 (uns 2 s cada), 190 decisões sobre Goiânia guardadas, com número, data da sessão, relator,
     colegiado e processo, de 03/09 a 27/10/2026. Como 500 decisões só cobrem uns dois meses, o motor agora segue da sessão
     mais nova até passar do começo do intervalo (teto tcm.PAGINAS_JURISPRUDENCIA = 80) e, se o teto parar antes, diz até onde
-    chegou.'
-  falta: 'A resposta de filtros da jurisprudência do TCM-GO (para filtrar por município) e o TCU além de 100: a sondagem 1e36935
-    saiu vazia porque o fluxo passou as fontes num argumento só, separadas por vírgula (corrigido em sondagem.fontes_pedidas);
-    inicio=150, inicio=1300 e filtros precisam de nova sondagem. Sem essa prova o corte de 100 do TCU e a trava da sexta rodada
-    ficam. Na coleta, o acesso à informação do TCM-GO (3 listas de contas irregulares e as páginas mp/id=44 e mp/id=45) e
-    o painel das câmaras responderam 403 do próprio servidor (página padrão do nginx), por isso tcm teve 8 de 14 coletas ok;
-    os dados abertos de contas irregulares e a jurisprudência responderam.'
-  trava: testes/test_coletores_federais_nona.py::test_tcm_segue_as_paginas_ate_passar_do_comeco_do_intervalo
+    chegou. Na sondagem a8761d9 a pesquisa do TCU passou de 100: inicio=150 (30/06/2021 a 19/10/2022) e inicio=1300 (06/04/1994
+    a 14/06/2000) vieram com 50 acórdãos cada, de quantidadeEncontrada 1374. O corte saiu (LIMITE_PESQUISA = None) e o motor
+    lê até o total declarado, ou até passar do começo do intervalo, e diz quantos leu e de onde falta quando uma página cai
+    ou o teto (60 páginas) para. Os filtros reais do TCM-GO trazem os 246 municípios (Goiânia: GOIANIA), e a tela real manda
+    o escolhido como municipio; a busca pelo texto Goiânia traz 13.493 decisões do Estado todo (27 de Goiânia nas 100 primeiras).
+    O motor pede primeiro pelo município, sem texto, e volta ao texto, com nota, se a primeira página não for na maior parte
+    de Goiânia. Aparecida de Goiânia escrita sem o de (APARECIDA GOIANIA - APARECIDAPREV, como a jurisprudência real escreve)
+    passava por Goiânia: 8 das 35 da página 1; agora fica de fora, no TCU e no TCM-GO.'
+  falta: 'A busca com municipio=GOIANIA sem texto ainda não foi lida (a sondagem d1_tcm pede as páginas 1 e 20): até lá o
+    motor confere a primeira página e volta ao texto se o filtro não valer. As decisões do TCM-GO gravadas na coleta d532c1d
+    (190) incluem as de Aparecida escritas sem o de; a próxima coleta as tira. O acesso à informação do TCM-GO (3 listas,
+    mp/id=44 e mp/id=45) e o painel das câmaras respondem 403 do próprio servidor.'
+  trava: testes/test_coletores_federais_decima.py::test_tcu_pesquisa_le_ate_o_total_e_diz_o_que_faltou
 - id: 155
   bloco: Arquitetura
   requisito: Python
@@ -1324,8 +1338,9 @@
     e o valor pago ao Fundo Municipal de Saúde pelas respostas reais: as 40 ações de 2025 fecham com o total geral declarado,
     e as ordens trazem a ação, o mês do pagamento e o documento do SIAFI (id 146). O repasse do dia real também é lido.'
   falta: 'A ativação dos domínios pela Frente D2 e a listagem das ordens fechada sem repetição (id 146): as ordens de 2024
-    a 2026 já estão em repasses_fns pela coleta d532c1d, mas a paginação do FNS repete e perde ordens, e o motor agora relê
-    ou vai por ação.; FNS e FNDE na origem (Frente D1).'
+    a 2026 estão em repasses_fns pela coleta d532c1d, mas a paginação do FNS repete ordens de forma fixa; o motor relê uma
+    vez e vai por ação (filtro provado na sondagem a8761d9), e count=1000 ainda não foi lido.; FNS e FNDE na origem (Frente
+    D1).'
   trava: testes/test_coletores_federais_setima.py::test_fns_acoes_reais_do_fundo_fecham_com_o_total_geral
 - id: 165
   bloco: Roteiro e portões
