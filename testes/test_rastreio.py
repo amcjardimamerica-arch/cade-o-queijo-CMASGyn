@@ -220,7 +220,8 @@ def test_banco_refeito_do_zero_continua_a_cadeia(tmp_path, sem_rede):
     from test_historico import _ler_falso
     caminho = tmp_path / "h.db"
     _rodar(caminho, ("sileg",), ler=_ler_falso).fechar()
-    primeira = sqlite3.connect(caminho).execute("SELECT hash FROM rastreio_rodadas").fetchone()[0]
+    primeira = sqlite3.connect(rastreio.caminho_do_rastreio(caminho)).execute(
+        "SELECT hash FROM rastreio_rodadas").fetchone()[0]
     banco = _rodar(caminho, ("sileg",), ler=_ler_falso)            # sem somar: o banco é refeito
     rodadas = banco.con.execute("SELECT herdada, hash, anterior FROM rastreio_rodadas ORDER BY id").fetchall()
     assert rodadas[0][:2] == (1, primeira) and rodadas[1][2] == primeira
@@ -309,3 +310,41 @@ def test_base_da_receita_e_impedimentos_tem_hash_de_cada_arquivo_e_registro_com_
     assert origem["motor"] == "impedimentos" and origem["resposta"]
     assert rastreio.verificar(b.con)["integro"]
     b.con.close()
+
+
+def test_selos_ficam_num_arquivo_a_parte_e_o_banco_nao_guarda_pendencias(tmp_path, sem_rede):
+    """O banco da coleta beira os 100 MiB do GitHub: selos, origens e rodadas ficam em rastreio.db, ao
+    lado de historico.db; no banco ficam só as pendências da rodada, esvaziadas ao fechá-la."""
+    from test_historico import _ler_falso
+    caminho = tmp_path / "historico.db"
+    _rodar(caminho, ("siconfi", "sileg"), ler=_ler_falso).fechar()
+    arquivo = tmp_path / "rastreio.db"
+    assert rastreio.caminho_do_rastreio(caminho) == arquivo and arquivo.exists()
+    con = sqlite3.connect(caminho)
+    no_banco = {n for (n,) in con.execute("SELECT name FROM sqlite_master WHERE type = 'table'")}
+    assert not no_banco & set(rastreio.ESQUEMA_RASTREIO)
+    assert con.execute("SELECT count(*) FROM rastreio_pendentes").fetchone() == (0,)
+    con.close()
+    sep = sqlite3.connect(arquivo)
+    assert sep.execute("SELECT count(*) FROM rastreio_selos").fetchone()[0] > 0
+    assert len(sep.execute("SELECT hash FROM rastreio_selos LIMIT 1").fetchone()[0]) == 32   # BLOB de 32 bytes
+    sep.close()
+    # Uma conexão só de leitura (a do parecer) enxerga o rastreio sem criar nada.
+    ro = sqlite3.connect(f"file:{caminho}?mode=ro", uri=True)
+    assert rastreio.resumo_da_cadeia(ro)["ok"] and rastreio.verificar(ro)["integro"]
+    ro.close()
+    # Banco de antes da separação (rastreio dentro dele): ao abrir, as tabelas vão para o arquivo à parte.
+    con = sqlite3.connect(caminho)
+    con.execute("ATTACH DATABASE ? AS velho", (str(arquivo),))
+    for nome in rastreio.ESQUEMA_RASTREIO:
+        con.execute(f"CREATE TABLE main.{nome} AS SELECT * FROM velho.{nome}")
+    con.commit()
+    con.execute("DETACH DATABASE velho")
+    con.close()
+    rastreio.apagar_rastreio(caminho)
+    banco = historico.Banco.abrir(caminho)
+    no_banco = {n for (n,) in banco.con.execute("SELECT name FROM main.sqlite_master WHERE type = 'table'")}
+    assert not no_banco & set(rastreio.ESQUEMA_RASTREIO) and arquivo.exists()
+    assert banco.con.execute("SELECT count(*) FROM rastreio_rodadas").fetchone() == (1,)
+    assert rastreio.verificar(banco.con)["integro"]
+    banco.fechar()

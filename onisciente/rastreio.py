@@ -20,6 +20,13 @@ dados e validação de cada informação obtida". São três camadas, todas SHA-
 seus selos e o elo de cada rodada com a anterior, e aponta onde algo foi alterado. Na linha de
 comando: ``python -m onisciente rastreio``.
 
+Onde fica: os selos, as origens e as rodadas ficam num arquivo SQLite à parte, ao lado do banco
+(``dados/onisciente/rastreio.db`` ao lado de ``historico.db``), anexado à mesma conexão (``ATTACH ...
+AS rastreio``). O banco da coleta já beira o limite de 100 MiB por arquivo do GitHub; o rastreio não
+pode empurrá-lo para fora. No banco da coleta ficam só as colunas novas de ``coletas``, os gatilhos e
+as pendências (``rastreio_pendentes`` e ``rastreio_cursor``: o SQLite não deixa um gatilho gravar em
+banco anexado), e as pendências são esvaziadas ao fechar cada rodada.
+
 Como a origem chega ao selo: cada tabela de dados tem gatilhos (``AFTER INSERT`` e ``AFTER UPDATE``)
 que anotam a linha em ``rastreio_pendentes`` com a coleta corrente (``rastreio_cursor``), que o
 ``Banco.inserir`` de ``coletas`` atualiza a cada resposta. Assim o motor que grava direto pela conexão
@@ -33,6 +40,7 @@ import hashlib
 import json
 import sqlite3
 from collections import Counter
+from pathlib import Path
 from datetime import datetime, timezone
 from typing import Iterable
 
@@ -44,19 +52,23 @@ COLUNAS_COLETAS = {"requisicao": "TEXT", "metodo": "TEXT", "parametros": "TEXT",
 MODO_MIGRACAO = "migracao"
 ANTERIOR_AO_RASTREIO = "anterior ao rastreio"
 
-ESQUEMA = """
-CREATE TABLE IF NOT EXISTS rastreio_tabelas (id INTEGER PRIMARY KEY, nome TEXT UNIQUE NOT NULL);
-CREATE TABLE IF NOT EXISTS rastreio_origens (id INTEGER PRIMARY KEY, coleta BLOB UNIQUE NOT NULL, resposta TEXT,
-    requisicao TEXT);
-CREATE TABLE IF NOT EXISTS rastreio_selos (tabela INTEGER NOT NULL, hash BLOB NOT NULL, rodada INTEGER NOT NULL,
-    origem INTEGER, n INTEGER NOT NULL DEFAULT 1, descartada INTEGER, PRIMARY KEY (tabela, hash)) WITHOUT ROWID;
-CREATE TABLE IF NOT EXISTS rastreio_rodadas (id INTEGER PRIMARY KEY, inicio TEXT, fim TEXT, modo TEXT, motores TEXT,
-    respostas INTEGER, registros INTEGER, raiz TEXT, tabelas TEXT, abertura TEXT, descartes TEXT, detalhe TEXT,
-    anterior TEXT, hash TEXT, herdada INTEGER NOT NULL DEFAULT 0);
-CREATE TABLE IF NOT EXISTS rastreio_pendentes (tabela TEXT NOT NULL, linha INTEGER NOT NULL, origem INTEGER,
-    PRIMARY KEY (tabela, linha)) WITHOUT ROWID;
-CREATE TABLE IF NOT EXISTS rastreio_cursor (chave TEXT PRIMARY KEY, valor INTEGER);
-"""
+ESQ = "rastreio"            # o nome do arquivo anexado na conexão (ATTACH ... AS rastreio)
+# No arquivo do rastreio (rastreio.db). O hash do selo é BLOB de 32 bytes; a exibição é sempre em hex.
+ESQUEMA_RASTREIO = {
+    "rastreio_tabelas": "(id INTEGER PRIMARY KEY, nome TEXT UNIQUE NOT NULL)",
+    "rastreio_origens": "(id INTEGER PRIMARY KEY, coleta BLOB UNIQUE NOT NULL, resposta TEXT, requisicao TEXT)",
+    "rastreio_selos": "(tabela INTEGER NOT NULL, hash BLOB NOT NULL, rodada INTEGER NOT NULL, origem INTEGER, "
+                      "n INTEGER NOT NULL DEFAULT 1, descartada INTEGER, PRIMARY KEY (tabela, hash)) WITHOUT ROWID",
+    "rastreio_rodadas": "(id INTEGER PRIMARY KEY, inicio TEXT, fim TEXT, modo TEXT, motores TEXT, respostas INTEGER, "
+                        "registros INTEGER, raiz TEXT, tabelas TEXT, abertura TEXT, descartes TEXT, detalhe TEXT, "
+                        "anterior TEXT, hash TEXT, herdada INTEGER NOT NULL DEFAULT 0)",
+}
+# No banco da coleta (os gatilhos só gravam no próprio banco). Vazias fora de rodada.
+ESQUEMA_LOCAL = {
+    "rastreio_pendentes": "(tabela TEXT NOT NULL, linha INTEGER NOT NULL, origem INTEGER, "
+                          "PRIMARY KEY (tabela, linha)) WITHOUT ROWID",
+    "rastreio_cursor": "(chave TEXT PRIMARY KEY, valor INTEGER)",
+}
 
 
 def agora() -> str:
@@ -156,6 +168,68 @@ def _tabelas(con) -> dict[str, str]:
         "SELECT name, sql FROM sqlite_master WHERE type = 'table' AND name NOT LIKE 'sqlite_%'")}
 
 
+def _tabelas_rastreio(con) -> set[str]:
+    """As tabelas do rastreio que a conexão enxerga: as do arquivo anexado (e as de um banco antigo,
+    de antes da separação, que ainda as tenha dentro de si)."""
+    nomes = {n for n in _tabelas(con) if n in ESQUEMA_RASTREIO}
+    if anexado(con):
+        nomes |= {n for (n,) in con.execute(f"SELECT name FROM {ESQ}.sqlite_master WHERE type = 'table'")}
+    return nomes
+
+
+def caminho_do_rastreio(caminho) -> Path:
+    """O arquivo do rastreio de um banco: ``rastreio.db`` ao lado de ``historico.db``; para outro nome
+    (a janela da agenda, um teste), ``<nome>.rastreio.db`` ao lado dele."""
+    p = Path(caminho)
+    if p.name == "historico.db":
+        return p.with_name("rastreio.db")
+    return p.with_name(f"{p.stem}.rastreio{p.suffix or '.db'}")
+
+
+def _arquivo_principal(con) -> str:
+    for _, nome, arquivo in con.execute("PRAGMA database_list"):
+        if nome == "main":
+            return arquivo or ""
+    return ""
+
+
+def anexado(con) -> bool:
+    return any(nome == ESQ for _, nome, _ in con.execute("PRAGMA database_list"))
+
+
+def anexar(con, *, somente_leitura: bool = False) -> bool:
+    """Anexa à conexão o arquivo do rastreio do banco (``ATTACH ... AS rastreio``). Para gravar, cria o
+    arquivo se faltar; para ler, só anexa o que existe. Devolve se ficou anexado."""
+    if anexado(con):
+        return True
+    principal = _arquivo_principal(con)
+    if principal:
+        destino = caminho_do_rastreio(principal)
+        if somente_leitura and not destino.exists():
+            return False
+        alvo = str(destino)
+    elif somente_leitura:
+        return False
+    else:
+        alvo = ":memory:"                       # banco em memória: o rastreio também
+    try:
+        con.execute(f"ATTACH DATABASE ? AS {ESQ}", (alvo,))
+    except sqlite3.Error:
+        if somente_leitura:
+            return False
+        raise
+    return True
+
+
+def _ler(con) -> None:
+    """Antes de uma leitura: anexa o rastreio se a conexão ainda não o tem (conexão só de leitura)."""
+    if not anexado(con):
+        try:
+            anexar(con, somente_leitura=True)
+        except sqlite3.Error:
+            pass
+
+
 def tabelas_de_dados(con) -> list[str]:
     """Toda tabela de dados do banco: todas, menos o próprio rastreio e ``meta``."""
     saida = []
@@ -170,35 +244,63 @@ def tabelas_de_dados(con) -> list[str]:
 
 
 def tem_rastreio(con) -> bool:
-    return "rastreio_selos" in _tabelas(con)
+    return "rastreio_selos" in _tabelas_rastreio(con)
 
 
 def _colunas(con, tabela: str) -> list[str]:
     return [c[1] for c in con.execute(f'PRAGMA table_info("{tabela}")')]
 
 
-def preparar(con) -> None:
-    """Cria as tabelas do rastreio, as colunas novas de ``coletas`` e os gatilhos de cada tabela de
-    dados. Idempotente: pode (e deve) ser chamado de novo quando um motor cria uma tabela."""
+def _gatilho(t: str, quando: str) -> str:
+    # Só anota com a rodada aberta: o que muda fora de rodada não deixa pendência no banco (e aparece
+    # como "sem selo" na conferência da abertura seguinte).
+    return (f'AFTER {quando} ON "{t}" WHEN (SELECT valor FROM rastreio_cursor WHERE chave = \'rodada\') IS NOT NULL '
+            f"BEGIN INSERT OR REPLACE INTO rastreio_pendentes (tabela, linha, origem) VALUES ('{t}', NEW.rowid, "
+            "(SELECT valor FROM rastreio_cursor WHERE chave = 'origem')); END")
+
+
+def _separar_banco_antigo(con) -> None:
+    """Banco de antes da separação, com o rastreio dentro de si: as tabelas vão para o arquivo do
+    rastreio e saem do banco da coleta."""
     tabelas = _tabelas(con)
-    if not all(t in tabelas for t in ("rastreio_tabelas", "rastreio_origens", "rastreio_selos", "rastreio_rodadas",
-                                      "rastreio_pendentes", "rastreio_cursor")):
-        con.executescript(ESQUEMA)
+    for nome in ESQUEMA_RASTREIO:
+        if nome in tabelas:
+            con.execute(f"INSERT OR IGNORE INTO {ESQ}.{nome} SELECT * FROM main.{nome}")
+            con.execute(f"DROP TABLE main.{nome}")
+    con.commit()
+
+
+def preparar(con) -> None:
+    """Anexa o arquivo do rastreio e cria nele as tabelas; cria no banco as pendências, as colunas novas
+    de ``coletas`` e os gatilhos de cada tabela de dados. Idempotente: pode (e deve) ser chamado de novo
+    quando um motor cria uma tabela."""
+    anexar(con)
+    no_rastreio = {n for (n,) in con.execute(f"SELECT name FROM {ESQ}.sqlite_master WHERE type = 'table'")}
+    for nome, corpo in ESQUEMA_RASTREIO.items():
+        if nome not in no_rastreio:
+            con.execute(f"CREATE TABLE IF NOT EXISTS {ESQ}.{nome} {corpo}")
+    tabelas = _tabelas(con)
+    if any(n in tabelas for n in ESQUEMA_RASTREIO):
+        _separar_banco_antigo(con)
+        tabelas = _tabelas(con)
+    for nome, corpo in ESQUEMA_LOCAL.items():
+        if nome not in tabelas:
+            con.execute(f"CREATE TABLE IF NOT EXISTS main.{nome} {corpo}")
     if "coletas" in tabelas:
         existentes = set(_colunas(con, "coletas"))
         for coluna, tipo in COLUNAS_COLETAS.items():
             if coluna not in existentes:
                 con.execute(f"ALTER TABLE coletas ADD COLUMN {coluna} {tipo}")
-    gatilhos = {n for (n,) in con.execute("SELECT name FROM sqlite_master WHERE type = 'trigger'")}
+    gatilhos = dict(con.execute("SELECT name, sql FROM main.sqlite_master WHERE type = 'trigger'"))
     for t in tabelas_de_dados(con):
         for quando, sufixo in (("INSERT", "i"), ("UPDATE", "u")):
             nome = f"rastreio_{sufixo}_{t}"
+            corpo = _gatilho(t, quando)
             if nome in gatilhos:
-                continue
-            con.execute(
-                f'CREATE TRIGGER IF NOT EXISTS "{nome}" AFTER {quando} ON "{t}" BEGIN '
-                f"INSERT OR REPLACE INTO rastreio_pendentes (tabela, linha, origem) VALUES ('{t}', NEW.rowid, "
-                "(SELECT valor FROM rastreio_cursor WHERE chave = 'origem')); END")
+                if corpo in (gatilhos[nome] or ""):
+                    continue
+                con.execute(f'DROP TRIGGER "{nome}"')          # gatilho de uma versão anterior
+            con.execute(f'CREATE TRIGGER "{nome}" {corpo}')
 
 
 def versao_do_esquema(con) -> int:
@@ -313,7 +415,7 @@ def selar(con, rodada: int, *, todas: bool = False) -> dict[str, int]:
         for h in ativos.keys() - contagem.keys():
             con.execute("UPDATE rastreio_selos SET descartada = ? WHERE tabela = ? AND hash = ?", (rodada, tid, h))
             descartados += 1
-    con.execute("DELETE FROM rastreio_pendentes")
+    con.execute("DELETE FROM main.rastreio_pendentes")
     return {"novos": novos, "descartados": descartados}
 
 
@@ -335,7 +437,7 @@ def abrir_rodada(con, motores: Iterable[str] = (), modo: str = "coleta", *, deta
     if conferir and con.execute("SELECT 1 FROM rastreio_rodadas LIMIT 1").fetchone():
         abertura = _resumo_abertura(verificar_registros(con, pendentes=False))
     # O que foi gravado fora de rodada não tem origem conhecida: fica na abertura e é selado sem origem.
-    con.execute("DELETE FROM rastreio_pendentes")
+    con.execute("DELETE FROM main.rastreio_pendentes")
     rid = con.execute(
         "INSERT INTO rastreio_rodadas (inicio, modo, motores, abertura, detalhe) VALUES (?, ?, ?, ?, ?)",
         (agora(), modo, json.dumps(list(motores), ensure_ascii=False),
@@ -424,7 +526,7 @@ def fechar_rodada(con, rid: int, *, nota: str | None = None) -> dict:
 
 def rodada_corrente(con) -> int | None:
     linha_ = con.execute("SELECT valor FROM rastreio_cursor WHERE chave = 'rodada'").fetchone() \
-        if tem_rastreio(con) else None
+        if "rastreio_cursor" in _tabelas(con) else None
     return linha_[0] if linha_ else None
 
 
@@ -437,7 +539,7 @@ def migrar(con) -> int | None:
         return None
     if not any(con.execute(f'SELECT 1 FROM "{t}" LIMIT 1').fetchone() for t in tabelas_de_dados(con)):
         return None
-    con.execute("DELETE FROM rastreio_pendentes")      # nada do que existe tem origem conhecida
+    con.execute("DELETE FROM main.rastreio_pendentes")      # nada do que existe tem origem conhecida
     rid = abrir_rodada(con, (), MODO_MIGRACAO, conferir=False,
                        detalhe={"nota": "linhas gravadas antes do rastreio: o hash de cada registro foi calculado "
                                         "na migração e a origem ficou vazia (anterior ao rastreio)"})
@@ -446,11 +548,34 @@ def migrar(con) -> int | None:
     return rid
 
 
+def _abrir_rastreio_de(caminho):
+    """Uma conexão só de leitura com o rastreio de um banco (o arquivo à parte; num banco antigo, o
+    próprio banco). None quando não há rastreio."""
+    for arquivo in (caminho_do_rastreio(caminho), Path(caminho)):
+        if not arquivo.exists():
+            continue
+        try:
+            con = sqlite3.connect(f"file:{arquivo}?mode=ro", uri=True)
+            if "rastreio_selos" in _tabelas(con):
+                return con
+            con.close()
+        except sqlite3.Error:
+            pass
+    return None
+
+
+def apagar_rastreio(caminho) -> None:
+    """Apaga o arquivo do rastreio de um banco que vai ser refeito do zero (a cadeia já foi lida)."""
+    for sufixo in ("", "-journal", "-wal", "-shm"):
+        arq = Path(str(caminho_do_rastreio(caminho)) + sufixo)
+        if arq.exists():
+            arq.unlink()
+
+
 def cadeia_para_herdar(caminho) -> list[dict]:
     """As rodadas de um banco que vai ser refeito do zero, para a cadeia continuar no banco novo."""
-    try:
-        con = sqlite3.connect(f"file:{caminho}?mode=ro", uri=True)
-    except sqlite3.Error:
+    con = _abrir_rastreio_de(caminho)
+    if con is None:
         return []
     try:
         if "rastreio_rodadas" not in _tabelas(con):
@@ -480,11 +605,11 @@ def importar_selos(con, outro, rid: int) -> int:
     janela coletou chegar ao banco principal com a origem certa. Só entra o selo que o principal ainda
     não tem ativo; o ``selar`` seguinte descarta o que a soma não trouxe."""
     preparar(con)
-    origem = sqlite3.connect(f"file:{outro}?mode=ro", uri=True)
+    origem = _abrir_rastreio_de(outro)
+    if origem is None:
+        return 0
     trazidos = 0
     try:
-        if "rastreio_selos" not in _tabelas(origem):
-            return 0
         nomes = _nomes_das_tabelas(origem)
         origens = {i: (c, r, q) for i, c, r, q in origem.execute(
             "SELECT id, coleta, resposta, requisicao FROM rastreio_origens")}
@@ -518,7 +643,13 @@ def antes_de_compactar(con) -> None:
     if rid is not None:
         selar(con, rid)
     else:
-        con.execute("DELETE FROM rastreio_pendentes")
+        con.execute("DELETE FROM main.rastreio_pendentes")
+
+
+def compactar(con) -> None:
+    """VACUUM do arquivo do rastreio (o do banco da coleta é feito pelo ``Banco.fechar``)."""
+    if anexado(con):
+        con.execute(f"VACUUM {ESQ}")
 
 
 # --- Verificação --------------------------------------------------------------------------------
@@ -535,6 +666,7 @@ def verificar_registros(con, *, limite: int = 200, pendentes: bool = True) -> di
     ``sumidos``: selo ativo sem a linha (removida ou alterada fora de rodada).
     ``pendentes``: linhas da rodada em curso que ainda não foram seladas."""
     saida = {"conferidos": 0, "tabelas": 0, "sem_selo": [], "sumidos": [], "pendentes": 0, "alteradas": []}
+    _ler(con)
     if not tem_rastreio(con):
         saida["sem_rastreio"] = True
         return saida
@@ -543,7 +675,7 @@ def verificar_registros(con, *, limite: int = 200, pendentes: bool = True) -> di
     # Pendência só vale com a rodada aberta: fora dela, a linha anotada pelo gatilho foi mexida fora de
     # rodada e aparece como sem selo.
     pendentes = pendentes and rodada_corrente(con) is not None
-    for t, l in (con.execute("SELECT tabela, linha FROM rastreio_pendentes") if pendentes else ()):
+    for t, l in (con.execute("SELECT tabela, linha FROM main.rastreio_pendentes") if pendentes else ()):
         pend.setdefault(t, set()).add(l)
     for t in tabelas_de_dados(con):
         saida["tabelas"] += 1
@@ -578,7 +710,8 @@ def verificar_registros(con, *, limite: int = 200, pendentes: bool = True) -> di
 
 
 def _rodadas(con) -> list[dict]:
-    if "rastreio_rodadas" not in _tabelas(con):
+    _ler(con)
+    if "rastreio_rodadas" not in _tabelas_rastreio(con):
         return []
     cur = con.execute("SELECT * FROM rastreio_rodadas ORDER BY id")
     nomes = [d[0] for d in cur.description]
@@ -689,6 +822,7 @@ def registro(con, tabela: str, rowid: int) -> dict | None:
     if campos is None:
         return None
     h = _digest(tabela, campos)
+    _ler(con)
     selo = _selo(con, tabela, h) if tem_rastreio(con) else None
     return {"tabela": tabela, "linha": rowid, "hash": h.hex(), "campos": campos, "selo": selo,
             "confere": bool(selo) and selo.get("descartada_na_rodada") is None}
@@ -702,6 +836,7 @@ def hash_do_registro(con, tabela: str, rowid: int) -> str | None:
 def localizar(con, prefixo: str, *, limite: int = 5) -> list[dict]:
     """Os registros cujo hash começa com ``prefixo`` (hex), com a linha atual, a rodada e a origem."""
     prefixo = "".join(ch for ch in prefixo.lower() if ch in "0123456789abcdef")
+    _ler(con)
     if len(prefixo) < 4 or not tem_rastreio(con):
         return []
     baixo = bytes.fromhex(prefixo.ljust(64, "0")[:64])
@@ -726,6 +861,7 @@ def resumo_da_cadeia(con) -> dict:
     """Para o parecer e as telas: a última rodada (hash, raiz), o tamanho da cadeia e se ela confere.
     Só lê (serve para conexões somente leitura)."""
     try:
+        _ler(con)
         if not tem_rastreio(con):
             return {"rastreado": False}
         c = verificar_cadeia(con)

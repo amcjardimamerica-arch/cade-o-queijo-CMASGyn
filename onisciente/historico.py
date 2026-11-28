@@ -250,9 +250,10 @@ class Banco:
         herdadas: list[dict] = []
         if isinstance(self.caminho, Path):
             self.caminho.parent.mkdir(parents=True, exist_ok=True)
+            herdadas = rastreio.cadeia_para_herdar(self.caminho)       # a cadeia continua no banco novo
             if self.caminho.exists():
-                herdadas = rastreio.cadeia_para_herdar(self.caminho)   # a cadeia continua no banco novo
                 self.caminho.unlink()          # cada rodada refaz o banco do zero
+            rastreio.apagar_rastreio(self.caminho)   # e o arquivo do rastreio (a cadeia já foi lida)
         self.con = sqlite3.connect(str(caminho))
         self.con.executescript(ESQUEMA)
         self._iniciar_rastreio()
@@ -325,6 +326,7 @@ class Banco:
         rastreio.antes_de_compactar(self.con)   # o VACUUM pode renumerar as linhas pendentes
         self.con.commit()
         self.con.execute("VACUUM")
+        rastreio.compactar(self.con)            # o arquivo do rastreio, ao lado
         self.con.close()
 
 

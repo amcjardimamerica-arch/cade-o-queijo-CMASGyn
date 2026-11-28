@@ -19,3 +19,6 @@
 #   test_banco_refeito_do_zero_continua_a_cadeia
 #   test_parecer_mostra_o_hash_em_cada_achado
 #   test_linha_de_comando_verifica_e_mostra_o_registro_com_a_origem
+#   test_selos_ficam_num_arquivo_a_parte_e_o_banco_nao_guarda_pendencias (rastreio.db ao lado de historico.db)
+# E nos fluxos do grupo onisciente-banco (testes/test_fluxos_banco_guarda.py): guarda de 95 MB antes do commit
+# (artefato, resumo e falha sem push) e git add de dados/onisciente/rastreio.db.
