@@ -366,6 +366,12 @@ CANDIDATOS: dict[str, list[str]] = {
         # respondeu na coleta d532c1d na 2ª tentativa; esta é a mesma página do motor.
         ("https://pesquisa.apps.tcu.gov.br/rest/publico/base/acordao-completo/documentosResumidos?termo="
          "%22Goi%C3%A2nia%22&ordenacao=DTRELEVANCIA+desc%2C+NUMACORDAOINT+desc&quantidade=50&inicio=0&sinonimos=true"),
+        # Rodada 14 (28/11/2026): na coleta 6c474b1 os dados abertos responderam inicio=0 e 100 e recusaram
+        # inicio=200 com HTTP 429 sem Retry-After. As três páginas em seguida, como o motor pede
+        # (tcu.url_dados_abertos), mostram se a recusa vem já na terceira leitura seguida e o que o 429 diz.
+        "https://dados-abertos.apps.tcu.gov.br/api/acordao/recupera-acordaos?inicio=0&quantidade=100",
+        "https://dados-abertos.apps.tcu.gov.br/api/acordao/recupera-acordaos?inicio=100&quantidade=100",
+        "https://dados-abertos.apps.tcu.gov.br/api/acordao/recupera-acordaos?inicio=200&quantidade=100",
     ],
     "d1_tcm": [
         # O pacote principal da jurisprudência só tem a base da API (/jurisprudencia/api, cabeçalho X-Cliente:
