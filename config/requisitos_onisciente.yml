@@ -1193,7 +1193,12 @@
     do servidor; sem a 2025OB016558, dão R$ 1.030.381.073,26, o total das 40 ações de detalhe-acao, e cada uma das 40 ações
     fecha com as suas ordens. Com essas duas respostas reais, motor_fns_detalhe faz uma leitura só da listagem, grava as 40
     ações com o pago igual ao total e as ordens fundo a fundo em repasses_fns, sem nenhuma divergência (trava test_motor_fns_com_as_respostas_reais_de_2025_fecha_todas_as_acoes_numa_leitura).
-    Se outro ano não fechar, o motor diz qual ação e quanto.'
+    Se outro ano não fechar, o motor diz qual ação e quanto. Na coleta real 6c474b1 (2024-11 a 2026-11), os 3 anos vieram
+    pela página de 1000 e fecharam sem a nota de divergência: 526, 480 e 472 ordens fundo a fundo em repasses_fns (2025 com
+    a nota da 2025OB016558). As 8 vias antigas de motor_fns falharam nos 3 anos, como já na coleta d532c1d (4 em apifns.saude.gov.br
+    sem DNS, 7 minutos em 12 chamadas; 3 com HTTP 400; 1 com 404) e deixavam uma linha de falha por ano. Agora a chamada do
+    FNS lê as entidades e a consulta detalhada primeiro, e motor_fns só tenta o ano que ela não preencheu, sem linha de falha
+    para o ano lido (trava test_chamada_do_fns_le_a_consulta_detalhada_antes_e_nao_tenta_as_vias_antigas_no_ano_lido).'
   falta: ''
   trava: testes/test_coletores_federais_decima_segunda.py::test_motor_fns_com_as_respostas_reais_de_2025_fecha_todas_as_acoes_numa_leitura
 - id: 147
@@ -1308,11 +1313,19 @@
     a exportação não tem o limite de 1000, e a busca de um ano com menos de 1000 decisões também vem inteira. Na mesma sondagem,
     a pesquisa do TCU deu conexão encerrada em inicio=0 (nas duas ordens) e em inicio=150, mas a sondagem lê uma vez só; o
     motor lê pelo historico.Contexto, que tenta 3 vezes, com espera de 5 s e 10 s (trava test_tcu_conexao_encerrada_e_lida_de_novo_com_espera_crescente),
-    e na coleta d532c1d o TCU leu 12 de 12 chamadas com 13 tentativas.'
-  falta: 'A prova em coleta real: a exportação de 2024 e de 2026 ainda não foi lida (só a de 2025, na sondagem), nem a pesquisa
-    do TCU até o total com as 3 tentativas. As decisões do TCM-GO gravadas na coleta d532c1d (190) incluem as de Aparecida
-    escritas sem o de; a coleta com somar apaga as do motor antes e as tira. O acesso à informação do TCM-GO (3 listas, mp/id=44
-    e mp/id=45) e o painel das câmaras respondem 403 do próprio servidor (as contas irregulares vêm dos dados abertos).'
+    e na coleta d532c1d o TCU leu 12 de 12 chamadas com 13 tentativas. Na coleta real 6c474b1: o exportar do TCM-GO veio nos
+    3 anos (2026: 1.667.897 bytes, 2025: 1.876.331, 2024: 1.570.614), e o de 2025 é byte a byte o da sondagem (sha256 5bba7f5f),
+    com as mesmas 873 decisões de Goiânia do CSV, que fecha com o total de 918 da busca; ficaram 804 de 2026 e 732 de 2024
+    (2.409 decisões). O motor contava 2.411 porque a mesma chave veio duas vezes numa exportação; agora conta uma vez e, entre
+    as repetidas, fica a de Goiânia. A pesquisa do TCU leu 150 (inicio=0, 50 e 100, a de 100 byte a byte a da sondagem 079a72d,
+    de 26/10/2022 a 02/04/2024) e parou porque passou do começo do intervalo; 79 dos 150 acórdãos são de 11/2024 em diante,
+    e nada do intervalo faltou. Os dados abertos do TCU recusaram inicio=200 com HTTP 429 nas 3 tentativas, em 106,6 s, que
+    são as esperas sem Retry-After (15, 30 e 60 s) mais as leituras: o servidor não disse quanto esperar. O motor agora espera
+    mais 2 minutos (tcu.ESPERA_429) e lê a página uma vez mais, e a nota diz se o servidor pediu espera.'
+  falta: O total da busca do TCM-GO para 2024 e 2026 (a sondagem d1_tcm agora pede), para conferir as 732 e 804 decisões desses
+    anos como a de 2025 foi conferida. Os dados abertos do TCU com a nova leitura depois do 429 ainda não rodaram numa coleta.
+    O acesso à informação do TCM-GO (3 listas, mp/id=44 e mp/id=45) e o painel das câmaras respondem 403 do próprio servidor
+    (as contas irregulares vêm dos dados abertos).
   trava: testes/test_coletores_federais_decima.py::test_tcu_pesquisa_le_ate_o_total_e_diz_o_que_faltou
 - id: 155
   bloco: Arquitetura
@@ -1386,9 +1399,9 @@
     sondagem 9cc559c as ordens do ano vieram numa página só com count=1000, que o motor agora pede, e as ordens reais da ação
     61659 fecham com o total dela ao sair a ordem rejeitada (2025OB016558, motivoRejeicao de cancelamento parcial), que fica
     fora do pago e de repasses_fns. Na sondagem 079a72d a página de 1000 veio inteira e as 40 ações de 2025 fecham uma a uma
-    com as suas ordens (id 146, cumprido).'
-  falta: A ativação dos domínios pela Frente D2. Do lado da D1, falta só ver na coleta real os anos de 2024 e 2026 fecharem
-    como o de 2025.; FNS e FNDE na origem (Frente D1).
+    com as suas ordens (id 146, cumprido). Na coleta real 6c474b1, 2024, 2025 e 2026 fecharam pela consulta detalhada (526,
+    480 e 472 ordens fundo a fundo).'
+  falta: A ativação dos domínios pela Frente D2.; FNS e FNDE na origem (Frente D1).
   trava: testes/test_coletores_federais_setima.py::test_fns_acoes_reais_do_fundo_fecham_com_o_total_geral
 - id: 165
   bloco: Roteiro e portões
