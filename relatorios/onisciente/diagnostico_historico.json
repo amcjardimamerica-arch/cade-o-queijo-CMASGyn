@@ -1,6 +1,6 @@
 {
  "intervalo": "2024-11 a 2026-11",
- "rodada": "2026-11-28T08:40:48+00:00",
+ "rodada": "2026-11-28T09:16:16+00:00",
  "meses": [
   "2024-11",
   "2024-12",
@@ -50,7 +50,7 @@
    "falhas": 0,
    "tentativas": 21,
    "http_429": 0,
-   "segundos": 3.4,
+   "segundos": 4.0,
    "erros": {}
   },
   {
@@ -234,7 +234,29 @@
    "falhas": 0,
    "tentativas": 50,
    "http_429": 0,
-   "segundos": 13.3,
+   "segundos": 15.9,
+   "erros": {}
+  },
+  {
+   "motor": "sileg-normas",
+   "nome": "Leis de Goiânia baixadas do SILEG",
+   "chamadas": 47,
+   "ok": 47,
+   "falhas": 0,
+   "tentativas": 47,
+   "http_429": 0,
+   "segundos": 25.2,
+   "erros": {}
+  },
+  {
+   "motor": "sileg-procura",
+   "nome": "Procura das leis não localizadas no SILEG",
+   "chamadas": 15,
+   "ok": 15,
+   "falhas": 0,
+   "tentativas": 15,
+   "http_429": 0,
+   "segundos": 6.8,
    "erros": {}
   },
   {
@@ -372,8 +394,8 @@
  },
  "cobertura": {
   "2024-11": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
@@ -381,8 +403,8 @@
    "pncp": "✓"
   },
   "2024-12": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
@@ -390,8 +412,8 @@
    "pncp": "✓"
   },
   "2025-01": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
@@ -399,8 +421,8 @@
    "pncp": "✓"
   },
   "2025-02": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
@@ -408,8 +430,8 @@
    "pncp": "✓"
   },
   "2025-03": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
@@ -417,8 +439,8 @@
    "pncp": "✓"
   },
   "2025-04": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
@@ -426,8 +448,8 @@
    "pncp": "✓"
   },
   "2025-05": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
@@ -435,8 +457,8 @@
    "pncp": "✓"
   },
   "2025-06": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
@@ -444,8 +466,8 @@
    "pncp": "✓"
   },
   "2025-07": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
@@ -453,8 +475,8 @@
    "pncp": "✓"
   },
   "2025-08": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
@@ -462,8 +484,8 @@
    "pncp": "✓"
   },
   "2025-09": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
@@ -471,8 +493,8 @@
    "pncp": "✓"
   },
   "2025-10": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
@@ -480,8 +502,8 @@
    "pncp": "✓"
   },
   "2025-11": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
@@ -489,8 +511,8 @@
    "pncp": "✓"
   },
   "2025-12": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
@@ -498,86 +520,86 @@
    "pncp": "✓"
   },
   "2026-01": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "fnas": "·",
    "pncp": "✓"
   },
   "2026-02": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "fnas": "·",
    "pncp": "✓"
   },
   "2026-03": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "fnas": "·",
    "pncp": "✓"
   },
   "2026-04": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "fnas": "·",
    "pncp": "✓"
   },
   "2026-05": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "fnas": "·",
    "pncp": "✓"
   },
   "2026-06": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "fnas": "·",
    "pncp": "✓"
   },
   "2026-07": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "fnas": "·",
    "pncp": "✓"
   },
   "2026-08": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "fnas": "·",
    "pncp": "✓"
   },
   "2026-09": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "…",
    "fnas": "·",
    "pncp": "✓"
   },
   "2026-10": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "…",
    "fnas": "·",
    "pncp": "✓"
   },
   "2026-11": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "fnas": "·",
    "pncp": "✓"
   }
