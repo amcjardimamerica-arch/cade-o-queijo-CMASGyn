@@ -31,7 +31,8 @@ from .coletores.base import ler
 PASTA = RAIZ / "relatorios" / "onisciente" / "sondagem"
 LIMITE = 600_000
 LIMITE_GRANDE = 6_000_000   # a MSC vem em páginas de milhares de linhas: guarda a página inteira
-GRANDES = {"msc", "pncp_detalhe", "pncp_dados", "d2_transweb"}   # d2_transweb: a exportação CSV do mês (1,5 MB)
+GRANDES = {"msc", "pncp_detalhe", "pncp_dados", "d2_transweb",   # d2_transweb: a exportação CSV do mês (1,5 MB)
+           "d1_fns", "d1_tcm"}   # Frente D1 (rodada 11): a página de 1000 ordens do FNS (691 KB) e o CSV do TCM-GO
 DADOS = "https://dadosabertos.compras.gov.br/"
 # Cabeçalhos que a própria página manda a um serviço (pelo começo do endereço).
 CABECALHOS = {"https://virtual.tcmgo.tc.br/jurisprudencia/api/": {"X-Cliente": "portal"}}
@@ -317,6 +318,8 @@ CANDIDATOS: dict[str, list[str]] = {
         ("https://consultafns.saude.gov.br/recursos/consulta-detalhada/detalhe-pagamento?page=1&count=1000&ano=2025&"
          "mes=&tipoConsulta=&blocos=&componentes=&acoes=&estado=GO&municipio=520870&repasse=&dataInicialOb=&"
          "dataFinalOb=&cpfCnpjUg=37623352000103"),
+        # Rodada 11: count=1000 veio numa página só (691.235 bytes), mas a sondagem guardou só 600 KB (587
+        # ordens). Com d1_fns em GRANDES, a mesma leitura acima guarda a página inteira e prova as 676.
     ],
     "d1_fnde": [
         # As liberações por entidade já são lidas (terceira rodada): uma de prova, para a trava do formato.
@@ -358,6 +361,11 @@ CANDIDATOS: dict[str, list[str]] = {
         "&ordenacao=DTRELEVANCIA+desc%2C+NUMACORDAOINT+desc&quantidade=50&inicio=150&sinonimos=true",
         "https://pesquisa.apps.tcu.gov.br/rest/publico/base/acordao-completo/documentosResumidos?termo=%22Goi%C3%A2nia%22"
         "&ordenacao=DTRELEVANCIA+desc%2C+NUMACORDAOINT+desc&quantidade=50&inicio=1300&sinonimos=true",
+        # Rodada 11: o inicio=0 que encerra a conexão é o da ordem ANOACORDAO (o primeiro desta lista, que a
+        # trava da sexta rodada guarda). O motor pede inicio=0 na ordem DTRELEVANCIA (tcu.url_pesquisa), que
+        # respondeu na coleta d532c1d na 2ª tentativa; esta é a mesma página do motor.
+        ("https://pesquisa.apps.tcu.gov.br/rest/publico/base/acordao-completo/documentosResumidos?termo="
+         "%22Goi%C3%A2nia%22&ordenacao=DTRELEVANCIA+desc%2C+NUMACORDAOINT+desc&quantidade=50&inicio=0&sinonimos=true"),
     ],
     "d1_tcm": [
         # O pacote principal da jurisprudência só tem a base da API (/jurisprudencia/api, cabeçalho X-Cliente:
@@ -380,6 +388,14 @@ CANDIDATOS: dict[str, list[str]] = {
          "&page_size=100&sort_by=data_sessao&sort_order=desc&municipio=GOIANIA"),
         ("https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/acordao/jurisprudencia/buscar?texto=&page=20"
          "&page_size=100&sort_by=data_sessao&sort_order=desc&municipio=GOIANIA"),
+        # Rodada 11: o filtro vale (92 das 100 de Goiânia, nenhuma de Aparecida; 5.491 no total), mas a página
+        # 20 deu 422: sem chave de API a busca pagina só até o resultado 1000 e manda usar /exportar com os
+        # mesmos filtros (a tela pede formato=csv, sem page, page_size e busca_id). Pelo ano da votação, cada
+        # busca talvez caiba nos 1000; o CSV de 2025 mostra as colunas e os cabeçalhos x-total-resultados.
+        ("https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/acordao/jurisprudencia/buscar?texto=&page=1"
+         "&page_size=100&sort_by=data_sessao&sort_order=desc&municipio=GOIANIA&ano_votacao=2025"),
+        ("https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/acordao/jurisprudencia/exportar?texto="
+         "&sort_by=data_sessao&sort_order=desc&municipio=GOIANIA&ano_votacao=2025&formato=csv"),
     ],
     # Frente E (27/11): auditoria independente do Selo de Transparência (PNTP). As páginas que cada critério
     # da matriz (regras/pntp/matriz_2026.yml) manda olhar; onisciente/selo/coleta.py segue os links internos.
