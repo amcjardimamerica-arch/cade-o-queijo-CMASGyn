@@ -39,7 +39,7 @@ from dataclasses import dataclass
 from datetime import date, datetime, timezone
 from pathlib import Path
 
-from . import RAIZ, historico, rastreio
+from . import RAIZ, historico, partes, rastreio
 from .coletores import base as coleta
 
 BANCO = historico.BANCO
@@ -228,8 +228,9 @@ def somar_janela(principal: historico.Banco, novo: Path, meses_da_janela: list[s
     try:
         tabelas = [t for (t,) in con.execute(
             "SELECT name FROM novo.sqlite_master WHERE type = 'table' AND name NOT LIKE 'sqlite_%'")]
-        existentes = {t for (t,) in con.execute(
-            "SELECT name FROM main.sqlite_master WHERE type = 'table'")}
+        # Cada tabela é gravada no esquema onde está no principal: o banco ou uma parte (precos.db,
+        # sancoes.db; onisciente.partes). Tabela nova de uma parte nasce no arquivo da parte.
+        existentes = partes.tabelas(con)
         for tabela in tabelas:
             if tabela == "meta" or tabela.startswith(rastreio.PREFIXO):
                 continue          # o rastreio da janela entra pelo importar_selos, na rodada da soma
@@ -237,23 +238,29 @@ def somar_janela(principal: historico.Banco, novo: Path, meses_da_janela: list[s
                 continue          # a janela não trouxe nada para esta tabela: o principal fica como está
             if tabela not in existentes:
                 [(sql,)] = con.execute("SELECT sql FROM novo.sqlite_master WHERE name = ?", (tabela,))
+                parte = partes.PARTE_DA_TABELA.get(tabela)
+                if parte in partes.anexadas(con):
+                    sql = re.sub(r"^CREATE TABLE (IF NOT EXISTS )?\"?(\w+)\"?", f"CREATE TABLE {parte}.\\2", sql,
+                                 count=1)
                 con.execute(sql)
+                existentes[tabela] = parte if parte in partes.anexadas(con) else "main"
+            esq = existentes[tabela]
             colunas_novo = _colunas(con, tabela, "novo")
-            colunas = [c for c in _colunas(con, tabela) if c in colunas_novo]
+            colunas = [c for c in _colunas(con, tabela, esq) if c in colunas_novo]
             lista = ", ".join(colunas)
             chave = _chave(con, tabela)
             falha = FALHA_DA_JANELA.get(tabela)
             filtro = ""
             if chave == ():
-                con.execute(f"DELETE FROM main.{tabela}")
+                con.execute(f"DELETE FROM {esq}.{tabela}")
             elif chave:
                 cols = ", ".join(chave)
                 boas = f"SELECT DISTINCT {cols} FROM novo.{tabela}" + (f" WHERE NOT ({falha})" if falha else "")
-                con.execute(f"DELETE FROM main.{tabela} WHERE ({cols}) IN ({boas})")
+                con.execute(f"DELETE FROM {esq}.{tabela} WHERE ({cols}) IN ({boas})")
                 if falha:
                     filtro = (f" WHERE NOT ({falha}) OR ({cols}) NOT IN "
-                              f"(SELECT {cols} FROM main.{tabela})")
-            cur = con.execute(f"INSERT OR REPLACE INTO main.{tabela} ({lista}) "
+                              f"(SELECT {cols} FROM {esq}.{tabela})")
+            cur = con.execute(f"INSERT OR REPLACE INTO {esq}.{tabela} ({lista}) "
                               f"SELECT {lista} FROM novo.{tabela}{filtro}")
             trocadas[tabela] = cur.rowcount
         janela_meses = set(meses_da_janela)

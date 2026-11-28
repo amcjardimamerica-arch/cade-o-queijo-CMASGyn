@@ -88,6 +88,30 @@ def montar(ctx: D.Contexto) -> tuple[dict, dict[str, dict], list[dict]]:
     return comum, paginas, D.indice_das_fichas(ind["fichas"])
 
 
+def indice_de_hashes(paginas: list[dict], chaves: dict[str, set[str]], originais: og.Originais) -> list[dict]:
+    """Os hashes das fontes de todas as páginas, para a busca por hash da tela de indícios (as fichas já vão
+    com os seus hashes na própria tela). Cada fonte entra com o hash da resposta (sha256) e, quando o banco
+    tem rastreio, com o hash do registro da coleta; ``p`` é a primeira tela, na ordem das etapas, que mostra
+    um número dessa fonte."""
+    out, vistos = [], set()
+    for pg in paginas:
+        for chave in sorted(chaves.get(pg["id"], ())):
+            o = originais.tabela.get(chave)
+            if o is None:
+                continue
+            for tipo, h in (("resposta", o.sha256), ("registro", o.registro)):
+                if not h or (tipo, h, chave) in vistos:
+                    continue
+                vistos.add((tipo, h, chave))
+                d = {"h": h, "t": tipo, "k": chave, "r": o.rotulo, "p": pg["id"]}
+                if o.url:
+                    d["u"] = o.url
+                if tipo == "registro" and o.confere:
+                    d["v"] = 1
+                out.append(d)
+    return out
+
+
 def gerar(destino: Path = DESTINO, *, banco: Path = BANCO, alvo: str = "goiania",
           panoramas: dict[str, dict] | None = None, brutos: Path | None = None, hoje: date | None = None,
           entradas: dict[str, dict] | None = None) -> list[Path]:
@@ -113,6 +137,9 @@ def gerar(destino: Path = DESTINO, *, banco: Path = BANCO, alvo: str = "goiania"
         escritos.append(destino / nome)
     versao = _versao(ESTATICO / "app.css", ESTATICO / "app.js")
     chaves_comum = chaves_de_fonte(comum)
+    chaves = {p["id"]: chaves_comum | chaves_de_fonte(paginas[p["id"]]) for p in comum["paginas"]}
+    if "indicios" in paginas:
+        paginas["indicios"]["hashes"] = indice_de_hashes(comum["paginas"], chaves, originais)
     for p in comum["paginas"]:
         dados = sem_cpf(paginas[p["id"]])
         fontes = sem_cpf(originais.como_dict(chaves_comum | chaves_de_fonte(dados)))

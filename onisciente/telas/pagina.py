@@ -22,8 +22,9 @@ GRUPOS = (
 )
 
 # Ícones próprios (24 x 24, traço da cor do texto). Etapas: origem, orçamento, contratação, liquidação,
-# pagamento, prestação de contas. Condições: conforme, alerta, sem dado. Demais: início, consulta,
-# secretarias e normas.
+# pagamento, prestação de contas. Condições: conforme, alerta, sem dado. Verificado por hash: o sinal
+# de cerquilha num hexágono, no mesmo traço das condições e com forma própria (nem círculo, nem
+# triângulo, nem quadrado). Demais: início, consulta, secretarias e normas.
 ICONES = {
     "inicio": '<path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h13V10"/><path d="M10 20v-5h4v5"/>',
     "origem": ('<ellipse cx="12" cy="6" rx="7" ry="2.8"/><path d="M5 6v4.5c0 1.5 3.1 2.8 7 2.8s7-1.3 7-2.8V6"/>'
@@ -47,7 +48,43 @@ ICONES = {
     "alerta": '<path d="M12 3.2 21.6 20H2.4z"/><path d="M12 9.5v5M12 17.3v.2"/>',
     "semdado": ('<rect x="3.5" y="3.5" width="17" height="17" rx="3" stroke-dasharray="3.2 2.4"/>'
                 '<path d="M9.7 9.6a2.4 2.4 0 1 1 3.3 2.2c-.7.3-1 .8-1 1.5v.5M12 16.6v.2"/>'),
+    "hash": ('<path d="M12 2.6 20.2 7.3v9.4L12 21.4l-8.2-4.7V7.3z"/>'
+             '<path d="M10.4 8.2 9.2 15.8M14.8 8.2l-1.2 7.6M8.1 10.4h8.3M7.6 13.6h8.3"/>'),
 }
+
+RASTREIO_PENDENTE = "rastreio começa na próxima coleta"
+
+
+def rodape_rastreio(r: dict | None) -> str:
+    """O topo da cadeia do rastreio por hash, no rodapé de todas as páginas, e se ela confere. Sem o
+    arquivo do rastreio (banco ainda não migrado), a frase cinza de que o rastreio começa na próxima
+    coleta, sem erro."""
+    r = r or {}
+    if not r.get("rastreado"):
+        extra = " (o arquivo do rastreio não pôde ser lido nesta geração)" if r.get("erro") else ""
+        return (f'<p class="rastreio-cadeia sem" id="rastreio-cadeia">{icone("hash", "hash sem")}'
+                f'Rastreio por hash: {RASTREIO_PENDENTE}{extra}.</p>')
+    u = r.get("ultima") or {}
+    topo, raiz = u.get("hash") or "", u.get("raiz") or ""
+    ok = r.get("ok")
+    estado = ("a cadeia confere" if ok else
+              f"a cadeia não confere ({r.get('problemas', 0)} problema(s); rode python -m onisciente rastreio)")
+    quando = (u.get("fim") or u.get("inicio") or "")[:10]
+    return (f'<p class="rastreio-cadeia {"ok" if ok else "falha"}" id="rastreio-cadeia" data-confere="{1 if ok else 0}">'
+            f'{icone("hash", "hash " + ("ok" if ok else "falha"))}'
+            f'Topo da cadeia do rastreio: rodada {escape(str(u.get("id", "")))}'
+            + (f" de {escape(quando)}" if quando else "")
+            + f', hash {_hash_copiavel(topo, "hash da rodada")}'
+            + (f', raiz {_hash_copiavel(raiz, "raiz de Merkle da rodada")}' if raiz else "")
+            + f'; {int(r.get("rodadas") or 0)} rodada(s); <b>{escape(estado)}</b>.</p>')
+
+
+def _hash_copiavel(h: str, rotulo: str) -> str:
+    """O hash curto (12 caracteres) com o completo no ``title`` e um botão que copia o completo."""
+    h = h or ""
+    return (f'<code class="hash" title="{escape(rotulo)}: {escape(h)}">{escape(h[:12])}</code>'
+            f'<button type="button" class="copiar" data-copiar="{escape(h)}" aria-label="Copiar por inteiro: '
+            f'{escape(rotulo)}">copiar</button>')
 
 
 def simbolos() -> str:
@@ -145,10 +182,12 @@ def html(pagina: dict, comum: dict, dados: dict, fontes: dict, indice: list, *, 
       <p><b>Onisciente</b>, conferência da prestação de contas, etapa por etapa do gasto público. Cada número mostra a
       sua fonte ao passar o mouse ou tocar; o clique abre o original guardado. Alerta é indício, não acusação.</p>
       <p class="nota" id="gerado"></p>
+      {rodape_rastreio(comum.get("rastreio"))}
     </div>
     <ul id="links-rodape">
       <li><a href="../index.html">Pareceres mensais</a></li>
       <li><a href="../banco/index.html">O banco de dados</a></li>
+      <li><a href="indicios.html#busca-hash">Procurar por hash</a></li>
       <li><a href="../ux/estudo_ux.md">Estudo de UX</a></li>
       <li><a href="https://github.com/ctresb/leis" rel="noopener">Acervo de leis</a></li>
     </ul>

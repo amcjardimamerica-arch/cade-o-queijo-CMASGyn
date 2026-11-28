@@ -56,11 +56,19 @@ jobs:
         if: ${{ !cancelled() }}
         run: |
           LIMITE=95000000
+          AVISO=70000000
           GRANDES=""
           for f in dados/onisciente/*.db; do
             [ -f "$f" ] || continue
             T=$(stat -c %s "$f"); echo "$f: $T bytes"
-            if [ "$T" -gt "$LIMITE" ]; then GRANDES="$GRANDES $f ($T bytes)"; fi
+            if [ "$T" -gt "$LIMITE" ]; then GRANDES="$GRANDES $f ($T bytes)"
+            elif [ "$T" -gt "$AVISO" ]; then
+              # Aviso antes do limite: o arquivo deve ser dividido (onisciente/partes.py) enquanto há folga.
+              { echo "## Aviso: $f passou de 70 MB ($T bytes)"; echo
+                echo "Dividir antes de chegar a 95 MB (a guarda para o envio). Maiores tabelas:"; echo
+                python3 -c "import sqlite3,sys; c=sqlite3.connect(sys.argv[1]); [print(f'- {n}: {s} bytes') for n,s in c.execute('select name, sum(pgsize) from dbstat group by name order by 2 desc limit 5')]" "$f" 2>/dev/null || true
+              } >> "$GITHUB_STEP_SUMMARY"
+            fi
           done
           if [ -n "$GRANDES" ]; then
             echo "grande=1" >> "$GITHUB_OUTPUT"
@@ -80,7 +88,9 @@ jobs:
         run: |
           git config user.name "vigilancia-bot"; git config user.email "bot@users.noreply.github.com"
           git add dados/onisciente/historico.db relatorios/onisciente docs/onisciente estado/onisciente_coleta.json
-          [ ! -f dados/onisciente/rastreio.db ] || git add dados/onisciente/rastreio.db
+          for f in dados/onisciente/rastreio.db dados/onisciente/precos.db dados/onisciente/sancoes.db; do
+            [ ! -f "$f" ] || git add "$f"          # as partes do banco (onisciente/partes.py) e o rastreio
+          done
           git diff --staged --quiet && exit 0
           git commit -m "Onisciente: agenda leis $(date -u +%F)"
           for n in 1 2 3; do

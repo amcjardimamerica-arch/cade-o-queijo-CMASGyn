@@ -28,6 +28,7 @@ import urllib.parse
 import zlib
 from datetime import UTC, date, datetime, timedelta
 
+from .. import partes as _partes
 from . import base, economia_go, emendas, fnde, fns, sancoes, tcm, tcu, transferegov
 from . import comum_federal as cf
 
@@ -108,7 +109,7 @@ COLUNAS_NOVAS = {"contas_irregulares_tcm": ("cpf_parcial", "assunto", "decisao",
 
 def preparar(banco) -> None:
     """Cria as tabelas do bloco 5 num banco já aberto (idempotente)."""
-    banco.con.executescript(ESQUEMA)
+    banco.con.executescript(_partes.esquema_com_partes(banco.con, ESQUEMA))   # sancoes vai para sancoes.db
     for tabela, colunas in COLUNAS_NOVAS.items():
         existentes = {c[1] for c in banco.con.execute(f"PRAGMA table_info({tabela})")}
         for coluna in colunas:

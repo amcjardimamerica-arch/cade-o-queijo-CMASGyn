@@ -29,6 +29,7 @@ from datetime import date
 from pathlib import Path
 from typing import TYPE_CHECKING
 
+from . import partes as _partes
 from . import RAIZ
 from .legal.mapa import MapaLegal, carregar
 from .nucleo.indicios import Familia, Ficha, emitir
@@ -149,7 +150,7 @@ class Leitor:
         self.caminho = Path(caminho)
         if not self.caminho.exists():
             raise FileNotFoundError(f"banco histórico não encontrado: {self.caminho}")
-        self.con = sqlite3.connect(f"file:{self.caminho}?mode=ro", uri=True)
+        self.con = _partes.conectar_leitura(self.caminho)
 
     def fechar(self) -> None:
         self.con.close()

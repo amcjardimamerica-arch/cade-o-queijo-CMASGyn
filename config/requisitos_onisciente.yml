@@ -1079,12 +1079,16 @@
     troca os eventos do empenho sem duplicar; cada rodada lê os meses que faltam e relê os 12 mais recentes. Os popups de
     liquidação e de pagamento conferem, por amostra, os três empenhos de maior valor pago de cada mês, e a divergência fica
     anotada na consulta. O EmpenhoPopUp pedido com & trouxe os campos (confirmado). O Buscar foi recusado (OsAjax: HTTP 500;
-    postback: página Erro Interno) e fica só como reserva quando a exportação falhar. Testado com o recorte real da planilha
-    (dez empenhos de credores pessoas jurídicas, byte a byte) e o EmpenhoPopUp real. A lista de arquivos da categoria 49 do
-    WordPress continua montada no navegador (fonte secundária, não usada).'
-  falta: Falta a primeira coleta real do motor no GitHub pela exportação (vale como cumprido quando o banco tiver os eventos
-    de despesa de Goiânia gravados por ela).
-  trava: testes/test_execucao.py::test_motor_le_o_mes_pela_exportacao_e_confere_a_amostra
+    postback: página Erro Interno) e fica só como reserva quando a exportação falhar. Sexta rodada: a coleta real do GitHub
+    (rodada 46093388087) gravou zero eventos porque o leitor comum não guarda cookies e o postback da exportação chegava sem
+    a sessão do GET (19.654 bytes, sem a planilha); o motor agora lê o TransWeb numa sessão de cookies, grava o mês em coletas
+    e, quando a resposta não é a planilha, o motivo legível (título e texto da página) no erro da coleta. Testado com o recorte
+    real da planilha (dez empenhos de credores pessoas jurídicas, byte a byte) e o EmpenhoPopUp real. A lista de arquivos
+    da categoria 49 do WordPress continua montada no navegador (fonte secundária, não usada).'
+  falta: Rodar de novo o motor execucao_goiania no GitHub com a sessão de cookies e ver eventos gravados em despesa_eventos;
+    se ainda vier sem a planilha, a sondagem d2_transweb_motor repete o caminho do motor em 2024-11, 2025-06 e 2026-10, com
+    e sem cookies e com o Buscar antes, guardando o corpo das respostas.
+  trava: testes/test_execucao.py::test_postback_da_exportacao_vai_com_o_cookie_da_sessao_do_get
 - id: 142
   bloco: Fontes e cadência
   requisito: SICONFI RREO/RGF/DCA

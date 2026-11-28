@@ -27,6 +27,7 @@ from collections import defaultdict
 from datetime import date
 from pathlib import Path
 
+from .. import partes as _partes
 from .. import RAIZ
 from .base import documento_publico, sem_travessao
 
@@ -54,7 +55,7 @@ def _url(texto_fonte) -> str:
 
 
 def _tabela(con: sqlite3.Connection, nome: str) -> bool:
-    return con.execute("SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = ?", (nome,)).fetchone() is not None
+    return _partes.tem_tabela(con, nome)
 
 
 def _linhas(con: sqlite3.Connection, sql: str, args: tuple = ()) -> list[dict]:
@@ -352,7 +353,7 @@ def escrever(banco: Path, destino: Path = ENTRADAS, *, hoje: date | None = None,
     destino = Path(destino)
     destino.mkdir(parents=True, exist_ok=True)
     hoje = hoje or date.today()
-    con = sqlite3.connect(f"file:{banco}?mode=ro", uri=True)
+    con = _partes.conectar_leitura(banco)
     try:
         conteudo = {
             "selo_transparencia": selo(auditoria),

@@ -34,6 +34,7 @@ from dataclasses import dataclass, field
 from datetime import date, datetime
 from pathlib import Path
 
+from .. import partes as _partes
 from ..config import Dominio
 from ..nucleo.integridade import IndiceIntegridade
 from ..nucleo.selos import Certificacao, Selo, Via, selar
@@ -81,7 +82,7 @@ ELEMENTOS = {
 
 
 def _tem(con: sqlite3.Connection, tabela: str) -> bool:
-    return con.execute("select 1 from sqlite_master where type='table' and name=?", (tabela,)).fetchone() is not None
+    return _partes.tem_tabela(con, tabela)
 
 
 def _filtro_recorte(d: Dominio) -> tuple[str, list[str]]:
@@ -494,7 +495,7 @@ def contas_uma_a_uma(con: sqlite3.Connection, d: Dominio, exercicio: int, ate_me
 def abrir(banco: Path | str | sqlite3.Connection) -> sqlite3.Connection:
     if isinstance(banco, sqlite3.Connection):
         return banco
-    return sqlite3.connect(f"file:{banco}?mode=ro", uri=True)
+    return _partes.conectar_leitura(banco)
 
 
 # --- A trilha item a item da secretaria (cobertura e vínculo do índice) ---------------------------------

@@ -1,9 +1,11 @@
-"""Trava: os fluxos que gravam o banco guardam o rastreio.db e não tentam enviar banco grande demais.
+"""Trava: os fluxos que gravam o banco guardam o rastreio e as partes e não enviam banco grande demais.
 
 O GitHub recusa arquivo acima de 100 MiB, e um envio recusado perde a rodada inteira. Todo fluxo do
 grupo onisciente-banco confere o tamanho de cada .db antes do commit: acima de 95 MB, sobe os bancos
 como artefato da execução, escreve no resumo qual arquivo passou e falha sem tentar o push. E o
-arquivo do rastreio por hash (dados/onisciente/rastreio.db, frente H) entra no mesmo commit do banco.
+arquivo do rastreio por hash (dados/onisciente/rastreio.db, frente H) e as partes do banco (precos.db
+e sancoes.db, onisciente/partes.py) entram no mesmo commit do banco. Acima de 70 MB, a guarda avisa no
+resumo, para o arquivo ser dividido antes de chegar ao limite.
 """
 import os
 import re
@@ -38,6 +40,7 @@ def test_todo_fluxo_do_banco_tem_a_guarda_de_tamanho_e_adiciona_o_rastreio():
             guarda = passos[ids["tamanho"]]
             assert "95000000" in guarda["run"] and "GITHUB_STEP_SUMMARY" in guarda["run"], p.name
             assert "grande=1" in guarda["run"] and "dados/onisciente/*.db" in guarda["run"], p.name
+            assert "70000000" in guarda["run"], p.name                                 # o aviso antes do limite
             # O passo que publica (o último que faz commit e push; o boletim da coleta em andamento, que só
             # envia relatorios/onisciente/boletim_coleta.md de outra cópia do ramo, vem antes e não conta).
             envios = [i for i, s in enumerate(passos) if "git commit" in str(s.get("run", ""))
@@ -48,7 +51,9 @@ def test_todo_fluxo_do_banco_tem_a_guarda_de_tamanho_e_adiciona_o_rastreio():
             for i in commit:
                 assert ids["tamanho"] < i, p.name
                 assert f"{GRANDE} != '1'" in passos[i].get("if", ""), p.name        # não envia se passou
-                assert re.search(r"git add dados/onisciente/rastreio\.db", passos[i]["run"]), p.name
+                laco = re.search(r"for f in ([^;]+); do\s+\[ ! -f \"\$f\" \] \|\| git add \"\$f\"", passos[i]["run"])
+                assert laco, p.name
+                assert set(laco.group(1).split()) >= {f"dados/onisciente/{n}.db" for n in ("rastreio", "precos", "sancoes")}
             artefato = [i for i, s in enumerate(passos) if str(s.get("uses", "")).startswith("actions/upload-artifact")
                         and f"{GRANDE} == '1'" in s.get("if", "")]
             assert artefato and ids["tamanho"] < artefato[0] < commit[0], p.name
@@ -74,8 +79,15 @@ def _rodar_guarda(pasta: Path, tamanhos: dict[str, int]) -> tuple[str, str]:
 
 
 def test_a_guarda_aponta_o_banco_grande_e_deixa_passar_o_normal(tmp_path):
-    saida, resumo = _rodar_guarda(tmp_path / "normal", {"historico.db": 77_406_208, "rastreio.db": 20_000_000})
+    saida, resumo = _rodar_guarda(tmp_path / "normal", {"historico.db": 31_285_248, "precos.db": 48_312_320,
+                                                        "sancoes.db": 19_054_592, "rastreio.db": 16_801_792})
     assert "grande=1" not in saida and resumo == ""
     saida, resumo = _rodar_guarda(tmp_path / "grande", {"historico.db": 96_000_000, "rastreio.db": 20_000_000})
     assert "grande=1" in saida
     assert "historico.db" in resumo and "rastreio.db" not in resumo and "onisciente-bancos-123" in resumo
+
+
+def test_a_guarda_avisa_acima_de_70_mb_sem_parar_o_envio(tmp_path):
+    saida, resumo = _rodar_guarda(tmp_path / "aviso", {"historico.db": 31_000_000, "precos.db": 75_000_000})
+    assert "grande=1" not in saida
+    assert "precos.db passou de 70 MB" in resumo and "historico.db" not in resumo

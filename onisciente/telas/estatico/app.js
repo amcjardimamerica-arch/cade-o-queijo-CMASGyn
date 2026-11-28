@@ -206,6 +206,28 @@
   };
 
   // --- séries -------------------------------------------------------------------------------
+  // Busca por hash: o começo (4 caracteres hexadecimais ou mais) do hash de um achado, das provas dele, da
+  // resposta de uma fonte (sha256) ou do registro da coleta (rastreio). Sem rede: só o que as telas levam.
+  L.hexDe = function (t) { return String(t === undefined || t === null ? '' : t).toLowerCase().replace(/[^0-9a-f]/g, ''); };
+  L.buscarHash = function (q, fichas, hashes, limite) {
+    var p = L.hexDe(q), out = [], vistos = {};
+    if (p.length < 4) return out;
+    function poe(x) { var k = x.t + '|' + x.h + '|' + (x.ficha || x.k); if (!vistos[k]) { vistos[k] = 1; out.push(x); } }
+    (fichas || []).forEach(function (fi) {
+      var r = fi.rastreio || {};
+      var itens = [['achado', r.achado], ['apoio', r.apoio]].concat((r.provas || []).map(function (h) { return ['prova', h]; }));
+      itens.forEach(function (x) {
+        if (!x[1] || x[1].indexOf(p) !== 0) return;
+        if (x[0] === 'prova' && x[1] === r.apoio) return;
+        var per = L.periodoDa(fi);
+        poe({ h: x[1], t: x[0], ficha: fi.codigo, r: fi.titulo, de: per[0], ate: per[1] });
+      });
+    });
+    (hashes || []).forEach(function (e) {
+      if (e.h && e.h.indexOf(p) === 0) poe({ h: e.h, t: e.t, k: e.k, r: e.r, p: e.p, u: e.u, v: e.v });
+    });
+    return out.slice(0, limite || 20);
+  };
   L.janela = function (c, n) { return [L.menos(c, n - 1), c]; };
   L.somaPorMes = function (mapa, de, ate) {
     var n = 0, v = 0;
@@ -284,6 +306,14 @@
   }
   var COND = { conforme: ['conforme', 'conforme'], alerta: ['alerta', 'alerta'], sem_dado: ['semdado', 'sem dado'] };
   function icCond(cd, classe) { return ic((COND[cd] || COND.alerta)[0], 'cond ' + cd + (classe ? ' ' + classe : '')); }
+  // O hash: 12 caracteres na tela, o completo no title e um botão que copia o completo. O ícone próprio
+  // (cerquilha no hexágono) marca o que é verificado por hash; verde quando confere com o selo do rastreio.
+  function hashCurto(h, rotulo, copiavel) {
+    if (!h) return '';
+    return '<code class="hash" title="' + esc(rotulo + ': ' + h) + '">' + esc(h.slice(0, 12)) + '</code>' +
+      (copiavel === false ? '' : '<button type="button" class="copiar" data-copiar="' + esc(h) + '" aria-label="Copiar por inteiro: ' + esc(rotulo) + '">copiar</button>');
+  }
+  function icHash(estado) { return ic('hash', 'hash' + (estado ? ' ' + estado : '')); }
   var SELOS = {
     verde: ['verde', 'duas vias', 'conforme'], azul: ['azul', 'uma via', 'conforme'], roxo: ['roxo', 'não publicado', 'sem_dado'],
     vermelho: ['vermelho', 'leitura falhou', 'sem_dado'], cinza: ['cinza', 'aguardando coleta', 'sem_dado'],
@@ -332,7 +362,9 @@
     var html = '<b>' + esc(f.r) + '</b>';
     if (v !== null && !isNaN(v) && (!el.dataset.m || el.dataset.m === 'curto' || el.dataset.m === 'brl')) html += '<div class="mono">' + L.brl(v) + '</div>';
     html += '<div>' + selo(s) + (f.q ? ' lido em ' + L.data(f.q) : '') + '</div>';
-    if (f.h) html += '<div class="h">sha256 ' + esc(f.h) + '</div>';
+    if (f.h) html += '<div class="h">' + icHash() + 'hash da resposta (sha256) ' + hashCurto(f.h, 'hash da resposta (sha256)', !!fixar) + '</div>';
+    if (f.hr) html += '<div class="h">' + icHash(f.hv ? 'ok' : '') + 'hash do registro ' + hashCurto(f.hr, 'hash do registro da coleta', !!fixar) +
+      (f.hv ? ' <span class="confere">confere com o selo da rodada</span>' : '') + '</div>';
     if (f.n) html += '<div class="' + (f.u ? '' : 'falta') + '">' + esc(f.n) + '</div>';
     if (f.u) html += '<div class="acao"><a href="' + esc(f.u) + '" target="_blank" rel="noopener">Abrir o original' + (f.c ? ' guardado' : '') + '</a>' +
       (fixar ? '<button type="button" data-fechar>Fechar</button>' : '') + '</div>';
@@ -362,7 +394,21 @@
     if (toque || !f.u) { mostrar(el, true); return; }
     window.open(f.u, '_blank', 'noopener');
   }
+  function copiar(bt) {
+    var t = bt.dataset.copiar;
+    function feito() { bt.textContent = 'copiado'; setTimeout(function () { bt.textContent = 'copiar'; }, 1600); }
+    function manual() {
+      var ta = document.createElement('textarea'); ta.value = t; ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select();
+      try { if (document.execCommand('copy')) feito(); else window.prompt('Copie o hash:', t); } catch (e) { window.prompt('Copie o hash:', t); }
+      document.body.removeChild(ta);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(feito, manual);
+    else manual();
+  }
   document.addEventListener('click', function (e) {
+    var cp = e.target.closest && e.target.closest('[data-copiar]');
+    if (cp) { e.preventDefault(); e.stopPropagation(); copiar(cp); return; }
     if (e.target.closest('[data-fechar]')) { fixa = null; dica.hidden = true; return; }
     var el = e.target.closest('[data-f]');
     if (el) { e.preventDefault(); e.stopPropagation(); ativar(el); return; }
@@ -381,8 +427,15 @@
     var per = L.periodoDa(fi), periodo = per[0] === per[1] ? L.mes(per[0]) : L.mes(per[0]) + ' a ' + L.mes(per[1]);
     var cust = (fi.custodia || []).filter(function (o) { return o.url; }).map(function (o) {
       return '<li><a href="' + esc(o.url) + '" target="_blank" rel="noopener">' + esc(o.url) + '</a>' +
-        (o.quando ? ', lido em ' + L.data(o.quando) : '') + (o.sha256 ? ' <span class="mono">sha256 ' + esc(o.sha256.slice(0, 16)) + '…</span>' : '') + '</li>';
+        (o.quando ? ', lido em ' + L.data(o.quando) : '') + (o.sha256 ? ' · resposta ' + hashCurto(o.sha256, 'hash da resposta (sha256)') : '') +
+        (o.registro ? ' · registro ' + hashCurto(o.registro, 'hash do registro') : '') + '</li>';
     }).join('');
+    var ra = fi.rastreio || {};
+    var rastro = ra.achado ? '<div class="larga rastreio"><h4>' + icHash() + 'Rastreio</h4><p>Hash do achado ' + hashCurto(ra.achado, 'hash do achado') +
+      (ra.apoio ? ' · hash das provas ' + hashCurto(ra.apoio, (ra.provas || []).length > 1 ? 'raiz de Merkle das provas' : 'hash da prova') +
+        ((ra.provas || []).length > 1 ? ' <span class="nota">(raiz de ' + ra.provas.length + ' provas)</span>' : '')
+        : ' · <span class="nota">sem prova guardada: a falta do documento é o próprio achado</span>') +
+      '</p><p class="nota">Calculado sobre a ficha publicada no panorama do mês, como no parecer: qualquer mudança no texto da ficha muda o hash. A busca por hash fica na tela de indícios.</p></div>' : '';
     var corpo = [
       ['Como deveria ser', fi.como_deveria], ['Como está', fi.como_esta], ['Norma', fi.norma],
       ['Providência', fi.providencia], ['Caso semelhante', fi.caso], ['Observação', fi.observacao]
@@ -393,10 +446,11 @@
       cust ? '<div class="larga custodia"><h4>Prova guardada</h4><ul>' + cust + '</ul></div>' :
         '<div class="larga custodia"><h4>Prova</h4><p>' + selo('roxo', 'documento não publicado') + ' A ficha nasce da ausência do documento que a lei manda publicar.</p></div>';
     var cd = L.condicao(fi);
+    var hs = ra.achado ? '<span class="hash-curto" title="' + esc('hash do achado: ' + ra.achado) + '">' + icHash() + esc(ra.achado.slice(0, 12)) + '</span>' : '';
     return '<details class="ficha ' + esc(fi.gravidade) + ' ' + cd + '" id="ficha-' + esc(fi.codigo).replace(/[^A-Za-z0-9_-]/g, '_') + '" data-codigo="' + esc(fi.codigo) + '">' +
       '<summary>' + icCond(cd, fi.tema === 'sistema' ? 'sistema' : fi.gravidade) + '<h3>' + esc(fi.titulo) + '</h3>' + (cd === 'sem_dado' ? '<span class="grav semdado">sem dado</span>' : grav(fi.gravidade)) +
       '<p class="meta"><span class="cod">' + esc(fi.codigo) + '</span><span>' + esc(fi.verificacao || '') + '</span><span>' +
-      esc(secs) + '</span><span>' + esc(periodo) + '</span></p></summary><div class="corpo">' + corpo + prova + '</div></details>';
+      esc(secs) + '</span><span>' + esc(periodo) + '</span>' + hs + '</p></summary><div class="corpo">' + corpo + prova + rastro + '</div></details>';
   }
   function blocoFichas(lista, titulo, sub, id) {
     var f = L.filtrar(lista || [], { c: S.c, s: S.s });
@@ -1031,8 +1085,36 @@
     familias: (U.get('fam') || '').split(',').filter(Boolean), gravidades: (U.get('g') || '').split(',').filter(Boolean),
     temas: (U.get('tema') || '').split(',').filter(Boolean), texto: U.get('q') || '', estacao: U.get('est') || '',
     etapas: (U.get('etapa') || '').split(',').filter(Boolean), condicoes: (U.get('cd') || '').split(',').filter(Boolean),
-    de: U.get('de') || '', ate: U.get('ate') || '', mostrar: 30
+    de: U.get('de') || '', ate: U.get('ate') || '', hash: U.get('hash') || '', mostrar: 30
   };
+  var TIPO_HASH = {
+    achado: 'hash do achado', apoio: 'hash das provas do achado', prova: 'uma prova do achado',
+    resposta: 'hash da resposta (sha256)', registro: 'hash do registro da coleta'
+  };
+  function resultadosHash(q) {
+    if (!q) return '';
+    var p = L.hexDe(q);
+    if (p.length < 4) return '<p class="nota">Digite pelo menos 4 caracteres do hash (algarismos e as letras de a a f).</p>';
+    var achados = L.buscarHash(p, D.fichas, D.hashes, 20);
+    var tit = {}; C.paginas.forEach(function (pg) { tit[pg.id] = pg.titulo; });
+    if (!achados.length) {
+      return '<p class="sem-hash">' + icHash('sem') + 'Nenhum hash começando com <code class="hash">' + esc(p) + '</code> nas telas. ' +
+        'Para procurar em todos os registros do banco: <code>python -m onisciente rastreio --hash ' + esc(p) + '</code>.</p>';
+    }
+    return '<p class="sub">' + achados.length + ' resultado(s) para <code class="hash">' + esc(p) + '</code>.</p><ul class="res-hash">' + achados.map(function (x) {
+      var cab = icHash(x.v ? 'ok' : '') + '<code class="hash" title="' + esc(TIPO_HASH[x.t] + ': ' + x.h) + '"><mark>' + esc(x.h.slice(0, p.length)) + '</mark>' +
+        esc(x.h.slice(p.length, Math.max(12, p.length))) + '</code><button type="button" class="copiar" data-copiar="' + esc(x.h) + '" aria-label="Copiar por inteiro: ' + esc(TIPO_HASH[x.t] || 'hash') + '">copiar</button> ' +
+        '<span class="tipo">' + esc(TIPO_HASH[x.t] || x.t) + '</span>';
+      if (x.ficha) {
+        var u = new URLSearchParams(); u.set('c', S.c); u.set('s', ''); u.set('q', x.ficha); if (x.de) u.set('de', x.de); if (x.ate) u.set('ate', x.ate);
+        return '<li>' + cab + '<br><a href="indicios.html?' + u.toString() + '#ficha-' + esc(x.ficha).replace(/[^A-Za-z0-9_-]/g, '_') + '">' +
+          '<b>' + esc(x.ficha) + '</b> ' + esc(x.r) + '</a></li>';
+      }
+      return '<li>' + cab + (x.v ? ' <span class="confere">confere com o selo da rodada</span>' : '') + '<br>' + esc(x.r) +
+        ' · <a href="' + link(x.p) + '">ver na tela ' + esc(tit[x.p] || x.p) + '</a>' +
+        (x.u ? ' · <a href="' + esc(x.u) + '" target="_blank" rel="noopener">abrir o original</a>' : '') + '</li>';
+    }).join('') + '</ul>';
+  }
   function etapaPorId(id) { return (C.etapas || []).filter(function (e) { return e.id === id; })[0]; }
   // O cabeçalho da etapa escolhida: o que ela confere e as telas onde ela aparece em detalhe.
   function cabecalhoEtapa() {
@@ -1058,14 +1140,18 @@
       '<fieldset><legend>Período</legend><select id="f-de" aria-label="De">' + opt(FI.de) + '</select><select id="f-ate" aria-label="Até">' + opt(FI.ate) + '</select></fieldset>' +
       '<fieldset><legend>Texto</legend><input type="search" id="f-texto" placeholder="Código, título ou norma" value="' + esc(FI.texto) + '"></fieldset>' +
       (FI.estacao ? '<fieldset><legend>Estação</legend><button type="button" class="chip" data-limpa-est aria-pressed="true">Estação ' + esc(FI.estacao) + ' ×</button></fieldset>' : '') +
-      '</div></section><div id="lista-fichas"></div>';
+      '</div></section>' +
+      painel('busca-hash', 'Procurar por hash', 'Cole o hash, ou o começo dele (4 caracteres ou mais), de um achado, das provas de um achado, da resposta de uma fonte (sha256) ou do registro de uma coleta, como aparece no parecer, nas fichas e no balão de origem de cada número.',
+        '<form class="busca-hash" role="search" onsubmit="return false"><label>' + icHash() + '<span class="sr">Hash</span><input type="search" id="f-hash" autocomplete="off" spellcheck="false" placeholder="ex.: 3fa2c1d0" value="' + esc(FI.hash) + '"></label></form>' +
+        '<div id="res-hash" aria-live="polite">' + resultadosHash(FI.hash) + '</div>', { lamina: false }) +
+      '<div id="lista-fichas"></div>';
     depois.push(function () {
       function sync() {
         var u = new URLSearchParams(); u.set('c', S.c); if (S.s) u.set('s', S.s);
         if (FI.familias.length) u.set('fam', FI.familias.join(',')); if (FI.gravidades.length) u.set('g', FI.gravidades.join(','));
         if (FI.temas.length) u.set('tema', FI.temas.join(',')); if (FI.texto) u.set('q', FI.texto); if (FI.estacao) u.set('est', FI.estacao);
         if (FI.etapas.length) u.set('etapa', FI.etapas.join(',')); if (FI.condicoes.length) u.set('cd', FI.condicoes.join(','));
-        if (FI.de) u.set('de', FI.de); if (FI.ate) u.set('ate', FI.ate);
+        if (FI.de) u.set('de', FI.de); if (FI.ate) u.set('ate', FI.ate); if (FI.hash) u.set('hash', FI.hash);
         history.replaceState(null, '', '?' + u.toString());
       }
       function lista() {
@@ -1100,6 +1186,7 @@
       document.getElementById('f-de').onchange = function () { FI.de = this.value; sync(); lista(); };
       document.getElementById('f-ate').onchange = function () { FI.ate = this.value; sync(); lista(); };
       document.getElementById('f-texto').oninput = function () { FI.texto = this.value; sync(); lista(); };
+      document.getElementById('f-hash').oninput = function () { FI.hash = this.value.trim(); sync(); document.getElementById('res-hash').innerHTML = resultadosHash(FI.hash); };
       var le = document.querySelector('[data-limpa-est]'); if (le) le.onclick = function () { FI.estacao = ''; sync(); desenhar(); };
       lista();
     });
