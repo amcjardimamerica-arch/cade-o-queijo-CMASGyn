@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agenda do Onisciente</title>
+<style>
+body{font-family:system-ui,sans-serif;margin:0 auto;max-width:960px;padding:16px;color:#1b1b1b;background:#fff}
+table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid #ddd;padding:8px;text-align:left;vertical-align:top}
+tr.ok td:last-child{color:#176f2c}tr.falha td:last-child{color:#b3261e;font-weight:600}tr.espera td:last-child{color:#6b6b6b}
+.alerta{background:#fdecea;border-left:4px solid #b3261e;padding:8px 12px}small{color:#555}
+@media (prefers-color-scheme: dark){body{background:#111;color:#eee}td,th{border-color:#333}small{color:#aaa}
+.alerta{background:#3a1512}tr.ok td:last-child{color:#6fd08a}tr.falha td:last-child{color:#ff8a80}}
+</style></head><body>
+<h1>Agenda do Onisciente</h1>
+<p>O sistema roda sozinho, no relógio do GitHub. Cada coleta soma ao banco o que é novo e nunca refaz
+a série inteira. Página refeita em 28/11/2026.</p>
+<p>Todas as rodadas que já rodaram funcionaram na última tentativa.</p>
+<table><thead><tr><th>Rodada</th><th>Quando</th><th>Última tentativa (UTC)</th><th>Último sucesso (UTC)</th>
+<th>Resultado</th></tr></thead><tbody>
+<tr class='espera'><td><strong>Diário Oficial e compras públicas</strong><br><small>diaria (onisciente-agenda-diaria.yml)</small></td><td>todo dia, 23h em Goiânia</td><td>nunca</td><td>nunca</td><td>ainda não rodou</td></tr>
+<tr class='espera'><td><strong>Painel de preços e repasses federais</strong><br><small>precos (onisciente-agenda-precos.yml)</small></td><td>toda quarta-feira, 9h em Goiânia</td><td>nunca</td><td>nunca</td><td>ainda não rodou</td></tr>
+<tr class='espera'><td><strong>Contas do Tesouro, saúde, educação e repasses</strong><br><small>mensal (onisciente-agenda-mensal.yml)</small></td><td>todo dia 2, 6h em Goiânia</td><td>nunca</td><td>nunca</td><td>ainda não rodou</td></tr>
+<tr class='espera'><td><strong>Leis federais e de Goiânia e decisões dos tribunais de contas</strong><br><small>leis (onisciente-agenda-leis.yml)</small></td><td>toda segunda-feira, 9h em Goiânia</td><td>nunca</td><td>nunca</td><td>ainda não rodou</td></tr>
+<tr class='ok'><td><strong>Série histórica desde o primeiro exercício</strong><br><small>serie (onisciente-agenda-serie.yml)</small></td><td>todo dia 10, 13h em Goiânia</td><td>2026-11-28 11:31</td><td>2026-11-28 11:31</td><td>funcionou</td></tr>
+<tr class='espera'><td><strong>Parecer da última competência</strong><br><small>parecer (onisciente-agenda-parecer.yml)</small></td><td>todo domingo e todo dia 5, 12h em Goiânia</td><td>nunca</td><td>nunca</td><td>ainda não rodou</td></tr>
+</tbody></table>
+<p><a href="index.html">Pareceres e banco histórico</a></p>
+</body></html>
