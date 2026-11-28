@@ -304,6 +304,11 @@ CANDIDATOS: dict[str, list[str]] = {
         "https://consultafns.saude.gov.br/recursos/consulta-detalhada/detalhe-pagamento?page=1&count=100&ano=2025&"
         "mes=&tipoConsulta=&blocos=&componentes=&acoes=61659&estado=GO&municipio=520870&repasse=&dataInicialOb=&"
         "dataFinalOb=&cpfCnpjUg=37623352000103",
+        # Nona rodada: na coleta d532c1d as 7 páginas vieram diferentes, mas com ordens repetidas entre elas e
+        # outras faltando. count=1000 mostra se as 676 vêm numa página só (sem paginação, sem repetição).
+        ("https://consultafns.saude.gov.br/recursos/consulta-detalhada/detalhe-pagamento?page=1&count=1000&ano=2025&"
+         "mes=&tipoConsulta=&blocos=&componentes=&acoes=&estado=GO&municipio=520870&repasse=&dataInicialOb=&"
+         "dataFinalOb=&cpfCnpjUg=37623352000103"),
     ],
     "d1_fnde": [
         # As liberações por entidade já são lidas (terceira rodada): uma de prova, para a trava do formato.
@@ -682,8 +687,19 @@ def _caminho_do_motor(fonte: str, *, ler_=None, guardar=None, meses=MESES_DO_MOT
     return out
 
 
+def fontes_pedidas(argumentos: list[str]) -> list[str] | None:
+    """As fontes da linha de comando. O fluxo passa a lista como um argumento só, separada por vírgulas
+    ("d2_transweb_popup,d1_fns,d1_tcm,d1_tcu"); lida inteira, ela não casava com nenhuma fonte e a sondagem
+    de 28/11/2026 (1e36935) saiu vazia. Vírgula e espaço separam; None (todas) se nada foi pedido."""
+    nomes = [n for a in argumentos for n in re.split(r"[\s,]+", a) if n]
+    return list(dict.fromkeys(nomes)) or None
+
+
 def sondar(fontes: list[str] | None = None) -> list[dict]:
     resultado = []
+    desconhecidas = [f for f in fontes or () if f not in CANDIDATOS]
+    for nome in desconhecidas:
+        print(f"FALHA fonte desconhecida na sondagem: {nome}", file=sys.stderr)
     install_opener(build_opener(HTTPCookieProcessor(CookieJar())))   # sessão, como num navegador
     for fonte, urls in CANDIDATOS.items():
         if fontes and fonte not in fontes:
@@ -713,11 +729,12 @@ def sondar(fontes: list[str] | None = None) -> list[dict]:
                 resultado.extend(_conversa_despesas(fonte, url, leitura))
     nome = "indice.json" if not fontes else f"indice_{'_'.join(fontes)}.json"
     (PASTA / nome).write_text(mascara_cpf.mascarar_texto(json.dumps(
-        {"quando": datetime.now(timezone.utc).isoformat(timespec="seconds"), "leituras": resultado},
+        {"quando": datetime.now(timezone.utc).isoformat(timespec="seconds"), "leituras": resultado,
+         **({"fontes_desconhecidas": desconhecidas} if desconhecidas else {})},
         ensure_ascii=False, indent=1))[0], encoding="utf-8")
     return resultado
 
 
 if __name__ == "__main__":
-    for r in sondar([f for f in sys.argv[1:] if f] or None):
+    for r in sondar(fontes_pedidas(sys.argv[1:])):
         print(("OK " if r["ok"] else "FALHA ") + f"{r['fonte']}: {r['url']} {r['http'] or r['erro']}")
