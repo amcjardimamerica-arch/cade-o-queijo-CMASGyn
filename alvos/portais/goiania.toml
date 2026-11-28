@@ -152,7 +152,9 @@ confirmado = true          # sondagem de 28/11/2026: 200, a planilha CSV de outu
 formato = "CSV"
 amostra = 3                # empenhos conferidos nos popups a cada mês lido (os de maior valor pago)
 releitura = 12             # os meses mais recentes lidos de novo: liquidações e pagamentos chegam depois
-meses_por_rodada = 14
+# Coleta de 28/11/2026 (rodada 46099474353): 14 meses em 338 s e o resto ficou de fora por este limite.
+# Os meses que faltam vêm antes das releituras; o motor para antes do fim do tempo dele (60 min).
+meses_por_rodada = 40
 # O cabeçalho real da planilha (campo do evento -> coluna).
 [transweb.despesas.exportar.colunas]
 empenho = "Empenho"

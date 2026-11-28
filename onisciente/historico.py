@@ -277,6 +277,8 @@ class Banco:
         banco._atualizar_colunas()
         banco._iniciar_rastreio()
         rastreio.migrar(banco.con)
+        # Frente D2: o CPF inteiro gravado por rodadas antigas sai mascarado, numa rodada própria do rastreio.
+        _rastrear(banco, goiania_transweb.migrar_cpfs)
         return banco
 
     def _iniciar_rastreio(self) -> None:
