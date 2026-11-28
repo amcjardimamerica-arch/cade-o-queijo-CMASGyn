@@ -140,7 +140,8 @@ jobs:
             [ -z "$RODADA" ] || [ ! -f "$f" ] || git add "$f"   # o estado da rodada da agenda, quando foi uma
           done
           git diff --staged --quiet && exit 0
-          git commit -m "Onisciente: ${RODADA:+rodada $RODADA da agenda}${RODADA:-coleta histórica $DESDE a $ATE}"
+          if [ -n "$RODADA" ]; then MSG="Onisciente: rodada $RODADA da agenda"; else MSG="Onisciente: coleta histórica $DESDE a $ATE"; fi
+          git commit -m "$MSG"
           for n in 1 2 3; do
             git pull --rebase origin "$GITHUB_REF_NAME" && git push origin "HEAD:$GITHUB_REF_NAME" && exit 0
             sleep $((n * 10))
