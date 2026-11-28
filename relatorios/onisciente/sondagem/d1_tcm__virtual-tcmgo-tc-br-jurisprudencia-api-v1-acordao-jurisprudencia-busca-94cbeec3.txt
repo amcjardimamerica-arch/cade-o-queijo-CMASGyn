@@ -1,0 +1,8 @@
+URL: https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/acordao/jurisprudencia/buscar?texto=&page=20&page_size=100&sort_by=data_sessao&sort_order=desc&municipio=GOIANIA
+POST: {}
+OK: False
+HTTP: 422
+ERRO: HTTP 422
+BYTES: 219
+
+{"detail":"Sem chave de API, a busca pagina ate o resultado 1000. Para o resultado inteiro, use /acordao/jurisprudencia/exportar, com os mesmos filtros; para integrar um sistema, solicite uma chave de API por chamado."}
