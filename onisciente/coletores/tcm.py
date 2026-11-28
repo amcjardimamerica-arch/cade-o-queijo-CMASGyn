@@ -69,6 +69,12 @@ CABECALHOS_JURISPRUDENCIA = {"X-Cliente": "portal"}
 # decisões por página em uns 2 s; as 5 primeiras páginas (500 decisões, 190 sobre Goiânia) só cobriram de
 # 03/09 a 27/10/2026. O motor segue até a sessão mais antiga do intervalo, com este teto de páginas.
 PAGINAS_JURISPRUDENCIA = 80
+# Rodada 11 (28/11/2026, sondagem 9cc559c): a página 20 com municipio=GOIANIA respondeu HTTP 422 com
+# {"detail": "Sem chave de API, a busca pagina ate o resultado 1000. ..."}; a página 1 declarou 5.491
+# decisões com o filtro (55 páginas de 100; 92 das 100 primeiras são de Goiânia, nenhuma de Aparecida).
+# Sem chave, o motor lê no máximo as 10 primeiras páginas e diz até onde chegou. O resto está em /exportar
+# (CSV, com os mesmos filtros), que a sondagem ainda vai ler.
+RESULTADOS_SEM_CHAVE = 1000
 # Rodada 10 (28/11/2026, sondagem a8761d9): a resposta real de filtros traz os 246 municípios como
 # {"nome": "Goiânia", "valor": "GOIANIA"}, e a tela real (jurisprudencia-page-*.js) manda o filtro escolhido
 # como parâmetro municipio de buscar. A busca pelo texto "Goiânia" achava 13.493 decisões de todo o Estado
@@ -290,6 +296,13 @@ def url_jurisprudencia(texto: str = "Goiânia", pagina: int = 1, por_pagina: int
     if municipio:
         params["municipio"] = municipio
     return JURISPRUDENCIA + "buscar?" + urllib.parse.urlencode(params)
+
+
+def recusa_da_jurisprudencia(conteudo: bytes) -> str:
+    """O motivo (``detail``) de uma recusa da busca, em uma linha; vazio se a resposta não o traz."""
+    obj = cf.json_ou_none(conteudo)
+    detalhe = obj.get("detail") if isinstance(obj, dict) else None
+    return re.sub(r"\s+", " ", str(detalhe)).strip()[:200] if isinstance(detalhe, str) else ""
 
 
 def valor_do_municipio(nome: str) -> str:

@@ -236,6 +236,9 @@ def motor_fns_entidades(ctx, ibge, paginas_max: int = 20) -> None:
 # coleta, 35 minutos antes (sha256 b773ee82..., dee7cb79..., f0bc6bcb...): a repetição é fixa, não do acaso.
 # Fica uma releitura só, para o caso de o servidor mudar; se ela não trouxer as que faltam, as ordens vêm
 # por ação (o filtro acoes=61659 respondeu na mesma sondagem: 166 ordens da ação, em 2 páginas).
+# Rodada 11: com count=1000 (fns.POR_PAGINA_PAGAMENTOS) as ordens de um ano vêm numa página só, sem
+# repetição (sondagem 9cc559c); a releitura fica de reserva para um ano com mais de 1000 ordens. Com 100 por
+# página, até o filtro por ação repetiu 6 ordens entre as suas 2 páginas (e perdeu outras 6).
 RELEITURAS_FNS = 1
 
 
@@ -283,7 +286,14 @@ def _paginas_fns(ctx, alvo: str, mes: str, montar, ler) -> tuple[list[dict] | No
     return linhas, None, None
 
 
-_SO_DA_LISTAGEM = ("programa_id", "fundo_a_fundo")
+_SO_DA_LISTAGEM = ("programa_id", "fundo_a_fundo", "rejeicao")
+
+
+def _nota_rejeitadas(rejeitadas: list[dict]) -> str:
+    """A nota das ordens com motivo de rejeição, que não contam como pagas nem vão para ``repasses_fns``."""
+    docs = ", ".join(o["ordem_bancaria"] or "sem documento" for o in rejeitadas[:3])
+    return (f"{len(rejeitadas)} ordens rejeitadas ou canceladas (motivoRejeicao: {docs}) somando "
+            f"{sum(o['valor_bruto'] for o in rejeitadas):.2f} ficam fora do pago e de repasses_fns")
 
 
 def _ordens_da_listagem(ctx, alvo, ano, ibge, cnpj, nome, acoes):
@@ -291,16 +301,20 @@ def _ordens_da_listagem(ctx, alvo, ano, ibge, cnpj, nome, acoes):
     caminho que a sondagem da rodada 7 provou): (ordens fundo a fundo, pago por ação, notas); o motivo
     (texto) se a listagem veio mas não inteira ou sem a ação de cada ordem; None se foi recusada."""
     todas, sit, erro = _paginas_fns(ctx, f"{alvo} {cnpj} pagamentos", f"{ano}-01",
-                                      lambda p: fns.url_detalhe("detalhe-pagamento", ibge, ano, cnpj, p),
-                                      fns.pagamentos)
+                                    lambda p: fns.url_detalhe("detalhe-pagamento", ibge, ano, cnpj, p,
+                                                              por_pagina=fns.POR_PAGINA_PAGAMENTOS),
+                                    fns.pagamentos)
     if todas is None:
         return None if sit == "nao_publicado" else erro or "não veio"   # recusada: vai por ação, calada
     if any(not o.get("programa_id") for o in todas):
         return "ordem sem a ação"
     por_id = {a["id"]: a for a in acoes}
     pago: dict[str, float] = {}
-    ordens, fora, sem_fundo = [], [], []
+    ordens, fora, sem_fundo, rejeitadas = [], [], [], []
     for o in todas:
+        if o.get("rejeicao"):
+            rejeitadas.append(o)
+            continue
         pago[o["programa_id"]] = round(pago.get(o["programa_id"], 0.0) + o["valor_bruto"], 2)
         a = por_id.get(o["programa_id"])
         if a is None:
@@ -318,6 +332,8 @@ def _ordens_da_listagem(ctx, alvo, ano, ibge, cnpj, nome, acoes):
     if sem_fundo:
         notas.append(f"{len(sem_fundo)} pagamentos fora do fundo a fundo "
                      f"({sum(o['valor_bruto'] for o in sem_fundo):.2f}) ficam fora de repasses_fns")
+    if rejeitadas:
+        notas.append(_nota_rejeitadas(rejeitadas))
     return ordens, pago, notas
 
 
@@ -368,12 +384,17 @@ def motor_fns_detalhe(ctx, ibge) -> None:
                 if a["valor_total"] > 0:
                     pagos, sit, erro = _paginas_fns(
                         ctx, f"{alvo} {cnpj} acao {a['id']}", f"{ano}-01",
-                        lambda p, c=cnpj, i=a["id"], n=ano: fns.url_detalhe("detalhe-pagamento", ibge, n, c, p, i),
+                        lambda p, c=cnpj, i=a["id"], n=ano: fns.url_detalhe(
+                            "detalhe-pagamento", ibge, n, c, p, i, por_pagina=fns.POR_PAGINA_PAGAMENTOS),
                         fns.pagamentos)
                     if pagos is None:
                         problemas.append(f"{nome}, ação {a['id']}: pagamentos {erro}")
                         situacao_ruim = situacao_ruim or sit
                     else:
+                        rejeitadas = [o for o in pagos if o.get("rejeicao")]
+                        if rejeitadas:
+                            avisos.append(f"{nome}, ação {a['id']}: {_nota_rejeitadas(rejeitadas)}")
+                            pagos = [o for o in pagos if not o.get("rejeicao")]
                         soma = round(sum(o["valor_bruto"] for o in pagos), 2)
                         if abs(soma - a["valor_total"]) > 0.01:
                             divergentes.append(f"ação {a['id']}: ordens {soma:.2f} contra {a['valor_total']:.2f}")
@@ -1039,13 +1060,15 @@ def _paginas_jurisprudencia(ctx, texto: str, municipio: str | None, paginas: int
     nada é guardado."""
     desde = f"{min(ctx.meses)}-01" if ctx.meses else None
     guardadas, chaves, parcial, mais_antiga, mais = 0, set(), None, None, False
-    for p in range(1, paginas + 1):
+    teto = min(paginas, max(1, tcm.RESULTADOS_SEM_CHAVE // 100))   # sem chave, a busca para no resultado 1000
+    for p in range(1, teto + 1):
         url = tcm.url_jurisprudencia(texto, p, municipio=municipio)
         leitura = ctx.ler("tcm", f"{alvo} p{p}", url, tempo=90, cabecalhos=tcm.CABECALHOS_JURISPRUDENCIA)
         if not leitura.ok:
             if p == 1:
                 return leitura.erro or f"HTTP {leitura.http}"
-            parcial = f"página {p}: {leitura.erro or f'HTTP {leitura.http}'}"   # as anteriores valem
+            motivo = tcm.recusa_da_jurisprudencia(leitura.conteudo) if leitura.http == 422 else ""
+            parcial = f"página {p}: {motivo or leitura.erro or f'HTTP {leitura.http}'}"   # as anteriores valem
             break
         try:
             decisoes, mais = tcm.jurisprudencia(leitura.conteudo)
@@ -1070,7 +1093,8 @@ def _paginas_jurisprudencia(ctx, texto: str, municipio: str | None, paginas: int
             mais = False
             break
     if parcial is None and mais and desde and mais_antiga and mais_antiga >= desde:
-        parcial = (f"{paginas} páginas lidas (o teto): as decisões chegam a {mais_antiga}, "
+        porque = ("a busca sem chave de API só pagina até o resultado 1000" if teto < paginas else "o teto")
+        parcial = (f"{teto} páginas lidas ({porque}): as decisões chegam a {mais_antiga}, "
                    f"e o intervalo começa em {desde}")
     return guardadas, parcial, None
 

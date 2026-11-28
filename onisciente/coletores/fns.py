@@ -286,12 +286,21 @@ _PARAMETROS_DETALHE = {
 }
 
 
-def url_detalhe(servico: str, ibge: int | str, ano: int, cnpj: str, pagina: int = 1, acao: str = "") -> str:
+# Rodada 11 (28/11/2026): a sondagem de 07:40Z (commit 9cc559c) pediu as ordens do Fundo em 2025 com
+# count=1000 e veio uma página só, de 691.235 bytes (cerca de 676 ordens de 1 KB). O recorte guardado (600 KB,
+# 587 ordens inteiras) não tem nenhuma ordem repetida, começa pelas 100 da página 1 na mesma ordem e contém
+# todas as 100 da página 2. Com 100 por página, a mesma listagem repetia ordens entre páginas e perdia outras.
+POR_PAGINA_PAGAMENTOS = 1000
+
+
+def url_detalhe(servico: str, ibge: int | str, ano: int, cnpj: str, pagina: int = 1, acao: str = "",
+                por_pagina: int = 100) -> str:
     """Um endereço de ``detalhe-acao`` ou ``detalhe-pagamento`` para uma entidade do Município."""
     ibge = str(ibge)
     valores = {"ano": ano, "acoes": acao, "estado": UF_DO_IBGE.get(ibge[:2], ""), "municipio": ibge[:6],
                "cpfCnpjUg": cf.digitos(cnpj)}
-    params = [("page", pagina), ("count", 100)] + [(k, valores.get(k, "")) for k in _PARAMETROS_DETALHE[servico]]
+    params = [("page", pagina), ("count", por_pagina)] + [(k, valores.get(k, ""))
+                                                         for k in _PARAMETROS_DETALHE[servico]]
     return DETALHE + servico + "?" + urllib.parse.urlencode(params)
 
 
@@ -342,10 +351,15 @@ def competencia(texto) -> str | None:
 
 
 def pagamentos(conteudo: bytes) -> tuple[list[dict], int]:
-    """Uma página de ``detalhe-pagamento``: cada ordem nas colunas de ``repasses_fns`` e mais quatro
+    """Uma página de ``detalhe-pagamento``: cada ordem nas colunas de ``repasses_fns`` e mais cinco
     chaves que o motor tira antes de gravar: ``programa_id`` (o ``id`` da ação), ``programa`` e ``bloco``
-    da própria ordem e ``fundo_a_fundo``. O mês é o do pagamento; a data, a do documento no SIAFI (sem
-    documento, não há data). Levanta ``ValueError`` se o formato mudar."""
+    da própria ordem, ``fundo_a_fundo`` e ``rejeicao`` (o ``motivoRejeicao``, ou None). O mês é o do
+    pagamento; a data, a do documento no SIAFI (sem documento, não há data). Levanta ``ValueError`` se o
+    formato mudar.
+
+    A ordem com ``motivoRejeicao`` não foi paga: na sondagem 9cc559c, a 2025OB016558 da ação 61659 (R$
+    5.838.778,09, "10 CANCELAMENTO PARCIAL DA 2025OB016558 ...") é exatamente o que as ordens da ação
+    passavam do total que ``detalhe-acao`` declara (669.552.284,15 contra 663.713.506,06)."""
     dados, total = _resultado(conteudo, "o detalhe por pagamento")
     saida = []
     for d in dados:
@@ -376,7 +390,8 @@ def pagamentos(conteudo: bytes) -> tuple[list[dict], int]:
                                              f"portaria {d['nuPortaria']}" if d.get("nuPortaria") else "",
                                              f"parcela {bruta}" if bruta and comp is None else "") if x),
             "programa_id": _texto(programa.get("id")), "programa": _texto(programa.get("descricao")),
-            "bloco": _texto(d.get("nomeBloco")), "fundo_a_fundo": chave.get("indicadorFundoAFundo") != "N"})
+            "bloco": _texto(d.get("nomeBloco")), "fundo_a_fundo": chave.get("indicadorFundoAFundo") != "N",
+            "rejeicao": re.sub(r"\s+", " ", _texto(d.get("motivoRejeicao"))) or None})
     return saida, total
 
 
