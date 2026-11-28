@@ -1,7 +1,8 @@
-"""A casca HTML de cada tela: topo com os recortes, a régua do rio, os dados embutidos e o rodapé.
+"""A casca HTML de cada tela: topo com os recortes, a barra das etapas, os ícones, os dados embutidos e o rodapé.
 
 O conteúdo de cada tela é desenhado no navegador por ``app.js`` a partir dos dados embutidos, para que os
-recortes (alvo, período e secretaria) mudem a tela sem ir a servidor nenhum.
+recortes (alvo, período e secretaria) mudem a tela sem ir a servidor nenhum. Os ícones das etapas e das três
+condições (conforme, alerta, sem dado) vão uma vez em cada página, como símbolos SVG, e o app.js só os usa.
 """
 
 from __future__ import annotations
@@ -13,25 +14,70 @@ from .base import json_seguro
 FONTES_GOOGLE = ("https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@600;700&family=IBM+Plex+Sans:"
                  "wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap")
 
-TRECHOS = ("Nascente", "Leito", "Foz", "Margens")
+# Os grupos da barra, na ordem do gasto público, e o ícone de cada um.
+GRUPOS = (
+    ("Início", "inicio"), ("Origem do dinheiro", "origem"), ("Orçamento", "orcamento"),
+    ("Contratação", "contratacao"), ("Liquidação e pagamento", "pagamento"),
+    ("Prestação de contas", "prestacao"), ("Consulta", "consulta"),
+)
+
+# Ícones próprios (24 x 24, traço da cor do texto). Etapas: origem, orçamento, contratação, liquidação,
+# pagamento, prestação de contas. Condições: conforme, alerta, sem dado. Demais: início, consulta,
+# secretarias e normas.
+ICONES = {
+    "inicio": '<path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h13V10"/><path d="M10 20v-5h4v5"/>',
+    "origem": ('<ellipse cx="12" cy="6" rx="7" ry="2.8"/><path d="M5 6v4.5c0 1.5 3.1 2.8 7 2.8s7-1.3 7-2.8V6"/>'
+               '<path d="M5 10.5V15c0 1.5 3.1 2.8 7 2.8s7-1.3 7-2.8v-4.5"/><path d="M12 18v3.5m-2.2-2 2.2 2 2.2-2"/>'),
+    "orcamento": ('<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 6.5h8v3H8z"/>'
+                  '<path d="M8.5 13h.01M12 13h.01M15.5 13h.01M8.5 16.5h.01M12 16.5h.01M15.5 16.5h.01"/>'),
+    "contratacao": ('<path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8z"/>'
+                    '<path d="M14 3v5h5"/><path d="M8 12h8M8 15.5h5"/><path d="M13 19c1-1.4 2-1.4 2.6 0 .5-.8 1.2-.9 1.9-.2"/>'),
+    "liquidacao": ('<path d="M3.5 7.5 12 3.5l8.5 4v9L12 20.5l-8.5-4z"/><path d="M3.5 7.5 12 11.5l8.5-4M12 11.5v9"/>'
+                   '<path d="m7.5 5.5 8.5 4"/>'),
+    "pagamento": ('<rect x="2.5" y="6" width="19" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/>'
+                  '<path d="M6 9.5v5M18 9.5v5"/>'),
+    "prestacao": ('<rect x="5" y="4.5" width="14" height="16.5" rx="2"/><path d="M9 4.5V3h6v1.5"/>'
+                  '<path d="m8.8 13 2.3 2.3 4.2-4.6"/>'),
+    "consulta": '<circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5.5 5.5"/><path d="M8 10.5h5"/>',
+    "secretarias": ('<path d="M4 21V5.5L12 3v18M12 8.5l8 2V21M3 21h18"/>'
+                    '<path d="M7 8.5h2M7 12h2M7 15.5h2M15 13.5h2M15 17h2"/>'),
+    "normas": ('<path d="M12 4v16M7 20h10M5 7.5h14"/><path d="m6.5 7.5-3 6.5h6zM17.5 7.5l-3 6.5h6z"/>'
+               '<path d="M3.5 14a3 1.6 0 0 0 6 0M14.5 14a3 1.6 0 0 0 6 0"/>'),
+    "conforme": '<circle cx="12" cy="12" r="9"/><path d="m7.8 12.4 2.8 2.8 5.6-6"/>',
+    "alerta": '<path d="M12 3.2 21.6 20H2.4z"/><path d="M12 9.5v5M12 17.3v.2"/>',
+    "semdado": ('<rect x="3.5" y="3.5" width="17" height="17" rx="3" stroke-dasharray="3.2 2.4"/>'
+                '<path d="M9.7 9.6a2.4 2.4 0 1 1 3.3 2.2c-.7.3-1 .8-1 1.5v.5M12 16.6v.2"/>'),
+}
+
+
+def simbolos() -> str:
+    """O conjunto dos ícones, uma vez por página, para ``<use href="#i-nome">``."""
+    return ('<svg xmlns="http://www.w3.org/2000/svg" class="simbolos" aria-hidden="true" focusable="false">'
+            + "".join(f'<symbol id="i-{nome}" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" '
+                      f'stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">{corpo}</g></symbol>'
+                      for nome, corpo in ICONES.items()) + "</svg>")
+
+
+def icone(nome: str, classe: str = "") -> str:
+    return (f'<svg class="ic{(" " + classe) if classe else ""}" viewBox="0 0 24 24" aria-hidden="true" '
+            f'focusable="false"><use href="#i-{nome}"/></svg>')
 
 
 def regua(paginas: list[dict], atual: str) -> str:
+    """A barra das etapas: cada grupo com o seu ícone e as suas telas, com a contagem do recorte."""
     partes = []
-    for trecho in TRECHOS:
+    for grupo, nome_icone in GRUPOS:
         links = []
         for p in paginas:
-            if p["trecho"] != trecho:
+            if p["grupo"] != grupo:
                 continue
             atual_attr = ' aria-current="page"' if p["id"] == atual else ""
             links.append(f'<a href="{p["id"]}.html" data-pagina="{p["id"]}"{atual_attr}>{escape(p["titulo"])}'
                          f'<span class="cont" data-cont="{p["id"]}"></span></a>')
-        partes.append(f'<div class="trecho"><span aria-hidden="true">{trecho}</span>{"".join(links)}</div>')
-    inicio = next(p for p in paginas if p["id"] == "index")
-    atual_attr = ' aria-current="page"' if atual == "index" else ""
-    primeiro = (f'<div class="trecho"><span aria-hidden="true">Início</span><a href="index.html" data-pagina="index"'
-                f'{atual_attr}>{escape(inicio["titulo"])}<span class="cont" data-cont="index"></span></a></div>')
-    return (f'<nav class="regua" aria-label="Telas, na ordem do rio"><div class="wrap">{primeiro}'
+        if links:
+            partes.append(f'<div class="grupo"><span class="grupo-nome">{icone(nome_icone)}'
+                          f'<span>{escape(grupo)}</span></span><div class="links">{"".join(links)}</div></div>')
+    return (f'<nav class="regua" aria-label="Telas, pelas etapas do gasto público"><div class="wrap">'
             f'{"".join(partes)}</div></nav>')
 
 
@@ -56,6 +102,7 @@ def html(pagina: dict, comum: dict, dados: dict, fontes: dict, indice: list, *, 
 <script>try{{var t=localStorage.getItem('onisciente.tema');if(t)document.documentElement.dataset.theme=t}}catch(e){{}}</script>
 </head>
 <body data-pagina="{pid}">
+{simbolos()}
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
 <header class="topo">
   <div class="wrap">
@@ -81,7 +128,7 @@ def html(pagina: dict, comum: dict, dados: dict, fontes: dict, indice: list, *, 
 <main id="conteudo" class="wrap" tabindex="-1">
   <header class="cabeca">
     <div>
-      <p class="trecho-nome">{escape(pagina["trecho"])}</p>
+      <p class="grupo-tela">{icone(_ICONE_DO_GRUPO.get(pagina["grupo"], "consulta"))}{escape(pagina["grupo"])}</p>
       <h1>{escape(pagina["titulo"])}</h1>
       <p class="pergunta">{escape(pagina["pergunta"])}.</p>
     </div>
@@ -90,13 +137,13 @@ def html(pagina: dict, comum: dict, dados: dict, fontes: dict, indice: list, *, 
   <div class="tela" id="tela"><p class="carregando">Montando a tela…</p></div>
   <noscript><p>Esta tela é desenhada no navegador a partir dos dados embutidos na própria página. Ative o
   JavaScript para ver os números, os recortes e a origem de cada dado.</p></noscript>
-  <nav class="caminho" id="caminho" aria-label="Seguir o dinheiro"></nav>
+  <nav class="caminho" id="caminho" aria-label="Tela anterior e próxima, na ordem das etapas"></nav>
 </main>
 <footer class="rodape">
   <div class="wrap">
     <div>
-      <p><b>Onisciente</b>, conferência de prestação de contas pela trilha do dinheiro público. Cada número mostra a sua
-      origem ao passar o mouse ou tocar; o clique abre o original guardado. Alerta é indício, não acusação.</p>
+      <p><b>Onisciente</b>, conferência da prestação de contas, etapa por etapa do gasto público. Cada número mostra a
+      sua fonte ao passar o mouse ou tocar; o clique abre o original guardado. Alerta é indício, não acusação.</p>
       <p class="nota" id="gerado"></p>
     </div>
     <ul id="links-rodape">
@@ -118,3 +165,6 @@ def html(pagina: dict, comum: dict, dados: dict, fontes: dict, indice: list, *, 
 </body>
 </html>
 """
+
+
+_ICONE_DO_GRUPO = dict(GRUPOS)

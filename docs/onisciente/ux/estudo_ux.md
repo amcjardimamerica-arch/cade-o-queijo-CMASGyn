@@ -3,7 +3,7 @@
 Este estudo define como o Onisciente se apresenta a quem o lê: o número de páginas, o caminho até cada
 desconformidade, o modo de apresentação para reuniões, a leitura no celular, a acessibilidade, as cores e o
 formato dos dados que as outras frentes entregam às telas. Ele parte da linha do tempo da conversa com o dono
-(25 a 27 de novembro de 2026) e do protótipo navegável de 25/11, cuja identidade visual (o escudo do Núcleo
+(25 a 28 de novembro de 2026) e do protótipo navegável de 25/11, cuja identidade visual (o escudo do Núcleo
 de Fiscalização da A.M.C. Jardim América, o azul real, o ouro e o laranja, os títulos em Zilla Slab e os
 números em IBM Plex Mono) foi aprovada e é mantida aqui.
 
@@ -15,45 +15,61 @@ partir do banco histórico e dos módulos do sistema, sem rede.
 
 As premissas vêm da linha do tempo, nas palavras do dono sempre que possível.
 
-1. **A trilha do dinheiro é a espinha.** Origem (tributo ou transferência), rio de afluentes (água vinculada e
-   água livre), secretaria, contrato e empresa, empenho, liquidação, pagamento e prestação de contas. Cada
-   desconformidade aparece no ponto da trilha onde acontece, nunca numa lista solta.
-2. **É uma trilha, não um cartório.** Nada espera validação humana. O sistema mostra, a fonte prova e a
+> **Correção de 28/11/2026.** O dono pediu: "Remova essa merda de premissa de rio. Eu dei de exemplo como se
+> fosse um fluxo para a imagem visual e não para ser usado no sistema inteiro. O sistema deve ter uma premissa
+> mais organizada e fácil de entender, com poucos cliques. Não quero premissas literais, mas imagens para
+> etapas ou condições." A imagem do rio saiu de tudo o que a pessoa lê (telas, menus, parecer, fichas,
+> documentação). O painel passou a se organizar pelas **etapas do gasto público** e a mostrar cada
+> situação por uma de **três condições**, sempre com o mesmo ícone. Os módulos internos do Python
+> (`onisciente/rio/`) mantêm o nome da pasta; nada do que se mostra usa a palavra.
+
+1. **As etapas do gasto público são a espinha.** Origem do dinheiro, orçamento, contratação, liquidação,
+   pagamento e prestação de contas. Cada desconformidade cai na etapa em que acontece, nunca numa lista solta.
+2. **Três condições, um código visual.** Toda situação é **conforme**, **alerta** (com a gravidade) ou
+   **sem dado**. Cada condição tem o seu ícone, igual em todas as páginas, e a cor só reforça o ícone.
+3. **Poucos cliques.** Da página inicial a qualquer desconformidade são no máximo dois cliques.
+4. **Linguagem direta.** Cada coisa tem o seu nome técnico: recurso vinculado ou livre, finalidade da lei,
+   receita por espécie, diferença da execução. Nada de metáfora no texto; as imagens ficam para as etapas
+   e as condições.
+5. **É uma trilha, não um cartório.** Nada espera validação humana. O sistema mostra, a fonte prova e a
    ausência acusa. Por isso nenhuma tela tem botão de aprovar, conferir ou validar.
-3. **Toda informação carrega a origem**: o endereço lido, a data da leitura, a impressão digital e o selo.
-4. **Indícios e fichas como no Cadê o Queijo**, aprimorados, porque foram aprovados pelo dono.
-5. **Recortes globais**: alvo, período e secretaria valem em todas as telas, e a Máquina do Tempo mostra o
-   passado realizado e o futuro projetado.
-6. **Desconformidades por família**, fáceis de achar e de apresentar.
-7. **Feito para apresentar e para ser temido**: claro, impactante, com a prova a um clique. O alerta é
+6. **Toda informação carrega a origem**: o endereço lido, a data da leitura, a impressão digital e o selo.
+7. **Indícios e fichas como no Cadê o Queijo**, aprimorados, porque foram aprovados pelo dono.
+8. **Recortes globais**: alvo, período e secretaria valem em todas as telas; a tela Previsto e realizado
+   mostra o passado realizado e o futuro projetado.
+9. **Feito para apresentar e para ser temido**: claro, impactante, com a prova a um clique. O alerta é
    indício e não acusação, mas é apresentado com a força da prova.
-8. **Acesso por link no navegador**, como o Eldorado e a Bússola: GitHub Pages, sem instalação.
+10. **Acesso por link no navegador**, como o Eldorado e a Bússola: GitHub Pages, sem instalação.
 
 ## 2. Quantas páginas e por quê
 
-O Onisciente tem **treze páginas**: uma página inicial e doze telas. O número sai de duas regras.
+O Onisciente continua com **treze páginas**: uma página inicial e doze telas. A revisão de 28/11/2026
+conferiu se o número devia cair e decidiu mantê-lo, por três razões.
 
-* **Uma pergunta por tela.** Cada tela responde a uma pergunta que o dono faria numa reunião ("de onde veio o
-  dinheiro?", "quem recebeu?", "o que falta publicar?"). Duas perguntas na mesma tela obrigam a rolar e
-  quebram a apresentação; uma pergunta espalhada em duas telas obriga a ir e voltar.
-* **Nenhum grupo com mais de quatro telas.** As doze telas se organizam em quatro trechos do rio, e cada
-  trecho cabe de uma vez na memória de quem navega.
+* **O caminho até a desconformidade não depende do número de telas.** Ele passa pela página inicial e pela
+  lista das desconformidades filtrada por etapa: dois cliques, qualquer que seja a tela onde o detalhe mora.
+* **Uma pergunta por tela.** Juntar telas obrigaria a rolar e quebraria o modo apresentação (uma ideia por
+  lâmina). Separar mais obrigaria a ir e voltar.
+* **Nenhum grupo com mais de três telas.** As telas se agrupam pelas etapas; a pessoa vê de uma vez onde está.
 
-| Trecho do rio | Tela | A pergunta que ela responde | Arquivo |
+A única página renomeada foi a da origem: `rio.html` virou `origem.html` ("Origem do dinheiro"), e a tela
+"Máquina do tempo" passou a se chamar "Previsto e realizado". Os títulos dizem o que a tela mostra.
+
+| Grupo (etapa) | Tela | A pergunta que ela responde | Arquivo |
 | --- | --- | --- | --- |
-| Início | Em uma frase | O que está errado neste mês, em uma frase, e onde fica cada desconformidade? | `index.html` |
-| Nascente | O rio | De onde veio o dinheiro, que parte é vinculada e que parte é livre, e para onde correu? | `rio.html` |
-| Nascente | Leis | Qual é a régua de cada conferência e onde está a norma? | `leis.html` |
-| Leito | Trilha | Por quais das nove estações o dinheiro passou com documento? | `trilha.html` |
-| Leito | Secretarias | Quanto cada secretaria contratou, quanto destoa e quão transparente ela é? | `secretarias.html` |
-| Leito | Pisos e tetos | Os percentuais da Constituição e da LRF foram cumpridos, pelo cálculo próprio? | `pisos.html` |
-| Leito | Pessoal | Quanto se gasta com pessoal, perto de que limite, e o que a lei manda pagar e não foi pago? | `pessoal.html` |
-| Foz | Preço e entrega | O preço pago bate com o país, a entrega foi comprovada e a conta foi prestada? | `precos.html` |
-| Foz | Contratos e empresas | Quem são as empresas, quem as administra e elas podiam contratar? | `empresas.html` |
-| Foz | Contas | As contas foram entregues e julgadas no prazo? | `contas.html` |
-| Margens | Indícios | Quais são todas as fichas, filtráveis por família, gravidade, secretaria e período? | `indicios.html` |
-| Margens | Transparência | O selo de transparência se sustenta, o que falta publicar e qual ofício já está pronto? | `transparencia.html` |
-| Margens | Máquina do tempo | O que foi previsto e realizado desde 2019, e o que se projeta até o fim do PPA? | `tempo.html` |
+| Início | Início | O que está errado neste mês, em que etapa, e com que condição? | `index.html` |
+| Origem do dinheiro | Origem do dinheiro | De onde veio o dinheiro, que parte é vinculada e que parte é livre, e em que função foi empenhado? | `origem.html` |
+| Orçamento | Pisos e tetos | Os percentuais da Constituição e da LRF foram cumpridos, pelo cálculo próprio? | `pisos.html` |
+| Orçamento | Previsto e realizado | O que foi previsto e realizado desde 2019, e o que se projeta até o fim do PPA? | `tempo.html` |
+| Contratação | Contratos e empresas | Quem são as empresas, quem as administra e elas podiam contratar? | `empresas.html` |
+| Contratação | Preço e entrega | O preço pago bate com o país, a entrega foi comprovada e a conta foi prestada? | `precos.html` |
+| Liquidação e pagamento | Execução | Por quais das nove estações o dinheiro passou com documento? | `trilha.html` |
+| Liquidação e pagamento | Pessoal | Quanto se gasta com pessoal, perto de que limite, e o que a lei manda pagar e não foi pago? | `pessoal.html` |
+| Prestação de contas | Contas | As contas foram entregues e julgadas no prazo? | `contas.html` |
+| Prestação de contas | Transparência | O selo de transparência se sustenta, o que falta publicar e qual ofício já está pronto? | `transparencia.html` |
+| Consulta | Desconformidades | Todas as fichas, filtráveis por etapa, condição, família, gravidade, secretaria e período | `indicios.html` |
+| Consulta | Secretarias | Quanto cada secretaria contratou, quanto destoa e quão transparente ela é? | `secretarias.html` |
+| Consulta | Normas | Qual é a régua de cada conferência e onde está a norma? | `leis.html` |
 
 Os pareceres mensais (`docs/onisciente/parecer_AAAA-MM.html`) e a página do banco histórico
 (`docs/onisciente/banco/`) continuam onde estão e ficam ligados na página inicial e no rodapé de todas as
@@ -63,33 +79,60 @@ telas.
 
 A informação desce em quatro níveis, do mais amplo ao mais concreto. Cada nível tem a sua forma visual.
 
-1. **Panorama** (página inicial): a frase do mês, o placar por gravidade, a nota de integridade da trilha e o
-   **rio-mapa**, uma faixa horizontal com as nove estações em que cada desconformidade aparece como um marco
-   no ponto da trilha onde acontece.
-2. **Tela** (uma pergunta): os números grandes da pergunta, o gráfico principal e a lista do que destoa.
-3. **Ficha** (o indício): título, gravidade, como deveria ser, como está, verificação, providência e
-   custódia, no formato do Cadê o Queijo.
+1. **Panorama** (página inicial): a frase do mês, o placar por gravidade e o **diagrama das etapas**, seis
+   cartões na ordem do gasto, cada um com o seu ícone e as três condições contadas no recorte (quantos
+   pontos conformes, quantos alertas e de que gravidade, quantos sem dado).
+2. **Lista da etapa** (`indicios.html?etapa=…`): o cabeçalho da etapa com as telas onde ela aparece em
+   detalhe e todas as fichas da etapa, agrupadas por tema, inteiras, sem "mostrar mais".
+3. **Ficha** (o indício): título, condição, gravidade, como deveria ser, como está, verificação,
+   providência e custódia, no formato do Cadê o Queijo.
 4. **Ato e prova** (o original): o endereço lido, a data e a impressão digital, abertos pelo selo.
 
-Qualquer desconformidade fica a no máximo três cliques da página inicial:
+Qualquer desconformidade fica a **no máximo dois cliques** da página inicial:
 
-* **clique 1**: no quadro das famílias da página inicial (ou no marco do rio-mapa), a família leva à tela e
-  à seção exata, já filtrada;
-* **clique 2**: na tela, a linha ou o marco abre a ficha;
-* **clique 3**: na ficha ou em qualquer número, o selo abre o original guardado.
+* **clique 1**: o cartão da etapa (ou a secretaria, no quadro "Por secretaria", ou as falhas de leitura do
+  sistema, logo abaixo das etapas) abre a lista inteira daquela etapa;
+* **clique 2**: a ficha abre no lugar, com a prova.
 
-O endereço de cada página leva os recortes na própria URL (`?c=2026-10&s=01393989000103`), então um link
-mandado por mensagem abre exatamente o que quem mandou estava vendo.
+O selo de cada número abre o original guardado, a partir da ficha ou de qualquer tela. Uma trava
+(`test_inicio_tem_o_diagrama_das_etapas_e_toda_ficha_a_dois_cliques`) confere que as contagens do diagrama
+batem com as listas e que nenhuma ficha do recorte fica fora delas.
+
+O endereço de cada página leva os recortes na própria URL (`?c=2026-10&s=01393989000103&etapa=origem`),
+então um link mandado por mensagem abre exatamente o que quem mandou estava vendo.
 
 ### Navegação persistente
 
 * **Barra do topo**: escudo e nome, seletores de alvo, período e secretaria, botão Apresentar e alternância
   de tema claro e escuro.
-* **Régua do rio**: logo abaixo do topo, os quatro trechos (Nascente, Leito, Foz e Margens) com as telas de
-  cada um. Cada tela mostra o número de desconformidades do recorte atual, para que a pessoa veja onde está o
-  problema antes de clicar.
-* **Caminho de volta**: cada tela termina com a tela anterior e a próxima na ordem da trilha, para que a
-  leitura possa seguir o dinheiro do começo ao fim sem voltar ao menu.
+* **Barra das etapas**: logo abaixo do topo, os grupos (Início, Origem do dinheiro, Orçamento, Contratação,
+  Liquidação e pagamento, Prestação de contas, Consulta), cada um com o ícone da etapa e as suas telas. Cada
+  tela mostra o número de desconformidades do recorte atual.
+* **Faixa das condições**: no alto de cada tela, quantos alertas e quantos sem dado os temas daquela tela
+  têm no recorte, com o atalho para a lista.
+* **Caminho**: cada tela termina com a tela anterior e a próxima na ordem das etapas, para que a leitura siga
+  o gasto do começo ao fim sem voltar ao menu; a última volta às etapas.
+
+### As etapas, as condições e os ícones
+
+| Etapa | O que confere | Ícone | Temas |
+| --- | --- | --- | --- |
+| Origem do dinheiro | Receita e repasses, recurso vinculado ou livre | pilha de moedas com seta | vinculado fora da finalidade, COSIP, FNAS |
+| Orçamento | Previsão, dotação, pisos e tetos | calculadora | pisos e tetos, orçamento e receita |
+| Contratação | Licitação, contrato, empresa e preço | documento com assinatura | contratos e empresas, preços |
+| Liquidação | A entrega comprovada por nota fiscal | caixa | notas fiscais |
+| Pagamento | O dinheiro que saiu e o que deixou de sair | cédula | execução, pessoal |
+| Prestação de contas | Contas entregues, julgadas e publicadas | prancheta com visto | contas, selo de transparência, normas e ofícios |
+
+| Condição | Ícone | Quando |
+| --- | --- | --- |
+| **Conforme** | círculo com visto, verde | o documento está publicado e a conferência não achou desconformidade |
+| **Alerta** | triângulo com exclamação; vermelho crítico, laranja alto, amarelo médio | indício de desconformidade |
+| **Sem dado** | quadrado tracejado com interrogação; roxo quando falta documento do Município, cinza quando é leitura do próprio sistema | a lei manda publicar e não está publicado, ou o sistema ainda não leu |
+
+Os ícones são SVG próprios, desenhados uma vez em cada página (um bloco de símbolos no começo do corpo) e
+usados por referência, sem biblioteca nem endereço externo. Os selos de origem dos números (duas vias, uma
+via, não publicado, leitura falhou, aguardando coleta) usam o ícone da condição correspondente.
 
 ## 4. Onde aparece cada família de desconformidade
 
@@ -98,8 +141,8 @@ mandado por mensagem abre exatamente o que quem mandou estava vendo.
 | **Selo de transparência** | Transparência, no topo: o selo declarado (Diamante) contra o selo refeito pelo Onisciente, critério por critério | cada critério abre o endereço que o comprovaria ou mostra o roxo da ausência | aguarda a frente do selo (formato na seção 9) |
 | **Preços** | Preço e entrega, vértice Preço do triângulo; Indícios, família PRC | cada item abre a compra no PNCP e a mediana nacional do Compras.gov | com dado real (bloco 4) |
 | **Contratos e empresas (Receita e QSA)** | Contratos e empresas: cada fornecedor com idade da empresa, quadro de sócios, sanções e contratos | o cartão do CNPJ e as listas CEIS e CNEP | concentração e contratos com dado real; QSA e sanções aguardam a frente das empresas |
-| **FNAS** | O rio, cartão do afluente FNAS (fonte 1660): o que a União mandou contra o que entrou na fonte da assistência | planilha do FNAS e Portal da Transparência | com dado real |
-| **COSIP** | O rio, cartão do afluente COSIP (fonte 1751, Lei Complementar 386/2025): o leito da iluminação pública contra as funções onde foi empenhada | matriz de saldos contábeis do mês | com dado real |
+| **FNAS** | Origem do dinheiro, cartão da fonte vinculada FNAS (fonte 1660): o que a União mandou contra o que entrou na fonte da assistência | planilha do FNAS e Portal da Transparência | com dado real |
+| **COSIP** | Origem do dinheiro, cartão da fonte vinculada COSIP (fonte 1751, Lei Complementar 386/2025): as funções que a lei permite contra as funções onde foi empenhada | matriz de saldos contábeis do mês | com dado real |
 | **Notas fiscais nunca publicadas** | Preço e entrega, vértice Entrega do triângulo, em roxo, com os órgãos que nunca publicaram nota | a leitura do PNCP de cada órgão, mês a mês | com dado real |
 | **Execução** | Trilha: as estações de empenho, liquidação e pagamento; o percurso empenho a empenho | o portal de execução, quando coletado | agregado real pela matriz; empenho a empenho aguarda a frente da execução |
 | **Pessoal** | Pessoal: a despesa com pessoal contra 54% da receita corrente líquida, o que a lei manda pagar e não foi pago | RGF de cada quadrimestre | com dado real |
@@ -126,10 +169,12 @@ Feito para reuniões da Associação, do Conselho e da oposição.
 
 ## 6. Leitura no celular
 
-* As telas são feitas para 360 pixels de largura antes de tudo. Os gráficos largos (o rio, a linha do tempo)
-  rolam de lado dentro do próprio quadro, e a página nunca rola de lado.
+* As telas são feitas para 360 pixels de largura antes de tudo (conferidas a 375). Os gráficos largos (o
+  diagrama da receita, a linha do tempo) rolam de lado dentro do próprio quadro, e a página nunca rola de lado.
+* O diagrama das etapas vira uma lista vertical: cada etapa numa linha, com o ícone à esquerda e as três
+  condições logo abaixo do nome.
 * Os seletores viram uma barra recolhível no topo, com o recorte atual sempre visível em uma linha.
-* A régua do rio vira uma faixa que rola de lado, com a tela atual centralizada.
+* A barra das etapas vira uma faixa que rola de lado dentro de si, com o ícone de cada grupo.
 * A origem de um número abre com um toque (no lugar do passar de mouse), num balão que fica até o próximo
   toque, com o botão de abrir o original.
 * Tabelas longas viram cartões empilhados abaixo de 640 pixels.
@@ -137,9 +182,11 @@ Feito para reuniões da Associação, do Conselho e da oposição.
 ## 7. Acessibilidade (WCAG AA)
 
 * Contraste mínimo de 4,5:1 para texto e 3:1 para elementos gráficos, nos dois temas.
-* **Nada depende só da cor.** Cada selo tem forma e palavra além da cor: o verde é um círculo cheio com
-  "duas vias", o azul um círculo com "uma via", o roxo um quadrado pulsante com "não publicado" e o vermelho
-  um triângulo com "leitura falhou". Cada gravidade tem rótulo escrito.
+* **Nada depende só da cor.** Cada condição tem ícone e palavra além da cor: conforme é o círculo com
+  visto, alerta o triângulo com exclamação e sem dado o quadrado tracejado com interrogação. Cada selo de
+  origem leva o ícone da sua condição e a palavra ("duas vias", "uma via", "não publicado", "leitura
+  falhou"). Cada gravidade tem rótulo escrito. Cada cartão de etapa tem a descrição completa para leitor de
+  tela.
 * Tudo funciona pelo teclado: a ordem de tabulação segue a leitura, o foco é visível em ouro, os gráficos têm
   descrição em texto e uma tabela equivalente.
 * O pulso do roxo para quando o sistema pede menos movimento.
@@ -147,34 +194,33 @@ Feito para reuniões da Associação, do Conselho e da oposição.
 
 ## 8. Cores com significado fixo
 
-As mesmas cores querem dizer a mesma coisa em todas as telas, no parecer e no modo apresentação.
+As mesmas cores querem dizer a mesma coisa em todas as telas, no parecer e no modo apresentação. A cor sempre
+acompanha um ícone; nunca vem sozinha.
 
-| Sentido | Cor (claro / escuro) | Forma | Uso |
+| Sentido | Cor (claro / escuro) | Ícone | Uso |
 | --- | --- | --- | --- |
-| **Conforme** | verde #15803D / #34C26B | círculo cheio | duas vias batem, limite cumprido, estação acesa |
-| **Indício** | laranja #E07B00 / #FF9F2E | losango | desconformidade de gravidade alta ou média |
-| **Indício crítico** | vermelho #E01B0E / #FF4A3D | losango com borda dupla | desconformidade de gravidade crítica |
-| **Alerta** | ouro #B57C05 / #F5B82E | anel | limite de alerta ou prudencial, ritmo abaixo do esperado |
-| **Ausência de dado** | roxo #7E22CE / #B57BFF, pulsante | quadrado | a lei manda publicar e não está publicado |
-| **Uma via** | azul #2563EB / #6EA0FF | círculo | o número vem de uma via oficial |
-| **Leitura falhou** | vermelho escuro #B91C1C / #F05252 | triângulo | o dado existe, mas a leitura não o alcançou |
+| **Conforme** | verde #15803D / #34C26B | círculo com visto | duas vias batem, limite cumprido, estação com documento |
+| **Alerta alto ou médio** | laranja #E07B00 / #FF9F2E; amarelo #A16207 / #E3B341 | triângulo com exclamação | desconformidade de gravidade alta ou média |
+| **Alerta crítico** | vermelho #E01B0E / #FF4A3D | triângulo com exclamação | desconformidade de gravidade crítica |
+| **Sem dado do Município** | roxo #7E22CE / #B57BFF, pulsante no selo | quadrado tracejado com interrogação | a lei manda publicar e não está publicado |
+| **Sem dado do sistema** | cinza #64748B / #8B98B8 | quadrado tracejado com interrogação | coleta ainda não feita ou leitura que falhou; nunca imputada ao Município |
+| **Uma via** | azul #2563EB / #6EA0FF | círculo com visto | o número vem de uma via oficial |
 
-As cores do rio são de outra família, para não se confundirem com as de juízo: água **vinculada** em
-petróleo (#0E7490), água **livre** em ouro claro (#C98A06), esfera federal, estadual e municipal em verde,
-azul e laranja suaves.
+As cores das fontes de recurso são de outra família, para não se confundirem com as de juízo: recurso
+**vinculado** em petróleo (#0E7490), recurso **livre** em ouro claro (#C98A06), esfera federal, estadual e
+municipal em verde, azul e laranja suaves.
 
-## 9. A metáfora do rio como espinha da navegação
+## 9. A origem do dinheiro em detalhe
 
-* A página inicial abre com o **rio-mapa**: os afluentes à esquerda (tributos e transferências), o leito
-  no meio (a fonte, vinculada ou livre) e as nove estações em sequência até a foz (a prestação de contas).
-* Os quatro trechos do rio são o menu: **Nascente** (de onde vem e qual é a régua), **Leito** (por onde passa
-  e quem guarda), **Foz** (quem recebe e se prestou contas) e **Margens** (o que transbordou, o que falta e o
-  que se projeta).
-* Na tela do rio, o Sankey tem três modos: **Todo o rio**, **Vinculada** e **Livre**. Os tributos vinculados
-  e os livres entram como afluentes; o leito separa a água pela fonte; a foz abre as funções de governo onde
-  a água foi empenhada. A diferença entre o que entrou e o que foi empenhado aparece como água parada.
-* A COSIP e o FNAS ganham cartões próprios ao lado do rio, porque são os dois afluentes vinculados em que o
-  sistema já achou água fora do leito.
+* A tela **Origem do dinheiro** mostra a receita realizada por espécie (à esquerda), separada pela fonte em
+  recurso vinculado ou livre (no meio), e o empenhado por função de governo (à direita). O diagrama tem três
+  modos: **Todas as fontes**, **Vinculada** e **Livre**. A diferença entre o que entrou e o que foi empenhado
+  aparece como "arrecadado e não empenhado".
+* A COSIP e o FNAS ganham cartões próprios, com as funções que a lei permite e o que foi empenhado fora da
+  finalidade, porque são as duas fontes vinculadas em que o sistema já achou desvio.
+* No parecer mensal, a seção 2 se chama "Origem do dinheiro", e a tabela que antes falava em "margens" se
+  chama "diferença da execução" (previsto e não empenhado, empenhado e não liquidado, liquidado e não pago,
+  pago sem vínculo publicado).
 
 ## 10. A origem de cada dado
 
@@ -285,17 +331,25 @@ filtros e recortes das demais telas. Basta rodar `python -m onisciente telas` de
   panoramas mensais de `relatorios/onisciente/` e os arquivos de entrada da seção 11, e escreve as treze
   páginas em `docs/onisciente/app/`, com `app.css`, `app.js` e o escudo. Com `--brutos`, publica também as
   respostas cruas cuja impressão digital bate com o banco, em `docs/onisciente/app/originais/`.
-* **Uma página, três camadas de dados**: o recorte comum (alvo, competências, secretarias, temas), o índice de
-  todas as fichas (para os contadores da régua e do quadro das famílias em qualquer recorte) e os dados da
+* **Uma página, três camadas de dados**: o recorte comum (alvo, competências, secretarias, temas, etapas), o
+  índice de todas as fichas com a etapa e a condição de cada uma (para os contadores da barra e do diagrama
+  das etapas em qualquer recorte) e os dados da
   própria tela, cada número como `{"v": valor, "f": chave da fonte}`. A tabela das fontes vai junto, só com
   as chaves que a página usa.
-* **Os temas do quadro da página inicial** são catorze, porque além das dez famílias pedidas (selo, preços,
-  contratos e empresas, FNAS, COSIP, notas fiscais, execução, pessoal, contas, leis e ofícios) há quatro que
-  já têm fichas reais: água fora do leito, pisos e tetos, orçamento e receita, e falhas do próprio sistema
-  (estas em cinza, nunca imputadas ao Município). Cada ficha cai em um tema pelo código, e cada tema mora numa
-  tela e numa seção.
+* **Os temas** são catorze, porque além das dez famílias pedidas (selo, preços, contratos e empresas, FNAS,
+  COSIP, notas fiscais, execução, pessoal, contas, normas e ofícios) há quatro que já têm fichas reais:
+  vinculado fora da finalidade, pisos e tetos, orçamento e receita, e falhas do próprio sistema (estas em
+  cinza, nunca imputadas ao Município). Cada ficha cai em um tema pelo código, cada tema numa etapa, e cada
+  tema mora numa tela e numa seção. A condição da ficha é "sem dado" quando ela acusa falta de publicação
+  ou falha de leitura, e "alerta" nos demais casos.
+* **Linguagem direta**: `onisciente/linguagem.py` guarda a régua (`metaforas`) e a troca dos textos
+  guardados antes de 28/11/2026 (`direto`), aplicada a tudo o que vai para as telas e ao parecer, sem mudar
+  número nenhum.
 * **Séries no parecer mensal**: `onisciente/telas/graficos.py` desenha, em SVG embutido e sem biblioteca, as
   séries do exercício (o Município, o FNAS e a pasta), cada barra com a origem na dica.
 * **Travas**: `testes/test_telas.py` monta um banco pequeno e confere as treze páginas, a fonte de cada
-  número, os três modos do rio, os filtros dos indícios, os recortes, o estado vazio e a chegada das entradas,
-  a ausência de CPF e o desenho de cada tela rodando o próprio `app.js` no Node.
+  número, os três modos da origem do dinheiro, os filtros dos indícios, os recortes, o estado vazio e a chegada das entradas,
+  a ausência de CPF e o desenho de cada tela rodando o próprio `app.js` no Node. Desde 28/11/2026 também
+  conferem que nenhuma página, o `app.js` e o parecer usam a metáfora do rio, que o diagrama das etapas leva a
+  toda ficha em dois cliques e que cada condição tem o mesmo ícone em todas as páginas
+  (`testes/test_linguagem_direta.py` e as últimas travas de `testes/test_telas.py`).

@@ -32,46 +32,74 @@ ENTRADAS = RAIZ / "relatorios" / "onisciente" / "entradas"
 NOMEACOES = RAIZ / "referencias" / "servidores" / "nomeacoes.json"
 JANELA = 12   # meses de compras e contratos que contam para uma competência (como no parecer)
 
-PAGINAS = (
-    # arquivo, título, trecho do rio, pergunta
-    ("index", "Em uma frase", "Início", "O que está errado no mês e onde fica cada desconformidade"),
-    ("rio", "O rio", "Nascente", "De onde veio o dinheiro, vinculado ou livre, e para onde correu"),
-    ("leis", "Leis", "Nascente", "A régua de cada conferência e onde está a norma"),
-    ("trilha", "Trilha", "Leito", "Por quais das nove estações o dinheiro passou com documento"),
-    ("secretarias", "Secretarias", "Leito", "Quanto cada secretaria contratou e quanto destoa"),
-    ("pisos", "Pisos e tetos", "Leito", "Os percentuais da Constituição e da LRF, pelo cálculo próprio"),
-    ("pessoal", "Pessoal", "Leito", "A despesa com pessoal perto do limite e o que deixou de ser pago"),
-    ("precos", "Preço e entrega", "Foz", "Preço pago, entrega comprovada e conta prestada"),
-    ("empresas", "Contratos e empresas", "Foz", "Quem recebeu, quem administra e se podia contratar"),
-    ("contas", "Contas", "Foz", "As contas entregues e julgadas no prazo"),
-    ("indicios", "Indícios", "Margens", "Todas as fichas, por família, gravidade, secretaria e período"),
-    ("transparencia", "Transparência", "Margens", "O selo auditado, o que falta publicar e os ofícios prontos"),
-    ("tempo", "Máquina do tempo", "Margens", "Previsto e realizado desde 2019 e a projeção até o fim do PPA"),
+# As etapas do gasto público, na ordem em que o dinheiro anda. Cada etapa tem um ícone próprio (desenhado
+# em app.js), as estações da trilha que a comprovam e os temas de desconformidade que caem nela.
+ETAPAS = (
+    # id, nome, o que se confere, estações da trilha, temas
+    ("origem", "Origem do dinheiro", "Receita e repasses, recurso vinculado ou livre", (1, 2), ("vinculo", "cosip", "fnas")),
+    ("orcamento", "Orçamento", "Previsão, dotação, pisos e tetos", (3, 4), ("pisos", "orcamento")),
+    ("contratacao", "Contratação", "Licitação, contrato, empresa e preço", (5, 6), ("empresas", "precos")),
+    ("liquidacao", "Liquidação", "A entrega comprovada por nota fiscal", (7,), ("notas",)),
+    ("pagamento", "Pagamento", "O dinheiro que saiu e o que deixou de sair", (8,), ("execucao", "pessoal")),
+    ("prestacao", "Prestação de contas", "Contas entregues, julgadas e publicadas", (9,), ("contas", "selo", "oficios")),
 )
 
-# Os temas de desconformidade: cada ficha cai em um tema, e cada tema mora numa tela (e numa seção dela).
-# A página inicial mostra um quadro por tema; o clique leva à tela e à seção exata.
+PAGINAS = (
+    # arquivo, título, grupo (a etapa ou a consulta), pergunta
+    ("index", "Início", "Início", "O que está fora da regra no mês, etapa por etapa"),
+    ("origem", "Origem do dinheiro", "Origem do dinheiro", "De onde veio o dinheiro, vinculado ou livre, e onde foi empenhado"),
+    ("pisos", "Pisos e tetos", "Orçamento", "Os percentuais da Constituição e da LRF, pelo cálculo próprio"),
+    ("tempo", "Previsto e realizado", "Orçamento", "Previsto e realizado desde 2019 e a projeção até o fim do PPA"),
+    ("empresas", "Contratos e empresas", "Contratação", "Quem recebeu, quem administra e se podia contratar"),
+    ("precos", "Preço e entrega", "Contratação", "Preço pago, entrega comprovada e conta prestada"),
+    ("trilha", "Execução", "Liquidação e pagamento", "Em quais das nove etapas da despesa o dinheiro tem documento"),
+    ("pessoal", "Pessoal", "Liquidação e pagamento", "A despesa com pessoal perto do limite e o que deixou de ser pago"),
+    ("contas", "Contas", "Prestação de contas", "As contas entregues e julgadas no prazo"),
+    ("transparencia", "Transparência", "Prestação de contas", "O selo auditado, o que falta publicar e os ofícios prontos"),
+    ("indicios", "Desconformidades", "Consulta", "Todas as desconformidades, por etapa, condição, gravidade e secretaria"),
+    ("secretarias", "Secretarias", "Consulta", "Quanto cada secretaria contratou e quanto destoa"),
+    ("leis", "Normas", "Consulta", "A régua de cada conferência e onde está a norma"),
+)
+
+# Os temas de desconformidade: cada ficha cai em um tema, cada tema numa etapa e numa tela (e numa seção dela).
 TEMAS = {
     "selo": ("Selo de transparência", "transparencia", "selo",
              "O selo declarado contra o refeito pelo Onisciente, e o que deixou de ser publicado"),
-    "rio": ("Água fora do leito", "rio", "desvios", "Dinheiro vinculado empenhado fora da finalidade da lei"),
-    "cosip": ("COSIP", "rio", "cosip", "A contribuição da iluminação pública empenhada em outras funções"),
-    "fnas": ("FNAS e o Fundo", "rio", "fnas", "O que a União mandou contra o que entrou na fonte da assistência"),
+    "vinculo": ("Vinculado fora da finalidade", "origem", "desvios", "Recurso vinculado empenhado fora da finalidade da lei"),
+    "cosip": ("COSIP", "origem", "cosip", "A contribuição da iluminação pública empenhada em outras funções"),
+    "fnas": ("FNAS e o Fundo", "origem", "fnas", "O que a União mandou contra o que entrou na fonte da assistência"),
     "pisos": ("Pisos e tetos", "pisos", "medidas", "Os percentuais da Constituição e da LRF pelo cálculo próprio"),
     "precos": ("Preços", "precos", "preco", "Preço unitário acima da mediana das compras do país"),
     "empresas": ("Contratos e empresas", "empresas", "fornecedores",
                  "Dispensas no teto, fracionamento, aditivos, concentração e a Receita Federal"),
     "notas": ("Notas fiscais", "precos", "notas", "Notas fiscais dos contratos nunca publicadas no PNCP"),
-    "execucao": ("Execução", "trilha", "estacoes", "Empenho, liquidação e pagamento sem rastro publicado"),
+    "execucao": ("Execução", "trilha", "estacoes", "Empenho, liquidação e pagamento sem documento publicado"),
     "pessoal": ("Pessoal", "pessoal", "fichas", "A despesa com pessoal e o que a lei manda pagar e não foi pago"),
     "contas": ("Contas", "contas", "fichas", "Contas e prestações não apresentadas ou não julgadas no prazo"),
     "orcamento": ("Orçamento e receita", "tempo", "fichas", "Previsão, dotação e ritmo da arrecadação"),
-    "oficios": ("Leis e ofícios", "transparencia", "oficios", "Fundamento revogado, norma ausente e o ofício pronto"),
-    "sistema": ("Falhas do sistema", "transparencia", "falhas",
+    "oficios": ("Normas e ofícios", "transparencia", "oficios", "Fundamento revogado, norma ausente e o ofício pronto"),
+    "sistema": ("Falhas de leitura do sistema", "transparencia", "falhas",
                 "O que o próprio Onisciente não conseguiu ler; nunca é imputado ao Município"),
 }
 
-_TEMA_DA_FAMILIA = {"RIO": "rio", "PISO": "pisos", "ORC": "orcamento", "VIN": "execucao", "PRC": "empresas",
+ETAPA_DO_TEMA = {tema: e[0] for e in ETAPAS for tema in e[4]}
+
+# As três condições, com o mesmo ícone em todas as telas: conforme, alerta (com gravidade) e sem dado.
+# Sem dado é a falta de transparência (o documento que a lei manda publicar e não está publicado) ou a
+# leitura que o próprio sistema não fez (esta em cinza, nunca imputada ao Município).
+_SEM_DADO = re.compile(r"não publicad|nunca publicad|sem publicação|sem edição|não divulgad|não localizad"
+                       r"|não apresentad|não conferid|ainda incompleta", re.I)
+
+
+def condicao_da_ficha(codigo: str, tema: str, titulo: str) -> str:
+    """``sem_dado`` para a ausência de documento e a falha de leitura; ``alerta`` para o indício."""
+    c = sem_acento(codigo)
+    if tema in ("selo", "notas", "sistema") or c.startswith(("PUB", "ENT-NF", "SIS", "SYS")):
+        return "sem_dado"
+    return "sem_dado" if _SEM_DADO.search(titulo or "") else "alerta"
+
+
+_TEMA_DA_FAMILIA = {"RIO": "vinculo", "PISO": "pisos", "ORC": "orcamento", "VIN": "execucao", "PRC": "empresas",
                     "ENT": "execucao", "PCT": "contas", "PES": "pessoal", "CTA": "contas", "SIS": "sistema"}
 
 
@@ -88,7 +116,7 @@ def tema_da_ficha(codigo: str, familia: str) -> str:
     regras = (("PRC-", "empresas"), ("PES", "pessoal"), ("CTA", "contas"), ("ATA", "contas"), ("PUB", "selo"),
               ("LEG", "oficios"), ("SYS", "sistema"), ("SIS", "sistema"), ("EXE", "execucao"), ("DES", "execucao"),
               ("ENT", "execucao"), ("VIAS", "pisos"), ("PISO", "pisos"), ("RIO-RECEITA", "orcamento"),
-              ("RIO", "rio"), ("VIN", "rio"))
+              ("RIO", "vinculo"), ("VIN", "vinculo"))
     for prefixo, tema in regras:
         if c.startswith(prefixo):
             return tema
@@ -230,7 +258,9 @@ def comum(ctx: Contexto) -> dict:
         "pareceres": sorted(ctx.panoramas),
         "secretarias": secretarias(ctx),
         "funcoes": FUNCOES,
-        "paginas": [{"id": p, "titulo": t, "trecho": tr, "pergunta": q} for p, t, tr, q in PAGINAS],
+        "paginas": [{"id": p, "titulo": t, "grupo": g, "pergunta": q} for p, t, g, q in PAGINAS],
+        "etapas": [{"id": i, "nome": n, "confere": c, "estacoes": list(es), "temas": list(ts)}
+                   for i, n, c, es, ts in ETAPAS],
         "gerado_em": ctx.hoje.isoformat(),
         "versao": __version__,
         "dominio": {d.id: {"nome": d.nome, "funcao": d.funcao} for d in ctx.alvo.ativos()},
@@ -238,7 +268,7 @@ def comum(ctx: Contexto) -> dict:
 
 
 # =============================================================================================
-# O rio
+# Origem do dinheiro (receita por espécie e fonte, e o empenhado por função)
 # =============================================================================================
 
 def _classe(fonte: str) -> str:
@@ -272,7 +302,7 @@ def _fonte_ano(ctx: Contexto, c: str) -> str:
         rotulo = (f"Matriz de saldos contábeis, soma de {rotulo_mes(meses[0])} a {rotulo_mes(meses[-1])}"
                   if meses else f"Matriz de saldos contábeis de {c[:4]}")
         nota = ("Soma das matrizes de cada mês do exercício; o original aberto é o do último mês, e os "
-                "demais estão na tela do rio, mês a mês.") if meses else ""
+                "demais estão na tela Origem do dinheiro, mês a mês.") if meses else ""
         if base and base.url:
             ctx.originais.externo(chave, rotulo, base.url, sha256=base.sha256, quando=base.quando, nota=nota)
         else:
@@ -374,7 +404,7 @@ def _rio_competencia(ctx: Contexto, c: str, ms: list[str]) -> dict:
     except Exception:  # noqa: BLE001
         desvios, sem_catalogo = [], {}
     lista_desvios = [{"fonte": d.fonte, "nome": d.nome_fonte, "funcao": d.funcao, "valor": N(d.valor, fa, "azul"),
-                      "norma": d.norma, "motivo": d.motivo,
+                      "norma": d.norma, "motivo": "finalidade" if d.motivo == "leito" else d.motivo,
                       "naturezas": [[s, n, N(v, fa)] for s, n, v in d.naturezas[:8]]} for d in desvios]
 
     def cartao(destino: str, titulo_origem: str) -> dict:
@@ -393,7 +423,7 @@ def _rio_competencia(ctx: Contexto, c: str, ms: list[str]) -> dict:
         conf = next((o for o in origem if titulo_origem and o["titulo"].startswith(titulo_origem)), None)
         fora = [d for d in lista_desvios if d["fonte"] == destino]
         return {
-            "fonte": destino, "nome": nucleo.nome, "leito": leito,
+            "fonte": destino, "nome": nucleo.nome, "funcoes": leito,
             "norma": nucleo.destinacao.norma if nucleo.destinacao else "",
             "receita": N(receita, fa),
             "empenhado": [[f, N(v, fa), f in leito or not leito] for f, v in
@@ -495,6 +525,16 @@ ESTACOES_TEXTO = [{"n": e.numero, "nome": e.nome, "prova": e.prova, "onde": e.on
                    "nivel": e.nivel_minimo.name} for e in Estacao]
 
 
+def estacoes_com_documento(trilha_dados: dict) -> dict[str, list[int]]:
+    """As estações com documento publicado em cada mês, para todas as funções (a contagem de conforme do início)."""
+    out = {}
+    for m, por_funcao in (trilha_dados.get("exemplos") or {}).items():
+        ex = por_funcao.get("*")
+        if ex:
+            out[m] = [x["n"] for x in ex["linhas"] if x["acesa"]]
+    return out
+
+
 def trilha(ctx: Contexto) -> dict:
     exec_ = execucao_por_funcao(ctx)
     tf = _transf_por_funcao(ctx)
@@ -562,7 +602,7 @@ def _estacoes(ctx, m, f, exec_, tf, dot, emp_mes, contratos) -> list:
     ft = og.transferencias(ctx.originais, m)
     estacao(Estacao.ORIGEM, Nivel.B, origem, ft,
             "Transferências da União no mês" + ("" if f == "*" else f" para a função {FUNCOES.get(f, f)}")
-            + ", pelo Portal da Transparência. Os tributos próprios entram pelo rio.")
+            + ", pelo Portal da Transparência. Os tributos próprios aparecem na tela Origem do dinheiro.")
     estacao(Estacao.FONTE, Nivel.B, vinc + livre, fm, "Empenhado no mês, separado pela fonte de recursos.",
             {"vinculada": N(vinc, fm), "livre": N(livre, fm)})
     fr = og.siconfi(ctx.originais, "RREO", ano, p_ini) if p_ini else fm
@@ -907,7 +947,7 @@ def indicios(ctx: Contexto) -> dict:
         x["fonte"] = og.pncp(ctx.originais, a.orgao_cnpj, a.mes, a.orgao)
         fichas[fc.codigo] = x
     familias = {f.value: f.descricao for f in Familia}
-    return {"fichas": list(fichas.values()), "familias": familias,
+    return {"fichas": list(fichas.values()), "familias": familias, "rotulos": {f.value: f.rotulo for f in Familia},
             "estacoes_da_familia": {f.value: [e.numero for e in f.estacoes] for f in Familia}}
 
 
@@ -916,6 +956,7 @@ def _mes_mais(mes: str, n: int) -> str:
 
 
 def _ficha(f: dict, secs: list[str], cs: list[str]) -> dict:
+    tema = tema_da_ficha(f["codigo"], f["familia"])
     return {"codigo": f["codigo"], "familia": f["familia"], "titulo": limpa(f["titulo"]), "gravidade": f["gravidade"],
             "verificacao": f["verificacao"], "como_deveria": limpa(f.get("como_deveria")),
             "como_esta": limpa(f.get("como_esta")), "norma": limpa(f.get("norma")),
@@ -923,7 +964,8 @@ def _ficha(f: dict, secs: list[str], cs: list[str]) -> dict:
             "observacao": limpa(f.get("observacao")),
             "custodia": [{"url": o.get("url"), "quando": o.get("coletado_em"), "sha256": o.get("sha256"),
                           "edicao": o.get("edicao"), "pagina": o.get("pagina")} for o in f.get("custodia") or []],
-            "secretarias": secs, "cs": list(cs), "tema": tema_da_ficha(f["codigo"], f["familia"])}
+            "secretarias": secs, "cs": list(cs), "tema": tema,
+            "etapa": ETAPA_DO_TEMA.get(tema, ""), "condicao": condicao_da_ficha(f["codigo"], tema, f["titulo"])}
 
 
 def transparencia(ctx: Contexto) -> dict:
@@ -1247,7 +1289,8 @@ def indice_das_fichas(fichas: list[dict]) -> list[dict]:
     """O resumo de todas as fichas, embutido em todas as páginas para contar por tema no recorte."""
     out = []
     for f in fichas:
-        d = {"k": f["codigo"], "t": f["tema"], "g": f["gravidade"], "f": f["familia"], "s": f["secretarias"]}
+        d = {"k": f["codigo"], "t": f["tema"], "g": f["gravidade"], "f": f["familia"], "s": f["secretarias"],
+             "e": f.get("etapa", ""), "cd": f.get("condicao", "alerta")}
         if f["cs"]:
             d["cs"] = f["cs"]
         else:

@@ -9,6 +9,8 @@ import unicodedata
 from datetime import date, timedelta
 from pathlib import Path
 
+from ..linguagem import direto
+
 MESES = ("janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro",
          "outubro", "novembro", "dezembro")
 MESES_CURTOS = ("jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez")
@@ -141,11 +143,13 @@ def documento_publico(ni) -> str:
 
 
 def sem_cpf(obj):
-    """Prepara os textos que vão às telas: tira qualquer CPF escrito por extenso (000.000.000-00) e troca o
-    travessão do texto de origem por vírgula."""
+    """Prepara os textos que vão às telas: tira qualquer CPF escrito por extenso (000.000.000-00), troca o
+    travessão do texto de origem por vírgula e reescreve em linguagem direta o que foi guardado com a
+    metáfora antiga (decisão do usuário de 28/11/2026; nenhum número muda)."""
     if isinstance(obj, str):
         if "—" in obj or "–" in obj:
             obj = sem_travessao(obj)
+        obj = direto(obj)
         return CPF_FORMATADO.sub("CPF omitido", obj) if "-" in obj else obj
     if isinstance(obj, list):
         return [sem_cpf(x) for x in obj]

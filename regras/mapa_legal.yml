@@ -1278,7 +1278,7 @@ normas:
   parametro: Isenção, anistia ou remissão só com estimativa de impacto e compensação, ou prova de que foi considerada
     na LOA.
   conferencias:
-  - Rio
+  - Origem do dinheiro
   - Indícios
   localizada: true
   revogada: false
@@ -1291,7 +1291,7 @@ normas:
   parametro: Cota-parte de ICMS, IPVA e FPM recebida pelo município conferida contra o que a União e o Estado publicam
     como repassado.
   conferencias:
-  - Rio
+  - Origem do dinheiro
   localizada: true
   revogada: false
   ctresb:
@@ -1483,7 +1483,7 @@ normas:
   parametro: Coordenação e execução das emendas impositivas; justificativa de impedimento em 60 dias da LOA (Lei
     Orgânica, art. 138).
   conferencias:
-  - Rio
+  - Origem do dinheiro
   - ORC
   localizada: true
   revogada: false
@@ -1534,7 +1534,7 @@ normas:
   parametro: Isenção, redução, anistia e remissão só por lei específica; isenção exige regularidade fiscal e com
     o FGTS.
   conferencias:
-  - Rio
+  - Origem do dinheiro
   - Vínculo
   localizada: true
   revogada: false
@@ -1548,7 +1548,7 @@ normas:
   parametro: Aumento do IPTU limitado a 5% a partir de 2026; isenção do imóvel único até R$ 140 mil; ISS de 2%;
     multa diária de 0,33% até 20%.
   conferencias:
-  - Rio
+  - Origem do dinheiro
   localizada: true
   revogada: false
   oficial:
@@ -1560,7 +1560,7 @@ normas:
   assunto: REFIS 2023 e ITBI
   parametro: Programa de parcelamento de 2023 e ITBI de 1,5%.
   conferencias:
-  - Rio
+  - Origem do dinheiro
   localizada: true
   revogada: false
   oficial:
@@ -1572,7 +1572,7 @@ normas:
   assunto: Taxa de fiscalização (TRCF)
   parametro: Alíquota de 1,5%; relatório trimestral; audiência na Câmara até agosto.
   conferencias:
-  - Rio
+  - Origem do dinheiro
   - Ausências
   localizada: true
   revogada: false
@@ -1585,7 +1585,7 @@ normas:
   assunto: Contribuição de iluminação pública (COSIP)
   parametro: Destinação vinculada à iluminação; conselho gestor de 12 membros.
   conferencias:
-  - Rio
+  - Origem do dinheiro
   localizada: true
   revogada: false
   oficial:
@@ -1597,7 +1597,7 @@ normas:
   assunto: REFIS 2025
   parametro: Desconto até 99% e até 60 parcelas; renúncia a conferir contra o art. 14 da LRF.
   conferencias:
-  - Rio
+  - Origem do dinheiro
   - Indícios
   localizada: true
   revogada: false
@@ -1610,7 +1610,7 @@ normas:
   assunto: Transparência de incentivos fiscais
   parametro: Dados por beneficiário, atualizados mês a mês, obrigatórios a partir de novembro de 2027.
   conferencias:
-  - Rio
+  - Origem do dinheiro
   - Ausências
   localizada: true
   revogada: false

@@ -57,6 +57,8 @@
       if (f.familias && f.familias.length && f.familias.indexOf(g(fi, 'f', 'familia')) < 0) return false;
       if (f.gravidades && f.gravidades.length && f.gravidades.indexOf(g(fi, 'g', 'gravidade')) < 0) return false;
       if (f.temas && f.temas.length && f.temas.indexOf(g(fi, 't', 'tema')) < 0) return false;
+      if (f.etapas && f.etapas.length && f.etapas.indexOf(L.etapa(fi)) < 0) return false;
+      if (f.condicoes && f.condicoes.length && f.condicoes.indexOf(L.condicao(fi)) < 0) return false;
       if (f.estacao && f.estacoesDaFamilia) {
         var est = f.estacoesDaFamilia[g(fi, 'f', 'familia')] || [];
         if (est.indexOf(+f.estacao) < 0) return false;
@@ -68,11 +70,31 @@
       return true;
     });
   };
+  // A condição de cada ficha (alerta ou sem dado) e a etapa do gasto público em que ela cai.
+  L.condicao = function (fi) { return g(fi, 'cd', 'condicao') || 'alerta'; };
+  L.etapa = function (fi) { return g(fi, 'e', 'etapa') || ''; };
   L.contar = function (indice, c, s) {
     var out = {};
     L.filtrar(indice, { c: c, s: s }).forEach(function (fi) {
-      var t = out[fi.t] || (out[fi.t] = { n: 0, critica: 0, alta: 0, media: 0 });
-      t.n++; t[fi.g] = (t[fi.g] || 0) + 1;
+      var t = out[fi.t] || (out[fi.t] = { n: 0, critica: 0, alta: 0, media: 0, alerta: 0, sem_dado: 0 });
+      t.n++; t[fi.g] = (t[fi.g] || 0) + 1; t[L.condicao(fi)]++;
+    });
+    return out;
+  };
+  // Cada etapa com as três condições: conforme (estação da etapa com documento publicado no mês e tema da
+  // etapa sem ficha no recorte), alerta (ficha de indício, com a gravidade) e sem dado (ficha de ausência).
+  L.contarEtapas = function (indice, c, s, etapas, comDocumento) {
+    var cont = L.contar(indice, c, s), doc = (comDocumento || {})[c] || [], out = {};
+    (etapas || []).forEach(function (e) {
+      var x = { conforme: 0, alerta: 0, sem_dado: 0, critica: 0, alta: 0, media: 0, n: 0 };
+      e.estacoes.forEach(function (n) { if (doc.indexOf(n) >= 0) x.conforme++; });
+      e.temas.forEach(function (t) {
+        var y = cont[t];
+        if (!y) { x.conforme++; return; }
+        x.alerta += y.alerta; x.sem_dado += y.sem_dado; x.n += y.n;
+        x.critica += y.critica || 0; x.alta += y.alta || 0; x.media += y.media || 0;
+      });
+      out[e.id] = x;
     });
     return out;
   };
@@ -86,20 +108,20 @@
     return r;
   };
 
-  // --- o rio --------------------------------------------------------------------------------
+  // --- origem do dinheiro: receita por espécie, fonte e empenho por função ---------------------
   L.mesesDoAno = function (meses, c) {
     return Object.keys(meses).filter(function (m) { return m.slice(0, 4) === c.slice(0, 4) && m <= c; }).sort();
   };
   var CLASSES = { vinculada: 'Vinculada', livre: 'Livre', sem_catalogo: 'Sem catálogo' };
-  L.somarRio = function (rio, c, modo, funcao, nomesFuncao) {
+  L.somarRio = function (dados, c, modo, funcao, nomesFuncao) {
     modo = modo || 'todo';
-    var ms = L.mesesDoAno(rio.meses, c), ai = {}, bf = {};
+    var ms = L.mesesDoAno(dados.meses, c), ai = {}, bf = {};
     ms.forEach(function (m) {
-      rio.meses[m].a.forEach(function (x) {
+      dados.meses[m].a.forEach(function (x) {
         if (modo !== 'todo' && x[1] !== modo) return;
         var k = x[0] + '|' + x[1]; ai[k] = (ai[k] || 0) + x[2];
       });
-      rio.meses[m].b.forEach(function (x) {
+      dados.meses[m].b.forEach(function (x) {
         if (modo !== 'todo' && x[0] !== modo) return;
         var k = x[0] + '|' + x[1]; bf[k] = (bf[k] || 0) + x[2];
       });
@@ -110,7 +132,7 @@
       var p = k.split('|'); af[p[0]] = (af[p[0]] || 0) + v; entra[p[1]] = (entra[p[1]] || 0) + v;
       links.push({ de: 'a' + p[0], para: 'l' + p[1], v: v, cl: p[1] });
     });
-    // afluentes pequenos viram "Demais receitas"
+    // as espécies pequenas viram "Demais receitas"
     var ordemAf = Object.keys(af).sort(function (x, y) { return af[y] - af[x]; });
     var manterAf = {}; ordemAf.slice(0, 11).forEach(function (i) { manterAf[i] = 1; });
     var fozLinks = [];
@@ -145,10 +167,10 @@
     Object.keys(nos).forEach(function (id) {
       var n = nos[id], r = id.slice(1);
       n.v = Math.max(n.entra, n.sai);
-      if (id[0] === 'a') n.nome = r === 'outras' ? 'Demais receitas' : r === 'anteriores' ? 'Saldo de anos anteriores e ajustes' : rio.especies[+r].nome;
-      if (id[0] === 'a' && rio.especies[+r]) n.esfera = rio.especies[+r].esfera;
+      if (id[0] === 'a') n.nome = r === 'outras' ? 'Demais receitas' : r === 'anteriores' ? 'Saldo de anos anteriores e ajustes' : dados.especies[+r].nome;
+      if (id[0] === 'a' && dados.especies[+r]) n.esfera = dados.especies[+r].esfera;
       if (id[0] === 'l') n.nome = CLASSES[r] || r;
-      if (id[0] === 'f') n.nome = r === 'parada' ? 'Água parada (arrecadada e não empenhada)' : r === 'demais' ? 'Demais funções' : ((nomesFuncao && nomesFuncao[r]) || 'Função ' + r);
+      if (id[0] === 'f') n.nome = r === 'parada' ? 'Arrecadado e não empenhado' : r === 'demais' ? 'Demais funções' : ((nomesFuncao && nomesFuncao[r]) || 'Função ' + r);
       n.especial = (r === 'parada' || r === 'demais' || r === 'outras' || r === 'anteriores');
     });
     var total = 0; links.forEach(function (l) { if (l.de[0] === 'a') total += l.v; });
@@ -253,22 +275,31 @@
     return '<span class="n' + (f.u ? '' : ' sem') + '" tabindex="0" role="button" data-f="' + esc(chave) + '">' +
       esc(texto || f.r || 'origem') + '</span>';
   }
+  // Os ícones moram uma vez em cada página (símbolos SVG); aqui só se usam. As três condições têm sempre o
+  // mesmo ícone: conforme (círculo com visto), alerta (triângulo com exclamação) e sem dado (quadrado tracejado
+  // com interrogação). A cor diz o resto: a gravidade do alerta e, no sem dado, roxo quando falta documento do
+  // Município e cinza quando a leitura é do próprio sistema.
+  function ic(nome, classe) {
+    return '<svg class="ic' + (classe ? ' ' + classe : '') + '" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#i-' + nome + '"/></svg>';
+  }
+  var COND = { conforme: ['conforme', 'conforme'], alerta: ['alerta', 'alerta'], sem_dado: ['semdado', 'sem dado'] };
+  function icCond(cd, classe) { return ic((COND[cd] || COND.alerta)[0], 'cond ' + cd + (classe ? ' ' + classe : '')); }
   var SELOS = {
-    verde: ['verde', 'duas vias'], azul: ['azul', 'uma via'], roxo: ['roxo', 'não publicado'],
-    vermelho: ['vermelho', 'leitura falhou'], cinza: ['cinza', 'aguardando coleta'],
-    alerta: ['alerta', 'alerta'], indicio: ['indicio', 'indício'], critica: ['critica', 'indício crítico'],
-    ok: ['verde', 'conforme']
+    verde: ['verde', 'duas vias', 'conforme'], azul: ['azul', 'uma via', 'conforme'], roxo: ['roxo', 'não publicado', 'sem_dado'],
+    vermelho: ['vermelho', 'leitura falhou', 'sem_dado'], cinza: ['cinza', 'aguardando coleta', 'sem_dado'],
+    alerta: ['alerta', 'alerta', 'alerta'], indicio: ['indicio', 'indício', 'alerta'], critica: ['critica', 'indício crítico', 'alerta'],
+    ok: ['verde', 'conforme', 'conforme']
   };
   function selo(s, texto) {
     var x = SELOS[s] || SELOS.azul;
-    return '<span class="selo ' + x[0] + '"><i aria-hidden="true"></i>' + esc(texto || x[1]) + '</span>';
+    return '<span class="selo ' + x[0] + '">' + ic(COND[x[2]][0]) + esc(texto || x[1]) + '</span>';
   }
   function seloVias(o) { return o.divergencia ? selo('indicio', 'as vias divergem') : selo(o.selo, o.selo === 'verde' ? 'duas vias batem' : null); }
   var GRAV = { critica: 'crítica', alta: 'alta', media: 'média' };
   function grav(gv) { return '<span class="grav ' + esc(gv) + '">' + (GRAV[gv] || esc(gv)) + '</span>'; }
   function vazio(titulo, texto, roxo) {
-    return '<div class="vazio' + (roxo ? ' roxo' : '') + '"><span class="ic" aria-hidden="true">' + (roxo ? '!' : '…') +
-      '</span><div><h3>' + esc(titulo) + '</h3><p>' + esc(texto) + '</p></div></div>';
+    return '<div class="vazio' + (roxo ? ' roxo' : '') + '">' + ic('semdado', 'grande') +
+      '<div><h3>' + esc(titulo) + '</h3><p>' + esc(texto) + '</p></div></div>';
   }
   function painel(id, titulo, sub, corpo, opts) {
     opts = opts || {};
@@ -361,8 +392,9 @@
     var prova = fi.fonte ? '<div class="larga custodia"><h4>Prova</h4>' + origem(fi.fonte) + '</div>' :
       cust ? '<div class="larga custodia"><h4>Prova guardada</h4><ul>' + cust + '</ul></div>' :
         '<div class="larga custodia"><h4>Prova</h4><p>' + selo('roxo', 'documento não publicado') + ' A ficha nasce da ausência do documento que a lei manda publicar.</p></div>';
-    return '<details class="ficha ' + esc(fi.gravidade) + '" id="ficha-' + esc(fi.codigo).replace(/[^A-Za-z0-9_-]/g, '_') + '">' +
-      '<summary><h3>' + esc(fi.titulo) + '</h3>' + grav(fi.gravidade) +
+    var cd = L.condicao(fi);
+    return '<details class="ficha ' + esc(fi.gravidade) + ' ' + cd + '" id="ficha-' + esc(fi.codigo).replace(/[^A-Za-z0-9_-]/g, '_') + '" data-codigo="' + esc(fi.codigo) + '">' +
+      '<summary>' + icCond(cd, fi.tema === 'sistema' ? 'sistema' : fi.gravidade) + '<h3>' + esc(fi.titulo) + '</h3>' + (cd === 'sem_dado' ? '<span class="grav semdado">sem dado</span>' : grav(fi.gravidade)) +
       '<p class="meta"><span class="cod">' + esc(fi.codigo) + '</span><span>' + esc(fi.verificacao || '') + '</span><span>' +
       esc(secs) + '</span><span>' + esc(periodo) + '</span></p></summary><div class="corpo">' + corpo + prova + '</div></details>';
   }
@@ -451,76 +483,90 @@
       (ini.dominio && (!S.s || SEC[S.s].pasta) ? ' · ' + esc(ini.dominio) : '') + '</p><blockquote>' + esc(frase) + '</blockquote>' +
       (ini.parecer ? '<p class="sub" style="margin-top:8px"><a href="' + ini.parecer + '">Abrir o parecer de ' + esc(L.mes(S.c)) + '</a></p>' : '') +
       '</div><div><div class="placar" aria-label="Indícios por gravidade">' + placar + '</div><p class="nota" style="margin-top:6px;text-align:center">fichas abertas: ' + esc(S.s ? nomeSec(S.s) : 'Município inteiro') + '</p></div></section>';
+    h += painel('etapas', 'As etapas do gasto público', 'Cada etapa mostra, no recorte, o que está conforme, o que tem alerta e o que está sem dado. O clique abre a lista das desconformidades daquela etapa, e cada ficha da lista abre com a prova.', etapas(), { eyebrow: 'Por onde o dinheiro passa' });
     h += '<section class="grade gk lamina painel" aria-label="Os números do recorte"><h2 class="sr">Os números do recorte</h2>' +
       kpi('Arrecadado no ano', num(ini.receita), 'janeiro a ' + esc(L.mes(S.c)) + ', Município inteiro') +
       kpi('Empenhado no ano', num(ini.empenhado), 'exceto intraorçamentário') +
-      kpi('Água fora do leito', num(ini.fora_do_leito), 'vinculado empenhado fora da finalidade', ini.fora_do_leito && ini.fora_do_leito.v ? 'critico' : 'bom') +
+      kpi('Vinculado fora da finalidade', num(ini.fora_do_leito), 'recurso vinculado empenhado fora da finalidade da lei', ini.fora_do_leito && ini.fora_do_leito.v ? 'critico' : 'bom') +
       kpi('Contratos em 12 meses', ini.contratos ? L.int(ini.contratos[0]) + ' · ' + num(ini.contratos[1]) : '<span class="nd">sem dado</span>', 'publicados no PNCP pelo Município') +
       (ini.integridade ? kpi('Integridade da trilha', num(ini.integridade, 'dec') + '<small> de 100</small>', 'na pasta fiscalizada; com o que foi medido, o máximo possível é ' + NF1.format(ini.integridade_max || 0), 'ruim') : '') +
       '</section>';
-    h += painel('riomapa', 'O rio-mapa', 'As nove estações do dinheiro, da origem à prestação de contas. Cada marco é um indício do recorte no ponto da trilha onde acontece; o clique abre os indícios daquela estação.', riomapa(), { eyebrow: 'A trilha' });
-    h += painel('familias', 'Onde está cada desconformidade', 'Um quadro por tema. O número é o total de fichas no recorte; o clique leva à tela e à seção exata.', familias(cont));
-    h += painel('legenda', 'Como ler os sinais', '', '<div class="legenda" style="gap:10px 18px">' +
-      ['verde', 'azul', 'roxo', 'vermelho', 'cinza', 'alerta', 'indicio', 'critica'].map(function (s) { return selo(s); }).join('') +
-      '</div><p class="sub" style="margin-top:10px">A forma diz o mesmo que a cor: círculo cheio são duas vias que batem, círculo vazio é uma via oficial, quadrado pulsante é o que a lei manda publicar e não está publicado, triângulo é a leitura que falhou, losango é indício. Passe o mouse (ou toque) em qualquer número sublinhado para ver a origem; o clique abre o original.</p>' +
+    if (!S.s) h += painel('por-secretaria', 'Por secretaria', 'As secretarias com mais desconformidades no recorte. O clique abre a lista de cada uma.', porSecretaria());
+    h += painel('legenda', 'Como ler as condições', '', legendaCondicoes() +
+      '<p class="sub" style="margin-top:12px">Ao lado de cada número, o selo diz de onde ele veio: ' +
+      ['verde', 'azul', 'roxo', 'vermelho', 'cinza'].map(function (s) { return selo(s); }).join(' ') +
+      '. Passe o mouse (ou toque) em qualquer número sublinhado para ver a origem; o clique abre o original.</p>' +
       '<p class="sub" style="margin-top:6px"><a href="../index.html">Pareceres mensais</a> · <a href="../banco/index.html">O banco de dados</a></p>', { lamina: false });
     return h;
   };
-  function riomapa() {
-    var est = D.estacoes, porEst = {};
-    var lista = L.filtrar(IND, { c: S.c, s: S.s });
-    lista.forEach(function (fi) {
-      (D.estacoes_da_familia[fi.f] || []).forEach(function (n) {
-        var x = porEst[n] || (porEst[n] = { n: 0, c: 0 }); x.n++; if (fi.g === 'critica') x.c++;
-      });
-    });
-    var W = 1100, passo = W / 9, out = '<svg viewBox="0 0 ' + W + ' 210" role="img" aria-label="As nove estações e os indícios em cada uma">' +
-      '<defs><linearGradient id="agua" x1="0" x2="1"><stop offset="0" stop-color="var(--vinc)"/><stop offset="1" stop-color="var(--royal)"/></linearGradient></defs>' +
-      '<path d="M 0 100 C 120 70, 220 130, 340 100 S 560 70, 680 100 S 900 130, 1100 100" stroke="url(#agua)" stroke-width="16" fill="none" opacity=".35" stroke-linecap="round"/>';
-    est.forEach(function (e, i) {
-      var cx = passo * i + passo / 2, x = porEst[e.n] || { n: 0, c: 0 };
-      out += '<a href="' + link('indicios', { est: e.n }) + '" class="est' + (x.n ? '' : ' acesa') + '" aria-label="Estação ' + e.n + ', ' + esc(e.nome) + ': ' + x.n + ' indício(s)">' +
-        '<rect x="' + (cx - 52) + '" y="70" width="104" height="60" rx="12"/><text x="' + cx + '" y="95" text-anchor="middle">' + e.n + '. ' + esc(e.nome) + '</text>' +
-        '<text class="p" x="' + cx + '" y="115" text-anchor="middle">' + (x.n ? x.n + ' indício(s)' : 'sem indício') + '</text>';
-      if (x.n) {
-        var r = Math.min(26, 10 + Math.sqrt(x.n) * 3);
-        out += '<g transform="translate(' + cx + ',' + (40) + ') rotate(45)"><rect class="marco' + (x.c ? ' c' : '') + '" x="' + (-r / 2) + '" y="' + (-r / 2) + '" width="' + r + '" height="' + r + '"/></g>' +
-          '<text x="' + cx + '" y="44" text-anchor="middle" style="fill:#fff;font:700 11px var(--f-mono)">' + x.n + '</text>';
-      }
-      out += '<text class="p" x="' + cx + '" y="160" text-anchor="middle">' + esc(e.prova.split(',')[0]).slice(0, 26) + '</text></a>';
-    });
-    out += '</svg>';
-    return '<div class="riomapa rola">' + out + '</div>';
+  // O diagrama das etapas: um cartão por etapa, na ordem do gasto, com as três condições contadas no recorte.
+  function etapas() {
+    var et = C.etapas || [], cont = L.contarEtapas(IND, S.c, S.s, et, D.estacoes_com_documento);
+    var sis = L.filtrar(IND, { c: S.c, s: S.s, temas: ['sistema'] }).length;
+    var out = '<ol class="etapas">' + et.map(function (e, i) {
+      var x = cont[e.id];
+      var estado = x.alerta ? (x.critica ? 'critica' : 'alerta') : x.sem_dado ? 'semdado' : 'conforme';
+      var rot = 'Etapa ' + (i + 1) + ', ' + e.nome + ': ' + x.conforme + ' conforme, ' + x.alerta + ' alerta(s), ' + x.sem_dado + ' sem dado';
+      return '<li><a class="etapa ' + estado + '" data-etapa="' + e.id + '" href="' + link('indicios', { etapa: e.id }) + '" aria-label="' + esc(rot) + '">' +
+        '<span class="etapa-topo">' + ic(e.id, 'etapa-ic') + '<span class="etapa-n">' + (i + 1) + '</span></span>' +
+        '<b class="etapa-nome">' + esc(e.nome) + '</b><span class="etapa-confere">' + esc(e.confere) + '</span>' +
+        '<span class="conds">' +
+        '<span class="cd conforme">' + icCond('conforme') + '<b>' + x.conforme + '</b><small>conforme</small></span>' +
+        '<span class="cd alerta' + (x.critica ? ' critica' : '') + '">' + icCond('alerta', x.critica ? 'critica' : '') + '<b>' + x.alerta + '</b><small>alerta' + (x.critica ? ', ' + x.critica + ' crítico' : '') + '</small></span>' +
+        '<span class="cd sem_dado">' + icCond('sem_dado') + '<b>' + x.sem_dado + '</b><small>sem dado</small></span>' +
+        '</span></a></li>';
+    }).join('') + '</ol>';
+    out += '<p class="etapa-sistema"><a href="' + link('indicios', { tema: 'sistema' }) + '">' + icCond('sem_dado', 'sistema') +
+      '<span><b>' + sis + '</b> falha(s) de leitura do próprio sistema</span></a> <span class="nota">Não são do Município: é o que o Onisciente ainda não conseguiu ler.</span></p>';
+    return out;
   }
-  function familias(cont) {
-    var ordem = ['selo', 'precos', 'empresas', 'fnas', 'cosip', 'notas', 'execucao', 'pessoal', 'contas', 'oficios', 'rio', 'pisos', 'orcamento', 'sistema'];
-    var espera = { selo: 'selo_transparencia', empresas: 'empresas', execucao: 'execucao' };
-    return '<div class="familias">' + ordem.filter(function (t) { return TEMAS[t]; }).map(function (t) {
-      var x = cont[t] || { n: 0 }, tm = TEMAS[t], tot = x.n || 1;
-      var falta = espera[t] && (C.entradas || []).indexOf(espera[t]) < 0;
-      var barra = '<span class="barra" aria-hidden="true"><i class="c" style="width:' + ((x.critica || 0) / tot * 100) + '%"></i><i class="a" style="width:' +
-        ((x.alta || 0) / tot * 100) + '%"></i><i class="m" style="width:' + ((x.media || 0) / tot * 100) + '%"></i></span>';
-      return '<a class="familia' + (x.n ? '' : ' zero') + (falta && !x.n ? ' espera' : '') + '" href="' + link(tm.pagina, null, tm.ancora) + '">' +
-        '<h3>' + esc(tm.titulo) + '</h3><span class="q">' + x.n + ' <small>indício(s)' + (x.critica ? ', ' + x.critica + ' crítico(s)' : '') + '</small></span>' +
-        (x.n ? barra : '') + '<span class="onde">' + esc(tm.descricao) + '.' + (falta ? ' Parte aguarda a coleta.' : '') + '</span></a>';
-    }).join('') + '</div>';
+  function porSecretaria() {
+    var por = {};
+    L.filtrar(IND, { c: S.c }).forEach(function (fi) {
+      (fi.s || []).forEach(function (s) { var x = por[s] || (por[s] = { n: 0, critica: 0, sem_dado: 0 }); x.n++; if (fi.g === 'critica') x.critica++; if (L.condicao(fi) === 'sem_dado') x.sem_dado++; });
+    });
+    var ids = Object.keys(por).filter(function (s) { return SEC[s]; }).sort(function (a, b) { return por[b].n - por[a].n || (nomeSec(a) < nomeSec(b) ? -1 : 1); });
+    if (!ids.length) return '<p class="sub">' + selo('ok', 'nenhuma ficha por secretaria') + ' Nenhuma ficha deste mês é atribuída a uma secretaria; as do Município inteiro estão nas etapas acima.</p>';
+    return '<ul class="por-sec">' + ids.slice(0, 10).map(function (s) {
+      var x = por[s];
+      return '<li><a href="' + link('indicios', { s: s }) + '"><span class="nome">' + esc(nomeSec(s)) + '</span><span class="q">' +
+        icCond(x.n - x.sem_dado ? 'alerta' : 'sem_dado', x.critica ? 'critica' : '') + '<b>' + x.n + '</b> ficha(s)' + (x.critica ? ', ' + x.critica + ' crítica(s)' : '') + '</span></a></li>';
+    }).join('') + '</ul>' + (ids.length > 10 ? '<p class="nota">As 10 primeiras de ' + ids.length + '. As demais estão em <a href="' + link('secretarias') + '">Secretarias</a>.</p>' : '');
+  }
+  function legendaCondicoes() {
+    return '<ul class="conds-legenda">' +
+      '<li>' + icCond('conforme') + '<div><b>Conforme</b><span>O documento está publicado e a conferência não achou desconformidade.</span></div></li>' +
+      '<li>' + icCond('alerta', 'critica') + '<div><b>Alerta</b><span>Indício de desconformidade. A cor diz a gravidade: vermelho crítico, laranja alto, amarelo médio.</span></div></li>' +
+      '<li>' + icCond('sem_dado') + '<div><b>Sem dado</b><span>O que a lei manda publicar e não está publicado, ou o que o sistema ainda não conseguiu ler (em cinza).</span></div></li></ul>';
+  }
+  // Uma faixa no alto de cada tela: as condições dos temas desta tela no recorte, com o atalho para a lista.
+  function faixa() {
+    var temas = Object.keys(TEMAS).filter(function (t) { return TEMAS[t].pagina === PID; });
+    if (!temas.length) return '';
+    var f = L.filtrar(IND, { c: S.c, s: S.s, temas: temas }), al = 0, sd = 0, cr = 0;
+    f.forEach(function (fi) { if (L.condicao(fi) === 'sem_dado') sd++; else { al++; if (fi.g === 'critica') cr++; } });
+    return '<p class="faixa-cond" aria-label="Condições desta tela no recorte">' +
+      (f.length ? '' : '<span class="cd conforme">' + icCond('conforme') + 'conforme: nenhuma ficha no recorte</span>') +
+      (al ? '<span class="cd alerta">' + icCond('alerta', cr ? 'critica' : '') + '<b>' + al + '</b> alerta(s)' + (cr ? ', ' + cr + ' crítico(s)' : '') + '</span>' : '') +
+      (sd ? '<span class="cd sem_dado">' + icCond('sem_dado') + '<b>' + sd + '</b> sem dado</span>' : '') +
+      (f.length ? '<a href="' + link('indicios', { tema: temas.join(',') }) + '">Ver na lista</a>' : '') + '</p>';
   }
 
-  // --- O rio --------------------------------------------------------------------------------
+  // --- Origem do dinheiro --------------------------------------------------------------------
   var modoRio = U.get('modo') || 'todo';
-  T.rio = function () {
+  T.origem = function () {
     var rc = D.por_c[S.c];
     if (!rc) return vazio('Sem matriz para este período', 'A matriz de saldos contábeis de ' + L.mes(S.c) + ' não está no banco.', false);
-    var h = painel('sankey', 'Os afluentes, o leito e a foz', 'Receita realizada de janeiro a ' + esc(L.mes(S.c)) +
-      ' pela espécie (afluentes), separada em água vinculada e livre (leito), e o empenhado por função de governo (foz).',
+    var h = painel('sankey', 'Receita, fonte e empenho', 'Receita realizada de janeiro a ' + esc(L.mes(S.c)) +
+      ' por espécie, separada em recurso vinculado e livre pela fonte, e o empenhado por função de governo.',
       '<div id="sankey-area"></div>', {
-        eyebrow: 'Nascente',
-        direita: '<div class="modos" role="group" aria-label="Modo do rio">' + [['todo', 'Todo o rio'], ['vinculada', 'Vinculada'], ['livre', 'Livre']].map(function (m) {
+        eyebrow: 'Origem do dinheiro',
+        direita: '<div class="modos" role="group" aria-label="Fontes mostradas">' + [['todo', 'Todas as fontes'], ['vinculada', 'Vinculada'], ['livre', 'Livre']].map(function (m) {
           return '<button type="button" data-modo="' + m[0] + '" aria-pressed="' + (modoRio === m[0]) + '">' + m[1] + '</button>';
         }).join('') + '</div>'
       });
-    h += '<div class="grade g2">' + afluente(rc.cosip, 'cosip', 'COSIP: a iluminação pública', rc.cosip.lei) +
-      afluente(rc.fnas, 'fnas', 'FNAS: o Fundo Nacional de Assistência Social', 'Lei 8.742/1993, arts. 28 a 30') + '</div>';
+    h += '<div class="grade g2">' + vinculo(rc.cosip, 'cosip', 'COSIP: a iluminação pública', rc.cosip.lei) +
+      vinculo(rc.fnas, 'fnas', 'FNAS: o Fundo Nacional de Assistência Social', 'Lei 8.742/1993, arts. 28 a 30') + '</div>';
     h += painel('origem', 'O que a União diz que mandou e o que entrou', 'Cada transferência conferida em duas vias: o Portal da Transparência (o que saiu da União) e a matriz do Município (o que entrou na fonte).',
       '<div class="rola"><table class="t cartoes"><thead><tr><th>Transferência</th><th class="num">União</th><th class="num">Município</th><th class="num">Diferença</th><th>Selo</th></tr></thead><tbody>' +
       rc.origem.map(function (o) {
@@ -551,49 +597,49 @@
               '</td><td class="num" data-r="Registrado">' + (r.registrado ? num(r.registrado) : selo('cinza', 'não cruzado por programa')) + (dif ? ' ' + selo('indicio', 'diverge') : '') + '</td><td data-r="Fonte">' + esc(r.fonte || '') + '</td></tr>';
           }).join('') + '</tbody></table></div>' : '<p class="sub">Nenhum repasse no período.</p>'), { lamina: false });
     }
-    h += painel('desvios', 'Água vinculada fora do leito', 'Dinheiro que a lei amarra a uma finalidade e foi empenhado em função de governo fora do leito dela. ' +
+    h += painel('desvios', 'Recurso vinculado fora da finalidade', 'Dinheiro que a lei amarra a uma finalidade e foi empenhado em função de governo que a lei não permite para ele. ' +
       'Indício, não acusação: a prova é a própria matriz contábil do Município.',
       rc.desvios.length ? '<div class="rola"><table class="t cartoes"><thead><tr><th>Fonte</th><th>Onde foi empenhada</th><th class="num">Valor</th><th>Norma</th></tr></thead><tbody>' +
         rc.desvios.filter(function (d) { return !funcaoDoRecorte() || d.funcao === funcaoDoRecorte(); }).map(function (d) {
           return '<tr><td data-r="Fonte"><b>' + esc(d.fonte) + '</b> ' + esc(d.nome) + '</td><td data-r="Função">' + esc(nomeFuncao(d.funcao)) + ' (' + esc(d.funcao) + ')</td><td class="num" data-r="Valor">' +
             num(d.valor) + '</td><td data-r="Norma">' + esc(d.norma) + '</td></tr>';
-        }).join('') + '</tbody></table></div>' : '<p>' + selo('ok', 'no leito') + ' Nenhuma água vinculada fora do leito no recorte.</p>');
+        }).join('') + '</tbody></table></div>' : '<p>' + selo('ok', 'na finalidade') + ' Nenhum recurso vinculado fora da finalidade no recorte.</p>');
     if (rc.sem_catalogo && rc.sem_catalogo.length) {
-      h += painel('sem-catalogo', 'Fontes que o catálogo ainda não classifica', 'Água que o Onisciente ainda não sabe se é vinculada ou livre; aparece em cinza no rio.',
+      h += painel('sem-catalogo', 'Fontes que o catálogo ainda não classifica', 'Recurso que o Onisciente ainda não sabe se é vinculado ou livre; aparece em cinza no diagrama.',
         '<p>' + rc.sem_catalogo.slice(0, 12).map(function (x) { return '<span class="mono">' + esc(x[0]) + '</span> ' + num(x[1]); }).join(' · ') + '</p>', { lamina: false });
     }
-    h += blocoFichas(D.fichas, 'As fichas do rio', 'Água fora do leito, COSIP e FNAS no recorte.');
+    h += blocoFichas(D.fichas, 'As fichas da origem do dinheiro', 'Recurso vinculado fora da finalidade, COSIP e FNAS no recorte.');
     depois.push(desenharSankey);
     return h;
   };
-  function afluente(a, id, titulo, lei) {
+  function vinculo(a, id, titulo, lei) {
     if (!a) return '';
     var fun = funcaoDoRecorte();
     var total = a.empenhado.reduce(function (t, x) { return t + x[1].v; }, 0) || 1;
     var barras = a.empenhado.map(function (x) {
       return '<div class="barra-l' + (x[2] ? '' : ' fora') + '"' + (fun && fun === x[0] ? ' style="outline:2px solid var(--gold);border-radius:6px"' : '') + '><span>' + esc(nomeFuncao(x[0])) +
         '</span><span class="trilho"><i style="width:' + (x[1].v / total * 100).toFixed(1) + '%"></i></span><span class="r">' + num(x[1]) +
-        (x[2] ? '' : ' fora do leito') + '</span></div>';
+        (x[2] ? '' : ' fora da finalidade') + '</span></div>';
     }).join('');
     var o = a.origem;
     var extra = '';
     if (o) extra = '<p style="margin-top:10px">' + seloVias(o) + ' União: ' + num(o.vias[0] && o.vias[0].valor) + ' · Município: ' + num(o.vias[1] && o.vias[1].valor) + '</p>';
     if (a.planilha) extra += '<p class="sub">Planilha de repasses do FNAS no ano: ' + num(a.planilha) + '</p>';
-    return painel(id, titulo, 'Fonte ' + esc(a.fonte) + ', ' + esc(a.nome) + '. Leito da lei: ' +
-      (a.leito.length ? a.leito.map(function (f) { return esc(nomeFuncao(f)); }).join(', ') : 'não definido') + '.',
+    return painel(id, titulo, 'Fonte ' + esc(a.fonte) + ', ' + esc(a.nome) + '. Funções permitidas pela lei: ' +
+      (a.funcoes.length ? a.funcoes.map(function (f) { return esc(nomeFuncao(f)); }).join(', ') : 'não definido') + '.',
       '<p class="lei">' + esc(lei || a.norma || '') + '</p><div class="grade gk" style="margin-top:10px">' + kpi('Entrou na fonte no ano', num(a.receita), 'receita realizada na fonte, janeiro até o período') +
-      kpi('Fora do leito', num({ v: a.desvios.reduce(function (t, d) { return t + d.valor.v; }, 0), f: a.receita.f }), 'empenhado em outras funções',
+      kpi('Fora da finalidade', num({ v: a.desvios.reduce(function (t, d) { return t + d.valor.v; }, 0), f: a.receita.f }), 'empenhado em outras funções',
         a.desvios.length ? 'critico' : 'bom') + '</div><div class="barras">' + barras + '</div>' + extra,
-      { classe: 'afluente', eyebrow: 'Afluente vinculado' });
+      { classe: 'vinculo-card', eyebrow: 'Fonte vinculada' });
   }
   function desenharSankey() {
     var area = document.getElementById('sankey-area'); if (!area) return;
     var g2 = L.somarRio(D, S.c, modoRio, funcaoDoRecorte(), C.funcoes);
     var fa = (D.por_c[S.c] || {}).fonte;
-    if (!g2.links.length) { area.innerHTML = vazio('Rio seco neste recorte', 'Nenhuma receita ou empenho deste tipo no período.'); return; }
+    if (!g2.links.length) { area.innerHTML = vazio('Sem receita neste recorte', 'Nenhuma receita ou empenho deste tipo no período.'); return; }
     var W = 1000, H = Math.max(380, Object.keys(g2.nos).length * 22), lay = L.layoutSankey(g2, W, H);
-    var out = '<div class="rola"><svg class="sankey" viewBox="-4 -26 ' + (W + 8) + ' ' + (lay.alto + 34) + '" role="img" aria-label="Sankey do rio: ' + esc(L.brl(g2.total)) + ' de receita">';
-    out += '<text class="col" x="' + (lay.cols[0][0] ? 210 : 0) + '" y="-10" text-anchor="end">Afluentes</text><text class="col" x="' + (W / 2) + '" y="-10" text-anchor="middle">Leito</text><text class="col" x="' + (W - 250) + '" y="-10">Foz: funções</text>';
+    var out = '<div class="rola"><svg class="sankey" viewBox="-4 -26 ' + (W + 8) + ' ' + (lay.alto + 34) + '" role="img" aria-label="Receita, fonte e empenho: ' + esc(L.brl(g2.total)) + ' de receita">';
+    out += '<text class="col" x="' + (lay.cols[0][0] ? 210 : 0) + '" y="-10" text-anchor="end">Receita por espécie</text><text class="col" x="' + (W / 2) + '" y="-10" text-anchor="middle">Fonte</text><text class="col" x="' + (W - 250) + '" y="-10">Empenho por função</text>';
     lay.links.forEach(function (l) {
       var a = g2.nos[l.de], b = g2.nos[l.para], x0 = a.x + a.w, x1 = b.x, xm = (x0 + x1) / 2;
       out += '<path class="' + l.cl + ' n" data-f="' + esc(fa) + '" data-v="' + l.v + '" tabindex="-1" d="M' + x0 + ',' + l.y0.toFixed(1) + ' C' + xm + ',' + l.y0.toFixed(1) + ' ' + xm + ',' + l.y1.toFixed(1) + ' ' + x1 + ',' + l.y1.toFixed(1) +
@@ -613,13 +659,13 @@
       });
     });
     out += '</svg></div>';
-    out += '<p class="legenda"><span><i style="background:var(--vinc)"></i>Água vinculada</span><span><i style="background:var(--livre)"></i>Água livre</span>' +
-      '<span><i style="background:var(--semcat)"></i>Fonte sem catálogo</span><span><i style="background:var(--parado)"></i>Água parada</span>' +
+    out += '<p class="legenda"><span><i style="background:var(--vinc)"></i>Recurso vinculado</span><span><i style="background:var(--livre)"></i>Recurso livre</span>' +
+      '<span><i style="background:var(--semcat)"></i>Fonte sem catálogo</span><span><i style="background:var(--parado)"></i>Arrecadado e não empenhado</span>' +
       '<span><i style="background:var(--federal)"></i>Federal</span><span><i style="background:var(--estadual)"></i>Estadual</span><span><i style="background:var(--municipal)"></i>Municipal</span></p>';
-    if (funcaoDoRecorte()) out += '<p class="nota">Com ' + esc(nomeSec(S.s)) + ' no recorte, a foz destaca a função ' + esc(nomeFuncao(funcaoDoRecorte())) + ' e junta as demais; a nascente é a do Município inteiro, porque a receita não tem secretaria.</p>';
+    if (funcaoDoRecorte()) out += '<p class="nota">Com ' + esc(nomeSec(S.s)) + ' no recorte, o empenho destaca a função ' + esc(nomeFuncao(funcaoDoRecorte())) + ' e junta as demais; a receita é a do Município inteiro, porque a receita não tem secretaria.</p>';
     var linhasTab = Object.keys(g2.nos).map(function (id) { return g2.nos[id]; }).sort(function (a, b) { return a.col - b.col || b.v - a.v; });
-    out += '<details style="margin-top:8px"><summary>O rio em tabela (' + g2.meses.length + ' mês(es), ' + (modoRio === 'todo' ? 'todo o rio' : 'água ' + modoRio) + ')</summary><table class="t"><thead><tr><th>Trecho</th><th>Nó</th><th class="num">Valor</th></tr></thead><tbody>' +
-      linhasTab.map(function (n) { return '<tr><td>' + ['Afluente', 'Leito', 'Foz'][n.col] + '</td><td>' + esc(n.nome) + '</td><td class="num">' + num({ v: n.v, f: fa }) + '</td></tr>'; }).join('') + '</tbody></table></details>';
+    out += '<details style="margin-top:8px"><summary>Em tabela (' + g2.meses.length + ' mês(es), ' + (modoRio === 'todo' ? 'todas as fontes' : 'recurso ' + (modoRio === 'vinculada' ? 'vinculado' : 'livre')) + ')</summary><table class="t"><thead><tr><th>Coluna</th><th>Item</th><th class="num">Valor</th></tr></thead><tbody>' +
+      linhasTab.map(function (n) { return '<tr><td>' + ['Receita', 'Fonte', 'Empenho'][n.col] + '</td><td>' + esc(n.nome) + '</td><td class="num">' + num({ v: n.v, f: fa }) + '</td></tr>'; }).join('') + '</tbody></table></details>';
     area.innerHTML = out;
     area.closest('section').querySelectorAll('[data-modo]').forEach(function (b) {
       b.onclick = function () {
@@ -683,7 +729,7 @@
         return '<div class="estacao ' + cls + '" id="est-' + l.n + '"><span class="pino" aria-hidden="true">' + l.n + '</span><div class="txt"><h3>' + esc(e.nome) + '</h3>' +
           '<span class="v">' + (l.valor ? num(l.valor) : (l.n === 9 ? selo('roxo') : selo('cinza', 'sem valor'))) + '</span>' + extra + '<p>' + esc(l.nota) + '</p><p class="nota">Prova: ' + esc(e.prova) + '</p></div></div>';
       }).join('') + '</div>' + (ex.ordem && ex.ordem.length ? '<p class="nota">' + selo('indicio', 'ordem violada') + ' ' + esc(ex.ordem.join('; ')) + '</p>' : ''),
-      { direita: seletor, eyebrow: 'Leito' });
+      { direita: seletor, eyebrow: 'Liquidação e pagamento' });
     // o ano inteiro: estações por mês
     var meses = Object.keys(D.exemplos).filter(function (m) { return m.slice(0, 4) === S.c.slice(0, 4); }).sort();
     h += painel('ano', 'O ano estação por estação', 'Cada linha é um mês; cada casa, uma estação. Cheia é estação com documento; vazia é estação sem documento no mês.',
@@ -765,7 +811,7 @@
     if (!d) return vazio('Sem medição para este período', 'Não há demonstrativo no banco para ' + L.mes(S.c) + '.');
     var fun = funcaoDoRecorte();
     var h = painel('medidas', 'Os percentuais pelo cálculo próprio', 'Pelo ' + esc(d.rgf || 'RGF') + ' e pelo ' + esc(d.rreo || 'RREO') + '. O cálculo é refeito a partir das linhas do demonstrativo; o declarado pelo Município fica ao lado.',
-      '<div class="grade g3">' + d.medidas.map(function (m) { return medidor(m, fun); }).join('') + '</div>', { eyebrow: 'Leito' });
+      '<div class="grade g3">' + d.medidas.map(function (m) { return medidor(m, fun); }).join('') + '</div>', { eyebrow: 'Orçamento' });
     h += painel('vias', 'As duas vias', 'O mesmo número em dois demonstrativos oficiais. Quando divergem, o selo fica azul e vira ficha.',
       d.vias.length ? '<div class="rola"><table class="t cartoes"><thead><tr><th>Conferência</th><th class="num">Primeira via</th><th class="num">Segunda via</th><th>Selo</th></tr></thead><tbody>' +
         d.vias.map(function (v) {
@@ -815,7 +861,7 @@
           series: [{ nome: 'Cálculo próprio', tipo: 'linha', cl: 'l1', cor: 'var(--royal)', vals: serie.map(function (x) { return x.percentual; }) },
           { nome: 'Declarado', tipo: 'linha', cl: 'l2', cor: 'var(--gold)', vals: serie.map(function (x) { return x.declarado; }) }],
           linhas: [{ v: D.limite, rot: 'limite ' + NF1.format(D.limite) + '%', cl: 'lim' }].concat(D.prudencial ? [{ v: D.prudencial, rot: 'prudencial ' + NF1.format(D.prudencial) + '%', cl: 'alr' }] : []).concat(D.alerta ? [{ v: D.alerta, rot: 'alerta ' + NF1.format(D.alerta) + '%', cl: 'alr' }] : [])
-        }) + '<details><summary class="nota">Memória de cálculo</summary><p class="sub">' + esc(ult.memoria) + '</p></details>', { eyebrow: 'Leito' });
+        }) + '<details><summary class="nota">Memória de cálculo</summary><p class="sub">' + esc(ult.memoria) + '</p></details>', { eyebrow: 'Liquidação e pagamento' });
     } else h += vazio('Sem RGF até este período', 'O primeiro RGF no banco é posterior a ' + L.mes(S.c) + '.');
     var fun = funcaoDoRecorte();
     var meses = Object.keys(D.mensal).filter(function (m) { return m.slice(0, 4) === S.c.slice(0, 4) && m <= S.c; }).sort();
@@ -855,7 +901,7 @@
       kpi('Preço com indício', L.int(cont.preco.indicio || 0), 'contratos com item acima da mediana nacional', cont.preco.indicio ? 'ruim' : 'bom') +
       kpi('Preço conferido sem indício', L.int(cont.preco.conferido || 0), 'itens comparados com o catálogo') +
       kpi('Entrega sem nota publicada', L.int(cont.entrega.ausente || 0), 'órgão sem nenhuma nota fiscal no PNCP', cont.entrega.ausente ? 'falta' : '') +
-      kpi('Prestação de contas', (C.entradas || []).indexOf('execucao') >= 0 ? L.int(cont.prest.conferido || 0) + ' conferida(s)' : 'aguardando', 'liquidação do empenho do contrato') + '</div></div>', { eyebrow: 'Foz' });
+      kpi('Prestação de contas', (C.entradas || []).indexOf('execucao') >= 0 ? L.int(cont.prest.conferido || 0) + ' conferida(s)' : 'aguardando', 'liquidação do empenho do contrato') + '</div></div>', { eyebrow: 'Contratação' });
     var achados = D.achados.filter(function (a) { return a[3] >= jan[0] && a[3] <= jan[1] && (!S.s || a[1] === S.s); });
     var precos = achados.filter(function (a) { return a[0] === 'preco'; });
     h += painel('preco', 'Preço acima do país', precos.length + ' item(ns) com preço unitário acima da mediana nacional para o mesmo item e unidade, depois de descartar os de unidade diferente.',
@@ -930,7 +976,7 @@
         return '<tr><td data-r="Fornecedor"><b>' + esc(x.f.nome) + '</b><br><span class="nota mono">' + esc(x.f.ni) + '</span></td><td class="num" data-r="Contratos">' + x.cs.length + '</td><td class="num" data-r="Valor">' +
           num({ v: x.v, f: x.cs[0][3].f }) + '</td><td data-r="Receita">' + (r && r.cadastro === false ? selo('cinza', 'cadastro não coletado') + ' ' + origem(r.fonte, 'por quê') + alertas : r ? (r.abertura ? 'Aberta em ' + esc(L.data(r.abertura)) + '. ' : '') + esc(r.situacao || '') + ' ' + alertas + (r.socios && r.socios.length ? '<br><span class="nota">Sócios e administradores: ' +
             r.socios.map(function (s) { return esc(s.nome) + (s.qualificacao ? ' (' + esc(s.qualificacao) + ')' : ''); }).join(', ') + '</span>' : '') + ' ' + origem(r.fonte, 'cartão do CNPJ') : selo('cinza', 'aguardando')) + '</td></tr>';
-      }).join('') + '</tbody></table></div>' + (forn.length > 80 ? '<p class="nota">Os 80 maiores de ' + forn.length + '.</p>' : ''), { eyebrow: 'Foz' });
+      }).join('') + '</tbody></table></div>' + (forn.length > 80 ? '<p class="nota">Os 80 maiores de ' + forn.length + '.</p>' : ''), { eyebrow: 'Contratação' });
     var cob = D.cobertura;
     if (cob) {
       var faltam = Object.keys(cob.sancoes_nao_conferidas || {});
@@ -969,7 +1015,7 @@
       ent.slice().reverse().map(function (e) {
         return '<tr><td data-r="Demonstrativo">' + esc(e.rotulo) + '</td><td data-r="Prazo">' + esc(L.data(e.prazo)) + '</td><td data-r="Entregue">' + esc(L.data(e.entregue)) + '</td><td class="num" data-r="Atraso">' +
           (e.no_prazo ? selo('ok', 'no prazo') : num(e.atraso, 'dias')) + '</td></tr>';
-      }).join('') + '</tbody></table></div>', { eyebrow: 'Foz' });
+      }).join('') + '</tbody></table></div>', { eyebrow: 'Prestação de contas' });
     h += painel('anuais', 'As contas anuais', 'Prazos da ' + esc(D.norma) + '. A conferência é possível quando o banco tem os demonstrativos do exercício.',
       '<div class="rola"><table class="t cartoes"><thead><tr><th>Exercício</th><th>Entrega ao TCM</th><th>Parecer prévio até</th><th>Julgamento até</th><th>Conferência</th><th>Situação</th></tr></thead><tbody>' +
       D.anuais.filter(function (a) { return a.exercicio < ano; }).reverse().map(function (a) {
@@ -984,14 +1030,29 @@
   var FI = {
     familias: (U.get('fam') || '').split(',').filter(Boolean), gravidades: (U.get('g') || '').split(',').filter(Boolean),
     temas: (U.get('tema') || '').split(',').filter(Boolean), texto: U.get('q') || '', estacao: U.get('est') || '',
+    etapas: (U.get('etapa') || '').split(',').filter(Boolean), condicoes: (U.get('cd') || '').split(',').filter(Boolean),
     de: U.get('de') || '', ate: U.get('ate') || '', mostrar: 30
   };
+  function etapaPorId(id) { return (C.etapas || []).filter(function (e) { return e.id === id; })[0]; }
+  // O cabeçalho da etapa escolhida: o que ela confere e as telas onde ela aparece em detalhe.
+  function cabecalhoEtapa() {
+    var e = etapaPorId(FI.etapas[0]); if (!e || FI.etapas.length > 1) return '';
+    var i = (C.etapas || []).indexOf(e), telas = [];
+    e.temas.forEach(function (t) { var pg = TEMAS[t] && TEMAS[t].pagina; if (pg && telas.indexOf(pg) < 0) telas.push(pg); });
+    var tit = {}; C.paginas.forEach(function (p) { tit[p.id] = p.titulo; });
+    return '<section class="painel etapa-cab" aria-label="Etapa escolhida">' + ic(e.id, 'etapa-ic') + '<div><p class="eyebrow">Etapa ' + (i + 1) + ' de ' + C.etapas.length + '</p><h2>' + esc(e.nome) + '</h2>' +
+      '<p class="sub">' + esc(e.confere) + '. Em detalhe: ' + telas.map(function (pg) { return '<a href="' + link(pg) + '">' + esc(tit[pg] || pg) + '</a>'; }).join(' · ') +
+      ' · <a href="' + link('indicios') + '">todas as etapas</a></p></div></section>';
+  }
   T.indicios = function () {
     var fams = Object.keys(D.familias);
     var periodos = C.competencias.slice().reverse();
     var opt = function (sel) { return '<option value="">Competência do recorte</option>' + periodos.map(function (c) { return '<option value="' + c + '"' + (c === sel ? ' selected' : '') + '>' + esc(L.mes(c)) + '</option>'; }).join(''); };
-    var h = '<section class="painel" aria-label="Filtros dos indícios"><div class="filtros">' +
-      '<fieldset><legend>Família</legend>' + fams.map(function (f) { return '<button type="button" class="chip" data-fam="' + f + '" aria-pressed="' + (FI.familias.indexOf(f) >= 0) + '" title="' + esc(D.familias[f]) + '">' + f + '</button>'; }).join('') + '</fieldset>' +
+    var rot = D.rotulos || {};
+    var h = cabecalhoEtapa() + '<section class="painel" aria-label="Filtros dos indícios"><div class="filtros">' +
+      '<fieldset><legend>Etapa</legend>' + (C.etapas || []).map(function (e) { return '<button type="button" class="chip" data-etapa="' + e.id + '" aria-pressed="' + (FI.etapas.indexOf(e.id) >= 0) + '">' + ic(e.id) + esc(e.nome) + '</button>'; }).join('') + '</fieldset>' +
+      '<fieldset><legend>Condição</legend>' + [['alerta', 'Alerta'], ['sem_dado', 'Sem dado']].map(function (x) { return '<button type="button" class="chip" data-cond="' + x[0] + '" aria-pressed="' + (FI.condicoes.indexOf(x[0]) >= 0) + '">' + icCond(x[0]) + x[1] + '</button>'; }).join('') + '</fieldset>' +
+      '<fieldset><legend>Família</legend>' + fams.map(function (f) { return '<button type="button" class="chip" data-fam="' + f + '" aria-pressed="' + (FI.familias.indexOf(f) >= 0) + '" title="' + esc(D.familias[f]) + '">' + esc(rot[f] || f) + '</button>'; }).join('') + '</fieldset>' +
       '<fieldset><legend>Gravidade</legend>' + ['critica', 'alta', 'media'].map(function (g2) { return '<button type="button" class="chip" data-grav="' + g2 + '" aria-pressed="' + (FI.gravidades.indexOf(g2) >= 0) + '">' + GRAV[g2] + '</button>'; }).join('') + '</fieldset>' +
       '<fieldset><legend>Tema</legend><select id="f-tema"><option value="">Todos os temas</option>' + Object.keys(TEMAS).map(function (t) { return '<option value="' + t + '"' + (FI.temas[0] === t ? ' selected' : '') + '>' + esc(TEMAS[t].titulo) + '</option>'; }).join('') + '</select></fieldset>' +
       '<fieldset><legend>Período</legend><select id="f-de" aria-label="De">' + opt(FI.de) + '</select><select id="f-ate" aria-label="Até">' + opt(FI.ate) + '</select></fieldset>' +
@@ -1003,21 +1064,37 @@
         var u = new URLSearchParams(); u.set('c', S.c); if (S.s) u.set('s', S.s);
         if (FI.familias.length) u.set('fam', FI.familias.join(',')); if (FI.gravidades.length) u.set('g', FI.gravidades.join(','));
         if (FI.temas.length) u.set('tema', FI.temas.join(',')); if (FI.texto) u.set('q', FI.texto); if (FI.estacao) u.set('est', FI.estacao);
+        if (FI.etapas.length) u.set('etapa', FI.etapas.join(',')); if (FI.condicoes.length) u.set('cd', FI.condicoes.join(','));
         if (FI.de) u.set('de', FI.de); if (FI.ate) u.set('ate', FI.ate);
         history.replaceState(null, '', '?' + u.toString());
       }
       function lista() {
-        var f = L.filtrar(D.fichas, { c: S.c, s: S.s, de: FI.de || (FI.ate ? '0000-00' : ''), ate: FI.ate || (FI.de ? S.c : ''), familias: FI.familias, gravidades: FI.gravidades, temas: FI.temas, texto: FI.texto, estacao: FI.estacao, estacoesDaFamilia: D.estacoes_da_familia });
-        var ord = { critica: 0, alta: 1, media: 2 };
-        f.sort(function (a, b) { return (ord[a.gravidade] - ord[b.gravidade]) || (L.periodoDa(b)[1] > L.periodoDa(a)[1] ? 1 : -1); });
+        var f = L.filtrar(D.fichas, { c: S.c, s: S.s, de: FI.de || (FI.ate ? '0000-00' : ''), ate: FI.ate || (FI.de ? S.c : ''), familias: FI.familias, gravidades: FI.gravidades, temas: FI.temas, etapas: FI.etapas, condicoes: FI.condicoes, texto: FI.texto, estacao: FI.estacao, estacoesDaFamilia: D.estacoes_da_familia });
+        var ord = { critica: 0, alta: 1, media: 2 }, ordT = Object.keys(TEMAS);
+        // Com etapa, secretaria ou tema escolhidos a lista sai inteira, agrupada por tema: a ficha fica a um clique.
+        var inteira = !!(FI.etapas.length || FI.temas.length || S.s);
+        f.sort(function (a, b) {
+          return (inteira ? ordT.indexOf(a.tema) - ordT.indexOf(b.tema) : 0) || (ord[a.gravidade] - ord[b.gravidade]) || (L.periodoDa(b)[1] > L.periodoDa(a)[1] ? 1 : -1);
+        });
+        var corpo = '', tAnt = null, vis = inteira ? f : f.slice(0, FI.mostrar);
+        vis.forEach(function (fi) {
+          if (inteira && fi.tema !== tAnt) {
+            corpo += (tAnt === null ? '' : '</div>') + '<h3 class="grupo-lista">' + esc(TEMAS[fi.tema] ? TEMAS[fi.tema].titulo : fi.tema) + '</h3><div class="fichas">';
+            tAnt = fi.tema;
+          }
+          corpo += ficha(fi);
+        });
+        corpo = inteira ? corpo + (vis.length ? '</div>' : '') : '<div class="fichas">' + corpo + '</div>';
         var periodo = FI.de || FI.ate ? 'de ' + L.mes(FI.de || C.competencias[0]) + ' a ' + L.mes(FI.ate || S.c) : 'em ' + L.mes(S.c);
         document.getElementById('lista-fichas').innerHTML = '<p class="sub" aria-live="polite" style="margin-bottom:10px"><b>' + f.length + '</b> ficha(s) ' + esc(periodo) + (S.s ? ', ' + esc(nomeSec(S.s)) : '') + '.</p>' +
-          (f.length ? '<div class="fichas">' + f.slice(0, FI.mostrar).map(ficha).join('') + '</div>' + (f.length > FI.mostrar ? '<p style="margin-top:12px"><button type="button" class="bt" id="mais">Mostrar mais ' + Math.min(30, f.length - FI.mostrar) + '</button></p>' : '')
+          (f.length ? corpo + (!inteira && f.length > FI.mostrar ? '<p style="margin-top:12px"><button type="button" class="bt" id="mais">Mostrar mais ' + Math.min(30, f.length - FI.mostrar) + '</button></p>' : '')
             : vazio('Nenhuma ficha com estes filtros', 'Tire um filtro ou mude o período.'));
         var m = document.getElementById('mais'); if (m) m.onclick = function () { FI.mostrar += 30; lista(); };
         marcarLaminas();
       }
       document.querySelectorAll('[data-fam]').forEach(function (b) { b.onclick = function () { tog(FI.familias, b.dataset.fam); b.setAttribute('aria-pressed', FI.familias.indexOf(b.dataset.fam) >= 0); FI.mostrar = 30; sync(); lista(); }; });
+      document.querySelectorAll('[data-etapa]').forEach(function (b) { b.onclick = function () { tog(FI.etapas, b.dataset.etapa); FI.mostrar = 30; sync(); desenhar(); }; });
+      document.querySelectorAll('[data-cond]').forEach(function (b) { b.onclick = function () { tog(FI.condicoes, b.dataset.cond); b.setAttribute('aria-pressed', FI.condicoes.indexOf(b.dataset.cond) >= 0); FI.mostrar = 30; sync(); lista(); }; });
       document.querySelectorAll('[data-grav]').forEach(function (b) { b.onclick = function () { tog(FI.gravidades, b.dataset.grav); b.setAttribute('aria-pressed', FI.gravidades.indexOf(b.dataset.grav) >= 0); FI.mostrar = 30; sync(); lista(); }; });
       document.getElementById('f-tema').onchange = function () { FI.temas = this.value ? [this.value] : []; sync(); lista(); };
       document.getElementById('f-de').onchange = function () { FI.de = this.value; sync(); lista(); };
@@ -1051,7 +1128,7 @@
             '</td><td data-r="Nível">' + selo(x.selo ? 'ok' : 'indicio', x.nivel || '') + '</td><td data-r="Essenciais em falta">' + (x.essenciais_em_falta.length ? esc(x.essenciais_em_falta.join(', ')) : 'nenhum') + '</td></tr>';
         }).join('') + '</tbody></table></div>' : '') +
       (dec.ciclo_seguinte ? '<p class="nota">' + esc(dec.ciclo_seguinte) + '</p>' : '') +
-      (sl.radar && !sl.radar.lido && sl.radar.motivo ? '<p class="nota">' + selo('cinza', 'Radar não lido') + ' ' + esc(sl.radar.motivo) + '.</p>' : ''), { eyebrow: 'Margens' });
+      (sl.radar && !sl.radar.lido && sl.radar.motivo ? '<p class="nota">' + selo('cinza', 'Radar não lido') + ' ' + esc(sl.radar.motivo) + '.</p>' : ''), { eyebrow: 'Prestação de contas' });
     (sl.orgaos || []).forEach(function (o) {
       if (S.s && o.cnpj && o.cnpj !== S.s) return;
       h += painel('selo-' + esc(o.sigla.toLowerCase()), o.orgao, esc(o.nivel) + '. ' + esc(o.texto),
@@ -1080,10 +1157,10 @@
     var h = '';
     var cs = coleta('selo_transparencia');
     if (D.selo) h += telaSelo(D.selo);
-    else if (cs) h += painel('selo', 'O selo de transparência, auditado', '', naoFeita(cs, 'auditoria do selo de transparência', 'Quando a auditoria do selo for gerada, esta seção mostra o selo declarado ao lado do selo refeito, critério por critério.'), { eyebrow: 'Margens' });
+    else if (cs) h += painel('selo', 'O selo de transparência, auditado', '', naoFeita(cs, 'auditoria do selo de transparência', 'Quando a auditoria do selo for gerada, esta seção mostra o selo declarado ao lado do selo refeito, critério por critério.'), { eyebrow: 'Prestação de contas' });
     else {
       h += painel('selo', 'O selo de transparência, auditado', '', vazio('Aguardando a coleta do selo de transparência',
-        'O Município apresenta um selo de transparência. Quando a frente do selo entregar a metodologia replicada e as provas de cada critério, esta seção mostra o selo declarado ao lado do selo refeito pelo Onisciente, critério por critério, e a nota de cada secretaria. Enquanto isso, o que a lei manda publicar e não está publicado aparece logo abaixo.'), { eyebrow: 'Margens' });
+        'O Município apresenta um selo de transparência. Quando a frente do selo entregar a metodologia replicada e as provas de cada critério, esta seção mostra o selo declarado ao lado do selo refeito pelo Onisciente, critério por critério, e a nota de cada secretaria. Enquanto isso, o que a lei manda publicar e não está publicado aparece logo abaixo.'), { eyebrow: 'Prestação de contas' });
     }
     var aus = D.ausencias.filter(function (a) { return a.cs.indexOf(S.c) >= 0 && (!S.s || a.secretarias.indexOf(S.s) >= 0); });
     var mun = D.municipio.filter(function (a) { return a.mes <= S.c; });
@@ -1120,7 +1197,7 @@
     return h;
   };
 
-  // --- Máquina do tempo ---------------------------------------------------------------------
+  // --- Previsto e realizado-----------------------------------------------------------------
   T.tempo = function () {
     var fun = funcaoDoRecorte();
     var anos = D.anos;
@@ -1133,11 +1210,11 @@
     h += painel('linha', 'Previsto e realizado, de ' + D.primeiro + ' a ' + D.ultimo_ppa, (fun ? 'Função ' + esc(nomeFuncao(fun)) + ': dotação atualizada e liquidado' : 'Município: dotação atualizada e despesa paga') +
       ' por exercício, pelo RREO; os anos futuros e o ano corrente trazem a projeção pela ' + esc(D.regua) + '.',
       grafico({
-        titulo: 'Máquina do tempo', x: x, agora: x.indexOf(S.c.slice(0, 4)),
+        titulo: 'Previsto e realizado', x: x, agora: x.indexOf(S.c.slice(0, 4)),
         series: [{ nome: 'Previsto (dotação atualizada)', cl: 'b1', cor: 'var(--royal)', vals: serieDot },
         { nome: fun ? 'Realizado (liquidado)' : 'Realizado (pago)', cl: 'b2', cor: 'var(--gold)', vals: serieReal },
         { nome: 'Projetado', cl: 'b3', cor: 'var(--vinc)', vals: serieProj }]
-      }) + (D.falta ? '<p style="margin-top:10px">' + selo('alerta', 'projeção limitada') + ' ' + esc(D.falta) + '</p>' : ''), { eyebrow: 'Margens' });
+      }) + (D.falta ? '<p style="margin-top:10px">' + selo('alerta', 'projeção limitada') + ' ' + esc(D.falta) + '</p>' : ''), { eyebrow: 'Orçamento' });
     h += painel('anos', 'Ano a ano', 'Os exercícios sem RREO no banco aparecem como lacuna da coleta, em cinza.',
       '<div class="rola"><table class="t cartoes"><thead><tr><th>Ano</th><th>Situação</th><th class="num">Receita prevista</th><th class="num">Receita realizada</th><th class="num">Dotação</th><th class="num">Empenhado</th><th class="num">Pago</th></tr></thead><tbody>' +
       anos.map(function (a) {
@@ -1193,13 +1270,14 @@
     document.getElementById('gerado').textContent = 'Gerado em ' + L.data(C.gerado_em) + ' a partir do banco histórico, versão ' + C.versao + '.';
     var i = ORDEM.indexOf(PID), ant = ORDEM[i - 1], prox = ORDEM[i + 1];
     var tit = {}; C.paginas.forEach(function (p) { tit[p.id] = p.titulo; });
-    document.getElementById('caminho').innerHTML = (ant ? '<a href="' + link(ant) + '"><small>Antes, no rio</small><b>' + esc(tit[ant]) + '</b></a>' : '<span></span>') +
-      (prox ? '<a class="prox" href="' + link(prox) + '"><small>Seguindo o dinheiro</small><b>' + esc(tit[prox]) + '</b></a>' : '');
+    document.getElementById('caminho').innerHTML = (ant ? '<a href="' + link(ant) + '"><small>Tela anterior</small><b>' + esc(tit[ant]) + '</b></a>' : '<span></span>') +
+      (prox ? '<a class="prox" href="' + link(prox) + '"><small>Seguindo o dinheiro</small><b>' + esc(tit[prox]) + '</b></a>'
+        : '<a class="prox" href="' + link('index') + '"><small>Seguindo o dinheiro</small><b>De volta às etapas</b></a>');
   }
   function desenhar() {
     depois = [];
     var tela = document.getElementById('tela');
-    try { tela.innerHTML = (T[PID] || function () { return ''; })(); }
+    try { tela.innerHTML = faixa() + (T[PID] || function () { return ''; })(); }
     catch (e) { tela.innerHTML = vazio('Esta tela não pôde ser desenhada', 'Erro: ' + e.message, false); if (window.console) console.error(e); }
     depois.forEach(function (f) { f(); });
     atualizarMoldura();
@@ -1217,7 +1295,7 @@
     document.getElementById('palco-cont').textContent = (li + 1) + ' de ' + lam.length;
     var tit = C.paginas.filter(function (p) { return p.id === PID; })[0];
     document.getElementById('palco-tela').textContent = tit.titulo + ' · ' + L.mes(S.c) + (S.s ? ' · ' + nomeSec(S.s) : '') + '. Passe o mouse nos números para ver a origem.';
-    if (PID === 'rio' && lam[li].id === 'sankey') desenharSankey();
+    if (PID === 'origem' && lam[li].id === 'sankey') desenharSankey();
   }
   function apresentar(liga, inicio) {
     apresentando = liga; document.body.classList.toggle('apresentando', liga);

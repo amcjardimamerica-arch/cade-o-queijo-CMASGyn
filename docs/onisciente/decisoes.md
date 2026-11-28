@@ -47,3 +47,37 @@ GitHub, uma dependência a mais sem nenhum dado a mais, e o sistema precisa roda
 **Trava.** `testes/test_leis.py::test_leis_vem_do_ctresb_e_do_sileg_sem_leis_mcp`: o motor de
 normas busca cada lei federal no endereço público do ctresb/leis e cada lei municipal no Sileg,
 e nenhum código do Onisciente depende de MCP.
+
+## 2026-11-28: sem a metáfora do rio; o painel se organiza pelas etapas do gasto (requisito 225)
+
+**Decidido pelo dono.** "Remova essa merda de premissa de rio. Eu dei de exemplo como se fosse um fluxo
+para a imagem visual e não para ser usado no sistema inteiro. O sistema deve ter uma premissa mais
+organizada e fácil de entender, com poucos cliques. Não quero premissas literais, mas imagens para etapas
+ou condições."
+
+**O que mudou.**
+
+* Nada do que se mostra (telas, menus, parecer, fichas, selos, documentação) usa a metáfora: rio,
+  afluentes, nascente, foz, margens, leito, correnteza, "água vinculada/livre/parada", sangria. Cada coisa
+  tem o nome técnico: origem do dinheiro, recurso vinculado ou livre, finalidade da lei, receita por
+  espécie, diferença da execução, dedução do FUNDEB. `rio.html` virou `origem.html`.
+* O painel se organiza pelas seis etapas do gasto público (origem do dinheiro, orçamento, contratação,
+  liquidação, pagamento, prestação de contas). A página inicial abre com o diagrama das etapas; cada
+  etapa mostra as três condições (conforme, alerta com a gravidade, sem dado) e leva à lista das suas
+  desconformidades. Qualquer desconformidade fica a dois cliques da página inicial.
+* Cada etapa e cada condição tem um ícone SVG próprio, desenhado uma vez em cada página e igual em todas.
+* As treze páginas ficam (revisão no estudo de UX, seção 2).
+* Os textos guardados antes da decisão (fichas dos panoramas, pareceres publicados) passam por
+  `onisciente/linguagem.py::direto`, que troca só as expressões e não toca em número.
+
+**O que fica interno com "rio".** O pacote `onisciente/rio/` e os seus nomes (`Rio`, `Afluente`,
+`Margens`, `RioMunicipal`, `somarRio`), as chaves do panorama em JSON (`rio`, `afluentes`, `margens`), o
+motivo `leito` dos desvios em `onisciente/rio/municipio.py`, o código da família `RIO` e o prefixo `RIO-`
+dos códigos de ficha. São identificadores, não texto: trocá-los mudaria o formato dos panoramas já
+publicados e os códigos das fichas, sem nada a ganhar para quem lê. A família `RIO` aparece para quem lê
+como "Origem e fonte".
+
+**Travas.** `testes/test_linguagem_direta.py` (a régua, a troca sem mexer em número, o parecer gerado e os
+pareceres publicados sem metáfora) e, em `testes/test_telas.py`,
+`test_nenhuma_metafora_nas_telas_nem_no_app`, `test_inicio_tem_o_diagrama_das_etapas_e_toda_ficha_a_dois_cliques`,
+`test_cada_condicao_tem_o_seu_icone_igual_em_todas_as_paginas` e `test_selos_e_fichas_usam_o_icone_da_condicao`.

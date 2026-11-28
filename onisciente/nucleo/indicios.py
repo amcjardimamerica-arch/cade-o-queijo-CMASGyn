@@ -45,9 +45,14 @@ class Familia(Enum):
     def estacoes(self) -> tuple[Estacao, ...]:
         return _FAMILIAS[self][1]
 
+    @property
+    def rotulo(self) -> str:
+        """O nome curto da família para quem lê (o código continua o mesmo nas fichas)."""
+        return _ROTULOS[self]
+
 
 _FAMILIAS = {
-    Familia.RIO: ("Rio: água vinculada no leito errado, receita sem fonte",
+    Familia.RIO: ("Origem e fonte: recurso vinculado fora da finalidade, receita sem fonte",
                   (Estacao.ORIGEM, Estacao.FONTE)),
     Familia.PISO: ("Pisos e tetos constitucionais e legais",
                    (Estacao.FONTE, Estacao.EMPENHO, Estacao.LIQUIDACAO)),
@@ -66,6 +71,13 @@ _FAMILIAS = {
     Familia.CTA: ("Contas não julgadas no prazo da Lei Orgânica",
                   (Estacao.PRESTACAO,)),
     Familia.SIS: ("Falha do próprio sistema", ()),
+}
+
+_ROTULOS = {
+    Familia.RIO: "Origem e fonte", Familia.PISO: "Pisos e tetos", Familia.ORC: "Orçamento",
+    Familia.VIN: "Vínculo", Familia.PRC: "Preço e contrato", Familia.ENT: "Entrega",
+    Familia.PCT: "Prestação de contas", Familia.PES: "Pessoal", Familia.CTA: "Contas",
+    Familia.SIS: "Falha do sistema",
 }
 
 # Catálogo SOB do Cadê o Queijo, mantido com o mesmo código.

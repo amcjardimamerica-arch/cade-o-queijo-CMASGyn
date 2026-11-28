@@ -22,7 +22,8 @@ Fiscalização do dinheiro público de Goiânia, a partir de documentos oficiais
 onisciente/          o sistema novo, em Python
   nucleo/            níveis de prova, selos, as nove estações, fichas, ausências, índice de integridade
   legal/             leitura do mapa legal (regras/mapa_legal.yml)
-  rio/               fontes de recurso da STN, afluentes e margens do rio
+  rio/               fontes de recurso da STN, vinculação, receita por espécie e diferença da execução
+                     (o nome da pasta é interno; nada do que se mostra usa a metáfora, decisão de 28/11/2026)
   conferencias/      preço, contrato e entrega, prestação de contas, padrões de gasto, verbas devidas
   pisos.py           pisos e tetos (saúde, educação, Fundeb, pessoal, Câmara, IGD) em cálculo próprio
   contas.py          prazos das contas do prefeito, do parecer e do julgamento
