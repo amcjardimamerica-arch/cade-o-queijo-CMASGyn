@@ -18,8 +18,16 @@ def cmd_telas(args: argparse.Namespace) -> int:
         from ..adaptadores import cadeoqueijo
         for c in competencias_disponiveis():
             panoramas[c] = cadeoqueijo.montar(c).como_dict()
+    from . import entradas as ent
+    from .dados import carregar_entradas
+    # As entradas das outras frentes vão para relatorios/onisciente/entradas quando o banco é o histórico;
+    # com outro banco (um teste, uma cópia), ficam ao lado dele, para não trocar as do repositório.
+    pasta = Path(args.entradas) if args.entradas else (ent.ENTRADAS if banco.resolve() == BANCO.resolve()
+                                                         else banco.parent / "entradas")
+    if not args.sem_entradas:
+        ent.escrever(banco, pasta)
     escritos = gerar(Path(args.destino) if args.destino else DESTINO, banco=banco, panoramas=panoramas,
-                     brutos=Path(args.brutos) if args.brutos else None)
+                     brutos=Path(args.brutos) if args.brutos else None, entradas=carregar_entradas(pasta))
     paginas = [a for a in escritos if a.suffix == ".html"]
     print(f"{len(paginas)} telas geradas em {paginas[0].parent}; comece por {paginas[0].parent / 'index.html'}.")
     return 0
@@ -32,4 +40,7 @@ def registrar(sub) -> None:
     pt.add_argument("--brutos", help="pasta das respostas cruas da coleta, para publicar os originais")
     pt.add_argument("--recalcular", action="store_true",
                     help="refaz os panoramas mensais em vez de ler os JSON de relatorios/onisciente")
+    pt.add_argument("--entradas", help="pasta das entradas das outras frentes (padrão: relatorios/onisciente/entradas)")
+    pt.add_argument("--sem-entradas", action="store_true",
+                    help="não reescreve as entradas; usa as que já estão na pasta")
     pt.set_defaults(f=cmd_telas)

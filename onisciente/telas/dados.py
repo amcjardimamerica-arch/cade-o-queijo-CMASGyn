@@ -109,6 +109,28 @@ class Contexto:
     alvos: list[dict] = field(default_factory=list)
     _cache: dict = field(default_factory=dict)
 
+    # --- as entradas das outras frentes -----------------------------------------------------
+    _LISTA_DA_ENTRADA = {"execucao": "empenhos", "federais": "repasses", "empresas": "empresas"}
+
+    def entrada(self, nome: str) -> dict | None:
+        """A entrada só quando ela traz dado: a que diz ``coleta_nao_feita`` (ou vem com a lista vazia) vale
+        como ausente, para a tela mostrar o quadro cinza e nunca cobrar do Município o que o sistema não leu."""
+        e = self.entradas.get(nome)
+        if not e or e.get("situacao") == "coleta_nao_feita":
+            return None
+        lista = self._LISTA_DA_ENTRADA.get(nome)
+        if lista and not e.get(lista) and not (nome == "federais" and e.get("emendas")):
+            return None
+        return e
+
+    def coletas(self) -> dict[str, dict]:
+        """A situação de cada entrada lida (dado ou coleta ainda não feita), para os quadros das telas."""
+        out = {}
+        for nome, e in self.entradas.items():
+            out[nome] = {"situacao": "dado" if self.entrada(nome) else "coleta_nao_feita",
+                         "motivo": sem_travessao(str(e.get("motivo") or "")), "gerado_em": e.get("gerado_em", "")}
+        return out
+
     # --- o que várias telas usam -----------------------------------------------------------
     def meses_msc(self) -> list[str]:
         if "msc" not in self._cache:
@@ -310,18 +332,22 @@ def rio(ctx: Contexto) -> dict:
         "meses": saida_meses,
         "por_c": por_c,
         "federais": _federais(ctx),
+        "federais_origens": (ctx.entradas.get("federais") or {}).get("origens"),
     }
 
 
 def _federais(ctx: Contexto) -> list[dict] | None:
     """Repasses federais por programa (FNS, FNDE, FNAS, Transferegov), quando a frente entrega ``federais.json``."""
-    dados = ctx.entradas.get("federais")
+    dados = ctx.entrada("federais")
     if not dados:
         return None
     out = []
-    for i, r in enumerate(dados.get("repasses") or []):
-        k = ctx.originais.externo(f"fed:{i}", f"{r.get('origem', '')}: {limpa(r.get('programa'), 90)}",
-                                  r.get("url", ""), quando=r.get("lido_em", ""), sha256=r.get("sha256", ""))
+    for r in dados.get("repasses") or []:
+        origem, ano = r.get("origem", ""), str(r.get("mes") or "")[:4]
+        k = f"fed:{origem}:{ano}"
+        if k not in ctx.originais.tabela:
+            ctx.originais.externo(k, f"{origem}: repasses de {ano}", r.get("url", ""), quando=r.get("lido_em", ""),
+                                  sha256=r.get("sha256", ""))
         out.append({"origem": r.get("origem"), "mes": str(r.get("mes") or "")[:7], "programa": limpa(r.get("programa"), 140),
                     "fonte": r.get("fonte_destino"), "valor": N(r.get("valor"), k),
                     "registrado": N(r.get("registrado"), k) if r.get("registrado") is not None else None})
@@ -486,7 +512,7 @@ def trilha(ctx: Contexto) -> dict:
         exemplos[m] = {}
         for f in ["*"] + funcoes:
             exemplos[m][f] = _estacoes(ctx, m, f, exec_, tf, dot, emp_mes, contratos)
-    execucao = ctx.entradas.get("execucao")
+    execucao = ctx.entrada("execucao")
     return {"estacoes": ESTACOES_TEXTO, "exemplos": exemplos, "funcoes": funcoes,
             "execucao": _execucao_entrada(ctx, execucao) if execucao else None,
             "dominio": next((d.funcao for d in ctx.alvo.ativos()), None)}
@@ -733,7 +759,7 @@ def precos(ctx: Contexto) -> dict:
     com_catalogo = {c for (c,) in consultar(ctx.con, "SELECT DISTINCT compra_id FROM pncp_itens WHERE catalogo IS NOT NULL")}
     com_nota = {c for (c,) in consultar(ctx.con, "SELECT DISTINCT contrato_id FROM pncp_cobrancas")}
     sem_nota = {a.orgao_cnpj for a in achados if a.tipo == "nf_ausente"}
-    execucao = ctx.entradas.get("execucao") or {}
+    execucao = ctx.entrada("execucao") or {}
     liquidados = {e.get("contrato") for e in execucao.get("empenhos") or []
                   if any(ev.get("estacao") == "liquidacao" for ev in e.get("eventos") or [])}
     contratos = []
@@ -767,23 +793,42 @@ def empresas(ctx: Contexto) -> dict:
             concentracao.append({"orgao": a.orgao_cnpj, "ano": a.dados.get("ano"), "mes": a.mes, "total": N(a.valor, k),
                                  "credores": a.dados.get("credores"), "levam": a.dados.get("levam_o_corte"),
                                  "corte": a.dados.get("corte_pct"), "maiores": [m for m in a.dados.get("maiores", [])[:5] if not re.fullmatch(r"\d{11}", str(m))]})
-    receita = ctx.entradas.get("empresas")
+    receita = ctx.entrada("empresas")
+    cobertura = None
     if receita:
         for e in receita.get("empresas") or []:
-            cnpj = re.sub(r"\D", "", str(e.get("cnpj") or ""))
-            k = ctx.originais.externo(f"rf:{cnpj}", f"Receita Federal: cartão do CNPJ {cnpj}", e.get("url", ""),
-                                      quando=e.get("lido_em", ""), sha256=e.get("sha256", ""))
+            cnpj = documento_publico(re.sub(r"[^0-9A-Za-z]", "", str(e.get("cnpj") or "")).upper())
+            if not cnpj:
+                continue      # só CNPJ; pessoa física nunca entra aqui
+            k = ctx.originais.externo(
+                f"rf:{cnpj}", f"Receita Federal: cartão do CNPJ {cnpj}", e.get("url", ""), quando=e.get("lido_em", ""),
+                sha256=e.get("sha256", ""), selo="azul" if e.get("cadastro", True) else "cinza",
+                nota="" if e.get("cadastro", True) else "O cadastro desta empresa ainda não foi coletado da Receita Federal.")
             alvo = fornecedores.setdefault(cnpj, {"ni": cnpj, "nome": limpa(e.get("razao")), "contratos": []})
             alvo["receita"] = {
-                "fonte": k, "abertura": e.get("abertura"), "situacao": e.get("situacao"),
+                "fonte": k, "cadastro": e.get("cadastro", True), "abertura": e.get("abertura"), "situacao": e.get("situacao"),
                 "capital": N(e.get("capital"), k) if e.get("capital") is not None else None,
                 "cnae": e.get("cnae"),
-                "socios": [{"nome": s.get("nome"), "qualificacao": s.get("qualificacao"), "desde": s.get("desde")}
-                           for s in e.get("socios") or []],
-                "sancoes": e.get("sancoes") or [], "alertas": e.get("alertas") or []}
+                "socios": [{"nome": limpa(s.get("nome"), 120), "qualificacao": limpa(s.get("qualificacao"), 80),
+                            "desde": s.get("desde")} for s in e.get("socios") or []],
+                "sancoes": e.get("sancoes") or [],
+                "alertas": [{"tipo": a.get("tipo"), "titulo": limpa(a.get("titulo") or a.get("tipo")),
+                             "gravidade": a.get("gravidade") or "media", "texto": limpa(a.get("texto"), 500),
+                             "mes": a.get("mes", "")} for a in e.get("alertas") or []]}
+        cob = receita.get("cobertura")
+        if cob:
+            cobertura = {"cnpjs": cob.get("cnpjs"), "com_cadastro": cob.get("cnpjs_com_cadastro"),
+                         "com_qsa": cob.get("cnpjs_com_qsa"), "folha": cob.get("folha"),
+                         "contratos_pessoa_fisica": cob.get("contratos_pessoa_fisica"),
+                         "sancoes_nao_conferidas": cob.get("sancoes_nao_conferidas") or {},
+                         "lacunas": [limpa(x, 600) for x in cob.get("lacunas") or []],
+                         "alertas_gerais": [{"titulo": limpa(a.get("titulo")), "texto": limpa(a.get("texto"), 600)}
+                                            for a in receita.get("alertas_gerais") or []],
+                         "por_tipo": receita.get("por_tipo") or {}}
     lista = sorted(fornecedores.values(), key=lambda f: -sum(c[3]["v"] for c in f["contratos"]))
+    lista = [f for f in lista if f["contratos"]]
     return {"fornecedores": lista[:600], "total_fornecedores": len(lista), "concentracao": concentracao,
-            "receita": bool(receita)}
+            "receita": bool(receita), "cobertura": cobertura}
 
 
 def secretarias_dados(ctx: Contexto) -> dict:
@@ -811,14 +856,19 @@ def secretarias_dados(ctx: Contexto) -> dict:
     for (m, f), d in exec_.items():
         k = og.msc(ctx.originais, m)
         por_funcao[f][m] = {x: N(d[x], k) for x in ("emp", "liq", "pago")}
-    selo = ctx.entradas.get("selo_transparencia") or {}
+    selo = ctx.entrada("selo_transparencia") or {}
     transp = {}
     for o in selo.get("por_orgao") or []:
         cnpj = re.sub(r"\D", "", str(o.get("cnpj") or ""))
         k = ctx.originais.externo(f"selo_org:{cnpj}", f"Selo de transparência refeito: {o.get('orgao') or cnpj}",
                                   selo.get("declarado", {}).get("url", ""))
-        transp[cnpj] = {"nota": N(o.get("nota"), k) if o.get("nota") is not None else None, "nivel": o.get("nivel"),
-                        "texto": o.get("nota_texto", "")}
+        if not cnpj:
+            continue
+        obrig = o.get("obrigacoes")
+        transp[cnpj] = {"nota": N(o.get("nota"), k) if o.get("nota") is not None and not obrig else None,
+                        "nivel": o.get("nivel"), "texto": limpa(o.get("nota_texto", "")),
+                        "obrigacoes": [{"id": x.get("id"), "texto": limpa(x.get("texto")), "estado": x.get("estado"),
+                                        "alerta": bool(x.get("alerta"))} for x in obrig or []]}
     return {"orgaos": orgaos, "execucao": por_funcao, "transparencia": transp, "janela": JANELA}
 
 
@@ -904,28 +954,52 @@ def transparencia(ctx: Contexto) -> dict:
     falhas = []
     for motor, alvo, mes, url, erro in consultar(ctx.con, "SELECT motor, alvo, mes, url, erro FROM coletas WHERE ok = 0"):
         falhas.append({"motor": motor, "alvo": limpa(alvo), "mes": mes or "", "url": url, "erro": limpa(erro, 200)})
-    selo = ctx.entradas.get("selo_transparencia")
-    selo_dados = None
-    if selo:
-        dec = selo.get("declarado") or {}
-        kd = ctx.originais.externo("selo:declarado", f"Selo declarado: {selo.get('programa', '')} {selo.get('ciclo', '')}",
-                                   dec.get("url", ""), quando=dec.get("lido_em", ""))
-        ka = ctx.originais.sem_original("selo:auditado", "Selo refeito pelo Onisciente",
-                                        "Cálculo próprio a partir dos critérios abaixo, cada um com a sua prova.")
-        crit = []
-        for i, c in enumerate(selo.get("criterios") or []):
-            k = ctx.originais.externo(f"selo:c{i}", f"Critério {c.get('id')}: {c.get('criterio')}", c.get("prova_url", ""),
-                                      quando=c.get("lido_em", ""), selo={"cumpre": "verde", "falha": "azul"}.get(c.get("auditado"), "roxo"))
-            crit.append({**{x: c.get(x) for x in ("id", "criterio", "peso", "declarado", "auditado", "nota")}, "fonte": k})
-        selo_dados = {"programa": selo.get("programa"), "ciclo": selo.get("ciclo"),
-                      "declarado": {"nivel": dec.get("nivel"), "nota": N(dec.get("nota"), kd)},
-                      "auditado": {"nivel": (selo.get("auditado") or {}).get("nivel"),
-                                   "nota": N((selo.get("auditado") or {}).get("nota"), ka)},
-                      "criterios": crit}
+    selo = ctx.entrada("selo_transparencia")
+    selo_dados = _selo(ctx, selo) if selo else None
     return {"ausencias": list(ausencias.values()), "oficios": oficios, "municipio": municipio_aus,
             "falhas": falhas, "selo": selo_dados,
             "escada": [{"n": d.numero, "nome": d.nome, "fundamento": d.fundamento, "agir": d.prazo_para_agir,
                         "decidir": d.prazo_para_decidir, "obs": d.observacao} for d in ESCADA]}
+
+
+_COR_AUDITADO = {"cumpre": "verde", "falha": "azul", "sem_dado": "cinza"}
+
+
+def _selo(ctx: Contexto, selo: dict) -> dict:
+    """O selo declarado e o selo refeito: as duas leituras (oficial e restritiva), cada uma comprovada e no
+    teto, os critérios com a prova e as obrigações do Fundo e do Conselho."""
+    dec = selo.get("declarado") or {}
+    kd = ctx.originais.externo("selo:declarado", limpa(dec.get("fonte")) or
+                               f"Selo declarado: {selo.get('programa', '')} {dec.get('ciclo') or selo.get('ciclo', '')}",
+                               dec.get("url", ""), quando=dec.get("lido_em", ""))
+    ka = ctx.originais.sem_original("selo:auditado", "Selo refeito pelo Onisciente",
+                                    "Cálculo próprio a partir dos critérios abaixo, cada um com a sua prova.")
+    crit = []
+    for i, c in enumerate(selo.get("criterios") or []):
+        k = ctx.originais.externo(f"selo:c{i}", f"Critério {c.get('id')}: {limpa(c.get('criterio'), 120)}",
+                                  c.get("prova_url", ""), quando=c.get("lido_em", ""),
+                                  selo=_COR_AUDITADO.get(c.get("auditado"), "cinza"),
+                                  nota=limpa("; ".join(p.get("descricao", "") for p in c.get("provas") or []), 600))
+        crit.append({**{x: c.get(x) for x in ("id", "peso", "declarado", "auditado", "auditado_restritiva", "dimensao")},
+                     "criterio": limpa(c.get("criterio")), "nota": limpa(c.get("nota"), 300), "fonte": k})
+    leituras = [{**le, "indice": N(le.get("indice"), ka)} for le in selo.get("leituras") or []]
+    orgaos = []
+    for o in selo.get("por_orgao") or []:
+        orgaos.append({"sigla": o.get("sigla") or "", "orgao": limpa(o.get("orgao")), "cnpj": o.get("cnpj") or "",
+                       "nivel": limpa(o.get("nivel")), "texto": limpa(o.get("nota_texto")),
+                       "obrigacoes": [{"id": x.get("id"), "texto": limpa(x.get("texto")), "base": limpa(x.get("base")),
+                                       "pntp": limpa(x.get("pntp")), "estado": x.get("estado"), "alerta": bool(x.get("alerta")),
+                                       "valor": N(x.get("valor_em_jogo"), ka) if x.get("valor_em_jogo") else None,
+                                       "provas": [limpa(p, 300) for p in x.get("provas") or []]}
+                                      for x in o.get("obrigacoes") or []]})
+    aud = selo.get("auditado") or {}
+    return {"programa": selo.get("programa"), "ciclo": selo.get("ciclo"),
+            "declarado": {"nivel": dec.get("nivel"), "ciclo": dec.get("ciclo") or selo.get("ciclo"),
+                          "nota": N(dec.get("nota"), kd), "nota_texto": limpa(dec.get("nota_texto")), "fonte": kd,
+                          "ciclo_seguinte": limpa(dec.get("ciclo_seguinte"), 400)},
+            "auditado": {"nivel": aud.get("nivel"), "nota": N(aud.get("nota"), ka)},
+            "leituras": leituras, "veredito": selo.get("veredito"), "radar": selo.get("radar"),
+            "criterios": crit, "orgaos": orgaos, "pendencias": [limpa(p, 500) for p in selo.get("pendencias") or []]}
 
 
 def _ausencias_municipio(ctx: Contexto) -> list[dict]:
