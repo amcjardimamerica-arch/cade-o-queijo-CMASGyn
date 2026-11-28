@@ -32,6 +32,7 @@ from pathlib import Path
 from statistics import median
 from typing import Callable, Iterable
 
+from .. import partes as _partes
 from ..legal.mapa import MapaLegal, Regra, carregar
 from ..nucleo.indicios import Familia, Ficha, emitir
 from ..nucleo.provas import Nivel
@@ -140,7 +141,7 @@ def _unidade(u: str | None) -> str:
 
 
 def _tabela(con: sqlite3.Connection, nome: str) -> bool:
-    return con.execute("select 1 from sqlite_master where type='table' and name=?", (nome,)).fetchone() is not None
+    return _partes.tem_tabela(con, nome)
 
 
 def _contar(con: sqlite3.Connection, sql: str, args: Iterable = ()) -> int:
@@ -607,7 +608,7 @@ def _notas_ausentes(con: sqlite3.Connection, contratos: dict[str, dict], cobrado
 def conferir(banco: Path | sqlite3.Connection, *, mapa: MapaLegal | None = None) -> Conferencias:
     """Roda todas as conferências de compras no banco histórico."""
     mapa = mapa or carregar()
-    con = banco if isinstance(banco, sqlite3.Connection) else sqlite3.connect(f"file:{banco}?mode=ro", uri=True)
+    con = banco if isinstance(banco, sqlite3.Connection) else _partes.conectar_leitura(banco)
     try:
         out = Conferencias()
         if not _tabela(con, "contratacoes_pncp"):

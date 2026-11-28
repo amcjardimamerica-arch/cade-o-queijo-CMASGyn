@@ -16,6 +16,7 @@ from pathlib import Path
 
 import yaml
 
+from .. import partes as _partes
 from .. import RAIZ
 from ..conferencias import compras
 from ..legal.mapa import MapaLegal
@@ -51,7 +52,7 @@ def reais(v: float) -> str:
 
 
 def _tabela(con: sqlite3.Connection, nome: str) -> bool:
-    return con.execute("select 1 from sqlite_master where type='table' and name=?", (nome,)).fetchone() is not None
+    return _partes.tem_tabela(con, nome)
 
 
 # --- Banco histórico ---------------------------------------------------------------------------

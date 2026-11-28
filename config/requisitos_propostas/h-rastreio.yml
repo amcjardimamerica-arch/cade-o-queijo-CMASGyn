@@ -22,3 +22,6 @@
 #   test_selos_ficam_num_arquivo_a_parte_e_o_banco_nao_guarda_pendencias (rastreio.db ao lado de historico.db)
 # E nos fluxos do grupo onisciente-banco (testes/test_fluxos_banco_guarda.py): guarda de 95 MB antes do commit
 # (artefato, resumo e falha sem push) e git add de dados/onisciente/rastreio.db.
+# Banco em partes (28/11/2026, historico.db chegou a 98,6 MB): precos_referencia em dados/onisciente/precos.db e
+# sancoes em dados/onisciente/sancoes.db, anexados (onisciente/partes.py). Travas: testes/test_partes.py; aviso de
+# 70 MB e git add das partes nos fluxos em testes/test_fluxos_banco_guarda.py.

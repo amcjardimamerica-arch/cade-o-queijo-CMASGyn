@@ -35,6 +35,7 @@ import zipfile
 from dataclasses import dataclass
 from datetime import date, timedelta
 
+from .. import partes as _partes
 from .cnpj import cnpj_valido, data_iso, so_cnpj
 
 CEPIM = "https://portaldatransparencia.gov.br/download-de-dados/cepim/"
@@ -228,7 +229,7 @@ def miolo_cpf(texto) -> str:
 
 
 def _tabela(con, nome: str) -> bool:
-    return con.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name=?", (nome,)).fetchone() is not None
+    return _partes.tem_tabela(con, nome)
 
 
 def ler_sancoes(con) -> list[Sancao]:

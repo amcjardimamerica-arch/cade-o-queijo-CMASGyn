@@ -18,6 +18,7 @@ from datetime import date
 from pathlib import Path
 from typing import TYPE_CHECKING, Callable
 
+from .. import partes as _partes
 from .. import RAIZ
 from ..legal.mapa import MapaLegal
 from ..nucleo.ausencias import Ausencia
@@ -148,7 +149,7 @@ class Base:
         self.ate = ate
         self.mapa = mapa
         self.raiz = Path(raiz)
-        self._tabelas = {n for (n,) in self.con.execute("select name from sqlite_master where type='table'")}
+        self._tabelas = set(_partes.tabelas(self.con))      # o banco e as partes (precos.db, sancoes.db)
 
     def tem(self, tabela: str) -> bool:
         return tabela in self._tabelas

@@ -18,6 +18,7 @@ import sqlite3
 from datetime import date
 from pathlib import Path
 
+from .. import partes as _partes
 from .. import RAIZ
 from ..nucleo.ausencias import Ausencia
 from .mapa import MapaLegal, carregar
@@ -35,7 +36,7 @@ def _linhas(banco: Path | str | None, sql: str) -> list[tuple] | None:
     caminho = Path(banco) if banco else BANCO
     if not caminho.exists():
         return None
-    con = sqlite3.connect(f"file:{caminho}?mode=ro", uri=True)
+    con = _partes.conectar_leitura(caminho)
     try:
         return con.execute(sql).fetchall()
     except sqlite3.OperationalError:
