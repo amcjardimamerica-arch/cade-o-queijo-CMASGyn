@@ -14,6 +14,8 @@ on:
       # Uma rodada da agenda (onisciente/agenda.py), como a serie, que estende o banco para trás.
       # Os fluxos da agenda só podem ser pedidos quando estão na main; até lá, este fluxo os roda (28/11/2026).
       rodada: {description: "Rodada da agenda no lugar dos motores (serie, leis, diaria...; vazio = coleta comum)", default: ""}
+      # Decisão P-01 (28/11/2026): o que foi coletado já mascarado precisa ser lido de novo da fonte.
+      releitura: {description: "sim = releitura completa dos meses (historico --releitura-completa)", default: ""}
 permissions: {contents: write}
 # O mesmo grupo dos fluxos da agenda (onisciente-agenda-*.yml): nunca dois gravando o banco.
 concurrency: {group: onisciente-banco, cancel-in-progress: false}
@@ -26,6 +28,7 @@ jobs:
       ATE: ${{ inputs.ate || '2026-11' }}
       MOTORES: ${{ inputs.motores || '' }}
       RODADA: ${{ inputs.rodada || '' }}
+      RELEITURA: ${{ inputs.releitura || '' }}
     steps:
       # O banco é estado: um pedido que esperou na fila deve partir da ponta do branch,
       # não do commit da hora do pedido (senão a gravação final conflita com a rodada anterior).
@@ -54,7 +57,7 @@ jobs:
             python -m onisciente.agenda "$RODADA" --brutos "$RUNNER_TEMP/brutos" &
           else
             python -m onisciente historico --desde "$DESDE" --ate "$ATE" \
-              ${MOTORES:+--motores "$MOTORES" --somar} --brutos "$RUNNER_TEMP/brutos" &
+              ${MOTORES:+--motores "$MOTORES" --somar} ${RELEITURA:+--releitura-completa} --brutos "$RUNNER_TEMP/brutos" &
           fi
           MOTOR=$!
           git config --global user.name "vigilancia-bot"; git config --global user.email "bot@users.noreply.github.com"

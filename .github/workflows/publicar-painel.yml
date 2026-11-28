@@ -1,12 +1,14 @@
 name: Publicar painel
 
-# Fluxo leve, sem grupo de concorrência: publica docs/ no GitHub Pages.
+# Fluxo leve: monta o site (python -m onisciente site) e publica no GitHub Pages.
+# Desde 28/11/2026 (pedido do usuário, 12:28Z) o painel é a página inicial do site,
+# em amcjardimamerica-arch.github.io/onisciente/; o acervo do Cadê o Queijo fica em cmasgyn/.
 # Roda sempre que o painel muda, e pode ser acionado à mão a qualquer momento.
 
 on:
   push:
     branches: [main]
-    paths: ['docs/**']
+    paths: ['docs/**', 'onisciente/site.py']
   workflow_dispatch:
 
 concurrency: {group: painel, cancel-in-progress: false}
@@ -24,9 +26,12 @@ jobs:
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: python -m onisciente.site --saida _site
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
-        with: { path: docs }
+        with: { path: _site }
       - id: deploy
         uses: actions/deploy-pages@v4
       - run: |

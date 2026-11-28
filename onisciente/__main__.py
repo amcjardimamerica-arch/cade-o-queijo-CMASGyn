@@ -450,6 +450,9 @@ def main(argv: list[str] | None = None) -> int:
                     help="também os arquivos de relatorios/onisciente/sondagem que o sistema mascarou")
     pf.add_argument("--json", action="store_true", help="saída em JSON")
     pf.set_defaults(f=cmd_restaurar_fonte)
+    psite = sub.add_parser("site", help="monta o site do Pages com o painel na página inicial")
+    psite.add_argument("--saida", default="_site", help="pasta do site montado (padrão: _site)")
+    psite.set_defaults(f=lambda a: __import__("onisciente.site", fromlist=["main"]).main(["--saida", a.saida]))
     sub.add_parser("diagnostico", help="refaz o diagnóstico a partir do banco histórico") \
         .set_defaults(f=cmd_diagnostico)
     sub.add_parser("painel-banco", help="refaz só a página do banco histórico no site") \

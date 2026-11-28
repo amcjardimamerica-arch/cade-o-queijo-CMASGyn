@@ -5,7 +5,7 @@
   bloco: 'H: rastreio por hash, 28/11/2026'
   requisito: "Ao coletar as informações, gerar um código hash para rastreio dos dados e validação de cada informação obtida (pedido da titular, 28/11/2026)."
   situacao: cumprido
-  evidencia: "onisciente/rastreio.py: SHA-256 da resposta e hash da requisição em toda coleta (coletas.sha256, requisicao, metodo, parametros, sem_resposta); selo de cada registro com a origem (rastreio_selos, rastreio_origens); rodadas encadeadas com raiz de Merkle (rastreio_rodadas); migração do banco antigo; python -m onisciente rastreio; hash do apoio e do achado nas fichas e no parecer."
+  evidencia: "onisciente/rastreio.py: SHA-256 da resposta e hash da requisição em toda coleta (coletas.sha256, requisicao, metodo, parametros, sem_resposta); selo de cada registro com a origem (rastreio_selos, rastreio_origens); rodadas encadeadas com raiz de Merkle (rastreio_rodadas); migração do banco antigo; python -m onisciente rastreio; hash do apoio e do achado nas fichas e no parecer. Desde 28/11/2026 (P-01), python -m onisciente restaurar-fonte devolve o dado da fonte e o hash das folhas retiradas, numa rodada restauracao_fonte, sem reescrever rodada antiga."
   falta: ""
   trava: "testes/test_rastreio.py::test_nenhum_motor_grava_sha256_nulo_quando_houve_resposta"
 # Travas das demais garantias do mesmo pedido (todas em testes/test_rastreio.py):
@@ -53,3 +53,10 @@
 # Cópia do banco inteiro (28/11/2026, divisão do banco em partes): partes.copiar_banco copia o principal e todas
 # as partes (a pasta despesa com os .gz) e partes.conectar grava nelas; os testes que copiavam só o historico.db
 # (test_fiscal, test_rio_municipio, test_agenda) passam a usá-los. Trava em testes/test_partes.py.
+# Revogado em 28/11/2026, 11:18Z (decisão do usuário, P-01): a máscara do CPF no banco (mascara_banco no Banco.inserir
+# e no Banco.abrir, rodadas mascara_cpf) e a retirada das folhas (rodada retirada_privacidade, 69017a5). As rodadas
+# antigas não são reescritas; as 95.123 folhas retiradas voltam numa rodada nova, restauracao_fonte, só quando refazem
+# a contagem e a raiz de Merkle da rodada original, e ficam em rastreio_devolvidas (a marca da retirada fica).
+# verificar_cadeia confere cada devolução (a marca, a rodada do selo, o total e o resumo declarados). Travas em
+# testes/test_restauracao_fonte.py.
+#   test_restaura_o_que_o_sistema_mascarou_com_prova_e_lista_o_que_reler

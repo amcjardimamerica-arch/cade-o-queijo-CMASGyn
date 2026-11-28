@@ -295,6 +295,26 @@
   evidencia: 'onisciente/rastreio.py: SHA-256 da resposta e hash da requisição em toda coleta (coletas.sha256, requisicao,
     metodo, parametros, sem_resposta); selo de cada registro com a origem (rastreio_selos, rastreio_origens); rodadas encadeadas
     com raiz de Merkle (rastreio_rodadas); migração do banco antigo; python -m onisciente rastreio; hash do apoio e do achado
-    nas fichas e no parecer.'
+    nas fichas e no parecer. Desde 28/11/2026 (P-01), python -m onisciente restaurar-fonte devolve o dado da fonte e o hash
+    das folhas retiradas, numa rodada restauracao_fonte, sem reescrever rodada antiga.'
   falta: ''
   trava: testes/test_rastreio.py::test_nenhum_motor_grava_sha256_nulo_quando_houve_resposta
+- id: 227
+  bloco: 'P: o dado como a fonte publica, 28/11/2026'
+  requisito: Os dados devem ser públicos e não mascarar; nenhuma informação ou dado da fonte é modificado, para cruzar e individualizar
+    quem recebe o recurso público sem homônimo nem terceiro inocente (decisão do usuário de 28/11/2026, 11:18Z).
+  situacao: parcial
+  evidencia: 'config/decisoes_usuario.yml (P-01) com o texto, a regra, o que revoga e as travas. Banco.inserir, Banco.abrir,
+    os coletores (goiania_transweb, impedimentos, fns, sancoes, tcm, tcu, transferegov), a sondagem e as telas guardam e mostram
+    o dado como a fonte publica, sem máscara e sem corte de texto; o CPF inteiro casa pelo CPF inteiro. python -m onisciente
+    restaurar-fonte --de 07e130c devolve o que o sistema mascarou, cada linha provada pelo hash do rastreio antigo (ou pela
+    linha antiga que só difere na proveniência), e lista o que não tem original. Na cópia do banco de 28/11/2026: 18.901 linhas
+    voltaram (contratacoes_pncp 19, contratos_pncp 925, despesa_eventos 7.840, emendas_municipio 21, pncp_itens 983, sancoes
+    9.113), nenhuma ambígua nem sem prova, 95.123 folhas retiradas voltaram provadas pela raiz, e a verificação ficou íntegra.
+    Os 16 arquivos da sondagem que o sistema mascarou voltaram à versão que a coleta gravou. No banco real, em 28/11/2026:
+    restaurar-fonte --gravar devolveu as mesmas 18.901 linhas e as 95.123 folhas, e python -m onisciente rastreio ficou íntegro.'
+  falta: 'Ler de novo da fonte o que foi coletado já mascarado: a despesa de Goiânia (7.755 linhas com o documento mascarado,
+    de 2024-11 a 2026-11, pela releitura completa), 114 entidades do FNS (motor fns), 4 contratos do PNCP e 6 arquivos de
+    d2_transweb da sondagem (a próxima sondagem). Quando o banco real estiver limpo, a trava xfail estrita test_banco_real_sem_nada_mascarado_pelo_sistema
+    passa e a marca xfail sai.'
+  trava: testes/test_dado_da_fonte.py::test_nenhum_modulo_chama_a_mascara_nem_abre_rodada_de_mascara_ou_retirada
