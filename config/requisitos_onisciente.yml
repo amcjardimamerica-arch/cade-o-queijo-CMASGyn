@@ -218,12 +218,14 @@
   bloco: As 9 estações
   requisito: Percurso evento a evento de cada empenho
   situacao: parcial
-  evidencia: Coletor do TransWeb (onisciente/coletores/goiania_transweb.py) lê empenhos, liquidações e pagamentos por dia
-    e por órgão, com __VIEWSTATE, paginação e detalhe; conferencias/execucao.py monta um percurso por empenho pelas nove estações
-    (origem, fonte, previsão, dotação, empenho, liquidação, pagamento, vínculo, prestação). Testado com fixtures.
-  falta: 'Os caminhos .aspx e os nomes de campo do TransWeb não estão confirmados: rodar a sondagem d2_transweb, ajustar alvos/portais/goiania.toml
-    e rodar o motor execucao_goiania no GitHub.'
-  trava: testes/test_execucao.py::test_percursos_pelas_nove_estacoes
+  evidencia: Coletor do TransWeb (onisciente/coletores/goiania_transweb.py) lê a execução da página real pela exportação CSV
+    comprovada na sondagem de 28/11/2026 (empenho, anulação, liquidação e pagamento por empenho); conferencias/execucao.py
+    monta um percurso por empenho pelas nove estações (origem, fonte, previsão, dotação, empenho, liquidação, pagamento, vínculo,
+    prestação). Com o recorte real da planilha de outubro de 2026, os dez percursos saem com empenho, liquidação e pagamento
+    acesos, e o empenho anulado por inteiro só com o empenho.
+  falta: Rodar o motor execucao_goiania no GitHub para ter a execução real inteira no banco; as estações de origem, previsão
+    e dotação dependem também da fonte do portal (o código antigo de três dígitos, como 100) casar com a destinação da MSC.
+  trava: testes/test_execucao.py::test_conferencias_rodam_no_recorte_real_da_exportacao
 - id: 31
   bloco: As 9 estações
   requisito: Integridade da trilha = fração do pago que cruza as 9
@@ -236,11 +238,12 @@
   bloco: As 9 estações
   requisito: Ordem violada (pagar antes de liquidar)
   situacao: parcial
-  evidencia: A ordem violada de cada percurso vira achado e ficha (pagamento antes da liquidação, pagamento sem empenho ou
-    liquidação lidos), com tolerância de zero dias (config/limiares_execucao.yml). A fixture do portal paga em 05/03 o que
-    liquida em 10/03 e é apontada.
-  falta: Execução real do portal no banco.
-  trava: testes/test_execucao.py::test_ordem_violada_pagamento_antes_da_liquidacao
+  evidencia: 'A ordem violada de cada percurso vira achado e ficha (pagamento antes da liquidação, pagamento sem empenho ou
+    liquidação lidos), com tolerância de zero dias (config/limiares_execucao.yml). No recorte real da exportação de outubro
+    de 2026 a conferência aponta um empenho (20261603003530022, juros do contrato com o BNDES: pago em 15/10/2026 e liquidado
+    em 16/10/2026), que é indício a examinar, não acusação.'
+  falta: Execução real inteira do portal no banco (motor execucao_goiania rodando no GitHub).
+  trava: testes/test_execucao.py::test_conferencias_rodam_no_recorte_real_da_exportacao
 - id: 33
   bloco: As 9 estações
   requisito: Exemplo de empenho na tela Trilha
@@ -433,9 +436,10 @@
   bloco: Preço, entrega e prestação
   requisito: Pagamento antes da liquidação
   situacao: parcial
-  evidencia: 'Mesma conferência do 32: pagamento antes da liquidação no percurso de cada empenho, ficha de ordem da despesa.'
-  falta: Execução real do portal no banco.
-  trava: testes/test_execucao.py::test_ordem_violada_pagamento_antes_da_liquidacao
+  evidencia: 'Mesma conferência do 32: pagamento antes da liquidação no percurso de cada empenho, ficha de ordem da despesa.
+    Medida no recorte real da exportação de outubro de 2026 (um empenho apontado, 20261603003530022).'
+  falta: Execução real inteira do portal no banco (motor execucao_goiania rodando no GitHub).
+  trava: testes/test_execucao.py::test_conferencias_rodam_no_recorte_real_da_exportacao
 - id: 58
   bloco: Preço, entrega e prestação
   requisito: Aditivo acima de 25%
@@ -1065,18 +1069,21 @@
   bloco: Fontes e cadência
   requisito: Portal da Transparência (diário)
   situacao: parcial
-  evidencia: 'Coletor ajustado à página real Portal_Despesas.aspx lida pela sondagem (OutSystems): os nomes reais dos campos
-    (cboMes com __ossli_MM, cboAno, cboOrgao, NmFavorecido, NrEmpenho), o botão Buscar (wt86), a tabela de uma linha por empenho
-    (Beneficiário, Nr. Empenho, Data, Orgão, Natureza Despesa e os três valores), o contador, a tabela de totais e o next
-    da paginação; os popups LiquidacaoPopUp e PagamentoPopUp lidos com dados, cuja soma bate com a linha (empenho 20261101002310011:
-    1.170.877,06 liquidados depois de uma liquidação anulada e pagos em duas ordens); motor mensal que regrava por empenho
-    sem duplicar e não repede popup já gravado; o leitor ignora scripts e texto oculto nas células. Testado com recortes reais
-    em testes/dados/transweb/.'
-  falta: 'O envio do Buscar e da paginação por OsAjax (lido só no _osjs.js) e os valores do EmpenhoPopUp (a sondagem pediu
-    com &amp; e o popup veio vazio) ainda dependem de leitura real: a sondagem d2_transweb já monta, pelo coletor e na mesma
-    sessão, o Buscar por OsAjax (mês 10 de 2026), a página 2 pelo next, a exportação CSV, o Buscar por postback comum e o
-    EmpenhoPopUp com &; falta rodá-la. A lista de arquivos da categoria 49 do WordPress é montada no navegador.'
-  trava: testes/test_execucao.py::test_consulta_da_lista_real_com_popups_e_segunda_pagina
+  evidencia: 'O motor execucao_goiania lê a página real Portal_Despesas.aspx pela exportação CSV do mês, o caminho que a sondagem
+    d2_transweb de 28/11/2026 (run 46087866124) comprovou: GET da página, postback comum com mês e ano, selExportar = CSV
+    e o botão OK; a resposta foi a planilha de outubro de 2026 (uma linha por liquidação e ordem de pagamento, só os empenhos
+    do mês, liquidações e pagamentos até a data da leitura). Cada empenho vira eventos empenho, anulação, liquidação e pagamento
+    em despesa_eventos, com CNPJ (o CPF que a coluna traz com 000 na frente vira CPF), favorecido, objeto, modalidade, número
+    da licitação, natureza, função, subfunção e fonte; linhas repetidas e liquidações anuladas não contam duas vezes; a releitura
+    troca os eventos do empenho sem duplicar; cada rodada lê os meses que faltam e relê os 12 mais recentes. Os popups de
+    liquidação e de pagamento conferem, por amostra, os três empenhos de maior valor pago de cada mês, e a divergência fica
+    anotada na consulta. O EmpenhoPopUp pedido com & trouxe os campos (confirmado). O Buscar foi recusado (OsAjax: HTTP 500;
+    postback: página Erro Interno) e fica só como reserva quando a exportação falhar. Testado com o recorte real da planilha
+    (dez empenhos de credores pessoas jurídicas, byte a byte) e o EmpenhoPopUp real. A lista de arquivos da categoria 49 do
+    WordPress continua montada no navegador (fonte secundária, não usada).'
+  falta: Falta a primeira coleta real do motor no GitHub pela exportação (vale como cumprido quando o banco tiver os eventos
+    de despesa de Goiânia gravados por ela).
+  trava: testes/test_execucao.py::test_motor_le_o_mes_pela_exportacao_e_confere_a_amostra
 - id: 142
   bloco: Fontes e cadência
   requisito: SICONFI RREO/RGF/DCA
