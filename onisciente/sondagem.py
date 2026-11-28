@@ -17,7 +17,8 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from http.cookiejar import CookieJar
-from urllib.parse import quote
+from html import unescape
+from urllib.parse import quote, urljoin
 from urllib.request import HTTPCookieProcessor, build_opener, install_opener
 
 from . import RAIZ
@@ -480,6 +481,8 @@ def _seguir(fonte: str, url: str, leitura) -> list:
         # As páginas dos portais: os links internos (.aspx, scripts com os endereços da API).
         base = re.match(r"https?://[^/]+", url).group(0)
         for href in re.findall(r"""(?:href|src)=["']([^"'#]+\.(?:aspx|js|php)[^"']*)["']""", texto, re.I):
+            if fonte == "d2_transweb":
+                href = unescape(href)   # o link do EmpenhoPopUp traz "&amp;" no HTML; o pedido leva "&"
             if href.startswith("//"):
                 href = "https:" + href
             elif href.startswith("/"):
@@ -516,6 +519,58 @@ def _seguir(fonte: str, url: str, leitura) -> list:
     return novos[:25]
 
 
+def _conversa_despesas(fonte: str, url: str, leitura, *, ler_=None, guardar=None,
+                       valores: dict | None = None) -> list[dict]:
+    """d2_transweb, segunda rodada: a partir da Portal_Despesas.aspx lida, na mesma sessão de cookies,
+    (a) o Buscar por OsAjax com mês 10 e ano 2026; (b) o next da página 2 com o __OSVSTATE da
+    resposta (a); (c) a exportação CSV (selExportar e o botão OK, postback comum); (d) o mesmo Buscar
+    por postback comum, para saber qual dos dois envios o servidor aceita. Os pedidos são montados
+    pelo coletor (goiania_transweb) com a configuração de alvos/portais/goiania.toml."""
+    from .coletores import goiania_transweb as G
+    ler_ = ler_ or ler
+    guardar = guardar or _guardar
+    portal = G.carregar_portal(RAIZ / "alvos" / "portais" / "goiania.toml")
+    c = portal.consulta("despesas_favorecido")
+    forms = [f for f in G.formularios(leitura.conteudo) if f.achar(c.campos["mes"])]
+    if not forms:
+        return []
+    form = forms[0]
+    acao = urljoin(url, form.acao or url)
+    valores = valores or {"mes": "10", "ano": "2026"}
+    out: list[dict] = []
+
+    def enviar(passo: str, corpo, *, ajax: bool):
+        if isinstance(corpo, str):          # o pedido não pôde ser montado: fica registrado
+            out.append({"fonte": fonte, "url": acao, "post": None, "ok": False, "http": None,
+                        "erro": f"{passo}: {corpo}", "bytes": 0, "arquivo": "", "passo": passo})
+            return None
+        destino = f"{acao}?_ts={int(time.time() * 1000)}" if ajax else acao   # como o _osjs.js
+        inicio = time.monotonic()
+        lida = ler_(destino, tempo=90, fonte=fonte, formulario=corpo)
+        registro = guardar(fonte, destino, lida, corpo)
+        registro["segundos"] = round(time.monotonic() - inicio, 1)
+        registro["passo"] = passo
+        out.append(registro)
+        return lida
+
+    corpo = G.corpo_buscar(form, c, valores, ajax=True)
+    lida = enviar("a_buscar_osajax", corpo, ajax=True)
+    estado, ajax_da_pagina = dict(form.campos), list(form.ajax)
+    if lida is not None and lida.ok:
+        estado, ajax_da_pagina, _html, _lido = G.depois_da_resposta(G.estado_do_envio(corpo, form),
+                                                                    ajax_da_pagina, lida.conteudo)
+        prox = G.proxima_pagina(ajax_da_pagina, 1)
+        if prox is None:
+            enviar("b_pagina_2_osajax", "o link da página seguinte não foi achado", ajax=True)
+        else:
+            lida2 = enviar("b_pagina_2_osajax", G.corpo_proxima(acao, estado, prox, ajax=True), ajax=True)
+            if lida2 is not None and lida2.ok:
+                estado, ajax_da_pagina, _html, _lido = G.depois_da_resposta(estado, ajax_da_pagina, lida2.conteudo)
+    enviar("c_exportar_csv", G.corpo_exportar(form, c, valores, "CSV", estado=estado), ajax=False)
+    enviar("d_buscar_postback", G.corpo_buscar(form, c, valores, ajax=False), ajax=False)
+    return out
+
+
 def sondar(fontes: list[str] | None = None) -> list[dict]:
     resultado = []
     install_opener(build_opener(HTTPCookieProcessor(CookieJar())))   # sessão, como num navegador
@@ -538,6 +593,9 @@ def sondar(fontes: list[str] | None = None) -> list[dict]:
             resultado.append(registro)
             if item in urls:
                 fila.extend(_seguir(fonte, url, leitura))
+            if fonte == "d2_transweb" and formulario is None and leitura.ok and \
+                    url.split("?", 1)[0].endswith("/Portal_Despesas.aspx"):
+                resultado.extend(_conversa_despesas(fonte, url, leitura))
     nome = "indice.json" if not fontes else f"indice_{'_'.join(fontes)}.json"
     (PASTA / nome).write_text(json.dumps(
         {"quando": datetime.now(timezone.utc).isoformat(timespec="seconds"), "leituras": resultado},

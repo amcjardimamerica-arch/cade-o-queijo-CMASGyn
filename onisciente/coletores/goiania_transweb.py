@@ -456,6 +456,7 @@ class Consulta:
     envio_confirmado: bool = False
     popups: dict = field(default_factory=dict)
     tabela: str = ""                    # o fim do id da tabela de resultado
+    exportar: dict = field(default_factory=dict)   # campo, botão e confirmado da exportação da lista
 
 
 @dataclass(frozen=True)
@@ -509,7 +510,10 @@ def carregar_portal(caminho: Path | str) -> Portal:
             campos={k: tuple(v) for k, v in (c.get("campos") or {}).items()},
             colunas={k: tuple(v) for k, v in (c.get("colunas") or {}).items()},
             confirmado=bool(c.get("confirmado")), envio=str(envio.get("modo", "postback")),
-            envio_confirmado=bool(envio.get("confirmado")), popups=popups, tabela=str(c.get("tabela", "")))
+            envio_confirmado=bool(envio.get("confirmado")), popups=popups, tabela=str(c.get("tabela", "")),
+            exportar={"campo": tuple((c.get("exportar") or {}).get("campo", ())),
+                      "botao": tuple((c.get("exportar") or {}).get("botao", ())),
+                      "confirmado": bool((c.get("exportar") or {}).get("confirmado"))} if c.get("exportar") else {})
 
     consultas = [_consulta(c) for c in tw.get("consultas", [])]
     despesas = [_consulta(c) for c in tw.get("despesas", [])]
@@ -971,6 +975,94 @@ def _popups_da_linha(c: Consulta, links: list[str]) -> dict[str, str]:
     return out
 
 
+def preencher(form: Formulario, c: Consulta, valores: dict[str, str]) -> dict[str, str] | str:
+    """Os campos lógicos (mes, ano, orgao...) com o nome real e o valor que o select aceita; o que
+    não se acha volta como texto de erro."""
+    preenchidos = {}
+    for campo, valor in valores.items():
+        if campo.endswith("_nome"):
+            continue
+        nome = form.achar(c.campos.get(campo, ()))
+        if nome is None:
+            return f"campo {campo} não achado no formulário"
+        preenchidos[nome] = form.valor_de_opcao(nome, valor)
+    return preenchidos
+
+
+def corpo_buscar(form: Formulario, c: Consulta, valores: dict[str, str], *, ajax: bool | None = None) -> dict | str:
+    """O pedido do Buscar: OsAjax (como o navegador) ou postback comum com o botão no corpo."""
+    preenchidos = preencher(form, c, valores)
+    if isinstance(preenchidos, str):
+        return preenchidos
+    botao = form.botao(c.botao)
+    if botao is None:
+        return "botão de consulta não achado"
+    ajax = c.envio == "ajax" if ajax is None else ajax
+    return form.envio_ajax(preenchidos, botao[0]) if ajax else form.envio(preenchidos, botao=botao)
+
+
+def corpo_exportar(form: Formulario, c: Consulta, valores: dict[str, str], formato: str = "CSV",
+                   estado: dict | None = None) -> dict | str:
+    """A exportação da lista: o select de formato (XLS, CSV, JSON) e o botão OK, num postback comum
+    (o botão não tem OsAjax). ``estado`` é o estado da resposta mais recente, se houver."""
+    if not c.exportar:
+        return "a consulta não tem exportação configurada"
+    preenchidos = preencher(form, c, valores)
+    if isinstance(preenchidos, str):
+        return preenchidos
+    campo = form.achar(c.exportar["campo"])
+    botao = form.botao(c.exportar["botao"])
+    if campo is None or botao is None:
+        return "campo ou botão da exportação não achado"
+    preenchidos[campo] = form.valor_de_opcao(campo, formato)
+    base = Formulario(form.acao, form.metodo, campos={**form.campos, **(estado or {})}, tipos=form.tipos,
+                      opcoes=form.opcoes, botoes=form.botoes)
+    corpo = base.envio(preenchidos, botao=botao)
+    for k in ("__AJAX", "__AJAXEVENT"):
+        corpo.pop(k, None)
+    corpo["__EVENTTARGET"] = ""
+    return corpo
+
+
+def estado_do_envio(corpo: dict, form: Formulario) -> dict:
+    """O que volta no pedido seguinte: o corpo enviado, sem botões e sem o evento."""
+    estado = dict(corpo)
+    estado.pop("__AJAXEVENT", None)
+    for n, _ in form.botoes:
+        estado.pop(n, None)
+    return estado
+
+
+def depois_da_resposta(estado: dict, ajax_da_pagina: list[dict], conteudo) -> tuple[dict, list[dict], object, "_Leitor"]:
+    """Aplica uma resposta (OsAjax ou página inteira) ao estado: o ``__OSVSTATE`` novo, os links de
+    paginação novos e o HTML para ler."""
+    parcial = resposta_outsystems(conteudo)
+    estado = dict(estado)
+    if parcial is not None:
+        html, escondidos = parcial
+        estado.update(escondidos)
+    else:
+        html = conteudo
+    lido = ler_html(html)
+    if lido.formularios:                       # página inteira: o estado novo vem nela
+        estado = {**lido.formularios[0].campos}
+        for n, _ in lido.formularios[0].botoes:
+            estado.pop(n, None)
+        return estado, (lido.ajax or ajax_da_pagina), html, lido
+    # Resposta OsAjax: só os trechos trocados vêm nela. Os links que ela não trouxe (o navegador da
+    # paginação, quando fica fora do trecho) continuam os da página.
+    novos = {a["alvo"] for a in lido.ajax}
+    return estado, lido.ajax + [a for a in ajax_da_pagina if a["alvo"] not in novos], html, lido
+
+
+def corpo_proxima(acao: str, estado: dict, prox: dict, *, ajax: bool) -> dict:
+    """O pedido da página seguinte pelo link do navegador (OsAjax ou postback com o alvo)."""
+    if ajax:
+        return Formulario(acao, "post", campos=estado).envio_ajax({}, prox["alvo"], evento=prox["evento"],
+                                                                 baldes=prox["baldes"] or "__OSVSTATE,")
+    return {**estado, "__EVENTTARGET": prox["alvo"], "__EVENTARGUMENT": ""}
+
+
 def consultar_lista(ler: Ler, portal: Portal, c: Consulta, valores: dict[str, str], *,
                     aberta: tuple[str, Formulario, Leitura] | None = None,
                     conhecidos: dict[str, dict] | None = None) -> Resultado:
@@ -986,32 +1078,20 @@ def consultar_lista(ler: Ler, portal: Portal, c: Consulta, valores: dict[str, st
         return Resultado(False, c.id, erro=aberta)
     acao, form, _primeira = aberta
     conhecidos = conhecidos or {}
-    preenchidos = {}
-    for campo, valor in valores.items():
-        if campo.endswith("_nome"):
-            continue
-        nome = form.achar(c.campos.get(campo, ()))
-        if nome is None:
-            return Resultado(False, c.id, acao, erro=f"campo {campo} não achado no formulário")
-        preenchidos[nome] = form.valor_de_opcao(nome, valor)
-    botao = form.botao(c.botao)
-    if botao is None:
-        return Resultado(False, c.id, acao, erro="botão de consulta não achado")
+    corpo = corpo_buscar(form, c, valores)
+    if isinstance(corpo, str):
+        return Resultado(False, c.id, acao, erro=corpo)
     ajax = c.envio == "ajax"
     destino = acao
 
     def enviar(corpo):
         return ler(destino, formulario=corpo)
 
-    corpo = form.envio_ajax(preenchidos, botao[0]) if ajax else form.envio(preenchidos, botao=botao)
     leitura = enviar(corpo)
     if not leitura.ok:
         return Resultado(False, c.id, acao, erro=leitura.erro or f"HTTP {leitura.http}")
     res = Resultado(True, c.id, acao, originais=[leitura.original] if leitura.original else [])
-    estado = dict(corpo)                      # o que vai de volta no pedido seguinte
-    estado.pop("__AJAXEVENT", None)
-    for n, _ in form.botoes:
-        estado.pop(n, None)
+    estado = estado_do_envio(corpo, form)      # o que vai de volta no pedido seguinte
     ajax_da_pagina: list[dict] = list(form.ajax)
     somas = {"empenhado": 0.0, "liquidado": 0.0, "pago": 0.0}
     totais: dict[str, float] = {}
@@ -1019,20 +1099,7 @@ def consultar_lista(ler: Ler, portal: Portal, c: Consulta, valores: dict[str, st
     atual = leitura
     while True:
         res.paginas += 1
-        bruto = atual.conteudo
-        parcial = resposta_outsystems(bruto)
-        if parcial is not None:
-            html, escondidos = parcial
-            estado.update(escondidos)
-        else:
-            html = bruto
-        lido = ler_html(html)
-        if lido.formularios:                       # página inteira: o estado novo vem nela
-            estado = {**lido.formularios[0].campos}
-            for n, _ in lido.formularios[0].botoes:
-                estado.pop(n, None)
-        if lido.ajax:
-            ajax_da_pagina = lido.ajax
+        estado, ajax_da_pagina, html, lido = depois_da_resposta(estado, ajax_da_pagina, atual.conteudo)
         totais = totais_da_lista(lido.tabelas) or totais
         tabs = [t for t in lido.tabelas if not c.tabela or t.id.endswith(c.tabela)] or lido.tabelas
         achada = tabela_de_resultado(tabs, c.colunas)
@@ -1126,10 +1193,7 @@ def consultar_lista(ler: Ler, portal: Portal, c: Consulta, valores: dict[str, st
             if not res.eventos and res.paginas == 1:
                 res.vazio = True
             return res
-        corpo = (Formulario(acao, "post", campos=estado).envio_ajax({}, prox["alvo"], evento=prox["evento"],
-                                                                    baldes=prox["baldes"] or "__OSVSTATE,")
-                 if ajax else {**estado, "__EVENTTARGET": prox["alvo"], "__EVENTARGUMENT": ""})
-        atual = enviar(corpo)
+        atual = enviar(corpo_proxima(acao, estado, prox, ajax=ajax))
         if not atual.ok:
             res.ok = False
             res.erro = f"página {res.paginas + 1}: {atual.erro or atual.http}"
