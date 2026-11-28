@@ -5,4 +5,4 @@ HTTP: 200
 ERRO: 
 BYTES: 161
 
-{"status":"healthy","version":"1.4.4","environment":"production","database":{"connected":true,"response_time_ms":13.59},"timestamp":"2026-11-28T08:08:26.704856"}
+{"status":"healthy","version":"1.4.4","environment":"production","database":{"connected":true,"response_time_ms":22.87},"timestamp":"2026-11-28T09:18:54.002130"}
