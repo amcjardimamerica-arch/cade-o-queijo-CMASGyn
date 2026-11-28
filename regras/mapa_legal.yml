@@ -1235,6 +1235,17 @@ normas:
   revogada: false
   ctresb:
   - federal/leis-ordinarias/2011/lei-12527-2011-11-18.md
+- id: lei-estadual-go-18-025-2013
+  area: Transparência e acesso à informação
+  norma: Lei estadual 18.025/2013
+  assunto: Lei de acesso à informação do Estado de Goiás
+  parametro: Lei estadual de acesso à informação de Goiás, citada ao lado da Lei 12.527/2011 nos pedidos de acesso
+    dirigidos a órgãos do Estado. O texto ainda não está no corpus do repositório (config/corpus.yml, l18025, local a
+    confirmar); o sistema cita só o número, sem reproduzir artigos.
+  conferencias:
+  - Ofícios
+  localizada: true
+  revogada: false
 - id: lei-12-016-2009-e-lei-9-507-1997
   area: Transparência e acesso à informação
   norma: Lei 12.016/2009 e Lei 9.507/1997

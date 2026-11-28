@@ -100,11 +100,16 @@ class Panorama:
                 novas = self.auditoria.fichas(self.competencia)
                 novas += [f for f in self.federais.fichas(self.competencia) if f.origem == "onisciente"]
                 novas += list(self.empresas.fichas(self.competencia))
+                novas = heranca.unificar_socio_servidor(novas, raiz)
                 for f in novas:
                     if f.codigo not in vistos:
                         vistos.add(f.codigo)
                         self.fichas.append(f)
                 self._juntar_ausencias(self.auditoria.ausencias + self.federais.ausencias)
+                if self.integridade is not None and self.auditoria.parcerias:
+                    from .nucleo.integridade import com_prestacao_por_parceria
+                    self.integridade = com_prestacao_por_parceria(self.integridade, self.auditoria.parcerias,
+                                                                  self.auditoria.exercicio_das_parcerias)
             self._juntar_ausencias(normas.ausencias(mapa, banco=caminho))
         itens = heranca.precedentes(raiz)
         if itens:

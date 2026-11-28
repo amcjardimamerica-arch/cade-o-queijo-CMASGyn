@@ -76,6 +76,7 @@ def conferir(base: Base) -> Parte:
     ano, lista, linhas = parcerias(base)
     if ano is None:
         return parte
+    parte.parcerias, parte.exercicio_das_parcerias = list(lista), ano
     regra = base.mapa.regra("PRESTACAO-PARCERIAS")
     q = Quadro(6, f"Prestação de contas de cada parceria ({ano})",
                "Organizações sem fins lucrativos que receberam repasses no exercício, com o termo citado. A estação "

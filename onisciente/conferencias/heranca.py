@@ -6,6 +6,10 @@
   sempre marcada como coincidência de nome: nome igual não prova que é a mesma pessoa. O
   cruzamento novo com a Receita Federal é da conferência de empresas; aqui só se lê o que o Rato
   já gravou.
+  O alerta A1 do Rato (homonímia entre sócio e servidor) e o cruzamento sócio e servidor da
+  conferência de empresas (ficha EMP-SERV01) podem apontar a mesma pessoa: nesse caso fica um único
+  alerta, o da conferência de empresas (que traz o contrato), citando as duas fontes
+  (``unificar_socio_servidor``).
 * **Mato (casos semelhantes).** Os precedentes de outros estados em
   ``referencias/transparencia/precedentes.json`` inspiram a providência e nunca fundamentam. Cada
   ficha sem caso semelhante recebe o precedente mais próximo pelo tema, com a fonte e o aviso de
@@ -17,6 +21,7 @@ from __future__ import annotations
 import json
 import re
 import unicodedata
+from dataclasses import replace
 from pathlib import Path
 
 from ..nucleo.indicios import Familia, Ficha, emitir
@@ -73,6 +78,52 @@ def fichas_do_rato(raiz: Path) -> list[Ficha]:
             providencia="Pedir o quadro funcional com CPF parcial e conferir no quadro de sócios da Receita; "
                         "nome igual não prova que é a mesma pessoa.",
             observacao="Indício por coincidência de nome, não acusação."))
+    return saida
+
+
+RATO = "alerta A1 do Rato (referencias/vinculos/alertas.json)"
+EMPRESAS = "cruzamento sócio e servidor da conferência de empresas contratadas"
+
+
+def _nome(texto) -> str:
+    return re.sub(r"\s+", " ", _sem_acento(str(texto or ""))).strip()
+
+
+def unificar_socio_servidor(fichas: list[Ficha], raiz: Path) -> list[Ficha]:
+    """Um único alerta quando o Rato (A1) e o cruzamento sócio e servidor apontam a mesma pessoa.
+
+    A ficha da conferência de empresas (EMP-SERV01) fica, porque traz o contrato, e passa a citar as duas
+    fontes; a ficha VIN-RATO do mesmo alerta sai. A mesma pessoa é o mesmo nome (sem acento e sem
+    espaços repetidos) no início da descrição e, quando o Rato diz a empresa, a mesma empresa na
+    descrição. Alerta que só uma das fontes tem fica como está.
+    """
+    alertas = _json(raiz / "referencias" / "vinculos" / "alertas.json").get("alertas") or []
+    servidores = [i for i, f in enumerate(fichas) if f.codigo.startswith("EMP-SERV01-")]
+    if not alertas or not servidores:
+        return fichas
+    sai: set[str] = set()
+    citacoes: dict[int, list[str]] = {}
+    for n, a in enumerate(alertas, 1):
+        if a.get("tipo") != "A1_HOMONIMIA_SOCIO_SERVIDOR":
+            continue
+        quem = _nome(a.get("socio") or a.get("nome") or a.get("pessoa"))
+        empresa = _nome(a.get("empresa") or a.get("razao_social"))
+        if not quem:
+            continue
+        iguais = [i for i in servidores if _nome(fichas[i].como_esta).startswith(quem + " (")
+                  and (not empresa or empresa in _nome(fichas[i].como_esta))]
+        if iguais:
+            sai.add(f"VIN-RATO-{n:03d}")
+            for i in iguais:
+                citacoes.setdefault(i, []).append(f"VIN-RATO-{n:03d}")
+    saida = []
+    for i, f in enumerate(fichas):
+        if f.codigo in sai:
+            continue
+        if i in citacoes:
+            f = replace(f, como_esta=f"{f.como_esta} Fontes: {EMPRESAS} e {RATO}, que aponta a mesma pessoa "
+                                    f"({', '.join(citacoes[i])}); é um único alerta, não dois.")
+        saida.append(f)
     return saida
 
 

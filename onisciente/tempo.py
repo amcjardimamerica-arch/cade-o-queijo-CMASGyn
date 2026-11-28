@@ -87,15 +87,30 @@ def fim_do_periodo(documento: str, exercicio: int, periodo: int) -> date:
 
 
 def prazo_legal(documento: str, exercicio: int, periodo: int, mapa=None) -> tuple[date, str]:
-    """A data-limite do documento e a norma que a fixa."""
+    """A data-limite do documento e a norma que a fixa.
+
+    Com o mapa legal, a regra ``PRAZO-{documento}`` manda: ``valor`` é o número de dias depois do fim do
+    período; sem valor, ``data_limite`` ({mes, dia}) é a data fixa seguinte ao fim do período e
+    ``meses_depois`` é o último dia do mês que fica tantos meses depois do fim do período.
+    """
     spec = PRAZOS[documento]
     norma = spec["norma"]
     dias = spec.get("dias")
+    fim = fim_do_periodo(documento, exercicio, periodo)
     if mapa is not None:
         regra = mapa.regras.get(f"PRAZO-{documento}")
         if regra is not None and regra.valor is not None:
             dias, norma = int(regra.valor), regra.norma or norma
-    fim = fim_do_periodo(documento, exercicio, periodo)
+        elif regra is not None:
+            norma = regra.norma or norma
+            limite = regra.get("data_limite")
+            if isinstance(limite, dict) and limite.get("mes") and limite.get("dia"):
+                d = date(fim.year, int(limite["mes"]), int(limite["dia"]))
+                return (d if d > fim else date(fim.year + 1, int(limite["mes"]), int(limite["dia"]))), norma
+            meses = regra.get("meses_depois")
+            if meses:
+                m = fim.month + int(meses)
+                return _fim_do_mes(fim.year + (m - 1) // 12, (m - 1) % 12 + 1), norma
     if spec.get("data_fixa") and dias == spec.get("dias"):
         mes, dia = spec["data_fixa"]
         return date(exercicio + 1, mes, dia), norma

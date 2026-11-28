@@ -384,3 +384,47 @@ def test_familia_cta_no_parecer(panorama_html):
     assert cta
     secao6 = pagina[pagina.index("6. Prestação de contas"):pagina.index("7. Fichas")]
     assert all(f'href="#{f.codigo}"' in secao6 for f in cta)
+
+
+# --- Ajustes pedidos pelo coordenador: prestação no índice e um único alerta sócio e servidor ------------
+
+def test_prestacao_entra_no_indice_parceria_a_parceria(auditoria, panorama_html):
+    """Requisitos 34 e 80: a prestação do índice de integridade é a fração das parcerias em dia."""
+    from onisciente.conferencias.execucao import Parceria
+    from onisciente.nucleo.integridade import IndiceIntegridade, com_prestacao_por_parceria, fracao_de_prestacao
+    lista = [Parceria("T-1", "A", 10, prestacao_publicada=True),
+             Parceria("T-2", "B", 10, prestacao_publicada=True, prestacao_individualizada=False),
+             Parceria("T-3", "C", 10, prestacao_publicada=True, saldo_nao_devolvido=1.0),
+             Parceria("T-4", "D", 10)]
+    assert fracao_de_prestacao(lista) == 0.25 and fracao_de_prestacao([]) is None
+    ind = IndiceIntegridade(cobertura=1, coerencia=1, tempestividade=1, vinculo=1, prestacao=1.0)
+    novo = com_prestacao_por_parceria(ind, lista, 2026)
+    assert novo.prestacao == 0.25 and novo.partes["prestacao"] == 2.5
+    assert "1 de 4 parcerias de 2026" in novo.motivos["prestacao"]
+    assert com_prestacao_por_parceria(ind, [], 2026) is ind
+    # No banco: as parcerias medidas uma a uma chegam ao índice do panorama.
+    assert auditoria.parcerias and auditoria.exercicio_das_parcerias
+    p, _ = panorama_html
+    assert p.integridade.prestacao == fracao_de_prestacao(auditoria.parcerias)
+    assert "medidas uma a uma" in p.integridade.motivos["prestacao"]
+
+
+def test_alerta_a1_do_rato_e_cruzamento_de_empresas_viram_um_so(tmp_path):
+    """O mesmo sócio servidor apontado pelo Rato (A1) e pela conferência de empresas: uma ficha, duas fontes."""
+    (tmp_path / "referencias" / "vinculos").mkdir(parents=True)
+    (tmp_path / "referencias" / "vinculos" / "alertas.json").write_text(json.dumps({"alertas": [
+        {"tipo": "A1_HOMONIMIA_SOCIO_SERVIDOR", "socio": "Fulano de Tál", "empresa": "Empresa X Ltda"},
+        {"tipo": "A1_HOMONIMIA_SOCIO_SERVIDOR", "socio": "Beltrano", "empresa": "Empresa Y"}]}), encoding="utf-8")
+    rato = heranca.fichas_do_rato(tmp_path)
+    emp = emitir(codigo="EMP-SERV01-C1-FULANO DE TAL", familia=Familia.VIN, titulo="Sócio servidor",
+                 gravidade="alta", como_deveria="d", norma="Lei 14.133/2021, art. 14, IV",
+                 como_esta="FULANO DE TAL (sócio) da contratada EMPRESA X LTDA (CNPJ 1) tem o mesmo nome de servidor.",
+                 niveis=["C"], por_coincidencia_de_nome=True)
+    saida = heranca.unificar_socio_servidor(rato + [emp], tmp_path)
+    codigos = [f.codigo for f in saida]
+    assert "VIN-RATO-001" not in codigos and "VIN-RATO-002" in codigos      # Beltrano só no Rato: fica
+    [unica] = [f for f in saida if f.codigo.startswith("EMP-SERV01-")]
+    assert heranca.RATO in unica.como_esta and heranca.EMPRESAS in unica.como_esta and "VIN-RATO-001" in unica.como_esta
+    assert unica.verificacao is not Verificacao.CONFIRMADO
+    assert emp.como_esta.endswith("servidor.")                               # a ficha original não muda
+    assert heranca.unificar_socio_servidor(rato, tmp_path) == rato           # sem o cruzamento, nada muda

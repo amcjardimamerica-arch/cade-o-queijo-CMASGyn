@@ -84,6 +84,8 @@ class Parte:
     certificacoes: list[Certificacao] = field(default_factory=list)
     notas: list[str] = field(default_factory=list)
     contas: list["Conta"] = field(default_factory=list)
+    parcerias: list = field(default_factory=list)          # as parcerias medidas uma a uma (prestacao.py)
+    exercicio_das_parcerias: int | None = None
 
 
 @dataclass
@@ -99,6 +101,8 @@ class Auditoria:
     custodia: list[Original] = field(default_factory=list)
     custodia_por_motor: list[dict] = field(default_factory=list)
     notas: list[str] = field(default_factory=list)
+    parcerias: list = field(default_factory=list)
+    exercicio_das_parcerias: int | None = None
 
     def juntar(self, parte: Parte) -> None:
         self.quadros += parte.quadros
@@ -107,6 +111,9 @@ class Auditoria:
         self.certificacoes += parte.certificacoes
         self.notas += parte.notas
         self.contas += parte.contas
+        if parte.parcerias:
+            self.parcerias += parte.parcerias
+            self.exercicio_das_parcerias = parte.exercicio_das_parcerias
 
     def fichas(self, competencia: str) -> list[Ficha]:
         vistos: set[str] = set()

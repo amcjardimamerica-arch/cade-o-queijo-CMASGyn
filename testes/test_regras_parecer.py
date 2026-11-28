@@ -50,7 +50,9 @@ def test_secao_das_empresas_ao_lado_das_compras(monkeypatch):
 
 def test_selo_so_no_alvo_configurado_e_sem_fichas_fora_da_secao_7(monkeypatch):
     from onisciente.selo import relatorio
-    ficha = '<article class="ficha alta"><h3>x</h3></article>'
+    ficha = relatorio._ficha_html({"gravidade": "alta", "titulo": "x", "codigo": "PCT-SELO-1",
+                                   "verificacao": "inconclusivo", "como_deveria": "a", "norma": "n",
+                                   "como_esta": "b", "providencia": "p"})
     monkeypatch.setattr(relatorio, "secao_parecer", lambda: '<h2 id="selo">Selo de teste</h2>' + ficha)
     outro = html.gerar(_panorama(), hoje=date(2026, 11, 27))
     assert "Selo de teste" not in outro                       # outro Município: a auditoria é do alvo

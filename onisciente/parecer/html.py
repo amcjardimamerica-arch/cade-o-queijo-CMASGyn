@@ -432,8 +432,8 @@ def gerar(p: Panorama, *, hoje: date | None = None) -> str:
     from ..selo.relatorio import secao_parecer   # importa daqui (CSS e _ficha): por isso fica aqui dentro
     selo = secao_parecer() if p.do_alvo_configurado() else ""
     if selo:
-        # As fichas da auditoria do selo não são fichas do panorama: a seção 7 é a única lista de fichas.
-        s.append(selo.replace('class="ficha ', 'class="ficha-selo '))
+        # As fichas da auditoria do selo vêm com a classe ficha-selo: a seção 7 é a única lista de fichas.
+        s.append(selo)
 
     # 9. Custódia
     s.append("<h2>9. Custódia</h2>")

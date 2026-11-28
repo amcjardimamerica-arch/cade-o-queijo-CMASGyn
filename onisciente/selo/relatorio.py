@@ -187,9 +187,11 @@ def _fundos(aud: Auditoria) -> str:
 
 
 def _ficha_html(f: dict) -> str:
+    """Ficha do selo dentro do parecer: classe própria (``ficha-selo``), porque a seção 7 do parecer é a
+    única lista das fichas do panorama e a contagem delas é feita pela classe ``ficha``."""
     g = f["gravidade"]
     rot = {"critica": "crítica", "alta": "alta", "media": "média"}[g]
-    return (f'<article class="ficha {g}"><h3><span class="etiqueta g-{g}">{rot}</span>{escape(f["titulo"])}</h3>'
+    return (f'<article class="ficha-selo {g}"><h3><span class="etiqueta g-{g}">{rot}</span>{escape(f["titulo"])}</h3>'
             f'<div><span class="etiqueta v">{escape(f["codigo"])}</span><span class="etiqueta v">{escape(f["verificacao"])}</span>'
             f'<span class="etiqueta v">{escape(f.get("observacao") or "")}</span></div><dl>'
             f"<dt>Como deveria ser</dt><dd>{escape(f['como_deveria'])}</dd>"

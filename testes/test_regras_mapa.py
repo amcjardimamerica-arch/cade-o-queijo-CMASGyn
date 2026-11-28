@@ -85,3 +85,31 @@ def test_limiares_restritivos(mapa):
     assert mapa.regra("FOLHA-DIA-5").get("saldo_tolerado") == 1.0
     assert mapa.regra("APOSENTADORIAS").valor == 1.0
     assert mapa.regra("QUINQUENIO").get("tolerancia_meses") == 0
+
+
+def test_prazo_legal_le_data_limite_e_meses_depois_do_mapa(mapa):
+    """tempo.prazo_legal segue data_limite e meses_depois da regra, e não uma data escrita no código."""
+    import copy
+    outro = copy.deepcopy(mapa)
+    outro.regras["PRAZO-DCA"].extras["data_limite"] = {"mes": 5, "dia": 15}
+    outro.regras["PRAZO-MSC"].extras["meses_depois"] = 2
+    assert tempo.prazo_legal("DCA", 2025, 1, outro)[0] == date(2026, 5, 15)
+    assert tempo.prazo_legal("MSC", 2026, 1, outro)[0] == date(2026, 3, 31)
+    assert tempo.prazo_legal("MSC", 2026, 12, mapa)[0] == date(2027, 1, 31)       # vira o ano
+
+
+def test_lei_estadual_de_acesso_no_mapa_e_no_oficio_ao_estado(mapa):
+    """Os ofícios ao Estado citam a Lei 12.527/2011 e a lei estadual de acesso de Goiás (Lei 18.025/2013)."""
+    from datetime import date as _date
+
+    from onisciente import lai
+    from onisciente.nucleo.ausencias import Ausencia
+    n = mapa.normas["lei-estadual-go-18-025-2013"]
+    assert n.norma == "Lei estadual 18.025/2013" and n.localizada and "acesso à informação" in n.assunto.lower()
+    assert lai.lei_estadual_de_acesso() == "Lei estadual 18.025/2013"
+    [e] = lai.oficios_por_orgao([Ausencia("Cota do ICMS", "x", "Portal",
+                                          orgao="Secretaria de Estado da Economia de Goiás")], "Assunto")
+    texto = e.texto(hoje=_date(2026, 11, 28))
+    assert "Lei 12.527/2011" in texto and "Lei estadual 18.025/2013" in texto and "9.262" not in texto
+    [m] = lai.oficios_por_orgao([Ausencia("Empenhos", "x", "Portal", orgao=lai.CGM)], "Assunto")
+    assert "18.025" not in m.texto(hoje=_date(2026, 11, 28))
