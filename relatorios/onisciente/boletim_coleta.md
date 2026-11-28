@@ -1,19 +1,23 @@
-# Coleta em andamento: boletim de 2026-11-27T15:34+00:00
+# Coleta em andamento: boletim de 2026-11-28T00:33+00:00
 
-Desde 2026-11-27T15:10:38+00:00: 421 chamadas registradas.
-Última chamada: 2026-11-27T15:34:07+00:00 (preco 396523 2026-1).
+Desde 2026-11-28T00:23:00+00:00: 329 chamadas registradas.
+Última chamada: 2026-11-28T00:33:00+00:00 (11031398000140).
 
 ## Por fonte
 
 | fonte | situação | chamadas |
 |---|---|---|
-| dadosabertos.compras.gov.br | ok | 421 |
+| arquivos.receitafederal.gov.br | URLError | 2 |
+| brasilapi.com.br/api/cnpj | ok | 323 |
+| www10.goiania.go.gov.br | HTTP 500 | 3 |
+| www10.goiania.go.gov.br | ok | 1 |
 
 ## Tempo das respostas boas (segundos)
 
 | fonte | n | mediana | p90 | máximo |
 |---|---|---|---|---|
-| dadosabertos.compras.gov.br | 421 | 1.2 | 42.3 | 276.2 |
+| brasilapi.com.br/api/cnpj | 323 | 0.2 | 0.9 | 1.4 |
+| www10.goiania.go.gov.br | 1 | 2.2 | 2.2 | 2.2 |
 
 ## O que o banco tem agora
 
