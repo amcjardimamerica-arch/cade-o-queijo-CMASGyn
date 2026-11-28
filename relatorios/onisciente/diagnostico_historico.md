@@ -1,6 +1,6 @@
 # Diagnóstico da coleta histórica (2024-11 a 2026-11)
 
-Rodada de 2026-11-28T00:23:01+00:00. Banco: `dados/onisciente/historico.db`.
+Rodada de 2026-11-28T01:30:19+00:00. Banco: `dados/onisciente/historico.db`.
 
 Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna na fonte (ela respondeu e o dado não estava lá). As duas nunca se misturam.
 
@@ -10,19 +10,25 @@ Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna na fonte (
 |---|---:|---:|---:|---:|---:|
 | Cadastro das empresas na Receita Federal (CNPJ e QSA) | 1355 | 1353 | 2 | 0 | 547.0 |
 | Normas federais (ctresb/leis) | 21 | 21 | 0 | 0 | 3.4 |
-| Execução item a item no portal de Goiânia (TransWeb) | 4 | 1 | 3 | 0 | 116.5 |
+| Cota-parte do Estado (Secretaria da Economia de Goiás) | 6 | 6 | 0 | 0 | 48.1 |
+| Execução item a item no portal de Goiânia (TransWeb) | 43 | 29 | 14 | 0 | 567.7 |
 | Repasses federais (FNAS) | 4 | 3 | 1 | 0 | 98.2 |
+| FNDE (liberações da educação) | 1231 | 1231 | 0 | 0 | 969.5 |
+| Fundo Nacional de Saúde (repasses fundo a fundo) | 71 | 44 | 27 | 0 | 528.5 |
 | Portais e endereços configurados | 25 | 20 | 5 | 0 | 253.3 |
 | Impedimentos (CEPIM e inidôneos do TCU) | 3 | 1 | 2 | 0 | 7.7 |
 | Matriz de Saldos Contábeis (SICONFI) | 24 | 24 | 0 | 0 | 38.7 |
 | Contratações (PNCP) | 618 | 617 | 1 | 0 | 17295.3 |
 | Detalhe das compras e contratos (PNCP e Compras.gov.br) | 13822 | 13822 | 0 | 0 | 61283.7 |
 | Diário Oficial pelo Querido Diário | 50 | 0 | 50 | 0 | 210.6 |
+| Empresas punidas (CEIS e CNEP) | 4 | 4 | 0 | 0 | 3.2 |
 | SICONFI (Tesouro Nacional) | 23 | 23 | 0 | 0 | 5.9 |
 | SICONFI pelos endereços antigos | 2 | 0 | 2 | 0 | 1.2 |
 | Diário Oficial pelo índice do SILEG | 50 | 50 | 0 | 0 | 13.3 |
 | Demonstrativo da educação (SIOPE) | 17 | 16 | 1 | 0 | 266.6 |
 | Demonstrativo da saúde (SIOPS) | 20 | 20 | 0 | 0 | 29.3 |
+| Decisões do TCM-GO | 12 | 6 | 6 | 0 | 127.7 |
+| Decisões do TCU | 12 | 12 | 0 | 0 | 66.0 |
 | Transferências constitucionais (Tesouro) | 2 | 0 | 2 | 0 | 243.0 |
 | Transferências federais (Portal da Transparência) | 24 | 24 | 0 | 0 | 14.3 |
 
