@@ -1,0 +1,32 @@
+URL: https://www10.goiania.go.gov.br/DespesasWebBlocks/Blocks/WebPatterns/Utilities/Feedback_AjaxWait.en.js?60864
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 1048
+
+﻿var RichWidgets_Feedback_AjaxWait_ajaxWaitMessageTimer;
+var RichWidgets_Feedback_AjaxWait_Timeout = 200;
+
+function RichWidgets_Feedback_AjaxWait_init(divId) {
+ $(function($) {
+  osAjaxBackend.BindBeforeAjaxRequest(function(){
+    if(RichWidgets_Feedback_AjaxWait_ajaxWaitMessageTimer == null) {
+       RichWidgets_Feedback_AjaxWait_ajaxWaitMessageTimer = setTimeout(function () { 
+            $('#' + divId).fadeIn(); 
+            $('body').addClass('Feedback_AjaxWait_CursorProgress');
+        } , RichWidgets_Feedback_AjaxWait_Timeout);
+      window.OsOnBeforeChange = function(){
+       clearTimeout(RichWidgets_Feedback_AjaxWait_ajaxWaitMessageTimer);
+       RichWidgets_Feedback_AjaxWait_ajaxWaitMessageTimer = null;
+       $('body').removeClass('Feedback_AjaxWait_CursorProgress');
+       $('#' + divId ).fadeOut();
+      };
+      outsystems.internal.$(window).unload(function() {
+        window.OsOnBeforeChange = null;
+      });
+      osAjaxBackend.BindAfterAjaxRequest(function(){window.OsOnBeforeChange();});        
+    }
+  });
+ });
+}

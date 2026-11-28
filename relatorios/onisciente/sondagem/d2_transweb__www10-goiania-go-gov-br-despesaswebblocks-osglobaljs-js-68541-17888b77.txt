@@ -1,0 +1,1222 @@
+URL: https://www10.goiania.go.gov.br/DespesasWebBlocks/_OSGlobalJS.js?68541
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 44599
+
+﻿$.validacpf = function(campo) {
+               pcpf = ($('#' + campo).val()).split('');
+
+               if (pcpf.length == 0) return;
+
+               if (pcpf.length != 11) {
+                   $('#' + campo).select();
+                   alert("CPF inválido!");
+               }
+               else {
+                   soma = 0
+                   for (i = 0; i <= 8; i++) {
+                       val = pcpf[i];
+                       soma = soma + (val * (i + 1));
+                   }
+                   resto = soma % 11;
+                   (resto > 9) ? dig = resto - 10 : dig = resto;
+
+                   if (dig != pcpf[9]) {
+                       $('#' + campo).select();
+                       alert("CPF inválido!");
+                   }
+                   else {
+                       soma = 0;
+                       for (i = 0; i <= 7; i++) {
+                           val = pcpf[i + 1];
+                           soma = soma + (val * (i + 1));
+                       }
+                       soma = soma + (dig * 9);
+                       resto = soma % 11;
+                       (resto > 9) ? dig = resto - 10 : dig = resto;
+                       if (dig != pcpf[10]) {
+                           $('#' + campo).select();
+                           alert("CPF inválido!");
+                       }
+                   }
+               }
+               //consulta_filtro('cpf');
+           }
+           
+// Funções e Variáveis Globais
+gbl_sistema   = "Administração Escolar";
+gbl_sigla     = "sisge";
+gbl_matricula = "96371";
+gbl_titulo    = "";
+gbl_pgcorpo   = "";
+// Variáveis para uso genérico pelo programa cliente
+gbl_aux01     = ""; 
+gbl_aux02     = "";
+gbl_aux03     = "";
+gbl_aux04     = "";
+gbl_aux05     = "";
+gbl_aux06     = "";
+gbl_aux07     = "";
+gbl_aux08     = "";
+gbl_aux09     = "";
+gbl_aux10     = "";
+
+function fechajanelas() {
+  for (i = 0; i < 10; i++) {
+      if (parent.cpo) {
+         janela = eval('parent.cpo.' + 'j' + i)
+         if (janela) janela.close();
+      }
+  }
+}
+
+//************************************************************
+// Rotina : ACESSA DADOS DO SERVIDOR
+// Chamada: parent.gbl.acessa(metodo, função, argumento, ['frame'])
+//************************************************************
+function acessa(mtd, fun, arg, fme) {
+  parent.gbl.gbl_pgcorpo = parent.gbl.prog_cpo();
+  if (mtd=="g") {
+     /*
+     if (arg.length > 2000) {
+        alert("Erro no acesso à página. URL acima de 2000 caracteres ("+arg.length+").\nContacte o Analista do sistema na Comdata!")
+        return;
+     }
+     */
+     if (!fme) fme = "acd";
+     eval("parent."+fme+".document.location='/sistemas/"+fun.substr(0,5)+"/asp/"+fun+"?"+arg+"'");
+  }
+  else {
+     if (!fme) fme = "acd";
+     parent.cpo.document.frm.method = "post";
+     parent.cpo.document.frm.target = fme;
+     parent.cpo.document.frm.action = fun;
+     parent.cpo.document.frm.submit();
+  }
+}
+//************************************************************
+// Rotina : MOSTRA TITULO NA BARRA DE MENU
+// Chamada: parent.gbl.seta_tit(texto)
+//************************************************************
+function seta_tit(txt) {
+  if (txt=="")
+     parent.ttl.document.frm.tit_n.value = parent.gbl.gbl_sistema;
+  else
+     parent.ttl.document.frm.tit_n.value = parent.gbl.gbl_sistema+" - "+txt;
+}
+//************************************************************
+// Rotina : MOSTRA MENSAGEM NA BARRA DE MENSAGENS
+// Chamada: parent.gbl.seta_msg(texto)
+//************************************************************
+function seta_msg(txt) {
+  parent.mnu.document.frm.msg_n.value = txt;
+}
+//************************************************************
+// Rotina : MOSTRA SITUAÇÃO DO AVISO
+// Chamada: parent.gbl.avs()
+//************************************************************
+function avs() {
+  if (parent.mnu.document.frm.avs_n.value!="")
+     return true;
+  else
+     return false;
+}
+//************************************************************
+// Rotina : MOSTRA AVISO NA BARRA DE MENSAGENS
+// Chamada: parent.gbl.seta_avs(texto)
+//************************************************************
+function seta_avs(txt, tempo) {
+  parent.mnu.document.frm.avs_n.value = txt;
+  if (txt == "") {
+     parent.cpo.document.body.style.cursor = "default";
+     parent.mnu.document.frm.avs_n.value   = "";
+  }
+  else {
+     parent.cpo.document.body.style.cursor = "wait";
+     parent.mnu.document.frm.avs_n.value   = "Aguarde...";
+  }
+}
+//************************************************************
+// Rotina : RETORNA NOME DO PROGRAMA CARREGADO NO FRAME CORPO
+// Chamada: parent.gbl.prog_cpo()
+//************************************************************
+function prog_cpo() {
+  loc  = new String(parent.cpo.location);
+  lloc = loc.length;
+  vpos = loc.indexOf('.asp');
+  return loc.substr(vpos-12,16);
+}
+//*****************************************************
+// Rotina : RETORNA STRING SEM ESPAÇOS NO INÍCIO E FIM
+// Chamada: parent.gbl.ftrim(string)
+//*****************************************************
+function ftrim(str) {
+  return str.replace(/(^\s*)|(\s*$)/g, "");
+}
+//******************************************************
+// Rotina : BLOQUEIA FORMULÁRIO
+// Chamada: parent.gbl.bloqueia_form('nome_form', ['org'])"
+//******************************************************
+function bloqueia_form(frm, org) {
+  if (org) {org=org+"."} else {org=""};
+  if (frm=="") frm = "frm";
+  for(i=0;i< eval('parent.cpo.'+org+'document.'+frm+'.elements.length');i++) eval('parent.cpo.'+org+'document.'+frm+'.elements[i].disabled=true');
+}
+//**********************************************************
+// Rotina : DESBLOQUEIA FORMULÁRIO
+// Chamada: parent.gbl.desbloqueia_form('nome_form', ['org'])"
+//**********************************************************
+function desbloqueia_form(frm, org) {
+  if (org) {org=org+"."} else {org=""};
+  if (frm=="") frm = "frm";
+  for(i=0;i< eval('parent.cpo.'+org+'document.'+frm+'.elements.length');i++) eval('parent.cpo.'+org+'document.'+frm+'.elements[i].disabled=false');
+}
+//******************************************************
+// Rotina : FILTRA ENTRADA DE CAMPO PARA APENAS NÚMEROS
+// Chamada: onkeypress="return parent.gbl.sonum(['org'])"
+//******************************************************
+function sonum(org) {
+  if (org) {org=org+"."} else {org=""};
+  var tecla = eval('parent.cpo.'+org+'event.keyCode');
+  if ((tecla<48) || (tecla>57) && (tecla!="0") && (tecla!=8)) {
+     //eval('parent.cpo.'+org+'event.keyCode=0');
+     return false;
+  }
+}
+//**************************************************************
+// Rotina : FILTRA ENTRADA DE CAMPO PARA APENAS NÚMEROS/VÍRGULA
+// Chamada: onkeypress="return parent.gbl.sonumvg(['org'])"
+//**************************************************************
+function sonumvg(org) {
+  if (org) {org=org+"."} else {org=""};
+  var tecla = eval('parent.cpo.'+org+'event.keyCode');
+  if ((tecla<48) || (tecla>57)) {
+     if ((tecla!=0) && (tecla!=8) && (tecla!=44)) {
+        //eval('parent.cpo.'+org+'event.keyCode=0');
+        return false;
+     }
+  }
+}
+//******************************************************
+// Rotina : FILTRA ENTRADA DE CAMPO PARA APENAS LETRAS
+// Chamada: onkeypress="return parent.gbl.soletra(['org'])"
+//******************************************************
+function soletra(org) {
+  if (org) {org=org+"."} else {org=""};
+  var tecla = eval('parent.cpo.'+org+'event.keyCode');
+  if (((tecla<65) || (tecla>122)) && (tecla!=32)) {
+     //eval('parent.cpo.'+org+'event.keyCode=0');
+     return false;
+  }
+  if ((tecla>90) && (tecla<97)) {
+     //eval('parent.cpo.'+org+'event.keyCode=0');
+     return false;
+  }
+}
+//***************************************************************
+// Rotina : FILTRA ENTRADA DE CAMPO PARA APENAS NÚMEROS E LETRAS
+// Chamada: onkeypress="return parent.gbl.sonumletra(['org'])"
+//***************************************************************
+function sonumletra(org) {
+  if (org) {org=org+"."} else {org=""};
+  var tecla = eval('parent.cpo.'+org+'event.keyCode');
+  if ((tecla<48 || tecla>57) && (tecla<65 || tecla>90) && (tecla<97 || tecla>122) && (tecla!=32))
+     //eval('parent.cpo.'+org+'event.keyCode=0');
+     return false;
+}
+//******************************************************
+// Rotina : BLOQUEIA DIGITAÇÃO DE ASPAS NO CAMPO
+// Chamada: onkeypress="return parent.gbl.baspas(['org'])"
+//******************************************************
+function baspas(org) {
+  if (org) {org=org+"."} else {org=""};
+  var tecla = eval('parent.cpo.'+org+'event.keyCode');
+  if (tecla==34)
+     //eval('parent.cpo.'+org+'event.keyCode=0');
+     return false;
+}
+//*****************************************************************************
+// Rotina : FORMATA VALOR EM 2 CASAS DECIMAIS
+// Chamada: valor_formatado = parent.gbl.formatavlr(valor_nao_formatado)
+//*****************************************************************************
+function formatavlr(vlr) {
+  vlr_arr = vlr.toString().split(".");
+  if (vlr_arr.length == 1) {
+     vlr_ret = vlr_arr[0]+",00";
+  }
+  else {
+     if (vlr_arr[1].length < 2) {
+        vlr_ret = vlr_arr[0]+","+vlr_arr[1]+"0";
+     }
+     else {
+        vlr_ret = vlr_arr[0]+","+vlr_arr[1].substr(0,2);
+     }
+  }
+  vlr_arr = vlr_ret.split(",");
+  if (vlr_arr[0].length  < 4) vlr_ret = vlr_arr[0]+","+vlr_arr[1].substr(0,2);
+  if (vlr_arr[0].length == 4) vlr_ret = vlr_arr[0].substr(0,1)+"."+vlr_arr[0].substr(1,4)+","+vlr_arr[1].substr(0,2);
+  if (vlr_arr[0].length == 5) vlr_ret = vlr_arr[0].substr(0,2)+"."+vlr_arr[0].substr(2,5)+","+vlr_arr[1].substr(0,2);
+  if (vlr_arr[0].length == 6) vlr_ret = vlr_arr[0].substr(0,3)+"."+vlr_arr[0].substr(3,6)+","+vlr_arr[1].substr(0,2);
+  if (vlr_arr[0].length == 7) vlr_ret = vlr_arr[0].substr(0,1)+"."+vlr_arr[0].substr(1,3)+"."+vlr_arr[0].substr(4,6)+","+vlr_arr[1].substr(0,2);
+  if (vlr_arr[0].length == 8) vlr_ret = vlr_arr[0].substr(0,2)+"."+vlr_arr[0].substr(2,3)+"."+vlr_arr[0].substr(5,8)+","+vlr_arr[1].substr(0,2);
+  if (vlr_arr[0].length == 9) vlr_ret = vlr_arr[0].substr(0,3)+"."+vlr_arr[0].substr(3,3)+"."+vlr_arr[0].substr(6,9)+","+vlr_arr[1].substr(0,2);
+  return vlr_ret;
+}
+//*************************************************************************
+// Rotina : DESFORMATA VALOR USANDO PONTO COMO SEPARADOR DECIMAL (999.99)
+// Chamada: valor_desformatado = parent.gbl.desformatavlr("valor_original")
+//*************************************************************************
+function desformatavlr(vlr) {
+  vlr_ret = vlr.replace(".","").replace(".","").replace(".","").replace(",",".");
+  return vlr_ret;
+}
+//*************************************************************************
+// Rotina : ADICIONA ZEROS À ESQUERDA DE CAMPO
+// Chamada: valor_com_zeros = parent.gbl.zeroesq("valor_original")
+//*************************************************************************
+function zeroesq(vlr, qtd) {
+  vlr_ret = "000000000000000" + vlr;
+  return vlr_ret.substr(vlr_ret.length - qtd, qtd);
+}
+//******************************************************************************
+// Rotina : ARREDONDA VALOR
+// Chamada: valor_arredondado = parent.gbl.arredonda("valor_original", nr.casas)
+//******************************************************************************
+function arredonda(valor, casas) {
+  return (Math.round(valor*Math.pow(10,casas)))/Math.pow(10,casas)
+}
+//******************************************************************
+// Rotina : AO PREENCHER UM CAMPO PULA PARA O PRÓXIMO
+// Chamada: onkeyup="parent.gbl.pula_proximo(this, 'nome_proximo')"
+//******************************************************************
+function pula_proximo(x,y) {
+  if (x.value.length == x.maxLength) eval("parent.cpo.document.frm."+y+".focus()");
+}
+//*********************************************************
+// Rotina : FORMATA DATA DURANTE A DIGITAÇÃO (DD/MM/AAAA)
+// Chamada: onkeyup="parent.gbl.formatadata(this[, org])"
+//*********************************************************
+function formatadata(data, org) {
+  var pass = data.value;
+  var expr = /[0123456789]/;
+  for(i=0;i< pass.length;i++) {
+    var lchar = data.value.charAt(i);
+    var nchar = data.value.charAt(i+1);
+    var ichar = data.value.charAt(i+2);    //ichar significa invalid char
+    if (i==0) {
+       // search -> retorna um valor inteiro, indicando a posição do inicio da primeira
+       // ocorrência de expReg dentro de instStr. Se nenhuma ocorrencia for encontrada o método retornara -1
+       // instStr.search(expReg);
+       if ((lchar.search(expr) != 0) || (lchar>3))    data.value = "";
+    }
+    else if (i==1) {
+       if (lchar.search(expr) != 0) {
+          // substring(indice1,indice2)
+          // indice1, indice2 -> será usado para delimitar a string
+          var tst1 = data.value.substring(0,(i));
+          data.value = tst1;
+          continue;
+       }
+       if ((nchar != '/') && (nchar != '')) {
+          var tst1 = data.value.substring(0, (i)+1);
+          if (nchar.search(expr) != 0)
+             var tst2 = data.value.substring(i+2, pass.length);
+          else
+             var tst2 = data.value.substring(i+1, pass.length);
+       data.value = tst1 + '/' + tst2;}
+    }
+    else if (i==3) {
+       if (lchar.search(expr)!=0) {
+          var tst1 = data.value.substring(0,(i));
+          data.value = tst1;
+       }
+    }
+    else if (i==4) {
+       if (lchar.search(expr)!=0) {
+          var tst1 = data.value.substring(0, (i));
+          data.value = tst1;
+          continue;
+       }
+       if ((nchar != '/') && (nchar != '')) {
+          var tst1 = data.value.substring(0, (i)+1);
+          if (nchar.search(expr) != 0)
+             var tst2 = data.value.substring(i+2, pass.length);
+          else
+             var tst2 = data.value.substring(i+1, pass.length);
+          data.value = tst1 + '/' + tst2;
+       }
+    }
+    if (i >= 6) {
+       if (lchar.search(expr) != 0) {
+          var tst1 = data.value.substring(0, (i));
+          data.value = tst1;
+       }
+    }
+  }
+  if (pass.length>10)
+     data.value = data.value.substring(0, 10);
+  return true;
+}
+function formatadata_old(data, org) {
+  if (org) {org=org+"."} else {org=""};
+  var tecla = eval('parent.cpo.'+org+'event.keyCode');
+  var tipo = eval('parent.cpo.'+org+'event.type');
+  if (tipo == "keypress" && (tecla<48 || tecla>57) && tecla!="0" && tecla!=8) {
+     //eval('parent.cpo.'+org+'event.keyCode=0');
+     return false;
+  }
+  if (tipo == "keyup" && tecla<96 || tecla>105) {
+     //eval('parent.cpo.'+org+'event.keyCode=0');
+     return false;
+  }
+  vr  = data.value;
+  if (vr=="") return false;
+  vr  = vr.replace(".", "");
+  vr  = vr.replace("/", "");
+  vr  = vr.replace("/", "");
+  tam = vr.length+1;
+  if (tecla!=9 && tecla!=8) {
+     if (tam>2 && tam<5)
+        data.value = vr.substr(0, tam-2)+'/'+vr.substr(tam-2, tam);
+     if (tam>=5)
+        data.value = vr.substr(0, 2)+'/'+vr.substr(2, 2)+'/'+vr.substr(4, 4);
+  }
+}
+//*********************************************************
+// Rotina : VALIDA DATA (DIA, MÊS E ANO, INCLUSIVE BISSEXTO)
+// Chamada: onblur="parent.gbl.validadata(this.name[, org])"
+//*********************************************************
+function validadata(campo, org) {
+  if (org) {org=org+"."} else {org=""};
+  cmp   = eval("parent.cpo."+org+"document.frm."+campo);
+  if (cmp.value=="") return false;
+  cp    = cmp.value.replace("/","");
+  cp    = cp.replace("/","");
+  v_dia = cp.substr(0,2);
+  v_mes = cp.substr(2,2);
+  v_ano = cp.substr(4,4);
+  if (cp.value!="") {
+     if (cp.length<8) {
+        alert("Informe a Data no formato DDMMAAAA");
+        setTimeout("cmp.focus()",1);
+        return false;
+     }
+     if (v_dia.length<2) {
+        alert("Informe o Dia");
+        setTimeout("cmp.focus()",1);
+        return false;
+     }
+     if (v_mes.length<2) {
+        alert("Informe o Mês");
+        setTimeout("cmp.focus()",1);
+        return false;
+     }
+     if (v_ano.length<4) {
+        alert("Informe o Ano com 4 dígitos");
+        setTimeout("cmp.focus()",1);
+        return false;
+     }
+     if (v_dia<1 || v_dia>31) {
+        alert("Dia Inválido");
+        setTimeout("cmp.focus()",1);
+        return false;
+     }
+     if (v_mes<1 || v_mes>12) {
+        alert("Mês Inválido");
+        setTimeout("cmp.focus()",1);
+        return false;
+     }
+     if (v_dia=="31") {
+        if ((v_mes=="04") || (v_mes=="06") || (v_mes=="09") || (v_mes=="11")) {
+           alert("Dia inexistente para esse Mês");
+           setTimeout("cmp.focus()",1);
+           return false;
+        }
+     }
+     if (v_mes=="02") {
+        if (!(v_ano%4)) {
+           if (v_dia>29) {
+              alert("Dia inexistente para esse Mês");
+              setTimeout("cmp.focus()",1);
+              return false;
+           }
+        }
+        else if (v_dia > 28) {
+                alert("Dia inexistente para esse Mês");
+                setTimeout("cmp.focus()",1);
+                return false;
+        }
+     }
+     if (v_ano<1900 || v_ano>2050) {
+        alert("Ano Inválido");
+        setTimeout("cmp.focus()",1);
+        return false;
+     }
+  }
+  return true;
+}
+//*********************************************************
+// Rotina : FORMATA MES E ANO DURANTE A DIGITAÇÃO (MM/AAAA)
+// Chamada: onkeyup="parent.gbl.formatamesano(this[, org])"
+//*********************************************************
+function formatamesano(data, org) {
+  if (org) {org=org+"."} else {org=""};
+  var tecla = eval('parent.cpo.'+org+'event.keyCode');
+  var tipo = eval('parent.cpo.'+org+'event.type');
+  if (tipo == "keypress" && (tecla<48 || tecla>57) && tecla!="0" && tecla!=8) {
+     //eval('parent.cpo.'+org+'event.keyCode=0');
+     return;
+  }
+  if (tipo == "keyup" && tecla<96 || tecla>105) {
+     //eval('parent.cpo.'+org+'event.keyCode=0');
+     return;
+  }
+  vr  = data.value;
+  if (vr=="") return false;
+  vr  = vr.replace(".", "");
+  vr  = vr.replace("/", "");
+  vr  = vr.replace("/", "");
+  tam = vr.length+1;
+  if (tecla!=9 && tecla!=8) {
+     if (tam>=3)
+        data.value = vr.substr(0, 2)+'/'+vr.substr(2, 4);
+  }
+}
+//*********************************************************
+// Rotina : VALIDA MES E ANO
+// Chamada: onblur="parent.gbl.validamesano(this.name[, org])"
+//*********************************************************
+function validamesano(campo, org) {
+  if (org) {org=org+"."} else {org=""};
+  cmp   = eval("parent.cpo."+org+"document.frm."+campo);
+  if (cmp.value=="") return false;
+  cp    = cmp.value.replace("/","");
+  cp    = cp.replace("/","");
+  v_mes = cp.substr(0,2);
+  v_ano = cp.substr(2,4);
+  if (cp.value!="") {
+     if (cp.length<6) {
+        alert("Informe mês e ano no formato MMAAAA");
+        setTimeout("cmp.focus()",1);
+        return false;
+     }
+     if (v_mes.length<2) {
+        alert("Informe o Mês");
+        setTimeout("cmp.focus()",1);
+        return false;
+     }
+     if (v_ano.length<4) {
+        alert("Informe o Ano com 4 dígitos");
+        setTimeout("cmp.focus()",1);
+        return false;
+     }
+     if (v_mes<1 || v_mes>12) {
+        alert("Mês Inválido");
+        setTimeout("cmp.focus()",1);
+        return false;
+     }
+  }
+}
+//*********************************************************
+// Rotina : SOMA/SUBTRAI DIAS, MESES OU ANOS EM UMA DATA
+// Chamada: parent.gbl.somadata(dta, qtd, tpo)
+// dta - data no formato "ddmmaaaa"
+// qtd - quantidade +/-;
+// tpo - "D" para dias, "M" para mêses, "A" para anos
+// Retorno: data no formato ddmmaaaa
+//*********************************************************
+function somadata(dta, qtd, tpo) {
+  dt1 = new Date(dta.substr(2,2) + "/" + dta.substr(0,2) + "/" + dta.substr(4,4));
+  switch(tpo.toUpperCase()) {
+    case "D":
+      dt1.setDate(dt1.getDate() + qtd);
+      break;
+    case "M":
+      dt1.setMonth(dt1.getMonth() + qtd);
+      break;
+    case "A":
+      dt1.setFullYear(dt1.getFullYear() + qtd);
+      break;
+    default:
+  }
+  dd = dt1.getDate().toString();
+  mm = (dt1.getMonth() + 1).toString();
+  if (dd.length < 2) dd = "0" + dd;
+  if (mm.length < 2) mm = "0" + mm;
+  return dd + mm + dt1.getFullYear();
+}
+//*********************************************************
+// Rotina : FORMATA DATA
+// Chamada: parent.gbl.formatadt(data)
+// data - data no formato "ddmmaaaa"
+// Retorno: data no formato dd/mm/aaaa
+//*********************************************************
+function formatadt(data) {
+  return data.substr(0,2) + "/" + data.substr(2,2) + "/" + data.substr(4,4);
+}
+//*****************************************************
+// Rotina : RETORNA DIFERENÇA EM DIAS ENTRE 2 DATAS
+// Chamada: parent.gbl.calcula_dias(dd/mm/aaaa, dd/mm/aaaa)
+// Autor  : Alberlucio Barbosa dos Santos
+//*****************************************************
+function calcula_dias(data1_DDMMYYYY,data2_DDMMYYYY){
+  Var_Data=data1_DDMMYYYY.value.split("/");
+  Var_Dia1=Var_Data[0];
+  Var_Mes1=Var_Data[1];
+  Var_Mes1=Math.floor(Var_Mes1)-1;
+  Var_Ano1=Var_Data[2];
+  var data1 = new Date(Var_Ano1,Var_Mes1,Var_Dia1);
+  Var_Data=data2_DDMMYYYY.value.split("/");
+  Var_Dia2=Var_Data[0];
+  Var_Mes2=Var_Data[1];
+  Var_Mes2=Math.floor(Var_Mes2)-1;
+  Var_Ano2=Var_Data[2];
+  var data2 = new Date(Var_Ano2,Var_Mes2,Var_Dia2);
+  var diferenca = data2.getTime() - data1.getTime();
+  return Math.floor(diferenca / (1000 * 60 * 60 * 24));
+}
+//*********************************************************
+// Rotina : FORMATA HORA DURANTE A DIGITAÇÃO (HH:MM)
+// Chamada: onkeypress="parent.gbl.formatahora(this[, org])"
+//*********************************************************
+function formatahora(hora, org) {
+  if (org) {org=org+"."} else {org=""};
+  var tecla = eval('parent.cpo.'+org+'event.keyCode');
+  if ((tecla<48) || (tecla>57) && (tecla!="0") && (tecla!=8)) {
+     //eval('parent.cpo.'+org+'event.keyCode=0');
+     return false;
+  }
+  vr  = hora.value;
+  if (vr=="") return false;
+  vr  = vr.replace(":", "");
+  tam = vr.length+1;
+  if (tecla!=9 && tecla!=8) {
+     if (tam>2 && tam<5)
+        hora.value = vr.substr(0, tam-2)+':'+vr.substr(tam-2, tam);
+  }
+}
+//*********************************************************
+// Rotina : VALIDA HORA (HORA E MINUTO)
+// Chamada: onblur="parent.gbl.validahora(this.name[, org])"
+//*********************************************************
+function validahora(campo, org) {
+  if (org) {org=org+"."} else {org=""};
+  cmp   = eval("parent.cpo."+org+"document.frm."+campo);
+  if (cmp.value=="") return false;
+  cp    = cmp.value.replace(":","");
+  v_hor = cp.substr(0,2);
+  v_min = cp.substr(2,2);
+  if (cp.value!="") {
+     if (cp.length<4) {
+        alert("Informe o Horário no formato HHMM");
+        setTimeout("cmp.focus()",1);
+        return false;
+     }
+     if (v_hor.length<2) {
+        alert("Informe a Hora");
+        setTimeout("cmp.focus()",1);
+        return false;
+     }
+     if (v_min.length<2) {
+        alert("Informe os Minutos");
+        setTimeout("cmp.focus()",1);
+        return false;
+     }
+     if (v_hor>23) {
+        alert("Hora Inválida");
+        setTimeout("cmp.focus()",1);
+        return false;
+     }
+     if (v_min>59) {
+        alert("Minuto Inválido");
+        setTimeout("cmp.focus()",1);
+        return false;
+     }
+  }
+}
+//*********************************************************
+// Rotina : FORMATA VALOR MONETÁRIO DURANTE A DIGITAÇÃO (2 CASAS DECIMAIS)
+// Chamada: onkeypress="parent.gbl.formatavalor(this.name, ['org'])"
+//*********************************************************
+function formatavalor(cmp, org) {
+  if (org) {org=org+"."} else {org=""};
+  campo = eval("parent.cpo."+org+"document.frm."+cmp);
+  if (campo.maxLength>20000) {
+     alert("A função 'formatavalor' exige o parâmetro 'maxlength' no campo !");
+     campo.value="";
+     return false;
+  }
+  var tecla = eval('parent.cpo.'+org+'event.keyCode');
+  if ((tecla<48) || (tecla>57) && (tecla!=0) && (tecla!=8)) {
+     //eval('parent.cpo.'+org+'event.keyCode=0');
+     return false;
+  }
+  vr=campo.value;
+  if (vr.length==campo.maxLength) {
+     //eval('parent.cpo.'+org+'event.keyCode=0');
+     return false;
+  }
+  vr=vr.replace("/","");
+  vr=vr.replace("/","");
+  vr=vr.replace(",","");
+  vr=vr.replace(".","");
+  vr=vr.replace(".","");
+  vr=vr.replace(".","");
+  vr=vr.replace(".","");
+  tam = vr.length;
+  if (tam < campo.maxLength && tecla!=8) tam=vr.length+1;
+  if (tecla==8) tam=tam-1;
+  if (tecla==8 || tecla>=48 && tecla<=57 || tecla>=96 && tecla<=105) {
+     if (tam<=2) campo.value=vr;
+     if ((tam>2)   && (tam<=5))  {campo.value = vr.substr(0, tam-2)  + "," + vr.substr(tam-2,tam);}
+     if ((tam>=6)  && (tam<=8))  {campo.value = vr.substr(0, tam-5)  + "." + vr.substr(tam-5,3)  + "," + vr.substr(tam-2,tam);}
+     if ((tam>=9)  && (tam<=11)) {campo.value = vr.substr(0, tam-8)  + "." + vr.substr(tam-8,3)  + "." + vr.substr(tam-5,3)  + "," + vr.substr(tam-2,tam);}
+     if ((tam>=12) && (tam<=14)) {campo.value = vr.substr(0, tam-11) + "." + vr.substr(tam-11,3) + "." + vr.substr(tam-8,3)  + "." + vr.substr(tam-5,3) + "," + vr.substr(tam-2,tam);}
+     if ((tam>=15) && (tam<=17)) {campo.value = vr.substr(0, tam-14) + "." + vr.substr(tam-14,3) + "." + vr.substr(tam-11,3) + "." + vr.substr(tam-8,3) + "." + vr.substr(tam-5,3) + "," + vr.substr(tam-2,tam);}
+  }
+}
+//*********************************************************
+// Rotina : FORMATA VALOR MONETÁRIO DURANTE A DIGITAÇÃO (4 DECIMAIS). EX.: 654.123,4567
+// Chamada: onkeypress="parent.gbl.formatavalor4(this.name, ['org'])"
+//*********************************************************
+function formatavalor4(cmp, org) {
+   if (org) {org=org+"."} else {org=""};
+   campo = eval("parent.cpo."+org+"document.frm."+cmp);
+   if (campo.maxLength>20000) {
+      alert("A função 'formatavalor' exige o parâmetro 'maxlength' no campo !");
+      campo.value="";
+      return false;
+   }
+   var tecla = eval('parent.cpo.'+org+'event.keyCode');
+   if ((tecla<48) || (tecla>57) && (tecla!=0) && (tecla!=8)) {
+      //eval('parent.cpo.'+org+'event.keyCode=0');
+      return false;
+   }
+   vr=campo.value;
+   if (vr.length==campo.maxLength) {
+      //eval('parent.cpo.'+org+'event.keyCode=0');
+      return false;
+   }
+   vr=vr.replace("/","");
+   vr=vr.replace("/","");
+   vr=vr.replace(",","");
+   vr=vr.replace(".","");
+   vr=vr.replace(".","");
+   vr=vr.replace(".","");
+   vr=vr.replace(".","");
+   tam = vr.length;
+   if (tam < campo.maxLength && tecla!=8) tam=vr.length+1;
+   if (tecla==8) tam=tam-1;
+   if (tecla==8 || tecla>=48 && tecla<=57 || tecla>=96 && tecla<=105) {
+      if (tam<=4) campo.value=vr;
+      if ((tam>4)   && (tam<=7))  {campo.value = vr.substr(0, tam-4)  + "," + vr.substr(tam-4,tam);}
+      if ((tam>=8)  && (tam<=10)) {campo.value = vr.substr(0, tam-7)  + "." + vr.substr(tam-7,3)  + "," + vr.substr(tam-4,tam);}
+      if ((tam>=11) && (tam<=13)) {campo.value = vr.substr(0, tam-10) + "." + vr.substr(tam-10,3) + "." + vr.substr(tam-7,3)  + "," + vr.substr(tam-4,tam);}
+      if ((tam>=14) && (tam<=16)) {campo.value = vr.substr(0, tam-13) + "." + vr.substr(tam-13,3) + "." + vr.substr(tam-10,3) + "." + vr.substr(tam-7,3) + "," + vr.substr(tam-4,tam);}
+      if ((tam>=17) && (tam<=19)) {campo.value = vr.substr(0, tam-16) + "." + vr.substr(tam-16,3) + "." + vr.substr(tam-13,3) + "." + vr.substr(tam-10,3) + "." + vr.substr(tam-7,3) + "," + vr.substr(tam-4,tam);}
+   }
+}
+//************************************************************
+// Rotina : CALCULA DIGITO VERIFICADOR - MODULO 11
+// Chamada: onchange="parent.gbl.digito11(this.name, ['org'])"
+//************************************************************
+function digito11(cmp) {
+  if (org) {org=org+"."} else {org=""};
+  campo = eval("parent.cpo."+org+"document.frm."+cmp);
+  var ar_numero
+  var dv = 0
+  var quoc = 0
+  var total = 0
+  var mult = 0
+  var pos = 0
+  var mult = 2
+  var tamanho = campo.value.length;
+  ar_numero = new Array;
+  for(i=0;i < tamanho;i++) {  
+    //ar_numero[i] = campo.value.substr(i,i+1)
+    ar_numero[i] = campo.value.substr(i,i)
+  }
+  for(pos=tamanho-1;pos >= 0;pos--) {
+    dv = ar_numero[pos]
+    total = total + mult * dv
+    if (mult==9)
+       mult = 2
+    else
+       mult++
+  }
+  quoc  = parseInt(total / 11)
+  total = total - (quoc * 11)
+  if (total==0 || total==1)
+     dig = 0
+  else
+     dig = 11 - total
+  campo.value = campo.value + dig;
+}
+//************************************************************
+// Rotina : CALCULA DIGITO VERIFICADOR - MODULO IPTU
+// Chamada: onchange="parent.gbl.digitoIPTU(nr_inscricao)"
+//          Obs.: nr_inscricao deve ser numérico de 13 posições
+//************************************************************
+function digitoIPTU(n) {
+  var soma = 0
+  ar_numero = new Array;
+  for(i=0; i<13; i++) {
+    ar_numero[i] = n.substr(i,1)
+  }
+  var k = 12
+  for(i=1; i<3; i++) {
+    for(j=2; j<8; j++) {
+      soma = soma + j * ar_numero[k]
+      k = k - 1
+    }
+  }
+  soma = soma + 2 * ar_numero[k]
+  quociente = soma / 11
+  resto     = soma - parseInt(quociente) * 11
+  switch (resto) {
+    case 0 : dig = 0; break
+    case 1 : dig = 0; break
+    case 10: dig = 1; break
+    default: dig = 11 - resto
+  }
+  return dig;
+}
+//***************************************************************
+// Rotina : FORMATA CPF DURANTE A DIGITAÇÃO (999.999.999-99)
+// Chamada: onkeypress="parent.gbl.formatacpf(this.name[, org])"
+//***************************************************************
+function formatacpf(cmp, org) {
+  if (org) {org=org+"."} else {org=""};
+  campo = eval("parent.cpo."+org+"document.frm."+cmp);
+
+  var tecla = eval('parent.cpo.'+org+'event.keyCode');
+  if ((tecla<48) || (tecla>57) && (tecla!=0) && (tecla!=8)) {
+     //eval('parent.cpo.'+org+'event.keyCode=0');
+     return false;
+  }
+  vr = campo.value;
+  vr = vr.replace( "/", "" );
+  vr = vr.replace( "/", "" );
+  vr = vr.replace( ",", "" );
+  vr = vr.replace( ".", "" );
+  vr = vr.replace( ".", "" );
+  vr = vr.replace( ".", "" );
+  vr = vr.replace( ".", "" );
+  vr = vr.replace( "-", "" );
+  vr = vr.replace( "-", "" );
+  vr = vr.replace( "-", "" );
+  vr = vr.replace( "-", "" );
+  vr = vr.replace( "-", "" );
+  tam = vr.length;
+  if (tam<11 && tecla!=8) tam=vr.length+1;
+  if (tecla==8) tam=tam-1;
+  if (tecla==8 || tecla>=48 && tecla<=57 || tecla>=96 && tecla<=105) {
+     if (tam<=2) campo.value=vr;
+     if ((tam>2)   && (tam<=5))  {campo.value = vr.substr(0, tam-2)  + "-" + vr.substr(tam-2,tam);}
+     if ((tam>=6)  && (tam<=8))  {campo.value = vr.substr(0, tam-5)  + "." + vr.substr(tam-5,3)  + "-" + vr.substr(tam-2,tam);}
+     if ((tam>=9)  && (tam<=11)) {campo.value = vr.substr(0, tam-8)  + "." + vr.substr(tam-8,3)  + "." + vr.substr(tam-5,3)  + "-" + vr.substr(tam-2,tam);}
+     if ((tam>=12) && (tam<=14)) {campo.value = vr.substr(0, tam-11) + "." + vr.substr(tam-11,3) + "." + vr.substr(tam-8,3)  + "." + vr.substr(tam-5,3) + "-" + vr.substr(tam-2,tam);}
+     if ((tam>=15) && (tam<=17)) {campo.value = vr.substr(0, tam-14) + "." + vr.substr(tam-14,3) + "." + vr.substr(tam-11,3) + "." + vr.substr(tam-8,3) + "." + vr.substr(tam-5,3) + "-" + vr.substr(tam-2,tam);}
+  }
+}
+//***************************************************************
+// Rotina : FORMATA CNPJ DURANTE A DIGITAÇÃO (99.999.999/9999-99)
+// Chamada: onkeypress="parent.gbl.formatacpf(this.name[, org])"
+//***************************************************************
+function formatacnpj(cmp, org) {
+  if (org) {org=org+"."} else {org=""};
+  campo = eval("parent.cpo."+org+"document.frm."+cmp);
+
+  var tecla = eval('parent.cpo.'+org+'event.keyCode');
+  if ((tecla<48) || (tecla>57) && (tecla!=0) && (tecla!=8)) {
+     //eval('parent.cpo.'+org+'event.keyCode=0');
+     return false;
+  }
+  vr = campo.value;
+  vr = vr.replace( "/", "" );
+  vr = vr.replace( "/", "" );
+  vr = vr.replace( ",", "" );
+  vr = vr.replace( ".", "" );
+  vr = vr.replace( ".", "" );
+  vr = vr.replace( ".", "" );
+  vr = vr.replace( ".", "" );
+  vr = vr.replace( "-", "" );
+  vr = vr.replace( "-", "" );
+  vr = vr.replace( "-", "" );
+  vr = vr.replace( "-", "" );
+  vr = vr.replace( "-", "" );
+  tam = vr.length;
+  if (tam<16 && tecla!=8) tam=vr.length+1;
+  if (tecla==8) tam=tam-1;
+  if (tecla==8 || tecla>=48 && tecla<=57 || tecla>=96 && tecla<=105) {
+     if (tam<=2) campo.value=vr;
+     if ((tam>2)   && (tam<=6))  {campo.value = vr.substr(0, tam-2)  + "-" + vr.substr(tam-2,tam);}
+     if ((tam>=7)  && (tam<=9))  {campo.value = vr.substr(0, tam-6)  + "/" + vr.substr(tam-6,4)  + "-" + vr.substr(tam-2,tam);}
+     if ((tam>=10) && (tam<=12)) {campo.value = vr.substr(0, tam-9)  + "." + vr.substr(tam-9,3)  + "/" + vr.substr(tam-6,4)  + "-" + vr.substr(tam-2,tam);}
+     if ((tam>=13) && (tam<=14)) {campo.value = vr.substr(0, tam-12) + "." + vr.substr(tam-12,3) + "." + vr.substr(tam-9,3)  + "/" + vr.substr(tam-6,4)  + "-" + vr.substr(tam-2,tam);}
+  }
+}
+//*********************************************************
+// Rotina : VALIDA CPF
+// Chamada: onblur="parent.gbl.validacpf(this.name[, org])"
+//*********************************************************
+function validacpf(pcpf, org) {
+  if (org) {org=org+"."} else {org=""};
+  cmp  = eval("parent.cpo."+org+"document.frm."+pcpf);
+  pcpf = cmp.value;
+  pcpf = pcpf.replace(/[\.,\-]/g,"");
+  if (pcpf.length==0) return;
+
+  if (pcpf.length!=11) {
+     alert("CPF inválido !");
+     setTimeout("cmp.focus()",1);
+  }
+  else {
+     soma = 0
+     for (i=0;i<=8;i++) {
+         val = eval(pcpf.charAt(i))
+         soma = soma + (val*(i+1))
+     }
+     resto = soma % 11
+     if (resto>9) dig = resto - 10
+     else  dig = resto
+     if (dig != eval(pcpf.charAt(9))) {
+        alert("Dígito incorreto !");
+        setTimeout("cmp.focus()",1);
+     }
+     else {
+        soma = 0
+        for (i=0;i<=7;i++) {
+            val = eval(pcpf.charAt(i+1))
+            soma = soma + (val*(i+1))
+        }
+        soma = soma + (dig * 9)
+        resto = soma % 11
+        if (resto>9) dig = resto - 10
+        else  dig = resto
+        if (dig != eval(pcpf.charAt(10))) {
+           alert("Dígito incorreto !");
+           setTimeout("cmp.focus()",1);
+        }
+     }
+  }
+}
+//*********************************************************
+// Rotina : VALIDA CNPJ
+// Chamada: onblur="parent.gbl.validacnpj(this.name[, org])"
+//*********************************************************
+function validacnpj(pcnpj, org) {
+  if (org) {org=org+"."} else {org=""};
+  cmp  = eval("parent.cpo."+org+"document.frm."+pcnpj);
+  pcnpj = cmp.value;
+  pcnpj = pcnpj.replace(/[\.,\/,\-]/g,"");
+
+  if (pcnpj.length != 14)
+     sim=false;
+  else
+     sim=true;
+
+  if (sim) {
+     for (i=0;((i<=(pcnpj.length-1))&& sim); i++) {
+         val = pcnpj.charAt(i)
+         if ((val!="9")&&(val!="0")&&(val!="1")&&(val!="2")&&(val!="3")&&(val!="4") &&
+            (val!="5")&&(val!="6")&&(val!="7")&&(val!="8")) {sim=false}
+     }
+     if (sim) {
+        m2 = 2
+        soma1 = 0
+        soma2 = 0
+        for (i=11;i>=0;i--) {
+            val = eval(pcnpj.charAt(i))
+            m1 = m2
+            if (m2<9) {m2 = m2+1}
+            else {m2 = 2}
+            soma1 = soma1 + (val * m1)
+            soma2 = soma2 + (val * m2)
+        }
+        soma1 = soma1 % 11
+        if (soma1 < 2) {d1 = 0}
+        else {d1 = 11 - soma1}
+        soma2 = (soma2 + (2 * d1)) % 11
+        if (soma2 < 2) {d2 = 0}
+        else {d2 = 11 - soma2}
+        a=1
+        if ((d1==pcnpj.charAt(12)) && (d2==pcnpj.charAt(13))) a=1
+        else alert("CNPJ inválido !")
+     }
+  }
+  else alert("CNPJ inválido !")
+}
+//************************************************************
+// Rotina :FUNÇÃO GENÉRICA PARA CONSULTA SIMPLES POR CODIGO
+// Chamada: onchange="consulta(args, funcao, campos_requeridos, [mensagem_eof], [call_back], [frm])
+//************************************************************
+function consulta(args, funcao, campos_requeridos, mensagem_eof, call_back, frm) {
+    if (!args || args == "") {
+        alert("Erro de Programação - função JavaScript: consulta - Informe o(s) argumentos de pesquisa!");
+        return false;
+    }
+
+    if (!funcao || funcao == "") {
+        alert("Erro de Programação - função JavaScript: consulta - Informe o Programa!");
+        return false;
+    }
+
+    if (!campos_requeridos || campos_requeridos == "") {
+        alert("Erro de Programação - função JavaScript: consulta - Informe ao menos um campo requerido!");
+        return false;
+    }
+
+    campos_requeridos = campos_requeridos.replace(/ /gi, "");
+    campos_requeridos = campos_requeridos.split(";");
+
+    if(!frm){
+        frm = parent.cpo.document.frm;
+    }
+
+    for (var i = 0; i < campos_requeridos.length; i++) {
+        //Verifica se o item do array de campos_requeridos existe no formulario "frm" do frame "cpo"
+        if (frm[campos_requeridos[i]]) {
+            //Caso o campo exista no frm verifica se o campo esta vazio
+            //Substituindo todos os espaços ' ' por vazio''
+            frm[campos_requeridos[i]].value = frm[campos_requeridos[i]].value.replace(/ /gi, "");
+
+            if (frm[campos_requeridos[i]].value == "") {
+                alert("Informe um valor para pesquisa!");
+                frm[campos_requeridos[i]].focus();
+                return false;
+            }
+        }
+        else {
+            //Um dos valores informados no parametro campos_requeridos não existe no formulário causando um erro de programação
+            alert("Erro de Programação - função JavaScript: consulta - campo '" + campos_requeridos[i] + "'informado no parametro campos_requeridos não existe no formulario!");
+            return false;
+        }
+    }
+
+    var arg = "";
+
+    args = args.replace(/ /gi, "");
+    args = args.split(";");
+
+    for (var i = 0; i < args.length; i++) {
+        //Verifica se o parametro passado é um controle que existe no formulario ou uma variavel passada implicitamente na query string
+
+        if (frm[args[i]]) {
+            //O controle existe no formulario
+            arg += args[i] + "=" + frm[args[i]].value + "&";
+        }
+        else {
+            //Não existe no formulario pois é um parametro passado na querystring como uma variavel
+
+            if (args[i].indexOf("=") == -1) {
+                //Variavel passada implicitamente sem o sinal de '=' causando um erro na query string
+                alert("Erro de Programação - função JavaScript: consulta - A variavel passada implicitamente para o parametro '" + args[i] + "' não tem '='")
+                return false;
+            }
+            arg += args[i] + "&";
+        }
+    }
+
+    if (!mensagem_eof) {
+        mensagem_eof = "";
+    }
+    arg += "mensagem_eof=" + mensagem_eof;
+
+    arg += "&"
+
+    if (!call_back) {
+        call_back = "";
+    }
+    arg += "call_back=" + call_back;
+
+    parent.gbl.seta_avs("*");
+    parent.gbl.acessa("g", funcao, arg);
+}
+//************************************************************
+// Rotina : ABRE UMA JANELA DE CONSULTA SIMPLES POR NOME
+// Chamada: onchange="abre_janela(args, funcao, [mensagem_eof], [call_back], [estilo_janela], [frm])"
+//************************************************************
+function abre_janela(args, funcao, mensagem_eof, call_back, estilo_janela, frm) {
+    if (args == "") {
+        alert("Erro de Programação - função JavaScript: abre_janela - Informe o(s) argumentos de pesquisa!");
+        return false;
+    }
+
+    if (funcao == "") {
+        alert("Erro de Programação - função JavaScript: abre_janela - Informe o Programa!");
+        return false;
+    }
+
+    var arg = "";
+
+    args = args.replace(/ /gi, "");
+    args = args.split(";");
+
+    if(!frm){
+        frm = parent.cpo.document.frm;
+    }
+/*
+    var aux = "";
+    obj = frm;
+
+    while(obj.parentNode){
+        if(obj.name){
+            aux += "." + obj.name;
+        }
+        else {
+            aux += "." + obj.tagName;
+        }
+        obj = obj.parentNode;
+        alert(aux);
+    }
+*/
+    for (var i = 0; i < args.length; i++) {
+        if (!frm[args[i]]) {
+            alert("Erro de Programação - função JavaScript: abre_janela - O componente '" + args[i] + "' não existe!");
+            return false;
+        }
+        arg += args[i] + "=" + frm[args[i]].value + "&";
+    }
+
+/*
+    if (frm[args[0]].value.length < 3) {
+        parent.gbl.seta_msg("INFORME NO MÍNIMO 3 LETRAS");
+        return false;
+    }
+*/
+    if (!mensagem_eof) {
+        mensagem_eof = "";
+    }
+    arg += "mensagem_eof=" + mensagem_eof;
+    arg += "&"
+
+    if (!call_back) {
+        call_back = "";
+    }
+
+    arg += "call_back=" + call_back;
+
+    if (!estilo_janela) {
+        estilo_janela = "toolbar=no,location=no,directories=no,scrollbars=yes,status=no,width=450,height=310,top=180,left=250"
+    }
+
+    parent.gbl.seta_avs("*");
+
+    janela = window.open(funcao + "?" + arg, "janela", estilo_janela);
+    //return janela;
+}
+//************************************************************
+// Rotina :FUNÇÃO PARA ADICIONAR ITENS EM COMPONENTES SELECT DO HTML
+// Chamada: onchange="sel_adiciona(Valor, descricao, objetoSelect)"
+//************************************************************
+function sel_adiciona(valor, descricao, objetoSelect) {
+    var valor_existente = false;
+    for (i = 0; i < objetoSelect.length; i++) {
+        if (objetoSelect[i].value == valor){
+            valor_existente = true;
+            break;
+        }
+    }
+    if (!valor_existente){
+        var optNew = new Option(descricao, valor);
+        objetoSelect.options[objetoSelect.length] = optNew;
+    }
+}
+//************************************************************
+// Rotina :FUNÇÃO PARA REMOVER ITEM SELECIONADO EM COMPONENTES SELECT DO HTML
+// Chamada: onclick="sel_remove(objetoSelect)"
+//************************************************************
+function sel_removeitem(objetoSelect) {
+    var i;
+    for (i = objetoSelect.length - 1; i >= 0; i--) {
+        if (objetoSelect.options[i].selected) {
+            objetoSelect.remove(i);
+        }
+    }
+}
+
+//************************************************************
+// Rotina :FUNÇÃO PARA LIMPAR COMPONENTES SELECT DO HTML
+// Chamada: onclick="sel_limpa(objetoSelect)"
+//************************************************************
+function sel_limpa(objetoSelect){
+    objetoSelect.length = 0;
+}
+
+//************************************************************
+// Rotina :FUNÇÃO PARA EXECUTAR UMA FUNÇÃO QUANDO UMA DETERMINADA TECLA É PRESSIONADA
+// Chamada: onchange="acao_tecla(keyCode, functionName, oEvent, mostraKeyCode)"
+//************************************************************
+function acao_tecla(keyCode, functionName, oEvent, mostraKeyCode) {
+    var oEvent = (oEvent) ? oEvent : event;
+    var oTarget = (oEvent.target) ? oEvent.target : oEvent.srcElement;
+
+    if (mostraKeyCode){
+        alert("Código da tecla pressionada é: " + oEvent.keyCode);
+    }
+
+    if (oEvent.keyCode == keyCode) {
+        eval("parent.cpo." + functionName);
+    }
+}
+//************************************************************
+// Rotina :FUNÇÃO PARA FORMATAR TELEFONE NO FORMATO (62) 3524-1395
+// Chamada: onkeydown="formatatelefone(element, oEvent)"
+//************************************************************
+function formatatelefone(element, oEvent) {
+    var oEvent = (oEvent) ? oEvent : event;
+    var oTarget = (oEvent.target) ? oEvent.target : oEvent.srcElement;
+
+    if (oEvent.keyCode != 8 && oEvent.keyCode != 13) {
+        var length = element.value.length;
+
+        if (length > 13) {
+            try {
+                oEvent.returnValue = false;
+                oEvent.cancelBubble = true;
+
+                if (document.all) { //IE
+                    oEvent.keyCode = 0;
+                } else { //NS
+                    oEvent.preventDefault();
+                    oEvent.stopPropagation();
+                }
+            } catch (ex) {
+                alert(msg);
+            }
+
+            //element.value = element.value.substring(0, 12);
+            return false
+        }
+
+        if (length == 2) {
+            if (element.value.charAt(0) != "(")
+                element.value = "(" + element.value + ") ";
+        }
+        if (length == 4)
+            if (element.value.charAt(0) == "(")
+            element.value += ") ";
+        if (length == 9)
+            element.value += "-";
+    }
+}
+
+//************************************************************
+// Rotina : FILTRA ENTRADA DE CAMPO PARA APENAS NÚMEROS
+// Chamada: onkeypress="return sonumOS(campo)"
+//************************************************************
+function sonumOS(inputId){      
+   $(inputId).keypress(function(event){     
+        var tecla = event.keyCode || event.which;       
+        if ((tecla<48) || (tecla>57) && (tecla!="0") && (tecla!=8)) {        
+            return false;
+        }
+    });  
+}
+
+
+     
+           

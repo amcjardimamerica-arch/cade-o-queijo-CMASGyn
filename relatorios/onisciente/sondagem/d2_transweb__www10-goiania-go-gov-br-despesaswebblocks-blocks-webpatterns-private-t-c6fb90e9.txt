@@ -1,0 +1,45 @@
+URL: https://www10.goiania.go.gov.br/DespesasWebBlocks/Blocks/WebPatterns/Private/ToggleScript.en.js?60864
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 1121
+
+﻿function toggleButton(){
+    var that = this;
+    
+    function onChange() {
+        $(this).closest('label').toggleClass('changed');
+        $(this).closest('label').parent().toggleClass('changed');
+    }
+    
+    function onFocus() {
+        /* set focus */
+       /* $(this).closest('label').parent().css("outline-color", "#336600");*/
+    }
+    
+    function onFocusOut() {
+        $(this).closest('label').parent().css("outline-color", "transparent");
+    }
+    
+    function initToggle() {
+        $('.ToggleButton_label:not(.toggled) input').each(function(){
+            if ($(this).is(':checked')) {
+                $(this).closest('label').addClass('changed');
+                $(this).closest('label').parent().addClass('changed');
+            }
+            
+            $(this).closest('.ToggleButton_label').addClass('toggled');
+            
+            $(this).on("change", onChange);
+            $(this).on("focus", onFocus);
+            $(this).on("focusout", onFocusOut);
+        });
+    };
+    
+    osAjaxBackend.BindAfterAjaxRequest(initToggle);
+    initToggle();
+};
+
+
+$(document).ready(toggleButton);
