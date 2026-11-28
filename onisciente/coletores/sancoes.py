@@ -46,7 +46,7 @@ COLUNAS = {
     "uf_orgao": ("UF ORGAO SANCIONADOR", "UF DO ORGAO SANCIONADOR"),
     "esfera": ("ESFERA ORGAO SANCIONADOR", "ESFERA DO ORGAO SANCIONADOR"),
     "abrangencia": ("ABRAGENCIA DEFINIDA EM DECISAO JUDICIAL", "ABRANGENCIA DEFINIDA EM DECISAO JUDICIAL",
-                    "ABRANGENCIA DA SANCAO"),
+                    "ABRANGENCIA DA SANCAO", "ABRAGENCIA DA SANCAO"),   # o arquivo real escreve ABRAGÊNCIA
     "processo": ("NUMERO DO PROCESSO",),
     "fundamentacao": ("FUNDAMENTACAO LEGAL",),
     "publicacao": ("DATA PUBLICACAO", "DATA DE PUBLICACAO"),
@@ -174,9 +174,14 @@ def alcanca_o_municipio(s: dict, municipio: str = "GOIANIA", uf: str = "GO") -> 
     ou 'outro_ente' (impedimento ou suspensão aplicado por outro ente: alcance a conferir)."""
     t = cf.norm(s.get("tipo"))
     abr = cf.norm(s.get("abrangencia"))
+    fund = cf.norm(s.get("fundamentacao"))
     if "INIDONE" in t or any(x in abr for x in ("TODAS AS ESFERAS", "NACIONAL", "TODO O TERRITORIO")):
         return "todos"
+    # Improbidade (Lei 8.429/1992, art. 12): a proibição de contratar é com o Poder Público, em geral.
+    if ("8429" in fund.replace(".", "") or "IMPROBIDADE" in fund) and "CONTRATAR" in t:
+        return "todos"
     orgao = cf.norm(s.get("orgao"))
-    if municipio in orgao and cf.norm(s.get("uf_orgao")) in ("", uf):
+    esfera = cf.norm(s.get("esfera"))
+    if municipio in orgao and cf.norm(s.get("uf_orgao")) in ("", uf) and esfera in ("", "MUNICIPAL"):
         return "municipio"
     return "outro_ente"

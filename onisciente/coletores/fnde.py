@@ -89,13 +89,99 @@ def entidades(pagina: str) -> list[dict]:
     return sorted(vistos.values(), key=lambda e: e["cnpj"])
 
 
+MESES = {"JAN": 1, "FEV": 2, "MAR": 3, "ABR": 4, "MAI": 5, "JUN": 6, "JUL": 7, "AGO": 8, "SET": 9, "OUT": 10,
+         "NOV": 11, "DEZ": 12}
+DATA_SIMAD = re.compile(r"^(\d{2})/([A-Za-z]{3})/(\d{4})$")
+
+
+def _data(texto: str) -> str | None:
+    """A data do SIMAD (06/FEV/2025) ou dd/mm/aaaa, em ISO."""
+    m = DATA_SIMAD.match(texto.strip())
+    if m and cf.norm(m.group(2)) in MESES:
+        return f"{m.group(3)}-{MESES[cf.norm(m.group(2))]:02d}-{m.group(1)}"
+    return cf.data(texto) if DATA.match(texto.strip()) else None
+
+
+def _coluna(cabeca: list[str], *nomes: str) -> int | None:
+    normal = [cf.norm(c).rstrip(".:") for c in cabeca]
+    for nome in nomes:
+        if nome in normal:
+            return normal.index(nome)
+    return None
+
+
+def _liberacoes_com_cabecalho(pagina: str) -> tuple[list[dict], float | None, int]:
+    """O formato real (sondagem de 28/11/2026): cada programa é uma tabela; a primeira linha, de
+    uma célula, é o nome do grupo (ALIMENTAÇÃO ESCOLAR..., QUOTA - QUOTA ESTADUAL / MUNICIPAL...);
+    a segunda é o cabeçalho (Data Pgto, OB, Valor, [Parcela,] Programa, Banco, Agência, C/C); depois
+    as liberações, com a data em 06/FEV/2025 e o banco pelo nome; por fim a linha "Total:".
+    Devolve as liberações, a soma dos totais e quantas tabelas tinham o cabeçalho."""
+    saida: list[dict] = []
+    total, tabelas = None, 0
+    for tabela in cf.tabelas_html(pagina):
+        grupo, cabeca = "", None
+        soma, total_tabela = 0.0, None
+        for linha in tabela:
+            textos = [c for c in linha if c]
+            if not textos:
+                continue
+            junto = cf.norm(" ".join(textos))
+            if cabeca is None:
+                if _coluna(linha, "DATA PGTO", "DATA PAGAMENTO", "DATA") is not None and \
+                        _coluna(linha, "VALOR") is not None:
+                    cabeca = linha
+                    tabelas += 1
+                elif len(textos) == 1:
+                    grupo = re.sub(r"(?i)^programa\s*:?\s*", "", textos[0]).strip()
+                continue
+            if len(textos) == 1 and not junto.startswith("TOTAL"):
+                grupo = re.sub(r"(?i)^programa\s*:?\s*", "", textos[0]).strip()     # outro programa na mesma tabela
+                continue
+            if junto.startswith("TOTAL"):
+                valores = [cf.numero(c) for c in textos[1:] if cf.numero(c) is not None]
+                if valores:
+                    total_tabela = (total_tabela or 0.0) + valores[-1]
+                continue
+            pos = {k: _coluna(cabeca, *n) for k, n in (
+                ("data", ("DATA PGTO", "DATA PAGAMENTO", "DATA")), ("ob", ("OB", "ORDEM BANCARIA")),
+                ("valor", ("VALOR",)), ("parcela", ("PARCELA",)), ("programa", ("PROGRAMA",)),
+                ("banco", ("BANCO",)), ("agencia", ("AGENCIA",)), ("conta", ("C/C", "CONTA", "CONTA CORRENTE")))}
+
+            def cel(chave, pos=pos, linha=linha):
+                i = pos[chave]
+                return linha[i].strip() if i is not None and i < len(linha) else ""
+
+            data, valor = _data(cel("data")), cf.numero(cel("valor"))
+            if data is None or valor is None:
+                continue
+            programa = cel("programa")
+            saida.append({
+                "programa": f"{programa} ({grupo})" if programa and grupo else (programa or grupo),
+                "data": data, "ordem_bancaria": cel("ob"), "banco": cel("banco"), "agencia": cel("agencia"),
+                "conta": cel("conta"), "valor": valor,
+            })
+            soma += valor
+        if total_tabela is not None:
+            if abs(soma - total_tabela) > 0.01 * max(len(tabela), 1) + 0.01:
+                raise ValueError(f"a soma das liberações de {grupo or 'um programa'} ({soma:.2f}) não fecha "
+                                 f"com o Total da página ({total_tabela:.2f})")
+            total = (total or 0.0) + total_tabela
+    return saida, total, tabelas
+
+
 def liberacoes(pagina: str) -> tuple[list[dict], float | None]:
     """As liberações de uma entidade e o total que a página declara.
+
+    Primeiro o formato real, com cabeçalho em cada tabela (``_liberacoes_com_cabecalho``); sem
+    cabeçalho, o formato presumido da primeira rodada, abaixo.
 
     Cada linha com uma data e um valor é uma liberação; a linha de uma célula só (ou que começa por
     "Programa") abre o programa das linhas seguintes. Levanta ``ValueError`` se a soma não fecha com
     a linha "Total:" (diferença acima de um centavo por linha).
     """
+    reais, total_real, com_cabecalho = _liberacoes_com_cabecalho(pagina)
+    if com_cabecalho:
+        return reais, total_real
     saida: list[dict] = []
     total = None
     programa = ""

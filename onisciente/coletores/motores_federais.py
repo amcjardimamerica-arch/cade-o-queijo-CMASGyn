@@ -19,12 +19,17 @@ de ``rodar``. Este módulo não importa o ``historico`` no topo, para não criar
 from __future__ import annotations
 
 import calendar
+import io
 import json
 import sqlite3
-from datetime import date, datetime, timezone
+import time
+import urllib.error
+import urllib.parse
+import zlib
+from datetime import UTC, date, datetime
 
+from . import base, economia_go, emendas, fnde, fns, sancoes, tcm, tcu, transferegov
 from . import comum_federal as cf
-from . import economia_go, fnde, fns, sancoes, tcm, tcu, transferegov
 
 ESQUEMA = """
 CREATE TABLE IF NOT EXISTS fontes_federais (motor TEXT, alvo TEXT, situacao TEXT, via TEXT, registros INTEGER,
@@ -36,6 +41,9 @@ CREATE TABLE IF NOT EXISTS fnde_entidades (ano INTEGER, cnpj TEXT, nome TEXT, to
     liberacoes INTEGER, situacao TEXT, PRIMARY KEY (ano, cnpj));
 CREATE TABLE IF NOT EXISTS liberacoes_fnde (ano INTEGER, mes TEXT, data TEXT, cnpj TEXT, entidade TEXT,
     programa TEXT, ordem_bancaria TEXT, banco TEXT, agencia TEXT, conta TEXT, valor REAL);
+CREATE TABLE IF NOT EXISTS emendas_municipio (planilha TEXT, emenda TEXT, ano INTEGER, mes TEXT, tipo TEXT,
+    autor TEXT, cnpj TEXT, nome TEXT, situacao TEXT, objeto TEXT, referencia TEXT, valor_empenhado REAL,
+    valor_liquidado REAL, valor_pago REAL, valor REAL, json TEXT);
 CREATE TABLE IF NOT EXISTS transferegov_planos_especiais (id_plano TEXT PRIMARY KEY, codigo TEXT, ano INTEGER,
     situacao TEXT, cnpj TEXT, beneficiario TEXT, parlamentar TEXT, emenda TEXT, custeio REAL, investimento REAL,
     total REAL);
@@ -47,6 +55,8 @@ CREATE TABLE IF NOT EXISTS sancoes (cnpj_cpf TEXT, cadastro TEXT, inicio TEXT, f
 CREATE INDEX IF NOT EXISTS sancoes_cnpj_cpf ON sancoes (cnpj_cpf);
 CREATE TABLE IF NOT EXISTS repasses_estado (mes TEXT, tributo TEXT, valor REAL, url TEXT,
     PRIMARY KEY (mes, tributo));
+CREATE TABLE IF NOT EXISTS contas_irregulares_tcm (lista TEXT, municipio TEXT, entidade TEXT, responsavel TEXT,
+    processo TEXT, exercicio TEXT, transito TEXT, url TEXT, json TEXT);
 CREATE TABLE IF NOT EXISTS decisoes_controle (tribunal TEXT, chave TEXT, numero TEXT, ano INTEGER,
     colegiado TEXT, data TEXT, relator TEXT, processo TEXT, tipo TEXT, titulo TEXT, sumario TEXT, url TEXT,
     sobre_goiania INTEGER, PRIMARY KEY (tribunal, chave));
@@ -59,13 +69,14 @@ TABELAS_DO_MOTOR = {
     "fnde": [("coletas", "motor = 'fnde'"), ("liberacoes_fnde", ""), ("fnde_entidades", ""),
              ("fontes_federais", "motor = 'fnde'")],
     "transferegov": [("coletas", "motor = 'transferegov'"), ("transferegov_planos_especiais", ""),
+                     ("emendas_municipio", ""),
                      ("transferegov_registros", ""), ("fontes_federais", "motor = 'transferegov'")],
     "sancoes": [("coletas", "motor = 'sancoes'"), ("sancoes", ""), ("fontes_federais", "motor = 'sancoes'")],
     "economia_go": [("coletas", "motor = 'economia_go'"), ("repasses_estado", ""),
                     ("fontes_federais", "motor = 'economia_go'")],
     "tcu": [("coletas", "motor = 'tcu'"), ("decisoes_controle", "tribunal = 'TCU'"),
             ("fontes_federais", "motor = 'tcu'")],
-    "tcm": [("coletas", "motor = 'tcm'"), ("decisoes_controle", "tribunal = 'TCM-GO'"),
+    "tcm": [("coletas", "motor = 'tcm'"), ("decisoes_controle", "tribunal = 'TCM-GO'"), ("contas_irregulares_tcm", ""),
             ("fontes_federais", "motor = 'tcm'")],
 }
 
@@ -92,7 +103,7 @@ def _anotar(ctx, motor: str, alvo: str, mes: str, url: str, erro: str) -> None:
     ctx.banco.inserir("coletas", {
         "motor": motor, "alvo": alvo, "mes": mes, "url": url, "ok": 0, "http": None,
         "erro": erro[:500], "tentativas": 0, "segundos": 0.0, "bytes": 0, "sha256": None,
-        "quando": datetime.now(timezone.utc).isoformat(timespec="seconds")})
+        "quando": datetime.now(UTC).isoformat(timespec="seconds")})
 
 
 def _situacao(ctx, motor: str, alvo: str, situacao: str, *, via: str | None = None, registros: int = 0,
@@ -100,7 +111,7 @@ def _situacao(ctx, motor: str, alvo: str, situacao: str, *, via: str | None = No
     ctx.banco.inserir("fontes_federais", {
         "motor": motor, "alvo": alvo, "situacao": situacao, "via": via, "registros": registros,
         "erro": (erro or None) and erro[:500],
-        "quando": datetime.now(timezone.utc).isoformat(timespec="seconds")})
+        "quando": datetime.now(UTC).isoformat(timespec="seconds")})
 
 
 def _ausente(leitura) -> bool:
@@ -225,11 +236,73 @@ def cnpjs_do_municipio(banco, extras=()) -> list[str]:
     return sorted(achados)
 
 
-def motor_transferegov(ctx, cnpjs) -> None:
+def _ibge7(ibge) -> str:
+    """O código IBGE de sete dígitos (o sétimo é o verificador, calculável a partir dos seis)."""
+    texto = "".join(ch for ch in str(ibge) if ch.isdigit())
+    if len(texto) != 6:
+        return texto
+    soma = sum(sum(divmod(int(d) * (1 if i % 2 == 0 else 2), 10)) for i, d in enumerate(texto))
+    return texto + str((10 - soma % 10) % 10)
+
+
+def motor_emendas(ctx, municipio: str, uf: str, ibge, cnpjs=()) -> None:
+    """O arquivo único de emendas do Portal da Transparência, lido em fluxo (sem guardar o zip) e
+    filtrado pelo Município; a tabela ``emendas_municipio`` é trocada inteira só quando a leitura
+    chega ao fim. Com um leitor de teste no contexto, o arquivo vem por ele."""
+    preparar(ctx.banco)
+    filtro = emendas.Filtro(municipio, uf, ibge, cnpjs)
+    inicio = time.monotonic()
+    linhas, contagem = [], {}
+    url, http, lidos, erro, situacao = emendas.URL, None, 0, None, "falha"
+    try:
+        if ctx.ler_url is not base.ler:
+            leitura = ctx.ler("transferegov", "emendas arquivo unico", url, tempo=300)
+            if not leitura.ok:
+                raise OSError(leitura.erro or f"HTTP {leitura.http}")
+            fonte = emendas.Contador(io.BytesIO(leitura.conteudo))
+            registrar = False
+        else:
+            fonte = emendas.Contador(emendas.abrir(url, tempo=300))
+            registrar = True
+        http = fonte.status
+        try:
+            for planilha, linha in emendas.filtrar(fonte, filtro):
+                linhas.append(linha)
+                contagem[planilha] = contagem.get(planilha, 0) + 1
+        finally:
+            lidos = fonte.bytes
+            fechar = getattr(fonte.fonte, "close", None)
+            if fechar:
+                fechar()
+        situacao = "lido" if linhas else "vazio"
+    except emendas.Formato as e:
+        situacao, erro, registrar = "formato", f"formato: {e}", locals().get("registrar", True)
+    except (urllib.error.URLError, TimeoutError, OSError, zlib.error) as e:
+        erro, registrar = f"{type(e).__name__}: {getattr(e, 'reason', e)}", locals().get("registrar", True)
+        http = getattr(e, "code", http)
+    if registrar:
+        ctx.gastos["transferegov"] = ctx.gastos.get("transferegov", 0) + 1
+        ctx.banco.inserir("coletas", {
+            "motor": "transferegov", "alvo": "emendas arquivo unico (fluxo)", "mes": "", "url": url,
+            "ok": int(situacao in ("lido", "vazio")), "http": http, "erro": erro, "tentativas": 1,
+            "segundos": round(time.monotonic() - inicio, 2), "bytes": lidos, "sha256": None,
+            "quando": datetime.now(UTC).isoformat(timespec="seconds")})
+    if situacao in ("lido", "vazio"):
+        with ctx.banco.con:
+            ctx.banco.con.execute("DELETE FROM emendas_municipio")
+            for linha in linhas:
+                ctx.banco.inserir("emendas_municipio", linha)
+        erro = ", ".join(f"{k}: {v}" for k, v in sorted(contagem.items())) or None
+    _situacao(ctx, "transferegov", "emendas", situacao, via=url, registros=len(linhas), erro=erro)
+
+
+def motor_transferegov(ctx, cnpjs, municipio: str | None = None, uf: str | None = None, ibge=None) -> None:
     """Cada módulo do Transferegov: as tabelas com CNPJ (pela descrição da raiz), lidas pelo CNPJ de
-    cada ente do Município, página a página."""
+    cada ente do Município, página a página. Com o Município, também o arquivo de emendas do Portal."""
     preparar(ctx.banco)
     cnpjs = [c for c in cnpjs if c]
+    if municipio and uf and ibge:
+        motor_emendas(ctx, municipio, uf, _ibge7(ibge), cnpjs)
     if not cnpjs:
         for modulo in transferegov.MODULOS:
             _situacao(ctx, "transferegov", modulo, "formato", erro="nenhum CNPJ do Município para consultar")
@@ -293,7 +366,9 @@ def motor_sancoes(ctx) -> None:
         situacao, erro = "nao_publicado", "nenhum arquivo na última semana"
         indice = ctx.ler("sancoes", f"{cadastro} indice", sancoes.url_indice(cadastro), tempo=60)
         publicadas = sancoes.datas_publicadas(cf.decodificar(indice.conteudo), cadastro) if indice.ok else []
-        dias = publicadas[:3] or sancoes.dias_para_tentar(ctx.hoje)
+        # A data anunciada primeiro (só o arquivo mais recente existe: o do dia anterior dá 403); depois,
+        # hoje e um dia a dia para trás, caso a página não diga a data.
+        dias = list(dict.fromkeys(publicadas[:3] + sancoes.dias_para_tentar(ctx.hoje)))
         codigos: set[str] = set()
         lido = False
         for dia in dias:
@@ -346,23 +421,28 @@ def _recursos_ckan(conteudo: bytes) -> list[str]:
 def motor_economia_go(ctx, municipio: str, ibge: int, leituras_max: int = 25) -> None:
     """A cota de ICMS e de IPVA do Município pela via do Estado, ano a ano. Nenhum candidato com o
     dado: ``nao_publicado`` (ausência, que a conferência transforma em alerta com ofício). Arquivo do
-    Estado que o coletor ainda não lê (PDF, planilha): ``formato``, porque a falta é do sistema, e
-    não do Estado. Tudo bloqueado ou fora do ar: ``falha``."""
+    Estado que o coletor ainda não lê (PDF, planilha antiga) ou planilha lida sem a linha do Município:
+    ``formato``, porque a falta é do sistema, e não do Estado. Tudo bloqueado ou fora do ar: ``falha``.
+
+    Quando a página de repasses lista uma planilha por mês (``economia_go.arquivos_mensais``), o ano
+    é lido dessas planilhas, todas, e os outros links da página não são seguidos."""
     preparar(ctx.banco)
     for ano in _anos(ctx):
         achadas: list[dict] = []
         via = None
         falhas_de_rede, bloqueios = 0, 0
         nao_lidos: list[str] = []
+        sem_dado: list[str] = []
+        mensais: dict[str, list[str]] = {}
         fila = list(economia_go.urls(ano, ibge))
         vistos: set[str] = set()
-        while fila and not achadas and len(vistos) < leituras_max:
+        while fila and not achadas and not mensais and len(vistos) < leituras_max:
             url = fila.pop(0)
             if url in vistos:
                 continue
             vistos.add(url)
             if not economia_go.legivel(url):
-                nao_lidos.append(url)            # existe, mas o coletor não lê PDF nem planilha
+                nao_lidos.append(url)            # existe, mas o coletor não lê PDF nem planilha antiga
                 continue
             leitura = ctx.ler("economia_go", f"{ano}", url, mes=f"{ano}-01", tempo=90)
             if not leitura.ok:
@@ -375,15 +455,58 @@ def motor_economia_go(ctx, municipio: str, ibge: int, leituras_max: int = 25) ->
             if "/api/3/action/" in url:
                 fila.extend(_recursos_ckan(leitura.conteudo))
                 continue
-            linhas = [l for l in economia_go.ler(leitura.conteudo, municipio, ano) if l["mes"].startswith(str(ano))]
+            try:
+                linhas = [l for l in economia_go.ler(leitura.conteudo, municipio, ano) if l["mes"].startswith(str(ano))]
+            except ValueError as e:
+                _anotar(ctx, "economia_go", f"{ano}", f"{ano}-01", url, f"formato: {e}")
+                sem_dado.append(url)
+                continue
             if linhas:
                 achadas, via = linhas, url
             elif cf.parece_pagina(leitura.conteudo) or "<a" in cf.decodificar(leitura.conteudo[:200000]).lower():
-                fila.extend(economia_go.links_de_repasse(cf.decodificar(leitura.conteudo), url))
+                texto = cf.decodificar(leitura.conteudo)
+                for a in economia_go.arquivos_mensais(texto, url):
+                    if a["mes"].startswith(str(ano)):
+                        mensais.setdefault(a["url"], []).append(a["mes"])
+                if not mensais:
+                    fila.extend(economia_go.links_de_repasse(texto, url))
+            elif urllib.parse.urlparse(url).path.lower().endswith(economia_go.ARQUIVOS):
+                sem_dado.append(url)
+        por_chave = {(l["mes"], l["tributo"]): l for l in achadas}
+        for arquivo, meses in mensais.items():
+            vistos.add(arquivo)
+            if not economia_go.legivel(arquivo):
+                nao_lidos.append(arquivo)
+                continue
+            leitura = ctx.ler("economia_go", f"{ano} planilha {meses[0]}", arquivo, mes=meses[0], tempo=120)
+            if not leitura.ok:
+                falhas_de_rede += 0 if _ausente(leitura) else 1
+                continue
+            try:
+                # Uma planilha que serve a um mês só leva o mês do link; a acumulada diz os meses.
+                linhas = economia_go.ler(leitura.conteudo, municipio, ano, meses[0] if len(meses) == 1 else None)
+            except ValueError as e:
+                _anotar(ctx, "economia_go", f"{ano} planilha {meses[0]}", meses[0], arquivo, f"formato: {e}")
+                sem_dado.append(arquivo)
+                continue
+            linhas = [l for l in linhas if l["mes"].startswith(str(ano))]
+            if not linhas:
+                sem_dado.append(arquivo)
+            for l in linhas:                     # a planilha mais recente da página vale
+                por_chave[(l["mes"], l["tributo"])] = l
+            via = via or (arquivo if linhas else None)
+        achadas = [por_chave[k] for k in sorted(por_chave)]
         if achadas:
             for l in achadas:
                 ctx.banco.inserir("repasses_estado", {**l, "url": via})
-            _situacao(ctx, "economia_go", str(ano), "lido", via=via, registros=len(achadas))
+            erro = None
+            if sem_dado or nao_lidos:
+                erro = f"{len(sem_dado) + len(nao_lidos)} arquivo(s) do ano sem leitura: {', '.join((sem_dado + nao_lidos)[:3])}"
+            _situacao(ctx, "economia_go", str(ano), "lido", via=via, registros=len(achadas), erro=erro)
+        elif sem_dado:
+            _situacao(ctx, "economia_go", str(ano), "formato", via=sem_dado[0],
+                      erro=f"planilha do Estado lida sem a linha de {municipio} ou sem as colunas de ICMS e IPVA "
+                           f"(formato a confirmar): {', '.join(sem_dado[:5])}")
         elif nao_lidos:
             _situacao(ctx, "economia_go", str(ano), "formato", via=nao_lidos[0],
                       erro=f"o Estado publica em arquivo que o coletor ainda não lê: {', '.join(nao_lidos[:5])}")
@@ -391,6 +514,9 @@ def motor_economia_go(ctx, municipio: str, ibge: int, leituras_max: int = 25) ->
             _situacao(ctx, "economia_go", str(ano), "falha",
                       erro=f"{bloqueios} endereço(s) bloqueado(s) pelo firewall do Estado e {falhas_de_rede} "
                            f"fora do ar ou com erro de rede")
+        elif mensais and falhas_de_rede:
+            _situacao(ctx, "economia_go", str(ano), "falha", via=next(iter(mensais)),
+                      erro=f"{falhas_de_rede} planilha(s) mensal(is) do Estado com erro de rede")
         else:
             extra = f"; {bloqueios} bloqueado(s) pelo firewall do Estado" if bloqueios else ""
             _situacao(ctx, "economia_go", str(ano), "nao_publicado",
@@ -440,8 +566,55 @@ def motor_tcu(ctx, termo: str = "Goiânia", paginas: int = 10) -> None:
         _situacao(ctx, "tcu", alvo, situacao, via=alvo, registros=guardadas, erro=erro)
 
 
+def motor_listas_tcm(ctx, municipio: str = "Goiânia") -> None:
+    """As listas de contas com parecer prévio pela rejeição ou julgadas irregulares (e as de governo
+    julgadas pelas câmaras): os endereços vêm das páginas das listas, com ``tcm.LISTAS`` de reserva.
+    Uma lista lida troca as linhas dela na tabela; a situação de todas fica no alvo ``listas``."""
+    preparar(ctx.banco)
+    enderecos = dict(tcm.LISTAS)
+    for pagina in tcm.PAGINAS_DAS_LISTAS:
+        leitura = ctx.ler("tcm", "listas pagina", pagina, tempo=90)
+        if leitura.ok:
+            for url in tcm.links_das_listas(cf.decodificar(leitura.conteudo)):
+                if url not in enderecos.values():
+                    enderecos[f"link {len(enderecos)}"] = url
+    lidas, falhas, formatos, ausentes, linhas = [], [], [], [], 0
+    for nome, url in enderecos.items():
+        leitura = ctx.ler("tcm", f"lista {nome}", url, tempo=90)
+        if not leitura.ok:
+            (ausentes if _ausente(leitura) else falhas).append(f"{nome} ({leitura.erro or leitura.http})")
+            continue
+        try:
+            achadas = tcm.contas(leitura.conteudo, municipio)
+        except ValueError as e:
+            _anotar(ctx, "tcm", f"lista {nome}", "", url, f"formato: {e}")
+            formatos.append(f"{nome} ({e})")
+            continue
+        lidas.append(nome)
+        ctx.banco.con.execute("DELETE FROM contas_irregulares_tcm WHERE lista = ?", (nome,))
+        for a in achadas:
+            ctx.banco.inserir("contas_irregulares_tcm", {
+                **{k: (None if a[k] is None else str(a[k])) for k in
+                   ("municipio", "entidade", "responsavel", "processo", "exercicio", "transito")},
+                "lista": nome, "url": url, "json": json.dumps(a["registro"], ensure_ascii=False)})
+            linhas += 1
+    erros = "; ".join(x for x in (
+        f"falha: {', '.join(falhas)}" if falhas else "", f"formato: {', '.join(formatos)}" if formatos else "",
+        f"ausente: {', '.join(ausentes)}" if ausentes else "") if x) or None
+    if lidas:
+        situacao = "lido" if linhas else "vazio"
+    elif formatos:
+        situacao = "formato"
+    elif falhas:
+        situacao = "falha"
+    else:
+        situacao = "nao_publicado"
+    _situacao(ctx, "tcm", "listas", situacao, via=tcm.PAGINAS_DAS_LISTAS[0], registros=linhas, erro=erros)
+
+
 def motor_tcm(ctx, termo: str = "Goiânia", paginas: int = 5) -> None:
-    """As decisões do TCM-GO sobre Goiânia, pelo primeiro candidato que responder."""
+    """As decisões do TCM-GO sobre Goiânia, pelo primeiro candidato que responder. As listas de contas
+    rejeitadas ou irregulares são de ``motor_listas_tcm``, que ``chamadas`` roda junto."""
     preparar(ctx.banco)
     ultimo_erro, situacao = "nenhum candidato respondeu", "nao_publicado"
     sem_decisoes: list[str] = []                 # responderam, mas nenhuma decisão na página
@@ -488,11 +661,12 @@ def chamadas(ctx, alvo, cnpjs=None) -> dict:
         "fns": lambda: motor_fns(ctx, alvo.ibge),
         "fnde": lambda: motor_fnde(ctx, alvo.uf, str(alvo.ibge)[:6]),
         "transferegov": lambda: motor_transferegov(
-            ctx, cnpjs if cnpjs is not None else cnpjs_do_municipio(ctx.banco, ())),
+            ctx, cnpjs if cnpjs is not None else cnpjs_do_municipio(ctx.banco, ()),
+            municipio=alvo.municipio, uf=alvo.uf, ibge=alvo.ibge),
         "sancoes": lambda: motor_sancoes(ctx),
         "economia_go": lambda: motor_economia_go(ctx, alvo.municipio, alvo.ibge),
         "tcu": lambda: motor_tcu(ctx, alvo.municipio),
-        "tcm": lambda: motor_tcm(ctx, alvo.municipio),
+        "tcm": lambda: (motor_tcm(ctx, alvo.municipio), motor_listas_tcm(ctx, alvo.municipio)),
     }
 
 
