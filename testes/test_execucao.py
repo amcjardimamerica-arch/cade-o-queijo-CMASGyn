@@ -374,8 +374,43 @@ def test_contas_item_a_item_nove_maiores_quatro_estacoes(conf, tmp_path):
 def test_fim_de_ano_medido_na_matriz_real():
     c = X.conferir_execucao(BANCO)
     assert c.cobertura["funcoes_ano_medidas_no_fim_de_ano"] >= 10
-    assert c.cobertura.get("sem_item_a_item") is True and c.integridade is None
     assert not [a for a in c.achados if a.tipo == "fim_de_ano_funcao"]   # 2025: nenhum dezembro acima de 12,5%
+    # 28/11/2026, a despesa do portal chegou na coleta 07e130c: a asserção antiga (sem_item_a_item e
+    # integridade None) descrevia o banco sem a execução do portal. Agora a cobertura é conferida contra
+    # despesa_eventos lida direto, e cada empenho (órgão e número) vira um percurso. Nada depende de quantos meses
+    # chegaram (14 dos 25 na coleta 07e130c); o caso "sem portal" fica em
+    # test_execucao_sem_o_portal_fica_sem_item_a_item, num banco montado.
+    from onisciente import partes
+    con = partes.conectar_leitura(BANCO)
+    try:
+        por_tipo = dict(con.execute("select tipo, count(*) from despesa_eventos where tipo != 'falha_detalhe' "
+                                    "group by tipo").fetchall())
+        empenhos = {f"{o}|{e}" for o, e in con.execute("select distinct orgao, empenho from despesa_eventos "
+                                                       "where tipo != 'falha_detalhe'")}
+    finally:
+        con.close()
+    assert "sem_item_a_item" not in c.cobertura
+    assert c.cobertura["eventos"] == sum(por_tipo.values()) > 0
+    assert {t: n for t, n in c.cobertura["por_tipo"].items() if n} == por_tipo
+    assert por_tipo.get("empenho") and por_tipo.get("liquidacao") and por_tipo.get("pagamento")
+    assert {p.chave for p in c.percursos} == empenhos
+    assert c.integridade is not None and 0.0 <= c.integridade <= 1.0
+    pago = sum(p.valor_pago() for p in c.percursos)
+    assert pago > 0 and abs(c.integridade * pago - sum(p.valor_pago() for p in c.percursos if p.completo)) < 1.0
+    assert c.cobertura["contratos_no_banco"] > 0
+
+
+def test_execucao_sem_o_portal_fica_sem_item_a_item(tmp_path):
+    """O caso que a trava real descrevia antes de 28/11/2026, num banco montado só com a matriz."""
+    from onisciente.historico import Banco
+    b = Banco(tmp_path / "sem_portal.db")
+    b.con.execute("insert into msc_itens (mes, conta_contabil, funcao, natureza_despesa, natureza_conta, valor) "
+                  "values ('2025-12', '622130100', '10', '33903900', 'C', 100.0)")
+    b.con.commit()
+    c = X.conferir_execucao(b.con)
+    assert c.cobertura.get("sem_item_a_item") is True and c.integridade is None and c.percursos == []
+    assert c.cobertura["eventos"] == 0
+    b.con.close()
 
 
 def test_fim_de_ano_na_matriz_aponta_dezembro_concentrado(tmp_path):
@@ -693,7 +728,8 @@ def test_cpf_com_zeros_na_coluna_cnpj_vira_cpf():
     # Valores sintéticos: um CPF válido de exemplo (não é de ninguém conhecido) e o CNPJ do Itaú.
     assert G.cpf_valido("52998224725") and not G.cpf_valido("52998224724")
     assert G.cnpj_valido("60701190000104") and not G.cnpj_valido("60701190000105")
-    assert G.documento_do_credor("00052998224725") == "52998224725"
+    # Sétima rodada: o CPF é gravado mascarado (repositório público), como o Portal e o QSA publicam.
+    assert G.documento_do_credor("00052998224725") == "***.982.247-**"
     assert G.documento_do_credor("60701190000104") == "60701190000104"
     assert G.documento_do_credor("01536754000123") == "01536754000123"     # CNPJ que começa com 0
     assert G.documento_do_credor("00052998224724") == "00052998224724"     # nem CPF nem CNPJ: fica
@@ -969,3 +1005,180 @@ def test_sondagem_repete_o_caminho_do_motor_em_tres_meses():
     assert meses == ["__ossli_10", "__ossli_11", "__ossli_06", "__ossli_10", "__ossli_10"]
     assert len(set(guardados)) == len(guardados)                    # nenhuma resposta sobrescreve outra
     assert sondagem.CANDIDATOS["d2_transweb_motor"] == []
+
+
+# --- Sétima rodada: os meses que faltaram e o CPF mascarado ----------------------------------------
+# A coleta 46099474353 leu só 2026-11 a 2025-10 (14 meses em 338 s): o limite de meses por rodada
+# era 14, e a soma (historico.rodar com somar) apagava despesa_eventos e despesa_consultas antes de
+# o motor rodar, então nada continuava de onde parou. O CPF de pessoa física ia inteiro para o banco
+# (7.292 linhas num repositório público). CPFs dos testes: números de exemplo válidos, sem dono.
+
+import time
+
+CPF_EXEMPLO = "52998224725"                  # o número de exemplo de validadores públicos de CPF
+
+
+def test_coletor_nunca_grava_cpf_completo():
+    con = sqlite3.connect(":memory:")
+    base = {"tipo": "empenho", "data": "2026-10-01", "orgao": "SAUDE", "valor": 10.0, "credor": "FULANO"}
+    eventos = [dict(base, empenho="1", documento=CPF_EXEMPLO),
+               dict(base, empenho="2", documento="529.982.247-25"),
+               dict(base, empenho="3", documento="000" + CPF_EXEMPLO),        # a coluna CNPJ da exportação
+               dict(base, empenho="4", documento="***.982.247-**"),
+               dict(base, empenho="5", documento="31537116000198", credor="GMS GOIAS MERCANTIL E SOLUCOES LTDA")]
+    assert G.gravar(con, eventos) == 5
+    docs = dict(con.execute("select empenho, documento from despesa_eventos").fetchall())
+    assert docs == {"1": "***.982.247-**", "2": "***.982.247-**", "3": "***.982.247-**", "4": "***.982.247-**",
+                    "5": "31537116000198"}                                     # o CNPJ fica inteiro
+    assert not con.execute("select 1 from despesa_eventos where documento like '%" + CPF_EXEMPLO + "%' "
+                           "or documento like '%52998224%'").fetchone()
+    # A exportação real: nenhuma linha gravada com 11 dígitos, nem "000" e um CPF.
+    con2 = sqlite3.connect(":memory:")
+    G.substituir_empenhos(con2, _exportacao().eventos, LISTA.id)
+    for (doc,) in con2.execute("select distinct documento from despesa_eventos"):
+        assert G.documento_gravavel(doc) == doc and len(G.documento(doc)) != 11, doc
+    # A resposta crua guardada pela sondagem também sai mascarada; o CNPJ válido fica.
+    texto = f"x;{CPF_EXEMPLO};000{CPF_EXEMPLO};31537116000198;12345678901\r\n"
+    assert G.mascarar_cpfs_no_texto(texto) == "x;***.982.247-**;***.982.247-**;31537116000198;12345678901\r\n"
+
+
+def test_migracao_mascara_as_linhas_antigas_numa_rodada_do_rastreio(tmp_path):
+    from onisciente import historico, rastreio
+    caminho = tmp_path / "antigo.db"
+    con = sqlite3.connect(caminho)
+    con.executescript(historico.ESQUEMA)
+    G.criar_tabelas(con)
+    colunas = ", ".join(G.CAMPOS_EVENTO)
+    def linha(emp, doc, credor="FULANO"):
+        ev = {k: "" for k in G.CAMPOS_EVENTO}
+        ev.update(tipo="empenho", empenho=emp, data="2025-10-01", orgao="SAUDE", valor=10.0, documento=doc,
+                  credor=credor, coletado_em="2026-11-20")
+        return [ev[k] for k in G.CAMPOS_EVENTO]
+    # Como a rodada antiga gravava: o CPF inteiro, direto na tabela (sem passar pelo gravar de agora).
+    con.executemany(f"INSERT INTO despesa_eventos ({colunas}) VALUES ({', '.join('?' for _ in G.CAMPOS_EVENTO)})",
+                    [linha("1", CPF_EXEMPLO), linha("2", "000" + CPF_EXEMPLO), linha("3", "31537116000198", "GMS"),
+                     linha("4", CPF_EXEMPLO), linha("4", "***.982.247-**")])   # o 4 já existe mascarado
+    con.commit()
+    con.close()
+    banco = historico.Banco.abrir(caminho)
+    con = banco.con
+    docs = sorted(con.execute("select empenho, documento from despesa_eventos").fetchall())
+    assert docs == [("1", "***.982.247-**"), ("2", "***.982.247-**"), ("3", "31537116000198"),
+                    ("4", "***.982.247-**")]                      # a cópia mascarada do 4 não se repete
+    modos = [m for (m,) in con.execute("select modo from rastreio_rodadas order by id")]
+    assert modos == [rastreio.MODO_MIGRACAO, "mascara_cpf"]
+    nota = con.execute("select detalhe from rastreio_rodadas where modo = 'mascara_cpf'").fetchone()[0]
+    assert "3 linha(s)" in nota
+    v = rastreio.verificar(con)
+    assert v["integro"], v                                         # as linhas novas ganharam selo
+    r = rastreio.registro(con, "despesa_eventos", con.execute(
+        "select rowid from despesa_eventos where empenho = '1'").fetchone()[0])
+    assert r["confere"]
+    con.close()
+    # Abrir de novo não abre outra rodada: não sobrou CPF inteiro.
+    banco = historico.Banco.abrir(caminho)
+    assert banco.con.execute("select count(*) from rastreio_rodadas").fetchone() == (2,)
+    banco.con.close()
+
+
+def _ctx_meses(con, meses):
+    ctx = _Ctx(_Banco(con), meses, date(2026, 11, 28), LeitorFalso())
+    ctx.ler_falso = LeitorExportacao()
+    return ctx
+
+
+def _meses_pedidos(ctx):
+    return [f"{f[PREFIXO + 'wtcboAno']}-{f[PREFIXO + 'wtcboMes'][-2:]}" for _u, f in ctx.ler_falso.pedidos
+            if f and f.get(PREFIXO + "wtbtnExportar")]
+
+
+def _todos_os_meses(desde="2024-11", ate="2026-11"):
+    out, (a, m) = [], map(int, desde.split("-"))
+    while f"{a}-{m:02d}" <= ate:
+        out.append(f"{a}-{m:02d}")
+        a, m = (a + 1, 1) if m == 12 else (a, m + 1)
+    return out
+
+
+def test_proxima_rodada_completa_os_meses_que_faltam_sem_refazer_os_inteiros():
+    meses = _todos_os_meses()
+    lidos = [m for m in meses if m >= "2025-10"]                   # o que a coleta 46099474353 deixou
+    faltam = sorted(set(meses) - set(lidos), reverse=True)
+    assert faltam[0] == "2025-09" and faltam[-1] == "2024-11" and len(faltam) == 11
+    con = sqlite3.connect(":memory:")
+    G.criar_tabelas(con)
+    con.executemany("INSERT INTO despesa_consultas VALUES ('despesas_favorecido', ?, '', 'lida', 1, 1, '', '', '')",
+                    [(m,) for m in lidos])
+    con.execute("INSERT INTO despesa_consultas VALUES ('despesas_favorecido', '2025-12', '', 'incompleta', 1, 1, "
+                "'', '', '')")                                     # um mês com linha cortada não está inteiro
+    ordem = G.meses_a_ler(con, LISTA.id, meses, releitura=2, faltantes_primeiro=True)
+    assert ordem[:12] == ["2025-12"] + faltam                      # o que falta antes de tudo
+    assert ordem[12:] == ["2026-11", "2026-10"]                    # depois, só as releituras dos recentes
+    assert G.meses_a_ler(con, LISTA.id, meses, releitura=2) == ["2026-11", "2026-10", "2025-12"] + faltam
+    # O motor lê o que falta primeiro e relê os 12 recentes da configuração, dentro do limite por rodada.
+    assert LISTA.exportar["meses_por_rodada"] >= 23 and LISTA.exportar["releitura"] == 12
+    ctx = _ctx_meses(con, meses)
+    G.motor(ctx, PORTAL)
+    pedidos = _meses_pedidos(ctx)
+    assert pedidos[:12] == ["2025-12"] + faltam
+    assert pedidos[12:] == [m for m in sorted(meses, reverse=True)[:12] if m != "2025-12"]
+    assert not set(pedidos) & {"2025-10", "2025-11"}               # inteiros e fora da releitura: não refaz
+    assert G.meses_a_ler(con, LISTA.id, meses, releitura=0, faltantes_primeiro=True) == []
+
+
+def test_motor_para_antes_do_fim_do_tempo_e_a_soma_nao_apaga_o_que_ja_leu():
+    from onisciente import historico
+    meses = _todos_os_meses("2026-08", "2026-11")
+    con = sqlite3.connect(":memory:")
+    ctx = _ctx_meses(con, meses)
+    ctx.fim_do_motor = time.monotonic() + 60                       # menos de dois minutos: nenhum mês começa
+    assert G.motor(ctx, PORTAL)["consultas"] == 0 and _meses_pedidos(ctx) == []
+    ctx.fim_do_motor = time.monotonic() + 3600
+    assert G.motor(ctx, PORTAL)["consultas"] == 4
+    # A soma (rodar com somar) apaga só as coletas do motor: os eventos e os meses lidos ficam, e a
+    # rodada seguinte continua de onde parou.
+    tabelas = {t for t, _f in historico.TABELAS_DO_MOTOR["execucao_goiania"]}
+    assert tabelas == {"coletas"}
+
+
+def test_cruzamento_com_o_pncp_casa_o_cpf_mascarado_pelos_seis_do_meio_e_o_nome(tmp_path):
+    # Nenhuma conferência de empresas, impedimentos ou sócios lê despesa_eventos; o único cruzamento que
+    # usava o documento inteiro do credor é o vínculo com o contrato do PNCP, que passa a casar como o QSA.
+    from onisciente.historico import Banco
+    b = Banco(tmp_path / "historico.db")
+    con = b.con
+    G.gravar(con, [_evento("empenho", "2025/000700", "2025-04-01", 50_000.0, doc=CPF_EXEMPLO, credor="Fulano de Tal"),
+                   _evento("liquidacao", "2025/000700", "2025-04-10", 50_000.0, doc=CPF_EXEMPLO, credor="Fulano de Tal"),
+                   _evento("pagamento", "2025/000700", "2025-04-20", 50_000.0, doc=CPF_EXEMPLO, credor="Fulano de Tal"),
+                   _evento("pagamento", "2025/000701", "2025-04-20", 7_000.0, doc="***.982.247-**",
+                           credor="OUTRA PESSOA")])                              # mesmo miolo, outro nome
+    con.execute("insert into contratos_pncp (pncp_id, orgao_cnpj, orgao, fornecedor_ni, fornecedor, valor_global, "
+                "data_assinatura) values ('pf1', '25141524000123', 'SAUDE', ?, 'FULANO DE TAL', 40000, '2025-01-10')",
+                (CPF_EXEMPLO,))
+    con.commit()
+    ctx = X.contexto_do_banco(con)
+    con.close()
+    assert X.chave_pf("***.982.247-**", "Fulano  de Tál") == X.chave_pf(CPF_EXEMPLO, "FULANO DE TAL") == \
+        ("982247", "FULANO DE TAL")
+    assert X.chave_pf("31537116000198", "GMS") is None and X.chave_pf("***.982.247-**", "") is None
+    assert [c.id for c in X.contratos_do_credor(ctx, "***.982.247-**", "FULANO DE TAL")] == ["pf1"]
+    assert X.contratos_do_credor(ctx, "***.982.247-**", "OUTRA PESSOA") == []
+    conf = X.conferir_execucao(tmp_path / "historico.db")
+    acima = [a for a in conf.achados if a.tipo == "liquidado_acima"]
+    assert len(acima) == 1 and "***.982.247-**" in acima[0].chave              # o vínculo casou pelo miolo
+    assert CPF_EXEMPLO not in repr(conf.achados)
+
+
+def test_tela_da_execucao_mostra_pessoa_fisica_para_o_cpf_mascarado():
+    from onisciente import historico
+    from onisciente.telas import entradas
+    con = sqlite3.connect(":memory:")
+    con.executescript(historico.ESQUEMA)
+    G.gravar(con, [_evento("empenho", "2025/000800", "2025-04-01", 1_000.0, doc="***.982.247-**", credor="FULANO"),
+                   _evento("empenho", "2025/000801", "2025-04-01", 1_000.0, doc="31537116000198", credor="GMS")])
+    emp = {e["numero"]: e for e in entradas.execucao(con)["empenhos"]}
+    assert emp["2025/000800"]["credor"] == "Pessoa física" and emp["2025/000800"]["credor_cnpj"] == ""
+    assert emp["2025/000801"]["credor"] == "GMS" and emp["2025/000801"]["credor_cnpj"] == "31537116000198"
+    # Duas pessoas com o mesmo miolo e nomes diferentes não se somam.
+    assert X.chave_do_credor("***.982.247-**", "Fulano") != X.chave_do_credor("***.982.247-**", "Outra Pessoa")
+    assert X.chave_do_credor("31537116000198", "GMS") == "31537116000198"

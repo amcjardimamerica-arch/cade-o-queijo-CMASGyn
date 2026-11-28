@@ -459,6 +459,11 @@ def _guardar(fonte: str, url: str, leitura, formulario: dict | None = None) -> d
         corpo = bruto.decode("utf-8") if leitura.ok or fonte.startswith("d1_") else ""
     except UnicodeDecodeError:
         corpo = bruto.decode("latin-1")
+    if fonte.startswith("d2_transweb"):
+        # Frente D2: o repositório é público; o CPF de pessoa física (a coluna CNPJ da exportação traz o
+        # CPF com "000", as diárias trazem o do servidor) fica só com os seis dígitos do meio.
+        from .coletores.goiania_transweb import mascarar_cpfs_no_texto
+        corpo = mascarar_cpfs_no_texto(corpo)
     texto = (f"URL: {url}\nPOST: {json.dumps(formulario or {}, ensure_ascii=False)}\nOK: {leitura.ok}\nHTTP: {leitura.http}\nERRO: {leitura.erro}\n"
              f"BYTES: {len(leitura.conteudo)}\n\n{corpo}")
     arq.write_text(mascara_cpf.mascarar_texto(texto)[0], encoding="utf-8")   # CPF de pessoa física mascarado

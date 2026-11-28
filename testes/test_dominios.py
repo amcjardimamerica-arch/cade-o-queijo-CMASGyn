@@ -187,9 +187,61 @@ def test_contas_uma_a_uma_nove_maiores_com_quatro_estacoes():
             assert x["estacoes"]["ordem_pagamento"] is None       # a matriz não traz a ordem
             assert x["estacoes"]["pagamento"] <= x["estacoes"]["liquidacao"] + 0.01
             assert [m["mes"] for m in x["cronologia"]] == sorted(m["mes"] for m in x["cronologia"])
-        assert c["item_a_item"] == [] and "portal" in c["falta"]
+        # 28/11/2026, a despesa do portal chegou na coleta 07e130c: a asserção antiga (item_a_item vazio e
+        # "portal" em falta) descrevia o banco sem a execução do portal. Agora as nove saídas item a item
+        # são conferidas contra despesa_eventos lida direto, sem passar pelo código das contas. Nada aqui
+        # depende de quantos meses chegaram (14 dos 25 na coleta 07e130c): a conta refeita usa os mesmos
+        # eventos, e o caso "sem portal" fica no banco montado de test_contas_sem_o_portal_dizem_o_que_falta.
+        item = c["item_a_item"]
+        assert c["falta"] == ""
+        esperado = _item_a_item_pelo_banco(con, d, 2025, 12)
+        assert 1 <= len(item) == min(9, len(esperado))
+        assert [x["saida"] for x in item] == [x["saida"] for x in esperado[:len(item)]]
+        for x, y in zip(item, esperado):
+            assert x["origem"] == "portal da transparência, item a item"
+            assert set(x["estacoes"]) == {"empenho", "liquidacao", "ordem_pagamento", "pagamento"}
+            for estacao in ("empenho", "liquidacao", "pagamento"):
+                assert abs(x["estacoes"][estacao] - y[estacao]) < 0.01, (x["saida"], estacao)
+            datas = [m["data"] for m in x["cronologia"]]
+            assert datas == sorted(datas) and all(dt.startswith("2025-") for dt in datas)
+            for estacao in ("empenho", "liquidacao", "pagamento"):     # a cronologia soma as estações
+                soma = sum(m["valor"] for m in x["cronologia"] if m["estacao"] == estacao)
+                assert abs(soma - x["estacoes"][estacao]) < 0.01
+            assert len(x["documento"].replace(".", "").replace("-", "")) != 11     # nunca o CPF inteiro
+        pagos = [x["estacoes"]["pagamento"] for x in item]
+        assert pagos == sorted(pagos, reverse=True) and pagos[0] > 0
     finally:
         con.close()
+
+
+def _item_a_item_pelo_banco(con, d, exercicio: int, ate_mes: int) -> list[dict]:
+    """As saídas da pasta refeitas de despesa_eventos com SQL e soma simples, pelo credor (o CPF mascarado
+    com o nome, porque os seis dígitos do meio não separam duas pessoas)."""
+    import unicodedata
+    soma: dict[str, dict] = {}
+    for doc, credor, tipo, valor, data, funcao, sub in con.execute(
+            "select documento, credor, tipo, valor, data, funcao, subfuncao from despesa_eventos "
+            "where substr(data, 1, 4) = ? and cast(substr(data, 6, 2) as integer) <= ? and funcao != ''",
+            (str(exercicio), ate_mes)):
+        if not d.contem(funcao.zfill(2), sub.zfill(3) if sub else None):
+            continue
+        nome = unicodedata.normalize("NFKD", credor or "").encode("ascii", "ignore").decode()
+        chave = f"{doc}|{' '.join(nome.split()).upper()}" if "*" in (doc or "") else (doc or credor)
+        linha = soma.setdefault(chave, {"saida": credor, "empenho": 0.0, "liquidacao": 0.0, "pagamento": 0.0})
+        if tipo in ("empenho", "liquidacao", "pagamento"):
+            linha[tipo] += float(valor or 0.0)
+    return sorted(soma.values(), key=lambda r: (-r["pagamento"], -r["liquidacao"], -r["empenho"]))
+
+
+def test_contas_sem_o_portal_dizem_o_que_falta(tmp_path):
+    """O caso que a trava real descrevia antes de 28/11/2026, num banco montado sem despesa_eventos."""
+    from onisciente.historico import Banco
+    b = Banco(tmp_path / "sem_portal.db")
+    try:
+        c = S.contas_uma_a_uma(b.con, carregar_alvo().dominios["saude"], 2025, 12)
+        assert c["item_a_item"] == [] and "portal" in c["falta"]
+    finally:
+        b.con.close()
 
 
 @real

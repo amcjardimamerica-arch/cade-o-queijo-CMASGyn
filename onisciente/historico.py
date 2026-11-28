@@ -277,8 +277,10 @@ class Banco:
         banco._atualizar_colunas()
         banco._iniciar_rastreio()
         rastreio.migrar(banco.con)
-        # CPF completo gravado antes da máscara (28/11/2026): mascarado numa rodada própria do rastreio.
-        mascara_banco.migrar(banco.con)
+        # Frente D2: o CPF inteiro gravado por rodadas antigas sai mascarado, numa rodada própria do rastreio.
+        _rastrear(banco, goiania_transweb.migrar_cpfs)
+        # Frente H: o mesmo nas demais tabelas com CPF (sancoes, PNCP, emendas; onisciente.mascara_banco).
+        _rastrear(banco, mascara_banco.migrar)
         return banco
 
     def _iniciar_rastreio(self) -> None:
