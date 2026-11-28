@@ -37,11 +37,21 @@ QUANTIDADE_PESQUISA = 50
 # Rodada 6: inicio=100 encerrou a conexão também com 50 por página, e inicio=50 veio de novo: a pesquisa
 # não passa dos 100 primeiros resultados.
 # Rodada 7: inicio=100 com 50 por página respondeu (02/04/2024 a 26/10/2022), o que indica instabilidade e
-# não limite. O corte continua até a sondagem confirmar inicio=150 e inicio=1300 e o coordenador trocar a
-# trava da sexta rodada; para ler além, ``LIMITE_PESQUISA = None`` (o motor então vai até ``paginas``).
-LIMITE_PESQUISA: int | None = 100
+# não limite. O corte continuou até a sondagem confirmar inicio=150 e inicio=1300.
+# Rodada 10 (28/11/2026): a sondagem de 06:50Z (commit a8761d9, índice
+# indice_d2_transweb_popup_d1_fns_d1_tcm_d1_tcu) leu inicio=150 e inicio=1300, 50 acórdãos cada, com
+# quantidadeEncontrada 1374: o de 150 vai de 19/10/2022 a 30/06/2021, o de 1300 de 14/06/2000 a 06/04/1994.
+# A pesquisa passa de 100 e a ordem é da sessão mais nova para a mais antiga. O corte foi desligado, com a
+# troca da trava da sexta rodada autorizada pelo coordenador: o motor lê até o total que a pesquisa declara
+# (ou até passar do começo do intervalo) e diz o que faltou.
+LIMITE_PESQUISA: int | None = None
+# Teto de páginas da pesquisa (de 50), para uma resposta que declare um total sem fim.
+PAGINAS_MAX_PESQUISA = 60
 
-GOIANIA = re.compile(r"(?<!APARECIDA DE )\bGOIANIA\b")
+# Aparecida de Goiânia fica de fora com ou sem o "de": a jurisprudência real do TCM-GO escreve a entidade
+# como "APARECIDA GOIANIA - APARECIDAPREV" (sondagem a8761d9), e 8 das 35 decisões da página 1 que pareciam de
+# Goiânia eram de Aparecida.
+GOIANIA = re.compile(r"(?<!APARECIDA DE )(?<!APARECIDA )\bGOIANIA\b")
 
 
 def url_dados_abertos(inicio: int = 0, quantidade: int = QUANTIDADE) -> str:
@@ -110,6 +120,13 @@ def acordao(registro: dict) -> dict | None:
         "url": str(cf.campo(registro, "urlAcordao", "URLARQUIVOPDF", "urlArquivoPdf", "urlArquivo", "url",
                             contem=("url",)) or ""),
     }
+
+
+def encontrados(conteudo: bytes) -> int | None:
+    """O total de resultados que a pesquisa declara (``quantidadeEncontrada``); None se não declara."""
+    obj = cf.json_ou_none(conteudo)
+    valor = obj.get("quantidadeEncontrada") if isinstance(obj, dict) else None
+    return valor if isinstance(valor, int) and not isinstance(valor, bool) and valor >= 0 else None
 
 
 def ler(conteudo: bytes, pesquisa: bool = False) -> list[dict]:

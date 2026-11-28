@@ -44,6 +44,7 @@ import csv
 import html as html_lib
 import io
 import re
+import unicodedata
 import urllib.parse
 
 from . import comum_federal as cf
@@ -68,6 +69,12 @@ CABECALHOS_JURISPRUDENCIA = {"X-Cliente": "portal"}
 # decisões por página em uns 2 s; as 5 primeiras páginas (500 decisões, 190 sobre Goiânia) só cobriram de
 # 03/09 a 27/10/2026. O motor segue até a sessão mais antiga do intervalo, com este teto de páginas.
 PAGINAS_JURISPRUDENCIA = 80
+# Rodada 10 (28/11/2026, sondagem a8761d9): a resposta real de filtros traz os 246 municípios como
+# {"nome": "Goiânia", "valor": "GOIANIA"}, e a tela real (jurisprudencia-page-*.js) manda o filtro escolhido
+# como parâmetro municipio de buscar. A busca pelo texto "Goiânia" achava 13.493 decisões de todo o Estado
+# (só 35 das 100 primeiras eram de Goiânia: entidade_fiscalizada "GOIANIA - IPSM", "GOIANIA"). O motor pede
+# primeiro pelo município, sem texto; se a primeira página não for na maior parte de Goiânia (o filtro não
+# valeu), volta à busca pelo texto e anota.
 
 ACESSO = "https://acessoainformacao.tcmgo.tc.br/"
 DADOS_ABERTOS = "https://ws.tcm.go.gov.br/api/rest/dados/contas-irregulares"
@@ -274,10 +281,21 @@ def ler(conteudo: bytes, base: str = PORTAL) -> list[dict]:
     return _de_html(texto, base)
 
 
-def url_jurisprudencia(texto: str = "Goiânia", pagina: int = 1, por_pagina: int = 100) -> str:
-    """A pesquisa da jurisprudência do TCM-GO, da sessão mais nova para a mais antiga."""
-    return JURISPRUDENCIA + "buscar?" + urllib.parse.urlencode({
-        "texto": texto, "page": pagina, "page_size": por_pagina, "sort_by": "data_sessao", "sort_order": "desc"})
+def url_jurisprudencia(texto: str = "Goiânia", pagina: int = 1, por_pagina: int = 100,
+                       municipio: str | None = None) -> str:
+    """A pesquisa da jurisprudência do TCM-GO, da sessão mais nova para a mais antiga; com ``municipio``
+    (o ``valor`` da lista de ``filtros``, como GOIANIA), só as decisões daquele município."""
+    params = {"texto": texto, "page": pagina, "page_size": por_pagina, "sort_by": "data_sessao",
+              "sort_order": "desc"}
+    if municipio:
+        params["municipio"] = municipio
+    return JURISPRUDENCIA + "buscar?" + urllib.parse.urlencode(params)
+
+
+def valor_do_municipio(nome: str) -> str:
+    """O ``valor`` do município na lista de ``filtros``: maiúsculas sem acento (Goiânia vira GOIANIA)."""
+    sem_acento = unicodedata.normalize("NFKD", nome).encode("ascii", "ignore").decode()
+    return re.sub(r"\s+", " ", sem_acento).strip().upper()
 
 
 def jurisprudencia(conteudo: bytes) -> tuple[list[dict], bool]:

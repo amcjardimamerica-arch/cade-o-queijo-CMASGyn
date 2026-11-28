@@ -9,14 +9,11 @@ from __future__ import annotations
 
 import base64
 import io
-import json
 import zipfile
-from datetime import date
 from pathlib import Path
 
-from onisciente import historico, mascara_cpf, sondagem
-from onisciente.coletores import base, tcu
-from onisciente.coletores import motores_federais as mf
+from onisciente import mascara_cpf, sondagem
+from onisciente.coletores import base
 
 PASTA = Path(__file__).resolve().parent.parent / "relatorios" / "onisciente" / "sondagem"
 DADOS = Path(__file__).parent / "dados" / "federais"
@@ -128,27 +125,10 @@ def test_nenhum_cpf_completo_nos_arquivos_da_sondagem():
     assert not achados, "CPF completo de pessoa física na sondagem (rode a máscara): " + "; ".join(achados)
 
 
-# --- TCU: o corte em 100 está atrás de uma constante (ainda ligado) ---------------------------------
-
-def test_tcu_sem_o_corte_le_alem_de_100_quando_a_constante_for_desligada(tmp_path, monkeypatch):
-    assert tcu.LIMITE_PESQUISA == 100                      # o corte continua ligado
-    monkeypatch.setattr(tcu, "LIMITE_PESQUISA", None)
-    pedidos = []
-
-    def leitor(url, **_):
-        pedidos.append(url)
-        if url.startswith(tcu.PESQUISA):
-            return base.Leitura(True, url, (DADOS / "tcu_pesquisa_50_real.json").read_bytes(), http=200)
-        return base.Leitura(False, url, erro="HTTP 404", http=404)
-
-    banco = historico.Banco(tmp_path / "h.db")
-    mf.preparar(banco)
-    ctx = historico.Contexto(banco, historico.meses("2020-01", "2026-11"), date(2026, 11, 28), ler_url=leitor,
-                             dormir=lambda s: None, pausa=0)
-    mf.motor_tcu(ctx, "Goiânia")
-    feitas = [u for u in pedidos if u.startswith(tcu.PESQUISA)]
-    assert any("inicio=100" in u for u in feitas) and len(feitas) == 20    # 10 páginas de 100, de 50 em 50
-    erro = {a: e for a, e in ctx.banco.consultar(
-        "select alvo, erro from fontes_federais where motor = 'tcu'")}["pesquisa"]
-    assert not erro or "além de 100" not in erro
-    assert json.loads((DADOS / "tcu_pesquisa_50_real.json").read_bytes())["inicio"] == 50
+# --- TCU: o corte em 100 ----------------------------------------------------------------------------
+# 28/11/2026 (rodada 10): a trava test_tcu_sem_o_corte_le_alem_de_100_quando_a_constante_for_desligada saiu
+# daqui junto com a da sexta rodada, na mesma troca autorizada pelo coordenador. Ela exigia o corte ainda
+# ligado (LIMITE_PESQUISA == 100) e, desligado, a leitura até ``paginas``. A sondagem a8761d9 provou que a
+# pesquisa passa de 100 (inicio=150 e inicio=1300, quantidadeEncontrada 1374); o corte foi desligado e o
+# motor vai até o total declarado. A trava nova:
+# testes/test_coletores_federais_decima.py::test_tcu_pesquisa_le_ate_o_total_e_diz_o_que_faltou.

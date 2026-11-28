@@ -307,6 +307,12 @@ CANDIDATOS: dict[str, list[str]] = {
         "dataFinalOb=&cpfCnpjUg=37623352000103",
         # Nona rodada: na coleta d532c1d as 7 páginas vieram diferentes, mas com ordens repetidas entre elas e
         # outras faltando. count=1000 mostra se as 676 vêm numa página só (sem paginação, sem repetição).
+        # Décima rodada: acoes=61659 respondeu (166 ordens, 2 páginas); a página 2 fecha a ação e mostra se a
+        # paginação por ação também repete ordens. count=1000 ainda não foi lido (a sondagem de 06:50Z rodou
+        # antes de ele entrar).
+        ("https://consultafns.saude.gov.br/recursos/consulta-detalhada/detalhe-pagamento?page=2&count=100&ano=2025&"
+         "mes=&tipoConsulta=&blocos=&componentes=&acoes=61659&estado=GO&municipio=520870&repasse=&dataInicialOb=&"
+         "dataFinalOb=&cpfCnpjUg=37623352000103"),
         ("https://consultafns.saude.gov.br/recursos/consulta-detalhada/detalhe-pagamento?page=1&count=1000&ano=2025&"
          "mes=&tipoConsulta=&blocos=&componentes=&acoes=&estado=GO&municipio=520870&repasse=&dataInicialOb=&"
          "dataFinalOb=&cpfCnpjUg=37623352000103"),
@@ -367,6 +373,12 @@ CANDIDATOS: dict[str, list[str]] = {
         "&page_size=100&sort_by=data_sessao&sort_order=desc",
         "https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/acordao/jurisprudencia/buscar?texto=Goi%C3%A2nia&page=2"
         "&page_size=100&sort_by=data_sessao&sort_order=desc",
+        # Décima rodada: filtros trouxe os municípios ({"nome": "Goiânia", "valor": "GOIANIA"}) e a tela manda o
+        # escolhido como municipio. Estas mostram se o filtro vale sem texto (o caminho do motor agora).
+        ("https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/acordao/jurisprudencia/buscar?texto=&page=1"
+         "&page_size=100&sort_by=data_sessao&sort_order=desc&municipio=GOIANIA"),
+        ("https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/acordao/jurisprudencia/buscar?texto=&page=20"
+         "&page_size=100&sort_by=data_sessao&sort_order=desc&municipio=GOIANIA"),
     ],
     # Frente E (27/11): auditoria independente do Selo de Transparência (PNTP). As páginas que cada critério
     # da matriz (regras/pntp/matriz_2026.yml) manda olhar; onisciente/selo/coleta.py segue os links internos.
