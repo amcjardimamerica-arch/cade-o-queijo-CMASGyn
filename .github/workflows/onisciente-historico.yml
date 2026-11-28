@@ -89,7 +89,7 @@ jobs:
           LIMITE=95000000
           AVISO=70000000
           GRANDES=""
-          for f in dados/onisciente/*.db; do
+          for f in dados/onisciente/*.db dados/onisciente/despesa/*.jsonl.gz; do
             [ -f "$f" ] || continue
             T=$(stat -c %s "$f"); echo "$f: $T bytes"
             if [ "$T" -gt "$LIMITE" ]; then GRANDES="$GRANDES $f ($T bytes)"
@@ -112,7 +112,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: onisciente-bancos-${{ github.run_id }}
-          path: dados/onisciente/*.db
+          path: |
+            dados/onisciente/*.db
+            dados/onisciente/despesa/
           retention-days: 30
       - name: Publicar banco, diagnóstico e a página do banco
         if: ${{ success() && steps.tamanho.outputs.grande != '1' }}
@@ -121,9 +123,11 @@ jobs:
           git config user.name "vigilancia-bot"; git config user.email "bot@users.noreply.github.com"
           git worktree remove --force "$RUNNER_TEMP/boletim" 2>/dev/null || true
           git add dados/onisciente/historico.db relatorios/onisciente/diagnostico_historico.* docs/onisciente/banco docs/onisciente/index.html
-          for f in dados/onisciente/rastreio.db dados/onisciente/precos.db dados/onisciente/sancoes.db; do
+          for f in dados/onisciente/rastreio.db dados/onisciente/precos.db dados/onisciente/sancoes.db dados/onisciente/series.db; do
             [ ! -f "$f" ] || git add "$f"          # as partes do banco (onisciente/partes.py) e o rastreio
           done
+          # A despesa vai comprimida, um .jsonl.gz por ano (o SQLite de trabalho dela fica fora do git).
+          [ ! -d dados/onisciente/despesa ] || git add -A dados/onisciente/despesa
           git diff --staged --quiet && exit 0
           git commit -m "Onisciente: coleta histórica $DESDE a $ATE"
           for n in 1 2 3; do

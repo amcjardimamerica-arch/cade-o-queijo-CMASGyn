@@ -25,3 +25,6 @@
 # Banco em partes (28/11/2026, historico.db chegou a 98,6 MB): precos_referencia em dados/onisciente/precos.db e
 # sancoes em dados/onisciente/sancoes.db, anexados (onisciente/partes.py). Travas: testes/test_partes.py; aviso de
 # 70 MB e git add das partes nos fluxos em testes/test_fluxos_banco_guarda.py.
+# Mais partes (28/11/2026, historico.db em 88,7 MB com a despesa de Goiânia): series.db (siconfi_itens, msc_itens,
+# externos_itens) e a despesa comprimida em dados/onisciente/despesa/despesa_eventos_AAAA.jsonl.gz (um por ano; o
+# SQLite de trabalho é refeito deles e fica fora do git). Travas em testes/test_partes.py.

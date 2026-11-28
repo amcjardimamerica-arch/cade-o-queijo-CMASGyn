@@ -108,3 +108,57 @@ def test_soma_da_janela_grava_na_parte_do_principal(tmp_path):
     assert {n for (n,) in principal.con.execute("SELECT nome FROM sancoes")} >= {"Nova"}
     assert not principal.con.execute("SELECT 1 FROM main.sqlite_master WHERE name = 'sancoes'").fetchone()
     principal.fechar()
+
+
+def _eventos(ano: int, n: int) -> list[dict]:
+    return [{"tipo": "empenho", "empenho": f"{ano}NE{i:05d}", "ordem": "", "data": f"{ano}-03-{1 + i % 28:02d}",
+             "orgao": "SECRETARIA MUNICIPAL DE TESTE", "credor": "Fornecedor", "documento": "***.123.456-**",
+             "valor": 100.0 + i, "historico": "objeto do empenho", "consulta": "lista", "url": "https://exemplo"}
+            for i in range(n)]
+
+
+def test_despesa_vai_comprimida_por_ano_e_volta_igual(tmp_path):
+    """A despesa de 2019 a 2026 não cabe em SQLite de até 70 MB com o limite de 10 anexos: no ramo ela fica
+    em .jsonl.gz por ano, e a conexão anexa um SQLite de trabalho refeito deles."""
+    from onisciente.coletores import goiania_transweb as gt
+    caminho = tmp_path / "historico.db"
+    b = historico.Banco(caminho)
+    rid = rastreio.abrir_rodada(b.con, ["execucao_goiania"], "teste")
+    _coleta(b, "execucao_goiania", "https://exemplo.gov.br/despesa")
+    assert gt.gravar(b.con, _eventos(2025, 30) + _eventos(2026, 50)) == 80   # o motor cria a tabela e grava
+    assert gt.gravar(b.con, _eventos(2026, 50)) == 0                         # o índice único vale na parte
+    assert partes.esquema_da_tabela(b.con, "despesa_eventos") == "despesa"
+    assert not b.con.execute("SELECT 1 FROM main.sqlite_master WHERE name = 'despesa_eventos'").fetchone()
+    rastreio.fechar_rodada(b.con, rid)
+    b.fechar()
+    pasta = tmp_path / "despesa"
+    gz = sorted(p.name for p in pasta.glob("*.jsonl.gz"))
+    assert gz == ["despesa_eventos_2025.jsonl.gz", "despesa_eventos_2026.jsonl.gz"]
+    bytes_antes = {p.name: p.read_bytes() for p in pasta.glob("*.jsonl.gz")}
+    # Sem o SQLite de trabalho (o clone do ramo não o tem), quem lê enxerga a despesa refeita dos .gz.
+    (pasta / "despesa.sqlite").unlink()
+    con = partes.conectar_leitura(caminho)
+    assert con.execute("SELECT count(*), sum(valor) FROM despesa_eventos").fetchone() == (
+        80, sum(100.0 + i for i in range(30)) + sum(100.0 + i for i in range(50)))
+    assert telas.tabela_existe(con, "despesa_eventos")
+    assert rastreio.verificar(con)["integro"]                  # os selos valem para a despesa refeita
+    con.close()
+    # Reabrir e fechar sem mudar nada não muda os .gz (o git não vê mudança); um ano novo ganha arquivo.
+    b = historico.Banco.abrir(caminho)
+    b.fechar()
+    assert {p.name: p.read_bytes() for p in pasta.glob("*.jsonl.gz")} == bytes_antes
+    b = historico.Banco.abrir(caminho)
+    gt.gravar(b.con, _eventos(2019, 5))
+    b.con.commit()
+    b.fechar()
+    assert (pasta / "despesa_eventos_2019.jsonl.gz").exists()
+    assert {p.name: p.read_bytes() for p in pasta.glob("*_202?.jsonl.gz")} == bytes_antes
+
+
+def test_series_ficam_numa_parte_propria(tmp_path):
+    caminho = tmp_path / "historico.db"
+    b = historico.Banco(caminho)
+    for tabela in ("siconfi_itens", "msc_itens", "externos_itens"):
+        assert partes.esquema_da_tabela(b.con, tabela) == "series", tabela
+    b.fechar()
+    assert (tmp_path / "series.db").exists()
