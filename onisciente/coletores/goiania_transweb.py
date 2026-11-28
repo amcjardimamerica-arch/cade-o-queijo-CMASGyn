@@ -1809,16 +1809,41 @@ def dias_a_ler(con, consulta: str, inicio: date, fim: date) -> list[date]:
     return out
 
 
+# Releitura completa (decisão do usuário de 28/11/2026, P-01): a despesa coletada com o CPF mascarado pelo
+# sistema, sem original no git, precisa ser lida de novo da fonte. A marca (em ``meta``) diz desde quando: o mês
+# cuja última leitura inteira é anterior a ela conta como mês que falta, e o motor lê de novo todos os meses,
+# os que faltam primeiro, rodada após rodada, até cada mês ter uma leitura inteira depois da marca.
+MARCA_RELEITURA = "execucao_releitura_completa"
+
+
+def marcar_releitura_completa(con, quando: str | None = None) -> str:
+    """Grava a marca da releitura completa (agora, se ``quando`` não vier) e devolve o valor gravado."""
+    quando = quando or datetime.now().isoformat()
+    con.execute("CREATE TABLE IF NOT EXISTS meta (chave TEXT PRIMARY KEY, valor TEXT)")
+    con.execute("INSERT OR REPLACE INTO meta (chave, valor) VALUES (?, ?)", (MARCA_RELEITURA, quando))
+    con.commit()
+    return quando
+
+
+def releitura_completa_desde(con) -> str | None:
+    try:
+        linha = con.execute("SELECT valor FROM meta WHERE chave = ?", (MARCA_RELEITURA,)).fetchone()
+    except Exception:  # noqa: BLE001 (sem a tabela meta: fora do banco histórico)
+        return None
+    return linha[0] if linha and linha[0] else None
+
+
 def meses_a_ler(con, consulta: str, meses: Iterable[str], *, releitura: int = 2,
-                faltantes_primeiro: bool = False) -> list[str]:
+                faltantes_primeiro: bool = False, desde: str | None = None) -> list[str]:
     """Os meses (AAAA-MM) sem leitura bem-sucedida da lista, mais os ``releitura`` meses mais recentes
     de novo: a linha de um empenho mostra o liquidado e o pago acumulados, que crescem nos meses
-    seguintes ao do empenho. Do mais recente para o mais antigo."""
+    seguintes ao do empenho. Do mais recente para o mais antigo. Com ``desde`` (a marca da releitura
+    completa), a leitura inteira anterior a ela não conta: o mês volta a faltar."""
     criar_tabelas(con)
     ultima: dict[str, str] = {}
-    for mes, situacao in con.execute("select dia, situacao from despesa_consultas where consulta = ? and dia != '' "
-                                     "order by rowid", (consulta,)):
-        ultima[mes] = situacao
+    for mes, situacao, quando in con.execute("select dia, situacao, quando from despesa_consultas "
+                                             "where consulta = ? and dia != '' order by rowid", (consulta,)):
+        ultima[mes] = "antes da releitura completa" if desde and (quando or "") < desde else situacao
     meses = sorted(set(meses), reverse=True)
     recentes = meses[:releitura]
     if faltantes_primeiro:
@@ -1938,8 +1963,8 @@ def _meses_da_exportacao(ctx, portal: Portal, c: Consulta, resumo: dict, con) ->
     lista_aberta = None
     reserva_recusada = ""
     fim = getattr(ctx, "fim_do_motor", None)
-    for mes in meses_a_ler(con, c.id, meses, releitura=c.exportar.get("releitura", 12), faltantes_primeiro=True)[
-            :c.exportar.get("meses_por_rodada", 40)]:
+    for mes in meses_a_ler(con, c.id, meses, releitura=c.exportar.get("releitura", 12), faltantes_primeiro=True,
+                           desde=releitura_completa_desde(con))[:c.exportar.get("meses_por_rodada", 40)]:
         if fim is not None and time.monotonic() > fim - 120:
             break         # sem tempo para mais um mês inteiro: o que falta fica para a rodada seguinte
 
@@ -2013,7 +2038,7 @@ def _motor_mensal(ctx, portal: Portal, c: Consulta, resumo: dict, *, limite_de_m
         resumo["falhas"] += 1
         return
     meses = [m for m in ctx.meses if m <= ctx.hoje.strftime("%Y-%m")]
-    for mes in meses_a_ler(con, c.id, meses)[:limite_de_meses]:
+    for mes in meses_a_ler(con, c.id, meses, desde=releitura_completa_desde(con))[:limite_de_meses]:
         ano, mm = mes.split("-")
         valores = {"mes": mm, "ano": ano}
         res = consultar_lista(ler, portal, c, valores, aberta=aberta, conhecidos=conhecidos_do_banco(con))

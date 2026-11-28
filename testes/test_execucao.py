@@ -1990,3 +1990,29 @@ def test_entrada_da_execucao_liga_o_orgao_e_o_contrato_e_o_triangulo_fecha_a_pre
     lista, total = D._execucao_entrada(Ctx(), y)
     assert total["2025-12"]["o:25141524000123:*"] == 1 and total["2025-12"]["o:25141524000123:10"] == 1
     assert {x["orgao"] for x in lista if x["numero"] == "20252150049510002"} == {"25141524000123"}
+
+
+# --- Releitura completa (decisão do usuário de 28/11/2026, P-01) -----------------------------------
+# A despesa coletada com o CPF mascarado pelo sistema, sem original no git, volta a ser lida da fonte: com a
+# marca da releitura completa, todo mês cuja última leitura inteira é anterior a ela volta a faltar, e o motor
+# relê os 25 meses (2024-11 a 2026-11) numa rodada só (meses_por_rodada >= 25), os que faltam primeiro.
+
+def test_releitura_completa_rele_os_25_meses_e_depois_volta_ao_normal():
+    meses = _todos_os_meses()
+    assert len(meses) == 25 and LISTA.exportar["meses_por_rodada"] >= len(meses)
+    con = sqlite3.connect(":memory:")
+    G.criar_tabelas(con)
+    con.executemany("INSERT INTO despesa_consultas VALUES ('despesas_favorecido', ?, '', 'lida', 1, 1, '', '', "
+                    "'2000-01-01T00:00:00')", [(m,) for m in meses])
+    assert len(G.meses_a_ler(con, LISTA.id, meses, releitura=12, faltantes_primeiro=True)) == 12
+    assert G.releitura_completa_desde(con) is None
+    marca = G.marcar_releitura_completa(con)                       # agora: as leituras de antes não contam
+    assert G.releitura_completa_desde(con) == marca
+    assert sorted(G.meses_a_ler(con, LISTA.id, meses, releitura=12, faltantes_primeiro=True,
+                                desde=marca)) == sorted(meses)
+    ctx = _ctx_meses(con, meses)
+    G.motor(ctx, PORTAL)
+    assert sorted(_meses_pedidos(ctx)) == sorted(meses)            # os 25 meses numa rodada só
+    # Cada mês com leitura inteira depois da marca: a rodada seguinte volta a reler só os recentes.
+    assert len(G.meses_a_ler(con, LISTA.id, meses, releitura=12, faltantes_primeiro=True,
+                             desde=G.releitura_completa_desde(con))) == 12

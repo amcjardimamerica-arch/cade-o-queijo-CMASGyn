@@ -48,7 +48,14 @@ decisoes:
       - onisciente/restauracao_fonte.py (python -m onisciente restaurar-fonte: devolve o dado da fonte)
     travas:
       - testes/test_dado_da_fonte.py
+      - testes/test_restauracao_fonte.py
+      - testes/test_execucao.py
+    travas_detalhe:
+      - testes/test_execucao.py::test_releitura_completa_rele_os_25_meses_e_depois_volta_ao_normal
     nota: >-
-      O que foi coletado mascarado depois de ee68c14 e não tem original no git precisa ser lido de novo da
-      fonte; o restaurar-fonte lista essas linhas, e a despesa de Goiânia tem a releitura completa
-      (python -m onisciente coletar-execucao --releitura-completa) para isso.
+      O que o sistema mascarou volta pelo python -m onisciente restaurar-fonte --de 07e130c --gravar (cada linha
+      provada pelo rastreio antigo; as folhas retiradas voltam numa rodada restauracao_fonte, provadas pela raiz
+      de Merkle da rodada original). O que foi coletado já mascarado depois de ee68c14 e não tem original no git
+      precisa ser lido de novo da fonte: a despesa de Goiânia pela releitura completa (python -m onisciente
+      historico --desde 2024-11 --ate 2026-11 --motores execucao_goiania --somar --releitura-completa), e as
+      entidades do FNS pelo motor fns.

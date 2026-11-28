@@ -37,6 +37,15 @@ retiradas passa a valer pelo hash da rodada, e o resumo das retiradas entra no d
 retirou (uma retirada que não está lá é acusada). Rodadas de máscara de antes desta regra têm as
 folhas retiradas numa rodada própria (modo ``retirada_privacidade``).
 
+Revogação (decisão do usuário de 28/11/2026, 11:18Z, config/decisoes_usuario.yml, P-01: "Os dados devem ser
+públicos e não mascarar"): nenhum módulo abre mais rodada de máscara nem de retirada. As marcas antigas ficam (a
+cadeia continua verificável com elas), e o hash das folhas retiradas volta numa rodada ``restauracao_fonte``
+(``onisciente.restauracao_fonte``): cada hash devolvido fica de novo em ``rastreio_selos``, com a rodada, a origem
+e o descarte da marca, e ``rastreio_devolvidas`` liga a marca à rodada que devolveu. Só volta o que, somado aos
+selos que ficaram, refaz a raiz de Merkle e a contagem gravadas na rodada original; a tabela de uma rodada com
+todas as folhas de volta confere pela raiz de novo. A rodada que devolveu declara o total e o resumo das
+devoluções no detalhe dela (uma devolução que não está lá é acusada).
+
 Como a origem chega ao selo: cada tabela de dados tem gatilhos (``AFTER INSERT`` e ``AFTER UPDATE``)
 que anotam a linha em ``rastreio_pendentes`` com a coleta corrente (``rastreio_cursor``), que o
 ``Banco.inserir`` de ``coletas`` atualiza a cada resposta. Assim o motor que grava direto pela conexão
@@ -64,6 +73,7 @@ COLUNAS_COLETAS = {"requisicao": "TEXT", "metodo": "TEXT", "parametros": "TEXT",
 MODO_MIGRACAO = "migracao"
 MODO_MASCARA = "mascara_cpf"
 MODO_RETIRADA = "retirada_privacidade"
+MODO_RESTAURACAO = "restauracao_fonte"
 RETIRADO = "retirado por privacidade"
 # A raiz guardada de uma tabela que perdeu só k folhas deixa testar 1000^k combinações de CPF (três dígitos
 # livres por linha): até 8 (cerca de 2^80) a verificação avisa, sem acusar adulteração.
@@ -87,6 +97,9 @@ ESQUEMA_RASTREIO = {
     "rastreio_retiradas": "(id INTEGER PRIMARY KEY, tabela INTEGER NOT NULL, rodada INTEGER NOT NULL, origem INTEGER, "
                           "n INTEGER NOT NULL, descartada INTEGER, retirada_por INTEGER NOT NULL, motivo TEXT NOT NULL, "
                           "novo BLOB)",
+    # A devolução do hash de uma folha retirada (decisão de 28/11/2026, P-01): a marca, o hash e a rodada.
+    "rastreio_devolvidas": "(retirada INTEGER PRIMARY KEY, tabela INTEGER NOT NULL, hash BLOB NOT NULL, "
+                           "devolvida_por INTEGER NOT NULL)",
     "rastreio_rodadas": "(id INTEGER PRIMARY KEY, inicio TEXT, fim TEXT, modo TEXT, motores TEXT, respostas INTEGER, "
                         "registros INTEGER, raiz TEXT, tabelas TEXT, abertura TEXT, descartes TEXT, detalhe TEXT, "
                         "anterior TEXT, hash TEXT, herdada INTEGER NOT NULL DEFAULT 0)",
@@ -617,6 +630,46 @@ def retiradas(con) -> list[dict]:
     return saida
 
 
+def devolvidas(con) -> dict[int, dict]:
+    """As devoluções: marca da retirada -> tabela, hash (bytes) e rodada que devolveu."""
+    _ler(con)
+    if "rastreio_devolvidas" not in _tabelas_rastreio(con):
+        return {}
+    nomes = _nomes_das_tabelas(con)
+    return {m: {"tabela": nomes.get(tid, str(tid)), "tid": tid, "hash": bytes(h), "devolvida_por": por}
+            for m, tid, h, por in con.execute("SELECT retirada, tabela, hash, devolvida_por FROM rastreio_devolvidas")}
+
+
+def devolver(con, rid: int, itens) -> int:
+    """Devolve o hash de folhas retiradas, na rodada ``rid`` (modo ``restauracao_fonte``): cada item é (marca,
+    tabela, hash, rodada, origem, n, descartada), com a rodada, a origem, o n e o descarte da marca. Quem chama
+    já provou o hash pela raiz da rodada original (``restauracao_fonte.planejar_devolucao``)."""
+    preparar(con)
+    n = 0
+    for mid, tid, h, rodada, origem, k, descartada in itens:
+        con.execute("INSERT INTO rastreio_selos (tabela, hash, rodada, origem, n, descartada) VALUES (?, ?, ?, ?, ?, ?)",
+                    (tid, h, rodada, origem, k, descartada))
+        con.execute("INSERT INTO rastreio_devolvidas (retirada, tabela, hash, devolvida_por) VALUES (?, ?, ?, ?)",
+                    (mid, tid, h, rid))
+        n += 1
+    return n
+
+
+def _linha_devolvida(mid: int, tabela: str, h: bytes) -> str:
+    return f"{mid}|{tabela}|{h.hex()}"
+
+
+def _resumo_devolvidas(con, rid: int) -> dict | None:
+    linhas, por_tabela = [], Counter()
+    for mid, x in devolvidas(con).items():
+        if x["devolvida_por"] == rid:
+            linhas.append(_linha_devolvida(mid, x["tabela"], x["hash"]))
+            por_tabela[x["tabela"]] += 1
+    if not linhas:
+        return None
+    return {"total": len(linhas), "por_tabela": dict(sorted(por_tabela.items())), "resumo": _resumo_das_marcas(linhas)}
+
+
 def _resumo_abertura(v: dict) -> dict | None:
     """O que a conferência da abertura achou fora do lugar (vazio quando nada mudou fora de rodada)."""
     saida = {}
@@ -662,6 +715,7 @@ def fechar_rodada(con, rid: int, *, nota: str | None = None) -> dict:
     selar(con, rid)
     modo = con.execute("SELECT modo FROM rastreio_rodadas WHERE id = ?", (rid,)).fetchone()[0]
     retiradas = _retirar(con, rid, modo) if modo in (MODO_MASCARA, MODO_RETIRADA) else None
+    devolvidas_ = _resumo_devolvidas(con, rid) if modo == MODO_RESTAURACAO else None
     folhas = _folhas_da_rodada(con, rid)
     raiz, por_tabela = _raizes(folhas)
     respostas = len(folhas.get("coletas", []))
@@ -676,12 +730,14 @@ def fechar_rodada(con, rid: int, *, nota: str | None = None) -> dict:
     anterior = linha_[0] if linha_ else ZERO
     r = dict(zip(("id", "inicio", "modo", "motores", "abertura", "detalhe"), con.execute(
         "SELECT id, inicio, modo, motores, abertura, detalhe FROM rastreio_rodadas WHERE id = ?", (rid,)).fetchone()))
-    if nota or retiradas:
+    if nota or retiradas or devolvidas_:
         det = json.loads(r["detalhe"]) if r["detalhe"] else {}
         if nota:
             det["nota"] = nota
         if retiradas:
             det["retiradas"] = retiradas
+        if devolvidas_:
+            det["devolvidas"] = devolvidas_
         r["detalhe"] = json.dumps(det, ensure_ascii=False, sort_keys=True)
     r.update(fim=agora(), respostas=respostas, registros=registros, raiz=raiz,
              tabelas=json.dumps(por_tabela, sort_keys=True), descartes=json.dumps(descartes, sort_keys=True),
@@ -896,12 +952,14 @@ def _rodadas(con) -> list[dict]:
 
 
 def _retiradas_por_rodada(con) -> tuple[dict[int, Counter], dict[int, list[str]]]:
-    """Das marcas: quantas folhas cada rodada perdeu, por tabela; e as linhas das marcas por rodada que
-    retirou (para conferir com o resumo declarado nela)."""
+    """Das marcas: quantas folhas cada rodada perdeu, por tabela (sem as devolvidas); e as linhas das marcas por
+    rodada que retirou (para conferir com o resumo declarado nela)."""
     perdidas: dict[int, Counter] = {}
     marcas: dict[int, list[str]] = {}
+    voltaram = devolvidas(con)
     for x in retiradas(con):
-        perdidas.setdefault(x["rodada"], Counter())[x["tabela"]] += 1
+        if x["id"] not in voltaram:
+            perdidas.setdefault(x["rodada"], Counter())[x["tabela"]] += 1
         novo = bytes.fromhex(x["novo"]) if x["novo"] else None
         marcas.setdefault(x["retirada_por"], []).append(
             _linha_retirada(x["tabela"], x["rodada"], x["origem"], x["n"], x["descartada"], x["motivo"], novo))
@@ -970,11 +1028,44 @@ def verificar_cadeia(con, *, raizes: bool = True) -> dict:
         if d.get("total") != len(linhas) or d.get("resumo") != (_resumo_das_marcas(linhas) if linhas else None):
             problemas.append({"rodada": rid, "motivo": "as marcas das folhas retiradas não conferem com o que a "
                               "rodada que retirou declarou", "grave": True})
+    problemas += _conferir_devolvidas(con, rodadas)
     ultima = next((r for r in reversed(rodadas) if r.get("hash")), None)
     return {"rodadas": len(rodadas), "herdadas": sum(1 for r in rodadas if r.get("herdada")),
             "problemas": problemas, "ok": not any(p["grave"] for p in problemas),
             "ultima": _resumo_rodada(ultima) if ultima else None,
-            "retiradas": _resumo_das_retiradas(perdidas, declaradas, marcas)}
+            "retiradas": _resumo_das_retiradas(perdidas, declaradas, marcas),
+            "devolvidas": {"total": len(devolvidas(con))}}
+
+
+def _conferir_devolvidas(con, rodadas: list[dict]) -> list[dict]:
+    """Cada devolução: a marca existe, o selo devolvido está lá com a rodada da marca, e o total e o resumo
+    batem com o que a rodada que devolveu declarou."""
+    voltaram = devolvidas(con)
+    declaradas = {}
+    for r in rodadas:
+        det = json.loads(r.get("detalhe") or "{}") if (r.get("detalhe") or "").startswith("{") else {}
+        if det.get("devolvidas"):
+            declaradas[r["id"]] = det["devolvidas"]
+    if not voltaram and not declaradas:
+        return []
+    problemas = []
+    marcas = {m: (tid, rodada) for m, tid, rodada in con.execute("SELECT id, tabela, rodada FROM rastreio_retiradas")}
+    por_rodada: dict[int, list[str]] = {}
+    for mid, x in voltaram.items():
+        por_rodada.setdefault(x["devolvida_por"], []).append(_linha_devolvida(mid, x["tabela"], x["hash"]))
+        marca = marcas.get(mid)
+        selo = con.execute("SELECT rodada FROM rastreio_selos WHERE tabela = ? AND hash = ?",
+                           (x["tid"], x["hash"])).fetchone()
+        if marca is None or marca[0] != x["tid"] or selo is None or selo[0] != marca[1]:
+            problemas.append({"rodada": x["devolvida_por"], "motivo": "folha devolvida sem a marca ou sem o selo na "
+                              "rodada original", "tabelas": [x["tabela"]], "grave": True})
+    for rid in sorted(set(por_rodada) | set(declaradas)):
+        d = declaradas.get(rid) or {}
+        linhas = por_rodada.get(rid, [])
+        if d.get("total") != len(linhas) or d.get("resumo") != (_resumo_das_marcas(linhas) if linhas else None):
+            problemas.append({"rodada": rid, "motivo": "as folhas devolvidas não conferem com o que a rodada que "
+                              "devolveu declarou", "grave": True})
+    return problemas
 
 
 def _resumo_das_retiradas(perdidas: dict[int, Counter], declaradas: dict[int, dict],

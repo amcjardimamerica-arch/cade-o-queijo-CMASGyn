@@ -167,6 +167,14 @@ def cmd_historico(args) -> int:
     if desconhecidos:
         print(f"motor desconhecido: {', '.join(sorted(desconhecidos))}", file=sys.stderr)
         return 2
+    if getattr(args, "releitura_completa", False):
+        # Decisão do usuário de 28/11/2026 (P-01): a despesa coletada com o CPF mascarado pelo sistema volta a ser
+        # lida da fonte, todos os meses, a partir de agora (rodada após rodada, até cada mês ter leitura nova).
+        from . import partes
+        from .coletores import goiania_transweb
+        con = partes.conectar(historico.BANCO)
+        print("releitura completa da despesa desde", goiania_transweb.marcar_releitura_completa(con))
+        con.close()
     banco = historico.rodar(args.desde, args.ate, motores=motores,
                             brutos=Path(args.brutos) if args.brutos else None, pausa=args.pausa,
                             somar=args.somar)
@@ -174,6 +182,42 @@ def cmd_historico(args) -> int:
     pagina = _publicar_banco(banco, d)
     banco.fechar()
     _imprimir_diagnostico(d, [*diagnostico.gravar(d, SAIDA_RELATORIOS), *pagina])
+    return 0
+
+
+def cmd_restaurar_fonte(args) -> int:
+    import json
+    import tempfile
+    from . import historico, restauracao_fonte
+    caminho = Path(args.banco) if args.banco else historico.BANCO
+    if not caminho.exists():
+        print(f"banco não encontrado: {caminho}", file=sys.stderr)
+        return 1
+    cache = Path(args.cache) if args.cache else Path(tempfile.mkdtemp(prefix="restaurar_fonte_"))
+    r = restauracao_fonte.rodar(caminho, args.de, cache=cache, gravar=args.gravar, sondagem=args.sondagem)
+    if args.json:
+        print(json.dumps(r, ensure_ascii=False, indent=1, sort_keys=True, default=str))
+    else:
+        print("versões lidas:", ", ".join(r["versoes"]),
+              f"(cadeia diferente, ignoradas: {', '.join(r['versoes_com_outra_cadeia'])})"
+              if r["versoes_com_outra_cadeia"] else "")
+        for t, c in r["restauradas"].items():
+            print(f"  {t}: {c['total']} linha(s) restaurada(s) (prova pelo hash: {c.get('hash', 0)}; pela linha antiga: "
+                  f"{c.get('linha_antiga', 0)})")
+        for t, c in r["reler"].items():
+            print(f"  reler da fonte, {t}: {c}")
+        if r["ambiguas"] or r["sem_prova"]:
+            print("  ambíguas:", r["ambiguas"], "sem prova:", r["sem_prova"])
+        f = r["folhas"]
+        print(f"  folhas retiradas: {f['retiradas']}; provadas pela raiz (voltam): {f['provadas_pela_raiz']}; "
+              f"sem prova: {f['sem_prova']}")
+        if "aplicado" in r:
+            print("  aplicado:", r["aplicado"], "verificação:", r["verificacao"])
+        if "sondagem" in r:
+            print("  sondagem:", len(r["sondagem"]["restaurados"]), "arquivo(s) de volta; sem original:",
+                  r["sondagem"]["sem_original"])
+        if not args.gravar:
+            print("(só os números: rode com --gravar para aplicar)")
     return 0
 
 
@@ -391,7 +435,21 @@ def main(argv: list[str] | None = None) -> int:
     ph.add_argument("--pausa", type=float, default=1.0, help="segundos entre chamadas")
     ph.add_argument("--somar", action="store_true",
                     help="refaz só os motores pedidos no banco existente, mantendo os outros")
+    ph.add_argument("--releitura-completa", action="store_true",
+                    help="relê da fonte todos os meses da despesa de Goiânia (execucao_goiania), os que faltam "
+                         "primeiro, até cada mês ter uma leitura inteira nova (decisão de 28/11/2026, P-01)")
     ph.set_defaults(f=cmd_historico)
+    pf = sub.add_parser("restaurar-fonte", help="devolve o dado da fonte que o sistema mascarou (decisão P-01), "
+                                                "com prova pelo rastreio antigo")
+    pf.add_argument("--de", default="07e130c", help="a última versão do banco antes da máscara (padrão: 07e130c); "
+                                                    "entram ela e as seguintes que mudaram dados/onisciente")
+    pf.add_argument("--banco", help="caminho do banco (padrão: dados/onisciente/historico.db)")
+    pf.add_argument("--cache", help="pasta para as versões extraídas do git (padrão: uma pasta temporária)")
+    pf.add_argument("--gravar", action="store_true", help="aplica no banco (sem isso, só mostra os números)")
+    pf.add_argument("--sondagem", action="store_true",
+                    help="também os arquivos de relatorios/onisciente/sondagem que o sistema mascarou")
+    pf.add_argument("--json", action="store_true", help="saída em JSON")
+    pf.set_defaults(f=cmd_restaurar_fonte)
     sub.add_parser("diagnostico", help="refaz o diagnóstico a partir do banco histórico") \
         .set_defaults(f=cmd_diagnostico)
     sub.add_parser("painel-banco", help="refaz só a página do banco histórico no site") \
