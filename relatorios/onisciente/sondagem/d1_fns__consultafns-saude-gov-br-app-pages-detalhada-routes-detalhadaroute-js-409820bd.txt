@@ -1,0 +1,132 @@
+URL: https://consultafns.saude.gov.br/app/pages/detalhada/routes/detalhadaRoute.js
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 4045
+
+/**
+ * @desc Define um módulo anonimo sem dependencias e
+ * cria mantém as rotas para o componente detalhada
+ */
+define([],
+    /**
+     *
+     * @returns {{module: string, view: string, text: string, roles: string[], controllerAs: string}[]}
+     */
+    function () {
+        /**
+         *
+         * @type {{module: string, view: string, text: string, roles: string[], controllerAs: string}[]}
+         */
+        var routes = [
+            {
+                module: 'detalhada',
+                view: 'detalhada',
+                text: 'Detalhada',
+                controllerAs: 'detalhadaCtrl',
+                state: {
+                    name: "detalhada",
+                    url: "detalhada"
+                }
+            },
+            {
+                module: 'detalhada',
+                view: 'entidade',
+                text: 'Entidade',
+                controller: 'entidadeController',
+                controllerAs: 'entidadeCtrl',
+                state: {
+                    name: "detalhada.entidade"
+                }
+            },
+            {
+                module: 'detalhada',
+                view: 'detalhe-acao',
+                text: 'Ação',
+                controller: 'acaoController',
+                controllerAs: 'acaoCtrl',
+                state: {
+                    name: "detalhada.acao",
+                    url: "acao"
+                }
+            },
+            {
+                module: 'detalhada',
+                view: 'detalhe-pagamento',
+                text: 'Pagamento',
+                controller: 'pagamentoController',
+                controllerAs: 'pagamentoCtrl',
+                state: {
+                    name: "detalhada.acao.pagamento",
+                    url: "pagamento"
+                }
+            },
+            {
+                module: 'detalhada',
+                view: 'detalhe-conta',
+                text: 'Conta',
+                controller: 'contaController',
+                controllerAs: 'contaCtrl',
+                state: {
+                    name: "detalhada.acao.conta",
+                    url: "conta"
+                }
+            },
+            {
+                module: 'detalhada',
+                view: 'detalhar-extrato-conta',
+                text: 'Extrato Conta',
+                controller: 'extratoContaController',
+                controllerAs: 'extratoContaCtrl',
+                state: {
+                    name: "detalhada.acao.pagamento.detalharExtratoConta",
+                    url: "extrato-conta"
+                }
+            },
+            {
+                module: 'detalhada',
+                view: 'detalhar-ordem-bancaria',
+                text: 'Ordem Bancaria',
+                controller: 'ordemBancariaController',
+                controllerAs: 'ordemBancariaCtrl',
+                state: {
+                    name: "detalhada.acao.pagamento.detalharOrdemBancaria",
+                    url: "ordem-bancaria"
+                }
+            },
+            {
+                module: 'detalhada',
+                view: 'detalhar-desconto',
+                text: 'Detalhar Desconto',
+                controller: 'descontoController',
+                controllerAs: 'descontoCtrl',
+                state: {
+                    name: "detalhada.acao.pagamento.detalharDesconto"
+                }
+            },
+            {
+                module: 'detalhada',
+                view: 'detalhar-saldo',
+                text: 'Detalhar Saldo',
+                controller: 'saldoController',
+                controllerAs: 'saldoCtrl',
+                state: {
+                    name: "detalhada.acao.pagamento.detalharSaldo"
+                }
+            },
+            {
+                module: 'detalhada',
+                view: 'detalhar',
+                text: 'Detalhar',
+                controller: 'detalhada.DetalharController',
+                controllerAs: 'detalharCtrl',
+                state: {
+                    name: "detalhada.detalhar"
+                }
+            }
+        ];
+
+        return routes;
+    }
+);

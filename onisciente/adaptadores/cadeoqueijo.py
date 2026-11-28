@@ -12,8 +12,10 @@ import json
 from datetime import date, datetime
 from pathlib import Path
 
+from .. import partes as _partes
 from .. import RAIZ
 from .. import fiscal as fiscal_mod
+from ..conferencias import compras as compras_mod
 from ..legal.mapa import MapaLegal, carregar
 from ..nucleo.ausencias import Ausencia
 from ..nucleo.custodia import Original
@@ -53,7 +55,7 @@ def _sileg_do_mes(banco: Path, competencia: str) -> int | None:
     if not banco.exists():
         return None
     import sqlite3
-    con = sqlite3.connect(f"file:{banco}?mode=ro", uri=True)
+    con = _partes.conectar_leitura(banco)
     try:
         linha = con.execute("select edicoes from diario_oficial_mes where fonte='sileg' and mes=? and "
                             "erro is null and edicoes is not null", (competencia,)).fetchone()
@@ -130,6 +132,18 @@ def _fim_da_competencia(competencia: str) -> date:
 EXECUCAO_INDIVIDUALIZADA = ("Empenhos", "Liquidações", "Pagamentos")
 
 
+_CACHE_COMPRAS: dict[tuple, "compras_mod.Conferencias"] = {}
+
+
+def _compras_do_banco(banco: Path, mapa: MapaLegal) -> "compras_mod.Conferencias":
+    """As conferências valem para o Município inteiro: rodam uma vez por banco, não uma por competência."""
+    chave = (str(banco), banco.stat().st_mtime_ns, id(mapa))
+    if chave not in _CACHE_COMPRAS:
+        _CACHE_COMPRAS.clear()
+        _CACHE_COMPRAS[chave] = compras_mod.conferir(banco, mapa=mapa)
+    return _CACHE_COMPRAS[chave]
+
+
 def montar(competencia: str, *, raiz: Path = RAIZ, mapa: MapaLegal | None = None,
            alvo: str = "Prefeitura de Goiânia", banco: Path | None = None) -> Panorama:
     """Monta o panorama da competência (``AAAA-MM``) a partir dos dados do Cadê o Queijo."""
@@ -171,7 +185,7 @@ def montar(competencia: str, *, raiz: Path = RAIZ, mapa: MapaLegal | None = None
                 fonte=_fonte_do_codigo(codigo), selo=Selo.AZUL,
                 origem="previsto na LOA (lei publicada)"))
         if comp.get("realizado") is None:
-            panorama.notas.append("O rio mostra o previsto na LOA para o mês: a receita realizada "
+            panorama.notas.append("A origem do dinheiro mostra o previsto na LOA para o mês: a receita realizada "
                                   "da competência não foi publicada.")
             panorama.ausencias.append(Ausencia(
                 o_que_falta="Receita realizada do Fundo por fonte", periodo=competencia,
@@ -218,6 +232,9 @@ def montar(competencia: str, *, raiz: Path = RAIZ, mapa: MapaLegal | None = None
         panorama.fiscal = fiscal_mod.medir_municipio(fim, banco=banco, mapa=mapa)
         panorama.fichas += panorama.fiscal.fichas(competencia)
         liquidado_funcao, rreo_funcao = fiscal_mod.liquidado_na_funcao("Assistência Social", fim, banco=banco)
+        # 4c. As compras e os contratos do Município conferidos no banco; fichas só da pasta.
+        panorama.compras = _compras_do_banco(banco, mapa)
+        panorama.fichas += panorama.compras.fichas(competencia)
         rreo = panorama.fiscal.rreo
         if rreo is not None and str(rreo.exercicio) == ano:
             # O RREO é do ente, não do Fundo: está publicado no SICONFI e não falta.

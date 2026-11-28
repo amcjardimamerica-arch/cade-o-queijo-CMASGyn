@@ -1,0 +1,12 @@
+<!DOCTYPE html><html><head><title>Cnep | Portal da Transparência</title></head><body>
+<script>
+
+    var arquivos = [];
+
+        arquivos.push({"ano" : "2026", "mes" : "11", "dia" : "27", "origem" :  "CNEP"});
+
+    var url = springUrl + "download-de-dados/cnep/";
+    var download = new DownloadPlanilhas("cnep", arquivos, "DIA", url);
+    download.criarLinksIniciais();
+</script>
+</body></html>

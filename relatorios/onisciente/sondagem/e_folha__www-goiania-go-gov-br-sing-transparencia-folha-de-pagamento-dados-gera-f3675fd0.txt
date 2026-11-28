@@ -1,0 +1,794 @@
+URL: https://www.goiania.go.gov.br/sing_transparencia/folha-de-pagamento-dados-gerais/
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 71963
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Folha de Pagamento &#8211; Dados Gerais &#8211; Prefeitura de Goiânia</title>
+<script type='text/javascript'> var time_popup = '15'; var expiration_time = '1'; var only_home = '1'; </script><meta name='robots' content='max-image-preview:large' />
+<link rel='dns-prefetch' href='//www.goiania.go.gov.br' />
+<link rel='dns-prefetch' href='//vlibras.gov.br' />
+<link rel='dns-prefetch' href='//audio4.audima.co' />
+<link rel='dns-prefetch' href='//file.nucleogov.com.br' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel="alternate" type="application/rss+xml" title="Feed para Prefeitura de Goiânia &raquo;" href="https://www.goiania.go.gov.br/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Feed de comentários para Prefeitura de Goiânia &raquo;" href="https://www.goiania.go.gov.br/comments/feed/" />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://www.goiania.go.gov.br/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.goiania.go.gov.br%2Fsing_transparencia%2Ffolha-de-pagamento-dados-gerais%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://www.goiania.go.gov.br/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.goiania.go.gov.br%2Fsing_transparencia%2Ffolha-de-pagamento-dados-gerais%2F&#038;format=xml" />
+<style id='wp-img-auto-sizes-contain-inline-css' type='text/css'>
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<style id='wp-emoji-styles-inline-css' type='text/css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+/*# sourceURL=wp-emoji-styles-inline-css */
+</style>
+<style id='wp-block-library-inline-css' type='text/css'>
+:root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-block-color:var(--wp-block-synced-color);--wp-editor-canvas-background:#ddd;--wp-admin-theme-color:#007cba;--wp-admin-theme-color--rgb:0,124,186;--wp-admin-theme-color-darker-10:#006ba1;--wp-admin-theme-color-darker-10--rgb:0,107,160.5;--wp-admin-theme-color-darker-20:#005a87;--wp-admin-theme-color-darker-20--rgb:0,90,135;--wp-admin-border-width-focus:2px}@media (min-resolution:192dpi){:root{--wp-admin-border-width-focus:1.5px}}.wp-element-button{cursor:pointer}:root .has-very-light-gray-background-color{background-color:#eee}:root .has-very-dark-gray-background-color{background-color:#313131}:root .has-very-light-gray-color{color:#eee}:root .has-very-dark-gray-color{color:#313131}:root .has-vivid-green-cyan-to-vivid-cyan-blue-gradient-background{background:linear-gradient(135deg,#00d084,#0693e3)}:root .has-purple-crush-gradient-background{background:linear-gradient(135deg,#34e2e4,#4721fb 50%,#ab1dfe)}:root .has-hazy-dawn-gradient-background{background:linear-gradient(135deg,#faaca8,#dad0ec)}:root .has-subdued-olive-gradient-background{background:linear-gradient(135deg,#fafae1,#67a671)}:root .has-atomic-cream-gradient-background{background:linear-gradient(135deg,#fdd79a,#004a59)}:root .has-nightshade-gradient-background{background:linear-gradient(135deg,#330968,#31cdcf)}:root .has-midnight-gradient-background{background:linear-gradient(135deg,#020381,#2874fc)}:root{--wp--preset--font-size--normal:16px;--wp--preset--font-size--huge:42px}.has-regular-font-size{font-size:1em}.has-larger-font-size{font-size:2.625em}.has-normal-font-size{font-size:var(--wp--preset--font-size--normal)}.has-huge-font-size{font-size:var(--wp--preset--font-size--huge)}.has-text-align-center{text-align:center}.has-text-align-left{text-align:left}.has-text-align-right{text-align:right}.has-fit-text{white-space:nowrap!important}#end-resizable-editor-section{display:none}.aligncenter{clear:both}.items-justified-left{justify-content:flex-start}.items-justified-center{justify-content:center}.items-justified-right{justify-content:flex-end}.items-justified-space-between{justify-content:space-between}.screen-reader-text{border:0;clip-path:inset(50%);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;word-wrap:normal!important}.screen-reader-text:focus{background-color:#ddd;clip-path:none;color:#444;display:block;font-size:1em;height:auto;left:5px;line-height:normal;padding:15px 23px 14px;text-decoration:none;top:5px;width:auto;z-index:100000}html :where(.has-border-color){border-style:solid}html :where([style*=border-top-color]){border-top-style:solid}html :where([style*=border-right-color]){border-right-style:solid}html :where([style*=border-bottom-color]){border-bottom-style:solid}html :where([style*=border-left-color]){border-left-style:solid}html :where([style*=border-width]){border-style:solid}html :where([style*=border-top-width]){border-top-style:solid}html :where([style*=border-right-width]){border-right-style:solid}html :where([style*=border-bottom-width]){border-bottom-style:solid}html :where([style*=border-left-width]){border-left-style:solid}html :where(img[class*=wp-image-]){height:auto;max-width:100%}:where(figure){margin:0 0 1em}html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:var(--wp-admin--admin-bar--height,0px)}@media screen and (max-width:600px){html :where(.is-position-sticky){--wp-admin--admin-bar--position-offset:0px}}
+
+/*# sourceURL=wp-block-library-inline-css */
+</style>
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+</style>
+<link rel='stylesheet' id='nucleoweb-essentials-css' href='https://www.goiania.go.gov.br/wp-content/plugins/nucleoweb-essentials/bundle/public.css?ver=1.3.35' type='text/css' media='all' />
+<link rel='stylesheet' id='nucleoweb-essentials-custom-style-css' href='https://www.goiania.go.gov.br/wp-content/uploads/nucleoweb-essentials/css/nucleoweb-essentials-custom.css?ver=1.3.35' type='text/css' media='all' />
+<link rel='stylesheet' id='nucleoweb-essentials-fonts-css' href='https://www.goiania.go.gov.br/wp-content/plugins/nucleoweb-essentials/assets/fonts/nucleoweb-essentials/styles.css?ver=1.3.35' type='text/css' media='all' />
+<link rel='stylesheet' id='design-kit-icons-css' href='https://file.nucleogov.com.br/webfonts/design-kit-icons/styles.css?ver=1.3.35' type='text/css' media='all' />
+<link rel='stylesheet' id='nucleoweb-material-icons-css' href='https://www.goiania.go.gov.br/wp-content/plugins/nucleoweb-essentials/assets/fonts/nucleoweb-material-icons/styles.css?ver=1.3.35' type='text/css' media='all' />
+<link rel='stylesheet' id='nucleoweb-material-icons-default-css' href='https://www.goiania.go.gov.br/wp-content/plugins/nucleoweb-essentials/assets/fonts/nucleoweb-material-icons/css/default.css?ver=1.3.35' type='text/css' media='all' />
+<link rel='stylesheet' id='nucleoweb-selos-transparencia-css' href='https://www.goiania.go.gov.br/wp-content/plugins/nucleoweb-selos-transparencia/bundle/public.css?ver=1.0.21' type='text/css' media='all' />
+<link rel='stylesheet' id='prefeitura-goiania-fonts-css' href='https://fonts.googleapis.com/css2?family=Poppins%3Awght%40400%3B500%3B600%3B700%3B800%3B900&#038;display=swap&#038;ver=2.1.102' type='text/css' media='all' />
+<link rel='stylesheet' id='design-kit-icons-static-css' href='https://www.goiania.go.gov.br/wp-content/themes/prefeitura-goiania/assets/fonts/nucleo-design-kit/styles.css?ver=2.1.102' type='text/css' media='all' />
+<link rel='stylesheet' id='prefeitura-goiania-style-css' href='https://www.goiania.go.gov.br/wp-content/themes/prefeitura-goiania/bundle/public.css?ver=2.1.102' type='text/css' media='all' />
+<link rel='stylesheet' id='prefeitura-goiania-custom-style-css' href='https://www.goiania.go.gov.br/wp-content/uploads/prefeitura-goiania/prefeitura-goiania-custom-style.css?ver=v570' type='text/css' media='all' />
+<link rel='stylesheet' id='simcal-qtip-css' href='https://www.goiania.go.gov.br/wp-content/plugins/google-calendar-events/assets/generated/vendor/jquery.qtip.min.css?ver=3.5.5' type='text/css' media='all' />
+<link rel='stylesheet' id='simcal-default-calendar-grid-css' href='https://www.goiania.go.gov.br/wp-content/plugins/google-calendar-events/assets/generated/default-calendar-grid.min.css?ver=3.5.5' type='text/css' media='all' />
+<link rel='stylesheet' id='simcal-default-calendar-list-css' href='https://www.goiania.go.gov.br/wp-content/plugins/google-calendar-events/assets/generated/default-calendar-list.min.css?ver=3.5.5' type='text/css' media='all' />
+<script type="text/javascript" src="https://www.goiania.go.gov.br/wp-includes/js/dist/hooks.min.js?ver=dd5603f07f9220ed27f1" id="wp-hooks-js"></script>
+<script type="text/javascript" src="https://www.goiania.go.gov.br/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script type="text/javascript" async='async' src="https://www.goiania.go.gov.br/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<script type="text/javascript" id="jquery-js-after">
+/* <![CDATA[ */
+document.addEventListener("DOMContentLoaded", function() {
+            const form_item = document.getElementById('busca-renuncias');
+            if (form_item) {
+                form_item.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                })
+            }
+        });
+
+        function redirectAno() {
+            const ano = document.getElementById('ano');
+            if (ano) {
+                window.location = "/pagina-detalhe-transparencia/renuncias-fiscais/renuncias-fiscais-" + ano.value;
+            }
+        }
+//# sourceURL=jquery-js-after
+/* ]]> */
+</script>
+<script type="text/javascript" async='async' src="https://www.goiania.go.gov.br/wp-includes/js/underscore.min.js?ver=1.13.7" id="underscore-js"></script>
+<script type="text/javascript" id="nucleoweb-essentials-script-public-js-extra">
+/* <![CDATA[ */
+var wp_nucleoweb_essentials = {"rest_url":"https://www.goiania.go.gov.br/wp-json/","wp_rest_nonce":"4e99121b2d","link_politica_privacidade":null,"label_politica_privacidade":"label-politicas","enable_next_post_script":"1"};
+//# sourceURL=nucleoweb-essentials-script-public-js-extra
+/* ]]> */
+</script>
+<script type="text/javascript" async='async' src="https://www.goiania.go.gov.br/wp-content/plugins/nucleoweb-essentials/bundle/public.js?ver=1.3.35" id="nucleoweb-essentials-script-public-js"></script>
+<script type="text/javascript" src="https://vlibras.gov.br/app/vlibras-plugin.js?ver=1.0" id="vlibrasjs-js"></script>
+<link rel="https://api.w.org/" href="https://www.goiania.go.gov.br/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://www.goiania.go.gov.br/wp-json/wp/v2/sing_transparencia/7378" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.goiania.go.gov.br/xmlrpc.php?rsd" />
+<link rel="canonical" href="https://www.goiania.go.gov.br/sing_transparencia/folha-de-pagamento-dados-gerais/" />
+<link rel='shortlink' href='https://www.goiania.go.gov.br/?p=7378' />
+      <meta name="onesignal" content="wordpress-plugin"/>
+            <script>
+
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+
+      OneSignalDeferred.push(function(OneSignal) {
+        var oneSignal_options = {};
+        window._oneSignalInitOptions = oneSignal_options;
+
+        oneSignal_options['serviceWorkerParam'] = { scope: '/wp-content/plugins/onesignal-free-web-push-notifications/sdk_files/push/onesignal/' };
+oneSignal_options['serviceWorkerPath'] = 'OneSignalSDKWorker.js';
+
+        OneSignal.Notifications.setDefaultUrl("https://www.goiania.go.gov.br");
+
+        oneSignal_options['wordpress'] = true;
+oneSignal_options['appId'] = '611da7ee-7c77-4cd3-9181-a6925f4f54c2';
+oneSignal_options['allowLocalhostAsSecureOrigin'] = true;
+oneSignal_options['welcomeNotification'] = { };
+oneSignal_options['welcomeNotification']['title'] = "Seja bem-vindo!";
+oneSignal_options['welcomeNotification']['message'] = "Obrigado por se inscrever em nossas notificações.";
+oneSignal_options['path'] = "https://www.goiania.go.gov.br/wp-content/plugins/onesignal-free-web-push-notifications/sdk_files/";
+oneSignal_options['safari_web_id'] = "web.onesignal.auto.1ad4c923-47e5-493e-8349-b8f3b81ccfd9";
+oneSignal_options['promptOptions'] = { };
+oneSignal_options['promptOptions']['actionMessage'] = "Deseja receber notificações sobre nossas publicações?";
+oneSignal_options['promptOptions']['acceptButtonText'] = "Sim, desejo";
+oneSignal_options['promptOptions']['cancelButtonText'] = "Não, obrigado";
+              OneSignal.init(window._oneSignalInitOptions);
+              OneSignal.Slidedown.promptPush()      });
+
+      function documentInitOneSignal() {
+        var oneSignal_elements = document.getElementsByClassName("OneSignal-prompt");
+
+        var oneSignalLinkClickHandler = function(event) { OneSignal.Notifications.requestPermission(); event.preventDefault(); };        for(var i = 0; i < oneSignal_elements.length; i++)
+          oneSignal_elements[i].addEventListener('click', oneSignalLinkClickHandler, false);
+      }
+
+      if (document.readyState === 'complete') {
+           documentInitOneSignal();
+      }
+      else {
+           window.addEventListener("load", function(event){
+               documentInitOneSignal();
+          });
+      }
+    </script>
+<link rel="icon" href="https://www.goiania.go.gov.br/wp-content/uploads/2023/02/ICON-80x80.png" sizes="32x32" />
+<link rel="icon" href="https://www.goiania.go.gov.br/wp-content/uploads/2023/02/ICON.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://www.goiania.go.gov.br/wp-content/uploads/2023/02/ICON.png" />
+<meta name="msapplication-TileImage" content="https://www.goiania.go.gov.br/wp-content/uploads/2023/02/ICON.png" />
+		<style type="text/css" id="wp-custom-css">
+			#audimaWidget{height: 50px}
+
+.template-part-component-sidebar-box-fields .fields-wrapper .field .icon+span{
+	word-break: break-all
+}
+
+.logo-menu-top img {
+	max-width: 244px;
+}
+
+.template-part-component-button a span{
+	white-space: break-spaces
+}
+
+.template-part-most-accessed .most-accessed-wrapper .menu-tabs .menu-tabs-content .sub-menu li.btn-cursos a .text{
+	font-size: 0.8em
+}
+
+.nwe-next-post-permalink{
+	pointer-events: none
+}
+
+.template-part-component-the-content iframe{
+	height: initial;
+}
+
+.template-part-component-feed-post{
+	font-size: 1.10rem
+}
+
+.template-part-component-feed-post.post-47172{
+	font-size: 1rem
+}
+
+.template-part-component-the-thumbnail figcaption{
+	margin: 1em
+}
+
+.template-part-component-the-content .wp-block-image figcaption{
+	line-height: 1rem;
+	margin-top: 10px;
+	text-align: center
+}
+
+.page-id-34215 
+.post-title,
+.page-id-52111 .post-title{
+display: none
+}
+
+.page-id-34215 
+.botao-agendamento {
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+
+.page-id-34215 
+.botao-agendamento a {
+width: 100%;
+font-family: 'Inter';
+color: white;
+font-weight: bold;
+font-size: 16px;
+line-height: 19px;
+padding: 25px 20px;
+background: #1dc98a;
+text-align: center;
+border-radius: 8px;
+text-transform: uppercase;
+margin-top: 25px;
+}
+
+.cwp-field-set input, 
+.cwp-field-set textarea{
+	border: none !important;
+	border-radius: 6px;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.cwp-field-set input{
+	height: 50px
+}
+
+.cwp-field-set label{
+	font-weight: bold;
+}
+
+#form-1a632a9e.cwp-form .cwp-default-submit-btn{
+	width: 100%;
+	border: none !important;
+	background: var(--emerald) !important;
+	color: red !important;
+	font-family: 'Inter';
+	text-transform: uppercase;
+	font-weight: 700;
+	padding: 17px 60px;
+	border-radius: 6px;
+	color: white;
+	letter-spacing: 0;
+}
+
+.wp-widget.widget-related-posts .posts-list .posts .post, .wp-widget.widget-latest-posts .posts-list .posts .post{
+	justify-content: space-between
+}
+
+.beneficiadas-renda a{
+	background: #f1c3dc  !important;
+	color: #ac286f !important;
+}
+.beneficiadas-renda a:hover{
+	color: #fff !important;
+}
+.beneficiadas-renda a span::before{
+	color: #c8669b  !important;
+}
+
+.wp-block-file__button{
+	background: var(--navy) !important;
+}
+
+.btn-planmob a span:before{
+	content: "";
+}
+
+.btn-planmob a span.icon.icon-traffic{
+	background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDYiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0NiA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0zNS41MjYzIDExLjM5NjZDMzUuNTEgMTAuNDYxNSAzNC45MjU0IDkuNzY4NDkgMzQuMDE1NSA5LjU1OTc2QzMzLjc4OTYgOS41MDEzMSAzMy43MjI4IDkuNDAxMTMgMzMuNjk4MyA5LjE3NTY5QzMzLjUwNTkgNy41NjQzMSAzMy4yOTcxIDUuOTUyOTMgMzIuODA0NyA0LjM4MzI5QzMyLjQzNyAzLjIwNjA2IDMxLjY2ODkgMi40NTQ2NSAzMC41NzU1IDEuOTcwMzhDMjguOTEzOCAxLjI0NDAxIDI3LjE2OSAwLjg0MzI3IDI1LjM5MDcgMC42MjYxODVDMjQuMDI5OSAwLjQ1OTU0OSAyMi42NjUgMC4zNDQ2MzYgMjEuMzAxOCAwLjIyOTgyNUMyMC42MTYxIDAuMTcyMDg5IDE5LjkzMDQgMC4xMTQzNTIgMTkuMjQ1NSAwLjA1MDA5MjdDMTkuMTI4OSAwLjA0MTczNTUgMTkuMDIwNSAwLjAxNjY4OTEgMTguOTExMiAwSDE0Ljg4NzVMMTQuMzAzNyAwLjA0MTczNTVMMTQuMjEzMiAwLjA0ODAwMzRDMTMuNzYxNSAwLjA3OTYyMzUgMTMuMzA5OCAwLjExMTI0NCAxMi44NTgxIDAuMTUwMjc4QzEwLjQ3ODkgMC4zNTA2NzUgOC4xMDc4OCAwLjYwMTEzOCA1LjgyMDAyIDEuMzY5MjdDNS4zNDM4NiAxLjUyNzg4IDQuODg0ODIgMS43MzY2MSA0LjQyNTc4IDEuOTUzNjlDMy40NDkgMi40MTI5MSAyLjgzOTEyIDMuMjA2MDYgMi42MzAzOSA0LjI0OTdDMi4zMDUwNyA1Ljg4NjEzIDIuMDQ2NjEgNy41MzA5MyAxLjc3OTE4IDkuMTY3MzNDMS43NDU3NSA5LjQwMTEzIDEuNjc4ODkgOS41MDk2NyAxLjQzNjczIDkuNTc2NDNDMC42MDE4MTcgOS43ODUxNiAwLjAzNDMzNzEgMTAuNTAzMiAwLjAxNzIxNDkgMTEuMzcxNUMwLjAwOTg3NjggMTEuOTUwMiAwLjAwNTgwMDA4IDEyLjUzMDUgMC4wMDQ5ODQ3MyAxMy4xMTFDMC4wMDQxNjkzOSAxMy44NDU1IDAuMDA4MjQ2MTEgMTQuNTgwMiAwLjAxNzIxNDkgMTUuMzEyM0MwLjAyNjE4MzcgMTYuMDMwMyAwLjM4NDkzNSAxNi41NzMgMC45OTM5OTggMTYuOTE1M0MxLjIxMTcgMTcuMDQwNiAxLjI4NjcxIDE3LjE2NTggMS4yODY3MSAxNy40MTYzTDEuMjg5OTcgMTkuMzY2N0MxLjI5NTY4IDIyLjY4MjQgMS4zMDEzOCAyNS45OTgxIDEuMzM2NDQgMjkuMzEzOEMxLjM1MzU3IDMwLjUwNzcgMS40NjIwMSAzMS42OTMzIDEuNTQ1MTcgMzIuODcwNUMxLjYxMjAzIDMzLjgzOSAyLjE3MTM2IDM0LjQ0MDIgMi45MzEyNiAzNC40MTUxQzMuMjIxNTIgMzQuNDA0IDMuNTA2ODkgMzQuNDAwMyAzLjc5Mzg5IDM0LjM5NjVMNC4yMjUyMSAzNC4zOTAxQzQuMzUwNzcgMzQuMzkwMSA0LjQ2NzM3IDM0LjM5ODQgNC42NDI2NyAzNC40MDY4VjM2LjUzNThDNC42NDI2NyAzNy43MjE0IDUuMDc3MjQgMzguMzU1OSA2LjA5NTYxIDM4LjY4OTlDNy4xODk4IDM5LjA0MDUgOC40NjY2MyAzOC43MjMzIDkuMDA5NjUgMzcuODk2N0M5LjIxMDIzIDM3LjU4NzggOS4zMTg2NyAzNy4xNzg3IDkuMzQzMTMgMzYuODAzQzkuMzU3OCAzNi41MzY2IDkuMzYzNTEgMzYuMjY4MiA5LjM2NDMzIDM1Ljk5ODNDOS4zNjU5NiAzNS43MTczIDkuMzYyNyAzNS40MzQ3IDkuMzU4NjIgMzUuMTUwNkM5LjM1NTM2IDM0LjkwMzYgOS4zNTIxIDM0LjY1NTYgOS4zNTIxIDM0LjQwNjhIMjYuOTAxNkwyNi45MDQgMzQuNzQ1NUwyNi45MDY1IDM1LjAzMTVWMzUuMDc0NUMyNi45MTE0IDM1LjUzMjcgMjYuOTE2MyAzNS45ODE5IDI2Ljg5MzQgMzYuNDI3M0MyNi44NDI5IDM3LjQxMjUgMjcuMTUxOSAzOC4xODA2IDI4LjA5NTIgMzguNTczQzI5LjExNDQgMzkuMDA3MSAzMC4wOTk0IDM4LjkyMzYgMzAuOTg0OCAzOC4yMzA2QzMxLjQ2MDIgMzcuODcxNiAzMS42MzU1IDM3LjM1NCAzMS42MzU1IDM2Ljc2MTJDMzEuNjMxNCAzNi4zNjczIDMxLjYyODkgMzUuOTczNSAzMS42MjgxIDM1LjU3MjhMMzEuNjI3MyAzNC40MDY4QzMxLjg1MjQgMzQuNDA2OCAzMi4wNDQ4IDM0LjQxNTEgMzIuMjQ1MyAzNC4zOTg0QzMyLjM0MTYgMzQuMzkyMSAzMi40Mzk0IDM0LjM4NzkgMzIuNTM3MiAzNC4zODM4QzMyLjgyODMgMzQuMzcxMiAzMy4xMjE4IDM0LjM1ODYgMzMuMzk3NCAzNC4yODk5QzMzLjQ4MDYgMzQuMjczMiAzMy41NDc1IDM0LjI0ODEgMzMuNjE0MyAzNC4yMTQ3QzMzLjk5MDIgMzQuMDU2MSAzNC4xNDAyIDMzLjc1NTUgMzQuMTQwMiAzMy4yODhMMzQuMTQxOCAzMy4wNjAyTDM0LjE0NjcgMzIuNzc0MkwzNC4xNDg0IDMyLjU1MzNDMzQuMTU3MyAzMS44MTAyIDM0LjE3MzYgMzEuMDc1NSAzNC4xODE4IDMwLjMzMjRDMzMuOTQ4NiAzMC4zMDczIDMzLjY5ODMgMzAuMjQ4OSAzMy40NDcyIDMwLjE1NzFDMzIuNjg3MyAyOS44NjQ5IDMyLjIxMTkgMjkuNDMwNyAzMS45Nzc5IDI4Ljg0NjJDMzEuNjI3MyAyNy45Njk2IDMyLjAzNjYgMjcuMTI2MyAzMi4xNzAzIDI2Ljg1MDhDMzIuODU0NCAyNS40Mzk4IDMzLjUzMTEgMjQuMDAzNyAzNC4xOTA4IDIyLjU4NDRMMzQuMTY1NSAxNy40ODMxQzM0LjE2NTUgMTcuMzIzMSAzNC4xNzkzIDE3LjIwNzMgMzQuMjU2OCAxNy4xMDk4QzM0LjMgMTcuMDU0NyAzNC4zNjQ0IDE3LjAwNTMgMzQuNDU3NCAxNi45NTcxQzM1LjEzNDEgMTYuNjMxNSAzNS41MTgxIDE2LjA2MzcgMzUuNTI2MyAxNS4yOTU2QzM1LjU0MzQgMTQuMDAxNSAzNS41NTE2IDEyLjY5OSAzNS41MjYzIDExLjM5NjZaTTguNzkyNzcgMy42MDY4M0gyNi40NzZWNi4yNDUxNkg4Ljc5Mjc3VjMuNjA2ODNaTTguOTkyNTMgMzEuMzI2QzcuNjE1NDEgMzEuMzE3NiA2LjQ3OTY0IDMwLjE2NTQgNi40OTY3NiAyOC44MDQ1QzYuNTIxMjIgMjcuNDE4NiA3LjYzOTg3IDI2LjMwODEgOS4wMjU5NiAyNi4zMDgxQzEwLjQwMzkgMjYuMzE2NSAxMS41MzA3IDI3LjQ0MzYgMTEuNTM5NyAyOC44MTI5QzExLjUzOTcgMzAuMTk4OCAxMC4zNzg2IDMxLjM0MjYgOC45OTI1MyAzMS4zMjZaTTI2LjM3NTcgMzEuMzI2QzI1LjAwNjcgMzEuMzI2IDIzLjg3MDkgMzAuMTkwNCAyMy44NzA5IDI4LjgyMTJDMjMuODcwOSAyNy40MjY5IDI1LjAyMyAyNi4yOTE0IDI2LjQxNzMgMjYuMzA4MUMyNy43OTUyIDI2LjMyNDggMjguOTMwMiAyNy40NzcgMjguOTA1NyAyOC44Mzc5QzI4Ljg4ODYgMzAuMjE1NSAyNy43NTM2IDMxLjMzNDMgMjYuMzc1NyAzMS4zMjZaTTI5LjU2NTMgMjAuMjk2N0g1LjY3ODE1VjcuNzczMDRIMjkuNTY1M1YyMC4yOTY3WiIgZmlsbD0iIzFEQzk4QSIvPgo8cGF0aCBkPSJNNDQuNjYwNiAyNy4yMTgxQzQ0LjI3MjUgMjYuNzg4MiA0My44ODE5IDI2LjM1ODIgNDMuNDkxNCAyNS45MjgyTDQyLjMyMyAyNC42MzgzQzQyLjA4MDkgMjQuMzcxMSA0MS45MzkgMjQuMDYyMiA0MS45MjE5IDIzLjcwMzJMNDEuODc1NCAyMi4zMDA1QzQxLjg2NzIgMjIuMDMxMyA0MS44NTkxIDIxLjc2MjEgNDEuODQ5MyAyMS40OTI5TDQxLjgyOTcgMjAuODk3OUM0MS44MDUzIDIwLjI0NjYgNDEuNTEyNiAxOS45NTQ0IDQwLjg0NDggMTkuOTU0NEMzOS44MTgzIDE5Ljk1NDQgMzguNzkwOSAxOS45NjI3IDM3Ljc2NDQgMTkuOTU0NEMzNy4xMDQ4IDE5Ljk0NjEgMzYuNjc4NCAyMC4yMjE2IDM2LjM5NDYgMjAuODIyN0MzNS4zNzYzIDIzLjAxODYgMzQuMzU3OSAyNS4yMjI3IDMzLjI5NzEgMjcuMzkzNUMzMi45MTMxIDI4LjE4NjcgMzMuMDQ2OCAyOC42NTQyIDMzLjg4OTkgMjguOTc5OEMzNC40OTk4IDI5LjIxMzYgMzQuOTA4MyAyOS4wODg0IDM1LjIwMSAyOC41MTIzQzM1LjY1MTkgMjcuNjE4OSAzNi4wOTQ2IDI2LjcxNzIgMzYuNTUzNiAyNS44MzIyTDM2LjU4NTQgMjUuNzcyMkMzNi42MDY2IDI1LjczNCAzNi42MzI3IDI1LjY5MTEgMzYuNjY3IDI1LjYzNDRMMzYuNzAzNyAyNS41NzM0QzM2LjcwMzcgMjYuMjQ5NyAzNi42Nzg0IDI2Ljg1OTEgMzYuNzExOCAyNy40NjAzQzM2Ljc2MjQgMjguMjc4NSAzNi42NDQ5IDI5LjA1NSAzNi4zNTMxIDI5LjgxNDhDMzYuMjcxNSAzMC4wMjY5IDM2LjIwMzggMzAuMjQyNSAzNi4xMzcgMzAuNDU3MUMzNi4xMDExIDMwLjU3MTkgMzYuMDY1MiAzMC42ODY0IDM2LjAyNzcgMzAuOEMzNS44NSAzMS4zNTE5IDM1LjY3MzkgMzEuOTA0NSAzNS40OTY5IDMyLjQ1NzRMMzUuMzA2MiAzMy4wNTYxQzM0Ljg5NzcgMzQuMzM2MiAzNC40ODkyIDM1LjYxNzIgMzQuMDc0MiAzNi44OTQ4QzMzLjkwNyAzNy40Mzc1IDMzLjkzMTUgMzcuOTIxNyAzNC4zMzI2IDM4LjM0NzVDMzQuOTQxNyAzOC45OTA0IDM2LjQyODEgMzkuMDczOSAzNi44NTM3IDM3LjczODFDMzcuNjMwNyAzNS4zMDg1IDM4LjQwNjkgMzIuODcwNSAzOS4xODMxIDMwLjQ0MDlDMzkuMjI1NSAzMC4zMzI0IDM5LjI1ODkgMzAuMjIzOSAzOS4zMTY4IDMwLjA2NTJDMzkuNDY3NyAzMC40MjQyIDM5LjU5MjQgMzAuNzMzMSAzOS43MTggMzEuMDQyMUwzOS44NzYyIDMxLjQyOTZDNDAuMTk3NCAzMi4yMDk5IDQwLjUyMDMgMzIuOTkzNyA0MC42Mjc5IDMzLjgzOUM0MC43OTUxIDM1LjE1ODIgNDAuOTQ1MSAzNi40ODU3IDQxLjA3MDYgMzcuODEzMkM0MS4xMjg1IDM4LjUxNDUgNDEuMzQ2MiAzOS4wNjU2IDQyLjA2MzcgMzkuMjk5NEg0Mi41MTQ2TDQyLjUzODMgMzkuMjg2OEM0Mi41NjExIDM5LjI3NDcgNDIuNTgxNSAzOS4yNjM4IDQyLjYwNjggMzkuMjU3NkM0My41NDIgMzkuMDQ4OSA0NC4wMDkxIDM4LjQzMTEgNDMuOTA4OSAzNy40NzkzQzQzLjgwODYgMzYuNTM1OCA0My42NzQ5IDM1LjU4NCA0My41NTAxIDM0LjY0MDVDNDMuNDMzNSAzMy43ODkgNDMuMzI0MyAzMi45MjkgNDMuMTc0MiAzMi4wOTQxQzQyLjk5NDkgMzEuMDgyMyA0Mi41NTYyIDMwLjE1MTMgNDIuMTIzMyAyOS4yMzI1TDQyLjExODQgMjkuMjIzNUw0Mi4wMzg1IDI5LjA1NUM0MS43NjM3IDI4LjQ3ODkgNDEuODYzMiAyNy45MDI4IDQxLjg4MDMgMjcuMjg1QzQxLjkzNDEgMjcuMzEyIDQxLjk2MzQgMjcuMzU2NSA0MS45OTEyIDI3LjM5ODFDNDIuMDA1OCAyNy40MjA4IDQyLjAyMDUgMjcuNDQyNiA0Mi4wMzg1IDI3LjQ2MDNDNDIuNDY0OSAyNy45MTk1IDQyLjg5MDUgMjguMzYyIDQzLjMzMzIgMjguODA0NUM0My42OTIgMjkuMTYzNSA0NC4xNTEgMjkuMTYzNSA0NC41MTg3IDI4Ljc5NjFMNDQuNTcxNyAyOC43NDE4QzQ0LjYwMTEgMjguNzEyMyA0NC42Mjg4IDI4LjY4MjMgNDQuNjYwNiAyOC42NDU5QzQ1LjExOTYgMjguMTUzMyA0NS4xMTk2IDI3LjczNTggNDQuNjYwNiAyNy4yMTgxWiIgZmlsbD0iIzFEQzk4QSIvPgo8cGF0aCBkPSJNNDIuMjEzOCAxNi41MzEzQzQyLjIyMjcgMTguMDM0MSA0MS4wMTE5IDE5LjI1MzEgMzkuNTA5MyAxOS4yNjE0QzM4LjAwNTggMTkuMjYxNCAzNi43ODY4IDE4LjA2NzUgMzYuNzc4NyAxNi41NTYzQzM2Ljc3MDUgMTUuMDUzNSAzNy45ODEzIDEzLjgzNDUgMzkuNDg0IDEzLjgyNjJDNDAuOTc4NSAxMy44MTc4IDQyLjIwNTYgMTUuMDM2OCA0Mi4yMTM4IDE2LjUzMTNaIiBmaWxsPSIjMURDOThBIi8+Cjwvc3ZnPgo=") center center / contain no-repeat;
+}
+
+
+.page-id-41531 .post-title{
+    display: none;
+}
+
+.page-id-41531 .wp-polls h1{
+    margin-bottom: 40px;
+}
+.page-id-41531 .wp-polls-ul li{
+    margin-bottom: 10px;
+}
+
+.page-id-41531 .wp-polls-ul li input[type=radio] + label{
+    margin-left: 5px;
+}
+
+.page-id-41531 .wp-polls-ul li input[type=radio]:checked + label{
+    color: var(--emerald)
+}
+
+.page-id-41531 .wp-polls-ul {
+    margin-bottom: 40px;
+}
+
+.conteudo-enquete{
+    background: var(--branco);
+    border-radius: 10px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+    padding: 50px 30px;
+}
+
+.page-id-41531 .wp-polls input[type=button] {
+    padding: 12px 20px;
+    border: none;
+    color: var(--branco);
+    border-radius: 9999px;
+    background: var(--emerald);
+    font-family: 'Inter';
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 16px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.page-id-41531 .wp-polls input[type=button]:hover {
+    background: var(--emerald-hover);
+}
+
+.wp-polls .pollbar{
+	border-radius: 8px
+}
+
+.wrapper-vacinometro .col-meta .meta-text{
+	display: none !important;
+}
+
+.btn-sei a span:before{
+	content: "";
+}
+
+.btn-sei a span.icon.icon-badge{
+	background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIyLjk0NTYgMjEuMTcxN0MyMS45OTk4IDIxLjE0NTQgMjEuMDUzOSAyMS4xNzE3IDIwLjExMTMgMjEuMTcxN0MxOS4xNjg3IDIxLjE3MTcgMTguMjA2NiAyMS4xNzE3IDE3LjI3MzggMjEuMTcxN0MxNi45MDk4IDIxLjE3MTcgMTYuODQ4IDIxLjAzOTkgMTYuOSAyMC43MjM1QzE3LjAxNjQgMTkuODA0NyAxNy4zNTEgMTguOTI4MiAxNy44NzUxIDE4LjE2OTNDMTkuMzExNyAxNi4yMjgxIDIyLjAwNjMgMTYuNTU3NyAyMi45NTU0IDE4Ljc3NTdDMjMuMTk2MiAxOS4zOTYyIDIzLjMzODggMjAuMDUxMyAyMy4zNzc5IDIwLjcxNjlDMjMuNDEwNCAyMS4wNjk2IDIzLjMxMjkgMjEuMTk0OCAyMi45NDU2IDIxLjE4NDlWMjEuMTcxN1pNMjcuMTM4NSAxOC4xMTY2QzI2LjQyOTkgMTYuMjA1IDI1LjI0MzYgMTQuNzI4NSAyMy4zMDY0IDEzLjk5NjlDMjAuMTU2OCAxMi44MjAzIDE1Ljg0MDQgMTMuNTkxNSAxMy42NzU3IDE3LjU3NjFDMTEuOTQgMjAuNzgyOCAxMS43NzQzIDI0LjE2NzYgMTIuOTg5OSAyNy41ODg2QzEzLjM0OTQgMjguNjY3MSAxMy45NjE2IDI5LjY0MTEgMTQuNzc0IDMwLjQyN0MxNS41ODYzIDMxLjIxMjkgMTYuNTc0NyAzMS43ODcxIDE3LjY1NDEgMzIuMTAwNUMyMC42ODM0IDMzLjAzNjUgMjMuNjg2NyAzMi43MDY5IDI2LjY1NzUgMzEuNzE4MkMyNi45MDc3IDMxLjYzMjUgMjYuOTQwMiAzMS41MTM4IDI2Ljg4MTcgMzEuMjYwMUMyNi42ODAyIDMwLjM5OTkgMjYuNDk0OSAyOS41NDMgMjYuMzU1MiAyOC42ODYxQzI2LjI5MDIgMjguMjkzOSAyNi4xODYyIDI4LjIyOCAyNS44MDI2IDI4LjM1NjVDMjQuMTkyOCAyOC44ODgyIDIyLjQ5MTEgMjkuMDcyMyAyMC44MDY5IDI4Ljg5N0MxOC42MjU5IDI4LjY0NjUgMTcuMDgyIDI3LjE0MDQgMTYuOTA2NSAyNS4wNjczQzE2Ljg3NCAyNC43MDE1IDE2LjkyNiAyNC41NTk4IDE3LjMzODggMjQuNTY2NEMxOC45OTMyIDI0LjU5MjcgMjAuNjQ3NiAyNC41NjY0IDIyLjMwMiAyNC41NjY0QzIzLjk1NjQgMjQuNTY2NCAyNS41NTIzIDI0LjU0MzMgMjcuMTc3NSAyNC41ODI5QzI3LjY2ODMgMjQuNTgyOSAyNy44Mjc2IDI0LjQyOCAyNy44Mjc2IDIzLjk2OThDMjcuOTQxMyAyMS45NzI2IDI3Ljg2MDEgMjAuMDE0OSAyNy4xNTggMTguMTA2NyIgZmlsbD0iI0YzNkUyMiIvPgo8cGF0aCBkPSJNNy4xMTY1NyAxMy44NDUzQzguNDM2MTkgMTMuODQ4MiA5Ljc0NDAxIDE0LjA5NzMgMTAuOTc0NyAxNC41ODAyQzExLjQwMzcgMTQuNzUxNiAxMS41NzkzIDE0LjkyOTYgMTEuNDA3IDE1LjQyNzJDMTEuMTU2NyAxNi4xNjg4IDEwLjk3NDcgMTYuOTM2NyAxMC43OTU5IDE3LjcwMTNDMTAuNjk1MiAxOC4xNDk1IDEwLjYwMDkgMTguMzE3NiAxMC4wOTcxIDE4LjA1NEM5LjA5MjEyIDE3LjUyMjcgNy45NjA4IDE3LjI4NjQgNi44MzA1NSAxNy4zNzE3QzYuNDA2OTkgMTcuMzk0NCA1Ljk5NzI0IDE3LjUzMjIgNS42NDQxOCAxNy43NzA1QzUuNDM5NzQgMTcuOTA5MyA1LjI3MDMxIDE4LjA5NDggNS4xNDk1NyAxOC4zMTIyQzUuMDI4ODMgMTguNTI5NSA0Ljk2MDE1IDE4Ljc3MjYgNC45NDkwOCAxOS4wMjE4QzQuOTM4MDEgMTkuMjcxIDQuOTg0ODYgMTkuNTE5MyA1LjA4NTg0IDE5Ljc0NjhDNS4xODY4MiAxOS45NzQzIDUuMzM5MTEgMjAuMTc0NSA1LjUzMDQyIDIwLjMzMTNDNi4xNTgzOSAyMC44MjM3IDYuODU5NDIgMjEuMjExOSA3LjYwNzM3IDIxLjQ4MTVDOC40MzY5OSAyMS44MjEgOS4yMjcyNSAyMi4yNTIxIDkuOTYzODUgMjIuNzY2OUMxMC43NTY4IDIzLjMwMTQgMTEuMzg2NiAyNC4wNSAxMS43ODIzIDI0LjkyODJDMTIuMTc4IDI1LjgwNjQgMTIuMzIzOCAyNi43NzkyIDEyLjIwMzMgMjcuNzM2OUMxMS45OTUzIDI5LjkzNTIgMTAuODQxNCAzMS40OTA4IDguODI5NDkgMzIuMjcxOEM1Ljk2NTk2IDMzLjM4OTEgMy4xMTIxOSAzMy4xNzQ5IDAuMzEzNjY4IDMxLjk0MjNDMC4yNTM1MjQgMzEuOTI5MiAwLjE5NzE5NCAzMS45MDIyIDAuMTQ5MTMxIDMxLjg2MzNDMC4xMDEwNjggMzEuODI0NCAwLjA2MjU4ODkgMzEuNzc0NyAwLjAzNjczNiAzMS43MTgxQzAuMDEwODgzMSAzMS42NjE1IC0wLjAwMTYzNTAyIDMxLjU5OTYgMC4wMDAxNzEwMzUgMzEuNTM3M0MwLjAwMTk3NzA5IDMxLjQ3NDkgMC4wMTgwNTc5IDMxLjQxMzkgMC4wNDcxNDIyIDMxLjM1ODlDMC4zMTM2NjggMzAuNDU5MiAwLjU0NDQ0IDI5LjU0NjMgMC43NTI0NiAyOC42MzMzQzAuODMzNzE4IDI4LjI4MDcgMC45MjE0NzcgMjguMjMxMyAxLjI0NjUxIDI4LjM5NkMyLjUwMTczIDI5LjA3NjQgMy45MDU2NSAyOS40MjU1IDUuMzI4OSAyOS40MTExQzUuNjMyMjIgMjkuNDAwNCA1LjkzMzc3IDI5LjM1OTUgNi4yMjkyNCAyOS4yODkyQzYuNTM5NzEgMjkuMjQwNCA2LjgyOTU4IDI5LjEwMTUgNy4wNjM3OSAyOC44ODkyQzcuMjk3OTkgMjguNjc2OCA3LjQ2NjQ4IDI4LjQwMDIgNy41NDg4NyAyOC4wOTI4QzcuNjU5NTMgMjcuNzQzMyA3LjY2NDQ5IDI3LjM2ODIgNy41NjMxMiAyNy4wMTU4QzcuNDYxNzUgMjYuNjYzNCA3LjI1ODY5IDI2LjM0OTggNi45ODAwNiAyNi4xMTU0QzYuMzgxOTYgMjUuNjQwMiA1LjcxNDAyIDI1LjI2MzIgNS4wMDA2MiAyNC45OTgxQzQuMDQ1NjggMjQuNjEzNyAzLjE0NTExIDI0LjEwMjggMi4zMjIzNiAyMy40Nzg4Qy0wLjc2NTQzNiAyMS4wMyAwLjIzNTY2MSAxNy4wNzUxIDIuMzQxODYgMTUuMzgxMUMzLjc0NiAxNC4yNTA3IDUuMzY3OTEgMTMuODU1MiA3LjExNjU3IDEzLjg1MTkiIGZpbGw9IiNGMzZFMjIiLz4KPHBhdGggZD0iTTMzLjk2NDIgOS42NzYxNUMzMy45NjQyIDEwLjIwNTQgMzMuODA5NCAxMC43MjI5IDMzLjUxOTQgMTEuMTYyOUMzMy4yMjk0IDExLjYwMyAzMi44MTcyIDExLjk0NiAzMi4zMzQ5IDEyLjE0ODZDMzEuODUyNiAxMi4zNTExIDMxLjMyMiAxMi40MDQxIDMwLjgxIDEyLjMwMDlDMzAuMjk4IDEyLjE5NzYgMjkuODI3OCAxMS45NDI3IDI5LjQ1ODcgMTEuNTY4NUMyOS4wODk2IDExLjE5NDIgMjguODM4MiAxMC43MTc0IDI4LjczNjQgMTAuMTk4MkMyOC42MzQ1IDkuNjc5MTIgMjguNjg2OCA5LjE0MTA0IDI4Ljg4NjYgOC42NTIwM0MyOS4wODYzIDguMTYzMDMgMjkuNDI0NiA3Ljc0NTA3IDI5Ljg1ODYgNy40NTEwMUMzMC4yOTI2IDcuMTU2OTUgMzAuODAyOSA3IDMxLjMyNDkgN0MzMi4wMjQ2IDcuMDAwODcgMzIuNjk1NCA3LjI4MzEgMzMuMTkwMiA3Ljc4NDc5QzMzLjY4NSA4LjI4NjQ4IDMzLjk2MzMgOC45NjY2NiAzMy45NjQyIDkuNjc2MTVaIiBmaWxsPSIjRjM2RTIyIi8+CjxwYXRoIGQ9Ik0zMy43NDMxIDEzLjg5NDdIMjguOTA2N1YzMi4zMDQ4SDMzLjc0MzFWMTMuODk0N1oiIGZpbGw9IiNGMzZFMjIiLz4KPHBhdGggZD0iTTM0LjcyMTUgMjkuNjMyQzM0LjcyMDggMjkuMTAyNSAzNC44NzUxIDI4LjU4NDggMzUuMTY0NyAyOC4xNDQzQzM1LjQ1NDMgMjcuNzAzNyAzNS44NjYzIDI3LjM2MDIgMzYuMzQ4NSAyNy4xNTcyQzM2LjgzMDcgMjYuOTU0MSAzNy4zNjE1IDI2LjkwMDYgMzcuODczNiAyNy4wMDM1QzM4LjM4NTggMjcuMTA2NCAzOC44NTY0IDI3LjM2MSAzOS4yMjU4IDI3LjczNTJDMzkuNTk1MyAyOC4xMDkzIDM5Ljg0NjkgMjguNTg2MSAzOS45NDkgMjkuMTA1NEM0MC4wNTExIDI5LjYyNDYgMzkuOTk5MSAzMC4xNjI4IDM5Ljc5OTQgMzAuNjUyQzM5LjU5OTcgMzEuMTQxMiAzOS4yNjE1IDMxLjU1OTQgMzguODI3NCAzMS44NTM2QzM4LjM5MzMgMzIuMTQ3OCAzNy44ODI5IDMyLjMwNDggMzcuMzYwNyAzMi4zMDQ4QzM2LjY2MTMgMzIuMzA0OCAzNS45OTA1IDMyLjAyMzMgMzUuNDk1NyAzMS41MjIyQzM1LjAwMDggMzEuMDIxIDM0LjcyMjQgMzAuMzQxMSAzNC43MjE1IDI5LjYzMloiIGZpbGw9IiNGMzZFMjIiLz4KPHBhdGggZD0iTTM5Ljc3OSA3SDM0Ljk0MjVWMjUuNDEwMUgzOS43NzlWN1oiIGZpbGw9IiNGMzZFMjIiLz4KPC9zdmc+Cg==") center center / contain no-repeat;
+}
+
+.btn-mulher a span:before{
+	content: "";
+}
+
+.btn-mulher a span.icon.icon-woman{
+background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDUiIGhlaWdodD0iNDUiIHZpZXdCb3g9IjAgMCA0NSA0NSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQyLjI1NjEgNDQuMTM5NkM0MS41NTQ3IDQyLjYxMDUgNDEuMjA2NCA0MC45NzYzIDQwLjkzMDUgMzkuMzMwM0M0MC4yMjkxIDM1LjEyMTggMzkuOTQ2MiAzMC44OTIzIDM5LjY4MiAyNi42NTEyQzM5LjQ5MDMgMjMuNTY3MyAzOS4zNTkzIDIwLjQ3NDEgMzkuMDQ4NCAxNy4zOTk2QzM4LjY2OTYgMTMuNjU4OCAzNy43NTA4IDEwLjA0NjUgMzUuNzIzNyA2LjgwODMzQzMzLjM5OTcgMy4wOTA4NyAzMC4wMTg5IDAuOTYzMjY2IDI1LjcyMzkgMC4yNjE4NThDMjUuMDc2MyAwLjE1NjY0NyAyNC40MjE3IDAuMDg2NTA3IDIzLjc3MTcgMEgyMC45NjYxQzIwLjIwMTUgMC4xMDk4ODcgMTkuNDMyMyAwLjE5ODczMyAxOC42NzI1IDAuMzM2Njc2QzEzLjg3NzIgMS4xOTcwNyAxMC40MzMzIDMuODY5NDMgOC4yMzMxNyA4LjE4MDc1QzYuODc5ODYgMTAuODcwMyA2LjA0NTQzIDEzLjc5MDggNS43NzM1NiAxNi43ODk0QzUuNDY0OTQgMTkuODkxOSA1LjMwNTk3IDIzLjAxMzIgNS4xMzk5NyAyNi4xMjc0QzQuOTA2MTcgMzAuMzM1OSA0LjY5ODA4IDM0LjU1NiAzLjk5NjY3IDM4LjcyNzFDMy42NzYxMyA0MC45MTI2IDMuMDAxNzUgNDMuMDMxMyAyIDQ1SDQyLjczMzFDNDIuNTY3MSA0NC43MTQ4IDQyLjM5NDEgNDQuNDM2NSA0Mi4yNTYxIDQ0LjEzOTZaTTMyLjcyODcgMjUuNzExM0MzMi4xMzk1IDI1Ljg3OTYgMzEuOTU3MSAyNi4xNzg5IDMxLjc1MTQgMjYuNjY3NUMzMC40MzI3IDI5LjgyMTUgMjguNDE1IDMyLjQzMzEgMjUuNTUzMyAzNC4zNDMzQzI0LjUwMzUgMzUuMDQ0NyAyMy4zNjAyIDM1LjUzOCAyMi4wNDYyIDM1LjQ0MjFDMjAuOTMyOSAzNS4zMzU3IDE5Ljg2ODYgMzQuOTMxOSAxOC45NjQ3IDM0LjI3MzFDMTYuMDcyNiAzMi4yODgxIDE0LjA3MzYgMjkuNTk3MSAxMi44NTA4IDI2LjMyMzhDMTIuODIwMyAyNi4xODkyIDEyLjc0ODEgMjYuMDY3NiAxMi42NDQzIDI1Ljk3NjVDMTIuNTQwNiAyNS44ODU0IDEyLjQxMDggMjUuODI5NCAxMi4yNzMzIDI1LjgxNjVDMTAuNzEzOCAyNS41Mjg5IDkuNjUwMDIgMjMuODQzMiA5LjkwMDE5IDIyLjEyNDdDOS45MTg4OSAyMS45OTM4IDkuOTM3NTkgMjEuODYyOSA5Ljk2Nzk4IDIxLjczNDNDMTAuMTU5NyAyMC45MjA3IDEwLjUyMjEgMjAuNjU4OCAxMS4zNzA4IDIwLjc1NDdWMTkuMzg5M0MxMi4wNzIyIDE5LjM0OTUgMTIuNzMzOSAxOS4yOTgxIDEzLjQwMjUgMTkuMjc0N0MxNi41MjYxIDE5LjE2MDEgMTkuNDM0NyAxOC4zMzk1IDIyLjA1MzIgMTYuNjA0N0MyMi42MzU4IDE2LjIxMiAyMy4xODkgMTUuNzc3NSAyMy43MDg2IDE1LjMwNDdDMjQuMjE1OSAxNC44MzcxIDI0LjY2NzIgMTQuMzIwNCAyNS4xNjk4IDEzLjc5OUMyNy4yNzQxIDE2LjQzODcgMzAuMDc5NyAxNy45NDQ0IDMzLjM1MjkgMTguNzYyN1YyMC42NzUyQzMzLjY4OTYgMjAuNzQ3NiAzNC4wODAxIDIwLjcxNDkgMzQuMjU3NyAyMC44OTI2QzM0LjUxOTkgMjEuMTgxMiAzNC42OTc4IDIxLjUzNjIgMzQuNzcyMSAyMS45MTlDMzUuMTE1OCAyMy42MjgxIDM0LjI3NDEgMjUuMjY0NyAzMi43Mjg3IDI1LjcxMTNaIiBmaWxsPSIjMURDOThBIi8+Cjwvc3ZnPgo=") center center / contain no-repeat;
+}
+/* ALTERAÇÕES ACESSO RAPIDO */
+@media only screen and (min-width: 1000px) {
+    .template-part-section-quick-access .container {
+        flex-direction: column;
+    }
+    .template-part-quick-access {
+        align-self: unset;
+    }
+    .template-part-most-accessed .most-accessed-wrapper .menu-tabs .menu-tabs-content .sub-menu,
+	.template-part-most-accessed .most-accessed-wrapper .menu-tabs .bookmark-content .sub-menu{
+        margin: 0
+    }
+    .template-part-quick-access .quick-access-wrapper .links-wrapper-container .links-wrapper {
+        flex-wrap: unset;
+        width: 100%;
+        margin: 0
+    }
+    .template-part-quick-access .quick-access-wrapper .links-wrapper-container .links-wrapper li {
+        height: auto;
+    }
+
+
+    .template-part-section-quick-access .container .template-part-most-accessed {
+        padding-right: 0 !important;
+    }
+    .template-part-most-accessed .most-accessed-wrapper .menu-tabs .menu-tabs-content .sub-menu li, .template-part-most-accessed .most-accessed-wrapper .menu-tabs .bookmark-content .sub-menu li {
+        width: calc((100%/8) - 10px);
+    }
+	
+	.template-part-section-quick-access .container .personalizar{
+		margin-right: 5px
+	}
+	
+.bookmark {
+		margin-left: 5px !important;
+	}
+}
+
+
+/* FIM DAS ALTERAÇÕES */
+
+.ninja-forms-field{
+	background: #FFFFFF;
+box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1) !important;
+border-radius: 10px !important;
+	border: none !important
+}
+
+.btn-form-contato{
+	background: #1DC98A !important;
+	text-transform: uppercase;
+	padding: 12px 20px !important;
+	box-shadow: none !important;
+	font-family: 'Inter';
+	font-weight: 700
+}
+
+.btn-form-contato:hover{
+	color: white !important;
+	background: #25D293 !important;
+	cursor: pointer !important
+}
+
+.nf-form-content{
+	padding: 0 !important;
+	margin-top: 15px !important
+}
+
+@media only screen and (max-width: 550px){
+	.template-part-component-feed-post .wrapper-content p {
+    font-size: 0.7em;
+		line-height: 1.2em;
+		padding: 12px
+}
+}
+
+
+/*---- Busca Renuncias Fiscais ---*/
+.busca-renuncias {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 15px;
+}
+.busca-renuncias #ano {
+  padding: 5px;
+  border: 1px solid #E1E7E7;
+  font-family: "Inter";
+  font-size: 18px;
+  border-radius: 10px;
+  line-height: 30px;
+  height: 50px;
+}
+.busca-renuncias .button-submit {
+  width: 100%;
+  color: white;
+  background: var(--emerald);
+  font-family: "Inter";
+  font-weight: 700;
+  font-size: 16px;
+  padding: 15px;
+  border-radius: 10px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  transform: 0.5s;
+}
+.busca-renuncias .button-submit:hover {
+  background: #25D293;
+  cursor: pointer;
+}
+.botoes-relatorio {
+  display: flex;
+  gap: 10px;
+}
+.botoes-relatorio a {
+  color: var(--emerald);
+  font-weight: 700;
+  font-family: "Inter";
+  text-decoration: none;
+  padding: 8px 25px;
+  background: #DEF7EB;
+  border-radius: 10px;
+  border: 1px solid Var(--emerald);
+  transition: 0.3s;
+}
+.botoes-relatorio a:hover {
+  background: var(--emerald);
+  color: #fff;
+}
+
+
+.template-part-front-page .top-sections{
+	padding-bottom: 40px
+}
+
+iframe[src="https://goiania.nucleogov.com.br/ouvidoria/ouvidoria_acompanhar"] {
+	@media only screen and (max-width: 1024px) {
+		min-height: 800px;
+	}
+}
+
+.ouvidoria-images {
+	@media only screen and (max-width: 782px) {
+		flex-wrap: wrap !important;
+	}
+}
+
+.ouvidoria-images figure img {
+	border-radius: 15%!important;
+}
+
+.ouvidoria-images > .wp-block-column {
+	@media only screen and (max-width: 782px) {
+		width: 100%;
+		max-width: calc((100% - 4rem) / 3)!important;
+    flex-basis: auto!important;
+	}
+}
+
+.ouvidoria-images > .wp-block-column {
+	@media only screen and (max-width: 450px) {
+		width: 100%;
+		max-width: calc((100% - 2rem) / 2)!important;
+    flex-basis: auto!important;
+	}
+}
+
+.template-part-singular-single-transparencia iframe {
+	min-height: 100vh;
+}
+		</style>
+		            <!-- Google tag (gtag.js) -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-N97BQ3Z"></script>
+            <script>
+                window.dataLayer = window.dataLayer || [];
+
+                function gtag() {
+                    dataLayer.push(arguments);
+                }
+
+                gtag('js', new Date());
+                gtag('config', 'GTM-N97BQ3Z');
+            </script>
+            </head>
+
+<body class="wp-singular transparencia-template-default single single-transparencia postid-7378 wp-theme-prefeitura-goiania page-full-screen">
+    <header>
+        
+    <div class="template-part-header-top-bar">
+        <div class="stripe yellow"></div>
+        <div class="stripe orange"></div>
+        <div class="stripe green"></div>
+        <div class="stripe blue"></div>
+    </div>
+
+<div class="template-part-header-top layout-2023">
+    <div class="container">
+        <div class="header-menu-mobile">
+            <div class="menu-mobile-title">Menu</div>
+            <div class="close-main-menu" id="close-main-menu">
+                <svg xmlns="http://www.w3.org/2000/svg" class="nwe-icon nwe-icon-fechar" fill="none" height="50" viewBox="0 0 50 50" width="50"><g id="FECHAR G"><path clip-rule="evenodd" d="M29.8189 25.0043L48.9963 5.83193C50.3387 4.48979 50.3305 2.33952 48.9963 1.00353C47.6601 -0.338599 45.5095 -0.322232 44.1754 1.00353L25 20.1759L5.82463 1.00353C4.48229 -0.338599 2.3317 -0.330415 1.00368 1.00353C-0.338651 2.34771 -0.330465 4.49593 1.00368 5.83193L20.1811 25.0043L1.00368 44.1686C-0.338651 45.5107 -0.330465 47.661 1.00368 48.9949C2.33988 50.3391 4.49047 50.3309 5.82463 48.9949L25 29.8225L44.1754 48.9949C45.5177 50.3391 47.6683 50.3309 48.9963 48.9949C50.3387 47.6528 50.3305 45.5025 48.9963 44.1686L29.8189 25.0043Z" fill="#7A8987" fill-rule="evenodd" id="close_big"></path></g></svg>            </div>
+        </div>
+
+                    <div class="dynamic-sidebar-section dss-mobile-column"><div id="nw_menu-1004" class="column-flex-1 wp-row-widget widget_nw_menu">        <section class="wp-widget widget-menu layout-2023">
+            <div class="menu-menu-principal-container"><ul id="menu-menu-principal" class="menu menu-dropdown"><li id="menu-item-30381" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-30381"><a href="https://www.goiania.go.gov.br/">Início</a></li>
+<li id="menu-item-61913" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-61913"><a href="https://www.goiania.go.gov.br/estrutura/">Secretarias</a>
+<ul class="sub-menu">
+	<li id="menu-item-30380" class="menu-item menu-item-type-post_type menu-item-object-secretarias menu-item-30380"><a href="https://www.goiania.go.gov.br/secretaria/secretaria-municipal-de-saude/">Secretaria Municipal de Saúde</a></li>
+	<li id="menu-item-30384" class="menu-item menu-item-type-post_type menu-item-object-secretarias menu-item-30384"><a href="https://www.goiania.go.gov.br/secretaria/secretaria-municipal-da-fazenda/">Secretaria Municipal da Fazenda</a></li>
+	<li id="menu-item-30385" class="menu-item menu-item-type-post_type menu-item-object-secretarias menu-item-30385"><a href="https://www.goiania.go.gov.br/secretaria/secretaria-municipal-de-educacao/">Secretaria Municipal de Educação</a></li>
+	<li id="menu-item-30386" class="menu-item menu-item-type-post_type menu-item-object-secretarias menu-item-30386"><a href="https://www.goiania.go.gov.br/secretaria/secretaria-municipal-de-administracao/">Secretaria Municipal de Administração</a></li>
+	<li id="menu-item-30387" class="menu-item menu-item-type-post_type menu-item-object-secretarias menu-item-30387"><a href="https://www.goiania.go.gov.br/secretaria/secretaria-municipal-de-planejamento-urbano-e-habitacao/">Secretaria Municipal de Planejamento e Urbanismo Estratégico</a></li>
+	<li id="menu-item-30388" class="menu-item menu-item-type-post_type menu-item-object-secretarias menu-item-30388"><a href="https://www.goiania.go.gov.br/secretaria/secretaria-municipal-de-engenharia-de-transito/">Secretaria Municipal de Engenharia de Trânsito</a></li>
+	<li id="menu-item-30389" class="menu-item menu-item-type-post_type menu-item-object-orgaos menu-item-30389"><a href="https://www.goiania.go.gov.br/orgao/agencia-municipal-do-meio-ambiente/">Agência Municipal do Meio Ambiente &#8211; AMMA</a></li>
+	<li id="menu-item-30393" class="menu-item menu-item-type-post_type menu-item-object-secretarias menu-item-30393"><a href="https://www.goiania.go.gov.br/secretaria/secretaria-municipal-de-desenvolvimento-economico-trabalho-ciencia-e-tecnologia/">Secretaria Municipal de Desenvolvimento, Indústria, Comércio, Agricultura e Serviços</a></li>
+	<li id="menu-item-31032" class="menu-item menu-item-type-post_type menu-item-object-orgaos menu-item-31032"><a href="https://www.goiania.go.gov.br/orgao/instituto-municipal-de-assistencia-a-saude-e-social-dos-servidores-municipais-de-goiania/">Instituto Municipal de Assistência à Saúde dos Servidores de Goiânia – IMAS</a></li>
+	<li id="menu-item-31294" class="menu-item menu-item-type-post_type menu-item-object-secretarias menu-item-31294"><a href="https://www.goiania.go.gov.br/secretaria/secretaria-municipal-de-governo/">Secretaria Municipal de Governo</a></li>
+	<li id="menu-item-93063" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-93063"><a href="https://www.goiania.go.gov.br/sing_prefeitura/prefeito/chefia-de-gabinete/secretario-municipal-da-casa-civil/">Secretaria Municipal da Casa Civil</a></li>
+	<li id="menu-item-31033" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-31033"><a href="/estrutura">Ver todos os Órgãos</a></li>
+</ul>
+</li>
+<li id="menu-item-61911" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-61911"><a href="https://www.goiania.go.gov.br/servicos/">Serviços</a></li>
+<li id="menu-item-116214" class="menu-item menu-item-type-ns-image menu-item-object-custom menu-item-116214 menu-item-image"><a><img class="menu-item-image-content" src="https://www.goiania.go.gov.br/wp-content/uploads/2026/11/Logo-e-Selo-2.png" alt="Imagem" style="height:80px;" decoding="async"></a></li>
+<li id="menu-item-731" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-731"><a href="https://www.goiania.go.gov.br/transparencia">Transparência</a></li>
+<li id="menu-item-68214" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-68214"><a href="/agora">Notícias</a></li>
+<li id="menu-item-68468" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-68468"><a href="https://www.goiania.go.gov.br/ouvidoria-e-sic/ouvidoria-e-atendimento/">Ouvidoria</a></li>
+</ul></div>        </section>
+        </div>
+<div id="nw_accessibility-1003" class="column-auto desktop-hidden wp-row-widget widget_nw_accessibility">        <section class="wp-widget widget-accessibility ">
+            <div class="footer-socials">
+                <div class="widget widget_nw_social_icons">        <section class="wp-widget widget-social-icons ">
+            
+            <div class="social_content">
+                                        <a
+                            target="_blank"
+                            rel="noopener"
+                            href="https://www.instagram.com/prefeituradegoiania/"
+                            title="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="nwe-icon nwe-icon-instagram" fill="none" height="50" viewBox="0 0 50 50" width="50"><g id="INSTAGRAM"><g id="instagram"><path d="M34.375 0H15.625C6.99688 0 0 6.99688 0 15.625V34.375C0 43.0031 6.99688 50 15.625 50H34.375C43.0031 50 50 43.0031 50 34.375V15.625C50 6.99688 43.0031 0 34.375 0ZM45.3125 34.375C45.3125 40.4062 40.4062 45.3125 34.375 45.3125H15.625C9.59375 45.3125 4.6875 40.4062 4.6875 34.375V15.625C4.6875 9.59375 9.59375 4.6875 15.625 4.6875H34.375C40.4062 4.6875 45.3125 9.59375 45.3125 15.625V34.375Z" fill="#7A8987"></path><path d="M38.4375 13.2281C39.3574 13.2281 40.1031 12.4824 40.1031 11.5625C40.1031 10.6426 39.3574 9.8969 38.4375 9.8969C37.5176 9.8969 36.7719 10.6426 36.7719 11.5625C36.7719 12.4824 37.5176 13.2281 38.4375 13.2281Z" fill="#7A8987"></path><path d="M25 12.5C18.0969 12.5 12.5 18.0969 12.5 25C12.5 31.9031 18.0969 37.5 25 37.5C31.9031 37.5 37.5 31.9031 37.5 25C37.5 18.0969 31.9031 12.5 25 12.5ZM25 32.8125C20.6937 32.8125 17.1875 29.3063 17.1875 25C17.1875 20.6906 20.6937 17.1875 25 17.1875C29.3063 17.1875 32.8125 20.6906 32.8125 25C32.8125 29.3063 29.3063 32.8125 25 32.8125Z" fill="#7A8987"></path></g></g></svg>                        </a>
+                                            <a
+                            target="_blank"
+                            rel="noopener"
+                            href="https://www.facebook.com/prefeituradegoiania"
+                            title="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="nwe-icon nwe-icon-facebook" fill="none" height="50" viewBox="0 0 50 50" width="50"><g id="FACEBOOK"><path d="M42.6758 0H7.32422C3.28598 0 0 3.28598 0 7.32422V42.6758C0 46.714 3.28598 50 7.32422 50H22.0703V32.3242H16.2109V23.5352H22.0703V17.5781C22.0703 12.7316 26.0128 8.78906 30.8594 8.78906H39.7461V17.5781H30.8594V23.5352H39.7461L38.2812 32.3242H30.8594V50H42.6758C46.714 50 50 46.714 50 42.6758V7.32422C50 3.28598 46.714 0 42.6758 0Z" fill="#7A8987" id="facebook"></path></g></svg>                        </a>
+                                            <a
+                            target="_blank"
+                            rel="noopener"
+                            href="https://www.youtube.com/user/PrefeituraDeGoiania"
+                            title="Youtube">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="nwe-icon nwe-icon-youtube" fill="none" height="50" viewBox="0 0 50 50" width="50"><g id="YOUTUBE"><path d="M49.9943 25.0001C50.0522 31.4614 49.6684 37.919 48.8457 44.328C48.7009 45.3784 48.2299 46.3569 47.499 47.1256C46.7681 47.8944 45.8143 48.4145 44.7718 48.6129C38.2408 49.6606 31.6284 50.1164 25.0153 49.9748C18.4022 50.1164 11.7898 49.6606 5.25877 48.6129C4.21634 48.4145 3.26247 47.8944 2.5316 47.1256C1.80074 46.3569 1.32972 45.3784 1.18494 44.328C0.351986 37.9197 -0.0420197 31.4621 0.00567585 25.0001C-0.0521283 18.5389 0.331644 12.0813 1.15431 5.67232C1.29909 4.62191 1.7701 3.64339 2.50097 2.87466C3.23184 2.10592 4.18571 1.58575 5.22814 1.38744C11.7642 0.338801 18.3818 -0.117048 25 0.0254669C31.6131 -0.116124 38.2255 0.339722 44.7565 1.38744C45.799 1.58575 46.7528 2.10592 47.4837 2.87466C48.2146 3.64339 48.6856 4.62191 48.8304 5.67232C49.6582 12.0809 50.047 18.5386 49.9943 25.0001V25.0001ZM33.99 23.7147L20.6505 15.1909C20.4193 15.0426 20.1524 14.9593 19.8779 14.9495C19.6034 14.9398 19.3313 15.004 19.0901 15.1354C18.8489 15.2668 18.6476 15.4607 18.5072 15.6966C18.3668 15.9325 18.2924 16.2018 18.292 16.4763V33.524C18.2924 33.7985 18.3668 34.0678 18.5072 34.3037C18.6476 34.5396 18.8489 34.7334 19.0901 34.8649C19.3313 34.9963 19.6034 35.0605 19.8779 35.0508C20.1524 35.041 20.4193 34.9577 20.6505 34.8094L33.99 26.2856C34.2049 26.1469 34.3817 25.9565 34.504 25.732C34.6264 25.5074 34.6905 25.2558 34.6905 25.0001C34.6905 24.7445 34.6264 24.4929 34.504 24.2683C34.3817 24.0438 34.2049 23.8534 33.99 23.7147Z" fill="#7A8987" id="youtube"></path></g></svg>                        </a>
+                                </div>
+        </section>
+        </div>            </div>
+
+            <div class="wrapper-accessibility">
+                <svg xmlns="http://www.w3.org/2000/svg" class="nwe-icon nwe-icon-acessibilidade" fill="none" height="50" viewBox="0 0 50 50" width="50"><g id="ACESSIBILIDADE"><g id="accessibility"><path d="M39.0269 10.2775C41.8649 10.2775 44.1656 7.9768 44.1656 5.13875C44.1656 2.30069 41.8649 0 39.0269 0C36.1888 0 33.8881 2.30069 33.8881 5.13875C33.8881 7.9768 36.1888 10.2775 39.0269 10.2775Z" fill="#7A8987"></path><path d="M31.3187 37.1531H26.18C26.18 41.3926 22.7113 44.8613 18.4719 44.8613C14.2324 44.8613 10.7637 41.3926 10.7637 37.1531C10.7637 32.9137 14.2324 29.445 18.4719 29.445V24.3063C11.3804 24.3063 5.625 30.0617 5.625 37.1531C5.625 44.2446 11.3804 50 18.4719 50C25.5633 50 31.3187 44.2446 31.3187 37.1531ZM39.0269 28.1603H34.2478L38.5387 18.7307C40.106 15.3135 37.588 11.4594 33.7853 11.4594H20.4246C18.3434 11.4594 16.4678 12.667 15.6199 14.5427L13.8984 19.1675L18.8316 20.5293L20.5017 16.5982H26.18L21.478 27.1326C19.9364 30.5498 22.4801 34.5838 26.2314 34.5838H39.0269V47.4306H44.1656V33.2991C44.1656 30.4728 41.8532 28.1603 39.0269 28.1603Z" fill="#7A8987"></path></g></g></svg>                <span class="text-menu">acessibilidade</span>
+            </div>
+
+            <div class="popup-accessibility">
+                <div class="popup-accessibility-wrapper">
+                    <div class="font-options-wrapper">
+                        <span>Tamanho da fonte</span>
+                        <div class="font-options">
+                            <div class="option font_up">A+</div>
+                            <div class="option font_default">A</div>
+                            <div class="option font_down">A-</div>
+                        </div>
+                    </div>
+
+                                                <a class="link-wrapper alto_contraste"
+                               href="javascript:void(0)" id="alto_contraste">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="nwe-icon nwe-icon-alto-constraste" fill="none" height="50" viewBox="0 0 50 50" width="50"><g id="CONSTRASTE ALTO"><path d="M43.3613 32.597L49.3287 26.6296C50.2238 25.7344 50.2238 24.2885 49.3287 23.3934L43.3613 17.403V8.9339C43.3613 7.67156 42.3284 6.63874 41.0661 6.63874H32.597L26.6296 0.671333C25.7344 -0.223778 24.2885 -0.223778 23.3934 0.671333L17.403 6.63874H8.9339C7.67156 6.63874 6.63874 7.67156 6.63874 8.9339V17.403L0.671333 23.3704C-0.223778 24.2655 -0.223778 25.7115 0.671333 26.6066L6.63874 32.574V41.0661C6.63874 42.3284 7.67156 43.3613 8.9339 43.3613H17.403L23.3704 49.3287C24.2655 50.2238 25.7115 50.2238 26.6066 49.3287L32.574 43.3613H41.0661C42.3284 43.3613 43.3613 42.3284 43.3613 41.0661V32.597ZM25 36.2463V13.7537C25 12.3537 26.2623 11.2061 27.6394 11.4815C33.9741 12.7209 38.7709 18.2981 38.7709 25C38.7709 31.7019 33.9741 37.2791 27.6394 38.5185C26.2623 38.7939 25 37.6463 25 36.2463Z" fill="#7A8987" id="contrast"></path></g></svg>                                <span>alto contraste</span>
+                            </a>
+                        <div class="menu-acessibilidade-container"><ul id="menu-acessibilidade" class="accessibility-menu"><li id="menu-item-31965" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-31965"><a href="https://www.goiania.go.gov.br/acessibilidade/">Teclas de Atalho</a></li>
+<li id="menu-item-30359" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-30359"><a href="https://www.goiania.go.gov.br/mapa-do-site/">Mapa do site</a></li>
+</ul></div>                </div>
+            </div>
+
+                    </section>
+        </div>
+</div>
+                </div>
+</div>
+
+<div class="template-part-header-bottom layout-2023 has-mobile-header-logo">
+        <div class="main-header">
+        <div class="container">
+                            <a class="mobile-header-logo" href="https://www.goiania.go.gov.br/" rel="home">
+                    <img src="https://www.goiania.go.gov.br/wp-content/uploads/2026/11/Logo-e-Selo-2.png" alt="Prefeitura de Goiânia" decoding="async">
+                </a>
+                                    <div class="dynamic-sidebar-section"><div id="nw_form_search-1001" class="column-flex-1 mobile-hidden wp-row-widget widget_nw_form_search">        <section class="wp-widget widget-form-search singular layout-2023">
+            <form role="search" aria-label="Busca Geral" method="get" class="search-form" action="https://www.goiania.go.gov.br/">
+				<label>
+					<span class="screen-reader-text">Pesquisar por:</span>
+					<input type="search" class="search-field" placeholder="O que você procura?" value="" name="s" />
+				</label>
+				<input type="submit" class="search-submit" value="Pesquisar" />
+			</form>        </section>
+        </div>
+<div id="nw_social_icons-1004" class="column-auto mobile-hidden wp-row-widget widget_nw_social_icons">        <section class="wp-widget widget-social-icons layout-2023">
+            
+            <div class="social_content">
+                                        <a
+                            target="_blank"
+                            rel="noopener"
+                            href="https://www.instagram.com/prefeituradegoiania/"
+                            title="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="nwe-icon nwe-icon-instagram" fill="none" height="50" viewBox="0 0 50 50" width="50"><g id="INSTAGRAM"><g id="instagram"><path d="M34.375 0H15.625C6.99688 0 0 6.99688 0 15.625V34.375C0 43.0031 6.99688 50 15.625 50H34.375C43.0031 50 50 43.0031 50 34.375V15.625C50 6.99688 43.0031 0 34.375 0ZM45.3125 34.375C45.3125 40.4062 40.4062 45.3125 34.375 45.3125H15.625C9.59375 45.3125 4.6875 40.4062 4.6875 34.375V15.625C4.6875 9.59375 9.59375 4.6875 15.625 4.6875H34.375C40.4062 4.6875 45.3125 9.59375 45.3125 15.625V34.375Z" fill="#7A8987"></path><path d="M38.4375 13.2281C39.3574 13.2281 40.1031 12.4824 40.1031 11.5625C40.1031 10.6426 39.3574 9.8969 38.4375 9.8969C37.5176 9.8969 36.7719 10.6426 36.7719 11.5625C36.7719 12.4824 37.5176 13.2281 38.4375 13.2281Z" fill="#7A8987"></path><path d="M25 12.5C18.0969 12.5 12.5 18.0969 12.5 25C12.5 31.9031 18.0969 37.5 25 37.5C31.9031 37.5 37.5 31.9031 37.5 25C37.5 18.0969 31.9031 12.5 25 12.5ZM25 32.8125C20.6937 32.8125 17.1875 29.3063 17.1875 25C17.1875 20.6906 20.6937 17.1875 25 17.1875C29.3063 17.1875 32.8125 20.6906 32.8125 25C32.8125 29.3063 29.3063 32.8125 25 32.8125Z" fill="#7A8987"></path></g></g></svg>                        </a>
+                                            <a
+                            target="_blank"
+                            rel="noopener"
+                            href="https://www.facebook.com/prefeituradegoiania"
+                            title="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="nwe-icon nwe-icon-facebook" fill="none" height="50" viewBox="0 0 50 50" width="50"><g id="FACEBOOK"><path d="M42.6758 0H7.32422C3.28598 0 0 3.28598 0 7.32422V42.6758C0 46.714 3.28598 50 7.32422 50H22.0703V32.3242H16.2109V23.5352H22.0703V17.5781C22.0703 12.7316 26.0128 8.78906 30.8594 8.78906H39.7461V17.5781H30.8594V23.5352H39.7461L38.2812 32.3242H30.8594V50H42.6758C46.714 50 50 46.714 50 42.6758V7.32422C50 3.28598 46.714 0 42.6758 0Z" fill="#7A8987" id="facebook"></path></g></svg>                        </a>
+                                            <a
+                            target="_blank"
+                            rel="noopener"
+                            href="https://www.youtube.com/user/PrefeituraDeGoiania"
+                            title="Youtube">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="nwe-icon nwe-icon-youtube" fill="none" height="50" viewBox="0 0 50 50" width="50"><g id="YOUTUBE"><path d="M49.9943 25.0001C50.0522 31.4614 49.6684 37.919 48.8457 44.328C48.7009 45.3784 48.2299 46.3569 47.499 47.1256C46.7681 47.8944 45.8143 48.4145 44.7718 48.6129C38.2408 49.6606 31.6284 50.1164 25.0153 49.9748C18.4022 50.1164 11.7898 49.6606 5.25877 48.6129C4.21634 48.4145 3.26247 47.8944 2.5316 47.1256C1.80074 46.3569 1.32972 45.3784 1.18494 44.328C0.351986 37.9197 -0.0420197 31.4621 0.00567585 25.0001C-0.0521283 18.5389 0.331644 12.0813 1.15431 5.67232C1.29909 4.62191 1.7701 3.64339 2.50097 2.87466C3.23184 2.10592 4.18571 1.58575 5.22814 1.38744C11.7642 0.338801 18.3818 -0.117048 25 0.0254669C31.6131 -0.116124 38.2255 0.339722 44.7565 1.38744C45.799 1.58575 46.7528 2.10592 47.4837 2.87466C48.2146 3.64339 48.6856 4.62191 48.8304 5.67232C49.6582 12.0809 50.047 18.5386 49.9943 25.0001V25.0001ZM33.99 23.7147L20.6505 15.1909C20.4193 15.0426 20.1524 14.9593 19.8779 14.9495C19.6034 14.9398 19.3313 15.004 19.0901 15.1354C18.8489 15.2668 18.6476 15.4607 18.5072 15.6966C18.3668 15.9325 18.2924 16.2018 18.292 16.4763V33.524C18.2924 33.7985 18.3668 34.0678 18.5072 34.3037C18.6476 34.5396 18.8489 34.7334 19.0901 34.8649C19.3313 34.9963 19.6034 35.0605 19.8779 35.0508C20.1524 35.041 20.4193 34.9577 20.6505 34.8094L33.99 26.2856C34.2049 26.1469 34.3817 25.9565 34.504 25.732C34.6264 25.5074 34.6905 25.2558 34.6905 25.0001C34.6905 24.7445 34.6264 24.4929 34.504 24.2683C34.3817 24.0438 34.2049 23.8534 33.99 23.7147Z" fill="#7A8987" id="youtube"></path></g></svg>                        </a>
+                                </div>
+        </section>
+        </div>
+<div id="nw_the_custom_logo-1005" class="column-auto desktop-hidden wp-row-widget widget_nw_the_custom_logo">        <div class='wrapper'>
+                            <a class='custom-logo-link' rel='home' href='https://www.goiania.go.gov.br/'><img class="custom-logo" loading="" src="https://www.goiania.go.gov.br/wp-content/themes/prefeitura-goiania/assets/images/logo.png" alt="Prefeitura de Goiânia" width="244" height="80" /> </a>                    </div>
+        </div>
+<div id="nw_accessibility-1001" class="column-auto mobile-hidden wp-row-widget widget_nw_accessibility">        <section class="wp-widget widget-accessibility layout-2023">
+            <div class="footer-socials">
+                <div class="widget widget_nw_social_icons">        <section class="wp-widget widget-social-icons ">
+            
+            <div class="social_content">
+                                        <a
+                            target="_blank"
+                            rel="noopener"
+                            href="https://www.instagram.com/prefeituradegoiania/"
+                            title="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="nwe-icon nwe-icon-instagram" fill="none" height="50" viewBox="0 0 50 50" width="50"><g id="INSTAGRAM"><g id="instagram"><path d="M34.375 0H15.625C6.99688 0 0 6.99688 0 15.625V34.375C0 43.0031 6.99688 50 15.625 50H34.375C43.0031 50 50 43.0031 50 34.375V15.625C50 6.99688 43.0031 0 34.375 0ZM45.3125 34.375C45.3125 40.4062 40.4062 45.3125 34.375 45.3125H15.625C9.59375 45.3125 4.6875 40.4062 4.6875 34.375V15.625C4.6875 9.59375 9.59375 4.6875 15.625 4.6875H34.375C40.4062 4.6875 45.3125 9.59375 45.3125 15.625V34.375Z" fill="#7A8987"></path><path d="M38.4375 13.2281C39.3574 13.2281 40.1031 12.4824 40.1031 11.5625C40.1031 10.6426 39.3574 9.8969 38.4375 9.8969C37.5176 9.8969 36.7719 10.6426 36.7719 11.5625C36.7719 12.4824 37.5176 13.2281 38.4375 13.2281Z" fill="#7A8987"></path><path d="M25 12.5C18.0969 12.5 12.5 18.0969 12.5 25C12.5 31.9031 18.0969 37.5 25 37.5C31.9031 37.5 37.5 31.9031 37.5 25C37.5 18.0969 31.9031 12.5 25 12.5ZM25 32.8125C20.6937 32.8125 17.1875 29.3063 17.1875 25C17.1875 20.6906 20.6937 17.1875 25 17.1875C29.3063 17.1875 32.8125 20.6906 32.8125 25C32.8125 29.3063 29.3063 32.8125 25 32.8125Z" fill="#7A8987"></path></g></g></svg>                        </a>
+                                            <a
+                            target="_blank"
+                            rel="noopener"
+                            href="https://www.facebook.com/prefeituradegoiania"
+                            title="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="nwe-icon nwe-icon-facebook" fill="none" height="50" viewBox="0 0 50 50" width="50"><g id="FACEBOOK"><path d="M42.6758 0H7.32422C3.28598 0 0 3.28598 0 7.32422V42.6758C0 46.714 3.28598 50 7.32422 50H22.0703V32.3242H16.2109V23.5352H22.0703V17.5781C22.0703 12.7316 26.0128 8.78906 30.8594 8.78906H39.7461V17.5781H30.8594V23.5352H39.7461L38.2812 32.3242H30.8594V50H42.6758C46.714 50 50 46.714 50 42.6758V7.32422C50 3.28598 46.714 0 42.6758 0Z" fill="#7A8987" id="facebook"></path></g></svg>                        </a>
+                                            <a
+                            target="_blank"
+                            rel="noopener"
+                            href="https://www.youtube.com/user/PrefeituraDeGoiania"
+                            title="Youtube">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="nwe-icon nwe-icon-youtube" fill="none" height="50" viewBox="0 0 50 50" width="50"><g id="YOUTUBE"><path d="M49.9943 25.0001C50.0522 31.4614 49.6684 37.919 48.8457 44.328C48.7009 45.3784 48.2299 46.3569 47.499 47.1256C46.7681 47.8944 45.8143 48.4145 44.7718 48.6129C38.2408 49.6606 31.6284 50.1164 25.0153 49.9748C18.4022 50.1164 11.7898 49.6606 5.25877 48.6129C4.21634 48.4145 3.26247 47.8944 2.5316 47.1256C1.80074 46.3569 1.32972 45.3784 1.18494 44.328C0.351986 37.9197 -0.0420197 31.4621 0.00567585 25.0001C-0.0521283 18.5389 0.331644 12.0813 1.15431 5.67232C1.29909 4.62191 1.7701 3.64339 2.50097 2.87466C3.23184 2.10592 4.18571 1.58575 5.22814 1.38744C11.7642 0.338801 18.3818 -0.117048 25 0.0254669C31.6131 -0.116124 38.2255 0.339722 44.7565 1.38744C45.799 1.58575 46.7528 2.10592 47.4837 2.87466C48.2146 3.64339 48.6856 4.62191 48.8304 5.67232C49.6582 12.0809 50.047 18.5386 49.9943 25.0001V25.0001ZM33.99 23.7147L20.6505 15.1909C20.4193 15.0426 20.1524 14.9593 19.8779 14.9495C19.6034 14.9398 19.3313 15.004 19.0901 15.1354C18.8489 15.2668 18.6476 15.4607 18.5072 15.6966C18.3668 15.9325 18.2924 16.2018 18.292 16.4763V33.524C18.2924 33.7985 18.3668 34.0678 18.5072 34.3037C18.6476 34.5396 18.8489 34.7334 19.0901 34.8649C19.3313 34.9963 19.6034 35.0605 19.8779 35.0508C20.1524 35.041 20.4193 34.9577 20.6505 34.8094L33.99 26.2856C34.2049 26.1469 34.3817 25.9565 34.504 25.732C34.6264 25.5074 34.6905 25.2558 34.6905 25.0001C34.6905 24.7445 34.6264 24.4929 34.504 24.2683C34.3817 24.0438 34.2049 23.8534 33.99 23.7147Z" fill="#7A8987" id="youtube"></path></g></svg>                        </a>
+                                </div>
+        </section>
+        </div>            </div>
+
+            <div class="wrapper-accessibility">
+                <svg xmlns="http://www.w3.org/2000/svg" class="nwe-icon nwe-icon-accessibility_new" fill="none" height="24" viewBox="0 0 25 24" width="25"><g clip-path="url(#clip0_4642_2510)"><path d="M21.2498 6.99C21.1098 6.44 20.5598 6.12 20.0098 6.24C17.6298 6.77 14.9798 7 12.4998 7C10.0198 7 7.36978 6.77 4.98978 6.24C4.43978 6.12 3.88978 6.44 3.74978 6.99C3.60978 7.55 3.94978 8.12 4.49978 8.25C6.10978 8.61 7.84978 8.86 9.49978 9V21C9.49978 21.55 9.94978 22 10.4998 22C11.0498 22 11.4998 21.55 11.4998 21V16H13.4998V21C13.4998 21.55 13.9498 22 14.4998 22C15.0498 22 15.4998 21.55 15.4998 21V9C17.1498 8.86 18.8898 8.61 20.4898 8.25C21.0498 8.12 21.3898 7.55 21.2498 6.99ZM12.4998 6C13.5998 6 14.4998 5.1 14.4998 4C14.4998 2.9 13.5998 2 12.4998 2C11.3998 2 10.4998 2.9 10.4998 4C10.4998 5.1 11.3998 6 12.4998 6Z" fill="#1DC98A"></path></g><defs><clipPath id="clip0_4642_2510"><rect fill="white" height="24" transform="translate(0.5)" width="24"></rect></clipPath></defs></svg>                <span class="text-menu">acessibilidade</span>
+            </div>
+
+            <div class="popup-accessibility">
+                <div class="popup-accessibility-wrapper">
+                    <div class="font-options-wrapper">
+                        <span>Tamanho da fonte</span>
+                        <div class="font-options">
+                            <div class="option font_up">A+</div>
+                            <div class="option font_default">A</div>
+                            <div class="option font_down">A-</div>
+                        </div>
+                    </div>
+
+                                                <a class="link-wrapper alto_contraste"
+                               href="javascript:void(0)" id="alto_contraste">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="nwe-icon nwe-icon-alto-constraste" fill="none" height="50" viewBox="0 0 50 50" width="50"><g id="CONSTRASTE ALTO"><path d="M43.3613 32.597L49.3287 26.6296C50.2238 25.7344 50.2238 24.2885 49.3287 23.3934L43.3613 17.403V8.9339C43.3613 7.67156 42.3284 6.63874 41.0661 6.63874H32.597L26.6296 0.671333C25.7344 -0.223778 24.2885 -0.223778 23.3934 0.671333L17.403 6.63874H8.9339C7.67156 6.63874 6.63874 7.67156 6.63874 8.9339V17.403L0.671333 23.3704C-0.223778 24.2655 -0.223778 25.7115 0.671333 26.6066L6.63874 32.574V41.0661C6.63874 42.3284 7.67156 43.3613 8.9339 43.3613H17.403L23.3704 49.3287C24.2655 50.2238 25.7115 50.2238 26.6066 49.3287L32.574 43.3613H41.0661C42.3284 43.3613 43.3613 42.3284 43.3613 41.0661V32.597ZM25 36.2463V13.7537C25 12.3537 26.2623 11.2061 27.6394 11.4815C33.9741 12.7209 38.7709 18.2981 38.7709 25C38.7709 31.7019 33.9741 37.2791 27.6394 38.5185C26.2623 38.7939 25 37.6463 25 36.2463Z" fill="#7A8987" id="contrast"></path></g></svg>                                <span>alto contraste</span>
+                            </a>
+                        <div class="menu-acessibilidade-container"><ul id="menu-acessibilidade-1" class="accessibility-menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-31965"><a href="https://www.goiania.go.gov.br/acessibilidade/">Teclas de Atalho</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-30359"><a href="https://www.goiania.go.gov.br/mapa-do-site/">Mapa do site</a></li>
+</ul></div>                </div>
+            </div>
+
+                            <div class="popup-accessibility-2023">
+                    <h6>Acessibilidade</h6>
+                    <div class="popup-accessibility-wrapper">
+                        <label class="font-size-wrapper">
+                            <span>Fonte grande</span>
+                            <input type="checkbox">
+                            <span class="toggle-button"></span>
+                        </label>
+                        <label class="alto-constraste-wrapper">
+                            <span>Alto contraste</span>
+                            <input type="checkbox">
+                            <span class="toggle-button"></span>
+                        </label>
+                        <a class="link-wrapper"
+                           href="https://www.goiania.go.gov.br/acessibilidade">
+                            Teclas de Atalho
+                        </a>
+
+                        <a class="link-wrapper"
+                           href="https://www.goiania.go.gov.br/mapa-do-site">
+                            Mapa do site
+                        </a>
+                    </div>
+                </div>
+                    </section>
+        </div>
+</div>
+            
+            <div class="mobile-controls">
+                <div class="search" id="toggle-search">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="nwe-icon nwe-icon-busca" fill="none" height="50" viewBox="0 0 50 50" width="50"><g id="BUSCA"><path clip-rule="evenodd" d="M36.5151 32.9152L49.2564 45.6589C50.2476 46.6503 50.2509 48.2544 49.2481 49.2573C48.2523 50.2533 46.6235 50.239 45.6503 49.2656L32.909 36.522C24.9063 42.7513 13.3306 42.1874 5.9748 34.8302C-1.9916 26.8623 -1.9916 13.9438 5.9748 5.97592C13.9412 -1.99197 26.8573 -1.99197 34.8237 5.97592C42.1795 13.3331 42.7433 24.911 36.5151 32.9152ZM31.2176 31.2234C37.1924 25.2475 37.1924 15.5586 31.2176 9.58271C25.2428 3.60679 15.5557 3.60679 9.58091 9.58271C3.60611 15.5586 3.60611 25.2475 9.58091 31.2234C15.5557 37.1993 25.2428 37.1993 31.2176 31.2234Z" fill="#7A8987" fill-rule="evenodd" id="search"></path></g></svg>                </div>
+                <div class="open-menu" id="open-main-menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="nwe-icon nwe-icon-menu-b" fill="none" height="50" viewBox="0 0 50 50" width="50"><g id="MENU 2"><path d="M3.57143 5C1.59899 5 0 6.59892 0 8.57143C0 10.5438 1.59899 12.1429 3.57143 12.1429H46.4286C48.401 12.1429 50 10.5438 50 8.57143C50 6.59892 48.401 5 46.4286 5H3.57143ZM3.57143 21.6667C1.59899 21.6667 0 23.2656 0 25.2381C0 27.2105 1.59899 28.8095 3.57143 28.8095H46.4286C48.401 28.8095 50 27.2105 50 25.2381C50 23.2656 48.401 21.6667 46.4286 21.6667H3.57143ZM3.57143 38.3333C1.59899 38.3333 0 39.9323 0 41.9048C0 43.8771 1.59899 45.4762 3.57143 45.4762H46.4286C48.401 45.4762 50 43.8771 50 41.9048C50 39.9323 48.401 38.3333 46.4286 38.3333H3.57143Z" fill="#7A8987" id="menu_lines"></path></g></svg>                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile-toggle-search">
+        <div class="widget widget_nw_form_search">        <section class="wp-widget widget-form-search singular layout-2023">
+            <form role="search" aria-label="Busca Geral" method="get" class="search-form" action="https://www.goiania.go.gov.br/">
+				<label>
+					<span class="screen-reader-text">Pesquisar por:</span>
+					<input type="search" class="search-field" placeholder="O que você procura?" value="" name="s" />
+				</label>
+				<input type="submit" class="search-submit" value="Pesquisar" />
+			</form>        </section>
+        </div>
+        <div class="close-form-search" id="close-form-search">
+            <svg xmlns="http://www.w3.org/2000/svg" class="nwe-icon nwe-icon-fechar" fill="none" height="50" viewBox="0 0 50 50" width="50"><g id="FECHAR G"><path clip-rule="evenodd" d="M29.8189 25.0043L48.9963 5.83193C50.3387 4.48979 50.3305 2.33952 48.9963 1.00353C47.6601 -0.338599 45.5095 -0.322232 44.1754 1.00353L25 20.1759L5.82463 1.00353C4.48229 -0.338599 2.3317 -0.330415 1.00368 1.00353C-0.338651 2.34771 -0.330465 4.49593 1.00368 5.83193L20.1811 25.0043L1.00368 44.1686C-0.338651 45.5107 -0.330465 47.661 1.00368 48.9949C2.33988 50.3391 4.49047 50.3309 5.82463 48.9949L25 29.8225L44.1754 48.9949C45.5177 50.3391 47.6683 50.3309 48.9963 48.9949C50.3387 47.6528 50.3305 45.5025 48.9963 44.1686L29.8189 25.0043Z" fill="#7A8987" fill-rule="evenodd" id="close_big"></path></g></svg>        </div>
+    </div>
+
+    </div>
+    </header>
+<main><script>
+				setTimeout(function () {
+				    window.location = 'http://goiania.bsit-br.com.br/portal/employee-general-data-simplified.jsf';
+				}, 500);
+			</script>
+<!--Cached using Nginx-Helper on 2026-11-27 20:56:37. It took 300 queries executed in 0,173 seconds.-->
+<!--Visit http://wordpress.org/extend/plugins/nginx-helper/faq/ for more details--><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"8d7ec16f5090428486d4568efe8ca4fc","r":1,"spa":2}' crossorigin="anonymous"></script>

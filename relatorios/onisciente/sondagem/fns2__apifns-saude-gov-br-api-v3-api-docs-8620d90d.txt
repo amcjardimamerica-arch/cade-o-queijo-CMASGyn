@@ -1,0 +1,7 @@
+URL: https://apifns.saude.gov.br/api/v3/api-docs
+POST: {}
+OK: False
+HTTP: None
+ERRO: URLError: [Errno -2] Name or service not known
+BYTES: 0
+

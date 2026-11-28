@@ -6,13 +6,11 @@ janeiro a outubro, Portal da Transparência no mesmo período). As adulteraçõe
 
 from __future__ import annotations
 
-import shutil
-import sqlite3
 from datetime import date
 
 import pytest
 
-from onisciente import RAIZ
+from onisciente import RAIZ, partes
 from onisciente.adaptadores import cadeoqueijo
 from onisciente.fiscal import Leitor
 from onisciente.nucleo import Selo
@@ -133,7 +131,7 @@ def test_origem_confere_fpm_itr_royalties_e_aponta_fnas(rm):
 
 def test_fpm_da_uniao_e_oitenta_por_cento_do_registrado_no_municipio():
     """O Portal traz o FPM líquido da retenção do FUNDEB; a matriz, o bruto: a conferência desconta."""
-    con = sqlite3.connect(BANCO)
+    con = partes.conectar_leitura(BANCO)   # 28/11/2026, divisão do banco em partes
     try:
         bruto = mz.receita(con, mz.Natureza(("1711511",)), ["2026-03"])["2026-03"]
         portal = con.execute(
@@ -171,12 +169,13 @@ def test_cosip_empenhada_fora_do_leito(rm):
 @pytest.fixture()
 def copia(tmp_path):
     destino = tmp_path / "historico.db"
-    shutil.copy(BANCO, destino)
+    # 28/11/2026, divisão do banco em partes: a cópia leva as partes e a conexão as enxerga.
+    partes.copiar_banco(BANCO, destino)
     return destino
 
 
 def test_matriz_adulterada_no_iptu_vira_ficha_rio_msc(copia):
-    con = sqlite3.connect(copia)
+    con = partes.conectar(copia)   # 28/11/2026, divisão do banco em partes
     con.execute("update msc_itens set valor = valor * 1.10 where mes='2026-03' and conta_contabil like '6212%' "
                 "and natureza_receita like '111250%'")
     con.commit()
@@ -190,7 +189,7 @@ def test_matriz_adulterada_no_iptu_vira_ficha_rio_msc(copia):
 
 
 def test_salario_educacao_na_saude_e_alienacao_no_custeio_viram_desvio(copia):
-    con = sqlite3.connect(copia)
+    con = partes.conectar(copia)   # 28/11/2026, divisão do banco em partes
     linha = ("2026-05", "622130400", "10131", 2026, "1550", "10", "302", None, "33903900", None, None, "C",
              250_000.0)
     con.execute("insert into msc_itens values (?,?,?,?,?,?,?,?,?,?,?,?,?)", linha)
@@ -208,7 +207,7 @@ def test_salario_educacao_na_saude_e_alienacao_no_custeio_viram_desvio(copia):
 
 
 def test_transferencia_que_some_da_matriz_vira_ficha_de_origem(copia):
-    con = sqlite3.connect(copia)
+    con = partes.conectar(copia)   # 28/11/2026, divisão do banco em partes
     con.execute("delete from msc_itens where mes='2026-04' and natureza_receita like '1711511%'")
     con.commit()
     con.close()
@@ -219,7 +218,7 @@ def test_transferencia_que_some_da_matriz_vira_ficha_de_origem(copia):
 
 
 def test_sem_matriz_o_rio_fica_nas_fontes_padrao_e_diz_por_que(copia):
-    con = sqlite3.connect(copia)
+    con = partes.conectar(copia)   # 28/11/2026, divisão do banco em partes
     con.execute("delete from msc_meses where mes='2026-02'")
     con.commit()
     con.close()
@@ -235,10 +234,10 @@ def test_parecer_mostra_o_rio_do_municipio_e_as_tres_conferencias():
     p = cadeoqueijo.montar("2026-10")
     assert p.fiscal is not None and p.fiscal.rio is not None
     pagina = html.gerar(p, hoje=date(2026, 11, 26))
-    assert "O rio do Município inteiro: RREO do 4º bimestre de 2026" in pagina
+    assert "A receita do Município inteiro: RREO do 4º bimestre de 2026" in pagina  # decisão do usuário de 28/11/2026: sem a metáfora do rio
     for titulo in ("A origem: o que a União transferiu contra o que o Município registrou",
-                   "O RREO contra a matriz de saldos contábeis", "O rio contra o próprio RREO",
-                   "Realizado contra o previsto", "O leito: água vinculada empenhada fora da sua finalidade"):
+                   "O RREO contra a matriz de saldos contábeis", "A soma por espécie contra o próprio RREO",  # decisão do usuário de 28/11/2026: sem a metáfora do rio
+                   "Realizado contra o previsto", "Recurso vinculado empenhado fora da sua finalidade"):  # decisão do usuário de 28/11/2026: sem a metáfora do rio
         assert titulo in pagina, titulo
     d = p.como_dict()["municipio"]["rio"]
     assert d["liquido"] == pytest.approx(d["realizado_declarado"], abs=0.01)
@@ -252,5 +251,5 @@ def test_desenho_junta_os_afluentes_menores_por_esfera():
                      for i in range(40)])
     desenho = svg.rio(r, rotulo="no exercício", maximo=10)
     assert desenho.count("<path") == 11            # 9 maiores + demais federais + demais municipais
-    assert "Demais afluentes (16), federal" in desenho and "no exercício" in desenho
+    assert "Demais receitas (16), federal" in desenho and "no exercício" in desenho  # decisão do usuário de 28/11/2026: sem a metáfora do rio
     assert svg.rio(r).count("<path") == 40

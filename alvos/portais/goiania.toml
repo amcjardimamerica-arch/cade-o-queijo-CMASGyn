@@ -1,0 +1,249 @@
+# Coletor da execução da despesa de Goiânia: empenhos, liquidações, ordens de pagamento e pagamentos,
+# por órgão e por credor (requisitos 30, 105 e 141).
+#
+# O que a sondagem de 27/11/2026 leu (relatórios da sondagem):
+#   * o TransWeb em www10.goiania.go.gov.br/transweb/ é feito em OutSystems sobre ASP.NET: o estado
+#     da tela vai no campo escondido __OSVSTATE (o __VIEWSTATE vem vazio). /transweb/, Default.aspx e
+#     Home.aspx dão 404; PortaldaTransparencia.aspx?Antigo=True traz o menu, e nele "Despesas por
+#     Favorecido" leva a Portal_Despesas.aspx;
+#   * Portal_Despesas.aspx foi lida (segunda sondagem, merge 69ec436): formulário WebForm1 com os
+#     selects cboMes (valores __ossli_01 a __ossli_12; __ossli_0 é "Mês"), cboAno (2015 a 2026),
+#     cboOrgao (37 órgãos), cboFuncao, cboSubFuncao, cboNatureza, cboPrograma, cboFonte, cboCategoria,
+#     cboGrupoDespesa, cboModalidade e cboElemento, os textos NmFavorecido ("CNPJ ou Nome do
+#     Favorecido") e NrEmpenho, o botão Buscar (wt86, que dispara OsAjax) e a exportação (selExportar:
+#     XLS, CSV, JSON, com o botão OK). A tabela tem uma linha por empenho; sem filtro, mostrou os 822
+#     empenhos de novembro de 2026, 20 por página, e a tabela de totais (empenhado, liquidado e pago);
+#   * os popups de cada linha estão em /DespesasWebBlocks/: LiquidacaoPopUp.aspx?Empenho=N e
+#     PagamentoPopUp.aspx?Empenho=N foram lidos com dados, e a soma deles bate com a linha da lista
+#     (o empenho 20261101002310011: 1.170.877,06 liquidados em duas liquidações, depois de uma terceira
+#     anulada, e pagos em duas ordens). EmpenhoPopUp.aspx (CdOrgao, Empenho, NmOrgao) veio com todos
+#     os campos vazios: a sondagem pediu o endereço com "&amp;" no lugar de "&", e o popup não recebeu
+#     o empenho. Os nomes dos campos dele são reais; os valores ainda não foram vistos;
+#   * o portal novo (WordPress) em www.goiania.go.gov.br/transparencia/ responde; a categoria 49 é
+#     "Despesas e Receitas". A lista de itens da categoria é montada no navegador: o HTML não traz arquivos;
+#   * goiania.nucleogov.com.br dá 403.
+# O que a sondagem de 28/11/2026 (run 46087866124) leu, com os pedidos montados pelo coletor:
+#   * o Buscar por OsAjax (mês 10, ano 2026) deu HTTP 500, e o Buscar por postback comum deu 200 com a
+#     página "Erro Interno" do portal: a lista não foi lida para outro mês;
+#   * a exportação CSV por postback comum (o estado do GET, mês e ano, selExportar = CSV e o botão OK)
+#     deu 200 com a planilha: uma linha por liquidação e ordem de pagamento, separador ";", vírgula
+#     decimal, datas dd/mm/aaaa hh:mm:ss, só os empenhos do mês e ano escolhidos (outubro de 2026);
+#     as liquidações e os pagamentos vão até a data da leitura (novembro). A coluna CNPJ traz o CPF
+#     de pessoa física com "000" na frente (14 dígitos);
+#   * EmpenhoPopUp.aspx pedido com "&" trouxe os campos com valores (CNPJ, favorecido, função,
+#     subfunção, natureza, dotação, processo licitatório e modalidade).
+# As consultas do manual de 2010 (Empenho por Órgão, por Credor, Ordem de Pagamento) não existem no
+# portal atual: ficam abaixo como estavam, sem confirmação (confirmado = false), porque são a trava
+# dos testes do coletor genérico. A consulta real é a de [[transweb.despesas]], com "confirmado" em
+# cada parte que o HTML lido comprovou. Ajustar aqui não muda código.
+
+[transweb]
+base = "https://www10.goiania.go.gov.br/transweb/"
+# Páginas de entrada, para achar as consultas pelos links quando os caminhos abaixo falharem.
+# Home.aspx e Default.aspx dão 404 (sondagem de 27/11/2026); a página antiga traz o menu.
+entradas = ["PortaldaTransparencia.aspx?Antigo=True"]
+# Textos de link do menu que levam às consultas da despesa.
+menu_despesa = ["Despesas por Favorecido", "Despesas", "Empenho", "Favorecido", "Ordem de Pagamento"]
+confirmado = false
+formato_data = "%d/%m/%Y"
+# Paginação do GridView: o coletor segue __doPostBack(grid, 'Page$N') até esta página.
+paginas_maximas = 200
+
+[[transweb.consultas]]
+id = "empenho_orgao"
+tipo = "empenho"
+titulo = "Empenho por Órgão"
+paginas = ["Portal_Despesas.aspx", "EmpenhoOrgao.aspx", "ConsultaEmpenhoOrgao.aspx", "Empenho/EmpenhoPorOrgao.aspx",
+           "EmpenhoPorOrgao.aspx", "Consultas/EmpenhoOrgao.aspx"]
+# O manual descreve a consulta por dia (data dia/mês/ano + órgão): uma consulta por dia e por órgão.
+granularidade = "dia"
+percorre_orgaos = true
+botao = ["btnConsultar", "Consultar", "btnPesquisar", "Pesquisar", "Buscar", "Filtrar"]
+detalhe = true            # escolher cada empenho e ler o detalhe (liquidações e pagamentos)
+[transweb.consultas.campos]
+data = ["txtData", "Data", "txtDataEmpenho", "dtData"]
+orgao = ["ddlOrgao", "Orgao", "cboOrgao", "drpOrgao"]
+[transweb.consultas.colunas]
+empenho = ["Empenho", "Nº Empenho", "Número do Empenho", "Numero", "Número", "Nota de Empenho"]
+data = ["Data", "Data do Empenho", "Data Empenho", "Emissão"]
+credor = ["Credor", "Favorecido", "Nome do Credor", "Razão Social", "Nome"]
+documento = ["CPF/CNPJ", "CNPJ/CPF", "CNPJ", "CPF", "Documento"]
+valor = ["Valor", "Valor Empenhado", "Valor do Empenho", "Vlr. Empenhado"]
+orgao = ["Órgão", "Orgao", "Unidade"]
+dotacao = ["Dotação", "Dotação Compactada", "Dotacao"]
+elemento = ["Elemento", "Natureza", "Natureza da Despesa", "Elemento de Despesa"]
+fonte = ["Fonte", "Fonte de Recurso", "Fonte de Recursos"]
+historico = ["Histórico", "Historico", "Objeto", "Descrição"]
+
+[[transweb.consultas]]
+id = "empenho_credor"
+tipo = "empenho"
+titulo = "Empenho por Credor"
+paginas = ["Portal_Despesas.aspx", "EmpenhoCredor.aspx", "ConsultaEmpenhoCredor.aspx", "EmpenhoPorCredor.aspx"]
+# Com período (data inicial e final): usada para seguir um credor (os do PNCP) no exercício.
+granularidade = "intervalo"
+percorre_orgaos = false
+botao = ["btnConsultar", "Consultar", "btnPesquisar", "Pesquisar", "Buscar", "Filtrar"]
+detalhe = true
+[transweb.consultas.campos]
+documento = ["txtCpfCnpj", "CpfCnpj", "CPF", "CNPJ", "txtCredor"]
+data_inicial = ["txtDataInicial", "DataInicial", "txtDtInicial", "dtInicio"]
+data_final = ["txtDataFinal", "DataFinal", "txtDtFinal", "dtFim"]
+orgao = ["ddlOrgao", "Orgao"]
+[transweb.consultas.colunas]
+empenho = ["Empenho", "Nº Empenho", "Número", "Numero"]
+data = ["Data", "Data do Empenho"]
+credor = ["Credor", "Favorecido", "Nome"]
+documento = ["CPF/CNPJ", "CNPJ", "CPF"]
+valor = ["Valor", "Valor Empenhado"]
+orgao = ["Órgão", "Orgao", "Unidade"]
+elemento = ["Elemento", "Natureza"]
+fonte = ["Fonte", "Fonte de Recurso"]
+historico = ["Histórico", "Historico"]
+
+[[transweb.consultas]]
+id = "ordem_pagamento_orgao"
+tipo = "ordem_pagamento"
+titulo = "Ordem de Pagamento por Órgão"
+paginas = ["Portal_Despesas.aspx", "OrdemPagamentoOrgao.aspx", "ConsultaOrdemPagamento.aspx", "OrdemPagamento.aspx",
+           "OrdemDePagamentoPorOrgao.aspx"]
+granularidade = "dia"
+percorre_orgaos = true
+botao = ["btnConsultar", "Consultar", "btnPesquisar", "Pesquisar", "Buscar", "Filtrar"]
+detalhe = false
+[transweb.consultas.campos]
+data = ["txtData", "Data", "txtDataPagamento"]
+orgao = ["ddlOrgao", "Orgao", "cboOrgao"]
+[transweb.consultas.colunas]
+ordem = ["Ordem", "Ordem de Pagamento", "Nº OP", "OP"]
+empenho = ["Empenho", "Nº Empenho"]
+data = ["Data", "Data de Pagamento", "Data da OP"]
+credor = ["Credor", "Favorecido", "Nome"]
+documento = ["CPF/CNPJ", "CNPJ", "CPF"]
+valor = ["Valor", "Valor Pago", "Valor da OP", "Valor Líquido"]
+orgao = ["Órgão", "Orgao"]
+fonte = ["Fonte", "Fonte de Recurso"]
+
+# A página real (Portal_Despesas.aspx). Uma consulta por mês, com todos os órgãos. O caminho principal
+# é a exportação CSV do mês (uma linha por liquidação e pagamento); a lista e os popups ficam como
+# conferência por amostra e como reserva, se a exportação falhar.
+[[transweb.despesas]]
+id = "despesas_favorecido"
+tipo = "empenho"
+titulo = "Despesas por Favorecido"
+paginas = ["Portal_Despesas.aspx"]
+confirmado = true          # a página, os campos, o botão, as colunas e os links dos popups estão no HTML lido
+granularidade = "mes"
+percorre_orgaos = false    # sem órgão escolhido a lista trouxe órgãos e totais do mês (não lido para outro mês)
+tabela = "wtCspTabauxA3AsgTable"
+botao = ["wt86", "Buscar"]
+[transweb.despesas.envio]
+# O Buscar e a paginação são OsAjax (__EVENTTARGET com o name do botão ou do link, __AJAX =
+# "__OSVSTATE,"; a resposta são blocos OsJSONUpdate). Lido no _osjs.js. Na sondagem de 28/11/2026
+# o portal recusou: OsAjax deu HTTP 500 e o postback comum do Buscar deu a página "Erro Interno".
+modo = "ajax"
+confirmado = false
+recusado = "OsAjax do Buscar: HTTP 500; postback do Buscar: página Erro Interno (sondagem de 28/11/2026, run 46087866124)"
+[transweb.despesas.exportar]
+# select selExportar (Exportar, XLS, CSV, JSON) e o botão OK escondido, sem OsAjax: postback comum.
+campo = ["wtselExportar"]
+botao = ["wtbtnExportar"]
+confirmado = true          # sondagem de 28/11/2026: 200, a planilha CSV de outubro de 2026
+formato = "CSV"
+amostra = 3                # empenhos conferidos nos popups a cada mês lido (os de maior valor pago)
+releitura = 12             # os meses mais recentes lidos de novo: liquidações e pagamentos chegam depois
+# Coleta de 28/11/2026 (rodada 46099474353): 14 meses em 338 s e o resto ficou de fora por este limite.
+# Os meses que faltam vêm antes das releituras; o motor para antes do fim do tempo dele (60 min).
+meses_por_rodada = 40
+# O cabeçalho real da planilha (campo do evento -> coluna).
+[transweb.despesas.exportar.colunas]
+empenho = "Empenho"
+data_empenho = "DataEmpenho"
+valor_empenhado = "VlEmpenhado"
+liquidacao = "Liquidacao"
+data_liquidacao = "DataLiquidacao"
+valor_liquidado = "VlLiquidado"        # o saldo: 0,00 numa liquidação anulada
+ordem = "OrdemPagamento"
+data_pagamento = "DataPagamento"
+valor_pago = "VlPago"
+elemento = "NaturezaDespesa"           # 33903900
+elemento_nome = "DsNaturezadaDespesa"
+documento = "CNPJ"                     # CPF de pessoa física vem com "000" na frente
+orgao = "NmOrgao"
+valor_anulado = "VlAnulado"            # o anulado do empenho
+unidade = "UnidadeOrcamentaria"
+funcao = "Funcao"                      # "ADMINISTRACAO - 04"
+subfuncao = "SubFuncao"                # "ADMINISTRACAO GERAL - 122"
+fonte = "FonteRecurso"                 # "RECURSOS ORDINARIOS - 100" (o código antigo de três dígitos)
+credor = "NmFavorecido"
+historico = "Objeto"
+modalidade = "Modalidade"
+licitacao = "NumeroLicitacao"          # 000000000000 quando não há
+[transweb.despesas.campos]
+mes = ["wtcboMes"]
+ano = ["wtcboAno"]
+orgao = ["wtcboOrgao"]
+favorecido = ["wtNmFavorecido"]        # aceita CNPJ ou nome
+empenho = ["wtNrEmpenho"]
+[transweb.despesas.colunas]
+credor = ["Beneficiário"]
+empenho = ["Nr. Empenho"]
+data = ["Data"]
+orgao = ["Orgão"]
+elemento = ["Natureza Despesa"]        # "31901100 - VENCIMENTOS E VANTAGENS FIXAS - PESSOAL CIVIL"
+valor = ["Valor Empenhado"]
+liquidado = ["Valor Liquidado"]
+pago = ["Valor Pago"]
+[transweb.despesas.popups.liquidacao]
+pagina = "LiquidacaoPopUp.aspx"
+confirmado = true
+endereco = "https://www10.goiania.go.gov.br/DespesasWebBlocks/LiquidacaoPopUp.aspx?Empenho={empenho}"
+[transweb.despesas.popups.liquidacao.colunas]
+ordem = ["Liquidação"]                 # o número da liquidação
+data = ["Data"]
+valor = ["Saldo Liquidado"]            # o valor menos o anulado: a soma dos saldos é o liquidado da lista
+anulado = ["Valor Anulado"]
+[transweb.despesas.popups.pagamento]
+pagina = "PagamentoPopUp.aspx"
+confirmado = true
+endereco = "https://www10.goiania.go.gov.br/DespesasWebBlocks/PagamentoPopUp.aspx?Empenho={empenho}"
+[transweb.despesas.popups.pagamento.colunas]
+ordem = ["Ordem de Pagamento"]
+data = ["Data OP"]                     # o popup só traz a data da ordem de pagamento
+valor = ["Valor Pago"]
+valor_op = ["Valor OP"]
+# "Fonte" traz 100 e "Fonte Detalhada" 501 ou 634: a detalhada segue a destinação da STN (leitura
+# nossa, não do portal).
+fonte = ["Fonte Detalhada", "Fonte"]
+[transweb.despesas.popups.empenho]
+pagina = "EmpenhoPopUp.aspx"
+# Sondagem de 28/11/2026: pedido com "&", o popup trouxe os campos com valores.
+confirmado = true
+[transweb.despesas.popups.empenho.campos]
+documento = ["wtemp_CPF_CNPJ"]         # o rótulo é "CNPJ"
+credor = ["wtemp_FAVORECIDO"]
+funcao = ["wtemp_Funcao"]
+subfuncao = ["wtemp_SubFuncao"]
+elemento = ["wtemp_Natureza"]
+dotacao = ["wtemp_DOTACAO_COMPACTADA"]
+fonte = ["wtDESCRITOR_FONTE_DETALHADA_NOME_FONTE_DETALHADA", "wtDESCRITOR_FONTE_nome_fonte"]
+historico = ["wtemp_Historico"]        # o objeto
+data = ["wtemp_DATA_EMPENHO"]
+licitacao = ["wtemp_NUMR_PROC_LICIT"]  # 000000000000 quando não há
+# A modalidade (wtemp_NUMR_PROC_LICIT2) fica fora: o popup sem empenho também mostra "Não se aplica";
+# ela vem da exportação.
+
+# As tabelas do detalhe de um empenho: qual tipo de evento cada uma traz, pelo cabeçalho.
+[transweb.detalhe]
+liquidacao = ["Liquidação", "Liquidacao", "Data da Liquidação", "Valor Liquidado"]
+ordem_pagamento = ["Ordem de Pagamento", "Nº OP", "Data da OP"]
+pagamento = ["Pagamento", "Data do Pagamento", "Valor Pago"]
+anulacao = ["Anulação", "Anulacao", "Estorno"]
+
+# O portal novo (WordPress): a lista de arquivos de cada categoria. Quando houver planilha (CSV),
+# ela é lida com as mesmas colunas da consulta de empenhos.
+[wordpress]
+base = "https://www.goiania.go.gov.br/transparencia/"
+categorias = { despesas_e_receitas = 49 }   # confirmada na sondagem de 27/11/2026: "Despesas e Receitas"
+filtro = "?filtro_simplificado=categoria&categoria={categoria}"
+formatos = ["csv", "xls", "xlsx", "ods", "pdf", "json"]

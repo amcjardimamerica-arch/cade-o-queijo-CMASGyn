@@ -1,0 +1,15 @@
+URL: https://www.tcmgo.tc.br/
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 237
+
+<html>
+  <head>
+    <meta http-equiv="pragma" content="no-cache"/>
+    <title>Tribunal de Contas dos Municípios do Estado de Goiás &#8211; O Tribunal do povo goiano</title>
+  </head>
+  <body onload="location='site'">
+  </body>
+</html>

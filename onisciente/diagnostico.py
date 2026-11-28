@@ -36,6 +36,19 @@ NOME_DOS_MOTORES = {
     "siope": "Demonstrativo da educação (SIOPE)",
     "transferencias": "Transferências federais (Portal da Transparência)",
     "msc": "Matriz de Saldos Contábeis (SICONFI)",
+    "pncp_detalhe": "Detalhe das compras e contratos (PNCP e Compras.gov.br)",
+    "sileg-normas": "Leis de Goiânia baixadas do SILEG",
+    "sileg-procura": "Procura das leis não localizadas no SILEG",
+    "fns": "Fundo Nacional de Saúde (repasses fundo a fundo)",
+    "fnde": "FNDE (liberações da educação)",
+    "transferegov": "Transferegov (transferências especiais e convênios)",
+    "sancoes": "Empresas punidas (CEIS e CNEP)",
+    "economia_go": "Cota-parte do Estado (Secretaria da Economia de Goiás)",
+    "tcu": "Decisões do TCU",
+    "tcm": "Decisões do TCM-GO",
+    "execucao_goiania": "Execução item a item no portal de Goiânia (TransWeb)",
+    "cnpj": "Cadastro das empresas na Receita Federal (CNPJ e QSA)",
+    "impedimentos": "Impedimentos (CEPIM e inidôneos do TCU)",
 }
 
 
@@ -293,7 +306,7 @@ def _externos(banco: Banco) -> list[Achado]:
         elif situacao == "nao_entregue":
             saida.append(Achado("lacuna", "msc", "Matriz de saldos contábeis não enviada ao SICONFI: " + _faixas(meses),
                                 "O SICONFI devolveu a matriz vazia depois do prazo.",
-                                "O rio e o desvio de finalidade desses meses ficam sem a via por fonte e função."))
+                                "A receita por fonte e o desvio de finalidade desses meses ficam sem a via por fonte e função."))
         else:
             saida.append(Achado("falha", "msc", "Matriz de saldos contábeis não lida: " + _faixas(meses),
                                 f"{situacao}: {erros_msc[situacao]}",

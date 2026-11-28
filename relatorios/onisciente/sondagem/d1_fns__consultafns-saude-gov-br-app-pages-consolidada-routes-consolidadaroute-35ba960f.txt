@@ -1,0 +1,47 @@
+URL: https://consultafns.saude.gov.br/app/pages/consolidada/routes/consolidadaRoute.js
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 1099
+
+/**
+ * @desc Define um módulo anonimo sem dependencias e
+ * cria mantém as rotas para o componente consolidada
+ */
+define([],
+    /**
+     *
+     * @returns {{module: string, view: string, text: string, roles: string[], controllerAs: string}[]}
+     */
+    function () {
+        /**
+         *
+         * @type {{module: string, view: string, text: string, roles: string[], controllerAs: string}[]}
+         */
+        var routes = [
+            {
+                module: 'consolidada',
+                view: 'consolidada',
+                text: 'Consolidada',
+                controllerAs: 'consolidadaCtrl',
+				state: {
+					name: "consolidada"
+				}
+            },
+            {
+                module: 'consolidada',
+                view: 'detalhar',
+                text: 'Detalhar',
+                controller: 'consolidada.DetalharController',
+                controllerAs: 'detalharCtrl',
+                state: {
+                    name: "consolidada.detalhar",
+                    url: ":idEntidade/detalhar"
+                }
+            }
+        ];
+
+        return routes;
+    }
+);

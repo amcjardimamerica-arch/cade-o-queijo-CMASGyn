@@ -1,0 +1,30 @@
+URL: https://www10.goiania.go.gov.br/transweb/Blocks/DespesasWebBlocks/MainFlow/Despesas.js?68541
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 1030
+
+﻿/* Gets the screen heigh and width. Returns a percentage of the screen height and width as specified. 
+The percentage is given as fraction out of 1; e.g. 100% = 1, 80% = 0.8 
+The results are written to input elements for which the IDs are supplied.  */
+function getScreenSize(screenWidthId, screenHeightId, widthPercentage, HeightPercentage){
+    debugger;
+    var screenWidth = screen.availWidth;
+    var screenHeight = screen.availHeight;
+    var popupWidth = parseInt(screenWidth * widthPercentage);
+    var popupHeight = parseInt(screenHeight * HeightPercentage);
+    document.getElementById(screenWidthId).value = popupWidth;
+    document.getElementById(screenHeightId).value = popupHeight;
+}
+
+
+/*
+ * File: iframeResizer.contentWindow.js
+ * Desc: Include this file in any page being loaded into an iframe
+ *       to force the iframe to resize to the content size.
+ * Requires: iframeResizer.js on host page.
+ * Doc: https://github.com/davidjbradshaw/iframe-resizer
+ * Author: David J. Bradshaw - dave@bradshaw.net
+ *
+ */

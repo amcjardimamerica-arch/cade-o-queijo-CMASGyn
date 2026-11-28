@@ -1,0 +1,14 @@
+URL: https://www10.goiania.go.gov.br/transweb/Blocks/GoianiaTheme/Base/fontSizeJs.js?56763
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 261
+
+﻿function fonte(e){
+    if (e == 'a') {
+        $('body').css('fontSize',(parseInt($('body').css('fontSize').replace('px',''))+1)+'px')
+    } else if('d'){
+        $('body').css('fontSize',(parseInt($('body').css('fontSize').replace('px',''))-1)+'px')
+    }
+}

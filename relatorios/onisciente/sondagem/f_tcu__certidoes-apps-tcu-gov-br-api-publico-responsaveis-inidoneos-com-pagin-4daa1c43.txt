@@ -1,0 +1,7 @@
+URL: https://certidoes.apps.tcu.gov.br/api/publico/responsaveis-inidoneos-com-paginacao?pagina=0&tamanhoPagina=50
+POST: {}
+OK: False
+HTTP: 405
+ERRO: HTTP 405
+BYTES: 235
+

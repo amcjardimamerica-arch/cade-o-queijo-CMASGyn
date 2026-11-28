@@ -1,0 +1,14 @@
+{
+ "quando": "2026-11-23T12:00:00+00:00",
+ "leituras": [
+  {
+   "arquivo": "e_portal__empenhos.txt"
+  },
+  {
+   "arquivo": "e_portal__receitas.txt"
+  },
+  {
+   "arquivo": "e_transweb__licitacoes.txt"
+  }
+ ]
+}

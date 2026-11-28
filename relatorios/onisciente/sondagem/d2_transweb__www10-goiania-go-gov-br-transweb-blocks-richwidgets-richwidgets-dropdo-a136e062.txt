@@ -1,0 +1,144 @@
+URL: https://www10.goiania.go.gov.br/transweb/Blocks/RichWidgets/RichWidgets/DropDownMenu.en.js?46563
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 4634
+
+﻿outsystems.internal.$(function($) {
+    var RichWidgets = (window.RichWidgets = window.RichWidgets || {});
+
+    // configuration
+    var rootSel = '.Menu_DropDownButton',
+        primarySel = '.Menu_TopMenu',
+        panelSel = '.Menu_DropDownPanel',
+        openClass = 'open';
+
+    // auxiliary stuff
+    var caproot = $(document.body);
+    var $openRoots = $([]);
+
+    var openRoot = function($root) {
+        $root.addClass(openClass);
+        if (RichWidgets.DropDownMenus.customOpenFunction) {
+            $root.find(panelSel).each(function() {
+                RichWidgets.DropDownMenus.customOpenFunction(this);
+            });
+        } else {
+            $root.find(panelSel).show();
+        }
+        $openRoots = $openRoots.add($root);
+    };
+    var closeRoot = function($root) {
+        $root.removeClass(openClass);
+        if (RichWidgets.DropDownMenus.customCloseFunction) {
+            $root.find(panelSel).each(function() {
+                RichWidgets.DropDownMenus.customCloseFunction(this);
+            });
+        } else {
+            $root.find(panelSel).hide();
+        }
+        $openRoots = $openRoots.not($root);
+    };
+    
+    // 0. define the keyboard event
+    caproot.delegate(rootSel, "keydown", function(ev) {
+        var _this = this.querySelector(primarySel + " a");
+        if(ev.keyCode == 13 || ev.keyCode == 32) {
+            _this.click();
+        } else if (ev.keyCode == 27 && this.classList.contains(openClass)) {
+            _this.click();
+        }
+    });
+    
+    // 1. a click in a primary link toggles its menu
+    caproot.delegate(primarySel, "click", function(ev) {
+        var $primary = $(this);
+        var $root = $primary.closest(rootSel);
+        if ( !$root.length ) { return; } // not our menus, bail out
+        var $panel = $root.find(panelSel);
+        if ( !$panel.text().length ) { return; } // menu without content
+
+        if ($root.hasClass(openClass)) { // close it
+            closeRoot($root);
+            // add accessibility
+            $root.attr("aria-expanded", "false");
+            $panel.attr("aria-hidden", "true");
+            
+            setTimeout(function(){
+                $primary.focus();
+            }, 0)
+        } else { // open it
+            openRoot($root);
+            // add accessibility
+            $root.attr("aria-expanded", "true");
+            $panel.attr("aria-hidden", "false");
+        }
+        ev.preventDefault();
+    });
+
+    // 2. a click somewhere that's not a menu, closes all menus
+    $( document.body ).bind( "click", function(ev) {
+        var $inMenu = $(ev.target).closest(rootSel);
+        $openRoots.not($inMenu).each(function() {
+            var $root = $(this);
+            if ($root.hasClass(openClass)) {
+                closeRoot($root);
+            }
+        });
+    });
+
+    // add accessibility
+    $( rootSel ).has( panelSel + " a" ).find( panelSel ).each(function() {
+        var $this = $( this );
+        $this.attr("aria-hidden", "true");
+        
+        var menuLabel = $this.parent().find(".Menu_TopMenu a").attr("aria-label");
+        if(menuLabel) {
+            var subMenus = $this.find("a");
+            for(var i=0; i<subMenus.length; i++) {
+                var item = subMenus[i];
+                $(item).attr("role", "menuitem");
+            }
+        }
+    });
+
+    // 3. add the V thingie
+    var addArrow = function() {
+        $( rootSel ).has( panelSel + " a" ).find( primarySel ).each(function() {
+            var $this = $( this )
+            
+            if($this.find("span").get().length === 0){
+                 $this.find("div").append(' <span class="Menu_DropDownArrow"/>' );
+                setTimeout(function(){
+                    $this.attr("tabindex", "0");
+                    $this.find("div a").attr("tabindex", "-1");
+                }, 200);
+            }
+        });
+    };
+
+    addArrow();
+
+    // 4. expose an API
+    RichWidgets.DropDownMenus = {
+        // close all currently open menus
+        closeAllMenus: function() {
+            $openRoots.each(function() { closeRoot($( this )); });
+        },
+        // specify a custom function that shows the menu panel
+        // (possibly using a different effect)
+        // arguments: HTMLElement to be shown 
+        customOpenFunction: function(e) { $(e).slideDown(50); },
+        // specify a custom function that hides the menu panel
+        // (possibly using a different effect)
+        // arguments: HTMLElement to be hidden
+        customCloseFunction: null
+    };
+
+    $(document).ready(function(){
+        osAjaxBackend.BindAfterAjaxRequest(function(){
+            addArrow();
+        });
+    });
+});

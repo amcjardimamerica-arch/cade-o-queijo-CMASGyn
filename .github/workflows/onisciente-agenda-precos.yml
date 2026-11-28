@@ -1,0 +1,113 @@
+name: Onisciente — agenda do painel de preços
+# Toda quarta-feira às 12h UTC (9h em Goiânia): o preço nacional (Compras.gov.br) de cada item
+# homologado no semestre corrente e no anterior, lido de novo; o resto do detalhe continua de onde parou.
+# A coleta é incremental: soma ao banco dados/onisciente/historico.db e nunca refaz a série inteira
+# (onisciente/agenda.py). Falha de motor deixa o fluxo vermelho e fica registrada em
+# relatorios/onisciente/agenda_estado.json e na página docs/onisciente/agenda.html.
+on:
+  schedule: [{cron: "0 12 * * 3"}]
+  workflow_dispatch:
+permissions: {contents: write, actions: write}
+# Todos os fluxos que gravam o banco dividem o mesmo grupo: um espera o outro terminar.
+concurrency: {group: onisciente-banco, cancel-in-progress: false}
+jobs:
+  agenda:
+    runs-on: ubuntu-latest
+    timeout-minutes: 200
+    steps:
+      # O banco é estado: um pedido que esperou na fila deve partir da ponta do branch,
+      # não do commit da hora do pedido (senão a gravação final conflita com a rodada anterior).
+      - uses: actions/checkout@v4
+        with: {ref: "${{ github.ref_name }}"}
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install --quiet PyYAML openpyxl pypdf requests
+      - name: Rodada precos
+        run: python -m onisciente.agenda precos --brutos "$RUNNER_TEMP/brutos"
+      - name: Diagnóstico e página do banco
+        if: ${{ !cancelled() }}
+        run: python -m onisciente diagnostico
+      - name: Resultado na página da execução
+        if: ${{ !cancelled() }}
+        run: |
+          python -m onisciente.agenda pagina
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          e = json.load(open("relatorios/onisciente/agenda_estado.json", encoding="utf-8"))
+          r = e["rodadas"].get("precos", {})
+          print("## Agenda: rodada precos\n")
+          print("Resultado:", "funcionou" if r.get("ok") else "FALHOU (falha do sistema)")
+          if r.get("erro"):
+              print("\nErro:", r["erro"])
+          print("\n```json\n" + json.dumps(r.get("resumo", {}), ensure_ascii=False, indent=1) + "\n```")
+          PY
+      - name: Guardar as respostas cruas
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: onisciente-agenda-precos-brutos
+          path: ${{ runner.temp }}/brutos
+          retention-days: 14
+          if-no-files-found: ignore
+      # Guarda de tamanho: o GitHub recusa arquivo acima de 100 MiB, e um push recusado perde a rodada
+      # inteira. Acima de 95 MB, os bancos sobem como artefato da execução e o fluxo falha sem enviar.
+      - name: Guarda de tamanho dos bancos
+        id: tamanho
+        if: ${{ !cancelled() }}
+        run: |
+          LIMITE=95000000
+          AVISO=70000000
+          GRANDES=""
+          for f in dados/onisciente/*.db dados/onisciente/despesa/*.jsonl.gz; do
+            [ -f "$f" ] || continue
+            T=$(stat -c %s "$f"); echo "$f: $T bytes"
+            if [ "$T" -gt "$LIMITE" ]; then GRANDES="$GRANDES $f ($T bytes)"
+            elif [ "$T" -gt "$AVISO" ]; then
+              # Aviso antes do limite: o arquivo deve ser dividido (onisciente/partes.py) enquanto há folga.
+              { echo "## Aviso: $f passou de 70 MB ($T bytes)"; echo
+                echo "Dividir antes de chegar a 95 MB (a guarda para o envio). Maiores tabelas:"; echo
+                python3 -c "import sqlite3,sys; c=sqlite3.connect(sys.argv[1]); [print(f'- {n}: {s} bytes') for n,s in c.execute('select name, sum(pgsize) from dbstat group by name order by 2 desc limit 5')]" "$f" 2>/dev/null || true
+              } >> "$GITHUB_STEP_SUMMARY"
+            fi
+          done
+          if [ -n "$GRANDES" ]; then
+            echo "grande=1" >> "$GITHUB_OUTPUT"
+            { echo "## Banco acima de 95 MB: nada foi enviado ao ramo"; echo
+              echo "Passou do limite:$GRANDES. O GitHub recusa arquivo acima de 100 MiB."
+              echo "Os bancos ficaram no artefato onisciente-bancos-${{ github.run_id }} desta execução."; } >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Guardar os bancos como artefato (grandes demais para o ramo)
+        if: ${{ !cancelled() && steps.tamanho.outputs.grande == '1' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: onisciente-bancos-${{ github.run_id }}
+          path: |
+            dados/onisciente/*.db
+            dados/onisciente/despesa/
+          retention-days: 30
+      - name: Publicar banco, relatórios e páginas
+        if: ${{ !cancelled() && steps.tamanho.outputs.grande != '1' }}
+        run: |
+          git config user.name "vigilancia-bot"; git config user.email "bot@users.noreply.github.com"
+          git add dados/onisciente/historico.db relatorios/onisciente docs/onisciente estado/onisciente_coleta.json
+          for f in dados/onisciente/rastreio.db dados/onisciente/precos.db dados/onisciente/sancoes.db dados/onisciente/series.db; do
+            [ ! -f "$f" ] || git add "$f"          # as partes do banco (onisciente/partes.py) e o rastreio
+          done
+          # A despesa vai comprimida, um .jsonl.gz por ano (o SQLite de trabalho dela fica fora do git).
+          [ ! -d dados/onisciente/despesa ] || git add -A dados/onisciente/despesa
+          git diff --staged --quiet && exit 0
+          git commit -m "Onisciente: agenda precos $(date -u +%F)"
+          for n in 1 2 3; do
+            git pull --rebase origin "$GITHUB_REF_NAME" && git push origin "HEAD:$GITHUB_REF_NAME" && exit 0
+            sleep $((n * 10))
+          done
+          exit 1
+      - name: Falhar sem enviar (banco acima de 95 MB)
+        if: ${{ !cancelled() && steps.tamanho.outputs.grande == '1' }}
+        run: |
+          echo "Banco acima de 95 MB: a coleta ficou no artefato da execução e não foi enviada ao ramo." >&2
+          exit 1
+      - name: Atualizar o painel publicado
+        if: ${{ !cancelled() && github.ref == 'refs/heads/main' }}
+        env: {GH_TOKEN: "${{ github.token }}"}
+        run: gh workflow run publicar-painel.yml --ref main

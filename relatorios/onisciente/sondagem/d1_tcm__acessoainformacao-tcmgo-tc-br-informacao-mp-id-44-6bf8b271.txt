@@ -1,0 +1,7 @@
+URL: https://acessoainformacao.tcmgo.tc.br/informacao/mp/id=44
+POST: {}
+OK: False
+HTTP: 403
+ERRO: HTTP 403
+BYTES: 118
+

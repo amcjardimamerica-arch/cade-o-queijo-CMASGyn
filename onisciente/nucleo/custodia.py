@@ -29,6 +29,15 @@ class Original:
     pagina: int | None = None
     edicao: str | None = None
     fonte: str = ""
+    # Rastreio por hash (onisciente.rastreio): o hash do registro em que o achado se apoia (para uma
+    # coleta, o da linha em ``coletas``, que cobre a resposta e a requisição) e o hash da requisição.
+    registro: str = ""
+    requisicao: str = ""
+
+    @property
+    def rastreio(self) -> str:
+        """O hash para conferência: o do registro quando há, senão o da resposta (sha256)."""
+        return self.registro or self.sha256
 
     @classmethod
     def de_texto(

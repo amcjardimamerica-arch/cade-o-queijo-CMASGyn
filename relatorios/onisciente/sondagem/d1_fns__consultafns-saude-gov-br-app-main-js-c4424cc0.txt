@@ -1,0 +1,145 @@
+URL: https://consultafns.saude.gov.br/app/main.js
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 5888
+
+'use strict';
+
+var servidor = window.location.protocol+"//"+window.location.host +"/";
+var apiDir = servidor + '/vendor/angular/api/2.2.0/';
+var componentesDir = servidor + '/vendor/angular/componentes/';
+var bibliotecasDir = servidor + '/vendor/angular/bibliotecas/';
+
+/**
+ * @desc Configuração de AMD no requireJS
+ */
+requirejs.config({
+    paths: {
+        //Libs
+        'jquery': [servidor + '/vendor/jquery/jquery.min'],
+        'angular': [servidor + '/vendor/api-core/angular.all.min'],
+        'domReady' : [servidor + '/vendor/domReady/domReady.min'],
+        'lodash' : [servidor + '/vendor/lodash/lodash.min'],
+        'ckeditor' : [servidor + '/vendor/ckeditor/ckeditor'],
+
+        'ng-table'               : [servidor + '/vendor/ng-table/ng-table.min'],
+        'angular-bootstrap'               : [servidor + '/vendor/angular-bootstrap/ui-bootstrap-tpls.min'],
+
+        //Api-core
+        'libs': [servidor + '/vendor/api-core/libs.min'],
+        'api-core': [servidor + '/vendor/api-core/api.min'],
+
+        //App-components
+        'app-menu': [servidor + '/vendor/app-menu/menu.min'],
+        'app-seguranca': [servidor + '/vendor/app-seguranca/seguranca.min'],
+        'app-route': [servidor + '/vendor/app-route/route.min'],
+        'app-modal': [servidor + '/vendor/app-modal/modal.min'],
+        'app-barra-acessibilidade': [servidor + '/vendor/app-barra-acessibilidade/barra-acessibilidade'],
+        'app-utils': [servidor + '/vendor/app-utils/utils.min'],
+        'app-notify': [servidor + '/vendor/app-notify/notify.min'],
+        'app-validator': [servidor + '/vendor/app-validator/validator'],
+        'app-mask': [servidor + '/vendor/app-mask/mask.min'],
+        'app-breadcrumb': [servidor + '/vendor/app-breadcrumb/breadcrumb.min'],
+        'app-translate': [servidor + '/vendor/app-translate/translate.min'],
+        'app-spinner': [servidor + '/vendor/app-spinner/spinner.min'],
+        'angularjs-pdf': [servidor + '/vendor/angularjs-pdf/index'],
+        'app-datepicker': ['../vendor/app-datepicker/datepicker.min'],
+        'angular-dropdown-multiselect': ['../vendor/angular-dropdown-multiselect/angularjs-dropdown-multiselect.min'],
+
+        'd3': '../vendor/d3/d3.min',
+        'c3': '../vendor/c3/c3.min',
+        'ol': [servidor + '/vendor/ol3/ol'],
+
+        'url-rodape': 'https://estatico.saude.gov.br/rodape-datasus',
+        'url-barra-brasil': [ 'https://barra.brasil.gov.br/barra',
+            'https://cachedatasus.saude.gov.br/cachedatasus/cache?url=http://barra.brasil.gov.br/barra']
+    },
+    shim: {
+        //Libs
+        'jquery': {exports: 'jquery'},
+        'angular': {deps: ['jquery'], exports: 'angular'},
+        'domReady'               : { deps: [], exports: 'domReady'},
+        'lodash'               : { deps: [], exports: 'lodash'},
+        'ckeditor'               : { deps: [], exports: 'ckeditor'},
+
+        'ng-table'               : { deps: ['libs'], exports: 'ng-table'},
+        'angular-bootstrap'               : { deps: ['libs'], exports: 'angular-bootstrap'},
+
+        //Api-Core
+        'libs': {deps: ['angular', 'lodash'], exports: 'libs'},
+        'api-core': {deps: ['libs'], exports: 'api-core'},
+
+        //App-components
+        'app-menu': {deps: ['libs'], exports: 'app-menu'},
+        'app-seguranca': {deps: ['libs'], exports: 'app-seguranca'},
+        'app-route': {deps: ['libs'], exports: 'app-route'},
+        'app-modal': {deps: ['libs'], exports: 'app-modal'},
+        'app-barra-acessibilidade': {deps: ['libs'], exports: 'app-barra-acessibilidade'},
+        'app-utils': {deps: ['libs'], exports: 'app-utils'},
+        'app-notify': {deps: ['libs'], exports: 'app-notify'},
+        'app-validator': {deps: ['libs'], exports: 'app-validator'},
+        'app-mask': {deps: ['libs'], exports: 'app-mask'},
+        'app-breadcrumb': {deps: ['libs'], exports: 'app-breadcrumb'},
+        'app-translate': {deps: ['libs'], exports: 'app-translate'},
+        'app-spinner': {deps: ['libs'], exports: 'app-spinner'},
+        'app-datepicker': {deps: ['libs'], exports: 'app-datepicker'},
+        'angular-dropdown-multiselect': {deps: ['libs'], exports: 'angular-dropdown-multiselect'},
+
+        'd3': {deps: ['libs'], exports: 'd3'},
+        'c3': {deps: ['d3'], exports: 'c3'},
+        'ol': {deps: ['jquery'], exports: 'ol'},
+    }, deps: []
+});
+
+requirejs.config({
+	urlArgs: ('prod' == 'prod') ? "t=" + '1.50.9' : "t=" + (new Date()).getTime(),
+	//urlArgs: "bust=" + '1.50.9',
+    waitSeconds: 0
+})
+
+
+/**
+ * @desc Utilização do controlador inicial da aplicação
+ */
+require([
+    "controllers/portalController",
+    "pages/release/controllers/releaseController",
+    'filters/filters-default',
+    'directives/directives-default',
+    'polyfills/polyfills-default',
+    'services/utilService',
+    "domReady!"
+], function (app,document) {
+
+        'use strict';
+
+        angular.element(document).ready(function() {
+
+            require(['url-barra-brasil'], angular.noop, function() {
+                console.error('Não foi possível carragar a barra do brasil.gov.br');
+            });
+            //require(['url-rodape'], function() {
+                window.setTimeout(function () {
+                function resize() {
+                    var Hwindow = $(window).height(),
+                        Hbody = angular.element("body").height(),
+                        Hheader = $(".box-header").height(),
+                        Hfooter = $(".box-footer").height(),
+                        Hsection = Hwindow - Hheader - Hfooter - 9;
+
+                    $(".box-section").css("min-height", Hsection);
+                }
+                //insereRodape();
+                resize();
+                $(window).bind('resize', resize);
+            // }, function (){
+            //     console.error('Não foi possível carragar o rodapé');
+            // });
+
+        }, 100);
+        });
+
+
+});

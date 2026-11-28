@@ -13,7 +13,12 @@ dados = "cadeoqueijo"
 fontes_vinculadas = ["1660", "1661", "1665", "2660", "2661"]
 # Pisos que o domínio mede.
 regras = ["IGD-CONTROLE-SOCIAL"]
+recorte = ["08"]
+orgaos = ["ASSISTENCIA SOCIAL", "DIREITOS HUMANOS", "POLITICAS PARA AS MULHERES"]
+origem = "FNAS (assistência social)"
 
 [qualidade]
+plano = "Plano Municipal de Assistência Social"
+norma_do_plano = "Lei 8.742/1993, art. 30, III"
 indicador = "famílias acompanhadas pelo PAIF"
 fonte = "Registro Mensal de Atendimentos (RMA) do SUAS"

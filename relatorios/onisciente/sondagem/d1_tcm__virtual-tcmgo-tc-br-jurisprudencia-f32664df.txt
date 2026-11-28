@@ -1,0 +1,27 @@
+URL: https://virtual.tcmgo.tc.br/jurisprudencia/
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 936
+
+<!doctype html>
+<html lang="pt-BR" translate="no" class="light">
+  <head>
+    <script src="/jurisprudencia/tema.js"></script>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/jurisprudencia/icone.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- lang="en" fazia o Chrome oferecer traducao sozinho (idioma declarado
+    divergia do conteudo, que e todo em pt-BR); a traducao automatica muta o
+    DOM por fora do React e derruba a tela com "Failed to execute
+    'removeChild' on 'Node'". notranslate bloqueia a oferta de vez. -->
+    <meta name="google" content="notranslate" />
+    <title>Jurisprudência TCMGO</title>
+    <script type="module" crossorigin src="/jurisprudencia/assets/index-CXB0WfQ4.js"></script>
+    <link rel="stylesheet" crossorigin href="/jurisprudencia/assets/index-CWAHbWRM.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

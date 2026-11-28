@@ -1,0 +1,130 @@
+# Limiares das conferências da execução da despesa (Frente D2, 27/11/2026).
+#
+# Pedido do dono: parâmetros restritivos em todas as conferências, para pegar qualquer
+# desconformidade ou parâmetro viciado. Cada limiar é o mais exigente que os dados sustentam:
+# quando um valor ainda mais duro marcaria como alerta o que é a forma normal e legal de pagar
+# (um aluguel mensal fixo, uma folha), isso está dito na justificativa.
+# No parecer, alerta é indício, não acusação: a ficha diz o que pedir, nunca imputa.
+#
+# Cada entrada: valor (o que o código usa), justificativa (por que este número) e base
+# (norma, regra do mapa legal ou dado que sustenta o número). Lido por
+# onisciente/conferencias/execucao.py (carregar_limiares); mudar aqui muda a conferência.
+versao: '2026-11-27'
+
+concentracao:
+  corte_pct:
+    valor: 80.0
+    justificativa: A fatia do pago que poucos credores levam. É o corte da regra CONCENTRACAO do mapa legal.
+    base: regras/mapa_legal.yml, CONCENTRACAO (CF, art. 37, caput, impessoalidade)
+  credores:
+    valor: 5
+    justificativa: Até cinco credores levando 80% do pago de um órgão no exercício já é concentração; é o número do mapa legal.
+    base: regras/mapa_legal.yml, CONCENTRACAO
+  minimo_de_credores:
+    valor: 5
+    justificativa: >-
+      O mapa legal usa 10 para não confundir órgão pequeno com concentração. Aqui o corte é mais duro (5):
+      com cinco credores ou mais, se um punhado leva 80%, vira indício. Abaixo de cinco, o órgão
+      não tem com quem concentrar e o alerta seria só o tamanho dele.
+    base: regras/mapa_legal.yml, CONCENTRACAO (minimo_de_credores = 10, endurecido para 5)
+  credor_unico_pct:
+    valor: 40.0
+    justificativa: >-
+      Um único credor com 40% ou mais do pago do órgão no exercício é alerta por si, mesmo sem a regra
+      dos 80%: é o desenho do contrato guarda-chuva que concentra sem aparecer na contagem de credores.
+    base: CF, art. 37, caput; Lei 14.133/2021, art. 40, V, b (parcelamento do objeto)
+  pago_minimo:
+    valor: 0.0
+    justificativa: Nenhum piso de valor. Todo órgão com pagamento entra na conta.
+    base: escolha restritiva do dono
+  elementos_fora:
+    valor: ['31', '32', '46', '3390.08', '3390.46', '3390.48', '3390.49']
+    justificativa: >-
+      Ficam fora da conta só os pagamentos em que o credor do portal não é quem escolhe vender ao órgão:
+      pessoal e encargos (31), juros e amortização da dívida (32, 46) e benefícios pagos a pessoa física
+      (3390.08, .46, .48, .49). A folha sai num crédito só ao banco pagador, e no banco real de 28/11/2026
+      o Itaú aparecia com 83% do pago da Educação e 96% do da previdência em 2025, o que é a forma normal e
+      legal de pagar a folha, não concentração de fornecedor. Transferências a entidades, subvenções,
+      serviços e obras continuam na conta.
+    base: Portaria Interministerial STN/SOF 163/2001 (natureza da despesa); banco real de 28/11/2026 (despesa_eventos)
+
+fim_de_ano:
+  dias:
+    valor: 15
+    justificativa: Os últimos 15 dias de dezembro, quando o empenho corre para não perder a dotação.
+    base: Lei 4.320/1964, art. 35, II (a despesa pertence ao exercício em que é empenhada)
+  multiplo_da_parcela_uniforme:
+    valor: 1.5
+    justificativa: >-
+      Num ano uniforme, 15 dias são 4,1% do empenhado. Passar de 1,5 vez isso (6,2%) já é alerta. Um
+      múltiplo menor marcaria a sazonalidade normal de dezembro (13º salário, que não se empenha
+      no fim do ano por escolha) e esconderia os casos reais no ruído.
+    base: Lei 4.320/1964, art. 35, II; LC 101/2000, art. 42 (no último ano do mandato)
+  multiplo_mensal:
+    valor: 1.5
+    justificativa: >-
+      Na matriz de saldos contábeis, que é mensal, o equivalente: dezembro com mais de 1,5 vez a
+      média do mês (12,5% do empenhado no ano) numa função é alerta.
+    base: matriz de saldos contábeis (MSC), classe 6, movimento do mês
+  empenhado_minimo:
+    valor: 0.0
+    justificativa: Nenhum piso de valor; toda função e todo órgão entram.
+    base: escolha restritiva do dono
+
+recorrente_sem_contrato:
+  minimo_de_meses:
+    valor: 2
+    justificativa: >-
+      O mesmo credor pago em dois meses distintos sem contrato, ata ou termo publicado já é despesa
+      continuada sem instrumento. A função do sistema usava 3; o dono pediu o mais exigente.
+    base: Lei 14.133/2021, arts. 72, 89 e 95; Lei 4.320/1964, art. 63, § 2º, I
+  elementos_sem_contrato:
+    valor: ['3190', '3191', '3290', '3390.08', '3390.46', '3390.48', '3390.49', '4690', '3170', '3171', '3180', '3381', '3371', '3341', '3141', '3140', '3240', '4640', '4641', '3150', '3350', '3360']
+    justificativa: >-
+      Despesas cujo direito do credor não nasce de contrato: pessoal e encargos (31), juros e
+      amortização da dívida (32, 46), benefícios e auxílios pagos a pessoa física (3390.08, .46,
+      .48, .49) e transferências a outros entes, consórcios e entidades (modalidades 40, 41, 50, 60,
+      70, 71, 80, 81). O vínculo delas é a folha, a lei ou o termo, conferidos em outra estação.
+      Só ficam fora da conferência: tudo o mais exige contrato.
+    base: Portaria Interministerial STN/SOF 163/2001 (natureza da despesa); Lei 13.019/2014 (termos)
+  valor_minimo:
+    valor: 0.0
+    justificativa: Nenhum piso de valor, nem o da dispensa por valor; pago sem instrumento conta sempre.
+    base: escolha restritiva do dono
+
+medicoes_repetidas:
+  vezes:
+    valor: 3
+    justificativa: >-
+      Três liquidações seguidas com o mesmo valor ao centavo no mesmo empenho. Com duas, todo contrato
+      de preço mensal fixo (aluguel, vigilância, limpeza por posto) viraria alerta todo mês e o
+      alerta perderia o sentido; com três, o padrão já é de medição copiada.
+    base: Lei 4.320/1964, art. 63 (liquidação pela entrega comprovada); Lei 14.133/2021, art. 140
+  tolerancia_relativa:
+    valor: 0.0
+    justificativa: Igualdade ao centavo; qualquer diferença quebra a sequência.
+    base: escolha restritiva do dono
+  so_medicao_variavel:
+    valor: false
+    justificativa: >-
+      Não se exclui nenhum elemento: um contrato de preço fixo aparece também, e a ficha diz que,
+      se o contrato é de valor mensal fixo, basta a cláusula para fechar o alerta.
+    base: escolha restritiva do dono
+
+liquidado_acima_do_contratado:
+  tolerancia_absoluta:
+    valor: 0.01
+    justificativa: Um centavo acima do contratado com os aditivos publicados já é alerta.
+    base: Lei 4.320/1964, arts. 62 e 63; Lei 14.133/2021, art. 125
+  usa_valor_global_atualizado:
+    valor: true
+    justificativa: >-
+      O contratado é o maior entre o valor global publicado, o acumulado dos aditivos e o valor
+      inicial: o sistema nunca acusa excesso que um aditivo publicado cobre.
+    base: Lei 14.133/2021, arts. 124 a 126 (alterações publicadas no PNCP)
+
+ordem:
+  dias_de_tolerancia:
+    valor: 0
+    justificativa: Pagamento um dia antes da liquidação já é ordem violada; nenhuma folga.
+    base: Lei 4.320/1964, arts. 60, 62 e 63; regras/mapa_legal.yml, ORDEM-DESPESA

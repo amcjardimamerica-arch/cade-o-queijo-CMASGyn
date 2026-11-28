@@ -1,0 +1,472 @@
+URL: https://consultafns.saude.gov.br/app/pages/detalhada/controllers/detalhadaController.js
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 18896
+
+/**
+ * @desc Define um módulo anonimo dependente de app e
+ * cria o controlador DetalhadaController
+ */
+define([
+        'app',
+        'pages/detalhada/services/detalhadaService',
+        'pages/estado/services/estadoService',
+        'pages/municipio/services/municipioService',
+        'pages/bloco/services/blocoService',
+        'pages/tipoConsulta/services/tipoConsultaService',
+        'pages/repasse/services/repasseService',
+        'pages/componente/services/componenteService',
+        'pages/programaFundo/services/programaFundoService',
+        'pages/consolidada/services/consolidadaService',
+        'pages/mes/services/mesService',
+        'pages/ano/services/anoService'
+],
+    /**
+     * @param app
+     * @returns {*}
+     */
+    function (app) {
+
+        /**
+         * @constructor
+         */
+        var DetalhadaController = function ($scope, $log, ngTableParams, $filter, detalhadaService, appRouteService, appValidatorService, estadoService, municipioService, blocoService, tipoConsultaService, repasseService, componenteService, programaFundoService, consolidadaService, mesService, anoService) {
+            this.$scope = $scope;
+            this.$log = $log;
+            this.ngTableParams = ngTableParams;
+            this.$filter = $filter;
+            this.appRouteService = appRouteService;
+            this.detalhadaService = detalhadaService;
+            this.appValidatorService = appValidatorService;
+            this.anoService = anoService;
+            this.estadoService = estadoService;
+            this.municipioService = municipioService;
+            this.blocoService = blocoService;
+            this.tipoConsultaService = tipoConsultaService
+            this.repasseService = repasseService;
+            this.componenteService = componenteService;
+            this.programaFundoService = programaFundoService;
+            this.consolidadaService = consolidadaService;
+            this.mesService = mesService;
+            this.dados = [];
+            
+            this.dia = new Date();
+            this.diaMenosUm = new Date();
+            this.diaMenosUm.setDate(this.dia.getDate() - 1); // Diminui um dia da data atual
+            
+            this.diaMenosUmFormatado = moment(this.diaMenosUm).format("YYYY/MM/DD");
+            
+            this.$scope.columns = [
+                {
+                    title: "{{ 'nomeEntidade.label' | translate}}",
+                    field: "razaoSocial",
+                    visible: true,
+                    order: 'sortable'
+                },
+                {
+                    title: "{{ 'uf.label' | translate}}",
+                    field: "uf",
+                    visible: true,
+                    order: 'sortable'
+                },
+                {
+                    title: "{{ 'municipio.label' | translate}}",
+                    field: "municipio",
+                    visible: true,
+                    order: 'sortable'
+                },
+                {
+                    title: "{{ 'cpfCnpj.label' | translate}}",
+                    field: "cpfCnpjFormatado",
+                    visible: true,
+                    order: 'sortable'
+                },
+                {
+                    title: "{{ 'default.grid.column.acoes.label' | translate}}",
+                    field: "actions",
+                    ngClass: "btn-table",
+                    visible: true
+                }
+            ];
+
+            this.$scope.showGrid = false;
+            this.boxGrid = false;
+            this.filtroData = {};
+            this.pesquisa = {};
+            this.pesquisado = {};
+
+            var $this = this;
+
+            this.anoService.listar().then(function(sucesso) {
+				$this.ano = sucesso.resultado;
+				$this.ano.forEach(function(obj){
+	                	if (obj.valor == moment().format('YYYY')){
+	                		$this.pesquisa.ano = obj;
+	                	}
+	                });
+				$this.mudaTipoConsulta($this.pesquisa.ano.valor);
+			}, function(erro) {
+				$this.$scope.$appNotify.error(erro.data.mensagens);
+			});
+
+            this.estadoService.listar().then(function(sucesso) {
+                $this.estado = sucesso.resultado;
+            }, function(erro) {
+                $this.$scope.$appNotify.error(erro.data.mensagens);
+            });
+
+            this.mesService.listar().then(function(sucesso) {
+				$this.mes = sucesso.resultado;
+			}, function(erro) {
+				$this.$scope.$appNotify.error(erro.data.mensagens);
+			});
+            
+            this.repasseService.listar().then(function(sucesso) {
+                $this.repasse = sucesso.resultado;
+            }, function(erro) {
+                $this.$scope.$appNotify.error(erro.data.mensagens);
+            });
+        }
+        
+        DetalhadaController.prototype.mudaEstado = function(siglaUf) {
+            var $this = this;
+            this.pesquisa.municipio = null;
+            this.municipioService.buscarMunicipiosPorSiglaUF(siglaUf).then(function(sucesso) {
+            	$this.municipio = sucesso.resultado;
+            }, function(erro) {
+                $this.$scope.$appNotify.error(erro.data.mensagens);
+            });
+        }
+        
+        DetalhadaController.prototype.mudaTipoConsulta = function(ano) {
+            var $this = this;
+            this.pesquisa.tipoConsulta = null;
+            this.tipoConsultaService.listar($this.pesquisa.ano.descricao).then(function(sucesso) {
+        		$this.tipoConsulta = sucesso.resultado;
+        		$this.tipoConsulta.forEach(function(obj){
+        			if (obj.valor == 2){
+        				$this.pesquisa.tipoConsulta = obj;
+        			}
+        		});
+        		$this.ajustarBlocoComponenteAcao();
+            		}, function(erro) {
+            				$this.$scope.$appNotify.error(erro.data.mensagens);
+            	});
+        }
+        
+        DetalhadaController.prototype.mudaBloco = function(coTipoConsulta, ano) {
+            var $this = this;
+            this.limparBlocos();
+            var parametros = {
+            		coTipoConsulta: coTipoConsulta,
+            		ano: ano
+            }
+            
+            var blocoLocal = this.blocoService.recuperarBlocoLocal(coTipoConsulta,ano);
+            if (blocoLocal.length > 0 ) {
+            	$this.blocos = blocoLocal;
+            } else {
+            	$this.blocoService.listarPorTipoConsultaEAno(parametros).then(function(sucesso) {
+            		$this.blocos = sucesso.resultado;
+            		$this.blocos.forEach(function(obj){
+            			obj.coTipoConsulta = parametros.coTipoConsulta;
+            			obj.ano = parametros.ano
+            			$this.blocoService.blocosLocais.push(obj);
+            		});
+            	}, function(erro) {
+            		$this.$scope.$appNotify.error(erro.data.mensagens);
+            	});	
+            }
+            
+        }
+        
+        DetalhadaController.prototype.carregaGrupoOuComponente = function(ano) {
+        	var $this = this;
+        	this.limparComponenteAcao();
+        	if (ano > 2017){
+        		this.carregaGrupoAcao(this.pesquisa.blocos, ano)
+        	}else{
+        		this.carregaComponentes(this.pesquisa.tipoConsulta.valor, this.pesquisa.blocos, ano)
+        	}
+        }
+        
+        DetalhadaController.prototype.carregaGrupoAcao = function(bloco, ano) {
+            var $this = this;
+            this.limparGrupoAcao();
+            var parametros = {
+            		bloco: this.pesquisa.blocos!=null ? this.pesquisa.blocos.id : null,
+            		ano: ano
+            }
+            var grupoAcaoLocal = this.blocoService.recuperarGrupoAcaoLocal(parametros.bloco,parametros.ano);
+            if (grupoAcaoLocal.length > 0 ) {
+            	$this.grupo = grupoAcaoLocal;
+            } else{
+            	this.blocoService.listarGrupoAcaoPorBlocoEAno(parametros).then(function(sucesso) {
+            		$this.grupo = sucesso.resultado;
+            		$this.grupo.forEach(function(obj){
+            			obj.bloco = parametros.bloco;
+            			obj.ano = parametros.ano
+            			$this.blocoService.gruposAcoesLocais.push(obj);
+            		});
+            	}, function(erro) {
+            		$this.$scope.$appNotify.error(erro.data.mensagens);
+            	});
+            } 
+        }
+
+        DetalhadaController.prototype.carregaComponentes = function(coTipoConsulta, bloco, ano) {
+            var $this = this;
+            this.limparComponenteAcao();
+            this.pesquisa.componentes = null;
+            if (bloco != null){
+            	this.componenteService.listarPorTipoConsultaEBlocoEAno(coTipoConsulta,bloco.id, ano).then(function(sucesso) {
+                	$this.componentes = sucesso.resultado;
+                }, function(erro) {
+                    $this.$scope.$appNotify.error(erro.data.mensagens);
+                });
+            }else{
+            	$this.componentes = null;
+            }
+
+        }
+        
+        DetalhadaController.prototype.carregaPlanos = function() {
+            var $this = this;
+            this.limparPlanoOrcamentario();
+            if (this.pesquisa.componentes != null && this.pesquisa.grupo != null ){
+            	$this.parametros = {
+            			acao : this.pesquisa.componentes.id,
+            			grupo : this.pesquisa.grupo.id,
+            			ano: this.pesquisa.ano.descricao
+            	};
+            	this.programaFundoService.listarPlanoPorGrupoBlocoAno($this.parametros).then(function(sucesso) {
+            		$this.planos = sucesso.resultado;
+            	}, function(erro) {
+            		$this.$scope.$appNotify.error(erro.data.mensagens);
+            	});
+            }else{
+            	$this.planos = null;
+            }
+        }
+
+        DetalhadaController.prototype.carregaAcoes = function() {
+            var $this = this;
+            this.limparAcoes();
+            if (this.pesquisa.componentes != null && (this.pesquisa.blocos != undefined || this.pesquisa.grupo != null)){
+            	$this.parametros = {
+            			componente : this.pesquisa.componentes.id,
+            			bloco : (this.pesquisa.blocos!=undefined && this.pesquisa.blocos.id != null && this.pesquisa.ano.valor < 2018) ? this.pesquisa.blocos.id : this.pesquisa.grupo.id,
+            			planoOrcamentario: this.pesquisa.planos!= null ? this.pesquisa.planos.id : null,
+            			ano: this.pesquisa.ano.descricao
+            	};
+            	this.programaFundoService.listarPorComponenteBlocoFormaRepasse($this.parametros).then(function(sucesso) {
+            		$this.acoes = sucesso.resultado;
+            	}, function(erro) {
+            		$this.$scope.$appNotify.error(erro.data.mensagens);
+            	});
+            }else{
+            	$this.acoes = null;
+            }
+        }
+
+        DetalhadaController.prototype.grid = function() {
+            var $this = this;
+            return new this.ngTableParams(
+                {
+                    page: 1,
+                    count: 10,
+
+                    ano:$this.pesquisa.ano.valor,
+                    mes:($this.pesquisa.mes!=null ? $this.pesquisa.mes.valor : ''),
+					tipoConsulta:$this.pesquisa.tipoConsulta != undefined ? $this.pesquisa.tipoConsulta.valor : "",
+					blocos:($this.pesquisa.blocos!=null ? $this.pesquisa.blocos.id : ''),
+					grupo:($this.pesquisa.grupo!=null ? $this.pesquisa.grupo.id : ''),
+					componentes:($this.pesquisa.componentes!=null ? $this.pesquisa.componentes.id : ''),
+					acoes:($this.pesquisa.acoes!=null ? $this.pesquisa.acoes.id : ''),
+					estado:($this.pesquisa.estado!=null ? $this.pesquisa.estado.sigla : ''),
+					municipio:($this.pesquisa.municipio!=null ? $this.pesquisa.municipio.coMunicipioIbge : ''),
+					repasse:($this.pesquisa.repasse!=null ? $this.pesquisa.repasse.valor : ''),
+					dataInicialOb : ($this.pesquisa.dataInicialOb!=null ? moment($this.pesquisa.dataInicialOb).format('YYYY-MM-DD') : ''),
+					dataFinalOb : ($this.pesquisa.dataFinalOb!=null ? moment($this.pesquisa.dataFinalOb).format('YYYY-MM-DD') : '')
+                },
+                {
+                    getData: function($defer, params) {
+
+                    	var filtro = Object.assign({
+                    		nuAcaoJudicial:$this.pesquisa.nuAcaoJudicial,
+                    		cpfCnpjUg:$this.pesquisa.cpfCnpjUg,
+                    		processo:$this.pesquisa.processo,
+        					proposta:$this.pesquisa.proposta,
+        					portaria:$this.pesquisa.portaria
+						}, params.url());
+
+                        var sucesso = function(response) {
+                            params.total(response.resultado.total);
+
+                            $this.dados = response.resultado.dados;
+
+                            angular.forEach($this.dados, function (val, index) {
+                            	var isFernandoNoronha = false;
+                            	if (val.codigoMunicipioIBGE == '260545'){
+                            		isFernandoNoronha = true;
+                            	}else{
+                            		isFernandoNoronha = false
+                            	}
+
+                                val['actions'] = "<button ng-click='detalhadaCtrl.acao(" + val.cpfCnpj + ")' class='btn btn-sm btn-primary' title="+$this.$filter('translate')('detalharEntidade.title')+"><span class='app-icone-ver'></span></button> ";
+                                if (isFernandoNoronha){
+                                	val['municipio'] = null;
+                                }
+                            });
+
+                            var orderedData = params.sorting() && params.orderBy().length ?
+                                    $this.$filter('orderBy')($this.dados, params.orderBy()) :
+                                    $this.dados;
+
+                            orderedData = params.filter() ?
+                                $this.$filter('filter')(orderedData, params.filter()) :
+                                orderedData;
+
+                            $defer.resolve(orderedData);
+                        }
+
+                        var erro = function(response) {
+                            $this.$scope.$appNotify.error(response.data.mensagens);
+                        }
+                        $this.detalhadaService.recuperarEntidades(filtro).then(sucesso,erro);
+                    }
+                });
+        }
+
+        DetalhadaController.prototype.pesquisar = function() {
+            var $this = this;
+            $this.appValidatorService.validate($this.$scope).success(function(sucesso) {
+
+            	$this.$scope.showGrid = true;
+
+                $this.boxGrid = true;
+                $this.$scope.ngTable = $this.grid();
+
+                $this.pesquisado = JSON.parse(JSON.stringify($this.pesquisa));
+                
+                if ($this.pesquisa.municipio != undefined ) {
+                	  $this.consolidadaService.cGet('populacaoCenso/'+$this.pesquisa.municipio.coMunicipioIbge).then(function(sucesso) {
+                          $this.pesquisado.populacao = sucesso.resultado.populacao;
+                          $this.pesquisado.anoCenso = sucesso.resultado.anoCenso;
+                      }, function(erro) {
+                          $this.$scope.$appNotify.error(erro.data.mensagens);
+                      });
+                }
+
+            }).error(function(erro){
+               $this.$scope.$appNotify.error( $this.$filter('translate')('mensagem.obrigatorio.erro') );
+            })
+        }
+
+        DetalhadaController.prototype.getEntidadeByCNPJ = function(cpfCnpj) {
+
+			var result = null;
+			this.dados.forEach(function(obj) {
+				if (obj.cpfCnpj == cpfCnpj) {
+					result = obj;
+				}
+			});
+			return result;
+		}
+
+        DetalhadaController.prototype.acao = function(cpfCnpj) {
+
+        	this.pesquisado.entidade = this.getEntidadeByCNPJ(cpfCnpj);
+        	this.detalhadaService.filtroParams = this.pesquisado;
+        	this.detalhadaService.filtroParams.geral = false;
+        	this.appRouteService.goTo('.acao');
+        }
+
+        DetalhadaController.prototype.validarTipoConsulta = function(){
+
+        	if ($("#cpfCnpjUg").val() || $("#processo").val() || $("#proposta").val()) {
+        	    return false;
+        	}else{
+        	    return true;
+        	}
+        }
+
+        DetalhadaController.prototype.ajustarBlocoComponenteAcao = function(){
+        	this.pesquisa.acoes = {};
+        	this.pesquisa.blocos = {};
+        	this.pesquisa.componentes = {};
+        	this.pesquisa.planos = {};
+        	this.pesquisa.grupo = {}
+        	this.grupo = {};
+        	delete this.blocoService.gruposAcoesLocai;
+        	this.acoes = {};
+        	this.componentes = {};
+        	this.planos = {};
+        	if (this.pesquisa.ano != null && this.pesquisa.tipoConsulta != undefined && (this.pesquisa.tipoConsulta.valor == 1 || this.pesquisa.tipoConsulta.valor == 2 || this.pesquisa.tipoConsulta.valor == 3)){
+        		this.mudaBloco(this.pesquisa.tipoConsulta.valor, this.pesquisa.ano.descricao);
+        		if (this.pesquisa.ano.valor > 2017 && this.pesquisa.tipoConsulta.valor == 3){
+        			this.carregaGrupoAcao(null,this.pesquisa.ano.descricao);
+        		}
+        	}
+        }
+
+        DetalhadaController.prototype.limparAcoes = function() {
+            this.pesquisa.acoes = null;
+            this.acoes = {};
+        }
+        
+        DetalhadaController.prototype.limparBlocos = function() {
+            this.limparGrupoAcao();
+        	this.pesquisa.blocos = null;
+            this.blocos = {};
+        }
+        
+        DetalhadaController.prototype.limparGrupoAcao = function() {
+            this.limparComponenteAcao();
+        	this.pesquisa.grupo = null;
+            this.grupo = {};
+        }
+        
+        DetalhadaController.prototype.limparComponenteAcao = function() {
+        	this.limparPlanoOrcamentario();
+        	this.pesquisa.componentes = null;
+            this.componentes = {};
+        }
+        
+        DetalhadaController.prototype.limparPlanoOrcamentario = function() {
+            this.limparAcoes();
+        	this.pesquisa.planos = null;
+            this.planos = {};
+        }
+
+        DetalhadaController.prototype.limpar = function(id) {
+            this.pesquisa = {};
+            this.acoes = {};
+            this.blocos = {};
+        	this.componentes = {};
+        	this.planos = {};
+        	this.grupo = {};
+            this.boxGrid = false;
+        }
+
+        DetalhadaController.prototype.imprimir = function() {
+			window.print();
+		}
+
+        /**
+         * @desc
+         * Dependency Injection
+         */
+        DetalhadaController.$inject = ['$scope', '$log', 'ngTableParams', '$filter', 'detalhadaService', 'appRouteService', 'appValidatorService', 'estadoService', 'municipioService', 'blocoService', 'tipoConsultaService', 'repasseService','componenteService','programaFundoService','consolidadaService','mesService','anoService'];
+
+        /**
+         * @desc Criação do controlador
+         * @type {boolean}
+         */
+        app.controller('detalhadaController', DetalhadaController);
+
+        return app;
+    }
+);

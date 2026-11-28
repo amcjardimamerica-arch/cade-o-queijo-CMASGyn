@@ -1,0 +1,7 @@
+URL: https://docs.api.transferegov.gestao.gov.br/transferenciasespeciais/
+POST: {}
+OK: False
+HTTP: None
+ERRO: URLError: [Errno -5] No address associated with hostname
+BYTES: 0
+

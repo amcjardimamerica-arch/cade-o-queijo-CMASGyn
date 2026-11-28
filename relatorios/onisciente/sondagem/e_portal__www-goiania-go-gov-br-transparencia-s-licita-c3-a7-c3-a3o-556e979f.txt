@@ -1,0 +1,7 @@
+URL: https://www.goiania.go.gov.br/transparencia/?s=licita%C3%A7%C3%A3o
+POST: {}
+OK: False
+HTTP: 404
+ERRO: HTTP 404
+BYTES: 65536
+

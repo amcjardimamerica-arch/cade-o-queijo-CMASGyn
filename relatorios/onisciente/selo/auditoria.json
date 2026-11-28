@@ -1,0 +1,4822 @@
+{
+ "ciclo": 2026,
+ "hoje": "2026-11-27",
+ "declarado": {
+  "selo": "Diamante",
+  "ciclo": 2025,
+  "indice": "acima de 95%",
+  "fonte": "Jornal Opção, 05/12/2025: Prefeitura de Goiânia recebe selo Diamante por nota máxima em transparência",
+  "url": "https://www.jornalopcao.com.br/goiania/goiania-recebe-selo-diamante-por-nota-maxima-em-transparencia-publica-772080/",
+  "ciclo_2026": "O resultado do ciclo 2026 saiu em novembro de 2026 no Radar; uma manchete de 06/08/2026 (Mais Goiás) fala em 98,08% na validação do TCM-GO, mas a página recusou a leitura e o número não foi conferido."
+ },
+ "veredito": {
+  "oficial": "não confirmado",
+  "restritiva": "cai",
+  "frase": "Pela leitura oficial o Selo Diamante não está confirmado: com as provas lidas o índice é 5,24% (Inicial); o máximo possível com o que falta provar é 100,00%. Pela leitura restritiva o padrão cai para Elevado (essenciais em falta: 3.1, 4.1, 4.3, O.2), mesmo no melhor caso."
+ },
+ "notas": {
+  "oficial/comprovada": {
+   "leitura": "oficial",
+   "modo": "comprovada",
+   "indice": 5.24,
+   "essenciais_ok": false,
+   "nivel": "Inicial",
+   "selo": false,
+   "essenciais_em_falta": [
+    "3.1",
+    "3.2",
+    "4.1",
+    "4.2",
+    "4.3",
+    "11.5",
+    "11.6"
+   ]
+  },
+  "oficial/teto": {
+   "leitura": "oficial",
+   "modo": "teto",
+   "indice": 100.0,
+   "essenciais_ok": true,
+   "nivel": "Diamante",
+   "selo": true,
+   "essenciais_em_falta": []
+  },
+  "restritiva/comprovada": {
+   "leitura": "restritiva",
+   "modo": "comprovada",
+   "indice": 4.62,
+   "essenciais_ok": false,
+   "nivel": "Inicial",
+   "selo": false,
+   "essenciais_em_falta": [
+    "3.1",
+    "3.2",
+    "4.1",
+    "4.2",
+    "4.3",
+    "11.5",
+    "11.6",
+    "11.8",
+    "11.9",
+    "11.10",
+    "O.2"
+   ]
+  },
+  "restritiva/teto": {
+   "leitura": "restritiva",
+   "modo": "teto",
+   "indice": 76.41,
+   "essenciais_ok": false,
+   "nivel": "Elevado",
+   "selo": false,
+   "essenciais_em_falta": [
+    "3.1",
+    "4.1",
+    "4.3",
+    "O.2"
+   ]
+  }
+ },
+ "radar": {
+  "lido": false,
+  "motivo": "o painel 6 do Radar e os dados abertos do PNTP recusaram a leitura em 27/11/2026; a sondagem e_radar no GitHub lê de novo"
+ },
+ "paginas_lidas": 0,
+ "criterios": [
+  {
+   "id": "1.1",
+   "dimensao": 1,
+   "classe": "essencial",
+   "matriz": "comum",
+   "texto": "Possui sítio oficial próprio na internet",
+   "base_legal": "Lei 12.527/2011, art. 8º, § 2º; LC 101/2000, art. 48, § 1º, II",
+   "onde": [
+    "e_home"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": true
+    },
+    "restritiva": {
+     "disponibilidade": true
+    }
+   },
+   "situacao": {
+    "oficial": "atendido",
+    "restritiva": "atendido"
+   },
+   "provas": [
+    {
+     "criterio": "1.1",
+     "item": "disponibilidade",
+     "valor": true,
+     "leituras": "ambas",
+     "descricao": "o sítio oficial da Prefeitura respondeu na rodada da coleta",
+     "fonte": "banco, tabela fontes: https://www.goiania.go.gov.br/transparencia/",
+     "nivel": "B",
+     "valor_em_jogo": 0.0
+    }
+   ],
+   "notas": {
+    "oficial": [
+     "fontes e_home ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_home ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "1.2",
+   "dimensao": 1,
+   "classe": "essencial",
+   "matriz": "comum",
+   "texto": "Possui portal da transparência próprio ou compartilhado",
+   "base_legal": "LC 101/2000, art. 48, § 1º, II; Lei 12.527/2011, art. 8º, § 2º",
+   "onde": [
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": true
+    },
+    "restritiva": {
+     "disponibilidade": true
+    }
+   },
+   "situacao": {
+    "oficial": "atendido",
+    "restritiva": "atendido"
+   },
+   "provas": [
+    {
+     "criterio": "1.2",
+     "item": "disponibilidade",
+     "valor": true,
+     "leituras": "ambas",
+     "descricao": "o portal da transparência respondeu HTTP 200 na rodada da coleta",
+     "fonte": "banco, tabela fontes: https://www.goiania.go.gov.br/transparencia/",
+     "nivel": "B",
+     "valor_em_jogo": 0.0
+    }
+   ],
+   "notas": {
+    "oficial": [
+     "fontes e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "1.3",
+   "dimensao": 1,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Acesso ao portal da transparência visível na capa do sítio",
+   "base_legal": "Lei 12.527/2011, art. 8º, caput",
+   "onde": [
+    "e_home"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_home ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_home ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "1.4",
+   "dimensao": 1,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Ferramenta de pesquisa de conteúdo no sítio",
+   "base_legal": "Lei 12.527/2011, art. 8º, § 3º, I",
+   "onde": [
+    "e_home",
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "2.1",
+   "dimensao": 2,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Estrutura organizacional e norma que a institui ou altera",
+   "base_legal": "Lei 12.527/2011, art. 8º, § 1º, I",
+   "onde": [
+    "e_home",
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "2.2",
+   "dimensao": 2,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Competências e atribuições dos órgãos",
+   "base_legal": "Lei 12.527/2011, art. 8º, § 1º, I",
+   "onde": [
+    "e_home",
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "2.3",
+   "dimensao": 2,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Nomes dos responsáveis atuais pela gestão",
+   "base_legal": "Lei 12.527/2011, art. 8º, caput e § 1º, I",
+   "onde": [
+    "e_home",
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "2.4",
+   "dimensao": 2,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Endereços",
+   "base_legal": "Lei 12.527/2011, art. 8º, § 1º, I, e § 3º, VII",
+   "onde": [
+    "e_home",
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "2.5",
+   "dimensao": 2,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Horário de atendimento",
+   "base_legal": "Lei 12.527/2011, art. 8º, § 1º, I",
+   "onde": [
+    "e_home",
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "2.6",
+   "dimensao": 2,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Atos normativos próprios",
+   "base_legal": "Lei 12.527/2011, art. 8º, caput",
+   "onde": [
+    "e_home",
+    "e_portal",
+    "e_legislacao"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null,
+     "filtro": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null,
+     "filtro": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_home, e_portal, e_legislacao ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_home, e_portal, e_legislacao ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "2.7",
+   "dimensao": 2,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Perguntas e respostas frequentes",
+   "base_legal": "Lei 12.527/2011, art. 8º, § 1º, VI",
+   "onde": [
+    "e_home",
+    "e_portal",
+    "e_transweb"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_home, e_portal, e_transweb ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_home, e_portal, e_transweb ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "2.8",
+   "dimensao": 2,
+   "classe": "recomendado",
+   "matriz": "comum",
+   "texto": "Link para perfis em redes sociais",
+   "base_legal": "boa prática sem exigência legal expressa",
+   "onde": [
+    "e_home"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_home ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_home ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "2.9",
+   "dimensao": 2,
+   "classe": "recomendado",
+   "matriz": "comum",
+   "texto": "Botão do Radar da Transparência Pública",
+   "base_legal": "boa prática sem exigência legal expressa",
+   "onde": [
+    "e_home",
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "3.1",
+   "dimensao": 3,
+   "classe": "essencial",
+   "matriz": "comum",
+   "texto": "Receitas com previsão e realização",
+   "base_legal": "LC 101/2000, arts. 48, § 1º, II, e 48-A, II",
+   "onde": [
+    "e_portal",
+    "e_transweb"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null,
+     "gravacao": null,
+     "filtro": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": false,
+     "serie_historica": null,
+     "gravacao": null,
+     "filtro": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não atendido"
+   },
+   "provas": [
+    {
+     "criterio": "3.1",
+     "item": "atualidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "Receita realizada do Fundo por fonte (2026-10) não publicado; deveria estar em Portal da Transparência (responsabilidade fiscal) e SICONFI",
+     "fonte": "parecer 2026-10, ausências (relatorios/onisciente/panorama_2026-10.json)",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    },
+    {
+     "criterio": "3.1",
+     "item": "atualidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "Receita realizada mês a mês por fonte (exercício 2026) não publicado; deveria estar em Portal da Transparência (responsabilidade fiscal) e SICONFI",
+     "fonte": "parecer 2026-10, ausências (relatorios/onisciente/panorama_2026-10.json)",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    },
+    {
+     "criterio": "3.1",
+     "item": "atualidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "Receita realizada de outubro de 2026 não publicada (2026-10) não publicado; deveria estar em portal da transparência do Município ou SICONFI",
+     "fonte": "parecer 2026-10, ausências (relatorios/onisciente/panorama_2026-10.json)",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    }
+   ],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_transweb ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_transweb ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "3.2",
+   "dimensao": 3,
+   "classe": "essencial",
+   "matriz": "executivo",
+   "texto": "Classificação orçamentária da receita por natureza",
+   "base_legal": "LC 101/2000, art. 48-A, II; Lei 4.320/1964, art. 11",
+   "onde": [
+    "e_portal",
+    "e_transweb"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null,
+     "gravacao": null,
+     "filtro": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null,
+     "gravacao": null,
+     "filtro": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_transweb ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_transweb ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "3.3",
+   "dimensao": 3,
+   "classe": "obrigatorio",
+   "matriz": "executivo",
+   "texto": "Lista dos inscritos em dívida ativa com nome e valor",
+   "base_legal": "Lei 5.172/1966, art. 198, § 3º, II; Lei 12.527/2011, art. 8º, caput",
+   "onde": [
+    "e_portal",
+    "e_transweb"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "gravacao": null,
+     "filtro": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "gravacao": null,
+     "filtro": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_transweb ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_transweb ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "4.1",
+   "dimensao": 4,
+   "classe": "essencial",
+   "matriz": "comum",
+   "texto": "Total das despesas empenhadas",
+   "base_legal": "LC 101/2000, arts. 48, § 1º, II, e 48-A, I; Lei 12.527/2011, art. 8º, § 1º, III",
+   "onde": [
+    "e_portal",
+    "e_transweb"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null,
+     "gravacao": null,
+     "filtro": null
+    },
+    "restritiva": {
+     "disponibilidade": false,
+     "atualidade": false,
+     "serie_historica": false,
+     "gravacao": false,
+     "filtro": false
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não atendido"
+   },
+   "provas": [
+    {
+     "criterio": "4.1",
+     "item": "disponibilidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "Liquidações (exercício 2026) não publicado; deveria estar em Portal da Transparência de Goiânia, receitas e despesas",
+     "fonte": "parecer 2026-10, ausências (relatorios/onisciente/panorama_2026-10.json)",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    },
+    {
+     "criterio": "4.1",
+     "item": "disponibilidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "Pagamentos (exercício 2026) não publicado; deveria estar em Portal da Transparência de Goiânia, receitas e despesas",
+     "fonte": "parecer 2026-10, ausências (relatorios/onisciente/panorama_2026-10.json)",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    },
+    {
+     "criterio": "4.1",
+     "item": "disponibilidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "Ordens bancárias (exercício 2026) não publicado; deveria estar em Portal da Transparência de Goiânia, receitas e despesas",
+     "fonte": "parecer 2026-10, ausências (relatorios/onisciente/panorama_2026-10.json)",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    },
+    {
+     "criterio": "4.1",
+     "item": "disponibilidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "Restos a pagar (exercício 2026) não publicado; deveria estar em Portal da Transparência de Goiânia, receitas e despesas",
+     "fonte": "parecer 2026-10, ausências (relatorios/onisciente/panorama_2026-10.json)",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    }
+   ],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_transweb ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_transweb ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "4.2",
+   "dimensao": 4,
+   "classe": "essencial",
+   "matriz": "comum",
+   "texto": "Despesas por classificação orçamentária",
+   "base_legal": "LC 101/2000, art. 48-A, I; Lei 4.320/1964, arts. 12 e 13",
+   "onde": [
+    "e_portal",
+    "e_transweb"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null,
+     "gravacao": null,
+     "filtro": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null,
+     "gravacao": null,
+     "filtro": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_transweb ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_transweb ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "4.3",
+   "dimensao": 4,
+   "classe": "essencial",
+   "matriz": "comum",
+   "texto": "Consulta de empenhos com credor",
+   "base_legal": "LC 101/2000, art. 48-A, I; Lei 12.527/2011, art. 8º, § 1º, III e IV",
+   "onde": [
+    "e_portal",
+    "e_transweb"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null,
+     "gravacao": null,
+     "filtro": null
+    },
+    "restritiva": {
+     "disponibilidade": false,
+     "atualidade": false,
+     "serie_historica": false,
+     "gravacao": false,
+     "filtro": false
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não atendido"
+   },
+   "provas": [
+    {
+     "criterio": "4.3",
+     "item": "disponibilidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "Empenhos (exercício 2026) não publicado; deveria estar em Portal da Transparência de Goiânia, receitas e despesas",
+     "fonte": "parecer 2026-10, ausências (relatorios/onisciente/panorama_2026-10.json)",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    }
+   ],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_transweb ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_transweb ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "5.1",
+   "dimensao": 5,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Transferências recebidas por convênio",
+   "base_legal": "Lei 12.527/2011, art. 8º, § 1º, II",
+   "onde": [
+    "e_portal",
+    "e_transweb"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null,
+     "gravacao": null,
+     "filtro": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null,
+     "gravacao": null,
+     "filtro": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_transweb ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_transweb ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "5.2",
+   "dimensao": 5,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Transferências realizadas por convênio",
+   "base_legal": "Lei 12.527/2011, art. 8º, § 1º, II; Lei 13.019/2014, arts. 10 e 11",
+   "onde": [
+    "e_portal",
+    "e_transweb"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null,
+     "gravacao": null,
+     "filtro": null
+    },
+    "restritiva": {
+     "disponibilidade": false,
+     "atualidade": false,
+     "serie_historica": false,
+     "gravacao": false,
+     "filtro": false
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não atendido"
+   },
+   "provas": [
+    {
+     "criterio": "5.2",
+     "item": "disponibilidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "Planos de trabalho (exercício 2026) não publicado; deveria estar em Portal da Transparência de Goiânia, receitas e despesas",
+     "fonte": "parecer 2026-10, ausências (relatorios/onisciente/panorama_2026-10.json)",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    },
+    {
+     "criterio": "5.2",
+     "item": "disponibilidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "Prestações de contas (exercício 2026) não publicado; deveria estar em Portal da Transparência de Goiânia, receitas e despesas",
+     "fonte": "parecer 2026-10, ausências (relatorios/onisciente/panorama_2026-10.json)",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    },
+    {
+     "criterio": "5.2",
+     "item": "disponibilidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "Editais de chamamento (exercício 2026) não publicado; deveria estar em Portal da Transparência de Goiânia, receitas e despesas",
+     "fonte": "parecer 2026-10, ausências (relatorios/onisciente/panorama_2026-10.json)",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    }
+   ],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_transweb ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_transweb ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "5.3",
+   "dimensao": 5,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Acordos firmados sem transferência de recursos",
+   "base_legal": "Lei 12.527/2011, art. 8º, caput; Lei 13.019/2014, art. 10",
+   "onde": [
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "6.1",
+   "dimensao": 6,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Relação nominal dos servidores com cargo",
+   "base_legal": "Lei 12.527/2011, art. 8º, caput; CF, art. 37, caput",
+   "onde": [
+    "e_portal",
+    "e_folha"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null,
+     "gravacao": null,
+     "filtro": null
+    },
+    "restritiva": {
+     "disponibilidade": false,
+     "atualidade": false,
+     "serie_historica": false,
+     "gravacao": false,
+     "filtro": false
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não atendido"
+   },
+   "provas": [
+    {
+     "criterio": "6.1",
+     "item": "disponibilidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "Quadro com forma de provimento (exercício 2026) não publicado; deveria estar em Portal da Transparência de Goiânia, recursos humanos",
+     "fonte": "parecer 2026-10, ausências (relatorios/onisciente/panorama_2026-10.json)",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    }
+   ],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_folha ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_folha ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "6.2",
+   "dimensao": 6,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Remuneração nominal de cada servidor",
+   "base_legal": "Lei 12.527/2011, art. 8º, caput; CF, art. 39, § 6º",
+   "onde": [
+    "e_portal",
+    "e_folha"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null,
+     "gravacao": null,
+     "filtro": null
+    },
+    "restritiva": {
+     "disponibilidade": false,
+     "atualidade": false,
+     "serie_historica": false,
+     "gravacao": false,
+     "filtro": false
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não atendido"
+   },
+   "provas": [
+    {
+     "criterio": "6.2",
+     "item": "disponibilidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "Folha de pagamento por competência (exercício 2026) não publicado; deveria estar em Portal da Transparência de Goiânia, recursos humanos",
+     "fonte": "parecer 2026-10, ausências (relatorios/onisciente/panorama_2026-10.json)",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    }
+   ],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_folha ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_folha ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "6.3",
+   "dimensao": 6,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Tabela com o padrão remuneratório dos cargos",
+   "base_legal": "CF, art. 39, § 6º",
+   "onde": [
+    "e_portal",
+    "e_folha"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_folha ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_folha ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "6.4",
+   "dimensao": 6,
+   "classe": "recomendado",
+   "matriz": "comum",
+   "texto": "Lista de estagiários",
+   "base_legal": "boa prática sem exigência legal expressa",
+   "onde": [
+    "e_portal",
+    "e_folha"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_folha ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_folha ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "6.5",
+   "dimensao": 6,
+   "classe": "recomendado",
+   "matriz": "comum",
+   "texto": "Lista de terceirizados com função e empresa",
+   "base_legal": "boa prática sem exigência legal expressa",
+   "onde": [
+    "e_portal",
+    "e_folha"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_folha ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_folha ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "6.6",
+   "dimensao": 6,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Íntegra dos editais de concursos e seleções",
+   "base_legal": "CF, art. 37, II; Lei 12.527/2011, art. 8º, caput",
+   "onde": [
+    "e_portal",
+    "e_home"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_home ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_home ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "6.7",
+   "dimensao": 6,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Demais atos dos concursos",
+   "base_legal": "CF, art. 37, II; Lei 12.527/2011, art. 8º, caput",
+   "onde": [
+    "e_portal",
+    "e_home"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_home ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_home ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "7.1",
+   "dimensao": 7,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Diárias com beneficiário",
+   "base_legal": "Lei 12.527/2011, art. 8º, § 1º, III",
+   "onde": [
+    "e_portal",
+    "e_transweb"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null,
+     "gravacao": null,
+     "filtro": null
+    },
+    "restritiva": {
+     "disponibilidade": false,
+     "atualidade": false,
+     "serie_historica": false,
+     "gravacao": false,
+     "filtro": false
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não atendido"
+   },
+   "provas": [
+    {
+     "criterio": "7.1",
+     "item": "disponibilidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "Relação de diárias (exercício 2026) não publicado; deveria estar em Portal da Transparência de Goiânia, recursos humanos",
+     "fonte": "parecer 2026-10, ausências (relatorios/onisciente/panorama_2026-10.json)",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    },
+    {
+     "criterio": "7.1",
+     "item": "disponibilidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "Relatórios de viagem (exercício 2026) não publicado; deveria estar em Portal da Transparência de Goiânia, recursos humanos",
+     "fonte": "parecer 2026-10, ausências (relatorios/onisciente/panorama_2026-10.json)",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    }
+   ],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_transweb ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_transweb ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "7.2",
+   "dimensao": 7,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Tabela de valores das diárias",
+   "base_legal": "Lei 12.527/2011, art. 8º, § 1º, III",
+   "onde": [
+    "e_portal",
+    "e_legislacao"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null
+    },
+    "restritiva": {
+     "disponibilidade": false,
+     "atualidade": false
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não atendido"
+   },
+   "provas": [
+    {
+     "criterio": "7.2",
+     "item": "disponibilidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "a tabela de diárias não foi localizada no levantamento do mapa legal",
+     "fonte": "regras/mapa_legal.yml, subsidios-diarias-veiculos-e-telefonia",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    }
+   ],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_legislacao ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_legislacao ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "8.1",
+   "dimensao": 8,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Relação das licitações com número",
+   "base_legal": "Lei 12.527/2011, art. 8º, § 1º, IV; Lei 14.133/2021, art. 174",
+   "onde": [
+    "e_portal",
+    "e_transweb"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null,
+     "gravacao": null,
+     "filtro": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null,
+     "gravacao": null,
+     "filtro": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_transweb ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_transweb ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "8.2",
+   "dimensao": 8,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Íntegra dos editais de licitação",
+   "base_legal": "Lei 12.527/2011, art. 8º, § 1º, IV; Lei 14.133/2021, art. 54",
+   "onde": [
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "8.3",
+   "dimensao": 8,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Íntegra dos documentos das fases interna e externa",
+   "base_legal": "Lei 12.527/2011, art. 8º, § 1º, IV; Lei 14.133/2021, art. 174, § 2º",
+   "onde": [
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "8.4",
+   "dimensao": 8,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Principais documentos das dispensas e inexigibilidades",
+   "base_legal": "Lei 14.133/2021, art. 72, parágrafo único; Lei 12.527/2011, art. 8º, § 1º, IV",
+   "onde": [
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": false,
+     "atualidade": false,
+     "serie_historica": false
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não atendido"
+   },
+   "provas": [
+    {
+     "criterio": "8.4",
+     "item": "disponibilidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "Justificativas de dispensa (exercício 2026) não publicado; deveria estar em Portal da Transparência de Goiânia, receitas e despesas",
+     "fonte": "parecer 2026-10, ausências (relatorios/onisciente/panorama_2026-10.json)",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    }
+   ],
+   "notas": {
+    "oficial": [
+     "fontes e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "8.5",
+   "dimensao": 8,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Íntegra das atas de adesão ao sistema de registro de preços",
+   "base_legal": "Lei 14.133/2021, arts. 86 e 174, § 2º, IV",
+   "onde": [
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "8.6",
+   "dimensao": 8,
+   "classe": "recomendado",
+   "matriz": "comum",
+   "texto": "Plano de contratações anual",
+   "base_legal": "Lei 14.133/2021, art. 12, § 1º",
+   "onde": [
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "8.7",
+   "dimensao": 8,
+   "classe": "recomendado",
+   "matriz": "comum",
+   "texto": "Licitantes ou contratados sancionados",
+   "base_legal": "Lei 14.133/2021, arts. 156 e 161",
+   "onde": [
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "8.8",
+   "dimensao": 8,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Regulamento interno de licitações e contratos",
+   "base_legal": "Lei 14.133/2021, art. 187; Lei 12.527/2011, art. 8º, caput",
+   "onde": [
+    "e_portal",
+    "e_legislacao"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": false
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não atendido"
+   },
+   "provas": [
+    {
+     "criterio": "8.8",
+     "item": "disponibilidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "os decretos que regulamentam a Lei 14.133/2021 não foram localizados no levantamento do mapa legal",
+     "fonte": "regras/mapa_legal.yml, decretos-963-967-2022-e-3-182-2023",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    }
+   ],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_legislacao ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_legislacao ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "9.1",
+   "dimensao": 9,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Relação dos contratos com resumo e aditivos",
+   "base_legal": "Lei 12.527/2011, art. 8º, § 1º, IV; Lei 14.133/2021, art. 174, § 2º, V",
+   "onde": [
+    "e_portal",
+    "e_transweb"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null,
+     "gravacao": null,
+     "filtro": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null,
+     "gravacao": null,
+     "filtro": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_transweb ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_transweb ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "9.2",
+   "dimensao": 9,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Íntegra dos contratos e aditivos",
+   "base_legal": "Lei 14.133/2021, arts. 94 e 174, § 2º, V",
+   "onde": [
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "9.3",
+   "dimensao": 9,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Fiscais dos contratos vigentes e encerrados",
+   "base_legal": "Lei 14.133/2021, art. 117",
+   "onde": [
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "9.4",
+   "dimensao": 9,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Ordem cronológica de pagamentos e justificativas de alteração",
+   "base_legal": "Lei 14.133/2021, art. 141, § 3º",
+   "onde": [
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "10.1",
+   "dimensao": 10,
+   "classe": "recomendado",
+   "matriz": "comum",
+   "texto": "Obras com objeto",
+   "base_legal": "Lei 12.527/2011, art. 8º, § 1º, V",
+   "onde": [
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null,
+     "filtro": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null,
+     "filtro": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "10.2",
+   "dimensao": 10,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Quantitativos",
+   "base_legal": "Lei 12.527/2011, art. 8º, § 1º, V; Lei 14.133/2021, art. 94",
+   "onde": [
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "10.3",
+   "dimensao": 10,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Quantitativos executados e valores pagos nas obras",
+   "base_legal": "Lei 12.527/2011, art. 8º, § 1º, V",
+   "onde": [
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "10.4",
+   "dimensao": 10,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Obras paralisadas com motivo",
+   "base_legal": "Lei 12.527/2011, art. 8º, § 1º, V",
+   "onde": [
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "11.1",
+   "dimensao": 11,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Prestação de contas do ano anterior (balanço geral)",
+   "base_legal": "LC 101/2000, arts. 48 e 49",
+   "onde": [
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "11.2",
+   "dimensao": 11,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Relatório de gestão ou de atividades",
+   "base_legal": "Lei 12.527/2011, art. 8º, caput",
+   "onde": [
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "11.3",
+   "dimensao": 11,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Íntegra da decisão do Tribunal de Contas sobre as contas",
+   "base_legal": "LC 101/2000, art. 48, caput (parecer prévio)",
+   "onde": [
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "11.4",
+   "dimensao": 11,
+   "classe": "obrigatorio",
+   "matriz": "executivo",
+   "texto": "Resultado do julgamento das contas do Executivo pelo Legislativo",
+   "base_legal": "CF, art. 31, § 2º; LC 101/2000, art. 48",
+   "onde": [
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "11.5",
+   "dimensao": 11,
+   "classe": "essencial",
+   "matriz": "comum",
+   "texto": "Relatório de Gestão Fiscal (RGF)",
+   "base_legal": "LC 101/2000, arts. 48, 54 e 55, § 2º",
+   "onde": [
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "11.6",
+   "dimensao": 11,
+   "classe": "essencial",
+   "matriz": "executivo_consorcios",
+   "texto": "Relatório Resumido da Execução Orçamentária (RREO)",
+   "base_legal": "LC 101/2000, arts. 48 e 52",
+   "onde": [
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "11.7",
+   "dimensao": 11,
+   "classe": "recomendado",
+   "matriz": "comum",
+   "texto": "Plano estratégico institucional",
+   "base_legal": "boa prática sem exigência legal expressa",
+   "onde": [
+    "e_portal",
+    "e_home"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_home ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_home ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "11.8",
+   "dimensao": 11,
+   "classe": "essencial",
+   "matriz": "executivo",
+   "texto": "Lei do Plano Plurianual (PPA) e anexos",
+   "base_legal": "LC 101/2000, art. 48, caput; CF, art. 165, I",
+   "onde": [
+    "e_portal",
+    "e_legislacao"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": true,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [
+    {
+     "criterio": "11.8",
+     "item": "disponibilidade",
+     "valor": true,
+     "leituras": "oficial",
+     "descricao": "PPA 2026-2029 (Lei 11.510/2025) publicada no sistema de legislação da Prefeitura (E11: os anexos não foram conferidos, por isso não vale na leitura restritiva)",
+     "fonte": "https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2025/lo_20251022_000011510.html",
+     "nivel": "D",
+     "valor_em_jogo": 0.0
+    }
+   ],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_legislacao ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_legislacao ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "11.9",
+   "dimensao": 11,
+   "classe": "essencial",
+   "matriz": "executivo",
+   "texto": "Lei de Diretrizes Orçamentárias (LDO) e anexos",
+   "base_legal": "LC 101/2000, arts. 4º e 48, caput; CF, art. 165, II",
+   "onde": [
+    "e_portal",
+    "e_legislacao"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": true,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [
+    {
+     "criterio": "11.9",
+     "item": "disponibilidade",
+     "valor": true,
+     "leituras": "oficial",
+     "descricao": "LDO 2026 (Lei 11.589/2026) publicada no sistema de legislação da Prefeitura (E11: os anexos não foram conferidos, por isso não vale na leitura restritiva)",
+     "fonte": "https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2026/lo_20260109_000011589.html",
+     "nivel": "D",
+     "valor_em_jogo": 0.0
+    }
+   ],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_legislacao ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_legislacao ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "11.10",
+   "dimensao": 11,
+   "classe": "essencial",
+   "matriz": "executivo",
+   "texto": "Lei Orçamentária Anual (LOA) e anexos",
+   "base_legal": "LC 101/2000, arts. 5º e 48, caput; CF, art. 165, III",
+   "onde": [
+    "e_portal",
+    "e_legislacao"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": true,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [
+    {
+     "criterio": "11.10",
+     "item": "disponibilidade",
+     "valor": true,
+     "leituras": "oficial",
+     "descricao": "LOA 2026 (Lei 11.590/2026) publicada no sistema de legislação da Prefeitura (E11: os anexos não foram conferidos, por isso não vale na leitura restritiva)",
+     "fonte": "https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2026/lo_20260109_000011590.html",
+     "nivel": "D",
+     "valor_em_jogo": 0.0
+    }
+   ],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_legislacao ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_legislacao ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "12.1",
+   "dimensao": 12,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "SIC no sítio",
+   "base_legal": "Lei 12.527/2011, art. 9º, I",
+   "onde": [
+    "e_portal",
+    "e_esic"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_esic ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_esic ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "12.2",
+   "dimensao": 12,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Endereço",
+   "base_legal": "Lei 12.527/2011, art. 9º, I",
+   "onde": [
+    "e_portal",
+    "e_esic"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_esic ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_esic ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "12.3",
+   "dimensao": 12,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Envio eletrônico de pedidos de acesso (e-SIC)",
+   "base_legal": "Lei 12.527/2011, art. 10, § 2º",
+   "onde": [
+    "e_esic",
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": false
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não atendido"
+   },
+   "provas": [
+    {
+     "criterio": "12.3",
+     "item": "disponibilidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "o endereço do e-SIC (https://esic.goiania.go.gov.br) não respondeu na sondagem de 2026-11-23",
+     "fonte": "relatorios/segunda_etapa.json",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    }
+   ],
+   "notas": {
+    "oficial": [
+     "fontes e_esic, e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_esic, e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "12.4",
+   "dimensao": 12,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Pedido eletrônico simples",
+   "base_legal": "Lei 12.527/2011, art. 10, §§ 1º e 3º",
+   "onde": [
+    "e_esic"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "critério sem verificação automática possível; vira pergunta no ofício"
+    ],
+    "restritiva": [
+     "critério sem verificação automática possível; vira pergunta no ofício"
+    ]
+   }
+  },
+  {
+   "id": "12.5",
+   "dimensao": 12,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Norma local que regulamenta a Lei de Acesso",
+   "base_legal": "Lei 12.527/2011, art. 45; Lei municipal 9.262/2013",
+   "onde": [
+    "e_portal",
+    "e_esic",
+    "e_legislacao"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_esic, e_legislacao ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_esic, e_legislacao ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "12.6",
+   "dimensao": 12,
+   "classe": "recomendado",
+   "matriz": "comum",
+   "texto": "Prazos de resposta e de recurso",
+   "base_legal": "Lei 12.527/2011, arts. 11 e 15",
+   "onde": [
+    "e_portal",
+    "e_esic"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_esic ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_esic ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "12.7",
+   "dimensao": 12,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Relatório estatístico anual dos pedidos de acesso",
+   "base_legal": "Lei 12.527/2011, art. 30, III",
+   "onde": [
+    "e_portal",
+    "e_esic"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_esic ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_esic ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "12.8",
+   "dimensao": 12,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Documentos classificados por grau de sigilo",
+   "base_legal": "Lei 12.527/2011, art. 30, II",
+   "onde": [
+    "e_portal",
+    "e_esic"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_esic ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_esic ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "12.9",
+   "dimensao": 12,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Informações desclassificadas nos últimos 12 meses",
+   "base_legal": "Lei 12.527/2011, art. 30, I",
+   "onde": [
+    "e_portal",
+    "e_esic"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_esic ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_esic ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "13.1",
+   "dimensao": 13,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Símbolo de acessibilidade em destaque",
+   "base_legal": "Lei 12.527/2011, art. 8º, § 3º, VIII; Lei 13.146/2015, art. 63",
+   "onde": [
+    "e_home",
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "13.2",
+   "dimensao": 13,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Caminho de navegação da página (migalhas)",
+   "base_legal": "Lei 13.146/2015, art. 63",
+   "onde": [
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "13.3",
+   "dimensao": 13,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Opção de alto contraste",
+   "base_legal": "Lei 13.146/2015, art. 63",
+   "onde": [
+    "e_home",
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "13.4",
+   "dimensao": 13,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Ferramenta de redimensionamento do texto",
+   "base_legal": "Lei 13.146/2015, art. 63",
+   "onde": [
+    "e_home",
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "13.5",
+   "dimensao": 13,
+   "classe": "recomendado",
+   "matriz": "comum",
+   "texto": "Mapa do sítio",
+   "base_legal": "boa prática sem exigência legal expressa",
+   "onde": [
+    "e_home",
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "14.1",
+   "dimensao": 14,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Atendimento presencial da ouvidoria com endereço",
+   "base_legal": "Lei 13.460/2017, arts. 10 e 13",
+   "onde": [
+    "e_home",
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "14.2",
+   "dimensao": 14,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Canal eletrônico da ouvidoria",
+   "base_legal": "Lei 13.460/2017, art. 10",
+   "onde": [
+    "e_home",
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "14.3",
+   "dimensao": 14,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Carta de serviços ao usuário",
+   "base_legal": "Lei 13.460/2017, art. 7º",
+   "onde": [
+    "e_home",
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "15.1",
+   "dimensao": 15,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Encarregado de dados pessoais identificado",
+   "base_legal": "Lei 13.709/2018, art. 41, § 1º",
+   "onde": [
+    "e_home",
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "15.2",
+   "dimensao": 15,
+   "classe": "recomendado",
+   "matriz": "comum",
+   "texto": "Política de privacidade e proteção de dados",
+   "base_legal": "Lei 13.709/2018, art. 50",
+   "onde": [
+    "e_home",
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "15.3",
+   "dimensao": 15,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Serviços públicos pedidos e acessados por meio digital",
+   "base_legal": "Lei 14.129/2021, arts. 3º e 14",
+   "onde": [
+    "e_home"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_home ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_home ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "15.4",
+   "dimensao": 15,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Dados abertos acessíveis por sistemas externos",
+   "base_legal": "Lei 12.527/2011, art. 8º, § 3º, II e III; Lei 14.129/2021, art. 29",
+   "onde": [
+    "e_portal",
+    "e_dados"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "gravacao": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "gravacao": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_dados ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_dados ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "15.5",
+   "dimensao": 15,
+   "classe": "recomendado",
+   "matriz": "comum",
+   "texto": "Regulamentação local da Lei 14.129/2021 publicada",
+   "base_legal": "Lei 14.129/2021, art. 2º",
+   "onde": [
+    "e_portal",
+    "e_legislacao"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_legislacao ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_legislacao ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "15.6",
+   "dimensao": 15,
+   "classe": "obrigatorio",
+   "matriz": "comum",
+   "texto": "Pesquisa de satisfação realizada e resultados publicados",
+   "base_legal": "Lei 13.460/2017, art. 23",
+   "onde": [
+    "e_home",
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_home, e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "16.1",
+   "dimensao": 16,
+   "classe": "obrigatorio",
+   "matriz": "executivo",
+   "texto": "Desonerações tributárias concedidas",
+   "base_legal": "LC 101/2000, art. 14; LC 224/2025",
+   "onde": [
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "16.2",
+   "dimensao": 16,
+   "classe": "obrigatorio",
+   "matriz": "executivo",
+   "texto": "Valores previstos e realizados da renúncia por tipo de benefício",
+   "base_legal": "LC 101/2000, arts. 4º, § 2º, V, e 14; LC 224/2025",
+   "onde": [
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null,
+     "gravacao": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null,
+     "gravacao": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "16.3",
+   "dimensao": 16,
+   "classe": "recomendado",
+   "matriz": "executivo",
+   "texto": "Beneficiários das desonerações tributárias",
+   "base_legal": "LC 224/2025",
+   "onde": [
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "16.4",
+   "dimensao": 16,
+   "classe": "recomendado",
+   "matriz": "executivo",
+   "texto": "Projetos de incentivo à cultura e ao esporte",
+   "base_legal": "boa prática sem exigência legal expressa",
+   "onde": [
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "17.1",
+   "dimensao": 17,
+   "classe": "obrigatorio",
+   "matriz": "executivo",
+   "texto": "Emendas parlamentares federais recebidas",
+   "base_legal": "CF, arts. 163-A e 166-A; LC 210/2024",
+   "onde": [
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "17.2",
+   "dimensao": 17,
+   "classe": "obrigatorio",
+   "matriz": "executivo",
+   "texto": "Emendas parlamentares estaduais e municipais",
+   "base_legal": "Lei Orgânica de Goiânia, art. 138; Decreto 147/2026",
+   "onde": [
+    "e_portal",
+    "e_legislacao"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_legislacao ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_legislacao ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "17.3",
+   "dimensao": 17,
+   "classe": "obrigatorio",
+   "matriz": "executivo",
+   "texto": "Execução orçamentária e financeira das emendas",
+   "base_legal": "CF, art. 166-A; LC 210/2024",
+   "onde": [
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null,
+     "gravacao": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null,
+     "gravacao": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "18.1",
+   "dimensao": 18,
+   "classe": "obrigatorio",
+   "matriz": "executivo",
+   "texto": "Plano de saúde",
+   "base_legal": "LC 141/2012, art. 31",
+   "onde": [
+    "e_portal",
+    "e_saude"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null,
+     "serie_historica": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": false,
+     "serie_historica": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não atendido"
+   },
+   "provas": [
+    {
+     "criterio": "18.1",
+     "item": "atualidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "o Plano Municipal de Saúde 2026-2029 não foi localizado; só o de 2022-2025 no levantamento do mapa legal",
+     "fonte": "regras/mapa_legal.yml, plano-municipal-de-saude",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    }
+   ],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_saude ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_saude ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "18.2",
+   "dimensao": 18,
+   "classe": "obrigatorio",
+   "matriz": "executivo",
+   "texto": "Serviços de saúde com horários",
+   "base_legal": "Lei 12.527/2011, art. 8º, § 1º, V",
+   "onde": [
+    "e_saude"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_saude ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_saude ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "18.3",
+   "dimensao": 18,
+   "classe": "recomendado",
+   "matriz": "executivo",
+   "texto": "Lista de espera da regulação de consultas e exames",
+   "base_legal": "boa prática sem exigência legal expressa",
+   "onde": [
+    "e_saude"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_saude ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_saude ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "18.4",
+   "dimensao": 18,
+   "classe": "recomendado",
+   "matriz": "executivo",
+   "texto": "Medicamentos fornecidos pelo SUS e como obtê-los",
+   "base_legal": "boa prática sem exigência legal expressa",
+   "onde": [
+    "e_saude"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_saude ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_saude ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "18.5",
+   "dimensao": 18,
+   "classe": "obrigatorio",
+   "matriz": "executivo",
+   "texto": "Estoque de medicamentos das farmácias públicas",
+   "base_legal": "Lei 12.527/2011, art. 8º, § 1º, V",
+   "onde": [
+    "e_saude"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_saude ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_saude ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "18.6",
+   "dimensao": 18,
+   "classe": "recomendado",
+   "matriz": "executivo",
+   "texto": "Composição e funcionamento do Conselho de Saúde",
+   "base_legal": "Lei 8.142/1990, art. 1º",
+   "onde": [
+    "e_saude",
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_saude, e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_saude, e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "19.1",
+   "dimensao": 19,
+   "classe": "recomendado",
+   "matriz": "executivo",
+   "texto": "Plano de educação e relatório dos resultados",
+   "base_legal": "Lei 13.005/2014, art. 8º",
+   "onde": [
+    "e_portal",
+    "e_educacao"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_educacao ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_educacao ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "19.2",
+   "dimensao": 19,
+   "classe": "obrigatorio",
+   "matriz": "executivo",
+   "texto": "Lista de espera das creches públicas e critérios de prioridade",
+   "base_legal": "Lei 12.527/2011, art. 8º, § 1º, V",
+   "onde": [
+    "e_educacao",
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_educacao, e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_educacao, e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "19.3",
+   "dimensao": 19,
+   "classe": "obrigatorio",
+   "matriz": "executivo",
+   "texto": "Composição e funcionamento do conselho do Fundeb",
+   "base_legal": "Lei 14.113/2020, arts. 33 e 34",
+   "onde": [
+    "e_educacao",
+    "e_portal"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null
+    },
+    "restritiva": {
+     "disponibilidade": null,
+     "atualidade": null
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não verificável"
+   },
+   "provas": [],
+   "notas": {
+    "oficial": [
+     "fontes e_educacao, e_portal ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_educacao, e_portal ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "19.4",
+   "dimensao": 19,
+   "classe": "recomendado",
+   "matriz": "executivo",
+   "texto": "Composição e funcionamento do Conselho de Assistência Social",
+   "base_legal": "Lei 8.742/1993, arts. 16 e 30; Lei municipal 9.009/2010, arts. 3º e 10",
+   "onde": [
+    "e_portal",
+    "e_cmas"
+   ],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null
+    },
+    "restritiva": {
+     "disponibilidade": false,
+     "atualidade": false
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não atendido"
+   },
+   "provas": [
+    {
+     "criterio": "19.4",
+     "item": "disponibilidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "Resoluções do triênio (exercício 2026) não publicado; deveria estar em sítio oficial do Conselho Municipal de Assistência Social",
+     "fonte": "parecer 2026-10, ausências (relatorios/onisciente/panorama_2026-10.json)",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    },
+    {
+     "criterio": "19.4",
+     "item": "disponibilidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "Atas de plenária (exercício 2026) não publicado; deveria estar em sítio oficial do Conselho Municipal de Assistência Social",
+     "fonte": "parecer 2026-10, ausências (relatorios/onisciente/panorama_2026-10.json)",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    },
+    {
+     "criterio": "19.4",
+     "item": "disponibilidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "Regimento Interno (exercício 2026) não publicado; deveria estar em sítio oficial do Conselho Municipal de Assistência Social",
+     "fonte": "parecer 2026-10, ausências (relatorios/onisciente/panorama_2026-10.json)",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    },
+    {
+     "criterio": "19.4",
+     "item": "disponibilidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "Decreto de nomeação (exercício 2026) não publicado; deveria estar em sítio oficial do Conselho Municipal de Assistência Social",
+     "fonte": "parecer 2026-10, ausências (relatorios/onisciente/panorama_2026-10.json)",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    },
+    {
+     "criterio": "19.4",
+     "item": "disponibilidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "Apreciação mensal das contas (exercício 2026) não publicado; deveria estar em sítio oficial do Conselho Municipal de Assistência Social",
+     "fonte": "parecer 2026-10, ausências (relatorios/onisciente/panorama_2026-10.json)",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    },
+    {
+     "criterio": "19.4",
+     "item": "disponibilidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "Prestação quadrimestral (exercício 2026) não publicado; deveria estar em sítio oficial do Conselho Municipal de Assistência Social",
+     "fonte": "parecer 2026-10, ausências (relatorios/onisciente/panorama_2026-10.json)",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    },
+    {
+     "criterio": "19.4",
+     "item": "atualidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "sítio do Conselho marcado como desatualizado: Sem documento posterior a dezembro de 2023.",
+     "fonte": "config/portais.yml",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    }
+   ],
+   "notas": {
+    "oficial": [
+     "fontes e_portal, e_cmas ainda não sondadas"
+    ],
+    "restritiva": [
+     "fontes e_portal, e_cmas ainda não sondadas"
+    ]
+   }
+  },
+  {
+   "id": "O.1",
+   "dimensao": "O",
+   "classe": "obrigatorio",
+   "matriz": "onisciente",
+   "texto": "Notas fiscais dos contratos do Executivo publicadas no PNCP",
+   "base_legal": "Lei 14.133/2021, art. 174, § 2º, VI",
+   "onde": [],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": false
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não atendido"
+   },
+   "provas": [
+    {
+     "criterio": "O.1",
+     "item": "disponibilidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "26 órgãos do Executivo, com 2033 contratos que somam R$ 11.165.806.980,54, não têm nenhuma nota fiscal publicada no PNCP nos meses lidos (achado nf_ausente); entre eles o Fundo Municipal de Assistência Social, com R$ 8.454.752,68 em contratos",
+     "fonte": "onisciente/conferencias/compras.py, achado nf_ausente",
+     "nivel": "F",
+     "valor_em_jogo": 11165806980.54
+    }
+   ],
+   "notas": {
+    "oficial": [],
+    "restritiva": []
+   }
+  },
+  {
+   "id": "O.2",
+   "dimensao": "O",
+   "classe": "essencial",
+   "matriz": "onisciente",
+   "texto": "Receita, execução e prestação de contas do FMAS publicadas frente aos repasses do Fundo Nacional",
+   "base_legal": "LC 101/2000, art. 48-A; Lei 12.527/2011, art. 8º, § 1º, II e III; Lei 8.742/1993, art. 30",
+   "onde": [],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null
+    },
+    "restritiva": {
+     "disponibilidade": false,
+     "atualidade": false
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não atendido"
+   },
+   "provas": [
+    {
+     "criterio": "O.2",
+     "item": "disponibilidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "sem publicação comprovada: F1 receita do Fundo publicada: repasses recebidos do Fundo Nacional e do Estado e receita realizada por fonte, mês a mês (em falta); F2 execução da despesa do Fundo publicada: empenhos, liquidações, pagamentos e restos a pagar, com credor e licitação de origem (em falta); F3 contratos, aditivos e notas fiscais do Fundo no PNCP (em falta); F4 parcerias com organizações da sociedade civil: chamamentos, planos de trabalho e prestações de contas no sítio oficial (em falta); F5 fundo sob orientação e controle do Conselho: apreciação das contas e prestação quadrimestral publicadas (em falta)",
+     "fonte": "onisciente/selo/fundos.py",
+     "nivel": "F",
+     "valor_em_jogo": 17168303.62
+    }
+   ],
+   "notas": {
+    "oficial": [],
+    "restritiva": []
+   }
+  },
+  {
+   "id": "O.3",
+   "dimensao": "O",
+   "classe": "obrigatorio",
+   "matriz": "onisciente",
+   "texto": "Conselho Municipal de Assistência Social com resoluções, atas, composição e regimento publicados e atualizados",
+   "base_legal": "Lei municipal 9.009/2010, arts. 3º e 10; Lei 8.742/1993, art. 30, I",
+   "onde": [],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null
+    },
+    "restritiva": {
+     "disponibilidade": false,
+     "atualidade": false
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não atendido"
+   },
+   "provas": [
+    {
+     "criterio": "O.3",
+     "item": "disponibilidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "sem publicação comprovada: C1 resoluções do Conselho publicadas no Diário Oficial do Município (em falta); C2 sessões públicas com cronograma divulgado e atas das plenárias publicadas (em falta); C3 composição paritária com os conselheiros e o decreto de nomeação publicados (em falta); C4 regimento interno publicado (em falta)",
+     "fonte": "onisciente/selo/fundos.py",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    }
+   ],
+   "notas": {
+    "oficial": [],
+    "restritiva": []
+   }
+  },
+  {
+   "id": "O.4",
+   "dimensao": "O",
+   "classe": "essencial",
+   "matriz": "onisciente",
+   "texto": "Relatórios fiscais coerentes com o SICONFI e entregues no prazo",
+   "base_legal": "LC 101/2000, arts. 48, 52 e 55",
+   "onde": [],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null,
+     "atualidade": null
+    },
+    "restritiva": {
+     "disponibilidade": true,
+     "atualidade": true
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "atendido"
+   },
+   "provas": [
+    {
+     "criterio": "O.4",
+     "item": "disponibilidade",
+     "valor": true,
+     "leituras": "restritiva",
+     "descricao": "os 20 demonstrativos fiscais do período (RREO, RGF e DCA) foram entregues ao SICONFI até o prazo legal",
+     "fonte": "banco, tabela siconfi_periodos",
+     "nivel": "B",
+     "valor_em_jogo": 0.0
+    },
+    {
+     "criterio": "O.4",
+     "item": "atualidade",
+     "valor": true,
+     "leituras": "restritiva",
+     "descricao": "entregas dentro do prazo da LC 101/2000",
+     "fonte": "banco, tabela siconfi_periodos",
+     "nivel": "B",
+     "valor_em_jogo": 0.0
+    }
+   ],
+   "notas": {
+    "oficial": [],
+    "restritiva": []
+   }
+  },
+  {
+   "id": "O.5",
+   "dimensao": "O",
+   "classe": "obrigatorio",
+   "matriz": "onisciente",
+   "texto": "Normas locais que regem o gasto localizadas em fonte oficial",
+   "base_legal": "Lei 12.527/2011, art. 8º, caput; CF, art. 37, caput (publicidade)",
+   "onde": [],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": false
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não atendido"
+   },
+   "provas": [
+    {
+     "criterio": "O.5",
+     "item": "disponibilidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "5 normas locais que regem gasto não foram localizadas em fonte oficial: Decretos 963, 967/2022 e 3.182/2023; Parcerias com organizações sociais; LC 091/2000 e Lei 7.997/2000; Subsídios, diárias, veículos e telefonia; Plano Municipal de Saúde",
+     "fonte": "regras/mapa_legal.yml",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    }
+   ],
+   "notas": {
+    "oficial": [],
+    "restritiva": []
+   }
+  },
+  {
+   "id": "O.6",
+   "dimensao": "O",
+   "classe": "obrigatorio",
+   "matriz": "onisciente",
+   "texto": "Endereço do e-SIC alcançável",
+   "base_legal": "Lei 12.527/2011, art. 10, § 2º",
+   "onde": [],
+   "itens": {
+    "oficial": {
+     "disponibilidade": null
+    },
+    "restritiva": {
+     "disponibilidade": false
+    }
+   },
+   "situacao": {
+    "oficial": "não verificável",
+    "restritiva": "não atendido"
+   },
+   "provas": [
+    {
+     "criterio": "O.6",
+     "item": "disponibilidade",
+     "valor": false,
+     "leituras": "restritiva",
+     "descricao": "o endereço do e-SIC (https://esic.goiania.go.gov.br) não respondeu na sondagem de 2026-11-23",
+     "fonte": "relatorios/segunda_etapa.json",
+     "nivel": "F",
+     "valor_em_jogo": 0.0
+    }
+   ],
+   "notas": {
+    "oficial": [],
+    "restritiva": []
+   }
+  }
+ ],
+ "fundos": [
+  {
+   "id": "F1",
+   "orgao": "FMAS",
+   "texto": "Receita do Fundo publicada: repasses recebidos do Fundo Nacional e do Estado e receita realizada por fonte, mês a mês",
+   "base": "LC 101/2000, art. 48-A, II; Lei 12.527/2011, art. 8º, § 1º, II",
+   "pntp": "3.1 (só se o portal incluir o Fundo)",
+   "estado": "em falta",
+   "alerta": true,
+   "provas": [
+    "Receita realizada do Fundo por fonte (2026-10): não publicado, segundo o parecer 2026-10",
+    "Receita realizada mês a mês por fonte (exercício 2026): não publicado, segundo o parecer 2026-10",
+    "Extratos da conta especial do Fundo (exercício 2026): não publicado, segundo o parecer 2026-10",
+    "Repasses do Fundo Nacional por competência (exercício 2026): não publicado, segundo o parecer 2026-10",
+    "Receita realizada de outubro de 2026 não publicada (2026-10): não publicado, segundo o parecer 2026-10"
+   ],
+   "valor_em_jogo": 17168303.62
+  },
+  {
+   "id": "F2",
+   "orgao": "FMAS",
+   "texto": "Execução da despesa do Fundo publicada: empenhos, liquidações, pagamentos e restos a pagar, com credor e licitação de origem",
+   "base": "LC 101/2000, art. 48-A, I; Lei 12.527/2011, art. 8º, § 1º, III",
+   "pntp": "4.1 e 4.3 (só se o portal incluir o Fundo)",
+   "estado": "em falta",
+   "alerta": true,
+   "provas": [
+    "Empenhos (exercício 2026): não publicado, segundo o parecer 2026-10",
+    "Liquidações (exercício 2026): não publicado, segundo o parecer 2026-10",
+    "Pagamentos (exercício 2026): não publicado, segundo o parecer 2026-10",
+    "Ordens bancárias (exercício 2026): não publicado, segundo o parecer 2026-10",
+    "Restos a pagar (exercício 2026): não publicado, segundo o parecer 2026-10"
+   ],
+   "valor_em_jogo": 17168303.62
+  },
+  {
+   "id": "F3",
+   "orgao": "FMAS",
+   "texto": "Contratos, aditivos e notas fiscais do Fundo no PNCP",
+   "base": "Lei 14.133/2021, art. 174, § 2º, V e VI",
+   "pntp": "9.1 (sem as notas fiscais)",
+   "estado": "em falta",
+   "alerta": true,
+   "provas": [
+    "26 órgãos do Executivo, com 2033 contratos que somam R$ 11.165.806.980,54, não têm nenhuma nota fiscal publicada no PNCP nos meses lidos (achado nf_ausente); entre eles o Fundo Municipal de Assistência Social, com R$ 8.454.752,68 em contratos"
+   ],
+   "valor_em_jogo": 0.0
+  },
+  {
+   "id": "F4",
+   "orgao": "FMAS",
+   "texto": "Parcerias com organizações da sociedade civil: chamamentos, planos de trabalho e prestações de contas no sítio oficial",
+   "base": "Lei 13.019/2014, arts. 10 e 11",
+   "pntp": "5.2",
+   "estado": "em falta",
+   "alerta": true,
+   "provas": [
+    "Planos de trabalho (exercício 2026): não publicado, segundo o parecer 2026-10",
+    "Prestações de contas (exercício 2026): não publicado, segundo o parecer 2026-10",
+    "Editais de chamamento (exercício 2026): não publicado, segundo o parecer 2026-10"
+   ],
+   "valor_em_jogo": 0.0
+  },
+  {
+   "id": "F5",
+   "orgao": "FMAS",
+   "texto": "Fundo sob orientação e controle do Conselho: apreciação das contas e prestação quadrimestral publicadas",
+   "base": "Lei 8.742/1993, art. 30, II; Lei municipal 7.531/1995, art. 3º",
+   "pntp": "",
+   "estado": "em falta",
+   "alerta": true,
+   "provas": [
+    "Apreciação mensal das contas (exercício 2026): não publicado, segundo o parecer 2026-10",
+    "Prestação quadrimestral (exercício 2026): não publicado, segundo o parecer 2026-10"
+   ],
+   "valor_em_jogo": 17168303.62
+  },
+  {
+   "id": "C1",
+   "orgao": "CMAS",
+   "texto": "Resoluções do Conselho publicadas no Diário Oficial do Município",
+   "base": "Lei municipal 9.009/2010, art. 10, § 2º",
+   "pntp": "19.4",
+   "estado": "em falta",
+   "alerta": true,
+   "provas": [
+    "Resoluções do triênio (exercício 2026): não publicado, segundo o parecer 2026-10"
+   ],
+   "valor_em_jogo": 0.0
+  },
+  {
+   "id": "C2",
+   "orgao": "CMAS",
+   "texto": "Sessões públicas com cronograma divulgado e atas das plenárias publicadas",
+   "base": "Lei municipal 9.009/2010, art. 10, caput e § 1º; Lei 12.527/2011, art. 8º, caput",
+   "pntp": "19.4",
+   "estado": "em falta",
+   "alerta": true,
+   "provas": [
+    "Atas de plenária (exercício 2026): não publicado, segundo o parecer 2026-10",
+    "publicação vista: calendário das plenárias guardado no acervo: https://cmasgyn.com.br/Resources/documentos/calendario_cmasgyn_2026.pdf"
+   ],
+   "valor_em_jogo": 0.0
+  },
+  {
+   "id": "C3",
+   "orgao": "CMAS",
+   "texto": "Composição paritária com os conselheiros e o decreto de nomeação publicados",
+   "base": "Lei 8.742/1993, art. 30, I; Lei municipal 9.009/2010, art. 3º",
+   "pntp": "19.4",
+   "estado": "em falta",
+   "alerta": true,
+   "provas": [
+    "Decreto de nomeação (exercício 2026): não publicado, segundo o parecer 2026-10"
+   ],
+   "valor_em_jogo": 0.0
+  },
+  {
+   "id": "C4",
+   "orgao": "CMAS",
+   "texto": "Regimento interno publicado",
+   "base": "Lei municipal 9.009/2010 (competência do Conselho de aprovar o seu regimento); Lei 12.527/2011, art. 8º, caput",
+   "pntp": "19.4",
+   "estado": "em falta",
+   "alerta": true,
+   "provas": [
+    "Regimento Interno (exercício 2026): não publicado, segundo o parecer 2026-10"
+   ],
+   "valor_em_jogo": 0.0
+  }
+ ],
+ "repasses_fnas": {
+  "total": 17168303.62,
+  "por_ano": {
+   "2024": 4200191.25,
+   "2025": 12968112.37
+  },
+  "linhas": 330,
+  "ultima": "2025-12"
+ },
+ "alertas_cruzados": {
+  "licitacoes": {
+   "dimensao": "8 Licitações",
+   "achados": 78,
+   "valor": 72497843.15,
+   "tipos": {
+    "dispensa_acima": 0,
+    "dispensa_no_teto": 30,
+    "fracionamento": 16,
+    "emergencial": 32
+   }
+  },
+  "contratos": {
+   "dimensao": "9 Contratos",
+   "achados": 38,
+   "valor": 19163395651.7,
+   "tipos": {
+    "aditivo": 0,
+    "concentracao": 11,
+    "nf_ausente": 27,
+    "nota_acima": 0,
+    "nota_preco": 0
+   }
+  },
+  "precos": {
+   "dimensao": "4 Despesa (preço pago)",
+   "achados": 411,
+   "valor": 1028444.81,
+   "tipos": {
+    "preco": 411
+   }
+  }
+ },
+ "achados": [
+  {
+   "tipo": "selo_nao_confirmado",
+   "orgao": "PREFEITURA MUNICIPAL DE GOIANIA",
+   "chave": "selo-2026",
+   "mes": "2026-11",
+   "descricao": "Pela leitura oficial o Selo Diamante não está confirmado: com as provas lidas o índice é 5,24% (Inicial); o máximo possível com o que falta provar é 100,00%. Pela leitura restritiva o padrão cai para Elevado (essenciais em falta: 3.1, 4.1, 4.3, O.2), mesmo no melhor caso.",
+   "valor": 0.0,
+   "dados": {
+    "oficial": {
+     "oficial/comprovada": {
+      "leitura": "oficial",
+      "modo": "comprovada",
+      "indice": 5.24,
+      "essenciais_ok": false,
+      "nivel": "Inicial",
+      "selo": false,
+      "essenciais_em_falta": [
+       "3.1",
+       "3.2",
+       "4.1",
+       "4.2",
+       "4.3",
+       "11.5",
+       "11.6"
+      ]
+     },
+     "oficial/teto": {
+      "leitura": "oficial",
+      "modo": "teto",
+      "indice": 100.0,
+      "essenciais_ok": true,
+      "nivel": "Diamante",
+      "selo": true,
+      "essenciais_em_falta": []
+     }
+    },
+    "restritiva": {
+     "leitura": "restritiva",
+     "modo": "teto",
+     "indice": 76.41,
+     "essenciais_ok": false,
+     "nivel": "Elevado",
+     "selo": false,
+     "essenciais_em_falta": [
+      "3.1",
+      "4.1",
+      "4.3",
+      "O.2"
+     ]
+    }
+   }
+  },
+  {
+   "tipo": "selo_essencial_em_falta",
+   "orgao": "PREFEITURA MUNICIPAL DE GOIANIA",
+   "chave": "criterio-3.1",
+   "mes": "2026-11",
+   "descricao": "o critério essencial 3.1 (receitas com previsão e realização) não se cumpre na leitura restritiva: Receita realizada do Fundo por fonte (2026-10) não publicado; deveria estar em Portal da Transparência (responsabilidade fiscal) e SICONFI; Receita realizada mês a mês por fonte (exercício 2026) não publicado; deveria estar em Portal da Transparência (responsabilidade fiscal) e SICONFI; Receita realizada de outubro de 2026 não publicada (2026-10) não publicado; deveria estar em portal da transparência do Município ou SICONFI",
+   "valor": 0.0,
+   "dados": {
+    "criterio": "3.1",
+    "base_legal": "LC 101/2000, arts. 48, § 1º, II, e 48-A, II",
+    "situacao": {
+     "oficial": "não verificável",
+     "restritiva": "não atendido"
+    }
+   }
+  },
+  {
+   "tipo": "selo_essencial_em_falta",
+   "orgao": "PREFEITURA MUNICIPAL DE GOIANIA",
+   "chave": "criterio-4.1",
+   "mes": "2026-11",
+   "descricao": "o critério essencial 4.1 (total das despesas empenhadas) não se cumpre na leitura restritiva: Liquidações (exercício 2026) não publicado; deveria estar em Portal da Transparência de Goiânia, receitas e despesas; Pagamentos (exercício 2026) não publicado; deveria estar em Portal da Transparência de Goiânia, receitas e despesas; Ordens bancárias (exercício 2026) não publicado; deveria estar em Portal da Transparência de Goiânia, receitas e despesas; Restos a pagar (exercício 2026) não publicado; deveria estar em Portal da Transparência de Goiânia, receitas e despesas",
+   "valor": 0.0,
+   "dados": {
+    "criterio": "4.1",
+    "base_legal": "LC 101/2000, arts. 48, § 1º, II, e 48-A, I; Lei 12.527/2011, art. 8º, § 1º, III",
+    "situacao": {
+     "oficial": "não verificável",
+     "restritiva": "não atendido"
+    }
+   }
+  },
+  {
+   "tipo": "selo_essencial_em_falta",
+   "orgao": "PREFEITURA MUNICIPAL DE GOIANIA",
+   "chave": "criterio-4.3",
+   "mes": "2026-11",
+   "descricao": "o critério essencial 4.3 (consulta de empenhos com credor) não se cumpre na leitura restritiva: Empenhos (exercício 2026) não publicado; deveria estar em Portal da Transparência de Goiânia, receitas e despesas",
+   "valor": 0.0,
+   "dados": {
+    "criterio": "4.3",
+    "base_legal": "LC 101/2000, art. 48-A, I; Lei 12.527/2011, art. 8º, § 1º, III e IV",
+    "situacao": {
+     "oficial": "não verificável",
+     "restritiva": "não atendido"
+    }
+   }
+  },
+  {
+   "tipo": "selo_essencial_em_falta",
+   "orgao": "PREFEITURA MUNICIPAL DE GOIANIA",
+   "chave": "criterio-O.2",
+   "mes": "2026-11",
+   "descricao": "o critério essencial O.2 (receita, execução e prestação de contas do FMAS publicadas frente aos repasses do Fundo Nacional) não se cumpre na leitura restritiva: sem publicação comprovada: F1 receita do Fundo publicada: repasses recebidos do Fundo Nacional e do Estado e receita realizada por fonte, mês a mês (em falta); F2 execução da despesa do Fundo publicada: empenhos, liquidações, pagamentos e restos a pagar, com credor e licitação de origem (em falta); F3 contratos, aditivos e notas fiscais do Fundo no PNCP (em falta); F4 parcerias com organizações da sociedade civil: chamamentos, planos de trabalho e prestações de contas no sítio oficial (em falta); F5 fundo sob orientação e controle do Conselho: apreciação das contas e prestação quadrimestral pu",
+   "valor": 17168303.62,
+   "dados": {
+    "criterio": "O.2",
+    "base_legal": "LC 101/2000, art. 48-A; Lei 12.527/2011, art. 8º, § 1º, II e III; Lei 8.742/1993, art. 30",
+    "situacao": {
+     "oficial": "não verificável",
+     "restritiva": "não atendido"
+    }
+   }
+  },
+  {
+   "tipo": "fundo_sem_transparencia",
+   "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL-FMAS",
+   "chave": "F1",
+   "mes": "2026-11",
+   "descricao": "receita do Fundo publicada: repasses recebidos do Fundo Nacional e do Estado e receita realizada por fonte, mês a mês: em falta. Receita realizada do Fundo por fonte (2026-10): não publicado, segundo o parecer 2026-10 Receita realizada mês a mês por fonte (exercício 2026): não publicado, segundo o parecer 2026-10 Extratos da conta especial do Fundo (exercício 2026): não publicado, segundo o parecer 2026-10 O Fundo Nacional repassou R$ 17.168.303,62 ao FMAS entre 2024 e 2025-12.",
+   "valor": 17168303.62,
+   "dados": {
+    "obrigacao": "F1",
+    "base": "LC 101/2000, art. 48-A, II; Lei 12.527/2011, art. 8º, § 1º, II",
+    "estado": "em falta",
+    "pntp": "3.1 (só se o portal incluir o Fundo)"
+   }
+  },
+  {
+   "tipo": "fundo_sem_transparencia",
+   "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL-FMAS",
+   "chave": "F2",
+   "mes": "2026-11",
+   "descricao": "execução da despesa do Fundo publicada: empenhos, liquidações, pagamentos e restos a pagar, com credor e licitação de origem: em falta. Empenhos (exercício 2026): não publicado, segundo o parecer 2026-10 Liquidações (exercício 2026): não publicado, segundo o parecer 2026-10 Pagamentos (exercício 2026): não publicado, segundo o parecer 2026-10 O Fundo Nacional repassou R$ 17.168.303,62 ao FMAS entre 2024 e 2025-12.",
+   "valor": 17168303.62,
+   "dados": {
+    "obrigacao": "F2",
+    "base": "LC 101/2000, art. 48-A, I; Lei 12.527/2011, art. 8º, § 1º, III",
+    "estado": "em falta",
+    "pntp": "4.1 e 4.3 (só se o portal incluir o Fundo)"
+   }
+  },
+  {
+   "tipo": "fundo_sem_transparencia",
+   "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL-FMAS",
+   "chave": "F3",
+   "mes": "2026-11",
+   "descricao": "contratos, aditivos e notas fiscais do Fundo no PNCP: em falta. 26 órgãos do Executivo, com 2033 contratos que somam R$ 11.165.806.980,54, não têm nenhuma nota fiscal publicada no PNCP nos meses lidos (achado nf_ausente); entre eles o Fundo Municipal de Assistência Social, com R$ 8.454.752,68 em contratos",
+   "valor": 0.0,
+   "dados": {
+    "obrigacao": "F3",
+    "base": "Lei 14.133/2021, art. 174, § 2º, V e VI",
+    "estado": "em falta",
+    "pntp": "9.1 (sem as notas fiscais)"
+   }
+  },
+  {
+   "tipo": "fundo_sem_transparencia",
+   "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL-FMAS",
+   "chave": "F4",
+   "mes": "2026-11",
+   "descricao": "parcerias com organizações da sociedade civil: chamamentos, planos de trabalho e prestações de contas no sítio oficial: em falta. Planos de trabalho (exercício 2026): não publicado, segundo o parecer 2026-10 Prestações de contas (exercício 2026): não publicado, segundo o parecer 2026-10 Editais de chamamento (exercício 2026): não publicado, segundo o parecer 2026-10",
+   "valor": 0.0,
+   "dados": {
+    "obrigacao": "F4",
+    "base": "Lei 13.019/2014, arts. 10 e 11",
+    "estado": "em falta",
+    "pntp": "5.2"
+   }
+  },
+  {
+   "tipo": "fundo_sem_transparencia",
+   "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL-FMAS",
+   "chave": "F5",
+   "mes": "2026-11",
+   "descricao": "fundo sob orientação e controle do Conselho: apreciação das contas e prestação quadrimestral publicadas: em falta. Apreciação mensal das contas (exercício 2026): não publicado, segundo o parecer 2026-10 Prestação quadrimestral (exercício 2026): não publicado, segundo o parecer 2026-10 O Fundo Nacional repassou R$ 17.168.303,62 ao FMAS entre 2024 e 2025-12.",
+   "valor": 17168303.62,
+   "dados": {
+    "obrigacao": "F5",
+    "base": "Lei 8.742/1993, art. 30, II; Lei municipal 7.531/1995, art. 3º",
+    "estado": "em falta",
+    "pntp": ""
+   }
+  },
+  {
+   "tipo": "conselho_sem_transparencia",
+   "orgao": "CONSELHO MUNICIPAL DE ASSISTENCIA SOCIAL DE GOIANIA - CMASGyn",
+   "chave": "C1",
+   "mes": "2026-11",
+   "descricao": "resoluções do Conselho publicadas no Diário Oficial do Município: em falta. Resoluções do triênio (exercício 2026): não publicado, segundo o parecer 2026-10",
+   "valor": 0.0,
+   "dados": {
+    "obrigacao": "C1",
+    "base": "Lei municipal 9.009/2010, art. 10, § 2º",
+    "estado": "em falta",
+    "pntp": "19.4"
+   }
+  },
+  {
+   "tipo": "conselho_sem_transparencia",
+   "orgao": "CONSELHO MUNICIPAL DE ASSISTENCIA SOCIAL DE GOIANIA - CMASGyn",
+   "chave": "C2",
+   "mes": "2026-11",
+   "descricao": "sessões públicas com cronograma divulgado e atas das plenárias publicadas: em falta. Atas de plenária (exercício 2026): não publicado, segundo o parecer 2026-10 publicação vista: calendário das plenárias guardado no acervo: https://cmasgyn.com.br/Resources/documentos/calendario_cmasgyn_2026.pdf",
+   "valor": 0.0,
+   "dados": {
+    "obrigacao": "C2",
+    "base": "Lei municipal 9.009/2010, art. 10, caput e § 1º; Lei 12.527/2011, art. 8º, caput",
+    "estado": "em falta",
+    "pntp": "19.4"
+   }
+  },
+  {
+   "tipo": "conselho_sem_transparencia",
+   "orgao": "CONSELHO MUNICIPAL DE ASSISTENCIA SOCIAL DE GOIANIA - CMASGyn",
+   "chave": "C3",
+   "mes": "2026-11",
+   "descricao": "composição paritária com os conselheiros e o decreto de nomeação publicados: em falta. Decreto de nomeação (exercício 2026): não publicado, segundo o parecer 2026-10",
+   "valor": 0.0,
+   "dados": {
+    "obrigacao": "C3",
+    "base": "Lei 8.742/1993, art. 30, I; Lei municipal 9.009/2010, art. 3º",
+    "estado": "em falta",
+    "pntp": "19.4"
+   }
+  },
+  {
+   "tipo": "conselho_sem_transparencia",
+   "orgao": "CONSELHO MUNICIPAL DE ASSISTENCIA SOCIAL DE GOIANIA - CMASGyn",
+   "chave": "C4",
+   "mes": "2026-11",
+   "descricao": "regimento interno publicado: em falta. Regimento Interno (exercício 2026): não publicado, segundo o parecer 2026-10",
+   "valor": 0.0,
+   "dados": {
+    "obrigacao": "C4",
+    "base": "Lei municipal 9.009/2010 (competência do Conselho de aprovar o seu regimento); Lei 12.527/2011, art. 8º, caput",
+    "estado": "em falta",
+    "pntp": "19.4"
+   }
+  }
+ ],
+ "fontes": [
+  {
+   "id": "cartilha_2026",
+   "titulo": "Cartilha PNTP 2026, 4ª edição, versão de 08/04/2026 (Atricon)",
+   "url": "https://www.mpma.mp.br/wp-content/uploads/2026/04/Cartilha-PNTP-2026-versao-08.04.2026.pdf",
+   "hospedagem": "cópia publicada pelo Ministério Público do Maranhão; o original fica no sítio da Atricon",
+   "lida_em": "2026-11-27",
+   "trouxe": "pesos de exigibilidade, pesos dos itens de verificação, pesos das dimensões (Tabela 2), faixas dos níveis e regra dos essenciais, totais por matriz (Tabela 1), lista e numeração dos critérios das dimensões 1 a 19, atualidade de até 30 dias e série histórica de 3 anos, gravação de relatórios não obrigatória no ciclo",
+   "nao_trouxe": "as páginas de detalhamento de cada critério (classificação, fundamentação e itens aplicáveis) não saíram no texto extraído do PDF, que tem 91.421 caracteres"
+  },
+  {
+   "id": "matriz_2026",
+   "titulo": "Matriz de Critérios 2026 (planilha do PNTP em PDF)",
+   "url": "https://sistema.pelotas.com.br/transparencia/arquivos/Matriz de Criterios 2026 PDF.pdf",
+   "hospedagem": "cópia publicada pela Prefeitura de Pelotas (jurisdicionado), não por tribunal",
+   "lida_em": "2026-11-27",
+   "trouxe": "classificação essencial ou recomendada de cada critério e os totais por matriz; colunas dos itens com o cabeçalho e a exigência de link com evidência para cada resposta Sim",
+   "nao_trouxe": "as marcações de item aplicável por critério, desalinhadas na extração do texto"
+  },
+  {
+   "id": "metodologia_tcepi_2026",
+   "titulo": "Orientações aos jurisdicionados, PNTP 2026 (TCE-PI, Secretaria de Controle Externo)",
+   "url": "https://www.tcepi.tc.br/wp-content/uploads/2026/04/Metodologia-PNTP-2026.pdf",
+   "lida_em": "2026-11-27",
+   "trouxe": "lista dos oito níveis, cinco itens de verificação, matrizes por Poder, alterações do ciclo 2026 e prazos"
+  },
+  {
+   "id": "treinamento_tcepi_2026",
+   "titulo": "Treinamento PNTP 2026 (TCE-PI)",
+   "url": "https://www.tcepi.tc.br/wp-content/uploads/2026/04/PNTP-2026-TREINAMENTO.pdf",
+   "lida_em": "2026-11-27",
+   "trouxe": "o critério 4.3 passou de obrigatório a essencial; 16.1 e 16.2 passaram a obrigatórios (LC 224/2025); 17.1 a 17.3 obrigatórios"
+  },
+  {
+   "id": "cronograma_2026",
+   "titulo": "Cronograma PNTP 2026 (Atricon)",
+   "url": "https://cdn.atricon.org.br/uploads/2026/02/Cronograma-PNTP-2026.pdf",
+   "lida_em": "2026-11-27",
+   "trouxe": "autoavaliação de 20/04 a 29/05/2026, validação pelos tribunais de 01/06 a 10/08/2026, garantia da qualidade amostral de 31/08 a 09/10/2026, consolidação até 10/11/2026, resultado em novembro de 2026"
+  },
+  {
+   "id": "cartilha_2025",
+   "titulo": "Cartilha PNTP 2025 (Atricon), cópia do TCE-SP",
+   "url": "https://tce.sp.gov.br/sites/default/files/publicacoes/Cartilha%20PNTP%202025.pdf",
+   "lida_em": "2026-11-27",
+   "trouxe": "mesmos pesos e mesma regra do Diamante no ciclo 2025; totais do ciclo 2025 (ver matriz_2025.yml)"
+  },
+  {
+   "id": "radar",
+   "titulo": "Radar da Transparência Pública (Atricon), painel 1",
+   "url": "https://radardatransparencia.atricon.org.br/",
+   "lida_em": "2026-11-27",
+   "trouxe": "só o painel nacional agregado; o painel 6 (avaliação por entidade) e os dados abertos do PNTP recusaram a leitura (erro do sítio) e ficam para a sondagem no GitHub (chave e_radar)"
+  }
+ ],
+ "pendencias": [
+  "A Tabela 1 da cartilha dá 53 obrigatórios na matriz comum; a numeração das dimensões 1 a 15, menos os critérios de estatais e consórcios, dá 54. Um dos critérios marcados abaixo como obrigatório da matriz comum pertence a outra matriz. A planilha oficial com as colunas alinhadas resolve (sondagem e_metodo). Até lá o avaliador usa os 97 critérios, o que muda o índice em menos de 0,3 ponto.",
+  "As marcações de item aplicável por critério (que itens contam em cada um) não saíram na extração; o campo ``itens`` de cada critério é a leitura do Onisciente pela natureza do dado e está marcado com itens_origem.",
+  "A fundamentação legal individual de cada critério não saiu na extração; o campo base_legal é do Onisciente, conferido no corpus do repositório quando o texto está lá (Lei 12.527, LC 101, Lei 14.133, Lei 13.019, LOAS).",
+  "O índice e o nível de Goiânia no Radar (painel 6) não abriram nesta leitura."
+ ],
+ "fichas": [
+  {
+   "codigo": "PCT-SELO01-2026",
+   "familia": "PCT",
+   "titulo": "Selo Diamante de transparência sem confirmação independente",
+   "gravidade": "alta",
+   "como_deveria": "O Selo Diamante do PNTP exige índice de 95% ou mais e 100% dos critérios essenciais, cada resposta Sim com o link da evidência (Cartilha PNTP 2026, Atricon).",
+   "norma": "Cartilha e matriz do PNTP 2026 (Atricon); LC 101/2000, arts. 48 e 48-A; Lei 12.527/2011, art. 8º",
+   "como_esta": "Pela leitura oficial o Selo Diamante não está confirmado: com as provas lidas o índice é 5,24% (Inicial); o máximo possível com o que falta provar é 100,00%. Pela leitura restritiva o padrão cai para Elevado (essenciais em falta: 3.1, 4.1, 4.3, O.2), mesmo no melhor caso.",
+   "verificacao": "INCONCLUSIVO",
+   "providencia": "Pedir ao TCM-GO os papéis de trabalho da validação do PNTP de Goiânia (respostas e links por critério) e à Controladoria a publicação do que falta; rodar a sondagem do selo.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": null,
+   "origem": "onisciente",
+   "observacao": "indício, não acusação"
+  },
+  {
+   "codigo": "PCT-SELO02-3.1",
+   "familia": "PCT",
+   "titulo": "Critério essencial 3.1 do PNTP sem cumprimento comprovado",
+   "gravidade": "alta",
+   "como_deveria": "Critério essencial atendido por inteiro: disponível, atualizado, com série histórica, gravável em formato aberto e com filtro.",
+   "norma": "LC 101/2000, arts. 48, § 1º, II, e 48-A, II",
+   "como_esta": "O critério essencial 3.1 (receitas com previsão e realização) não se cumpre na leitura restritiva: Receita realizada do Fundo por fonte (2026-10) não publicado; deveria estar em Portal da Transparência (responsabilidade fiscal) e SICONFI; Receita realizada mês a mês por fonte (exercício 2026) não publicado; deveria estar em Portal da Transparência (responsabilidade fiscal) e SICONFI; Receita realizada de outubro de 2026 não publicada (2026-10) não publicado; deveria estar em portal da transparência do Município ou SICONFI.",
+   "verificacao": "INCONCLUSIVO",
+   "providencia": "Pedir a publicação, para todas as unidades gestoras, inclusive os fundos, em formato aberto.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": null,
+   "origem": "onisciente",
+   "observacao": "leitura restritiva"
+  },
+  {
+   "codigo": "PCT-SELO02-4.1",
+   "familia": "PCT",
+   "titulo": "Critério essencial 4.1 do PNTP sem cumprimento comprovado",
+   "gravidade": "alta",
+   "como_deveria": "Critério essencial atendido por inteiro: disponível, atualizado, com série histórica, gravável em formato aberto e com filtro.",
+   "norma": "LC 101/2000, arts. 48, § 1º, II, e 48-A, I; Lei 12.527/2011, art. 8º, § 1º, III",
+   "como_esta": "O critério essencial 4.1 (total das despesas empenhadas) não se cumpre na leitura restritiva: Liquidações (exercício 2026) não publicado; deveria estar em Portal da Transparência de Goiânia, receitas e despesas; Pagamentos (exercício 2026) não publicado; deveria estar em Portal da Transparência de Goiânia, receitas e despesas; Ordens bancárias (exercício 2026) não publicado; deveria estar em Portal da Transparência de Goiânia, receitas e despesas; Restos a pagar (exercício 2026) não publicado; deveria estar em Portal da Transparência de Goiânia, receitas e despesas.",
+   "verificacao": "INCONCLUSIVO",
+   "providencia": "Pedir a publicação, para todas as unidades gestoras, inclusive os fundos, em formato aberto.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": null,
+   "origem": "onisciente",
+   "observacao": "leitura restritiva"
+  },
+  {
+   "codigo": "PCT-SELO02-4.3",
+   "familia": "PCT",
+   "titulo": "Critério essencial 4.3 do PNTP sem cumprimento comprovado",
+   "gravidade": "alta",
+   "como_deveria": "Critério essencial atendido por inteiro: disponível, atualizado, com série histórica, gravável em formato aberto e com filtro.",
+   "norma": "LC 101/2000, art. 48-A, I; Lei 12.527/2011, art. 8º, § 1º, III e IV",
+   "como_esta": "O critério essencial 4.3 (consulta de empenhos com credor) não se cumpre na leitura restritiva: Empenhos (exercício 2026) não publicado; deveria estar em Portal da Transparência de Goiânia, receitas e despesas.",
+   "verificacao": "INCONCLUSIVO",
+   "providencia": "Pedir a publicação, para todas as unidades gestoras, inclusive os fundos, em formato aberto.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": null,
+   "origem": "onisciente",
+   "observacao": "leitura restritiva"
+  },
+  {
+   "codigo": "PCT-SELO02-O.2",
+   "familia": "PCT",
+   "titulo": "Critério essencial O.2 do PNTP sem cumprimento comprovado",
+   "gravidade": "alta",
+   "como_deveria": "Critério essencial atendido por inteiro: disponível, atualizado, com série histórica, gravável em formato aberto e com filtro.",
+   "norma": "LC 101/2000, art. 48-A; Lei 12.527/2011, art. 8º, § 1º, II e III; Lei 8.742/1993, art. 30",
+   "como_esta": "O critério essencial O.2 (receita, execução e prestação de contas do FMAS publicadas frente aos repasses do Fundo Nacional) não se cumpre na leitura restritiva: sem publicação comprovada: F1 receita do Fundo publicada: repasses recebidos do Fundo Nacional e do Estado e receita realizada por fonte, mês a mês (em falta); F2 execução da despesa do Fundo publicada: empenhos, liquidações, pagamentos e restos a pagar, com credor e licitação de origem (em falta); F3 contratos, aditivos e notas fiscais do Fundo no PNCP (em falta); F4 parcerias com organizações da sociedade civil: chamamentos, planos de trabalho e prestações de contas no sítio oficial (em falta); F5 fundo sob orientação e controle do Conselho: apreciação das contas e prestação quadrimestral pu.",
+   "verificacao": "INCONCLUSIVO",
+   "providencia": "Pedir a publicação, para todas as unidades gestoras, inclusive os fundos, em formato aberto.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": null,
+   "origem": "onisciente",
+   "observacao": "leitura restritiva"
+  },
+  {
+   "codigo": "PCT-FMAS-TF1",
+   "familia": "PCT",
+   "titulo": "Fundo Municipal de Assistência Social: transparência sem comprovação",
+   "gravidade": "alta",
+   "como_deveria": "Publicação em transparência ativa (F1).",
+   "norma": "LC 101/2000, art. 48-A, II; Lei 12.527/2011, art. 8º, § 1º, II",
+   "como_esta": "Receita do Fundo publicada: repasses recebidos do Fundo Nacional e do Estado e receita realizada por fonte, mês a mês: em falta. Receita realizada do Fundo por fonte (2026-10): não publicado, segundo o parecer 2026-10 Receita realizada mês a mês por fonte (exercício 2026): não publicado, segundo o parecer 2026-10 Extratos da conta especial do Fundo (exercício 2026): não publicado, segundo o parecer 2026-10 O Fundo Nacional repassou R$ 17.168.303,62 ao FMAS entre 2024 e 2025-12.",
+   "verificacao": "INCONCLUSIVO",
+   "providencia": "Pedir por LAI a publicação e, enquanto isso, o envio dos documentos; ausência de dado é alerta de descumprimento de transparência.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": null,
+   "origem": "onisciente",
+   "observacao": "indício, não acusação"
+  },
+  {
+   "codigo": "PCT-FMAS-TF2",
+   "familia": "PCT",
+   "titulo": "Fundo Municipal de Assistência Social: transparência sem comprovação",
+   "gravidade": "alta",
+   "como_deveria": "Publicação em transparência ativa (F2).",
+   "norma": "LC 101/2000, art. 48-A, I; Lei 12.527/2011, art. 8º, § 1º, III",
+   "como_esta": "Execução da despesa do Fundo publicada: empenhos, liquidações, pagamentos e restos a pagar, com credor e licitação de origem: em falta. Empenhos (exercício 2026): não publicado, segundo o parecer 2026-10 Liquidações (exercício 2026): não publicado, segundo o parecer 2026-10 Pagamentos (exercício 2026): não publicado, segundo o parecer 2026-10 O Fundo Nacional repassou R$ 17.168.303,62 ao FMAS entre 2024 e 2025-12.",
+   "verificacao": "INCONCLUSIVO",
+   "providencia": "Pedir por LAI a publicação e, enquanto isso, o envio dos documentos; ausência de dado é alerta de descumprimento de transparência.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": null,
+   "origem": "onisciente",
+   "observacao": "indício, não acusação"
+  },
+  {
+   "codigo": "PCT-FMAS-TF3",
+   "familia": "PCT",
+   "titulo": "Fundo Municipal de Assistência Social: transparência sem comprovação",
+   "gravidade": "media",
+   "como_deveria": "Publicação em transparência ativa (F3).",
+   "norma": "Lei 14.133/2021, art. 174, § 2º, V e VI",
+   "como_esta": "Contratos, aditivos e notas fiscais do Fundo no PNCP: em falta. 26 órgãos do Executivo, com 2033 contratos que somam R$ 11.165.806.980,54, não têm nenhuma nota fiscal publicada no PNCP nos meses lidos (achado nf_ausente); entre eles o Fundo Municipal de Assistência Social, com R$ 8.454.752,68 em contratos",
+   "verificacao": "INCONCLUSIVO",
+   "providencia": "Pedir por LAI a publicação e, enquanto isso, o envio dos documentos; ausência de dado é alerta de descumprimento de transparência.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": null,
+   "origem": "onisciente",
+   "observacao": "indício, não acusação"
+  },
+  {
+   "codigo": "PCT-FMAS-TF4",
+   "familia": "PCT",
+   "titulo": "Fundo Municipal de Assistência Social: transparência sem comprovação",
+   "gravidade": "media",
+   "como_deveria": "Publicação em transparência ativa (F4).",
+   "norma": "Lei 13.019/2014, arts. 10 e 11",
+   "como_esta": "Parcerias com organizações da sociedade civil: chamamentos, planos de trabalho e prestações de contas no sítio oficial: em falta. Planos de trabalho (exercício 2026): não publicado, segundo o parecer 2026-10 Prestações de contas (exercício 2026): não publicado, segundo o parecer 2026-10 Editais de chamamento (exercício 2026): não publicado, segundo o parecer 2026-10",
+   "verificacao": "INCONCLUSIVO",
+   "providencia": "Pedir por LAI a publicação e, enquanto isso, o envio dos documentos; ausência de dado é alerta de descumprimento de transparência.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": null,
+   "origem": "onisciente",
+   "observacao": "indício, não acusação"
+  },
+  {
+   "codigo": "PCT-FMAS-TF5",
+   "familia": "PCT",
+   "titulo": "Fundo Municipal de Assistência Social: transparência sem comprovação",
+   "gravidade": "alta",
+   "como_deveria": "Publicação em transparência ativa (F5).",
+   "norma": "Lei 8.742/1993, art. 30, II; Lei municipal 7.531/1995, art. 3º",
+   "como_esta": "Fundo sob orientação e controle do Conselho: apreciação das contas e prestação quadrimestral publicadas: em falta. Apreciação mensal das contas (exercício 2026): não publicado, segundo o parecer 2026-10 Prestação quadrimestral (exercício 2026): não publicado, segundo o parecer 2026-10 O Fundo Nacional repassou R$ 17.168.303,62 ao FMAS entre 2024 e 2025-12.",
+   "verificacao": "INCONCLUSIVO",
+   "providencia": "Pedir por LAI a publicação e, enquanto isso, o envio dos documentos; ausência de dado é alerta de descumprimento de transparência.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": null,
+   "origem": "onisciente",
+   "observacao": "indício, não acusação"
+  },
+  {
+   "codigo": "PCT-CMAS-TC1",
+   "familia": "PCT",
+   "titulo": "Conselho Municipal de Assistência Social: transparência sem comprovação",
+   "gravidade": "media",
+   "como_deveria": "Publicação em transparência ativa (C1).",
+   "norma": "Lei municipal 9.009/2010, art. 10, § 2º",
+   "como_esta": "Resoluções do Conselho publicadas no Diário Oficial do Município: em falta. Resoluções do triênio (exercício 2026): não publicado, segundo o parecer 2026-10",
+   "verificacao": "INCONCLUSIVO",
+   "providencia": "Pedir por LAI a publicação e, enquanto isso, o envio dos documentos; ausência de dado é alerta de descumprimento de transparência.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": null,
+   "origem": "onisciente",
+   "observacao": "indício, não acusação"
+  },
+  {
+   "codigo": "PCT-CMAS-TC2",
+   "familia": "PCT",
+   "titulo": "Conselho Municipal de Assistência Social: transparência sem comprovação",
+   "gravidade": "media",
+   "como_deveria": "Publicação em transparência ativa (C2).",
+   "norma": "Lei municipal 9.009/2010, art. 10, caput e § 1º; Lei 12.527/2011, art. 8º, caput",
+   "como_esta": "Sessões públicas com cronograma divulgado e atas das plenárias publicadas: em falta. Atas de plenária (exercício 2026): não publicado, segundo o parecer 2026-10 publicação vista: calendário das plenárias guardado no acervo: https://cmasgyn.com.br/Resources/documentos/calendario_cmasgyn_2026.pdf",
+   "verificacao": "INCONCLUSIVO",
+   "providencia": "Pedir por LAI a publicação e, enquanto isso, o envio dos documentos; ausência de dado é alerta de descumprimento de transparência.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": null,
+   "origem": "onisciente",
+   "observacao": "indício, não acusação"
+  },
+  {
+   "codigo": "PCT-CMAS-TC3",
+   "familia": "PCT",
+   "titulo": "Conselho Municipal de Assistência Social: transparência sem comprovação",
+   "gravidade": "media",
+   "como_deveria": "Publicação em transparência ativa (C3).",
+   "norma": "Lei 8.742/1993, art. 30, I; Lei municipal 9.009/2010, art. 3º",
+   "como_esta": "Composição paritária com os conselheiros e o decreto de nomeação publicados: em falta. Decreto de nomeação (exercício 2026): não publicado, segundo o parecer 2026-10",
+   "verificacao": "INCONCLUSIVO",
+   "providencia": "Pedir por LAI a publicação e, enquanto isso, o envio dos documentos; ausência de dado é alerta de descumprimento de transparência.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": null,
+   "origem": "onisciente",
+   "observacao": "indício, não acusação"
+  },
+  {
+   "codigo": "PCT-CMAS-TC4",
+   "familia": "PCT",
+   "titulo": "Conselho Municipal de Assistência Social: transparência sem comprovação",
+   "gravidade": "media",
+   "como_deveria": "Publicação em transparência ativa (C4).",
+   "norma": "Lei municipal 9.009/2010 (competência do Conselho de aprovar o seu regimento); Lei 12.527/2011, art. 8º, caput",
+   "como_esta": "Regimento interno publicado: em falta. Regimento Interno (exercício 2026): não publicado, segundo o parecer 2026-10",
+   "verificacao": "INCONCLUSIVO",
+   "providencia": "Pedir por LAI a publicação e, enquanto isso, o envio dos documentos; ausência de dado é alerta de descumprimento de transparência.",
+   "caso_semelhante": "",
+   "dados": [],
+   "custodia": [],
+   "competencia": null,
+   "origem": "onisciente",
+   "observacao": "indício, não acusação"
+  }
+ ]
+}

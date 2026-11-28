@@ -1,0 +1,1444 @@
+URL: https://saude.goiania.go.gov.br/
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 106969
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8"/>
+    <meta property="og:locale" content="pt_BR"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=5.0, initial-scale=1.0"/>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+    
+    <base href="https://saude.goiania.go.gov.br/wp-content/themes/prefeituragoiania/"/>
+
+    <meta name="description" content="Site principal - Secretaria Municipal de Saúde" />
+<meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+<meta rel="canonical" href="https://saude.goiania.go.gov.br/" />
+<meta property="og:type" content="website" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="og:url" content="https://saude.goiania.go.gov.br/" />
+<meta property="og:title" content="Página Inicial | Secretaria Municipal de Saúde" />
+<meta property="og:description" content="Site principal - Secretaria Municipal de Saúde" />
+<meta property="og:image" content="" />
+<meta property="og:image:width" content="710" />
+<meta property="og:image:height" content="400" />
+<meta property="og:locale" content="pt_BR" />
+
+    <link rel="preconnect" href="https://stats.g.doubleclick.net">
+    <link rel="preconnect" href="https://www.google.com">
+    <link rel="preconnect" href="https://www.google-analytics.com">
+    <link rel="preconnect" href="https://www.google.com.br">
+
+    <!-- Google Tag Manager -->
+    <script defer>
+        ((fn) => {
+            if (document.attachEvent ? document.readyState === 'complete' : document.readyState !== 'loading') {
+                fn();
+            } else {
+                document.addEventListener('DOMContentLoaded', fn);
+            }
+        })(() => {
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({
+                    'gtm.start':
+                        new Date().getTime(),
+                    event: 'gtm.js'
+                });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != 'dataLayer' ? '&l=' + l : '';
+                j.async = true;
+                j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-N97BQ3Z');
+        });
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <link rel="profile" href="https://gmpg.org/xfn/11">
+
+    <link rel="shortcut icon" href="https://saude.goiania.go.gov.br/wp-content/themes/prefeituragoiania/images/logo.ico"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://saude.goiania.go.gov.br/wp-content/themes/prefeituragoiania/icons/styles.css?ver=1.0.81"/>
+    <link rel="stylesheet preload" type="text/css"
+          href="https://saude.goiania.go.gov.br/wp-content/themes/prefeituragoiania/bundle/index.css?ver=1.0.81"/>
+
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://saude.goiania.go.gov.br/wp-content/themes/prefeituragoiania/bundle/lightbox.min.css"
+        media="print"
+        onload="this.media='all'"
+    >
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="https://saude.goiania.go.gov.br/wp-content/themes/prefeituragoiania/bundle/swiper.min.css"
+        media="print"
+        onload="this.media='all'"
+    >
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <script type="text/javascript">
+        var path_cookie = '/';
+    </script>
+
+    
+    
+    <title>Página Inicial | Secretaria Municipal de Saúde</title>
+<style id='wp-block-image-inline-css' type='text/css'>
+.wp-block-image>a,.wp-block-image>figure>a{display:inline-block}.wp-block-image img{box-sizing:border-box;height:auto;max-width:100%;vertical-align:bottom}@media not (prefers-reduced-motion){.wp-block-image img.hide{visibility:hidden}.wp-block-image img.show{animation:show-content-image .4s}}.wp-block-image[style*=border-radius] img,.wp-block-image[style*=border-radius]>a{border-radius:inherit}.wp-block-image.has-custom-border img{box-sizing:border-box}.wp-block-image.aligncenter{text-align:center}.wp-block-image.alignfull>a,.wp-block-image.alignwide>a{width:100%}.wp-block-image.alignfull img,.wp-block-image.alignwide img{height:auto;width:100%}.wp-block-image .aligncenter,.wp-block-image .alignleft,.wp-block-image .alignright,.wp-block-image.aligncenter,.wp-block-image.alignleft,.wp-block-image.alignright{display:table}.wp-block-image .aligncenter>figcaption,.wp-block-image .alignleft>figcaption,.wp-block-image .alignright>figcaption,.wp-block-image.aligncenter>figcaption,.wp-block-image.alignleft>figcaption,.wp-block-image.alignright>figcaption{caption-side:bottom;display:table-caption}.wp-block-image .alignleft{float:left;margin:.5em 1em .5em 0}.wp-block-image .alignright{float:right;margin:.5em 0 .5em 1em}.wp-block-image .aligncenter{margin-left:auto;margin-right:auto}.wp-block-image :where(figcaption){margin-bottom:1em;margin-top:.5em}.wp-block-image.is-style-circle-mask img{border-radius:9999px}@supports ((-webkit-mask-image:none) or (mask-image:none)) or (-webkit-mask-image:none){.wp-block-image.is-style-circle-mask img{border-radius:0;-webkit-mask-image:url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50"/></svg>');mask-image:url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50"/></svg>');mask-mode:alpha;-webkit-mask-position:center;mask-position:center;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:contain;mask-size:contain}}:root :where(.wp-block-image.is-style-rounded img,.wp-block-image .is-style-rounded img){border-radius:9999px}.wp-block-image figure{margin:0}.wp-lightbox-container{display:flex;flex-direction:column;position:relative}.wp-lightbox-container img{cursor:zoom-in}.wp-lightbox-container img:hover+button{opacity:1}.wp-lightbox-container button{align-items:center;backdrop-filter:blur(16px) saturate(180%);background-color:#5a5a5a40;border:none;border-radius:4px;cursor:zoom-in;display:flex;height:20px;justify-content:center;opacity:0;padding:0;position:absolute;right:16px;text-align:center;top:16px;width:20px;z-index:100}@media not (prefers-reduced-motion){.wp-lightbox-container button{transition:opacity .2s ease}}.wp-lightbox-container button:focus-visible{outline:3px auto #5a5a5a40;outline:3px auto -webkit-focus-ring-color;outline-offset:3px}.wp-lightbox-container button:hover{cursor:pointer;opacity:1}.wp-lightbox-container button:focus{opacity:1}.wp-lightbox-container button:focus,.wp-lightbox-container button:hover,.wp-lightbox-container button:not(:hover):not(:active):not(.has-background){background-color:#5a5a5a40;border:none}.wp-lightbox-overlay{box-sizing:border-box;cursor:zoom-out;height:100vh;left:0;overflow:hidden;position:fixed;top:0;visibility:hidden;width:100%;z-index:100000}.wp-lightbox-overlay .close-button{align-items:center;cursor:pointer;display:flex;justify-content:center;min-height:40px;min-width:40px;padding:0;position:absolute;right:calc(env(safe-area-inset-right) + 16px);top:calc(env(safe-area-inset-top) + 16px);z-index:5000000}.wp-lightbox-overlay .close-button:focus,.wp-lightbox-overlay .close-button:hover,.wp-lightbox-overlay .close-button:not(:hover):not(:active):not(.has-background){background:none;border:none}.wp-lightbox-overlay .lightbox-image-container{height:var(--wp--lightbox-container-height);left:50%;overflow:hidden;position:absolute;top:50%;transform:translate(-50%,-50%);transform-origin:top left;width:var(--wp--lightbox-container-width);z-index:9999999999}.wp-lightbox-overlay .wp-block-image{align-items:center;box-sizing:border-box;display:flex;height:100%;justify-content:center;margin:0;position:relative;transform-origin:0 0;width:100%;z-index:3000000}.wp-lightbox-overlay .wp-block-image img{height:var(--wp--lightbox-image-height);min-height:var(--wp--lightbox-image-height);min-width:var(--wp--lightbox-image-width);width:var(--wp--lightbox-image-width)}.wp-lightbox-overlay .wp-block-image figcaption{display:none}.wp-lightbox-overlay button{background:none;border:none}.wp-lightbox-overlay .scrim{background-color:#fff;height:100%;opacity:.9;position:absolute;width:100%;z-index:2000000}.wp-lightbox-overlay.active{visibility:visible}@media not (prefers-reduced-motion){.wp-lightbox-overlay.active{animation:turn-on-visibility .25s both}.wp-lightbox-overlay.active img{animation:turn-on-visibility .35s both}.wp-lightbox-overlay.show-closing-animation:not(.active){animation:turn-off-visibility .35s both}.wp-lightbox-overlay.show-closing-animation:not(.active) img{animation:turn-off-visibility .25s both}.wp-lightbox-overlay.zoom.active{animation:none;opacity:1;visibility:visible}.wp-lightbox-overlay.zoom.active .lightbox-image-container{animation:lightbox-zoom-in .4s}.wp-lightbox-overlay.zoom.active .lightbox-image-container img{animation:none}.wp-lightbox-overlay.zoom.active .scrim{animation:turn-on-visibility .4s forwards}.wp-lightbox-overlay.zoom.show-closing-animation:not(.active){animation:none}.wp-lightbox-overlay.zoom.show-closing-animation:not(.active) .lightbox-image-container{animation:lightbox-zoom-out .4s}.wp-lightbox-overlay.zoom.show-closing-animation:not(.active) .lightbox-image-container img{animation:none}.wp-lightbox-overlay.zoom.show-closing-animation:not(.active) .scrim{animation:turn-off-visibility .4s forwards}}@keyframes show-content-image{0%{visibility:hidden}99%{visibility:hidden}to{visibility:visible}}@keyframes turn-on-visibility{0%{opacity:0}to{opacity:1}}@keyframes turn-off-visibility{0%{opacity:1;visibility:visible}99%{opacity:0;visibility:visible}to{opacity:0;visibility:hidden}}@keyframes lightbox-zoom-in{0%{transform:translate(calc((-100vw + var(--wp--lightbox-scrollbar-width))/2 + var(--wp--lightbox-initial-left-position)),calc(-50vh + var(--wp--lightbox-initial-top-position))) scale(var(--wp--lightbox-scale))}to{transform:translate(-50%,-50%) scale(1)}}@keyframes lightbox-zoom-out{0%{transform:translate(-50%,-50%) scale(1);visibility:visible}99%{visibility:visible}to{transform:translate(calc((-100vw + var(--wp--lightbox-scrollbar-width))/2 + var(--wp--lightbox-initial-left-position)),calc(-50vh + var(--wp--lightbox-initial-top-position))) scale(var(--wp--lightbox-scale));visibility:hidden}}
+/*# sourceURL=https://saude.goiania.go.gov.br/wp-includes/blocks/image/style.min.css */
+</style>
+<style id='wp-block-paragraph-inline-css' type='text/css'>
+.is-small-text{font-size:.875em}.is-regular-text{font-size:1em}.is-large-text{font-size:2.25em}.is-larger-text{font-size:3em}.has-drop-cap:not(:focus):first-letter{float:left;font-size:8.4em;font-style:normal;font-weight:100;line-height:.68;margin:.05em .1em 0 0;text-transform:uppercase}body.rtl .has-drop-cap:not(:focus):first-letter{float:none;margin-left:.1em}p.has-drop-cap.has-background{overflow:hidden}:root :where(p.has-background){padding:1.25em 2.375em}:where(p.has-text-color:not(.has-link-color)) a{color:inherit}p.has-text-align-left[style*="writing-mode:vertical-lr"],p.has-text-align-right[style*="writing-mode:vertical-rl"]{rotate:180deg}
+/*# sourceURL=https://saude.goiania.go.gov.br/wp-includes/blocks/paragraph/style.min.css */
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--nwe-primary-color: #003F68;--wp--preset--color--nwe-secondary-color: #09C5E7;--wp--preset--color--nwe-primary-color-text: #3D4147;--wp--preset--color--nwe-secondary-color-text: #7A8987;--wp--preset--color--nwe-color-white: #FFFFFF;--wp--preset--color--nwe-background-white: #FFFFFF;--wp--preset--color--nwe-color-grey: #EEEFF1;--wp--preset--color--nwe-color-grey-2: #E1E5E7;--wp--preset--color--nwe-color-grey-3: #EAEEF1;--wp--preset--color--nwe-color-grey-4: #BBC2C7;--wp--preset--color--nwe-widget-posts-search-sidebar-width: 360;--wp--preset--color--nwe-widget-posts-search-gap: 59;--wp--preset--color--nwe-widget-posts-search-background-box: #FFF7E3;--wp--preset--color--nwe-widget-posts-search-background-in-color-secundary: #FFF7E3;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+
+</head>
+
+<body class="home blog wp-embed-responsive wp-theme-prefeituragoiania secretaria-municipal-de-saúde site-id-3 pg-home-secretaria blog-secretaria">
+
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N97BQ3Z"
+            height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe>
+</noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!--  Header  -->
+<header class="full-w white">
+    <section class="b-black-header full-w">
+        <div class="submenu-estrutura-governo full-h flex column">
+                        <a href="https://saude.goiania.go.gov.br/estrutura/" class="full-w flex y-center x-center white arial bold fs-10 ver-estrutura-governo">VER TODOS</a>
+        </div>
+        <div class="container header-top full-h flex space-between y-center">
+            <div class="menu-logo flex space-between y-center full-h">
+                <a href="https://www.goiania.go.gov.br/" class="logo-header fs-0">Logo da Prefeitura</a>
+            </div>
+
+            <div class="menu-mobile icon-menu-hamburguer hide"></div>
+
+            <nav class="full-h">
+                <ul class="flex space-between y-center full-h">
+                    
+                        <li class="fs-10 bold arial uppercase ">
+                            <a
+                                href="https://www.goiania.go.gov.br/"
+                                                            >
+                                Início                                                            </a>
+                        </li>
+                    
+                        <li class="fs-10 bold arial uppercase ">
+                            <a
+                                href="https://www.goiania.go.gov.br/estrutura/"
+                                                            >
+                                Secretarias                                                            </a>
+                        </li>
+                    
+                        <li class="fs-10 bold arial uppercase ">
+                            <a
+                                href="https://www.goiania.go.gov.br/servicos/"
+                                                            >
+                                Serviços                                                            </a>
+                        </li>
+                    
+                        <li class="fs-10 bold arial uppercase ">
+                            <a
+                                href="https://www.goiania.go.gov.br"
+                                                            >
+                                Imagem                                                            </a>
+                        </li>
+                    
+                        <li class="fs-10 bold arial uppercase ">
+                            <a
+                                href="https://www.goiania.go.gov.br/transparencia"
+                                                            >
+                                Transparência                                                            </a>
+                        </li>
+                    
+                        <li class="fs-10 bold arial uppercase ">
+                            <a
+                                href="https://www.goiania.go.gov.br/agora"
+                                                            >
+                                Notícias                                                            </a>
+                        </li>
+                    
+                        <li class="fs-10 bold arial uppercase ">
+                            <a
+                                href="https://www.goiania.go.gov.br/ouvidoria-e-sic/ouvidoria-e-atendimento/"
+                                                            >
+                                Ouvidoria                                                            </a>
+                        </li>
+                                        <li class="fs-10 bold arial uppercase">
+                        <a href="javascript:void(0)" id="acessibilidade" class="icon-acessibilidade">
+                            Acessibilidade
+                            <span class="icon-arrow-down"></span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Nav mobile -->
+    <nav class="nav-mobile hide b-black-header white">
+        <ul class="flex column x-center y-center full-w">
+            
+                <li class="fs-12 bold arial uppercase ">
+                    <a
+                        href="https://www.goiania.go.gov.br/"
+                                            >
+                        Início                                            </a>
+                </li>
+            
+                <li class="fs-12 bold arial uppercase ">
+                    <a
+                        href="https://www.goiania.go.gov.br/estrutura/"
+                                            >
+                        Secretarias                                            </a>
+                </li>
+            
+                <li class="fs-12 bold arial uppercase ">
+                    <a
+                        href="https://www.goiania.go.gov.br/servicos/"
+                                            >
+                        Serviços                                            </a>
+                </li>
+            
+                <li class="fs-12 bold arial uppercase ">
+                    <a
+                        href="https://www.goiania.go.gov.br"
+                                            >
+                        Imagem                                            </a>
+                </li>
+            
+                <li class="fs-12 bold arial uppercase ">
+                    <a
+                        href="https://www.goiania.go.gov.br/transparencia"
+                                            >
+                        Transparência                                            </a>
+                </li>
+            
+                <li class="fs-12 bold arial uppercase ">
+                    <a
+                        href="https://www.goiania.go.gov.br/agora"
+                                            >
+                        Notícias                                            </a>
+                </li>
+            
+                <li class="fs-12 bold arial uppercase ">
+                    <a
+                        href="https://www.goiania.go.gov.br/ouvidoria-e-sic/ouvidoria-e-atendimento/"
+                                            >
+                        Ouvidoria                                            </a>
+                </li>
+                        <li class="fs-12 bold arial uppercase">
+                <a href="javascript:void(0)" id="acessibilidade_mobile" class="icon-acessibilidade">Acessibilidade
+                    <span class="icon-arrow-down"></span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!-- /Nav mobile -->
+
+    <!-- Sub-menu Acessibilidade -->
+    <section class="submenu-acessibilidade flex x-end">
+        <ul class="flex uppercase fs-10 arial bold">
+            <li><a href="https://saude.goiania.go.gov.br/mapa-site/">Mapa do Site</a></li>
+            <li><a href="https://saude.goiania.go.gov.br/teclas-atalho/">Teclas de Atalho</a></li>
+            <li><a href="javascript:void(0)" id="alto_contraste">Alto Contraste <span></span></a></li>
+            <li>Tamanho da Fonte:
+                <div class="fontes">
+                    <a href="javascript:void(0)" id="font_more" title="Aumentar fonte">A+</a>
+                    <a href="javascript:void(0)" id="font_default" title="Fonte padrão">A</a>
+                    <a href="javascript:void(0)" id="font_less" title="Diminuir fonte">A-</a>
+                </div>
+            </li>
+        </ul>
+    </section>
+    <!-- /Sub-menu Acessibilidade -->
+</header>
+<!--  /Header  -->
+
+<main class="flex column">
+
+<!--  Banner  -->
+<section class="banner flex column x-center container full-w relative"
+            style="background: #36b593;"
+    >
+    <div class="banner-top"
+         style="background: #31997d">
+        <div class="container flex space-between y-center full-h">
+            <a href="https://saude.goiania.go.gov.br/" class="logo_titulo fs-38 extra-bold white">
+                SAÚDE<br><h5>Secretaria Municipal de Saúde</h5>            </a>
+
+            <a href="https://www.goiania.go.gov.br/" class="logo_topo">
+                <div class="logo"></div>
+            </a>
+        </div>
+    </div>
+
+    <div class="banner-down container flex y-center full-h">
+        <form action="https://saude.goiania.go.gov.br/" method="get" class="relative full-w">
+            <input type="text" class="search fs-16 b-white" name="s"
+                   value="" placeholder="BUSCAR"/>
+            <button type="submit" class="icon-search absolute pointer"></button>
+        </form>
+
+        <div class="menu-redes-sociais full-h flex column y-end x-center">
+            
+            <nav class="menu">
+                <ul class="flex space-between fs-16 white bold">
+                    
+                        <li class="">
+                            <a href="https://saude.goiania.go.gov.br/">Página Inicial</a>
+                                                    </li>
+                    
+                        <li class="">
+                            <a href="https://saude.goiania.go.gov.br/salas-de-vacinas/">Salas de Vacinas</a>
+                                                    </li>
+                    
+                        <li class="">
+                            <a href="https://saude.goiania.go.gov.br/servicos">Serviços</a>
+                                                    </li>
+                    
+                        <li class="">
+                            <a href="https://saude.goiania.go.gov.br/escola-municipal-de-saude-publica/escola-municipal-de-saude/">Escola Municipal de Saúde Pública</a>
+                                                    </li>
+                    
+                        <li class="">
+                            <a href="https://resultados.goiania.go.gov.br/laudos/">Resultados Exames</a>
+                                                    </li>
+                    
+                        <li class="">
+                            <a href="https://saude.goiania.go.gov.br/sobre-a-secretaria/fale-conosco/">Fale Conosco</a>
+                                                    </li>
+                                    </ul>
+            </nav>
+
+        </div>
+    </div>
+</section>
+<!--  /Banner  -->
+
+<!--  Banner Mobile  -->
+<section class="banner-mobile hide x-center container full-w relative">
+    <div class="menu-mobile-sec icon-menu-hamburguer"></div>
+    <a href="https://saude.goiania.go.gov.br/" class="logo_titulo fs-20 extra-bold white">
+        Secretaria Municipal de Saúde    </a>
+    <div class="open_busca icon-search"></div>
+</section>
+<!--  /Banner Mobile  -->
+
+<!--  Menu Mobile  -->
+<section class="cont-menu-mobile hide">
+    <nav class="menu full-w">
+        <ul class="flex space-between fs-16 white bold">
+            
+                <li class="">
+                    <a href="https://saude.goiania.go.gov.br/">Página Inicial</a>
+                                    </li>
+            
+                <li class="">
+                    <a href="https://saude.goiania.go.gov.br/salas-de-vacinas/">Salas de Vacinas</a>
+                                    </li>
+            
+                <li class="">
+                    <a href="https://saude.goiania.go.gov.br/servicos">Serviços</a>
+                                    </li>
+            
+                <li class="">
+                    <a href="https://saude.goiania.go.gov.br/escola-municipal-de-saude-publica/escola-municipal-de-saude/">Escola Municipal de Saúde Pública</a>
+                                    </li>
+            
+                <li class="">
+                    <a href="https://resultados.goiania.go.gov.br/laudos/">Resultados Exames</a>
+                                    </li>
+            
+                <li class="">
+                    <a href="https://saude.goiania.go.gov.br/sobre-a-secretaria/fale-conosco/">Fale Conosco</a>
+                                    </li>
+                    </ul>
+    </nav>
+</section>
+<!--  /Menu Mobile  -->
+
+<!-- Busca Mobile -->
+<section class="busca-mobile hide">
+    <form action="https://saude.goiania.go.gov.br/" method="get" class="relative full-w">
+        <input type="text" class="search fs-13 b-white regular" name="s"
+               value="" placeholder="BUSCAR"/>
+        <button type="submit" class="icon-search absolute pointer"></button>
+    </form>
+</section>
+<!-- /Busca Mobile -->
+
+<section class="container-main b-white container flex space-between">
+    <!--  Notícias  -->
+    <div class="left flex column">
+
+        
+            <div class="noticias-destaque full-w flex relative">
+                <div class="loaders full-w flex space-between absolute">
+                    <div class="loader grey-loaders pointer current"></div>
+                    <div class="loader grey-loaders pointer"></div>
+                    <div class="loader grey-loaders pointer"></div>
+                </div>
+
+                                        <a href="https://www.goiania.go.gov.br/carreta-da-mulher-oferece-consultas-ginecologicas-e-exames-gratuitos-na-regiao-norte-de-goiania/" class="boxg full-w flex column relative
+                            active">
+
+                            <h3 class="fs-13 arial green uppercase bold category">Saúde</h3>
+                            <h2 class="fs-34 grey arial bold title">Carreta da Mulher oferece consultas ginecológicas e exames gratuitos na...</h2>
+
+                            <div class="full-w img">
+                                <div>
+                                    <img class="lazy" data-src="https://saude.goiania.go.gov.br/wp-content/uploads/2026/11/WhatsApp-Image-2026-11-23-at-10.26.21.jpeg" width="100%" height="100%"
+                                         style="background-size: cover" alt=""/>
+                                </div>
+                            </div>
+                        </a>
+                                            <a href="https://www.goiania.go.gov.br/nova-usf-vale-dos-sonhos-realiza-34-mil-atendimentos-em-menos-de-um-mes-de-funcionamento/" class="boxg full-w flex column relative
+                            ">
+
+                            <h3 class="fs-13 arial green uppercase bold category">Saúde</h3>
+                            <h2 class="fs-34 grey arial bold title">Nova USF Vale dos Sonhos realiza 3,4 mil atendimentos em menos de um mês de...</h2>
+
+                            <div class="full-w img">
+                                <div>
+                                    <img class="lazy" data-src="https://saude.goiania.go.gov.br/wp-content/uploads/2026/11/WhatsApp-Image-2026-11-18-at-17.25.03-1.jpeg" width="100%" height="100%"
+                                         style="background-size: cover" alt=""/>
+                                </div>
+                            </div>
+                        </a>
+                                            <a href="https://www.goiania.go.gov.br/ubs-do-residencial-lorena-park-realiza-mais-de-7-mil-atendimentos-em-dez-meses-de-funcionamento/" class="boxg full-w flex column relative
+                            ">
+
+                            <h3 class="fs-13 arial green uppercase bold category">Saúde</h3>
+                            <h2 class="fs-34 grey arial bold title">UBS do Residencial Lorena Park realiza mais de 7 mil atendimentos em dez...</h2>
+
+                            <div class="full-w img">
+                                <div>
+                                    <img class="lazy" data-src="https://saude.goiania.go.gov.br/wp-content/uploads/2026/11/WhatsApp-Image-2026-11-06-at-16.10.36.jpeg" width="100%" height="100%"
+                                         style="background-size: cover" alt=""/>
+                                </div>
+                            </div>
+                        </a>
+                                </div>
+
+            <div class="noticias-destaque-mobile swiper-container hide full-w">
+
+                <div class="swiper-pagination"></div>
+
+                <div class="swiper-wrapper">
+
+                                                <a href="https://www.goiania.go.gov.br/carreta-da-mulher-oferece-consultas-ginecologicas-e-exames-gratuitos-na-regiao-norte-de-goiania/" class="swiper-slide boxg full-w flex column relative
+                            active">
+
+                                <h3 class="fs-13 arial green uppercase bold category">Saúde</h3>
+                                <h2 class="fs-34 grey arial bold title">Carreta da Mulher oferece consultas ginecológicas e exames gratuitos na...</h2>
+
+                                <div class="full-w img">
+                                    <div>
+                                        <img class="lazy" data-src="https://saude.goiania.go.gov.br/wp-content/uploads/2026/11/WhatsApp-Image-2026-11-23-at-10.26.21.jpeg" width="100%" height="100%"
+                                             style="background-size: cover" alt=""/>
+                                    </div>
+                                </div>
+                            </a>
+                                                    <a href="https://www.goiania.go.gov.br/nova-usf-vale-dos-sonhos-realiza-34-mil-atendimentos-em-menos-de-um-mes-de-funcionamento/" class="swiper-slide boxg full-w flex column relative
+                            ">
+
+                                <h3 class="fs-13 arial green uppercase bold category">Saúde</h3>
+                                <h2 class="fs-34 grey arial bold title">Nova USF Vale dos Sonhos realiza 3,4 mil atendimentos em menos de um mês de...</h2>
+
+                                <div class="full-w img">
+                                    <div>
+                                        <img class="lazy" data-src="https://saude.goiania.go.gov.br/wp-content/uploads/2026/11/WhatsApp-Image-2026-11-18-at-17.25.03-1.jpeg" width="100%" height="100%"
+                                             style="background-size: cover" alt=""/>
+                                    </div>
+                                </div>
+                            </a>
+                                                    <a href="https://www.goiania.go.gov.br/ubs-do-residencial-lorena-park-realiza-mais-de-7-mil-atendimentos-em-dez-meses-de-funcionamento/" class="swiper-slide boxg full-w flex column relative
+                            ">
+
+                                <h3 class="fs-13 arial green uppercase bold category">Saúde</h3>
+                                <h2 class="fs-34 grey arial bold title">UBS do Residencial Lorena Park realiza mais de 7 mil atendimentos em dez...</h2>
+
+                                <div class="full-w img">
+                                    <div>
+                                        <img class="lazy" data-src="https://saude.goiania.go.gov.br/wp-content/uploads/2026/11/WhatsApp-Image-2026-11-06-at-16.10.36.jpeg" width="100%" height="100%"
+                                             style="background-size: cover" alt=""/>
+                                    </div>
+                                </div>
+                            </a>
+                        
+                </div>
+            </div>
+        
+                    <div class="boxm flex space-between">
+                                    <a href="https://www.goiania.go.gov.br/maternidade-celia-camara-promove-momentos-de-cuidado-e-autoestima-para-pacientes-da-uti/" class="box-noticia flex column">
+                        <div class="full-w img">
+                            <div>
+                                <img class="lazy" data-src="https://saude.goiania.go.gov.br/wp-content/uploads/2026/11/WhatsApp-Image-2026-11-20-at-09.49.43.jpeg" width="100%" height="100%"
+                                     style="background-size: cover" alt=""/>
+                            </div>
+                        </div>
+                        <div class="categoria-titulo flex column full-w">
+                            <div class="fs-13 arial bold green category uppercase">Saúde</div>
+                            <div class="fs-26 arial bold grey title">Maternidade Célia Câmara promove momentos de cuidado e autoestima para pacientes da...</div>
+                        </div>
+                    </a>
+                                    <a href="https://www.goiania.go.gov.br/goiania-mantem-alerta-para-prevencao-e-diagnostico-da-sifilis/" class="box-noticia flex column">
+                        <div class="full-w img">
+                            <div>
+                                <img class="lazy" data-src="https://saude.goiania.go.gov.br/wp-content/uploads/2026/11/WhatsApp-Image-2026-10-06-at-10.24.04-e1795110287865.jpeg" width="100%" height="100%"
+                                     style="background-size: cover" alt=""/>
+                            </div>
+                        </div>
+                        <div class="categoria-titulo flex column full-w">
+                            <div class="fs-13 arial bold green category uppercase">Saúde</div>
+                            <div class="fs-26 arial bold grey title">Goiânia mantém alerta para prevenção e diagnóstico da sífilis</div>
+                        </div>
+                    </a>
+                            </div>
+                    <div class="filters flex space-between">
+                <a href="https://saude.goiania.go.gov.br/noticias/" class="filter grey-filters arial fs-12 bold">TODAS AS
+                    MATÉRIAS</a>
+                <a href="https://saude.goiania.go.gov.br/noticias/" class="filter grey-filters arial fs-12 bold">POR CATEGORIA</a>
+                <a href="https://saude.goiania.go.gov.br/noticias/" class="filter grey-filters arial fs-12 bold">POR SECRETARIAS</a>
+                <a href="https://saude.goiania.go.gov.br/noticias/" class="filter grey-filters arial fs-12 bold">ASSUNTOS EM
+                    ALTA</a>
+            </div>
+            </div>
+    <!--  /Notícias  -->
+
+    <div class="right flex column">
+
+                    <div class="acessados arial fs-16 bold grey-acessados">+ ACESSADOS</div>
+
+            <!--  Portal Links  -->
+            <div class="portais-bot flex wrap">
+                                        <div class="portal relative b-grey-portais flex column">
+                            <a href="https://saude.goiania.go.gov.br/unidades-de-saude/"
+                               target="_self">
+                                <div class="grey-acessados icon-portal">
+                                    <img src="https://saude.goiania.go.gov.br/wp-content/uploads/sites/3/2021/05/formulario-de-contato.svg" alt="" class="svg" height="55">
+                                </div>
+                                <div
+                                    class="grey-acessados uppercase arial fs-12 bold title">Endereços e contatos das Unidades de Saúde</div>
+                            </a>
+                        </div>
+                                            <div class="portal relative b-grey-portais flex column">
+                            <a href="https://saude.goiania.go.gov.br/editas-de-chamamento-publico/edital-de-chamamento-publico-no-003-2026-cred-lab/"
+                               target="_self">
+                                <div class="grey-acessados icon-portal">
+                                    <img src="https://saude.goiania.go.gov.br/wp-content/uploads/sites/3/2021/05/formulario-de-contato.svg" alt="" class="svg" height="55">
+                                </div>
+                                <div
+                                    class="grey-acessados uppercase arial fs-12 bold title">Credenciamento Lab. EDITAL PÚBLICO Nº 003/2026</div>
+                            </a>
+                        </div>
+                                            <div class="portal relative b-grey-portais flex column">
+                            <a href="https://saude.goiania.go.gov.br/editas-de-chamamento-publico/edital-de-chamamento-publico-no-002-2026-organi-sociais/"
+                               target="_self">
+                                <div class="grey-acessados icon-portal">
+                                    <img src="https://saude.goiania.go.gov.br/wp-content/uploads/sites/3/2021/05/formulario-de-contato.svg" alt="" class="svg" height="55">
+                                </div>
+                                <div
+                                    class="grey-acessados uppercase arial fs-12 bold title">Chamamento Público nº 002/2026 Organização Social</div>
+                            </a>
+                        </div>
+                                            <div class="portal relative b-grey-portais flex column">
+                            <a href="https://lookerstudio.google.com/reporting/9a592b37-34fd-4cad-b7e8-bc64074459dc"
+                               target="_self">
+                                <div class="grey-acessados icon-portal">
+                                    <img src="https://saude.goiania.go.gov.br/wp-content/uploads/sites/3/2020/04/report.svg" alt="" class="svg" height="55">
+                                </div>
+                                <div
+                                    class="grey-acessados uppercase arial fs-12 bold title">Painel Informe Intoxicação Metanol em Goiânia</div>
+                            </a>
+                        </div>
+                                            <div class="portal relative b-grey-portais flex column">
+                            <a href="https://www10.goiania.go.gov.br/ComunidadesTerapeuticas/PaginaPrincipal.aspx"
+                               target="_blank">
+                                <div class="grey-acessados icon-portal">
+                                    <img src="https://saude.goiania.go.gov.br/wp-content/uploads/sites/3/2022/10/coracao.svg" alt="" class="svg" height="55">
+                                </div>
+                                <div
+                                    class="grey-acessados uppercase arial fs-12 bold title">Comunidades Terapêuticas</div>
+                            </a>
+                        </div>
+                                            <div class="portal relative b-grey-portais flex column">
+                            <a href="https://saude.goiania.go.gov.br/salas-de-vacinas/"
+                               target="_self">
+                                <div class="grey-acessados icon-portal">
+                                    <img src="https://saude.goiania.go.gov.br/wp-content/uploads/sites/3/2020/04/healthcare-and-medical.svg" alt="" class="svg" height="55">
+                                </div>
+                                <div
+                                    class="grey-acessados uppercase arial fs-12 bold title">Salas de Vacinação de Rotina</div>
+                            </a>
+                        </div>
+                                            <div class="portal relative b-grey-portais flex column">
+                            <a href="https://saude.goiania.go.gov.br/wp-content/uploads/sites/3/2026/01/RECADASTRAMENTO.pdf"
+                               target="_blank">
+                                <div class="grey-acessados icon-portal">
+                                    <img src="https://saude.goiania.go.gov.br/wp-content/uploads/sites/3/2021/05/formulario-de-contato.svg" alt="" class="svg" height="55">
+                                </div>
+                                <div
+                                    class="grey-acessados uppercase arial fs-12 bold title">Formulário de Recadastramento para Insumos</div>
+                            </a>
+                        </div>
+                                            <div class="portal relative b-grey-portais flex column">
+                            <a href="https://saude.goiania.go.gov.br/unidade-de-atendimento-de-urgencia-odontologica/"
+                               target="_self">
+                                <div class="grey-acessados icon-portal">
+                                    <img src="https://saude.goiania.go.gov.br/wp-content/uploads/sites/3/2020/03/dentist.svg" alt="" class="svg" height="55">
+                                </div>
+                                <div
+                                    class="grey-acessados uppercase arial fs-12 bold title">Urgência Odontológica</div>
+                            </a>
+                        </div>
+                                            <div class="portal relative b-grey-portais flex column">
+                            <a href="https://saude.goiania.go.gov.br/editas-de-chamamento-publico/"
+                               target="_self">
+                                <div class="grey-acessados icon-portal">
+                                    <img src="https://saude.goiania.go.gov.br/wp-content/uploads/sites/3/2020/03/checklist.svg" alt="" class="svg" height="55">
+                                </div>
+                                <div
+                                    class="grey-acessados uppercase arial fs-12 bold title">Editais de Chamamento</div>
+                            </a>
+                        </div>
+                                            <div class="portal relative b-grey-portais flex column">
+                            <a href="https://saude.goiania.go.gov.br/escola-municipal-de-saude-publica/programa-de-educacao-pelo-trabalho-para-a-saude-pet-saude-informacao-e-saude-digital-2025-2027/"
+                               target="_self">
+                                <div class="grey-acessados icon-portal">
+                                    <img src="https://saude.goiania.go.gov.br/wp-content/uploads/sites/3/2021/05/formulario-de-contato.svg" alt="" class="svg" height="55">
+                                </div>
+                                <div
+                                    class="grey-acessados uppercase arial fs-12 bold title">PET Saúde Informação Saúde Digital 2025-2027</div>
+                            </a>
+                        </div>
+                                            <div class="portal relative b-grey-portais flex column">
+                            <a href="https://saude.goiania.go.gov.br/_servicos/remume-relacao-municipal-de-medicamentos-essenciais/"
+                               target="_self">
+                                <div class="grey-acessados icon-portal">
+                                    <img src="https://saude.goiania.go.gov.br/wp-content/uploads/sites/3/2020/10/medicamentos.svg" alt="" class="svg" height="55">
+                                </div>
+                                <div
+                                    class="grey-acessados uppercase arial fs-12 bold title">Relação Municipal de Medicamentos Essenciais-REMUME</div>
+                            </a>
+                        </div>
+                                            <div class="portal relative b-grey-portais flex column">
+                            <a href="https://saude.goiania.go.gov.br/farmacias/"
+                               target="_self">
+                                <div class="grey-acessados icon-portal">
+                                    <img src="https://saude.goiania.go.gov.br/wp-content/uploads/sites/3/2020/10/medicamentos.svg" alt="" class="svg" height="55">
+                                </div>
+                                <div
+                                    class="grey-acessados uppercase arial fs-12 bold title">Farmácias</div>
+                            </a>
+                        </div>
+                                </div>
+            <!--  /Portal Links  -->
+        
+        <!--  Menu Lateral  -->
+                            <p class="grupo_0  full-w white uppercase flex y-center space-between fs-14 extra-bold arial pointer">
+                        <span class="flex y-center icon-menu-hamburguer">A Secretaria</span>
+                        <span class="flex y-center icon-arrow-down "></span>
+                    </p>
+
+                    <ul class="lista_0  full-w grey-acessados">
+                                                    <li class="full-w flex y-center pointer" id="12">
+                                <a href="https://saude.goiania.go.gov.br/sobre-a-secretaria/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Sobre a Secretaria                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="17868">
+                                <a href="https://saude.goiania.go.gov.br/goiania-contra-o-coronavirus/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Goiânia Contra o Coronavírus                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="24790">
+                                <a href="https://saude.goiania.go.gov.br/escola-municipal-de-saude-publica/programa-de-educacao-pelo-trabalho-para-a-saude-pet-saude-informacao-e-saude-digital-2025-2027/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Programa de Educação pelo Trabalho para a Saúde – PET-Saúde 2025-2027                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="22228">
+                                <a href="https://saude.goiania.go.gov.br/escola-municipal-de-saude-publica/programa_de_educacao_pelo_trabalho_para_a_saude-pet_saude-clima/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Programa de Educação pelo Trabalho para a Saúde – PET-Saúde 2024/2026                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="10187">
+                                <a href="https://saude.goiania.go.gov.br/politica-municipal-de-promocao-da-saude-de-goiania-pmps-goiania/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Política Municipal de Promoção da Saúde de Goiânia - PMPS Goiânia                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="26664">
+                                <a href="https://saude.goiania.go.gov.br/wp-content/uploads/sites/3/2026/02/endereco-das-unidades2-2.pdf"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Endereço de Unidade de Urgência e Emergência                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="27184">
+                                <a href="https://www.goiania.go.gov.br/sing_transparencia/licitacoes/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Licitações                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="767">
+                                <a href="https://saude.goiania.go.gov.br/sobre-a-secretaria/consultas-sus/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Unidades de Atendimento  SUS                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="11891">
+                                <a href="https://saude.goiania.go.gov.br/sobre-a-secretaria/ouvidoria-da-secretaria-de-saude/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Ouvidoria da Secretaria de Saúde                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="13">
+                                <a href="https://saude.goiania.go.gov.br/sobre-a-secretaria/fale-conosco/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Fale Conosco                                </a>
+                            </li>
+                                            </ul>
+                                    <p class="grupo_1  full-w white uppercase flex y-center space-between fs-14 extra-bold arial pointer">
+                        <span class="flex y-center icon-menu-hamburguer">Serviços</span>
+                        <span class="flex y-center icon-arrow-down "></span>
+                    </p>
+
+                    <ul class="lista_1  full-w grey-acessados">
+                                                    <li class="full-w flex y-center pointer" id="14643">
+                                <a href="https://saude.goiania.go.gov.br/wp-content/uploads/sites/3/2021/12/6621-2021-SMS-PUBLICACAO-NO-SITE_organized.pdf"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Orientações para Elaboração do PSP                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="2702">
+                                <a href="https://saude.goiania.go.gov.br/penalidades-aplicadas-sms/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Penalidades Aplicadas                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="17829">
+                                <a href="https://www10.goiania.go.gov.br/ComunidadesTerapeuticas/PaginaPrincipal.aspx"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Comunidades Terapêuticas                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="16187">
+                                <a href="https://www.sigel.salusneovita.com.br/hlagyn/login-codigo-acesso"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Resultado Falha Vacinal                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="13295">
+                                <a href="https://saude.goiania.go.gov.br/inquerito-soroepidemiologico-do-covid-19/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Resultados IgM e IgG Profissionais da Saúde                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="9132">
+                                <a href="https://saude.goiania.go.gov.br/comissao-especial-de-licitacao/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Licitações – SMS                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="13937">
+                                <a href="https://saude.goiania.go.gov.br/doacoes-combate-ao-covid-19/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Orientações sobre como fazer doações                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="12189">
+                                <a href="https://saude.goiania.go.gov.br/editas-de-chamamento-publico/aviso-de-chamamento-publico-3/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Aviso de Chamamento Público                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="7705">
+                                <a href="https://saude.goiania.go.gov.br/_servicos/7690-2/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Testes de HIV, Hepatites B e C, e Sífilis                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="6534">
+                                <a href="https://saude.goiania.go.gov.br/sobre-a-secretaria/consultas-sus/centro-de-saude-da-familia-csf/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Centro de Saúde da Família – CSF                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="6533">
+                                <a href="https://saude.goiania.go.gov.br/sobre-a-secretaria/consultas-sus/centro-integrado-de-atencao-medico-sanitaria-ciams/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Centro Integrado de Atenção Médico Sanitária – CIAMS                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="6603">
+                                <a href="https://saude.goiania.go.gov.br/sobre-a-secretaria/consultas-sus/centros-de-atencao-psicossocial-caps/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Centros de Atenção Psicossocial – CAPS                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="6604">
+                                <a href="https://saude.goiania.go.gov.br/sobre-a-secretaria/consultas-sus/centro-de-referencia-em-ortopedia-e-fisioterapia-crof/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Centro de Referência em Ortopedia e Fisioterapia – CROF                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="6605">
+                                <a href="https://saude.goiania.go.gov.br/sobre-a-secretaria/consultas-sus/centro-de-atencao-integrada-a-saude-cais/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Centro de Atenção Integrada à Saúde – CAIS                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="6606">
+                                <a href="https://saude.goiania.go.gov.br/sobre-a-secretaria/consultas-sus/unidade-de-pronto-atendimento-upas-24-horas/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Unidade de Pronto Atendimento (UPAs) – 24 HORAS                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="14827">
+                                <a href="https://saude.goiania.go.gov.br/unidadesdesaudemental/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Unidades de Saúde Mental                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="2788">
+                                <a href="http://www4.goiania.go.gov.br/sistemas/saces/asp/saces00000f0.asp?sigla=sicve"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Vale Exame - Baixa Prestador                                </a>
+                            </li>
+                                            </ul>
+                                    <p class="grupo_2  full-w white uppercase flex y-center space-between fs-14 extra-bold arial pointer">
+                        <span class="flex y-center icon-menu-hamburguer">Material Didático e Informativo</span>
+                        <span class="flex y-center icon-arrow-down "></span>
+                    </p>
+
+                    <ul class="lista_2  full-w grey-acessados">
+                                                    <li class="full-w flex y-center pointer" id="25450">
+                                <a href="https://saude.goiania.go.gov.br/protocolo-terapia-renal-substitutiva/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Protocolo Terapia Renal Substitutiva                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="8283">
+                                <a href="https://saude.goiania.go.gov.br/_servicos/7706-2/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Material Didático e Informativo, Atenção Primária                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="15911">
+                                <a href="https://saude.goiania.go.gov.br/_servicos/prescricao-medica-e-dispensacao-do-antirretroviral-para-a-profilaxia-pre-exposicao-ao-hiv-prep-na-rede-de-saude-privada/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Dispensação Antirretroviral para Profilaxia Pré-exposição ao HIV (PrEP) Rede Privada                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="16054">
+                                <a href="https://saude.goiania.go.gov.br/informe-dengue-chikungunya-zika-e-microcefalia/boletins-e-informes-epidemiologicos/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Informes Vigilância Epidemiológica                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="7497">
+                                <a href="https://saude.goiania.go.gov.br/_servicos/como-agir-em-caso-de-enchentes-2/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Como Agir em Caso de Enchentes                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="23130">
+                                <a href="https://saude.goiania.go.gov.br/wp-content/uploads/sites/3/2024/08/Orientacao.pdf"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Orientações para redução do impacto da baixa umidade e da qualidade do ar                                </a>
+                            </li>
+                                            </ul>
+                                    <p class="grupo_3  full-w white uppercase flex y-center space-between fs-14 extra-bold arial pointer">
+                        <span class="flex y-center icon-menu-hamburguer">Vigilância Sanitária e Ambiental</span>
+                        <span class="flex y-center icon-arrow-down "></span>
+                    </p>
+
+                    <ul class="lista_3  full-w grey-acessados">
+                                                    <li class="full-w flex y-center pointer" id="20599">
+                                <a href="https://saude.goiania.go.gov.br/comciss-2/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    COMCISS - Coordenação Municipal de Segurança do Paciente e Controle de Infecção em Serviços de Saúde                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="20492">
+                                <a href="https://saude.goiania.go.gov.br/sobre-a-secretaria/20349-2/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Taxa de Inspeção Sanitária (Alvará de Autorização Sanitária)                                </a>
+                            </li>
+                                            </ul>
+                                    <p class="grupo_4  full-w white uppercase flex y-center space-between fs-14 extra-bold arial pointer">
+                        <span class="flex y-center icon-menu-hamburguer">Vigilância Epidemiológica</span>
+                        <span class="flex y-center icon-arrow-down "></span>
+                    </p>
+
+                    <ul class="lista_4  full-w grey-acessados">
+                                                    <li class="full-w flex y-center pointer" id="224">
+                                <a href="https://saude.goiania.go.gov.br/informe-dengue-chikungunya-zika-e-microcefalia/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Boletim Epidemiológico Arboviroses                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="27077">
+                                <a href="https://saude.goiania.go.gov.br/informe-dengue-chikungunya-zika-e-microcefalia/cievs-centro-de-informacoes-estrategicas-em-vigilancia-em-saude/central-nucleo-vigilancia-epidemiologica-nve-nveh/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Central dos Núcleos de Vigilância Epidemiológica                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="26562">
+                                <a href="https://lookerstudio.google.com/s/jBss78nzpSA"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Painel de Monitoramento Sentinela de  Síndrome Gripal                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="26629">
+                                <a href="https://lookerstudio.google.com/reporting/59aada20-f5c6-4de3-a9f4-07c80228e5c9"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Painel de Monitoramento de SRAG                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="23776">
+                                <a href="https://saude.goiania.go.gov.br/cievs-centro-de-informacoes-estrategicas-em-vigilancia-em-saude/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    CIEVS - Centro de Informações Estratégicas em Vigilância em Saúde                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="21441">
+                                <a href="https://saude.goiania.go.gov.br/wp-content/uploads/sites/3/2024/01/PLANO-DE-CONTINGENCIA-E-PLANO-DE-ACAO-DAS-ARBOVIROSES-GOIANIA-2023-2025-final-1.pdf"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Plano Municipal de Contingência das Arboviroses                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="26818">
+                                <a href="https://lookerstudio.google.com/s/lQh9hmwOkI8"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Painel de Esporotricose Humana e Animal                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="26979">
+                                <a href="https://saude.goiania.go.gov.br/_servicos/vacinas/alerta-influenza-subclado-k/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Alerta Influenza Subclado K                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="24668">
+                                <a href="https://saude.goiania.go.gov.br/_servicos/vacinas/orientacao-dispensacao-tamiflu/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Orientações para dispensação do Oseltamivir                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="16991">
+                                <a href="https://saude.goiania.go.gov.br/informe-dengue-chikungunya-zika-e-microcefalia/boletins-e-informes-epidemiologicos/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Informes Vigilância Epidemiológica                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="23278">
+                                <a href="https://saude.goiania.go.gov.br/goiania-contra-o-coronavirus/documentos-covid-19/notas-tecnicas-covid-19-2-2/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Notas Técnicas COVID-19                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="17188">
+                                <a href="https://saude.goiania.go.gov.br/informe-dengue-chikungunya-zika-e-microcefalia/cievs-centro-de-informacoes-estrategicas-em-vigilancia-em-saude/monkeypox-cievs/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Monkeypox – CIEVS                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="24667">
+                                <a href="https://saude.goiania.go.gov.br/_servicos/vacinas/salas-de-vacina-influenza/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Salas de Vacina para vacinação contra a Influenza                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="15983">
+                                <a href="https://saude.goiania.go.gov.br/informe-dengue-chikungunya-zika-e-microcefalia/informe-de-vigilancia-genomica-a/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Vigilância Genômica Vírus SARS-CoV-2                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="22945">
+                                <a href="https://saude.goiania.go.gov.br/goiania-contra-o-coronavirus/informe-epidemiologico-covid-19/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Informe Epidemiológico COVID-19                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="17813">
+                                <a href="https://saude.goiania.go.gov.br/goiania-contra-o-coronavirus/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Informações Oficiais COVID-19                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="20277">
+                                <a href="https://www10.goiania.go.gov.br/SCSEA/MapaVisitas.aspx"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Monitoramento Criadouros Aedes Aegypti                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="14928">
+                                <a href="https://saude.goiania.go.gov.br/clipping-de-rumores-cievs/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Clipping de Rumores - CIEVS                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="740">
+                                <a href="https://saude.goiania.go.gov.br/wp-uploads/sites/3/2019/10/Novo-Modelo-de-Ficha-Dengue-Chick-Zika-20-09-19.pdf"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Ficha de Investigação Dengue                                </a>
+                            </li>
+                                            </ul>
+                                    <p class="grupo_5  full-w white uppercase flex y-center space-between fs-14 extra-bold arial pointer">
+                        <span class="flex y-center icon-menu-hamburguer">Transparência</span>
+                        <span class="flex y-center icon-arrow-down "></span>
+                    </p>
+
+                    <ul class="lista_5  full-w grey-acessados">
+                                                    <li class="full-w flex y-center pointer" id="23557">
+                                <a href="https://servicos.goiania.go.gov.br/SISPAT/EstoqueMedicamentos.aspx"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Consulta de Medicamentos                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="26053">
+                                <a href="https://saude.goiania.go.gov.br/sistema-de-regulacao-municipal-orientacoes-para-prestadores-e-solicitantes/"
+                                   target="_blank"
+                                   class="full-w full-h flex y-center">
+                                    Sistema de Regulação Municipal – Orientações para prestadores e solicitantes                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="11434">
+                                <a href="https://www.goiania.go.gov.br/sistemas/siscv/asp/siscvg0930f0.asp?sel_tp_lto=0"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Censo de Leitos de UTI adulto e pediátrico                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="445">
+                                <a href="https://saude.goiania.go.gov.br/_transparencia-regulacao/webservicesms-goiania-go-gov-br-prod-relatorio-ppi-solicitante/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Pactuação de Leitos                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="782">
+                                <a href="https://bi.goiania.go.gov.br/views/ConsultaEspecializada-AguardandoVaga_0/MapaInterior?iframeSizedToWindow=true&:increment_view_count=no&:emb&:isGuestRedirectFromVizportal=y&:embed=y"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Aguardando Vaga Consulta Especializada                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="638">
+                                <a href="http://www.goiania.go.gov.br/sistemas/siscv/asp/siscv00001f0.asp"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Lista de Espera Consulta Especializada                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="639">
+                                <a href="http://www.goiania.go.gov.br/sistemas/siscv/asp/siscv00931f0.asp"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Lista de Espera Cirurgia Eletiva                                </a>
+                            </li>
+                                            </ul>
+                                    <p class="grupo_6  full-w white uppercase flex y-center space-between fs-14 extra-bold arial pointer">
+                        <span class="flex y-center icon-menu-hamburguer">Orientação para à Assistência à Saúde</span>
+                        <span class="flex y-center icon-arrow-down "></span>
+                    </p>
+
+                    <ul class="lista_6  full-w grey-acessados">
+                                                    <li class="full-w flex y-center pointer" id="3204">
+                                <a href="https://saude.goiania.go.gov.br/_servicos/gerencia-de-bens-nao-padronizados-sms-goiania/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Gerência de Bens não Padronizados SMS Goiânia                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="15057">
+                                <a href="https://saude.goiania.go.gov.br/_servicos/campanha-medicamento-palivizumabe/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Campanha Palivizumabe                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="14636">
+                                <a href="https://saude.goiania.go.gov.br/wp-content/uploads/sites/3/2021/12/6621-2021-SMS-PUBLICACAO-NO-SITE_organized.pdf"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Orientações para Elaboração do PSP                                </a>
+                            </li>
+                                            </ul>
+                                    <p class="grupo_7  full-w white uppercase flex y-center space-between fs-14 extra-bold arial pointer">
+                        <span class="flex y-center icon-menu-hamburguer">Escalas</span>
+                        <span class="flex y-center icon-arrow-down "></span>
+                    </p>
+
+                    <ul class="lista_7  full-w grey-acessados">
+                                                    <li class="full-w flex y-center pointer" id="26275">
+                                <a href="https://saude.goiania.go.gov.br/escalas-de-profissional/escala-medica-de-urgencia-4/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Escala Mensal Médica de Urgência 2026                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="26276">
+                                <a href="https://saude.goiania.go.gov.br/escalas-de-profissional/escalas-unidades-de-saude-mental-3/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Escalas Unidades de Saúde Mental 2026                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="166">
+                                <a href="https://saude.goiania.go.gov.br/escalas-de-profissional/escala-de-enfermagem/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Escala de Enfermagem                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="2266">
+                                <a href="https://saude.goiania.go.gov.br/escalas-de-profissional/escala-de-urgencia-anos-anteriores/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Escala de Urgência Anos Anteriores                                </a>
+                            </li>
+                                            </ul>
+                                    <p class="grupo_8  full-w white uppercase flex y-center space-between fs-14 extra-bold arial pointer">
+                        <span class="flex y-center icon-menu-hamburguer">Conselho Municipal de Saúde Goiânia</span>
+                        <span class="flex y-center icon-arrow-down "></span>
+                    </p>
+
+                    <ul class="lista_8  full-w grey-acessados">
+                                                    <li class="full-w flex y-center pointer" id="20661">
+                                <a href="https://saude.goiania.go.gov.br/sobre-a-secretaria/cms-eleicao-entidades-quadrienio-2023-2027/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Processo de Eleição de Entidades e Movimentos Sociais do Conselho Municipal de Saúde de Goiânia para o Quadriênio 2023-2027                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="6385">
+                                <a href="https://saude.goiania.go.gov.br/_servicos/_conselho-municipal-de-saude/decretos-e-atos-cms/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Decretos e Atos – CMS                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="6384">
+                                <a href="https://saude.goiania.go.gov.br/_servicos/_conselho-municipal-de-saude/resolucoes-cms/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Resoluções – CMS                                </a>
+                            </li>
+                                                    <li class="full-w flex y-center pointer" id="248">
+                                <a href="https://saude.goiania.go.gov.br/_servicos/_conselho-municipal-de-saude/"
+                                   target="_self"
+                                   class="full-w full-h flex y-center">
+                                    Notícias do Conselho Municipal de Saúde                                </a>
+                            </li>
+                                            </ul>
+                        <!--  /Menu Lateral  -->
+    </div>
+</section>
+
+<!--  Banner Interativos  -->
+    <section class="b-white container flex banners">
+        
+            <div class="banner-interativo width-33">
+                                        <a href="https://saude.goiania.go.gov.br/sobre-a-secretaria/politicas-municipais-estrategicas/" target="_blank">
+                    
+                    <img class="lazy" data-src="https://saude.goiania.go.gov.br/wp-content/uploads/sites/3/2026/11/Politicas.png" width="100%" height="100%" style="object-fit: cover" alt=""/>
+
+                                            </a>
+                    
+                            </div>
+
+        
+            <div class="banner-interativo width-33">
+                                        <a href="https://app.powerbi.com/view?r=eyJrIjoiZDNjMmJkMGYtMzRhOC00NjM5LWFkZjUtZGYyMzllZDcwNDU0IiwidCI6IjRlY2Q3ZDUyLTg1MGQtNDc4YS05ZDhmLWI3ZmJmODM3ZGU0NiJ9" target="_blank">
+                    
+                    <img class="lazy" data-src="https://saude.goiania.go.gov.br/wp-content/uploads/sites/3/2026/11/Emendas-1.png" width="100%" height="100%" style="object-fit: cover" alt=""/>
+
+                                            </a>
+                    
+                            </div>
+
+        
+            <div class="banner-interativo width-33">
+                                        <a href="https://saude.goiania.go.gov.br/_servicos/informacoes-de-gestao-e-planejamento-da-sms-goiania/" target="_blank">
+                    
+                    <img class="lazy" data-src="https://saude.goiania.go.gov.br/wp-content/uploads/sites/3/2026/11/Instrumentos-de-gestao.png" width="100%" height="100%" style="object-fit: cover" alt=""/>
+
+                                            </a>
+                    
+                            </div>
+
+            </section>
+<!--  /Banner Interativos  -->
+
+    <!--  Vídeos  -->
+    <section class="videos relative"
+             style="background: linear-gradient(to right, #31997d 0%, #31997d 50%, #f3f3f3 50%, #f3f3f3 100%);"
+             data-cor_titulo="#ffffff"
+             data-tipo_api="canal" data-canal_id="">
+        <div class="content container full-h flex space-between">
+            <div class="left flex column" style="background-color: #31997d"></div>
+            <div class="right flex column x-center relative"></div>
+        </div>
+    </section>
+    <!--  /Vídeos  -->
+
+<!--  Local/Contato  -->
+<section class="container contato self-center top flex space-between">
+    <div class="left flex">
+        <div class="box flex column">
+            <h4 class="bold fs-16 arial full-w grey">Endereço</h4>
+
+            
+                <div class="full-w arial fs-16 grey-icons">
+                    Avenida do Cerrado, N° 999, Park Lozandes                </div>
+
+            
+            
+                <div class="arial full-w fs-16 grey-icons">
+                    Segunda a Sexta-feira das 8h às 17h                </div>
+
+                    </div>
+        <div class="box flex column">
+            <h4 class="bold arial grey">Contato</h4>
+
+            
+                <div class="full-w arial fs-16 grey-icons">
+
+                                            <p>(62) 3524 - 1500</p>
+                    
+                    
+                </div>
+
+            
+            
+                <div class="full-w arial fs-16 grey-icons">
+
+                                            <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0576687645626a6c646b6c642b626a2b626a732b6777">[email&#160;protected]</a></p>
+                    
+                    
+                </div>
+
+            
+        </div>
+    </div>
+    <div class="right flex y-center x-center space-between">
+        <div class="logo-app fs-22 bold arial"></div>
+
+        <div class="links-app flex column y-center x-center">
+            <p class="bold fs-15">Baixe nosso aplicativo:</p>
+            <div class="links-stores flex x-center y-center">
+                <a href="https://play.google.com/store/apps/details?id=br.gov.go.goiania.outprod01.novoprefeitura24horas"
+                   target="_blank" class="circle flex x-center y-center icon-play-store"></a>
+                <a href="https://apps.apple.com/br/app/prefeitura-24horas/id1436502081"
+                   target="_blank" class="circle flex x-center y-center icon-app-store"></a>
+            </div>
+        </div>
+    </div>
+</section>
+<!--  /Local/Contato  -->
+
+</main>
+
+<!--  Rodapé  -->
+<footer class="b-grey relative">
+    <section class="content container flex space-between">
+        <nav class="flex space-between b-grey">
+            <div class="box flex column">
+                <a href="https://www.goiania.go.gov.br/servicos/"
+                   target="_self"
+                   rel="noopener"
+                   class="head flex full-w x-start">
+                    <div class="icon-servicos icon grey-icons"></div>
+                    <div class="desc fs-14 bold grey arial">Serviços </br>ao Cidadão</div>
+                </a>
+
+                <ul class="flex column">
+                    <li><a href="https://www.goiania.go.gov.br/servicos/?filtro_simplificado=perfil_interessado" class="fs-13 arial grey " target="_self" rel="noopener">Por Interessado</a></li><li><a href="https://www.goiania.go.gov.br/servicos/?filtro_simplificado=categorias_servicos" class="fs-13 arial grey " target="_self" rel="noopener">Por Categoria</a></li><li><a href="https://www.goiania.go.gov.br/servicos/?filtro_simplificado=orgaos" class="fs-13 arial grey " target="_self" rel="noopener">Por Órgão</a></li><li><a href="https://www.goiania.go.gov.br/servicos/?filtro_simplificado=servicos_az" class="fs-13 arial grey " target="_self" rel="noopener">Serviços de A a Z</a></li>                </ul>
+            </div>
+
+            <div class="box flex column">
+                <a href="https://www.goiania.go.gov.br"
+                   target="_self"
+                   rel="noopener"
+                   class="head flex full-w space-between">
+                    <div class=" icon grey-icons"></div>
+                    <div class="desc fs-14 bold grey arial"></div>
+                </a>
+
+                <ul class="flex column">
+                    <li><a href="https://www.goiania.go.gov.br/servicos/" class="fs-13 arial grey icon-servicos" target="_self" rel="noopener">Serviços </br>ao Cidadão</a></li>                </ul>
+            </div>
+
+            <div class="box flex column">
+                <a href="https://www.goiania.go.gov.br"
+                   target="_self"
+                   rel="noopener"
+                   class="head flex full-w space-between">
+                    <div class=" icon grey-icons"></div>
+                    <div class="desc fs-14 bold grey arial"></div>
+                </a>
+
+                <ul class="flex column">
+                    <li><a href="https://www.goiania.go.gov.br/servicos/" class="fs-13 arial grey icon-servicos" target="_self" rel="noopener">Serviços </br>ao Cidadão</a></li>                </ul>
+            </div>
+
+            <div class="box flex column">
+                <a href="https://www.goiania.go.gov.br"
+                   target="_self"
+                   rel="noopener"
+                   class="head flex full-w space-between">
+                    <div class=" icon grey-icons"></div>
+                    <div class="desc fs-14 bold grey arial"></div>
+                </a>
+
+                <ul class="flex column">
+                    <li><a href="https://www.goiania.go.gov.br/servicos/" class="fs-13 arial grey icon-servicos" target="_self" rel="noopener">Serviços </br>ao Cidadão</a></li>                </ul>
+            </div>
+        </nav>
+
+        <div class="cont-logo-footer flex column x-center y-start">
+            <a href="https://www.goiania.go.gov.br/" class="fs-0">
+                Logo da Prefeitura
+                <div class="logo-footer lazy lazy-background" data-src="images/logo-footer.png"></div>
+            </a>
+
+                    </div>
+    </section>
+
+    <section class="info-dev b-grey-footer full-w">
+        <div class="container info flex y-center space-between">
+            <div class="acesso flex">
+                <a href="https://www.goiania.go.gov.br/transparencia/" class="acessoainformacao fs-0 lazy lazy-background" data-src="images/acessoainformacao.png">Portal da Transparência</a>
+                <a href="http://agencia.casa/" class="agencia_casa flex y-center" target="_blank" rel="noopener">
+                    <img class="lazy" data-src="images/agencia_casa.png" alt="Agência.Casa" width="43" height="23" />
+                </a>
+            </div>
+            <div class="desenvolvimento flex">
+                <a href="http://nucleogov.com.br" class="developer flex y-center" target="_blank" rel="noopener">
+                    <img class="lazy" data-src="images/logo_nova.png" alt="NúcleoGov" width="80" height="11" />
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div id="initial_bot">
+        <div class="question_bot"></div>
+        <a href="https://saude.goiania.go.gov.br/" id="bot_prefeitura" class="fs-0"
+           style="float: left; width: 100%; height: 100%;">Bot da Prefeitura de Goiânia</a>
+    </div>
+</footer>
+<!--  /Rodapé  -->
+
+<!-- Scripts -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/javascript">
+    var ajaxUrl = "https:\/\/saude.goiania.go.gov.br\/wp-admin\/admin-ajax.php";
+    var apiUrl = "https:\/\/saude.goiania.go.gov.br\/api\/";
+    var ajaxNonce = "93ded54017";
+    var main_blog_id = 1;
+    var blog_id = 3;
+    var home_url = "https:\/\/saude.goiania.go.gov.br\/";
+</script>
+<script defer type="text/javascript">var url = 'https://saude.goiania.go.gov.br/wp-content/themes/prefeituragoiania';</script>
+<script defer type="text/javascript" src="https://saude.goiania.go.gov.br/wp-content/themes/prefeituragoiania/bundle/index.js?ver=1.0.81"></script>
+<!-- /Scripts -->
+
+<script>
+    </script>
+
+<script>
+    function onloadCallback() {
+        grecaptcha.ready(function () {
+            grecaptcha.execute('6Le2LeAUAAAAAHOp69iPrKvHt6p2NaNCswRDRu6Y', {action: 'formulario'})
+                .then(function (token) {
+                    var recaptcha_element = document.getElementById('g-recaptcha-response');
+
+                    if (recaptcha_element) {
+                        recaptcha_element.value = token;
+                    }
+                });
+        });
+    }
+</script>
+
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/sites/3/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/prefeituragoiania/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+<style>
+	body.pg-home-secretaria main .banner{
+background: url('') 
+	}
+	
+	.logo-menu-top{
+		display: none
+	}
+	
+	/* Destaque apenas no primeiro botão dos portais */
+.portais-bot > .portal:first-child {
+  background: #edf8f4;
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 2px #36b593, 0 2px 6px rgba(0, 0, 0, .08);
+  transition: transform .2s ease, box-shadow .2s ease;
+  z-index: 1;
+}
+
+.portais-bot > .portal:first-child:hover {
+  transform: translateY(-2px);
+  box-shadow: inset 0 0 0 2px #36b593, 0 4px 10px rgba(0, 0, 0, .10);
+}
+
+.portais-bot > .portal:first-child .grey-acessados.title {
+  color: #277a63;
+}
+
+/* Etiqueta "Destaque" */
+.portais-bot > .portal:first-child::before {
+  content: "Destaque";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fee519;
+  color: #4d4d4d;
+  font: bold 10px/1 Arial, sans-serif;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 10px;
+}
+</style>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"8d7ec16f5090428486d4568efe8ca4fc","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
+
+<!--Cached using Nginx-Helper on 2026-11-27 20:50:15. It took 215 queries executed in 0,403 seconds.-->
+<!--Visit http://wordpress.org/extend/plugins/nginx-helper/faq/ for more details-->

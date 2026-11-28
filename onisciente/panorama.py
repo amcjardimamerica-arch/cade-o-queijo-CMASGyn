@@ -14,7 +14,13 @@ from .pisos import Medida
 from .rio.afluentes import Margens, Rio
 
 if TYPE_CHECKING:
+    from pathlib import Path
+
+    from .conferencias.banco import Auditoria
+    from .conferencias.compras import Conferencias
+    from .conferencias.federais import ConferenciasFederais
     from .fiscal import Fiscal
+    from .legal.mapa import MapaLegal
 
 
 @dataclass
@@ -32,6 +38,102 @@ class Panorama:
     leitura_falhou: list[str] = field(default_factory=list)  # trechos em vermelho
     notas: list[str] = field(default_factory=list)
     fiscal: "Fiscal | None" = None   # o Município pelo RGF e pelo RREO do banco histórico
+    compras: "Conferencias | None" = None   # compras e contratos do Município conferidos no banco
+    auditoria: "Auditoria | None" = None    # as conferências sobre o banco inteiro (conferencias/banco.py)
+    federais: "ConferenciasFederais | None" = None   # fontes federais e estaduais (conferencias/federais.py)
+    empresas: object | None = None          # empresas contratadas (conferencias/empresas.py, Frente F)
+    execucao: object | None = None          # execução da pasta (rio/secretarias.py, Frente D2)
+    contas: dict | None = None              # contas uma a uma da pasta (Frente D2)
+    qualidade: object | None = None         # qualidade do plano da pasta (Frente D2)
+    banco: "Path | str | None" = None       # o banco histórico de onde o panorama saiu (padrão: o do alvo)
+    completo: bool = False
+
+    def completar(self, *, banco: "Path | str | None" = None, mapa: "MapaLegal | None" = None,
+                  raiz: "Path | None" = None) -> "Panorama":
+        """Junta ao panorama as conferências sobre o banco, as federais, as normas não localizadas e os
+        casos semelhantes do Mato. Idempotente: a segunda chamada não muda nada.
+
+        Roda só quando o panorama tem o Município pelo banco (``fiscal``), lendo o mesmo banco até o
+        último dia da competência. As fichas novas entram uma vez cada (sem código repetido); as
+        ausências também, e com elas os ofícios do mês.
+        """
+        if self.completo:
+            return self
+        self.completo = True
+        from calendar import monthrange
+        from datetime import date
+
+        from . import RAIZ
+        from .conferencias import heranca
+        from .legal.mapa import carregar
+        raiz = raiz or RAIZ
+        mapa = mapa or carregar()
+        do_alvo = self.do_alvo_configurado()
+        if self.fiscal is not None and not do_alvo:
+            # As conferências do banco (órgãos, Lei Orgânica, lei de acesso local) estão escritas para o
+            # alvo configurado; outro Município pede a configuração dele antes de rodá-las.
+            self.notas.append("As conferências sobre o banco inteiro (restos a pagar, pessoal, fim de mandato, "
+                              "contas, prazos e fontes federais) ainda não estão configuradas para este "
+                              "Município e não rodaram neste parecer.")
+        if self.fiscal is not None and do_alvo:
+            from .conferencias import banco as conferencias_do_banco
+            from .conferencias import federais
+            from .fiscal import BANCO, Leitor
+            from .legal import normas
+            caminho = banco or self.banco or BANCO
+            ano, mes = (int(x) for x in self.competencia.split("-"))
+            ate = date(ano, mes, monthrange(ano, mes)[1])
+            try:
+                leitor = Leitor(caminho)
+            except FileNotFoundError:
+                leitor = None
+            if leitor is not None:
+                try:
+                    self.auditoria = conferencias_do_banco.conferir(leitor, ate, mapa, raiz=raiz)
+                    self.federais = federais.conferir(leitor.con, ate=ate, mapa=mapa)
+                    if self.empresas is None:
+                        from .conferencias import empresas
+                        self.empresas = empresas.conferir(leitor.con, hoje=ate)
+                finally:
+                    leitor.fechar()
+                vistos = {f.codigo for f in self.fichas}
+                novas = self.auditoria.fichas(self.competencia)
+                novas += [f for f in self.federais.fichas(self.competencia) if f.origem == "onisciente"]
+                novas += list(self.empresas.fichas(self.competencia))
+                novas = heranca.unificar_socio_servidor(novas, raiz)
+                for f in novas:
+                    if f.codigo not in vistos:
+                        vistos.add(f.codigo)
+                        self.fichas.append(f)
+                self._juntar_ausencias(self.auditoria.ausencias + self.federais.ausencias)
+                if self.integridade is not None and self.auditoria.parcerias:
+                    from .nucleo.integridade import com_prestacao_por_parceria
+                    self.integridade = com_prestacao_por_parceria(self.integridade, self.auditoria.parcerias,
+                                                                  self.auditoria.exercicio_das_parcerias)
+            self._juntar_ausencias(normas.ausencias(mapa, banco=caminho))
+        itens = heranca.precedentes(raiz)
+        if itens:
+            for f in self.fichas:
+                if not f.caso_semelhante:
+                    f.caso_semelhante = heranca.caso_semelhante(f, itens)
+        return self
+
+    def do_alvo_configurado(self) -> bool:
+        """True se o panorama é do alvo padrão (alvos/goiania.toml), para o qual as conferências do banco,
+        a auditoria do selo e a lei de acesso local estão escritas."""
+        from .config import carregar_alvo
+        try:
+            return carregar_alvo().nome == self.alvo
+        except Exception:  # noqa: BLE001 - sem alvo configurado, não há conferências do Município
+            return False
+
+    def _juntar_ausencias(self, novas: list[Ausencia]) -> None:
+        chave = lambda a: (a.o_que_falta, a.periodo, a.orgao)  # noqa: E731
+        vistas = {chave(a) for a in self.ausencias}
+        for a in novas:
+            if chave(a) not in vistas:
+                vistas.add(chave(a))
+                self.ausencias.append(a)
 
     def fichas_ordenadas(self) -> list[Ficha]:
         return ordenar(self.fichas)
@@ -91,6 +193,16 @@ class Panorama:
                 "rio": self.fiscal.rio.como_dict() if self.fiscal.rio is not None else None,
                 "notas": self.fiscal.notas,
             },
+            "compras": None if self.compras is None else {
+                **{k: v for k, v in self.compras.como_dict().items() if k != "achados"},
+                "da_pasta_na_competencia": [
+                    {"tipo": a.tipo, "orgao": a.orgao, "chave": a.chave, "mes": a.mes,
+                     "descricao": a.descricao, "valor": a.valor, "limite": a.limite}
+                    for a in self.compras.da_competencia(self.competencia)],
+            },
+            "auditoria": self.auditoria.como_dict() if self.auditoria else None,
+            "federais": self.federais.como_dict() if self.federais else None,
+            "empresas": self.empresas.como_dict() if hasattr(self.empresas, "como_dict") else None,
             "fichas": [f.como_dict() for f in self.fichas_ordenadas()],
             "ausencias": [a.como_dict() for a in self.ausencias],
             "custodia": [o.como_dict() for o in self.custodia],

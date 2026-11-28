@@ -18,16 +18,19 @@ from __future__ import annotations
 import json
 import re
 import sqlite3
+import threading
 import time
 import unicodedata
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Callable
 from urllib.parse import urlencode
 
-from . import RAIZ
-from .coletores import base, msc, siope, siops, transparencia
+from . import RAIZ, partes, rastreio
+from .coletores import base, goiania_transweb, msc, siope, siops, transparencia
+from .nucleo.custodia import impressao
 
 BANCO = RAIZ / "dados" / "onisciente" / "historico.db"
 SAIDA = RAIZ / "relatorios" / "onisciente"
@@ -35,7 +38,13 @@ SAIDA = RAIZ / "relatorios" / "onisciente"
 SICONFI = "https://apidatalake.tesouro.gov.br/ords/siconfi/tt/"
 SICONFI_ANTIGAS = ("https://apidatatransparencia.tesouro.gov.br/ords/siconfi/tt/",
                    "https://apidados.tesouro.gov.br/ords/siconfi/tt/")
-QUERIDO_DIARIO = "https://api.queridodiario.ok.org.br/gazettes"
+# O Querido Diário mudou a API para o próprio domínio (queridodiario.ok.org.br/api); o
+# subdomínio antigo passou a recusar o aperto de mão TLS (alerta 40) para qualquer cliente,
+# curl e openssl inclusive, nas rodadas de 26 e 27/11. A via nova vem primeiro; a antiga
+# fica de reserva, e a que respondeu fica anotada no banco (meta ``qd_via``).
+QUERIDO_DIARIO_VIAS = ("https://queridodiario.ok.org.br/api/gazettes",
+                       "https://api.queridodiario.ok.org.br/gazettes")
+QUERIDO_DIARIO = QUERIDO_DIARIO_VIAS[0]
 SILEG_SOLR = "https://sileg.goiania.go.gov.br/solr-4.1.0/select"
 PNCP = "https://pncp.gov.br/api/consulta/v1/"
 TESOURO_PACOTE = ("https://www.tesourotransparente.gov.br/ckan/api/3/action/package_show"
@@ -63,6 +72,9 @@ ANEXOS_GUARDADOS = {
 # Modalidades do PNCP usadas para descobrir os órgãos municipais
 # (6 pregão eletrônico, 8 dispensa, 9 inexigibilidade, 4 concorrência eletrônica).
 MODALIDADES_DESCOBERTA = (6, 8, 9, 4)
+# Nome que a listagem do PNCP devolve → código que ela recebe.
+MODALIDADE_CODIGO = {"Pregão - Eletrônico": 6, "Dispensa": 8, "Inexigibilidade": 9,
+                     "Concorrência - Eletrônica": 4}
 
 
 # --- Calendário ---------------------------------------------------------------------
@@ -176,6 +188,28 @@ CREATE TABLE IF NOT EXISTS externos_periodos (fonte TEXT, exercicio INTEGER, per
     homologado TEXT, situacao TEXT, linhas INTEGER, erro TEXT);
 CREATE TABLE IF NOT EXISTS externos_itens (fonte TEXT, exercicio INTEGER, periodo INTEGER, quadro INTEGER,
     titulo_quadro TEXT, ordem INTEGER, rotulo TEXT, coluna INTEGER, valor REAL);
+CREATE TABLE IF NOT EXISTS pncp_amparos (compra_id TEXT PRIMARY KEY, codigo INTEGER, nome TEXT, descricao TEXT,
+    srp INTEGER, processo TEXT, modo_disputa TEXT, data_publicacao TEXT, valor_estimado REAL, valor_homologado REAL);
+CREATE TABLE IF NOT EXISTS pncp_itens (compra_id TEXT, numero_item INTEGER, orgao_cnpj TEXT, unidade TEXT,
+    descricao TEXT, detalhe TEXT, material_servico TEXT, classe INTEGER, grupo INTEGER, catalogo INTEGER, pdm TEXT,
+    nome_pdm TEXT, ncm TEXT, unidade_medida TEXT, quantidade REAL, unitario_estimado REAL, total_estimado REAL,
+    situacao TEXT, fornecedor_ni TEXT, fornecedor TEXT, quantidade_resultado REAL, unitario_resultado REAL,
+    total_resultado REAL, data_inclusao TEXT, data_resultado TEXT, PRIMARY KEY (compra_id, numero_item));
+CREATE TABLE IF NOT EXISTS pncp_contratos_detalhe (contrato_id TEXT PRIMARY KEY, compra_id TEXT, valor_inicial REAL,
+    valor_global REAL, valor_acumulado REAL, tipo TEXT, categoria TEXT, vigencia_inicio TEXT, vigencia_fim TEXT,
+    processo TEXT, retificacoes INTEGER);
+CREATE TABLE IF NOT EXISTS pncp_termos (contrato_id TEXT, sequencial INTEGER, numero TEXT, tipo TEXT,
+    data_assinatura TEXT, vigencia_inicio TEXT, vigencia_fim TEXT, valor_acrescido REAL, valor_global REAL,
+    prazo_aditado_dias INTEGER, acrescimo_supressao INTEGER, qualif_vigencia INTEGER, qualif_reajuste INTEGER,
+    qualif_fornecedor INTEGER, fundamento TEXT, objeto TEXT, PRIMARY KEY (contrato_id, sequencial));
+CREATE TABLE IF NOT EXISTS pncp_cobrancas (contrato_id TEXT, sequencial INTEGER, tipo TEXT, numero TEXT,
+    data_emissao TEXT, chave_nfe TEXT, valor_nf REAL, emitente_ni TEXT, evento TEXT, PRIMARY KEY (contrato_id, sequencial));
+CREATE TABLE IF NOT EXISTS pncp_nf_itens (contrato_id TEXT, sequencial INTEGER, numero_item TEXT, descricao TEXT,
+    ncm TEXT, quantidade REAL, unidade TEXT, unitario REAL, total REAL,
+    PRIMARY KEY (contrato_id, sequencial, numero_item));
+CREATE TABLE IF NOT EXISTS precos_referencia (catalogo INTEGER, semestre TEXT, id_item TEXT, material_servico TEXT,
+    data_compra TEXT, preco REAL, quantidade REAL, unidade TEXT, uasg TEXT, orgao TEXT, uf TEXT, municipio TEXT,
+    esfera TEXT, descricao TEXT, PRIMARY KEY (catalogo, semestre, id_item));
 CREATE TABLE IF NOT EXISTS meta (chave TEXT PRIMARY KEY, valor TEXT);
 """
 
@@ -201,28 +235,68 @@ TABELAS_DO_MOTOR = {
     "transferencias": [("coletas", "motor = 'transferencias'"), ("transferencias_federais", ""),
                        ("meta", "chave = 'transferencias_meses'")],
     "msc": [("coletas", "motor = 'msc'"), ("msc_itens", ""), ("msc_meses", "")],
+    "pncp_detalhe": [("coletas", "motor = 'pncp_detalhe'"), ("pncp_amparos", ""), ("pncp_itens", ""),
+                     ("pncp_contratos_detalhe", ""), ("pncp_termos", ""), ("pncp_cobrancas", ""),
+                     ("pncp_nf_itens", ""), ("precos_referencia", ""), ("meta", "chave = 'pncp_detalhe_lidos'")],
 }
 
 
 class Banco:
+    """O banco da coleta. Toda linha gravada fica rastreada por hash (``onisciente.rastreio``): a
+    resposta e a requisição de cada coleta, o selo de cada registro e a cadeia das rodadas."""
+
     def __init__(self, caminho: Path | str):
         self.caminho = Path(caminho) if str(caminho) != ":memory:" else caminho
+        herdadas: list[dict] = []
         if isinstance(self.caminho, Path):
             self.caminho.parent.mkdir(parents=True, exist_ok=True)
-            if self.caminho.exists():
-                self.caminho.unlink()          # cada rodada refaz o banco do zero
-        self.con = sqlite3.connect(str(caminho))
-        self.con.executescript(ESQUEMA)
+            herdadas = rastreio.cadeia_para_herdar(self.caminho)       # a cadeia continua no banco novo
+            for arquivo in (self.caminho, *partes.arquivos(self.caminho)):
+                if arquivo.exists():
+                    arquivo.unlink()           # cada rodada refaz o banco do zero (e as partes dele)
+            rastreio.apagar_rastreio(self.caminho)   # e o arquivo do rastreio (a cadeia já foi lida)
+        self.con = sqlite3.connect(str(caminho), factory=partes.Conexao)
+        partes.anexar(self.con)                # as partes ao lado: precos, sancoes, series, despesa
+        self.con.executescript(partes.esquema_com_partes(self.con, ESQUEMA))
+        self._iniciar_rastreio()
+        if herdadas:
+            rastreio.herdar(self.con, herdadas)
 
     @classmethod
     def abrir(cls, caminho: Path | str = BANCO) -> "Banco":
-        """Abre um banco já coletado, sem apagar nada."""
+        """Abre um banco já coletado, sem apagar nada. Um banco anterior ao rastreio ganha, aqui, o
+        selo de cada linha que já existe (migração; a origem fica "anterior ao rastreio")."""
         banco = cls.__new__(cls)
         banco.caminho = caminho
-        banco.con = sqlite3.connect(str(caminho))
-        banco.con.executescript(ESQUEMA)
+        banco.con = sqlite3.connect(str(caminho), factory=partes.Conexao)
+        partes.anexar(banco.con)
+        if partes.mover_para_as_partes(banco.con):
+            # Banco antigo, com as tabelas grandes dentro: saíram para as partes; o principal encolhe.
+            banco.con.execute("VACUUM main")
+        banco.con.executescript(partes.esquema_com_partes(banco.con, ESQUEMA))
         banco._atualizar_colunas()
+        banco._iniciar_rastreio()
+        rastreio.migrar(banco.con)
+        # Decisão do usuário de 28/11/2026 (config/decisoes_usuario.yml, P-01): abrir o banco não muda nenhuma
+        # linha. As migrações que mascaravam o CPF (goiania_transweb.migrar_cpfs, mascara_banco.migrar) e a que
+        # tirava o hash do rastreio (rastreio.retirar_antigas) saíram; o que elas mascararam volta à fonte pelo
+        # ``python -m onisciente restaurar-fonte``.
         return banco
+
+    def _iniciar_rastreio(self) -> None:
+        rastreio.preparar(self.con)
+        self._esquema = rastreio.versao_do_esquema(self.con)
+        self._colunas_coletas = {c[1] for c in self.con.execute("PRAGMA table_info(coletas)")}
+        self._respostas: dict[str, str] = {}
+
+    def _conferir_esquema(self) -> None:
+        """Um motor criou tabela nova: ela ganha os gatilhos do rastreio antes de receber linhas."""
+        if not hasattr(self, "_esquema"):
+            self._iniciar_rastreio()
+        elif rastreio.versao_do_esquema(self.con) != self._esquema:
+            rastreio.preparar(self.con)
+            self._esquema = rastreio.versao_do_esquema(self.con)
+            self._colunas_coletas = {c[1] for c in self.con.execute("PRAGMA table_info(coletas)")}
 
     def _atualizar_colunas(self) -> None:
         """Bancos de rodadas antigas ganham as colunas novas sem perder o que já têm."""
@@ -240,17 +314,32 @@ class Banco:
         self.con.execute("DELETE FROM meta WHERE chave = ?", (f"motor:{motor}",))
 
     def inserir(self, tabela: str, linha: dict) -> None:
+        coleta = tabela == "coletas"
+        if coleta:
+            # A coleta ganha o hash da requisição e a marca de ausência; a anotação sobre uma resposta
+            # já lida (falha de formato) herda o sha256 dela.
+            self._conferir_esquema()
+            linha = rastreio.completar_coleta(linha, self._colunas_coletas, self._respostas)
         colunas = ", ".join(linha)
         marcas = ", ".join("?" for _ in linha)
-        self.con.execute(f"INSERT OR REPLACE INTO {tabela} ({colunas}) VALUES ({marcas})",
-                         list(linha.values()))
+        cur = self.con.execute(f"INSERT OR REPLACE INTO {tabela} ({colunas}) VALUES ({marcas})",
+                               list(linha.values()))
+        if coleta:
+            if linha.get("sha256") and linha.get("url"):
+                self._respostas[linha["url"]] = linha["sha256"]
+            rastreio.registrar_origem(self.con, cur.lastrowid)
 
     def consultar(self, sql: str, *args) -> list[tuple]:
         return self.con.execute(sql, args).fetchall()
 
     def fechar(self) -> None:
+        rastreio.antes_de_compactar(self.con)   # o VACUUM pode renumerar as linhas pendentes
         self.con.commit()
+        partes.exportar(self.con)               # os .jsonl.gz da despesa, um por ano (parte comprimida)
         self.con.execute("VACUUM")
+        for parte in partes.anexadas(self.con):
+            self.con.execute(f"VACUUM {parte}")
+        rastreio.compactar(self.con)            # o arquivo do rastreio, ao lado
         self.con.close()
 
 
@@ -270,36 +359,79 @@ class Contexto:
     dormir: Callable[[float], None] = time.sleep
     pausa: float = 1.0                     # entre chamadas à mesma API
     brutos: Path | None = None             # se dado, guarda cada resposta crua aqui
-    limites: dict[str, int] = field(default_factory=lambda: {"pncp": 2500, "qd": 400})
+    limites: dict[str, int] = field(default_factory=lambda: {"pncp": 2500, "qd": 400, "pncp_detalhe": 20000})
     gastos: dict[str, int] = field(default_factory=dict)
     # Disjuntor: depois de tantas falhas de rede seguidas, o motor deixa de chamar a fonte
+    # (o servidor e o serviço da URL; as outras fontes do mesmo motor seguem)
     # e registra o resto como não tentado. Uma fonte fora do ar não pode prender a rodada.
     disjuntor: int = 6
     seguidas: dict[str, int] = field(default_factory=dict)
+    # Uma fonte que caiu (503 no início da rodada) não fica fora a rodada inteira: passado
+    # esse tempo, uma leitura de prova é feita; se falhar, a fonte desliga de novo pelo mesmo tempo.
+    pausa_do_disjuntor: float = 600.0
+    _desligada_em: dict = field(default_factory=dict, repr=False)
     fim_do_motor: float | None = None      # relógio monotônico; depois disso, nada é chamado
+    # Leituras simultâneas nas vias que demoram por espera do servidor, não por volume
+    # (a consulta de uma compra leva uns 10 s). Só a rede vai para as linhas paralelas:
+    # o registro no banco e o tratamento da resposta seguem na ordem, na linha principal.
+    paralelo: int = 1
+    # A fonte que responde 429 ("devagar") deixa de ser lida em paralelo na rodada; se mesmo
+    # lida uma a uma ela recusa ``disjuntor`` vezes seguidas, o resto dela fica para a próxima
+    # rodada e as outras fontes do mesmo motor seguem. Nunca mais duas horas batendo na porta.
+    _lentas: set = field(default_factory=set, repr=False)
+    recusas_fonte: dict[str, int] = field(default_factory=dict)
+    _antecipadas: dict = field(default_factory=dict, repr=False)
+    _trava: threading.Lock = field(default_factory=threading.Lock, repr=False)
 
     def ler(self, motor: str, alvo: str, url: str, *, mes: str = "", tentativas: int = 3,
             cabecalhos: dict | None = None, tempo: int = 60,
             disjuntor: bool = True, formulario: dict | None = None) -> base.Leitura:
         """Lê com espera crescente em 429 e 5xx, e registra a chamada no banco."""
+        antecipada = self._antecipadas.pop((motor, url), None)
         limite = self.limites.get(motor)
         motivo = None
-        if limite is not None and self.gastos.get(motor, 0) >= limite:
+        if antecipada is not None:
+            pass                                # já lida (e contada) por ``antecipar``
+        elif limite is not None and self.gastos.get(motor, 0) >= limite:
             motivo = "limite de chamadas da rodada atingido"
-        elif disjuntor and self.seguidas.get(motor, 0) >= self.disjuntor:
+        elif disjuntor and self._desligada(_fonte_da_url(url)):
             motivo = f"não tentado: {self.disjuntor} falhas de rede seguidas nesta fonte"
+        elif disjuntor and self.recusas_fonte.get(_fonte_da_url(url), 0) >= self.disjuntor:
+            motivo = (f"não tentado: a fonte pediu para esperar (HTTP 429) {self.disjuntor} vezes "
+                      "seguidas nesta rodada")
         elif self.fim_do_motor is not None and time.monotonic() > self.fim_do_motor:
             motivo = "não tentado: tempo do motor nesta rodada esgotado"
         if motivo:
             leitura = base.Leitura(False, url, erro=motivo)
-            self._registrar(motor, alvo, mes, leitura, 0, 0.0)
+            self._registrar(motor, alvo, mes, leitura, 0, 0.0, formulario=formulario)
             return leitura
+        if antecipada is not None:
+            leitura, feitas, segundos = antecipada
+        else:
+            leitura, feitas, segundos = self._buscar(motor, url, tentativas, cabecalhos, tempo, formulario)
+        return self._depois(motor, alvo, mes, url, leitura, feitas, segundos,
+                            pausar=antecipada is None, formulario=formulario)
+
+    def _desligada(self, fonte: str) -> bool:
+        """Se o disjuntor da fonte está aberto. Passada a pausa, libera uma leitura de prova."""
+        if self.seguidas.get(fonte, 0) < self.disjuntor:
+            return False
+        desde = self._desligada_em.setdefault(fonte, time.monotonic())
+        if time.monotonic() - desde < self.pausa_do_disjuntor:
+            return True
+        self.seguidas[fonte] = self.disjuntor - 1      # uma falha a mais desliga de novo
+        self._desligada_em.pop(fonte, None)
+        return False
+
+    def _buscar(self, motor, url, tentativas=3, cabecalhos=None, tempo=60, formulario=None):
+        """Só a rede, com espera crescente em 429 e 5xx. Pode rodar fora da linha principal."""
         inicio = time.monotonic()
         leitura = base.Leitura(False, url, erro="não tentado")
         feitas = 0
         for n in range(tentativas):
             feitas = n + 1
-            self.gastos[motor] = self.gastos.get(motor, 0) + 1
+            with self._trava:
+                self.gastos[motor] = self.gastos.get(motor, 0) + 1
             extra = {"formulario": formulario} if formulario else {}
             leitura = self.ler_url(url, tempo=tempo, cabecalhos=cabecalhos, **extra)
             codigo = leitura.http
@@ -307,12 +439,51 @@ class Contexto:
                     codigo == 429 or (codigo and codigo >= 500)
                     or leitura.erro.startswith(("TimeoutError", "URLError"))):
                 break
-            self.dormir(min(5 * 2 ** n, 60))
+            if codigo == 429:
+                with self._trava:
+                    self._lentas.add(_fonte_da_url(url))
+                pedida = getattr(leitura, "espera", None)
+                self.dormir(min(pedida if pedida is not None else 15 * 2 ** n, 120))
+            else:
+                self.dormir(min(5 * 2 ** n, 60))
+        return leitura, feitas, time.monotonic() - inicio
+
+    def antecipar(self, motor: str, urls, *, tempo: int = 60) -> None:
+        """Busca de uma vez, em linhas paralelas, as próximas leituras de um motor. Cada uma é
+        entregue depois pelo ``ler`` da mesma URL, que a registra como se tivesse lido agora.
+        Respeita o limite de chamadas, o disjuntor e o tempo do motor; com ``paralelo`` 1, nada faz."""
+        if self.paralelo <= 1:
+            return
+        pendentes = list(dict.fromkeys(u for u in urls if u and (motor, u) not in self._antecipadas
+                                       and _fonte_da_url(u) not in self._lentas))
+        limite = self.limites.get(motor)
+        if limite is not None:
+            pendentes = pendentes[:max(0, limite - self.gastos.get(motor, 0))]
+        pendentes = [u for u in pendentes if self.seguidas.get(_fonte_da_url(u), 0) < self.disjuntor]
+        if (not pendentes
+                or (self.fim_do_motor is not None and time.monotonic() > self.fim_do_motor)):
+            return
+        with ThreadPoolExecutor(max_workers=self.paralelo) as linhas:
+            for url, resultado in zip(pendentes, linhas.map(
+                    lambda u: self._buscar(motor, u, 3, None, tempo, None), pendentes)):
+                if resultado[0].http == 429:
+                    continue                    # recusada por pressa: será lida de novo, uma a uma
+                self._antecipadas[(motor, url)] = resultado
+
+    def _depois(self, motor, alvo, mes, url, leitura, feitas, segundos, *, pausar=True, formulario=None):
         rede = (not leitura.ok and (leitura.http is None or leitura.http >= 500)
                 and not _ftp_sem_arquivo(url, leitura))
-        self.seguidas[motor] = self.seguidas.get(motor, 0) + 1 if rede else 0
-        self._registrar(motor, alvo, mes, leitura, feitas, time.monotonic() - inicio)
-        if self.pausa:
+        fonte_url = _fonte_da_url(url)
+        self.seguidas[fonte_url] = self.seguidas.get(fonte_url, 0) + 1 if rede else 0
+        if not rede:
+            self._desligada_em.pop(fonte_url, None)
+        elif self.seguidas[fonte_url] >= self.disjuntor:
+            self._desligada_em.setdefault(fonte_url, time.monotonic())
+        if leitura.http is not None:
+            fonte = _fonte_da_url(url)
+            self.recusas_fonte[fonte] = self.recusas_fonte.get(fonte, 0) + 1 if leitura.http == 429 else 0
+        self._registrar(motor, alvo, mes, leitura, feitas, segundos, formulario=formulario)
+        if self.pausa and pausar:
             self.dormir(self.pausa)
         if leitura.ok and self.brutos is not None:
             nome = re.sub(r"[^A-Za-z0-9._-]+", "_", f"{motor}_{alvo}_{mes}")[:150]
@@ -320,13 +491,42 @@ class Contexto:
             (self.brutos / nome).write_bytes(leitura.conteudo)
         return leitura
 
-    def _registrar(self, motor, alvo, mes, leitura, tentativas, segundos):
+    def _registrar(self, motor, alvo, mes, leitura, tentativas, segundos, *, formulario=None):
+        erro = leitura.erro or None
+        if erro and not leitura.ok and leitura.http and 400 <= leitura.http < 500 and leitura.conteudo:
+            # O corpo da recusa diz o porquê (um 400 dos dados abertos sem ele não se explica).
+            corpo = leitura.conteudo[:200].decode("utf-8", "replace").replace("\n", " ").strip()
+            erro = f"{erro}: {corpo}"
         self.banco.inserir("coletas", {
             "motor": motor, "alvo": alvo, "mes": mes, "url": leitura.url, "ok": int(leitura.ok),
-            "http": leitura.http, "erro": leitura.erro or None, "tentativas": tentativas,
+            "http": leitura.http, "erro": erro, "tentativas": tentativas,
             "segundos": round(segundos, 2), "bytes": len(leitura.conteudo),
-            "sha256": leitura.original.sha256 if leitura.original else None,
-            "quando": datetime.now(timezone.utc).isoformat(timespec="seconds")})
+            "sha256": impressao_da_resposta(leitura),
+            "quando": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "metodo": "POST" if formulario else "GET", "parametros": formulario})
+
+
+def respondeu(leitura: base.Leitura) -> bool:
+    """Houve resposta: a leitura deu certo, a fonte devolveu um código (até uma recusa) ou mandou bytes."""
+    return bool(leitura.ok or leitura.http is not None or leitura.conteudo)
+
+
+def impressao_da_resposta(leitura: base.Leitura) -> str | None:
+    """O SHA-256 dos bytes recebidos (o da custódia, quando a leitura já o trouxe); None sem resposta.
+    Uma resposta vazia (204) ou uma recusa também têm impressão: a fonte respondeu."""
+    if not respondeu(leitura):
+        return None
+    if leitura.original is not None and leitura.original.sha256:
+        return leitura.original.sha256
+    return impressao(leitura.conteudo or b"")
+
+
+def _fonte_da_url(url: str) -> str:
+    """O servidor e o serviço de uma URL (pncp.gov.br/api/consulta, pncp.gov.br/api/pncp...):
+    a unidade em que uma fonte limita a pressa de quem a lê."""
+    resto = url.split("://", 1)[-1]
+    partes = resto.split("/")
+    return "/".join(partes[:3]) if len(partes) > 2 and partes[1] == "api" else partes[0]
 
 
 def _anotar(ctx: Contexto, motor: str, alvo: str, mes: str, url: str, erro: str) -> None:
@@ -437,7 +637,20 @@ def motor_siconfi(ctx: Contexto, ente: int) -> None:
 
 # --- Motor 2: Diário Oficial (Querido Diário e índice do SILEG) -------------------------
 
+def _qd_via_caiu(leitura: base.Leitura) -> bool:
+    """A via do Querido Diário não existe ou não fala com o robô (rede, TLS, 404/410/403):
+    vale tentar a outra via. Uma recusa por pressa (429) ou um 5xx não troca de via."""
+    return not leitura.ok and (leitura.http is None or leitura.http in (403, 404, 410))
+
+
 def motor_querido_diario(ctx: Contexto, ibge: int) -> None:
+    """Edições do Diário Oficial do mês pelo Querido Diário, todas e as com os termos da pasta.
+
+    Tenta as vias em ordem: a primeira que responder fica para o resto da rodada. Se nenhuma
+    responder, cada mês fica com o erro da última via tentada (falha do sistema, não do Município).
+    """
+    vias = list(QUERIDO_DIARIO_VIAS)
+    via_boa: str | None = None
     for mes in ctx.meses:
         inicio, fim = f"{mes}-01", fim_do_mes(mes).isoformat()
         edicoes: dict[tuple, dict] = {}
@@ -449,12 +662,19 @@ def motor_querido_diario(ctx: Contexto, ibge: int) -> None:
                           "published_until": fim, "size": 100, "offset": offset}
                 if com_termos:
                     params["querystring"] = " | ".join(f'"{t}"' for t in TERMOS)
-                leitura = ctx.ler("qd", f"{'termos' if com_termos else 'edicoes'}",
-                                  QUERIDO_DIARIO + "?" + urlencode(params), mes=mes)
+                consulta = "?" + urlencode(params)
+                alvo = f"{'termos' if com_termos else 'edicoes'}"
+                for via in ([via_boa] if via_boa else vias):
+                    leitura = ctx.ler("qd", alvo, via + consulta, mes=mes)
+                    if leitura.ok or not _qd_via_caiu(leitura):
+                        break
                 dados = _json(leitura) if leitura.ok else None
                 if dados is None:
                     erro = leitura.erro or "resposta não é JSON"
                     break
+                if via_boa is None:
+                    via_boa = via
+                    ctx.banco.inserir("meta", {"chave": "qd_via", "valor": via})
                 pagina = dados.get("gazettes") or []
                 for g in pagina:
                     chave = (g.get("date"), str(g.get("edition") or ""), bool(g.get("is_extra_edition")))
@@ -473,23 +693,62 @@ def motor_querido_diario(ctx: Contexto, ibge: int) -> None:
             "com_termos": sum(i["com_termos"] for i in edicoes.values()), "erro": erro})
 
 
+# Os dias em que o Diário saiu, edição a edição, pelo índice do SILEG: a base da
+# tempestividade (quantos dias úteis do mês tiveram Diário) contada no próprio coletor.
+DIARIO_DIAS = """CREATE TABLE IF NOT EXISTS diario_oficial_dias (fonte TEXT, mes TEXT, data TEXT,
+    edicoes INTEGER, PRIMARY KEY (fonte, mes, data))"""
+RE_EDICAO_SILEG = re.compile(r"do_(\d{8})_")
+
+
+def dias_das_edicoes(ids) -> dict[str, int]:
+    """``{'AAAA-MM-DD': edições}`` a partir dos identificadores do índice (``do_AAAAMMDD_...``)."""
+    dias: dict[str, int] = {}
+    for i in ids:
+        m = RE_EDICAO_SILEG.search(str(i))
+        if not m:
+            continue
+        s = m.group(1)
+        try:
+            dia = date(int(s[:4]), int(s[4:6]), int(s[6:8])).isoformat()
+        except ValueError:
+            continue
+        dias[dia] = dias.get(dia, 0) + 1
+    return dias
+
+
 def motor_sileg(ctx: Contexto) -> None:
+    """Edições do mês no índice do SILEG (todas e as com os termos) e os dias em que saíram."""
+    ctx.banco.con.execute(DIARIO_DIAS)
     clausula = " OR ".join(f'attr_content:"{t}"' for t in TERMOS)
     for mes in ctx.meses:
         prefixo = mes.replace("-", "")
         contagem, erro = {}, None
-        for chave, q in (("edicoes", f"id:*do_{prefixo}*"),
-                         ("com_termos", f"id:*do_{prefixo}* AND ({clausula})")):
-            url = SILEG_SOLR + "?" + urlencode({"q": q, "rows": 0, "wt": "json"})
+        dias: dict[str, int] | None = None
+        for chave, q, linhas in (("edicoes", f"id:*do_{prefixo}*", 400),
+                                 ("com_termos", f"id:*do_{prefixo}* AND ({clausula})", 0)):
+            params = {"q": q, "rows": linhas, "wt": "json"}
+            if linhas:
+                params["fl"] = "id"
+            url = SILEG_SOLR + "?" + urlencode(params)
             leitura = ctx.ler("sileg", chave, url, mes=mes, tentativas=2, tempo=45)
             dados = _json(leitura) if leitura.ok else None
             if dados is None:
                 erro = leitura.erro or "resposta não é JSON"
                 break
-            contagem[chave] = int(dados.get("response", {}).get("numFound", 0))
+            resposta = dados.get("response", {})
+            contagem[chave] = int(resposta.get("numFound", 0))
+            if linhas:
+                docs = resposta.get("docs") or []
+                if len(docs) >= contagem[chave]:      # todas as edições vieram: os dias valem
+                    dias = dias_das_edicoes(d.get("id") for d in docs)
         ctx.banco.inserir("diario_oficial_mes", {
             "fonte": "sileg", "mes": mes, "edicoes": contagem.get("edicoes"),
             "com_termos": contagem.get("com_termos"), "erro": erro})
+        if dias is not None:
+            ctx.banco.con.execute("DELETE FROM diario_oficial_dias WHERE fonte = 'sileg' AND mes = ?", (mes,))
+            for dia, n in sorted(dias.items()):
+                ctx.banco.inserir("diario_oficial_dias", {"fonte": "sileg", "mes": mes, "data": dia,
+                                                          "edicoes": n})
 
 
 # --- Motor 3: repasses federais (FNAS) -------------------------------------------------
@@ -657,7 +916,7 @@ def _pncp_contratos(ctx: Contexto, cnpj: str, nome: str, janela: list[str]) -> b
                 "unidade": (c.get("unidadeOrgao") or {}).get("nomeUnidade"),
                 "fornecedor_ni": c.get("niFornecedor"),
                 "fornecedor": c.get("nomeRazaoSocialFornecedor"),
-                "objeto": (c.get("objetoContrato") or "")[:500],
+                "objeto": c.get("objetoContrato") or "",
                 "valor_global": c.get("valorGlobal"),
                 "da_pasta": int(any(t in tudo for t in TERMOS_PASTA))})
         if pagina >= int(dados.get("totalPaginas") or 1):
@@ -701,10 +960,12 @@ def _pncp_descobrir(ctx: Contexto, ibge: int, municipio: str, orgaos: dict[str, 
                         "modalidade": c.get("modalidadeNome"), "orgao_cnpj": cnpj,
                         "orgao": org.get("razaoSocial"), "esfera": org.get("esferaId"),
                         "unidade": (c.get("unidadeOrgao") or {}).get("nomeUnidade"),
-                        "objeto": (c.get("objetoCompra") or "")[:500],
+                        "objeto": c.get("objetoCompra") or "",
                         "valor_estimado": c.get("valorTotalEstimado"),
                         "valor_homologado": c.get("valorTotalHomologado"),
                         "situacao": c.get("situacaoCompraNome")})
+                    if c.get("amparoLegal") and c.get("numeroControlePNCP"):
+                        _guardar_amparo(ctx, c.get("numeroControlePNCP"), c)   # já vem na listagem
                 if pagina >= int(dados.get("totalPaginas") or 1):
                     break
             else:
@@ -777,6 +1038,603 @@ def motor_pncp(ctx: Contexto, ibge: int, municipio: str, cnpjs_conhecidos=(),
         _pncp_descobrir(ctx, ibge, municipio, orgaos, procura)
         contratos(list(orgaos))
     guardar()
+
+
+# --- Motor 4b: o detalhe das compras e dos contratos (PNCP e Compras.gov.br) -------------
+
+DADOS_ABERTOS = "https://dadosabertos.compras.gov.br/"
+PNCP_API = "https://pncp.gov.br/api/pncp/v1/"
+
+
+def _id_pncp(pncp_id: str) -> tuple[str, int, int] | None:
+    """``04973965000111-1-000043/2024`` vira (cnpj, ano, sequencial)."""
+    m = re.fullmatch(r"(\d{14})-\d-(\d+)/(\d{4})", str(pncp_id or ""))
+    return (m.group(1), int(m.group(3)), int(m.group(2))) if m else None
+
+
+def _num(v) -> float | None:
+    if v in (None, ""):
+        return None
+    try:
+        return float(str(v).replace(",", ".")) if not isinstance(v, (int, float)) else float(v)
+    except ValueError:
+        return None
+
+
+def _semestre(data: str) -> str:
+    return f"{data[:4]}-{'1' if int(data[5:7]) <= 6 else '2'}"
+
+
+def _limites_do_semestre(semestre: str) -> tuple[str, str]:
+    ano, s = semestre.split("-")
+    return (f"{ano}-01-01", f"{ano}-06-30") if s == "1" else (f"{ano}-07-01", f"{ano}-12-31")
+
+
+class _Lidos:
+    """O que o motor já leu por inteiro, para a rodada seguinte continuar de onde parou."""
+
+    def __init__(self, banco: Banco):
+        self.banco = banco
+        guardado = dict(banco.consultar("SELECT chave, valor FROM meta")).get("pncp_detalhe_lidos")
+        self.feitos: set[str] = set(json.loads(guardado)) if guardado else set()
+
+    def __contains__(self, chave: str) -> bool:
+        return chave in self.feitos
+
+    def marcar(self, chave: str) -> None:
+        self.feitos.add(chave)
+
+    def guardar(self) -> None:
+        self.banco.inserir("meta", {"chave": "pncp_detalhe_lidos",
+                                    "valor": json.dumps(sorted(self.feitos))})
+        self.banco.con.commit()
+
+
+def _tempo_acabou(ctx: Contexto) -> bool:
+    return ctx.fim_do_motor is not None and time.monotonic() > ctx.fim_do_motor
+
+
+class _Reserva:
+    """Dá a uma etapa só uma parte do tempo que resta ao motor, para a etapa seguinte nunca
+    ficar sem vez (os itens lentos dos dados abertos tomavam a rodada e o preço nacional,
+    que vem depois, nunca era lido)."""
+
+    def __init__(self, ctx: Contexto, fracao: float):
+        self.ctx, self.fracao, self.fim = ctx, fracao, ctx.fim_do_motor
+
+    def __enter__(self):
+        if self.fim is not None:
+            agora = time.monotonic()
+            self.ctx.fim_do_motor = min(self.fim, agora + max(0.0, self.fim - agora) * self.fracao)
+        return self
+
+    def __exit__(self, *_):
+        self.ctx.fim_do_motor = self.fim
+        return False
+
+
+def _url_itens_do_orgao(cnpj: str, d1: str, d2: str, pagina: int = 1) -> str:
+    """A página dos itens de um órgão de ``d1`` até ``d2`` (inclusive): a data final da
+    consulta é exclusiva, então o pedido vai até o dia seguinte."""
+    fim = (date.fromisoformat(d2) + timedelta(days=1)).isoformat()
+    params = {"pagina": pagina, "tamanhoPagina": 500, "orgaoEntidadeCnpj": cnpj,
+              "dataInclusaoPncpInicial": d1, "dataInclusaoPncpFinal": fim}
+    return DADOS_ABERTOS + "modulo-contratacoes/2_consultarItensContratacoes_PNCP_14133?" + urlencode(params)
+
+
+def _itens_do_orgao(ctx: Contexto, cnpj: str, d1: str, d2: str, rotulo: str) -> bool:
+    """Itens das contratações de um órgão incluídas no PNCP de ``d1`` até ``d2`` (inclusive),
+    com catálogo e resultado.
+
+    A data final dessa consulta dos dados abertos é exclusiva (a Base dos Dados e outros
+    coletores a tratam assim, e o mesmo dia nos dois campos devolve zero): pedir até o dia 30
+    deixava de fora o que foi incluído no dia 30. Por isso o pedido vai até o dia seguinte.
+    """
+    for pagina in range(1, 201):
+        leitura = ctx.ler("pncp_detalhe", f"itens {cnpj} {rotulo}", _url_itens_do_orgao(cnpj, d1, d2, pagina),
+                          mes=rotulo[:7], tempo=180, tentativas=2)
+        dados = _json(leitura) if leitura.ok else None
+        if dados is None:
+            return False
+        for it in dados.get("resultado") or []:
+            ctx.banco.inserir("pncp_itens", {
+                "compra_id": it.get("numeroControlePNCPCompra") or it.get("idContratacaoPNCP"),
+                "numero_item": it.get("numeroItemPncp") or it.get("numeroItemCompra"),
+                "orgao_cnpj": it.get("orgaoEntidadeCnpj") or cnpj,
+                "unidade": it.get("unidadeOrgaoCodigoUnidade"),
+                "descricao": it.get("descricaoResumida") or "",
+                "detalhe": it.get("descricaodetalhada") or "",
+                "material_servico": it.get("materialOuServico"), "classe": it.get("codigoClasse"),
+                "grupo": it.get("codigoGrupo"), "catalogo": it.get("codItemCatalogo"),
+                "pdm": it.get("codigoPdm"), "nome_pdm": it.get("nomePdm"), "ncm": it.get("codigoNCM"),
+                "unidade_medida": (it.get("unidadeMedida") or "").strip(),
+                "quantidade": _num(it.get("quantidade")),
+                "unitario_estimado": _num(it.get("valorUnitarioEstimado")),
+                "total_estimado": _num(it.get("valorTotal")),
+                "situacao": it.get("situacaoCompraItemNome"),
+                "fornecedor_ni": it.get("codFornecedor"), "fornecedor": it.get("nomeFornecedor"),
+                "quantidade_resultado": _num(it.get("quantidadeResultado")),
+                "unitario_resultado": _num(it.get("valorUnitarioResultado")),
+                "total_resultado": _num(it.get("valorTotalResultado")),
+                "data_inclusao": str(it.get("dataInclusaoPncp") or "")[:10],
+                "data_resultado": str(it.get("dataResultado") or "")[:10] or None})
+        if pagina >= int(dados.get("totalPaginas") or 1):
+            return True
+    return False
+
+
+def _url_compra(compra_id: str, via: str = "") -> str | None:
+    """O detalhe de uma contratação. A via rápida (API do PNCP, ~0,6 s) traz o mesmo amparo
+    legal que a consulta (~10 s, e fora do ar no início da rodada de 27/11); a consulta fica
+    de reserva, com ``via="consulta"``."""
+    partes = _id_pncp(compra_id)
+    base_ = PNCP if via == "consulta" else PNCP_API
+    return f"{base_}orgaos/{partes[0]}/compras/{partes[1]}/{partes[2]}" if partes else None
+
+
+def _url_contrato(contrato_id: str, sufixo: str = "") -> str | None:
+    partes = _id_pncp(contrato_id)
+    return f"{PNCP_API}orgaos/{partes[0]}/contratos/{partes[1]}/{partes[2]}{sufixo}" if partes else None
+
+
+def _url_itens_da_compra(compra_id: str) -> str | None:
+    partes = _id_pncp(compra_id)
+    if not partes:
+        return None
+    return (f"{PNCP_API}orgaos/{partes[0]}/compras/{partes[1]}/{partes[2]}/itens?"
+            + urlencode({"pagina": 1, "tamanhoPagina": 500}))
+
+
+def _url_cobrancas(cnpj: str, mes: str, pagina: int = 1) -> str:
+    d1, d2 = f"{mes.replace('-', '')}01", fim_do_mes(mes).strftime("%Y%m%d")
+    return PNCP + "instrumentoscobranca/inclusao?" + urlencode(
+        {"dataInicial": d1, "dataFinal": d2, "cnpjOrgao": cnpj, "pagina": pagina, "tamanhoPagina": 100})
+
+
+def _detalhe_da_compra(ctx: Contexto, compra_id: str) -> bool:
+    url = _url_compra(compra_id)
+    if not url:
+        return True
+    leitura = ctx.ler("pncp_detalhe", f"compra {compra_id}", url, tempo=60)
+    c = _json(leitura) if leitura.ok else None
+    if not isinstance(c, dict) or not c.get("amparoLegal"):
+        reserva = ctx.ler("pncp_detalhe", f"compra {compra_id}", _url_compra(compra_id, "consulta"), tempo=60)
+        r = _json(reserva) if reserva.ok else None
+        if isinstance(r, dict):
+            c = r
+        elif not isinstance(c, dict):
+            return leitura.http in (204, 404) and reserva.http in (204, 404)
+    _guardar_amparo(ctx, compra_id, c)
+    return True
+
+
+def _guardar_amparo(ctx: Contexto, compra_id: str, c: dict) -> None:
+    """O amparo legal de uma contratação, venha do detalhe dela ou da listagem do mês (as duas
+    respostas do PNCP trazem os mesmos campos)."""
+    amparo = c.get("amparoLegal") or {}
+    ctx.banco.inserir("pncp_amparos", {
+        "compra_id": compra_id, "codigo": amparo.get("codigo"), "nome": amparo.get("nome"),
+        "descricao": amparo.get("descricao") or "", "srp": int(bool(c.get("srp"))),
+        "processo": c.get("processo"), "modo_disputa": c.get("modoDisputaNome"),
+        "data_publicacao": str(c.get("dataPublicacaoPncp") or "")[:10],
+        "valor_estimado": _num(c.get("valorTotalEstimado")),
+        "valor_homologado": _num(c.get("valorTotalHomologado"))})
+
+
+def _amparos_pela_listagem(ctx: Contexto, ibge: int, modalidade: int, mes: str, faltam: set[str]) -> bool:
+    """O amparo legal de todas as contratações de uma modalidade no mês, numa leitura da
+    listagem (até 50 por página) em vez de uma consulta de 10 s por contratação. Guarda só as
+    que o banco já tem e ainda não têm amparo; diz se o mês foi lido por inteiro."""
+    d1, d2 = f"{mes.replace('-', '')}01", fim_do_mes(mes).strftime("%Y%m%d")
+    for pagina in range(1, 41):
+        params = {"dataInicial": d1, "dataFinal": d2, "codigoModalidadeContratacao": modalidade,
+                  "codigoMunicipioIbge": ibge, "pagina": pagina, "tamanhoPagina": 50}
+        leitura = ctx.ler("pncp_detalhe", f"amparos m{modalidade}",
+                          PNCP + "contratacoes/publicacao?" + urlencode(params), mes=mes)
+        if leitura.http == 204:
+            return True
+        dados = _json(leitura) if leitura.ok else None
+        if not isinstance(dados, dict):
+            return False
+        for c in dados.get("data") or []:
+            cid = c.get("numeroControlePNCP")
+            if cid in faltam:
+                _guardar_amparo(ctx, cid, c)
+                faltam.discard(cid)
+        if pagina >= int(dados.get("totalPaginas") or 1):
+            return True
+    return False
+
+
+def _detalhe_do_contrato(ctx: Contexto, contrato_id: str) -> bool:
+    url = _url_contrato(contrato_id)
+    if not url:
+        return True
+    leitura = ctx.ler("pncp_detalhe", f"contrato {contrato_id}", url, tempo=60)
+    c = _json(leitura) if leitura.ok else None
+    if not isinstance(c, dict):
+        return leitura.http in (204, 404)
+    ctx.banco.inserir("pncp_contratos_detalhe", {
+        "contrato_id": contrato_id, "compra_id": c.get("numeroControlePncpCompra"),
+        "valor_inicial": _num(c.get("valorInicial")), "valor_global": _num(c.get("valorGlobal")),
+        "valor_acumulado": _num(c.get("valorAcumulado")),
+        "tipo": (c.get("tipoContrato") or {}).get("nome"),
+        "categoria": (c.get("categoriaProcesso") or {}).get("nome"),
+        "vigencia_inicio": c.get("dataVigenciaInicio"), "vigencia_fim": c.get("dataVigenciaFim"),
+        "processo": c.get("processo"), "retificacoes": c.get("numeroRetificacao")})
+    return True
+
+
+def _termos_do_contrato(ctx: Contexto, contrato_id: str) -> bool:
+    url = _url_contrato(contrato_id, "/termos")
+    if not url:
+        return True
+    leitura = ctx.ler("pncp_detalhe", f"termos {contrato_id}", url, tempo=60)
+    if leitura.http == 204:
+        return True                            # a API respondeu: nenhum termo publicado
+    dados = _json(leitura) if leitura.ok else None
+    if not isinstance(dados, list):
+        return leitura.http == 404
+    for t in dados:
+        ctx.banco.inserir("pncp_termos", {
+            "contrato_id": contrato_id, "sequencial": t.get("sequencialTermoContrato"),
+            "numero": t.get("numeroTermoContrato"), "tipo": t.get("tipoTermoContratoNome"),
+            "data_assinatura": t.get("dataAssinatura"), "vigencia_inicio": t.get("dataVigenciaInicio"),
+            "vigencia_fim": t.get("dataVigenciaFim"), "valor_acrescido": _num(t.get("valorAcrescido")),
+            "valor_global": _num(t.get("valorGlobal")), "prazo_aditado_dias": t.get("prazoAditadoDias"),
+            "acrescimo_supressao": int(bool(t.get("qualificacaoAcrescimoSupressao"))),
+            "qualif_vigencia": int(bool(t.get("qualificacaoVigencia"))),
+            "qualif_reajuste": int(bool(t.get("qualificacaoReajuste"))),
+            "qualif_fornecedor": int(bool(t.get("qualificacaoFornecedor"))),
+            "fundamento": t.get("fundamentoLegal") or "",
+            "objeto": t.get("objetoTermoContrato") or ""})
+    return True
+
+
+def _url_preco(catalogo: int, servico: bool, semestre: str) -> str:
+    d1, d2 = _limites_do_semestre(semestre)
+    if servico:
+        return DADOS_ABERTOS + "modulo-pesquisa-preco/3_consultarServico?" + urlencode(
+            {"pagina": 1, "tamanhoPagina": 500, "codigoItemCatalogo": catalogo,
+             "dataCompraInicio": d1, "dataCompraFim": d2})
+    return DADOS_ABERTOS + "modulo-pesquisa-preco/1_consultarMaterial?" + urlencode(
+        {"pagina": 1, "tamanhoPagina": 500, "tipo": "codigoItemCatalogo", "codigo": catalogo,
+         "dataCompraInicio": d1, "dataCompraFim": d2})
+
+
+def _precos_nacionais(ctx: Contexto, catalogo: int, servico: bool, semestre: str) -> bool:
+    """Até 500 compras do país do mesmo item de catálogo no semestre (painel de preços)."""
+    url = _url_preco(catalogo, servico, semestre)
+    leitura = ctx.ler("pncp_detalhe", f"preco {catalogo} {semestre}", url, mes=semestre, tempo=120)
+    dados = _json(leitura) if leitura.ok else None
+    if dados is None:
+        return False
+    for r in dados.get("resultado") or []:
+        ctx.banco.inserir("precos_referencia", {
+            "catalogo": catalogo, "semestre": semestre,
+            "id_item": str(r.get("idCompraItem") or r.get("idItemCompra")),
+            "material_servico": "S" if servico else "M", "data_compra": r.get("dataCompra"),
+            "preco": _num(r.get("precoUnitario")), "quantidade": _num(r.get("quantidade")),
+            "unidade": r.get("siglaUnidadeFornecimento") or r.get("siglaUnidadeMedida")
+            or r.get("nomeUnidadeMedida"),
+            "uasg": r.get("codigoUasg"), "orgao": r.get("nomeOrgao"), "uf": r.get("estado"),
+            "municipio": r.get("municipio"), "esfera": r.get("esfera"),
+            "descricao": r.get("descricaoItem") or ""})
+    return True
+
+
+def _nenhum_registro(leitura: base.Leitura) -> bool:
+    """O PNCP responde 404 com {"message": "Nenhum ... encontrado"} quando a consulta não acha
+    registro. Só esse corpo separa o "não há" de um endereço errado, que continua falha."""
+    if leitura.http != 404 or not leitura.conteudo:
+        return False
+    try:
+        mensagem = str((json.loads(leitura.conteudo) or {}).get("message") or "")
+    except (ValueError, AttributeError):
+        return False
+    return _norm(mensagem).lower().startswith("nenhum")
+
+
+def _cobrancas_do_orgao(ctx: Contexto, cnpj: str, mes: str) -> bool:
+    """Instrumentos de cobrança (notas fiscais) que o órgão incluiu no PNCP no mês."""
+    for pagina in range(1, 21):
+        leitura = ctx.ler("pncp_detalhe", f"cobrancas {cnpj} {mes}", _url_cobrancas(cnpj, mes, pagina),
+                          mes=mes)
+        if leitura.http == 204 or _nenhum_registro(leitura):
+            return True                 # lido: o órgão não publicou nota fiscal no mês
+        dados = _json(leitura) if leitura.ok else None
+        if not dados:
+            return False
+        for c in dados.get("data") or []:
+            contrato = c.get("recuperarContratoDTO") or {}
+            cid = contrato.get("numeroControlePNCP") or (
+                f"{c.get('cnpj')}-2-{int(c.get('sequencialContrato') or 0):06d}/{c.get('ano')}")
+            nf = c.get("notaFiscalEletronica") or {}
+            seq = c.get("sequencialInstrumentoCobranca")
+            ctx.banco.inserir("pncp_cobrancas", {
+                "contrato_id": cid, "sequencial": seq,
+                "tipo": (c.get("tipoInstrumentoCobranca") or {}).get("nome"),
+                "numero": c.get("numeroInstrumentoCobranca"), "data_emissao": c.get("dataEmissaoDocumento"),
+                "chave_nfe": c.get("chaveNFe"), "valor_nf": _num(nf.get("valorNotaFiscal")),
+                "emitente_ni": nf.get("niEmitente"), "evento": nf.get("tipoEventoMaisRecente")})
+            for it in nf.get("itens") or []:
+                ctx.banco.inserir("pncp_nf_itens", {
+                    "contrato_id": cid, "sequencial": seq, "numero_item": it.get("numeroItem"),
+                    "descricao": it.get("descricaoProdutoServico") or "", "ncm": it.get("codigoNCM"),
+                    "quantidade": _num(it.get("quantidade")), "unidade": it.get("unidade"),
+                    "unitario": _num(it.get("valorUnitario")), "total": _num(it.get("valorTotal"))})
+        if pagina >= int(dados.get("totalPaginas") or 1):
+            return True
+    return False
+
+
+def _da_pasta(orgao: str | None) -> bool:
+    from .conferencias.compras import da_pasta      # tardio: a conferência lê este módulo
+    return da_pasta(orgao or "")
+
+
+def _itens_da_compra(ctx: Contexto, compra_id: str) -> bool:
+    """Itens e resultado de uma contratação pela API do PNCP (via rápida, por compra).
+
+    Não substitui o que a via de dados abertos já guardou (ela traz o código de catálogo
+    e a classe); só preenche o que falta.
+    """
+    partes = _id_pncp(compra_id)
+    if not partes:
+        return True
+    cnpj, ano, seq = partes
+    base = f"{PNCP_API}orgaos/{cnpj}/compras/{ano}/{seq}/itens"
+    leitura = ctx.ler("pncp_detalhe", f"itens da compra {compra_id}", _url_itens_da_compra(compra_id),
+                      tempo=60)
+    if leitura.http == 204:
+        return True
+    dados = _json(leitura) if leitura.ok else None
+    if not isinstance(dados, list):
+        return leitura.http == 404
+    ja = {n for (n,) in ctx.banco.consultar(
+        "SELECT numero_item FROM pncp_itens WHERE compra_id = ? AND catalogo IS NOT NULL", compra_id)}
+    inteiro = True
+    for it in dados:
+        numero = it.get("numeroItem")
+        if numero is None or numero in ja:
+            continue
+        resultado: dict = {}
+        if it.get("temResultado"):
+            r = ctx.ler("pncp_detalhe", f"resultado {compra_id} {numero}", f"{base}/{numero}/resultados",
+                        tempo=60)
+            lista = _json(r) if r.ok else None
+            if isinstance(lista, list) and lista:
+                resultado = lista[0]
+            elif r.http not in (204, 404):
+                inteiro = False
+        cat = str(it.get("catalogoCodigoItem") or "").strip()
+        ctx.banco.inserir("pncp_itens", {
+            "compra_id": compra_id, "numero_item": numero, "orgao_cnpj": cnpj, "unidade": None,
+            "descricao": it.get("descricao") or "",
+            "detalhe": it.get("informacaoComplementar") or "",
+            "material_servico": it.get("materialOuServico"), "classe": None, "grupo": None,
+            "catalogo": int(cat) if cat.isdigit() else None, "pdm": None,
+            "nome_pdm": it.get("itemCategoriaNome"), "ncm": it.get("ncmNbsCodigo"),
+            "unidade_medida": (it.get("unidadeMedida") or "").strip(),
+            "quantidade": _num(it.get("quantidade")),
+            "unitario_estimado": _num(it.get("valorUnitarioEstimado")),
+            "total_estimado": _num(it.get("valorTotal")),
+            "situacao": it.get("situacaoCompraItemNome"),
+            "fornecedor_ni": resultado.get("niFornecedor"),
+            "fornecedor": resultado.get("nomeRazaoSocialFornecedor"),
+            "quantidade_resultado": _num(resultado.get("quantidadeHomologada")),
+            "unitario_resultado": _num(resultado.get("valorUnitarioHomologado")),
+            "total_resultado": _num(resultado.get("valorTotalHomologado")),
+            "data_inclusao": str(it.get("dataInclusao") or "")[:10],
+            "data_resultado": str(resultado.get("dataResultado") or "")[:10] or None})
+    return inteiro
+
+
+def motor_pncp_detalhe(ctx: Contexto, ibge: int | None = None) -> None:
+    """O detalhe do que o motor do PNCP achou: amparo legal de cada contratação, itens com
+    catálogo e preço homologado, valor inicial e aditivos de cada contrato, o preço nacional
+    do mesmo item no semestre e as notas fiscais publicadas.
+
+    Lê das contratações e contratos já guardados no banco. A pasta (assistência social e
+    direitos humanos) vem sempre primeiro, e as vias rápidas do PNCP antes da via lenta dos
+    dados abertos, para o tempo da rodada nunca acabar antes do que o parecer precisa.
+    Continua de onde a rodada anterior parou: cada etapa marca o que leu por inteiro, e as
+    que falharam são refeitas.
+    """
+    lidos = _Lidos(ctx.banco)
+    pausa, ctx.pausa = ctx.pausa, min(ctx.pausa, 0.3)    # as vias de detalhe respondem em segundos
+
+    def etapa(pedidos, tempo: int = 60) -> None:
+        """(chave, url da primeira leitura, leitor): o que falta é lido em blocos, com a rede
+        do bloco antecipada em paralelo e o tratamento na ordem. ``tempo`` é o que cada
+        leitura antecipada espera (o mesmo que o leitor daria a ela)."""
+        faltam = [p for p in pedidos if p[0] not in lidos]
+        bloco = max(1, ctx.paralelo * 4)
+        for i in range(0, len(faltam), bloco):
+            if _tempo_acabou(ctx):
+                break
+            parte = faltam[i:i + bloco]
+            ctx.antecipar("pncp_detalhe", [url for _, url, _ in parte], tempo=tempo)
+            for chave, _url, ler in parte:
+                if ler():
+                    lidos.marcar(chave)
+            lidos.guardar()
+        lidos.guardar()
+
+    compras = sorted(ctx.banco.consultar(
+        "SELECT pncp_id, orgao_cnpj, orgao, modalidade, COALESCE(valor_homologado, valor_estimado, 0), mes "
+        "FROM contratacoes_pncp"),
+        key=lambda c: (not _da_pasta(c[2]), {"Dispensa": 0, "Inexigibilidade": 1}.get(c[3], 2), -c[4]))
+    contratos = sorted(ctx.banco.consultar(
+        "SELECT pncp_id, orgao, COALESCE(valor_global, 0) FROM contratos_pncp"),
+        key=lambda c: (not _da_pasta(c[1]), -c[2]))
+    peso: dict[str, tuple] = {}
+    for cnpj, orgao, n in ctx.banco.consultar(
+            "SELECT orgao_cnpj, MAX(orgao), COUNT(*) FROM (SELECT orgao_cnpj, orgao FROM contratacoes_pncp "
+            "UNION ALL SELECT orgao_cnpj, orgao FROM contratos_pncp) WHERE orgao_cnpj IS NOT NULL GROUP BY 1"):
+        peso[cnpj] = (not _da_pasta(orgao), -n)
+    orgaos = sorted(peso, key=lambda c: (peso[c], c))
+    pasta = [c for c in orgaos if not peso[c][0]]
+    try:
+        def amparos(lista):
+            com = {i for (i,) in ctx.banco.consultar("SELECT compra_id FROM pncp_amparos")}
+            etapa([(f"compra {c[0]}", _url_compra(c[0]), lambda c=c: _detalhe_da_compra(ctx, c[0]))
+                   for c in lista if c[0] not in com])
+
+        primeiro = [c for c in compras if _da_pasta(c[2]) or c[3] == "Dispensa"]
+        ja = {c[0] for c in primeiro}
+
+        def contratos_e_termos() -> None:
+            etapa([(f"contrato {c[0]}", _url_contrato(c[0]), lambda c=c: _detalhe_do_contrato(ctx, c[0]))
+                   for c in contratos])
+            etapa([(f"termos {c[0]}", _url_contrato(c[0], "/termos"),
+                    lambda c=c: _termos_do_contrato(ctx, c[0])) for c in contratos])
+
+        def itens_rapidos(lista) -> None:
+            etapa([(f"itens da compra {c[0]}", _url_itens_da_compra(c[0]),
+                    lambda c=c: _itens_da_compra(ctx, c[0])) for c in lista])
+
+        def notas_fiscais() -> None:
+            for cnpj in orgaos:
+                if _tempo_acabou(ctx):
+                    break
+                ctx.antecipar("pncp_detalhe", [_url_cobrancas(cnpj, m) for m in ctx.meses
+                                               if f"cobrancas {cnpj} {m}" not in lidos])
+                recusas = 0
+                for mes in ctx.meses:
+                    chave = f"cobrancas {cnpj} {mes}"
+                    if chave in lidos:
+                        continue
+                    if _tempo_acabou(ctx) or recusas >= 3:
+                        break
+                    if _cobrancas_do_orgao(ctx, cnpj, mes):
+                        lidos.marcar(chave)
+                        recusas = 0
+                    else:
+                        recusas += 1
+                lidos.guardar()
+                ctx._antecipadas.clear()       # meses de um órgão parado por recusas: descartados
+
+        def demais_amparos() -> None:
+            if ibge:
+                com = {i for (i,) in ctx.banco.consultar("SELECT compra_id FROM pncp_amparos")}
+                faltam = {c[0] for c in compras if c[0] not in com}
+                janelas = sorted({(MODALIDADE_CODIGO[c[3]], c[5]) for c in compras
+                                  if c[0] in faltam and c[3] in MODALIDADE_CODIGO and c[5]})
+                for modalidade, mes in janelas:
+                    chave = f"amparos {modalidade} {mes}"
+                    if chave in lidos:
+                        continue
+                    if _tempo_acabou(ctx):
+                        break
+                    if _amparos_pela_listagem(ctx, ibge, modalidade, mes, faltam):
+                        lidos.marcar(chave)
+                    lidos.guardar()
+            amparos([c for c in compras if c[0] not in ja])
+
+        def itens_com_catalogo() -> None:
+            # Mês a mês: a janela de um ano nunca respondeu dentro do tempo (6 min e meio
+            # perdidos por órgão e ano em 27/11), e a de um mês responde em uns 20 s. Os meses
+            # vão em paralelo, como as demais vias: um a um, 27 meses levaram 25 minutos (27/11).
+            ordem = pasta + [c for c in orgaos if c not in pasta]
+            pedidos = []
+            for cnpj in ordem:
+                for janela in _janelas_anuais(ctx.meses):
+                    if f"itens {cnpj} {janela[0][:4]}" in lidos:
+                        continue
+                    for mes in janela:
+                        chave = f"itens {cnpj} {mes}"
+                        pedidos.append((chave, _url_itens_do_orgao(cnpj, f"{mes}-01", fim_do_mes(mes).isoformat()),
+                                        lambda c=cnpj, m=mes, k=chave: _mes_inteiro(c, m, k)))
+            etapa(pedidos, tempo=180)
+            for cnpj in ordem:
+                for janela in _janelas_anuais(ctx.meses):
+                    if all(f"itens {cnpj} {m}" in lidos for m in janela):
+                        lidos.marcar(f"itens {cnpj} {janela[0][:4]}")
+            lidos.guardar()
+
+        def _mes_inteiro(cnpj, mes, chave) -> bool:
+            if _itens_do_orgao(ctx, cnpj, f"{mes}-01", fim_do_mes(mes).isoformat(), mes):
+                lidos.marcar(f"{chave} inteiro")    # já com o último dia
+                return True
+            return False
+
+        def ultimo_dia() -> None:
+            """Remenda o que as leituras de antes (data final tratada como inclusiva) perderam:
+            os itens incluídos no último dia de cada mês, ou do ano, já lido."""
+            pedidos = []
+            for cnpj in pasta + [c for c in orgaos if c not in pasta]:
+                for janela in _janelas_anuais(ctx.meses):
+                    if f"itens {cnpj} {janela[0][:4]}" in lidos and not any(
+                            f"itens {cnpj} {m}" in lidos for m in janela):
+                        meses_lidos = [janela[-1]]              # o ano foi lido de uma vez
+                    else:
+                        meses_lidos = [m for m in janela if f"itens {cnpj} {m}" in lidos]
+                    for mes in meses_lidos:
+                        if f"itens {cnpj} {mes} inteiro" in lidos:
+                            continue
+                        dia = fim_do_mes(mes).isoformat()
+                        pedidos.append((f"itens {cnpj} {mes} ultimo dia", _url_itens_do_orgao(cnpj, dia, dia),
+                                        lambda c=cnpj, d=dia, m=mes: _itens_do_orgao(ctx, c, d, d, f"{m} último dia")))
+            etapa(pedidos, tempo=180)
+
+        def precos() -> None:
+            alvos = ctx.banco.consultar(
+                "SELECT catalogo, material_servico, substr(COALESCE(data_resultado, data_inclusao), 1, 7), "
+                "SUM(COALESCE(total_resultado, total_estimado, 0)), MAX(orgao_cnpj IN (%s)) FROM pncp_itens "
+                "WHERE catalogo IS NOT NULL AND unitario_resultado IS NOT NULL GROUP BY 1, 2, 3 "
+                "ORDER BY 5 DESC, 4 DESC" % (",".join("?" * len(pasta)) or "''"), *pasta)
+            pedidos, feitos = [], set()
+            for catalogo, ms, mes, _valor, _pasta in alvos:
+                if not mes or not re.fullmatch(r"\d{4}-\d{2}", mes):
+                    continue
+                semestre = _semestre(mes + "-01")
+                if (catalogo, semestre) in feitos:
+                    continue
+                feitos.add((catalogo, semestre))
+                servico = ms == "S"
+                pedidos.append((f"preco {catalogo} {semestre}", _url_preco(int(catalogo), servico, semestre),
+                                lambda c=int(catalogo), s=servico, m=semestre: _precos_nacionais(ctx, c, s, m)))
+            etapa(pedidos, tempo=120)
+
+        # 1. Amparo legal das contratações da pasta e de todas as dispensas (o que a conferência
+        #    de dispensas precisa); as demais modalidades ficam para depois dos contratos.
+        amparos(primeiro)
+        # 2. Valor inicial e vínculo com a compra, depois os termos aditivos: a pasta, depois os maiores.
+        contratos_e_termos()
+        # 3. Itens e resultado de cada contratação da pasta pela via rápida do PNCP.
+        itens_rapidos([c for c in compras if _da_pasta(c[2])])
+        # 4. Notas fiscais: órgão a órgão (a pasta primeiro), mês a mês; três recusas seguidas param o órgão.
+        notas_fiscais()
+        # 4b. Amparo legal das demais contratações (inexigibilidades, pregões, concorrências):
+        #     primeiro pela listagem do mês (50 por leitura), depois uma a uma o que ela não trouxe.
+        demais_amparos()
+        # 5. Itens com catálogo e classe pela via de dados abertos (lenta): a pasta, depois os órgãos
+        #    com mais compras; um ano recusado é refeito mês a mês. Fica com metade do tempo que
+        #    resta, para o preço nacional (6) ter a outra metade.
+        with _Reserva(ctx, 0.5):
+            itens_com_catalogo()
+        # 6. Preço nacional de cada item de catálogo homologado, no semestre da compra (a pasta
+        #    primeiro), em paralelo como as demais vias de detalhe.
+        precos()
+        # 7. Segunda volta com o tempo que sobrar: o que uma fonte fora do ar deixou para trás
+        #    (o disjuntor libera uma prova depois da pausa), os itens das demais contratações pela
+        #    via rápida e o que ainda falta dos itens lentos.
+        if not _tempo_acabou(ctx):
+            amparos(primeiro)
+            contratos_e_termos()
+            notas_fiscais()
+            demais_amparos()
+            itens_rapidos([c for c in compras if not _da_pasta(c[2])])
+            itens_com_catalogo()
+            precos()
+            ultimo_dia()
+            precos()
+        lidos.guardar()
+    finally:
+        ctx.pausa = pausa
+        ctx._antecipadas.clear()
+        lidos.guardar()
 
 
 # --- Motor 5: portais e endereços do sistema ------------------------------------------
@@ -1045,7 +1903,7 @@ def motor_siope(ctx: Contexto, ibge6: str) -> None:
                 for coluna, valor in enumerate(item.valores):
                     ctx.banco.inserir("externos_itens", {
                         "fonte": "SIOPE", "exercicio": ano, "periodo": bim, "quadro": 0, "titulo_quadro": "",
-                        "ordem": item.ordem, "rotulo": f"{item.codigo}- {item.rotulo}"[:200],
+                        "ordem": item.ordem, "rotulo": f"{item.codigo}- {item.rotulo}",
                         "coluna": coluna, "valor": valor})
             linha_periodo.update(situacao="homologado", linhas=len(d.itens))
             ctx.banco.inserir("externos_periodos", linha_periodo)
@@ -1087,21 +1945,72 @@ def motor_fontes(ctx: Contexto) -> None:
 
 
 def motor_normas(ctx: Contexto) -> None:
-    from .coletores.leis import conferir_ctresb
+    """A régua legal: as normas federais no ctresb/leis, as de Goiânia no Sileg (cada endereço
+    oficial do mapa legal) e a procura, no índice do Sileg, do que o mapa dá como não localizado."""
+    from .coletores import leis
+    from .legal.mapa import carregar
 
     def ler(url, **kw):
         return ctx.ler("ctresb", url.rsplit("/", 1)[-1], url, tentativas=2)
-    for r in conferir_ctresb(ler_url=ler):
+    for r in leis.conferir_ctresb(ler_url=ler):
         ctx.banco.inserir("normas", {"caminho": r["caminho"], "ok": int(r["ok"]),
                                      "revogada": int(bool(r.get("revogada"))),
                                      "erro": r.get("erro")})
 
+    for ddl in leis.TABELAS:
+        ctx.banco.con.execute(ddl)
+    ctx.banco.con.execute("DELETE FROM normas_municipais")
+    ctx.banco.con.execute("DELETE FROM normas_procura")
+    ctx.banco.con.execute("DELETE FROM coletas WHERE motor IN ('sileg-normas', 'sileg-procura')")
+    mapa = carregar()
+    for n in leis.normas_municipais(mapa):
+        r = leis.ler_norma_municipal(
+            n["url"], ler_url=lambda url, **kw: ctx.ler("sileg-normas", n["norma_id"][:80], url,
+                                                       tentativas=2, tempo=60))
+        ctx.banco.inserir("normas_municipais", {**n, **{k: r[k] for k in (
+            "ok", "http", "bytes", "sha256", "formato", "inicio", "aviso_revogacao", "erro")}})
+    for p in leis.carregar_procuras():
+        chave = p.get("norma") or p.get("documento")
+        for alvo in p.get("procurar") or []:
+            r = leis.procurar(alvo, mapa, ler_url=lambda url, **kw: ctx.ler(
+                "sileg-procura", chave[:80], url, tentativas=2, tempo=60))
+            ctx.banco.inserir("normas_procura", {"norma_id": chave, **r})
+
 
 MOTORES = ("siconfi", "querido_diario", "sileg", "fnas", "pncp", "fontes", "normas", "tesouro", "siops", "siope",
-           "transferencias", "msc")
+           "transferencias", "msc", "pncp_detalhe")
 # Minutos que cada motor pode usar numa rodada (o fluxo do GitHub para em 180).
-TEMPO_DO_MOTOR = {"pncp": 75, "siconfi": 20, "transferencias": 30, "msc": 20}
+TEMPO_DO_MOTOR = {"pncp": 75, "siconfi": 20, "transferencias": 30, "msc": 20, "pncp_detalhe": 150}
 TEMPO_PADRAO = 12
+
+# Bloco 5: motores federais (FNS, FNDE, Transferegov, sanções, cota do Estado, TCU e TCM-GO).
+from .coletores import motores_federais as _mf  # noqa: E402  (o módulo não importa o historico)
+ESQUEMA += _mf.ESQUEMA
+TABELAS_DO_MOTOR.update(_mf.TABELAS_DO_MOTOR)
+MOTORES += _mf.MOTORES
+TEMPO_DO_MOTOR.update(_mf.TEMPO_DO_MOTOR)
+
+# Bloco 6: execução item a item no portal do Município (TransWeb e WordPress), frente D2.
+ESQUEMA += goiania_transweb.TABELAS_SQL
+TABELAS_DO_MOTOR["execucao_goiania"] = goiania_transweb.TABELAS_DO_MOTOR
+MOTORES += ("execucao_goiania",)
+TEMPO_DO_MOTOR["execucao_goiania"] = 60
+
+# Bloco 7: empresas contratadas (cadastro da Receita, QSA, CEPIM e inidôneos do TCU), frente F.
+# Só as coletas desses motores são apagadas no --somar: as tabelas cnpj_* e impedimentos guardam o
+# histórico mensal que alimenta os alertas de CNAE recente e de razão social trocada.
+from .coletores import motor_cnpj as _mcnpj  # noqa: E402
+MOTORES += ("cnpj", "impedimentos")
+TEMPO_DO_MOTOR.update({"cnpj": 150, "impedimentos": 15})
+TABELAS_DO_MOTOR["cnpj"] = [("coletas", "motor = 'cnpj'")]
+TABELAS_DO_MOTOR["impedimentos"] = [("coletas", "motor = 'impedimentos'")]
+
+
+def _motor_execucao(ctx, alvo) -> None:
+    if not alvo.portal_despesa:
+        raise RuntimeError("o alvo não tem portal_despesa configurado: execução item a item não conferida")
+    goiania_transweb.motor(ctx, goiania_transweb.carregar_portal(alvo.portal_despesa))
+PARALELO = 6           # leituras simultâneas nas vias de detalhe (só onde o motor antecipa)
 
 
 def rodar(desde: str, ate: str, *, motores=MOTORES, caminho=BANCO, hoje: date | None = None,
@@ -1129,14 +2038,20 @@ def rodar(desde: str, ate: str, *, motores=MOTORES, caminho=BANCO, hoje: date | 
             # que já leu e tirando só as chamadas que falharam, que serão refeitas.
             pncp_anterior = {"janelas": json.loads(meta_anterior["pncp_janelas"]),
                              "procura": json.loads(meta_anterior.get("pncp_procura") or "[]")}
+        rodada = _abrir_rodada(banco, motores, "somar", desde, ate)
         for nome in motores:
-            if nome == "pncp" and pncp_anterior:
+            if nome == "pncp_detalhe":           # continua de onde parou; só as falhas são refeitas
+                banco.con.execute("DELETE FROM coletas WHERE motor = 'pncp_detalhe' AND ok = 0")
+                banco.con.execute("DELETE FROM meta WHERE chave = 'motor:pncp_detalhe'")
+            elif nome == "pncp" and pncp_anterior:
                 banco.con.execute("DELETE FROM coletas WHERE motor = 'pncp' AND ok = 0")
                 banco.con.execute("DELETE FROM meta WHERE chave = 'motor:pncp'")
             else:
                 banco.apagar_motor(nome)
     else:
         banco = Banco(caminho)
+        rodada = _abrir_rodada(banco, motores, "completa", desde, ate)
+    kw.setdefault("paralelo", PARALELO)
     ctx = Contexto(banco, meses(desde, ate), hoje or date.today(), brutos=brutos, **kw)
     banco.inserir("meta", {"chave": "intervalo", "valor": f"{desde} a {ate}"})
     banco.inserir("meta", {"chave": "rodada", "valor": datetime.now(timezone.utc).isoformat(
@@ -1155,7 +2070,12 @@ def rodar(desde: str, ate: str, *, motores=MOTORES, caminho=BANCO, hoje: date | 
         "siope": lambda: motor_siope(ctx, str(alvo.ibge)[:6]),
         "transferencias": lambda: motor_transferencias(ctx, alvo.municipio, alvo.uf),
         "msc": lambda: motor_msc(ctx, alvo.siconfi_id_ente),
+        "pncp_detalhe": lambda: motor_pncp_detalhe(ctx, alvo.ibge),
     }
+    chamadas.update(_mf.chamadas(ctx, alvo))
+    chamadas["execucao_goiania"] = lambda: _motor_execucao(ctx, alvo)
+    chamadas["cnpj"] = lambda: _mcnpj.motor_cnpj(ctx)
+    chamadas["impedimentos"] = lambda: _mcnpj.motor_impedimentos(ctx)
     for nome in motores:
         inicio = time.monotonic()
         if tempo_limitado:
@@ -1168,5 +2088,32 @@ def rodar(desde: str, ate: str, *, motores=MOTORES, caminho=BANCO, hoje: date | 
         banco.inserir("meta", {"chave": f"motor:{nome}", "valor": json.dumps(
             {"segundos": round(time.monotonic() - inicio, 1), "erro": erro}, ensure_ascii=False)})
         banco.con.commit()
+        _rastrear(banco, rastreio.selar, rodada)        # o que o motor gravou ganha o selo agora
+        banco.con.commit()
         print(f"motor {nome}: {'ok' if not erro else 'QUEBROU: ' + erro}", flush=True)
+    fechada = _rastrear(banco, rastreio.fechar_rodada, rodada)
+    if fechada:
+        print(f"rastreio: rodada {rodada}, hash {fechada['hash']}, raiz {fechada['raiz']}", flush=True)
     return banco
+
+
+def _abrir_rodada(banco: Banco, motores, modo: str, desde: str, ate: str) -> int | None:
+    """Abre a rodada do rastreio (o banco inteiro é conferido antes: o que mudou fora de rodada fica
+    registrado nela)."""
+    return _rastrear(banco, rastreio.abrir_rodada, list(motores), modo,
+                     detalhe={"intervalo": f"{desde} a {ate}"})
+
+
+def _rastrear(banco: Banco, funcao, *args, **kw):
+    """Uma falha do rastreio não derruba a coleta: fica anotada no meta (``rastreio_erro``) e a
+    verificação (``python -m onisciente rastreio``) aponta o que ficou sem selo."""
+    if args and args[0] is None and funcao is not rastreio.abrir_rodada:
+        return None
+    try:
+        return funcao(banco.con, *args, **kw)
+    except Exception as e:  # noqa: BLE001
+        banco.con.rollback()
+        banco.inserir("meta", {"chave": "rastreio_erro", "valor": f"{funcao.__name__}: {type(e).__name__}: {e}"[:500]})
+        banco.con.commit()
+        print(f"rastreio: FALHOU em {funcao.__name__}: {type(e).__name__}: {e}", flush=True)
+        return None

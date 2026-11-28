@@ -1,0 +1,9 @@
+URL: https://dadosabertos-download.cgu.gov.br/PortalDaTransparencia/saida/ceis/20261129_CEIS.zip
+POST: {}
+OK: False
+HTTP: 403
+ERRO: HTTP 403
+BYTES: 111
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Error><Code>AccessDenied</Code><Message>Access Denied</Message></Error>

@@ -1,0 +1,1296 @@
+URL: https://portaldatransparencia.gov.br/download-de-dados/ceis
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 86148
+
+
+
+
+
+    <!DOCTYPE HTML>
+    <html lang="pt-br">
+    <head>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {dataLayer.push(arguments);}
+
+            function getCookie() {
+                let cookies = document.cookie.split("; ");
+                for(let i = 0; i < cookies.length; i++) {
+                    let cookie = cookies[i].split("=");
+                    if(cookie[0] === "lgpd-cookie") {
+                        return cookie[1];
+                    }
+                }
+                return "";
+            }
+
+            let cookieLgpd = getCookie();
+            let granted = "denied";
+
+            if (cookieLgpd) {
+                let consentimento = JSON.parse(cookieLgpd);
+                if (consentimento.desempenho && consentimento.desempenho === true) {
+                    granted = "granted";
+                }
+            }
+
+            gtag('consent', 'default', {
+                'ad_storage': granted,
+                'ad_user_data': granted,
+                'ad_personalization': granted,
+                'analytics_storage': granted,
+                'functionality_storage': 'denied',
+                'personalization_storage': 'denied',
+                'security_storage': 'denied',
+            });
+        </script>
+        <!-- Google Tag Manager: Portal da Transparência -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-5CT9S9B');</script>
+        <!-- End Google Tag Manager: Portal da Transparência -->
+
+        <!-- Google Tag Manager: BU Transparência -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-PWDNGXV9');</script>
+        <!-- End Google Tag Manager: BU Transparência -->
+
+
+        
+        <meta http-equiv="Content-Type"     content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+        <meta name="viewport"               content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimum-scale=1">
+        <meta name="author"                 content=""/>
+        <meta name="description" content="Faça o download dos dados do Portal da Transparência do Governo Federal, em formato aberto, e realize cruzamentos e análises específicas.">
+        <title>Ceis | Portal da Transparência</title>
+        <script>
+            function handleVerMais(id) {
+                document.querySelectorAll("ul#" + id + " li[role='presentation']").forEach((e, index) => {
+
+                    if (index >= 4 && !e.classList.contains('vermais')) {
+                        e.classList.toggle('hidden-sm')
+                        e.classList.toggle('hidden-xs')
+                        e.classList.toggle('show')
+                    }
+                    if (e.classList.contains('vermais')) {
+                        // down
+                        e.children[0].children[0].classList.toggle('hidden');
+                        // up
+                        e.children[0].children[1].classList.toggle('hidden');
+                        // span text
+                        e.children[0].children[2].textContent = e.children[0].children[0].classList.contains("hidden") ? "Ver menos filtros" : "Ver todos os filtros";
+                    }
+
+                })
+            }
+        </script>
+
+        <!-- BARRA DO TOPO DO GOVERNO -->
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+        <link
+                rel="stylesheet"
+                href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900&amp;display=swap"
+        />
+        <link rel="stylesheet"              href="https://portaldatransparencia.gov.br/static/libs/bootstrap/css/bootstrap.min.css?v=6.4.26" />
+        <link rel="stylesheet"              href="https://portaldatransparencia.gov.br/static/libs/govbr/css/core.min.css" />
+        <link rel="stylesheet"              href="https://portaldatransparencia.gov.br/static/libs/bootstrap-tour/css/bootstrap-tour.min.css" />
+
+        <!--[if IE]>
+        <style>
+            select {
+                padding: 0px 1% !important;
+                background-image: none !important;
+            }
+        </style>
+        <![endif]-->
+
+            <link rel="stylesheet" href="https://portaldatransparencia.gov.br/static/css/style-full.min.css?v=6.4.26" />
+    <link rel="canonical" href="https://portaldatransparencia.gov.br/download-de-dados/ceis" />
+    <link rel="icon" href="https://www.gov.br/cgu/++theme++padrao_govbr/favicons/favicon-32x32.png">
+    <script type="text/javascript"      src="https://portaldatransparencia.gov.br/static/libs/jquery/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript"      src="https://portaldatransparencia.gov.br/static/js/govbr/core.min.js"></script>
+    <script type="text/javascript"      src="https://portaldatransparencia.gov.br/static/libs/bootstrap-tour/js/bootstrap-tour.min.js"></script>
+    <script type="text/javascript" src="https://c41081116149.edge.sdk.awswaf.com/c41081116149/daffd43b3933/challenge.js" defer></script>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5CT9S9B"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PWDNGXV9"
+                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+
+    <main id="main" role="main">
+
+        <div class="template-base">
+            <nav class="br-skiplink" role="menubar"><a class="br-item" href="#main-content" role="menuitem" accesskey="1">Ir para o conteúdo <span aria-hidden="true">(1/4)</span> <span aria-hidden="true" class="br-tag text ml-1">1</span></a><a class="br-item" href="#header-navigation" role="menuitem" accesskey="2">Ir para o menu <span aria-hidden="true">(2/4)</span> <span aria-hidden="true" class="br-tag text ml-1">2</span></a><a class="br-item" href="#main-searchbox" role="menuitem" accesskey="3">Ir para a busca <span aria-hidden="true">(3/4)</span> <span aria-hidden="true" class="br-tag text ml-1">3</span></a><a class="br-item" href="#footer" role="menuitem" accesskey="4">Ir para o rodapé <span aria-hidden="true">(4/4)</span> <span aria-hidden="true" class="br-tag text ml-1">4</span></a>
+            </nav>
+            <header class="br-header" id="header" data-sticky="data-sticky">
+                <div class="container-lg">
+                    <div class="header-top">
+                        <div class="header-logo"><img src="/static/img/govbr-logo.png?v=6.4.26" alt="logo"/>
+                            <div class="header-sign"></div>
+                        </div>
+                        <div class="header-actions">
+                            <div class="header-links dropdown">
+                                <button class="br-button circle small" type="button" data-toggle="dropdown" aria-label="Abrir Acesso Rápido"><i class="fas fa-ellipsis-v" aria-hidden="true"></i>
+                                </button>
+                                <div class="br-list">
+                                    <div class="header">
+                                        <div class="title">Acesso Rápido</div>
+                                    </div>
+                                    <a class="br-item" href="https://www.gov.br/pt-br/orgaos-do-governo" onclick="window.open('https://www.gov.br/pt-br/orgaos-do-governo', '_self')">Órgãos de Governo</a>
+                                    <a class="br-item" href="http://www.acessoainformacao.gov.br/" onclick="window.open('http://www.acessoainformacao.gov.br/', '_self')">Acesso à Informação</a>
+                                    <a class="br-item" href="http://www4.planalto.gov.br/legislacao" onclick="window.open('http://www4.planalto.gov.br/legislacao', '_self')">Legislação</a>
+                                    <a class="br-item" href="https://www.gov.br/governodigital/pt-br/acessibilidade-digital" onclick="window.open('https://www.gov.br/governodigital/pt-br/acessibilidade-digital', '_self')">Acessibilidade</a>
+                                </div>
+                            </div><span class="br-divider vertical mx-half mx-1"></span>
+                            <div class="header-functions dropdown ml-2">
+                                <button class="br-button circle small" type="button" data-toggle="dropdown" aria-label="Acessibilidade"><i class="fas fa-th" aria-hidden="true"></i>
+                                </button>
+                                <div class="br-list">
+                                    <div class="header">
+                                        <div class="title">Acessibilidade</div>
+                                    </div>
+                                    <div class="br-item py-3 px-4 p-md-0 pt-md-2">
+                                        <a href="#" accesskey="5" id="aumentar-fonte" class="br-link">A+</a>
+                                    </div>
+                                    <div class="br-item py-3 px-4 p-md-0 pt-md-2">
+                                        <a href="#" accesskey="6" id="diminuir-fonte" class="br-link">A-</a>
+                                    </div>
+                                    <div class="br-item">
+                                        <button id="alto-contraste" class="br-button circle small" type="button" aria-label="Alto contraste"><i class="fas fa-adjust" aria-hidden="true"></i><span class="text">Alto contraste</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="header-search-trigger">
+                                    <button class="br-button circle" type="button" aria-label="Abrir Busca" data-toggle="search" data-target=".header-search"><i class="fas fa-search" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+
+                        </div>
+                    </div>
+                    <div class="header-bottom">
+                        <div class="header-menu">
+                            <div class="header-menu-trigger" id="header-navigation">
+                                <button class="br-button small circle" type="button" aria-label="Menu" data-toggle="menu" data-target="#main-navigation" id="navigation"><i class="fas fa-bars" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <div class="header-info">
+                                <div class="header-title"><a class="link-home" href="/">Portal da Transparência</a></div>
+                                <div class="header-subtitle">Controladoria-Geral da União</div>
+                            </div>
+                        </div>
+
+                                <form class="" onsubmit="buscarPortalHome(); return false;">
+                                    <div class="header-search" id="main-searchbox">
+                                        <div class="br-input has-icon">
+
+                                                <label for="searchbox">Texto da pesquisa</label>
+                                                <input id="searchbox" type="text" placeholder="O que você procura?"/>
+                                                <button class="br-button circle small" type="submit" aria-label="Pesquisar" ><i class="fas fa-search" aria-hidden="true"></i>
+                                                </button>
+
+                                        </div>
+                                        <button class="br-button circle search-close ml-1" type="button" aria-label="Fechar Busca" data-dismiss="search"><i class="fas fa-times" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </form>
+
+
+                    </div>
+                </div>
+            </header>
+
+<div class="br-menu" id="main-navigation">
+    <div class="menu-container">
+        <div class="menu-panel">
+            <div class="menu-header">
+                <div class="menu-title"><img src="/static/img/govbr-logo.png?v=6.4.26" alt="Logo"/>
+                    <a class="link-home" href="/">Portal da Transparência</a>
+
+                </div>
+                <div class="menu-close">
+                    <button id="btnMenuClose" class="br-button circle" type="button" aria-label="Fechar o menu" data-dismiss="menu" id="btn-fechar-menu"><i class="fas fa-times" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+            <nav class="menu-body" role="tree">
+                <div class="menu-folder"><a class="menu-item" href="javascript: void(0)" role="treeitem"><span class=""></span><span class="content">Consultas Detalhadas</span></a>
+                    <ul>
+                        <li><a class="menu-item" href="/beneficios/lista-consultas" onclick="window.open('/beneficios/lista-consultas', '_self')" role="treeitem"><span class="content">Benefícios ao Cidadão</span></a></li>
+                        <li><a class="menu-item" href="/cartoes/consulta" onclick="window.open('/cartoes/consulta', '_self')" role="treeitem"><span class="content">Cartões de Pagamento</span></a></li>
+                        <li><a class="menu-item" href="/contratos/consulta" onclick="window.open('/contratos/consulta', '_self')" role="treeitem"><span class="content">Contratos</span></a></li>
+                        <li><a class="menu-item" href="/convenios/consulta" onclick="window.open('/convenios/consulta', '_self')" role="treeitem"><span class="content">Convênios e Outros Acordos</span></a></li>
+                        <li><a class="menu-item" href="javascript: void(0)" role="treeitem"><span class="content">Coronavírus</span></a>
+                            <ul>
+                                <li><a class="menu-item" href="/coronavirus/despesas" onclick="window.open('/coronavirus/despesas', '_self')" role="treeitem"><span class="content">Despesas</span></a></li>
+                                <li><a class="menu-item" href="/coronavirus/transferencias" onclick="window.open('/coronavirus/transferencias', '_self')"><span class="content">Transferências</span></a></li>
+                            </ul>
+                        </li>
+                        <li><a class="menu-item" href="/despesas/lista-consultas" onclick="window.open('/despesas/lista-consultas', '_self')" role="treeitem"><span class="content">Despesas Públicas</span></a></li>
+                        <li><a class="menu-item" href="/emendas/lista-consultas" onclick="window.open('/emendas/lista-consultas', '_self')" role="treeitem"><span class="content">Emendas Parlamentares</span></a></li>
+                        <li><a class="menu-item" href="javascript: void(0)" role="treeitem"><span class="content">Imóveis Funcionais</span></a>
+                            <ul>
+                                <li><a class="menu-item" href="/imoveis-funcionais/imoveis" onclick="window.open('/imoveis-funcionais/imoveis', '_self')" role="treeitem"><span class="content">Relação de Imóveis</span></a></li>
+                                <li><a class="menu-item" href="/imoveis-funcionais/permissionarios" onclick="window.open('/imoveis-funcionais/permissionarios', '_self')"><span class="content">Relação de Ocupantes</span></a></li>
+                            </ul>
+                        </li>
+                        <li><a class="menu-item" href="/licitacoes/consulta" onclick="window.open('/licitacoes/consulta', '_self')" role="treeitem"><span class="content">Licitações</span></a></li>
+                        <li><a class="menu-item" href="/notas-fiscais/lista-consultas" onclick="window.open('/notas-fiscais/lista-consultas', '_self')" role="treeitem"><span class="content">Notas Fiscais</span></a></li>
+                        <li><a class="menu-item" href="/orcamento/lista-consultas" onclick="window.open('/orcamento/lista-consultas', '_self')" role="treeitem"><span class="content">Orçamento</span></a></li>
+                        <li><a class="menu-item" href="/pessoa-fisica/busca/lista" onclick="window.open('/pessoa-fisica/busca/lista', '_self')" role="treeitem"><span class="content">Pessoas Físicas</span></a></li>
+                        <li><a class="menu-item" href="/pessoa-juridica/busca/lista" onclick="window.open('/pessoa-juridica/busca/lista', '_self')">Pessoas Jurídicas</a></li>
+                        <li><a class="menu-item" href="/receitas/consulta" onclick="window.open('/receitas/consulta', '_self')">Receitas Públicas</a></li>
+                        <li><a class="menu-item" href="/transferencias/consulta" onclick="window.open('/transferencias/consulta', '_self')">Recursos Transferidos</a></li>
+                        <li><a class="menu-item" href="/renuncias/lista-consultas" onclick="window.open('/renuncias/lista-consultas', '_self')">Renúncias Fiscais</a></li>
+                        <li><a class="menu-item" href="/sancoes/consulta" onclick="window.open('/sancoes/consulta', '_self')">Sanções</a></li>
+                        <li><a class="menu-item" href="javascript: void(0)" role="treeitem"><span class="content">Servidores e Pensionistas</span></a>
+                            <ul>
+                                <li><a class="menu-item" href="/servidores/orgao" onclick="window.open('/servidores/orgao', '_self')" role="treeitem"><span class="content">Por Órgão</span></a></li>
+                                <li><a class="menu-item" href="/servidores/consulta" onclick="window.open('/servidores/consulta', '_self')"><span class="content">Por Servidor (vínculos)</span></a></li>
+                            </ul>
+                        </li>
+                        <li><a class="menu-item" href="/viagens/consulta" onclick="window.open('/viagens/consulta', '_self')">Viagens a Serviço</a></li>
+                    </ul>
+                </div>
+                <div class="menu-folder"><a class="menu-item" href="javascript: void(0)" role="treeitem"><span class=""></span><span class="content">Painel Gráfico</span></a>
+                    <ul>
+                        <li><a class="menu-item" href="/beneficios" onclick="window.open('/beneficios', '_self')">Benefícios ao Cidadão</a></li>
+                        <li><a class="menu-item" href="/cartoes" onclick="window.open('/cartoes', '_self')">Cartões de Pagamento</a></li>
+                        <li><a class="menu-item" href="/contratos" onclick="window.open('/contratos', '_self')">Contratos</a></li>
+                        <li><a class="menu-item" href="/convenios" onclick="window.open('/convenios', '_self')">Convênios e Outros Acordos</a></li>
+                        <li><a class="menu-item" href="/coronavirus" onclick="window.open('/coronavirus', '_self')">Coronavírus</a></li>
+                        <li><a class="menu-item" href="/despesas" onclick="window.open('/despesas', '_self')">Despesas Públicas</a></li>
+                        <li><a class="menu-item" href="javascript: void(0)" role="treeitem"><span class="content">Despesas em Políticas Públicas</span></a>
+                            <ul>
+                                <li><a class="menu-item" href="/funcoes" onclick="window.open('/funcoes', '_self')">Por Área de Atuação (Função)</a></li>
+                                <li><a class="menu-item" href="/programas-de-governo" onclick="window.open('/programas-de-governo', '_self')">Por Programas de Governo</a></li>
+                                <li><a class="menu-item" href="/programas-e-acoes/busca/lista" onclick="window.open('/programas-e-acoes/busca/lista', '_self')">Por Programas e Ações Orçamentárias</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="menu-item" href="/emendas" onclick="window.open('/emendas', '_self')">Emendas Parlamentares</a></li>
+                        <li><a class="menu-item" href="/imoveis-funcionais" onclick="window.open('/imoveis-funcionais', '_self')">Imóveis Funcionais</a></li>
+                        <li><a class="menu-item" href="/licitacoes" onclick="window.open('/licitacoes', '_self')">Licitações</a></li>
+                        <li><a class="menu-item" href="/localidades" onclick="window.open('/localidades', '_self')">Localidades</a></li>
+                        <li><a class="menu-item" href="/notas-fiscais" onclick="window.open('/notas-fiscais', '_self')">Notas Fiscais</a></li>
+                        <li><a class="menu-item" href="/orcamento" onclick="window.open('/orcamento', '_self')">Orçamento Anual</a></li>
+                        <li><a class="menu-item" href="/orgaos-superiores" onclick="window.open('/orgaos-superiores', '_self')">Órgãos</a></li>
+                        <li><a class="menu-item" href="/receitas" onclick="window.open('/receitas', '_self')">Receitas Públicas</a></li>
+                        <li><a class="menu-item" href="/transferencias" onclick="window.open('/transferencias', '_self')">Recursos Transferidos</a></li>
+                        <li><a class="menu-item" href="/renuncias" onclick="window.open('/renuncias', '_self')">Renúncias Fiscais</a></li>
+                        <li><a class="menu-item" href="/sancoes" onclick="window.open('/sancoes', '_self')">Sanções</a></li>
+                        <li><a class="menu-item" href="/servidores" onclick="window.open('/servidores', '_self')">Servidores e Pensionistas</a></li>
+                        <li><a class="menu-item" href="/viagens" onclick="window.open('/viagens', '_self')">Viagens a Serviço</a></li>
+                    </ul>
+                </div>
+                <div id="sobre-o-portal" class="menu-folder"><a class="menu-item" href="javascript: void(0)" role="treeitem"><span class=""></span><span class="content">Sobre o Portal</span></a>
+                    <ul>
+                        <li><a class="menu-item" href="/sobre/o-que-e-e-como-funciona" onclick="window.open('/sobre/o-que-e-e-como-funciona', '_self')">O que é e como Funciona</a></li>
+                        <li><a class="menu-item" href="/sobre/o-que-voce-encontra-no-portal" onclick="window.open('/sobre/o-que-voce-encontra-no-portal', '_self')">O que você encontra no Portal</a></li>
+                        <li><a class="menu-item" href="/usando-o-portal" onclick="window.open('/usando-o-portal', '_self')">Usando o Portal</a></li>
+                        <li><a class="menu-item" href="/sobre/legislacao" onclick="window.open('/sobre/legislacao', '_self')">Legislação</a></li>
+                        <li><a class="menu-item" href="javascript: void(0)" role="treeitem"><span class="content">Dados do Portal</span></a>
+                            <ul>
+                                <li><a class="menu-item" href="/origem-dos-dados" onclick="window.open('/origem-dos-dados', '_self')">Origem e atualização</a></li>
+                                <li><a class="menu-item" href="/download-de-dados" onclick="window.open('/download-de-dados', '_self')">Dados abertos</a></li>
+                                <li><a class="menu-item" href="/api-de-dados" onclick="window.open('/api-de-dados', '_self')">API de Dados</a></li>
+                                <li><a class="menu-item" href="/estatisticas" onclick="window.open('/estatisticas', '_self')">Estatísticas de acesso</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="menu-item" href="/sobre/contato" onclick="window.open('/sobre/contato', '_self')">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="menu-folder"><a class="menu-item" href="javascript: void(0)" role="treeitem"><span class=""></span><span class="content">Controle Social</span></a>
+                    <ul>
+                        <li><a class="menu-item" href="http://mbt.cgu.gov.br" onclick="window.open('http://mbt.cgu.gov.br', '_self')">Escala Brasil Transparente - Avaliação 360°</a></li>
+                        <li><a class="menu-item" href="/pagina-interna/603399-controle-social" onclick="window.open('/pagina-interna/603399-controle-social', '_self')">Controle Social</a></li>
+                        <li><a class="menu-item" href="/controle-social/o-portal-como-ferramenta" onclick="window.open('/controle-social/o-portal-como-ferramenta', '_self')">O Portal como Ferramenta</a></li>
+                        <li><a class="menu-item" href="http://www.acessoainformacao.gov.br/" onclick="window.open('http://www.acessoainformacao.gov.br/', '_self')">Acesso à Informação</a></li>
+                        <li><a class="menu-item" href="https://www.gov.br/cgu/pt-br/governo-aberto" onclick="window.open('https://www.gov.br/cgu/pt-br/governo-aberto', '_self')">Governo Aberto</a></li>
+                    </ul>
+                </div>
+                <div class="menu-folder"><a class="menu-item" href="javascript: void(0)" role="treeitem"><span class=""></span><span class="content">Aprenda Mais</span></a>
+                    <ul>
+                        <li><a class="menu-item" href="javascript: void(0)" role="treeitem"><span class="content">Entenda a Gestão Pública</span></a>
+                            <ul>
+                                <li><a class="menu-item" href="/entenda-a-gestao-publica/beneficios-ao-cidadao" onclick="window.open('/entenda-a-gestao-publica/beneficios-ao-cidadao', '_self')">Benefícios ao Cidadão</a></li>
+                                <li><a class="menu-item" href="/pagina-interna/603242-cartao-de-pagamento-do-governo-federal" onclick="window.open('/pagina-interna/603242-cartao-de-pagamento-do-governo-federal', '_self')">Cartões de Pagamento</a></li>
+                                <li><a class="menu-item" href="/entenda-a-gestao-publica/convenios-e-outros-acordos" onclick="window.open('/entenda-a-gestao-publica/convenios-e-outros-acordos', '_self')">Convênios e Outros Acordos</a></li>
+                                <li><a class="menu-item" href="/pagina-interna/605525-emendas-parlamentares" onclick="window.open('/pagina-interna/605525-emendas-parlamentares', '_self')">Emendas Parlamentares</a></li>
+                                <li><a class="menu-item" href="/pagina-interna/605524-esferas-e-poderes" onclick="window.open('/pagina-interna/605524-esferas-e-poderes', '_self')">Esferas e Poderes</a></li>
+                                <li><a class="menu-item" href="/entenda-a-gestao-publica/execucao-despesa-publica" onclick="window.open('/entenda-a-gestao-publica/execucao-despesa-publica', '_self')">Execução da Despesa Pública</a></li>
+                                <li><a class="menu-item" href="/entenda-a-gestao-publica/execucao-receita-publica" onclick="window.open('/entenda-a-gestao-publica/execucao-receita-publica', '_self')">Execução da Receita Pública</a></li>
+                                <li><a class="menu-item" href="/pagina-interna/603234-imoveis-funcionais" onclick="window.open('/pagina-interna/603234-imoveis-funcionais', '_self')">Imóveis Funcionais </a></li>
+                                <li><a class="menu-item" href="/entenda-a-gestao-publica/licitacoes-e-contratacoes" onclick="window.open('/entenda-a-gestao-publica/licitacoes-e-contratacoes', '_self')">Licitações e Contratações</a></li>
+                                <li><a class="menu-item" href="/pagina-interna/603603-notas-fiscais" onclick="window.open('/pagina-interna/603603-notas-fiscais', '_self')">Notas Fiscais</a></li>
+                                <li><a class="menu-item" href="/entenda-a-gestao-publica/orcamento-publico" onclick="window.open('/entenda-a-gestao-publica/orcamento-publico', '_self')">Orçamento Público</a></li>
+                                <li><a class="menu-item" href="/entenda-a-gestao-publica/programas-de-governo" onclick="window.open('/entenda-a-gestao-publica/programas-de-governo', '_self')">Programas de Governo</a></li>
+                                <li><a class="menu-item" href="/entenda-a-gestao-publica/renuncias-fiscais" onclick="window.open('/entenda-a-gestao-publica/renuncias-fiscais', '_self')">Renúncias Fiscais</a></li>
+                                <li><a class="menu-item" href="/entenda-a-gestao-publica/sancoes-aplicadas" onclick="window.open('/entenda-a-gestao-publica/sancoes-aplicadas', '_self')">Sanções Aplicadas</a></li>
+                                <li><a class="menu-item" href="/entenda-a-gestao-publica/servidores-publicos" onclick="window.open('/entenda-a-gestao-publica/servidores-publicos', '_self')">Servidores Públicos</a></li>
+                                <li><a class="menu-item" href="/pagina-interna/603238-gastos-diretos-x-transferencias-de-recursos" onclick="window.open('/pagina-interna/603238-gastos-diretos-x-transferencias-de-recursos', '_self')">Transferências de Recursos </a></li>
+                            </ul>
+                        </li>
+                        <li><a class="menu-item" href="/perguntas-frequentes" onclick="window.open('/perguntas-frequentes', '_self')">Perguntas Frequentes</a></li>
+                        <li><a class="menu-item" href="/glossario" onclick="window.open('/glossario', '_self')">Glossário</a></li>
+                        <li><a class="menu-item" href="/videos" onclick="window.open('/videos', '_self')">Vídeos</a></li>
+                    </ul>
+                </div>
+                <a class="menu-item divider" href="/redetransparencia" onclick="window.open('/redetransparencia', '_self')" role="treeitem"><span class="content">Rede de Transparência</span></a>
+                <a class="menu-item divider" href="/notificacoes" onclick="window.open('/notificacoes', '_self')" role="treeitem"><span class="content">Receba Notificações</span></a>
+            </nav>
+            <div class="menu-footer">
+                <div class="social-network">
+                    <div class="social-network-title">Redes Sociais</div>
+                        <div class="d-flex">
+                            <a class="br-button circle" id="btnFacebook" href="https://www.facebook.com/cguonline" aria-label="Compartilhar por Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                            <a class="br-button circle" id="btnX" href="https://www.x.com/cguonline" aria-label="Compartilhar por X">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
+                                    <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
+                                </svg>
+                            </a>
+                            <a class="br-button circle" id="btnLinkedin" href="https://br.linkedin.com/company/cguonline" aria-label="Compartilhar por Linkedin"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                            <a class="br-button circle" id="btnInstagram" href="https://www.instagram.com/cguoficial" aria-label="Compartilhar Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="menu-scrim" class="menu-scrim" data-dismiss="menu" tabindex="0"></div>
+    </div>
+</div>
+            <nav class="br-breadcrumb" id="box-identificacao-breadcrumbs">
+<section class="box-identificacao mb-4">
+    <div class="container mb-4">
+        <nav class="br-breadcrumb" aria-label="Breadcrumbs">
+            <ol class="crumb-list" role="list">
+                    <li class="crumb home"><a class="br-button circle" href="/" rel="v:url" property="v:title"><span class="sr-only">Início</span><i class="fas fa-home"></i></a></li>
+                            <li class="crumb"><i class="icon fas fa-chevron-right"></i>
+                                <a href="/download-de-dados" rel="v:url" property="v:title" title="Dados Abertos">Dados Abertos</a>
+                            </li>
+                            <li class="crumb" data-active="active"><i class="icon fas fa-chevron-right"></i>
+                                <span tabindex="0" aria-current="page" property="v:title">Planilhas</span>
+                            </li>
+            </ol>
+        </nav>
+    </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-12 col-xs-12">
+
+                    <h2 class="py-0 px-0 mx-0 mt-0 mb-2 mb-md-0 pb-0 text-left">Empresas Inidôneas e Suspensas</h2>
+                </div>
+
+                    <div class="col-md-2 col-sm-6 col-xs-6" id="divButtonHeader"></div>
+
+                <div class="col-md-2 col-sm-6 col-xs-6">
+                </div>
+
+            </div>
+        </div>
+</section>
+            </nav>
+            <div  id="main-content">
+
+                <div id="aconteudo" class="container">
+<div class="row">
+    <div class="col-xs-12">
+        <div id="alerts" class="floating-alerts">
+            
+
+
+
+        </div>
+    </div>
+</div>
+                </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-8">
+                <p style="box-sizing: border-box; margin: 0px 0px 10px; color: rgb(0, 0, 0); font-family: "Open Sans", sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;">Clique sobre o botão com a data referente aos dados disponíveis. </p><span style="box-sizing: border-box; color: rgb(0, 0, 0); font-family: "Open Sans", sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; float: none;"><span style="box-sizing: border-box; font-size: 10.5pt; font-family: Arial, sans-serif; color: black; background: white;">Será gerado o arquivo</span></span><span style="color: rgb(0, 0, 0); font-family: "Open Sans", sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;"><span> CEIS, cuja estrutura está descrita no</span></span> respectivo<span style="box-sizing: border-box; font-size: 10.5pt; font-family: Arial, sans-serif; color: black;"><span> </span><a href="https://www.portaldatransparencia.gov.br/pagina-interna/603412-dicionario-de-dados-sancoes-ceis" style="box-sizing: border-box; background-color: transparent; color: rgb(51, 122, 183); text-decoration: none;"><span style="box-sizing: border-box; color: rgb(51, 122, 183); text-decoration: none;">dicionário de dados</span></a>.<span> </span><br style="box-sizing: border-box;"></span><p style="box-sizing: border-box; margin: 0px 0px 10px; color: rgb(0, 0, 0); font-family: "Open Sans", sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial;"><span style="box-sizing: border-box; color: rgb(0, 0, 0); font-family: "Open Sans", sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;"></span></p><span style="box-sizing: border-box; color: rgb(0, 0, 0); font-family: "Open Sans", sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; background-color: rgb(255, 255, 255); float: none; display: inline !important;"></span><br class="Apple-interchange-newline"><br>
+
+                <div id="arquivo-unico" class="box-dados-ano" style="margin-top: 15px; display: none;">
+                    <p class="download-title">Dados disponíveis</p>
+                    <ul id="link-unico"></ul>
+                </div>
+
+                <div id="origens" class="box-dados-ano" style="margin-top: 15px; display: none;">
+                    <p class="download-title">Origens de dados disponíveis</p>
+                    <select id="links-origens"></select>
+                </div>
+
+                <div id="anos" class="box-dados-ano" style="margin-top: 25px; display: none;">
+                    <p class="download-title">Exercícios Disponíveis</p>
+                    <select id="links-anos"></select>
+                </div>
+
+                <div id="meses" class="box-dados-ano" style="margin-top: 15px; display: none;">
+                    <p id="titulo-meses" class="download-title">Meses Disponíveis em</p>
+                    <select id="links-meses" style="text-transform: uppercase"></select>
+                </div>
+
+                <div id="dias" class="box-dados-ano" style="margin-top: 15px; display: none;">
+                    <p id="titulo-dias" class="download-title">Dados Disponíveis em</p>
+                    <select id="links-dias"></select>
+                </div>
+
+                <div id="origens-mes" class="box-dados-ano" style="margin-top: 15px; display: none;">
+                    <p id="titulo-origens-mes" class="download-title">Tipos de planilhas disponíveis em</p>
+                    <select id="links-origens-mes"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+            </div>
+        </div>
+    </main>
+    <script>
+        const login_response = await AwsWafIntegration.fetch(login_url, {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: login_body
+        });
+    </script>
+
+    <span style="display: none">portal-web-p-deployment-865db98bd5-v5zmh</span>
+
+
+<div class="sessao-duvidas" id="duvidas">
+    <section class="container">
+        <div class="box-menu-flutuante compacto">
+            <button id="btnDuvidas"
+                              type="button"
+                              class="box-duvidas__botao-duvida"
+                              data-toggle="tooltip"
+                              data-placement="left"
+                              data-original-title="Dúvidas">
+                <i class="fa fa-question-circle"></i>
+                <span>Dúvidas?</span>
+            </button>
+            <br><span id="linha-menu-flutuante"></span><br>
+            <button id="btnMenuFlutNotific"
+                    type="button"
+                    class="box-menu-flutuante-notificacao"
+                    data-toggle="tooltip"
+                    data-placement="left"
+                    data-original-title="Receba<br>notificações"
+                    data-html="true"
+                    onclick="window.open('/notificacoes', '_self');">
+                <i class="fa fa-envelope"></i>
+                <span>Notificações</span>
+            </button>
+
+            <div id="box-menu-flutuante" class="box-duvidas__box">
+                <button id="btnFecharBox" type="button" class="br-button secondary small circle" style="position: absolute;top: 4px;right: 5px;"><i class="fa fa-times" aria-hidden="true"></i></button>
+
+                <div id="duvida-passo-1" class="passos ativo">
+                    <form class="formulario-duvida" action="#" method="post">
+                        <fieldset style="margin:0;">
+                            <legend>Formulário de dúvidas</legend>
+
+                            <label for="duvida-texto">Qual é sua dúvida?</label>
+                            <textarea id="duvida-texto" placeholder="Digite palavras-chaves da sua dúvida" cols="30" rows="10" name="duvida-texto"></textarea>
+
+                            <input id="botaoBuscar" type="submit" class="br-button primary" value="Prosseguir">
+                        </fieldset>
+                    </form>
+                </div>
+                <div id="duvida-passo-2" class="lista-definicao passos">
+
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<script src="/static/libs/jquery-validation/jquery.validate.min.js?v=6.4.26"></script>
+<script src="/static/libs/jquery-validation/jquery.validate.options.js?v=6.4.26"></script>
+<script src="/static/libs/jquery-validation/additional-methods.min.js?v=6.4.26"></script>
+
+<script>
+
+    $(function(){
+        var interrogacao = new Interrogacao();
+        interrogacao.inicializar();
+        $('[data-toggle="tooltip"]').tooltip();
+
+        var opiniao = new Opiniao();
+        opiniao.inicializar();
+    });
+
+    function abrirModalOpiniao() {
+        $("#modalOpiniao").modal("show");
+    }
+</script>
+
+
+    <div id="divCompartilhar">
+    <div class="container mb-3">
+
+            <div class="social-links">
+                <label>Compartilhe: </label>
+
+                <div id="popover__wrapper_compartilhar" class="popover__wrapper">
+                    <a href="#" onclick="Compartilhar.gerarQrcode('popover__wrapper_compartilhar','qrcode-img-compartilhar');" class="br-button circle" id="btnQrcode" data-toggle="modal">
+                        <span aria-hidden="true" class="fa fa-fw fa-qrcode mb-1"></span>
+                        <span class="sr-only">Gerar Qrcode</span>
+                    </a>
+                    <div class="br-tooltip qrcodeTooltip" place="top" timer="2000">
+                        <span class="text" style="white-space: nowrap;">Gerar QR-Code</span>
+                    </div>
+                    <div></div>
+                    <div class="popover__content" style="top: -130px;">
+                        <div id="qrcode-img-compartilhar" class="qrcode-img"></div>
+                        <a class="popover__message" id="btnBaixarQrcode" href="javascript:Compartilhar.baixarQrCode('popover__wrapper_compartilhar');">Baixar qr-code</a>
+                        </a>
+                    </div>
+                </div>
+
+                <a href="javascript:Compartilhar.copiarLink();" id="link-compartilhar" class="link-compartilhar" >
+                    <span class="fas fa-link" aria-hidden="true"></span>
+                </a>
+
+                <a href="javascript:Compartilhar.gerarLinkFacebook();" title="Facebook" class="">
+                    <span aria-hidden="true" class="fab fa-facebook-f"></span>
+                    <span class="sr-only">Compartilhe por Facebook</span>
+                </a>
+
+                <a href="javascript:Compartilhar.gerarLinkTwitter();" title="Twitter" class="">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="#1351b4" class="bi bi-twitter-x" viewBox="0 0 14 14">
+                        <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+                    </svg>
+                    <span class="sr-only">Compartilhe por Twitter</span>
+                </a>
+
+                <a href="javascript:Compartilhar.gerarLinkWhatsapp();" title="WhatsApp" class="link-whatsapp">
+                    <span aria-hidden="true" class="fab fa-whatsapp"></span>
+                    <span class="sr-only">Compartilhe por WhatsApp</span>
+                </a>
+
+                <a href="javascript:Compartilhar.gerarLinkLinkedin();" title="LinkedIn" class="">
+                    <span aria-hidden="true" class="fab fa-linkedin"></span>
+                    <span class="sr-only">Compartilhe por LinkedIn</span>
+                </a>
+
+
+
+
+            </div>
+    </div>
+    </div>
+
+    <footer class="br-footer" id="rodape">
+        <div class="container-lg">
+            <div class="logo"><img src="/static/img/govbr.png?v=6.4.26" alt="Logo governo federal"/></div>
+            <div class="br-list horizontal" data-toggle="data-toggle" data-sub="data-sub">
+                <div class="col-2"><a class="br-item header" href="javascript:void(0)">
+                    <div class="content text-down-01 text-bold text-uppercase">Principal</div>
+                    <div class="support"><i class="fas fa-angle-down" aria-hidden="true"></i>
+                    </div></a>
+                    <div class="br-list">
+                        <span class="br-divider d-md-none"></span>
+                        <a class="br-item" href="/orgaos">
+                            <div class="content">Panorama do Governo Federal</div>
+                        </a>
+                        <a class="br-item" href="/despesas">
+                            <div class="content">Despesas Públicas</div>
+                        </a>
+                        <a class="br-item" href="/funcoes">
+                            <div class="content">Áreas de Atuação do Governo</div>
+                        </a>
+                        <a class="br-item" href="/servidores">
+                            <div class="content">Servidores Públicos</div>
+                        </a>
+                        <a class="br-item" href="/download-de-dados">
+                            <div class="content">Dados Abertos</div>
+                        </a>
+                        <span class="br-divider d-md-none"></span>
+
+                    </div>
+                </div>
+                <div class="col-2"><a class="br-item header" href="javascript:void(0)">
+                        <div class="content text-down-01 text-bold text-uppercase" >Aprenda mais</div>
+                        <div class="support"><i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </div></a>
+                    <div class="br-list">
+                        <span class="br-divider d-md-none"></span>
+                        <a class="br-item" href="/perguntas-frequentes">
+                            <div class="content">Perguntas Frequentes</div>
+                        </a>
+                        <a class="br-item" href="/glossario">
+                            <div class="content">Glossário</div>
+                        </a>
+                        <a class="br-item" href="/videos">
+                            <div class="content">Vídeos</div>
+                        </a>
+                        <span class="br-divider d-md-none"></span>
+
+                    </div>
+                </div>
+                <div class="col-2"><a class="br-item header" href="javascript:void(0)">
+                        <div class="content text-down-01 text-bold text-uppercase">Controle social</div>
+                        <div class="support"><i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </div></a>
+                    <div class="br-list">
+                        <span class="br-divider d-md-none"></span>
+                        <a class="br-item" href="/controle-social/o-portal-como-ferramenta">
+                            <div class="content">O Portal como Ferramenta</div>
+                        </a>
+                        <a class="br-item" href="https://www.gov.br/acessoainformacao/pt-br">
+                            <div class="content">Acesso à Informação</div>
+                        </a>
+                        <span class="br-divider d-md-none"></span>
+
+                    </div>
+                </div>
+                <div class="col-2"><a class="br-item header" href="javascript:void(0)">
+                        <div class="content text-down-01 text-bold text-uppercase">Sobre o portal</div>
+                        <div class="support"><i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </div></a>
+                    <div class="br-list">
+                        <span class="br-divider d-md-none"></span>
+                        <a class="br-item" href="/sobre/o-que-e-e-como-funciona">
+                            <div class="content">O que é o Portal</div>
+                        </a>
+                        <a class="br-item" href="/usando-o-portal">
+                            <div class="content">Usando o Portal</div>
+                        </a>
+                        <a class="br-item" href="/sobre/legislacao">
+                            <div class="content">Legislação</div>
+                        </a>
+                        <span class="br-divider d-md-none"></span>
+
+                    </div>
+                </div>
+                <div class="col-2"><a class="br-item header" href="javascript:void(0)">
+                        <div class="content text-down-01 text-bold text-uppercase">Contato</div>
+                        <div class="support"><i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </div></a>
+                    <div class="br-list">
+                        <span class="br-divider d-md-none"></span>
+                        <a id="btnPedido" class="br-item" href="https://falabr.cgu.gov.br/web/home">
+                            <div class="content">Faça um Pedido no Fala.BR</div>
+                        </a>
+                        <a id="btnDenuncia" class="br-item" href="https://falabr.cgu.gov.br/web/login?tipo=2&redirect=/manifestacao/criar?tipo=2">
+                            <div class="content">Faça uma Denúncia</div>
+                        </a>
+                        <a id="btnConsultePedido" class="br-item" href="https://falabr.cgu.gov.br/web/login?consultarManifestacao=true&redirect=/principal">
+                            <div class="content">Consulte Pedidos</div>
+                        </a>
+                        <a id="btnFaleConosco" class="br-item" href="/sobre/contato">
+                            <div class="content">Fale Conosco</div>
+                        </a>
+                        <span class="br-divider d-md-none"></span>
+
+                    </div>
+                </div>
+            </div>
+            <div class="d-none d-sm-block">
+                <div class="row align-items-end justify-content-between py-5">
+                    <div class="col">
+                        <div class="social-network">
+                            <div class="social-network-title">Redes Sociais</div>
+                                <div class="d-flex">
+                                    <a class="br-button circle" id="btnFacebook" href="https://www.facebook.com/cguonline" aria-label="Compartilhar por Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                                    <a class="br-button circle" id="btnX" href="https://www.x.com/cguonline" aria-label="Compartilhar por X">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
+                                            <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
+                                        </svg>
+                                    </a>
+                                    <a class="br-button circle" id="btnLinkedin" href="https://br.linkedin.com/company/cguonline" aria-label="Compartilhar por Linkedin"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                                    <a class="br-button circle" id="btnInstagram" href="https://www.instagram.com/cguoficial" aria-label="Compartilhar Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col assigns text-right">
+                            <a class="logo-acesso-footer" id="btnAcessoInformacao" href="https://www.gov.br/acessoainformacao/pt-br" title="Acesse o portal sobre o acesso à informação">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 117 49" height="49" width="117" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+                                    <defs>
+                                        <style type="text/css">
+                                        .a {
+                                            font: normal bold 11px Open Sans, sans-serif;
+                                        }
+                                        </style>
+                                    </defs>
+                                    <circle cx="22" cy="23" r="22" fill="#222"></circle>
+                                    <path style="stroke:#fff;stroke-width:9;stroke-linecap:round;" d="m 22,23 v 13"></path>
+                                    <path style="stroke:#222;stroke-width:4;stroke-linejoin:round;" d="m 4,43 3,-6 4,3 z"></path>
+                                    <circle r="4.5" cy="11" cx="22" fill="#fff"></circle>
+                                    <g fill="#FFFFFF"><text x="47" y="22">
+                                            <tspan class="a" y="18">Acesso à</tspan>
+                                            <tspan class="a" x="47" y="31">Informação</tspan>
+                                        </text></g>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span class="br-divider"></span>
+        </div>
+
+    </footer>
+
+    <div id="barra-tutorial" class="br-cookiebar default barra-tutorial" tabindex="-1" style="display:none">
+        <div class="br-modal">
+            <div class="barra-tutorial" id="card0">
+                <div class="container-fluid p-1 p-2xh">
+
+                        <div class="">
+                            <div class="row">
+
+                                <div class="col-xs-4 col-md-4 col-lg-4 col-sm-4 column-4">
+                                    <button id="voltar-etapa-tutorial" class="br-button secondary" type="button"><span id="span-etapa-anterior-tutorial">Voltar</span><i id="button-etapa-anterior-tutorial" class="fas fa-chevron-left"></i></button>
+                                </div>
+                                <div class="col-xs-4 col-md-4 col-lg-4 col-sm-4">
+                                    <nav class="br-step" data-initial="1" data-type="simple" role="none">
+                                        <div id="tutorial-progress-bar" class="step-progress" role="listbox" aria-orientation="horizontal" aria-label="Lista de Opções">
+                                            <button class="step-progress-btn step-progress-btn-tutorial" role="option" aria-posinset="1" aria-setsize="8" type="button" data-tooltip-text="Novo Menu lateral"><span class="step-info">Novo Menu lateral</span></button>
+                                            <button class="step-progress-btn step-progress-btn-tutorial" role="option" aria-posinset="2" aria-setsize="8" type="button" data-tooltip-text="Novo Menu lateral"><span class="step-info">Novo Menu lateral</span></button>
+                                            <button class="step-progress-btn step-progress-btn-tutorial" role="option" aria-posinset="3" aria-setsize="8" type="button" data-tooltip-text="Carrossel de Assuntos"><span class="step-info">Carrossel de Assuntos</span></button>
+                                            <button class="step-progress-btn step-progress-btn-tutorial" role="option" aria-posinset="4" aria-setsize="8" type="button" data-tooltip-text="Cards de Consultas"><span class="step-info">Cards de Consultas</span></button>
+                                            <button class="step-progress-btn step-progress-btn-tutorial" role="option" aria-posinset="5" aria-setsize="8" type="button" data-tooltip-text="Aprenda mais"><span class="step-info">Aprenda mais</span></button>
+                                            <button class="step-progress-btn step-progress-btn-tutorial" role="option" aria-posinset="6" aria-setsize="8" type="button" data-tooltip-text="Fala BR"><span class="step-info">Fala BR</span></button>
+                                            <button class="step-progress-btn step-progress-btn-tutorial" role="option" aria-posinset="7" aria-setsize="8" type="button" data-tooltip-text="Acompanhe as atualizações"><span class="step-info">Acompanhe as atualizações</span></button>
+                                            <button class="step-progress-btn step-progress-btn-tutorial" role="option" aria-posinset="8" aria-setsize="8" type="button" data-tooltip-text="Rodapé"><span class="step-info">Rodapé</span></button>
+                                        </div>
+                                    </nav>
+                                    <div style="text-align: center">
+                                        <a class="link-pular-tutorial" id="link-pular-tutorial">Pular tutorial</a>
+                                    </div>
+
+                                </div>
+                                <div class="col-xs-4 col-md-4 col-lg-4 col-sm-4">
+                                    <div class="text-right">
+                                        <button id="proxima-etapa-tutorial" class="br-button primary" type="button"><span id="span-proxima-etapa-tutorial">Próximo</span><i  id="button-proxima-etapa-tutorial" class="fas fa-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-brasil">
+        <div class="versao-sistema-footer">
+            <span class="versao-sistema-footer-oculto">portal-da-transparencia </span>
+            <span>Versão 6.4.26</span>
+            <span>-</span>
+            <span>2026-11-25T18:23:55Z</span>
+            <div>
+            </div>
+
+            <div id="carregando" style="display: none;">
+                Carregando... <i class="fa fa-refresh girar"></i>
+            </div>
+
+<script type="text/javascript" src="/static/scripts-full.min.js?v=6.4.26"></script>
+<link rel="stylesheet" href="/static/css/consentimento.css" />
+<script>
+    $(function(){
+        let aceitarCookies = function () {
+            let cookie = {
+                essenciais: true,
+                desempenho: true
+            }
+            criarCookieLgpd(cookie);
+        };
+
+        let rejeitarCookies = function () {
+            let cookie = {
+                essenciais: true,
+                desempenho: false
+            }
+            criarCookieLgpd(cookie);
+        };
+
+        let gerenciarCookies = function () {
+            let $cookiebar = $("#cookiebar");
+            $cookiebar.removeClass("default");
+            $cookiebar.css("opacity", "1");
+
+            $("#save-btn").removeClass("d-none");
+            $("#accept-all-btn").hide();
+            $("#accept-minimal-btn").hide();
+            $("#manage-cookies-btn").hide();
+
+            const padding = window.getComputedStyle(document.querySelector("#cookiebar-container-fluid"), null)
+                .getPropertyValue('padding-top')
+                .match(/\d+/);
+
+            const height = window.innerHeight - Number(padding) * 2 - document.querySelector("#cookiebar-modal-footer").offsetHeight;
+            $("#cookiebar-modal-popup").height(height);
+        };
+
+        let fecharModalCookies = function () {
+            let $cookiebar = $("#cookiebar");
+            $cookiebar.addClass("default");
+            $cookiebar.css("opacity", "0.9");
+            $("#cookiebar-modal-popup").height("auto");
+
+            $("#save-btn").addClass("d-none");
+            $("#accept-all-btn").show();
+            $("#accept-minimal-btn").show();
+            $("#manage-cookies-btn").show();
+        };
+
+        let salvarCookies = function () {
+            let cookie = {
+                essenciais: true,
+                desempenho: $("#cookiebar-modal-body-class2-value").is(":checked")
+            }
+            criarCookieLgpd(cookie);
+            fecharModalCookies();
+        };
+
+        function criarCookieLgpd(json) {
+            var date = new Date();
+            date.setFullYear(date.getFullYear() + 1);
+            var expires = "; expires=" + date.toUTCString();
+            document.cookie = "lgpd-cookie=" + JSON.stringify(json) + expires + "; SameSite=Strict;";
+            $("#cookiebar").hide();
+
+            let granted = json.desempenho === true ? 'granted' : 'denied';
+
+            const consentMode = {
+                'ad_storage': granted,
+                'ad_user_data': granted,
+                'ad_personalization': granted,
+                'analytics_storage': granted,
+                'functionality_storage': 'denied',
+                'personalization_storage': 'denied',
+                'security_storage': 'denied',
+            };
+            gtag('consent', 'update', consentMode);
+        }
+
+        function obterCookieLgpd() {
+            let cookieArr = document.cookie.split(";");
+            for (let i = 0; i < cookieArr.length; i++) {
+                let cookiePair = cookieArr[i].split("=");
+                if ("lgpd-cookie" === cookiePair[0].trim()) {
+                    return decodeURIComponent(cookiePair[1]);
+                }
+            }
+            return null;
+        }
+
+        if (!obterCookieLgpd()) {
+            $("#cookiebar").removeClass("d-none");
+        }
+
+        $("#accept-all-btn").click(aceitarCookies);
+        $("#accept-minimal-btn").click(rejeitarCookies);
+        $("#manage-cookies-btn").click(gerenciarCookies);
+        $("#cookiebar-modal-close-btn").click(fecharModalCookies);
+        $("#save-btn").click(salvarCookies);
+    });
+</script>
+
+<div id="cookiebar" class="br-cookiebar default d-none" tabindex="-1" style="opacity: 0.9;" >
+    <div id="cookiebar-modal" class="br-modal">
+        <div class="br-card" id="card0">
+            <div id="cookiebar-container-fluid" class="container-fluid p-2xh p-1">
+                <div id="cookiebar-modal-popup" class="wrapper p-2xh">
+                    <div id="cookiebar-modal-header" class="br-modal-header entry-content">
+                        <div id="cookiebar-modal-title" class="br-modal-title">
+                            <div class="row" style="margin-left: 0">
+                                <div class="col-sm">
+                                    <h1>Respeitamos a sua Privacidade</h1>
+                                </div>
+                                <div class="col-sm-auto order-sm-last order-first">
+                                    <button id="cookiebar-modal-close-btn"
+                                        class="br-button close circle small float-right"
+                                        type="button" data-dismiss="br-modal"
+                                        aria-label="fechar">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <p id="cookiebar-modal-last-update" class="last-update">
+                            Última atualização: <span>01/10/2024</span>
+                        </p>
+                        <p id="cookiebar-modal-entry-text" class="entry-text" style="font-weight: normal">
+                            Para melhorar a sua experiência na plataforma e prover
+                            serviços personalizados, utilizamos cookies. Para mais
+                            informações, veja a nossa
+                            <a href="/termos-de-uso" target="_blank">Declaração de Cookies.</a>
+                        </p>
+                        <hr />
+                    </div>
+                    <div id="cookiebar-modal-body" class="br-modal-body">
+                        <div class="br-list main-content">
+                            <div id="cookiebar-modal-body-header" class="header">
+                                <div class="row justify-content-between flex-fill">
+                                    <div class="col-12 col-sm align-self-center mb-2">
+                                        <div id="cookiebar-modal-body-title" class="title">
+                                            <span style="font-size: var(--font-size-scale-up-02)!important; font-weight: 600!important;">Classes de cookies</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div id="cookiebar-modal-body-class1" class="br-item group-info" >
+                                <div class="row mb-1">
+                                    <div class="col-lg-11 col-sm align-self-center order-sm-1 order-4">
+                                        <span id="cookiebar-modal-body-class1-title" title="Expandir" class="text-blue-warm-vivid-70" >
+                                            Cookies estritamente necessários
+                                        </span>
+                                    </div>
+                                    <div class="col-lg-1 align-self-center order-sm-2 d-flex justify-content-end order-1" >
+                                        <span id="cookiebar-modal-body-class1-value" class="always-active float-sm-right" >
+                                            Sempre ativo
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p class="group-description"></p>
+                                        <p id="cookiebar-modal-body-class1-description" class="group-description" >
+                                            Esses cookies permitem funcionalidades essenciais,
+                                            tais como segurança, verificação de identidade e
+                                            gestão de rede. Esses cookies não podem ser
+                                            desativados em nossos sistemas. Embora sejam
+                                            necessários, você pode bloquear esses cookies
+                                            diretamente no seu navegador, mas isso pode
+                                            comprometer sua experiência e prejudicar o
+                                            funcionamento do site.
+                                        </p>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div id="cookiebar-modal-body-class2" class="br-item group-info">
+                                <div class="row mb-1">
+                                    <div class="col-lg-11 col-sm align-self-center order-sm-1 order-4" >
+                                        <span id="cookiebar-modal-body-class2-title" title="Expandir" class="text-blue-warm-vivid-70">
+                                            Cookies de desempenho</span>
+                                    </div>
+                                    <div class="col-lg-1 align-self-center order-sm-2 d-flex justify-content-end order-1">
+                                        <div class="br-checkbox">
+                                            <input id="cookiebar-modal-body-class2-value" name="check-group-1"
+                                                    type="checkbox" aria-label="Selecionar" tabindex="0"
+                                                    data-child="check-all" data-parent="check-group-1"
+                                                    data-checked-label="Selecionar" data-unchecked-label="Selecionar"/>
+                                            <label id="cookiebar-modal-body-class2-label" for="cookiebar-modal-body-class2-value" >
+                                                Selecionar
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p class="group-description"></p>
+                                        <p id="cookiebar-modal-body-class2-description" class="group-description">
+                                            Visam a melhoria do desempenho do site por meio da
+                                            coleta de dados anonimizados sobre navegação e uso dos
+                                            recursos disponibilizados. Se você não permitir a
+                                            coleta desses cookies, esses dados não serão usados
+                                            para melhoria do site.
+                                        </p>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div id="cookiebar-modal-body-class3" class="br-item">
+                                <div class="row mb-1">
+                                    <div class="col-lg-12 col-sm align-self-center order-sm-1 order-4">
+                                        <span id="cookiebar-modal-body-class3-title" title="Expandir"
+                                              class="text-blue-warm-vivid-70">Configuração de cookies no navegador</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p class="group-description"></p>
+                                        <p id="cookiebar-modal-body-class3-description" class="group-description">
+                                            Você pode desabilitá-los alterando as configurações do
+                                            seu navegador.
+                                        </p>
+                                        <div id="cookiebar-modal-body-class3-list" class="d-flex flex-column">
+                                            <div><a target="_blank" href="https://support.google.com/chrome/answer/95647?co=GENIE.Platform%3DDesktop&hl=pt-BR">Chrome</a></div>
+                                            <div><a target="_blank" href="https://support.mozilla.org/pt-BR/kb/desative-cookies-terceiros-impedir-rastreamento">Firefox</a></div>
+                                            <div><a target="_blank" href="https://support.microsoft.com/pt-br/help/4027947/microsoft-edge-delete-cookies">Microsoft Edge</a></div>
+                                            <div><a target="_blank" href="https://support.microsoft.com/pt-br/help/17442/windows-internet-explorer-delete-manage-cookies">Internet Explorer</a></div>
+                                        </div>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                        </div>
+                        <div id="cookiebar-modal-body-complementary-content" class="br-list complementary-content">
+                            <div class="br-item text-center">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <a href="/termos-de-uso" target="_blank">Termos de Uso e Aviso de Privacidade
+                                            <i class="fa fa-external-link-square" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="cookiebar-modal-footer" class="br-modal-footer actions d-flex align-items-center justify-content-end">
+                    <p id="cookiebar-modal-footer-text" class="info-text col text-justify" style="padding-right: 50px">
+                        Coletamos cookies essenciais para que o Portal da Transparência funcione corretamente e outros
+                        cookies opcionais (não-essenciais) para entender como você utiliza a plataforma e para melhorá-la.
+                        Caso concorde com essa coleta para ambas as finalidades, clique em “Aceitar todos”. Você também
+                        pode rejeitar as coletas opcionais, ao clicar em “Rejeitar cookies opcionais”. Para mais
+                        informações, clique em “Gerenciar cookies”.
+                    </p>
+                    <div id="cookiebar-modal-footer-buttons" class="d-flex col justify-content-end">
+                        <button id="manage-cookies-btn" class="br-button secondary mr-0 ml-3 block mt-1" type="button"
+                                aria-label="Gerenciar Cookies">
+                            Gerenciar cookies
+                        </button>
+                        <button id="accept-minimal-btn" class="br-button primary ml-3 block mt-1" type="button"
+                                aria-label="Rejeitar cookies">
+                            Rejeitar cookies opcionais
+                        </button>
+                        <button id="accept-all-btn" class="br-button primary ml-3 block mt-1"
+                                type="button" aria-label="acceptButtonLabel">
+                            Aceitar todos
+                        </button>
+                        <button id="save-btn" class="br-button primary d-none" type="button">
+                            Salvar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script type="text/javascript">
+    var springUrl = "/".split(";")[0];
+    var buscaUrl = "https://busca.portaldatransparencia.gov.br";
+    var limiteRegistrosBaixar = 20000;
+</script>
+<!--[if lt IE 9]>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9;">
+<![endif]-->
+<script>
+
+                function buscarPortalHome() {
+                    url = "/busca?termo=" + $("#searchbox").val();
+                    window.location.href = url;
+                }
+
+                function clearTooltip(e) {
+                    $(e.target).tooltip('destroy');
+                }
+
+                function showTooltip(elem) {
+                    var textoTooltip = "Link copiado para a área de transferência";
+                    $(elem).tooltip({
+                        placement: "bottom",
+                        title: textoTooltip,
+                        template:'<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner popover-content"></div></div>'
+                    });
+                    //new core.Tooltip(config);
+                    $(elem).focus();
+                    //console.log(elem);
+                }
+
+                var tour;
+                $(function () {
+
+                    $(window).load(function () {
+
+                        // FUNÇÃO PARA O COLLAPSE
+                        cgu.element.display();
+
+                        // FUNÇÃO PARA VALIDAR O FORMULÁRIO
+                        forms.form.validate(".form-consulta");
+                    });
+
+                    var clipboard = new ClipboardJS(".link-clipboard", {
+                        text: function (trigger) {
+                            return trigger.getAttribute("href");
+                        },
+                    });
+
+                    var linksClipboard = document.querySelectorAll('.link-clipboard,.link-compartilhar');
+
+                    for (var i = 0; i < linksClipboard.length; i++) {
+                        linksClipboard[i].addEventListener('mouseleave', clearTooltip);
+                        linksClipboard[i].addEventListener('blur', clearTooltip);
+                    }
+
+                    clipboard.on('success', function(e) {
+                        e.clearSelection();
+                        showTooltip(e.trigger);
+                    });
+
+                    cgu.criarDatePickers();
+                    cgu.iniciaTipoConteudoEspecifico();
+                    cgu.inicializarMascaraAbreviarValor();
+                    $('.carousel').bcSwipe({ threshold: 50 });
+
+                    const menuList = []
+                    for (const brMenu of window.document.querySelectorAll('.br-menu')) {
+                        menuList.push(new core.BRMenu('br-menu', brMenu))
+                    }
+                    const headerList = []
+                    for (const brHeader of window.document.querySelectorAll('.br-header')) {
+                        headerList.push(new core.BRHeader('br-header', brHeader))
+                    }
+                    const listFooter = []
+                    for (const brFooter of window.document.querySelectorAll('.br-footer')) {
+                        listFooter.push(new core.BRFooter('br-footer', brFooter))
+                    }
+                    const breadcrumbList = []
+                    for (const brBreadcrumb of window.document.querySelectorAll('.br-breadcrumb')) {
+                        breadcrumbList.push(new core.BRBreadcrumb('br-breadcrumb', brBreadcrumb))
+                    }
+                    const tooltipList = []
+                    for (const brTooltip of window.document.querySelectorAll('.br-tooltip:not(.utilities)')) {
+                        tooltipList.push(new core.BRTooltip('br-tooltip', brTooltip))
+                    }
+                    const checkboxList = []
+                    for (const brCheckbox of window.document.querySelectorAll('.br-checkbox')) {
+                        checkboxList.push(new core.BRCheckbox('br-checkbox', brCheckbox))
+                    }
+                    const stepList = []
+                    for (const brStep of window.document.querySelectorAll('.br-step')) {
+                        stepList.push(new core.BRStep('br-step', brStep))
+                    }
+                    const carouselList = []
+                    for (const brCarousel of window.document.querySelectorAll('.br-carousel')) {
+                        carouselList.push(new core.BRCarousel('br-carousel', brCarousel))
+                    }
+                    const inputList = []
+                    const accordionList = []
+                    setTimeout(()=>{
+                        for (const brAccordion of window.document.querySelectorAll('.br-accordion:not(.no-init-accordion)')) {
+                            accordionList.push(Object.create(new core.BRAccordion('br-accordion', brAccordion)))
+                        }
+                        for (const brInput of window.document.querySelectorAll('.br-input')) {
+                            inputList.push(new core.BRInput('br-input', brInput))
+                        }
+                    }, 500)
+                    const  TooltipExampleList = [];
+                    window.document.querySelectorAll('[data-tooltip-text]').forEach((TooltipExample) => {
+                        const texttooltip = TooltipExample.getAttribute('data-tooltip-text')
+                        const config = {
+                            activator: TooltipExample,
+                            place: 'top',
+                            textTooltip: texttooltip,
+                        }
+
+                        TooltipExampleList.push(new core.Tooltip(config))
+                    })
+                    const selectList = []
+                    const notFoundElement = `
+                    <div class="br-item not-found">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <p><strong>Ops!</strong> Não encontramos o que você está procurando!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `
+                    for (const brSelect of window.document.querySelectorAll('.br-select:not(.busca-especifica)')) {
+                        const brselect = new core.BRSelect('br-select', brSelect, notFoundElement)
+
+                        if(brSelect.classList.contains("anos")) {
+                            brSelect.children[1].children
+                            for (const brSelectItem of brSelect.children[1].children) {
+                                if(brSelectItem.children[0].children[0].value === "") {
+                                    brSelectItem.children[0].children[0].click()
+                                }
+                            }
+                            brSelect.addEventListener('onChange', function (e) {
+                                const wrapper = e.target.children[1]
+                                const itemsArray = Array.from(wrapper.children)
+
+                                const pickOne = itemsArray.map(item => {
+                                    const value = item.children[0].children[0].value
+
+                                    if(item.classList.contains('selected')) {
+                                        window.location.href = URL_ANO_REDIRECT + "?ano=" + value
+                                    }
+                                })
+                            })
+                        } else if(brSelect.classList.contains("alternar-grafico")) {
+                            if(brSelect.children[0].children[1].children[1].id === "alternar-grafico") {
+                                brSelect.addEventListener('onChange', function (e) {
+                                    exibirGraficoLicitantesComMaisParticipacoes();
+                                })
+                            }
+                            if(brSelect.children[0].children[1].children[1].id === "alternar-grafico-1") {
+                                brSelect.addEventListener('onChange', function (e) {
+                                    exibirGraficoLicitantesComMaisVitorias()
+                                })
+                            }
+                        }
+                        selectList.push(brselect)
+                    }
+
+                    const paginationList = []
+                    for (const brPagination of window.document.querySelectorAll('.br-pagination')) {
+                        paginationList.push(new core.BRPagination('br-pagination', brPagination))
+                    }
+
+                });
+
+            </script>
+
+
+            <!-- Inclusao dos arquivos JavaScript definidos em cada view -->
+            <script type="text/javascript" src="/static/js/portal/download-planilhas.js?v=6.4.26"></script>
+<script>
+
+    var arquivos = [];
+
+        arquivos.push({"ano" : "2026", "mes" : "11", "dia" : "27", "origem" :  "CEIS"});
+
+    var url = springUrl + "download-de-dados/ceis/";
+    var download = new DownloadPlanilhas("ceis", arquivos, "DIA", url);
+    download.criarLinksIniciais();
+</script>
+
+
+
+    <script type="text/javascript" src="/static/js/qrcode.js?v=6.4.26"></script>
+
+
+            <!-- BARRA DO TOPO DO GOVERNO -->
+
+            <!--[if (gt IE 8)|(!IE)]> -->
+            <!-- <![endif]-->
+
+    </body>
+    </html>

@@ -42,9 +42,8 @@ jobs:
               c = f"{(h.replace(day=1)-timedelta(days=1)):%Y-%m}"
               subprocess.run([sys.executable, "cadeoqueijo/run_mensal.py", c])
           PY
-      - name: Onisciente — parecer da última competência (trilha, rio, pisos, ausências)
-        run: |
-          python -m onisciente parecer || echo "::warning::Onisciente não gerou o parecer desta semana"
+      # O parecer do Onisciente saiu daqui: roda no fluxo próprio onisciente-agenda-parecer.yml,
+      # onde a falha não é engolida e fica registrada como falha do sistema.
       - name: Avaliação dominical (julgamento — modelo avançado)
         env: {ANTHROPIC_API_KEY: "${{ secrets.ANTHROPIC_API_KEY }}"}
         run: python cadeoqueijo/avaliacao_dominical.py

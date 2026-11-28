@@ -1,0 +1,574 @@
+URL: https://www.goiania.go.gov.br/html/gabinete_civil/sileg/dados/legis/2025/lo_20251022_000011510.html
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 18275
+
+<html lang="br">
+<!--  
+*************************************************************
+---------------------- NOME DA NORMA --------------------------
+**************************************************************-->
+<head>   
+	<meta charset="utf-8">
+	<title>LO Nº 11.510, DE 22 DE OUTUBRO DE 2025</title>
+	<link rel="shortcut icon" href="../web/favicon.ico" />	
+	<link type="text/css" href="../web/css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet" />	 	
+	<link type="text/css" href="../web/css/jquery.ui.datepicker.css" rel="stylesheet" />	
+	<link type="text/css" href="../web/css/estiloleis.css" rel="stylesheet" />	
+	
+	<script type="text/javascript" src="../web/js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="../web/js/jquery-ui-1.10.3.custom.js"></script>
+	<script type="text/javascript" src="../web/js/jquery.ui.datepicker-br.js"></script>
+
+	<script type="text/javascript" src="../web/js/eventos.js"></script>		
+		
+</head>
+
+
+
+
+
+
+<!--  
+*************************************************************
+---------------------- BRASÃO --------------------------
+**************************************************************--> 
+
+<div class="brasao">
+	<img src="../web/brasao_sei.png" alt="Brasão da Prefeitura de Goiânia">
+	<p>Prefeitura de Goiânia</p>
+	<p class="brasao">Secretaria Municipal da Casa Civil</p>
+</div>
+
+
+<!--  
+*************************************************************
+---------------------- EPÍGRAFE --------------------------
+**************************************************************--> 
+
+<h1 class="epigrafe">
+    <p>
+        <a target="_blank" href="https://www.goiania.go.gov.br/sistemas/sileg/asp/sileg01020r1.asp?txt_cd_leg=150407&txt_ano=2025">
+        LEI Nº 11.510, DE 22 DE OUTUBRO DE 2025
+        </a>
+    </p>
+</h1>
+
+
+<!--  
+*************************************************************
+---------------------- EMENTA DA LEI --------------------------
+**************************************************************--> 
+
+<table width=100%>
+ <tr width=100% >
+	<td width=50%>
+		
+	<a target="_blank" href="../2025/lo_20251022_000011510_men_000000111.pdf">Mensagem de veto</a>	
+	</td>
+	<td width=50%>
+	
+		<p class="ementasemitalico">
+		Dispõe sobre o Plano Plurianual para o quadriênio 2026-2029.
+		<p>
+
+		<p>
+
+	</td>
+	
+ </tr>  
+ 
+</table>
+
+<!--  
+*************************************************************
+--------------------- PREÂMBULO ------------------------------
+**************************************************************--> 
+
+<h3 class="preambulo2" >
+<b>O PREFEITO DE GOIÂNIA</b> Faço saber que a Câmara Municipal de Goiânia, Estado de Goiás, aprova e eu sanciono a seguinte Lei:
+</h3>
+
+
+
+<!--  
+*************************************************************
+--------------------- CORPO DA LEI ------------------------------
+**************************************************************-->
+<h2 class="capitulo2" >
+<a id="CAP000001"> </a>	
+<p>CAPÍTULO I</p>
+<p>DA ESTRUTURA E ORGANIZAÇÃO DO PLANO</p>
+</h2>
+
+<p class="artigo" >
+<a id="ART000001"> </a>
+Art. 1º Esta Lei institui o Plano Plurianual para o quadriênio de 2026-2029 - PPA, em cumprimento ao disposto no art. 165, § 1º, da 
+<a class="link" onclick="leiFederal()" >Constituição Federal</a> e aos arts. 136, § 1º, e 137, inciso I, da
+<a class="link" onclick="leiOrganica()" >Lei Orgânica do Município de Goiânia</a>.
+</p>
+
+<p class="artigo" >
+<a id="ART000002"> </a>
+Art. 2º O PPA constitui o principal instrumento de planejamento estratégico de
+médio prazo do Governo Municipal de Goiânia, estabelecendo, de forma integrada e
+regionalizada, os programas, ações, objetivos e metas que nortearão a gestão pública e a
+alocação de recursos no período, em consonância com a Constituição Federal, a Lei Orgânica do
+Município de Goiânia e a legislação orçamentária vigente.
+</p>
+
+		<p class="paragrafo" >
+		<a id="ART000002PAR000001"> </a>
+		§ 1º O PPA organiza a atuação governamental com base:
+		</p>
+
+		<p class="inciso" >
+		<a id="ART000002PAR000001INC000001"> </a>
+		I - na análise da realidade social, econômica, territorial, ambiental e de
+		infraestrutura do Município;
+		</p>
+
+		<p class="inciso" >
+		<a id="ART000002PAR000001INC000002"> </a>
+		II - nas diretrizes e compromissos estabelecidos no Plano de Governo 2025-2028,
+		notadamente os eixos "Cidade", "Cidadão" e "Gestão";
+		</p>
+
+		<p class="inciso" >
+		<a id="ART000002PAR000001INC000003"> </a>
+		III - na articulação e integração com os demais instrumentos de planejamento e
+		gestão municipal, especialmente a Lei de Diretrizes Orçamentárias - LDO, a Lei Orçamentária
+		Anual - LOA, o Plano Diretor do Município de Goiânia e os contratos de gestão e resultados;
+		</p>
+
+		<p class="inciso" >
+		<a id="ART000002PAR000001INC000004"> </a>
+		IV - na busca e promoção de parcerias estratégicas com o setor privado, o
+		terceiro setor, organismos multilaterais e demais entes federativos, com vistas a potencializar a
+		execução das políticas públicas, a inovação e a sustentabilidade; e
+		</p>
+
+		<p class="inciso" >
+		<a id="ART000002PAR000001INC000005"> </a>
+		V - na promoção da participação social, por meio de processos de escutas e
+		consultas públicas, mecanismos de participação eletrônica e integração dos conselhos de
+		políticas públicas, assegurando que as prioridades do PPA reflitam as demandas da população.
+		</p>
+		
+		<p class="paragrafo" >
+		<a id="ART000002PAR000002"> </a>
+		§ 2º Integram o PPA os seguintes Anexos:
+		</p>
+				
+		<p class="inciso" >
+		<a id="ART000002PAR000002INC000001"> </a>
+		I - Anexo I - Demonstrativo da Projeção de Receitas;
+		</p>
+
+		<p class="inciso" >
+		<a id="ART000002PAR000002INC000001"> </a>
+		II - Anexo II - Demonstrativo da Programação por Função de Governo;
+		</p>
+
+		<p class="inciso" >
+		<a id="ART000002PAR000002INC000001"> </a>
+		III - Anexo III - Demonstrativo de Programas, Ações e Metas; e
+		</p>
+
+		<p class="inciso" >
+		<a id="ART000002PAR000002INC000001"> </a>
+		IV - Anexo IV - Demonstrativo da Programação por Unidade Orçamentária.
+		</p>	
+						
+<p class="artigo" >
+<a id="ART000003"> </a>
+Art. 3º Os programas e ações constantes do PPA serão observados na formulação
+das Leis de Diretrizes Orçamentárias, das Leis Orçamentárias Anuais e em suas alterações.
+</p>
+		
+<p class="artigo" >
+<a id="ART000004"> </a>
+Art. 4º Para fins desta Lei, considera-se:
+</p>				
+			
+		<p class="inciso" >
+		<a id="ART000004INC000001"> </a>
+		I - programa: instrumento de organização da ação governamental que articula um
+		conjunto de ações voltadas à concretização de um objetivo comum, mensurado por indicadores
+		a serem definidos no plano estratégico, classificado em:
+		</p>
+
+
+		<p class="alinea" >
+		<a id="ART000004INC000001ALI000001"> </a>
+		a) finalístico: voltado à oferta direta de bens e serviços à sociedade, com
+		indicadores que permitam aferir resultados; e
+		</p>
+
+
+		<p class="alinea" >
+		<a id="ART000004INC000001ALI000002"> </a>
+		b) de gestão: voltado ao funcionamento da administração pública municipal,
+		englobando ações de apoio administrativo, institucional ou tecnológico necessários à
+		implementação das políticas públicas; e
+		</p>
+
+		<p class="inciso" >
+		<a id="ART000004INC000002"> </a>
+		II - ação: conjunto de operações que compõem a execução de um programa,
+		podendo ser classificada como:
+		</p>
+
+
+		<p class="alinea" >
+		<a id="ART000004INC000002ALI000001"> </a>
+		a) projeto: ação com duração determinada, cujo produto concorre para a
+		expansão ou aprimoramento das políticas públicas;
+		</p>
+
+
+		<p class="alinea" >
+		<a id="ART000004INC000002ALI000002"> </a>
+		b) atividade: de caráter contínuo e permanente, destinada à manutenção
+		sistemática do funcionamento governamental; e
+		</p>
+
+		<p class="alinea" >
+		<a id="ART000004INC000002ALI000003"> </a>
+		c) operação especial: despesa que não resulta diretamente em produtos ou
+		serviços à sociedade ou apoio administrativo, como pagamento de dívidas, cumprimento de
+		decisões judiciais ou despesas previdenciárias.
+		</p>
+
+<p class="artigo" >
+<a id="ART000005"> </a>
+Art. 5º A inclusão ou exclusão de programas constantes desta Lei, bem como as
+alterações que impliquem modificação de seus objetivos, finalidades ou público-alvo, somente
+poderão ser realizadas mediante lei específica.
+</p>	
+		
+				
+		<p class="paragrafo" >
+		<a id="ART000005PAR000001"> </a>	
+		§ 1º O Poder Executivo, mediante decreto, poderá promover ajustes nos
+		atributos dos programas e ações, limitados a:
+		</p>	
+	
+		<p class="artigo" >
+		<a id="ART000005PAR000001INC000001"> </a>
+		I - metas fiscais e financeiras;
+		</p>
+
+		<p class="artigo" >
+		<a id="ART000005PAR000001INC000002"> </a>
+		II - indicadores de desempenho e suas respectivas fontes de verificação;
+		</p>
+
+		<p class="artigo" >
+		<a id="ART000005PAR000001INC000003"> </a>
+		III - produtos e unidades de medida;
+		</p>
+
+		<p class="artigo" >
+		<a id="ART000005PAR000001INC000004"> </a>
+		IV - regionalização e recortes de equidade; e
+		</p>
+
+		<p class="artigo" >
+		<a id="ART000005PAR000001INC000005"> </a>
+		V - códigos de classificação orçamentária.
+		</p>
+		
+<p class="paragrafo" >
+<a id="ART000005PAR000002"> </a>
+§ 2º As alterações de que trata o § 1º deste artigo deverão ser precedidas de
+relatório técnico que fundamente a necessidade da modificação e demonstre sua
+compatibilidade com as diretrizes e objetivos do Plano, devendo ser publicado em meio
+eletrônico de acesso público.
+</p>
+
+
+<p class="artigo" >
+<a id="ART000006"> </a>
+Art. 6º Os valores financeiros atribuídos às ações do PPA são estimativos e não
+constituem limites para as dotações a serem fixadas nas leis orçamentárias.
+</p>
+
+
+			<h2 class="capitulo2" >
+			<a id="CAP000002"> </a>
+			<p>CAPÍTULO II</p>
+			<p>DA GESTÃO DO PLANO</p>
+			</h2>
+
+
+<p class="artigo" >
+<a id="ART000007"> </a>
+Art.7º A gestão do PPA observará os princípios da:
+</p>
+
+	<p class="inciso" >
+	<a id="ART000007INC000001"> </a>
+	I - legalidade;
+	</p>
+
+	<p class="inciso" >
+	<a id="ART000007INC000002"> </a>
+	II - publicidade;
+	</p>
+
+	<p class="inciso" >
+	<a id="ART000007INC000003"> </a>
+	III - eficiência;
+	</p>
+
+	<p class="inciso" >
+	<a id="ART000007INC000004"> </a>
+	IV - impessoalidade;
+	</p>
+	
+	<p class="inciso" >
+	<a id="ART000007INC000005"> </a>
+	V - economicidade;
+	</p>
+
+	<p class="inciso" >
+	<a id="ART000007INC000006"> </a>
+	VI - efetividade; e
+	</p>
+
+	<p class="inciso" >
+	<a id="ART000007INC000007"> </a>
+	VII - gestão orientada por resultados e evidências.
+	</p>
+
+<p class="artigo" >
+<a id="ART000008"> </a>
+Art. 8º A administração pública municipal manterá sistema de planejamento e
+gestão integrado, assegurando o monitoramento, avaliação, revisão e transparência da
+execução dos programas e ações.
+</p>
+
+
+<p class="artigo" >
+<a id="ART000009"> </a>
+Art. 9º As codificações dos programas e ações serão mantidas em todas as Leis
+Orçamentárias enquanto vigentes.
+</p>
+
+<p class="artigo" >
+<a id="ART000010"> </a>
+Art. 10. Fica o Poder Executivo autorizado a adequar por meio de decreto as
+metas fiscais e orçamentárias das ações desta Lei, em decorrência de alterações ou
+modificações efetivadas na Lei de Diretrizes Orçamentárias e na Lei Orçamentária Anual,
+podendo:
+</p>
+
+		<p class="inciso" >
+		<a id="ART000010INC000001"> </a>
+		I - alterar os órgãos ou entidades responsáveis pela execução das ações
+		orçamentárias; e
+		</p>
+
+		<p class="inciso" >
+		<a id="ART000010INC000002"> </a>
+		II - adequar a meta fiscal da ação para compatibilizá-la com alteração no seu
+		valor, produto, unidade de medida e indicador.
+		</p>
+
+
+		<p class="paragrafo" >
+		<a id="ART000010PAR000001"> </a>
+		§ 1º (VETADO).
+		</p>
+
+		<p class="paragrafo" >
+		<a id="ART000010PAR000002"> </a>
+		§ 2º (VETADO).
+		</p>
+
+<p class="artigo" >
+<a id="ART000011"> </a>
+Art. 11. Fica o Poder Executivo autorizado a abrir Créditos Adicionais de Natureza
+Suplementar por decreto, até o limite autorizado na Lei de Orçamentária Anual, para fins de
+transposição, remanejamento ou transferência de recursos, com a finalidade de suprir
+insuficiência dos Orçamentos Fiscal e da Seguridade Social, observado o art. 43, § 1º, incisos I,
+II, e III, e §§2º, 3º e 4º, da <a class="link" onclick="leiFederal()" >Lei federal nº 4.320, de 17 de março de 1964</a>.
+</p>
+
+
+
+		<h2 class="capitulo2" >
+		<a id="CAP000003"> </a>
+		<p>CAPÍTULO III</p>
+		<p>DA GESTÃO DO PLANO</p>
+		</h2>
+
+
+<p class="artigo" >
+<a id="ART000012"> </a>
+Art. 12. As alterações no Plano deverão preservar o equilíbrio orçamentário e
+financeiro, a consistência programática e o atendimento aos limites constitucionais e legais
+aplicáveis, especialmente aqueles relativos à responsabilidade fiscal e às normas de finanças
+públicas.
+</p>
+
+<p class="artigo" >
+<a id="ART000013"> </a>
+Art. 13. Será mantido e disponibilizado no sítio eletrônico da Prefeitura o sistema
+de gestão integrada e transparente, atualizado regularmente e com acesso público, contendo
+dados físicos e financeiros dos programas.
+</p>
+
+<p class="artigo" >
+<a id="ART000014"> </a>
+Art. 14. Os órgãos e entidades do Poder Executivo municipal responsáveis pelas
+ações, nos termos do Anexo III, deverão manter atualizados, durante cada exercício financeiro,
+de forma estabelecida pelo órgão central do Sistema de Planejamento e Orçamento, as
+informações referentes à execução física e financeira das ações sob sua responsabilidade.
+</p>
+
+<p class="artigo" >
+<a id="ART000015"> </a>
+Art. 15. Ações com execução restrita a um exercício ficam dispensadas de
+detalhamento no PPA, sendo priorizadas as alocações de recursos para as obras e serviços em
+andamento.
+</p>
+
+<p class="artigo" >
+<a id="ART000016"> </a>
+Art. 16. O Município poderá celebrar parcerias e convênios com entes públicos e
+privados, incluídas Parcerias Público-Privadas - PPPs, com vistas à implementação dos
+programas e ações do PPA.
+</p>
+
+<p class="artigo" >
+<a id="ART000017"> </a>
+Art. 17. (VETADO).
+</p>
+	
+
+<h2 class="capitulo2" >
+<a id="CAP000004"> </a>
+<p>CAPÍTULO IV</p>
+<p>DO MONITORAMENTO, AVALIAÇÃO E PARTICIPAÇÃO SOCIAL</p>
+</h2>
+
+<p class="artigo" >
+<a id="ART000018"> </a>
+Art. 18. O acompanhamento e o monitoramento da execução dos programas,
+ações e metas do PPA ocorrerão semestralmente, sob coordenação do órgão municipal
+fazendário, com a colaboração dos demais órgãos e entidades executoras da administração
+pública municipal.
+</p>
+
+
+
+<h2 class="capitulo2" >
+<a id="CAP000005"> </a>
+<p>CAPÍTULO V</p>
+<p> DAS DISPOSIÇÕES FINAIS</p>
+</h2>
+
+<p class="artigo" >
+<a id="ART000019"> </a>
+Art. 19. O Poder Executivo municipal divulgará, por meio eletrônico, as alterações
+no PPA e os relatórios de execução anual dos programas e metas.
+</p>
+
+<p class="artigo" >
+<a id="ART000020"> </a>
+Art. 20. Os procedimentos para operacionalização, execução, acompanhamento,
+monitoramento, avaliação e adequação do PPA serão detalhados em regulamento específico
+elaborado pelo Chefe do Poder Executivo.
+</p>
+
+<p class="artigo" >
+<a id="ART000021"> </a>
+Art. 21. (VETADO).
+</p>
+
+<p class="artigo" >
+<a id="ART000022"> </a>
+Art. 22. Esta Lei entra em vigor na data de sua publicação, produzindo efeitos a
+partir de 1º de janeiro de 2026.
+</p>
+
+
+<!--  
+*************************************************************
+---------------------------FECHO DA LEI ------------------------------
+**************************************************************--> 				
+
+<p class="artigo">
+Goiânia, 22 de outubro de 2025.
+</p>
+
+<!--  
+*************************************************************
+--------------------------- ASSINATURA ------------------------------
+**************************************************************-->
+
+<div class="assinaturaprefeitosemnegrito" >
+<p> 
+SANDRO MABEL
+</p>
+<p> 
+Prefeito de Goiânia
+</p>
+</div>
+
+<!--  
+*************************************************************
+------------------------- AUTORIA DO PROJETO DE LEI ------------------------
+**************************************************************-->
+
+<div class="autoriadoprojeto" >
+	<p> 
+	Projeto de Lei de autoria do Poder Executivo
+	</p>
+</div>
+
+ 
+
+<!--  
+*************************************************************
+------------------------- PUBLICAÇÃO NO DOM ------------------------
+**************************************************************-->
+
+<p class="diariooficial">
+    Este texto não substitui o publicado no 
+	<a target="_blank" href="https://www.goiania.go.gov.br/Download/legislacao/diariooficial/2025/do_20251022_000008649.pdf">
+	DOM 8649 de 22/10/2025.
+	</a>
+</p>
+
+
+
+<p class="comentario2" style="margin-top: 50px">
+<a id="ANE000001"> </a>	
+	<a target="_blank"  href="../2025/lo_20251022_000011510_ane_000000001.pdf">Download para os anexos do Plano Plurianual para o quadriênio 2026-2029.</a>
+</p>
+
+<p class="comentario2" style="margin-top: 75px">
+	Alterações de anexo:
+</p>
+
+
+<p class="comentario2" style="margin-top: 15px">
+	<a target="_blank"  href="../2025/lo_20251022_000011510_ane_000000002.pdf">Vide art. 18 da Lei nº 11.590, de 2026 - Lei Orçamentária Anual</a>
+</p>
+
+
+
+<br>
+<br>
+<br>
+</html>
+
+
+
+
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"8d7ec16f5090428486d4568efe8ca4fc","r":1,"spa":2}' crossorigin="anonymous"></script>

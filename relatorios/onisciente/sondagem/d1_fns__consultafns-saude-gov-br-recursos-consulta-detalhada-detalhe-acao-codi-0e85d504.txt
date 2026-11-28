@@ -1,0 +1,7 @@
+URL: https://consultafns.saude.gov.br/recursos/consulta-detalhada/detalhe-acao?codigoMunicipio=520870&ano=2025&page=1&count=10
+POST: {}
+OK: False
+HTTP: 400
+ERRO: HTTP 400
+BYTES: 1013
+

@@ -1,0 +1,56 @@
+URL: https://www10.goiania.go.gov.br/transweb/Blocks/CustomMasks/CustomMasks/MaskCurrency.js?15366
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 2084
+
+﻿// Aux javascript functions
+function OSPage_InputMaskCurrency(elementID, decimalDigits, prefixText, suffixText, decimalSep, groupSep, options, keepMask) {
+    var mask = "currency";
+    var maskOpts = $.extend(options, {
+            radixPoint: decimalSep,
+            groupSeparator: groupSep,
+            suffix: suffixText,
+            prefix: prefixText,
+            autoGroup: true,
+            autoUnmask: true,
+            removeMaskOnSubmit: true,
+            onUnMask: function (maskedValue, unmaskedValue, maskOpts) {
+                if (unmaskedValue === "" && maskOpts.nullable === true) {
+                    return unmaskedValue;
+                }
+                var processValue = maskedValue.replace(maskOpts.prefix, "");
+                processValue = processValue.replace(maskOpts.suffix, "");
+                processValue = processValue.replace(new RegExp(Inputmask.escapeRegex(maskOpts.groupSeparator), "g"), "");
+                if (maskOpts.radixPoint !== "" && processValue.indexOf(maskOpts.radixPoint) !== -1)
+                    processValue = processValue.replace(Inputmask.escapeRegex.call(this, maskOpts.radixPoint), ".");
+
+                return processValue;
+            }
+        });
+
+    if (decimalDigits != 0) {
+        maskOpts = $.extend(maskOpts, {
+                digits: decimalDigits
+            });
+    }
+    $(elementID).inputmask(mask, maskOpts);
+    if (keepMask == "False") {
+        var Base_OsPage_ClientValidate = OsPage_ClientValidate;
+        OsPage_ClientValidate = (function (srcElement, cleanOnlySrcElementErrors) {
+            $(elementID).inputmask('remove');
+            var result = Base_OsPage_ClientValidate(srcElement, cleanOnlySrcElementErrors);
+            $(elementID).inputmask(mask, maskOpts);
+            return result;
+        });
+
+        osAjaxBackend.BindBeforeSubmit(function () {
+            $(elementID).inputmask('remove');
+        });
+        osAjaxBackend.BindAfterSubmit(function () {
+            $(elementID).inputmask('remove');
+            $(elementID).inputmask(mask, maskOpts);
+        });
+    }
+}

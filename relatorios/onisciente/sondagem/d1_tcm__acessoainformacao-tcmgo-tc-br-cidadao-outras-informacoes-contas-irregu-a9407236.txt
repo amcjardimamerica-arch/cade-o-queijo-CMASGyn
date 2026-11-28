@@ -1,0 +1,7 @@
+URL: https://acessoainformacao.tcmgo.tc.br/cidadao/outras_informacoes/contas_irregulares_tcm/tipo_id=3
+POST: {}
+OK: False
+HTTP: 403
+ERRO: HTTP 403
+BYTES: 118
+

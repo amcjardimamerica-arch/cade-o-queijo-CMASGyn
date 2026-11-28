@@ -37,8 +37,10 @@ def test_adaptador_le_o_cade_o_queijo(panorama, competencia):
     codigos = {f.codigo for f in panorama.fichas}
     assert {a["codigo"] for a in verif["achados"]} <= codigos  # nenhum achado do mês se perde
     assert len(codigos) == len(panorama.fichas)                 # nenhum código repetido
-    # As fichas do Cadê o Queijo chegam marcadas; as outras são do próprio Onisciente (pisos e duas vias).
+    # As fichas do Cadê o Queijo chegam marcadas; as outras são do próprio Onisciente (pisos, duas vias e as
+    # conferências das compras da pasta no banco).
     proprias = {f.codigo for f in panorama.fiscal.fichas(competencia)} if panorama.fiscal else set()
+    proprias |= {f.codigo for f in panorama.compras.fichas(competencia)} if panorama.compras else set()
     assert all(f.origem == "cadeoqueijo" or (f.origem == "onisciente" and f.codigo in proprias)
                for f in panorama.fichas)
     assert {a["codigo"] for a in verif["achados"]} <= {f.codigo for f in panorama.fichas if f.origem == "cadeoqueijo"}
@@ -66,7 +68,7 @@ def test_competencia_sem_verificacao_falha_as_claras(tmp_path):
 
 def test_parecer_tem_as_nove_secoes_e_e_autonomo(panorama):
     pagina = html.gerar(panorama, hoje=date(2026, 11, 26))
-    for n, titulo in enumerate(["Em uma frase", "O rio", "Pisos e tetos", "As contas, uma a uma",
+    for n, titulo in enumerate(["Em uma frase", "Origem do dinheiro", "Pisos e tetos", "As contas, uma a uma",  # decisão do usuário de 28/11/2026: sem a metáfora do rio
                                 "Preço e entrega", "Prestação de contas", "Fichas", "Ausências",
                                 "Custódia"], 1):
         assert f"{n}. {titulo}" in pagina

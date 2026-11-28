@@ -26,7 +26,7 @@ jobs:
         with: { python-version: "3.12" }
       - name: Dependências mínimas
         env: { PIP_DISABLE_PIP_VERSION_CHECK: "1" }
-        run: pip install --quiet PyYAML requests pytest pypdf
+        run: pip install --quiet PyYAML requests pytest pypdf openpyxl
       - name: Mapa legal, alvo e domínios
         run: python -m onisciente verificar
       - name: Testes (inclui a regressão do Cadê o Queijo)

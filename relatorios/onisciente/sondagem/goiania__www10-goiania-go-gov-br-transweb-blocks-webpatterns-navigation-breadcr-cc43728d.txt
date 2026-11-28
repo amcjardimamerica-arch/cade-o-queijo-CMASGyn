@@ -1,0 +1,18 @@
+URL: https://www10.goiania.go.gov.br/transweb/Blocks/WebPatterns/Navigation/Breadcrumbs.en.js?60864
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 331
+
+﻿$(document).ready(function() {
+    
+    $('.phone .Breadcrumbs, .minitablet .Breadcrumbs').each(function() {
+    
+        var parent = $(this),
+            num_breadcrumbs = $(this).children('div:visible').length;
+            
+            parent.children('div:visible').eq(num_breadcrumbs-2).prevAll().remove();
+    });
+    
+});

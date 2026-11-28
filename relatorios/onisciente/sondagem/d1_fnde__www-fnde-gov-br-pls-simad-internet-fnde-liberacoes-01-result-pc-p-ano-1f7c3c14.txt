@@ -1,0 +1,7 @@
+URL: https://www.fnde.gov.br/pls/simad/internet_fnde.liberacoes_01_result_pc?p_ano=2025&p_cgc=01612092000123&p_programa=
+POST: {}
+OK: False
+HTTP: 404
+ERRO: HTTP 404
+BYTES: 369
+

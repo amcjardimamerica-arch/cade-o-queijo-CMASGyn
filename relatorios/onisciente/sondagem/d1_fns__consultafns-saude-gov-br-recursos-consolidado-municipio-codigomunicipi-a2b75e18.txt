@@ -1,0 +1,7 @@
+URL: https://consultafns.saude.gov.br/recursos/consolidado/municipio?codigoMunicipio=520870&ano=2025
+POST: {}
+OK: False
+HTTP: 404
+ERRO: HTTP 404
+BYTES: 1087
+

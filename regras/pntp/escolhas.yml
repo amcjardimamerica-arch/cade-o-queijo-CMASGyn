@@ -1,0 +1,109 @@
+# Escolhas de leitura da auditoria independente do selo (PNTP), versionadas.
+# Onde a metodologia oficial deixa margem, o Onisciente calcula duas notas: a da leitura oficial e a da leitura
+# restritiva (a mais exigente). Cada escolha diz as duas leituras, a justificativa e onde o código a aplica.
+# Regra do dono: parâmetros restritivos em todas as conferências; no parecer, alerta é indício, não acusação.
+versao: '2026-11-27'
+ciclo: 2026
+escolhas:
+  - id: E01
+    tema: Prova de cada resposta Sim
+    oficial: Só pontua o item com evidência; na nota comprovada o item sem prova vale zero e no teto vale o máximo.
+    restritiva: Igual, e a evidência só vale se o Onisciente a leu e guardou (sondagem com data), nunca a autoavaliação.
+    justificativa: A matriz exige o link com a evidência para cada Sim; o auditor independente não aceita declaração.
+    codigo: onisciente/selo/formula.py (fracao) e onisciente/selo/avaliador.py (combinar)
+  - id: E02
+    tema: Quando um critério essencial conta como atendido
+    oficial: Disponibilidade comprovada (a informação está publicada).
+    restritiva: Todos os itens aplicáveis do critério comprovados (disponível, atual, com série, gravável e filtrável).
+    justificativa: A cartilha diz que faltar essencial tira o selo, mas não diz se basta a disponibilidade; a leitura
+      exigente cobra o critério inteiro, porque informação velha ou sem série não cumpre a LC 101/2000, art. 48-A.
+    codigo: onisciente/selo/formula.py (essencial_atendido)
+  - id: E03
+    tema: Gravação de relatórios no ciclo 2026
+    oficial: Item fora da conta, com o percentual redistribuído, porque a cartilha diz que não é obrigatório no ciclo.
+    restritiva: Item na conta com o peso de 10%.
+    justificativa: A gravação em formato aberto é exigência da Lei 12.527/2011, art. 8º, § 3º, II, e não depende do ciclo.
+    codigo: onisciente/selo/formula.py (itens_da_leitura)
+  - id: E04
+    tema: O que conta como formato gravável
+    oficial: Qualquer arquivo para baixar (PDF, XLS, XLSX, CSV, ODS, JSON, XML, TXT).
+    restritiva: Só formato aberto e legível por máquina (CSV, JSON, XML, ODS, TXT); PDF sozinho não conta.
+    justificativa: Lei 12.527/2011, art. 8º, § 3º, II e III (formatos abertos, estruturados e legíveis por máquina).
+    codigo: onisciente/selo/verificadores.py (gravacao)
+  - id: E05
+    tema: Atualidade
+    oficial: Até 30 dias para dado mensal; relatórios periódicos pelo prazo legal mais 30 dias (RREO 90, RGF 150, leis
+      anuais 400).
+    restritiva: Dado de execução de receita e despesa (dimensões 3 e 4) com no máximo 7 dias; os demais como na oficial.
+    justificativa: A LC 101/2000, art. 48, § 1º, II, manda liberar a execução em tempo real; 30 dias é tolerância da
+      metodologia, não da lei.
+    codigo: onisciente/selo/verificadores.py (atualidade)
+  - id: E06
+    tema: Série histórica
+    oficial: Os três anos anteriores aparecem na página.
+    restritiva: Os três anos anteriores e o ano corrente aparecem na página.
+    justificativa: Série de três anos sem o exercício corrente esconde o dado que mais interessa.
+    codigo: onisciente/selo/verificadores.py (serie)
+  - id: E07
+    tema: Filtro de pesquisa
+    oficial: Ao menos um campo de filtro na consulta.
+    restritiva: Ao menos dois campos (por exemplo período e órgão ou credor).
+    justificativa: Um único filtro não permite achar um credor num período, que é o uso da consulta.
+    codigo: onisciente/selo/verificadores.py (filtro)
+  - id: E08
+    tema: Link presente mas vazio
+    oficial: O critério localizado na página conta como disponível.
+    restritiva: Além do termo, a página precisa ter conteúdo de dado (linhas de tabela, arquivos ou valores em reais).
+    justificativa: Um menu com o nome do dado não é o dado; cumprir só na forma é a falha mais comum dos portais.
+    codigo: onisciente/selo/verificadores.py (tem_dado)
+  - id: E09
+    tema: Página que só mostra o dado com JavaScript
+    oficial: Não verificável (o avaliador humano veria a página no navegador).
+    restritiva: Não atendido nos itens de gravação e no critério 15.4, porque o dado não chega a sistemas externos.
+    justificativa: Lei 12.527/2011, art. 8º, § 3º, III (acesso automatizado por sistemas externos).
+    codigo: onisciente/selo/verificadores.py (casca_javascript)
+  - id: E10
+    tema: Todas as unidades gestoras, inclusive os fundos
+    oficial: O critério é avaliado no portal do ente como um todo; a falta de uma unidade não decide sozinha.
+    restritiva: O critério só se cumpre se cada unidade gestora com execução comprovada em fonte nacional aparece; o
+      Fundo Municipal de Assistência Social sem empenhos, receita ou folha publicados derruba o critério.
+    justificativa: A LC 101/2000, art. 48-A, fala de todas as unidades gestoras; o fundo recebe dinheiro do FNAS.
+    codigo: onisciente/selo/provas.py (dos_relatorios, AUSENCIA_CRITERIO)
+  - id: E11
+    tema: Via externa (SICONFI, PNCP, Sileg)
+    oficial: Lei publicada no sítio oficial de legislação da Prefeitura conta como disponível; SICONFI e PNCP só
+      confirmam que o documento existe.
+    restritiva: O documento tem de estar no portal com os anexos; a via externa serve só para conferir coerência.
+    justificativa: O cidadão procura no portal; a metodologia aceita link, mas o anexo é parte do critério (11.8 a 11.10).
+    codigo: onisciente/selo/provas.py (do_mapa)
+  - id: E12
+    tema: Coerência com as fontes nacionais e transparência dos fundos e conselhos
+    oficial: Fora do índice (a metodologia não confere).
+    restritiva: Entra como dimensão própria de peso 4, a mesma de Receita e Despesa, com os critérios O.1 a O.6.
+    justificativa: Pedido do dono; ausência de dado é alerta de descumprimento e deve derrubar o padrão.
+    codigo: onisciente/selo/avaliador.py (SUPLEMENTARES)
+  - id: E13
+    tema: Arredondamento na fronteira das faixas
+    oficial: Índice com duas casas, arredondamento comum.
+    restritiva: Índice truncado em duas casas (94,999 não vira 95).
+    justificativa: O selo é um limiar; arredondar para cima concede o que não foi alcançado.
+    codigo: onisciente/selo/formula.py (indice)
+  - id: E14
+    tema: Contagem de critérios da matriz comum (54 lidos contra 53 oficiais)
+    oficial: Usa os 97 critérios lidos até a planilha oficial resolver a diferença.
+    restritiva: Usa os 97 critérios.
+    justificativa: Tirar um critério ao acaso mudaria a nota sem fonte; a diferença é menor que 0,3 ponto.
+    codigo: regras/pntp/matriz_2026.yml (pendencias)
+  - id: E15
+    tema: Amostragem e autodeclaração
+    oficial: A Atricon examina uma amostra dos portais validados pelos tribunais; o resto fica com a autoavaliação
+      conferida pelo tribunal.
+    restritiva: O Onisciente avalia todos os critérios aplicáveis, sem amostra, e não usa a autoavaliação como prova.
+    justificativa: Auditoria independente não herda a declaração de quem é auditado.
+    codigo: onisciente/selo/avaliador.py (avaliar)
+  - id: E16
+    tema: Critério sem verificação automática possível (12.4)
+    oficial: Não verificável.
+    restritiva: Não verificável, e vira pergunta no ofício.
+    justificativa: Exigências do formulário do e-SIC só se veem fazendo o pedido.
+    codigo: onisciente/selo/avaliador.py (automatico)

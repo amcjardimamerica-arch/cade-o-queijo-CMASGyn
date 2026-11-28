@@ -1,0 +1,416 @@
+URL: https://consultafns.saude.gov.br/app/pages/detalhada/controllers/pagamentoController.js
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 19505
+
+/**
+ * @desc Define um módulo anonimo dependente de app e
+ * cria o controlador PagamentoController
+ */
+define([
+        'app',
+        'pages/detalhada/services/detalhadaService',
+        'pages/dirigente/services/dirigenteService'
+],
+    /**
+     * @param app
+     * @returns {*}
+     */
+    function (app) {
+
+        /**
+         * @constructor
+         */
+        var PagamentoController = function ($scope, $log, ngTableParams, $filter, detalhadaService, appRouteService, appValidatorService, dirigenteService, utilService) {
+            this.$scope = $scope;
+            this.$log = $log;
+            this.ngTableParams = ngTableParams;
+            this.$filter = $filter;
+            this.appRouteService = appRouteService;
+            this.detalhadaService = detalhadaService;
+            this.appValidatorService = appValidatorService;
+            this.dirigenteService = dirigenteService;
+
+            if (utilService.redirectEmptyParameters(this.detalhadaService.filtroParams, 'detalhada')) {return;}
+
+            this.$scope.showGrid = false;
+            this.boxGrid = false;
+            //this.filtroData = {};
+            this.dados = [];
+            this.filtroData = this.detalhadaService.filtroParams;
+            this.dirigente = {};
+            this.totalGeral = {};
+
+            if (this.filtroData.entidade != undefined && (this.filtroData.tipoConsulta != undefined && this.filtroData.tipoConsulta.valor == 2)) {
+       		 var $this = this;
+       		 parametros = {
+       				 esferaAdministrativa: $this.filtroData.entidade.esferaAdministrativa,
+       				 codigoIbge: $this.filtroData.entidade.codigoMunicipioIBGE
+       		 };
+
+       		 var dirigenteLocal = this.dirigenteService.recuperarDirigenteLocal(parametros.esferaAdministrativa,parametros.codigoIbge);
+
+       		 if(dirigenteLocal){
+       			 $this.dirigente = dirigenteLocal;
+       		 }else{
+       			 this.dirigenteService.recuperarDirigente(parametros.esferaAdministrativa, parametros.codigoIbge).then(function(sucesso) {
+       				 $this.dirigente = sucesso.resultado;
+       				 $this.dirigente.codigoIbge = parametros.codigoIbge;
+       				 $this.dirigente.esferaAdministrativa = parametros.esferaAdministrativa;
+       				 $this.dirigente.noPresidenteConselho = $this.$filter('uppercase')($this.dirigente.noPresidenteConselho);
+       				 $this.dirigenteService.dirigentes.push($this.dirigente);
+       			 }, function(erro) {
+       				 $this.$scope.$appNotify.error(erro.data.mensagens);
+       			 });
+       		 }
+
+          }
+
+            var $this = this;
+
+            $this.pesquisar();
+        }
+
+        PagamentoController.prototype.grid = function() {
+            var $this = this;
+            return new this.ngTableParams(
+                {
+                    page: 1,
+                    count: 25,
+
+                    ano:$this.filtroData.ano.valor,
+                    mes:($this.filtroData.mes!=null ? $this.filtroData.mes.valor : ''),
+					tipoConsulta:$this.filtroData.tipoConsulta != undefined ? $this.filtroData.tipoConsulta.valor : "",
+					blocos:($this.filtroData.blocos!=null ? $this.filtroData.blocos.id : ''),
+					componentes:($this.filtroData.componentes!=null ? $this.filtroData.componentes.id : ''),
+					acoes:($this.filtroData.programaFundo!=null ? $this.filtroData.programaFundo.id : ''),
+					estado:$this.filtroData.entidade.uf,
+					municipio:$this.filtroData.entidade.codigoMunicipioIBGE,
+					repasse:($this.filtroData.repasse!=null ? $this.filtroData.repasse.valor : ''),
+					dataInicialOb : ($this.filtroData.dataInicialOb!=null ? moment($this.filtroData.dataInicialOb).format('YYYY-MM-DD') : ''),
+					dataFinalOb : ($this.filtroData.dataFinalOb!=null ? moment($this.filtroData.dataFinalOb).format('YYYY-MM-DD') : ''),
+                },
+                {
+                    getData: function($defer, params) {
+                    	var filtro = Object.assign({
+                    		nuAcaoJudicial:$this.filtroData.nuAcaoJudicial,
+                    		cpfCnpjUg:$this.filtroData.entidade.cpfCnpj,
+                    		processo:$this.filtroData.processo,
+        					proposta:$this.filtroData.proposta,
+        					portaria:$this.filtroData.portaria
+						}, params.url());
+
+                        var sucesso = function(response) {
+                            params.total(response.resultado.total);
+
+                            $this.dados = response.resultado.dados;
+
+                            if ($this.totalGeral.valorTotalGeral == undefined){
+                            	$this.dados.forEach(function(obj) {
+                            		if (obj.valorTotalGeral != null) {
+                            			$this.totalGeral = {
+                            					valorTotalGeral: obj.valorTotalGeral,
+                            					valorDescontoGeral: obj.valorDescontoTotalGeral,
+                            					valorLiquidoGeral: obj.valorLiquidoGeral
+                            			}
+                            		}
+                            	});
+                            }
+
+                            angular.forEach($this.dados, function (val, index) {
+                            	var descontoVisible = true;
+                            	var saldoVisible = true;
+                            	if(val.id.indicadorFundoAFundo != 'S'){
+                            		saldoVisible = false;
+                            	}else{
+                            		saldoVisible = true;
+                            	}
+                            	if (val.valorDescontoTotal <= 0){
+                            		descontoVisible = false;
+                            	}else{
+                            		descontoVisible = true;
+                            	}
+
+                                val['actions'] = "<button ng-click='pagamentoCtrl.detalharOrdemBancaria(" + val.numeroDocumentoSiafi + ")' class='btn btn-sm btn-primary' title='Detalhar Ordem Bancaria'><span class='app-icone-bilhete'></span></button> ";
+                                val['actions'] += "<button ng-if='"+descontoVisible+"' ng-click='pagamentoCtrl.detalharDesconto(" + val.id.processo + ")' class='btn btn-sm btn-primary' title='Detalhar Desconto'><span class='app-icone-etiqueta'></span></button> ";
+                                val['actions'] += '<button ng-if="'+saldoVisible+'" ng-click=\'pagamentoCtrl.detalharSaldo("' + val.codigoBanco + '","' + val.codigoAgencia + '","' + val.contaCorrente + '")\' class="btn btn-sm btn-primary" title="Detalhar Saldo"><span class="app-icone-buscar"></span></button> ';
+                                //val['actions'] += '<button ng-if="'+saldoVisible+'" ng-click=\'pagamentoCtrl.detalharExtratoConta("' + val.codigoBanco + '","' + val.codigoAgencia + '","' + val.contaCorrente + '")\' class="btn btn-sm btn-primary" title="Extrato Conta"><span class="app-icone-lista"></span></button> ';
+                                val['valorTotal'] = "{{'"+val.valorTotal+"' | number:2}}";
+                                val['valorDesconto'] = "{{'"+val.valorDescontoTotal+"' | number:2}}";
+                                val['valorLiquido'] = "{{'"+val.valorLiquido+"' | number:2}}";
+                                val['processo'] = "{{'"+val.id.processoFormatado+"'}}";
+                                val['nuProposta'] = "{{'"+val.id.processoEntidadePrograma.projeto.numeroSubprojeto+"'}}";
+                                val['nuPortaria'] = "{{'"+val.nuPortaria+"'}}";
+                            });
+                            
+                            var visible = true;
+                			if ($this.filtroData.tipoConsulta != undefined
+                					&& $this.filtroData.tipoConsulta.valor != 2) {
+                				visible = false;
+                			}
+                            
+                            $this.$scope.columns = [
+                                {
+                                    title: "{{ 'compParcela.label' | translate}}",
+                                    field: "competencia",
+                                    visible: true,
+                                    order: 'sortable'
+                                },
+                                {
+                                    title: "{{ 'nOB.label' | translate}}",
+                                    field: "numeroDocumentoSiafi",
+                                    visible: true,
+                                    order: 'sortable'
+                                },
+                                {
+                                    title: "{{ 'dataOB.label' | translate}}",
+                                    field: "dataCriacaoSiafi",
+                                    visible: true,
+                                    order: 'sortable'
+                                },
+                                {
+                                    title: "{{ 'tipoRepasse.label' | translate}}",
+                                    field: "tipoRepasse",
+                                    visible: true,
+                                    order: 'sortable'
+                                },
+                                {
+                                    title: "{{ 'bancoOB.label' | translate}}",
+                                    field: "codigoBanco",
+                                    visible: true,
+                                    order: 'sortable'
+                                },
+                                {
+                                    title: "{{ 'agenciaOB.label' | translate}}",
+                                    field: "codigoAgencia",
+                                    visible: true,
+                                    order: 'sortable'
+                                },
+                                {
+                                    title: "{{ 'contaOB.label' | translate}}",
+                                    field: "contaCorrente",
+                                    visible: true,
+                                    order: 'sortable'
+                                },
+                               /* {
+                                    title: "{{ 'saldoCC.label' | translate}}",
+                                    field: "saldoCC",
+                                    visible: true,
+                                    order: 'sortable'
+                                },*/
+                                {
+                                    title: "{{ 'valorTotal.label' | translate}}",
+                                    field: "valorTotal",
+                                    ngClass: "text-right",
+                                    visible: true,
+                                    order: 'sortable'
+                                },
+                                {
+                                    title: "{{ 'valorDesconto.label' | translate}}",
+                                    field: "valorDesconto",
+                                    ngClass: "text-right",
+                                    visible: true,
+                                    order: 'sortable'
+                                },
+                                {
+                                    title: "{{ 'valorLiquido.label' | translate}}",
+                                    field: "valorLiquido",
+                                    ngClass: "text-right",
+                                    visible: true,
+                                    order: 'sortable'
+                                },
+                                {
+                                    title: "{{ 'motivoRejeicao.label' | translate}}",
+                                    field: "motivoRejeicao",
+                                    visible: true,
+                                    order: 'sortable'
+                                },
+                                {
+                                    title: "{{ 'processo.label' | translate}}",
+                                    field: "processo",
+                                    visible: true,
+                                    order: 'sortable'
+                                },
+                                {
+                                    title: "{{ 'nProposta.label' | translate}}",
+                                    field: "nuProposta",
+                                    visible: true,
+                                    order: 'sortable'
+                                },
+                                {
+                                    title: "{{ 'nPortaria.label' | translate}}",
+                                    field: "nuPortaria",
+                                    visible: visible,
+                                    order: 'sortable'
+                                },
+                                {
+                                    title: "{{ 'default.grid.column.acoes.label' | translate}}",
+                                    field: "actions",
+                                    ngClass: "btn-table",
+                                    visible: true
+                                }
+                            ];
+
+                            $this.$scope.columnsFoot = [
+                                                       {
+                                                           title: "{{ 'total.label' | translate}}",
+                                                           ngColspan: 7,
+                                                           visible: true
+                                                       },
+                                                       {
+                                                           title: "{{ '"+ $this.totalGeral.valorTotalGeral +"' | number:2}}",
+                                                           visible: true
+                                                       },
+                                                       {
+                                                           title: "{{ '"+ $this.totalGeral.valorDescontoGeral +"' | number:2}}",
+                                                           visible: true
+                                                       },
+                                                       {
+                                                           title: "{{ '"+ $this.totalGeral.valorLiquidoGeral +"' | number:2}}",
+                                                           visible: true
+                                                       },
+                                                       {
+                                                           title: "",
+                                                           ngColspan : (visible) ? 5 : 4,
+                                                           visible: true
+                                                       }
+                                                   ];
+
+                            var orderedData = params.sorting() && params.orderBy().length ?
+                                    $this.$filter('orderBy')($this.dados, params.orderBy()) :
+                                    $this.dados;
+
+                            orderedData = params.filter() ?
+                                $this.$filter('filter')(orderedData, params.filter()) :
+                                orderedData;
+
+                            $defer.resolve(orderedData);
+                        }
+
+                        var erro = function(response) {
+                            $this.$scope.$appNotify.error(response.data.mensagens);
+                        }
+
+                        //$this.detalhadaService.cGet('json/detalhada-pagamento.json').then(sucesso,erro);
+                        $this.detalhadaService.recuperarPagamentos(filtro).then(sucesso,erro);
+                    }
+                });
+        }
+
+        PagamentoController.prototype.pesquisar = function() {
+
+	        this.$scope.showGrid = true;
+	        this.$scope.ngTable = this.grid();
+        }
+
+        PagamentoController.prototype.entidade = function(id) {
+            this.appRouteService.goTo('.entidade')
+        }
+
+        PagamentoController.prototype.detalharOrdemBancaria = function(ordemBancaria) {
+        	var $this = this;
+        	$this.filtroData.pagamento = $this.getPagamentoByOrdemBancaria(ordemBancaria);
+        	this.detalhadaService.filtroParams = $this.filtroData;
+            this.appRouteService.goTo('.detalharOrdemBancaria')
+        }
+
+        PagamentoController.prototype.detalharDesconto = function(processo) {
+        	var $this = this;
+            $this.filtroData.pagamento = $this.getPagamentoByNumeroProcesso(processo);
+        	this.detalhadaService.filtroParams = $this.filtroData;
+        	this.appRouteService.goTo('.detalharDesconto')
+        }
+
+        PagamentoController.prototype.detalharSaldo = function(banco, agencia, conta) {
+
+        	var $this = this;
+        	$this.filtroData.pagamento = $this.getPagamentoByContaCorrente(banco, agencia, conta);
+
+        	if ($this.filtroData.geral) {
+        		$this.filtroData.rotaOrigem = 'detalhada-multisselecao.acao.pagamento';
+        	} else {
+        		$this.filtroData.rotaOrigem = 'detalhada.acao.pagamento';
+        	}
+
+        	this.detalhadaService.filtroParams = $this.filtroData;
+            this.appRouteService.goTo('.detalharSaldo')
+        }
+        
+        PagamentoController.prototype.detalharExtratoConta = function(banco, agencia, conta) {
+
+        	var $this = this;
+        	$this.filtroData.pagamento = $this.getPagamentoByContaCorrente(banco, agencia, conta);
+
+        	if ($this.filtroData.geral) {
+        		$this.filtroData.rotaOrigem = 'detalhada-multisselecao.acao.pagamento';
+        	} else {
+        		$this.filtroData.rotaOrigem = 'detalhada.acao.pagamento';
+        	}
+
+        	this.detalhadaService.filtroParams = $this.filtroData;
+            this.appRouteService.goTo('.detalharExtratoConta')
+        }
+
+        PagamentoController.prototype.voltar = function(id) {
+
+        	if (this.filtroData.geral) {
+        		this.appRouteService.goTo('detalhada-multisselecao.acao');
+        	} else {
+        		this.appRouteService.goTo('detalhada.acao');
+        	}
+        }
+
+        PagamentoController.prototype.getPagamentoByOrdemBancaria = function(ordemBancaria) {
+
+			var result = null;
+			this.dados.forEach(function(obj) {
+				if (obj.numeroDocumentoSiafi == ordemBancaria) {
+					result = obj;
+				}
+			});
+			return result;
+		}
+        
+        PagamentoController.prototype.getPagamentoByNumeroProcesso = function(processo) {
+
+			var result = null;
+			this.dados.forEach(function(obj) {
+				if (obj.id.processo == processo) {
+					result = obj;
+				}
+			});
+			return result;
+		}
+
+        PagamentoController.prototype.getPagamentoByContaCorrente = function(banco, agencia, conta) {
+
+			var result = null;
+			this.dados.forEach(function(obj) {
+				if (obj.codigoBanco == banco && obj.codigoAgencia == agencia && obj.contaCorrente == conta) {
+					result = obj;
+				}
+			});
+			return result;
+		}
+
+        PagamentoController.prototype.imprimir = function() {
+			window.print();
+		}
+
+        /**
+         * @desc
+         * Dependency Injection
+         */
+        PagamentoController.$inject = ['$scope', '$log', 'ngTableParams', '$filter', 'detalhadaService', 'appRouteService', 'appValidatorService','dirigenteService', 'utilService'];
+
+        /**
+         * @desc Criação do controlador
+         * @type {boolean}
+         */
+        app.controller('pagamentoController', PagamentoController);
+
+        return app;
+    }
+);

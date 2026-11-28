@@ -51,23 +51,23 @@ def _linhas_do_rio(r: Rio, maximo: int | None) -> list[tuple[str, Esfera, float,
     for esf, lista in sorted(por_esfera.items(), key=lambda kv: -sum(a.valor for a in kv[1])):
         soma = sum(a.valor for a in lista)
         vinc = sum(a.valor for a in lista if a.vinculado)
-        out.append((f"Demais afluentes ({len(lista)}), {esf.value}", esf, soma,
+        out.append((f"Demais receitas ({len(lista)}), {esf.value}", esf, soma,
                     f"vinculada {_curto(vinc)} · livre ou sem fonte {_curto(soma - vinc)}", False))
     return sorted(out, key=lambda x: -x[2])
 
 
 def rio(r: Rio, largura: int = 760, *, rotulo: str = "no mês", maximo: int | None = None) -> str:
-    """Afluentes descendo até o leito: espessura pelo valor, cor pela esfera."""
+    """A receita por espécie convergindo no total: espessura pelo valor, cor pela esfera."""
     afl = _linhas_do_rio(r, maximo)
     total = sum(x[2] for x in afl)
     if not afl or total <= 0:
-        return ('<p class="vazio">Sem afluente publicado para a competência: o rio não pode ser '
-                'desenhado.</p>')
+        return ('<p class="vazio">Sem receita publicada para a competência: a origem do dinheiro não pode '
+                'ser desenhada.</p>')
     linha_h = 34
     altura = 60 + linha_h * len(afl) + 70
     x_rotulo, x_ini, x_leito = 12, 300, largura - 150
     max_esp = 26.0
-    partes = [f'<svg viewBox="0 0 {largura} {altura}" role="img" aria-label="Rio de afluentes" '
+    partes = [f'<svg viewBox="0 0 {largura} {altura}" role="img" aria-label="Receita por espécie" '
               f'xmlns="http://www.w3.org/2000/svg" class="grafico">']
     leito_y0 = 40
     leito_h = linha_h * len(afl)

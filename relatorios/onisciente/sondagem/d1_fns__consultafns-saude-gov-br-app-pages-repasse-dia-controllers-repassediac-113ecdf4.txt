@@ -1,0 +1,254 @@
+URL: https://consultafns.saude.gov.br/app/pages/repasse-dia/controllers/repasseDiaController.js
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 6778
+
+/**
+ * @desc Define um módulo anonimo dependente de app e
+ * cria o controlador repasseDiaController
+ */
+define([
+		'app',
+		'pages/repasse-dia/services/repasseDiaService',
+		'pages/mes/services/mesService',
+		'pages/dia/services/diaService',
+		'pages/ano/services/anoService'
+],
+	/**
+	 * @param app
+	 * @returns {*}
+	 */
+	function (app) {
+
+		/**
+		 * @constructor
+		 */
+		var RepasseDiaController = function ($scope, $log, ngTableParams, $filter, repasseDiaService,
+			appRouteService, appValidatorService, DiaService, MesService, AnoService) {
+
+			this.$scope = $scope;
+			this.$log = $log;
+			this.ngTableParams = ngTableParams;
+			this.$filter = $filter;
+			this.appRouteService = appRouteService;
+			this.appValidatorService = appValidatorService;
+
+			this.repasseDiaService = repasseDiaService;
+			this.mesService = MesService;
+			this.anoService = AnoService;
+			this.diaService = DiaService;
+			this.minDtPagamento = new Date("1998", "00", "01");
+			this.maxDtPagamento = null;
+
+			var $this = this;
+
+			this.getAno = function(ano) {
+
+				var result = null;
+				$this.anos.forEach(function(obj) {
+					if (obj.valor == ano) {
+						result = obj;
+					}
+				});
+				return result;
+			}
+
+			this.getMes = function(mes) {
+
+				var result = null;
+				$this.meses.forEach(function(obj) {
+					if (obj.valor == mes) {
+						result = obj;
+					}
+				});
+				return result;
+			}
+
+			this.data = null;
+
+			this.filtro = {
+				ano: null,
+				mes: null,
+				dia: null
+			};
+
+			this.pesquisa = {
+				//ano: this.data != null ? $this.getAno(moment(this.data, "DD/MM/YYYY").format("YYYY")) : null
+			};
+			this.dataMaxPagamento = null;
+
+			this.mesService.listar().then(function(sucesso) {
+				$this.meses = sucesso.resultado;
+			}, function(erro) {
+				$this.$scope.$appNotify.error(erro);
+			});
+
+			this.anoService.getLista().then(function(sucesso) {
+				$this.anos = sucesso.resultado;
+			}, function(erro) {
+				$this.$scope.$appNotify.error(erro);
+			});
+
+			$this.$scope.$watch("repasseDiaCtrl.pesquisa.data", function(nv, ov){
+				if (undefined != nv) {
+					$this.atualizarDiaMesAno();
+				} else {
+					$this.pesquisa.dia = null;
+				}
+			});
+
+			//Modificar para promisse.all
+			setTimeout(function(){ $this.pesquisaInicial(); }, 400);
+		}
+
+		RepasseDiaController.prototype.pesquisaInicial = function() {
+
+			var $this = this;
+
+			this.repasseDiaService.ultimoPagamentoDia().then(function(sucesso) {
+
+				$this.dataMaxPagamento = moment(sucesso.resultado, "DD/MM/YYYY").format("YYYY/MM/DD");
+				$this.maxDtPagamento = new Date($this.dataMaxPagamento);
+
+				$this.filtro.dia = moment(sucesso.resultado, "DD/MM/YYYY").format("DD");
+				$this.filtro.ano = $this.getAno(moment(sucesso.resultado, "DD/MM/YYYY").format("YYYY"));
+				$this.filtro.mes = $this.getMes(moment(sucesso.resultado, "DD/MM/YYYY").format("MM"));
+
+				$this.boxGrid = true;
+
+				$this.filtrar();
+
+			}, function(erro) {
+				$this.$scope.$appNotify.error(erro);
+			});
+		}
+		RepasseDiaController.prototype.atualizarDiaMesAno = function() {
+
+			if (this.pesquisa.data != null) {
+				this.pesquisa.ano = this.getAno(moment(this.pesquisa.data).format("YYYY"));
+				this.pesquisa.mes = this.getMes(moment(this.pesquisa.data).format("MM"));
+				this.pesquisa.dia = moment(this.pesquisa.data).format("DD");
+
+				this.filtro.ano = this.pesquisa.ano;
+				this.filtro.mes = this.pesquisa.mes;
+				this.filtro.dia = this.pesquisa.dia;
+			}
+		}
+
+		RepasseDiaController.prototype.limparDia = function() {
+
+			this.pesquisa.data = null;
+			this.pesquisa.dia = null;
+		}
+		RepasseDiaController.prototype.limpar = function() {
+
+			this.pesquisa = {};
+			this.boxGrid = false;
+		}
+
+		RepasseDiaController.prototype.filtrar = function() {
+
+			var $this = this;
+
+			this.atualizarDiaMesAno();
+
+			var filtro = {
+				ano: $this.filtro.ano != undefined ? $this.filtro.ano.valor : "",
+				mes: $this.filtro.mes != undefined ? $this.filtro.mes.valor : "",
+				dia: $this.filtro.dia != undefined ? $this.filtro.dia : ""
+			};
+
+			$this.repasseDiaService.consultar(filtro).then(function(sucesso) {
+
+				$this.repasseDia = sucesso.resultado;
+
+				$this.repasseDia["vlTotal"] = 0;
+				$this.repasseDia["qtdProcesso"] = 0;
+				angular.forEach($this.repasseDia, function (val) {
+					$this.repasseDia["vlTotal"] += val.vlTotal;
+					$this.repasseDia["qtdProcesso"] += val.qtdProcesso;
+				});
+			}, function(erro) {
+				$this.$scope.$appNotify.error(erro);
+			});
+		}
+
+		RepasseDiaController.prototype.pesquisar = function() {
+
+			var $this = this;
+			$this.appValidatorService.validate($this.$scope).success(function(sucesso) {
+				$this.boxGrid = true;
+
+				$this.filtro.ano = $this.pesquisa.ano;
+				$this.filtro.mes = $this.pesquisa.mes;
+				$this.filtro.dia = $this.pesquisa.dia;
+
+				$this.filtrar();
+			}).error(function(erro){
+				$this.$scope.$appNotify.error( $this.$filter('translate')('mensagem.obrigatorio.erro') );
+			})
+		}
+
+		RepasseDiaController.prototype.detalharNovaEstrutura = function(objectParam) {
+
+			console.info("RepasseDiaController.prototype.detalharNovaEstrutura", objectParam);
+
+			objectParam["ano"] = this.filtro.ano;
+			objectParam["mes"] = this.filtro.mes;
+			objectParam["dia"] = this.filtro.dia;
+
+			this.repasseDiaService.detalharParams = objectParam;
+
+			this.appRouteService.goTo('repasse-dia.detalhar-nova-estrutura');
+		}
+
+		RepasseDiaController.prototype.detalhar = function(objectParam, tipoDetalhamento, descricaoBloco) {
+
+			/**
+			 * Essa condição foi adicionada para atender os prestadores na listagem do custeio.
+			 */
+			if ("CUSTEIO" == tipoDetalhamento && descricaoBloco != undefined && descricaoBloco.match(/PRESTADOR/)) {
+				tipoDetalhamento = 'PRESTADOR';
+			}
+
+			var params = {
+					ano: this.filtro.ano,
+					mes: this.filtro.mes,
+					dia: this.filtro.dia,
+					codigoBloco: objectParam.codigoBloco,
+					codigoProgramaFundo: objectParam.codigoProgramaFundo,
+					competenciaSemFormatacao: objectParam.competenciaSemFormatacao,
+					competencia: objectParam.competencia,
+					descricaoProgramaFundo: objectParam.descricaoProgramaFundo,
+					formaRepasse: objectParam.formaRepasse,
+					tipoDetalhamento: tipoDetalhamento,
+					valorTotalFormatado: objectParam.valorTotalFormatado
+			};
+
+			this.repasseDiaService.filtroParams = params;
+
+			this.appRouteService.goTo('repasse-dia.detalhar');
+		}
+
+		RepasseDiaController.prototype.imprimir = function() {
+			window.print();
+		}
+
+		/**
+		 * @desc
+		 * Dependency Injection
+		 */
+		RepasseDiaController.$inject = ['$scope', '$log', 'ngTableParams', '$filter', 'repasseDiaService',
+			'appRouteService', 'appValidatorService', 'diaService', 'mesService', 'anoService'];
+
+		/**
+		 * @desc Criação do controlador
+		 * @type {boolean}
+		 */
+		app.controller('repasseDiaController', RepasseDiaController);
+
+		return app;
+	}
+);

@@ -1,0 +1,187 @@
+URL: https://www10.goiania.go.gov.br/transweb/Blocks/TransWeb/CommonFlow/Contraste.js?67404
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 4839
+
+﻿jQuery(window).load(function (e) {
+
+
+    jQuery('.parent').addClass('dropdown');
+    jQuery('.parent').addClass('toggled');
+    jQuery('.parent > a').addClass('dropdown-toggle');
+    jQuery('.parent > a').attr('data-toggle', 'dropdown');
+    jQuery('.parent > a').attr('data-target', '#');
+    jQuery('.parent > a').append('<b class="caret"></b>');
+    jQuery('.parent > ul').addClass('dropdown-menu');
+    jQuery('.nav-child .parent').removeClass('dropdown');
+    jQuery('.nav-child .parent .caret').css('display', 'none');
+    jQuery('.nav-child .parent').addClass('dropdown-submenu');
+    jQuery('.nav').css('display', 'block');
+
+
+    jQuery('.menuMobile').click(function () {
+        jQuery('.dropMenuMobile').fadeToggle('fast');
+    });
+
+    jQuery('.contentPreRodape div ul li a .caret ').css('display', 'none');
+
+
+
+
+});
+
+/*
+jQuery(document).ready(function () {
+    document.getElementById("acessibilidade").accessKey = "1";
+//
+//    document.getElementById("cgeLogo").accessKey = "2";
+//
+    document.getElementById("inverterCores").accessKey = "3";
+//
+    document.getElementById("jfontsize-minus").accessKey = "4";
+//
+    document.getElementById("jfontsize-plus").accessKey = "5";
+
+
+    jQuery(document).keypress(function (e) {
+//        alert("code: " + e.keyCode + "Wich: " + e.wich);
+//
+//       Alt + 1
+        if (e.keyCode == 9786) {
+//            document.getElementById("acessibilidade").accessKey = "1";
+            document.location.href = "http://localhost/portaldatransparencia/acessibilidade";
+
+        }
+//       Alt + 2
+        if (e.keyCode == 9787) {
+//            document.getElementById("acessibilidade").accessKey = "1";
+            document.location.href = "http://localhost/portaldatransparencia/";
+        }
+        //       Alt + 3
+        if (e.keyCode == 9829) {
+            jQuery('#inverterCores').click();
+        }
+        //       Alt + 4
+        if (e.keyCode == 9830) {
+            jQuery('#jfontsize-minus').click();
+        }
+        //       Alt + 5
+        if (e.keyCode == 9827) {
+            jQuery('#jfontsize-plus').click();
+        }
+
+
+        if (e.keyCode == 9824) {
+            jQuery('input#mod-search-searchword').focus();
+        }
+
+
+    })
+
+
+
+
+});
+
+
+*/
+
+
+jQuery(window).load(function () {
+    
+    
+     (function () {
+        var Contrast = {
+            storage: 'contrastState',
+            cssClass: 'contrast',
+            currentState: null,
+            check: checkContrast,
+            getState: getContrastState,
+            setState: setContrastState,
+            toogle: toogleContrast,
+            updateView: updateViewContrast
+        };
+
+        window.toggleContrast = function () {
+            Contrast.toogle();
+        };
+
+        Contrast.check();
+
+        function checkContrast() {
+            this.updateView();
+        }
+
+        function getContrastState() {
+            return localStorage.getItem(this.storage) === 'true';
+        }
+
+        function setContrastState(state) {
+            localStorage.setItem(this.storage, '' + state);
+            this.currentState = state;
+            this.updateView();
+        }
+
+        function updateViewContrast() {
+            var body = document.body;
+
+            if (this.currentState === null)
+                this.currentState = this.getState();
+
+            if (this.currentState)
+                body.classList.add(this.cssClass);
+            else
+                body.classList.remove(this.cssClass);
+        }
+
+        function toogleContrast() {
+            this.setState(!this.currentState);
+        }
+    })();
+    
+    
+    
+    
+
+    jQuery('#inverterCores').click(function () {
+        //inverter_cores();
+    });
+    var inverter = true;
+    function inverter_cores() {
+        if (inverter == true) {
+            jQuery('*').css('color', 'white');
+            jQuery('body').css('background-image', 'none');
+            jQuery('body').css('background-color', 'black');
+            jQuery('div').css('background-color', 'black');
+            jQuery('.container-fluid').css('background', 'none');
+            jQuery('.container').css('background', 'none');
+            jQuery('li').css('background', 'none');
+            jQuery('ul').css('background', 'none');
+            jQuery('.box').css('background', 'none');
+            jQuery('.box').css('background-color', 'black');
+            jQuery('.ui-accordion-header').css('background', 'none');
+            jQuery('select').css('color', 'black');
+            jQuery('option').css('color', 'black');
+            jQuery(':text').css('color', 'black');
+            jQuery('img').addClass("inverter_imagem");
+            inverter = false;
+        } else {
+            location.reload();
+            inverter = true;
+        }
+        return false;
+    }
+
+
+});
+
+
+
+
+function fncLink(valor) {
+
+    var URL = encodeURI(valor);
+    window.open(URL);
+}

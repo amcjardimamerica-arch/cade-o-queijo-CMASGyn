@@ -1,0 +1,7 @@
+URL: https://contas.tcu.gov.br/ords/condenacao/consulta/inidoneos
+POST: {}
+OK: False
+HTTP: None
+ERRO: URLError: [Errno 104] Connection reset by peer
+BYTES: 0
+

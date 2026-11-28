@@ -1,0 +1,70 @@
+URL: https://www10.goiania.go.gov.br/transweb/Blocks/WebPatterns/Private/ColumnsJS.en.js?60864
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 2050
+
+﻿LoadColumns = function(){    
+
+    function setSize() {
+
+        if ($(".Page").hasClass("desktop")) { // if desktop
+            var columns = $(".Columns");
+        } else if ($(".Page").hasClass("tablet")) { // tablet
+            var columns = $(".Columns:not(.tab_BreakAll)");
+        } else if ($(".Page").hasClass("phone")) { // phone
+            var columns = $(".Columns:not(.mob_BreakAll)");
+        }
+
+        $(columns).each(function(){    
+            sizeHeader = 0;
+            sizeContent = 0;
+            sizeFooter = 0;
+            
+            $(this).children(".Column").children("div").children(".Panel").each(function(){
+                if(sizeHeader < $(this).children(".Panel_header").outerHeight()){sizeHeader = $(this).children(".Panel_header").outerHeight();}
+                if(sizeContent < $(this).children(".Panel_content").outerHeight()){ sizeContent = $(this).children(".Panel_content").outerHeight();}
+                if(sizeFooter < $(this).children(".Panel_footer").outerHeight()){ sizeFooter = $(this).children(".Panel_footer").outerHeight();}
+                });
+
+            $(this).children(".Column").children("div").children(".Panel").each(function(){
+                $(this).children(".Panel_footer").css("min-height", sizeFooter);
+                $(this).children(".Panel_header").css("min-height", sizeHeader);
+                $(this).children(".Panel_content").css("min-height", sizeContent);
+            });
+        
+        });
+        
+    }
+    
+    osAjaxBackend.BindAfterAjaxRequest(setSize);
+    setSize();
+};
+
+function emptyColumns() {
+
+    function initColumns() {
+    
+        var columnEmpty = $('.Columns .Column').children(':empty');
+        var parentecolumnEmpty = columnEmpty.parent();
+        $(parentecolumnEmpty).addClass('empty');
+    
+    };
+    
+    osAjaxBackend.BindAfterAjaxRequest(initColumns);
+    initColumns();
+    
+};
+
+// on ready with timeout
+$(document).ready(function(){ 
+    
+    emptyColumns();
+    
+    setTimeout(function(){ 
+        LoadColumns();
+    }, 1);
+
+});
+

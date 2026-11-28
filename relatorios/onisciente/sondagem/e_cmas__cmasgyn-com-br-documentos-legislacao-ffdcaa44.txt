@@ -1,0 +1,575 @@
+URL: https://cmasgyn.com.br/Documentos/Legislacao
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 36432
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head profile="http://gmpg.org/xfn/11">
+	<meta name="viewport" content="width=device-width" />
+    <title>Legislacao</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Corporated, XHTML, Theme" />
+	<meta name="description" content="Corporated XHTML Theme" />
+	<meta name="author" content="Bogdan Rosu - http://www.bogdanrosu.com" />
+	<meta name="copyright" content="&copy; 2010 Bogdan Rosu. All rights reserved." />
+    <link rel="shortcut icon" href="favicon.html" type="image/x-icon" />
+
+    <!-- Load Jquery from Google -->
+    <script src="/Resources/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <!-- End Load -->
+
+    <!-- for IE6 i'm sorry but there is too much wrong with it, needs warning at least, you can disable it by delething this load. -->
+    <script src="/Resources/js/jquery.badBrowser.js" type="text/javascript" charset="utf-8"></script>
+    <!-- End Load -->
+
+    <!-- ALL jQuery Tools. No jQuery library -->
+    <script src="/Resources/js/jquery.tools.js" type="text/javascript" charset="utf-8"></script>
+    <!-- End Load -->
+
+    <!-- Load Jquery Easing -->
+    <script src="/Resources/js/jquery.easing.js" type="text/javascript"></script>
+    <!-- End Load -->
+
+    <script src="/Resources/js/Vera_400-Vera_700-Vera_oblique_400-Vera_oblique_700.font.js" type="text/javascript"></script>
+    <!-- End Load -->
+
+    <!-- Load Pretty Photo -->
+    <link rel="stylesheet" href="/Resources/css/jquery.prettyPhoto.css" type="text/css" media="screen" />
+    <script src="/Resources/js/jquery.prettyPhoto.js" type="text/javascript"></script>
+    <!-- End Load -->
+
+    <!-- Load Superfish Drowpdown Menu, and run it -->
+    <script src="/Resources/js/jquery.hoverInt.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/Resources/js/jquery.bgiframe.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/Resources/js/superfish.js" type="text/javascript" charset="utf-8"></script>
+    <!-- End Load -->
+
+    <!-- Load SWFObject, used for video embedding -->
+    <script src="/Resources/js/swfobject.js" type="text/javascript" charset="utf-8"></script>
+    <!-- End Load -->
+
+    <!-- Load Captify -->
+    <script src="/Resources/js/jquery.captify.js" type="text/javascript"></script>
+    <!-- End Load -->
+
+    <!-- Load some small custom scripts -->
+    <script src="/Resources/js/custom.js" type="text/javascript"></script>
+    <!-- End Load -->
+
+    <!-- Load Main Stylesheets and Default Color and Style -->
+    <link rel="stylesheet" href="/Resources/css/style.css" type="text/css" media="screen" />
+    <!-- IMPORTANT: This line above generic should be left alone -->
+    <link rel="stylesheet" type="text/css" media="screen" title="mint" href="/Resources/css/style-mint.css" />
+    <!-- IMPORTANT: This line above is the line that sets wich style you use by default, after you select wich you like plug it in the line above the disable the style switcher, to do that either read the documentation or folow the note below referign to this -->
+    <!-- End Load -->
+
+    <!-- Load Alternate Stylesheets, can be disabled if not used -->
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="blue-bs" href="/Resources/css/style-blue-bs.css" />
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="mint-bs" href="/Resources/css/style-mint-bs.css" />
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="green-bs" href="/Resources/css/style-green-bs.css" />
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="magenta-bs" href="/Resources/css/style-magenta-bs.css" />
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="orange-bs" href="/Resources/css/style-orange-bs.css" />
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="black-bs" href="/Resources/css/style-black-bs.css" />
+
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="blue" href="/Resources/css/style-blue.css" />
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="mint" href="/Resources/css/style-mint.css" />
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="green" href="/Resources/css/style-green.css" />
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="magenta" href="/Resources/css/style-magenta.css" />
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="orange" href="/Resources/css/style-orange.css" />
+    <link rel="alternate stylesheet" type="text/css" media="screen" title="black" href="/Resources/css/style-black.css" />
+    <script src="/Resources/js/styleswitch.js" type="text/javascript" charset="utf-8"></script>
+    <!-- End Load -->
+
+    <!-- NOTE: Uncomment this following comment if you want to hide Style Switcher -->
+    <!--
+    <style type="text/css">
+        .style-switcher { display:none !important;  }
+    </style>
+    -->
+
+    <!-- Load Main Enhancements Stylesheet border radius, transparency and such things -->
+    <link rel="stylesheet" href="/Resources/css/style-enhance.css" type="text/css" media="screen" />
+    <!-- End Load -->
+
+    <!-- Load IE Stylesheet -->
+    <!--[if IE]>
+        <link rel="stylesheet" href="/Resources/css/ie.css" type="text/css" media="screen" />
+    <![endif]-->
+    <!-- End Load -->
+
+    <!-- Load IE6 Stylesheet -->
+    <!--[if IE 6]>
+        <link rel="stylesheet" href="/Resources/css/ie6.css" type="text/css" media="screen" />
+    <![endif]-->
+    <!-- End Load -->
+
+    <!-- Load IE7 Stylesheet -->
+    <!--[if IE 7]>
+        <link rel="stylesheet" href="/Resources/css/ie7.css" type="text/css" media="screen" />
+    <![endif]-->
+    <!-- End Load -->
+
+    <!-- Load PNG Fix older IE Versions -->
+    <!--[if lt IE 7]>
+        <script type="text/javascript" src="/Resources/js/pngfix.js"></script>
+        <script type="text/javascript">DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+    <!-- End Load -->
+
+    <!-- load jqplot -->
+    <link rel="stylesheet" type="text/css" href="/Resources/css/jquery.jqplot.css" />
+    <script  type="text/javascript" src="/Resources/js/jqplot/jquery.jqplot.js"></script>
+    <script  type="text/javascript" src="/Resources/js/jqplot/plugins/jqplot.canvasTextRenderer.js"></script>
+    <script  type="text/javascript" src="/Resources/js/jqplot/plugins/jqplot.canvasAxisTickRenderer.js"></script>
+    <script  type="text/javascript" src="/Resources/js/jqplot/plugins/jqplot.dateAxisRenderer.js"></script>
+    <script  type="text/javascript" src="/Resources/js/jqplot/plugins/jqplot.barRenderer.js"></script>
+    <script  type="text/javascript" src="/Resources/js/jqplot/plugins/jqplot.categoryAxisRenderer.js"></script>
+    <script  type="text/javascript" src="/Resources/js/jqplot/plugins/jqplot.pieRenderer.js"></script>
+    <!--[if IE]><script  type="text/javascript" src="/Resources/js/jqplot/excanvas.js"></script><![endif]-->
+    <!-- end load jqplot -->
+
+    <!-- Load google Analytics -->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-19270306-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <!-- End Load google Analytics -->
+    <!-- Be sure to CHANGE _setAccount to your UA Number  -->
+
+    <!-- start load cycle slideshow -->
+    <script src="/Resources/js/jquery.cycle.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/Resources/css/jquery.cycle.css" type="text/css" media="screen" />
+    <script type="text/javascript">
+	$(function() {
+	    $('#slideshow').cycle({
+	        fx:     'scrollHorz',  // effect
+	        speed:  400,    // speed of transition
+	        timeout: 7000,    // timeout of the slide
+            pause:       false,     // true to enable "pause on hover"
+            pauseOnPagerHover: false, // true to pause when hovering over pager link
+            next:   '#slideshownext',
+            prev:   '#slideshowprev',
+            cleartypeNoBg: true,  // fix cleartype inside slides
+            cleartype: true  // fix cleartype inside slides
+	    });
+        $('#slideshownav li a').click(function() {   $('#slideshow').cycle('pause');   });
+        $('.slide').click(function() {   $('#slideshow').cycle('pause'); 	 });
+	});
+ 	</script>
+    <!-- stop load cycle -->
+
+</head>
+<body>
+    <div class="full-width">
+    <!-- start top -->
+        <div class="fl one-third">
+            <div class="logo"><a href="https://cmasgyn.com.br/Home"><img src="/Resources/images/logo.png" width="286" height="69" alt="" /></a></div>
+        </div>
+        <div class="fr two-third-last clearfix">
+            <div class="main-menu clearfix">
+        		    <!-- navigation start -->
+        			<div id="navigation">
+                		 <ul class="sf-menu">
+                            <li class="first"><a href="/Home" class="applyfont">Home</a>
+                            </li>
+                            <li><a href="/Conselho/OConselho" class="applyfont">Conselho</a>
+                                 <ul>
+                                    <li><a href="/Conselho/OConselho">O Conselho</a></li>
+                                    <li><a href="/Conselho/Conselheiros">Conselheiros</a></li>
+                                    <li><a href="/Conselho/Entidades">Entidades</a></li>
+                                    <li><a href="/Conselho/Plenarias">Plenárias</a></li>
+                                    
+                                </ul>
+
+                            </li>
+
+
+                            <li><a href="/Documentos" class="applyfont">Documentos</a>
+                             <ul>
+                                 <li><a href="/Documentos">Geral</a></li>
+                                 <li><a href="/Documentos/Legislacao">Legislação</a></li>
+
+                               
+
+
+                             </ul>
+                                </li>
+                            <li><a href="/Inscricao" class="applyfont">Inscrição</a></li>
+                            <li class="last"><a href="/Contato" class="applyfont">Contato</a></li>
+                        </ul>
+
+        			</div>
+                    <!-- navigation end -->
+            </div>
+        </div>
+        <div class="clear"></div>
+    <!-- end top -->
+</div>
+
+    
+
+ <div class="full-width">
+        <!-- start header -->
+        <div class="header-inner clearfix">
+            <h1>Legislação</h1>
+            <p>Resoluçoões, Leis </p>
+        </div>
+        <!-- end header -->
+    </div>
+
+    <div class="white-bg-bordered" style="background-color:#E3E3E3;">
+        <div class="full-width">
+
+            <div class="white-bg">
+                
+                <div class="clear"></div>
+
+                <!-- the tabs -->
+                <ul class="css-tabs">
+                    <li><a href="#first-tab">Resoluções </a></li>
+                    <li><a href="#first-tab">Leis</a></li>
+                    
+
+                </ul>
+                <!-- tab "Audiência Pública" -->
+                <div class="css-panes">
+                    <div>
+                        <table cellspacing="0" cellpadding="0" class="data-table-vertical" width="100%">
+                            <caption>O CMASGyn disponibiliza aqui suas Resoluções a fim de publicizar informações referentes as decisões tomadas nas Reuniões Ordinárias e/ou Extraordinárias realizadas mensalmente:</caption>
+                            <colgroup>
+                                <col class="odd" />
+                                <col class="even" />
+                            </colgroup>
+                            <tr>
+                                <th class="odd first">Arquivo</th>
+                                <th class="even">Ação</th>
+                            </tr>
+                            <tr>
+                                <td class="first">Resolução Nº 068/2025 - Lei de Acesso à informação - LAI</td>
+                                <td><a class="btn-small" href="\Resources\documentos\resolucoes\resolucao_068_2025_LAI.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Resolução do CMASGyn Ano 1997</td>
+                                <td><a class="btn-small" href="\Resources\documentos\resolucoes\resolucao_cmasgyn_1997.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Resolução do CMASGyn Ano 1998 </td>
+                                <td><a class="btn-small" href="\Resources\documentos\resolucoes\resolucao_cmasgyn_1998.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Resolução do CMASGyn Ano 1999</td>
+                                <td><a class="btn-small" href="\Resources\documentos\resolucoes\resolucao_cmasgyn_1999.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Resolução do CMASGyn Ano 2000</td>
+                                <td><a class="btn-small" href="\Resources\documentos\resolucoes\resolucao_cmasgyn_2000.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Resolução do CMASGyn Ano 2001</td>
+                                <td><a class="btn-small" href="\Resources\documentos\resolucoes\resolucao_cmasgyn_2001.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Resolução do CMASGyn Ano 2002</td>
+                                <td><a class="btn-small" href="\Resources\documentos\resolucoes\resolucao_cmasgyn_2002.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first"> Resolução do CMASGyn Ano 2003</td>
+                                <td><a class="btn-small" href="\Resources\documentos\resolucoes\resolucao_cmasgyn_2003.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Resolução do CMASGyn Ano 2004</td>
+                                <td><a class="btn-small" href="\Resources\documentos\resolucoes\resolucao_cmasgyn_2004.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Resolução do CMASGyn Ano 2005</td>
+                                <td><a class="btn-small" href="\Resources\documentos\resolucoes\resolucao_cmasgyn_2005.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Resolução do CMASGyn Ano 2006</td>
+                                <td><a class="btn-small" href="\Resources\documentos\resolucoes\resolucao_cmasgyn_2006.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first"> Resolução do CMASGyn Ano 2007</td>
+                                <td><a class="btn-small" href="\Resources\documentos\resolucoes\resolucao_cmasgyn_2007.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Resolução do CMASGyn Ano 2008</td>
+                                <td><a class="btn-small" href="\Resources\documentos\resolucoes\resolucao_cmasgyn_2008.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Resolução do CMASGyn Ano 2009</td>
+                                <td><a class="btn-small" href="\Resources\documentos\resolucoes\resolucao_cmasgyn_2009.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Resolução do CMASGyn Ano 2010</td>
+                                <td><a class="btn-small" href="\Resources\documentos\resolucoes\resolucao_cmasgyn_2010.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Resolução do CMASGyn Ano 2011</td>
+                                <td><a class="btn-small" href="\Resources\documentos\resolucoes\resolucao_cmasgyn_2011.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Resolução do CMASGyn Ano 2012</td>
+                                <td><a class="btn-small" href="\Resources\documentos\resolucoes\resolucao_cmasgyn_2012.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Resolução do CMASGyn Ano 2013</td>
+                                <td><a class="btn-small" href="\Resources\documentos\resolucoes\resolucao_cmasgyn_2013.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Resolução do CMASGyn Ano 2014</td>
+                                <td><a class="btn-small" href="\Resources\documentos\resolucoes\resolucao_cmasgyn_2014.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+                <!-- tab "Relatório Financeiro - FMAS/SEMAS" -->
+                <div class="css-panes">
+                    <div>
+                        <table cellspacing="0" cellpadding="0" class="data-table-vertical" width="100%">
+                            <caption>O CMASGyn disponibiliza aqui Regimento, Leis, Políticas, Normas, Estatutos, Guias, Decretos e Portarias a fim de publicizar informações referentes a Política de Assistência Social: 
+
+
+</caption>
+                            <colgroup>
+                                <col class="odd" />
+                                <col class="even" />
+                            </colgroup>
+                            <tr>
+                                <th class="odd first">Arquivo</th>
+                                <th class="even">Ação</th>
+                            </tr>
+                            <tr>
+                                <td class="first">Regimento Interno do CMASGyn</td>
+                                <td><a class="btn-small" href="\Resources\documentos\legislacao\regimento_interno.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+
+                             <tr>
+                                <td class="first">Lei Orgânica da Assistência Social - LOAS</td>
+                                <td><a class="btn-small" href="\Resources\documentos\legislacao\LOAS.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+
+                            <tr>
+                                <td class="first">Política Nacional de Assistência Social</td>
+                                <td><a class="btn-small" href="\Resources\documentos\legislacao\pnas_final.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Norma Operacional Básica de 2005 - NOB/SUAS</td>
+                                <td><a class="btn-small" href="\Resources\documentos\legislacao\NOB_versao_final.zip" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Resolução Nº 191 do Conselho Nacional de Assistência Social</td>
+                                <td><a class="btn-small" href="\Resources\documentos\legislacao\Resolucao_191_2005_Criterios.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Resolução Nº 109 - Tipificação Nacionsal de Serviços Socioassistenciais - CNAS</td>
+                                <td><a class="btn-small" href="\Resources\documentos\legislacao\Resolucao_109_Tipificacao_AssistencialSocial.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Decreto Nº 6308 de 14/12/2007 - Dispõe sobre as entidades e organizações de Assistência Social</td>
+                                <td><a class="btn-small" href="\Resources\documentos\legislacao\Decreto_6308_14122007.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                              <tr>
+                                <td class="first">Lei Nº 12101 de 27/11/2009 - Dispõe sobre certificação das entidades beneficentes de Assistência Social</td>
+                                <td><a class="btn-small" href="\Resources\documentos\legislacao\Lei_12.101.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                              <tr>
+                                <td class="first">Resoluçao Nº 16 de 05/05/2010-CNAS - Parâmetros Nacionais para inscrição de entidades e organizações de Assistência Social</td>
+                                <td><a class="btn-small" href="\Resources\documentos\Resolucao_016050510.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                              <tr>
+                                <td class="first">Nova Lei do CMASGyn, Lei Nº 9009 de 30 de dezembro de 2010</td>
+                                <td><a class="btn-small" href="\Resources\documentos\legislacao\ordinaria90092010.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+
+                            <tr>
+                                <td class="first">Decreto de Posse dos Conselheiros(as) 2011-2013, Nº 2.230 de Julho de 2011</td>
+                                <td><a class="btn-small" href="\Resources\documentos\do20115144.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+                 <!-- tab "Curso Capacitação" -->
+                <div class="css-panes">
+                    <div>
+                        <table cellspacing="0" cellpadding="0" class="data-table-vertical" width="100%">
+                            <caption>CURSO CAPACITAÇÃO DE CONSELHEIROS:</caption>
+                            <colgroup>
+                                <col class="odd" />
+                                <col class="even" />
+                            </colgroup>
+                            <tr>
+                                <th class="odd first">Arquivo</th>
+                                <th class="even">Ação</th>
+                            </tr>
+                            <tr>
+                                <td class="first">Texto Prof. Pedro Célio Alves Borges - UFG</td>
+                                <td><a class="btn-small" href="/Resources/documentos/capacitacao/2012/TextoProf_Pedro_Celio.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Tipificação dos Serviços Sócios Socioassistenciais</td>
+                                <td><a class="btn-small" href="/Resources/documentos/capacitacao/2012/Apresenta_cmasgyn_semas.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Instrumentos da Gestão da Política de Assistência Social Segundo a NOB/SUAS</td>
+                                <td><a class="btn-small" href="/Resources/documentos/capacitacao/2012/instrumento_gestao_I.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Avaliação de Políticas Públicas</td>
+                                <td><a class="btn-small" href="/Resources/documentos/capacitacao/2012/instrumento_gestao_II.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Fundo Municipal de Assistência Social: Orçamento Público e Financiamento da PMAS</td>
+                                <td><a class="btn-small" href="/Resources/documentos/capacitacao/2012/orcamento_financiamento_pas.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Planejamento Público e Desenvolvimento</td>
+                                <td><a class="btn-small" href="/Resources/documentos/capacitacao/2012/planejamento_publico.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Sistema Único de Assistência Social</td>
+                                <td><a class="btn-small" href="/Resources/documentos/capacitacao/2012/SUAS.ppsx" rel="external" style="margin-right:0px;"><span>Baixar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Instrumento de Gestão do SUAS</td>
+                                <td><a class="btn-small" href="/Resources/documentos/capacitacao/2012/apresentacao_SUASWEB.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                 <!-- tab "Conferências" -->
+                <div class="css-panes">
+                    <div>
+                        <table cellspacing="0" cellpadding="0" class="data-table-vertical" width="100%">
+                            <caption>IX CONFERÊNCIA MUNICIPAL DE ASSISTÊNCIA SOCIAL:</caption>
+                            <colgroup>
+                                <col class="odd" />
+                                <col class="even" />
+                            </colgroup>
+                            <tr>
+                                <th class="odd first">Arquivo</th>
+                                <th class="even">Ação</th>
+                            </tr>
+                            <tr>
+                                <td class="first">Relatório Final da IX Conferencia Municipal de Assistência Social de Goiânia</td>
+                                <td><a class="btn-small" href="/Resources/documentos/conferencia/ix_conferencia/RELATORIO_FINAL.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                        <!-- tab "Fóruns" -->
+                <div class="css-panes">
+                    <div>
+                        <table cellspacing="0" cellpadding="0" class="data-table-vertical" width="100%">
+                            <caption>FÓRUM DE CAPACITAÇÃO PARA ELEIÇÃO DA SOCIEDADE CIVIL DO CMASGyn 2011:</caption>
+                            <colgroup>
+                                <col class="odd" />
+                                <col class="even" />
+                            </colgroup>
+                            <tr>
+                                <th class="odd first">Arquivo</th>
+                                <th class="even">Ação</th>
+                            </tr>
+                            <tr>
+                                <td class="first">Tipificação dos Serviços Socioassistenciais</td>
+                                <td><a class="btn-small" href="/Resources/documentos/forum/capacitacao_eleicao/tipificacao_encontro_entidades.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">O Conselho Municipal de Assistência Social</td>
+                                <td><a class="btn-small" href="/Resources/documentos/forum/capacitacao_eleicao/cmasgyn_encontro_entidade.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Representação e Controle Social</td>
+                                <td><a class="btn-small" href="/Resources/documentos/forum/capacitacao_eleicao/controle_social_encontro_entidades.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                        </table>
+                        <table cellspacing="0" cellpadding="0" class="data-table-vertical" width="100%">
+                            <caption>FÓRUM "OS VÁRIOS OLHARES A RESPEITO DA DEPENDÊNCIA QUÍMICA":</caption>
+                            <colgroup>
+                                <col class="odd" />
+                                <col class="even" />
+                            </colgroup>
+                            <tr>
+                                <th class="odd first">Arquivo</th>
+                                <th class="even">Ação</th>
+                            </tr>
+                            <tr>
+                                <td class="first">O que pensa e faz a SEMAS</td>
+                                <td><a class="btn-small" href="/Resources/documentos/forum/dependencia_quimica/semas.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">O que pensa e faz a SMS</td>
+                                <td><a class="btn-small" href="/Resources/documentos/forum/dependencia_quimica/sms.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">O que pensa e faz o Departamento de Vigilância Sanitária</td>
+                                <td><a class="btn-small" href="/Resources/documentos/forum/dependencia_quimica/viliancia_sanitaria.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Os Desafios do Trabalho no Atendimento ao Dependente Química</td>
+                                <td><a class="btn-small" href="/Resources/documentos/forum/dependencia_quimica/caps_casa.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                        <!-- tab "Diversos" -->
+                <div class="css-panes">
+                    <div>
+                        <table cellspacing="0" cellpadding="0" class="data-table-vertical" width="100%">
+                            <caption>DOCUMENTOS DIVERSOS DO CMASGyn:</caption>
+                            <colgroup>
+                                <col class="odd" />
+                                <col class="even" />
+                            </colgroup>
+                            <tr>
+                                <th class="odd first">Arquivo</th>
+                                <th class="even">Ação</th>
+                            </tr>
+                            <tr>
+                                <td class="first">Palestra Avaliação de Projeto com a Prof. Eline 14/07/2010</td>
+                                <td><a class="btn-small" href="/Resources/documentos/diversos/2011/Avaliacao_Projetos.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                            <tr>
+                                <td class="first">Dissertação de Mestrado - Ms. Dilma Paio de Santana</td>
+                                <td><a class="btn-small" href="/Resources/documentos/diversos/2011/dissertacao_mestrado_dilma.pdf" rel="external" style="margin-right:0px;"><span>Visualizar</span></a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    
+
+<div class="clear"></div>
+
+<div class="small-footer">
+    <div class="full-width clearfix">
+        <div class="one-half"><div class="firstone pad-top pad-right">&copy; 2023<a href="http://www.selectasistemas.com.br/"> Selecta Sistemas. Todos os direitos reservados.</a></div></div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<!-- end footer -->
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"f6773055acb945d8b27e17c00d61dbbb","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+
+<!-- Mirrored from www.bogdanrosu.com/themeforest/corporated/html/index-cycle.html by HTTrack Website Copier/3.x [XR&CO'2010], Sat, 13 Jul 2013 12:57:01 GMT -->
+</html>

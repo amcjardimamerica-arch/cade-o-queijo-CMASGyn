@@ -1,0 +1,214 @@
+{
+ "quando": "2026-11-28T09:19:09+00:00",
+ "leituras": [
+  {
+   "fonte": "d1_tcu",
+   "url": "https://pesquisa.apps.tcu.gov.br/rest/publico/base/acordao-completo/documentosResumidos?termo=%22Goi%C3%A2nia%22&ordenacao=ANOACORDAO+desc%2C+NUMACORDAOINT+desc&quantidade=50&inicio=0&sinonimos=true",
+   "post": null,
+   "ok": false,
+   "http": null,
+   "erro": "URLError: [Errno 104] Connection reset by peer",
+   "bytes": 0,
+   "arquivo": "d1_tcu__pesquisa-apps-tcu-gov-br-rest-publico-base-acordao-completo-documentos-80724175.txt",
+   "segundos": 0.4
+  },
+  {
+   "fonte": "d1_tcu",
+   "url": "https://pesquisa.apps.tcu.gov.br/rest/publico/base/acordao-completo/documentosResumidos?termo=%22Goi%C3%A2nia%22&ordenacao=DTRELEVANCIA+desc%2C+NUMACORDAOINT+desc&quantidade=50&inicio=50&sinonimos=true",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 70006,
+   "arquivo": "d1_tcu__pesquisa-apps-tcu-gov-br-rest-publico-base-acordao-completo-documentos-8ebb2eba.txt",
+   "segundos": 5.5
+  },
+  {
+   "fonte": "d1_tcu",
+   "url": "https://pesquisa.apps.tcu.gov.br/rest/publico/base/acordao-completo/documentosResumidos?termo=%22Goi%C3%A2nia%22&ordenacao=DTRELEVANCIA+desc%2C+NUMACORDAOINT+desc&quantidade=50&inicio=100&sinonimos=true",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 71371,
+   "arquivo": "d1_tcu__pesquisa-apps-tcu-gov-br-rest-publico-base-acordao-completo-documentos-923ea092.txt",
+   "segundos": 6.2
+  },
+  {
+   "fonte": "d1_tcu",
+   "url": "https://pesquisa.apps.tcu.gov.br/rest/publico/base/acordao-completo/documentosResumidos?termo=%22Goi%C3%A2nia%22&ordenacao=DTRELEVANCIA+desc%2C+NUMACORDAOINT+desc&quantidade=50&inicio=150&sinonimos=true",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 70763,
+   "arquivo": "d1_tcu__pesquisa-apps-tcu-gov-br-rest-publico-base-acordao-completo-documentos-58e7a293.txt",
+   "segundos": 6.7
+  },
+  {
+   "fonte": "d1_tcu",
+   "url": "https://pesquisa.apps.tcu.gov.br/rest/publico/base/acordao-completo/documentosResumidos?termo=%22Goi%C3%A2nia%22&ordenacao=DTRELEVANCIA+desc%2C+NUMACORDAOINT+desc&quantidade=50&inicio=1300&sinonimos=true",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 74464,
+   "arquivo": "d1_tcu__pesquisa-apps-tcu-gov-br-rest-publico-base-acordao-completo-documentos-0bda4b46.txt",
+   "segundos": 5.9
+  },
+  {
+   "fonte": "d1_tcu",
+   "url": "https://pesquisa.apps.tcu.gov.br/rest/publico/base/acordao-completo/documentosResumidos?termo=%22Goi%C3%A2nia%22&ordenacao=DTRELEVANCIA+desc%2C+NUMACORDAOINT+desc&quantidade=50&inicio=0&sinonimos=true",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 73194,
+   "arquivo": "d1_tcu__pesquisa-apps-tcu-gov-br-rest-publico-base-acordao-completo-documentos-e02f3aaa.txt",
+   "segundos": 4.6
+  },
+  {
+   "fonte": "d1_tcm",
+   "url": "https://virtual.tcmgo.tc.br/jurisprudencia/",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 936,
+   "arquivo": "d1_tcm__virtual-tcmgo-tc-br-jurisprudencia-f32664df.txt",
+   "segundos": 0.8
+  },
+  {
+   "fonte": "d1_tcm",
+   "url": "https://ws.tcm.go.gov.br/api/rest/dados/contas-irregulares",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 351600,
+   "arquivo": "d1_tcm__ws-tcm-go-gov-br-api-rest-dados-contas-irregulares-2aac2857.txt",
+   "segundos": 3.2
+  },
+  {
+   "fonte": "d1_tcm",
+   "url": "https://virtual.tcmgo.tc.br/jurisprudencia/assets/jurisprudencia-page-zRQnq2W_.js",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 186501,
+   "arquivo": "d1_tcm__virtual-tcmgo-tc-br-jurisprudencia-assets-jurisprudencia-page-zrqnq2w-fa2db409.txt",
+   "segundos": 1.3
+  },
+  {
+   "fonte": "d1_tcm",
+   "url": "https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/health",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 161,
+   "arquivo": "d1_tcm__virtual-tcmgo-tc-br-jurisprudencia-api-v1-health-4a4bba93.txt",
+   "segundos": 0.7
+  },
+  {
+   "fonte": "d1_tcm",
+   "url": "https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/acordao/jurisprudencia/filtros",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 19530,
+   "arquivo": "d1_tcm__virtual-tcmgo-tc-br-jurisprudencia-api-v1-acordao-jurisprudencia-filtr-2ecda46a.txt",
+   "segundos": 1.8
+  },
+  {
+   "fonte": "d1_tcm",
+   "url": "https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/acordao/jurisprudencia/buscar?texto=Goi%C3%A2nia&page=1&page_size=100&sort_by=data_sessao&sort_order=desc",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 306895,
+   "arquivo": "d1_tcm__virtual-tcmgo-tc-br-jurisprudencia-api-v1-acordao-jurisprudencia-busca-0623a709.txt",
+   "segundos": 2.1
+  },
+  {
+   "fonte": "d1_tcm",
+   "url": "https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/acordao/jurisprudencia/buscar?texto=Goi%C3%A2nia&page=2&page_size=100&sort_by=data_sessao&sort_order=desc",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 302141,
+   "arquivo": "d1_tcm__virtual-tcmgo-tc-br-jurisprudencia-api-v1-acordao-jurisprudencia-busca-8548df31.txt",
+   "segundos": 2.3
+  },
+  {
+   "fonte": "d1_tcm",
+   "url": "https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/acordao/jurisprudencia/buscar?texto=&page=1&page_size=100&sort_by=data_sessao&sort_order=desc&municipio=GOIANIA",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 314100,
+   "arquivo": "d1_tcm__virtual-tcmgo-tc-br-jurisprudencia-api-v1-acordao-jurisprudencia-busca-7f494732.txt",
+   "segundos": 1.5
+  },
+  {
+   "fonte": "d1_tcm",
+   "url": "https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/acordao/jurisprudencia/buscar?texto=&page=20&page_size=100&sort_by=data_sessao&sort_order=desc&municipio=GOIANIA",
+   "post": null,
+   "ok": false,
+   "http": 422,
+   "erro": "HTTP 422",
+   "bytes": 219,
+   "arquivo": "d1_tcm__virtual-tcmgo-tc-br-jurisprudencia-api-v1-acordao-jurisprudencia-busca-94cbeec3.txt",
+   "segundos": 0.7
+  },
+  {
+   "fonte": "d1_tcm",
+   "url": "https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/acordao/jurisprudencia/buscar?texto=&page=1&page_size=100&sort_by=data_sessao&sort_order=desc&municipio=GOIANIA&ano_votacao=2025",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 337726,
+   "arquivo": "d1_tcm__virtual-tcmgo-tc-br-jurisprudencia-api-v1-acordao-jurisprudencia-busca-1f4563b9.txt",
+   "segundos": 1.6
+  },
+  {
+   "fonte": "d1_tcm",
+   "url": "https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/acordao/jurisprudencia/exportar?texto=&sort_by=data_sessao&sort_order=desc&municipio=GOIANIA&ano_votacao=2025&formato=csv",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 1876331,
+   "arquivo": "d1_tcm__virtual-tcmgo-tc-br-jurisprudencia-api-v1-acordao-jurisprudencia-expor-8504940f.txt",
+   "segundos": 2.3
+  },
+  {
+   "fonte": "d1_tcm",
+   "url": "https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/acordao/jurisprudencia/buscar?texto=&page=1&page_size=100&sort_by=data_sessao&sort_order=desc&municipio=GOIANIA&ano_votacao=2024",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 351014,
+   "arquivo": "d1_tcm__virtual-tcmgo-tc-br-jurisprudencia-api-v1-acordao-jurisprudencia-busca-66a2acb6.txt",
+   "segundos": 1.5
+  },
+  {
+   "fonte": "d1_tcm",
+   "url": "https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/acordao/jurisprudencia/buscar?texto=&page=1&page_size=100&sort_by=data_sessao&sort_order=desc&municipio=GOIANIA&ano_votacao=2026",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 314097,
+   "arquivo": "d1_tcm__virtual-tcmgo-tc-br-jurisprudencia-api-v1-acordao-jurisprudencia-busca-02c8a195.txt",
+   "segundos": 1.5
+  }
+ ]
+}

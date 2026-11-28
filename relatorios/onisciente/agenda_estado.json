@@ -1,0 +1,53 @@
+{
+ "rodadas": {
+  "serie": {
+   "ultima_tentativa": "2026-11-28T11:31:05+00:00",
+   "inicio": "2026-11-28T09:49:54+00:00",
+   "ok": true,
+   "erro": null,
+   "resumo": {
+    "rodada": "serie",
+    "quebrados": {},
+    "trecho": "2023-11 a 2024-10",
+    "tempestividade": 0.6181818181818182,
+    "grupos": [
+     {
+      "motores": [
+       "siconfi",
+       "siops",
+       "siope",
+       "fnas",
+       "msc",
+       "tesouro",
+       "transferencias",
+       "sileg",
+       "querido_diario",
+       "fns",
+       "fnde",
+       "transferegov",
+       "economia_go"
+      ],
+      "modo": "janela",
+      "janela": "2023-11 a 2024-10",
+      "rastreio": "9ff3355a8733e2e83581967264e20affe2cf61ba4b3e6477542b2c3a4be778b0",
+      "quebrados": {}
+     },
+     {
+      "motores": [
+       "pncp"
+      ],
+      "modo": "continuar",
+      "janela": "2023-11 a 2024-10",
+      "reaberto": {
+       "janelas_reabertas": 0,
+       "detalhe_reaberto": 32
+      },
+      "intervalo_do_banco": "2023-11 a 2026-11",
+      "quebrados": {}
+     }
+    ]
+   },
+   "ultimo_sucesso": "2026-11-28T11:31:05+00:00"
+  }
+ }
+}

@@ -1,6 +1,6 @@
 {
  "intervalo": "2024-11 a 2026-11",
- "rodada": "2026-11-26T23:10:58+00:00",
+ "rodada": "2026-11-28T09:16:16+00:00",
  "meses": [
   "2024-11",
   "2024-12",
@@ -30,6 +30,19 @@
  ],
  "motores": [
   {
+   "motor": "cnpj",
+   "nome": "Cadastro das empresas na Receita Federal (CNPJ e QSA)",
+   "chamadas": 1355,
+   "ok": 1353,
+   "falhas": 2,
+   "tentativas": 1355,
+   "http_429": 0,
+   "segundos": 547.0,
+   "erros": {
+    "URLError: [Errno 104] Connection reset by peer": 2
+   }
+  },
+  {
    "motor": "ctresb",
    "nome": "Normas federais (ctresb/leis)",
    "chamadas": 21,
@@ -37,7 +50,29 @@
    "falhas": 0,
    "tentativas": 21,
    "http_429": 0,
-   "segundos": 3.4,
+   "segundos": 4.0,
+   "erros": {}
+  },
+  {
+   "motor": "economia_go",
+   "nome": "Cota-parte do Estado (Secretaria da Economia de Goiás)",
+   "chamadas": 6,
+   "ok": 6,
+   "falhas": 0,
+   "tentativas": 6,
+   "http_429": 0,
+   "segundos": 43.4,
+   "erros": {}
+  },
+  {
+   "motor": "execucao_goiania",
+   "nome": "Execução item a item no portal de Goiânia (TransWeb)",
+   "chamadas": 184,
+   "ok": 184,
+   "falhas": 0,
+   "tentativas": 184,
+   "http_429": 0,
+   "segundos": 200.9,
    "erros": {}
   },
   {
@@ -54,6 +89,32 @@
    }
   },
   {
+   "motor": "fnde",
+   "nome": "FNDE (liberações da educação)",
+   "chamadas": 1231,
+   "ok": 1231,
+   "falhas": 0,
+   "tentativas": 1231,
+   "http_429": 0,
+   "segundos": 969.5,
+   "erros": {}
+  },
+  {
+   "motor": "fns",
+   "nome": "Fundo Nacional de Saúde (repasses fundo a fundo)",
+   "chamadas": 77,
+   "ok": 53,
+   "falhas": 24,
+   "tentativas": 101,
+   "http_429": 0,
+   "segundos": 542.8,
+   "erros": {
+    "URLError: [Errno -2] Name or service not known": 12,
+    "HTTP 400: <html><head><title>JBWEB000065: HTTP Status 400 - </title><style><!--H1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} H2 {font-family:Tahoma,Arial,sans-ser": 9,
+    "HTTP 404: <html><head><title>JBWEB000065: HTTP Status 404 - /recursos/repasse-dia/consolidado</title><style><!--H1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} H2 {": 3
+   }
+  },
+  {
    "motor": "fontes",
    "nome": "Portais e endereços configurados",
    "chamadas": 25,
@@ -65,6 +126,20 @@
    "erros": {
     "HTTP 404": 3,
     "TimeoutError: The read operation timed out": 2
+   }
+  },
+  {
+   "motor": "impedimentos",
+   "nome": "Impedimentos (CEPIM e inidôneos do TCU)",
+   "chamadas": 3,
+   "ok": 1,
+   "falhas": 2,
+   "tentativas": 3,
+   "http_429": 0,
+   "segundos": 1.7,
+   "erros": {
+    "HTTP 403: <?xml version=\"1.0\" encoding=\"UTF-8\"?> <Error><Code>AccessDenied</Code><Message>Access Denied</Message></Error>": 1,
+    "HTTP 405: {\"mensagem\":\"Método não suportado na requisição para o endpoint /api/publico/responsaveis-inidoneos-com-paginacao. org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'G": 1
    }
   },
   {
@@ -92,6 +167,17 @@
    }
   },
   {
+   "motor": "pncp_detalhe",
+   "nome": "Detalhe das compras e contratos (PNCP e Compras.gov.br)",
+   "chamadas": 13822,
+   "ok": 13822,
+   "falhas": 0,
+   "tentativas": 13893,
+   "http_429": 0,
+   "segundos": 61283.7,
+   "erros": {}
+  },
+  {
    "motor": "qd",
    "nome": "Diário Oficial pelo Querido Diário",
    "chamadas": 50,
@@ -104,6 +190,17 @@
     "não tentado: 6 falhas de rede seguidas nesta fonte": 44,
     "URLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] ssl/tls alert handshake failure (_ssl.c:1011)": 6
    }
+  },
+  {
+   "motor": "sancoes",
+   "nome": "Empresas punidas (CEIS e CNEP)",
+   "chamadas": 4,
+   "ok": 4,
+   "falhas": 0,
+   "tentativas": 4,
+   "http_429": 0,
+   "segundos": 1.4,
+   "erros": {}
   },
   {
    "motor": "siconfi",
@@ -137,7 +234,29 @@
    "falhas": 0,
    "tentativas": 50,
    "http_429": 0,
-   "segundos": 13.3,
+   "segundos": 15.9,
+   "erros": {}
+  },
+  {
+   "motor": "sileg-normas",
+   "nome": "Leis de Goiânia baixadas do SILEG",
+   "chamadas": 47,
+   "ok": 47,
+   "falhas": 0,
+   "tentativas": 47,
+   "http_429": 0,
+   "segundos": 25.2,
+   "erros": {}
+  },
+  {
+   "motor": "sileg-procura",
+   "nome": "Procura das leis não localizadas no SILEG",
+   "chamadas": 15,
+   "ok": 15,
+   "falhas": 0,
+   "tentativas": 15,
+   "http_429": 0,
+   "segundos": 6.8,
    "erros": {}
   },
   {
@@ -165,6 +284,32 @@
    "erros": {}
   },
   {
+   "motor": "tcm",
+   "nome": "Decisões do TCM-GO",
+   "chamadas": 12,
+   "ok": 6,
+   "falhas": 6,
+   "tentativas": 12,
+   "http_429": 0,
+   "segundos": 20.6,
+   "erros": {
+    "HTTP 403: <html>\r <head><title>403 Forbidden</title></head>\r <body>\r <center><h1>403 Forbidden</h1></center>\r </body>\r </html>": 6
+   }
+  },
+  {
+   "motor": "tcu",
+   "nome": "Decisões do TCU",
+   "chamadas": 6,
+   "ok": 5,
+   "falhas": 1,
+   "tentativas": 9,
+   "http_429": 1,
+   "segundos": 131.5,
+   "erros": {
+    "HTTP 429: <html>\r <head><title>429 Too Many Requests</title></head>\r <body>\r <center><h1>429 Too Many Requests</h1></center>\r <hr><center>nginx</center>\r </body>\r </html>": 1
+   }
+  },
+  {
    "motor": "tesouro",
    "nome": "Transferências constitucionais (Tesouro)",
    "chamadas": 2,
@@ -175,6 +320,20 @@
    "segundos": 243.0,
    "erros": {
     "URLError: [Errno 104] Connection reset by peer": 2
+   }
+  },
+  {
+   "motor": "transferegov",
+   "nome": "Transferegov (transferências especiais e convênios)",
+   "chamadas": 13,
+   "ok": 1,
+   "falhas": 12,
+   "tentativas": 19,
+   "http_429": 0,
+   "segundos": 225.6,
+   "erros": {
+    "HTTP 503": 6,
+    "não tentado: 6 falhas de rede seguidas nesta fonte": 6
    }
   },
   {
@@ -235,8 +394,8 @@
  },
  "cobertura": {
   "2024-11": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
@@ -244,8 +403,8 @@
    "pncp": "✓"
   },
   "2024-12": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
@@ -253,8 +412,8 @@
    "pncp": "✓"
   },
   "2025-01": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
@@ -262,8 +421,8 @@
    "pncp": "✓"
   },
   "2025-02": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
@@ -271,8 +430,8 @@
    "pncp": "✓"
   },
   "2025-03": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
@@ -280,8 +439,8 @@
    "pncp": "✓"
   },
   "2025-04": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
@@ -289,8 +448,8 @@
    "pncp": "✓"
   },
   "2025-05": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
@@ -298,8 +457,8 @@
    "pncp": "✓"
   },
   "2025-06": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
@@ -307,8 +466,8 @@
    "pncp": "✓"
   },
   "2025-07": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
@@ -316,8 +475,8 @@
    "pncp": "✓"
   },
   "2025-08": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
@@ -325,8 +484,8 @@
    "pncp": "✓"
   },
   "2025-09": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
@@ -334,8 +493,8 @@
    "pncp": "✓"
   },
   "2025-10": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
@@ -343,8 +502,8 @@
    "pncp": "✓"
   },
   "2025-11": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
@@ -352,8 +511,8 @@
    "pncp": "✓"
   },
   "2025-12": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "dca": "✓",
@@ -361,86 +520,86 @@
    "pncp": "✓"
   },
   "2026-01": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "fnas": "·",
    "pncp": "✓"
   },
   "2026-02": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "fnas": "·",
    "pncp": "✓"
   },
   "2026-03": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "fnas": "·",
    "pncp": "✓"
   },
   "2026-04": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "fnas": "·",
    "pncp": "✓"
   },
   "2026-05": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "fnas": "·",
    "pncp": "✓"
   },
   "2026-06": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "fnas": "·",
    "pncp": "✓"
   },
   "2026-07": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "fnas": "·",
    "pncp": "✓"
   },
   "2026-08": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "✓",
    "rgf": "✓",
    "fnas": "·",
    "pncp": "✓"
   },
   "2026-09": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "…",
    "fnas": "·",
    "pncp": "✓"
   },
   "2026-10": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "rreo": "…",
    "fnas": "·",
    "pncp": "✓"
   },
   "2026-11": {
-   "sileg": "✓",
    "querido_diario": "✗",
+   "sileg": "✓",
    "fnas": "·",
    "pncp": "✓"
   }
@@ -459,6 +618,13 @@
    "titulo": "Contratações (PNCP): 1 de 618 chamadas falharam",
    "detalhe": "Erro mais comum: RemoteDisconnected: Remote end closed connection without response (1 vezes).",
    "proposta": "Ver a tabela coletas do banco para os endereços exatos."
+  },
+  {
+   "tipo": "melhoria",
+   "motor": "tcu",
+   "titulo": "Decisões do TCU pediu para ir mais devagar",
+   "detalhe": "1 respostas 429 (muitas requisições).",
+   "proposta": "Aumentar a pausa entre chamadas e coletar em janelas menores, todo dia, em vez de tudo de uma vez."
   },
   {
    "tipo": "melhoria",

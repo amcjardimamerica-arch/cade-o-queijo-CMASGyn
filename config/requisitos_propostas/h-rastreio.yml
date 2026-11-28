@@ -1,0 +1,55 @@
+# Propostas da Frente H (rastreio por hash), 28/11/2026. Pedido da titular: "Ao coletar as informações gere
+# um código hash para rastreio dos dados e validação de cada informação obtida". O coordenador acrescenta ao
+# fim de config/requisitos_ampliacao.yml (lá já entrou como 226). Cada trava é um teste de testes/test_rastreio.py.
+- id: 226
+  bloco: 'H: rastreio por hash, 28/11/2026'
+  requisito: "Ao coletar as informações, gerar um código hash para rastreio dos dados e validação de cada informação obtida (pedido da titular, 28/11/2026)."
+  situacao: cumprido
+  evidencia: "onisciente/rastreio.py: SHA-256 da resposta e hash da requisição em toda coleta (coletas.sha256, requisicao, metodo, parametros, sem_resposta); selo de cada registro com a origem (rastreio_selos, rastreio_origens); rodadas encadeadas com raiz de Merkle (rastreio_rodadas); migração do banco antigo; python -m onisciente rastreio; hash do apoio e do achado nas fichas e no parecer."
+  falta: ""
+  trava: "testes/test_rastreio.py::test_nenhum_motor_grava_sha256_nulo_quando_houve_resposta"
+# Travas das demais garantias do mesmo pedido (todas em testes/test_rastreio.py):
+#   test_requisicao_tem_metodo_parametros_e_data_e_a_falha_guarda_so_a_requisicao
+#   test_base_da_receita_e_impedimentos_tem_hash_de_cada_arquivo_e_registro_com_origem
+#   test_hash_do_registro_e_canonico_e_muda_quando_um_campo_muda
+#   test_cada_registro_tem_selo_com_a_resposta_de_origem
+#   test_registro_alterado_e_apontado_pela_verificacao
+#   test_cadeia_de_rodadas_detecta_alteracao_de_rodada_antiga
+#   test_banco_antigo_ganha_o_rastreio_sem_perder_linhas
+#   test_banco_refeito_do_zero_continua_a_cadeia
+#   test_parecer_mostra_o_hash_em_cada_achado
+#   test_linha_de_comando_verifica_e_mostra_o_registro_com_a_origem
+#   test_selos_ficam_num_arquivo_a_parte_e_o_banco_nao_guarda_pendencias (rastreio.db ao lado de historico.db)
+# E nos fluxos do grupo onisciente-banco (testes/test_fluxos_banco_guarda.py): guarda de 95 MB antes do commit
+# (artefato, resumo e falha sem push) e git add de dados/onisciente/rastreio.db.
+# Banco em partes (28/11/2026, historico.db chegou a 98,6 MB): precos_referencia em dados/onisciente/precos.db e
+# sancoes em dados/onisciente/sancoes.db, anexados (onisciente/partes.py). Travas: testes/test_partes.py; aviso de
+# 70 MB e git add das partes nos fluxos em testes/test_fluxos_banco_guarda.py.
+# Mais partes (28/11/2026, historico.db em 88,7 MB com a despesa de Goiânia): series.db (siconfi_itens, msc_itens,
+# externos_itens) e a despesa comprimida em dados/onisciente/despesa/despesa_eventos_AAAA.jsonl.gz (um por ano; o
+# SQLite de trabalho é refeito deles e fica fora do git). Travas em testes/test_partes.py.
+# CPF mascarado no banco (28/11/2026, o banco vai a um repositório público): onisciente/mascara_banco.py troca o
+# CPF de pessoa física por ***.NNN.NNN-** (onisciente.mascara_cpf, os seis do meio) na gravação (Banco.inserir) em
+# sancoes, pncp_itens, contratos_pncp, contratacoes_pncp e emendas_municipio, e nas linhas antigas na abertura do
+# Banco, numa rodada do rastreio (modo mascara_cpf) que sela de novo com a origem do selo anterior. CNPJ fica
+# inteiro; despesa_eventos fica com o coletor da D2. Pessoa física casa com a sanção pelos seis do meio e pelo
+# nome, como o QSA. Travas em testes/test_mascara_banco.py (a do banco real inteiro é xfail estrito até a D2
+# migrar despesa_eventos).
+# A despesa nunca fica só no SQLite de trabalho (28/11/2026): a conexão do Banco anota por gatilho TEMP os anos
+# de despesa_eventos que mudaram e cada commit regrava os .gz desses anos; a tabela antiga só sai do principal
+# depois de os .gz conferirem com ela. A soma da janela troca a despesa por (consulta, empenho) e o registro das
+# consultas por (consulta, dia), em vez de refazer as tabelas só com os meses da janela. Travas em
+# testes/test_partes.py (caminho do rastreio sem fechar, commit sem fechar, soma da janela).
+# Retirada por privacidade no rastreio (28/11/2026): o hash de uma linha com CPF completo refaz o CPF por força
+# bruta (três dígitos livres). Toda rodada de máscara (modo mascara_cpf, a da Frente H e a da D2) retira, ao
+# fechar, o hash dos selos descartados das tabelas que mascarou: sai de rastreio_selos e fica em
+# rastreio_retiradas a marca "retirado por privacidade" (tabela, rodada do selo, rodada que retirou, motivo e o
+# hash do selo novo da linha mascarada), com secure_delete no arquivo. A raiz de Merkle e o hash de cada rodada
+# ficam como estavam; o resumo das marcas entra no detalhe da rodada que retirou. A verificação refaz a raiz das
+# tabelas sem retirada, confere a contagem das que perderam folhas, acusa marca não declarada e relata as
+# retiradas (quantas, em qual rodada, por quê). Rodadas de máscara anteriores à regra têm as folhas retiradas
+# numa rodada própria (modo retirada_privacidade) na abertura do Banco. impedimentos.gravar passa cada linha por
+# mascara_banco.mascarar_linha. Travas em testes/test_retirada_privacidade.py.
+# Cópia do banco inteiro (28/11/2026, divisão do banco em partes): partes.copiar_banco copia o principal e todas
+# as partes (a pasta despesa com os .gz) e partes.conectar grava nelas; os testes que copiavam só o historico.db
+# (test_fiscal, test_rio_municipio, test_agenda) passam a usá-los. Trava em testes/test_partes.py.

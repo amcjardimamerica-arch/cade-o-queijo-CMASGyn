@@ -1,0 +1,177 @@
+# Frente F: empresas contratadas (Receita Federal, QSA e impedimentos). Ids novos a partir de 200.
+# Bloco novo "Empresas contratadas". Cada exigência tem uma trava em testes/test_empresas.py.
+- id: 200
+  bloco: Empresas contratadas
+  requisito: "O cadastro e o QSA de cada CNPJ fornecedor vêm da base mensal oficial da Receita Federal, lida em fluxo e filtrada pelos CNPJs do banco."
+  situacao: parcial
+  evidencia: "onisciente/coletores/cnpj.py (linhas_do_zip, coletar_base) e motor_cnpj.motor_cnpj leem a pasta mensal mais nova, um zip por vez, filtrando pelo CNPJ básico e apagando cada zip; testado com zips no layout oficial."
+  falta: "A leitura real depende de rede: o motor cnpj precisa ser registrado no historico.py e rodado no GitHub (sondagem f_cnpj antes) para a base de 2026-11 entrar no banco; hoje cnpj_empresas está vazia."
+  trava: "testes/test_empresas.py::test_base_mensal_filtra_em_fluxo_so_os_cnpjs_do_banco"
+- id: 201
+  bloco: Empresas contratadas
+  requisito: "O CNPJ que a base mensal não traz é consultado pela via secundária (BrasilAPI e, se falhar, minhareceita), sem reler a base no mesmo mês."
+  situacao: parcial
+  evidencia: "motor_cnpj._por_api e de_api convertem a resposta no mesmo registro da base, com a fonte própria; a base só é relida quando sai pasta mensal nova (meta cnpj_base_lida)."
+  falta: "Depende de rede: confirmar pela sondagem f_brasilapi que as duas APIs respondem a partir do GitHub."
+  trava: "testes/test_empresas.py::test_motor_cnpj_le_a_base_e_depois_so_o_incremental_pela_api"
+- id: 202
+  bloco: Empresas contratadas
+  requisito: "Toda empresa e todo sócio gravados têm selo de fonte e data da base, e cada chamada de rede fica em coletas."
+  situacao: cumprido
+  evidencia: "Tabelas cnpj_empresas, cnpj_socios, cnpj_historico e cnpj_ausentes com fonte e data_base; a via secundária grava consultado_em; cada arquivo e cada consulta viram uma linha em coletas (motor cnpj)."
+  falta: ""
+  trava: "testes/test_empresas.py::test_brasilapi_vira_registro_com_selo_de_fonte"
+- id: 203
+  bloco: Empresas contratadas
+  requisito: "Alerta quando a contratada não está ATIVA na Receita, dizendo se a situação já valia na data do contrato."
+  situacao: cumprido
+  evidencia: "conferencias/empresas.py, achado situacao_irregular com na_data."
+  falta: ""
+  trava: "testes/test_empresas.py::test_situacao_baixada_na_data_e_cnpj_que_nao_existe"
+- id: 204
+  bloco: Empresas contratadas
+  requisito: "Alerta de pouco tempo de funcionamento: menos de 12 meses entre a abertura e a assinatura do contrato."
+  situacao: cumprido
+  evidencia: "Achado pouco_tempo com o limiar meses_minimos_de_funcionamento de config/limiares_empresas.yml."
+  falta: ""
+  trava: "testes/test_empresas.py::test_empresa_aberta_dois_meses_antes_tem_pouco_tempo_e_perto_da_licitacao"
+- id: 205
+  bloco: Empresas contratadas
+  requisito: "Alerta quando a empresa foi aberta até 365 dias antes da publicação da licitação (ou da assinatura, sem a licitação)."
+  situacao: cumprido
+  evidencia: "Achado perto_da_licitacao, que usa a data de publicação da compra em pncp_amparos."
+  falta: ""
+  trava: "testes/test_empresas.py::test_empresa_aberta_dois_meses_antes_tem_pouco_tempo_e_perto_da_licitacao"
+- id: 206
+  bloco: Empresas contratadas
+  requisito: "Alerta de falta de experiência: nenhum contrato anterior do mesmo ramo do objeto em todo o banco."
+  situacao: cumprido
+  evidencia: "Achado sem_experiencia, comparando o ramo do objeto com os contratos anteriores da mesma empresa em qualquer órgão."
+  falta: ""
+  trava: "testes/test_empresas.py::test_falta_de_experiencia_no_ramo"
+- id: 207
+  bloco: Empresas contratadas
+  requisito: "Alerta de CNAE incompatível com o objeto, por uma tabela documentada de ramo do objeto para CNAE."
+  situacao: cumprido
+  evidencia: "Achado cnae_incompativel; a tabela está em config/limiares_empresas.yml (cnae_por_ramo) e confere o CNAE principal e os secundários."
+  falta: ""
+  trava: "testes/test_empresas.py::test_cnae_incompativel_com_o_objeto"
+- id: 208
+  bloco: Empresas contratadas
+  requisito: "Alerta quando a atividade compatível com o objeto entrou no cadastro até 365 dias antes do contrato."
+  situacao: cumprido
+  evidencia: "Achado cnae_recente, pelo histórico de fotografias mensais em cnpj_historico."
+  falta: ""
+  trava: "testes/test_empresas.py::test_cnae_compativel_incluido_pouco_antes"
+- id: 209
+  bloco: Empresas contratadas
+  requisito: "Alerta quando o capital social é menor que 10% do valor do contrato."
+  situacao: cumprido
+  evidencia: "Achado capital_baixo com o limiar fracao_minima_capital_social (Lei 14.133, art. 69, § 4º)."
+  falta: ""
+  trava: "testes/test_empresas.py::test_capital_social_abaixo_de_dez_por_cento"
+- id: 210
+  bloco: Empresas contratadas
+  requisito: "Alerta quando MEI, microempresa ou optante do Simples recebe no ano mais que o teto do regime."
+  situacao: cumprido
+  evidencia: "Achado porte_acima, somando os contratos do ano civil por CNPJ básico contra os tetos da LC 123."
+  falta: ""
+  trava: "testes/test_empresas.py::test_mei_acima_do_limite_do_ano"
+- id: 211
+  bloco: Empresas contratadas
+  requisito: "Alerta quando a empresa estava sancionada (CEIS, CNEP, CEPIM ou inidônea no TCU) na data do contrato, lida pela tabela sancoes da Frente D1."
+  situacao: cumprido
+  evidencia: "impedimentos.ler_sancoes junta a tabela sancoes (D1) e a tabela impedimentos; o achado sancionada só conta sanção vigente na data."
+  falta: ""
+  trava: "testes/test_empresas.py::test_sancionada_na_data_e_socio_inidoneo"
+- id: 212
+  bloco: Empresas contratadas
+  requisito: "O CEPIM e a lista de inidôneos do TCU são coletados com selo de fonte e data."
+  situacao: parcial
+  evidencia: "onisciente/coletores/impedimentos.py e motor_cnpj.motor_impedimentos, testados com respostas guardadas."
+  falta: "Depende de rede: o formato da API de inidôneos do TCU não está documentado e não foi lido; o parser é tolerante, mas precisa da sondagem f_tcu e de uma rodada do motor impedimentos no GitHub para confirmar."
+  trava: "testes/test_empresas.py::test_motor_impedimentos_le_cepim_e_inidoneos_do_tcu"
+- id: 213
+  bloco: Empresas contratadas
+  requisito: "Alerta quando sócio ou administrador da contratada é servidor do Município (cruzamento com a folha)."
+  situacao: parcial
+  evidencia: "Achado socio_servidor, que cruza o QSA com a tabela servidores pelo miolo do CPF e pelo nome."
+  falta: "O banco não tem a folha (tabela servidores); sem ela o cruzamento não roda nos dados reais e vira o alerta folha_ausente."
+  trava: "testes/test_empresas.py::test_socio_servidor_do_municipio"
+- id: 214
+  bloco: Empresas contratadas
+  requisito: "Sem a folha de pessoal publicada, a conferência roda e registra alerta de transparência."
+  situacao: cumprido
+  evidencia: "Achado folha_ausente com ficha INCONCLUSIVO e providência de pedido pela LAI."
+  falta: ""
+  trava: "testes/test_empresas.py::test_sem_folha_a_conferencia_roda_e_vira_alerta_de_transparencia"
+- id: 215
+  bloco: Empresas contratadas
+  requisito: "Alerta quando empresas ligadas (sócio, endereço, telefone ou e-mail em comum) aparecem na mesma compra ou processo."
+  situacao: cumprido
+  evidencia: "Achado vinculo_mesma_compra, com um sócio em comum já bastando (socios_em_comum_minimos = 1)."
+  falta: ""
+  trava: "testes/test_empresas.py::test_socio_em_comum_em_duas_propostas_da_mesma_compra"
+- id: 216
+  bloco: Empresas contratadas
+  requisito: "Alerta de rodízio: empresas ligadas dividindo contratos do mesmo ramo no mesmo órgão, e sede em comum."
+  situacao: cumprido
+  evidencia: "Achados rodizio e endereco_comum."
+  falta: ""
+  trava: "testes/test_empresas.py::test_rodizio_e_endereco_em_comum_e_socio_laranja"
+- id: 217
+  bloco: Empresas contratadas
+  requisito: "Alerta de possível sócio laranja: a mesma pessoa em 3 ou mais contratadas, ou sócio em faixa etária atípica."
+  situacao: cumprido
+  evidencia: "Achado socio_laranja."
+  falta: ""
+  trava: "testes/test_empresas.py::test_rodizio_e_endereco_em_comum_e_socio_laranja"
+- id: 218
+  bloco: Empresas contratadas
+  requisito: "Alerta quando a sede tem indício de endereço residencial ou virtual."
+  situacao: cumprido
+  evidencia: "Achado endereco_residencial, pelas listas de palavras do arquivo de limiares."
+  falta: ""
+  trava: "testes/test_empresas.py::test_rodizio_e_endereco_em_comum_e_socio_laranja"
+- id: 219
+  bloco: Empresas contratadas
+  requisito: "Alerta quando a razão social na Receita diverge da do contrato ou mudou pouco antes."
+  situacao: cumprido
+  evidencia: "Achado razao_alterada, por similaridade de palavras e pelo histórico de razões."
+  falta: ""
+  trava: "testes/test_empresas.py::test_razao_social_trocada"
+- id: 220
+  bloco: Empresas contratadas
+  requisito: "Os limiares ficam versionados em config/limiares_empresas.yml, cada um com valor, justificativa e base, e o código os lê de lá."
+  situacao: cumprido
+  evidencia: "config/limiares_empresas.yml; empresas.carregar_limiares; o teste muda um limiar e o resultado muda."
+  falta: ""
+  trava: "testes/test_empresas.py::test_limiares_versionados_com_valor_justificativa_e_base"
+- id: 221
+  bloco: Empresas contratadas
+  requisito: "Todo achado sobre empresa vira ficha de indício para apuração, nunca acusação nem fato confirmado."
+  situacao: cumprido
+  evidencia: "empresas.ficha usa nível C (ou F com documento faltante), e por coincidência de nome quando o cruzamento é por nome."
+  falta: ""
+  trava: "testes/test_empresas.py::test_toda_ficha_e_indicio_e_nunca_acusacao"
+- id: 222
+  bloco: Empresas contratadas
+  requisito: "As fichas entram no parecer e há a página docs/onisciente/empresas.html, gerada por python -m onisciente empresas."
+  situacao: parcial
+  evidencia: "ConferenciasEmpresas.fichas, secao_parecer e o subcomando empresas, que gera a página."
+  falta: "A ligação no adaptador (adaptadores/cadeoqueijo.py) e no parecer (parecer/html.py) é de outras frentes e não foi feita aqui."
+  trava: "testes/test_empresas.py::test_pagina_das_empresas_pelo_subcomando"
+- id: 223
+  bloco: Empresas contratadas
+  requisito: "Alerta quando o CNPJ contratado não consta na base da Receita."
+  situacao: cumprido
+  evidencia: "Achado cnpj_nao_encontrado, só quando a base do mês foi lida inteira (cnpj_ausentes)."
+  falta: ""
+  trava: "testes/test_empresas.py::test_situacao_baixada_na_data_e_cnpj_que_nao_existe"
+- id: 224
+  bloco: Empresas contratadas
+  requisito: "Cadastro de sanção sem linhas no banco é dado como não conferido, com o motivo da falta, e nunca como empresa sem sanção."
+  situacao: cumprido
+  evidencia: "Ficha SIS-EMPRESAS-SANCOES (INCONCLUSIVO, documento faltante) com o motivo tirado da última coleta que falhou; cada contrato na página diz quais cadastros não foram conferidos."
+  falta: ""
+  trava: "testes/test_empresas.py::test_sancoes_sem_linhas_sao_nao_conferidas_e_nunca_empresa_limpa"

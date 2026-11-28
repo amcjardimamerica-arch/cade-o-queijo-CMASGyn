@@ -89,3 +89,72 @@ def fichas(contas: list[Conta]) -> list[Ficha]:
                         "contas e o calendário de julgamento.",
         ))
     return saida
+
+
+# --- Cadastro das unidades e prazos dos demonstrativos -------------------------------
+
+@dataclass(frozen=True)
+class Unidade:
+    """Uma unidade que presta contas: o Município (governo) ou um fundo, autarquia ou estatal (gestão)."""
+
+    nome: str
+    tipo: str            # governo, fundo, autarquia, estatal, legislativo ou órgão
+    cnpj: str = ""
+    poder_orgao: str = ""   # código da unidade na matriz de saldos contábeis, quando ela abre a unidade
+
+    @property
+    def conta(self) -> str:
+        return "governo" if self.tipo == "governo" else "gestão"
+
+
+def classificar_unidade(nome: str) -> str:
+    n = nome.upper()
+    if "CAMARA MUNICIPAL" in n or "CÂMARA MUNICIPAL" in n:
+        return "legislativo"
+    if n.startswith("FUNDO") or " FUNDO " in f" {n} ":
+        return "fundo"
+    if any(t in n for t in ("INSTITUTO", "AGENCIA", "AGÊNCIA", "AUTARQUIA", "FUNDACAO", "FUNDAÇÃO")):
+        return "autarquia"
+    if any(t in n for t in ("COMPANHIA", "EMPRESA", " S.A", " S/A")):
+        return "estatal"
+    return "órgão"
+
+
+def conferencia_possivel(tem: dict[str, bool]) -> str:
+    """possível com todas as peças, parcial com alguma, impossível sem nenhuma."""
+    if tem and all(tem.values()):
+        return "possível"
+    if any(tem.values()):
+        return "parcial"
+    return "impossível"
+
+
+def prazo_demonstrativo(demonstrativo: str, exercicio: int, periodo: int, *, dias: int = 30,
+                        dca_ate: tuple[int, int] = (4, 30)) -> date:
+    """Último dia para publicar: RREO e RGF em ``dias`` após o período; DCA até 30 de abril do ano seguinte."""
+    if demonstrativo == "DCA":
+        return date(exercicio + 1, *dca_ate)
+    meses = 2 if demonstrativo == "RREO" else 4
+    fim_mes = periodo * meses
+    fim = date(exercicio + (fim_mes == 12), 1 if fim_mes == 12 else fim_mes + 1, 1) - timedelta(days=1)
+    return fim + timedelta(days=dias)
+
+
+def fichas_de_prazo(atrasos: list[dict], *, norma: str, gravidade: str = "media") -> list[Ficha]:
+    """Uma ficha CTA por demonstrativo homologado depois do prazo."""
+    saida = []
+    for a in atrasos:
+        saida.append(emitir(
+            codigo=f"CTA-PRAZO-{a['demonstrativo']}-{a['exercicio']}-{a['periodo']}",
+            familia=Familia.CTA,
+            titulo=f"{a['rotulo']} homologado {a['dias']} dia(s) depois do prazo",
+            gravidade=gravidade,
+            como_deveria=f"Publicado até {a['prazo']:%d/%m/%Y}.",
+            norma=norma,
+            como_esta=(f"A última homologação no SICONFI é de {a['homologado']:%d/%m/%Y}. A publicação no Diário "
+                       "Oficial pode ter sido anterior; a homologação fora do prazo é indício, não prova."),
+            niveis=[Nivel.B],
+            providencia="Pedir a data de publicação do demonstrativo no Diário Oficial e no portal.",
+            observacao="indício, não acusação",
+        ))
+    return saida

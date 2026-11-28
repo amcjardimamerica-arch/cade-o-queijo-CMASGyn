@@ -58,7 +58,10 @@ def test_norma_revogada_sai_das_vigentes(mapa):
 def test_alvo_e_dominios():
     alvo = carregar_alvo()
     assert alvo.ibge == 5208707 and alvo.faixa_camara == "IV"
-    assert [d.id for d in alvo.ativos()] == ["assistencia"]
+    # Decisão do coordenador (27/11/2026, requisito 108): as seis secretarias da trilha ativas,
+    # nesta ordem. Um domínio que entre ou saia sem querer quebra este teste.
+    assert [d.id for d in alvo.ativos()] == ["assistencia", "saude", "educacao", "infraestrutura",
+                                              "comurg", "administracao"]
     for d in alvo.dominios.values():
         assert d.problemas() == [], d.id
 

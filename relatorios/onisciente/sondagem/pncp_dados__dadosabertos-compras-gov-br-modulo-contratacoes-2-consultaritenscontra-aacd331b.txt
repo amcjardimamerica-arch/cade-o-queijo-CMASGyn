@@ -1,0 +1,7 @@
+URL: https://dadosabertos.compras.gov.br/modulo-contratacoes/2_consultarItensContratacoes_PNCP_14133?pagina=1&tamanhoPagina=500&orgaoEntidadeCnpj=25141524000123&dataInclusaoPncpInicial=2025-01-01&dataInclusaoPncpFinal=2025-12-31
+POST: {}
+OK: False
+HTTP: None
+ERRO: TimeoutError: The read operation timed out
+BYTES: 0
+

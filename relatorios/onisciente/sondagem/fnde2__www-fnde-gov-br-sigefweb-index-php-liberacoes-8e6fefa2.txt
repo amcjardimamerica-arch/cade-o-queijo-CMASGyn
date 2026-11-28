@@ -1,0 +1,185 @@
+URL: https://www.fnde.gov.br/sigefweb/index.php/liberacoes
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 8590
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-BR" lang="pt-BR">
+    <head>
+                
+        <meta http-equiv="X-UA-Compatible" content="IE=8" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="-1" />
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
+<meta http-equiv="Content-Language" content="pt-BR" />
+<meta name="keywords" content="Palavras-chave, separadas, por, virgula" />
+<meta name="author" content="FNDE - Fundo Nacional de Desenvolvimento da Educação" />
+<meta name="robots" content="index, no-follow" />
+<meta name="title" content="FNDE :  " />
+<meta name="description" content="Sistema Integrado de GestÃÂ£o Financeira" />
+        <title>FNDE:  SIGEF 26.11.2026#f167e2 </title>
+	<link type="image/x-icon" rel="shortcut icon" href="/static/images/interface/icone/favicon.ico" />	
+        <link href="/static/css/fnde.min.css" media="screen" rel="stylesheet" type="text/css" />                <!--[if lt IE 8]>
+        <link type="text/css" href="/static/css/ie-fix.css" rel="stylesheet" />
+        <![endif]-->
+				
+        <script type="text/javascript" src="/static/js/fnde.script.min.js"></script>    </head>
+    <body>
+        <div id="preLoader"></div>
+        <div id="header">
+            <img id="logoFnde" src="/static/images/logo/fnde_web.png" alt="FNDE - Fundo Nacional de Desenvolvimento da Educação" />
+            <img id="logoSistema" src="/static/images/logo/sigefweb_web.png" alt="SIGEF - Sistema Integrado de GestÃÂ£o Financeira" />
+                    </div>
+
+        
+        <div id="conteudo">
+            <div id="conteudoCabecalho"><h1>Liberações</h1><h2>Consultas Gerais</h2></div><style>
+#header{
+  display: none !important;
+}
+</style>
+<div id="mensagens"><div class="msgOrientacao"><h3>Orientação</h3><p>Preencha o captcha</p></div></div><form enctype="application/x-www-form-urlencoded" method="post" action="">
+<fieldset id="fieldset-fieldset1">
+
+<label for="ano"><span class="campoRequerido">Ano</span> <select name="ano" id="ano">
+    <option value="0" label="Escolha" selected="selected">Escolha</option>
+    <option value="2026" label="2026">2026</option>
+    <option value="2025" label="2025">2025</option>
+    <option value="2024" label="2024">2024</option>
+    <option value="2023" label="2023">2023</option>
+    <option value="2022" label="2022">2022</option>
+    <option value="2021" label="2021">2021</option>
+    <option value="2020" label="2020">2020</option>
+    <option value="2019" label="2019">2019</option>
+    <option value="2018" label="2018">2018</option>
+    <option value="2017" label="2017">2017</option>
+    <option value="2016" label="2016">2016</option>
+    <option value="2015" label="2015">2015</option>
+    <option value="2014" label="2014">2014</option>
+    <option value="2013" label="2013">2013</option>
+    <option value="2012" label="2012">2012</option>
+    <option value="2011" label="2011">2011</option>
+    <option value="2010" label="2010">2010</option>
+    <option value="2009" label="2009">2009</option>
+    <option value="2008" label="2008">2008</option>
+    <option value="2007" label="2007">2007</option>
+    <option value="2006" label="2006">2006</option>
+    <option value="2005" label="2005">2005</option>
+    <option value="2004" label="2004">2004</option>
+    <option value="2003" label="2003">2003</option>
+    <option value="2002" label="2002">2002</option>
+    <option value="2001" label="2001">2001</option>
+    <option value="2000" label="2000">2000</option>
+</select> </label>
+
+<label for="programa"><span>Programa</span> <select name="programa" id="programa" disabled="disabled">
+    <option value="0" label="Selectione o ano.">Selectione o ano.</option>
+</select> </label></fieldset>
+<fieldset id="fieldset-fieldset2">
+
+<label for="cnpj"><span>CNPJ</span> <input type="text" name="cnpj" id="cnpj" value="" class="cnpj" /> </label>
+
+<label for="estado"><span>UF</span> <select name="estado" id="estado">
+    <option value="0" label="Escolha um estado">Escolha um estado</option>
+    <option value="AC" label="Acre">Acre</option>
+    <option value="AL" label="Alagoas">Alagoas</option>
+    <option value="AM" label="Amazonas">Amazonas</option>
+    <option value="AP" label="Amapá">Amapá</option>
+    <option value="BA" label="Bahia">Bahia</option>
+    <option value="CE" label="Ceará">Ceará</option>
+    <option value="DF" label="Distrito Federal">Distrito Federal</option>
+    <option value="ES" label="Espírito Santo">Espírito Santo</option>
+    <option value="GO" label="Goiás">Goiás</option>
+    <option value="MA" label="Maranhão">Maranhão</option>
+    <option value="MG" label="Minas Gerais">Minas Gerais</option>
+    <option value="MS" label="Mato Grosso do Sul">Mato Grosso do Sul</option>
+    <option value="MT" label="Mato Grosso">Mato Grosso</option>
+    <option value="PA" label="Pará">Pará</option>
+    <option value="PB" label="Paraíba">Paraíba</option>
+    <option value="PE" label="Pernambuco">Pernambuco</option>
+    <option value="PI" label="Piauí">Piauí</option>
+    <option value="PR" label="Paraná">Paraná</option>
+    <option value="RJ" label="Rio de Janeiro">Rio de Janeiro</option>
+    <option value="RN" label="Rio Grande do Norte">Rio Grande do Norte</option>
+    <option value="RO" label="Rondônia">Rondônia</option>
+    <option value="RR" label="Roraima">Roraima</option>
+    <option value="RS" label="Rio Grande do Sul">Rio Grande do Sul</option>
+    <option value="SC" label="Santa Catarina">Santa Catarina</option>
+    <option value="SE" label="Sergipe">Sergipe</option>
+    <option value="SP" label="São Paulo">São Paulo</option>
+    <option value="TO" label="Tocantins">Tocantins</option>
+</select> </label>
+
+<label for="cidade"><span>Município</span> <select name="cidade" id="cidade" disabled="disabled">
+    <option value="0" label="Selecione uma UF.">Selecione uma UF.</option>
+</select> </label>
+
+<label for="tipoEntidade"><span>Tipo de entidade</span> <select name="tipoEntidade" id="tipoEntidade">
+    <option value="todos" label="Todos">Todos</option>
+    <option value="07" label="EMPRESA">EMPRESA</option>
+    <option value="06" label="ESCOLA PARTICULAR DO CENSO">ESCOLA PARTICULAR DO CENSO</option>
+    <option value="04" label="ESCOLA PUBLICA DO CENSO">ESCOLA PUBLICA DO CENSO</option>
+    <option value="05" label="ORGANIZACAO NAO GOVERNAMENTAL">ORGANIZACAO NAO GOVERNAMENTAL</option>
+    <option value="03" label="ORGAO ESTADUAL">ORGAO ESTADUAL</option>
+    <option value="02" label="PREFEITURA">PREFEITURA</option>
+    <option value="10" label="SECRETARIA ESTADUAL DE EDUCACAO">SECRETARIA ESTADUAL DE EDUCACAO</option>
+</select> </label></fieldset>
+<div class="barraBtsAcoes">
+
+<button name="confirmar" id="confirmar" type="submit" value="Confirmar" class="btnConfirmar" disabled="disabled">Confirmar</button>
+
+<button name="cancelar" id="cancelar" type="button" value="Cancelar" class="btnCancelar">Cancelar</button></div></form>
+<script language='javascript'>
+
+var recaptchaCallback = function(val) { $('#confirmar').prop('disabled', 0) };
+
+$(document).ready(function(){
+    $(".g-recaptcha").appendTo('#fieldset-fieldset2');
+
+    $('#ano').change(function(){
+        $(".g-recaptcha").show();
+    });
+});
+
+$("#ano").change(function(){
+	$.ajax({
+		type: "POST",
+		url: '/sigefweb/index.php/liberacoes/ajax' + '/ano/' + $(this).val(),
+		cache: false,
+		success: function(result){
+			$('#programa').children().remove('option');
+			$.each(result, function() {
+				$('#programa').append($("<option />").val(this.ID).text(this.NOME));
+			});
+			$('#programa').removeAttr('disabled');
+		} 
+	});
+});
+
+$("#estado").change(function(){
+	$.ajax({
+		type: "POST",
+		url: '/sigefweb/index.php/liberacoes/ajax' + '/estado/' + $(this).val(),
+		cache: false,
+		success: function(result){
+			$('#cidade').children().remove('option');
+			$.each(result, function() {
+			    $('#cidade').append($("<option />").val(this.ID).text(this.NOME));
+			});
+			$('#cidade').removeAttr('disabled');
+		} 
+	});
+});
+</script>
+
+<div class="g-recaptcha" style="display: none" data-callback="recaptchaCallback" data-sitekey="6Lc1KqcUAAAAACYWpPxX2r3E6aTSyZDos0hT1uh3"></div>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
+        </div>
+        <div id="footer" style="display:none">
+            Powered by Powered by ZF v1.10.6 e ZFnde v1.4.5 $Rev$        </div>
+            </body>
+</html>

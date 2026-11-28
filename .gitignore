@@ -24,3 +24,9 @@ estado/fnas/*.xlsx
 # Testes
 .pytest_cache/
 *.egg-info/
+
+# Onisciente: o SQLite de trabalho da despesa é refeito dos .jsonl.gz (onisciente/partes.py).
+dados/onisciente/despesa/*.sqlite
+dados/onisciente/despesa/*.sqlite-journal
+dados/onisciente/despesa/*.sqlite.tmp
+dados/onisciente/despesa/*.tmp

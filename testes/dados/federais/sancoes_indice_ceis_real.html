@@ -1,0 +1,12 @@
+<!DOCTYPE html><html><head><title>Ceis | Portal da Transparência</title></head><body>
+<script>
+
+    var arquivos = [];
+
+        arquivos.push({"ano" : "2026", "mes" : "11", "dia" : "27", "origem" :  "CEIS"});
+
+    var url = springUrl + "download-de-dados/ceis/";
+    var download = new DownloadPlanilhas("ceis", arquivos, "DIA", url);
+    download.criarLinksIniciais();
+</script>
+</body></html>

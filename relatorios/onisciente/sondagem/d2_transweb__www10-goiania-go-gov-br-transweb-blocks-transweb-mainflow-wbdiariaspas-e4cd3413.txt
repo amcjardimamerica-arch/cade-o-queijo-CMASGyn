@@ -1,0 +1,45 @@
+URL: https://www10.goiania.go.gov.br/transweb/Blocks/TransWeb/MainFlow/wbDiariasPassagens.js?67404
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 1427
+
+﻿((fn) => {
+    if (document.attachEvent ? document.readyState === 'complete' : document.readyState !== 'loading') {
+        fn();
+    } else {
+        document.addEventListener('DOMContentLoaded', fn);
+    }
+})(() => {
+    try {
+        // Aciona mudanças na página pai
+        let sendSize = null;
+​
+        function updateSize() {
+            clearTimeout(sendSize);
+​
+            sendSize = setTimeout(function () {
+                // Tamanho do body
+                let bodyTag = document.getElementsByTagName('body')[0];
+​
+                // Tamanho excedente gerado pelos elementos filhos
+                let lastChildStyle = window.getComputedStyle(bodyTag.lastElementChild);
+                let lastChildMarginBottom = parseInt(lastChildStyle.marginBottom, 10);
+                let lastChildMarginRight = parseInt(lastChildStyle.marginRight, 10);
+​
+                window.parent.postMessage("resize|" + (bodyTag.scrollWidth + lastChildMarginRight) + "|" + (bodyTag.clientHeight + lastChildMarginBottom), '*');
+            }, 200);
+        }
+​
+        // Chama a primeira vez
+        updateSize();
+​
+        // Atualiza caso ocorra mudanças no elemento
+        document.getElementsByTagName('body')[0].addEventListener('DOMSubtreeModified', updateSize, false);
+​
+        // Atualiza quando a janela for redimensionada
+        window.addEventListener("resize", updateSize);
+    } catch (e) {
+    }
+});

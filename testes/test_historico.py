@@ -639,3 +639,461 @@ def test_msc_guarda_as_paginas_do_mes_e_separa_prazo_de_lacuna(tmp_path):
                             hoje=date(2026, 11, 26), ler_url=leitor, dormir=lambda s: None, pausa=0)
     assert banco.consultar("SELECT mes, situacao, prazo FROM msc_meses") == [("2026-10", "no_prazo", "2026-11-30")]
     banco.fechar()
+
+
+def test_pncp_detalhe_le_amparo_itens_contrato_termos_preco_e_notas(tmp_path):
+    """O motor de detalhe parte do que já está no banco e guarda cada via; a segunda rodada não repete."""
+    pedidos = []
+    item = {"numeroControlePNCPCompra": "04973965000111-1-000043/2024", "numeroItemPncp": 1,
+            "orgaoEntidadeCnpj": "04973965000111", "descricaoResumida": "Aparelho Ar Condicionado",
+            "materialOuServico": "M", "codigoClasse": 4120, "codItemCatalogo": 440744, "codigoPdm": "13768",
+            "unidadeMedida": "Unidade  ", "quantidade": 9.0, "valorUnitarioEstimado": 2347.22,
+            "valorTotal": 21124.98, "codFornecedor": "23528340000195", "quantidadeResultado": 9.0,
+            "valorUnitarioResultado": 2116.99, "valorTotalResultado": 19052.91,
+            "dataInclusaoPncp": "2024-11-12T11:22:08", "dataResultado": "2024-12-05 00:00:00.0000000"}
+
+    def rede(url, **_):
+        pedidos.append(url)
+        if "2_consultarItens" in url:
+            q = {k: v[0] for k, v in parse_qs(urlparse(url).query).items()}
+            d1, d2 = (date.fromisoformat(q[k]) for k in ("dataInclusaoPncpInicial", "dataInclusaoPncpFinal"))
+            if (d2 - d1).days > 31:
+                return base.Leitura(False, url, erro="TimeoutError: timed out")   # ano inteiro: lento demais
+            if d1.day == 1:                                   # a data final é exclusiva: 1º do mês seguinte
+                assert d2.day == 1 and d2.month != d1.month
+            corpo = {"resultado": [item] if q["dataInclusaoPncpInicial"].startswith("2024-11") else [],
+                     "totalPaginas": 1}
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        if url.endswith("/compras/2024/43"):
+            corpo = {"amparoLegal": {"codigo": 19, "nome": "Lei 14.133/2021, Art. 75, II"}, "srp": False,
+                     "valorTotalEstimado": 21124.98, "valorTotalHomologado": 19052.91}
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        if url.endswith("/contratos/2024/47"):
+            corpo = {"numeroControlePncpCompra": "04973965000111-1-000043/2024", "valorInicial": 100.0,
+                     "valorGlobal": 140.0, "tipoContrato": {"nome": "Contrato (termo inicial)"},
+                     "dataVigenciaInicio": "2024-11-19", "dataVigenciaFim": "2025-11-19"}
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        if url.endswith("/contratos/2024/47/termos"):
+            corpo = [{"sequencialTermoContrato": 1, "tipoTermoContratoNome": "Termo Aditivo",
+                      "valorAcrescido": 40.0, "qualificacaoAcrescimoSupressao": True}]
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        if "1_consultarMaterial" in url:
+            assert "dataCompraInicio=2024-07-01" in url and "codigo=440744" in url
+            corpo = {"resultado": [{"idCompraItem": f"X{n}", "precoUnitario": 1500.0 + n, "dataCompra": "2024-10-01",
+                                    "estado": "MG"} for n in range(3)], "totalPaginas": 1}
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        if "instrumentoscobranca" in url and "dataInicial=20241101" in url:
+            corpo = {"data": [{"cnpj": "04973965000111", "ano": 2024, "sequencialContrato": 47,
+                               "sequencialInstrumentoCobranca": 1, "tipoInstrumentoCobranca": {"nome": "Nota Fiscal"},
+                               "notaFiscalEletronica": {"valorNotaFiscal": "19052.91", "itens": [
+                                   {"numeroItem": "1", "descricaoProdutoServico": "AR SPLIT", "quantidade": "9",
+                                    "valorUnitario": "2116.99", "valorTotal": "19052.91"}]}}],
+                     "totalPaginas": 1}
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        return base.Leitura(True, url, b"", http=204)
+
+    banco = historico.Banco(tmp_path / "h.db")
+    banco.inserir("contratacoes_pncp", {"pncp_id": "04973965000111-1-000043/2024", "mes": "2024-11",
+                                        "modalidade": "Dispensa", "orgao_cnpj": "04973965000111"})
+    banco.inserir("contratos_pncp", {"pncp_id": "04973965000111-2-000047/2024", "mes": "2024-11",
+                                     "orgao_cnpj": "04973965000111", "valor_global": 140.0})
+    ctx = historico.Contexto(banco, historico.meses("2024-11", "2024-12"), date(2026, 11, 26),
+                             ler_url=rede, dormir=lambda s: None, pausa=0)
+    historico.motor_pncp_detalhe(ctx)
+    assert banco.consultar("SELECT catalogo, unitario_resultado FROM pncp_itens") == [(440744, 2116.99)]
+    assert banco.consultar("SELECT codigo, nome FROM pncp_amparos") == [(19, "Lei 14.133/2021, Art. 75, II")]
+    assert banco.consultar("SELECT compra_id, valor_inicial FROM pncp_contratos_detalhe") == [
+        ("04973965000111-1-000043/2024", 100.0)]
+    assert banco.consultar("SELECT valor_acrescido, acrescimo_supressao FROM pncp_termos") == [(40.0, 1)]
+    assert banco.consultar("SELECT COUNT(*), MIN(semestre) FROM precos_referencia") == [(3, "2024-2")]
+    assert banco.consultar("SELECT contrato_id, valor_nf FROM pncp_cobrancas") == [
+        ("04973965000111-2-000047/2024", 19052.91)]
+    assert banco.consultar("SELECT unitario FROM pncp_nf_itens") == [(2116.99,)]
+    antes = len(pedidos)
+    historico.motor_pncp_detalhe(ctx)                      # tudo lido por inteiro: nada de novo
+    assert len(pedidos) == antes
+
+
+def test_pncp_detalhe_le_a_pasta_primeiro_e_os_itens_dela_pela_via_rapida(tmp_path):
+    """A pasta vem antes de tudo, e os itens dela saem da API do PNCP com o resultado homologado."""
+    pedidos = []
+
+    def rede(url, **_):
+        pedidos.append(url)
+        if url.endswith("/compras/2025/7/itens?pagina=1&tamanhoPagina=500"):
+            corpo = [{"numeroItem": 1, "descricao": "Cesta básica", "materialOuServico": "M",
+                      "catalogoCodigoItem": "461540", "ncmNbsCodigo": "19059090", "unidadeMedida": "Unidade",
+                      "quantidade": 100, "valorUnitarioEstimado": 150.0, "valorTotal": 15000.0, "temResultado": True,
+                      "dataInclusao": "2025-03-02T10:00:00"}]
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        if url.endswith("/compras/2025/7/itens/1/resultados"):
+            corpo = [{"niFornecedor": "11222333000144", "nomeRazaoSocialFornecedor": "Mercado X",
+                      "quantidadeHomologada": 100, "valorUnitarioHomologado": 149.0,
+                      "valorTotalHomologado": 14900.0, "dataResultado": "2025-03-10"}]
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        return base.Leitura(True, url, b"", http=204)
+
+    banco = historico.Banco(tmp_path / "h.db")
+    banco.inserir("contratacoes_pncp", {"pncp_id": "25141524000123-1-000900/2025", "mes": "2025-03",
+                                        "modalidade": "Dispensa", "orgao_cnpj": "25141524000123",
+                                        "orgao": "SECRETARIA MUNICIPAL DE SAUDE", "valor_homologado": 9e6})
+    banco.inserir("contratacoes_pncp", {"pncp_id": "01393989000103-1-000007/2025", "mes": "2025-03",
+                                        "modalidade": "Pregão - Eletrônico", "orgao_cnpj": "01393989000103",
+                                        "orgao": "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL-FMAS", "valor_homologado": 1.0})
+    ctx = historico.Contexto(banco, historico.meses("2025-03", "2025-03"), date(2026, 11, 26),
+                             ler_url=rede, dormir=lambda s: None, pausa=0)
+    historico.motor_pncp_detalhe(ctx)
+    assert "/orgaos/01393989000103/compras/2025/7" in pedidos[0]            # a pasta antes da compra maior
+    assert banco.consultar("SELECT catalogo, ncm, fornecedor_ni, unitario_resultado FROM pncp_itens") == [
+        (461540, "19059090", "11222333000144", 149.0)]
+    primeiro_lento = next(i for i, u in enumerate(pedidos) if "dadosabertos" in u)
+    assert "01393989000103" in pedidos[primeiro_lento]                     # e na via lenta também
+    # As demais contratações só passam pela via rápida na segunda volta, depois da pasta inteira.
+    rapida_demais = next(i for i, u in enumerate(pedidos) if "/compras/2025/900/itens" in u)
+    assert rapida_demais > primeiro_lento
+
+
+def test_pncp_detalhe_em_paralelo_guarda_o_mesmo_e_registra_cada_chamada_uma_vez(tmp_path):
+    """As vias de detalhe esperam pelo servidor (uns 10 s por compra): a rede do bloco vai em
+    linhas paralelas, mas o banco recebe o mesmo que na leitura em fila, cada chamada uma vez só."""
+    import threading
+    import time as relogio
+
+    ao_mesmo_tempo, maximo, trava = [0], [0], threading.Lock()
+
+    def rede(url, **_):
+        with trava:
+            ao_mesmo_tempo[0] += 1
+            maximo[0] = max(maximo[0], ao_mesmo_tempo[0])
+        relogio.sleep(0.02)
+        with trava:
+            ao_mesmo_tempo[0] -= 1
+        if "/compras/" in url and "/itens" not in url:
+            seq = int(url.rsplit("/", 1)[1])
+            corpo = {"amparoLegal": {"codigo": 19, "nome": f"Art. 75, II ({seq})"}, "srp": False}
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        if "/contratos/" in url and not url.endswith("/termos"):
+            seq = int(url.rsplit("/", 1)[1])
+            corpo = {"valorInicial": float(seq), "valorGlobal": float(seq)}
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        return base.Leitura(True, url, b"", http=204)
+
+    def rodada(paralelo):
+        banco = historico.Banco(tmp_path / f"p{paralelo}.db")
+        for n in range(1, 31):
+            banco.inserir("contratacoes_pncp", {"pncp_id": f"04973965000111-1-{n:06d}/2025", "mes": "2025-03",
+                                                "modalidade": "Dispensa" if n % 2 else "Inexigibilidade",
+                                                "orgao_cnpj": "04973965000111", "valor_homologado": float(n)})
+            banco.inserir("contratos_pncp", {"pncp_id": f"04973965000111-2-{n:06d}/2025", "mes": "2025-03",
+                                             "orgao_cnpj": "04973965000111", "valor_global": float(n)})
+        ctx = historico.Contexto(banco, ["2025-03"], date(2026, 11, 26), ler_url=rede,
+                                 dormir=lambda s: None, pausa=0, paralelo=paralelo)
+        historico.motor_pncp_detalhe(ctx)
+        return banco
+
+    fila, linhas = rodada(1), rodada(5)
+    assert maximo[0] > 1                                          # a rede foi mesmo em paralelo
+    for consulta in ("SELECT compra_id, nome FROM pncp_amparos ORDER BY 1",
+                     "SELECT contrato_id, valor_inicial FROM pncp_contratos_detalhe ORDER BY 1"):
+        assert linhas.consultar(consulta) == fila.consultar(consulta)
+    assert len(linhas.consultar("SELECT * FROM pncp_amparos")) == 30
+    repetidas = linhas.consultar("SELECT url, COUNT(*) FROM coletas WHERE motor = 'pncp_detalhe' "
+                                 "AND url LIKE '%pncp.gov.br%' GROUP BY url HAVING COUNT(*) > 1")
+    assert repetidas == []
+    assert linhas.consultar("SELECT COUNT(*) FROM coletas WHERE motor = 'pncp_detalhe'") == \
+        fila.consultar("SELECT COUNT(*) FROM coletas WHERE motor = 'pncp_detalhe'")
+    # As dispensas vêm antes dos contratos; as inexigibilidades, depois deles.
+    ordem = [u for (u,) in linhas.consultar("SELECT alvo FROM coletas WHERE motor = 'pncp_detalhe' ORDER BY rowid")]
+    primeiro_contrato = next(i for i, a in enumerate(ordem) if a.startswith("contrato "))
+    assert all(int(a.split("-")[2][:6]) % 2 for a in ordem[:primeiro_contrato])
+    assert any(a.startswith("compra ") and int(a.split("-")[2][:6]) % 2 == 0 for a in ordem[primeiro_contrato:])
+
+
+def test_nota_fiscal_nenhuma_no_mes_e_lida_mas_endereco_errado_continua_falha(tmp_path):
+    """O PNCP diz "nenhum instrumento de cobrança" com 404 e a mensagem no corpo: isso é o mês
+    lido (o órgão não publicou nota fiscal), não falha. Um 404 sem essa mensagem continua falha."""
+    def rede(url, **_):
+        if "instrumentoscobranca" in url and "cnpjOrgao=01393989000103" in url:
+            return base.Leitura(False, url, json.dumps({"message": "Nenhum instrumento de Cobrança encontrado."})
+                                .encode(), erro="HTTP 404", http=404)
+        if "instrumentoscobranca" in url:
+            return base.Leitura(False, url, b'{"status":404,"error":"Not Found","path":"/v1/x"}',
+                                erro="HTTP 404", http=404)
+        return base.Leitura(True, url, b"", http=204)
+
+    banco = historico.Banco(tmp_path / "h.db")
+    for cnpj, orgao in (("01393989000103", "FUNDO MUNICIPAL DE ASSISTENCIA SOCIAL-FMAS"),
+                        ("25141524000123", "SECRETARIA MUNICIPAL DE SAUDE")):
+        banco.inserir("contratos_pncp", {"pncp_id": f"{cnpj}-2-000001/2025", "mes": "2025-03",
+                                         "orgao_cnpj": cnpj, "orgao": orgao, "valor_global": 1.0})
+    ctx = historico.Contexto(banco, ["2025-03", "2025-04"], date(2026, 11, 26), ler_url=rede,
+                             dormir=lambda s: None, pausa=0)
+    historico.motor_pncp_detalhe(ctx)
+    lidos = json.loads(dict(banco.consultar("SELECT chave, valor FROM meta"))["pncp_detalhe_lidos"])
+    assert {"cobrancas 01393989000103 2025-03", "cobrancas 01393989000103 2025-04"} <= set(lidos)
+    assert not any(c.startswith("cobrancas 25141524000123") for c in lidos)
+
+
+def test_fonte_que_pede_calma_sai_do_paralelo_e_depois_espera_a_proxima_rodada(tmp_path):
+    """429 tira a fonte do paralelo; lida uma a uma, se ela recusa ``disjuntor`` vezes seguidas,
+    o resto dela fica para a próxima rodada, e as outras fontes do mesmo motor seguem. A espera
+    pedida pela fonte (Retry-After) é a usada. O amparo sai antes pela via rápida do PNCP; a
+    consulta é só a reserva de quem a via rápida não trouxe."""
+    esperas, consultas = [], []
+
+    def rede(url, **_):
+        if "/api/consulta/" in url:
+            consultas.append(url)
+            return base.Leitura(False, url, b"", erro="HTTP 429", http=429, espera=7.0)
+        if "/contratos/" in url and not url.endswith("/termos"):
+            return base.Leitura(True, url, json.dumps({"valorInicial": 1.0}).encode(), http=200)
+        return base.Leitura(True, url, b"", http=204)
+
+    banco = historico.Banco(tmp_path / "h.db")
+    for n in range(1, 21):
+        banco.inserir("contratacoes_pncp", {"pncp_id": f"04973965000111-1-{n:06d}/2025", "mes": "2025-03",
+                                            "modalidade": "Dispensa", "orgao_cnpj": "04973965000111"})
+        banco.inserir("contratos_pncp", {"pncp_id": f"04973965000111-2-{n:06d}/2025", "mes": "2025-03",
+                                         "orgao_cnpj": "04973965000111", "valor_global": float(n)})
+    ctx = historico.Contexto(banco, ["2025-03"], date(2026, 11, 26), ler_url=rede, dormir=esperas.append,
+                             pausa=0, paralelo=4, disjuntor=3)
+    historico.motor_pncp_detalhe(ctx)
+    assert "pncp.gov.br/api/consulta" in ctx._lentas
+    assert set(esperas) >= {7.0}
+    # 3 leituras de reserva na fila, de 3 tentativas cada; e mais nada.
+    assert len(consultas) == 3 * 3
+    assert banco.consultar("SELECT COUNT(DISTINCT alvo) FROM coletas WHERE url LIKE '%/api/pncp/v1/orgaos/%/compras/%'"
+                           " AND url NOT LIKE '%/itens%'") == [(20,)]      # a via rápida foi tentada para todas
+    erros = [e for (e,) in banco.consultar("SELECT erro FROM coletas WHERE alvo LIKE 'compra %' "
+                                           "AND url LIKE '%/api/consulta/%' ORDER BY rowid")]
+    assert erros[:3] == ["HTTP 429"] * 3 and all("pediu para esperar" in e for e in erros[3:])
+    assert banco.consultar("SELECT COUNT(*) FROM pncp_contratos_detalhe") == [(20,)]   # outra fonte seguiu
+
+
+def test_amparo_das_demais_contratacoes_vem_da_listagem_do_mes(tmp_path):
+    """A listagem do PNCP traz o amparo legal de até 50 contratações por leitura: as que faltam
+    saem dela, e só o que ela não trouxe é consultado uma a uma."""
+    pedidos = []
+
+    def rede(url, **_):
+        pedidos.append(url)
+        if "contratacoes/publicacao" in url and "codigoModalidadeContratacao=9" in url:
+            corpo = {"data": [{"numeroControlePNCP": f"04973965000111-1-{n:06d}/2025",
+                               "amparoLegal": {"codigo": 4, "nome": "Lei 14.133/2021, Art. 74, I"},
+                               "srp": False, "processo": f"P{n}"} for n in (2, 4, 99)],
+                     "totalPaginas": 1}
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        if "/compras/2025/" in url:
+            corpo = {"amparoLegal": {"codigo": 19, "nome": "Lei 14.133/2021, Art. 75, II"}}
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        return base.Leitura(True, url, b"", http=204)
+
+    banco = historico.Banco(tmp_path / "h.db")
+    for n, modalidade in ((1, "Dispensa"), (2, "Inexigibilidade"), (4, "Inexigibilidade"), (6, "Inexigibilidade")):
+        banco.inserir("contratacoes_pncp", {"pncp_id": f"04973965000111-1-{n:06d}/2025", "mes": "2025-03",
+                                            "modalidade": modalidade, "orgao_cnpj": "04973965000111"})
+    ctx = historico.Contexto(banco, ["2025-03"], date(2026, 11, 26), ler_url=rede, dormir=lambda s: None,
+                             pausa=0)
+    historico.motor_pncp_detalhe(ctx, ibge=5208707)
+    assert banco.consultar("SELECT compra_id, codigo FROM pncp_amparos ORDER BY 1") == [
+        ("04973965000111-1-000001/2025", 19), ("04973965000111-1-000002/2025", 4),
+        ("04973965000111-1-000004/2025", 4), ("04973965000111-1-000006/2025", 19)]
+    um_a_um = sorted(int(u.rsplit("/", 1)[1]) for u in pedidos if re.search(r"/compras/2025/\d+$", u))
+    assert um_a_um == [1, 6]                       # a dispensa (etapa 1) e a que a listagem não trouxe
+    assert not any("99" in a for (a,) in banco.consultar("SELECT compra_id FROM pncp_amparos"))
+
+
+def test_disjuntor_desliga_so_a_fonte_fora_do_ar_e_nao_o_motor_inteiro(tmp_path):
+    """Um motor que lê de três serviços (consulta e integração do PNCP, dados abertos) não para
+    tudo quando um deles cai: só o serviço que falhou fica para a próxima rodada."""
+    chamadas = []
+
+    def rede(url, **_):
+        chamadas.append(url)
+        if "/api/consulta/" in url:
+            return base.Leitura(False, url, erro="HTTP 503", http=503)
+        return base.Leitura(True, url, b"{}", http=200)
+    ctx = historico.Contexto(historico.Banco(tmp_path / "h.db"), ["2025-01"], date(2026, 1, 1),
+                             ler_url=rede, dormir=lambda s: None, pausa=0, disjuntor=3)
+    for n in range(6):
+        ctx.ler("pncp_detalhe", "x", f"https://pncp.gov.br/api/consulta/v1/a/{n}", tentativas=1)
+    for n in range(4):
+        ctx.ler("pncp_detalhe", "y", f"https://pncp.gov.br/api/pncp/v1/b/{n}", tentativas=1)
+        ctx.ler("pncp_detalhe", "z", f"https://dadosabertos.compras.gov.br/c/{n}", tentativas=1)
+    assert sum("/api/consulta/" in u for u in chamadas) == 3
+    assert sum("/api/pncp/" in u for u in chamadas) == 4 and sum("dadosabertos" in u for u in chamadas) == 4
+    assert historico._fonte_da_url("https://pncp.gov.br/api/consulta/v1/x") == "pncp.gov.br/api/consulta"
+    assert historico._fonte_da_url("https://dadosabertos.compras.gov.br/c/1") == "dadosabertos.compras.gov.br"
+
+
+def test_fonte_que_caiu_ganha_uma_prova_depois_da_pausa_e_nao_fica_fora_a_rodada_inteira(tmp_path):
+    """Na rodada de 27/11 a consulta do PNCP deu 503 no primeiro minuto e ficou fora as 2 h e 30:
+    1.489 amparos, 55 listagens e 30 meses de notas viraram "não tentado". Passada a pausa, uma
+    leitura de prova volta a chamar a fonte; se ela ainda estiver fora, desliga de novo."""
+    import time as relogio
+    no_ar = [False]
+
+    def rede(url, **_):
+        if no_ar[0]:
+            return base.Leitura(True, url, b"{}", http=200)
+        return base.Leitura(False, url, erro="HTTP 503", http=503)
+
+    banco = historico.Banco(tmp_path / "h.db")
+    ctx = historico.Contexto(banco, ["2025-01"], date(2026, 11, 27), ler_url=rede,
+                             dormir=lambda s: None, pausa=0, disjuntor=3, pausa_do_disjuntor=0.05)
+    for n in range(3):
+        assert not ctx.ler("pncp_detalhe", f"c{n}", f"https://pncp.gov.br/api/consulta/v1/c/{n}", tentativas=1).ok
+    assert "falhas de rede seguidas" in ctx.ler("pncp_detalhe", "c3", "https://pncp.gov.br/api/consulta/v1/c/3").erro
+    relogio.sleep(0.06)
+    prova = ctx.ler("pncp_detalhe", "c4", "https://pncp.gov.br/api/consulta/v1/c/4", tentativas=1)
+    assert prova.http == 503                                            # a prova foi feita de verdade
+    assert "falhas de rede seguidas" in ctx.ler("pncp_detalhe", "c5", "https://pncp.gov.br/api/consulta/v1/c/5").erro
+    relogio.sleep(0.06)
+    no_ar[0] = True
+    assert ctx.ler("pncp_detalhe", "c6", "https://pncp.gov.br/api/consulta/v1/c/6", tentativas=1).ok
+    assert ctx.ler("pncp_detalhe", "c7", "https://pncp.gov.br/api/consulta/v1/c/7", tentativas=1).ok
+    banco.fechar()
+
+
+def test_itens_lentos_ficam_com_metade_do_tempo_e_o_preco_nacional_com_a_outra(tmp_path):
+    """Na rodada de 27/11 os itens dos dados abertos (até 6 min por página) tomaram as 2 h e 30
+    e o preço nacional, a etapa seguinte, nunca foi lido em rodada nenhuma."""
+    import time as relogio
+    banco = historico.Banco(tmp_path / "h.db")
+    ctx = historico.Contexto(banco, ["2025-01"], date(2026, 11, 27))
+    ctx.fim_do_motor = relogio.monotonic() + 100
+    fim = ctx.fim_do_motor
+    with historico._Reserva(ctx, 0.5):
+        assert 45 < ctx.fim_do_motor - relogio.monotonic() <= 50.01
+    assert ctx.fim_do_motor == fim
+    ctx.fim_do_motor = None
+    with historico._Reserva(ctx, 0.5):                                     # sem relógio, sem corte
+        assert ctx.fim_do_motor is None
+    banco.fechar()
+
+
+def test_amparo_sai_da_via_rapida_e_a_consulta_so_e_reserva(tmp_path):
+    """A API do PNCP (~0,6 s) traz o mesmo amparo legal que a consulta (~10 s, fora do ar no
+    início da rodada de 27/11): a consulta só é chamada quando a via rápida não traz o amparo."""
+    pedidos = []
+
+    def rede(url, **_):
+        pedidos.append(url)
+        if url.endswith("/api/pncp/v1/orgaos/04973965000111/compras/2025/1"):
+            corpo = {"amparoLegal": {"codigo": 19, "nome": "Lei 14.133/2021, Art. 75, II"}}
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        if url.endswith("/api/pncp/v1/orgaos/04973965000111/compras/2025/2"):
+            return base.Leitura(False, url, b"", erro="HTTP 503", http=503)
+        if url.endswith("/api/consulta/v1/orgaos/04973965000111/compras/2025/2"):
+            corpo = {"amparoLegal": {"codigo": 4, "nome": "Lei 14.133/2021, Art. 74, I"}}
+            return base.Leitura(True, url, json.dumps(corpo).encode(), http=200)
+        return base.Leitura(True, url, b"", http=204)
+
+    banco = historico.Banco(tmp_path / "h.db")
+    for n in (1, 2):
+        banco.inserir("contratacoes_pncp", {"pncp_id": f"04973965000111-1-{n:06d}/2025", "mes": "2025-03",
+                                            "modalidade": "Dispensa", "orgao_cnpj": "04973965000111"})
+    ctx = historico.Contexto(banco, ["2025-03"], date(2026, 11, 27), ler_url=rede, dormir=lambda s: None, pausa=0)
+    historico.motor_pncp_detalhe(ctx)
+    assert sorted(banco.consultar("SELECT codigo FROM pncp_amparos")) == [(4,), (19,)]
+    assert not any(u.endswith("/api/consulta/v1/orgaos/04973965000111/compras/2025/1") for u in pedidos)
+    banco.fechar()
+
+
+def test_itens_ja_lidos_com_a_data_final_errada_ganham_o_ultimo_dia_do_mes(tmp_path):
+    """Os meses lidos antes pediam até o dia 30 com a data final exclusiva: o que entrou no dia
+    30 ficou de fora. Eles são remendados com a janela do último dia (30 a 1º do mês seguinte),
+    e um mês lido já do jeito certo não é remendado."""
+    pedidos = []
+
+    def rede(url, **_):
+        pedidos.append(url)
+        if "2_consultarItens" in url:
+            q = {k: v[0] for k, v in parse_qs(urlparse(url).query).items()}
+            itens = []
+            if q["dataInclusaoPncpInicial"] == "2025-04-30":
+                itens = [{"numeroControlePNCPCompra": "04973965000111-1-000009/2025", "numeroItemPncp": 1,
+                          "codItemCatalogo": 440744, "valorUnitarioResultado": 10.0,
+                          "dataInclusaoPncp": "2025-04-30T18:00:00"}]
+            return base.Leitura(True, url, json.dumps({"resultado": itens, "totalPaginas": 1}).encode(), http=200)
+        return base.Leitura(True, url, b"", http=204)
+
+    banco = historico.Banco(tmp_path / "h.db")
+    banco.inserir("contratacoes_pncp", {"pncp_id": "04973965000111-1-000009/2025", "mes": "2025-04",
+                                        "modalidade": "Pregão - Eletrônico", "orgao_cnpj": "04973965000111"})
+    banco.inserir("meta", {"chave": "pncp_detalhe_lidos",
+                           "valor": json.dumps(["itens 04973965000111 2025-04"])})   # lido do jeito antigo
+    ctx = historico.Contexto(banco, ["2025-04", "2025-05"], date(2026, 11, 27), ler_url=rede,
+                             dormir=lambda s: None, pausa=0)
+    historico.motor_pncp_detalhe(ctx)
+    assert banco.consultar("SELECT compra_id, catalogo FROM pncp_itens") == [("04973965000111-1-000009/2025", 440744)]
+    lidos = set(json.loads(dict(banco.consultar("SELECT chave, valor FROM meta"))["pncp_detalhe_lidos"]))
+    assert {"itens 04973965000111 2025-04 ultimo dia", "itens 04973965000111 2025-05 inteiro"} <= lidos
+    remendos = [u for u in pedidos if "dataInclusaoPncpInicial=2025-04-30" in u]
+    assert len(remendos) == 1 and "dataInclusaoPncpFinal=2025-05-01" in remendos[0]
+    assert not any("dataInclusaoPncpInicial=2025-05-31" in u for u in pedidos)   # maio já veio inteiro
+    banco.fechar()
+
+
+def test_itens_lentos_mes_a_mes_correm_em_paralelo_e_fecham_o_ano(tmp_path):
+    """Um a um, 27 meses de itens levaram 25 minutos (27/11). Os meses vão em paralelo, cada um
+    com o tempo da leitura lenta (180 s), e o ano fica marcado quando todos os meses vieram."""
+    import threading
+    import time as _t
+    agora, maximo, trava, tempos = [0], [0], threading.Lock(), []
+
+    def rede(url, tempo=60, **_):
+        if "2_consultarItens" not in url:
+            return base.Leitura(True, url, b"", http=204)
+        with trava:
+            agora[0] += 1
+            maximo[0] = max(maximo[0], agora[0])
+            tempos.append(tempo)
+        _t.sleep(0.05)
+        with trava:
+            agora[0] -= 1
+        return base.Leitura(True, url, json.dumps({"resultado": [], "totalPaginas": 1}).encode(), http=200)
+
+    banco = historico.Banco(tmp_path / "h.db")
+    banco.inserir("contratacoes_pncp", {"pncp_id": "04973965000111-1-000009/2025", "mes": "2025-04",
+                                        "modalidade": "Pregão - Eletrônico", "orgao_cnpj": "04973965000111"})
+    meses = [f"2025-{m:02d}" for m in range(1, 13)]
+    ctx = historico.Contexto(banco, meses, date(2026, 11, 27), ler_url=rede, dormir=lambda s: None,
+                             pausa=0, paralelo=4)
+    historico.motor_pncp_detalhe(ctx)
+    assert maximo[0] > 1                          # mais de um mês na rede ao mesmo tempo
+    assert set(tempos) == {180}
+    lidos = set(json.loads(dict(banco.consultar("SELECT chave, valor FROM meta"))["pncp_detalhe_lidos"]))
+    assert {f"itens 04973965000111 {m} inteiro" for m in meses} <= lidos
+    assert "itens 04973965000111 2025" in lidos
+    banco.fechar()
+
+
+def test_recusa_dos_dados_abertos_guarda_o_porque(tmp_path):
+    """Um 400 dos dados abertos sem o corpo não se explica: o motivo vai junto do erro."""
+    def rede(url, **_):
+        return base.Leitura(False, url, "Informe um número de paginação no intervalo de 10 a 500".encode(),
+                            erro="HTTP 400", http=400)
+
+    banco = historico.Banco(tmp_path / "h.db")
+    ctx = historico.Contexto(banco, ["2025-04"], date(2026, 11, 27), ler_url=rede, dormir=lambda s: None, pausa=0)
+    ctx.ler("pncp_detalhe", "x", "https://dadosabertos.compras.gov.br/x", tentativas=1)
+    assert banco.consultar("SELECT erro FROM coletas") == [
+        ("HTTP 400: Informe um número de paginação no intervalo de 10 a 500",)]
+    banco.fechar()
+
+
+def test_boletim_da_coleta_conta_por_fonte_e_situacao_enquanto_ela_corre(tmp_path):
+    """O boletim publicado a cada 10 minutos mostra, por fonte, o que deu certo e o que falhou."""
+    from onisciente import boletim
+    banco = historico.Banco(tmp_path / "h.db")
+    ctx = historico.Contexto(banco, ["2025-04"], date(2026, 11, 27), dormir=lambda s: None, pausa=0,
+                             ler_url=lambda url, **_: (base.Leitura(True, url, b"{}", http=200) if "pncp" in url
+                                                        else base.Leitura(False, url, erro="HTTP 503", http=503)))
+    ctx.ler("pncp_detalhe", "a", "https://pncp.gov.br/api/pncp/v1/x", tentativas=1)
+    ctx.ler("pncp_detalhe", "b", "https://dadosabertos.compras.gov.br/y", tentativas=1)
+    banco.con.commit()
+    texto = boletim.boletim(str(tmp_path / "h.db"), "2000-01-01")
+    assert "| pncp.gov.br/api/pncp | ok | 1 |" in texto
+    assert "| dadosabertos.compras.gov.br | HTTP 503 | 1 |" in texto
+    banco.fechar()

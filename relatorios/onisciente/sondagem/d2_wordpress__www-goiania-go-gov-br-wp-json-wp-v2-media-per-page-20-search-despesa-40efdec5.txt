@@ -1,0 +1,8 @@
+URL: https://www.goiania.go.gov.br/wp-json/wp/v2/media?per_page=20&search=despesa
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 2
+
+[]

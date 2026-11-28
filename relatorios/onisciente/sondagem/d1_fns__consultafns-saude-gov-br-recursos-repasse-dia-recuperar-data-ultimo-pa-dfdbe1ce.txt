@@ -1,0 +1,8 @@
+URL: https://consultafns.saude.gov.br/recursos/repasse-dia/recuperar-data-ultimo-pagamento
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 26
+
+{"resultado":"26/11/2026"}

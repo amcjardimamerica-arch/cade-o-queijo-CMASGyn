@@ -1,0 +1,4 @@
+{
+ "_leia": "Pedidos de acesso protocolados. Quem protocola registra aqui: assunto, protocolado_em (AAAA-MM-DD), prorrogado, respondido_em, resposta_satisfatoria (true ou false), degrau (1 a 7) e recurso_em. O sistema acompanha o prazo e deixa o recurso pronto.",
+ "protocolos": []
+}

@@ -23,7 +23,8 @@ nasce de uma nota que dependa do que o próprio sistema não leu.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
+from typing import Iterable
 
 PESOS = {
     "cobertura": 40,
@@ -109,3 +110,40 @@ class IndiceIntegridade:
 
 ROTULOS = {"cobertura": "Cobertura", "coerencia": "Coerência", "tempestividade": "Tempestividade",
            "vinculo": "Vínculo", "prestacao": "Prestação de contas"}
+
+
+def prestacao_em_dia(parceria) -> bool:
+    """A parceria cuja prestação de contas está publicada, individualizada e sem saldo por devolver."""
+    return (bool(getattr(parceria, "prestacao_publicada", False))
+            and bool(getattr(parceria, "prestacao_individualizada", True))
+            and float(getattr(parceria, "saldo_nao_devolvido", 0.0) or 0.0) <= 0)
+
+
+def fracao_de_prestacao(parcerias: Iterable) -> float | None:
+    """Fração das parcerias com prestação individualizada publicada (e sem saldo por devolver).
+
+    Conta parceria a parceria, sobre todas as do exercício; sem parceria nenhuma, a medida fica
+    ``None``, porque não há o que medir.
+    """
+    lista = list(parcerias)
+    if not lista:
+        return None
+    return sum(1 for x in lista if prestacao_em_dia(x)) / len(lista)
+
+
+def com_prestacao_por_parceria(indice: IndiceIntegridade, parcerias: Iterable,
+                               exercicio: int | None = None) -> IndiceIntegridade:
+    """O índice com a prestação medida parceria a parceria, no lugar da leitura de sim ou não do portal.
+
+    Sem parceria para medir, o índice volta como veio.
+    """
+    lista = list(parcerias)
+    fracao = fracao_de_prestacao(lista)
+    if fracao is None:
+        return indice
+    em_dia = sum(1 for x in lista if prestacao_em_dia(x))
+    de = f" de {exercicio}" if exercicio else ""
+    motivos = dict(indice.motivos)
+    motivos["prestacao"] = (f"{em_dia} de {len(lista)} parcerias{de} com prestação de contas individualizada "
+                            "publicada e sem saldo por devolver, medidas uma a uma (quadro da seção 6)")
+    return replace(indice, prestacao=fracao, motivos=motivos)

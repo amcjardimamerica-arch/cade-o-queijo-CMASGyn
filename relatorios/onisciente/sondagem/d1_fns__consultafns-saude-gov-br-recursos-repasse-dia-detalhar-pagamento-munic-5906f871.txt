@@ -1,0 +1,7 @@
+URL: https://consultafns.saude.gov.br/recursos/repasse-dia/detalhar-pagamento?municipio=520870&dataInicial=01/01/2025&dataFinal=31/01/2025&page=1&count=10
+POST: {}
+OK: False
+HTTP: 400
+ERRO: HTTP 400
+BYTES: 1013
+

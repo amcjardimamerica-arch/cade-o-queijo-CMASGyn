@@ -1,0 +1,81 @@
+# Propostas da Frente P (o dado como a fonte publica) para config/requisitos_onisciente.yml e
+# config/requisitos_ampliacao.yml. Decisão do usuário de 28/11/2026, 11:18Z (config/decisoes_usuario.yml, P-01):
+# "Os dados devem ser públicos e não mascarar. Caso fossem necessário mascarar deveriam ter sido feito na fonte."
+# Revoga a máscara do CPF (b8bf2e6, 24fc099, ee68c14, 91240af, e98f23e) e a retirada das folhas do rastreio
+# (69017a5). O coordenador aplica:
+#   141 e 146: trocar as frases indicadas em "trocar" (o resto da evidência fica como está);
+#   172: a evidência inteira;
+#   226: acrescentar a nota ao bloco de comentários de config/requisitos_propostas/h-rastreio.yml e a frase final
+#        à evidência;
+#   227: item novo ao fim de config/requisitos_ampliacao.yml.
+# 174 (pessoal.html "sem nomes nem CPF") não muda: a tela mostra contagens, não pessoas, e não esconde dado
+# nenhum da fonte. 149 (credor recorrente) continua deixando de fora o documento mascarado; depois da restauração
+# isso vale só para o que a fonte publica mascarado e para as 7.755 linhas da despesa que esperam a releitura.
+- id: 141
+  trocar:
+    - de: >-
+        O CPF de pessoa física é gravado mascarado (***.NNN.NNN-**), no coletor, nas respostas guardadas da sondagem e
+        nas linhas antigas (migração no Banco.abrir, numa rodada própria do rastreio); o vínculo com o contrato do PNCP
+        casa a pessoa física pelos seis do meio e o nome.
+      para: >-
+        O documento, o credor e o histórico são gravados como o portal publica (decisão do usuário de 28/11/2026,
+        11:18Z, P-01, que revogou a máscara do CPF de 24fc099 e 91240af); o vínculo com o contrato do PNCP casa o CPF
+        inteiro pelo CPF inteiro, e os seis do meio e o nome só valem quando um dos lados veio mascarado da fonte.
+        O que o sistema mascarou volta pelo python -m onisciente restaurar-fonte (provado pelo rastreio antigo), e o
+        que foi coletado já mascarado, sem original no git, é lido de novo pela releitura completa dos 25 meses
+        (python -m onisciente historico ... --releitura-completa: toda leitura anterior à marca conta como faltante).
+    - de: >-
+        o CPF que sobrava no credor e no histórico também sai mascarado (coletor e migração);
+      para: >-
+        o credor e o histórico ficam como o portal publica;
+  trava_nova: testes/test_execucao.py::test_releitura_completa_rele_os_25_meses_e_depois_volta_ao_normal
+- id: 146
+  trocar:
+    - de: pessoa física fica só com o CPF mascarado do FNS.
+      para: >-
+        pessoa física fica com o cpfCnpj que o FNS publica (decisão do usuário de 28/11/2026, 11:18Z, P-01); as 82
+        entidades gravadas antes com o CPF mascarado pelo coletor são lidas de novo pelo motor fns.
+  trava_nova: testes/test_dado_da_fonte.py::test_impedimentos_fns_e_sancoes_guardam_o_cpf_como_veio
+- id: 172
+  situacao: cumprido
+  evidencia: >-
+    precos.html com contratos, achados de preço e o triângulo; CNPJ e CPF como a fonte publica (decisão do usuário
+    de 28/11/2026, 11:18Z, P-01: o CPF inteiro aparece inteiro; o que a fonte publica mascarado aparece como veio)
+  falta: ''
+  trava: testes/test_dado_da_fonte.py::test_telas_mostram_o_cpf_como_a_fonte_publicou
+- id: 226
+  nota_h_rastreio: >-
+    Revogado em 28/11/2026, 11:18Z (decisão do usuário, P-01): a máscara do CPF no banco (mascara_banco no
+    Banco.inserir e no Banco.abrir, rodadas mascara_cpf) e a retirada das folhas (rodada retirada_privacidade,
+    69017a5). As rodadas antigas não são reescritas; as 95.123 folhas retiradas voltam numa rodada nova,
+    restauracao_fonte, só quando refazem a contagem e a raiz de Merkle da rodada original, e ficam em
+    rastreio_devolvidas (a marca da retirada fica). verificar_cadeia confere cada devolução (a marca, a rodada do selo,
+    o total e o resumo declarados). Travas em testes/test_restauracao_fonte.py.
+  evidencia_acrescentar: >-
+    Desde 28/11/2026 (P-01), python -m onisciente restaurar-fonte devolve o dado da fonte e o hash das folhas retiradas,
+    numa rodada restauracao_fonte, sem reescrever rodada antiga.
+  trava_nova: testes/test_restauracao_fonte.py::test_restaura_o_que_o_sistema_mascarou_com_prova_e_lista_o_que_reler
+- id: 227
+  bloco: 'P: o dado como a fonte publica, 28/11/2026'
+  requisito: >-
+    Os dados devem ser públicos e não mascarar; nenhuma informação ou dado da fonte é modificado, para cruzar e
+    individualizar quem recebe o recurso público sem homônimo nem terceiro inocente (decisão do usuário de 28/11/2026,
+    11:18Z).
+  situacao: parcial
+  evidencia: >-
+    config/decisoes_usuario.yml (P-01) com o texto, a regra, o que revoga e as travas. Banco.inserir, Banco.abrir, os
+    coletores (goiania_transweb, impedimentos, fns, sancoes, tcm, tcu, transferegov), a sondagem e as telas guardam e
+    mostram o dado como a fonte publica, sem máscara e sem corte de texto; o CPF inteiro casa pelo CPF inteiro.
+    python -m onisciente restaurar-fonte --de 07e130c devolve o que o sistema mascarou, cada linha provada pelo hash
+    do rastreio antigo (ou pela linha antiga que só difere na proveniência), e lista o que não tem original. Na cópia
+    do banco de 28/11/2026: 18.901 linhas voltaram (contratacoes_pncp 19, contratos_pncp 925, despesa_eventos 7.840,
+    emendas_municipio 21, pncp_itens 983, sancoes 9.113), nenhuma ambígua nem sem prova, 95.123 folhas retiradas
+    voltaram provadas pela raiz, e a verificação ficou íntegra. Os 16 arquivos da sondagem que o sistema mascarou
+    voltaram à versão que a coleta gravou.
+  falta: >-
+    Rodar restaurar-fonte --gravar no banco real e ler de novo da fonte o que foi coletado já mascarado: a despesa de
+    Goiânia (7.755 linhas com o documento mascarado, de 2024-11 a 2026-11, pela releitura completa), 82 entidades do
+    FNS (motor fns) e 6 arquivos de d2_transweb da sondagem (a próxima sondagem).
+    Quando o banco real estiver limpo, a trava xfail estrita test_banco_real_sem_nada_mascarado_pelo_sistema passa e
+    a marca xfail sai.
+  trava: testes/test_dado_da_fonte.py::test_nenhum_modulo_chama_a_mascara_nem_abre_rodada_de_mascara_ou_retirada
