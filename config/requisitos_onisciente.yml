@@ -1110,13 +1110,20 @@
     de cada tipo; 568.320.000,00, 391.926.248,97 e 359.864.344,52); as outras linhas do popup são anulações e ordens, que
     a exportação traz à parte. No empenho 20261201000430004 a sondagem parou no teto de 3 páginas (150 de 1.693 liquidações
     e pagamentos, todos iguais aos da exportação); o motor lê até 60 páginas e a sondagem agora até 40. A lista de Portal_Despesas.aspx
-    por OsAjax passou a mandar o mesmo contexto e os mesmos cabeçalhos (trava com o recorte real das páginas 1 e 2: test_popup_real_soma_das_duas_paginas_bate_com_a_exportacao_linha_a_linha).'
-  falta: 'A leitura da fonte está provada (a exportação do mês e os popups página a página, conferidos com a exportação).
-    O requisito é Portal da Transparência (diário), no bloco Fontes e cadência: fica parcial até a coleta rodar todo dia pela
-    agenda, que já tem o grupo execucao_goiania, mas o cron só roda quando a versão nova entrar na main, o que depende do
-    sim do usuário. Falta também ver, numa próxima sondagem (agora até 40 páginas), o popup de 1.695 e 1.718 linhas lido inteiro:
-    a diferença entre as 1.695 linhas do popup e as 1.693 liquidações da exportação só pode aparecer da página 4 em diante,
-    que ainda não foi lida.'
+    por OsAjax passou a mandar o mesmo contexto e os mesmos cabeçalhos (trava com o recorte real das páginas 1 e 2: test_popup_real_soma_das_duas_paginas_bate_com_a_exportacao_linha_a_linha).
+    Décima segunda rodada: a sondagem de 28/11/2026 07:57Z recebeu HTTP 200 no Buscar e na página 2 da lista por OsAjax (858
+    KB e 851 KB; antes, HTTP 500) e no buscar_antes do motor; a lista de outubro de 2026 tem 792 empenhos, 20 por página,
+    e a página 2 (21 a 40) não repete nenhum da 1 (trava: test_lista_osajax_real_buscar_e_pagina_2_leem_20_linhas_cada_sem_repetir).
+    Os 8 popups foram lidos inteiros, sem erro; o do empenho 20261201000430004 (34 e 35 páginas, 1.695 e 1.718 linhas) tem
+    1.693 liquidações e 1.693 pagamentos, iguais aos da exportação em número e em soma (16.441.027,87); as 2 linhas a mais
+    do popup de liquidação são linhas sem saldo liquidado e as 25 a mais do de pagamento são linhas sem valor pago, que o
+    coletor não conta como liquidação ou pagamento e a exportação também não traz como tal (os corpos das páginas 4 em diante
+    não foram guardados, então o tipo de cada uma, anulação ou ordem, ainda não foi visto) (trava: test_popup_real_de_1695_linhas_fecha_com_a_exportacao).'
+  falta: 'A leitura da fonte está provada: a exportação do mês, a lista por OsAjax e os popups página a página, conferidos
+    com a exportação. O requisito é Portal da Transparência (diário), no bloco Fontes e cadência: fica parcial até a coleta
+    rodar todo dia pela agenda, que já tem o grupo execucao_goiania, mas o cron só roda quando a versão nova entrar na main,
+    o que depende do sim do usuário. A próxima sondagem registra, no resumo de cada popup, as linhas que não são do tipo (outras_linhas),
+    para mostrar uma a uma as 2 anulações e as 25 ordens do empenho 20261201000430004.'
   trava: testes/test_execucao.py::test_popup_real_soma_das_duas_paginas_bate_com_a_exportacao_linha_a_linha
 - id: 142
   bloco: Fontes e cadência
