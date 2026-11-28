@@ -1,0 +1,7 @@
+URL: https://pesquisa.apps.tcu.gov.br/rest/publico/base/acordao-completo/documentosResumidos?termo=%22Goi%C3%A2nia%22&ordenacao=ANOACORDAO+desc%2C+NUMACORDAOINT+desc&quantidade=50&inicio=0&sinonimos=true
+POST: {}
+OK: False
+HTTP: None
+ERRO: URLError: [Errno 104] Connection reset by peer
+BYTES: 0
+

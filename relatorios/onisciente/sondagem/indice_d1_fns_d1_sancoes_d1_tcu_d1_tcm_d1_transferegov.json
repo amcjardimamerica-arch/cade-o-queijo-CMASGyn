@@ -1,5 +1,5 @@
 {
- "quando": "2026-11-28T01:49:32+00:00",
+ "quando": "2026-11-28T02:11:04+00:00",
  "leituras": [
   {
    "fonte": "d1_fns",
@@ -10,7 +10,29 @@
    "erro": "",
    "bytes": 4344,
    "arquivo": "d1_fns__consultafns-saude-gov-br-app-controllers-portalcontroller-js-989db824.txt",
-   "segundos": 0.7
+   "segundos": 0.8
+  },
+  {
+   "fonte": "d1_fns",
+   "url": "https://consultafns.saude.gov.br/recursos/consulta-detalhada/detalhe-acao?page=1&count=100&ano=2025&mes=&tipoConsulta=&blocos=&grupo=&planoOrcamentario=&componentes=&acoes=&estado=GO&municipio=520870&repasse=&dataInicialOb=&dataFinalOb=&cpfCnpjUg=37623352000103",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 21763,
+   "arquivo": "d1_fns__consultafns-saude-gov-br-recursos-consulta-detalhada-detalhe-acao-page-db2ee968.txt",
+   "segundos": 1.5
+  },
+  {
+   "fonte": "d1_fns",
+   "url": "https://consultafns.saude.gov.br/recursos/consulta-detalhada/detalhe-pagamento?page=1&count=100&ano=2025&mes=&tipoConsulta=&blocos=&componentes=&acoes=&estado=GO&municipio=520870&repasse=&dataInicialOb=&dataFinalOb=&cpfCnpjUg=37623352000103",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 102109,
+   "arquivo": "d1_fns__consultafns-saude-gov-br-recursos-consulta-detalhada-detalhe-pagamento-84ff9ee6.txt",
+   "segundos": 2.7
   },
   {
    "fonte": "d1_fns",
@@ -25,47 +47,25 @@
   },
   {
    "fonte": "d1_fns",
-   "url": "https://consultafns.saude.gov.br/app/pages/detalhada/controllers/pagamentoController.js",
+   "url": "https://consultafns.saude.gov.br/app/pages/consolidada/services/consolidadaService.js",
    "post": null,
    "ok": true,
    "http": 200,
    "erro": "",
-   "bytes": 19505,
-   "arquivo": "d1_fns__consultafns-saude-gov-br-app-pages-detalhada-controllers-pagamentocont-4a94126f.txt",
-   "segundos": 1.0
-  },
-  {
-   "fonte": "d1_fns",
-   "url": "https://consultafns.saude.gov.br/app/pages/detalhada/controllers/entidadeController.js",
-   "post": null,
-   "ok": true,
-   "http": 200,
-   "erro": "",
-   "bytes": 5434,
-   "arquivo": "d1_fns__consultafns-saude-gov-br-app-pages-detalhada-controllers-entidadecontr-d4d230fd.txt",
+   "bytes": 3132,
+   "arquivo": "d1_fns__consultafns-saude-gov-br-app-pages-consolidada-services-consolidadaser-d38f8864.txt",
    "segundos": 0.8
   },
   {
    "fonte": "d1_fns",
-   "url": "https://consultafns.saude.gov.br/app/pages/consolidada/controllers/consolidadaController.js",
+   "url": "https://consultafns.saude.gov.br/recursos/consulta-detalhada/entidades?page=1&count=100&ano=2024&mes=&tipoConsulta=&blocos=&grupo=&componentes=&acoes=&estado=GO&municipio=520870&repasse=&dataInicialOb=&dataFinalOb=",
    "post": null,
    "ok": true,
    "http": 200,
    "erro": "",
-   "bytes": 12232,
-   "arquivo": "d1_fns__consultafns-saude-gov-br-app-pages-consolidada-controllers-consolidada-dd4570a7.txt",
-   "segundos": 0.7
-  },
-  {
-   "fonte": "d1_fns",
-   "url": "https://consultafns.saude.gov.br/recursos/consulta-detalhada/entidades?page=2&count=100&ano=2025&mes=&tipoConsulta=&blocos=&grupo=&componentes=&acoes=&estado=GO&municipio=520870&repasse=&dataInicialOb=&dataFinalOb=",
-   "post": null,
-   "ok": true,
-   "http": 200,
-   "erro": "",
-   "bytes": 28101,
-   "arquivo": "d1_fns__consultafns-saude-gov-br-recursos-consulta-detalhada-entidades-page-2-5ee286c3.txt",
-   "segundos": 1.2
+   "bytes": 30886,
+   "arquivo": "d1_fns__consultafns-saude-gov-br-recursos-consulta-detalhada-entidades-page-1-c1fa264c.txt",
+   "segundos": 1.0
   },
   {
    "fonte": "d1_fns",
@@ -87,7 +87,7 @@
    "erro": "HTTP 503",
    "bytes": 1665,
    "arquivo": "d1_transferegov__api-transferegov-gestao-gov-br-transferenciasespeciais-8cd59b90.txt",
-   "segundos": 0.6
+   "segundos": 0.3
   },
   {
    "fonte": "d1_transferegov",
@@ -98,7 +98,7 @@
    "erro": "HTTP 503",
    "bytes": 1665,
    "arquivo": "d1_transferegov__api-transferegov-gestao-gov-br-transferenciasespeciais-plano-acao-espe-b628d692.txt",
-   "segundos": 0.6
+   "segundos": 0.5
   },
   {
    "fonte": "d1_transferegov",
@@ -109,7 +109,7 @@
    "erro": "HTTP 503",
    "bytes": 1665,
    "arquivo": "d1_transferegov__api-transferegov-gestao-gov-br-fundoafundo-f69a11d7.txt",
-   "segundos": 0.5
+   "segundos": 0.6
   },
   {
    "fonte": "d1_sancoes",
@@ -146,13 +146,13 @@
   },
   {
    "fonte": "d1_tcu",
-   "url": "https://pesquisa.apps.tcu.gov.br/rest/publico/base/acordao-completo/documentosResumidos?termo=%22Goi%C3%A2nia%22&ordenacao=DTRELEVANCIA+desc%2C+NUMACORDAOINT+desc&quantidade=50&inicio=100&sinonimos=true",
+   "url": "https://pesquisa.apps.tcu.gov.br/rest/publico/base/acordao-completo/documentosResumidos?termo=%22Goi%C3%A2nia%22&ordenacao=ANOACORDAO+desc%2C+NUMACORDAOINT+desc&quantidade=50&inicio=0&sinonimos=true",
    "post": null,
    "ok": false,
    "http": null,
    "erro": "URLError: [Errno 104] Connection reset by peer",
    "bytes": 0,
-   "arquivo": "d1_tcu__pesquisa-apps-tcu-gov-br-rest-publico-base-acordao-completo-documentos-923ea092.txt",
+   "arquivo": "d1_tcu__pesquisa-apps-tcu-gov-br-rest-publico-base-acordao-completo-documentos-80724175.txt",
    "segundos": 0.3
   },
   {
@@ -167,6 +167,17 @@
    "segundos": 5.1
   },
   {
+   "fonte": "d1_tcu",
+   "url": "https://pesquisa.apps.tcu.gov.br/rest/publico/base/acordao-completo/documentosResumidos?termo=%22Goi%C3%A2nia%22&ordenacao=DTRELEVANCIA+desc%2C+NUMACORDAOINT+desc&quantidade=50&inicio=100&sinonimos=true",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 71371,
+   "arquivo": "d1_tcu__pesquisa-apps-tcu-gov-br-rest-publico-base-acordao-completo-documentos-923ea092.txt",
+   "segundos": 5.7
+  },
+  {
    "fonte": "d1_tcm",
    "url": "https://virtual.tcmgo.tc.br/jurisprudencia/",
    "post": null,
@@ -175,7 +186,7 @@
    "erro": "",
    "bytes": 936,
    "arquivo": "d1_tcm__virtual-tcmgo-tc-br-jurisprudencia-f32664df.txt",
-   "segundos": 0.8
+   "segundos": 1.5
   },
   {
    "fonte": "d1_tcm",
@@ -186,18 +197,29 @@
    "erro": "",
    "bytes": 351600,
    "arquivo": "d1_tcm__ws-tcm-go-gov-br-api-rest-dados-contas-irregulares-2aac2857.txt",
-   "segundos": 3.7
+   "segundos": 8.0
   },
   {
    "fonte": "d1_tcm",
-   "url": "https://virtual.tcmgo.tc.br/jurisprudencia/assets/index-CXB0WfQ4.js",
+   "url": "https://virtual.tcmgo.tc.br/jurisprudencia/assets/jurisprudencia-page-zRQnq2W_.js",
    "post": null,
    "ok": true,
    "http": 200,
    "erro": "",
-   "bytes": 510746,
-   "arquivo": "d1_tcm__virtual-tcmgo-tc-br-jurisprudencia-assets-index-cxb0wfq4-js-410f0f0d.txt",
-   "segundos": 1.2
+   "bytes": 186501,
+   "arquivo": "d1_tcm__virtual-tcmgo-tc-br-jurisprudencia-assets-jurisprudencia-page-zrqnq2w-fa2db409.txt",
+   "segundos": 2.6
+  },
+  {
+   "fonte": "d1_tcm",
+   "url": "https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/health",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 161,
+   "arquivo": "d1_tcm__virtual-tcmgo-tc-br-jurisprudencia-api-v1-health-4a4bba93.txt",
+   "segundos": 1.5
   }
  ]
 }

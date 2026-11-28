@@ -1,0 +1,8 @@
+URL: https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/health
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 161
+
+{"status":"healthy","version":"1.4.4","environment":"production","database":{"connected":true,"response_time_ms":17.72},"timestamp":"2026-11-28T02:11:04.580122"}
