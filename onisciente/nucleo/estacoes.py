@@ -62,7 +62,7 @@ class Estacao(Enum):
 _INFO = {
     Estacao.ORIGEM: ("Origem", "quanto entrou, de qual tributo ou repasse",
                      "execução da receita, Tesouro Nacional, FNS, FNDE, Estado", Nivel.B),
-    Estacao.FONTE: ("Fonte", "se a água é livre ou vinculada",
+    Estacao.FONTE: ("Fonte", "se o recurso é livre ou vinculado",
                     "código de destinação no QDD e no SICONFI", Nivel.B),
     Estacao.PREVISAO: ("Previsão", "que o gasto foi autorizado na LOA", "LOA, QDD", Nivel.D),
     Estacao.DOTACAO: ("Dotação", "para onde a autorização foi movida",

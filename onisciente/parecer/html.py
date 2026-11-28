@@ -13,6 +13,7 @@ from html import escape
 from typing import Callable
 
 from .. import __version__
+from ..linguagem import direto
 from ..lai import ESCADA, acompanhar, carregar_registro, oficios_por_orgao
 from ..nucleo.indicios import Familia, Ficha
 from ..nucleo.integridade import PESOS, ROTULOS
@@ -147,7 +148,7 @@ def _federais(p: Panorama) -> list[str]:
 
 
 def _rotulo_do_valor(p: Panorama) -> str:
-    """O cabeçalho da coluna de valor segue a origem dos afluentes: previsto, realizado ou pago."""
+    """O cabeçalho da coluna de valor segue a origem das receitas: previsto, realizado ou pago."""
     origens = " ".join(a.origem.lower() for a in p.rio.afluentes)
     if origens.startswith("pago") or " pago no" in origens:
         return "Pago no exercício"
@@ -182,7 +183,7 @@ def _ficha(f: Ficha) -> str:
         f'<article class="ficha {g.value}" id="{escape(f.codigo)}">'
         f'<h3><span class="etiqueta g-{g.value}">{g.rotulo}</span>{escape(f.titulo)}</h3>'
         f'<div><span class="etiqueta v">{escape(f.codigo)}</span>'
-        f'<span class="etiqueta v">{escape(f.familia.value)}</span>'
+        f'<span class="etiqueta v">{escape(f.familia.rotulo)}</span>'
         f'<span class="etiqueta v">{ver}</span>{extras}</div>'
         f"<dl>"
         f"<dt>Como deveria ser</dt><dd>{escape(f.como_deveria)}</dd>"
@@ -296,20 +297,20 @@ def gerar(p: Panorama, *, hoje: date | None = None) -> str:
     for n in p.notas:
         s.append(f'<p class="omitido">{escape(n)}</p>')
 
-    # 2. O rio
-    s.append("<h2>2. O rio</h2>")
+    # 2. Origem do dinheiro
+    s.append("<h2>2. Origem do dinheiro</h2>")
     s.append(svg.rio(p.rio))
     if p.margens:
         m = p.margens
         az = _selo(Selo.AZUL)
-        s.append('<div class="tabela"><table><tr><th>Margem: o que não chegou</th><th>Valor</th></tr>'
+        s.append('<div class="tabela"><table><tr><th>Diferença da execução</th><th>Valor</th></tr>'
                  f'<tr><td>{az}Previsto e não empenhado</td><td class="num">{svg.moeda(m.previsto_nao_empenhado)}</td></tr>'
                  f'<tr><td>{az}Empenhado e não liquidado</td><td class="num">{svg.moeda(m.empenhado_nao_liquidado)}</td></tr>'
                  f'<tr><td>{az}Liquidado e não pago</td><td class="num">{svg.moeda(m.liquidado_nao_pago)}</td></tr>'
                  f'<tr><td>{az}Pago sem vínculo publicado</td><td class="num">{svg.moeda(m.pago_sem_vinculo)}</td></tr>'
                  "</table></div>")
     else:
-        s.append('<p class="omitido">As margens (previsto e não empenhado, empenhado e não liquidado, '
+        s.append('<p class="omitido">As diferenças da execução (previsto e não empenhado, empenhado e não liquidado, '
                  "liquidado e não pago, pago sem vínculo) dependem da execução publicada, que não "
                  "existe para a competência.</p>")
     for v in p.leitura_falhou:
@@ -355,16 +356,16 @@ def gerar(p: Panorama, *, hoje: date | None = None) -> str:
         for a in sorted(p.rio.afluentes, key=lambda a: -a.valor):
             fonte = classificar(a.fonte) if a.fonte else None
             if fonte is None:
-                leito = "sem fonte declarada"
+                funcoes = "sem fonte declarada"
             elif fonte.destinacao is None:
-                leito = "fora do catálogo"
+                funcoes = "fora do catálogo"
             else:
-                leito = ", ".join(fonte.destinacao.leito) if fonte.destinacao.leito else "livre"
+                funcoes = ", ".join(fonte.destinacao.leito) if fonte.destinacao.leito else "livre"
             linhas.append(f"<tr><td>{_selo(a.selo)}{escape(a.nome)}</td><td>{escape(a.fonte or '—')}</td>"
-                          f"<td>{escape(a.esfera.value)}</td><td>{escape(leito)}</td>"
+                          f"<td>{escape(a.esfera.value)}</td><td>{escape(funcoes)}</td>"
                           f'<td class="num">{svg.moeda(a.valor)}</td></tr>')
         s.append('<div class="tabela"><table><tr><th>Entrada</th><th>Fonte</th><th>Esfera</th>'
-                 f'<th>Leito (função)</th><th>{_rotulo_do_valor(p)}</th></tr>' + "".join(linhas) + "</table></div>")
+                 f'<th>Funções permitidas</th><th>{_rotulo_do_valor(p)}</th></tr>' + "".join(linhas) + "</table></div>")
     if p.execucao is not None:
         from ..rio.parecer_dominio import secao_execucao
         s.append(secao_execucao(p.execucao, p.contas or {}, p.qualidade))
@@ -457,10 +458,11 @@ def gerar(p: Panorama, *, hoje: date | None = None) -> str:
              f"{_selo(Selo.ROXO)}não publicado {_selo(Selo.VERMELHO)}leitura não alcançou. "
              "A ficha afirma só o que os níveis de prova permitem; o sistema nunca imputa crime.</footer>")
 
-    return ("<!doctype html><html lang=\"pt-BR\"><head><meta charset=\"utf-8\">"
-            "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">"
-            f"<title>{escape(titulo)}</title><style>{CSS}</style></head><body><main>"
-            + "".join(s) + "</main></body></html>")
+    # Decisão do usuário de 28/11/2026: nada de metáfora no texto; ``direto`` cobre o que vem dos dados.
+    return direto("<!doctype html><html lang=\"pt-BR\"><head><meta charset=\"utf-8\">"
+                  "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">"
+                  f"<title>{escape(titulo)}</title><style>{CSS}</style></head><body><main>"
+                  + "".join(s) + "</main></body></html>")
 
 
 def indice(pareceres: list[tuple[str, str]], alvo: str, *, banco: bool = False) -> str:
@@ -490,34 +492,34 @@ _TIPOS = (
      "vinculam o recurso."),
     (Tipo.ENTRE_DEMONSTRATIVOS, "O RREO contra a matriz de saldos contábeis",
      "Duas entregas do Município, homologadas em separado pelo Tesouro."),
-    (Tipo.MESMO_RELATORIO, "O rio contra o próprio RREO",
-     "Quadros do mesmo relatório: confere a montagem do rio, mas não é outra via e não entra na coerência."),
+    (Tipo.MESMO_RELATORIO, "A soma por espécie contra o próprio RREO",
+     "Quadros do mesmo relatório: confere a soma por espécie, mas não é outra via e não entra na coerência."),
 )
 
 
 def _rio_municipal(rm: RioMunicipal) -> list[str]:
-    """O rio do Município inteiro no exercício, com as três conferências, o ritmo e o leito."""
-    s = [f"<h3>O rio do Município inteiro: {escape(rm.rotulo)}</h3>",
+    """A receita do Município inteiro no exercício, com as três conferências, o ritmo e a finalidade."""
+    s = [f"<h3>A receita do Município inteiro: {escape(rm.rotulo)}</h3>",
          '<p class="sub">Cada espécie de receita do exercício, aberta pelas fontes em que o Município a '
-         "registrou na matriz de saldos contábeis. A fonte diz se a água é vinculada ou livre.</p>",
+         "registrou na matriz de saldos contábeis. A fonte diz se o recurso é vinculado ou livre.</p>",
          svg.rio(rm.rio, rotulo="no exercício", maximo=24)]
     az = _selo(Selo.AZUL)
     rio_rreo = selar([Via("rio", rm.liquido), Via("RREO", rm.realizado_declarado)], tolerancia=TOLERANCIA_RIO_RREO)
-    # O rio é montado do mesmo RREO: fechar dentro de 1% confere a montagem (azul), não é segunda via.
+    # A soma por espécie sai do mesmo RREO: fechar dentro de 1% confere a soma (azul), não é segunda via.
     selo_rio = _selo(Selo.VERMELHO if rio_rreo.divergencia else Selo.AZUL)
-    s.append('<div class="tabela"><table><tr><th>O leito</th><th>Valor</th></tr>'
-             f'<tr><td>{az}Afluentes somados</td><td class="num">{svg.moeda(rm.rio.total())}</td></tr>'
-             f'<tr><td>{az}FUNDEB entregue ao fundo (sangria)</td><td class="num">{svg.moeda(-rm.sangria_fundeb)}</td></tr>'
-             f'<tr><td>{selo_rio}Receita realizada pelo rio</td><td class="num">{svg.moeda(rm.liquido)}</td></tr>'
+    s.append('<div class="tabela"><table><tr><th>Conferência da receita</th><th>Valor</th></tr>'
+             f'<tr><td>{az}Espécies de receita somadas</td><td class="num">{svg.moeda(rm.rio.total())}</td></tr>'
+             f'<tr><td>{az}FUNDEB entregue ao fundo (dedução)</td><td class="num">{svg.moeda(-rm.sangria_fundeb)}</td></tr>'
+             f'<tr><td>{selo_rio}Receita realizada pela soma das espécies</td><td class="num">{svg.moeda(rm.liquido)}</td></tr>'
              f'<tr><td>{az}Receita realizada declarada no RREO</td><td class="num">{svg.moeda(rm.realizado_declarado)}</td></tr>'
              f'<tr><td>{az}Receita prevista no ano</td><td class="num">{svg.moeda(rm.previsto_ano)}</td></tr>'
              "</table></div>")
     if rio_rreo.divergencia:
-        s.append('<p class="omitido">O rio e a receita realizada do RREO se separam em mais de 1%: a montagem do '
-                 "rio está errada e o número do rio não vale até ser corrigida (falha do sistema).</p>")
+        s.append('<p class="omitido">A soma por espécie e a receita realizada do RREO se separam em mais de 1%: '
+                 "a soma está errada e não vale até ser corrigida (falha do sistema).</p>")
     if rm.margens is not None:
         m = rm.margens
-        s.append('<div class="tabela"><table><tr><th>Margem do Município inteiro</th><th>Valor</th></tr>'
+        s.append('<div class="tabela"><table><tr><th>Diferença da execução do Município inteiro</th><th>Valor</th></tr>'
                  + (f'<tr><td>{az}Previsto e não empenhado</td><td class="num">{svg.moeda(m.previsto_nao_empenhado)}</td></tr>'
                     if rm.margens_no_ano else
                     f'<tr><td>{az}Dotação ainda não empenhada (o ano não acabou)</td>'
@@ -556,7 +558,7 @@ def _rio_municipal(rm: RioMunicipal) -> list[str]:
                  "no ritmo em que o ano anterior se realizou até o mesmo bimestre.</p>")
         s.append('<div class="tabela"><table><tr><th>Espécie</th><th>Realizado</th><th>Esperado no ritmo</th>'
                  "<th>Previsto no ano</th><th>Situação</th></tr>" + linhas + "</table></div>")
-    s.append("<h4>O leito: água vinculada empenhada fora da sua finalidade</h4>")
+    s.append("<h4>Recurso vinculado empenhado fora da sua finalidade</h4>")
     if rm.meses_desvio:
         s.append(f'<p class="sub">Empenhos da matriz de saldos contábeis, {escape(", ".join(rm.meses_desvio[:1]))} '
                  f"a {escape(rm.meses_desvio[-1])}, por fonte e função.</p>")
@@ -567,14 +569,14 @@ def _rio_municipal(rm: RioMunicipal) -> list[str]:
         s.append('<div class="tabela"><table><tr><th>Fonte</th><th>Função</th><th>Empenhado</th><th>Norma</th></tr>'
                  + linhas + "</table></div>")
     elif rm.meses_desvio:
-        s.append('<p class="sub">Nenhuma fonte vinculada empenhada fora do seu leito.</p>')
+        s.append('<p class="sub">Nenhuma fonte vinculada empenhada fora da sua finalidade.</p>')
     else:
-        s.append('<p class="omitido">A matriz de saldos contábeis do exercício não está no banco: o leito '
-                 "não pôde ser conferido.</p>")
+        s.append('<p class="omitido">A matriz de saldos contábeis do exercício não está no banco: a finalidade '
+                 "não pôde ser conferida.</p>")
     if rm.fontes_sem_catalogo:
         itens = ", ".join(f"{f} ({svg.moeda(v)})" for f, v in sorted(rm.fontes_sem_catalogo.items(),
                                                                      key=lambda kv: -kv[1]))
-        s.append(f'<p class="omitido">Destinações sem leito no catálogo do sistema, que ainda não se '
+        s.append(f'<p class="omitido">Destinações sem finalidade definida no catálogo do sistema, que ainda não se '
                  f"conferem: {escape(itens)}. Falha do sistema, não do Município.</p>")
     for n in rm.notas:
         s.append(f'<p class="omitido">{escape(n)}</p>')

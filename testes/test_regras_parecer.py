@@ -110,7 +110,7 @@ def test_parecer_usa_as_series_das_telas(monkeypatch):
     monkeypatch.setattr(Panorama, "do_alvo_configurado", lambda self: True)
     pagina = html.gerar(_panorama(), hoje=date(2026, 11, 27))
     assert chamadas == [("2026-10", graficos.BANCO)]
-    assert pagina.index("2. O rio") < pagina.index("<h3>SERIES-DAS-TELAS</h3>") < pagina.index("3. Pisos e tetos")
+    assert pagina.index("2. Origem do dinheiro") < pagina.index("<h3>SERIES-DAS-TELAS</h3>") < pagina.index("3. Pisos e tetos")  # decisão do usuário de 28/11/2026: sem a metáfora do rio
     assert "prefers-color-scheme" not in pagina and "<h2>SERIES-DAS-TELAS" not in pagina
 
 

@@ -78,7 +78,7 @@ def test_toda_linha_de_quadro_tem_selo(auditoria):
 
 def test_margens_e_leito_do_parecer_com_selo(panorama_html):
     _, pagina = panorama_html
-    for rotulo in ("Afluentes somados", "Receita realizada pelo rio", "Empenhado e não liquidado"):
+    for rotulo in ("Espécies de receita somadas", "Receita realizada pela soma das espécies", "Empenhado e não liquidado"):  # decisão do usuário de 28/11/2026: sem a metáfora do rio
         trecho = pagina[pagina.index(rotulo) - 120:pagina.index(rotulo)]
         assert 'class="selo s-' in trecho, rotulo
 

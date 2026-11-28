@@ -120,30 +120,30 @@
   evidencia: 'testes/regressao_cadeoqueijo.py: 7/7 “sistema são” (rodado nesta conferência)'
   falta: ''
 - id: 18
-  bloco: O rio
-  requisito: Afluentes por espécie (IPTU, ISS, ITBI, IRRF, ICMS, IPVA, FPM, ITR, Fundeb, salário-educação, SUS, FNAS, COSIP,
+  bloco: Origem do dinheiro
+  requisito: Receita por espécie (IPTU, ISS, ITBI, IRRF, ICMS, IPVA, FPM, ITR, Fundeb, salário-educação, SUS, FNAS, COSIP,
     CIDE/multas, convênios, emendas, operações de crédito)
   situacao: cumprido
   evidencia: 'rio/municipio.py: 16 espécies correntes pelo RREO Anexo 3 mês a mês e 4 de capital pelo Anexo 1, cada uma aberta
     pelas fontes registradas na matriz de saldos contábeis (salário-educação 1550, SUS 1600, FNAS 1660, COSIP 1751, CIDE 1750,
-    multas 1752, convênios 1700/1571, emendas 1706/1710, operações de crédito 1754); no parecer de out/2026, ''O rio do Município
+    multas 1752, convênios 1700/1571, emendas 1706/1710, operações de crédito 1754); no parecer de out/2026, ''A receita do Município
     inteiro'''
   falta: ''
   trava: testes/test_rio_municipio.py::test_afluentes_abrem_pelas_fontes_registradas_e_a_esfera_vem_da_especie
 - id: 19
-  bloco: O rio
+  bloco: Origem do dinheiro
   requisito: Fontes STN 1500/1540/1600/1660 e demais
   situacao: cumprido
   evidencia: rio/fontes.py com 24 destinações
   falta: ''
 - id: 20
-  bloco: O rio
+  bloco: Origem do dinheiro
   requisito: Vinculada × livre
   situacao: cumprido
   evidencia: 'Parecer: vinculada R$ 1,4 mi, livre R$ 750'
   falta: ''
 - id: 21
-  bloco: O rio
+  bloco: Origem do dinheiro
   requisito: Desvio de finalidade
   situacao: cumprido
   evidencia: 'rio/municipio.py desvios(): empenhos da matriz por fonte e função; em 2026 a COSIP (751) aparece na função 04
@@ -152,17 +152,17 @@
   falta: ''
   trava: testes/test_rio_municipio.py::test_cosip_empenhada_fora_do_leito
 - id: 22
-  bloco: O rio
-  requisito: As 4 margens (previsto não empenhado, empenhado não liquidado, liquidado não pago, pago sem vínculo)
+  bloco: Origem do dinheiro
+  requisito: As 4 diferenças da execução (previsto não empenhado, empenhado não liquidado, liquidado não pago, pago sem vínculo)
   situacao: parcial
-  evidencia: As três primeiras margens de cada secretaria (previsto e não empenhado, empenhado e não liquidado, liquidado
+  evidencia: As três primeiras diferenças da execução de cada secretaria (previsto e não empenhado, empenhado e não liquidado, liquidado
     e não pago) saem do RREO Anexo 2 conferido com a matriz de saldos contábeis (onisciente/rio/secretarias.py, ExecucaoSecretaria.margens)
     e aparecem no parecer de cada pasta. A quarta (pago sem vínculo) é calculada com o item a item quando há (trilha_da_secretaria)
     e, sem ele, fica sem medida (Margens.pago_com_vinculo = None), nunca zero.
   falta: Rodar a coleta do portal (motor execucao_goiania) para medir o pago sem vínculo publicado com dados reais.
   trava: testes/test_dominios.py::test_saude_2025_nos_numeros_do_rreo
 - id: 23
-  bloco: O rio
+  bloco: Origem do dinheiro
   requisito: Receita realizada contra a prevista
   situacao: cumprido
   evidencia: 'rio/municipio.py _ritmo(): cada espécie contra a previsão atualizada, no ritmo do ano anterior até o mesmo bimestre
@@ -170,31 +170,31 @@
   falta: ''
   trava: testes/test_rio_municipio.py::test_iptu_abaixo_do_ritmo_vira_ficha_e_itr_pequeno_nao
 - id: 24
-  bloco: O rio
-  requisito: Rio do município inteiro
+  bloco: Origem do dinheiro
+  requisito: Receita do município inteiro
   situacao: cumprido
-  evidencia: 'rio/municipio.py montar(): o rio do exercício de todo o Município pelo RREO, ligado ao fiscal e ao parecer de
+  evidencia: 'rio/municipio.py montar(): a receita do exercício de todo o Município pelo RREO, ligado ao fiscal e ao parecer de
     cada domínio'
   falta: ''
   trava: testes/test_rio_municipio.py::test_parecer_mostra_o_rio_do_municipio_e_as_tres_conferencias
 - id: 25
-  bloco: O rio
+  bloco: Origem do dinheiro
   requisito: Sankey com modos Todo / Vinculada / Livre
   situacao: cumprido
-  evidencia: Tela O rio (rio.html) com Sankey próprio em SVG nos modos Todo, Vinculada e Livre, parâmetro modo na URL; os
-    três modos fecham com a entrada e a saída
+  evidencia: Tela Origem do dinheiro (origem.html) com Sankey próprio em SVG nos modos Todas as fontes, Vinculada e Livre,
+    parâmetro modo na URL; os três modos fecham com a entrada e a saída
   falta: ''
   trava: testes/test_telas.py::test_sankey_tres_modos_fecham_e_separam_vinculada_de_livre
 - id: 26
-  bloco: O rio
-  requisito: Afluentes batem com o RREO em 1% (portão da fase 2)
+  bloco: Origem do dinheiro
+  requisito: Receita por espécie bate com o RREO em 1% (portão da fase 2)
   situacao: cumprido
-  evidencia: 'O rio (soma dos afluentes menos o FUNDEB entregue) contra a receita realizada do Anexo 1, e os grupos (tributos,
+  evidencia: 'A soma das espécies menos o FUNDEB entregue contra a receita realizada do Anexo 1, e os grupos (tributos,
     transferências): iguais ao centavo em 2025 e 2026'
   falta: ''
   trava: testes/test_rio_municipio.py::test_rio_fecha_ao_centavo_com_a_receita_realizada_do_rreo
 - id: 27
-  bloco: O rio
+  bloco: Origem do dinheiro
   requisito: Origem conciliada com repasses (FNAS, Tesouro, FNS, FNDE)
   situacao: cumprido
   evidencia: 'rio/municipio.py conferir_origem(): Portal da Transparência (SIAFI) × matriz por natureza e fonte, mês a mês,
@@ -281,8 +281,8 @@
   bloco: Selos
   requisito: Nenhum número sem selo
   situacao: cumprido
-  evidencia: Nenhuma linha de quadro sem selo; margens, leito, ritmos, desvios e compras por órgão do parecer também com selo;
-    o rio que não fecha com o RREO sai em vermelho
+  evidencia: Nenhuma linha de quadro sem selo; diferenças da execução, finalidade, ritmos, desvios e compras por órgão do parecer
+    também com selo; a soma por espécie que não fecha com o RREO sai em vermelho
   falta: ''
   trava: testes/test_conferencias_banco.py::test_toda_linha_de_quadro_tem_selo
 - id: 38
@@ -982,10 +982,10 @@
   falta: ''
 - id: 130
   bloco: Parecer
-  requisito: O rio
+  requisito: Origem do dinheiro
   situacao: cumprido
-  evidencia: 'No parecer de cada pasta o rio é o realizado (o pago no exercício aberto por fonte, pela matriz) e o Município
-    inteiro vem junto (Fiscal.rio: receita realizada, margens e conferências); o cabeçalho da tabela de entradas passa a dizer
+  evidencia: 'No parecer de cada pasta a origem do dinheiro é o realizado (o pago no exercício aberto por fonte, pela matriz)
+    e o Município inteiro vem junto (Fiscal.rio: receita realizada, diferenças da execução e conferências); o cabeçalho da tabela de entradas passa a dizer
     Pago no exercício.'
   falta: ''
   trava: testes/test_dominios.py::test_parecer_por_secretaria_no_banco
@@ -1046,8 +1046,8 @@
   bloco: Parecer
   requisito: Parecer além da Assistência
   situacao: cumprido
-  evidencia: onisciente/rio/parecer_dominio.gerar_todos gera um parecer por secretaria ativa (seis em Goiânia), com rio realizado,
-    margens, integridade, pisos do domínio, fichas da pasta e a execução, pelo mesmo gerador de parecer.
+  evidencia: onisciente/rio/parecer_dominio.gerar_todos gera um parecer por secretaria ativa (seis em Goiânia), com a receita realizada,
+    as diferenças da execução, integridade, pisos do domínio, fichas da pasta e a execução, pelo mesmo gerador de parecer.
   falta: ''
   trava: testes/test_dominios.py::test_parecer_por_secretaria_no_banco
 - id: 139
@@ -1264,9 +1264,9 @@
   falta: ''
 - id: 162
   bloco: Roteiro e portões
-  requisito: 'Fase 2: afluentes batem com o RREO em 1%'
+  requisito: 'Fase 2: receita por espécie bate com o RREO em 1%'
   situacao: cumprido
-  evidencia: O rio do Município fecha com a receita realizada do RREO dentro de 1% em todos os períodos do banco; o parecer
+  evidencia: A soma por espécie do Município fecha com a receita realizada do RREO dentro de 1% em todos os períodos do banco; o parecer
     marca em vermelho quando não fecha
   falta: ''
   trava: testes/test_regras_rio.py::test_rio_e_rreo_dentro_de_um_por_cento_em_todo_periodo
@@ -1318,10 +1318,10 @@
   falta: ''
 - id: 169
   bloco: Telas do protótipo
-  requisito: O rio
+  requisito: Origem do dinheiro
   situacao: cumprido
-  evidencia: 'rio.html: Sankey, cartões dos afluentes, COSIP e FNAS fora do leito com fonte, painel dos federais (vazio até
-    a coleta)'
+  evidencia: 'origem.html: Sankey, cartões das fontes vinculadas, COSIP e FNAS fora da finalidade com fonte, painel dos federais
+    (vazio até a coleta)'
   falta: ''
   trava: testes/test_telas.py::test_rio_tem_a_cosip_fora_do_leito_com_fonte
 - id: 170

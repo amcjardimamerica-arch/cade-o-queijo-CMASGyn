@@ -235,10 +235,10 @@ def test_parecer_mostra_o_rio_do_municipio_e_as_tres_conferencias():
     p = cadeoqueijo.montar("2026-10")
     assert p.fiscal is not None and p.fiscal.rio is not None
     pagina = html.gerar(p, hoje=date(2026, 11, 26))
-    assert "O rio do Município inteiro: RREO do 4º bimestre de 2026" in pagina
+    assert "A receita do Município inteiro: RREO do 4º bimestre de 2026" in pagina  # decisão do usuário de 28/11/2026: sem a metáfora do rio
     for titulo in ("A origem: o que a União transferiu contra o que o Município registrou",
-                   "O RREO contra a matriz de saldos contábeis", "O rio contra o próprio RREO",
-                   "Realizado contra o previsto", "O leito: água vinculada empenhada fora da sua finalidade"):
+                   "O RREO contra a matriz de saldos contábeis", "A soma por espécie contra o próprio RREO",  # decisão do usuário de 28/11/2026: sem a metáfora do rio
+                   "Realizado contra o previsto", "Recurso vinculado empenhado fora da sua finalidade"):  # decisão do usuário de 28/11/2026: sem a metáfora do rio
         assert titulo in pagina, titulo
     d = p.como_dict()["municipio"]["rio"]
     assert d["liquido"] == pytest.approx(d["realizado_declarado"], abs=0.01)
@@ -252,5 +252,5 @@ def test_desenho_junta_os_afluentes_menores_por_esfera():
                      for i in range(40)])
     desenho = svg.rio(r, rotulo="no exercício", maximo=10)
     assert desenho.count("<path") == 11            # 9 maiores + demais federais + demais municipais
-    assert "Demais afluentes (16), federal" in desenho and "no exercício" in desenho
+    assert "Demais receitas (16), federal" in desenho and "no exercício" in desenho  # decisão do usuário de 28/11/2026: sem a metáfora do rio
     assert svg.rio(r).count("<path") == 40

@@ -68,7 +68,7 @@ def test_competencia_sem_verificacao_falha_as_claras(tmp_path):
 
 def test_parecer_tem_as_nove_secoes_e_e_autonomo(panorama):
     pagina = html.gerar(panorama, hoje=date(2026, 11, 26))
-    for n, titulo in enumerate(["Em uma frase", "O rio", "Pisos e tetos", "As contas, uma a uma",
+    for n, titulo in enumerate(["Em uma frase", "Origem do dinheiro", "Pisos e tetos", "As contas, uma a uma",  # decisão do usuário de 28/11/2026: sem a metáfora do rio
                                 "Preço e entrega", "Prestação de contas", "Fichas", "Ausências",
                                 "Custódia"], 1):
         assert f"{n}. {titulo}" in pagina

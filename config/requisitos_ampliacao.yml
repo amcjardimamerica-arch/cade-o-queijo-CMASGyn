@@ -277,3 +277,18 @@
     cada contrato na página diz quais cadastros não foram conferidos.
   falta: ''
   trava: testes/test_empresas.py::test_sancoes_sem_linhas_sao_nao_conferidas_e_nunca_empresa_limpa
+- id: 225
+  bloco: 'G: correção do conceito, 28/11/2026'
+  requisito: 'Decisão do usuário de 28/11/2026: sem a metáfora do rio. Nada do que se mostra (telas, menus, parecer, fichas,
+    selos, documentação) usa rio, afluentes, nascente, foz, margens, leito, correnteza, água vinculada, livre ou parada, ou
+    sangria; o painel se organiza pelas seis etapas do gasto público (origem do dinheiro, orçamento, contratação, liquidação,
+    pagamento, prestação de contas), cada situação aparece como conforme, alerta (com a gravidade) ou sem dado, com ícones SVG
+    próprios iguais em todas as páginas, e qualquer desconformidade fica a no máximo dois cliques da página inicial.'
+  situacao: cumprido
+  evidencia: onisciente/linguagem.py (a régua metaforas e a troca direto, aplicada às telas e ao parecer sem mudar número);
+    origem.html no lugar de rio.html; a página inicial abre com o diagrama das etapas, cada cartão com as três condições e o
+    link para indicios.html?etapa=…, que lista a etapa inteira agrupada por tema; ícones das etapas e das condições num bloco
+    de símbolos SVG em cada página; pareceres publicados reescritos só no texto; decisão em docs/onisciente/decisoes.md e estudo
+    de UX revisto (treze páginas mantidas).
+  falta: ''
+  trava: testes/test_telas.py::test_inicio_tem_o_diagrama_das_etapas_e_toda_ficha_a_dois_cliques

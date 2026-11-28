@@ -306,7 +306,7 @@ def _externos(banco: Banco) -> list[Achado]:
         elif situacao == "nao_entregue":
             saida.append(Achado("lacuna", "msc", "Matriz de saldos contábeis não enviada ao SICONFI: " + _faixas(meses),
                                 "O SICONFI devolveu a matriz vazia depois do prazo.",
-                                "O rio e o desvio de finalidade desses meses ficam sem a via por fonte e função."))
+                                "A receita por fonte e o desvio de finalidade desses meses ficam sem a via por fonte e função."))
         else:
             saida.append(Achado("falha", "msc", "Matriz de saldos contábeis não lida: " + _faixas(meses),
                                 f"{situacao}: {erros_msc[situacao]}",

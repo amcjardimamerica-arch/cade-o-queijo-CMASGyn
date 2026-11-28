@@ -184,7 +184,7 @@ def montar(competencia: str, *, raiz: Path = RAIZ, mapa: MapaLegal | None = None
                 fonte=_fonte_do_codigo(codigo), selo=Selo.AZUL,
                 origem="previsto na LOA (lei publicada)"))
         if comp.get("realizado") is None:
-            panorama.notas.append("O rio mostra o previsto na LOA para o mês: a receita realizada "
+            panorama.notas.append("A origem do dinheiro mostra o previsto na LOA para o mês: a receita realizada "
                                   "da competência não foi publicada.")
             panorama.ausencias.append(Ausencia(
                 o_que_falta="Receita realizada do Fundo por fonte", periodo=competencia,

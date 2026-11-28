@@ -217,7 +217,7 @@ def test_parecer_por_secretaria_no_banco(tmp_path):
         assert "A execução da pasta" in html and "As nove maiores saídas" in html
         assert "Pago no exercício" in html and "Previsto no mês" not in html
         assert P.AVISO_DA_SECAO_4 not in html
-        assert "Receita realizada pelo rio" in html            # o Município inteiro vem junto (130)
+        assert "Receita realizada pela soma das espécies" in html   # o Município inteiro vem junto (130)  # decisão do usuário de 28/11/2026: sem a metáfora do rio
         assert (tmp_path / f"panorama_{r['dominio']}_2026-08.json").exists()
     saude = Path(resumo[1]["html"]).read_text(encoding="utf-8")
     assert "Aplicação mínima em saúde" in saude and "Plano Municipal de Saúde" in saude

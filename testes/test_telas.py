@@ -36,7 +36,7 @@ precisa_node = pytest.mark.skipif(NODE is None, reason="Node não está instalad
 FMAS = "01393989000103"
 OUTRO = "00000000000191"
 SHA_MSC = hashlib.sha256(b"matriz de janeiro").hexdigest()
-PAGINAS = ("index", "rio", "leis", "trilha", "secretarias", "pisos", "pessoal", "precos", "empresas", "contas",
+PAGINAS = ("index", "origem", "leis", "trilha", "secretarias", "pisos", "pessoal", "precos", "empresas", "contas",  # decisão do usuário de 28/11/2026: sem a metáfora do rio
            "indicios", "transparencia", "tempo")
 
 
@@ -254,7 +254,7 @@ def test_todo_numero_tem_fonte_e_a_fonte_diz_onde_esta_o_original(site):
 
 
 def test_original_guardado_vai_junto_so_quando_a_impressao_digital_bate(site):
-    fontes = _dados(site / "rio.html")["d-fontes"]
+    fontes = _dados(site / "origem.html")["d-fontes"]  # decisão do usuário de 28/11/2026: sem a metáfora do rio
     janeiro, fevereiro = fontes["msc:2026-01"], fontes["msc:2026-02"]
     assert janeiro["c"] == 1 and janeiro["u"] == f"originais/{SHA_MSC}"
     assert (site / "originais" / SHA_MSC).read_bytes() == b"matriz de janeiro"
@@ -274,7 +274,7 @@ def test_nenhum_cpf_vai_para_as_telas(site):
 # ---------------------------------------------------------------------------------------------
 
 def test_rio_tem_a_cosip_fora_do_leito_com_fonte(site):
-    rio = _dados(site / "rio.html")["d-tela"]
+    rio = _dados(site / "origem.html")["d-tela"]  # decisão do usuário de 28/11/2026: sem a metáfora do rio
     c = rio["por_c"]["2026-02"]
     assert c["cosip"]["receita"]["v"] == pytest.approx(6000.0)      # 2.000 + 4.000
     fora = {x[0]: x for x in c["cosip"]["empenhado"]}
@@ -284,7 +284,7 @@ def test_rio_tem_a_cosip_fora_do_leito_com_fonte(site):
 
 @precisa_node
 def test_sankey_tres_modos_fecham_e_separam_vinculada_de_livre(site):
-    rio = _dados(site / "rio.html")["d-tela"]
+    rio = _dados(site / "origem.html")["d-tela"]  # decisão do usuário de 28/11/2026: sem a metáfora do rio
     r = _js("""
       const out = {};
       for (const m of ['todo', 'vinculada', 'livre']) {
@@ -316,7 +316,7 @@ def test_sankey_tres_modos_fecham_e_separam_vinculada_de_livre(site):
 
 @precisa_node
 def test_tela_do_rio_desenha_os_tres_modos(site):
-    saida = _desenhar(site / "rio.html", "2026-02|", "2026-02||modo=vinculada")
+    saida = _desenhar(site / "origem.html", "2026-02|", "2026-02||modo=vinculada")  # decisão do usuário de 28/11/2026: sem a metáfora do rio
     tela = saida["2026-02|"]["tela"]
     for modo in ("todo", "vinculada", "livre"):
         assert f'data-modo="{modo}"' in tela
@@ -412,14 +412,14 @@ def test_todas_as_telas_desenham_sem_erro(site):
 @precisa_node
 def test_estado_vazio_ate_a_coleta_e_dado_quando_a_entrada_chega(site, site_com_entradas):
     vazio = {p: _desenhar(site / f"{p}.html", "2026-02|")["2026-02|"]
-             for p in ("empresas", "transparencia", "trilha", "rio")}
-    assert "Aguardando a coleta das transferências federais" in vazio["rio"]["tela"]
+             for p in ("empresas", "transparencia", "trilha", "origem")}  # decisão do usuário de 28/11/2026: sem a metáfora do rio
+    assert "Aguardando a coleta das transferências federais" in vazio["origem"]["tela"]  # decisão do usuário de 28/11/2026: sem a metáfora do rio
     assert "Aguardando a coleta das empresas na Receita Federal" in vazio["empresas"]["tela"]
     assert "Aguardando a coleta do selo de transparência" in vazio["transparencia"]["tela"]
     assert "Aguardando a coleta da execução" in vazio["trilha"]["tela"]
     cheio = {p: _desenhar(site_com_entradas / f"{p}.html", "2026-02|")["2026-02|"]
-             for p in ("empresas", "transparencia", "trilha", "precos", "rio")}
-    assert "Atenção primária" in cheio["rio"]["tela"] and "diverge" in cheio["rio"]["tela"]
+             for p in ("empresas", "transparencia", "trilha", "precos", "origem")}  # decisão do usuário de 28/11/2026: sem a metáfora do rio
+    assert "Atenção primária" in cheio["origem"]["tela"] and "diverge" in cheio["origem"]["tela"]  # decisão do usuário de 28/11/2026: sem a metáfora do rio
     assert "Aguardando a coleta das empresas" not in cheio["empresas"]["tela"]
     assert "Sócia Administradora" in cheio["empresas"]["tela"] and "aberta 40 dias antes" in cheio["empresas"]["tela"]
     assert "Diamante" in cheio["transparencia"]["tela"] and "Publica a execução diária" in cheio["transparencia"]["tela"]
@@ -683,7 +683,7 @@ def test_coleta_nao_feita_aparece_em_cinza_e_nunca_em_roxo(site_entradas_reais):
     assert d["d-comum"]["coletas"]["execucao"]["situacao"] == "coleta_nao_feita"
     assert "execucao" not in d["d-comum"]["entradas"] and "federais" not in d["d-comum"]["entradas"]
     trilha = _desenhar(site_entradas_reais / "trilha.html", "2026-02|")["2026-02|"]["tela"]
-    rio = _desenhar(site_entradas_reais / "rio.html", "2026-02|")["2026-02|"]["tela"]
+    rio = _desenhar(site_entradas_reais / "origem.html", "2026-02|")["2026-02|"]["tela"]  # decisão do usuário de 28/11/2026: sem a metáfora do rio
     for tela, o_que in ((trilha, "execução, empenho a empenho"), (rio, "transferências federais")):
         i = tela.index("Coleta ainda não feita: " + o_que)
         quadro = tela[tela.rindex("<div class=\"vazio", 0, i):i]
@@ -728,3 +728,103 @@ def test_comando_telas_escreve_as_entradas_ao_lado_do_banco_de_teste(banco, tmp_
         assert (copia.parent / "entradas" / f"{nome}.json").is_file()
     d = _dados(tmp_path / "site" / "trilha.html")
     assert d["d-comum"]["coletas"]["execucao"]["situacao"] == "coleta_nao_feita"
+
+
+# ---------------------------------------------------------------------------------------------
+# Etapas, condições e linguagem direta (decisão do usuário de 28/11/2026: sem a metáfora do rio)
+# ---------------------------------------------------------------------------------------------
+
+def _visivel(html: str) -> str:
+    """O texto que a pessoa lê: a página sem as marcas, com os dados embutidos (viram texto no navegador)."""
+    return re.sub(r"<[^>]+>", " ", html)
+
+
+@precisa_node
+def test_nenhuma_metafora_nas_telas_nem_no_app(site, site_com_entradas):
+    from onisciente.linguagem import metaforas
+    for estatico in ("app.js", "app.css"):
+        assert metaforas((site / estatico).read_text(encoding="utf-8")) == [], estatico
+    for raiz in (site, site_com_entradas):
+        for p in PAGINAS:
+            html = (raiz / f"{p}.html").read_text(encoding="utf-8")
+            assert metaforas(html) == [], (raiz.name, p, metaforas(html))
+            for recorte, s in _desenhar(raiz / f"{p}.html", "2026-02|", f"2026-02|{FMAS}").items():
+                for parte in ("tela", "sankey", "caminho"):
+                    assert metaforas(_visivel(s[parte])) == [], (p, recorte, parte, metaforas(_visivel(s[parte])))
+    assert not (site / "rio.html").exists() and (site / "origem.html").exists()
+
+
+def _etapas_da_inicial(tela: str) -> dict[str, dict]:
+    out = {}
+    for m in re.finditer(r'<a class="etapa [a-z]+" data-etapa="([a-z]+)" href="([^"]+)"(.*?)</a>', tela, re.S):
+        conds = dict(re.findall(r'<span class="cd (conforme|alerta|sem_dado)[^"]*">.*?<b>(\d+)</b>', m.group(3), re.S))
+        out[m.group(1)] = {"href": m.group(2).replace("&amp;", "&"), **{k: int(v) for k, v in conds.items()}}
+    return out
+
+
+@precisa_node
+def test_inicio_tem_o_diagrama_das_etapas_e_toda_ficha_a_dois_cliques(site):
+    comum = _dados(site / "index.html")["d-comum"]
+    ids = [e["id"] for e in comum["etapas"]]
+    assert ids == ["origem", "orcamento", "contratacao", "liquidacao", "pagamento", "prestacao"]
+    todas = {f["codigo"] for f in _dados(site / "indicios.html")["d-tela"]["fichas"]}
+    for c, s in (("2026-02", ""), ("2026-02", FMAS), ("2026-01", "")):
+        rec = f"{c}|{s}"
+        tela = _desenhar(site / "index.html", rec)[rec]["tela"]
+        etapas = _etapas_da_inicial(tela)
+        assert list(etapas) == ids, rec                                  # as seis, na ordem do gasto
+        sistema = re.search(r'<p class="etapa-sistema"><a href="([^"]+)">.*?<b>(\d+)</b>', tela, re.S)
+        assert sistema and "tema=sistema" in sistema.group(1)
+        # clique 1: a etapa abre a lista dela; clique 2: a ficha (details) abre com a prova
+        alcancadas = set()
+        destinos = {e: v["href"] for e, v in etapas.items()} | {"sistema": sistema.group(1).replace("&amp;", "&")}
+        for nome, href in destinos.items():
+            pagina, _, busca = href.partition("?")
+            assert pagina == "indicios.html", href
+            q = dict(x.split("=", 1) for x in busca.split("&"))
+            assert q["c"] == c and q.get("s", "") == s
+            extra = "&".join(f"{k}={v}" for k, v in q.items() if k not in ("c", "s"))
+            lista = _desenhar(site / "indicios.html", f"{c}|{s}|{extra}")[f"{c}|{s}|{extra}"]
+            assert not lista["erros"]
+            codigos = re.findall(r'<details class="ficha [^"]*" id="[^"]+" data-codigo="([^"]+)"', lista["fichas"])
+            assert "Mostrar mais" not in lista["fichas"]                   # a lista da etapa sai inteira
+            esperado = int(sistema.group(2)) if nome == "sistema" else etapas[nome]["alerta"] + etapas[nome]["sem_dado"]
+            assert len(codigos) == esperado, (rec, nome)
+            alcancadas |= set(codigos)
+        tudo = _desenhar(site / "indicios.html", rec)[rec]["fichas"]
+        ativas = set(re.findall(r'data-codigo="([^"]+)"', tudo))
+        assert ativas <= todas and ativas == alcancadas, rec               # nenhuma ficha fora das etapas
+
+
+def test_cada_condicao_tem_o_seu_icone_igual_em_todas_as_paginas(site):
+    simbolos = {}
+    for p in PAGINAS:
+        html = (site / f"{p}.html").read_text(encoding="utf-8")
+        sprite = re.search(r'<svg[^>]*class="simbolos"[^>]*>(.*?)</svg>', html, re.S)
+        assert sprite, p
+        achados = dict(re.findall(r'<symbol id="i-([a-z]+)"[^>]*>(.*?)</symbol>', sprite.group(1), re.S))
+        for cond in ("conforme", "alerta", "semdado"):
+            assert html.count(f'<symbol id="i-{cond}"') == 1, (p, cond)
+        for etapa in ("origem", "orcamento", "contratacao", "liquidacao", "pagamento", "prestacao"):
+            assert etapa in achados, (p, etapa)
+        simbolos.setdefault("primeira", achados)
+        assert achados == simbolos["primeira"], p                        # o mesmo desenho em todas
+    s = simbolos["primeira"]
+    assert len({s["conforme"], s["alerta"], s["semdado"]}) == 3          # três desenhos diferentes
+    assert len({s[e] for e in ("origem", "orcamento", "contratacao", "liquidacao", "pagamento", "prestacao")}) == 6
+
+
+@precisa_node
+def test_selos_e_fichas_usam_o_icone_da_condicao(site):
+    r = _desenhar(site / "indicios.html", "2026-02|")["2026-02|"]
+    for m in re.finditer(r'<details class="ficha [^"]*\b(alerta|sem_dado)\b[^"]*".*?<summary>(.*?)</summary>', r["fichas"], re.S):
+        icone = "alerta" if m.group(1) == "alerta" else "semdado"
+        assert f'<use href="#i-{icone}"/>' in m.group(2)
+    assert r["fichas"].count("<details") >= 2
+    origem = _desenhar(site / "origem.html", "2026-02|")["2026-02|"]["tela"]
+    for cor, icone in (("verde", "conforme"), ("cinza", "semdado"), ("indicio", "alerta"), ("roxo", "semdado")):
+        for m in re.finditer(rf'<span class="selo {cor}">(<svg.*?</svg>)', origem):
+            assert f'href="#i-{icone}"' in m.group(1), (cor, m.group(1))
+    inicio = _desenhar(site / "index.html", "2026-02|")["2026-02|"]["tela"]
+    for cd, icone in (("conforme", "conforme"), ("alerta", "alerta"), ("sem_dado", "semdado")):
+        assert re.search(rf'<svg class="ic cond {cd}[^"]*"[^>]*><use href="#i-{icone}"/>', inicio), cd

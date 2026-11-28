@@ -2,9 +2,11 @@
 
     python -m onisciente telas            # gera docs/onisciente/app/
 
-Treze páginas, na ordem do rio (o estudo de UX em docs/onisciente/ux/estudo_ux.md explica o porquê). Cada
+Treze páginas, agrupadas pelas etapas do gasto público: origem do dinheiro, orçamento, contratação, liquidação,
+pagamento e prestação de contas (o estudo de UX em docs/onisciente/ux/estudo_ux.md explica o porquê). Cada
 página leva embutidos os dados da sua tela, a tabela das fontes dos números que ela mostra e o índice das
-fichas (para os recortes e os contadores da régua). Nada vai à rede: só o banco e os módulos do Onisciente.
+fichas (para os recortes e as contagens por etapa e condição). Nada vai à rede: só o banco e os módulos do
+Onisciente.
 """
 
 from __future__ import annotations
@@ -58,22 +60,24 @@ def montar(ctx: D.Contexto) -> tuple[dict, dict[str, dict], list[dict]]:
     comum["temas"] = {k: {"titulo": t, "pagina": p, "ancora": a, "descricao": d} for k, (t, p, a, d) in D.TEMAS.items()}
     comum["entradas"] = sorted(n for n in ctx.entradas if ctx.entrada(n))
     comum["coletas"] = ctx.coletas()
-    rio = D.rio(ctx)
+    origem = D.rio(ctx)
     precos = D.precos(ctx)
     ind = D.indicios(ctx)
+    trilha = D.trilha(ctx)
     paginas = {
-        "index": {"inicio": D.inicio(ctx, rio, precos), "estacoes": D.ESTACOES_TEXTO,
-                  "estacoes_da_familia": ind["estacoes_da_familia"]},
-        "rio": rio,
+        "index": {"inicio": D.inicio(ctx, origem, precos), "estacoes": D.ESTACOES_TEXTO,
+                  "estacoes_da_familia": ind["estacoes_da_familia"],
+                  "estacoes_com_documento": D.estacoes_com_documento(trilha)},
+        "origem": origem,
         "leis": D.leis(ctx),
-        "trilha": D.trilha(ctx),
+        "trilha": trilha,
         "secretarias": D.secretarias_dados(ctx),
         "pisos": D.pisos(ctx),
         "pessoal": D.pessoal(ctx),
         "precos": precos,
         "empresas": D.empresas(ctx),
         "contas": D.contas(ctx),
-        "indicios": {"fichas": ind["fichas"], "familias": ind["familias"],
+        "indicios": {"fichas": ind["fichas"], "familias": ind["familias"], "rotulos": ind["rotulos"],
                      "estacoes_da_familia": ind["estacoes_da_familia"], "estacoes": D.ESTACOES_TEXTO},
         "transparencia": D.transparencia(ctx),
         "tempo": D.tempo(ctx),

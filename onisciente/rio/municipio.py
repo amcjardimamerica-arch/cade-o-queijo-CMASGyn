@@ -200,14 +200,14 @@ class Conferencia:
 
 @dataclass
 class Desvio:
-    """Água vinculada empenhada fora do seu leito."""
+    """Recurso vinculado empenhado fora da sua finalidade."""
 
     fonte: str                        # destinação, três dígitos
     nome_fonte: str
     funcao: str
     valor: float
     norma: str
-    motivo: str                       # "leito" ou "alienacao"
+    motivo: str                       # "leito" (fora da finalidade da lei) ou "alienacao"
     naturezas: list[tuple[str, str, float]] = field(default_factory=list)   # (subfunção, natureza, valor)
 
     def como_dict(self) -> dict:
@@ -323,7 +323,7 @@ class RioMunicipal:
                                 "previdência dos servidores.")
                 norma = d.norma
             else:
-                titulo = f"{d.nome_fonte}: empenhada fora do seu leito, na função {d.funcao} ({_moeda(d.valor)})"
+                titulo = f"{d.nome_fonte}: empenhada fora da sua finalidade, na função {d.funcao} ({_moeda(d.valor)})"
                 como_deveria = ("O recurso vinculado só se aplica no objeto da vinculação, ainda que em "
                                 "exercício diverso do ingresso.")
                 norma = f"LC 101/2000, art. 8º, parágrafo único; {d.norma}"
@@ -539,7 +539,7 @@ def montar(lt, per, *, ate: date | None = None) -> RioMunicipal | None:
         rio.afluentes.extend(_abrir_por_fonte(con, e, valor, janela, selo, origem))
     if msc_janela and not msc_cobre:
         notas.append(f"A matriz de saldos contábeis cobre {len(msc_janela)} dos {len(janela)} meses do "
-                     "exercício: o rio fica com a fonte padrão de cada espécie, sem abrir pelas fontes "
+                     "exercício: a receita fica com a fonte padrão de cada espécie, sem abrir pelas fontes "
                      "registradas, e cada espécie se confere só nos meses que a matriz traz.")
     sangria = sum((meses_do_exercicio(lt, per, SANGRIA_FUNDEB) or {}).values())
 
@@ -552,25 +552,25 @@ def montar(lt, per, *, ate: date | None = None) -> RioMunicipal | None:
     rm = RioMunicipal(per.exercicio, per.periodo, rio, sangria, realizado, previsto, meses=meses,
                       ritmos=[r for r in ritmos if r.previsto], notas=notas)
 
-    # --- Rio contra o RREO: a soma dos afluentes contra a receita realizada do Anexo 1 ----------
+    # --- A soma por espécie contra o RREO: a receita realizada do Anexo 1 ------------------------
     ref = f"{rm.rotulo}: Anexo 3 mês a mês contra o Anexo 1 acumulado"
     if not faltam:
         rm.conferencias.append(Conferencia(
             "Receita realizada no exercício", selar([
-                Via("rio: soma dos afluentes menos o FUNDEB entregue", rio.total() - sangria),
+                Via("soma das espécies menos o FUNDEB entregue", rio.total() - sangria),
                 Via("RREO Anexo 1, receitas até o bimestre", realizado)]), ref, Tipo.MESMO_RELATORIO))
         tributos = sum(sum(meses[n].values()) for n in
                        ("IPTU", "ISS", "ITBI", "IRRF retido na fonte", "Taxas e outros tributos"))
         rm.conferencias.append(Conferencia(
             "Impostos, taxas e contribuições de melhoria", selar([
-                Via("rio: IPTU, ISS, ITBI, IRRF e taxas", tributos),
+                Via("soma das espécies: IPTU, ISS, ITBI, IRRF e taxas", tributos),
                 Via("RREO Anexo 1, até o bimestre", lt.valor(per, "Anexo 01", "ReceitaTributaria", COL_REALIZADO))]),
             ref, Tipo.MESMO_RELATORIO))
         transf = sum(sum(meses[e.nome].values()) for e in CORRENTES
                      if e.cod_conta.startswith(("RREO3CotaParte", "RREO3Transferencias", "RREO3OutrasTransferencias")))
         rm.conferencias.append(Conferencia(
             "Transferências correntes", selar([
-                Via("rio: transferências menos o FUNDEB entregue", transf - sangria),
+                Via("soma das transferências menos o FUNDEB entregue", transf - sangria),
                 Via("RREO Anexo 1, até o bimestre", lt.valor(per, "Anexo 01", "TransferenciasCorrentes", COL_REALIZADO))]),
             ref, Tipo.MESMO_RELATORIO))
 
@@ -715,9 +715,9 @@ def _onde_foi_parar(con: sqlite3.Connection, o: Origem, mes: str,
     return achados
 
 
-# --- O leito: água vinculada empenhada fora da sua função ----------------------------------------
+# --- Recurso vinculado empenhado fora da sua finalidade ------------------------------------------
 def desvios(con: sqlite3.Connection, meses: list[str]) -> tuple[list[Desvio], dict[str, float]]:
-    """Os empenhos do exercício por fonte e função: o que corre fora do leito e as fontes sem catálogo."""
+    """Os empenhos do exercício por fonte e função: o que sai da finalidade e as fontes sem catálogo."""
     grupos: dict[tuple[str, str, str], Desvio] = {}
     sem_catalogo: dict[str, float] = {}
     for e in mz.empenhos_por_fonte(con, meses):
