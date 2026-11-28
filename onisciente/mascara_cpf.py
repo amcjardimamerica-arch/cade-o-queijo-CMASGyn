@@ -24,7 +24,9 @@ import re
 import unicodedata
 import zipfile
 
-_FORMATADO = re.compile(r"(?<![\d.*])\d{3}\.(\d{3})\.(\d{3})-\d{2}(?!\d)")
+# Antes do CPF não pode vir dígito nem asterisco (já mascarado), nem "dígito e ponto" (o meio de um número
+# maior). Um ponto depois de letra, como em "CPF SOB O N.598.819.251-34", não protege o CPF (28/11/2026).
+_FORMATADO = re.compile(r"(?<![\d*])(?<!\d\.)\d{3}\.(\d{3})\.(\d{3})-\d{2}(?!\d)")
 # O valor de 11 dígitos de um campo de documento: chave JSON, parâmetro de endereço ou elemento XML. A busca
 # começa pelo nome do campo (rápida em arquivos grandes) e o resto do nome vem depois dele.
 _CAMPO = re.compile(
