@@ -126,8 +126,8 @@
   situacao: cumprido
   evidencia: 'rio/municipio.py: 16 espécies correntes pelo RREO Anexo 3 mês a mês e 4 de capital pelo Anexo 1, cada uma aberta
     pelas fontes registradas na matriz de saldos contábeis (salário-educação 1550, SUS 1600, FNAS 1660, COSIP 1751, CIDE 1750,
-    multas 1752, convênios 1700/1571, emendas 1706/1710, operações de crédito 1754); no parecer de out/2026, ''A receita do Município
-    inteiro'''
+    multas 1752, convênios 1700/1571, emendas 1706/1710, operações de crédito 1754); no parecer de out/2026, ''A receita do
+    Município inteiro'''
   falta: ''
   trava: testes/test_rio_municipio.py::test_afluentes_abrem_pelas_fontes_registradas_e_a_esfera_vem_da_especie
 - id: 19
@@ -155,7 +155,7 @@
   bloco: Origem do dinheiro
   requisito: As 4 diferenças da execução (previsto não empenhado, empenhado não liquidado, liquidado não pago, pago sem vínculo)
   situacao: parcial
-  evidencia: As três primeiras diferenças da execução de cada secretaria (previsto e não empenhado, empenhado e não liquidado, liquidado
+  evidencia: As três primeiras margens de cada secretaria (previsto e não empenhado, empenhado e não liquidado, liquidado
     e não pago) saem do RREO Anexo 2 conferido com a matriz de saldos contábeis (onisciente/rio/secretarias.py, ExecucaoSecretaria.margens)
     e aparecem no parecer de cada pasta. A quarta (pago sem vínculo) é calculada com o item a item quando há (trilha_da_secretaria)
     e, sem ele, fica sem medida (Margens.pago_com_vinculo = None), nunca zero.
@@ -173,8 +173,8 @@
   bloco: Origem do dinheiro
   requisito: Receita do município inteiro
   situacao: cumprido
-  evidencia: 'rio/municipio.py montar(): a receita do exercício de todo o Município pelo RREO, ligado ao fiscal e ao parecer de
-    cada domínio'
+  evidencia: 'rio/municipio.py montar(): a receita do exercício de todo o Município pelo RREO, ligado ao fiscal e ao parecer
+    de cada domínio'
   falta: ''
   trava: testes/test_rio_municipio.py::test_parecer_mostra_o_rio_do_municipio_e_as_tres_conferencias
 - id: 25
@@ -189,8 +189,8 @@
   bloco: Origem do dinheiro
   requisito: Receita por espécie bate com o RREO em 1% (portão da fase 2)
   situacao: cumprido
-  evidencia: 'A soma das espécies menos o FUNDEB entregue contra a receita realizada do Anexo 1, e os grupos (tributos,
-    transferências): iguais ao centavo em 2025 e 2026'
+  evidencia: 'A soma das espécies menos o FUNDEB entregue contra a receita realizada do Anexo 1, e os grupos (tributos, transferências):
+    iguais ao centavo em 2025 e 2026'
   falta: ''
   trava: testes/test_rio_municipio.py::test_rio_fecha_ao_centavo_com_a_receita_realizada_do_rreo
 - id: 27
@@ -281,8 +281,8 @@
   bloco: Selos
   requisito: Nenhum número sem selo
   situacao: cumprido
-  evidencia: Nenhuma linha de quadro sem selo; diferenças da execução, finalidade, ritmos, desvios e compras por órgão do parecer
-    também com selo; a soma por espécie que não fecha com o RREO sai em vermelho
+  evidencia: Nenhuma linha de quadro sem selo; margens, leito, ritmos, desvios e compras por órgão do parecer também com selo;
+    o rio que não fecha com o RREO sai em vermelho
   falta: ''
   trava: testes/test_conferencias_banco.py::test_toda_linha_de_quadro_tem_selo
 - id: 38
@@ -562,8 +562,8 @@
   bloco: Indícios e fichas
   requisito: Filtros de fichas na tela
   situacao: cumprido
-  evidencia: Tela Indícios (indicios.html) filtra as fichas por família, gravidade, tema, estação, texto e período, pela tela
-    e pela URL
+  evidencia: Tela Desconformidades (indicios.html) filtra as fichas por etapa, condição, família, gravidade, tema, estação,
+    texto e período, pela tela e pela URL
   falta: ''
   trava: testes/test_telas.py::test_filtros_dos_indicios
 - id: 74
@@ -918,7 +918,7 @@
   bloco: Máquina do tempo
   requisito: Gráfico real × projetado
   situacao: parcial
-  evidencia: Tela Máquina do tempo (tempo.html) desenha o real mês a mês e diz quantos exercícios fechados há no banco
+  evidencia: Tela Previsto e realizado (tempo.html) desenha o real mês a mês e diz quantos exercícios fechados há no banco
   falta: A projeção pede ao menos 3 exercícios fechados e o banco tem 2 (2024 e 2025); falta coletar a matriz de 2023 (historico
     --desde 2023-01 --ate 2024-10 --motores siconfi --somar)
   trava: testes/test_telas.py::test_pagina_de_contas_e_tempo_com_prazo_e_falta_da_serie
@@ -984,8 +984,8 @@
   bloco: Parecer
   requisito: Origem do dinheiro
   situacao: cumprido
-  evidencia: 'No parecer de cada pasta a origem do dinheiro é o realizado (o pago no exercício aberto por fonte, pela matriz)
-    e o Município inteiro vem junto (Fiscal.rio: receita realizada, diferenças da execução e conferências); o cabeçalho da tabela de entradas passa a dizer
+  evidencia: 'No parecer de cada pasta o rio é o realizado (o pago no exercício aberto por fonte, pela matriz) e o Município
+    inteiro vem junto (Fiscal.rio: receita realizada, margens e conferências); o cabeçalho da tabela de entradas passa a dizer
     Pago no exercício.'
   falta: ''
   trava: testes/test_dominios.py::test_parecer_por_secretaria_no_banco
@@ -1046,8 +1046,8 @@
   bloco: Parecer
   requisito: Parecer além da Assistência
   situacao: cumprido
-  evidencia: onisciente/rio/parecer_dominio.gerar_todos gera um parecer por secretaria ativa (seis em Goiânia), com a receita realizada,
-    as diferenças da execução, integridade, pisos do domínio, fichas da pasta e a execução, pelo mesmo gerador de parecer.
+  evidencia: onisciente/rio/parecer_dominio.gerar_todos gera um parecer por secretaria ativa (seis em Goiânia), com rio realizado,
+    margens, integridade, pisos do domínio, fichas da pasta e a execução, pelo mesmo gerador de parecer.
   falta: ''
   trava: testes/test_dominios.py::test_parecer_por_secretaria_no_banco
 - id: 139
@@ -1122,16 +1122,18 @@
   bloco: Fontes e cadência
   requisito: FNS
   situacao: parcial
-  evidencia: 'Coletor onisciente/coletores/fns.py, com motor_fns, motor_fns_entidades e motor_fns_repasse_dia. A consulta
-    detalhada real com estado=GO e municipio=520870 devolveu as entidades de Goiânia (191 em 2025, todas com o IBGE 520870:
-    o filtro foi respeitado); fns.entidades lê a página e a paginação, e entidade de outro Município vira formato. O motor
-    lê 100 por página e só troca o ano quando todas as páginas vieram; pessoa física fica só com o CPF mascarado do próprio
-    FNS. A lista de entidades não tem valor e não é tomada por repasse (MODELOS_DE_REPASSE). O repasse do dia real (nacional)
-    é lido dia a dia e fecha as somas (26/11/2026: 17 nós).'
-  falta: 'O valor pago a cada entidade: detalhe-acao e detalhe-pagamento pedem parâmetros que estão nos controladores das
-    telas de ação e pagamento (a próxima sondagem d1_fns os baixa); detalhar-pagamento-dia deu 500 e o -final 400, e agora
-    a sondagem guarda o corpo do erro.'
-  trava: testes/test_coletores_federais_quinta.py::test_motor_fns_entidades_le_as_paginas_e_troca_o_ano
+  evidencia: 'Coletor onisciente/coletores/fns.py, com motor_fns, motor_fns_entidades, motor_fns_detalhe e motor_fns_repasse_dia.
+    As entidades reais de Goiânia (consulta-detalhada/entidades com estado e município) fecham em duas páginas de 100: 191
+    em 2025, todas com o IBGE 520870, entre elas o Fundo Municipal de Saúde (37.623.352/0001-03, esfera MUNICIPAL); pessoa
+    física fica só com o CPF mascarado do FNS. Com os parâmetros dos controladores reais (acaoController.js e pagamentoController.js),
+    motor_fns_detalhe pede, para cada entidade municipal, as ações do ano (detalhe-acao com cpfCnpjUg) e as ordens bancárias
+    de cada ação com valor (detalhe-pagamento com acoes), confere a soma das ordens com o total da ação, grava as ações em
+    fns_acoes e as ordens em repasses_fns (sem duplicar quando outra via já preencheu o ano). O repasse do dia nacional é
+    lido dia a dia e fecha as somas.'
+  falta: Ver as respostas reais de detalhe-acao e detalhe-pagamento do Fundo (a próxima sondagem d1_fns as pede); o teste
+    do motor usa respostas montadas com os campos dos controladores. Se a ordem bancária vier sem data, falta a data para
+    a conferência mês a mês.
+  trava: testes/test_coletores_federais_sexta.py::test_motor_fns_detalhe_le_acoes_e_ordens_do_fundo_e_confere_a_soma
 - id: 147
   bloco: Fontes e cadência
   requisito: FNDE
@@ -1205,17 +1207,20 @@
   bloco: Fontes e cadência
   requisito: TCM-GO e TCU
   situacao: parcial
-  evidencia: 'TCU com as duas vias reais (pesquisa documentosResumidos e dados abertos). A pesquisa vai de 50 em 50: a página
-    com inicio=50 veio inteira (50 acórdãos, 42 sobre Goiânia) e a de inicio=100 com 100 por vez caiu duas vezes; uma página
-    que cai guarda as anteriores e anota o erro. TCM-GO: os dados abertos de contas irregulares (ws.tcm.go.gov.br, CSV real
-    com 1.395 linhas, 94 de Goiânia) são lidos por tcm.contas: o órgão sai do nome do Município (GOIANIA - COMURG), Aparecida
-    de Goiânia e Goianira não entram, e a tabela contas_irregulares_tcm ganhou CPF parcial, assunto, decisão, data do julgamento,
-    tipo de lista e endereço do processo (banco antigo recebe as colunas sem perder linhas). A conferência transforma cada
-    linha em alerta (com débito, alerta alto) e procura o mesmo nome entre os sócios das contratadas, como indício de possível
-    homônimo, porque o TCM mostra só os dois primeiros dígitos do CPF e a Receita só os do meio.'
+  evidencia: 'TCU com as duas vias reais (pesquisa documentosResumidos e dados abertos). A pesquisa vai de 50 em 50 e para
+    em 100 resultados: inicio=50 veio inteira (50 acórdãos, 42 sobre Goiânia) e inicio=100 encerrou a conexão com 100 e com
+    50 por página; o motor não pede além disso e diz por quê, e uma página que cai guarda as anteriores e anota o erro. TCM-GO:
+    os dados abertos de contas irregulares (ws.tcm.go.gov.br, CSV real com 1.395 linhas, 94 de Goiânia) são lidos por tcm.contas:
+    o órgão sai do nome do Município (GOIANIA - COMURG), Aparecida de Goiânia e Goianira não entram, e a tabela contas_irregulares_tcm
+    ganhou CPF parcial, assunto, decisão, data do julgamento, tipo de lista e endereço do processo (banco antigo recebe as
+    colunas sem perder linhas). A conferência transforma cada linha em alerta (com débito, alerta alto) e procura o mesmo
+    nome entre os sócios das contratadas, como indício de possível homônimo, porque o TCM mostra só os dois primeiros dígitos
+    do CPF e a Receita só os do meio.'
   falta: 'A pesquisa de jurisprudência do TCM-GO (virtual.tcmgo) ainda não devolve decisões; o acesso à informação e o painel
-    das câmaras deram 403. A jurisprudência é um aplicativo React: a próxima sondagem (d1_tcm) baixa o pacote JavaScript para
-    achar a API de pesquisa.'
+    das câmaras deram 403. A jurisprudência é um aplicativo React cujo pacote principal só traz a base da API (/jurisprudencia/api,
+    com o cabeçalho X-Cliente: portal) e o /v1/health; as chamadas de pesquisa estão no pacote da tela (jurisprudencia-page-*.js),
+    que a próxima sondagem (d1_tcm) baixa. No TCU, falta saber se outra ordenação traz os acórdãos mais recentes dentro dos
+    100.'
   trava: testes/test_coletores_federais_quarta.py::test_contas_irregulares_viram_alerta_e_o_socio_homonimo_e_indicio
 - id: 155
   bloco: Arquitetura
@@ -1267,7 +1272,7 @@
   bloco: Roteiro e portões
   requisito: 'Fase 2: receita por espécie bate com o RREO em 1%'
   situacao: cumprido
-  evidencia: A soma por espécie do Município fecha com a receita realizada do RREO dentro de 1% em todos os períodos do banco; o parecer
+  evidencia: O rio do Município fecha com a receita realizada do RREO dentro de 1% em todos os períodos do banco; o parecer
     marca em vermelho quando não fecha
   falta: ''
   trava: testes/test_regras_rio.py::test_rio_e_rreo_dentro_de_um_por_cento_em_todo_periodo
@@ -1283,10 +1288,11 @@
   bloco: Roteiro e portões
   requisito: 'Fase 4: integridade de Saúde e Educação medida'
   situacao: parcial
-  evidencia: O FNDE está lido no formato real (id 147). O FNS lê as entidades reais de Goiânia pela consulta detalhada e o
-    repasse do dia real (id 146).
-  falta: A ativação dos domínios pela Frente D2 e o valor por entidade do FNS.; FNS e FNDE na origem (Frente D1).
-  trava: testes/test_coletores_federais_quinta.py::test_chamada_do_fns_le_as_entidades_e_nao_as_toma_por_repasse
+  evidencia: O FNDE está lido no formato real (id 147). O FNS lê as 191 entidades reais de Goiânia, pede as ações e as ordens
+    bancárias do Fundo Municipal de Saúde e lê o repasse do dia real (id 146).
+  falta: A ativação dos domínios pela Frente D2 e a primeira resposta real do valor por entidade do FNS.; FNS e FNDE na origem
+    (Frente D1).
+  trava: testes/test_coletores_federais_sexta.py::test_fns_entidades_pagina_2_real_fecha_as_191_e_traz_o_fundo
 - id: 165
   bloco: Roteiro e portões
   requisito: 'Fase 5: cada contrato com item de catálogo comparado à mediana'

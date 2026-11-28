@@ -278,32 +278,23 @@
   falta: ''
   trava: testes/test_empresas.py::test_sancoes_sem_linhas_sao_nao_conferidas_e_nunca_empresa_limpa
 - id: 225
-  bloco: 'G: correção do conceito, 28/11/2026'
-  requisito: 'Decisão do usuário de 28/11/2026: sem a metáfora do rio. Nada do que se mostra (telas, menus, parecer, fichas,
-    selos, documentação) usa rio, afluentes, nascente, foz, margens, leito, correnteza, água vinculada, livre ou parada, ou
-    sangria; o painel se organiza pelas seis etapas do gasto público (origem do dinheiro, orçamento, contratação, liquidação,
-    pagamento, prestação de contas), cada situação aparece como conforme, alerta (com a gravidade) ou sem dado, com ícones SVG
-    próprios iguais em todas as páginas, e qualquer desconformidade fica a no máximo dois cliques da página inicial.'
   situacao: cumprido
-  evidencia: onisciente/linguagem.py (a régua metaforas e a troca direto, aplicada às telas e ao parecer sem mudar número);
-    origem.html no lugar de rio.html; a página inicial abre com o diagrama das etapas, cada cartão com as três condições e o
-    link para indicios.html?etapa=…, que lista a etapa inteira agrupada por tema; ícones das etapas e das condições num bloco
-    de símbolos SVG em cada página; pareceres publicados reescritos só no texto; decisão em docs/onisciente/decisoes.md e estudo
-    de UX revisto (treze páginas mantidas).
+  evidencia: 'Sem a metáfora do rio (decisão do usuário de 28/11/2026): origem.html no lugar de rio.html; a página inicial
+    abre com o diagrama das seis etapas do gasto, cada uma com conforme, alerta e sem dado e o link para a lista inteira da
+    etapa (dois cliques até qualquer ficha); ícones SVG próprios das etapas e das condições, iguais em todas as páginas; onisciente/linguagem.py
+    mantém a régua e a troca dos textos guardados'
   falta: ''
   trava: testes/test_telas.py::test_inicio_tem_o_diagrama_das_etapas_e_toda_ficha_a_dois_cliques
+  bloco: null
+  requisito: null
 - id: 226
   bloco: 'H: rastreio por hash, 28/11/2026'
-  requisito: Ao coletar as informações, gerar um código hash para rastreio dos dados e validação de cada informação
-    obtida (pedido da titular, 28/11/2026).
+  requisito: Ao coletar as informações, gerar um código hash para rastreio dos dados e validação de cada informação obtida
+    (pedido da titular, 28/11/2026).
   situacao: cumprido
-  evidencia: onisciente/rastreio.py. Cada coleta de todos os motores guarda o SHA-256 dos bytes recebidos (inclusive
-    recusa e resposta vazia; a base da Receita e o arquivo de emendas pelo fluxo) e o hash da requisição (método, URL,
-    parâmetros, data e hora UTC), com sem_resposta = 1 quando não houve resposta; cada linha de cada tabela de dados
-    tem o hash do conteúdo canônico num selo (rastreio_selos) ligado à resposta de origem (rastreio_origens); cada
-    rodada (historico.rodar e a soma da janela da agenda) grava a raiz de Merkle e o hash da rodada anterior
-    (rastreio_rodadas); banco antigo é migrado sem perder linhas; python -m onisciente rastreio verifica a cadeia,
-    as raízes e cada registro e mostra o hash de um registro com a origem; as fichas e o parecer trazem o hash do
-    apoio e do achado.
+  evidencia: 'onisciente/rastreio.py: SHA-256 da resposta e hash da requisição em toda coleta (coletas.sha256, requisicao,
+    metodo, parametros, sem_resposta); selo de cada registro com a origem (rastreio_selos, rastreio_origens); rodadas encadeadas
+    com raiz de Merkle (rastreio_rodadas); migração do banco antigo; python -m onisciente rastreio; hash do apoio e do achado
+    nas fichas e no parecer.'
   falta: ''
   trava: testes/test_rastreio.py::test_nenhum_motor_grava_sha256_nulo_quando_houve_resposta
