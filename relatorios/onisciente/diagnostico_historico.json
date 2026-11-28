@@ -1,6 +1,6 @@
 {
  "intervalo": "2024-11 a 2026-11",
- "rodada": "2026-11-27T15:10:38+00:00",
+ "rodada": "2026-11-28T00:23:01+00:00",
  "meses": [
   "2024-11",
   "2024-12",
@@ -30,6 +30,19 @@
  ],
  "motores": [
   {
+   "motor": "cnpj",
+   "nome": "Cadastro das empresas na Receita Federal (CNPJ e QSA)",
+   "chamadas": 1355,
+   "ok": 1353,
+   "falhas": 2,
+   "tentativas": 1355,
+   "http_429": 0,
+   "segundos": 547.0,
+   "erros": {
+    "URLError: [Errno 104] Connection reset by peer": 2
+   }
+  },
+  {
    "motor": "ctresb",
    "nome": "Normas federais (ctresb/leis)",
    "chamadas": 21,
@@ -39,6 +52,19 @@
    "http_429": 0,
    "segundos": 3.4,
    "erros": {}
+  },
+  {
+   "motor": "execucao_goiania",
+   "nome": "Execução item a item no portal de Goiânia (TransWeb)",
+   "chamadas": 4,
+   "ok": 1,
+   "falhas": 3,
+   "tentativas": 10,
+   "http_429": 0,
+   "segundos": 116.5,
+   "erros": {
+    "HTTP 500": 3
+   }
   },
   {
    "motor": "fnas",
@@ -65,6 +91,20 @@
    "erros": {
     "HTTP 404": 3,
     "TimeoutError: The read operation timed out": 2
+   }
+  },
+  {
+   "motor": "impedimentos",
+   "nome": "Impedimentos (CEPIM e inidôneos do TCU)",
+   "chamadas": 3,
+   "ok": 1,
+   "falhas": 2,
+   "tentativas": 4,
+   "http_429": 0,
+   "segundos": 7.7,
+   "erros": {
+    "HTTP 403: <?xml version=\"1.0\" encoding=\"UTF-8\"?> <Error><Code>AccessDenied</Code><Message>Access Denied</Message></Error>": 1,
+    "HTTP 405: {\"mensagem\":\"Método não suportado na requisição para o endpoint /api/publico/responsaveis-inidoneos-com-paginacao. org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'G": 1
    }
   },
   {
