@@ -1,19 +1,28 @@
-# Coleta em andamento: boletim de 2026-11-28T04:34+00:00
+# Coleta em andamento: boletim de 2026-11-28T06:16+00:00
 
-Desde 2026-11-28T04:17:42+00:00: 184 chamadas registradas.
-Última chamada: 2026-11-28T04:34:10+00:00 (despesas_favorecido).
+Desde 2026-11-28T06:06:08+00:00: 55 chamadas registradas.
+Última chamada: 2026-11-28T06:16:05+00:00 (detalhe 2026 37623352000103 pagamentos p7).
 
 ## Por fonte
 
 | fonte | situação | chamadas |
 |---|---|---|
-| www10.goiania.go.gov.br | ok | 184 |
+| apifns.saude.gov.br/api/repasses-fundo-a-fundo?municipio_ibge=520870&ano=2024&page=1&size=1000 | URLError | 1 |
+| apifns.saude.gov.br/api/repasses-fundo-a-fundo?municipio_ibge=520870&ano=2025&page=1&size=1000 | URLError | 1 |
+| apifns.saude.gov.br/api/repasses-fundo-a-fundo?municipio_ibge=520870&ano=2026&page=1&size=1000 | URLError | 1 |
+| apifns.saude.gov.br/api/repasses?municipio_ibge=520870&ano=2024&pagina=1&tamanho=1000 | URLError | 1 |
+| apifns.saude.gov.br/api/repasses?municipio_ibge=520870&ano=2025&pagina=1&tamanho=1000 | URLError | 1 |
+| apifns.saude.gov.br/api/repasses?municipio_ibge=520870&ano=2026&pagina=1&tamanho=1000 | URLError | 1 |
+| apifns.saude.gov.br/api/v1 | URLError | 6 |
+| consultafns.saude.gov.br | ok | 31 |
+| consultafns.saude.gov.br | HTTP 400 (<html><head><title>JBWEB000065: HTTP Status 400 - </title><s) | 9 |
+| consultafns.saude.gov.br | HTTP 404 (<html><head><title>JBWEB000065: HTTP Status 404 - /recursos/) | 3 |
 
 ## Tempo das respostas boas (segundos)
 
 | fonte | n | mediana | p90 | máximo |
 |---|---|---|---|---|
-| www10.goiania.go.gov.br | 184 | 0.7 | 2.2 | 11.7 |
+| consultafns.saude.gov.br | 31 | 1.6 | 2.1 | 2.7 |
 
 ## O que o banco tem agora
 
