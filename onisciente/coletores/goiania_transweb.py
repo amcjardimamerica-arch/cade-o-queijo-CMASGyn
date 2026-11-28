@@ -1471,10 +1471,72 @@ def somas_por_empenho(eventos: Iterable[dict]) -> dict[str, dict[str, float]]:
     return out
 
 
+# O popup de liquidação e o de pagamento mostram uma página de até 50 linhas (a lista do RichWidgets).
+# Achado offline em 28/11/2026, no banco da coleta 550c30b: as seis divergências da amostra (empenhos de
+# 52 a 1.693 liquidações) são exatamente a soma das primeiras linhas da exportação em ordem de data e de
+# número, até a 50a linha do popup. A soma inteira só sai lendo as páginas seguintes (sondagem
+# d2_transweb_popup); a primeira página é conferida linha a linha, pelo número da liquidação ou da ordem.
+LINHAS_POR_PAGINA_DO_POPUP = 50
+_CONTADOR_DO_POPUP = re.compile(r"Counter_Message[^>]*>\s*([^<]*)<", re.I)
+
+
+def contador_do_popup(html) -> tuple[int, int] | None:
+    """(linhas mostradas, total) pelo contador da lista do popup, o mesmo RichWidgets da lista de
+    Portal_Despesas.aspx (``contador``): "3 records" dá (3, 3); "1 to 50 of 59 records" (ou "1 a 50 de 59
+    registros") dá (50, 59). Sem contador legível, None."""
+    texto = html.decode("utf-8", "replace") if isinstance(html, bytes) else str(html or "")
+    m = _CONTADOR_DO_POPUP.search(texto)
+    if not m:
+        return None
+    nums = [int(re.sub(r"\D", "", x)) for x in re.findall(r"\d[\d.,]*", m.group(1))]
+    if len(nums) == 1:
+        return nums[0], nums[0]
+    if len(nums) >= 3 and nums[1] >= nums[0]:
+        return nums[1] - nums[0] + 1, nums[2]
+    return None
+
+
+def _linhas_da_tabela(html, colunas: dict) -> int:
+    for t in tabelas(html):
+        if "valor" in mapear(t, colunas):
+            return len(t.linhas)
+    return 0
+
+
+def _conferir_pagina(emp: str, tipo: str, html, do_popup: list[dict], eventos: list[dict], colunas: dict,
+                     total_exportacao: float) -> str | None:
+    """A nota do popup que não somou como a exportação: paginado, confere a página linha a linha pela
+    ordem; senão (ou com linha que não bate), a divergência."""
+    na_exportacao: dict[str, float] = {}
+    for e in eventos:
+        if e.get("empenho") == emp and e.get("tipo") == tipo and e.get("ordem"):
+            na_exportacao[e["ordem"]] = round(na_exportacao.get(e["ordem"], 0.0) + float(e["valor"] or 0.0), 2)
+    contador = contador_do_popup(html)
+    if contador is not None:
+        paginado = contador[0] < contador[1]
+    else:
+        paginado = (_linhas_da_tabela(html, colunas) >= LINHAS_POR_PAGINA_DO_POPUP
+                    and len(na_exportacao) > len(do_popup))
+    soma = round(sum(e["valor"] for e in do_popup), 2)
+    divergencia = f"amostra {emp}: {tipo} soma {soma:.2f} no popup e {total_exportacao:.2f} na exportação"
+    if not paginado:
+        return divergencia
+    erradas = [e for e in do_popup if abs(na_exportacao.get(e["ordem"], float("nan")) - e["valor"]) > 0.01
+               or e["ordem"] not in na_exportacao]
+    total = contador[1] if contador else len(na_exportacao)
+    if erradas:
+        e = erradas[0]
+        return (f"{divergencia} (popup paginado: {len(erradas)} linha(s) da primeira página sem par na "
+                f"exportação, a primeira {e['ordem'] or 'sem número'} de {e['valor']:.2f})")
+    return (f"amostra {emp}: popup de {tipo} paginado ({len(do_popup)} de {total} linhas na primeira página): "
+            f"as {len(do_popup)} conferem com a exportação pelo número; a soma inteira não foi conferida")
+
+
 def conferir_amostra(ler: Ler, c: Consulta, eventos: list[dict], *, amostra: int | None = None) -> list[str]:
     """Confere nos popups de liquidação e de pagamento os empenhos de maior valor pago da exportação:
-    a soma dos saldos liquidados e dos valores pagos do popup tem de bater com a da planilha.
-    Devolve as notas (divergência ou popup não lido); vazio quando tudo bateu."""
+    a soma dos saldos liquidados e dos valores pagos do popup tem de bater com a da planilha. Popup
+    paginado (até 50 linhas por página): a primeira página é conferida linha a linha, pelo número.
+    Devolve as notas (divergência, página conferida em parte ou popup não lido); vazio quando tudo bateu."""
     n = c.exportar.get("amostra", 3) if amostra is None else amostra
     somas = somas_por_empenho(eventos)
     escolhidos = sorted((e for e in somas if somas[e]["pagamento"] > 0),
@@ -1490,10 +1552,13 @@ def conferir_amostra(ler: Ler, c: Consulta, eventos: list[dict], *, amostra: int
             if not lida.ok:
                 notas.append(f"amostra {emp}: popup de {tipo} não lido ({lida.erro or lida.http})")
                 continue
-            evs = eventos_do_popup(lida.conteudo, tipo, p["colunas"], {"empenho": emp}, url=url)
-            soma = round(sum(e["valor"] for e in evs if e["tipo"] == tipo), 2)
+            evs = [e for e in eventos_do_popup(lida.conteudo, tipo, p["colunas"], {"empenho": emp}, url=url)
+                   if e["tipo"] == tipo]
+            soma = round(sum(e["valor"] for e in evs), 2)
             if abs(soma - somas[emp][tipo]) > 0.01:
-                notas.append(f"amostra {emp}: {tipo} soma {soma:.2f} no popup e {somas[emp][tipo]:.2f} na exportação")
+                nota = _conferir_pagina(emp, tipo, lida.conteudo, evs, eventos, p["colunas"], somas[emp][tipo])
+                if nota:
+                    notas.append(nota)
     return notas
 
 
@@ -1523,46 +1588,87 @@ def criar_tabelas(con) -> None:
             con.execute(f"ALTER TABLE despesa_eventos ADD COLUMN {coluna} TEXT")
 
 
-def mascarar_cpfs(con) -> int:
-    """As linhas já gravadas com o CPF inteiro (11 dígitos, ou "000" e o CPF) passam a ***.NNN.NNN-**.
-    Devolve quantas linhas mudaram. Uma linha que, mascarada, fica igual a outra já mascarada a substitui."""
+# Colunas de texto livre de despesa_eventos onde o portal escreve o CPF de pessoa física: o nome do
+# favorecido (o MEI vem como "NOME 12345678901") e o histórico do empenho ("TOMADORA: NOME - CPF:...").
+TEXTO_LIVRE = ("credor", "historico")
+
+
+def texto_gravavel(texto):
+    """Texto livre que pode ser gravado: a regra da Frente H (``mascara_banco.mascarar_texto``), o CPF
+    formatado e os 11 dígitos seguidos com dígito verificador válido, isolados, viram ***.NNN.NNN-**.
+    Telefone, processo (11 dígitos que não conferem), número de empenho e hash ficam."""
+    from ..mascara_banco import mascarar_texto
+    return mascarar_texto(texto)
+
+
+def _cpfs_a_mascarar(con) -> list[tuple[int, dict]]:
+    """As linhas gravadas com CPF inteiro no documento, no credor ou no histórico: (rowid, {coluna: novo})."""
     try:
-        linhas = con.execute("SELECT rowid, documento FROM despesa_eventos WHERE documento NOT LIKE '%*%' "
-                             "AND length(documento) IN (11, 14)").fetchall()
+        linhas = con.execute(
+            "SELECT rowid, documento, credor, historico FROM despesa_eventos WHERE "
+            "(documento NOT LIKE '%*%' AND length(documento) IN (11, 14)) "
+            "OR credor GLOB '*[0-9][0-9][0-9]*' OR historico GLOB '*[0-9][0-9][0-9]*'").fetchall()
     except Exception:  # noqa: BLE001 (sem a tabela: nada a mascarar)
-        return 0
-    n = 0
-    for rowid, doc in linhas:
-        novo = documento_gravavel(doc)
-        if novo != doc:
-            con.execute("UPDATE OR REPLACE despesa_eventos SET documento = ? WHERE rowid = ?", (novo, rowid))
-            n += 1
-    return n
+        return []
+    saida = []
+    for rowid, doc, credor, hist in linhas:
+        troca = {}
+        if doc and "*" not in doc and documento_gravavel(doc) != doc:
+            troca["documento"] = documento_gravavel(doc)
+        for coluna, valor in (("credor", credor), ("historico", hist)):
+            novo = texto_gravavel(valor)
+            if novo != valor:
+                troca[coluna] = novo
+        if troca:
+            saida.append((rowid, troca))
+    return saida
+
+
+def mascarar_cpfs(con) -> dict[str, int]:
+    """As linhas já gravadas com CPF inteiro passam a ***.NNN.NNN-**: o documento (11 dígitos, ou "000" e
+    o CPF) e o texto livre (credor e histórico). Devolve, por coluna, quantas linhas mudaram. Uma linha
+    que, mascarada, fica igual a outra já mascarada a substitui (o documento está na chave)."""
+    from .. import rastreio
+    contagem = {"documento": 0, "credor": 0, "historico": 0}
+    pendentes = _cpfs_a_mascarar(con)
+    tid = (rastreio._id_tabela(con, "despesa_eventos")
+           if pendentes and "rastreio_selos" in rastreio._tabelas_rastreio(con) else None)
+    for rowid, troca in pendentes:
+        if tid is not None:
+            # A linha mascarada ganha selo novo com a origem do selo antigo (como na migração da Frente H).
+            antes = rastreio.linha(con, "despesa_eventos", rowid)
+            selo = con.execute("SELECT origem FROM rastreio_selos WHERE tabela = ? AND hash = ?",
+                               (tid, rastreio._digest("despesa_eventos", antes))).fetchone() if antes else None
+            con.execute("INSERT OR REPLACE INTO rastreio_cursor (chave, valor) VALUES ('origem', ?)",
+                        (selo[0] if selo else None,))
+        sets = ", ".join(f"{c} = ?" for c in troca)
+        con.execute(f"UPDATE OR REPLACE despesa_eventos SET {sets} WHERE rowid = ?", [*troca.values(), rowid])
+        for c in troca:
+            contagem[c] += 1
+    contagem["linhas"] = len(pendentes)
+    return contagem
 
 
 def precisa_mascarar(con) -> bool:
-    try:
-        linhas = con.execute("SELECT documento FROM despesa_eventos WHERE documento NOT LIKE '%*%' "
-                             "AND length(documento) IN (11, 14)")
-    except Exception:  # noqa: BLE001
-        return False
-    return any(documento_gravavel(d) != d for (d,) in linhas)
+    return bool(_cpfs_a_mascarar(con))
 
 
 def migrar_cpfs(con) -> int:
-    """Migração do banco (Banco.abrir): mascara o CPF das linhas antigas numa rodada própria do rastreio,
-    aberta antes e fechada depois, para que as linhas mudadas ganhem selo e o que saiu fique descartado
-    por ela. Sem CPF inteiro no banco, não abre rodada."""
+    """Migração do banco (Banco.abrir): mascara o CPF das linhas antigas (documento, credor e histórico)
+    numa rodada própria do rastreio, aberta antes e fechada depois, para que as linhas mudadas ganhem selo
+    e o que saiu fique descartado por ela. Sem CPF inteiro no banco, não abre rodada. Devolve as linhas."""
     if not precisa_mascarar(con):
         return 0
     from .. import rastreio
     rid = rastreio.abrir_rodada(con, ("execucao_goiania",), "mascara_cpf",
-                                detalhe={"nota": "CPF de pessoa física em despesa_eventos mascarado como "
-                                                 "***.NNN.NNN-** (repositório público)"})
-    n = mascarar_cpfs(con)
+                                detalhe={"nota": "CPF de pessoa física em despesa_eventos (documento, credor e "
+                                                 "histórico) mascarado como ***.NNN.NNN-** (repositório público)"})
+    c = mascarar_cpfs(con)
     con.commit()
-    rastreio.fechar_rodada(con, rid, nota=f"{n} linha(s) de despesa_eventos com o CPF mascarado")
-    return n
+    rastreio.fechar_rodada(con, rid, nota=f"{c['linhas']} linha(s) de despesa_eventos com o CPF mascarado "
+                                          f"(documento {c['documento']}, credor {c['credor']}, "
+                                          f"histórico {c['historico']})")
+    return c["linhas"]
 
 
 def gravar(con, eventos: Iterable[dict], *, coletado_em: str | None = None) -> int:
@@ -1574,6 +1680,8 @@ def gravar(con, eventos: Iterable[dict], *, coletado_em: str | None = None) -> i
         linha = {k: ev.get(k, "") for k in CAMPOS_EVENTO}
         linha["valor"] = float(ev.get("valor") or 0.0)
         linha["documento"] = documento_gravavel(linha["documento"])     # CPF nunca inteiro
+        for coluna in TEXTO_LIVRE:                                      # nem no nome nem no histórico
+            linha[coluna] = texto_gravavel(linha[coluna])
         linha["coletado_em"] = linha["coletado_em"] or quando
         cur = con.execute(f"INSERT OR IGNORE INTO despesa_eventos ({', '.join(CAMPOS_EVENTO)}) VALUES "
                           f"({', '.join('?' for _ in CAMPOS_EVENTO)})", [linha[k] for k in CAMPOS_EVENTO])

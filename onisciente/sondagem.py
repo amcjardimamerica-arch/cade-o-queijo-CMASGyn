@@ -233,6 +233,14 @@ CANDIDATOS: dict[str, list[str]] = {
     # motor (goiania_transweb.exportar_mes) em três meses e em três variantes. Sem endereços na fila:
     # quem lê é _caminho_do_motor.
     "d2_transweb_motor": [],
+    # Frente D2, oitava rodada: os popups de liquidação e de pagamento mostram uma página de até 50 linhas.
+    # Os quatro empenhos da amostra com mais de 50 eventos na exportação (coleta 550c30b), para guardar o
+    # contador ("1 to 50 of N records") e a navegação da lista, de onde sai a leitura das páginas seguintes.
+    "d2_transweb_popup": [
+        f"https://www10.goiania.go.gov.br/DespesasWebBlocks/{pagina}PopUp.aspx?Empenho={empenho}"
+        for empenho in ("20262150000230001", "20265150000230001", "20265151000730001", "20261201000430004")
+        for pagina in ("Liquidacao", "Pagamento")
+    ],
     "d2_wordpress": [
         "https://www.goiania.go.gov.br/transparencia/",
         "https://www.goiania.go.gov.br/transparencia/?filtro_simplificado=categoria&categoria=49",
@@ -513,7 +521,7 @@ def _seguir(fonte: str, url: str, leitura) -> list:
         return []
     texto = leitura.texto
     novos: list = []
-    if fonte in ("goiania", "fns2", "fnde2") or fonte.startswith("d2_"):
+    if fonte in ("goiania", "fns2", "fnde2") or (fonte.startswith("d2_") and fonte != "d2_transweb_popup"):
         # As páginas dos portais: os links internos (.aspx, scripts com os endereços da API).
         base = re.match(r"https?://[^/]+", url).group(0)
         for href in re.findall(r"""(?:href|src)=["']([^"'#]+\.(?:aspx|js|php)[^"']*)["']""", texto, re.I):

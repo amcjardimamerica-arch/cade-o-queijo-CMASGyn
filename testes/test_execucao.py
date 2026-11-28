@@ -1182,3 +1182,135 @@ def test_tela_da_execucao_mostra_pessoa_fisica_para_o_cpf_mascarado():
     # Duas pessoas com o mesmo miolo e nomes diferentes não se somam.
     assert X.chave_do_credor("***.982.247-**", "Fulano") != X.chave_do_credor("***.982.247-**", "Outra Pessoa")
     assert X.chave_do_credor("31537116000198", "GMS") == "31537116000198"
+
+
+# --- Oitava rodada: o CPF que sobrava no credor e no histórico --------------------------------------
+# A varredura da Frente H (mascara_banco.varrer) achou CPF completo em despesa_eventos.credor (o MEI vem
+# como "NOME 12345678901") e em despesa_eventos.historico ("TOMADORA: NOME - CPF:NNN.NNN.NNN-NN").
+# A regra é a da H para texto livre: o CPF formatado e os 11 dígitos isolados com dígito válido.
+
+TELEFONE = "62999998888"                       # 11 dígitos sem dígito verificador de CPF
+PROCESSO = "52998224724"                       # o CPF de exemplo com o último dígito trocado
+
+
+def _formatado(cpf):
+    return f"{cpf[:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:]}"
+
+
+def test_coletor_mascara_o_cpf_no_credor_e_no_historico_e_deixa_telefone_processo_e_hash():
+    con = sqlite3.connect(":memory:")
+    historico = (f"ADIANTAMENTO, TOMADORA: FULANA - CPF:{_formatado(CPF_EXEMPLO)}, FONE {TELEFONE}, "
+                 f"PROCESSO {PROCESSO}, EMPENHO 20261101002310009, HASH ab{CPF_EXEMPLO}cd, CPF {CPF_EXEMPLO}.")
+    ev = {"tipo": "empenho", "empenho": "1", "data": "2026-10-01", "orgao": "SAUDE", "valor": 10.0,
+          "documento": "000" + CPF_EXEMPLO, "credor": f"FULANO DE TAL {CPF_EXEMPLO}", "historico": historico}
+    G.gravar(con, [ev])
+    doc, credor, hist = con.execute("select documento, credor, historico from despesa_eventos").fetchone()
+    assert doc == "***.982.247-**" and credor == "FULANO DE TAL ***.982.247-**"
+    assert hist == (f"ADIANTAMENTO, TOMADORA: FULANA - CPF:***.982.247-**, FONE {TELEFONE}, PROCESSO {PROCESSO}, "
+                    f"EMPENHO 20261101002310009, HASH ab{CPF_EXEMPLO}cd, CPF ***.982.247-**.")
+    from onisciente import mascara_banco
+    assert mascara_banco.varrer(con) == {}                           # a trava da H não acha nada
+
+
+def test_migracao_mascara_credor_e_historico_antigos_numa_rodada_do_rastreio(tmp_path):
+    from onisciente import historico, mascara_banco, rastreio
+    caminho = tmp_path / "antigo.db"
+    con = sqlite3.connect(caminho)
+    con.executescript(historico.ESQUEMA)
+    G.criar_tabelas(con)
+    colunas = list(G.CAMPOS_EVENTO)
+    def linha(emp, doc, credor, hist):
+        ev = {k: "" for k in colunas}
+        ev.update(tipo="empenho", empenho=emp, data="2025-10-01", orgao="SAUDE", valor=10.0, documento=doc,
+                  credor=credor, historico=hist, coletado_em="2026-11-20")
+        return [ev[k] for k in colunas]
+    # Como a coleta 550c30b gravou: o documento já mascarado, o CPF ainda no nome e no histórico.
+    con.executemany(f"INSERT INTO despesa_eventos ({', '.join(colunas)}) VALUES ({', '.join('?' for _ in colunas)})",
+                    [linha("1", "***.982.247-**", f"FULANO {CPF_EXEMPLO}", "COMPRA"),
+                     linha("2", "31537116000198", "GMS", f"TOMADOR: FULANO - CPF:{_formatado(CPF_EXEMPLO)}"),
+                     linha("3", "31537116000198", "GMS", f"FONE {TELEFONE} PROCESSO {PROCESSO}")])
+    con.commit()
+    assert mascara_banco.varrer(con) == {("despesa_eventos", "credor"): 1, ("despesa_eventos", "historico"): 1}
+    con.close()
+    banco = historico.Banco.abrir(caminho)
+    con = banco.con
+    linhas = dict((e, (c, h)) for e, c, h in con.execute("select empenho, credor, historico from despesa_eventos"))
+    assert linhas == {"1": ("FULANO ***.982.247-**", "COMPRA"), "2": ("GMS", "TOMADOR: FULANO - CPF:***.982.247-**"),
+                      "3": ("GMS", f"FONE {TELEFONE} PROCESSO {PROCESSO}")}
+    nota = con.execute("select detalhe from rastreio_rodadas where modo = 'mascara_cpf'").fetchone()[0]
+    assert "2 linha(s)" in nota and "documento 0, credor 1, histórico 1" in nota
+    assert mascara_banco.varrer(con) == {}
+    assert rastreio.verificar(con)["integro"]
+    con.close()
+    banco = historico.Banco.abrir(caminho)                          # abrir de novo não abre outra rodada
+    assert banco.con.execute("select count(*) from rastreio_rodadas where modo = 'mascara_cpf'").fetchone() == (1,)
+    banco.con.close()
+
+
+def _popup_paginado(cabecalho, linhas, contador=None):
+    """Popup SINTÉTICO com o rodapé do RichWidgets dos recortes reais (o contador e a navegação)."""
+    html = _popup(cabecalho, linhas).decode()
+    if contador:
+        html = html.replace("</table>", f'</table><div class="Counter_Message">{contador}</div>'
+                                        '<nav class="ListNavigation_Wrapper"></nav>')
+    return html.encode()
+
+
+def test_contador_do_popup_real_e_paginado():
+    assert G.contador_do_popup(_f("liquidacao_popup_real.html")) == (3, 3)
+    assert G.contador_do_popup(_f("pagamento_popup_inss_real.html")) == (1, 1)
+    assert G.contador_do_popup('<div class="Counter_Message">1 to 50 of 1693 records</div>') == (50, 1693)
+    assert G.contador_do_popup('<div class="Counter_Message">51 a 100 de 1.693 registros</div>') == (50, 1693)
+    assert G.contador_do_popup("<p>sem contador</p>") is None
+
+
+def test_amostra_com_popup_paginado_confere_a_primeira_pagina_pelo_numero():
+    """As divergências da coleta 550c30b: o popup mostra só as primeiras 50 linhas de um empenho com mais.
+    A primeira página é conferida linha a linha; a soma menor não vira divergência falsa."""
+    emp = "20265150000230001"
+    eventos = [{"tipo": "empenho", "empenho": emp, "valor": 60_000.0, "ordem": "", "data": "2026-01-02"}]
+    for i in range(1, 53):
+        dia = f"2026-{1 + (i - 1) // 6:02d}-{1 + (i - 1) % 6 * 4:02d}"
+        eventos.append({"tipo": "liquidacao", "empenho": emp, "ordem": f"{i:04d}2026", "data": dia, "valor": 1000.0 + i})
+        eventos.append({"tipo": "pagamento", "empenho": emp, "ordem": f"{emp}{i:04d}", "data": dia, "valor": 1000.0 + i})
+    liq = [[f"{i:04d}2026", "02/01/2026", f"{1000 + i},00", "0,00"] for i in range(1, 51)]
+    pag = [[f"{emp}{i:04d}", "02/01/2026", f"{1000 + i},00", f"{1000 + i},00"] for i in range(1, 51)]
+    pag_errada = [list(x) for x in pag]
+    pag_errada[9][2] = "9,99"
+    cab_l, cab_p = ["Liquidação", "Data", "Saldo Liquidado", "Valor Anulado"], ["Ordem de Pagamento", "Data OP",
+                                                                                 "Valor Pago", "Valor OP"]
+    base = "https://www10.goiania.go.gov.br/DespesasWebBlocks/"
+
+    def notas(popups):
+        def ler(url, formulario=None):
+            corpo = popups.get(url.split("/")[-1].split(".")[0])
+            return Leitura(True, url, corpo, http=200) if corpo else Leitura(False, url, b"", erro="HTTP 404", http=404)
+        return G.conferir_amostra(ler, LISTA, eventos, amostra=1)
+
+    # Com o contador do RichWidgets ("1 to 50 of 52 records") e sem ele (a página cheia, 50 linhas).
+    n = notas({"LiquidacaoPopUp": _popup_paginado(cab_l, liq, "1 to 50 of 52 records"),
+               "PagamentoPopUp": _popup_paginado(cab_p, pag)})
+    assert n == [f"amostra {emp}: popup de liquidacao paginado (50 de 52 linhas na primeira página): as 50 conferem "
+                 "com a exportação pelo número; a soma inteira não foi conferida",
+                 f"amostra {emp}: popup de pagamento paginado (50 de 52 linhas na primeira página): as 50 conferem "
+                 "com a exportação pelo número; a soma inteira não foi conferida"]
+    # Uma linha da página que não bate com a exportação continua divergência.
+    n = notas({"LiquidacaoPopUp": _popup_paginado(cab_l, liq, "1 to 50 of 52 records"),
+               "PagamentoPopUp": _popup_paginado(cab_p, pag_errada, "1 to 50 of 52 records")})
+    assert n[1].startswith(f"amostra {emp}: pagamento soma") and "1 linha(s) da primeira página sem par" in n[1]
+    assert f"{emp}0010 de 9.99" in n[1]
+    # Sem paginação (o contador diz que é tudo), a soma menor é divergência, como antes.
+    n = notas({"LiquidacaoPopUp": _popup_paginado(cab_l, liq, "50 records"),
+               "PagamentoPopUp": _popup_paginado(cab_p, pag + [[f"{emp}0051", "02/01/2026", "1051,00", "1051,00"],
+                                                              [f"{emp}0052", "02/01/2026", "1052,00", "1052,00"]],
+                                                 "52 records")})
+    assert n == [f"amostra {emp}: liquidacao soma 51275.00 no popup e 53378.00 na exportação"]
+
+
+def test_sondagem_guarda_os_popups_paginados_sem_seguir_os_scripts():
+    from onisciente import sondagem
+    urls = sondagem.CANDIDATOS["d2_transweb_popup"]
+    assert len(urls) == 8 and all(u.startswith("https://www10.goiania.go.gov.br/DespesasWebBlocks/") for u in urls)
+    assert urls[0].endswith("LiquidacaoPopUp.aspx?Empenho=20262150000230001")
+    lida = Leitura(True, urls[0], b'<html><script src="/x/a.js"></script><a href="B.aspx">b</a></html>', http=200)
+    assert sondagem._seguir("d2_transweb_popup", urls[0], lida) == []

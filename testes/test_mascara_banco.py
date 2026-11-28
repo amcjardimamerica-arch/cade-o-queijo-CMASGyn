@@ -208,9 +208,8 @@ def test_banco_real_so_tem_cpf_completo_na_despesa_que_a_d2_mascara(varredura_re
     assert fora == {}, f"CPF completo fora da despesa: {fora}"
 
 
-@pytest.mark.xfail(strict=True, reason="despesa_eventos ainda tem CPF completo: a D2 mascara no coletor "
-                                       "(goiania_transweb) e migra as linhas antigas. Quando migrar, este teste "
-                                       "passa e o xfail estrito falha: tirar a marca.")
+# 28/11/2026, Frente D2 rodada 8: a despesa ficou limpa (documento, credor e histórico mascarados no
+# coletor e migrados no Banco.abrir); o xfail estrito deu XPASS e a marca saiu, como a própria trava pedia.
 def test_banco_real_sem_nenhum_cpf_completo(varredura_real):
     assert varredura_real == {}
 
