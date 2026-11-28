@@ -217,6 +217,12 @@ CANDIDATOS: dict[str, list[str]] = {
         "https://www10.goiania.go.gov.br/transweb/ConsultaOrdemPagamento.aspx",
         "https://www10.goiania.go.gov.br/transweb/OrdemPagamento.aspx",
         "https://www10.goiania.go.gov.br/transweb/OrdemDePagamentoPorOrgao.aspx",
+        # Terceira rodada: o EmpenhoPopUp com "&" (a segunda sondagem seguiu o link com "&amp;" e o popup
+        # veio sem o empenho). Os dois primeiros empenhos da lista de novembro de 2026.
+        "https://www10.goiania.go.gov.br/DespesasWebBlocks/EmpenhoPopUp.aspx?CdOrgao=1101&Empenho=20261101002310011"
+        "&NmOrgao=SECRETARIA+MUNICIPAL+DE+GOVERNO",
+        "https://www10.goiania.go.gov.br/DespesasWebBlocks/EmpenhoPopUp.aspx?CdOrgao=1101&Empenho=20261101002430005"
+        "&NmOrgao=SECRETARIA+MUNICIPAL+DE+GOVERNO",
     ],
     "d2_wordpress": [
         "https://www.goiania.go.gov.br/transparencia/",

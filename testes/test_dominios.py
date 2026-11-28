@@ -320,3 +320,14 @@ def test_segundo_municipio_numeros_e_divergencia(fixture_anapolis):
     p = P.montar(alvo, alvo.dominios["administracao"], fixture_anapolis, date(2026, 3, 1))
     assert any(f.codigo.startswith("VIAS-ADMINISTRACAO-LIQUIDADO") for f in p.panorama.fichas)
     assert all("Indício, não acusação" in f.como_esta for f in p.panorama.fichas if f.codigo.startswith("VIAS-"))
+
+
+def test_panorama_da_pasta_leva_execucao_e_banco(fixture_anapolis):
+    """Pedido da Frente C: o panorama da pasta define execucao e banco, e o parecer não insere a seção
+    da execução por fora (o gerador do parecer a põe uma vez só)."""
+    alvo = carregar_alvo(RAIZ / "alvos" / "anapolis.toml")
+    p = P.montar(alvo, alvo.dominios["saude"], fixture_anapolis, date(2026, 3, 1))
+    assert p.panorama.execucao is p.execucao and p.panorama.banco == fixture_anapolis
+    assert p.panorama.contas == p.contas and p.panorama.qualidade is p.qualidade
+    html = p.html(hoje=date(2026, 3, 1))
+    assert html.count("A execução da pasta") == 1 and P.AVISO_DA_SECAO_4 not in html
