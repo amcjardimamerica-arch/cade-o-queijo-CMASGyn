@@ -40,9 +40,11 @@ import hashlib
 import json
 import sqlite3
 from collections import Counter
-from pathlib import Path
 from datetime import datetime, timezone
+from pathlib import Path
 from typing import Iterable
+
+from . import partes
 
 ZERO = "0" * 64
 # Tabelas que não são dados coletados: o próprio rastreio e as anotações de estado da rodada.
@@ -230,17 +232,25 @@ def _ler(con) -> None:
             pass
 
 
+def _tabelas_de_dados_com_esquema(con) -> dict[str, str]:
+    """Nome -> esquema de cada tabela de dados: as do banco e as das partes anexadas (precos.db,
+    sancoes.db), menos o próprio rastreio e ``meta``."""
+    saida: dict[str, str] = {}
+    for esquema in partes.esquemas(con):
+        for nome, sql in con.execute(f"SELECT name, sql FROM {esquema}.sqlite_master WHERE type = 'table' "
+                                     "AND name NOT LIKE 'sqlite_%'"):
+            if nome.startswith(PREFIXO) or nome in FORA or nome in saida:
+                continue
+            s = (sql or "").upper()
+            if "VIRTUAL TABLE" in s or "WITHOUT ROWID" in s:
+                continue
+            saida[nome] = esquema
+    return dict(sorted(saida.items()))
+
+
 def tabelas_de_dados(con) -> list[str]:
-    """Toda tabela de dados do banco: todas, menos o próprio rastreio e ``meta``."""
-    saida = []
-    for nome, sql in sorted(_tabelas(con).items()):
-        if nome.startswith(PREFIXO) or nome in FORA:
-            continue
-        s = sql.upper()
-        if "VIRTUAL TABLE" in s or "WITHOUT ROWID" in s:
-            continue
-        saida.append(nome)
-    return saida
+    """Toda tabela de dados do banco (e das partes): todas, menos o próprio rastreio e ``meta``."""
+    return list(_tabelas_de_dados_com_esquema(con))
 
 
 def tem_rastreio(con) -> bool:
@@ -257,6 +267,14 @@ def _gatilho(t: str, quando: str) -> str:
     return (f'AFTER {quando} ON "{t}" WHEN (SELECT valor FROM rastreio_cursor WHERE chave = \'rodada\') IS NOT NULL '
             f"BEGIN INSERT OR REPLACE INTO rastreio_pendentes (tabela, linha, origem) VALUES ('{t}', NEW.rowid, "
             "(SELECT valor FROM rastreio_cursor WHERE chave = 'origem')); END")
+
+
+def _gatilho_temporario(esquema: str, t: str, quando: str) -> str:
+    # Tabela numa parte anexada (precos.db, sancoes.db): o SQLite não deixa um gatilho guardado num
+    # arquivo gravar noutro, mas o gatilho TEMP (da conexão) pode. O Banco o recria a cada abertura.
+    return (f'AFTER {quando} ON {esquema}."{t}" WHEN (SELECT valor FROM rastreio_cursor WHERE chave = \'rodada\') '
+            f"IS NOT NULL BEGIN INSERT OR REPLACE INTO rastreio_pendentes (tabela, linha, origem) VALUES ('{t}', "
+            "NEW.rowid, (SELECT valor FROM rastreio_cursor WHERE chave = 'origem')); END")
 
 
 def _separar_banco_antigo(con) -> None:
@@ -292,9 +310,14 @@ def preparar(con) -> None:
             if coluna not in existentes:
                 con.execute(f"ALTER TABLE coletas ADD COLUMN {coluna} {tipo}")
     gatilhos = dict(con.execute("SELECT name, sql FROM main.sqlite_master WHERE type = 'trigger'"))
-    for t in tabelas_de_dados(con):
+    temporarios = {n for (n,) in con.execute("SELECT name FROM temp.sqlite_master WHERE type = 'trigger'")}
+    for t, esquema in _tabelas_de_dados_com_esquema(con).items():
         for quando, sufixo in (("INSERT", "i"), ("UPDATE", "u")):
             nome = f"rastreio_{sufixo}_{t}"
+            if esquema != "main":
+                if nome not in temporarios:
+                    con.execute(f'CREATE TEMP TRIGGER "{nome}" {_gatilho_temporario(esquema, t, quando)}')
+                continue
             corpo = _gatilho(t, quando)
             if nome in gatilhos:
                 if corpo in (gatilhos[nome] or ""):
@@ -846,7 +869,7 @@ def localizar(con, prefixo: str, *, limite: int = 5) -> list[dict]:
         for (h,) in con.execute("SELECT hash FROM rastreio_selos WHERE tabela = ? AND hash BETWEEN ? AND ?",
                                 (tid, baixo, alto)):
             item = {"tabela": nome, "hash": h.hex(), "selo": _selo(con, nome, h), "linha": None}
-            if nome in _tabelas(con):
+            if partes.tem_tabela(con, nome):
                 for rowid, campos in _linhas(con, nome):
                     if _digest(nome, campos) == h:
                         item.update(linha=rowid, campos=campos)

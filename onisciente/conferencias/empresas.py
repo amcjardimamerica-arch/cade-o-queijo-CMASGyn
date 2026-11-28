@@ -38,6 +38,7 @@ from pathlib import Path
 
 import yaml
 
+from .. import partes as _partes
 from .. import RAIZ
 from ..coletores import cnpj as rf
 from ..coletores.impedimentos import Sancao, documento, ler_sancoes, miolo_cpf
@@ -389,7 +390,7 @@ def conferir(banco: Path | sqlite3.Connection, *, limiares: dict | None = None,
     """Roda todas as conferências das empresas contratadas no banco histórico."""
     cfg = limiares or carregar_limiares()
     hoje = hoje or date.today()
-    con = banco if isinstance(banco, sqlite3.Connection) else sqlite3.connect(f"file:{banco}?mode=ro", uri=True)
+    con = banco if isinstance(banco, sqlite3.Connection) else _partes.conectar_leitura(banco)
     try:
         out = ConferenciasEmpresas(limiares=cfg)
         if not _tabela(con, "contratos_pncp"):

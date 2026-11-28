@@ -19,6 +19,7 @@ from dataclasses import dataclass, field
 from datetime import date
 from pathlib import Path
 
+from .. import partes as _partes
 from .. import RAIZ
 from ..conferencias import compras
 from ..legal.mapa import MapaLegal, carregar as carregar_mapa
@@ -203,7 +204,7 @@ def avaliar(banco: Path | sqlite3.Connection | None = BANCO, *, raiz: Path = RAI
     if isinstance(banco, sqlite3.Connection):
         con = banco
     elif banco is not None and Path(banco).exists():
-        con = sqlite3.connect(f"file:{banco}?mode=ro", uri=True)
+        con = _partes.conectar_leitura(banco)
     try:
         provas = provas_mod.todas(con, mapa, raiz)
         repasses = provas_mod.repasses_fnas(con)

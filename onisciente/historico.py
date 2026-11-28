@@ -28,7 +28,7 @@ from pathlib import Path
 from typing import Callable
 from urllib.parse import urlencode
 
-from . import RAIZ, rastreio
+from . import RAIZ, partes, rastreio
 from .coletores import base, goiania_transweb, msc, siope, siops, transparencia
 from .nucleo.custodia import impressao
 
@@ -251,11 +251,13 @@ class Banco:
         if isinstance(self.caminho, Path):
             self.caminho.parent.mkdir(parents=True, exist_ok=True)
             herdadas = rastreio.cadeia_para_herdar(self.caminho)       # a cadeia continua no banco novo
-            if self.caminho.exists():
-                self.caminho.unlink()          # cada rodada refaz o banco do zero
+            for arquivo in (self.caminho, *partes.arquivos(self.caminho)):
+                if arquivo.exists():
+                    arquivo.unlink()           # cada rodada refaz o banco do zero (e as partes dele)
             rastreio.apagar_rastreio(self.caminho)   # e o arquivo do rastreio (a cadeia já foi lida)
         self.con = sqlite3.connect(str(caminho))
-        self.con.executescript(ESQUEMA)
+        partes.anexar(self.con)                # precos.db e sancoes.db, ao lado (onisciente.partes)
+        self.con.executescript(partes.esquema_com_partes(self.con, ESQUEMA))
         self._iniciar_rastreio()
         if herdadas:
             rastreio.herdar(self.con, herdadas)
@@ -267,7 +269,11 @@ class Banco:
         banco = cls.__new__(cls)
         banco.caminho = caminho
         banco.con = sqlite3.connect(str(caminho))
-        banco.con.executescript(ESQUEMA)
+        partes.anexar(banco.con)
+        if partes.mover_para_as_partes(banco.con):
+            # Banco antigo, com as tabelas grandes dentro: saíram para as partes; o principal encolhe.
+            banco.con.execute("VACUUM main")
+        banco.con.executescript(partes.esquema_com_partes(banco.con, ESQUEMA))
         banco._atualizar_colunas()
         banco._iniciar_rastreio()
         rastreio.migrar(banco.con)
@@ -326,6 +332,8 @@ class Banco:
         rastreio.antes_de_compactar(self.con)   # o VACUUM pode renumerar as linhas pendentes
         self.con.commit()
         self.con.execute("VACUUM")
+        for parte in partes.anexadas(self.con):
+            self.con.execute(f"VACUUM {parte}")
         rastreio.compactar(self.con)            # o arquivo do rastreio, ao lado
         self.con.close()
 

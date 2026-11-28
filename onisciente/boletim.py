@@ -14,6 +14,8 @@ import sys
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 
+from . import partes as _partes
+
 TABELAS = ("pncp_amparos", "pncp_contratos_detalhe", "pncp_termos", "pncp_itens",
            "pncp_cobrancas", "pncp_nf_itens", "precos_referencia")
 
@@ -37,7 +39,7 @@ def _situacao(ok: int, http: int | None, erro: str | None) -> str:
 
 
 def boletim(caminho: str, desde: str) -> str:
-    con = sqlite3.connect(f"file:{caminho}?mode=ro", uri=True, timeout=30)
+    con = _partes.conectar_leitura(caminho, timeout=30)
     linhas = con.execute("SELECT alvo, url, ok, http, erro, segundos, quando FROM coletas "
                          "WHERE quando >= ? ORDER BY rowid", (desde,)).fetchall()
     agora = datetime.now(timezone.utc).isoformat(timespec="minutes")

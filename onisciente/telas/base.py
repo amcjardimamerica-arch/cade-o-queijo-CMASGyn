@@ -9,6 +9,8 @@ import unicodedata
 from datetime import date, timedelta
 from pathlib import Path
 
+from .. import partes as _partes
+
 MESES = ("janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro",
          "outubro", "novembro", "dezembro")
 MESES_CURTOS = ("jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez")
@@ -62,11 +64,11 @@ def N(valor, fonte: str, selo: str | None = None) -> dict | None:
 
 def abrir(caminho: Path | str) -> sqlite3.Connection:
     """Abre o banco só para leitura (as telas nunca escrevem nele)."""
-    return sqlite3.connect(f"file:{Path(caminho)}?mode=ro", uri=True)
+    return _partes.conectar_leitura(Path(caminho))
 
 
 def tabela_existe(con: sqlite3.Connection, nome: str) -> bool:
-    return con.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name=?", (nome,)).fetchone() is not None
+    return _partes.tem_tabela(con, nome)
 
 
 def consultar(con: sqlite3.Connection, sql: str, args=()) -> list[tuple]:

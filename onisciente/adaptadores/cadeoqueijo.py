@@ -12,6 +12,7 @@ import json
 from datetime import date, datetime
 from pathlib import Path
 
+from .. import partes as _partes
 from .. import RAIZ
 from .. import fiscal as fiscal_mod
 from ..conferencias import compras as compras_mod
@@ -54,7 +55,7 @@ def _sileg_do_mes(banco: Path, competencia: str) -> int | None:
     if not banco.exists():
         return None
     import sqlite3
-    con = sqlite3.connect(f"file:{banco}?mode=ro", uri=True)
+    con = _partes.conectar_leitura(banco)
     try:
         linha = con.execute("select edicoes from diario_oficial_mes where fonte='sileg' and mes=? and "
                             "erro is null and edicoes is not null", (competencia,)).fetchone()

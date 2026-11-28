@@ -13,6 +13,7 @@ from dataclasses import dataclass, field
 from datetime import date
 from typing import Iterable
 
+from .. import partes as _partes
 from ..legal.mapa import MapaLegal, carregar
 from ..nucleo.indicios import Familia, Ficha, emitir
 from ..nucleo.provas import Nivel
@@ -239,7 +240,7 @@ class EventoDespesa:
 
 
 def _tem_tabela(con: _sqlite3.Connection, nome: str) -> bool:
-    return con.execute("select 1 from sqlite_master where type='table' and name=?", (nome,)).fetchone() is not None
+    return _partes.tem_tabela(con, nome)
 
 
 def ler_eventos(con: _sqlite3.Connection) -> list[EventoDespesa]:
@@ -447,7 +448,7 @@ def conferir_execucao(banco: _Path | _sqlite3.Connection, *, mapa: MapaLegal | N
                       limiares: dict | None = None) -> ConferenciasExecucao:
     """Roda as conferências da execução no banco: percursos, ordem, entrega, padrões de gasto."""
     lim = limiares or carregar_limiares()
-    con = banco if isinstance(banco, _sqlite3.Connection) else _sqlite3.connect(f"file:{banco}?mode=ro", uri=True)
+    con = banco if isinstance(banco, _sqlite3.Connection) else _partes.conectar_leitura(banco)
     try:
         out = ConferenciasExecucao(limiares=lim)
         eventos = ler_eventos(con)
