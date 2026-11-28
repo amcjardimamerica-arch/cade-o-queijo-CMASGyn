@@ -3,41 +3,42 @@
  "situacao": "dado",
  "motivo": "",
  "cobertura": {
-  "contratos": 2118,
-  "contratos_pessoa_juridica": 1196,
-  "contratos_pessoa_fisica": 922,
-  "cnpjs": 840,
-  "cnpjs_com_cadastro": 840,
-  "cnpjs_com_qsa": 782,
+  "contratos": 2263,
+  "contratos_pessoa_juridica": 1338,
+  "contratos_pessoa_fisica": 925,
+  "cnpjs": 925,
+  "cnpjs_com_cadastro": 846,
+  "cnpjs_com_qsa": 788,
   "cnpjs_nao_encontrados": 0,
   "folha": 0,
   "sancoes_nao_conferidas": {
    "TCU-INIDONEOS": "a última coleta falhou em 2026-11-28: HTTP 405: {\"mensagem\":\"Método não suportado na requisição para o endpoint /api/publico/responsaveis-inidoneos-com-paginacao. org.springframework.web.HttpRequestM…"
   },
   "lacunas": [
+   "79 de 925 CNPJs contratados sem o cadastro da Receita no banco",
    "cadastros de sanções e impedimentos sem nenhuma linha no banco, portanto não conferidos (ausência de dado, nunca atestado de empresa sem sanção): TCU-INIDONEOS (a última coleta falhou em 2026-11-28: HTTP 405: {\"mensagem\":\"Método não suportado na requisição para o endpoint /api/publico/responsaveis-inidoneos-com-paginacao. org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'G)"
   ],
   "cadastro_coletado": true
  },
  "por_tipo": {
   "situacao_irregular": 7,
-  "pouco_tempo": 57,
+  "pouco_tempo": 59,
   "perto_da_licitacao": 76,
-  "sem_experiencia": 965,
-  "cnae_incompativel": 153,
+  "sem_experiencia": 1074,
+  "cnae_incompativel": 161,
   "cnae_recente": 0,
-  "capital_baixo": 215,
+  "capital_baixo": 228,
   "porte_acima": 57,
-  "sancionada": 235,
+  "sancionada": 236,
   "socio_sancionado": 0,
   "socio_servidor": 0,
   "folha_ausente": 1,
   "vinculo_mesma_compra": 16,
   "rodizio": 33,
   "socio_laranja": 45,
-  "endereco_residencial": 107,
-  "endereco_comum": 9,
-  "razao_alterada": 63,
+  "endereco_residencial": 110,
+  "endereco_comum": 10,
+  "razao_alterada": 64,
   "cnpj_nao_encontrado": 0
  },
  "empresas": [
@@ -613,9 +614,34 @@
     }
    ],
    "sancoes": [],
-   "contratos": 0,
+   "contratos": 1,
    "cadastro": true,
-   "alertas": [],
+   "alertas": [
+    {
+     "tipo": "capital_baixo",
+     "titulo": "Capital social incompatível com o valor do contrato",
+     "gravidade": "alta",
+     "texto": "a contratada FUNDACAO DE APOIO A PESQUISA (CNPJ 00799205000189) tem capital social de R$ 0,00, 0.0% do contrato 04973965000111-2-000013/2023 (R$ 123.065,06), abaixo de 10%",
+     "mes": "2024-05",
+     "contratos": [
+      "04973965000111-2-000013/2023"
+     ],
+     "orgao": "04973965000111",
+     "valor": 123065.06
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada FUNDACAO DE APOIO A PESQUISA (00799205000189) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/09/2023 no ramo capacitação; contrato 04973965000111-2-000013/2023, de R$ 123.065,06",
+     "mes": "2024-05",
+     "contratos": [
+      "04973965000111-2-000013/2023"
+     ],
+     "orgao": "04973965000111",
+     "valor": 123065.06
+    }
+   ],
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
@@ -2371,20 +2397,20 @@
     }
    ],
    "sancoes": [],
-   "contratos": 2,
+   "contratos": 4,
    "cadastro": true,
    "alertas": [
     {
      "tipo": "sem_experiencia",
      "titulo": "Contratada sem experiência registrada no objeto",
      "gravidade": "media",
-     "texto": "a contratada J.CAMARA & IRMAOS S/A (01536754000123) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 23/06/2025 no ramo do objeto; contrato 00001727000193-2-000027/2025, de R$ 92.085,60",
-     "mes": "2025-06",
+     "texto": "a contratada J.CAMARA & IRMAOS S/A (01536754000123) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 17/05/2024 no ramo do objeto; contrato 00001727000193-2-000004/2024, de R$ 43.617,60",
+     "mes": "2024-06",
      "contratos": [
-      "00001727000193-2-000027/2025"
+      "00001727000193-2-000004/2024"
      ],
      "orgao": "00001727000193",
-     "valor": 92085.6
+     "valor": 43617.6
     }
    ],
    "url": "",
@@ -2895,9 +2921,57 @@
     }
    ],
    "sancoes": [],
-   "contratos": 1,
+   "contratos": 3,
    "cadastro": true,
    "alertas": [
+    {
+     "tipo": "capital_baixo",
+     "titulo": "Capital social incompatível com o valor do contrato",
+     "gravidade": "alta",
+     "texto": "a contratada ARQUIDIOCESE DE GOIANIA (CNPJ 01569466003000) tem capital social de R$ 0,00, 0.0% do contrato 04973965000111-2-000011/2024 (R$ 312.000,00), abaixo de 10%",
+     "mes": "2024-08",
+     "contratos": [
+      "04973965000111-2-000011/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 312000.0
+    },
+    {
+     "tipo": "cnae_incompativel",
+     "titulo": "Atividade (CNAE) da contratada incompatível com o objeto",
+     "gravidade": "alta",
+     "texto": "o objeto do contrato 04973965000111-2-000011/2024 ( Locação do Imóvel situado na Rua Salvador, Qd. 01, Lt. 13 e 14, Vila Paraíso, nesta capital, destinado ao funcionamento do Centro Municipal de Educação Infanti) é do ramo locação de imóvel, e nenhuma das 1 atividades da contratada ARQUIDIOCESE DE GOIANIA (CNPJ 01569466003000) corresponde a ele: 9491000",
+     "mes": "2024-08",
+     "contratos": [
+      "04973965000111-2-000011/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 312000.0
+    },
+    {
+     "tipo": "capital_baixo",
+     "titulo": "Capital social incompatível com o valor do contrato",
+     "gravidade": "alta",
+     "texto": "a contratada ARQUIDIOCESE DE GOIANIA (CNPJ 01569466003000) tem capital social de R$ 0,00, 0.0% do contrato 04973965000111-2-000018/2024 (R$ 312.000,00), abaixo de 10%",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000018/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 312000.0
+    },
+    {
+     "tipo": "cnae_incompativel",
+     "titulo": "Atividade (CNAE) da contratada incompatível com o objeto",
+     "gravidade": "alta",
+     "texto": "o objeto do contrato 04973965000111-2-000018/2024 (Locação do Imóvel situado na Rua Salvador, Qd. 01, Lt. 13 e 14, Vila Paraíso, nesta capital, destinado ao funcionamento do Centro Municipal de Educação Infantil) é do ramo locação de imóvel, e nenhuma das 1 atividades da contratada ARQUIDIOCESE DE GOIANIA (CNPJ 01569466003000) corresponde a ele: 9491000",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000018/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 312000.0
+    },
     {
      "tipo": "capital_baixo",
      "titulo": "Capital social incompatível com o valor do contrato",
@@ -2989,9 +3063,69 @@
     }
    ],
    "sancoes": [],
-   "contratos": 1,
+   "contratos": 3,
    "cadastro": true,
    "alertas": [
+    {
+     "tipo": "capital_baixo",
+     "titulo": "Capital social incompatível com o valor do contrato",
+     "gravidade": "alta",
+     "texto": "a contratada ARQUIDIOCESE DE GOIANIA (CNPJ 01569466003433) tem capital social de R$ 0,00, 0.0% do contrato 04973965000111-2-000003/2023 (R$ 204.000,00), abaixo de 10%",
+     "mes": "2024-04",
+     "contratos": [
+      "04973965000111-2-000003/2023"
+     ],
+     "orgao": "04973965000111",
+     "valor": 204000.0
+    },
+    {
+     "tipo": "cnae_incompativel",
+     "titulo": "Atividade (CNAE) da contratada incompatível com o objeto",
+     "gravidade": "alta",
+     "texto": "o objeto do contrato 04973965000111-2-000003/2023 ( Locação do imóvel situado à Rua 231, Qd. 709, Lt. 23/25, Vila Monteceli, nesta Capital, para o funcionamento do Centro Municipal de Educação Infantil PADRE VIT) é do ramo locação de imóvel, e nenhuma das 1 atividades da contratada ARQUIDIOCESE DE GOIANIA (CNPJ 01569466003433) corresponde a ele: 9491000",
+     "mes": "2024-04",
+     "contratos": [
+      "04973965000111-2-000003/2023"
+     ],
+     "orgao": "04973965000111",
+     "valor": 204000.0
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada ARQUIDIOCESE DE GOIANIA (01569466003433) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 02/05/2023 no ramo locação de imóvel; contrato 04973965000111-2-000003/2023, de R$ 204.000,00",
+     "mes": "2024-04",
+     "contratos": [
+      "04973965000111-2-000003/2023"
+     ],
+     "orgao": "04973965000111",
+     "valor": 204000.0
+    },
+    {
+     "tipo": "capital_baixo",
+     "titulo": "Capital social incompatível com o valor do contrato",
+     "gravidade": "alta",
+     "texto": "a contratada ARQUIDIOCESE DE GOIANIA (CNPJ 01569466003433) tem capital social de R$ 0,00, 0.0% do contrato 04973965000111-2-000021/2024 (R$ 111.696,00), abaixo de 10%",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000021/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 111696.0
+    },
+    {
+     "tipo": "cnae_incompativel",
+     "titulo": "Atividade (CNAE) da contratada incompatível com o objeto",
+     "gravidade": "alta",
+     "texto": "o objeto do contrato 04973965000111-2-000021/2024 (Locação do Imóvel situado na Avenida Desembargador Emílio Póvoa, 700, quadra 10, lote 10, Vila Megale, Goiânia nesta capital, destinado ao funcionamento do Cent) é do ramo locação de imóvel, e nenhuma das 1 atividades da contratada ARQUIDIOCESE DE GOIANIA (CNPJ 01569466003433) corresponde a ele: 9491000",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000021/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 111696.0
+    },
     {
      "tipo": "capital_baixo",
      "titulo": "Capital social incompatível com o valor do contrato",
@@ -3036,9 +3170,33 @@
     }
    ],
    "sancoes": [],
-   "contratos": 1,
+   "contratos": 2,
    "cadastro": true,
    "alertas": [
+    {
+     "tipo": "capital_baixo",
+     "titulo": "Capital social incompatível com o valor do contrato",
+     "gravidade": "alta",
+     "texto": "a contratada ARQUIDIOCESE DE GOIANIA (CNPJ 01569466003867) tem capital social de R$ 0,00, 0.0% do contrato 04973965000111-2-000002/2024 (R$ 216.000,00), abaixo de 10%",
+     "mes": "2024-04",
+     "contratos": [
+      "04973965000111-2-000002/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 216000.0
+    },
+    {
+     "tipo": "cnae_incompativel",
+     "titulo": "Atividade (CNAE) da contratada incompatível com o objeto",
+     "gravidade": "alta",
+     "texto": "o objeto do contrato 04973965000111-2-000002/2024 (Locação do imóvel situado à Rua dos Missionários, nº 1.125, Quadra 34, Lote 14 (3301145) e Lote 15 (3537428), Setor Rodoviário, nesta Capital, Goiás, por 24 (v) é do ramo locação de imóvel, e nenhuma das 1 atividades da contratada ARQUIDIOCESE DE GOIANIA (CNPJ 01569466003867) corresponde a ele: 9491000",
+     "mes": "2024-04",
+     "contratos": [
+      "04973965000111-2-000002/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 216000.0
+    },
     {
      "tipo": "capital_baixo",
      "titulo": "Capital social incompatível com o valor do contrato",
@@ -3056,18 +3214,6 @@
      "titulo": "Atividade (CNAE) da contratada incompatível com o objeto",
      "gravidade": "alta",
      "texto": "o objeto do contrato 04973965000111-2-000057/2024 (Constitui objeto do presente contrato a locação do imóvel localizado na Rua dos Missionários nº1.125, quadra 34, lote 14 e lote 15, Setor Rodoviário, nesta capi) é do ramo locação de imóvel, e nenhuma das 1 atividades da contratada ARQUIDIOCESE DE GOIANIA (CNPJ 01569466003867) corresponde a ele: 9491000",
-     "mes": "2026-03",
-     "contratos": [
-      "04973965000111-2-000057/2024"
-     ],
-     "orgao": "04973965000111",
-     "valor": 216000.0
-    },
-    {
-     "tipo": "sem_experiencia",
-     "titulo": "Contratada sem experiência registrada no objeto",
-     "gravidade": "media",
-     "texto": "a contratada ARQUIDIOCESE DE GOIANIA (01569466003867) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 18/04/2024 no ramo locação de imóvel; contrato 04973965000111-2-000057/2024, de R$ 216.000,00",
      "mes": "2026-03",
      "contratos": [
       "04973965000111-2-000057/2024"
@@ -3251,26 +3397,38 @@
     }
    ],
    "sancoes": [],
-   "contratos": 3,
+   "contratos": 4,
    "cadastro": true,
    "alertas": [
     {
      "tipo": "capital_baixo",
      "titulo": "Capital social incompatível com o valor do contrato",
      "gravidade": "alta",
-     "texto": "a contratada SOCIEDADE GOIANA DE CULTURA (CNPJ 01587609000171) tem capital social de R$ 0,00, 0.0% do contrato 04973965000111-2-000044/2024 (R$ 5.992,00), abaixo de 10%",
-     "mes": "2024-11",
+     "texto": "a contratada SOCIEDADE GOIANA DE CULTURA (CNPJ 01587609000171) tem capital social de R$ 0,00, 0.0% do contrato 04973965000111-2-000013/2024 (R$ 29.870,00), abaixo de 10%",
+     "mes": "2024-08",
      "contratos": [
-      "04973965000111-2-000044/2024"
+      "04973965000111-2-000013/2024"
      ],
      "orgao": "04973965000111",
-     "valor": 5992.0
+     "valor": 29870.0
     },
     {
      "tipo": "sem_experiencia",
      "titulo": "Contratada sem experiência registrada no objeto",
      "gravidade": "media",
-     "texto": "a contratada SOCIEDADE GOIANA DE CULTURA (01587609000171) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 14/11/2024 no ramo do objeto; contrato 04973965000111-2-000044/2024, de R$ 5.992,00",
+     "texto": "a contratada SOCIEDADE GOIANA DE CULTURA (01587609000171) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 13/08/2024 no ramo do objeto; contrato 04973965000111-2-000013/2024, de R$ 29.870,00",
+     "mes": "2024-08",
+     "contratos": [
+      "04973965000111-2-000013/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 29870.0
+    },
+    {
+     "tipo": "capital_baixo",
+     "titulo": "Capital social incompatível com o valor do contrato",
+     "gravidade": "alta",
+     "texto": "a contratada SOCIEDADE GOIANA DE CULTURA (CNPJ 01587609000171) tem capital social de R$ 0,00, 0.0% do contrato 04973965000111-2-000044/2024 (R$ 5.992,00), abaixo de 10%",
      "mes": "2024-11",
      "contratos": [
       "04973965000111-2-000044/2024"
@@ -3392,15 +3550,15 @@
      "texto": "JOAO JUSTINO DE MEDEIROS SILVA (Presidente, ***953286**) está no quadro de 3 contratadas do Município (limiar 3): ARQUIDIOCESE DE GOIANIA (01569466003000), ARQUIDIOCESE DE GOIANIA (01569466003352), ARQUIDIOCESE DE GOIANIA (01569466003433), ARQUIDIOCESE DE GOIANIA (01569466003867), ARQUIDIOCESE DE GOIANIA (01569466004243), ARQUIDIOCESE DE GOIANIA (01569466004677), SANTA CASA DE MISERICORDIA DE GOIANIA (01619790000150), SOCIEDADE GOIANA DE CULTURA (01587609000171), SOCIEDADE GOIANA DE CULTURA (01…",
      "mes": "2026-09",
      "contratos": [
+      "04973965000111-2-000003/2023",
+      "04973965000111-2-000002/2024",
       "04973965000111-2-000057/2024",
-      "25141524000123-2-000035/2024",
-      "04973965000111-2-000044/2024",
-      "04973965000111-2-000005/2025",
-      "04973965000111-2-000009/2025",
-      "04973965000111-2-000011/2025"
+      "04973965000111-2-000011/2024",
+      "04973965000111-2-000018/2024",
+      "04973965000111-2-000013/2024"
      ],
      "orgao": "25141524000123",
-     "valor": 10598530.0
+     "valor": 11784096.0
     }
    ],
    "url": "",
@@ -5709,6 +5867,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "02667069000107",
+   "razao": "LIDER SPORT LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada LIDER SPORT LTDA (02667069000107) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 19/06/2024 no ramo eventos; contrato 22616136000163-2-000015/2024, de R$ 18.550,00",
+     "mes": "2024-09",
+     "contratos": [
+      "22616136000163-2-000015/2024"
+     ],
+     "orgao": "22616136000163",
+     "valor": 18550.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "02766038000103",
    "razao": "NUCLEO DE ANALISES CLINICAS LTDA",
    "abertura": "1986-09-26",
@@ -7045,6 +7232,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "03520902000147",
+   "razao": "AGENCIA BRASIL CENTRAL",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada AGENCIA BRASIL CENTRAL (03520902000147) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/04/2024 no ramo do objeto; contrato 00001727000193-2-000001/2024, de R$ 9.187,50",
+     "mes": "2024-04",
+     "contratos": [
+      "00001727000193-2-000001/2024"
+     ],
+     "orgao": "00001727000193",
+     "valor": 9187.5
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "03535902000897",
    "razao": "DECISION SERVICOS DE TECNOLOGIA DA INFORMACAO LTDA",
    "abertura": "2021-07-16",
@@ -7904,9 +8120,33 @@
     }
    ],
    "sancoes": [],
-   "contratos": 1,
+   "contratos": 3,
    "cadastro": true,
    "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada SARAIVA DISTRIBUIDORA LTDA (03818333000110) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 25/03/2024 no ramo vestuário; contrato 04973965000111-2-000006/2024, de R$ 4.000,00",
+     "mes": "2024-07",
+     "contratos": [
+      "04973965000111-2-000006/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 4000.0
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada SARAIVA DISTRIBUIDORA LTDA (03818333000110) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 13/09/2024 no ramo do objeto; contrato 08948407000157-2-000011/2024, de R$ 3.330,00",
+     "mes": "2024-09",
+     "contratos": [
+      "08948407000157-2-000011/2024"
+     ],
+     "orgao": "08948407000157",
+     "valor": 3330.0
+    },
     {
      "tipo": "sem_experiencia",
      "titulo": "Contratada sem experiência registrada no objeto",
@@ -8575,6 +8815,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "04115009000107",
+   "razao": "GRAO NUCLEO DE DESENVOLVIMENTO E SERVICOS ESPECIALIZADOS LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada GRAO NUCLEO DE DESENVOLVIMENTO E SERVICOS ESPECIALIZADOS LTDA (04115009000107) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 30/07/2024 no ramo do objeto; contrato 04973965000111-2-000015/2024, de R$ 13.450,00",
+     "mes": "2024-08",
+     "contratos": [
+      "04973965000111-2-000015/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 13450.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "04174032000164",
    "razao": "ABMAC COMERCIO LTDA",
    "abertura": "2000-11-08",
@@ -8796,20 +9065,152 @@
     }
    ],
    "sancoes": [],
-   "contratos": 4,
+   "contratos": 16,
    "cadastro": true,
    "alertas": [
     {
      "tipo": "sem_experiencia",
      "titulo": "Contratada sem experiência registrada no objeto",
      "gravidade": "media",
-     "texto": "a contratada ABA MED S.A. (04369147000104) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 07/04/2026 no ramo medicamentos; contrato 25141524000123-2-000042/2026, de R$ 562.440,00",
-     "mes": "2026-04",
+     "texto": "a contratada ABA MED S.A. (04369147000104) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/04/2024 no ramo medicamentos; contrato 25141524000123-2-000007/2024, de R$ 1.969.840,00",
+     "mes": "2024-05",
      "contratos": [
-      "25141524000123-2-000042/2026"
+      "25141524000123-2-000007/2024"
      ],
      "orgao": "25141524000123",
-     "valor": 562440.0
+     "valor": 1969840.0
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada ABA MED S.A. (04369147000104) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/04/2024 no ramo medicamentos; contrato 25141524000123-2-000008/2024, de R$ 1.175.200,00",
+     "mes": "2024-05",
+     "contratos": [
+      "25141524000123-2-000008/2024"
+     ],
+     "orgao": "25141524000123",
+     "valor": 1175200.0
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada ABA MED S.A. (04369147000104) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/04/2024 no ramo medicamentos; contrato 25141524000123-2-000009/2024, de R$ 581.680,00",
+     "mes": "2024-05",
+     "contratos": [
+      "25141524000123-2-000009/2024"
+     ],
+     "orgao": "25141524000123",
+     "valor": 581680.0
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada ABA MED S.A. (04369147000104) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/04/2024 no ramo medicamentos; contrato 25141524000123-2-000010/2024, de R$ 33.748,50",
+     "mes": "2024-05",
+     "contratos": [
+      "25141524000123-2-000010/2024"
+     ],
+     "orgao": "25141524000123",
+     "valor": 33748.5
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada ABA MED S.A. (04369147000104) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/04/2024 no ramo medicamentos; contrato 25141524000123-2-000011/2024, de R$ 198.080,00",
+     "mes": "2024-05",
+     "contratos": [
+      "25141524000123-2-000011/2024"
+     ],
+     "orgao": "25141524000123",
+     "valor": 198080.0
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada ABA MED S.A. (04369147000104) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/04/2024 no ramo medicamentos; contrato 25141524000123-2-000012/2024, de R$ 448.448,00",
+     "mes": "2024-05",
+     "contratos": [
+      "25141524000123-2-000012/2024"
+     ],
+     "orgao": "25141524000123",
+     "valor": 448448.0
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada ABA MED S.A. (04369147000104) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/04/2024 no ramo medicamentos; contrato 25141524000123-2-000013/2024, de R$ 395.520,00",
+     "mes": "2024-05",
+     "contratos": [
+      "25141524000123-2-000013/2024"
+     ],
+     "orgao": "25141524000123",
+     "valor": 395520.0
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada ABA MED S.A. (04369147000104) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/04/2024 no ramo medicamentos; contrato 25141524000123-2-000014/2024, de R$ 2.618.000,00",
+     "mes": "2024-05",
+     "contratos": [
+      "25141524000123-2-000014/2024"
+     ],
+     "orgao": "25141524000123",
+     "valor": 2618000.0
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada ABA MED S.A. (04369147000104) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/04/2024 no ramo medicamentos; contrato 25141524000123-2-000015/2024, de R$ 70.080,00",
+     "mes": "2024-05",
+     "contratos": [
+      "25141524000123-2-000015/2024"
+     ],
+     "orgao": "25141524000123",
+     "valor": 70080.0
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada ABA MED S.A. (04369147000104) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/04/2024 no ramo medicamentos; contrato 25141524000123-2-000016/2024, de R$ 7.920,00",
+     "mes": "2024-05",
+     "contratos": [
+      "25141524000123-2-000016/2024"
+     ],
+     "orgao": "25141524000123",
+     "valor": 7920.0
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada ABA MED S.A. (04369147000104) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/04/2024 no ramo medicamentos; contrato 25141524000123-2-000017/2024, de R$ 386.304,00",
+     "mes": "2024-05",
+     "contratos": [
+      "25141524000123-2-000017/2024"
+     ],
+     "orgao": "25141524000123",
+     "valor": 386304.0
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada ABA MED S.A. (04369147000104) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/04/2024 no ramo medicamentos; contrato 25141524000123-2-000018/2024, de R$ 1.496.960,00",
+     "mes": "2024-05",
+     "contratos": [
+      "25141524000123-2-000018/2024"
+     ],
+     "orgao": "25141524000123",
+     "valor": 1496960.0
     }
    ],
    "url": "",
@@ -9195,6 +9596,47 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "04595002000121",
+   "razao": "QUELUZ EMPREENDIMENTOS E PARTICIPACAO LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 2,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada QUELUZ EMPREENDIMENTOS E PARTICIPACAO LTDA (04595002000121) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 02/04/2024 no ramo locação de imóvel; contrato 04973965000111-2-000004/2023, de R$ 828.000,00",
+     "mes": "2024-04",
+     "contratos": [
+      "04973965000111-2-000004/2023"
+     ],
+     "orgao": "04973965000111",
+     "valor": 828000.0
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada QUELUZ EMPREENDIMENTOS E PARTICIPACAO LTDA (04595002000121) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 02/04/2024 no ramo locação de imóvel; contrato 04973965000111-2-000005/2023, de R$ 506.232,00",
+     "mes": "2024-04",
+     "contratos": [
+      "04973965000111-2-000005/2023"
+     ],
+     "orgao": "04973965000111",
+     "valor": 506232.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "04597880000186",
@@ -10566,6 +11008,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "05631412000143",
+   "razao": "E.P.PENNA TREINAMENTOS",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada E.P.PENNA TREINAMENTOS (05631412000143) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 24/07/2024 no ramo capacitação; contrato 04973965000111-2-000007/2024, de R$ 50.000,00",
+     "mes": "2024-08",
+     "contratos": [
+      "04973965000111-2-000007/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 50000.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "05652247000106",
    "razao": "LUMIAR HEALTH BUILDERS EQUIPAMENTOS HOSPITALARES LTDA",
    "abertura": "2003-04-11",
@@ -10829,9 +11300,34 @@
     }
    ],
    "sancoes": [],
-   "contratos": 0,
+   "contratos": 1,
    "cadastro": true,
-   "alertas": [],
+   "alertas": [
+    {
+     "tipo": "capital_baixo",
+     "titulo": "Capital social incompatível com o valor do contrato",
+     "gravidade": "alta",
+     "texto": "a contratada FUNDACAO TIRADENTES (CNPJ 05783472000181) tem capital social de R$ 0,00, 0.0% do contrato 04973965000111-2-000025/2024 (R$ 96.000,00), abaixo de 10%",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000025/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 96000.0
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada FUNDACAO TIRADENTES (05783472000181) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 28/02/2024 no ramo do objeto; contrato 04973965000111-2-000025/2024, de R$ 96.000,00",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000025/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 96000.0
+    }
+   ],
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
@@ -11376,7 +11872,7 @@
     }
    ],
    "sancoes": [],
-   "contratos": 3,
+   "contratos": 4,
    "cadastro": true,
    "alertas": [
     {
@@ -11390,6 +11886,18 @@
      ],
      "orgao": "17577524000142",
      "valor": 3139200.0
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada RS PRODUTOS E SERVICOS LTDA (06273582000166) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 26/11/2026 no ramo manutenção de veículos; contrato 25141524000123-2-001076/2026, de R$ 1.185.570,00",
+     "mes": "2026-11",
+     "contratos": [
+      "25141524000123-2-001076/2026"
+     ],
+     "orgao": "25141524000123",
+     "valor": 1185570.0
     }
    ],
    "url": "",
@@ -12053,6 +12561,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "07119310000179",
+   "razao": "MATA PRAGAS CONTROLE DE PRAGAS LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada MATA PRAGAS CONTROLE DE PRAGAS LTDA (07119310000179) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 19/06/2024 no ramo manutenção de veículos; contrato 25141524000123-2-000022/2024, de R$ 2.835.000,00",
+     "mes": "2024-06",
+     "contratos": [
+      "25141524000123-2-000022/2024"
+     ],
+     "orgao": "25141524000123",
+     "valor": 2835000.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "07130423000175",
    "razao": "C & J PRODUCOES E EVENTOS LTDA",
    "abertura": "2004-12-13",
@@ -12383,20 +12920,20 @@
     }
    ],
    "sancoes": [],
-   "contratos": 1,
+   "contratos": 2,
    "cadastro": true,
    "alertas": [
     {
      "tipo": "sem_experiencia",
      "titulo": "Contratada sem experiência registrada no objeto",
      "gravidade": "media",
-     "texto": "a contratada COMERCIAL DE COMBUSTIVEIS VILA RICA LTDA (07438607000105) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 27/08/2026 no ramo combustível; contrato 00001727000193-2-000018/2026, de R$ 1.179.608,40",
-     "mes": "2026-09",
+     "texto": "a contratada COMERCIAL DE COMBUSTIVEIS VILA RICA LTDA (07438607000105) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 12/09/2024 no ramo combustível; contrato 00001727000193-2-000011/2024, de R$ 939.611,20",
+     "mes": "2024-09",
      "contratos": [
-      "00001727000193-2-000018/2026"
+      "00001727000193-2-000011/2024"
      ],
      "orgao": "00001727000193",
-     "valor": 1179608.4
+     "valor": 939611.2
     },
     {
      "tipo": "socio_laranja",
@@ -12405,10 +12942,11 @@
      "texto": "RENE POMPEO DE PINA (Sócio-Administrador, ***546211**) tem idade atípica para sócio de contratada (mais de 80 anos): COMERCIAL DE COMBUSTIVEIS VILA RICA LTDA (07438607000105)",
      "mes": "2026-09",
      "contratos": [
+      "00001727000193-2-000011/2024",
       "00001727000193-2-000018/2026"
      ],
      "orgao": "00001727000193",
-     "valor": 1179608.4
+     "valor": 2119219.5999999996
     }
    ],
    "url": "",
@@ -12949,6 +13487,64 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "07766048000235",
+   "razao": "3D PROJETOS E ASSESSORIA EM INFORMATICA LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada 3D PROJETOS E ASSESSORIA EM INFORMATICA LTDA (07766048000235) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 02/08/2024 no ramo informática; contrato 04973965000111-2-000012/2024, de R$ 9.818,40",
+     "mes": "2024-08",
+     "contratos": [
+      "04973965000111-2-000012/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 9818.4
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
+   "cnpj": "07791057000103",
+   "razao": "MM COMERCIO E LOCACAO DE ELETRO ELETRONICOS LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada MM COMERCIO E LOCACAO DE ELETRO ELETRONICOS LTDA (07791057000103) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 05/06/2024 no ramo alimentação; contrato 40475427000160-2-000005/2024, de R$ 480.000,00",
+     "mes": "2024-07",
+     "contratos": [
+      "40475427000160-2-000005/2024"
+     ],
+     "orgao": "40475427000160",
+     "valor": 480000.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "07797967000195",
    "razao": "NP TECNOLOGIA E GESTAO DE DADOS LTDA",
    "abertura": "2006-01-04",
@@ -12978,9 +13574,57 @@
     }
    ],
    "sancoes": [],
-   "contratos": 10,
+   "contratos": 14,
    "cadastro": true,
    "alertas": [
+    {
+     "tipo": "capital_baixo",
+     "titulo": "Capital social incompatível com o valor do contrato",
+     "gravidade": "media",
+     "texto": "a contratada NP TECNOLOGIA E GESTAO DE DADOS LTDA (CNPJ 07797967000195) tem capital social de R$ 5.000,00, 8.6% do contrato 04973965000111-2-000014/2024 (R$ 57.900,00), abaixo de 10%",
+     "mes": "2024-08",
+     "contratos": [
+      "04973965000111-2-000014/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 57900.0
+    },
+    {
+     "tipo": "cnae_incompativel",
+     "titulo": "Atividade (CNAE) da contratada incompatível com o objeto",
+     "gravidade": "alta",
+     "texto": "o objeto do contrato 04973965000111-2-000014/2024 (Contratação da pessoa jurídica NP Capacitação e Soluções Tecnológicas Ltda, inscrita no CNPJ sob o nº 07.797.967/0001-95, visando a aquisição de serviço de forn) é do ramo capacitação, e nenhuma das 3 atividades da contratada NP TECNOLOGIA E GESTAO DE DADOS LTDA (CNPJ 07797967000195) corresponde a ele: 6203100, 6201501, 6204000",
+     "mes": "2024-08",
+     "contratos": [
+      "04973965000111-2-000014/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 57900.0
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada NP TECNOLOGIA E GESTAO DE DADOS LTDA (07797967000195) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 09/08/2024 no ramo capacitação; contrato 04973965000111-2-000014/2024, de R$ 57.900,00",
+     "mes": "2024-08",
+     "contratos": [
+      "04973965000111-2-000014/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 57900.0
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada NP TECNOLOGIA E GESTAO DE DADOS LTDA (07797967000195) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 30/07/2024 no ramo tecnologia e sistemas; contrato 24858555000137-2-000001/2024, de R$ 11.960,00",
+     "mes": "2024-08",
+     "contratos": [
+      "24858555000137-2-000001/2024"
+     ],
+     "orgao": "24858555000137",
+     "valor": 11960.0
+    },
     {
      "tipo": "sem_experiencia",
      "titulo": "Contratada sem experiência registrada no objeto",
@@ -12994,34 +13638,10 @@
      "valor": 23920.0
     },
     {
-     "tipo": "sem_experiencia",
-     "titulo": "Contratada sem experiência registrada no objeto",
-     "gravidade": "media",
-     "texto": "a contratada NP TECNOLOGIA E GESTAO DE DADOS LTDA (07797967000195) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 29/09/2025 no ramo tecnologia e sistemas; contrato 04973965000111-2-000051/2025, de R$ 36.302,55",
-     "mes": "2025-10",
-     "contratos": [
-      "04973965000111-2-000051/2025"
-     ],
-     "orgao": "04973965000111",
-     "valor": 36302.55
-    },
-    {
      "tipo": "cnae_incompativel",
      "titulo": "Atividade (CNAE) da contratada incompatível com o objeto",
      "gravidade": "alta",
      "texto": "o objeto do contrato 25141524000123-2-000001/2026 (Prestação dos serviços da plataforma digital Sistema Banco de Preços, sendo 03 (três) licenças pelo período de 12(doze) meses, que permite a comparação de preço) é do ramo capacitação, e nenhuma das 3 atividades da contratada NP TECNOLOGIA E GESTAO DE DADOS LTDA (CNPJ 07797967000195) corresponde a ele: 6203100, 6201501, 6204000",
-     "mes": "2026-01",
-     "contratos": [
-      "25141524000123-2-000001/2026"
-     ],
-     "orgao": "25141524000123",
-     "valor": 31168.17
-    },
-    {
-     "tipo": "sem_experiencia",
-     "titulo": "Contratada sem experiência registrada no objeto",
-     "gravidade": "media",
-     "texto": "a contratada NP TECNOLOGIA E GESTAO DE DADOS LTDA (07797967000195) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 21/01/2026 no ramo capacitação; contrato 25141524000123-2-000001/2026, de R$ 31.168,17",
      "mes": "2026-01",
      "contratos": [
       "25141524000123-2-000001/2026"
@@ -13076,6 +13696,18 @@
      ],
      "orgao": "17497764000137",
      "valor": 96755.0
+    },
+    {
+     "tipo": "capital_baixo",
+     "titulo": "Capital social incompatível com o valor do contrato",
+     "gravidade": "media",
+     "texto": "a contratada NP TECNOLOGIA E GESTAO DE DADOS LTDA (CNPJ 07797967000195) tem capital social de R$ 5.000,00, 9.8% do contrato 40478566000148-2-000001/2026 (R$ 51.000,00), abaixo de 10%",
+     "mes": "2026-11",
+     "contratos": [
+      "40478566000148-2-000001/2026"
+     ],
+     "orgao": "40478566000148",
+     "valor": 51000.0
     }
    ],
    "url": "",
@@ -13385,6 +14017,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "07931931000152",
+   "razao": "PARAMITA TECNOLOGIA CONSULTORIA FINANCEIRA LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada PARAMITA TECNOLOGIA CONSULTORIA FINANCEIRA LTDA (07931931000152) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 25/07/2024 no ramo do objeto; contrato 08948407000157-2-000008/2024, de R$ 17.580,00",
+     "mes": "2024-08",
+     "contratos": [
+      "08948407000157-2-000008/2024"
+     ],
+     "orgao": "08948407000157",
+     "valor": 17580.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "07944100000115",
@@ -13805,6 +14466,47 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "08154331000198",
+   "razao": "ZOEWEB PLAY LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 2,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada ZOEWEB PLAY LTDA (08154331000198) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 10/05/2024 no ramo informática; contrato 40475427000160-2-000001/2024, de R$ 6.000.000,00",
+     "mes": "2024-05",
+     "contratos": [
+      "40475427000160-2-000001/2024"
+     ],
+     "orgao": "40475427000160",
+     "valor": 6000000.0
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada ZOEWEB PLAY LTDA (08154331000198) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 10/05/2024 no ramo informática; contrato 40475427000160-2-000002/2024, de R$ 6.000.000,00",
+     "mes": "2024-05",
+     "contratos": [
+      "40475427000160-2-000002/2024"
+     ],
+     "orgao": "40475427000160",
+     "valor": 6000000.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "08208805000137",
    "razao": "JRV SERVICOS LTDA",
    "abertura": "2006-08-08",
@@ -13829,9 +14531,24 @@
     }
    ],
    "sancoes": [],
-   "contratos": 0,
+   "contratos": 1,
    "cadastro": true,
-   "alertas": [],
+   "alertas": [
+    {
+     "tipo": "endereco_comum",
+     "titulo": "Contratadas diferentes no mesmo endereço",
+     "gravidade": "media",
+     "texto": "2 contratadas diferentes têm sede no mesmo endereço (AVENIDA TANCREDO NEVES, 000620, EDIF TORRE EMPRESARIAL MUNDO PLAZA LOJA 3303, CAMINHO DAS ARVORES, 41820020, SALVADOR, BA): GOSHME SOLUCOES PARA A INTERNET LTDA (07112529000146), JRV SERVICOS LTDA (08208805000137)",
+     "mes": "2026-11",
+     "contratos": [
+      "01414440000158-2-000001/2025",
+      "01414440000158-2-000031/2026",
+      "00001727000193-2-000028/2026"
+     ],
+     "orgao": "00001727000193",
+     "valor": 191376.0
+    }
+   ],
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
@@ -14339,20 +15056,20 @@
     }
    ],
    "sancoes": [],
-   "contratos": 2,
+   "contratos": 5,
    "cadastro": true,
    "alertas": [
     {
      "tipo": "sem_experiencia",
      "titulo": "Contratada sem experiência registrada no objeto",
      "gravidade": "media",
-     "texto": "a contratada FUTURA AGENCIA DE VIAGENS E TURISMO LTDA (08808153000171) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 11/07/2024 no ramo passagens e viagens; contrato 17736850000155-2-000007/2024, de R$ 300.000,00",
-     "mes": "2025-07",
+     "texto": "a contratada FUTURA AGENCIA DE VIAGENS E TURISMO LTDA (08808153000171) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 05/03/2024 no ramo passagens e viagens; contrato 22616136000163-2-000009/2024, de R$ 54.000,00",
+     "mes": "2024-07",
      "contratos": [
-      "17736850000155-2-000007/2024"
+      "22616136000163-2-000009/2024"
      ],
-     "orgao": "17736850000155",
-     "valor": 300000.0
+     "orgao": "22616136000163",
+     "valor": 54000.0
     }
    ],
    "url": "",
@@ -14575,6 +15292,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "09001104000195",
+   "razao": "BIOCROMA CLINICA DE EXAMES DE DNA LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada BIOCROMA CLINICA DE EXAMES DE DNA LTDA (09001104000195) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 23/10/2024 no ramo do objeto; contrato 25141524000123-2-000029/2024, de R$ 46.800,00",
+     "mes": "2024-10",
+     "contratos": [
+      "25141524000123-2-000029/2024"
+     ],
+     "orgao": "25141524000123",
+     "valor": 46800.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "09021537000102",
@@ -15119,6 +15865,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "09528371000115",
+   "razao": "CIMINA COMERCIO E SERVICOS LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada CIMINA COMERCIO E SERVICOS LTDA (09528371000115) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 04/03/2024 no ramo do objeto; contrato 25141524000123-2-000001/2024, de R$ 3.690,00",
+     "mes": "2024-04",
+     "contratos": [
+      "25141524000123-2-000001/2024"
+     ],
+     "orgao": "25141524000123",
+     "valor": 3690.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "09560857000130",
    "razao": "STOCK COMERCIAL LTDA",
    "abertura": "2008-04-23",
@@ -15281,6 +16056,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "09636384000299",
+   "razao": "LINKMARKET INFORMATICA E TELECOMUNICACOES LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada LINKMARKET INFORMATICA E TELECOMUNICACOES LTDA (09636384000299) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 27/05/2024 no ramo informática; contrato 22616136000163-2-000003/2024, de R$ 4.500,00",
+     "mes": "2024-06",
+     "contratos": [
+      "22616136000163-2-000003/2024"
+     ],
+     "orgao": "22616136000163",
+     "valor": 4500.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "09911948000173",
@@ -15853,6 +16657,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "10498974000109",
+   "razao": "INSTITUTO NEGOCIOS PUBLICOS DO BRASIL - ESTUDOS E PESQUISAS NA ADMNIISTRACAO PUB",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada INSTITUTO NEGOCIOS PUBLICOS DO BRASIL - ESTUDOS E PESQUISAS NA ADMNIISTRACAO PUB (10498974000109) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 03/07/2024 no ramo capacitação; contrato 08948407000157-2-000006/2024, de R$ 3.490,00",
+     "mes": "2024-07",
+     "contratos": [
+      "08948407000157-2-000006/2024"
+     ],
+     "orgao": "08948407000157",
+     "valor": 3490.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "10498974000281",
@@ -17476,6 +18309,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "11564122000127",
+   "razao": "PAULO FOCHI ESTUDOS PEDAGOGICOS",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada PAULO FOCHI ESTUDOS PEDAGOGICOS (11564122000127) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 02/10/2023 no ramo do objeto; contrato 04973965000111-2-000007/2023, de R$ 14.000,00",
+     "mes": "2024-05",
+     "contratos": [
+      "04973965000111-2-000007/2023"
+     ],
+     "orgao": "04973965000111",
+     "valor": 14000.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "11594621000167",
    "razao": "ALMIX COMERCIO DE SUPRIMENTOS LTDA",
    "abertura": "2010-02-22",
@@ -18688,20 +19550,20 @@
     }
    ],
    "sancoes": [],
-   "contratos": 2,
+   "contratos": 3,
    "cadastro": true,
    "alertas": [
     {
      "tipo": "sem_experiencia",
      "titulo": "Contratada sem experiência registrada no objeto",
      "gravidade": "media",
-     "texto": "a contratada A & G SERVICOS MEDICOS LTDA (12532358000144) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 12/11/2025 no ramo do objeto; contrato 25141524000123-2-000097/2025, de R$ 4.230.889,92",
-     "mes": "2025-11",
+     "texto": "a contratada A & G SERVICOS MEDICOS LTDA (12532358000144) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 25/09/2024 no ramo do objeto; contrato 25141524000123-2-000024/2024, de R$ 2.082.480,00",
+     "mes": "2024-09",
      "contratos": [
-      "25141524000123-2-000097/2025"
+      "25141524000123-2-000024/2024"
      ],
      "orgao": "25141524000123",
-     "valor": 4230889.92
+     "valor": 2082480.0
     }
    ],
    "url": "",
@@ -18723,6 +19585,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "12639462000132",
+   "razao": "L . M CLIMATIZACAO LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada L . M CLIMATIZACAO LTDA (12639462000132) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 18/09/2024 no ramo mobiliário e eletro; contrato 40489303000134-2-000001/2023, de R$ 41.400,00",
+     "mes": "2024-10",
+     "contratos": [
+      "40489303000134-2-000001/2023"
+     ],
+     "orgao": "40489303000134",
+     "valor": 41400.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "12650714000124",
@@ -18991,6 +19882,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "13145422000105",
+   "razao": "LWS TENDAS IND. E COMERCIO LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada LWS TENDAS IND. E COMERCIO LTDA (13145422000105) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 05/02/2024 no ramo eventos; contrato 22616136000163-2-000002/2024, de R$ 29.993,60",
+     "mes": "2024-05",
+     "contratos": [
+      "22616136000163-2-000002/2024"
+     ],
+     "orgao": "22616136000163",
+     "valor": 29993.6
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "13169056000116",
    "razao": "DOCTORMED EQUIPAMENTOS E PRODUTOS HOSPITALARES LTDA",
    "abertura": "2011-01-26",
@@ -19038,6 +19958,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "13292261000174",
+   "razao": "VIANNA DE CARVALHO CURSOS E AULAS LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada VIANNA DE CARVALHO CURSOS E AULAS LTDA (13292261000174) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 13/06/2024 no ramo do objeto; contrato 04973965000111-2-000003/2024, de R$ 250.000,00",
+     "mes": "2024-06",
+     "contratos": [
+      "04973965000111-2-000003/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 250000.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "13349466000149",
@@ -20055,7 +21004,7 @@
      "tipo": "razao_alterada",
      "titulo": "Razão social da contratada trocada",
      "gravidade": "media",
-     "texto": "o contrato 00001727000193-2-000020/2025 registra a contratada como \"BRUNO LOPES DE OLIVEIRA ***.483.241-**\" e a Receita hoje como \"BL MAYCRISLANA LTDA\" (0% das palavras em comum)",
+     "texto": "o contrato 00001727000193-2-000020/2025 registra a contratada como \"BRUNO LOPES DE OLIVEIRA 01548324132\" e a Receita hoje como \"BL MAYCRISLANA LTDA\" (0% das palavras em comum)",
      "mes": "2025-05",
      "contratos": [
       "00001727000193-2-000020/2025"
@@ -20067,7 +21016,7 @@
      "tipo": "sem_experiencia",
      "titulo": "Contratada sem experiência registrada no objeto",
      "gravidade": "media",
-     "texto": "a contratada BRUNO LOPES DE OLIVEIRA ***.483.241-** (14415119000130) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 09/05/2025 no ramo eventos; contrato 00001727000193-2-000020/2025, de R$ 40.000,00",
+     "texto": "a contratada BRUNO LOPES DE OLIVEIRA 01548324132 (14415119000130) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 09/05/2025 no ramo eventos; contrato 00001727000193-2-000020/2025, de R$ 40.000,00",
      "mes": "2025-05",
      "contratos": [
       "00001727000193-2-000020/2025"
@@ -20100,20 +21049,20 @@
     }
    ],
    "sancoes": [],
-   "contratos": 1,
+   "contratos": 2,
    "cadastro": true,
    "alertas": [
     {
      "tipo": "sem_experiencia",
      "titulo": "Contratada sem experiência registrada no objeto",
      "gravidade": "media",
-     "texto": "a contratada CENTI SOLUCOES LTDA (14419896000152) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 31/10/2025 no ramo informática; contrato 00001727000193-2-000047/2025, de R$ 818.000,00",
-     "mes": "2025-11",
+     "texto": "a contratada CENTI SOLUCOES LTDA (14419896000152) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 27/06/2024 no ramo informática; contrato 00001727000193-2-000006/2024, de R$ 66.600,00",
+     "mes": "2024-07",
      "contratos": [
-      "00001727000193-2-000047/2025"
+      "00001727000193-2-000006/2024"
      ],
      "orgao": "00001727000193",
-     "valor": 818000.0
+     "valor": 66600.0
     }
    ],
    "url": "",
@@ -20206,26 +21155,38 @@
     }
    ],
    "sancoes": [],
-   "contratos": 1,
+   "contratos": 2,
    "cadastro": true,
    "alertas": [
     {
      "tipo": "capital_baixo",
      "titulo": "Capital social incompatível com o valor do contrato",
      "gravidade": "media",
-     "texto": "a contratada NUCLEOGOV ASSESSORIA E TECNOLOGIA LTDA (CNPJ 14580442000169) tem capital social de R$ 10.000,00, 4.8% do contrato 08948407000157-2-000006/2025 (R$ 210.000,00), abaixo de 10%",
-     "mes": "2025-07",
+     "texto": "a contratada NUCLEOGOV ASSESSORIA E TECNOLOGIA LTDA (CNPJ 14580442000169) tem capital social de R$ 10.000,00, 5.1% do contrato 00001727000193-2-000008/2024 (R$ 198.000,00), abaixo de 10%",
+     "mes": "2024-08",
      "contratos": [
-      "08948407000157-2-000006/2025"
+      "00001727000193-2-000008/2024"
      ],
-     "orgao": "08948407000157",
-     "valor": 210000.0
+     "orgao": "00001727000193",
+     "valor": 198000.0
     },
     {
      "tipo": "sem_experiencia",
      "titulo": "Contratada sem experiência registrada no objeto",
      "gravidade": "media",
-     "texto": "a contratada NUCLEOGOV ASSESSORIA E TECNOLOGIA LTDA (14580442000169) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 25/06/2025 no ramo consultoria e auditoria; contrato 08948407000157-2-000006/2025, de R$ 210.000,00",
+     "texto": "a contratada NUCLEOGOV ASSESSORIA E TECNOLOGIA LTDA (14580442000169) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 29/07/2024 no ramo consultoria e auditoria; contrato 00001727000193-2-000008/2024, de R$ 198.000,00",
+     "mes": "2024-08",
+     "contratos": [
+      "00001727000193-2-000008/2024"
+     ],
+     "orgao": "00001727000193",
+     "valor": 198000.0
+    },
+    {
+     "tipo": "capital_baixo",
+     "titulo": "Capital social incompatível com o valor do contrato",
+     "gravidade": "media",
+     "texto": "a contratada NUCLEOGOV ASSESSORIA E TECNOLOGIA LTDA (CNPJ 14580442000169) tem capital social de R$ 10.000,00, 4.8% do contrato 08948407000157-2-000006/2025 (R$ 210.000,00), abaixo de 10%",
      "mes": "2025-07",
      "contratos": [
       "08948407000157-2-000006/2025"
@@ -20397,6 +21358,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "15104655000187",
+   "razao": "JC COMERCIO E EMPREENDIMENTOS LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada JC COMERCIO E EMPREENDIMENTOS LTDA (15104655000187) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 09/09/2024 no ramo água mineral; contrato 04973965000111-2-000020/2024, de R$ 10.846,08",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000020/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 10846.08
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "15113697000184",
@@ -21066,6 +22056,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "16979407000142",
+   "razao": "EDILICA CONSTRUTORA LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada EDILICA CONSTRUTORA LTDA (16979407000142) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 29/09/2023 no ramo obras e engenharia; contrato 08948407000157-2-000001/2023, de R$ 114.000,00",
+     "mes": "2024-08",
+     "contratos": [
+      "08948407000157-2-000001/2023"
+     ],
+     "orgao": "08948407000157",
+     "valor": 114000.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "17001757000100",
    "razao": "ESTRUTURASOM PRODUCOES E EVENTOS LTDA",
    "abertura": "2012-10-15",
@@ -21205,6 +22224,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "17231685000180",
+   "razao": "JULIANA PEREIRA DE CASTRO - BISCOITOS LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada JULIANA PEREIRA DE CASTRO - BISCOITOS LTDA (17231685000180) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 27/06/2024 no ramo alimentação; contrato 40475427000160-2-000004/2024, de R$ 19.589,00",
+     "mes": "2024-06",
+     "contratos": [
+      "40475427000160-2-000004/2024"
+     ],
+     "orgao": "40475427000160",
+     "valor": 19589.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "17387018000190",
@@ -21531,6 +22579,64 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "17729384000180",
+   "razao": "BRAULIO BESSA UCHOA LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada BRAULIO BESSA UCHOA LTDA (17729384000180) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 30/07/2024 no ramo do objeto; contrato 04973965000111-2-000019/2024, de R$ 80.000,00",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000019/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 80000.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
+   "cnpj": "17763824000116",
+   "razao": "TECHNO MOTION SIMULADORES E SOLUCOES INTERATIVAS LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada TECHNO MOTION SIMULADORES E SOLUCOES INTERATIVAS LTDA (17763824000116) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 28/05/2024 no ramo do objeto; contrato 22616136000163-2-000006/2024, de R$ 56.000,00",
+     "mes": "2024-06",
+     "contratos": [
+      "22616136000163-2-000006/2024"
+     ],
+     "orgao": "22616136000163",
+     "valor": 56000.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "17771867000143",
@@ -22453,6 +23559,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "19140331000155",
+   "razao": "3S SECURITY TECNOLOGIA SEGURANCA E SERVICOS LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada 3S SECURITY TECNOLOGIA SEGURANCA E SERVICOS LTDA (19140331000155) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 29/05/2024 no ramo informática; contrato 22616136000163-2-000004/2024, de R$ 3.065,00",
+     "mes": "2024-06",
+     "contratos": [
+      "22616136000163-2-000004/2024"
+     ],
+     "orgao": "22616136000163",
+     "valor": 3065.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "19240149000176",
    "razao": "MARIA BRETAS INSTRUTORIA E CONSULTORIA LTDA",
    "abertura": "2013-11-11",
@@ -22561,6 +23696,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "19286679000155",
+   "razao": "AUDAZ SERVICOS E COMERCIO LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada AUDAZ SERVICOS E COMERCIO LTDA (19286679000155) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 08/07/2024 no ramo do objeto; contrato 22616136000163-2-000011/2024, de R$ 24.335,00",
+     "mes": "2024-07",
+     "contratos": [
+      "22616136000163-2-000011/2024"
+     ],
+     "orgao": "22616136000163",
+     "valor": 24335.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "19357379000110",
@@ -23860,6 +25024,47 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "21183741000125",
+   "razao": "AYER FELIPE DE FARIA NETO",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sancionada",
+     "titulo": "Contratada impedida ou sancionada na data do contrato",
+     "gravidade": "critica",
+     "texto": "a contratada AYER FELIPE DE FARIA NETO (21183741000125) consta no CEIS (Impedimento/proibição de contratar com prazo determinado, Câmara Municipal de Uberlândia - MG; de 26/03/2024 a 26/03/2027) na data da assinatura do contrato 04973965000111-2-000042/2024, assinado em 07/08/2024",
+     "mes": "2024-10",
+     "contratos": [
+      "04973965000111-2-000042/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 23540.92
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada AYER FELIPE DE FARIA NETO (21183741000125) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 07/08/2024 no ramo gráfica e divulgação; contrato 04973965000111-2-000042/2024, de R$ 23.540,92",
+     "mes": "2024-10",
+     "contratos": [
+      "04973965000111-2-000042/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 23540.92
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "21271706000168",
    "razao": "COOPERATIVA MISTA DA AGRICULTURA FAMILIAR DO MEIO AMBIENTE E DA CULTURA DO BRASIL - COOPBRASIL",
    "abertura": "2014-10-22",
@@ -24194,6 +25399,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "21719833000187",
+   "razao": "IMOBILIARIA CASA REAL",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada IMOBILIARIA CASA REAL (21719833000187) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 30/11/2023 no ramo locação de imóvel; contrato 04973965000111-2-000002/2023, de R$ 360.000,00",
+     "mes": "2024-04",
+     "contratos": [
+      "04973965000111-2-000002/2023"
+     ],
+     "orgao": "04973965000111",
+     "valor": 360000.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "21801980000100",
    "razao": "LOCMAQ LOCADORA DE MAQUINAS LTDA",
    "abertura": "1980-10-07",
@@ -24244,6 +25478,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "21883166000173",
+   "razao": "MERITO BRINDES E PREMIACOES - LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada MERITO BRINDES E PREMIACOES - LTDA (21883166000173) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 05/08/2024 no ramo do objeto; contrato 00001727000193-2-000007/2024, de R$ 317.579,59",
+     "mes": "2024-08",
+     "contratos": [
+      "00001727000193-2-000007/2024"
+     ],
+     "orgao": "00001727000193",
+     "valor": 317579.59
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "21895553000120",
@@ -24831,6 +26094,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "22622371000148",
+   "razao": "ANA CAROLINA THOME PIRES",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada ANA CAROLINA THOME PIRES (22622371000148) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 25/10/2023 no ramo do objeto; contrato 04973965000111-2-000008/2023, de R$ 15.000,00",
+     "mes": "2024-05",
+     "contratos": [
+      "04973965000111-2-000008/2023"
+     ],
+     "orgao": "04973965000111",
+     "valor": 15000.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "22644513000178",
    "razao": "SAM BUSINESS LTDA",
    "abertura": "2015-06-12",
@@ -25324,6 +26616,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "23684531000146",
+   "razao": "MS EVENTOS LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada MS EVENTOS LTDA (23684531000146) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 05/06/2024 no ramo do objeto; contrato 00001727000193-2-000002/2024, de R$ 10.080,00",
+     "mes": "2024-06",
+     "contratos": [
+      "00001727000193-2-000002/2024"
+     ],
+     "orgao": "00001727000193",
+     "valor": 10080.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "23704274000167",
    "razao": "MC SANTOS COMERCIO DE LUMINARIAS",
    "abertura": "2015-11-20",
@@ -25338,6 +26659,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "23758652000195",
+   "razao": "INFOQ CURSOS ONLINE",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada INFOQ CURSOS ONLINE (23758652000195) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 20/02/2024 no ramo capacitação; contrato 04973965000111-2-000009/2023, de R$ 20.000,00",
+     "mes": "2024-05",
+     "contratos": [
+      "04973965000111-2-000009/2023"
+     ],
+     "orgao": "04973965000111",
+     "valor": 20000.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "23829339000109",
@@ -25671,6 +27021,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "24401032000167",
+   "razao": "E BOX HOSPITALAR COMERCIO E REPRESENTACOES LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada E BOX HOSPITALAR COMERCIO E REPRESENTACOES LTDA (24401032000167) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 09/04/2024 no ramo material médico-hospitalar; contrato 25141524000123-2-000002/2024, de R$ 281.970,00",
+     "mes": "2024-04",
+     "contratos": [
+      "25141524000123-2-000002/2024"
+     ],
+     "orgao": "25141524000123",
+     "valor": 281970.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "24407767000106",
    "razao": "LED ELETRICA BRASIL LTDA",
    "abertura": "2016-03-17",
@@ -25743,6 +27122,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "24514438000156",
+   "razao": "CAMILLA DALL IGNA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada CAMILLA DALL IGNA (24514438000156) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 11/06/2024 no ramo do objeto; contrato 22616136000163-2-000005/2024, de R$ 2.313,00",
+     "mes": "2024-06",
+     "contratos": [
+      "22616136000163-2-000005/2024"
+     ],
+     "orgao": "22616136000163",
+     "valor": 2313.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "24675507000103",
@@ -26143,6 +27551,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "25105289000134",
+   "razao": "ROTARY CLUB DE GOIANIA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada ROTARY CLUB DE GOIANIA (25105289000134) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 27/09/2024 no ramo do objeto; contrato 04973965000111-2-000041/2024, de R$ 1.242.660,00",
+     "mes": "2024-10",
+     "contratos": [
+      "04973965000111-2-000041/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 1242660.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "25123662000180",
@@ -27055,26 +28492,38 @@
     }
    ],
    "sancoes": [],
-   "contratos": 1,
+   "contratos": 2,
    "cadastro": true,
    "alertas": [
     {
      "tipo": "endereco_residencial",
      "titulo": "Contratada sediada em endereço residencial ou virtual",
      "gravidade": "media",
-     "texto": "a sede da contratada ALTTEC ELEVADORES LTDA (CNPJ 26307203000119) tem indício de endereço residencial (AVENIDA W 1, SN, QUADRA046 LOTE 0005 CASA 2, PAPILLON PARK - COMPLEMENTO, 74950200, APARECIDA DE GOIANIA, GO); contrato 04973965000111-2-000002/2021, de R$ 15.659,04",
-     "mes": "2025-01",
+     "texto": "a sede da contratada ALTTEC ELEVADORES LTDA (CNPJ 26307203000119) tem indício de endereço residencial (AVENIDA W 1, SN, QUADRA046 LOTE 0005 CASA 2, PAPILLON PARK - COMPLEMENTO, 74950200, APARECIDA DE GOIANIA, GO); contrato 04973965000111-2-000001/2021, de R$ 14.988,00",
+     "mes": "2024-04",
      "contratos": [
-      "04973965000111-2-000002/2021"
+      "04973965000111-2-000001/2021"
      ],
      "orgao": "04973965000111",
-     "valor": 15659.04
+     "valor": 14988.0
     },
     {
      "tipo": "sem_experiencia",
      "titulo": "Contratada sem experiência registrada no objeto",
      "gravidade": "media",
-     "texto": "a contratada ALTTEC ELEVADORES LTDA (26307203000119) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 17/01/2025 no ramo do objeto; contrato 04973965000111-2-000002/2021, de R$ 15.659,04",
+     "texto": "a contratada ALTTEC ELEVADORES LTDA (26307203000119) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 14/11/2023 no ramo do objeto; contrato 04973965000111-2-000001/2021, de R$ 14.988,00",
+     "mes": "2024-04",
+     "contratos": [
+      "04973965000111-2-000001/2021"
+     ],
+     "orgao": "04973965000111",
+     "valor": 14988.0
+    },
+    {
+     "tipo": "endereco_residencial",
+     "titulo": "Contratada sediada em endereço residencial ou virtual",
+     "gravidade": "media",
+     "texto": "a sede da contratada ALTTEC ELEVADORES LTDA (CNPJ 26307203000119) tem indício de endereço residencial (AVENIDA W 1, SN, QUADRA046 LOTE 0005 CASA 2, PAPILLON PARK - COMPLEMENTO, 74950200, APARECIDA DE GOIANIA, GO); contrato 04973965000111-2-000002/2021, de R$ 15.659,04",
      "mes": "2025-01",
      "contratos": [
       "04973965000111-2-000002/2021"
@@ -27243,7 +28692,7 @@
     }
    ],
    "sancoes": [],
-   "contratos": 6,
+   "contratos": 7,
    "cadastro": true,
    "alertas": [
     {
@@ -28503,7 +29952,7 @@
     }
    ],
    "sancoes": [],
-   "contratos": 1,
+   "contratos": 2,
    "cadastro": true,
    "alertas": [
     {
@@ -28569,6 +30018,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "27957392000138",
+   "razao": "S M LOPES",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada S M LOPES (27957392000138) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 04/03/2024 no ramo do objeto; contrato 22616136000163-2-000010/2024, de R$ 3.000,00",
+     "mes": "2024-07",
+     "contratos": [
+      "22616136000163-2-000010/2024"
+     ],
+     "orgao": "22616136000163",
+     "valor": 3000.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "28028063000175",
@@ -29616,6 +31094,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "29003455000142",
+   "razao": "FGP SOLUTIONS LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada FGP SOLUTIONS LTDA (29003455000142) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/07/2024 no ramo do objeto; contrato 04973965000111-2-000023/2024, de R$ 2.172,00",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000023/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 2172.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "29024588000103",
    "razao": "EXCELLENCE COLORS LTDA",
    "abertura": "2017-11-08",
@@ -29808,26 +31315,50 @@
     }
    ],
    "sancoes": [],
-   "contratos": 6,
+   "contratos": 8,
    "cadastro": true,
    "alertas": [
     {
      "tipo": "capital_baixo",
      "titulo": "Capital social incompatível com o valor do contrato",
      "gravidade": "alta",
-     "texto": "a contratada ASSOCIACAO BRASILEIRA DE INSTITUICOES DE PREVIDENCIA ESTADUAIS E MUNICIPAIS-ABIP (CNPJ 29184280000117) tem capital social de R$ 0,00, 0.0% do contrato 08948407000157-2-000001/2025 (R$ 4.750,00), abaixo de 10%",
-     "mes": "2025-03",
+     "texto": "a contratada ASSOCIACAO BRASILEIRA DE INSTITUICOES DE PREVIDENCIA ESTADUAIS E MUNICIPAIS-ABIP (CNPJ 29184280000117) tem capital social de R$ 0,00, 0.0% do contrato 08948407000157-2-000003/2024 (R$ 3.800,00), abaixo de 10%",
+     "mes": "2024-06",
      "contratos": [
-      "08948407000157-2-000001/2025"
+      "08948407000157-2-000003/2024"
      ],
      "orgao": "08948407000157",
-     "valor": 4750.0
+     "valor": 3800.0
     },
     {
      "tipo": "sem_experiencia",
      "titulo": "Contratada sem experiência registrada no objeto",
      "gravidade": "media",
-     "texto": "a contratada ASSOCIACAO BRASILEIRA DE INSTITUICOES DE PREVIDENCIA ESTADUAIS E MUNICIPAIS-ABIP (29184280000117) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 25/02/2025 no ramo do objeto; contrato 08948407000157-2-000001/2025, de R$ 4.750,00",
+     "texto": "a contratada ASSOCIACAO BRASILEIRA DE INSTITUICOES DE PREVIDENCIA ESTADUAIS E MUNICIPAIS-ABIP (29184280000117) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 19/06/2024 no ramo do objeto; contrato 08948407000157-2-000003/2024, de R$ 3.800,00",
+     "mes": "2024-06",
+     "contratos": [
+      "08948407000157-2-000003/2024"
+     ],
+     "orgao": "08948407000157",
+     "valor": 3800.0
+    },
+    {
+     "tipo": "capital_baixo",
+     "titulo": "Capital social incompatível com o valor do contrato",
+     "gravidade": "alta",
+     "texto": "a contratada ASSOCIACAO BRASILEIRA DE INSTITUICOES DE PREVIDENCIA ESTADUAIS E MUNICIPAIS-ABIP (CNPJ 29184280000117) tem capital social de R$ 0,00, 0.0% do contrato 08948407000157-2-000005/2024 (R$ 20.900,00), abaixo de 10%",
+     "mes": "2024-07",
+     "contratos": [
+      "08948407000157-2-000005/2024"
+     ],
+     "orgao": "08948407000157",
+     "valor": 20900.0
+    },
+    {
+     "tipo": "capital_baixo",
+     "titulo": "Capital social incompatível com o valor do contrato",
+     "gravidade": "alta",
+     "texto": "a contratada ASSOCIACAO BRASILEIRA DE INSTITUICOES DE PREVIDENCIA ESTADUAIS E MUNICIPAIS-ABIP (CNPJ 29184280000117) tem capital social de R$ 0,00, 0.0% do contrato 08948407000157-2-000001/2025 (R$ 4.750,00), abaixo de 10%",
      "mes": "2025-03",
      "contratos": [
       "08948407000157-2-000001/2025"
@@ -30822,6 +32353,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "30215009000180",
+   "razao": "BONERY CONFECCOES E COMERCIO DE BONES LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada BONERY CONFECCOES E COMERCIO DE BONES LTDA (30215009000180) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 23/03/2024 no ramo vestuário; contrato 04973965000111-2-000005/2024, de R$ 1.200,00",
+     "mes": "2024-07",
+     "contratos": [
+      "04973965000111-2-000005/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 1200.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "30244228000198",
    "razao": "ZADE SHOWS GRAVACOES E EDICOES MUSICAIS LTDA",
    "abertura": "2018-04-19",
@@ -31508,6 +33068,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "31498492000110",
+   "razao": "MC EMPREENDIMENTOS S/A",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada MC EMPREENDIMENTOS S/A (31498492000110) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 30/08/2024 no ramo alimentação; contrato 04973965000111-2-000022/2024, de R$ 625.608,00",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000022/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 625608.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "31499939000176",
    "razao": "M.K.R. COMERCIO DE EQUIPAMENTOS LTDA",
    "abertura": "2018-09-13",
@@ -31720,6 +33309,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "31694545000179",
+   "razao": "KEEPCARE EQUIPAMENTOS E PRODUTOS MEDICOS LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada KEEPCARE EQUIPAMENTOS E PRODUTOS MEDICOS LTDA (31694545000179) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 09/05/2024 no ramo do objeto; contrato 25141524000123-2-000003/2024, de R$ 400,00",
+     "mes": "2024-05",
+     "contratos": [
+      "25141524000123-2-000003/2024"
+     ],
+     "orgao": "25141524000123",
+     "valor": 400.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "31699138000154",
    "razao": "JORNADA EDUC LTDA",
    "abertura": "2018-10-05",
@@ -31788,6 +33406,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "31781845000195",
+   "razao": "SEJA EMPREENDIMENTOS LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada SEJA EMPREENDIMENTOS LTDA (31781845000195) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 25/03/2024 no ramo vestuário; contrato 04973965000111-2-000015/2023, de R$ 8.750,80",
+     "mes": "2024-07",
+     "contratos": [
+      "04973965000111-2-000015/2023"
+     ],
+     "orgao": "04973965000111",
+     "valor": 8750.8
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "31913721000116",
@@ -32118,6 +33765,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "32337256000185",
+   "razao": "INCLUTOPIA - CONTEUDO E INFORMACAO EM INCLUSAO ESCOLAR LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada INCLUTOPIA - CONTEUDO E INFORMACAO EM INCLUSAO ESCOLAR LTDA (32337256000185) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 30/07/2024 no ramo do objeto; contrato 04973965000111-2-000008/2024, de R$ 15.000,00",
+     "mes": "2024-08",
+     "contratos": [
+      "04973965000111-2-000008/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 15000.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "32377952000115",
    "razao": "SIMONE MENDES PRODUCOES MUSICAIS LTDA",
    "abertura": "2019-01-08",
@@ -32224,6 +33900,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "32649200000166",
+   "razao": "RP INFLUENCER TRAVEL LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada RP INFLUENCER TRAVEL LTDA (32649200000166) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 03/07/2024 no ramo do objeto; contrato 22616136000163-2-000007/2024, de R$ 71.800,00",
+     "mes": "2024-07",
+     "contratos": [
+      "22616136000163-2-000007/2024"
+     ],
+     "orgao": "22616136000163",
+     "valor": 71800.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "32691514000127",
@@ -32846,20 +34551,20 @@
     }
    ],
    "sancoes": [],
-   "contratos": 3,
+   "contratos": 4,
    "cadastro": true,
    "alertas": [
     {
      "tipo": "sem_experiencia",
      "titulo": "Contratada sem experiência registrada no objeto",
      "gravidade": "media",
-     "texto": "a contratada IBM BRASIL-INDUSTRIA MAQUINAS E SERVICOS LIMITADA (33372251006278) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 21/02/2025 no ramo informática; contrato 40475427000160-2-000006/2024, de R$ 124.294,08",
-     "mes": "2025-05",
+     "texto": "a contratada IBM BRASIL-INDUSTRIA MAQUINAS E SERVICOS LIMITADA (33372251006278) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 17/05/2024 no ramo informática; contrato 40475427000160-2-000003/2024, de R$ 117.792,24",
+     "mes": "2024-05",
      "contratos": [
-      "40475427000160-2-000006/2024"
+      "40475427000160-2-000003/2024"
      ],
      "orgao": "40475427000160",
-     "valor": 124294.08
+     "valor": 117792.24
     }
    ],
    "url": "",
@@ -33307,7 +35012,7 @@
     }
    ],
    "sancoes": [],
-   "contratos": 1,
+   "contratos": 2,
    "cadastro": true,
    "alertas": [
     {
@@ -33321,6 +35026,18 @@
      ],
      "orgao": "25141524000123",
      "valor": 242475.0
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada RR COMERCIO DE MEDICAMENTOS LTDA (33781677000244) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 24/11/2026 no ramo medicamentos; contrato 25141524000123-2-001073/2026, de R$ 378.200,00",
+     "mes": "2026-11",
+     "contratos": [
+      "25141524000123-2-001073/2026"
+     ],
+     "orgao": "25141524000123",
+     "valor": 378200.0
     }
    ],
    "url": "",
@@ -33810,6 +35527,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "34565467000109",
+   "razao": "I C S PLENARIO COMERCIO E SERVICO LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada I C S PLENARIO COMERCIO E SERVICO LTDA (34565467000109) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 24/07/2024 no ramo mobiliário e eletro; contrato 00001727000193-2-000005/2024, de R$ 67.840,00",
+     "mes": "2024-07",
+     "contratos": [
+      "00001727000193-2-000005/2024"
+     ],
+     "orgao": "00001727000193",
+     "valor": 67840.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "34624741000165",
    "razao": "OS BAROES DA PISADINHA PRODUCAO MUSICAL LTDA",
    "abertura": "2019-08-22",
@@ -34197,6 +35943,64 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "35558526000176",
+   "razao": "JANUARIA DE CAMPOS GODOY CRISTINO OGATA ***.268.388-**",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada JANUARIA DE CAMPOS GODOY CRISTINO OGATA ***.268.388-** (35558526000176) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 06/11/2023 no ramo do objeto; contrato 04973965000111-2-000016/2023, de R$ 5.250,00",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000016/2023"
+     ],
+     "orgao": "04973965000111",
+     "valor": 5250.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
+   "cnpj": "35634629000178",
+   "razao": "XP EVENTOS LTDA.",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada XP EVENTOS LTDA. (35634629000178) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 27/08/2024 no ramo do objeto; contrato 08948407000157-2-000009/2024, de R$ 4.587,00",
+     "mes": "2024-08",
+     "contratos": [
+      "08948407000157-2-000009/2024"
+     ],
+     "orgao": "08948407000157",
+     "valor": 4587.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "35720476000181",
@@ -35926,6 +37730,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "37201772000100",
+   "razao": "VIDOR & HEINECKE REPRESENTACOES COMERCIAIS LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada VIDOR & HEINECKE REPRESENTACOES COMERCIAIS LTDA (37201772000100) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/07/2024 no ramo do objeto; contrato 04973965000111-2-000040/2024, de R$ 300,00",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000040/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 300.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "37264695000129",
@@ -37966,6 +39799,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "40618304000131",
+   "razao": "FOCCUS DISTRIBUIDORA DE EQUIPAMENTOS LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada FOCCUS DISTRIBUIDORA DE EQUIPAMENTOS LTDA (40618304000131) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 06/03/2024 no ramo do objeto; contrato 25141524000123-2-000020/2024, de R$ 30.000,00",
+     "mes": "2024-05",
+     "contratos": [
+      "25141524000123-2-000020/2024"
+     ],
+     "orgao": "25141524000123",
+     "valor": 30000.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "40649293000157",
    "razao": "FULL MED COMERCIO DE PRODUTOS MEDICO HOSPITALARES LTDA",
    "abertura": "2021-02-01",
@@ -38285,20 +40147,20 @@
     }
    ],
    "sancoes": [],
-   "contratos": 2,
+   "contratos": 3,
    "cadastro": true,
    "alertas": [
     {
      "tipo": "sem_experiencia",
      "titulo": "Contratada sem experiência registrada no objeto",
      "gravidade": "media",
-     "texto": "a contratada PERFORMANCE LTDA (41125556000191) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 11/03/2026 no ramo capacitação; contrato 08948407000157-2-000005/2026, de R$ 157.500,00",
-     "mes": "2026-03",
+     "texto": "a contratada PERFORMANCE LTDA (41125556000191) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 07/06/2024 no ramo capacitação; contrato 08948407000157-2-000002/2024, de R$ 19.600,00",
+     "mes": "2024-06",
      "contratos": [
-      "08948407000157-2-000005/2026"
+      "08948407000157-2-000002/2024"
      ],
      "orgao": "08948407000157",
-     "valor": 157500.0
+     "valor": 19600.0
     }
    ],
    "url": "",
@@ -38380,6 +40242,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "41213717000107",
+   "razao": "J DE OLIVEIRA SANTOS - DISTRIBUIDORA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada J DE OLIVEIRA SANTOS - DISTRIBUIDORA (41213717000107) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 19/06/2024 no ramo do objeto; contrato 08948407000157-2-000001/2021, de R$ 40.800,00",
+     "mes": "2024-06",
+     "contratos": [
+      "08948407000157-2-000001/2021"
+     ],
+     "orgao": "08948407000157",
+     "valor": 40800.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "41214756000110",
@@ -39275,7 +41166,7 @@
     }
    ],
    "sancoes": [],
-   "contratos": 2,
+   "contratos": 3,
    "cadastro": true,
    "alertas": [
     {
@@ -39428,9 +41319,21 @@
     }
    ],
    "sancoes": [],
-   "contratos": 5,
+   "contratos": 6,
    "cadastro": true,
    "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada CAFE COLISEU LTDA (42619993000124) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 22/07/2024 no ramo do objeto; contrato 04973965000111-2-000009/2024, de R$ 54.000,00",
+     "mes": "2024-08",
+     "contratos": [
+      "04973965000111-2-000009/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 54000.0
+    },
     {
      "tipo": "sancionada",
      "titulo": "Contratada impedida ou sancionada na data do contrato",
@@ -39711,6 +41614,47 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "42689754000140",
+   "razao": "YETKI MED IMPORTACAO, EXPORTACAO E DISTRIBUICAO LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 2,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada YETKI MED IMPORTACAO, EXPORTACAO E DISTRIBUICAO LTDA (42689754000140) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/04/2024 no ramo medicamentos; contrato 25141524000123-2-000019/2024, de R$ 1.066.800,00",
+     "mes": "2024-05",
+     "contratos": [
+      "25141524000123-2-000019/2024"
+     ],
+     "orgao": "25141524000123",
+     "valor": 1066800.0
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada YETKI MED IMPORTACAO, EXPORTACAO E DISTRIBUICAO LTDA (42689754000140) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 03/06/2024 no ramo do objeto; contrato 25141524000123-2-000021/2024, de R$ 5.520.000,00",
+     "mes": "2024-06",
+     "contratos": [
+      "25141524000123-2-000021/2024"
+     ],
+     "orgao": "25141524000123",
+     "valor": 5520000.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "42753718000107",
@@ -40387,6 +42331,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "43605176000180",
+   "razao": "VALERIA PASETCHNY ASSESSORIA PEDAGOGICA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada VALERIA PASETCHNY ASSESSORIA PEDAGOGICA (43605176000180) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 26/10/2023 no ramo consultoria e auditoria; contrato 04973965000111-2-000014/2023, de R$ 7.800,00",
+     "mes": "2024-06",
+     "contratos": [
+      "04973965000111-2-000014/2023"
+     ],
+     "orgao": "04973965000111",
+     "valor": 7800.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "43640754000119",
    "razao": "FUNDACAO PARA O REMEDIO POPULAR FURP",
    "abertura": "1973-04-04",
@@ -40728,6 +42701,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "43891754000191",
+   "razao": "MAIA MULTI SOLUCOES E PRODUTOS LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada MAIA MULTI SOLUCOES E PRODUTOS LTDA (43891754000191) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/07/2024 no ramo do objeto; contrato 04973965000111-2-000031/2024, de R$ 4.276,50",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000031/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 4276.5
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "43892634000109",
@@ -41461,6 +43463,47 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "44387711000136",
+   "razao": "3PH MEDICAMENTOS ESPECIAIS LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 2,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada 3PH MEDICAMENTOS ESPECIAIS LTDA (44387711000136) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 10/10/2024 no ramo do objeto; contrato 25141524000123-2-000027/2024, de R$ 325,88",
+     "mes": "2024-10",
+     "contratos": [
+      "25141524000123-2-000027/2024"
+     ],
+     "orgao": "25141524000123",
+     "valor": 325.88
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada 3PH MEDICAMENTOS ESPECIAIS LTDA (44387711000136) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 10/10/2024 no ramo do objeto; contrato 25141524000123-2-000028/2024, de R$ 7.626,00",
+     "mes": "2024-10",
+     "contratos": [
+      "25141524000123-2-000028/2024"
+     ],
+     "orgao": "25141524000123",
+     "valor": 7626.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "44420375000186",
    "razao": "AJ COMERCIO DE PRODUTOS LTDA",
    "abertura": "2021-11-30",
@@ -41508,6 +43551,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "44581125000128",
+   "razao": "SALVEFLASH SERVICOS DE REMOCAO E EVENTOS LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada SALVEFLASH SERVICOS DE REMOCAO E EVENTOS LTDA (44581125000128) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 06/09/2024 no ramo material médico-hospitalar; contrato 00001727000193-2-000010/2024, de R$ 27.500,00",
+     "mes": "2024-09",
+     "contratos": [
+      "00001727000193-2-000010/2024"
+     ],
+     "orgao": "00001727000193",
+     "valor": 27500.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "44656846000150",
    "razao": "DF MEDICAL LTDA",
    "abertura": "2021-12-22",
@@ -41553,6 +43625,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "44710095000102",
+   "razao": "44.710.095 TARCISIO ALVES DA SILVA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada 44.710.095 TARCISIO ALVES DA SILVA (44710095000102) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 27/06/2024 no ramo mobiliário e eletro; contrato 04973965000111-2-000016/2024, de R$ 17.010,00",
+     "mes": "2024-08",
+     "contratos": [
+      "04973965000111-2-000016/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 17010.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "44718705000114",
@@ -42074,6 +44175,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "45149571000120",
+   "razao": "YRLEY BARBOSA DA SILVA LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada YRLEY BARBOSA DA SILVA LTDA (45149571000120) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 17/07/2024 no ramo mobiliário e eletro; contrato 04973965000111-2-000010/2024, de R$ 20.700,00",
+     "mes": "2024-08",
+     "contratos": [
+      "04973965000111-2-000010/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 20700.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "45188333000124",
@@ -42609,6 +44739,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "45988351000190",
+   "razao": "AMG VAREJO LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada AMG VAREJO LTDA (45988351000190) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/07/2024 no ramo do objeto; contrato 04973965000111-2-000028/2024, de R$ 548,55",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000028/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 548.55
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "46022535000164",
    "razao": "GSAFI LTDA",
    "abertura": "2022-04-13",
@@ -43122,6 +45281,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "46423434000103",
+   "razao": "ATRIUM INDUSTRIA E COMERCIO DE FERRAGENS LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada ATRIUM INDUSTRIA E COMERCIO DE FERRAGENS LTDA (46423434000103) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 16/07/2024 no ramo do objeto; contrato 04973965000111-2-000024/2024, de R$ 1.491,20",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000024/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 1491.2
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "46452081000161",
    "razao": "DANIEL KIM COMERCIO DE ARTIGOS DE ILUMINACAO",
    "abertura": "2022-05-18",
@@ -43528,6 +45716,59 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "46980684000136",
+   "razao": "MEDGYN BRASIL DISTRIBUICAO LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 3,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada MEDGYN BRASIL DISTRIBUICAO LTDA (46980684000136) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 08/02/2024 no ramo do objeto; contrato 25141524000123-2-000004/2024, de R$ 47,00",
+     "mes": "2024-05",
+     "contratos": [
+      "25141524000123-2-000004/2024"
+     ],
+     "orgao": "25141524000123",
+     "valor": 47.0
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada MEDGYN BRASIL DISTRIBUICAO LTDA (46980684000136) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 08/02/2024 no ramo do objeto; contrato 25141524000123-2-000005/2024, de R$ 5.500,00",
+     "mes": "2024-05",
+     "contratos": [
+      "25141524000123-2-000005/2024"
+     ],
+     "orgao": "25141524000123",
+     "valor": 5500.0
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada MEDGYN BRASIL DISTRIBUICAO LTDA (46980684000136) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 08/02/2024 no ramo do objeto; contrato 25141524000123-2-000006/2024, de R$ 640.178,76",
+     "mes": "2024-05",
+     "contratos": [
+      "25141524000123-2-000006/2024"
+     ],
+     "orgao": "25141524000123",
+     "valor": 640178.76
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "47036211000148",
    "razao": "PREMIER HOSPITALAR IMPORTACAO E EXPORTACAO LTDA",
    "abertura": "2022-07-05",
@@ -43824,9 +46065,22 @@
     }
    ],
    "sancoes": [],
-   "contratos": 0,
+   "contratos": 1,
    "cadastro": true,
-   "alertas": [],
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada BRUNO COTRIM ENTERPRISES LTDA (47340729000170) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 08/05/2024 no ramo material de construção; contrato 17497764000137-2-000001/2024, de R$ 59.073,42",
+     "mes": "2024-08",
+     "contratos": [
+      "17497764000137-2-000001/2024"
+     ],
+     "orgao": "17497764000137",
+     "valor": 59073.42
+    }
+   ],
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
@@ -43977,7 +46231,7 @@
      "tipo": "sem_experiencia",
      "titulo": "Contratada sem experiência registrada no objeto",
      "gravidade": "media",
-     "texto": "a contratada VITOR HUGO ALVES DE SA ***.399.391-** (47397788000185) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 18/03/2025 no ramo do objeto; contrato 08948407000157-2-000002/2025, de R$ 18.320,00",
+     "texto": "a contratada VITOR HUGO ALVES DE SA 70839939124 (47397788000185) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 18/03/2025 no ramo do objeto; contrato 08948407000157-2-000002/2025, de R$ 18.320,00",
      "mes": "2025-03",
      "contratos": [
       "08948407000157-2-000002/2025"
@@ -44115,6 +46369,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "47597074000110",
+   "razao": "GATRIA COMERCIO VIRTUAL LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada GATRIA COMERCIO VIRTUAL LTDA (47597074000110) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/07/2024 no ramo do objeto; contrato 04973965000111-2-000037/2024, de R$ 15,50",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000037/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 15.5
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "47633263000100",
    "razao": "BENITESTEC LTDA",
    "abertura": "2022-08-18",
@@ -44230,6 +46513,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "47738061000114",
+   "razao": "BRUNA JOARA DURAND PINTO DE FARIAS",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada BRUNA JOARA DURAND PINTO DE FARIAS (47738061000114) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/07/2024 no ramo do objeto; contrato 04973965000111-2-000029/2024, de R$ 3.321,45",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000029/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 3321.45
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "47751826000156",
    "razao": "ELDER REGIS DEORATO MARQUES",
    "abertura": "2022-08-29",
@@ -44308,6 +46620,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "47761293000193",
+   "razao": "47.761.293 MATHEUS DIAS CARDOSO",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada 47.761.293 MATHEUS DIAS CARDOSO (47761293000193) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/07/2024 no ramo do objeto; contrato 04973965000111-2-000039/2024, de R$ 543,80",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000039/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 543.8
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "47968031000102",
    "razao": "PRO - SAUDE DIST LTDA",
    "abertura": "2022-09-15",
@@ -44341,6 +46682,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "48080526000155",
+   "razao": "48.080.526 VICTOR FABRICIO DOS SANTOS SILVA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada 48.080.526 VICTOR FABRICIO DOS SANTOS SILVA (48080526000155) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/07/2024 no ramo do objeto; contrato 04973965000111-2-000033/2024, de R$ 549,00",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000033/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 549.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "48156453000138",
@@ -45869,20 +48239,32 @@
     }
    ],
    "sancoes": [],
-   "contratos": 3,
+   "contratos": 4,
    "cadastro": true,
    "alertas": [
+    {
+     "tipo": "cnae_incompativel",
+     "titulo": "Atividade (CNAE) da contratada incompatível com o objeto",
+     "gravidade": "alta",
+     "texto": "o objeto do contrato 00001727000193-2-000013/2024 (PRESTAÇÃO DE SERVIÇOS DE MANUTENÇÃO, RECARGA E RECONDICIONAMENTO DE EXTINTORES DE INCÊNDIO DA CÂMARA MUNICIPAL DE GOIÂNIA, COM FORNECIMENTO DE PLACAS DE SINALIZ) é do ramo gráfica e divulgação, e nenhuma das 7 atividades da contratada GM EXTINTORES E EQUIPAMENTOS LTDA (CNPJ 49598304000191) corresponde a ele: 4322303, 3314710, 4321500, 4322301, 4329199, 4789099",
+     "mes": "2024-10",
+     "contratos": [
+      "00001727000193-2-000013/2024"
+     ],
+     "orgao": "00001727000193",
+     "valor": 6435.68
+    },
     {
      "tipo": "sem_experiencia",
      "titulo": "Contratada sem experiência registrada no objeto",
      "gravidade": "media",
-     "texto": "a contratada GM EXTINTORES E EQUIPAMENTOS LTDA (49598304000191) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 03/04/2025 no ramo do objeto; contrato 08948407000157-2-000004/2025, de R$ 2.801,84",
-     "mes": "2025-04",
+     "texto": "a contratada GM EXTINTORES E EQUIPAMENTOS LTDA (49598304000191) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 04/10/2024 no ramo gráfica e divulgação; contrato 00001727000193-2-000013/2024, de R$ 6.435,68",
+     "mes": "2024-10",
      "contratos": [
-      "08948407000157-2-000004/2025"
+      "00001727000193-2-000013/2024"
      ],
-     "orgao": "08948407000157",
-     "valor": 2801.84
+     "orgao": "00001727000193",
+     "valor": 6435.68
     }
    ],
    "url": "",
@@ -45932,6 +48314,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "49728772000133",
+   "razao": "SHOPINGA COMERCIO DE MATERIAIS E EQUIPAMENTOS LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada SHOPINGA COMERCIO DE MATERIAIS E EQUIPAMENTOS LTDA (49728772000133) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 22/07/2024 no ramo do objeto; contrato 04973965000111-2-000017/2024, de R$ 210.355,20",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000017/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 210355.2
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "49782327000151",
@@ -46183,6 +48594,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "50108189000109",
+   "razao": "50.108.189 SAMIR MARCOLA YOUSSEF EL OSSAIS",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada 50.108.189 SAMIR MARCOLA YOUSSEF EL OSSAIS (50108189000109) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/07/2024 no ramo do objeto; contrato 04973965000111-2-000030/2024, de R$ 170,00",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000030/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 170.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "50125687000160",
    "razao": "HEROS DEDETIZACAO LTDA",
    "abertura": "2023-03-29",
@@ -46254,9 +48694,21 @@
     }
    ],
    "sancoes": [],
-   "contratos": 3,
+   "contratos": 4,
    "cadastro": true,
    "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada PARAFUSOS.COM FERRAMENTAS E ACESSORIOS LTDA (50187999000106) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/04/2024 no ramo do objeto; contrato 04973965000111-2-000038/2024, de R$ 85,00",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000038/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 85.0
+    },
     {
      "tipo": "sancionada",
      "titulo": "Contratada impedida ou sancionada na data do contrato",
@@ -46331,6 +48783,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "50198461000199",
+   "razao": "PANCHESKI & VOINASKI LTDA.",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada PANCHESKI & VOINASKI LTDA. (50198461000199) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/07/2024 no ramo do objeto; contrato 04973965000111-2-000026/2024, de R$ 986,00",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000026/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 986.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "50210605000185",
@@ -46481,9 +48962,34 @@
     }
    ],
    "sancoes": [],
-   "contratos": 0,
+   "contratos": 1,
    "cadastro": true,
-   "alertas": [],
+   "alertas": [
+    {
+     "tipo": "razao_alterada",
+     "titulo": "Razão social da contratada trocada",
+     "gravidade": "media",
+     "texto": "o contrato 04973965000111-2-000034/2024 registra a contratada como \"50.247.448 ARTHUR DOS SANTOS COELHO\" e a Receita hoje como \"ASC COMERCIO E REPRESENTACAO LTDA\" (0% das palavras em comum)",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000034/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 701.4
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada 50.247.448 ARTHUR DOS SANTOS COELHO (50247448000182) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/07/2024 no ramo do objeto; contrato 04973965000111-2-000034/2024, de R$ 701,40",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000034/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 701.4
+    }
+   ],
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
@@ -46557,6 +49063,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "50295090000163",
+   "razao": "50.295.090 REGINALDO MUNIZ DE DEUS",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada 50.295.090 REGINALDO MUNIZ DE DEUS (50295090000163) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/07/2024 no ramo do objeto; contrato 04973965000111-2-000027/2024, de R$ 1.595,79",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000027/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 1595.79
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "50328590000154",
@@ -46669,6 +49204,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "50395682000157",
+   "razao": "PG MIX SOLUCOES EM LOCACAO PARA EVENTOS LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada PG MIX SOLUCOES EM LOCACAO PARA EVENTOS LTDA (50395682000157) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 05/02/2024 no ramo eventos; contrato 22616136000163-2-000001/2024, de R$ 29.993,60",
+     "mes": "2024-05",
+     "contratos": [
+      "22616136000163-2-000001/2024"
+     ],
+     "orgao": "22616136000163",
+     "valor": 29993.6
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "50424661000112",
@@ -46978,6 +49542,64 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "50827589000174",
+   "razao": "50.827.589 ANNA CLARA PINHEIRO RUFINO GOMES",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada 50.827.589 ANNA CLARA PINHEIRO RUFINO GOMES (50827589000174) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/07/2024 no ramo do objeto; contrato 04973965000111-2-000036/2024, de R$ 540,00",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000036/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 540.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
+   "cnpj": "50875450000104",
+   "razao": "ATLAS SOLUCOES EM NEGOCIOS LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada ATLAS SOLUCOES EM NEGOCIOS LTDA (50875450000104) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 01/08/2024 no ramo do objeto; contrato 25141524000123-2-000023/2024, de R$ 4.248,96",
+     "mes": "2024-08",
+     "contratos": [
+      "25141524000123-2-000023/2024"
+     ],
+     "orgao": "25141524000123",
+     "valor": 4248.96
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "51053659000147",
    "razao": "ROSA CAFE IMPORTS LTDA",
    "abertura": "2023-06-14",
@@ -47088,6 +49710,47 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "51069521000136",
+   "razao": "51.069.521 CARLOS PATRICK DE MELO",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 2,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada 51.069.521 CARLOS PATRICK DE MELO (51069521000136) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/07/2024 no ramo do objeto; contrato 04973965000111-2-000032/2024, de R$ 429,00",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000032/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 429.0
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada 51.069.521 CARLOS PATRICK DE MELO (51069521000136) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 15/07/2024 no ramo do objeto; contrato 04973965000111-2-000035/2024, de R$ 429,00",
+     "mes": "2024-09",
+     "contratos": [
+      "04973965000111-2-000035/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 429.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "51097157000118",
@@ -47349,6 +50012,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "51500217000100",
+   "razao": "LUCELIA MARIA COSTA BADAN",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada LUCELIA MARIA COSTA BADAN (51500217000100) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 26/09/2024 no ramo do objeto; contrato 00001727000193-2-000012/2024, de R$ 6.300,00",
+     "mes": "2024-10",
+     "contratos": [
+      "00001727000193-2-000012/2024"
+     ],
+     "orgao": "00001727000193",
+     "valor": 6300.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "51500311000150",
    "razao": "JOAO VITOR DE PAIVA BITTENCOURT LTDA",
    "abertura": "2023-07-20",
@@ -47425,9 +50117,34 @@
     }
    ],
    "sancoes": [],
-   "contratos": 0,
+   "contratos": 1,
    "cadastro": true,
-   "alertas": [],
+   "alertas": [
+    {
+     "tipo": "cnae_incompativel",
+     "titulo": "Atividade (CNAE) da contratada incompatível com o objeto",
+     "gravidade": "alta",
+     "texto": "o objeto do contrato 22616136000163-2-000013/2024 (aquisição de eletrodomésticos, com entrega única, visando atender as necessidades da AGENCIA MUNICIPAL DE TURISMO, EVENTOS E LAZER - AGETUL) é do ramo eventos, e nenhuma das 6 atividades da contratada F & K BRASIL LTDA (CNPJ 51607431000151) corresponde a ele: 4753900, 4751201, 4752100, 4754701, 4754703, 4789007",
+     "mes": "2024-08",
+     "contratos": [
+      "22616136000163-2-000013/2024"
+     ],
+     "orgao": "22616136000163",
+     "valor": 5033.9
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada F & K BRASIL LTDA (51607431000151) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 02/08/2024 no ramo eventos; contrato 22616136000163-2-000013/2024, de R$ 5.033,90",
+     "mes": "2024-08",
+     "contratos": [
+      "22616136000163-2-000013/2024"
+     ],
+     "orgao": "22616136000163",
+     "valor": 5033.9
+    }
+   ],
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
@@ -47774,6 +50491,47 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "51958702000113",
+   "razao": "JEMPS COMERCIAL LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 2,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada JEMPS COMERCIAL LTDA (51958702000113) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 02/10/2024 no ramo material médico-hospitalar; contrato 25141524000123-2-000025/2024, de R$ 53.900,00",
+     "mes": "2024-10",
+     "contratos": [
+      "25141524000123-2-000025/2024"
+     ],
+     "orgao": "25141524000123",
+     "valor": 53900.0
+    },
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada JEMPS COMERCIAL LTDA (51958702000113) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 01/10/2024 no ramo do objeto; contrato 25141524000123-2-000026/2024, de R$ 53.900,00",
+     "mes": "2024-10",
+     "contratos": [
+      "25141524000123-2-000026/2024"
+     ],
+     "orgao": "25141524000123",
+     "valor": 53900.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "51969698000199",
    "razao": "COMPACTO TECNOLOGIA DA INFORMACAO LTDA",
    "abertura": "2023-08-28",
@@ -47826,20 +50584,32 @@
     }
    ],
    "sancoes": [],
-   "contratos": 1,
+   "contratos": 2,
    "cadastro": true,
    "alertas": [
+    {
+     "tipo": "pouco_tempo",
+     "titulo": "Contratada com pouco tempo de funcionamento",
+     "gravidade": "media",
+     "texto": "a contratada S F LOCACOES, EVENTOS E ASSESSORIA LTDA (CNPJ 52016140000151) foi aberta em 30/08/2023 e tinha 9 meses de funcionamento ao assinar o contrato 04973965000111-2-000004/2024 em 27/06/2024, abaixo do mínimo de 12 meses",
+     "mes": "2024-07",
+     "contratos": [
+      "04973965000111-2-000004/2024"
+     ],
+     "orgao": "04973965000111",
+     "valor": 53946.0
+    },
     {
      "tipo": "sem_experiencia",
      "titulo": "Contratada sem experiência registrada no objeto",
      "gravidade": "media",
-     "texto": "a contratada S F LOCACOES, EVENTOS E ASSESSORIA LTDA (52016140000151) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 20/05/2025 no ramo eventos; contrato 04973965000111-2-000010/2025, de R$ 55.530,00",
-     "mes": "2025-05",
+     "texto": "a contratada S F LOCACOES, EVENTOS E ASSESSORIA LTDA (52016140000151) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 27/06/2024 no ramo eventos; contrato 04973965000111-2-000004/2024, de R$ 53.946,00",
+     "mes": "2024-07",
      "contratos": [
-      "04973965000111-2-000010/2025"
+      "04973965000111-2-000004/2024"
      ],
      "orgao": "04973965000111",
-     "valor": 55530.0
+     "valor": 53946.0
     }
    ],
    "url": "",
@@ -47867,6 +50637,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "52041275000177",
+   "razao": "CIDADES DO FUTURO LTDA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada CIDADES DO FUTURO LTDA (52041275000177) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 02/08/2024 no ramo capacitação; contrato 22616136000163-2-000012/2024, de R$ 17.500,00",
+     "mes": "2024-08",
+     "contratos": [
+      "22616136000163-2-000012/2024"
+     ],
+     "orgao": "22616136000163",
+     "valor": 17500.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "52097575000178",
@@ -48692,26 +51491,50 @@
     }
    ],
    "sancoes": [],
-   "contratos": 1,
+   "contratos": 2,
    "cadastro": true,
    "alertas": [
     {
      "tipo": "endereco_residencial",
      "titulo": "Contratada sediada em endereço residencial ou virtual",
      "gravidade": "media",
-     "texto": "a sede da contratada D S A CHAVES LTDA (CNPJ 53089257000128) tem indício de endereço residencial (RUA GREGORIO DE MATOS, 370, CASA 03 COND SAO LOURENCO I, SAO LOURENCO, 82200110, CURITIBA, PR); contrato 00001727000193-2-000042/2025, de R$ 11.999,90",
-     "mes": "2025-10",
+     "texto": "a sede da contratada D S A CHAVES LTDA (CNPJ 53089257000128) tem indício de endereço residencial (RUA GREGORIO DE MATOS, 370, CASA 03 COND SAO LOURENCO I, SAO LOURENCO, 82200110, CURITIBA, PR); contrato 00001727000193-2-000009/2024, de R$ 8.427,50",
+     "mes": "2024-08",
      "contratos": [
-      "00001727000193-2-000042/2025"
+      "00001727000193-2-000009/2024"
      ],
      "orgao": "00001727000193",
-     "valor": 11999.9
+     "valor": 8427.5
+    },
+    {
+     "tipo": "pouco_tempo",
+     "titulo": "Contratada com pouco tempo de funcionamento",
+     "gravidade": "media",
+     "texto": "a contratada D S A CHAVES LTDA (CNPJ 53089257000128) foi aberta em 04/12/2023 e tinha 8 meses de funcionamento ao assinar o contrato 00001727000193-2-000009/2024 em 14/08/2024, abaixo do mínimo de 12 meses",
+     "mes": "2024-08",
+     "contratos": [
+      "00001727000193-2-000009/2024"
+     ],
+     "orgao": "00001727000193",
+     "valor": 8427.5
     },
     {
      "tipo": "sem_experiencia",
      "titulo": "Contratada sem experiência registrada no objeto",
      "gravidade": "media",
-     "texto": "a contratada D S A CHAVES LTDA (53089257000128) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 06/10/2025 no ramo do objeto; contrato 00001727000193-2-000042/2025, de R$ 11.999,90",
+     "texto": "a contratada D S A CHAVES LTDA (53089257000128) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 14/08/2024 no ramo do objeto; contrato 00001727000193-2-000009/2024, de R$ 8.427,50",
+     "mes": "2024-08",
+     "contratos": [
+      "00001727000193-2-000009/2024"
+     ],
+     "orgao": "00001727000193",
+     "valor": 8427.5
+    },
+    {
+     "tipo": "endereco_residencial",
+     "titulo": "Contratada sediada em endereço residencial ou virtual",
+     "gravidade": "media",
+     "texto": "a sede da contratada D S A CHAVES LTDA (CNPJ 53089257000128) tem indício de endereço residencial (RUA GREGORIO DE MATOS, 370, CASA 03 COND SAO LOURENCO I, SAO LOURENCO, 82200110, CURITIBA, PR); contrato 00001727000193-2-000042/2025, de R$ 11.999,90",
      "mes": "2025-10",
      "contratos": [
       "00001727000193-2-000042/2025"
@@ -49369,6 +52192,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "53789577000190",
+   "razao": "53.789.577 DAVI HENRIQUE FERNANDES SANTOS",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada 53.789.577 DAVI HENRIQUE FERNANDES SANTOS (53789577000190) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 02/05/2024 no ramo eventos; contrato 22616136000163-2-000008/2024, de R$ 8.647,36",
+     "mes": "2024-07",
+     "contratos": [
+      "22616136000163-2-000008/2024"
+     ],
+     "orgao": "22616136000163",
+     "valor": 8647.36
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "53976974000171",
@@ -50577,6 +53429,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "55150907000129",
+   "razao": "55.150.907 RUTH ORRICO ROCHA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada 55.150.907 RUTH ORRICO ROCHA (55150907000129) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 05/06/2024 no ramo do objeto; contrato 00001727000193-2-000003/2024, de R$ 1.008,00",
+     "mes": "2024-06",
+     "contratos": [
+      "00001727000193-2-000003/2024"
+     ],
+     "orgao": "00001727000193",
+     "valor": 1008.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "55152280000145",
    "razao": "AUTOMEDICAL LTDA",
    "abertura": "2024-05-16",
@@ -51343,6 +54224,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "55863276000195",
+   "razao": "55.863.276 AMANDA ESTER ALVES DE MELO",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada 55.863.276 AMANDA ESTER ALVES DE MELO (55863276000195) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 01/10/2024 no ramo alimentação; contrato 08948407000157-2-000012/2024, de R$ 39.758,40",
+     "mes": "2024-10",
+     "contratos": [
+      "08948407000157-2-000012/2024"
+     ],
+     "orgao": "08948407000157",
+     "valor": 39758.4
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "55869857000134",
    "razao": "ASSOCIACAO DE MULHERES CAMPESINAS DA AGRICULTURA FAMILIAR EM EXPANSAO",
    "abertura": "2024-04-29",
@@ -51580,6 +54490,35 @@
    "url": "",
    "lido_em": "2026-11-28",
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
+  },
+  {
+   "cnpj": "55878509000123",
+   "razao": "55.878.509 REGIANE GONCALVES DA SILVA RODRIGUES",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada 55.878.509 REGIANE GONCALVES DA SILVA RODRIGUES (55878509000123) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 27/08/2024 no ramo eventos; contrato 22616136000163-2-000014/2024, de R$ 54.000,00",
+     "mes": "2024-08",
+     "contratos": [
+      "22616136000163-2-000014/2024"
+     ],
+     "orgao": "22616136000163",
+     "valor": 54000.0
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
   },
   {
    "cnpj": "55949416000142",
@@ -60133,6 +63072,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "86722394000107",
+   "razao": "LIONS CLUBE DE GOIANIA MARISTA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada LIONS CLUBE DE GOIANIA MARISTA (86722394000107) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 06/02/2024 no ramo locação de imóvel; contrato 04973965000111-2-000006/2023, de R$ 355.696,08",
+     "mes": "2024-05",
+     "contratos": [
+      "04973965000111-2-000006/2023"
+     ],
+     "orgao": "04973965000111",
+     "valor": 355696.08
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "93248979000100",
    "razao": "BIO MED PRODUTOS MEDICOS E HOSPITALARES LTDA",
    "abertura": "1990-01-18",
@@ -60242,6 +63210,35 @@
    "fonte_cadastro": "BrasilAPI (espelho dos dados abertos do CNPJ da Receita Federal)"
   },
   {
+   "cnpj": "97360895000107",
+   "razao": "IGREJA BATISTA NOVA ALIANCA",
+   "abertura": "",
+   "situacao": "",
+   "capital": null,
+   "cnae": "",
+   "socios": [],
+   "sancoes": [],
+   "contratos": 1,
+   "cadastro": false,
+   "alertas": [
+    {
+     "tipo": "sem_experiencia",
+     "titulo": "Contratada sem experiência registrada no objeto",
+     "gravidade": "media",
+     "texto": "a contratada IGREJA BATISTA NOVA ALIANCA (97360895000107) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 28/12/2022 no ramo locação de imóvel; contrato 04973965000111-2-000001/2022, de R$ 946.912,80",
+     "mes": "2024-05",
+     "contratos": [
+      "04973965000111-2-000001/2022"
+     ],
+     "orgao": "04973965000111",
+     "valor": 946912.8
+    }
+   ],
+   "url": "",
+   "lido_em": "",
+   "fonte_cadastro": ""
+  },
+  {
    "cnpj": "97533241000138",
    "razao": "M.H.M. DO COUTO - COMERCIAL LTDA",
    "abertura": "2011-07-07",
@@ -60278,26 +63275,38 @@
     }
    ],
    "sancoes": [],
-   "contratos": 10,
+   "contratos": 11,
    "cadastro": true,
    "alertas": [
     {
      "tipo": "endereco_residencial",
      "titulo": "Contratada sediada em endereço residencial ou virtual",
      "gravidade": "media",
-     "texto": "a sede da contratada JR AGUAS LTDA (CNPJ 97546623000104) tem indício de endereço residencial (AVENIDA TOPAZIO, 60, QUADRA23A LOTE 01, CONJ RESIDENCIAL ARUANA I, 74740070, GOIANIA, GO); contrato 00001727000193-2-000015/2025, de R$ 56.270,00",
-     "mes": "2025-04",
+     "texto": "a sede da contratada JR AGUAS LTDA (CNPJ 97546623000104) tem indício de endereço residencial (AVENIDA TOPAZIO, 60, QUADRA23A LOTE 01, CONJ RESIDENCIAL ARUANA I, 74740070, GOIANIA, GO); contrato 08948407000157-2-000010/2024, de R$ 2.322,00",
+     "mes": "2024-09",
      "contratos": [
-      "00001727000193-2-000015/2025"
+      "08948407000157-2-000010/2024"
      ],
-     "orgao": "00001727000193",
-     "valor": 56270.0
+     "orgao": "08948407000157",
+     "valor": 2322.0
     },
     {
      "tipo": "sem_experiencia",
      "titulo": "Contratada sem experiência registrada no objeto",
      "gravidade": "media",
-     "texto": "a contratada JR AGUAS LTDA (97546623000104) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 08/04/2025 no ramo água mineral; contrato 00001727000193-2-000015/2025, de R$ 56.270,00",
+     "texto": "a contratada JR AGUAS LTDA (97546623000104) não tem, no banco (contratos e itens do PNCP de todos os órgãos do Município desde 08/06/2022), nenhum contrato ou item ganho antes de 29/08/2024 no ramo água mineral; contrato 08948407000157-2-000010/2024, de R$ 2.322,00",
+     "mes": "2024-09",
+     "contratos": [
+      "08948407000157-2-000010/2024"
+     ],
+     "orgao": "08948407000157",
+     "valor": 2322.0
+    },
+    {
+     "tipo": "endereco_residencial",
+     "titulo": "Contratada sediada em endereço residencial ou virtual",
+     "gravidade": "media",
+     "texto": "a sede da contratada JR AGUAS LTDA (CNPJ 97546623000104) tem indício de endereço residencial (AVENIDA TOPAZIO, 60, QUADRA23A LOTE 01, CONJ RESIDENCIAL ARUANA I, 74740070, GOIANIA, GO); contrato 00001727000193-2-000015/2025, de R$ 56.270,00",
      "mes": "2025-04",
      "contratos": [
       "00001727000193-2-000015/2025"
@@ -60424,7 +63433,7 @@
    "tipo": "folha_ausente",
    "titulo": "Folha nominal dos servidores não disponível para o cruzamento",
    "gravidade": "media",
-   "texto": "a folha nominal dos servidores e agentes públicos do Município (nome, CPF, cargo e lotação) não está no banco; o cruzamento de 1126 contratos com o quadro societário das contratadas não pôde ser feito, e por isso nenhum sócio ou administrador servidor seria apontado mesmo que existisse",
+   "texto": "a folha nominal dos servidores e agentes públicos do Município (nome, CPF, cargo e lotação) não está no banco; o cruzamento de 1181 contratos com o quadro societário das contratadas não pôde ser feito, e por isso nenhum sócio ou administrador servidor seria apontado mesmo que existisse",
    "mes": "2026-11",
    "contratos": [],
    "orgao": "",

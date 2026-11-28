@@ -1,7 +1,19 @@
 {
- "intervalo": "2024-11 a 2026-11",
- "rodada": "2026-11-28T09:16:16+00:00",
+ "intervalo": "2023-11 a 2026-11",
+ "rodada": "2026-11-28T10:15:39+00:00",
  "meses": [
+  "2023-11",
+  "2023-12",
+  "2024-01",
+  "2024-02",
+  "2024-03",
+  "2024-04",
+  "2024-05",
+  "2024-06",
+  "2024-07",
+  "2024-08",
+  "2024-09",
+  "2024-10",
   "2024-11",
   "2024-12",
   "2025-01",
@@ -56,12 +68,12 @@
   {
    "motor": "economia_go",
    "nome": "Cota-parte do Estado (Secretaria da Economia de Goiás)",
-   "chamadas": 6,
-   "ok": 6,
+   "chamadas": 8,
+   "ok": 8,
    "falhas": 0,
-   "tentativas": 6,
+   "tentativas": 8,
    "http_429": 0,
-   "segundos": 43.4,
+   "segundos": 49.6,
    "erros": {}
   },
   {
@@ -78,12 +90,12 @@
   {
    "motor": "fnas",
    "nome": "Repasses federais (FNAS)",
-   "chamadas": 4,
-   "ok": 3,
+   "chamadas": 5,
+   "ok": 4,
    "falhas": 1,
-   "tentativas": 3,
+   "tentativas": 4,
    "http_429": 0,
-   "segundos": 98.2,
+   "segundos": 168.4,
    "erros": {
     "planilha do ano não publicada na página do FNAS": 1
    }
@@ -91,27 +103,27 @@
   {
    "motor": "fnde",
    "nome": "FNDE (liberações da educação)",
-   "chamadas": 1231,
-   "ok": 1231,
+   "chamadas": 1642,
+   "ok": 1642,
    "falhas": 0,
-   "tentativas": 1231,
+   "tentativas": 1642,
    "http_429": 0,
-   "segundos": 969.5,
+   "segundos": 1289.0,
    "erros": {}
   },
   {
    "motor": "fns",
    "nome": "Fundo Nacional de Saúde (repasses fundo a fundo)",
-   "chamadas": 77,
-   "ok": 53,
-   "falhas": 24,
-   "tentativas": 101,
+   "chamadas": 114,
+   "ok": 98,
+   "falhas": 16,
+   "tentativas": 130,
    "http_429": 0,
-   "segundos": 542.8,
+   "segundos": 689.5,
    "erros": {
-    "URLError: [Errno -2] Name or service not known": 12,
-    "HTTP 400: <html><head><title>JBWEB000065: HTTP Status 400 - </title><style><!--H1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} H2 {font-family:Tahoma,Arial,sans-ser": 9,
-    "HTTP 404: <html><head><title>JBWEB000065: HTTP Status 404 - /recursos/repasse-dia/consolidado</title><style><!--H1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} H2 {": 3
+    "URLError: [Errno -2] Name or service not known": 8,
+    "HTTP 400: <html><head><title>JBWEB000065: HTTP Status 400 - </title><style><!--H1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} H2 {font-family:Tahoma,Arial,sans-ser": 6,
+    "HTTP 404: <html><head><title>JBWEB000065: HTTP Status 404 - /recursos/repasse-dia/consolidado</title><style><!--H1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} H2 {": 2
    }
   },
   {
@@ -145,25 +157,25 @@
   {
    "motor": "msc",
    "nome": "Matriz de Saldos Contábeis (SICONFI)",
-   "chamadas": 24,
-   "ok": 24,
+   "chamadas": 36,
+   "ok": 36,
    "falhas": 0,
-   "tentativas": 24,
+   "tentativas": 36,
    "http_429": 0,
-   "segundos": 38.7,
+   "segundos": 61.6,
    "erros": {}
   },
   {
    "motor": "pncp",
    "nome": "Contratações (PNCP)",
-   "chamadas": 618,
-   "ok": 617,
-   "falhas": 1,
-   "tentativas": 668,
+   "chamadas": 1063,
+   "ok": 1026,
+   "falhas": 37,
+   "tentativas": 1078,
    "http_429": 0,
-   "segundos": 17295.3,
+   "segundos": 21399.7,
    "erros": {
-    "RemoteDisconnected: Remote end closed connection without response": 1
+    "não tentado: tempo do motor nesta rodada esgotado": 37
    }
   },
   {
@@ -180,12 +192,12 @@
   {
    "motor": "qd",
    "nome": "Diário Oficial pelo Querido Diário",
-   "chamadas": 50,
-   "ok": 0,
+   "chamadas": 74,
+   "ok": 24,
    "falhas": 50,
-   "tentativas": 18,
+   "tentativas": 44,
    "http_429": 0,
-   "segundos": 210.6,
+   "segundos": 319.6,
    "erros": {
     "não tentado: 6 falhas de rede seguidas nesta fonte": 44,
     "URLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] ssl/tls alert handshake failure (_ssl.c:1011)": 6
@@ -205,12 +217,12 @@
   {
    "motor": "siconfi",
    "nome": "SICONFI (Tesouro Nacional)",
-   "chamadas": 23,
-   "ok": 23,
+   "chamadas": 33,
+   "ok": 33,
    "falhas": 0,
-   "tentativas": 23,
+   "tentativas": 33,
    "http_429": 0,
-   "segundos": 5.9,
+   "segundos": 24.1,
    "erros": {}
   },
   {
@@ -223,18 +235,18 @@
    "http_429": 0,
    "segundos": 1.2,
    "erros": {
-    "HTTP 404": 2
+    "HTTP 404: <!DOCTYPE html> <html> <head>     <title>Azure Container App - Unavailable</title>     <style type=\"text/css\">         html {             height: 100%;             width: 100%;         }          #fea": 2
    }
   },
   {
    "motor": "sileg",
    "nome": "Diário Oficial pelo índice do SILEG",
-   "chamadas": 50,
-   "ok": 50,
+   "chamadas": 74,
+   "ok": 74,
    "falhas": 0,
-   "tentativas": 50,
+   "tentativas": 74,
    "http_429": 0,
-   "segundos": 15.9,
+   "segundos": 25.1,
    "erros": {}
   },
   {
@@ -262,12 +274,12 @@
   {
    "motor": "siope",
    "nome": "Demonstrativo da educação (SIOPE)",
-   "chamadas": 17,
-   "ok": 16,
+   "chamadas": 23,
+   "ok": 22,
    "falhas": 1,
-   "tentativas": 21,
+   "tentativas": 26,
    "http_429": 0,
-   "segundos": 266.6,
+   "segundos": 185.4,
    "erros": {
     "URLError: <urlopen error ftp error: error_perm('550 Failed to change directory.')>": 1
    }
@@ -275,12 +287,12 @@
   {
    "motor": "siops",
    "nome": "Demonstrativo da saúde (SIOPS)",
-   "chamadas": 20,
-   "ok": 20,
+   "chamadas": 25,
+   "ok": 25,
    "falhas": 0,
-   "tentativas": 20,
+   "tentativas": 25,
    "http_429": 0,
-   "segundos": 29.3,
+   "segundos": 38.9,
    "erros": {}
   },
   {
@@ -317,7 +329,7 @@
    "falhas": 2,
    "tentativas": 8,
    "http_429": 0,
-   "segundos": 243.0,
+   "segundos": 248.0,
    "erros": {
     "URLError: [Errno 104] Connection reset by peer": 2
    }
@@ -330,7 +342,7 @@
    "falhas": 12,
    "tentativas": 19,
    "http_429": 0,
-   "segundos": 225.6,
+   "segundos": 223.8,
    "erros": {
     "HTTP 503": 6,
     "não tentado: 6 falhas de rede seguidas nesta fonte": 6
@@ -339,33 +351,33 @@
   {
    "motor": "transferencias",
    "nome": "Transferências federais (Portal da Transparência)",
-   "chamadas": 24,
-   "ok": 24,
+   "chamadas": 36,
+   "ok": 36,
    "falhas": 0,
-   "tentativas": 24,
+   "tentativas": 36,
    "http_429": 0,
-   "segundos": 14.3,
+   "segundos": 39.8,
    "erros": {}
   }
  ],
  "contagens": {
-  "siconfi_itens": 28081,
+  "siconfi_itens": 42807,
   "siconfi_periodos": {
-   "entregue": 19,
+   "entregue": 29,
    "no prazo": 1
   },
   "edicoes_diario": {
-   "querido_diario": 0,
-   "sileg": 504
+   "querido_diario": 273,
+   "sileg": 771
   },
   "repasses_fnas": [
-   330,
-   17168303.62
+   506,
+   32634427.33
   ],
   "repasses_fnas_arquivo": 0,
   "contratacoes_pncp": 2328,
   "contratos_pncp": [
-   2118,
+   2263,
    61
   ],
   "fontes": [
@@ -373,19 +385,19 @@
    20
   ],
   "siops_bimestres": {
-   "homologado": 17
+   "homologado": 23
   },
   "siope_bimestres": {
-   "homologado": 16,
+   "homologado": 22,
    "no_prazo": 1
   },
   "transferencias_federais": [
-   24,
-   4075332863.33
+   36,
+   5963516140.09
   ],
   "msc_meses": [
-   24,
-   61032
+   36,
+   91647
   ],
   "transferencias_tesouro": [
    0,
@@ -393,6 +405,114 @@
   ]
  },
  "cobertura": {
+  "2023-11": {
+   "sileg": "✓",
+   "querido_diario": "✓",
+   "rreo": "✓",
+   "rgf": "✓",
+   "dca": "✓",
+   "fnas": "✓",
+   "pncp": "·"
+  },
+  "2023-12": {
+   "sileg": "✓",
+   "querido_diario": "✓",
+   "rreo": "✓",
+   "rgf": "✓",
+   "dca": "✓",
+   "fnas": "✓",
+   "pncp": "·"
+  },
+  "2024-01": {
+   "sileg": "✓",
+   "querido_diario": "✓",
+   "rreo": "✓",
+   "rgf": "✓",
+   "dca": "✓",
+   "fnas": "✓",
+   "pncp": "·"
+  },
+  "2024-02": {
+   "sileg": "✓",
+   "querido_diario": "✓",
+   "rreo": "✓",
+   "rgf": "✓",
+   "dca": "✓",
+   "fnas": "✓",
+   "pncp": "·"
+  },
+  "2024-03": {
+   "sileg": "✓",
+   "querido_diario": "✓",
+   "rreo": "✓",
+   "rgf": "✓",
+   "dca": "✓",
+   "fnas": "✓",
+   "pncp": "·"
+  },
+  "2024-04": {
+   "sileg": "✓",
+   "querido_diario": "✓",
+   "rreo": "✓",
+   "rgf": "✓",
+   "dca": "✓",
+   "fnas": "✓",
+   "pncp": "✓"
+  },
+  "2024-05": {
+   "sileg": "✓",
+   "querido_diario": "✓",
+   "rreo": "✓",
+   "rgf": "✓",
+   "dca": "✓",
+   "fnas": "✓",
+   "pncp": "✓"
+  },
+  "2024-06": {
+   "sileg": "✓",
+   "querido_diario": "✓",
+   "rreo": "✓",
+   "rgf": "✓",
+   "dca": "✓",
+   "fnas": "✓",
+   "pncp": "✓"
+  },
+  "2024-07": {
+   "sileg": "✓",
+   "querido_diario": "✓",
+   "rreo": "✓",
+   "rgf": "✓",
+   "dca": "✓",
+   "fnas": "✓",
+   "pncp": "✓"
+  },
+  "2024-08": {
+   "sileg": "✓",
+   "querido_diario": "✓",
+   "rreo": "✓",
+   "rgf": "✓",
+   "dca": "✓",
+   "fnas": "✓",
+   "pncp": "✓"
+  },
+  "2024-09": {
+   "sileg": "✓",
+   "querido_diario": "✓",
+   "rreo": "✓",
+   "rgf": "✓",
+   "dca": "✓",
+   "fnas": "✓",
+   "pncp": "✓"
+  },
+  "2024-10": {
+   "sileg": "✓",
+   "querido_diario": "✓",
+   "rreo": "✓",
+   "rgf": "✓",
+   "dca": "✓",
+   "fnas": "✓",
+   "pncp": "✓"
+  },
   "2024-11": {
    "querido_diario": "✗",
    "sileg": "✓",
@@ -608,15 +728,15 @@
   {
    "tipo": "falha",
    "motor": "fnas",
-   "titulo": "Repasses federais (FNAS): 1 de 4 chamadas falharam",
+   "titulo": "Repasses federais (FNAS): 1 de 5 chamadas falharam",
    "detalhe": "Erro mais comum: planilha do ano não publicada na página do FNAS (1 vezes).",
    "proposta": "Ver a tabela coletas do banco para os endereços exatos."
   },
   {
    "tipo": "falha",
    "motor": "pncp",
-   "titulo": "Contratações (PNCP): 1 de 618 chamadas falharam",
-   "detalhe": "Erro mais comum: RemoteDisconnected: Remote end closed connection without response (1 vezes).",
+   "titulo": "Contratações (PNCP): 37 de 1063 chamadas falharam",
+   "detalhe": "Erro mais comum: não tentado: tempo do motor nesta rodada esgotado (37 vezes).",
    "proposta": "Ver a tabela coletas do banco para os endereços exatos."
   },
   {
@@ -643,15 +763,15 @@
   {
    "tipo": "falha",
    "motor": "querido_diario",
-   "titulo": "O Querido Diário não respondeu em 25 de 25 meses",
+   "titulo": "O Querido Diário não respondeu em 25 de 37 meses",
    "detalhe": "Meses: 2024-11 a 2026-11. Erro: URLError: [SSL: SSLV3_ALERT_HANDSHAKE_FAILURE] ssl/tls alert handshake failure (_ssl.c:1011).",
    "proposta": "O servidor recusou o aperto de mão TLS (alerta 40), também para o curl e o openssl com TLS 1.2 e 1.3 na mesma máquina: o bloqueio está do lado da fonte, não nas cifras do robô. A outra via fica como principal, e a coleta mensal tenta de novo e avisa quando a fonte voltar."
   },
   {
    "tipo": "melhoria",
    "motor": "qd",
-   "titulo": "As duas vias do Diário Oficial contam edições diferentes em 25 meses",
-   "detalhe": "Querido Diário × SILEG: 2024-11 (0 × 20); 2024-12 (0 × 20); 2025-01 (0 × 24); 2025-02 (0 × 21); 2025-03 (0 × 20); 2025-04 (0 × 19); 2025-05 (0 × 20); 2025-06 (0 × 20); 2025-07 (0 × 26); 2025-08 (0 × 22); 2025-09 (0 × 24); 2025-10 (0 × 21)…",
+   "titulo": "As duas vias do Diário Oficial contam edições diferentes em 31 meses",
+   "detalhe": "Querido Diário × SILEG: 2023-12 (23 × 22); 2024-03 (22 × 21); 2024-05 (22 × 21); 2024-06 (23 × 21); 2024-07 (25 × 27); 2024-10 (25 × 22); 2024-11 (0 × 20); 2024-12 (0 × 20); 2025-01 (0 × 24); 2025-02 (0 × 21); 2025-03 (0 × 20); 2025-04 (0 × 19)…",
    "proposta": "Conferir edição a edição: a que falta numa via é lida pela outra, e a diferença persistente vira alerta de publicação incompleta."
   },
   {
@@ -676,6 +796,13 @@
    "proposta": "A próxima coleta confere de novo; passado o prazo, vira lacuna."
   },
   {
+   "tipo": "lacuna",
+   "motor": "pncp",
+   "titulo": "Nenhum contrato do Município no PNCP em 5 meses",
+   "detalhe": "Meses: 2023-11 a 2024-03. Órgãos procurados: 32.",
+   "proposta": "A Lei 14.133/2021 (art. 94) manda divulgar o contrato no PNCP; confirmar no portal municipal antes de tratar como ausência."
+  },
+  {
    "tipo": "falha",
    "motor": "fontes",
    "titulo": "3 de 25 endereços configurados não abriram",
@@ -692,8 +819,8 @@
   {
    "tipo": "melhoria",
    "motor": "pareceres",
-   "titulo": "Não há verificação mensal em 15 dos 25 meses",
-   "detalhe": "Meses sem verificação do Cadê o Queijo: 2024-11 a 2025-12, 2026-11.",
+   "titulo": "Não há verificação mensal em 27 dos 37 meses",
+   "detalhe": "Meses sem verificação do Cadê o Queijo: 2023-11 a 2025-12, 2026-11.",
    "proposta": "Com o banco histórico, refazer as verificações retroativas desses meses (o motor antigo só roda o exercício corrente)."
   },
   {
