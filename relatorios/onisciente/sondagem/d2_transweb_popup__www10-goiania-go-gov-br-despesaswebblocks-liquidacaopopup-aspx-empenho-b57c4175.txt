@@ -1,0 +1,7 @@
+URL: https://www10.goiania.go.gov.br/DespesasWebBlocks/LiquidacaoPopUp.aspx?Empenho=20265151000730001#pagina-2
+POST: {"__OSVSTATE": "/9Jgsghf8HHdhOyIDoInWgSClVjwQodLfHZTkvJgTXeE3CVv5zIDWew3GOqs9RoVvnpqhMXTwXUOt20XjswkAJqnqxKvzfBACAiQCSlYZzRwxpuXQq8pdAW8oK123eYFU513LqBkSid2N4Q8p3vDzVntRaa/JsR+ggU5bTlWWupeo2A0BtkYfE7d268xkb50Xf7Y5p51clN4vk4mrQ+OzvkhNiUeTfcI+YUb8lKzAVOKyAt1NX5MW0tNqvAUTYGolPwdDqPpHDd4NDNX1nInPPvloMvVNjDuy1l0dAXIXF0QRND3P+lygYkzFAt9DxxSeckxTSzRfom8VM4XCa8kluM77dpXhrAUkraE/RP4hEUZJ4G7i8HpPlcFxLH0/b0V0B6EBkwDsXp5RJXHDHDTagK/gNAEGkWrPls5Kh9U6OFLBlGELA9QyZl/1v5blCwjKn59gA1hka0nThicQy994bIuCemr7Vk2XtFMzZAhVNZ1zvu4UE4D4w4TczfWq4/AbKfTK2DyNTTSuJiDukjbaVmtxokSlL44BTpvP+S1lZmnG9KwcIpI/PhAdqgPEfS8wofyVQ1Y3cDVidFgV8KcovMoO2Z3tpCHV4XIjWZ2LFB7sPDA1Dj/a9/CUaNS3DUjUKSXmP8D/Zcouamt145/BA==", "__VIEWSTATE": "", "__VIEWSTATEGENERATOR": "D5E361D8", "WebPatterns_wt13$block$wtMainContent$wtLiqTable$ctl02$RichWidgets_wt22$block$wttxtTableRecordsId": "", "WebPatterns_wt13$block$wtMainContent$wtLiqTable$ctl02$RichWidgets_wt38$block$wttxtTableRecordsId": "", "WebPatterns_wt13$block$wtMainContent$wtLiqTable$ctl02$RichWidgets_wt14$block$wttxtTableRecordsId": "", "WebPatterns_wt13$block$wt5$wt4$wt43$wtCheckbox$wt37": "", "__EVENTTARGET": "WebPatterns_wt13$block$wtMainContent$RichWidgets_wt1$block$wt28", "__AJAX": "__OSVSTATE,"}
+OK: False
+HTTP: 500
+ERRO: HTTP 500
+BYTES: 894
+

@@ -1,0 +1,7 @@
+URL: https://www10.goiania.go.gov.br/DespesasWebBlocks/LiquidacaoPopUp.aspx?Empenho=20265150000230001#pagina-2
+POST: {"__OSVSTATE": "hJBiI2+QSCKJx3CukpxZYJJduCH7T+ohORkYZ65q9f6VRNhlCYyedF3I08tiyP8CpXphcVz5qTpY+ayWQkp0z8yKCrp15Km5dh04SycoI24xl4PNPbqkE4eRT1TkUWbLPvwpcm67epU+CypGMHf2yeFxZFx0zIDxUiJQ26henWkRWpyrvYfmu8TZ7Y47T/W9Z2wuzkM4LZIX2jlTzaJriazpQ1M7OXXoz31ZS8I8Ue68UoW3pqcvZnQTiKSYHoG43uaiCT320eIqx9smCn1OIHSHLibrY36vK4r8SBaJs0AVL0sVVoEphNvm8uXJfj5PDyH5v2F/lZ6bb2vphhHX4sCaRDIOrTEf/PEw2BfNKNUp+o0jisF/n8PQs+lPhw7JqMH/musuWsp6byynPcNx8PWwg4DILI1kQsXgbqmI8suQ/VUFk9EedgMRHyfeYteugAcpsi9rVTH+7l7ka5vNzvMxPj08MZ/Xs4XSdbc9ATN6IPyk11gO8QvMh1IBJ2rk/t0cKWUMZtqUb9YpujbNlv0tc8JrWtlBmMzHWmx+ew1F9RAXIp/d8NMC5VNh+SBI0Bt/W4A37v6xy7drCV/6NkZ6kcWz/esUjezko32nrN72tWQJbtRRZO7DmCqt2aPZ7IjlGRyyTSg0R2SyGk/1ZA==", "__VIEWSTATE": "", "__VIEWSTATEGENERATOR": "D5E361D8", "WebPatterns_wt13$block$wtMainContent$wtLiqTable$ctl02$RichWidgets_wt22$block$wttxtTableRecordsId": "", "WebPatterns_wt13$block$wtMainContent$wtLiqTable$ctl02$RichWidgets_wt38$block$wttxtTableRecordsId": "", "WebPatterns_wt13$block$wtMainContent$wtLiqTable$ctl02$RichWidgets_wt14$block$wttxtTableRecordsId": "", "WebPatterns_wt13$block$wt5$wt4$wt43$wtCheckbox$wt37": "", "__EVENTTARGET": "WebPatterns_wt13$block$wtMainContent$RichWidgets_wt1$block$wt28", "__AJAX": "__OSVSTATE,"}
+OK: False
+HTTP: 500
+ERRO: HTTP 500
+BYTES: 894
+
