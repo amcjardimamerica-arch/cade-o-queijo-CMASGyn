@@ -156,6 +156,11 @@ def test_tcm_segue_as_paginas_ate_passar_do_comeco_do_intervalo(tmp_path):
     pedidas: list[int] = []
 
     def leitor(url, **_):
+        # Rodada 12 (28/11/2026): a sondagem 079a72d provou o exportar em CSV, que o motor agora lê primeiro.
+        # Este servidor de teste é o de antes dele: recusa o exportar (404) e a trava segue provando a busca
+        # paginada, que ficou de reserva. As asserções não mudaram.
+        if "/exportar?" in url:
+            return _nao(url)
         if url.startswith(tcm.JURISPRUDENCIA):
             p = int(_query(url)["page"][0])
             pedidas.append(p)
@@ -174,6 +179,11 @@ def test_tcm_no_teto_de_paginas_diz_ate_onde_chegou(tmp_path, monkeypatch):
     monkeypatch.setattr(tcm, "PAGINAS_JURISPRUDENCIA", 2)
 
     def leitor(url, **_):
+        # Rodada 12 (28/11/2026): a sondagem 079a72d provou o exportar em CSV, que o motor agora lê primeiro.
+        # Este servidor de teste é o de antes dele: recusa o exportar (404) e a trava segue provando a busca
+        # paginada, que ficou de reserva. As asserções não mudaram.
+        if "/exportar?" in url:
+            return _nao(url)
         p = int(_query(url)["page"][0])
         return _ok(url, _busca([_decisao(p, f"2025-1{p}-01")], p))
 

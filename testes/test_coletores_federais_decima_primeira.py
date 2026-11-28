@@ -206,6 +206,11 @@ def _leitor_tcm(pedidas: list[int], recusar_de: int | None = None):
     recusa = _bytes("tcm_jurisprudencia_buscar_municipio_goiania_p20_422_real.json")
 
     def leitor(url, **_):
+        # Rodada 12 (28/11/2026): a sondagem 079a72d provou o exportar em CSV, que o motor agora lê primeiro.
+        # Este servidor de teste é o de antes dele: recusa o exportar (404) e a trava segue provando a busca
+        # paginada, que ficou de reserva. As asserções não mudaram.
+        if "/exportar?" in url:
+            return _nao(url)
         q = _query(url)
         p = int(q["page"][0])
         pedidas.append(p)

@@ -94,9 +94,10 @@ TABELAS_DO_MOTOR = {
             ("fontes_federais", "motor = 'tcm'")],
 }
 
-# Minutos por rodada (o FNDE lê uma página por entidade: conselhos escolares são centenas).
+# Minutos por rodada (o FNDE lê uma página por entidade: conselhos escolares são centenas). O TCM-GO passou
+# de 10 para 20 na rodada 12 (28/11/2026): a exportação em CSV vem ano a ano (1,9 MB em 2025, até 300 s cada).
 TEMPO_DO_MOTOR = {"fns": 20, "fnde": 45, "transferegov": 20, "sancoes": 15, "economia_go": 10,
-                  "tcu": 15, "tcm": 10}
+                  "tcu": 15, "tcm": 20}
 # De quanto em quanto tempo cada fonte é lida (dias), para o prazo de fonte parada.
 CICLO_DIAS = {"fns": 7, "fnde": 7, "transferegov": 7, "sancoes": 1, "economia_go": 31, "tcu": 7, "tcm": 7}
 
@@ -1033,33 +1034,86 @@ def motor_tcm(ctx, termo: str = "Goiânia", paginas: int = 5) -> None:
 
 
 def _jurisprudencia_tcm(ctx, termo: str, paginas: int) -> str | None:
-    """A pesquisa da jurisprudência do TCM-GO (``tcm.url_jurisprudencia``), da sessão mais nova para a mais
-    antiga, até passar do começo do intervalo (ou até ``paginas``): primeiro pelo filtro de município, sem
-    texto; se o filtro não valer, pelo texto. Guarda as decisões sobre Goiânia e devolve None quando a API
-    respondeu; senão, o motivo, e ``motor_tcm`` tenta os candidatos."""
+    """A jurisprudência do TCM-GO sobre Goiânia. Primeiro a exportação em CSV (``tcm.url_exportacao``), ano a
+    ano dentro do intervalo, só do município: cada ano vem inteiro, sem o limite de 1000 da busca sem chave.
+    Se algum ano não vier, a busca paginada (``tcm.url_jurisprudencia``) cobre o intervalo, da sessão mais
+    nova para a mais antiga, até passar do começo dele (ou até ``paginas``): primeiro pelo filtro de
+    município, sem texto; se o filtro não valer, pelo texto. A exportação recusada em todos os anos (o
+    endereço não existe mais) vai para a busca sem nota, como antes dela. Guarda as decisões sobre Goiânia e
+    devolve None quando a API respondeu; senão, o motivo, e ``motor_tcm`` tenta os candidatos."""
     municipio = tcm.valor_do_municipio(termo)
-    pelo_municipio = _paginas_jurisprudencia(ctx, "", municipio, paginas, f"jurisprudencia {municipio.lower()}")
+    vistas: set[str] = set()
+    exportadas, nota_exportar = _exportacoes_tcm(ctx, municipio, vistas)
+    if nota_exportar is None and ctx.meses:
+        _situacao(ctx, "tcm", "decisoes", "lido" if exportadas else "vazio", via=tcm.JURISPRUDENCIA + "exportar",
+                  registros=exportadas)
+        return None
+    pelo_municipio = _paginas_jurisprudencia(ctx, "", municipio, paginas, f"jurisprudencia {municipio.lower()}",
+                                             vistas)
     if isinstance(pelo_municipio, str):
-        return pelo_municipio
+        if not exportadas:
+            return "; ".join(x for x in (nota_exportar, pelo_municipio) if x)
+        pelo_municipio = (0, f"a busca paginada não veio ({pelo_municipio})", None)
     guardadas, parcial, filtro_falhou = pelo_municipio
     if filtro_falhou:
-        pelo_texto = _paginas_jurisprudencia(ctx, termo, None, paginas, "jurisprudencia")
+        pelo_texto = _paginas_jurisprudencia(ctx, termo, None, paginas, "jurisprudencia", vistas)
         if isinstance(pelo_texto, str):
-            return pelo_texto
+            if not exportadas:
+                return "; ".join(x for x in (nota_exportar, pelo_texto) if x)
+            pelo_texto = (0, f"a busca pelo texto não veio ({pelo_texto})", None)
         guardadas, parcial, _ = pelo_texto
         parcial = "; ".join(x for x in (filtro_falhou, parcial) if x)
+    guardadas += exportadas
+    parcial = "; ".join(x for x in (nota_exportar, parcial) if x) or None
     _situacao(ctx, "tcm", "decisoes", "lido" if guardadas else "vazio", via=tcm.JURISPRUDENCIA, registros=guardadas,
               erro=parcial)
     return None
 
 
-def _paginas_jurisprudencia(ctx, texto: str, municipio: str | None, paginas: int, alvo: str):
+def _exportacoes_tcm(ctx, municipio: str, vistas: set[str]) -> tuple[int, str | None]:
+    """A exportação em CSV de cada ano do intervalo, do mais novo ao mais velho: (decisões guardadas, nota).
+    A nota é None quando todos os anos vieram, e vazia quando a exportação foi recusada em todos (o
+    endereço não tem o dado); senão diz quais anos faltaram e por quê."""
+    anos = sorted({int(m[:4]) for m in ctx.meses}, reverse=True) if ctx.meses else []
+    guardadas, faltas, recusas = 0, [], 0
+    for ano in anos:
+        url = tcm.url_exportacao(ano, municipio)
+        alvo = f"exportar {municipio.lower()} {ano}"
+        leitura = ctx.ler("tcm", alvo, url, mes=f"{ano}-01", tempo=300, cabecalhos=tcm.CABECALHOS_JURISPRUDENCIA)
+        if not leitura.ok or cf.parece_pagina(leitura.conteudo):
+            recusas += _ausente(leitura)
+            faltas.append(f"{ano}: {leitura.erro or f'HTTP {leitura.http}' if not leitura.ok else 'página, não CSV'}")
+            continue
+        try:
+            decisoes = tcm.exportacao(leitura.conteudo)
+        except ValueError as e:
+            _anotar(ctx, "tcm", alvo, f"{ano}-01", url, f"formato: {e}")
+            faltas.append(f"{ano}: formato: {e}")
+            continue
+        novas = [d for d in decisoes if d["chave"] not in vistas]
+        vistas.update(d["chave"] for d in novas)
+        guardadas += _guardar_decisoes(ctx, novas, True)
+    if not anos:
+        return 0, ""
+    if not faltas:
+        return guardadas, None
+    if recusas == len(anos):
+        return guardadas, ""                     # recusada em todos os anos: vai pela busca, calada
+    return guardadas, (f"a exportação não veio em {len(faltas)} de {len(anos)} anos ({'; '.join(faltas[:3])}); "
+                       "a busca paginada cobriu o intervalo")
+
+
+def _paginas_jurisprudencia(ctx, texto: str, municipio: str | None, paginas: int, alvo: str,
+                            vistas: set[str] | None = None):
     """As páginas de uma busca da jurisprudência do TCM-GO: (guardadas, nota, filtro que não valeu) ou o
     motivo (texto) se a primeira página não veio. Com ``municipio``, a primeira página é conferida antes
     de guardar: se nem metade das decisões é sobre Goiânia (ou não vem nenhuma), o filtro não valeu e
-    nada é guardado."""
+    nada é guardado. ``vistas`` são as chaves já guardadas nesta rodada (as da exportação), que não contam de
+    novo, e no fim inclui as desta busca."""
     desde = f"{min(ctx.meses)}-01" if ctx.meses else None
-    guardadas, chaves, parcial, mais_antiga, mais = 0, set(), None, None, False
+    guardadas, parcial, mais_antiga, mais = 0, None, None, False
+    chaves = vistas if vistas is not None else set()   # as guardadas (com as da exportação)
+    desta: set[str] = set()                            # as que esta busca já trouxe
     teto = min(paginas, max(1, tcm.RESULTADOS_SEM_CHAVE // 100))   # sem chave, a busca para no resultado 1000
     for p in range(1, teto + 1):
         url = tcm.url_jurisprudencia(texto, p, municipio=municipio)
@@ -1083,9 +1137,11 @@ def _paginas_jurisprudencia(ctx, texto: str, municipio: str | None, paginas: int
             if not decisoes or 2 * de_goiania < len(decisoes):
                 return 0, None, (f"o filtro municipio={municipio} não valeu ({de_goiania} de {len(decisoes)} "
                                  "decisões da primeira página sobre Goiânia); a busca seguiu pelo texto")
-        novas = [d for d in decisoes if d["chave"] not in chaves]
-        chaves.update(d["chave"] for d in novas)
-        guardadas += _guardar_decisoes(ctx, novas, True)
+        novas = [d for d in decisoes if d["chave"] not in desta]
+        desta.update(d["chave"] for d in novas)
+        a_guardar = [d for d in novas if d["chave"] not in chaves]
+        chaves.update(d["chave"] for d in a_guardar)
+        guardadas += _guardar_decisoes(ctx, a_guardar, True)
         datas = [d["data"] for d in decisoes if d.get("data")]   # de todas, não só as de Goiânia
         if datas:
             mais_antiga = min([*datas, mais_antiga] if mais_antiga else datas)

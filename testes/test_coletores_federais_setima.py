@@ -212,6 +212,11 @@ def test_motor_tcm_le_a_api_com_o_cabecalho_e_so_cai_nos_candidatos_se_ela_falha
     cabecalhos = {}
 
     def leitor(url, **kw):
+        # Rodada 12 (28/11/2026): a sondagem 079a72d provou o exportar em CSV, que o motor agora lê primeiro.
+        # Este servidor de teste é o de antes dele: recusa o exportar (404) e a trava segue provando a busca
+        # paginada, que ficou de reserva. As asserções não mudaram.
+        if "/exportar?" in url:
+            return _nao(url)
         if url.startswith(tcm.JURISPRUDENCIA):
             cabecalhos.update(kw.get("cabecalhos") or {})
             return _ok(url, _busca(DECISOES))

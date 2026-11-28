@@ -290,6 +290,8 @@ _PARAMETROS_DETALHE = {
 # count=1000 e veio uma página só, de 691.235 bytes (cerca de 676 ordens de 1 KB). O recorte guardado (600 KB,
 # 587 ordens inteiras) não tem nenhuma ordem repetida, começa pelas 100 da página 1 na mesma ordem e contém
 # todas as 100 da página 2. Com 100 por página, a mesma listagem repetia ordens entre páginas e perdia outras.
+# Rodada 12 (sondagem 079a72d, a página guardada inteira): total 676, totalPaginas 1, as 676 ordens sem repetir,
+# somando o valorTotalGeral; sem a ordem rejeitada, as 40 ações de 2025 fecham uma a uma com detalhe-acao.
 POR_PAGINA_PAGAMENTOS = 1000
 
 

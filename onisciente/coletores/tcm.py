@@ -72,8 +72,8 @@ PAGINAS_JURISPRUDENCIA = 80
 # Rodada 11 (28/11/2026, sondagem 9cc559c): a página 20 com municipio=GOIANIA respondeu HTTP 422 com
 # {"detail": "Sem chave de API, a busca pagina ate o resultado 1000. ..."}; a página 1 declarou 5.491
 # decisões com o filtro (55 páginas de 100; 92 das 100 primeiras são de Goiânia, nenhuma de Aparecida).
-# Sem chave, o motor lê no máximo as 10 primeiras páginas e diz até onde chegou. O resto está em /exportar
-# (CSV, com os mesmos filtros), que a sondagem ainda vai ler.
+# Sem chave, a busca lê no máximo as 10 primeiras páginas e diz até onde chegou. Rodada 12: o motor lê antes
+# /exportar (CSV, com os mesmos filtros), ano a ano (ver COLUNAS_EXPORTACAO); a busca ficou de reserva.
 RESULTADOS_SEM_CHAVE = 1000
 # Rodada 10 (28/11/2026, sondagem a8761d9): a resposta real de filtros traz os 246 municípios como
 # {"nome": "Goiânia", "valor": "GOIANIA"}, e a tela real (jurisprudencia-page-*.js) manda o filtro escolhido
@@ -298,6 +298,50 @@ def url_jurisprudencia(texto: str = "Goiânia", pagina: int = 1, por_pagina: int
     return JURISPRUDENCIA + "buscar?" + urllib.parse.urlencode(params)
 
 
+# Rodada 12 (28/11/2026, sondagem 079a72d): exportar com municipio=GOIANIA e ano_votacao=2025 (formato=csv, sem
+# page, page_size e busca_id, como a tela) respondeu 200 com 1.876.331 bytes: um CSV separado por ";" com 918
+# linhas, exatamente o total_items que buscar declarou para o mesmo filtro (918, 10 páginas), todas de 2025, de
+# 14/01 a 17/12/2025, sem repetir documento, e as 100 primeiras na mesma ordem da página 1 de buscar. Sem o
+# limite de 1000 da busca sem chave. A tela avisa só acima de 10.000 resultados (o cabeçalho
+# x-exportacao-truncada, que a leitura não vê); um ano de Goiânia fica longe disso.
+COLUNAS_EXPORTACAO = {
+    "ID do documento (chave)": "document_id", "Número do acórdão": "numero_acordao",
+    "Número do processo": "numero_processo", "Ano": "ano_votacao", "Data da sessão": "data_sessao",
+    "Órgão julgador": "orgao_julgador", "Assunto": "assunto", "Macroassunto": "macro_assunto",
+    "Relator": "conselheiro_relator", "Entidade fiscalizada": "entidade_fiscalizada",
+    "Resultado (IA)": "resultado", "Ementa (IA)": "ementa",
+}
+_COLUNAS_EXIGIDAS = ("ID do documento (chave)", "Número do acórdão", "Ano", "Entidade fiscalizada")
+
+
+def url_exportacao(ano: int, municipio: str = "GOIANIA") -> str:
+    """A exportação em CSV da jurisprudência de um ano da votação, só do município (o ``valor`` de
+    ``filtros``), da sessão mais nova para a mais antiga."""
+    params = {"texto": "", "sort_by": "data_sessao", "sort_order": "desc", "municipio": municipio,
+              "ano_votacao": ano, "formato": "csv"}
+    return JURISPRUDENCIA + "exportar?" + urllib.parse.urlencode(params)
+
+
+def exportacao(conteudo: bytes) -> list[dict]:
+    """As decisões do CSV de ``exportar``, como ``jurisprudencia`` as devolve (o CSV não traz o tipo da
+    decisão: vale Acórdão, como na busca sem ``tipo_decisao``). Levanta ``ValueError`` se as colunas
+    mudarem ou a resposta não for o CSV."""
+    texto = conteudo.decode("utf-8-sig", errors="replace")
+    linhas = csv.reader(io.StringIO(texto), delimiter=";")
+    cabecalho = [c.strip() for c in next(linhas, [])]
+    if any(c not in cabecalho for c in _COLUNAS_EXIGIDAS):
+        raise ValueError("a exportação da jurisprudência do TCM-GO não traz as colunas do CSV")
+    indices = {COLUNAS_EXPORTACAO[c]: i for i, c in enumerate(cabecalho) if c in COLUNAS_EXPORTACAO}
+    saida = []
+    for linha in linhas:
+        if not any(x.strip() for x in linha):
+            continue
+        r = {k: (linha[i] if i < len(linha) else "") for k, i in indices.items()}
+        if (d := _da_busca(r)) is not None:
+            saida.append(d)
+    return saida
+
+
 def recusa_da_jurisprudencia(conteudo: bytes) -> str:
     """O motivo (``detail``) de uma recusa da busca, em uma linha; vazio se a resposta não o traz."""
     obj = cf.json_ou_none(conteudo)
@@ -311,37 +355,38 @@ def valor_do_municipio(nome: str) -> str:
     return re.sub(r"\s+", " ", sem_acento).strip().upper()
 
 
+def _da_busca(r: dict) -> dict | None:
+    """Uma decisão de ``buscar`` (ou uma linha de ``exportar`` com os mesmos nomes); None sem número ou ano."""
+    bruto = str(r.get("numero_acordao") or "")
+    numero = re.match(r"\s*(\d[\d.]*)", bruto)
+    ano = str(r.get("ano_votacao") or "")
+    if not ano.isdigit() and (m := re.search(r"/\s*(\d{4})", bruto)):
+        ano = m.group(1)
+    if not numero or not ano.isdigit():
+        return None
+    trecho = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", str(
+        r.get("ementa") or r.get("assunto") or r.get("macro_assunto") or ""))).strip()
+    doc = str(r.get("document_id") or "")
+    d = _decisao(_tipo(str(r.get("tipo_decisao") or "Acórdão")), numero.group(1).replace(".", ""), ano,
+                 trecho, JURISPRUDENCIA + "pdf/" + urllib.parse.quote(doc) if doc else "")
+    d["data"] = cf.data(r.get("data_sessao"))
+    d["relator"] = str(r.get("conselheiro_relator") or "")
+    d["colegiado"] = str(r.get("orgao_julgador") or "")
+    d["processo"] = str(r.get("numero_processo") or "") or d["processo"]
+    onde = " ".join(str(r.get(k) or "") for k in ("entidade_fiscalizada", "entidade", "municipio"))
+    d["sobre_goiania"] = int(sobre(onde) if onde.strip() else sobre(trecho))
+    if r.get("resultado"):
+        d["sumario"] = f"{d['sumario']} Resultado: {r['resultado']}."[:4000].strip()
+    return d
+
+
 def jurisprudencia(conteudo: bytes) -> tuple[list[dict], bool]:
     """As decisões de uma página de ``buscar`` e se há página seguinte. Decisão sem número ou ano fica
     de fora. Levanta ``ValueError`` se a resposta não traz ``data`` (formato mudado ou página de erro)."""
     obj = cf.json_ou_none(conteudo)
     if not isinstance(obj, dict) or not isinstance(obj.get("data"), list):
         raise ValueError("a pesquisa da jurisprudência do TCM-GO não traz data")  # noqa: TRY004
-    saida = []
-    for r in obj["data"]:
-        if not isinstance(r, dict):
-            continue
-        bruto = str(r.get("numero_acordao") or "")
-        numero = re.match(r"\s*(\d[\d.]*)", bruto)
-        ano = str(r.get("ano_votacao") or "")
-        if not ano.isdigit() and (m := re.search(r"/\s*(\d{4})", bruto)):
-            ano = m.group(1)
-        if not numero or not ano.isdigit():
-            continue
-        trecho = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", str(
-            r.get("ementa") or r.get("assunto") or r.get("macro_assunto") or ""))).strip()
-        doc = str(r.get("document_id") or "")
-        d = _decisao(_tipo(str(r.get("tipo_decisao") or "Acórdão")), numero.group(1).replace(".", ""), ano,
-                     trecho, JURISPRUDENCIA + "pdf/" + urllib.parse.quote(doc) if doc else "")
-        d["data"] = cf.data(r.get("data_sessao"))
-        d["relator"] = str(r.get("conselheiro_relator") or "")
-        d["colegiado"] = str(r.get("orgao_julgador") or "")
-        d["processo"] = str(r.get("numero_processo") or "") or d["processo"]
-        onde = " ".join(str(r.get(k) or "") for k in ("entidade_fiscalizada", "entidade", "municipio"))
-        d["sobre_goiania"] = int(sobre(onde) if onde.strip() else sobre(trecho))
-        if r.get("resultado"):
-            d["sumario"] = f"{d['sumario']} Resultado: {r['resultado']}."[:4000].strip()
-        saida.append(d)
+    saida = [d for r in obj["data"] if isinstance(r, dict) and (d := _da_busca(r)) is not None]
     paginacao = obj.get("pagination") if isinstance(obj.get("pagination"), dict) else {}
     if "has_next" in paginacao:
         mais = bool(paginacao["has_next"])

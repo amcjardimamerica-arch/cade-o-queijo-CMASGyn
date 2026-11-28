@@ -170,6 +170,11 @@ def test_motor_tcm_pede_pelo_municipio_e_so_volta_ao_texto_se_o_filtro_nao_valer
     pedidos: list[dict] = []
 
     def leitor(url, **_):
+        # Rodada 12 (28/11/2026): a sondagem 079a72d provou o exportar em CSV, que o motor agora lê primeiro.
+        # Este servidor de teste é o de antes dele: recusa o exportar (404) e a trava segue provando a busca
+        # paginada, que ficou de reserva. As asserções não mudaram.
+        if "/exportar?" in url:
+            return _nao(url)
         q = _query(url)
         pedidos.append(q)
         if q.get("municipio") == ["GOIANIA"]:
@@ -185,8 +190,9 @@ def test_motor_tcm_pede_pelo_municipio_e_so_volta_ao_texto_se_o_filtro_nao_valer
     # O servidor que ignora o filtro devolve o Estado todo: nada da primeira leitura é guardado, a busca
     # volta ao texto (só as 27 de Goiânia ficam) e a nota diz por quê.
     pedidos.clear()
-    ctx = _ctx(tmp_path / "b", lambda url, **_: (pedidos.append(_query(url)),
-                                                 _ok(url, real if "page=1&" in url else _so_goiania(real)))[1],
+    # Rodada 12 (28/11/2026): o mesmo servidor de antes do exportar (sondagem 079a72d), que o recusa (404).
+    ctx = _ctx(tmp_path / "b", lambda url, **_: _nao(url) if "/exportar?" in url else (
+                   pedidos.append(_query(url)), _ok(url, real if "page=1&" in url else _so_goiania(real)))[1],
                meses=("2026-01", "2026-11"))
     mf.motor_tcm(ctx, "Goiânia")
     assert [(q["texto"], q.get("municipio")) for q in pedidos][:2] == [([""], ["GOIANIA"]), (["Goiânia"], None)]
