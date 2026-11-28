@@ -1,0 +1,218 @@
+URL: https://www.fnde.gov.br/pls/simad/internet_fnde.liberacoes_result_pc?p_ano=2025&p_programa=&p_uf=GO&p_municipio=520870&p_tp_entidade=&p_cgc=02439034000102
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 9433
+
+<html>
+<head>
+<title>LIBERAÇÕES - CONSULTAS GERAIS</title>
+<style type="text/css">
+<!--
+.fundo_laranja {BACKGROUND-COLOR: #f1db9f }
+.pagina_titulo {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 12px;
+	TEXT-TRANSFORM: uppercase;
+	COLOR: #ffffff;
+	FONT-STYLE: normal;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+	BACKGROUND-COLOR: #000099;
+}
+.cabecalho_letras {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 12px;
+	COLOR: #09548d;
+	FONT-FAMILY: Verdana,Tahoma,Arial,Helvetica,MS Sans Serif; TEXT-DECORATION: none
+}
+-->
+    </style>
+</head>
+<body bgcolor="#FFFFFF" leftmargin=0 topmargin=0>
+<TABLE class="fundo_laranja" cellSpacing="0" cellPadding="1" width="100%" border="0">
+  <TR>
+    <TD vAlign="center" noWrap rowSpan="2">
+    	<img src="http://www.fnde.gov.br/pnld/imagens/logo_fnde.gif" height="35" width="97">
+    </TD>
+    <TD vAlign="center" noWrap rowSpan="2">&nbsp; </TD>
+    <TD vAlign="center" noWrap align="right" width="100%">&nbsp;</TD>
+    <TD vAlign="center" noWrap rowSpan="2">&nbsp;</TD>
+    <TD vAlign="center" noWrap rowSpan="2">
+    	<img src="http://www.fnde.gov.br/pnld/imagens/logo_mec_descricao.gif" height="42" width="97" align="absMiddle">
+    </TD>
+  </TR>
+  <TR>
+    <TD class="cabecalho_letras" vAlign="middle" noWrap align="left" width="100%">
+    		Fundo Nacional de<BR>Desenvolvimento da Educação
+    </TD>
+  </TR>
+</TABLE>
+<TABLE cellSpacing="0" cellPadding="3" width="100%" border="0">
+  <TR>
+    <TD width="100%" align="center" class="pagina_titulo">
+      :: LIBERAÇÕES - CONSULTAS GERAIS ::
+    </TD>
+  </TR>
+</TABLE>
+&nbsp;<br>
+<font face="Tahoma,Arial" size="2">
+<font face="Verdana,Tahoma,Arial" size="2">
+<table border=1 cellspacing=2 cellpadding=2 width="100%">
+<tr bgcolor="#006699">
+<td colspan=9 align=left width = "70%"><font face="Tahoma,Arial" size="2" color="#FFFFFF"><b>Entidade..: 02.439.034/0001-02 - CONSELHO ESCOLAR GIRASSOL</b></font></td>
+<td colspan=9 align=left width = "30%"><font face="Tahoma,Arial" size="2" color="#FFFFFF"><b>Município.: GOIANIA - GO</b></font></td>
+</tr>
+</table>
+<br>
+<table border=1 cellspacing=2 cellpadding=2 width="100%">
+<tr bgcolor="#006699">
+<td colspan=9 align=left><font face="Tahoma,Arial" size="2" color="#FFFFFF"><b>PDDE - PROGRAMA DINHEIRO DIRETO NA ESCOLA </b></font></td>
+</tr>
+<tr bgcolor="#F8C400">
+<td align=center width = "10%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Data Pgto</b></font></td>
+<td align=center width = "10%"><font face="Tahoma,Arial" size="2" color="#006699"><b>OB</b></font></td>
+<td align=center width = "15%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Valor</b></font></td>
+<td align=center width = "20%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Programa</b></font></td>
+<td align=center width = "20%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Banco</b></font></td>
+<td align=center width = "10%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Agência</b></font></td>
+<td align=center width = "15%"><font face="Tahoma,Arial" size="2" color="#006699"><b>C/C</b></font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">15/MAI/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">007990</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">4.045,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PDDE - Básico - 1ª parcela     </font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">3888</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000399140</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">25/SET/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">023540</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">4.045,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PDDE - Básico - 2ª parcela  </font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">3888</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000399140</font></td>
+</tr>
+<tr bgcolor="#0000CC">
+<td colspan=2 bgcolor="#FFCC66">
+<font face="Tahoma,Arial" size="2" color="#006699">
+<b>Total: </b>
+</font>
+</td>
+<td align=right colspan=1 bgcolor="#FFCC66">
+<font face="Tahoma,Arial" size="2" color="#006699">
+<b>8.090,00</b>
+</font>
+</td>
+<td colspan=5 bgcolor="#FFCC66">
+<font face="Tahoma,Arial" size="2" color="#FFFFFF">
+&nbsp;
+</font>
+</td>
+</tr>
+</table>
+<font face="Tahoma,Arial" size="2">
+<br>
+<table border=1 cellspacing=2 cellpadding=2 width="100%">
+<tr bgcolor="#006699">
+<td colspan=9 align=left><font face="Tahoma,Arial" size="2" color="#FFFFFF"><b>PDDE EQUIDADE - ÁGUA E ESGOTAMENTO SANITÁRIO, ESCOLA DO CAMPO, ESCOLA ACESSÍVEL E PDE ESCOLA - ANTIG</b></font></td>
+</tr>
+<tr bgcolor="#F8C400">
+<td align=center width = "10%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Data Pgto</b></font></td>
+<td align=center width = "10%"><font face="Tahoma,Arial" size="2" color="#006699"><b>OB</b></font></td>
+<td align=center width = "15%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Valor</b></font></td>
+<td align=center width = "20%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Parcela</b></font></td>
+<td align=center width = "20%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Programa</b></font></td>
+<td align=center width = "20%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Banco</b></font></td>
+<td align=center width = "10%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Agência</b></font></td>
+<td align=center width = "15%"><font face="Tahoma,Arial" size="2" color="#006699"><b>C/C</b></font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">19/MAR/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">003054</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">25.907,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">001</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PDDE AE - CAMPO </font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">3888</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000331104</font></td>
+</tr>
+<tr bgcolor="#0000CC">
+<td colspan=2 bgcolor="#FFCC66">
+<font face="Tahoma,Arial" size="2" color="#006699">
+<b>Total: </b>
+</font>
+</td>
+<td align=right colspan=1 bgcolor="#FFCC66">
+<font face="Tahoma,Arial" size="2" color="#006699">
+<b>25.907,00</b>
+</font>
+</td>
+<td colspan=5 bgcolor="#FFCC66">
+<font face="Tahoma,Arial" size="2" color="#FFFFFF">
+&nbsp;
+</font>
+</td>
+</tr>
+</table>
+<font face="Tahoma,Arial" size="2">
+<br>
+<table border=1 cellspacing=2 cellpadding=2 width="100%">
+<tr bgcolor="#006699">
+<td colspan=9 align=left><font face="Tahoma,Arial" size="2" color="#FFFFFF"><b>PDDE QUALIDADE -  ENSINO MÉDIO INOVADOR, MAIS CULTURA, ESC.DE FRONTEIRA, ATLETA NA ESCOLA, ESC.SUSTE</b></font></td>
+</tr>
+<tr bgcolor="#F8C400">
+<td align=center width = "10%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Data Pgto</b></font></td>
+<td align=center width = "10%"><font face="Tahoma,Arial" size="2" color="#006699"><b>OB</b></font></td>
+<td align=center width = "15%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Valor</b></font></td>
+<td align=center width = "20%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Parcela</b></font></td>
+<td align=center width = "20%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Programa</b></font></td>
+<td align=center width = "20%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Banco</b></font></td>
+<td align=center width = "10%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Agência</b></font></td>
+<td align=center width = "15%"><font face="Tahoma,Arial" size="2" color="#006699"><b>C/C</b></font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">23/OUT/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">027859</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">2.451,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">001</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PIEC - PDDE EDUCACAO CONECTADA  </font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">3888</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000376620</font></td>
+</tr>
+<tr bgcolor="#0000CC">
+<td colspan=2 bgcolor="#FFCC66">
+<font face="Tahoma,Arial" size="2" color="#006699">
+<b>Total: </b>
+</font>
+</td>
+<td align=right colspan=1 bgcolor="#FFCC66">
+<font face="Tahoma,Arial" size="2" color="#006699">
+<b>2.451,00</b>
+</font>
+</td>
+<td colspan=5 bgcolor="#FFCC66">
+<font face="Tahoma,Arial" size="2" color="#FFFFFF">
+&nbsp;
+</font>
+</td>
+</tr>
+</table>
+<center>
+<font face="Verdana,Tahoma,Arial" size="2" color="#000000">
+Dados referentes ao fechamento do dia: <b>26/11/2026</b><br>
+</font>
+<br>
+<font face="Tahoma,Arial" size="1">
+<a href="javascript:history.back();">
+Volta a consulta de liberações
+</a>
+</font>
+</center>
+</body>
+</html>
+                                                                                                                                

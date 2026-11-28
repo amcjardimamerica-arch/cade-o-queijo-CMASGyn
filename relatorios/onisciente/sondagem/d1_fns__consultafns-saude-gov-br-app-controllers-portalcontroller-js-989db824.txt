@@ -1,0 +1,140 @@
+URL: https://consultafns.saude.gov.br/app/controllers/portalController.js
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 4344
+
+/**
+ * @desc Define um módulo anonimo dependente de app e das rotas de componentes
+ * Cria o controlador PortalController e gera as rotas pelo appRouteService
+ */
+define([
+	'app',
+	'pages/home/routes/homeRoute',
+	'pages/pessoa/routes/pessoaRoute',
+	'pages/login/routes/loginRoute',
+	'pages/consolidada/routes/consolidadaRoute',
+	'pages/entidade/routes/entidadeRoute',
+	'pages/detalhada/routes/detalhadaRoute',
+	'pages/convenios/routes/conveniosRoute',
+	'pages/comparativo/routes/comparativoRoute',
+	'pages/desconto-mac/routes/descontoMacRoute',
+	'pages/repasse-dia/routes/repasseDiaRoute',
+	'pages/pendencia/routes/pendenciaRoute',
+	'pages/equipamento/routes/equipamentoRoute',
+	'pages/proposta/routes/propostaRoute',
+	'pages/detalhada-multisselecao/routes/detalhadaMultisselecaoRoute',
+	'pages/acesso/routes/acessoRoute',
+	'pages/saldo-mac/routes/saldoMacRoute',
+	'pages/saldo-pab/routes/saldoPabRoute',
+	'pages/conta-bancaria/routes/contaBancariaRoute',
+	'pages/pendencia2/routes/pendencia2Route',
+	'pages/piso-enfermagem/routes/pisoEnfermagemRoute'
+],
+	/**
+	 *
+	 * @param app
+	 * @param homeRoute
+	 * @param loginRoute
+	 * @param pessoaRoute
+	 * @param consultaRoute
+	 * @param consultaDetalhadaRoute
+	 * @returns {*}
+	 */
+	function (app, homeRoute, loginRoute, pessoaRoute, consultaRoute, consultaDetalhadaRoute, consolidadaRoute,
+		entidadeRoute, detalhadaRoute, conveniosRoute, comparativoRoute, descontoMacRoute, repasseDiaRoute,
+		pendenciaRoute, equipamentoRoute, propostaRoute, detalhadaMultisselecaoRoute, acessoRoute, saldoMacRoute,
+		saldoPabRoute, contaBancariaRoute, pendencia2Route) {
+
+		/**
+		 * @constructor
+		 * @desc Classe padrão do controlador
+		 * @param $rootScope
+		 * @param $scope
+		 * @param $log
+		 * @param appRouteService
+		 * @param $translatePartialLoader
+		 * @param appAutenticacaoService
+		 * @param appLoginProvider
+		 */
+		var PortalController = function ($rootScope, $scope, $log, appRouteService, $translatePartialLoader,
+			appAutenticacaoService, appLoginProvider, appPerfilService, appSegurancaService) {
+
+			/**
+			 * @desc Atribuição de injeçoes ao escopo da classe
+			 */
+			this.appLoginProvider = appLoginProvider;
+			this.appAutenticacaoService = appAutenticacaoService;
+			this.appPerfilService = appPerfilService;
+			this.appSegurancaService = appSegurancaService;
+			this.$rootScope = $rootScope;
+			this.$scope = $scope;
+			this.$log = $log;
+			this.appRouteService = appRouteService;
+			this.$translatePartialLoader = $translatePartialLoader;
+
+			/**
+			 * @desc Adição da pasta nls na raiz do projeto para tradução
+			 */
+			this.$translatePartialLoader.addPart('..');
+
+			/**
+			 * @desc Criação de rotas pelo serviço appRouteService
+			 */
+			this.appRouteService.create(homeRoute, loginRoute, pessoaRoute, consultaRoute, consultaDetalhadaRoute,
+				consolidadaRoute, entidadeRoute, detalhadaRoute, conveniosRoute, comparativoRoute, descontoMacRoute,
+				repasseDiaRoute, pendenciaRoute, equipamentoRoute, propostaRoute, detalhadaMultisselecaoRoute,
+				acessoRoute, saldoMacRoute, saldoPabRoute, contaBancariaRoute, pendencia2Route);
+
+			/**
+			 * @desc Atribuição da variavel global de menu (utilizada pelo componente app-menu)
+			 * @type {string}
+			 */
+			this.$rootScope.appMenu = 'menu.json?t=1.50.9';
+		}
+
+		/**
+		 * @method
+		 * @desc Método para LOGOUT da aplicação
+		 */
+		PortalController.prototype.logout = function () {
+
+			var $this = this;
+			try {
+				this.appAutenticacaoService.sair().then(function (result) {
+					$this.appRouteService.goTo($this.appLoginProvider.getLoginRoute());
+				});
+			} catch (e) {
+				$this.$scope.$appNotify.error(e);
+			}
+		};
+
+		/**
+		 * @method
+		 * @desc Método para selecionar perfil do usuário
+		 */
+		PortalController.prototype.editUsuario = function () {
+
+			this.appPerfilService.selecionarPerfil(this.appSegurancaService.getUsuario()).then(function() {
+
+			}, function() {
+
+			});
+		};
+
+		/**
+		 * @desc Dependency Injection
+		 */
+		PortalController.$inject = ['$rootScope', '$scope', '$log', 'appRouteService', '$translatePartialLoader',
+		    'appAutenticacaoService', 'appLogin','appPerfilService','appSegurancaService'];
+
+		/**
+		 * @desc Criação do objeto angular para o controlador PortalController
+		 * @type {boolean}
+		 */
+		app.controller('PortalController', PortalController);
+
+		return app;
+	}
+);

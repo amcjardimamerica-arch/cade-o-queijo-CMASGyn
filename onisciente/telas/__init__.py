@@ -56,7 +56,8 @@ def montar(ctx: D.Contexto) -> tuple[dict, dict[str, dict], list[dict]]:
     """Os dados de todas as páginas: (comum, dados por página, índice das fichas)."""
     comum = D.comum(ctx)
     comum["temas"] = {k: {"titulo": t, "pagina": p, "ancora": a, "descricao": d} for k, (t, p, a, d) in D.TEMAS.items()}
-    comum["entradas"] = sorted(ctx.entradas)
+    comum["entradas"] = sorted(n for n in ctx.entradas if ctx.entrada(n))
+    comum["coletas"] = ctx.coletas()
     rio = D.rio(ctx)
     precos = D.precos(ctx)
     ind = D.indicios(ctx)

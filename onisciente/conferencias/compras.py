@@ -565,7 +565,7 @@ def _notas_ausentes(con: sqlite3.Connection, contratos: dict[str, dict], cobrado
                     cobertura: dict) -> None:
     """A fonte certifica por si: o órgão cujos meses o motor leu no PNCP sem achar nenhuma nota fiscal
     de nenhum dos seus contratos não publicou o que a lei manda publicar (Lei 14.133/2021, art. 174,
-    § 2º, V). Mês não lido não conta: falta de leitura é lacuna do sistema, não do Município."""
+    § 2º, VI). Mês não lido não conta: falta de leitura é lacuna do sistema, não do Município."""
     if not _tabela(con, "meta"):
         return
     linha = con.execute("select valor from meta where chave = 'pncp_detalhe_lidos'").fetchone()
@@ -702,7 +702,7 @@ def ficha(a: Achado, competencia: str | None = None) -> Ficha | None:
             niveis=[Nivel.B, Nivel.C], providencia="Pedir as liquidações e os atestos das notas e os aditivos "
                                                    "que as cobrem."),
         "nf_ausente": dict(
-            familia=Familia.ENT, gravidade="media", norma="Lei 14.133/2021, art. 174, § 2º, V; Lei 12.527/2011, art. 8º",
+            familia=Familia.ENT, gravidade="media", norma="Lei 14.133/2021, art. 174, § 2º, VI; Lei 12.527/2011, art. 8º",
             como_deveria="As notas fiscais eletrônicas de cada contrato ficam no PNCP, onde qualquer um confere o "
                          "que foi cobrado contra o que foi contratado.",
             niveis=[Nivel.F], documento_faltante=True,

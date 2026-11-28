@@ -1,0 +1,1759 @@
+URL: https://dadosabertos.go.gov.br/dataset/
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 52400
+
+<!DOCTYPE html>
+<!--[if IE 9]> <html lang="pt_BR" class="ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="pt_BR"> <!--<![endif]-->
+  <head>
+	  <!-- Google tag (gtag.js) -->
+	  <script async src="https://www.googletagmanager.com/gtag/js?id=G-79MXE8QM9R"></script>
+	  <script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-79MXE8QM9R');
+	  </script>
+	  
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+	  <meta http-equiv="Pragma" content="no-cache" />
+	  <meta http-equiv="Expires" content="0" />
+      <meta charset="utf-8" />
+      <meta name="generator" content="ckan 2.9.5" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conjunto de dados - Dados Abertos Goiás</title>
+
+    
+    <link rel="shortcut icon" href="/base/images/ckan.ico" />
+    
+      
+      
+      
+      
+    
+
+    
+      
+      
+    
+
+    
+    <link href="/webassets/base/632d0115_main.css" rel="stylesheet"/><style>
+        .module-content .featured {display: none;} /* Desabilita a imagem do texto de Boas Vindas da janela principal do CKAN*/
+      </style>
+    
+  </head>
+
+  
+  <body data-site-root="https://dadosabertos.go.gov.br/" data-locale-root="https://dadosabertos.go.gov.br/" >
+
+    
+    <div class="sr-only sr-only-focusable"><a href="#content">Pular para o conteúdo</a></div>
+  
+
+  
+    
+
+
+
+
+
+
+
+
+<div class="barra-topo">
+  <div class="container">
+    <div class="left">
+      <a href="/">dadosabertos.go.gov.br</a>
+    </div>
+    <div class="right">
+      
+      <a href="/user/login">Entrar</a>
+      
+      <a href="/accessibility/">Acessibilidade:</a>
+      <a class="contrast-icons" id="fontless" alt="Diminuir fonte" title="Diminuir Fonte">-A</a>
+      <a class="contrast-icons" id="fontdefault" alt="Fonte média" title="Tamanho da fonte padrão">A</a>
+      <a class="contrast-icons" id="fontplus" alt="Aumentar fonte" title="Aumentar Fonte">+A</a>
+      <img class="contrast-icons" id="contrast-toggle" src="/base/images/icon-contrast.svg"
+        alt="Alterar Contraste da Página" title="Alterar Contraste da Página">
+    </div>
+  </div>
+</div>
+
+<div class="caixa-titulo">
+  <div class="container">
+    <a href="/">
+      <img src="/base/images/logo_dados_abertos.png" alt="">
+    </a>
+	<img src="/base/images/logo_brasao.png" alt="">
+  </div>
+</div>
+
+<header class="navbar navbar-static-top masthead">
+  <div class="container">
+    <div class="navbar-right">
+      <button data-target="#main-navigation-toggle" data-toggle="collapse" class="navbar-toggle collapsed" type="button"
+        aria-label="expand or collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="fa fa-bars"></span>
+      </button>
+    </div>
+    <div class="header-image navbar-left"></div>
+    <div class="collapse navbar-collapse" id="main-navigation-toggle">
+      <nav class="section navigation">
+        <ul class="nav nav-pills">
+          
+          <li class="active"><a href="/dataset/">Conjuntos de dados</a></li><li><a href="/organization/">Organizações</a></li><li><a href="/group/">Grupos</a></li><li><a href="/about">Sobre</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              Avaliação do Portal <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=HEP9Z62yZ0iBvNdWIgtW1OT4Y9zewvJItOCmTsRVU7NUMEdJQ1dRNkhBWTFJQklGOFQyU1JQMVdaMyQlQCN0PWcu" target="_blank" rel="noopener noreferrer">
+                  Avalie Aqui
+                </a>
+              </li>
+              <li>
+                <a href="https://forms.office.com/Pages/AnalysisPage.aspx?AnalyzerToken=AFIXiiYAc0GHF2pg8X8tSTZ9nlg4cAGk&id=HEP9Z62yZ0iBvNdWIgtW1OT4Y9zewvJItOCmTsRVU7NUMEdJQ1dRNkhBWTFJQklGOFQyU1JQMVdaMyQlQCN0PWcu" target="_blank" rel="noopener noreferrer">
+                  Respostas da Avaliação
+                </a>
+              </li>
+            </ul>
+          </li>
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<div class="caixa-busca">
+  <div class="container-busca">
+    <form method="get" action="/dataset/">
+      <div class="campo-pesquisa">
+        <input aria-label="Search datasets" id="field-main-search" type="text" class="form-control" name="q" value=""
+          autocomplete="off" placeholder="Pesquisar Dados">
+        <button title="Pesquisar" type="submit">
+          <img src="/base/images/icon-pesquisa.svg" alt=""> Buscar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+  
+    <div class="main">
+      <div id="content" class="container">
+        
+          
+            <div class="flash-messages">
+              
+                
+              
+            </div>
+          
+
+          
+            <div class="toolbar" role="navigation" aria-label="Breadcrumb">
+              
+                
+                  <ol class="breadcrumb">
+                    
+<li class="home"><a href="/" aria-label="Início"><i class="fa fa-home"></i><span> Início</span></a></li>
+                    
+<li class="active">
+  <a href="/dataset/">Conjuntos de dados</a>
+</li>
+
+                  </ol>
+                
+              
+            </div>
+          
+          
+<div class="parte1">
+  <h2>Diretório Dados Abertos</h2>
+  <p>Para obter um arquivo CSV, JSON, TSV ou XML no servidor FTP do Estado de Goiás, basta navegar nos diretórios
+    abaixo e selecionar o arquivo desejado.</p>
+</div>
+
+          <div class="barra-grupos row wrapper">
+            
+            
+            
+
+            
+              <aside class="secondary col-sm-3">
+                
+                
+<div class="filters barra-grupos">
+  <div>
+    
+    
+
+    
+    
+	
+	    
+	    
+		<section class="module module-narrow module-shallow">
+		    
+			<h2 class="module-heading">
+			    <i class="fa fa-filter"></i>
+			    
+			    Organizações
+			</h2>
+		    
+		    
+			
+			    
+				<nav aria-label="Organizações">
+				    <ul class="list-unstyled nav nav-simple nav-facet">
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?organization=secretaria-de-estado-da-saude" title="Secretaria de Estado da Saúde">
+						    <span class="item-label">Secretaria de Estad...</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">43</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?organization=agencia-goiana-de-agrodefesa-agropecuaria" title="Agência Goiana de Defesa Agropecuária">
+						    <span class="item-label">Agência Goiana de D...</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">39</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?organization=agencia-brasil-central" title="Agência Brasil Central - ABC">
+						    <span class="item-label">Agência Brasil Cent...</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">21</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?organization=administracao" title="Secretaria da Administração">
+						    <span class="item-label">Secretaria da Admin...</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">21</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?organization=secretaria-de-estado-de-desenvolvimento-social" title="Secretaria de Estado de Desenvolvimento Social">
+						    <span class="item-label">Secretaria de Estad...</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">19</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?organization=secretaria-de-estado-de-agricultura-pecuaria-e-abastecimento" title="Secretaria de Estado de Agricultura, Pecuária e Abastecimento">
+						    <span class="item-label">Secretaria de Estad...</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">17</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?organization=a-companhia-de-desenvolvimento-economico-de-goias-codego" title="Companhia de Desenvolvimento Econômico de Goiás - CODEGO">
+						    <span class="item-label">Companhia de Desenv...</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">16</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?organization=agencia-goiana-de-regulacao-controle-e-fiscalizacao-de-servicos-publicos" title="Agência Goiana de Regulação, Controle e Fiscalização de Serviços Públicos ">
+						    <span class="item-label">Agência Goiana de R...</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">15</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?organization=controladoria-geral-do-estado" title="Controladoria-Geral do Estado">
+						    <span class="item-label">Controladoria-Geral...</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">15</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?organization=secretaria-de-estado-de-esporte-e-lazer" title="Secretaria de Estado de Esporte e Lazer">
+						    <span class="item-label">Secretaria de Estad...</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">15</span>
+						</a>
+					    </li>
+					
+				    </ul>
+				</nav>
+
+				<p class="module-footer">
+				    
+					
+					    <a href="/dataset/?_organization_limit=0" class="read-more">Mostrar mais Organizações</a>
+					
+				    
+				</p>
+			    
+			
+		    
+		</section>
+	    
+	
+    
+
+    
+    
+
+    
+    
+	
+	    
+	    
+		<section class="module module-narrow module-shallow">
+		    
+			<h2 class="module-heading">
+			    <i class="fa fa-filter"></i>
+			    
+			    Grupos
+			</h2>
+		    
+		    
+			
+			    
+				<nav aria-label="Grupos">
+				    <ul class="list-unstyled nav nav-simple nav-facet">
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?groups=saude" title="">
+						    <span class="item-label">Saúde</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">41</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?groups=agricultura-pecuaria-e-abastecimento" title="Agricultura, Pecuária e Abastecimento">
+						    <span class="item-label">Agricultura, Pecuár...</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">36</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?groups=dadosabertos-go-gov-br-group-transporte" title="">
+						    <span class="item-label">Transporte</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">20</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?groups=administracao-publica" title="">
+						    <span class="item-label">Administração Pública</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">19</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?groups=comunicacao" title="">
+						    <span class="item-label">Comunicação</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">15</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?groups=desenvolvimento-social" title="Desenvolvimento Social_Assistência Social">
+						    <span class="item-label">Desenvolvimento Soc...</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">11</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?groups=educacao" title="">
+						    <span class="item-label">Educação</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">11</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?groups=legislacao" title="">
+						    <span class="item-label">Legislação</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">11</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?groups=economiaa" title="">
+						    <span class="item-label">Economia </span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">10</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?groups=meio-ambiente" title="">
+						    <span class="item-label">Meio Ambiente</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">10</span>
+						</a>
+					    </li>
+					
+				    </ul>
+				</nav>
+
+				<p class="module-footer">
+				    
+					
+					    <a href="/dataset/?_groups_limit=0" class="read-more">Mostrar mais Grupos</a>
+					
+				    
+				</p>
+			    
+			
+		    
+		</section>
+	    
+	
+    
+
+    
+    
+
+    
+    
+	
+	    
+	    
+		<section class="module module-narrow module-shallow">
+		    
+			<h2 class="module-heading">
+			    <i class="fa fa-filter"></i>
+			    
+			    Etiquetas
+			</h2>
+		    
+		    
+			
+			    
+				<nav aria-label="Etiquetas">
+				    <ul class="list-unstyled nav nav-simple nav-facet">
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?tags=agricultura" title="">
+						    <span class="item-label">agricultura</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">38</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?tags=educa%C3%A7%C3%A3o" title="">
+						    <span class="item-label">educação</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">22</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?tags=transpar%C3%AAncia" title="">
+						    <span class="item-label">transparência</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">20</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?tags=AGR" title="">
+						    <span class="item-label">AGR</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">14</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?tags=desenvolvimento+social" title="">
+						    <span class="item-label">desenvolvimento social</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">14</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?tags=Transportes" title="">
+						    <span class="item-label">Transportes</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">14</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?tags=assist%C3%AAncia+social" title="">
+						    <span class="item-label">assistência social</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">12</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?tags=avalia%C3%A7%C3%A3o" title="">
+						    <span class="item-label">avaliação</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">12</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?tags=meio+ambiente" title="">
+						    <span class="item-label">meio ambiente</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">12</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?tags=pecuaria" title="">
+						    <span class="item-label">pecuaria</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">12</span>
+						</a>
+					    </li>
+					
+				    </ul>
+				</nav>
+
+				<p class="module-footer">
+				    
+					
+					    <a href="/dataset/?_tags_limit=0" class="read-more">Mostrar mais Etiquetas</a>
+					
+				    
+				</p>
+			    
+			
+		    
+		</section>
+	    
+	
+    
+
+    
+    
+
+    
+    
+	
+	    
+	    
+		<section class="module module-narrow module-shallow">
+		    
+			<h2 class="module-heading">
+			    <i class="fa fa-filter"></i>
+			    
+			    Formatos
+			</h2>
+		    
+		    
+			
+			    
+				<nav aria-label="Formatos">
+				    <ul class="list-unstyled nav nav-simple nav-facet">
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?res_format=PDF" title="">
+						    <span class="item-label">PDF</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">435</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?res_format=CSV" title="">
+						    <span class="item-label">CSV</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">420</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?res_format=ZIP" title="">
+						    <span class="item-label">ZIP</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">81</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?res_format=XLSX" title="">
+						    <span class="item-label">XLSX</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">36</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?res_format=JSON" title="">
+						    <span class="item-label">JSON</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">8</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?res_format=GIF" title="">
+						    <span class="item-label">GIF</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">1</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?res_format=RAR" title="">
+						    <span class="item-label">RAR</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">1</span>
+						</a>
+					    </li>
+					
+				    </ul>
+				</nav>
+
+				<p class="module-footer">
+				    
+					
+				    
+				</p>
+			    
+			
+		    
+		</section>
+	    
+	
+    
+
+    
+    
+
+    
+    
+	
+	    
+	    
+		<section class="module module-narrow module-shallow">
+		    
+			<h2 class="module-heading">
+			    <i class="fa fa-filter"></i>
+			    
+			    Licenças
+			</h2>
+		    
+		    
+			
+			    
+				<nav aria-label="Licenças">
+				    <ul class="list-unstyled nav nav-simple nav-facet">
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?license_id=cc-by" title="Creative Commons Atribuição">
+						    <span class="item-label">Creative Commons At...</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">355</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?license_id=cc-by-sa" title="Creative Commons Atribuição e Compartilhamento pela mesma Licença">
+						    <span class="item-label">Creative Commons At...</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">10</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?license_id=cc-nc" title="Creative Commons Não-Comercial (Qualquer)">
+						    <span class="item-label">Creative Commons Nã...</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">1</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?license_id=odc-odbl" title="Licença Aberta para Bases de Dados (ODbL) do Open Data Commons">
+						    <span class="item-label">Licença Aberta para...</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">1</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?license_id=odc-pddl" title="Licença e Dedicação ao Domínio Público do Open Data Commons (PDDL)">
+						    <span class="item-label">Licença e Dedicação...</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">1</span>
+						</a>
+					    </li>
+					
+					    
+					    
+					    
+					    
+					    <li class="nav-item">
+						<a href="/dataset/?license_id=notspecified" title="Licença não especificada">
+						    <span class="item-label">Licença não especif...</span>
+						    <span class="hidden separator"> - </span>
+						    <span class="item-count badge">1</span>
+						</a>
+					    </li>
+					
+				    </ul>
+				</nav>
+
+				<p class="module-footer">
+				    
+					
+				    
+				</p>
+			    
+			
+		    
+		</section>
+	    
+	
+    
+
+    
+  </div>
+  <a class="close no-text hide-filters"><i class="fa fa-times-circle"></i></a>
+</div>
+<!-- <div class="barra-grupos container">
+    <table>
+      <thead>
+        <th>
+          <img src="/base/images/icon-filter.svg" alt="">
+          Filtro
+        </th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Benefícios Econômicos</td>
+        </tr>
+        <tr>
+          <td>Benefícios Fiscais</td>
+        </tr>
+        <tr>
+          <td>Beneficios Sociais</td>
+        </tr>
+        <tr>
+          <td>Concessão de Tare</td>
+        </tr>
+        <tr>
+          <td>Convênios</td>
+        </tr>
+        <tr>
+          <td>Diárias</td>
+        </tr>
+        <tr>
+          <td>Dispensados de bater ponto</td>
+        </tr>
+        <tr>
+          <td>Empenhos, Liquidações e ...</td>
+        </tr>
+        <tr>
+          <td>Execução Orçamentária</td>
+        </tr>
+        <tr>
+          <td>FAPEG</td>
+        </tr>
+        <tr>
+          <td>Folha de Pagamento</td>
+        </tr>
+        <tr>
+          <td>Licitações</td>
+        </tr>
+        <tr>
+          <td>Patrimônio</td>
+        </tr>
+        <tr>
+          <td>Plano Plurianual</td>
+        </tr>
+        <tr>
+          <td>Receita - Arrecadação Estadual</td>
+        </tr>
+        <tr>
+          <td>Receita/Arrecadação</td>
+        </tr>
+        <tr>
+          <td>Receitas Detalhadas</td>
+        </tr>
+        <tr>
+          <td>Repasses Municipais </td>
+        </tr>
+      </tbody>
+    </table>
+  </div> -->
+
+              </aside>
+            
+
+            
+              <div class="primary col-sm-9 col-xs-12" role="main">
+                
+                
+<!-- <section class="module">
+    <div class="module-content">
+
+    </div>
+
+
+  </section> -->
+
+<!-- 
+    <section class="module">
+      <div class="module-content">
+        
+          <small>
+            
+            
+            
+           Você também pode ter acesso a esses registros usando a <a href="/api/3">API</a> (veja <a href="http://docs.ckan.org/en/2.9/api/">Documentação da API</a>). 
+          </small>
+        
+      </div>
+    </section>
+   -->
+
+<section class="module barra-grupos">
+  <div class="parte1-2">
+    <div>
+      
+      
+      
+
+      
+      
+      
+      
+
+
+
+
+
+
+
+
+<form id="dataset-search-form"
+  class="search-form" method="get"
+  data-module="select-switch">
+
+  
+  
+  
+  <!-- <h1> -->
+  <div class="cabecalho">
+    <h3>
+      
+
+  
+  
+  
+  
+
+451 conjuntos de dados encontrados
+    </h3>
+
+    <div class="classificar">
+      
+      
+      <label for="field-order-by">Ordenar por: </label>
+      <select id="field-order-by" name="sort" class="form-control">
+        
+        
+        <option value="score desc, metadata_modified desc"  selected="selected" >Relevância
+        </option>
+        
+        
+        
+        <option value="title_string asc" >Nome Crescente
+        </option>
+        
+        
+        
+        <option value="title_string desc" >Nome Descrescente
+        </option>
+        
+        
+        
+        <option value="metadata_modified desc" >Modificada pela última vez
+        </option>
+        
+        
+        
+        
+      </select>
+      
+      <button class="btn" type="submit">Ir</button>
+      
+
+      
+      
+    </div>
+  </div>
+  <!-- </h1> -->
+  
+  
+
+  
+  
+  <p class="filter-list">
+    
+  </p>
+  <a class="show-filters btn btn-default">Filtrar Resultados</a>
+  
+  
+
+</form>
+
+
+
+
+      
+    </div>
+    <div>
+      
+
+
+  
+    
+      
+        
+        <div class="item">
+          <h4>
+            <a href="/dataset/arbovirose">Arboviroses – SES</a>
+          </h4>
+          
+            <div class="desc">Informações sobre casos de arboviroses no Estado de Goiás, destinadas ao acompanhamento e monitoramento dessas doenças. Os dados de arboviroses desempenham um papel crucial na gestão de saúde pública no Estado de Goiás. Através da coleta e análise sistemática dessas informações, é possível implementar medidas preventivas eficazes, melhorar o manejo de surtos e proteger a saúde da população. Enfrentar os desafios e aproveitar as oportunidades disponíveis são passos essenciais para o controle efetivo dessas doenças.</div>
+          
+
+          <div class="tipo-dados">
+
+            
+              
+                <a href="/dataset/arbovirose">
+                  <span class="pdf btn">PDF</span>
+                </a>
+              
+                <a href="/dataset/arbovirose">
+                  <span class="csv btn">CSV</span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+        
+        <div class="item">
+          <h4>
+            <a href="/dataset/covid-19">COVID-19 – SES</a>
+          </h4>
+          
+            <div class="desc">Dados abertos sobre a COVID-19, incluindo casos confirmados, óbitos, testes realizados, dados consolidados por município e relatórios consolidados de casos e óbitos.</div>
+          
+
+          <div class="tipo-dados">
+
+            
+              
+                <a href="/dataset/covid-19">
+                  <span class="pdf btn">PDF</span>
+                </a>
+              
+                <a href="/dataset/covid-19">
+                  <span class="csv btn">CSV</span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+        
+        <div class="item">
+          <h4>
+            <a href="/dataset/obras_em_andamento_e_finalizadas_2023_2024_2025">Obras em Andamento e Concluídas - SECULT</a>
+          </h4>
+          
+            <div class="desc">Informações sobre obras em andamento e concluídas.</div>
+          
+
+          <div class="tipo-dados">
+
+            
+              
+                <a href="/dataset/obras_em_andamento_e_finalizadas_2023_2024_2025">
+                  <span class="pdf btn">PDF</span>
+                </a>
+              
+                <a href="/dataset/obras_em_andamento_e_finalizadas_2023_2024_2025">
+                  <span class="csv btn">CSV</span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+        
+        <div class="item">
+          <h4>
+            <a href="/dataset/emendas-impositivas-via-transferencia-especial">Emendas Impositivas via Transferência Especial – UEG</a>
+          </h4>
+          
+            <div class="desc">Relação das emendas impositivas destinadas à Universidade Estadual de Goiás (UEG) por meio de transferência especial, contendo informações sobre os respectivos repasses.</div>
+          
+
+          <div class="tipo-dados">
+
+            
+              
+                <a href="/dataset/emendas-impositivas-via-transferencia-especial">
+                  <span class="pdf btn">PDF</span>
+                </a>
+              
+                <a href="/dataset/emendas-impositivas-via-transferencia-especial">
+                  <span class="csv btn">CSV</span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+        
+        <div class="item">
+          <h4>
+            <a href="/dataset/acordos-sem-repasses-financeiros">Acordos sem Repasses Financeiros – UEG</a>
+          </h4>
+          
+            <div class="desc">Relação dos acordos formalizados pela Universidade Estadual de Goiás (UEG) que não envolvem transferência de recursos financeiros entre os partícipes.</div>
+          
+
+          <div class="tipo-dados">
+
+            
+              
+                <a href="/dataset/acordos-sem-repasses-financeiros">
+                  <span class="pdf btn">PDF</span>
+                </a>
+              
+                <a href="/dataset/acordos-sem-repasses-financeiros">
+                  <span class="csv btn">CSV</span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+        
+        <div class="item">
+          <h4>
+            <a href="/dataset/convenios-e-transferencias-recebidas">Convênios e Transferências Recebidas – UEG</a>
+          </h4>
+          
+            <div class="desc">Relação dos convênios formalizados pela Universidade Estadual de Goiás (UEG) que envolvem transferências de recursos realizadas pelos partícipes em favor da instituição.</div>
+          
+
+          <div class="tipo-dados">
+
+            
+              
+                <a href="/dataset/convenios-e-transferencias-recebidas">
+                  <span class="pdf btn">PDF</span>
+                </a>
+              
+                <a href="/dataset/convenios-e-transferencias-recebidas">
+                  <span class="csv btn">CSV</span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+        
+        <div class="item">
+          <h4>
+            <a href="/dataset/convenios-e-transferencias-realizadas">Convênios e Transferências Realizadas – UEG</a>
+          </h4>
+          
+            <div class="desc">Relação dos convênios formalizados pela Universidade Estadual de Goiás (UEG) que envolvem transferências de recursos realizadas pela instituição em favor dos respectivos partícipes.</div>
+          
+
+          <div class="tipo-dados">
+
+            
+              
+                <a href="/dataset/convenios-e-transferencias-realizadas">
+                  <span class="pdf btn">PDF</span>
+                </a>
+              
+                <a href="/dataset/convenios-e-transferencias-realizadas">
+                  <span class="csv btn">CSV</span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+        
+        <div class="item">
+          <h4>
+            <a href="/dataset/veh-vigilancia-epidemiologica-hospitalar-de-goias">Vigilância Epidemiológica Hospitalar (VEH) – SES</a>
+          </h4>
+          
+            <div class="desc">Dados da Vigilância Epidemiológica Hospitalar do Estado de Goiás, incluindo informações sobre oportunidades e representatividade das ações de vigilância realizadas no ambiente hospitalar.</div>
+          
+
+          <div class="tipo-dados">
+
+            
+              
+                <a href="/dataset/veh-vigilancia-epidemiologica-hospitalar-de-goias">
+                  <span class="pdf btn">PDF</span>
+                </a>
+              
+                <a href="/dataset/veh-vigilancia-epidemiologica-hospitalar-de-goias">
+                  <span class="csv btn">CSV</span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+        
+        <div class="item">
+          <h4>
+            <a href="/dataset/auditorias-do-sus">Auditorias do SUS – SES</a>
+          </h4>
+          
+            <div class="desc">Informações sobre as auditorias realizadas no âmbito do Sistema Único de Saúde (SUS) em Goiás, incluindo ações de controle, avaliação e acompanhamento das políticas públicas de saúde e da aplicação de recursos do SUS.</div>
+          
+
+          <div class="tipo-dados">
+
+            
+              
+                <a href="/dataset/auditorias-do-sus">
+                  <span class="pdf btn">PDF</span>
+                </a>
+              
+                <a href="/dataset/auditorias-do-sus">
+                  <span class="csv btn">CSV</span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+        
+        <div class="item">
+          <h4>
+            <a href="/dataset/srag">Síndrome Respiratória Aguda Grave (SRAG) – SES</a>
+          </h4>
+          
+            <div class="desc">Dados sobre casos notificados de Síndrome Respiratória Aguda Grave (SRAG) entre residentes no Estado de Goiás, incluindo informações sobre a classificação dos casos segundo o agente etiológico identificado ou a situação de investigação.</div>
+          
+
+          <div class="tipo-dados">
+
+            
+              
+                <a href="/dataset/srag">
+                  <span class="pdf btn">PDF</span>
+                </a>
+              
+                <a href="/dataset/srag">
+                  <span class="csv btn">CSV</span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+        
+        <div class="item">
+          <h4>
+            <a href="/dataset/dengue">Dengue – SES</a>
+          </h4>
+          
+            <div class="desc">Informações sobre casos de dengue no Estado de Goiás, incluindo dados de notificações, município de residência, período epidemiológico, data de sintomas, classificação, critério de confirmação, evolução dos casos, sorotipos e quantidade de testes realizados.</div>
+          
+
+          <div class="tipo-dados">
+
+            
+              
+                <a href="/dataset/dengue">
+                  <span class="pdf btn">PDF</span>
+                </a>
+              
+                <a href="/dataset/dengue">
+                  <span class="csv btn">CSV</span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+        
+        <div class="item">
+          <h4>
+            <a href="/dataset/dados-de-nascidos-vivos-sinasc">Nascidos Vivos – SINASC – SES</a>
+          </h4>
+          
+            <div class="desc">Informações sobre nascidos vivos no Estado de Goiás, incluindo data de nascimento, peso, sexo, tipo de parto, consultas de pré-natal, faixa etária e escolaridade da mãe, município de ocorrência e município de residência.</div>
+          
+
+          <div class="tipo-dados">
+
+            
+              
+                <a href="/dataset/dados-de-nascidos-vivos-sinasc">
+                  <span class="pdf btn">PDF</span>
+                </a>
+              
+                <a href="/dataset/dados-de-nascidos-vivos-sinasc">
+                  <span class="csv btn">CSV</span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+        
+        <div class="item">
+          <h4>
+            <a href="/dataset/transparencia-regulacao-indicadores">Regulação – Atendimentos, Serviços de Saúde e Tempo Médio de Espera - SES</a>
+          </h4>
+          
+            <div class="desc">Indicadores de regulação em saúde no Estado de Goiás, contendo informações sobre consultas, exames e cirurgias, incluindo quantidade de procedimentos realizados, tempo médio de espera, especialidade, tipo de procedimento, nível de atenção, região de saúde e perdas primárias e secundárias.</div>
+          
+
+          <div class="tipo-dados">
+
+            
+              
+                <a href="/dataset/transparencia-regulacao-indicadores">
+                  <span class="csv btn">CSV</span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+        
+        <div class="item">
+          <h4>
+            <a href="/dataset/mapa-de-leitos">Mapa de Leitos – SES</a>
+          </h4>
+          
+            <div class="desc">Histórico da disponibilidade e ocupação de leitos do SUS nas unidades hospitalares próprias e contratualizadas/conveniadas pela Secretaria de Estado da Saúde de Goiás, incluindo leitos gerais, enfermarias, unidades de terapia intensiva e unidades de cuidados intermediários.</div>
+          
+
+          <div class="tipo-dados">
+
+            
+              
+                <a href="/dataset/mapa-de-leitos">
+                  <span class="pdf btn">PDF</span>
+                </a>
+              
+                <a href="/dataset/mapa-de-leitos">
+                  <span class="csv btn">CSV</span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+        
+        <div class="item">
+          <h4>
+            <a href="/dataset/painel-de-tendencias">Painel de Tendências – SES</a>
+          </h4>
+          
+            <div class="desc">Dados de indicadores estratégicos de saúde pública, organizados por localidade, período e indicador, incluindo numeradores e denominadores utilizados para análise de tendências e séries históricas.</div>
+          
+
+          <div class="tipo-dados">
+
+            
+              
+                <a href="/dataset/painel-de-tendencias">
+                  <span class="pdf btn">PDF</span>
+                </a>
+              
+                <a href="/dataset/painel-de-tendencias">
+                  <span class="csv btn">CSV</span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+        
+        <div class="item">
+          <h4>
+            <a href="/dataset/veus-vigilancia-epidemiologica-nas-unidades-de-saude">Dados Oportunidades e Representatividade - SES</a>
+          </h4>
+          
+            <div class="desc">Painel desenvolvido para mostrar, sob diferentes perspectivas, o desempenho dos profissionais de saúde dos Núcleos de Epidemilogia das Unidades de Saúde em Goiás. Focado nas ações de vigilância epidemiológica relacionadas às doenças, agravos e eventos de saúde pública de notificação compulsória imediata, utiliza-se de indicadores operacionais e estruturais. Os indicadores de desempenho foram definidos e pactuados pelo Ministério da Saúde, por meio da RENAVEH - Rede Nacional de Vigilância Hospitalar, e o estado de Goiás incluiu, através da portaria SES-GO nº 2743/2022, indicadores relacionados à estruturação e aperfeiçoamento das equipes dos Núcleos de Epidemiologia visando a qualificação das ações de vigilância. Embora, inicialmente, o monitoramento desses núcleos alcançassem somente as unidades hospitalares, hoje encontra-se em processo de expansão para alcance, no futuro, de todos os núcleos de Vigilância Epidemiológica de Goiás.</div>
+          
+
+          <div class="tipo-dados">
+
+            
+              
+                <a href="/dataset/veus-vigilancia-epidemiologica-nas-unidades-de-saude">
+                  <span class="pdf btn">PDF</span>
+                </a>
+              
+                <a href="/dataset/veus-vigilancia-epidemiologica-nas-unidades-de-saude">
+                  <span class="csv btn">CSV</span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+        
+        <div class="item">
+          <h4>
+            <a href="/dataset/aedes">Zika e Chikungunya - SES</a>
+          </h4>
+          
+            <div class="desc">Este conjunto de dados reúne informações epidemiológicas e entomológicas relacionadas ao mosquito _Aedes aegypti_ e à ocorrência de casos de Zika vírus e Chikungunya no estado de Goiás. Os dados são coletados e organizados pela Secretaria de Estado da Saúde de Goiás (SES-GO), com base nas notificações registradas nos sistemas oficiais de vigilância em saúde.
+
+O objetivo é fornecer transparência e acesso público a dados relevantes para a vigilância, controle e prevenção das arboviroses, permitindo análises por pesquisadores, gestores públicos e cidadãos interessados.</div>
+          
+
+          <div class="tipo-dados">
+
+            
+              
+                <a href="/dataset/aedes">
+                  <span class="pdf btn">PDF</span>
+                </a>
+              
+                <a href="/dataset/aedes">
+                  <span class="csv btn">CSV</span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+        
+        <div class="item">
+          <h4>
+            <a href="/dataset/mortalidade">Mortalidade – SES</a>
+          </h4>
+          
+            <div class="desc">Dados sobre mortalidade no Estado de Goiás, incluindo informações sobre mortalidade geral, mortalidade infantil, mortalidade na infância e mortalidade materna, com dados provenientes do Sistema de Informações sobre Mortalidade (SIM).
+
+Os recursos estão divididos em:
+
+**Mortalidade geral**: Esta seção apresenta dados sobre a mortalidade geral no estado, incluindo o número de óbitos, a taxa de mortalidade e as causas de morte.
+
+**Mortalidade infantil**: Esta seção apresenta dados sobre a mortalidade infantil no estado, incluindo o número de óbitos de crianças menores de um ano, a taxa de mortalidade infantil e as causas de morte.
+
+**Mortalidade na infância**: Esta seção apresenta dados sobre a mortalidade infantil no estado, incluindo o número de óbitos de crianças menores de cinco ano, a taxa de mortalidade na infância e as causas de morte.
+
+**Mortalidade materna**: Esta seção apresenta dados sobre a mortalidade materna no estado, incluindo o número de óbitos de mulheres grávidas, a taxa de mortalidade materna e as causas de morte.
+
+Os dados são atualizados regularmente com informações do Sistema de Informações sobre Mortalidade - SIM/MS, referentes aos dados fechados e do SIM/SESGO que são os dados preliminares. O SIM é um sistema de informação do Ministério da Saúde que coleta dados sobre óbitos ocorridos no Brasil.
+
+Este é um recurso disponível para profissionais da saúde, gestores públicos e cidadãos interessados em conhecer a situação da mortalidade no Estado de Goiás.</div>
+          
+
+          <div class="tipo-dados">
+
+            
+              
+                <a href="/dataset/mortalidade">
+                  <span class="pdf btn">PDF</span>
+                </a>
+              
+                <a href="/dataset/mortalidade">
+                  <span class="csv btn">CSV</span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+        
+        <div class="item">
+          <h4>
+            <a href="/dataset/execucao-orcamentaria-natureza-despesa">Execução Orçamentária Natureza Despesa - ECONOMIA</a>
+          </h4>
+          
+            <div class="desc">Conjunto de dados contendo: _Código da categoria econômica; Código do elemento despesa; Código do órgão; Categoria econômica; Modalidade de aplicação; Elemento despesa._</div>
+          
+
+          <div class="tipo-dados">
+
+            
+              
+                <a href="/dataset/execucao-orcamentaria-natureza-despesa">
+                  <span class="pdf btn">PDF</span>
+                </a>
+              
+                <a href="/dataset/execucao-orcamentaria-natureza-despesa">
+                  <span class="csv btn">CSV</span>
+                </a>
+              
+                <a href="/dataset/execucao-orcamentaria-natureza-despesa">
+                  <span class="zip btn">ZIP</span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+        
+        <div class="item">
+          <h4>
+            <a href="/dataset/beneficiarios-dos-pagamentos">Beneficiários dos Pagamentos - ECONOMIA</a>
+          </h4>
+          
+            <div class="desc">Conjunto de dados contendo: _Data do pagamento; Valor do pagamento; Nome do credor; CPF do credor; Código do órgão._</div>
+          
+
+          <div class="tipo-dados">
+
+            
+              
+                <a href="/dataset/beneficiarios-dos-pagamentos">
+                  <span class="pdf btn">PDF</span>
+                </a>
+              
+                <a href="/dataset/beneficiarios-dos-pagamentos">
+                  <span class="csv btn">CSV</span>
+                </a>
+              
+                <a href="/dataset/beneficiarios-dos-pagamentos">
+                  <span class="zip btn">ZIP</span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    
+  
+
+    </div>
+    
+    <div class="pagination-wrapper">
+  <ul class="pagination"> <li class="active">
+  <a href="/dataset/?page=1">1</a>
+</li> <li>
+  <a href="/dataset/?page=2">2</a>
+</li> <li>
+  <a href="/dataset/?page=3">3</a>
+</li> <li class="disabled">
+  <a href="#">...</a>
+</li> <li>
+  <a href="/dataset/?page=23">23</a>
+</li> <li>
+  <a href="/dataset/?page=2">»</a>
+</li></ul>
+</div>
+    
+  </div>
+</section>
+
+
+              </div>
+            
+          </div>
+        
+      </div>
+    </div>
+  
+    <footer class="site-footer" style="background-color:#00A447;">
+  <div class="links" style="background-color:#F5F5F5;">
+      <div class="container">
+          <a href="http://www.transparencia.go.gov.br/portaldatransparencia/institucional/acesso-a-informacao" target="blank"><img src="/base/images/logo-acesso-info.png" alt="Logo Acesso a Informação"></a>
+          <a href="https://www.go.gov.br/servicos-digitais/cge/nova-ouvidoria" target="blank"><img src="/base/images/logo-ouvidoria-goias.png" alt="Logo Ouvidoria do Estado de Goiás"></a>
+          <a href="https://vaptvupt.go.gov.br/unidades" target="blank"><img src="/base/images/logo-servico-cidadao.png"
+                  alt="Logo Serviço de Informação ao Cidadão"></a>
+          <a href="https://www.go.gov.br/servicos-digitais/cge/nova-ouvidoria" target="blank"><img src="/base/images/logo-e-servico-cidadao.png"
+                  alt="Logo Serviço Eletrônico de Informação ao Cidadão"></a>
+
+          <a href="https://www.imb.go.gov.br/bde/" target="blank"><img src="/base/images/bde-imb.png"
+                  alt="Logo Serviço Eletrônico de Informação ao Cidadão"></a>
+      </div>
+  </div>
+  
+  <div style="background-color: #F0F8FF; border-top: 5px solid #0190D8; padding: 30px 0;">
+	  <div class="container" style="display: flex; align-items: center; gap: 0px; flex-wrap: wrap;">
+		<img src="/base/images/lupa.png" alt="Ícone de pesquisa" style="width: 80px; height: 80px; flex-shrink: 0;">
+		
+		<div style="flex: 1;">
+		  <p style="font-size: 18px; font-weight: 500; color: #144530; margin: 0;">
+			Não encontrou os dados que procurava? 
+			<a href="https://www.go.gov.br/servicos-digitais/cge/nova-ouvidoria"  
+			   style="color: #0056b3; font-weight: bold; text-decoration: underline;" target="_blank">
+			  <font color="#6495ED">Clique aqui e acesse o formulário de pedido de informação</font>
+			</a>
+			para solicitar a disponibilização da base de dados desejada.
+		  </p>
+		</div>
+	  </div>
+	</div>
+
+
+  <div style="background-color: #0190D8; height: 5px;">&nbsp;</div>
+  <div class="container" style="padding-top: 50px; padding-bottom: 50px;">
+      <div class="style-ckan-footer">
+        <div style="font-size: 12px; color: #FFFFFF; vertical-align: text-top; line-height: 1.8">
+          <nobr><span style="font-size: 12px; margin-bottom: 0px;">Governo de Goiás - Controladoria Geral do Estado</span></nobr>
+          Palácio Pedro Ludovico Teixeira – Rua 82, Nº 400, 3º andar<br>
+          Setor Sul – Goiânia/GO – CEP: 74015-908<br>
+          Contato: dadosabertos.controladoria@goias.gov.br
+        </div>
+        <div style="font-size: 12px; color: #FFFFFF; vertical-align: text-top; line-height: 1.8">
+          <nobr><span style="font-weight: bold; font-size: 12px; margin-bottom: 0px;">Portal de Dados Abertos de Goiás</span></nobr>
+          É uma iniciativa do Governo do Estado de Goiás voltada para facilitar o acesso<br>
+		  aos dados públicos produzidos pelos órgãos e entidades estaduais, promovendo a<br>
+		  transparência e o uso dessas informações pela sociedade.<br>
+          <a href="https://opendefinition.org/od/2.1/en/" target="blank">
+            <img src="/base/images/open-data-logo.png" alt="" style="margin-top: 10px;">
+          </a>
+        </div>
+        <div style="font-size: 11px; color: #FFFFFF; vertical-align: text-top;">
+          <nobr><span style="font-weight: bold; font-size: 11px; margin-bottom: 10px;">Impulsionado por</span></nobr>
+          <a href="https://ckan.org/" target="blank">
+            <img src="/base/images/ckan-logo-footer.png" alt="Logo CKAN">
+          </a>
+          <div style="text-align: right;">
+            <a href="https://goias.gov.br" target="blank">
+              <img src="/base/images/brasao_goias.png" alt="Governo do Estado de Goiás">
+            </a>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div style="background-color:#144530; text-align: center; padding-top: 5px; padding-bottom: 5px;">
+      <p>
+          <span style="color:#FFFFFF; font-size: 10px;">Distribuído por <a href="https://www.desenvolvimento.go.gov.br/" target="blank">SUBSECRETARIA DE TECNOLOGIA DA INFORMAÇÃO/SEDI</a> <br />
+            © 2024 - PORTAL DA DADOS ABERTOS DO ESTADO DE GOIÁS - Todos os direitos reservados - licenciados sob Licença Creative Commons 4.0</span>
+      </p>
+  </div>
+
+  
+    
+  
+</footer>
+
+  
+  
+  
+  
+  
+    
+
+      
+
+    
+    
+    <link href="/webassets/vendor/f3b8236b_select2.css" rel="stylesheet"/>
+<link href="/webassets/vendor/0b01aef1_font-awesome.css" rel="stylesheet"/>
+    <script src="/webassets/vendor/d8ae4bed_jquery.js" type="text/javascript"></script>
+<script src="/webassets/vendor/fb6095a0_vendor.js" type="text/javascript"></script>
+<script src="/webassets/vendor/580fa18d_bootstrap.js" type="text/javascript"></script>
+<script src="/webassets/base/4200d8c8_main.js" type="text/javascript"></script>
+<script src="/webassets/base/1437cf91_ckan.js" type="text/javascript"></script>
+  </body>
+</html>

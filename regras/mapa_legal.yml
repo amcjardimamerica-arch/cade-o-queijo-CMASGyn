@@ -2,7 +2,7 @@
 # Cada regra tem norma, parâmetro testável, fonte do dado e família de indício.
 # Uma regra sem número não vira indício: vira pergunta no ofício.
 # As normas vêm do catálogo levantado em 26/11/2026 (ctresb/leis e Sileg).
-versao: '2026-11-26'
+versao: '2026-11-27'
 fonte_de_leis:
   repositorio: https://github.com/ctresb/leis
   base_url: https://github.com/ctresb/leis/blob/main/
@@ -13,8 +13,19 @@ sileg:
     lo: lei ordinária
     lc: lei complementar
     dc: decreto
+areas:   # as nove áreas do direito; toda regra e toda norma cabem numa delas
+- Orçamento e responsabilidade fiscal
+- Licitações, contratos e parcerias
+- Pessoal, previdência e trabalho
+- Penal e improbidade
+- Transparência e acesso à informação
+- Tributária
+- Controle externo
+- Município de Goiânia
+- Qualidade
 regras:
 - id: PISO-SAUDE
+  area: Orçamento e responsabilidade fiscal
   titulo: Aplicação mínima em saúde
   tipo: minimo
   valor: 15.0
@@ -27,6 +38,7 @@ regras:
   familia: PISO
   gravidade: critica
 - id: PISO-EDUCACAO
+  area: Orçamento e responsabilidade fiscal
   titulo: Manutenção e desenvolvimento do ensino
   tipo: minimo
   valor: 25.0
@@ -39,6 +51,7 @@ regras:
   familia: PISO
   gravidade: critica
 - id: FUNDEB-PROFISSIONAIS
+  area: Orçamento e responsabilidade fiscal
   titulo: Fundeb na remuneração dos profissionais
   tipo: minimo
   valor: 70.0
@@ -51,6 +64,7 @@ regras:
   familia: PISO
   gravidade: critica
 - id: FUNDEB-SALDO
+  area: Orçamento e responsabilidade fiscal
   titulo: Saldo do Fundeb para o exercício seguinte
   tipo: maximo
   valor: 10.0
@@ -62,6 +76,7 @@ regras:
   familia: PISO
   gravidade: alta
 - id: PESSOAL-EXECUTIVO
+  area: Orçamento e responsabilidade fiscal
   titulo: Despesa com pessoal do Executivo
   tipo: maximo
   valor: 54.0
@@ -76,6 +91,7 @@ regras:
   familia: PISO
   gravidade: critica
 - id: CAMARA
+  area: Orçamento e responsabilidade fiscal
   titulo: Repasse à Câmara Municipal
   tipo: maximo
   faixas:
@@ -94,6 +110,7 @@ regras:
   familia: PISO
   gravidade: alta
 - id: DIVIDA-CONSOLIDADA
+  area: Orçamento e responsabilidade fiscal
   titulo: Dívida consolidada líquida
   tipo: maximo
   valor: 120.0
@@ -105,6 +122,7 @@ regras:
   familia: PISO
   gravidade: alta
 - id: OPERACOES-CREDITO
+  area: Orçamento e responsabilidade fiscal
   titulo: Operações de crédito no exercício
   tipo: maximo
   valor: 16.0
@@ -116,6 +134,7 @@ regras:
   familia: PISO
   gravidade: alta
 - id: EMENDA-CAPITAL
+  area: Orçamento e responsabilidade fiscal
   titulo: Emendas de transferência especial em capital
   tipo: minimo
   valor: 70.0
@@ -128,6 +147,7 @@ regras:
   familia: PISO
   gravidade: alta
 - id: IGD-CONTROLE-SOCIAL
+  area: Orçamento e responsabilidade fiscal
   titulo: Piso do IGD ao controle social
   tipo: minimo
   valor: 10.0
@@ -140,6 +160,7 @@ regras:
   familia: PISO
   gravidade: critica
 - id: DIVERGENCIA-DECLARADO
+  area: Orçamento e responsabilidade fiscal
   titulo: Cálculo próprio contra o declarado
   tipo: tolerancia
   valor: 1.0
@@ -154,6 +175,7 @@ regras:
   familia: PISO
   gravidade: alta
 - id: PRECO-MEDIANA
+  area: Licitações, contratos e parcerias
   titulo: Preço unitário contra a mediana nacional
   tipo: maximo
   valor: 40.0
@@ -168,6 +190,7 @@ regras:
   familia: PRC
   gravidade: alta
 - id: ADITIVO-LIMITE
+  area: Licitações, contratos e parcerias
   titulo: Acréscimo por aditivo
   tipo: maximo
   valor: 25.0
@@ -181,6 +204,7 @@ regras:
   familia: PRC
   gravidade: alta
 - id: DISPENSA-LIMITE
+  area: Licitações, contratos e parcerias
   titulo: Limite de dispensa por valor (soma do mesmo objeto)
   tipo: maximo
   obras: 130984.2
@@ -200,6 +224,7 @@ regras:
   familia: PRC
   gravidade: alta
 - id: EMERGENCIAL
+  area: Licitações, contratos e parcerias
   titulo: Contratação emergencial por até um ano, sem prorrogação nem recontratação
   tipo: prazo
   valor: 365
@@ -212,6 +237,7 @@ regras:
   familia: PRC
   gravidade: alta
 - id: ORDEM-DESPESA
+  area: Orçamento e responsabilidade fiscal
   titulo: Empenho, liquidação e pagamento nesta ordem
   tipo: ordem
   unidade: datas
@@ -223,6 +249,7 @@ regras:
   familia: ENT
   gravidade: alta
 - id: FOLHA-DIA-5
+  area: Município de Goiânia
   titulo: Folha paga até o dia 5 do mês seguinte
   tipo: prazo
   valor: 5
@@ -233,7 +260,14 @@ regras:
   - folha do portal
   familia: PES
   gravidade: alta
+  saldo_tolerado: 1.0
+  justificativa: >-
+    A folha de ativos e inativos é quitada até o dia 5 do mês seguinte. Salário ou provento
+    liquidado e ainda não pago em dois fechamentos seguidos só existe se o pagamento passou do dia
+    5; o saldo tolerado é um real (arredondamento). O dia exato só se confere com a folha publicada.
+  base_do_limiar: Lei Orgânica, art. 30; MSC, contas 6.2.2.1.3.03 e .04 nas naturezas 3.1.90.01, 3.1.90.03 e 3.1.90.11.
 - id: PREVIDENCIA-DIA-20
+  area: Pessoal, previdência e trabalho
   titulo: Repasse ao regime próprio até o dia 20
   tipo: prazo
   valor: 20
@@ -244,7 +278,14 @@ regras:
   - demonstrativo bimestral do GOIANIAPREV
   familia: PES
   gravidade: critica
+  saldo_tolerado: 1.0
+  justificativa: >-
+    O repasse ao regime próprio vence no dia 20 do mês seguinte. Contribuição patronal liquidada e
+    não paga em dois fechamentos seguidos só existe se o repasse passou do dia 20; o saldo tolerado
+    é um real.
+  base_do_limiar: LC 312/2018 e LC 336/2021; MSC natureza 3.1.91.13 (patronal intraorçamentária ao RPPS).
 - id: FIM-DE-MANDATO-PESSOAL
+  area: Orçamento e responsabilidade fiscal
   titulo: Sem aumento de pessoal nos 180 dias finais
   tipo: prazo
   valor: 180
@@ -256,7 +297,14 @@ regras:
   - RGF
   familia: PISO
   gravidade: critica
+  aumento_maximo: 0.0
+  justificativa: >-
+    É nulo o ato de que resulte aumento da despesa com pessoal nos 180 dias anteriores ao fim do
+    mandato. O corte é zero: a média mensal da despesa bruta de julho a novembro do último ano não
+    pode passar da média de janeiro a junho (dezembro fica fora por causa do décimo terceiro).
+  base_do_limiar: LC 101/2000, art. 21, II; RGF Anexo 1, despesa bruta mês a mês do 3º quadrimestre.
 - id: CONCENTRACAO
+  area: Licitações, contratos e parcerias
   titulo: Concentração de credores
   tipo: maximo
   valor: 80.0
@@ -271,6 +319,7 @@ regras:
   familia: PCT
   gravidade: media
 - id: FONTE-PARADA
+  area: Transparência e acesso à informação
   titulo: Fonte sem coleta
   tipo: prazo
   valor: 3
@@ -282,6 +331,7 @@ regras:
   familia: SIS
   gravidade: alta
 - id: INTEGRIDADE-LAI
+  area: Transparência e acesso à informação
   titulo: Nota de integridade que gera pedido de acesso
   tipo: minimo
   valor: 50.0
@@ -292,6 +342,647 @@ regras:
   - índice do próprio sistema
   familia: SIS
   gravidade: alta
+# --- Regras da Frente C (2026-11-27) ------------------------------------------------
+# Limiares restritivos: o mais exigente que a lei e os dados sustentam. Cada limiar traz a
+# justificativa e a base (de onde vêm a lei e o dado). No parecer, alerta é indício, não acusação.
+- id: ACAO-GENERICA
+  area: Orçamento e responsabilidade fiscal
+  titulo: Gasto finalístico classificado como administração geral
+  tipo: maximo
+  valor: 10.0
+  unidade: '% do liquidado da função'
+  base: liquidado da função na subfunção 122 (Administração Geral), funções finalísticas
+  funcoes_meio: ['01', '02', '03', '04', '28']
+  justificativa: >-
+    A lei não fixa percentual. Dez por cento é o menor corte que ainda comporta o custeio
+    administrativo próprio de uma função (sede, gestão, apoio); acima dele a dotação deixa de dizer
+    onde o dinheiro chega e o destino pode mudar dentro da mesma ação, sem a autorização legislativa
+    que a Constituição exige para remanejar.
+  base_do_limiar: Matriz de saldos contábeis (função e subfunção de cada empenho) e RREO Anexo 2, duas vias.
+  norma: CF, art. 167, V e VI; LC 101/2000, arts. 48 e 48-A
+  fonte_dado:
+  - MSC
+  - RREO Anexo 2
+  familia: ORC
+  gravidade: media
+- id: RP-NUNCA-LIQUIDADOS
+  area: Orçamento e responsabilidade fiscal
+  titulo: Restos a pagar não processados cancelados sem liquidar ou parados há mais de um exercício
+  tipo: maximo
+  valor: 10.0
+  idade_maxima_exercicios: 1
+  saldo_tolerado: 1.0
+  unidade: '% dos restos a pagar não processados inscritos'
+  base: restos a pagar não processados inscritos no fim do exercício anterior
+  justificativa: >-
+    O empenho reserva dotação para uma obrigação a cumprir (Lei 4.320/1964, art. 58) e o resto a
+    pagar é a despesa empenhada e não paga até 31 de dezembro (art. 36). O que é inscrito e depois
+    cancelado sem liquidar nunca virou entrega. A lei não fixa percentual: dez por cento admite a
+    sobra natural de contratos que mudaram; acima disso a inscrição deixa de ser exceção. O resto não
+    processado que atravessa um exercício inteiro sem liquidação não tem entrega a esperar; o corte é
+    um exercício e o saldo tolerado é um real (arredondamento).
+  base_do_limiar: RREO Anexo 14 (inscrição, cancelamento, pagamento) e MSC contas 6.3.1.1 e 6.3.1.9.9 por ano de inscrição.
+  norma: Lei 4.320/1964, arts. 36 e 58 a 65
+  fonte_dado:
+  - RREO Anexo 14
+  - MSC
+  familia: ENT
+  gravidade: alta
+- id: CUSTO-FIXO-SEM-ADITIVO
+  area: Licitações, contratos e parcerias
+  titulo: Valor de contrato que muda além do que o termo publicado declara
+  tipo: tolerancia
+  valor: 1.0
+  unidade: R$ de diferença
+  base: valor inicial, valor global atual e valores declarados em cada termo publicado no PNCP
+  justificativa: >-
+    O valor de um contrato só muda por termo aditivo ou apostila (Lei 14.133/2021, arts. 124, 125 e
+    136), e o que muda só tem eficácia publicado no PNCP (art. 94). Qualquer diferença acima de um
+    real entre o valor que o termo declara e o valor global que passa a valer é mudança sem
+    instrumento; um real absorve só o arredondamento de centavos. Prorrogação de vigência sem valor
+    publicado é custo que continua sem número.
+  base_do_limiar: PNCP, contratos (valor inicial e global) e termos (valor acrescido, valor global, vigência).
+  norma: Lei 14.133/2021, arts. 94, 124, 125 e 136
+  fonte_dado:
+  - PNCP
+  familia: PRC
+  gravidade: alta
+- id: FIM-DE-MANDATO-CAIXA
+  area: Orçamento e responsabilidade fiscal
+  titulo: Caixa suficiente para as obrigações do fim do mandato
+  tipo: minimo
+  valor: 0.0
+  unidade: R$ de disponibilidade de caixa líquida após os restos a pagar, em cada destinação
+  base: RGF Anexo 5 do 3º quadrimestre do último ano do mandato
+  justificativa: >-
+    O art. 42 veda contrair, nos dois últimos quadrimestres, obrigação sem caixa para pagá-la. O
+    corte é zero em cada destinação e não no total, porque o caixa de uma vinculação não paga a
+    despesa de outra.
+  base_do_limiar: RGF Anexo 5, disponibilidade de caixa líquida após a inscrição dos restos a pagar não processados.
+  norma: LC 101/2000, art. 42
+  fonte_dado:
+  - RGF Anexo 5
+  familia: PISO
+  gravidade: critica
+- id: PISO-MAGISTERIO
+  area: Pessoal, previdência e trabalho
+  titulo: Vencimento inicial do magistério no piso nacional
+  tipo: minimo
+  valor: 100.0
+  unidade: '% do piso nacional'
+  base: vencimento inicial da carreira do magistério, proporcional à jornada
+  justificativa: A lei não admite vencimento inicial abaixo do piso; o limiar é o próprio piso, sem margem.
+  base_do_limiar: Lei 11.738/2008, arts. 2º e 5º (piso atualizado em janeiro); folha do magistério.
+  norma: Lei 11.738/2008, arts. 2º e 5º
+  fonte_dado:
+  - folha do magistério
+  - tabela de vencimentos
+  familia: PES
+  gravidade: critica
+- id: QUINQUENIO
+  area: Município de Goiânia
+  titulo: Adicional por quinquênio pago a cada cinco anos de serviço
+  tipo: prazo
+  valor: 5
+  tolerancia_meses: 0
+  unidade: anos de efetivo exercício por adicional
+  base: tempo de serviço de cada servidor e adicionais pagos na folha
+  justificativa: >-
+    A Lei Orgânica assegura o adicional por quinquênio, incorporável. O adicional é devido no mês em
+    que o quinquênio se completa; não há carência a tolerar.
+  base_do_limiar: Lei Orgânica de Goiânia, art. 28, VI e § 2º; folha com tempo de serviço.
+  norma: Lei Orgânica, art. 28, VI e § 2º
+  fonte_dado:
+  - folha do portal
+  familia: PES
+  gravidade: alta
+- id: SERVIDOR-CONTRATADA
+  area: Município de Goiânia
+  titulo: Servidor na direção ou no conselho de empresa que contrata com o Município
+  tipo: maximo
+  valor: 0
+  unidade: servidores na direção ou no conselho de empresa contratada
+  base: quadro de sócios e administradores das empresas contratadas contra o quadro de servidores
+  texto: Servidor não pode ser diretor nem conselheiro de empresa que contrata com o município.
+  conferencia: onisciente/conferencias/empresas.py (Frente F, Receita Federal, CNPJ e QSA)
+  justificativa: A Lei Orgânica proíbe sem exceção; o limiar é zero.
+  base_do_limiar: Lei Orgânica de Goiânia, art. 29; CNPJ e QSA da Receita Federal; quadro de servidores.
+  norma: Lei Orgânica, art. 29
+  fonte_dado:
+  - Receita Federal (CNPJ e QSA)
+  - quadro de servidores
+  familia: VIN
+  gravidade: critica
+- id: CONTROLE-INTERNO
+  area: Município de Goiânia
+  titulo: Controle interno comunica as irregularidades ao Tribunal de Contas
+  tipo: prazo
+  valor: 0
+  unidade: dias entre conhecer a irregularidade e dar ciência ao Tribunal
+  base: indícios confirmados em duas vias e comunicações do controle interno ao Tribunal
+  justificativa: >-
+    A Constituição manda o controle interno dar ciência da irregularidade ao Tribunal ao tomar
+    conhecimento dela (CF, art. 74, § 1º), sob pena de responsabilidade solidária; não há prazo a
+    tolerar. Sem as comunicações publicadas, cada indício confirmado vira pedido de acesso.
+  base_do_limiar: Lei Orgânica de Goiânia, art. 104; CF, art. 74, § 1º; fichas confirmadas do parecer.
+  norma: Lei Orgânica, art. 104; CF, art. 74, § 1º
+  fonte_dado:
+  - comunicações da Controladoria ao Tribunal de Contas dos Municípios
+  familia: CTA
+  gravidade: alta
+- id: JETON
+  area: Pessoal, previdência e trabalho
+  titulo: Jeton da JARI e do CADEP dentro do valor e do número de sessões da lei
+  tipo: maximo
+  valor: 80.21
+  sessoes_por_mes: 66
+  unidade: R$ por sessão
+  base: jetons pagos por conselheiro e sessões realizadas no mês
+  justificativa: Valor e quantidade são os da própria lei, sem margem.
+  base_do_limiar: LC 335/2021, art. 29; atas das sessões e folha de jetons.
+  norma: LC 335/2021, art. 29
+  fonte_dado:
+  - folha de jetons
+  - atas das sessões
+  familia: PES
+  gravidade: media
+- id: APOSENTADORIAS
+  area: Pessoal, previdência e trabalho
+  titulo: Aposentadorias pagas todo mês e iguais nas duas vias
+  tipo: tolerancia
+  valor: 1.0
+  queda_mensal_maxima: 5.0
+  meses_de_referencia: 6
+  unidade: '% de diferença entre o RREO e a matriz'
+  base: aposentadorias liquidadas no RREO Anexo 4 e na natureza 3.1.90.01 da matriz, mês a mês
+  justificativa: >-
+    As duas vias do mesmo valor precisam fechar em um por cento, como todo o resto. O provento é
+    verba mensal de valor estável: a folha de inativos só cai de um mês para o outro por óbitos e
+    revisões, que não chegam a um ponto percentual. Cinco por cento abaixo da mediana dos seis meses
+    anteriores é atraso ou retenção até prova em contrário.
+  base_do_limiar: RREO Anexo 4 e MSC natureza 3.1.90.01; CF, art. 40, § 8º e Lei 9.717/1998.
+  norma: CF, art. 40, § 8º e Lei 9.717/1998; Lei Orgânica, art. 30
+  fonte_dado:
+  - RREO Anexo 4
+  - MSC
+  familia: PES
+  gravidade: critica
+- id: FGTS-DIA-20
+  area: Pessoal, previdência e trabalho
+  titulo: FGTS e contribuições patronais recolhidos até o dia 20
+  tipo: prazo
+  valor: 20
+  saldo_tolerado: 1.0
+  unidade: dia do mês seguinte
+  base: obrigações patronais liquidadas no mês (natureza 3.1.90.13)
+  justificativa: >-
+    O depósito vence no dia 20 do mês seguinte. Saldo liquidado e não pago em dois fechamentos
+    seguidos só existe se o recolhimento passou do dia 20; o saldo tolerado é um real.
+  base_do_limiar: Lei 8.036/1990, art. 15; MSC natureza 3.1.90.13, contas 6.2.2.1.3.03 e .04.
+  norma: Lei 8.036/1990, art. 15
+  fonte_dado:
+  - MSC
+  - guias de recolhimento
+  familia: PES
+  gravidade: alta
+- id: REVISAO-GERAL-ANUAL
+  area: Pessoal, previdência e trabalho
+  titulo: Revisão geral anual sem perda e sem distinção entre categorias
+  tipo: minimo
+  valor: 100.0
+  unidade: '% da inflação do período, para todas as carreiras'
+  base: índice concedido pela lei de revisão contra o IPCA do período
+  revisoes:
+    2023: {indice: 4.18, lei: Lei 11.108/2023, excluidas: []}
+    2024: {indice: 3.69, lei: Lei 11.248/2024, excluidas: [Comurg, agentes de saúde, magistério]}
+    2025: {indice: 4.83, lei: Lei 11.479/2025, excluidas: [Comurg, agentes de saúde, magistério]}
+    2026: {indice: 4.26, lei: Lei 11.668/2026, excluidas: []}
+  justificativa: >-
+    A Constituição manda revisar na mesma data e sem distinção de índices: qualquer carreira de fora
+    é distinção, e qualquer índice abaixo da inflação do período é perda. O limiar é a inflação
+    inteira, para todos.
+  base_do_limiar: CF, art. 37, X; Leis 11.108/2023, 11.248/2024, 11.479/2025 e 11.668/2026.
+  norma: CF, art. 37, X; Leis 11.108/2023, 11.248/2024, 11.479/2025 e 11.668/2026
+  fonte_dado:
+  - leis de revisão
+  - IPCA
+  familia: PES
+  gravidade: alta
+- id: VALOR-DEVIDO
+  area: Pessoal, previdência e trabalho
+  titulo: Valor devido a servidores e aposentados estimado
+  tipo: tolerancia
+  valor: 0.0
+  unidade: R$ entre o devido e o pago
+  base: pessoal liquidado e não pago no fechamento de cada mês; folha por competência
+  justificativa: >-
+    Salário e provento liquidados são dívida reconhecida com quem trabalhou; não há diferença
+    tolerável entre o devido e o pago depois do prazo.
+  base_do_limiar: Lei Orgânica, art. 30; MSC, contas 6.2.2.1.3.03 por natureza de pessoal.
+  norma: Lei Orgânica, art. 30; Lei 4.320/1964, arts. 58 a 65
+  fonte_dado:
+  - MSC
+  - folha do portal
+  familia: PES
+  gravidade: alta
+- id: CONTAS-PRAZOS
+  area: Controle externo
+  titulo: Prazos das contas de governo e de gestão
+  tipo: prazo
+  valor: 60
+  prazos:
+    balancete: 45
+    entrega: 60
+    parecer: 60
+    julgamento: 75
+    disposicao: 60
+  unidade: dias
+  base: >-
+    balancetes ao Tribunal em 45 dias; contas anuais em 60 dias da abertura da sessão legislativa;
+    parecer prévio em 60 dias; julgamento pela Câmara em 75 dias; contas 60 dias à disposição
+    do contribuinte
+  justificativa: Os prazos são os da Lei Orgânica e da Lei do Tribunal, sem margem.
+  base_do_limiar: Lei Orgânica, arts. 103, 103-A, 103-B e 115, XXV; Lei estadual 15.958/2007.
+  norma: Lei Orgânica, arts. 64, XI, 103, 103-A, 103-B e 115, XXV; Lei estadual 15.958/2007
+  fonte_dado:
+  - Tribunal de Contas dos Municípios
+  - Câmara Municipal
+  - SICONFI
+  familia: CTA
+  gravidade: alta
+- id: PRAZO-DEMONSTRATIVOS
+  area: Transparência e acesso à informação
+  titulo: RREO e RGF publicados em 30 dias e contas anuais até 30 de abril
+  tipo: prazo
+  valor: 30
+  dca_ate: {mes: 4, dia: 30}
+  unidade: dias depois do fim do período
+  base: data de homologação de cada demonstrativo no SICONFI
+  justificativa: >-
+    O RREO e o RGF saem até trinta dias depois do fim do bimestre ou do quadrimestre, e as contas do
+    Município chegam à União até 30 de abril. A homologação no SICONFI depois disso é indício de
+    publicação fora do prazo; um dia de atraso já conta.
+  base_do_limiar: LC 101/2000, arts. 51, § 1º, 52 e 55, § 2º; extrato de entregas do SICONFI.
+  norma: LC 101/2000, arts. 51, § 1º, 52 e 55, § 2º
+  fonte_dado:
+  - extrato de entregas do SICONFI
+  familia: CTA
+  gravidade: media
+- id: ALUGUEL-M2
+  area: Licitações, contratos e parcerias
+  titulo: Aluguel por metro quadrado acima da mediana do próprio Município
+  tipo: maximo
+  valor: 15.0
+  minimo_de_locacoes: 3
+  unidade: '% acima da mediana do aluguel mensal por m²'
+  base: aluguel mensal por metro quadrado das locações de imóveis do Município publicadas no PNCP
+  justificativa: >-
+    A locação depende de avaliação prévia do imóvel (Lei 14.133/2021, art. 51). Quinze por cento é a
+    variação que ainda se explica entre imóveis comparáveis; acima disso a avaliação precisa
+    justificar. Locação sem a área publicada não se mede e vira pedido de acesso.
+  base_do_limiar: PNCP, objeto e valor de cada locação; Lei 9.262/2013, alterada pela Lei 11.478/2025 (locações de imóveis).
+  norma: Lei 14.133/2021, arts. 51 e 74, V; Lei 9.262/2013
+  fonte_dado:
+  - PNCP
+  - laudos de avaliação
+  familia: PRC
+  gravidade: media
+- id: BENEFICIOS-GESTORES
+  area: Pessoal, previdência e trabalho
+  titulo: Subsídio, diárias, veículos, suprimento e gabinete dos gestores dentro do teto e publicados
+  tipo: maximo
+  valor: 100.0
+  unidade: '% do subsídio do prefeito'
+  base: remuneração mensal de cada agente político e gestor, com todas as parcelas
+  justificativa: >-
+    O teto municipal é o subsídio do prefeito, sem exceção de parcela remuneratória; o limiar é o
+    próprio teto. Diárias, veículos, suprimento de fundos e verba de gabinete precisam estar
+    publicados por beneficiário para que o teto se confira.
+  base_do_limiar: CF, art. 37, XI e § 9º; Lei 8.902/2010 (diárias publicadas); LC 011/1992, art. 71.
+  norma: CF, art. 37, XI e § 9º; Lei 8.902/2010; LC 011/1992, art. 71
+  fonte_dado:
+  - folha dos agentes políticos
+  - relação de diárias
+  - MSC (diárias e passagens)
+  familia: PES
+  gravidade: alta
+- id: PRESTACAO-PARCERIAS
+  area: Licitações, contratos e parcerias
+  titulo: Prestação de contas de cada parceria no prazo, individualizada e publicada
+  tipo: prazo
+  valor: 90
+  unidade: dias depois do fim da vigência ou do exercício
+  base: data de término da vigência ou do exercício, para parceria de mais de um ano
+  justificativa: >-
+    A organização presta contas até noventa dias do fim da vigência ou no final de cada exercício
+    quando a parceria passa de um ano (Lei 13.019/2014, art. 69). A parceria que segue recebendo no
+    exercício seguinte ao do termo já passou de um ano, e a prestação do exercício do termo venceu
+    no fim dele.
+  base_do_limiar: Lei 13.019/2014, arts. 63 e 69; termos de fomento e colaboração nos repasses.
+  norma: Lei 13.019/2014, arts. 52, 63 e 69
+  fonte_dado:
+  - repasses a entidades
+  - prestações de contas
+  familia: PCT
+  gravidade: alta
+- id: NEGAR-PUBLICIDADE
+  area: Penal e improbidade
+  titulo: Pedido de acesso respondido no prazo
+  tipo: prazo
+  valor: 20
+  prorrogacao: 10
+  unidade: dias para responder ao pedido de acesso
+  base: data do protocolo de cada pedido no registro de protocolos
+  justificativa: >-
+    O órgão responde em vinte dias, prorrogáveis por dez com justificativa. Negar publicidade a ato
+    oficial pode tocar o art. 11, IV, da Lei 8.429/1992 e a recusa é conduta ilícita (Lei
+    12.527/2011, art. 32). O sistema nunca imputa: aponta o dispositivo e a escada.
+  base_do_limiar: Lei 12.527/2011, arts. 11 e 32; Lei 9.262/2013; registro de protocolos do sistema.
+  norma: Lei 12.527/2011, arts. 11 e 32; Lei 8.429/1992, art. 11, IV
+  fonte_dado:
+  - registro de protocolos
+  familia: SIS
+  gravidade: alta
+- id: RENUNCIA-SEM-ESTIMATIVA
+  area: Tributária
+  titulo: Renúncia de receita com estimativa de impacto e compensação
+  tipo: ordem
+  unidade: documentos
+  base: lei de isenção, anistia ou remissão e o anexo de metas da LDO
+  justificativa: A estimativa precede a renúncia; não há limiar numérico, só a ordem dos atos.
+  base_do_limiar: LC 101/2000, art. 14; Lei 11.520/2025; LC 344/2021.
+  norma: LC 101/2000, art. 14
+  fonte_dado:
+  - leis tributárias
+  - LDO
+  familia: RIO
+  gravidade: alta
+- id: IPTU-AUMENTO
+  area: Tributária
+  titulo: Aumento do IPTU dentro do limite da lei
+  tipo: maximo
+  valor: 5.0
+  unidade: '% de aumento ao ano'
+  base: IPTU lançado no exercício contra o do exercício anterior, por imóvel
+  justificativa: O limite é o da própria lei complementar, sem margem.
+  base_do_limiar: LC 362/2022.
+  norma: LC 362/2022
+  fonte_dado:
+  - cadastro imobiliário
+  familia: RIO
+  gravidade: media
+- id: CRECHE-META
+  area: Qualidade
+  titulo: Atendimento em creche na meta do plano municipal
+  tipo: minimo
+  valor: 50.0
+  unidade: '% das crianças de 0 a 3 anos'
+  base: matrículas em creche sobre a população de 0 a 3 anos
+  justificativa: A meta é a do Plano Municipal de Educação, sem margem.
+  base_do_limiar: Lei 9.606/2015.
+  norma: Lei 9.606/2015
+  fonte_dado:
+  - Censo Escolar
+  familia: PISO
+  gravidade: media
+- id: PRAZO-RREO
+  area: Transparência e acesso à informação
+  titulo: RREO publicado até trinta dias depois do fim do bimestre
+  tipo: prazo
+  valor: 30
+  unidade: dias depois do fim do bimestre
+  base: data de homologação do RREO no SICONFI
+  justificativa: >-
+    O prazo é o da lei, sem margem: um dia depois do trigésimo já é atraso. A agenda e a
+    tempestividade dos documentos leem este valor (onisciente/tempo.py, prazo_legal).
+  base_do_limiar: LC 101/2000, art. 52.
+  norma: LC 101/2000, art. 52
+  fonte_dado:
+  - extrato de entregas do SICONFI
+  familia: CTA
+  gravidade: media
+- id: PRAZO-RGF
+  area: Transparência e acesso à informação
+  titulo: RGF publicado até trinta dias depois do fim do quadrimestre
+  tipo: prazo
+  valor: 30
+  unidade: dias depois do fim do quadrimestre
+  base: data de homologação do RGF no SICONFI
+  justificativa: O prazo é o da lei, sem margem; um dia de atraso já conta.
+  base_do_limiar: LC 101/2000, art. 55, § 2º.
+  norma: LC 101/2000, art. 55, § 2º
+  fonte_dado:
+  - extrato de entregas do SICONFI
+  familia: CTA
+  gravidade: media
+- id: PRAZO-DCA
+  area: Transparência e acesso à informação
+  titulo: Contas anuais (DCA) entregues à União até 30 de abril
+  tipo: ordem
+  data_limite: {mes: 4, dia: 30}
+  unidade: data fixa do exercício seguinte
+  base: data de homologação da DCA no SICONFI
+  justificativa: >-
+    A data é fixa e é a da lei; por isso a regra não tem número de dias e fica como regra de ordem
+    (a data em data_limite): sem valor, a agenda usa a data de 30 de abril, sem margem.
+  base_do_limiar: LC 101/2000, art. 51, § 1º, I.
+  norma: LC 101/2000, art. 51, § 1º, I
+  fonte_dado:
+  - extrato de entregas do SICONFI
+  familia: CTA
+  gravidade: media
+- id: PRAZO-MSC
+  area: Transparência e acesso à informação
+  titulo: Matriz de saldos contábeis entregue até o fim do mês seguinte
+  tipo: ordem
+  meses_depois: 1
+  unidade: último dia do mês seguinte ao de referência
+  base: data de homologação da matriz no SICONFI
+  justificativa: >-
+    O prazo vence no último dia do mês seguinte; por isso a regra não tem número de dias e fica como
+    regra de ordem: sem valor, a agenda usa o fim do mês seguinte, sem margem.
+  base_do_limiar: Portaria STN 642/2019, art. 5º.
+  norma: Portaria STN 642/2019, art. 5º
+  fonte_dado:
+  - extrato de entregas do SICONFI
+  familia: CTA
+  gravidade: media
+- id: PRAZO-SIOPS
+  area: Transparência e acesso à informação
+  titulo: Demonstrativo da saúde no SIOPS até trinta dias depois do fim do bimestre
+  tipo: prazo
+  valor: 30
+  unidade: dias depois do fim do bimestre
+  base: data de homologação do demonstrativo no SIOPS
+  justificativa: O demonstrativo da saúde acompanha o RREO; o prazo é o mesmo, sem margem.
+  base_do_limiar: LC 141/2012, art. 39; LC 101/2000, art. 52.
+  norma: LC 141/2012, art. 39; LC 101/2000, art. 52
+  fonte_dado:
+  - SIOPS
+  familia: CTA
+  gravidade: media
+- id: CONTRATADA-SANCIONADA
+  area: Licitações, contratos e parcerias
+  titulo: Contrato com empresa sancionada no CEIS ou no CNEP
+  tipo: maximo
+  valor: 0
+  unidade: dias de sanção dentro da vigência do contrato tolerados
+  base: >-
+    cada contrato do PNCP contra as sanções do CEIS e do CNEP da mesma raiz de CNPJ, em qualquer
+    dia da vigência (sem vigência no PNCP, um ano desde a assinatura)
+  justificativa: >-
+    Basta um dia de sanção dentro da vigência para o alerta; a assinatura durante a sanção agrava,
+    mas não é condição. A conferência é a de onisciente/conferencias/federais.py.
+  base_do_limiar: Lei 14.133/2021, arts. 14, 91, § 4º, e 156; Lei 12.846/2013, art. 22.
+  norma: Lei 14.133/2021, arts. 14, 91, § 4º, e 156; Lei 12.846/2013, art. 22
+  fonte_dado:
+  - PNCP
+  - CEIS
+  - CNEP
+  familia: PRC
+  gravidade: alta
+- id: COTA-ESTADUAL-PUBLICACAO
+  area: Orçamento e responsabilidade fiscal
+  titulo: Cota-parte estadual publicada e igual à registrada pelo Município
+  tipo: tolerancia
+  valor: 0.001
+  meses_depois: 1
+  unidade: fração da maior via (a publicação vence no último dia do mês seguinte ao da arrecadação)
+  base: >-
+    ICMS e IPVA que o Estado diz ter entregue ao Município contra o que o Município registrou na
+    matriz de saldos contábeis, mês a mês
+  justificativa: >-
+    A Constituição manda divulgar até o último dia do mês seguinte o que foi entregue a cada
+    Município. Sem a publicação, a falta vira ofício ao Estado; com ela, as duas vias fecham dentro
+    de 0,1%, que só absorve arredondamento.
+  base_do_limiar: CF, art. 162; LC 63/1990, art. 5º.
+  norma: CF, art. 162; LC 63/1990, art. 5º
+  fonte_dado:
+  - Secretaria de Estado da Economia de Goiás
+  - matriz de saldos contábeis
+  familia: RIO
+  gravidade: alta
+- id: REPASSE-FUNDO-A-FUNDO-VIAS
+  area: Orçamento e responsabilidade fiscal
+  titulo: Repasse fundo a fundo igual nas vias da União e do Município
+  tipo: tolerancia
+  valor: 0.001
+  diferenca_minima: 1.0
+  unidade: fração da maior via
+  base: >-
+    o que o FNS e o FNDE dizem ter pago, o que o SIAFI mostra e o que o Município declara recebido
+    da União
+  justificativa: >-
+    Vias oficiais do mesmo pagamento só se separam por arredondamento; 0,1% (e no mínimo um real)
+    absorve centavos e ainda pega qualquer parcela perdida ou desviada.
+  base_do_limiar: LC 141/2012, arts. 13 e 14; Lei 14.113/2020.
+  norma: LC 141/2012, arts. 13 e 14; Lei 14.113/2020
+  fonte_dado:
+  - Fundo Nacional de Saúde
+  - FNDE
+  - Portal da Transparência (SIAFI)
+  - RREO
+  familia: RIO
+  gravidade: alta
+- id: EMPENHO-FIM-DE-ANO
+  area: Orçamento e responsabilidade fiscal
+  titulo: Empenho concentrado nos últimos quinze dias de dezembro
+  tipo: maximo
+  valor: 1.5
+  dias: 15
+  multiplo_mensal: 1.5
+  empenhado_minimo: 0.0
+  unidade: vezes a parcela uniforme do período (15 dias, 4,1% do ano)
+  base: empenhado de cada órgão e função nos últimos 15 dias de dezembro, pelos empenhos e pela matriz mensal
+  justificativa: >-
+    Num ano uniforme, 15 dias são 4,1% do empenhado; passar de 1,5 vez isso (6,2%) já é alerta. Na
+    matriz mensal, dezembro com mais de 1,5 vez a média do mês numa função. Um múltiplo menor
+    marcaria a sazonalidade normal de dezembro e esconderia os casos reais. Valores de
+    config/limiares_execucao.yml (fim_de_ano).
+  base_do_limiar: Lei 4.320/1964, art. 35, II; LC 101/2000, art. 42 (no último ano do mandato).
+  norma: Lei 4.320/1964, art. 35, II; LC 101/2000, art. 42
+  fonte_dado:
+  - empenhos do portal de Goiânia
+  - matriz de saldos contábeis
+  familia: ORC
+  gravidade: media
+- id: CREDOR-SEM-CONTRATO
+  area: Licitações, contratos e parcerias
+  titulo: Credor pago em meses distintos sem contrato, ata ou termo publicado
+  tipo: maximo
+  valor: 2
+  valor_minimo: 0.0
+  unidade: meses distintos de pagamento sem instrumento (a partir de dois, alerta)
+  base: >-
+    pagamentos a um mesmo credor sem contrato, ata ou termo publicado, fora dos elementos cujo direito
+    não nasce de contrato (pessoal, dívida, benefícios a pessoa física e transferências)
+  justificativa: >-
+    O mesmo credor pago em dois meses distintos sem instrumento publicado já é despesa continuada sem
+    contrato; nenhum piso de valor. Valores de config/limiares_execucao.yml (recorrente_sem_contrato).
+  base_do_limiar: Lei 14.133/2021, arts. 72, 89 e 95; Lei 4.320/1964, art. 63, § 2º, I.
+  norma: Lei 14.133/2021, arts. 72, 89 e 95; Lei 4.320/1964, art. 63, § 2º, I
+  fonte_dado:
+  - pagamentos do portal de Goiânia
+  - PNCP
+  familia: PRC
+  gravidade: alta
+- id: MEDICOES-REPETIDAS
+  area: Licitações, contratos e parcerias
+  titulo: Liquidações seguidas com o mesmo valor ao centavo no mesmo empenho
+  tipo: maximo
+  valor: 3
+  tolerancia_relativa: 0.0
+  unidade: liquidações seguidas iguais ao centavo
+  base: liquidações de cada empenho, em ordem de data
+  justificativa: >-
+    Três liquidações seguidas iguais ao centavo já são padrão de medição copiada; com duas, todo
+    contrato de preço mensal fixo viraria alerta todo mês. Nenhuma tolerância. Valores de
+    config/limiares_execucao.yml (medicoes_repetidas).
+  base_do_limiar: Lei 4.320/1964, art. 63; Lei 14.133/2021, art. 140.
+  norma: Lei 4.320/1964, art. 63; Lei 14.133/2021, art. 140
+  fonte_dado:
+  - liquidações do portal de Goiânia
+  familia: ENT
+  gravidade: media
+- id: LIQUIDADO-CONTRATADO
+  area: Licitações, contratos e parcerias
+  titulo: Liquidado acima do contratado com os aditivos publicados
+  tipo: tolerancia
+  valor: 0.01
+  unidade: R$ acima do contratado
+  base: >-
+    liquidado acumulado de cada contrato contra o maior entre o valor global publicado, o acumulado dos
+    aditivos e o valor inicial
+  justificativa: >-
+    Um centavo acima do contratado já é alerta; o contratado é o maior valor publicado, para nunca
+    acusar excesso que um aditivo publicado cobre. Valores de config/limiares_execucao.yml
+    (liquidado_acima_do_contratado).
+  base_do_limiar: Lei 4.320/1964, arts. 62 e 63; Lei 14.133/2021, arts. 124 a 126.
+  norma: Lei 4.320/1964, arts. 62 e 63; Lei 14.133/2021, art. 125
+  fonte_dado:
+  - liquidações do portal de Goiânia
+  - PNCP
+  familia: PRC
+  gravidade: alta
+- id: CREDOR-UNICO
+  area: Licitações, contratos e parcerias
+  titulo: Um único credor com 40% ou mais do pago do órgão no exercício
+  tipo: maximo
+  valor: 40.0
+  minimo_de_credores: 5
+  pago_minimo: 0.0
+  unidade: '% do pago do órgão no exercício'
+  base: pago de cada órgão no exercício, por credor
+  justificativa: >-
+    Um único credor com 40% ou mais do pago do órgão é alerta por si, mesmo sem a regra dos 80%: é o
+    desenho do contrato guarda-chuva que concentra sem aparecer na contagem de credores. Valores de
+    config/limiares_execucao.yml (concentracao).
+  base_do_limiar: CF, art. 37, caput; Lei 14.133/2021, art. 40, V, b.
+  norma: CF, art. 37, caput; Lei 14.133/2021, art. 40, V, b
+  fonte_dado:
+  - pagamentos do portal de Goiânia
+  familia: PRC
+  gravidade: media
 normas:
 - id: cf-art-212
   area: Orçamento e responsabilidade fiscal

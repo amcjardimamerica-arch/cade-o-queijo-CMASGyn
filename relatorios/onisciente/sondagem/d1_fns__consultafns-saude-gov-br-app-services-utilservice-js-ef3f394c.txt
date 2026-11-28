@@ -1,0 +1,146 @@
+URL: https://consultafns.saude.gov.br/app/services/utilService.js
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 4941
+
+/**
+ * @desc Define um módulo anonimo dependente de app e
+ * cria o serviço UtilService
+ */
+define([
+    'app',
+    'pages/acesso/services/acessoService'
+],
+    /**
+     *
+     * @param app
+     * @returns {*}
+     */
+    function(app) {
+        /**
+         * @param $log
+         * @constructor
+         * @desc Método construtor da classe de serviço
+         */
+        var UtilService = function($log, appRouteService, appModalService, Restangular, acessoService) {
+
+            this.$log = $log;
+            this.appModalService = appModalService;
+            this.appRouteService = appRouteService;
+            this.restangular = Restangular;
+            this.acessoService = acessoService;
+        }
+
+        UtilService.prototype.registrarAcesso = function(funcionalidade) {
+            this.acessoService.registrarAcesso(funcionalidade);
+
+//            if (localStorage.getItem('naoExibirBanner-' + funcionalidade) != "true") {
+//                this.showBanner(funcionalidade);
+//            }
+            /*console.log("registrarAcesso");
+            
+            console.log(this.acessoService);
+
+            if ('geolocation' in navigator) {
+
+                navigator.geolocation.getCurrentPosition(
+                    function success(pos) {
+                        var crd = pos.coords;
+    
+                        console.log('Sua posição atual é:');
+                        console.log('Latitude : ' + crd.latitude);
+                        console.log('Longitude: ' + crd.longitude);
+                        console.log('Mais ou menos ' + crd.accuracy + ' metros.');
+                    }, function error(err) {
+                        console.warn('ERROR(' + err.code + '): ' + err.message);
+                        
+                        console.log("registrar acesso", escape(rota.breadcrumb))
+                    }, {
+                        enableHighAccuracy: true,
+                        timeout: 5000,
+                        maximumAge: 0
+                    }
+                );
+            } else {
+                console.log("elseee");
+            }*/
+                    
+            
+
+            
+            /*console.log("registrar acesso", escape(rota.breadcrumb));
+            return this.restangular.all(window.location.pathname)
+                .customGET("acesso", {f : rota.breadcrumb, m: rota.module, n: rota.name})
+                .then(function(sucesso) {
+
+                }, function(erro) {
+                    console.log(erro);
+                    //$this.$scope.$appNotify.error(erro);
+                });*/
+        }
+
+        UtilService.prototype.showBanner = function(funcionalidade) {
+            var $this = this;
+
+            $this.appModalService
+            .setOptions({
+                title: "BANNER",
+                size: "md",
+                scope: $this.$scope,
+                backdrop: 'static',
+                keyboard: false,
+                templateUrl: 'app/pages/banner/views/modal-banner.tpl.html',
+                buttons: {
+                    "btn1": {
+                        ngClick: function(){
+                            $this.appModalService.close();
+                        },
+                        name: 'Fechar',
+                        style: 'btn btn-primary'
+                    }
+                }
+            }).open().then(
+                function (sucesso) {
+                	var naoExibirBanner = 'naoExibirBanner-' + funcionalidade;
+                    if ($('#nao-exibir-novamente').is(':checked')) {
+                        localStorage.setItem(naoExibirBanner, true);
+                    } else {
+                        localStorage.setItem(naoExibirBanner, false);
+                    }
+                },
+                function (error) {
+                    var naoExibirBanner = 'naoExibirBanner-' + funcionalidade;
+                    if ($('#nao-exibir-novamente').is(':checked')) {
+                        localStorage.setItem(naoExibirBanner, true);
+                    } else {
+                        localStorage.setItem(naoExibirBanner, false);
+                    }
+                });
+
+            setTimeout(function(){ $('.image-banner').closest('.modal-content').find('.modal-header').remove(); }, 500);
+        }
+
+        UtilService.prototype.redirectEmptyParameters = function(params, rota) {
+            if (typeof(params) == 'undefined' || params == null || Object.keys(params).length == 0) {
+                this.appRouteService.goTo(rota, {});
+                return true;
+            }
+            return false;
+        }
+
+        /**
+         * @desc Dependency Injection
+         */
+        UtilService.$inject = ['$log', 'appRouteService', 'appModalService', 'Restangular', 'acessoService'];
+
+        /**
+         * @desc Criação do objeto angular para o serviço UtilService
+         * @type {boolean}
+         */
+        app.service('utilService', UtilService);
+
+        return app;
+    }
+);
