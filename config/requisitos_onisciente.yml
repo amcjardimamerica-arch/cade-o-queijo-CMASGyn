@@ -1161,7 +1161,7 @@
 - id: 146
   bloco: Fontes e cadência
   requisito: FNS
-  situacao: parcial
+  situacao: cumprido
   evidencia: 'Coletor onisciente/coletores/fns.py, com motor_fns, motor_fns_entidades, motor_fns_detalhe e motor_fns_repasse_dia.
     As entidades reais de Goiânia fecham em duas páginas de 100 (191 em 2025, 197 em 2024, todas com o IBGE 520870), entre
     elas o Fundo Municipal de Saúde (37.623.352/0001-03); pessoa física fica só com o CPF mascarado do FNS. Com as respostas
@@ -1187,12 +1187,15 @@
     de 1000 trouxe dão as 166 ordens da ação, que somam R$ 669.552.284,15. A diferença de R$ 5.838.778,09 é uma ordem só,
     a 2025OB016558 (fundo a fundo, portaria 6464), com motivoRejeicao de cancelamento parcial por comando do gestor: sem ela,
     as ordens dão exatamente os R$ 663.713.506,06 que detalhe-acao declara para a ação. O leitor guarda o motivoRejeicao,
-    e o motor tira a ordem rejeitada do pago e de repasses_fns, com nota, nos dois caminhos (listagem e por ação).'
-  falta: 'A página de 1000 ainda não foi vista inteira: a sondagem guardava só 600 KB, e as 676 ordens do ano (a página 1
-    de 100 declara 676) não couberam; com d1_fns entre as fontes grandes, a próxima sondagem guarda a resposta inteira. Falta
-    também uma coleta com count=1000 que feche as 40 ações de 2025 (e as de 2024 e 2026) com o total de cada uma. O detalhar-pagamento-dia
-    do repasse do dia segue com erro 500 do servidor.'
-  trava: testes/test_coletores_federais_decima_primeira.py::test_fns_acao_61659_fecha_com_o_total_quando_a_ordem_rejeitada_sai
+    e o motor tira a ordem rejeitada do pago e de repasses_fns, com nota, nos dois caminhos (listagem e por ação). Na sondagem
+    079a72d a página de 1000 foi guardada inteira (691.235 bytes, d1_fns entre as fontes grandes): total 676, totalPaginas
+    1, as 676 ordens sem nenhuma repetida, começando pelas 100 da página 1 de 100. Somam R$ 1.036.219.851,35, o valorTotalGeral
+    do servidor; sem a 2025OB016558, dão R$ 1.030.381.073,26, o total das 40 ações de detalhe-acao, e cada uma das 40 ações
+    fecha com as suas ordens. Com essas duas respostas reais, motor_fns_detalhe faz uma leitura só da listagem, grava as 40
+    ações com o pago igual ao total e as ordens fundo a fundo em repasses_fns, sem nenhuma divergência (trava test_motor_fns_com_as_respostas_reais_de_2025_fecha_todas_as_acoes_numa_leitura).
+    Se outro ano não fechar, o motor diz qual ação e quanto.'
+  falta: ''
+  trava: testes/test_coletores_federais_decima_segunda.py::test_motor_fns_com_as_respostas_reais_de_2025_fecha_todas_as_acoes_numa_leitura
 - id: 147
   bloco: Fontes e cadência
   requisito: FNDE
@@ -1294,13 +1297,22 @@
     com a resposta real). TCU: o motor pede a pesquisa na ordem DTRELEVANCIA (cronológica, da mais nova para a mais antiga),
     a que deixa parar no começo do intervalo; o inicio=0 dessa ordem respondeu na coleta d532c1d na 2ª tentativa (a nova tentativa
     já existe em historico.Contexto.ler), e o inicio=0 que encerra a conexão nas sondagens é o da ordem ANOACORDAO, que o
-    motor não usa (a sondagem agora pede também o inicio=0 do motor).'
-  falta: 'Sem chave de API, a jurisprudência do TCM-GO só dá as 1.000 decisões mais novas de Goiânia (de 5.491, uns meses):
-    o resto exige /exportar (CSV, com os mesmos filtros) ou uma busca por ano da votação, que a sondagem d1_tcm pede agora
-    (municipio=GOIANIA com ano_votacao=2025, em buscar e em exportar) e ainda não foi lida; a chave de API é por chamado ao
-    TCM-GO. As decisões do TCM-GO gravadas na coleta d532c1d (190) incluem as de Aparecida escritas sem o de; a próxima coleta
-    as tira. O acesso à informação do TCM-GO (3 listas, mp/id=44 e mp/id=45) e o painel das câmaras respondem 403 do próprio
-    servidor.'
+    motor não usa (a sondagem agora pede também o inicio=0 do motor). Na sondagem 079a72d, a busca com municipio=GOIANIA e
+    ano_votacao=2025 declarou 918 decisões (10 páginas, abaixo do limite de 1000, sem chave), e a exportação em CSV do mesmo
+    filtro respondeu 200 com 1.876.331 bytes: 918 linhas de 17 colunas (documento, acórdão, processo, ano, data da sessão,
+    órgão, pauta, assunto, macroassunto, relator, revisor, entidade, resultado, ODS, ementa, resumo e link do PDF), todas
+    de 2025, de 14/01 a 17/12/2025, sem repetir documento, as 100 primeiras iguais à página 1 da busca e na mesma ordem; 873
+    são de Goiânia, nenhuma de Aparecida. O motor agora lê a exportação ano a ano dentro do intervalo (tcm.exportacao, com
+    a mesma leitura da busca) e só cai na busca paginada se algum ano não vier, sem contar de novo o que já veio, e diz quais
+    anos faltaram (trava test_motor_tcm_le_a_exportacao_ano_a_ano_sem_a_busca). O ano mais o município dispensam a chave:
+    a exportação não tem o limite de 1000, e a busca de um ano com menos de 1000 decisões também vem inteira. Na mesma sondagem,
+    a pesquisa do TCU deu conexão encerrada em inicio=0 (nas duas ordens) e em inicio=150, mas a sondagem lê uma vez só; o
+    motor lê pelo historico.Contexto, que tenta 3 vezes, com espera de 5 s e 10 s (trava test_tcu_conexao_encerrada_e_lida_de_novo_com_espera_crescente),
+    e na coleta d532c1d o TCU leu 12 de 12 chamadas com 13 tentativas.'
+  falta: 'A prova em coleta real: a exportação de 2024 e de 2026 ainda não foi lida (só a de 2025, na sondagem), nem a pesquisa
+    do TCU até o total com as 3 tentativas. As decisões do TCM-GO gravadas na coleta d532c1d (190) incluem as de Aparecida
+    escritas sem o de; a coleta com somar apaga as do motor antes e as tira. O acesso à informação do TCM-GO (3 listas, mp/id=44
+    e mp/id=45) e o painel das câmaras respondem 403 do próprio servidor (as contas irregulares vêm dos dados abertos).'
   trava: testes/test_coletores_federais_decima.py::test_tcu_pesquisa_le_ate_o_total_e_diz_o_que_faltou
 - id: 155
   bloco: Arquitetura
@@ -1373,10 +1385,10 @@
     e as ordens trazem a ação, o mês do pagamento e o documento do SIAFI (id 146). O repasse do dia real também é lido. Na
     sondagem 9cc559c as ordens do ano vieram numa página só com count=1000, que o motor agora pede, e as ordens reais da ação
     61659 fecham com o total dela ao sair a ordem rejeitada (2025OB016558, motivoRejeicao de cancelamento parcial), que fica
-    fora do pago e de repasses_fns.'
-  falta: 'A ativação dos domínios pela Frente D2 e a listagem das ordens vista inteira (id 146): a página de 1000 ainda não
-    foi guardada inteira (a sondagem cortava em 600 KB), e falta uma coleta com count=1000 que feche todas as ações de 2024
-    a 2026 com o total de cada uma.; FNS e FNDE na origem (Frente D1).'
+    fora do pago e de repasses_fns. Na sondagem 079a72d a página de 1000 veio inteira e as 40 ações de 2025 fecham uma a uma
+    com as suas ordens (id 146, cumprido).'
+  falta: A ativação dos domínios pela Frente D2. Do lado da D1, falta só ver na coleta real os anos de 2024 e 2026 fecharem
+    como o de 2025.; FNS e FNDE na origem (Frente D1).
   trava: testes/test_coletores_federais_setima.py::test_fns_acoes_reais_do_fundo_fecham_com_o_total_geral
 - id: 165
   bloco: Roteiro e portões
