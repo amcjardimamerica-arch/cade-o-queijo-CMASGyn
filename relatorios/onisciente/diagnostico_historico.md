@@ -1,6 +1,6 @@
 # Diagnóstico da coleta histórica (2024-11 a 2026-11)
 
-Rodada de 2026-11-28T08:40:48+00:00. Banco: `dados/onisciente/historico.db`.
+Rodada de 2026-11-28T09:16:16+00:00. Banco: `dados/onisciente/historico.db`.
 
 Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna na fonte (ela respondeu e o dado não estava lá). As duas nunca se misturam.
 
@@ -9,7 +9,7 @@ Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna na fonte (
 | Motor | Chamadas | Certas | Falhas | 429 | Tempo (s) |
 |---|---:|---:|---:|---:|---:|
 | Cadastro das empresas na Receita Federal (CNPJ e QSA) | 1355 | 1353 | 2 | 0 | 547.0 |
-| Normas federais (ctresb/leis) | 21 | 21 | 0 | 0 | 3.4 |
+| Normas federais (ctresb/leis) | 21 | 21 | 0 | 0 | 4.0 |
 | Cota-parte do Estado (Secretaria da Economia de Goiás) | 6 | 6 | 0 | 0 | 43.4 |
 | Execução item a item no portal de Goiânia (TransWeb) | 184 | 184 | 0 | 0 | 200.9 |
 | Repasses federais (FNAS) | 4 | 3 | 1 | 0 | 98.2 |
@@ -24,7 +24,9 @@ Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna na fonte (
 | Empresas punidas (CEIS e CNEP) | 4 | 4 | 0 | 0 | 1.4 |
 | SICONFI (Tesouro Nacional) | 23 | 23 | 0 | 0 | 5.9 |
 | SICONFI pelos endereços antigos | 2 | 0 | 2 | 0 | 1.2 |
-| Diário Oficial pelo índice do SILEG | 50 | 50 | 0 | 0 | 13.3 |
+| Diário Oficial pelo índice do SILEG | 50 | 50 | 0 | 0 | 15.9 |
+| Leis de Goiânia baixadas do SILEG | 47 | 47 | 0 | 0 | 25.2 |
+| Procura das leis não localizadas no SILEG | 15 | 15 | 0 | 0 | 6.8 |
 | Demonstrativo da educação (SIOPE) | 17 | 16 | 1 | 0 | 266.6 |
 | Demonstrativo da saúde (SIOPS) | 20 | 20 | 0 | 0 | 29.3 |
 | Decisões do TCM-GO | 12 | 6 | 6 | 0 | 20.6 |
