@@ -53,8 +53,8 @@ respondeu 200 com ``resultado.dados`` (uf, município, ``codigoMunicipioIBGE``, 
 esfera administrativa, ``entidadeSemRepasse``) e a paginação (``pagina`` a partir de 0, ``itensPorPagina``,
 ``total``, ``totalPaginas``): 191 entidades de Goiânia em 2025, todas com o IBGE 520870 (o filtro do
 Município foi respeitado). É a lista de quem recebeu, sem valores: ``entidades`` a lê, e ela não serve
-de repasse (``MODELOS_DE_REPASSE`` a deixa de fora). Pessoa física fica só com o CPF mascarado que o
-próprio FNS mostra. ``detalhar-pagamento-dia`` deu 500 e o ``-final`` deu 400 com os parâmetros do
+de repasse (``MODELOS_DE_REPASSE`` a deixa de fora). Pessoa física fica com o ``cpfCnpj`` como o FNS o
+publica (inteiro; decisão do usuário de 28/11/2026). ``detalhar-pagamento-dia`` deu 500 e o ``-final`` deu 400 com os parâmetros do
 controlador (o corpo do erro não foi guardado pela sondagem).
 
 Sondagem da rodada 6 (28/11/2026): a página 2 das entidades com 100 por página fecha as 191 (``pagina`` 1,
@@ -269,7 +269,11 @@ def entidades(conteudo: bytes, ibge6: str) -> tuple[list[dict], int, int]:
         doc = cf.digitos(d.get("cpfCnpj"))
         pessoa_fisica = len(doc) == 11
         saida.append({
-            "cpf_cnpj": (d.get("cpfCnpjFormatado") or "") if pessoa_fisica else doc,
+            # O ``cpfCnpj`` como o FNS publica (o CPF de pessoa física vem inteiro nele; só o
+            # ``cpfCnpjFormatado`` vem mascarado). Antes o coletor guardava o formatado mascarado da pessoa
+            # física; a decisão do usuário de 28/11/2026 (config/decisoes_usuario.yml, P-01) manda guardar o
+            # dado como a fonte publica.
+            "cpf_cnpj": str(d.get("cpfCnpj") if d.get("cpfCnpj") is not None else ""),
             "pessoa_fisica": int(pessoa_fisica), "nome": _texto(d.get("razaoSocial")),
             "esfera": _texto(d.get("esferaAdministrativa")), "municipio_ibge": ibge,
             "sem_repasse": int(bool(d.get("entidadeSemRepasse")))})

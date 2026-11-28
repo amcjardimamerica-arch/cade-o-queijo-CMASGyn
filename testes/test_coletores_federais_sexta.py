@@ -80,7 +80,9 @@ def test_fns_entidades_pagina_2_real_fecha_as_191_e_traz_o_fundo():
     fundos = {l["nome"]: (l["cpf_cnpj"], l["esfera"]) for l in linhas if "FUNDO" in l["nome"]}
     assert fundos["FUNDO MUNICIPAL DE SAUDE"] == (FUNDO, "MUNICIPAL")
     assert fundos["FUNDO ESTADUAL DE SAUDE"][1] == "ESTADUAL"
-    assert all(l["cpf_cnpj"].startswith("***") for l in linhas if l["pessoa_fisica"])
+    # O cpfCnpj como o FNS publica (fictício na amostra); antes o coletor guardava o formatado mascarado,
+    # revogado pela decisão do usuário de 28/11/2026, 11:18Z (config/decisoes_usuario.yml, P-01).
+    assert all(len(l["cpf_cnpj"]) == 11 and l["cpf_cnpj"].isdigit() for l in linhas if l["pessoa_fisica"])
 
 
 def test_fns_detalhe_com_os_parametros_dos_controladores():

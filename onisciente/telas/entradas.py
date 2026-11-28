@@ -9,7 +9,7 @@ Quatro arquivos em ``relatorios/onisciente/entradas/``, no formato da seção 11
   ``python -m onisciente selo``), com as duas leituras (oficial e restritiva), cada uma comprovada e no teto, e
   as obrigações F1 a F5 do Fundo e C1 a C4 do Conselho;
 * ``empresas.json``: ``onisciente.conferencias.empresas.conferir``, com a cobertura (inclusive os cadastros de
-  sanção não conferidos) e os alertas por CNPJ. Nunca CPF;
+  sanção não conferidos) e os alertas por CNPJ (a tela das empresas é das pessoas jurídicas);
 * ``execucao.json``: os eventos da execução (``despesa_eventos``, motor ``execucao_goiania``), empenho a empenho;
 * ``federais.json``: ``onisciente.conferencias.federais.conferir`` e os repasses (FNS, FNDE, FNAS, Transferegov).
 
@@ -36,16 +36,13 @@ AUDITORIA_DO_SELO = RAIZ / "relatorios" / "onisciente" / "selo" / "auditoria.jso
 FMAS = "01393989000103"
 DADO, COLETA_NAO_FEITA = "dado", "coleta_nao_feita"
 
-_CPF_SOLTO = re.compile(r"(?<![\dA-Za-z])\d{11}(?![\dA-Za-z])")
-_CPF_FORMATADO = re.compile(r"\d{3}\.\d{3}\.\d{3}-\d{2}")
 _URL = re.compile(r"https?://[^\s,;)]+")
 
 
 def texto(valor, limite: int = 600) -> str:
-    """Texto pronto para a tela: sem CPF (solto ou formatado), sem travessão, aparado."""
-    t = _CPF_FORMATADO.sub("CPF omitido", str(valor or ""))
-    t = _CPF_SOLTO.sub("CPF omitido", t)
-    t = sem_travessao(re.sub(r"\s+", " ", t).strip())
+    """Texto pronto para a tela: sem travessão, aparado. O CPF fica como a fonte publicou (decisão do usuário
+    de 28/11/2026, config/decisoes_usuario.yml, P-01; antes saía como "CPF omitido")."""
+    t = sem_travessao(re.sub(r"\s+", " ", str(valor or "")).strip())
     return t if len(t) <= limite else t[: limite - 1].rstrip() + "…"
 
 
@@ -174,7 +171,8 @@ def selo(auditoria: Path = AUDITORIA_DO_SELO) -> dict:
 # =============================================================================================
 
 def _cnpj(valor) -> str:
-    """Só CNPJ (14 posições, numérico ou alfanumérico); CPF e o resto ficam de fora."""
+    """Só CNPJ (14 posições, numérico ou alfanumérico): a tela das empresas lista pessoas jurídicas (a Receita
+    e o QSA); o contrato de pessoa física aparece com o CPF na tela dos preços e da execução."""
     v = re.sub(r"[^0-9A-Za-z]", "", str(valor or "")).upper()
     return v if len(v) == 14 else ""
 
@@ -294,14 +292,15 @@ def execucao(con: sqlite3.Connection) -> dict:
         if not num:
             continue
         doc = re.sub(r"\D", "", str(ev.get("documento") or ""))
-        pessoa_fisica = len(doc) == 11 or "*" in str(ev.get("documento") or "")   # CPF inteiro ou mascarado
+        pessoa_fisica = len(doc) == 11 or "*" in str(ev.get("documento") or "")   # CPF inteiro ou o mascarado pela fonte
         orgao = ev.get("orgao") or ""
         if orgao not in cnpj_de:
             cnpj_de[orgao] = cnpj_do_orgao(orgao, orgaos)
         e = por_empenho.setdefault(num, {
             "numero": num, "data": ev.get("data") or "", "orgao_cnpj": cnpj_de[orgao], "orgao": texto(orgao, 120),
-            "credor": "Pessoa física" if pessoa_fisica else texto(ev.get("credor"), 160),
-            "credor_cnpj": documento_publico(doc), "fonte": ev.get("fonte") or "", "funcao": ev.get("funcao") or "",
+            # O nome e o documento de pessoa física também (decisão do usuário de 28/11/2026, P-01).
+            "credor": texto(ev.get("credor"), 160), "pessoa_fisica": pessoa_fisica,
+            "credor_cnpj": documento_publico(ev.get("documento")), "fonte": ev.get("fonte") or "", "funcao": ev.get("funcao") or "",
             "natureza": ev.get("elemento") or "", "valor": 0.0, "contrato": "", "eventos": [],
             "url": ev.get("url") or "", "lido_em": ev.get("coletado_em") or ""})
         estacao = _ESTACAO.get(ev.get("tipo") or "", ev.get("tipo") or "")

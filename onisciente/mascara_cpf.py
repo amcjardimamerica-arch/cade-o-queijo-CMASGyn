@@ -1,7 +1,10 @@
-"""Máscara de CPF de pessoa física nos arquivos que o Onisciente grava (a sondagem, num repositório público).
+"""A máscara de CPF que a sondagem aplicava aos arquivos guardados (b8bf2e6 a 28/11/2026).
 
-O CPF completo de pessoa física não fica gravado: vira ``***.NNN.NNN-**``, com os seis dígitos do meio,
-como o Portal da Transparência mostra. CNPJ fica como está. Acham-se:
+Revogada na gravação pela decisão do usuário de 28/11/2026, 11:18Z (config/decisoes_usuario.yml, P-01: "Os
+dados devem ser públicos e não mascarar"): a sondagem guarda a resposta como a fonte publicou. O módulo fica
+para reconhecer o arquivo que o sistema mascarou e devolvê-lo do git (``onisciente.restauracao_fonte``), e
+para contar CPFs (``cpfs_completos``). A máscara trocava o CPF por ``***.NNN.NNN-**`` (os seis do meio); CNPJ
+ficava. Achavam-se:
 
 - o CPF formatado (``NNN.NNN.NNN-NN``) em qualquer lugar do texto;
 - 11 dígitos no valor de um campo de documento: chave JSON com ``cpf`` ou ``documento`` no nome (``cpf``,

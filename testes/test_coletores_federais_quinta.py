@@ -55,14 +55,16 @@ def _entidades(total: int, paginas: int, dados: list[dict]) -> bytes:
 
 # --- FNS: as entidades do Município (requisitos 146 e 164) ----------------------------------------
 
-def test_fns_entidades_reais_respeitam_o_filtro_e_mascaram_a_pessoa_fisica():
+# Revogação: a trava exigia o CPF da pessoa física mascarado (o coletor guardava o cpfCnpjFormatado); pela
+# decisão do usuário de 28/11/2026, 11:18Z (config/decisoes_usuario.yml, P-01) fica o cpfCnpj como o FNS publica.
+def test_fns_entidades_reais_respeitam_o_filtro_e_guardam_o_documento_da_fonte():
     linhas, total, paginas = fns.entidades(_bytes("fns_entidades_goiania_real.json"), "520870")
     assert (len(linhas), total, paginas) == (10, 191, 20)
     assert {l["municipio_ibge"] for l in linhas} == {"520870"}
     assert linhas[0] == {"cpf_cnpj": "13706030000160", "pessoa_fisica": 0, "nome": "ALENCAR E MOREIRA LTDA",
                          "esfera": "PRIVADA", "municipio_ibge": "520870", "sem_repasse": 0}
     pf = [l for l in linhas if l["pessoa_fisica"]]
-    assert len(pf) == 2 and all(l["cpf_cnpj"].startswith("***") for l in pf)   # só o CPF mascarado do FNS
+    assert [l["cpf_cnpj"] for l in pf] == ["00000000001", "00000000002"]   # o cpfCnpj do FNS (fictício aqui)
     # Uma entidade de outro Município quer dizer que o filtro foi ignorado: formato, não dado.
     outra = json.loads(_bytes("fns_entidades_goiania_real.json"))
     outra["resultado"]["dados"][3]["codigoMunicipioIBGE"] = "520140"
@@ -94,8 +96,9 @@ def test_motor_fns_entidades_le_as_paginas_e_troca_o_ano(tmp_path):
     mf.motor_fns_entidades(ctx, 5208707)
     assert ctx.banco.consultar("select count(*), sum(pessoa_fisica) from fns_entidades where ano = 2025") == [(12, 2)]
     assert ctx.banco.consultar("select count(*) from fns_entidades where cpf_cnpj = 'velha'") == [(0,)]
+    # O cpfCnpj como o FNS publica (antes: nenhum CPF inteiro; revogado pela decisão P-01 de 28/11/2026).
     assert not ctx.banco.consultar("select cpf_cnpj from fns_entidades where pessoa_fisica = 1 "
-                                   "and cpf_cnpj not like '***%'")             # nenhum CPF inteiro guardado
+                                   "and cpf_cnpj like '***%'")
     situacao, erro = _situacoes(ctx, "fns")["entidades 2025"]
     assert situacao == "lido" and erro is None
     assert all("count=100" in u and "estado=GO" in u for u in pedidos)

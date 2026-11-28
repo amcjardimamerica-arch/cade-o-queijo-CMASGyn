@@ -117,8 +117,9 @@ def cpf_valido(d: str) -> bool:
 
 
 def mascarar_cpf(texto) -> str:
-    """O CPF como o Portal da Transparência e o QSA da Receita publicam: ***.NNN.NNN-** (só os seis
-    dígitos do meio, posições 4 a 9). Aceita o CPF inteiro (11 dígitos) ou os seis do meio."""
+    """A máscara ***.NNN.NNN-** (os seis dígitos do meio, posições 4 a 9) que o coletor aplicava entre
+    24fc099 e a decisão do usuário de 28/11/2026 (config/decisoes_usuario.yml, P-01). Não grava mais nada:
+    serve para reconhecer o que o sistema mascarou e devolver o dado da fonte (onisciente.restauracao_fonte)."""
     d = documento(texto)
     if len(d) == 11:
         d = d[3:9]
@@ -126,10 +127,9 @@ def mascarar_cpf(texto) -> str:
 
 
 def documento_gravavel(texto) -> str:
-    """O documento do credor que pode ser gravado (repositório público): o CNPJ inteiro; o CPF de
-    pessoa física nunca inteiro, só mascarado (***.NNN.NNN-**). Pessoa física é o documento de 11
-    dígitos, o de 14 que é "000" e um CPF válido sem ser CNPJ válido (a coluna CNPJ da exportação) e o
-    que já vem mascarado com asteriscos."""
+    """O documento como o coletor o gravava enquanto mascarava (24fc099 a 28/11/2026): CNPJ inteiro e o CPF
+    de pessoa física mascarado. Revogado na gravação pela decisão do usuário de 28/11/2026 (P-01); fica só
+    para reconhecer a linha mascarada pelo sistema (onisciente.restauracao_fonte)."""
     bruto = str(texto or "").strip()
     d = documento(bruto)
     if "*" in bruto:
@@ -142,17 +142,26 @@ def documento_gravavel(texto) -> str:
 
 
 def documento_do_credor(texto) -> str:
-    """O CNPJ, ou o CPF mascarado quando a coluna CNPJ da exportação traz o CPF com "000" na frente
-    (14 dígitos que não são um CNPJ válido e cujos 11 últimos são um CPF válido)."""
-    return documento_gravavel(texto)
+    """O documento do credor como a fonte publica: o CNPJ, ou o CPF inteiro quando a coluna CNPJ da
+    exportação traz o CPF com "000" na frente (14 dígitos que não são um CNPJ válido e cujos 11 últimos são
+    um CPF válido). O CPF que a própria fonte publica mascarado (com asteriscos) fica como veio. Nada é
+    mascarado pelo sistema (decisão do usuário de 28/11/2026, config/decisoes_usuario.yml, P-01)."""
+    bruto = str(texto or "").strip()
+    if "*" in bruto:
+        return bruto
+    d = documento(bruto)
+    if len(d) == 14 and d.startswith("000") and not cnpj_valido(d) and cpf_valido(d[3:]):
+        return d[3:]
+    return d
 
 
 _CPF_NO_TEXTO = re.compile(r"(?<![\d*])(?:000)?(\d{11})(?!\d)")
 
 
 def mascarar_cpfs_no_texto(texto: str) -> str:
-    """Num texto guardado (a resposta crua de uma sondagem), o CPF válido de 11 dígitos e o "000" com
-    CPF da coluna CNPJ viram ***.NNN.NNN-**. Um CNPJ válido de 14 dígitos fica como está."""
+    """A máscara que a sondagem aplicava às respostas do TransWeb (24fc099 a 28/11/2026). Revogada na
+    gravação pela decisão do usuário de 28/11/2026 (P-01); fica para reconhecer o arquivo mascarado e
+    devolvê-lo do git (onisciente.restauracao_fonte)."""
     def troca(m: re.Match) -> str:
         inteiro, cpf = m.group(0), m.group(1)
         if len(inteiro) == 14 and cnpj_valido(inteiro):
@@ -1750,85 +1759,15 @@ def criar_tabelas(con) -> None:
 
 # Colunas de texto livre de despesa_eventos onde o portal escreve o CPF de pessoa física: o nome do
 # favorecido (o MEI vem como "NOME 12345678901") e o histórico do empenho ("TOMADORA: NOME - CPF:...").
+# Ficam como a fonte publica (decisão do usuário de 28/11/2026, P-01); a lista serve à restauração.
 TEXTO_LIVRE = ("credor", "historico")
 
 
 def texto_gravavel(texto):
-    """Texto livre que pode ser gravado: a regra da Frente H (``mascara_banco.mascarar_texto``), o CPF
-    formatado e os 11 dígitos seguidos com dígito verificador válido, isolados, viram ***.NNN.NNN-**.
-    Telefone, processo (11 dígitos que não conferem), número de empenho e hash ficam."""
+    """A máscara de texto livre que o coletor aplicava (91240af a 28/11/2026). Revogada na gravação pela
+    decisão do usuário de 28/11/2026 (P-01); fica para reconhecer a linha mascarada pelo sistema."""
     from ..mascara_banco import mascarar_texto
     return mascarar_texto(texto)
-
-
-def _cpfs_a_mascarar(con) -> list[tuple[int, dict]]:
-    """As linhas gravadas com CPF inteiro no documento, no credor ou no histórico: (rowid, {coluna: novo})."""
-    try:
-        linhas = con.execute(
-            "SELECT rowid, documento, credor, historico FROM despesa_eventos WHERE "
-            "(documento NOT LIKE '%*%' AND length(documento) IN (11, 14)) "
-            "OR credor GLOB '*[0-9][0-9][0-9]*' OR historico GLOB '*[0-9][0-9][0-9]*'").fetchall()
-    except Exception:  # noqa: BLE001 (sem a tabela: nada a mascarar)
-        return []
-    saida = []
-    for rowid, doc, credor, hist in linhas:
-        troca = {}
-        if doc and "*" not in doc and documento_gravavel(doc) != doc:
-            troca["documento"] = documento_gravavel(doc)
-        for coluna, valor in (("credor", credor), ("historico", hist)):
-            novo = texto_gravavel(valor)
-            if novo != valor:
-                troca[coluna] = novo
-        if troca:
-            saida.append((rowid, troca))
-    return saida
-
-
-def mascarar_cpfs(con) -> dict[str, int]:
-    """As linhas já gravadas com CPF inteiro passam a ***.NNN.NNN-**: o documento (11 dígitos, ou "000" e
-    o CPF) e o texto livre (credor e histórico). Devolve, por coluna, quantas linhas mudaram. Uma linha
-    que, mascarada, fica igual a outra já mascarada a substitui (o documento está na chave)."""
-    from .. import rastreio
-    contagem = {"documento": 0, "credor": 0, "historico": 0}
-    pendentes = _cpfs_a_mascarar(con)
-    tid = (rastreio._id_tabela(con, "despesa_eventos")
-           if pendentes and "rastreio_selos" in rastreio._tabelas_rastreio(con) else None)
-    for rowid, troca in pendentes:
-        if tid is not None:
-            # A linha mascarada ganha selo novo com a origem do selo antigo (como na migração da Frente H).
-            antes = rastreio.linha(con, "despesa_eventos", rowid)
-            selo = con.execute("SELECT origem FROM rastreio_selos WHERE tabela = ? AND hash = ?",
-                               (tid, rastreio._digest("despesa_eventos", antes))).fetchone() if antes else None
-            con.execute("INSERT OR REPLACE INTO rastreio_cursor (chave, valor) VALUES ('origem', ?)",
-                        (selo[0] if selo else None,))
-        sets = ", ".join(f"{c} = ?" for c in troca)
-        con.execute(f"UPDATE OR REPLACE despesa_eventos SET {sets} WHERE rowid = ?", [*troca.values(), rowid])
-        for c in troca:
-            contagem[c] += 1
-    contagem["linhas"] = len(pendentes)
-    return contagem
-
-
-def precisa_mascarar(con) -> bool:
-    return bool(_cpfs_a_mascarar(con))
-
-
-def migrar_cpfs(con) -> int:
-    """Migração do banco (Banco.abrir): mascara o CPF das linhas antigas (documento, credor e histórico)
-    numa rodada própria do rastreio, aberta antes e fechada depois, para que as linhas mudadas ganhem selo
-    e o que saiu fique descartado por ela. Sem CPF inteiro no banco, não abre rodada. Devolve as linhas."""
-    if not precisa_mascarar(con):
-        return 0
-    from .. import rastreio
-    rid = rastreio.abrir_rodada(con, ("execucao_goiania",), "mascara_cpf",
-                                detalhe={"nota": "CPF de pessoa física em despesa_eventos (documento, credor e "
-                                                 "histórico) mascarado como ***.NNN.NNN-** (repositório público)"})
-    c = mascarar_cpfs(con)
-    con.commit()
-    rastreio.fechar_rodada(con, rid, nota=f"{c['linhas']} linha(s) de despesa_eventos com o CPF mascarado "
-                                          f"(documento {c['documento']}, credor {c['credor']}, "
-                                          f"histórico {c['historico']})")
-    return c["linhas"]
 
 
 def gravar(con, eventos: Iterable[dict], *, coletado_em: str | None = None) -> int:
@@ -1839,9 +1778,7 @@ def gravar(con, eventos: Iterable[dict], *, coletado_em: str | None = None) -> i
     for ev in eventos:
         linha = {k: ev.get(k, "") for k in CAMPOS_EVENTO}
         linha["valor"] = float(ev.get("valor") or 0.0)
-        linha["documento"] = documento_gravavel(linha["documento"])     # CPF nunca inteiro
-        for coluna in TEXTO_LIVRE:                                      # nem no nome nem no histórico
-            linha[coluna] = texto_gravavel(linha[coluna])
+        # O documento, o credor e o histórico ficam como a fonte publicou (decisão do usuário de 28/11/2026).
         linha["coletado_em"] = linha["coletado_em"] or quando
         cur = con.execute(f"INSERT OR IGNORE INTO despesa_eventos ({', '.join(CAMPOS_EVENTO)}) VALUES "
                           f"({', '.join('?' for _ in CAMPOS_EVENTO)})", [linha[k] for k in CAMPOS_EVENTO])
@@ -1872,16 +1809,41 @@ def dias_a_ler(con, consulta: str, inicio: date, fim: date) -> list[date]:
     return out
 
 
+# Releitura completa (decisão do usuário de 28/11/2026, P-01): a despesa coletada com o CPF mascarado pelo
+# sistema, sem original no git, precisa ser lida de novo da fonte. A marca (em ``meta``) diz desde quando: o mês
+# cuja última leitura inteira é anterior a ela conta como mês que falta, e o motor lê de novo todos os meses,
+# os que faltam primeiro, rodada após rodada, até cada mês ter uma leitura inteira depois da marca.
+MARCA_RELEITURA = "execucao_releitura_completa"
+
+
+def marcar_releitura_completa(con, quando: str | None = None) -> str:
+    """Grava a marca da releitura completa (agora, se ``quando`` não vier) e devolve o valor gravado."""
+    quando = quando or datetime.now().isoformat()
+    con.execute("CREATE TABLE IF NOT EXISTS meta (chave TEXT PRIMARY KEY, valor TEXT)")
+    con.execute("INSERT OR REPLACE INTO meta (chave, valor) VALUES (?, ?)", (MARCA_RELEITURA, quando))
+    con.commit()
+    return quando
+
+
+def releitura_completa_desde(con) -> str | None:
+    try:
+        linha = con.execute("SELECT valor FROM meta WHERE chave = ?", (MARCA_RELEITURA,)).fetchone()
+    except Exception:  # noqa: BLE001 (sem a tabela meta: fora do banco histórico)
+        return None
+    return linha[0] if linha and linha[0] else None
+
+
 def meses_a_ler(con, consulta: str, meses: Iterable[str], *, releitura: int = 2,
-                faltantes_primeiro: bool = False) -> list[str]:
+                faltantes_primeiro: bool = False, desde: str | None = None) -> list[str]:
     """Os meses (AAAA-MM) sem leitura bem-sucedida da lista, mais os ``releitura`` meses mais recentes
     de novo: a linha de um empenho mostra o liquidado e o pago acumulados, que crescem nos meses
-    seguintes ao do empenho. Do mais recente para o mais antigo."""
+    seguintes ao do empenho. Do mais recente para o mais antigo. Com ``desde`` (a marca da releitura
+    completa), a leitura inteira anterior a ela não conta: o mês volta a faltar."""
     criar_tabelas(con)
     ultima: dict[str, str] = {}
-    for mes, situacao in con.execute("select dia, situacao from despesa_consultas where consulta = ? and dia != '' "
-                                     "order by rowid", (consulta,)):
-        ultima[mes] = situacao
+    for mes, situacao, quando in con.execute("select dia, situacao, quando from despesa_consultas "
+                                             "where consulta = ? and dia != '' order by rowid", (consulta,)):
+        ultima[mes] = "antes da releitura completa" if desde and (quando or "") < desde else situacao
     meses = sorted(set(meses), reverse=True)
     recentes = meses[:releitura]
     if faltantes_primeiro:
@@ -2001,8 +1963,8 @@ def _meses_da_exportacao(ctx, portal: Portal, c: Consulta, resumo: dict, con) ->
     lista_aberta = None
     reserva_recusada = ""
     fim = getattr(ctx, "fim_do_motor", None)
-    for mes in meses_a_ler(con, c.id, meses, releitura=c.exportar.get("releitura", 12), faltantes_primeiro=True)[
-            :c.exportar.get("meses_por_rodada", 40)]:
+    for mes in meses_a_ler(con, c.id, meses, releitura=c.exportar.get("releitura", 12), faltantes_primeiro=True,
+                           desde=releitura_completa_desde(con))[:c.exportar.get("meses_por_rodada", 40)]:
         if fim is not None and time.monotonic() > fim - 120:
             break         # sem tempo para mais um mês inteiro: o que falta fica para a rodada seguinte
 
@@ -2076,7 +2038,7 @@ def _motor_mensal(ctx, portal: Portal, c: Consulta, resumo: dict, *, limite_de_m
         resumo["falhas"] += 1
         return
     meses = [m for m in ctx.meses if m <= ctx.hoje.strftime("%Y-%m")]
-    for mes in meses_a_ler(con, c.id, meses)[:limite_de_meses]:
+    for mes in meses_a_ler(con, c.id, meses, desde=releitura_completa_desde(con))[:limite_de_meses]:
         ano, mm = mes.split("-")
         valores = {"mes": mm, "ano": ano}
         res = consultar_lista(ler, portal, c, valores, aberta=aberta, conhecidos=conhecidos_do_banco(con))

@@ -784,7 +784,7 @@ function digitoIPTU(n) {
   return dig;
 }
 //***************************************************************
-// Rotina : FORMATA CPF DURANTE A DIGITAÇÃO (***.999.999-**)
+// Rotina : FORMATA CPF DURANTE A DIGITAÇÃO (999.999.999-99)
 // Chamada: onkeypress="parent.gbl.formatacpf(this.name[, org])"
 //***************************************************************
 function formatacpf(cmp, org) {

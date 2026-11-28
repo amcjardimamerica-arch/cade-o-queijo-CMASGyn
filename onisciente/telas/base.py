@@ -134,26 +134,29 @@ def limpa(texto, limite: int | None = None) -> str:
 
 CNPJ = re.compile(r"(?<!\d)(\d{14})(?!\d)")
 
-CPF_FORMATADO = re.compile(r"(?<!\d)\d{3}\.\d{3}\.\d{3}-\d{2}(?!\d)")
-
-
 def documento_publico(ni) -> str:
-    """O documento do fornecedor que pode ir às telas: o CNPJ; o CPF de pessoa física nunca aparece."""
-    d = re.sub(r"\D", "", str(ni or ""))
-    return d if len(d) == 14 else ""
+    """O documento do fornecedor nas telas, como a fonte publica: o CNPJ, o CPF inteiro, ou o CPF que a
+    própria fonte publica mascarado (com os asteriscos dela). Antes o CPF nunca ia às telas; a decisão do
+    usuário de 28/11/2026 (config/decisoes_usuario.yml, P-01) manda mostrar o dado da fonte, para
+    individualizar quem recebe o recurso público."""
+    bruto = str(ni or "").strip()
+    if "*" in bruto:
+        return bruto
+    d = re.sub(r"\D", "", bruto)
+    return d if len(d) in (11, 14) else ""
 
 
-def sem_cpf(obj):
-    """Prepara os textos que vão às telas: tira qualquer CPF escrito por extenso (000.000.000-00), troca o
-    travessão do texto de origem por vírgula e reescreve em linguagem direta o que foi guardado com a
-    metáfora antiga (decisão do usuário de 28/11/2026; nenhum número muda)."""
+def pronto_para_tela(obj):
+    """Prepara os textos que vão às telas: troca o travessão do texto de origem por vírgula e reescreve em
+    linguagem direta o que foi guardado com a metáfora antiga (decisão do usuário de 28/11/2026; nenhum
+    número muda). O CPF fica como a fonte publicou (decisão do usuário de 28/11/2026, P-01: antes saía
+    como "CPF omitido")."""
     if isinstance(obj, str):
         if "—" in obj or "–" in obj:
             obj = sem_travessao(obj)
-        obj = direto(obj)
-        return CPF_FORMATADO.sub("CPF omitido", obj) if "-" in obj else obj
+        return direto(obj)
     if isinstance(obj, list):
-        return [sem_cpf(x) for x in obj]
+        return [pronto_para_tela(x) for x in obj]
     if isinstance(obj, dict):
-        return {k: sem_cpf(v) for k, v in obj.items()}
+        return {k: pronto_para_tela(v) for k, v in obj.items()}
     return obj

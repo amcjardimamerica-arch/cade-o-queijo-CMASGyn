@@ -70,7 +70,9 @@ def test_fns_entidades_de_2024_reais_respeitam_o_municipio():
     linhas, total, paginas = fns.entidades(_bytes("fns_entidades_goiania_2024_real.json"), "520870")
     assert (len(linhas), total, paginas) == (100, 197, 2)
     assert all(l["municipio_ibge"] == "520870" for l in linhas)
-    assert all(l["cpf_cnpj"].startswith("***") for l in linhas if l["pessoa_fisica"])
+    # O cpfCnpj como o FNS publica (fictício na amostra); antes o coletor guardava o formatado mascarado,
+    # revogado pela decisão do usuário de 28/11/2026, 11:18Z (config/decisoes_usuario.yml, P-01).
+    assert all(len(l["cpf_cnpj"]) == 11 and l["cpf_cnpj"].isdigit() for l in linhas if l["pessoa_fisica"])
 
 
 def test_fns_acoes_reais_do_fundo_fecham_com_o_total_geral():

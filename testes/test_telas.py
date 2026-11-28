@@ -23,7 +23,7 @@ import pytest
 
 from onisciente import historico
 from onisciente.telas import gerar
-from onisciente.telas.base import sem_cpf
+from onisciente.telas.base import pronto_para_tela
 from onisciente.telas.graficos import series_do_parecer
 from onisciente.telas.originais import SEM_ORIGINAL, _nome_bruto
 
@@ -262,11 +262,13 @@ def test_original_guardado_vai_junto_so_quando_a_impressao_digital_bate(site):
     assert janeiro["h"] == SHA_MSC and janeiro["q"] == "2026-11-20"
 
 
-def test_nenhum_cpf_vai_para_as_telas(site):
+# Revogação: test_nenhum_cpf_vai_para_as_telas exigia o CPF trocado por "CPF omitido" nas telas; pela
+# decisão do usuário de 28/11/2026, 11:18Z (config/decisoes_usuario.yml, P-01) o CPF aparece como a fonte publicou. Invertida:
+def test_as_telas_nao_escondem_o_cpf_da_fonte(site):
     for p in PAGINAS:
         html = (site / f"{p}.html").read_text(encoding="utf-8")
-        assert "52998224725" not in html and "529.982.247-25" not in html, p
-    assert sem_cpf({"t": "Credor 529.982.247-25 recebeu"}) == {"t": "Credor CPF omitido recebeu"}
+        assert "CPF omitido" not in html, p
+    assert pronto_para_tela({"t": "Credor 529.982.247-25 recebeu"}) == {"t": "Credor 529.982.247-25 recebeu"}
 
 
 # ---------------------------------------------------------------------------------------------
@@ -618,21 +620,22 @@ def test_entrada_do_selo_tem_as_duas_leituras_e_as_obrigacoes_do_fundo_e_do_cons
     assert ent.selo(tmp_path / "nao_existe.json")["situacao"] == "coleta_nao_feita"
 
 
-def test_entrada_das_empresas_traz_cobertura_e_alertas_por_cnpj_e_nunca_cpf(entradas_reais):
+# Revogação parcial: o "nunca CPF" desta trava saiu pela decisão do usuário de 28/11/2026, 11:18Z (config/decisoes_usuario.yml, P-01);
+# a entrada das empresas continua por CNPJ (é a conferência da Receita e do QSA, das pessoas jurídicas).
+def test_entrada_das_empresas_traz_cobertura_e_alertas_por_cnpj(entradas_reais):
     e = entradas_reais["empresas"]
     assert e["situacao"] == "dado"
     assert set(e["cobertura"]["sancoes_nao_conferidas"]) == {"CEIS", "CNEP", "CEPIM", "TCU-INIDONEOS"}
     assert e["cobertura"]["cadastro_coletado"] is False
     assert all(len(x["cnpj"]) == 14 for x in e["empresas"]) and e["empresas"]
-    texto = json.dumps(e, ensure_ascii=False)
-    assert "52998224725" not in texto and "529.982.247-25" not in texto
 
 
 def test_entrada_da_execucao_vazia_sai_como_coleta_nao_feita(entradas_reais, banco, tmp_path):
     from onisciente.telas import entradas as ent
     x = entradas_reais["execucao"]
     assert x["situacao"] == "coleta_nao_feita" and x["empenhos"] == [] and "execucao_goiania" in x["motivo"]
-    # Com eventos no banco, sai empenho a empenho, sem CPF nem nome de pessoa física.
+    # Com eventos no banco, sai empenho a empenho, com o credor e o documento como o portal publica (antes sem
+    # CPF nem nome de pessoa física; revogado pela decisão do usuário de 28/11/2026, 11:18Z (config/decisoes_usuario.yml, P-01)).
     copia = tmp_path / "h.db"
     shutil.copyfile(banco, copia)
     con = sqlite3.connect(copia)
@@ -653,8 +656,8 @@ def test_entrada_da_execucao_vazia_sai_como_coleta_nao_feita(entradas_reais, ban
     por = {e["numero"]: e for e in y["empenhos"]}
     assert [ev["estacao"] for ev in por["2026NE1"]["eventos"]] == ["empenho", "liquidacao"]
     assert por["2026NE1"]["valor"] == 900.0 and por["2026NE1"]["credor_cnpj"] == "12345678000199"
-    assert por["2026NE2"]["credor"] == "Pessoa física" and por["2026NE2"]["credor_cnpj"] == ""
-    assert "52998224725" not in json.dumps(y)
+    assert por["2026NE2"]["credor"] == "Fulana de Tal" and por["2026NE2"]["credor_cnpj"] == "52998224725"
+    assert por["2026NE2"]["pessoa_fisica"] is True
 
 
 def test_entrada_dos_federais_diz_que_fonte_nao_foi_lida(entradas_reais, banco, tmp_path):
@@ -715,7 +718,9 @@ def test_tela_das_empresas_mostra_cobertura_e_sancoes_nao_conferidas(site_entrad
     assert "O que a conferência das empresas já cobre" in tela and "CEIS não conferido" in tela
     assert "cadastro não coletado" in tela
     assert "Aguardando a coleta das empresas" not in tela
-    assert "52998224725" not in json.dumps(d) and "529.982.247-25" not in json.dumps(d)
+    # O fornecedor pessoa física aparece com o CPF que o PNCP publicou (antes nunca aparecia; revogado pela
+    # decisão do usuário de 28/11/2026, 11:18Z (config/decisoes_usuario.yml, P-01)).
+    assert '"ni": "52998224725"' in json.dumps(d)
 
 
 def test_comando_telas_escreve_as_entradas_ao_lado_do_banco_de_teste(banco, tmp_path):

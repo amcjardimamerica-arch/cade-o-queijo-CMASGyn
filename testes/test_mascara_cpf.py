@@ -1,19 +1,24 @@
-"""Trava: nenhum CPF completo de pessoa física nos arquivos da sondagem (o repositório é público).
+"""A função de máscara do CPF (onisciente.mascara_cpf) como reconhecimento, depois da revogação.
 
-A sondagem grava as respostas das fontes em ``relatorios/onisciente/sondagem``; antes de gravar,
-``onisciente.mascara_cpf`` troca todo CPF de pessoa física por ``***.NNN.NNN-**`` (os seis do meio, como o
-Portal da Transparência). CNPJ fica como está. Os CPFs destes testes são fictícios.
+Revogação: a decisão do usuário de 28/11/2026, 11:18Z (config/decisoes_usuario.yml, P-01) manda guardar e mostrar o dado como
+a fonte publica. A sondagem não mascara mais o que grava; ``mascara_cpf`` ficou para reconhecer o que o sistema
+mascarou e devolver o arquivo da fonte (``onisciente.restauracao_fonte``). Saíram daqui pela mesma decisão:
+
+* test_sondagem_grava_o_corpo_e_o_zip_ja_mascarados (invertida em
+  testes/test_dado_da_fonte.py::test_sondagem_guarda_o_corpo_e_o_zip_como_a_fonte_respondeu);
+* test_nenhum_cpf_completo_nos_arquivos_da_sondagem (exigia a pasta mascarada; os arquivos voltam ao que a fonte
+  respondeu).
+
+Os CPFs destes testes são fictícios.
 """
 
 from __future__ import annotations
 
-import base64
 import io
 import zipfile
 from pathlib import Path
 
-from onisciente import mascara_cpf, sondagem
-from onisciente.coletores import base
+from onisciente import mascara_cpf
 
 PASTA = Path(__file__).resolve().parent.parent / "relatorios" / "onisciente" / "sondagem"
 DADOS = Path(__file__).parent / "dados" / "federais"
@@ -84,45 +89,6 @@ def test_mascara_dentro_do_zip_e_zip_limpo_volta_igual():
         assert z.read("20261127_CEIS.csv").decode("latin-1").endswith('"F";"***.666.777-**"\n')
         assert z.read("leia.txt") == b"sem documento"
     assert mascara_cpf.mascarar_zip(novo) == (novo, 0)
-
-
-def test_sondagem_grava_o_corpo_e_o_zip_ja_mascarados(tmp_path, monkeypatch):
-    monkeypatch.setattr(sondagem, "PASTA", tmp_path)
-    url = "https://consultafns.saude.gov.br/recursos/consulta-detalhada/entidades?page=1"
-    corpo = b'{"resultado":{"dados":[{"cpfCnpj":"98765432100","razaoSocial":"PESSOA FICTICIA"}]}}'
-    info = sondagem._guardar("d1_fns", url, base.Leitura(True, url, corpo, http=200))
-    gravado = (tmp_path / info["arquivo"]).read_text(encoding="utf-8")
-    assert "98765432100" not in gravado and "***.654.321-**" in gravado
-    zbytes = io.BytesIO()
-    with zipfile.ZipFile(zbytes, "w") as z:
-        z.writestr("a.csv", '"CPF";"NOME"\n"55566677788";"PESSOA FICTICIA"\n')
-    url = "https://exemplo.gov.br/ceis.zip"
-    info = sondagem._guardar("d1_sancoes", url, base.Leitura(True, url, zbytes.getvalue(), http=200))
-    b64 = (tmp_path / info["arquivo"]).with_suffix(".zip.b64").read_text()
-    assert mascara_cpf.zip_tem_cpf(base64.b64decode(b64)) == 0
-
-
-# --- A trava da pasta -------------------------------------------------------------------------------
-
-def _texto_do_pdf(dados: bytes) -> str:
-    from pypdf import PdfReader
-    return "\n".join(p.extract_text() or "" for p in PdfReader(io.BytesIO(dados)).pages)
-
-
-def test_nenhum_cpf_completo_nos_arquivos_da_sondagem():
-    achados = []
-    for arq in sorted(PASTA.iterdir()):
-        if arq.name.endswith(".zip.b64"):
-            n = mascara_cpf.zip_tem_cpf(base64.b64decode(arq.read_text()))
-        elif arq.name.endswith(".pdf.b64"):
-            n = mascara_cpf.cpfs_completos(_texto_do_pdf(base64.b64decode(arq.read_text())))
-        elif arq.is_file():
-            n = mascara_cpf.cpfs_completos(arq.read_text(encoding="utf-8", errors="replace"))
-        else:
-            continue
-        if n:
-            achados.append(f"{arq.name}: {n}")
-    assert not achados, "CPF completo de pessoa física na sondagem (rode a máscara): " + "; ".join(achados)
 
 
 # --- TCU: o corte em 100 ----------------------------------------------------------------------------

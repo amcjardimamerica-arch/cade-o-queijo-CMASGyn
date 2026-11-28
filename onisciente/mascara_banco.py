@@ -1,23 +1,14 @@
-"""CPF de pessoa física mascarado no banco da coleta (28/11/2026, o banco vai a um repositório público).
+"""A máscara de CPF que o banco aplicava de 28/11/2026 (ee68c14) até a decisão do usuário do mesmo dia, às
+11:18Z (config/decisoes_usuario.yml, P-01: "Os dados devem ser públicos e não mascarar").
 
-O CPF completo de pessoa física não fica gravado: vira ``***.NNN.NNN-**``, os seis dígitos do meio, como o
-Portal da Transparência e o QSA da Receita publicam (``onisciente.mascara_cpf.mascara``). CNPJ fica inteiro.
+Revogada na gravação: ``historico.Banco.inserir`` grava a linha como veio, ``Banco.abrir`` não muda nenhuma
+linha e ``impedimentos.gravar`` também. O módulo fica, só com funções que não gravam nada, para reconhecer o
+que o sistema mascarou e devolver o dado da fonte (``onisciente.restauracao_fonte``):
 
-* Na gravação: ``historico.Banco.inserir`` passa cada linha por ``mascarar_linha``. As colunas tratadas são as
-  que a varredura do banco real apontou (``COLUNAS``). Numa coluna de documento (``cnpj_cpf``,
-  ``fornecedor_ni``), o CPF de 11 dígitos (ou formatado, ou com ``000`` na frente) é mascarado e o CNPJ fica.
-  Num texto livre (nome, objeto, processo, json), só o CPF formatado (``NNN.NNN.NNN-NN``) e o de 11 dígitos
-  seguidos com dígito verificador válido, que não esteja colado a letra ou outro dígito (um hash, um
-  telefone, um processo com dígito que não confere ficam como estão).
-* Nas linhas antigas: ``migrar`` (chamado na abertura do Banco) mascara o que já está gravado, numa rodada do
-  rastreio só para isso (modo ``mascara_cpf``). Cada linha mascarada ganha selo novo com a mesma origem do
-  selo antigo; o selo antigo, descartado por essa rodada, tem o hash retirado na mesma rodada (o hash de uma
-  linha com CPF completo refaria o CPF por força bruta): fica só a marca "retirado por privacidade", com a
-  referência ao selo novo (``rastreio._retirar``).
-* A trava: ``varrer`` procura CPF completo válido em todas as tabelas do banco e das partes.
-
-``despesa_eventos`` (a despesa de Goiânia) fica com o coletor dela (``goiania_transweb``), que mascara ao ler
-a planilha; ela grava direto pela conexão, sem passar por ``Banco.inserir``.
+* ``mascarar_linha`` (e ``mascarar_valor``, ``mascarar_documento``, ``mascarar_texto``): a linha como a
+  máscara a deixava. A restauração casa a linha mascarada do banco com a linha antiga cuja máscara dá ela.
+* ``COLUNAS``: as tabelas e as colunas que a máscara tocava.
+* ``varrer``: quantos CPFs inteiros válidos há em cada tabela e coluna (só lê).
 """
 
 from __future__ import annotations
@@ -25,7 +16,7 @@ from __future__ import annotations
 import re
 
 from . import mascara_cpf as _mc
-from . import partes, rastreio
+from . import partes, rastreio  # noqa: F401 (rastreio: PREFIXO na varredura)
 
 DOCUMENTO = "documento"
 TEXTO = "texto"
@@ -87,58 +78,6 @@ def mascarar_linha(tabela: str, linha: dict) -> dict:
     if not colunas or not any(c in linha for c in colunas):
         return linha
     return {k: mascarar_valor(tabela, k, v) if k in colunas else v for k, v in linha.items()}
-
-
-# --- Linhas antigas -------------------------------------------------------------------------------
-
-def pendentes(con) -> dict[str, list[tuple[int, dict]]]:
-    """Por tabela, as linhas gravadas com CPF completo: (rowid, {coluna: valor mascarado})."""
-    saida: dict[str, list[tuple[int, dict]]] = {}
-    for tabela, colunas in COLUNAS.items():
-        if not partes.tem_tabela(con, tabela):
-            continue
-        existentes = [c for c in colunas if c in {x[1] for x in con.execute(f'PRAGMA table_info("{tabela}")')}]
-        if not existentes:
-            continue
-        lista = ", ".join(f'"{c}"' for c in existentes)
-        for rowid, *valores in con.execute(f'SELECT rowid, {lista} FROM "{tabela}"'):
-            troca = {}
-            for c, v in zip(existentes, valores):
-                novo = mascarar_valor(tabela, c, v)
-                if novo != v and not (isinstance(v, int) and novo == str(v)):
-                    troca[c] = novo
-            if troca:
-                saida.setdefault(tabela, []).append((rowid, troca))
-    return saida
-
-
-def migrar(con) -> dict[str, dict[str, int]]:
-    """Mascara as linhas antigas numa rodada do rastreio (modo ``mascara_cpf``) e devolve, por tabela e
-    coluna, quantos valores mudaram. Sem nada a mascarar, não abre rodada."""
-    trocas = pendentes(con)
-    if not trocas:
-        return {}
-    rastreio.preparar(con)
-    total = sum(len(v) for v in trocas.values())
-    rid = rastreio.abrir_rodada(con, (), MODO, detalhe={
-        "nota": f"CPF de pessoa física mascarado (***.NNN.NNN-**) em {total} linha(s) gravadas antes da máscara; "
-                "cada linha mantém a origem do selo anterior, que fica descartado por esta rodada"})
-    contagem: dict[str, dict[str, int]] = {}
-    for tabela, linhas in trocas.items():
-        tid = rastreio._id_tabela(con, tabela)
-        for rowid, troca in linhas:
-            antes = rastreio.linha(con, tabela, rowid)
-            selo = con.execute("SELECT origem FROM rastreio_selos WHERE tabela = ? AND hash = ?",
-                               (tid, rastreio._digest(tabela, antes))).fetchone()
-            con.execute("INSERT OR REPLACE INTO rastreio_cursor (chave, valor) VALUES ('origem', ?)",
-                        (selo[0] if selo else None,))
-            sets = ", ".join(f'"{c}" = ?' for c in troca)
-            con.execute(f'UPDATE "{tabela}" SET {sets} WHERE rowid = ?', [*troca.values(), rowid])
-            for c in troca:
-                contagem.setdefault(tabela, {}).setdefault(c, 0)
-                contagem[tabela][c] += 1
-    rastreio.fechar_rodada(con, rid)
-    return contagem
 
 
 # --- A varredura (a trava) ------------------------------------------------------------------------
