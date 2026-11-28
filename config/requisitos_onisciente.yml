@@ -1103,13 +1103,21 @@
     (largura, altura, id de origem, posições), e não os baldes que o coletor mandava; o pedido da página seguinte do popup
     agora leva o contexto, a caixa marcada como on e os cabeçalhos do OsAjax (X-Requested-With, Accept, Referer, Origin),
     e a sondagem guarda o pedido inteiro (cabeçalhos, nomes dos cookies sem valor) e o corpo do 500 (trava com o recorte real:
-    test_pedido_da_pagina_2_do_popup_real_leva_o_contexto_do_evento_e_os_cabecalhos_do_osajax).'
-  falta: 'Rodar de novo a sondagem d2_transweb_popup com o pedido novo e ver a página 2 abrir de verdade (HTTP 200 com as
-    linhas 51 em diante) e a soma das páginas bater com a exportação; se voltar 500, o corpo da recusa e o pedido inteiro
-    ficam guardados para a próxima prova (o ?_ts= no endereço é a diferença que sobra com o navegador). Depois, a coleta diária:
-    a agenda já tem o grupo execucao_goiania, mas o cron só roda quando a versão nova entrar na main, o que depende do sim
-    do usuário.'
-  trava: testes/test_execucao.py::test_popup_paginado_e_lido_inteiro_pelo_next_e_a_soma_confere
+    test_pedido_da_pagina_2_do_popup_real_leva_o_contexto_do_evento_e_os_cabecalhos_do_osajax). Décima primeira rodada: a
+    sondagem de 28/11/2026 07:30Z, com esse pedido, abriu a página 2 dos popups de liquidação e de pagamento nos 4 empenhos
+    (HTTP 200, 18 a 54 KB) e as páginas 2 e 3 do empenho de 1.695 e 1.718 linhas. Em 6 dos 8 popups (3 empenhos) a leitura
+    fechou inteira, e as liquidações e os pagamentos lidos são os da exportação no banco real, número a número (59, 52 e 76
+    de cada tipo; 568.320.000,00, 391.926.248,97 e 359.864.344,52); as outras linhas do popup são anulações e ordens, que
+    a exportação traz à parte. No empenho 20261201000430004 a sondagem parou no teto de 3 páginas (150 de 1.693 liquidações
+    e pagamentos, todos iguais aos da exportação); o motor lê até 60 páginas e a sondagem agora até 40. A lista de Portal_Despesas.aspx
+    por OsAjax passou a mandar o mesmo contexto e os mesmos cabeçalhos (trava com o recorte real das páginas 1 e 2: test_popup_real_soma_das_duas_paginas_bate_com_a_exportacao_linha_a_linha).'
+  falta: 'A leitura da fonte está provada (a exportação do mês e os popups página a página, conferidos com a exportação).
+    O requisito é Portal da Transparência (diário), no bloco Fontes e cadência: fica parcial até a coleta rodar todo dia pela
+    agenda, que já tem o grupo execucao_goiania, mas o cron só roda quando a versão nova entrar na main, o que depende do
+    sim do usuário. Falta também ver, numa próxima sondagem (agora até 40 páginas), o popup de 1.695 e 1.718 linhas lido inteiro:
+    a diferença entre as 1.695 linhas do popup e as 1.693 liquidações da exportação só pode aparecer da página 4 em diante,
+    que ainda não foi lida.'
+  trava: testes/test_execucao.py::test_popup_real_soma_das_duas_paginas_bate_com_a_exportacao_linha_a_linha
 - id: 142
   bloco: Fontes e cadência
   requisito: SICONFI RREO/RGF/DCA
