@@ -258,18 +258,21 @@ CANDIDATOS: dict[str, list[str]] = {
     ],
     # Frente D1 (bloco 5), segunda rodada (27/11/2026): o que a primeira sondagem deixou em aberto.
     "d1_fns": [
-        # Terceira rodada (28/11): o repasseDiaService.js deu o serviço por dia (nacional). O filtro do
-        # Município fica nas páginas "detalhada" e "consolidada": as rotas, os serviços e o menu.
+        # Quarta rodada (28/11): o repasse-dia nacional já é lido pelo motor. O que falta é o Município: a
+        # consulta detalhada (detalhadaController.js manda estado e municipio com o IBGE de 6 dígitos) e o
+        # detalhe do dia por programa (repasseDiaController.js manda codigoProgramaFundo e tipoDetalhamento).
         "https://consultafns.saude.gov.br/app/controllers/portalController.js",
-        "https://consultafns.saude.gov.br/app/menu.json?t=1.50.9",
-        "https://consultafns.saude.gov.br/app/pages/detalhada/routes/detalhadaRoute.js",
-        "https://consultafns.saude.gov.br/app/pages/detalhada/services/detalhadaService.js",
-        "https://consultafns.saude.gov.br/app/pages/detalhada/controllers/detalhadaController.js",
-        "https://consultafns.saude.gov.br/app/pages/consolidada/routes/consolidadaRoute.js",
+        "https://consultafns.saude.gov.br/recursos/consulta-detalhada/entidades?page=1&count=10&ano=2025&mes=&"
+        "tipoConsulta=&blocos=&grupo=&componentes=&acoes=&estado=GO&municipio=520870&repasse=&dataInicialOb=&"
+        "dataFinalOb=",
+        "https://consultafns.saude.gov.br/recursos/consulta-detalhada/entidades?page=1&count=10&ano=2025&"
+        "estado=GO&municipio=520870",
         "https://consultafns.saude.gov.br/app/pages/consolidada/services/consolidadaService.js",
-        "https://consultafns.saude.gov.br/app/pages/entidade/services/entidadeService.js",
-        "https://consultafns.saude.gov.br/recursos/repasse-dia/recuperar-data-ultimo-pagamento",
-        "https://consultafns.saude.gov.br/recursos/repasse-dia/consultar?ano=2025&mes=1&dia=15",
+        "https://consultafns.saude.gov.br/recursos/repasse-dia/detalhar-pagamento-dia?ano=2025&mes=1&dia=15&"
+        "codigoProgramaFundo=61861&tipoDetalhamento=PROGRAMA",
+        "https://consultafns.saude.gov.br/recursos/repasse-dia/detalhar-pagamento-dia-final?ano=2025&mes=1&dia=15&"
+        "codigoProgramaFundo=61861",
+        "https://consultafns.saude.gov.br/recursos/repasse-dia/consultar?ano=2026&mes=11&dia=26",
     ],
     "d1_fnde": [
         # As liberações por entidade já são lidas (terceira rodada): uma de prova, para a trava do formato.
@@ -277,38 +280,36 @@ CANDIDATOS: dict[str, list[str]] = {
         "&p_municipio=520870&p_tp_entidade=&p_cgc=01612092000123",
     ],
     "d1_transferegov": [
-        # O arquivo de emendas do Portal já é lido em fluxo; a API do Transferegov deu 503: de novo.
+        # A API deu 503 e o repositório 404 (quarta rodada): o motor tenta de novo no fim; aqui, de novo.
         "https://api.transferegov.gestao.gov.br/transferenciasespeciais/",
         "https://api.transferegov.gestao.gov.br/transferenciasespeciais/plano_acao_especial"
         "?cnpj_beneficiario_plano_acao=eq.01612092000123&limit=5&offset=0",
-        "https://repositorio.dados.gov.br/seges/detru/",
+        "https://api.transferegov.gestao.gov.br/fundoafundo/",
     ],
     "d1_sancoes": [
-        # O CEIS de 27/11 foi lido; o CNEP do mesmo dia não foi tentado.
-        "https://portaldatransparencia.gov.br/download-de-dados/cnep",
+        # CEIS de 27/11 e CNEP de 27/11 lidos; o CEIS de 28/11 deu 403 (ainda não saiu): o do dia seguinte.
         "https://dadosabertos-download.cgu.gov.br/PortalDaTransparencia/saida/cnep/20261127_CNEP.zip",
-        "https://portaldatransparencia.gov.br/download-de-dados/cnep/20261127",
+        "https://portaldatransparencia.gov.br/download-de-dados/ceis",
         "https://dadosabertos-download.cgu.gov.br/PortalDaTransparencia/saida/ceis/20261128_CEIS.zip",
+        "https://dadosabertos-download.cgu.gov.br/PortalDaTransparencia/saida/ceis/20261129_CEIS.zip",
     ],
     "d1_economia_go": [
-        # A página publica uma planilha por mês: as de 2025 e 2026, para ver as colunas.
+        # As conciliações de 2025 e 2026 e a de 2024 já têm leitor (aba Agregado e abas MM-AAAA): prova do formato.
         "https://goias.gov.br/economia/repasse-aos-municipios/",
         "https://goias.gov.br/economia/wp-content/uploads/sites/45/2026/05/Conciliacao_das_Distribuicoes-2025.xlsx",
-        "https://goias.gov.br/economia/wp-content/uploads/sites/45/2026/11/Conciliacao-das-Distribuicoes-2026.xlsx",
-        "https://goias.gov.br/economia/wp-content/uploads/sites/45/2024/06/transf-municipios_2024_02-1.xlsx",
     ],
     "d1_tcu": [
-        # Os dados abertos voltaram e a pesquisa com 100 resultados foi lida: só a página seguinte.
+        # A página 2 da pesquisa (inicio=100) falhou sem resposta na quarta rodada: de novo, e com 50 por página.
         "https://pesquisa.apps.tcu.gov.br/rest/publico/base/acordao-completo/documentosResumidos?termo=%22Goi%C3%A2nia%22"
         "&ordenacao=DTRELEVANCIA+desc%2C+NUMACORDAOINT+desc&quantidade=100&inicio=100&sinonimos=true",
+        "https://pesquisa.apps.tcu.gov.br/rest/publico/base/acordao-completo/documentosResumidos?termo=%22Goi%C3%A2nia%22"
+        "&ordenacao=DTRELEVANCIA+desc%2C+NUMACORDAOINT+desc&quantidade=50&inicio=50&sinonimos=true",
     ],
     "d1_tcm": [
-        # As duas páginas das listas só apontam as listas: estas.
+        # Os dados abertos (CSV) já são lidos; o acesso à informação e o painel das câmaras deram 403.
         "https://virtual.tcmgo.tc.br/jurisprudencia/",
         "https://ws.tcm.go.gov.br/api/rest/dados/contas-irregulares",
-        "https://acessoainformacao.tcmgo.tc.br/cidadao/outras_informacoes/contas_irregulares_tcm/tipo_id=1",
-        "https://acessoainformacao.tcmgo.tc.br/cidadao/outras_informacoes/contas_irregulares_tcm/tipo_id=3",
-        "https://acessoainformacao.tcmgo.tc.br/informacao/mp/id=44",
+        "https://ws.tcm.go.gov.br/api/rest/dados/",
         "https://www.tcmgo.tc.br/contaseleicoes/",
     ],
     # Frente E (27/11): auditoria independente do Selo de Transparência (PNTP). As páginas que cada critério

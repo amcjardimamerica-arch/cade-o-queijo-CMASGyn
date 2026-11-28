@@ -17,6 +17,10 @@ alerta. Alerta é indício, não acusação: diz o que a regra pede, o que o dad
   (CF, art. 162).
 * **Decisões de controle**: os acórdãos e as decisões do TCU e do TCM-GO sobre Goiânia com sinal de
   irregularidade (débito, multa, irregularidade, determinação, rejeição).
+* **Contas irregulares do TCM-GO**: cada responsável de Goiânia (Prefeitura, fundos, empresas e
+  autarquias) na lista dos dados abertos de contas julgadas irregulares, e o mesmo nome entre os sócios
+  das contratadas (só pelo nome: o TCM mostra os dois primeiros dígitos do CPF e a Receita os do meio,
+  então pode ser homônimo).
 
 Os limiares ficam em ``LIMIARES``, cada um com valor, justificativa e base. São restritivos de
 propósito: o dono pediu que nenhuma desconformidade passe, e um alerta a mais custa uma conferência;
@@ -102,6 +106,8 @@ TITULOS = {
     "contratada_sancionada": "Contrato com empresa sancionada no CEIS ou no CNEP",
     "cota_estadual_divergencia": "Cota de ICMS ou IPVA do Estado diverge do registrado pelo Município",
     "decisao_controle": "Decisão de tribunal de contas com sinal de irregularidade",
+    "contas_irregulares_tcm": "Responsável com contas julgadas irregulares no TCM-GO",
+    "socio_com_contas_irregulares": "Sócio de contratada com o nome de um responsável com contas irregulares no TCM-GO",
 }
 
 
@@ -581,6 +587,61 @@ def _decisoes(con: sqlite3.Connection, ate: date, desde: str | None, out: Confer
             dados={"familia": familia, "termos": termos, "url": url}))
 
 
+# --- Contas irregulares do TCM-GO ---------------------------------------------------------------
+
+def _contas_irregulares(con: sqlite3.Connection, ate: date, out: ConferenciasFederais) -> None:
+    """A lista do TCM-GO é um cadastro vigente: cada linha de Goiânia vira alerta no mês do julgamento,
+    e o nome do responsável é procurado entre os sócios das contratadas."""
+    if _vazia(con, "contas_irregulares_tcm"):
+        return
+    colunas = {c[1] for c in con.execute("PRAGMA table_info(contas_irregulares_tcm)")}
+    extras = [c for c in ("cpf_parcial", "assunto", "decisao", "data_julgamento", "tipo_lista", "url_processo")
+              if c in colunas]
+    sel = ", ".join(["lista", "municipio", "entidade", "responsavel", "processo", "exercicio", "transito", "url"]
+                    + extras)
+    por_nome: dict[str, list[dict]] = {}
+    for linha in con.execute(f"select {sel} from contas_irregulares_tcm order by responsavel, processo"):
+        r = dict(zip(sel.split(", "), linha, strict=True))
+        mes = (r.get("data_julgamento") or r.get("transito") or "")[:7]
+        if not re.fullmatch(r"\d{4}-\d{2}", mes) or mes > ate.strftime("%Y-%m"):
+            continue
+        nome = (r.get("responsavel") or "").strip()
+        debito = "DEBITO" in norm(r.get("tipo_lista") or r.get("lista") or "")
+        quando = _br(r.get("data_julgamento"), "data não informada")
+        out.alertas.append(Alerta(
+            "contas_irregulares_tcm", f"TCMGO-{r.get('processo') or ''}-{norm(nome)[:40]}", mes,
+            f"{nome or 'responsável não informado'} ({r.get('entidade') or 'órgão não informado'}) está na lista do "
+            f"TCM-GO de contas julgadas irregulares: {r.get('assunto') or 'assunto não informado'}, exercício "
+            f"{r.get('exercicio') or 'não informado'}, processo {r.get('processo') or 'não informado'}, "
+            f"{r.get('decisao') or 'decisão não informada'} julgada em {quando}"
+            + (f", trânsito em julgado em {_br(r.get('transito'), '')}" if r.get("transito") else "")
+            + (f" ({r['tipo_lista']})" if r.get("tipo_lista") else ""),
+            gravidade="alta" if debito else "media", orgao="TCM-GO",
+            dados={"url": r.get("url_processo") or r.get("url"), "entidade": r.get("entidade"),
+                   "cpf_parcial": r.get("cpf_parcial")}))
+        if len(norm(nome).split()) >= 2:
+            por_nome.setdefault(norm(nome), []).append({**r, "mes": mes})
+    if not por_nome or _vazia(con, "cnpj_socios"):
+        return
+    razoes = (dict(con.execute("select cnpj, razao from cnpj_empresas")) if _tabela(con, "cnpj_empresas") else {})
+    vistos: set[tuple[str, str]] = set()
+    for cnpj, socio, qualificacao in con.execute("select cnpj, nome, qualificacao from cnpj_socios order by cnpj, nome"):
+        chave_nome = norm(socio)
+        if chave_nome not in por_nome or (cnpj, chave_nome) in vistos:
+            continue
+        vistos.add((cnpj, chave_nome))
+        contas = por_nome[chave_nome]
+        processos = ", ".join(sorted({c.get("processo") or "?" for c in contas}))
+        out.alertas.append(Alerta(
+            "socio_com_contas_irregulares", f"{digitos(cnpj)}-{chave_nome[:40]}", max(c["mes"] for c in contas),
+            f"{socio} ({qualificacao or 'qualificação não informada'}) é sócio de {razoes.get(cnpj) or 'contratada'} "
+            f"(CNPJ {cnpj}) e tem o mesmo nome de um responsável com contas julgadas irregulares no TCM-GO "
+            f"(processo {processos}). Pode ser homônimo: o TCM-GO mostra só os dois primeiros dígitos do CPF e a "
+            "Receita só os do meio, então os documentos não se cruzam",
+            gravidade="media", orgao="TCM-GO",
+            dados={"cnpj": cnpj, "processos": processos, "possivel_homonimo": True}))
+
+
 # --- Cobertura ----------------------------------------------------------------------------------
 
 def _cobertura(con: sqlite3.Connection, out: ConferenciasFederais) -> None:
@@ -618,6 +679,7 @@ def conferir(banco: Path | str | sqlite3.Connection, *, ate: date | None = None,
         _contratadas_sancionadas(con, ate, out)
         _cota_estadual(con, ate, out)
         _decisoes(con, ate, desde, out)
+        _contas_irregulares(con, ate, out)
         _cobertura(con, out)
         out.alertas.sort(key=lambda a: (a.mes, a.tipo, a.chave))
         return out
@@ -665,6 +727,22 @@ _BASE = {
         niveis=[Nivel.A, Nivel.B],
         providencia="Pedir à Secretaria Municipal de Finanças a conciliação da cota-parte com os créditos "
                     "do Estado, mês a mês."),
+    "contas_irregulares_tcm": dict(
+        familia=Familia.PCT, norma="CF, arts. 71, II, e 75; Lei Orgânica do TCM-GO (Lei estadual 15.958/2007); "
+                                   "LC 64/1990, art. 1º, I, g",
+        como_deveria="Quem gere dinheiro do Município presta contas regulares; julgadas irregulares, o débito e a "
+                     "multa são cobrados e a decisão é cumprida.",
+        niveis=[Nivel.C, Nivel.E],
+        providencia="Pedir ao órgão a prova do cumprimento do acórdão (recolhimento do débito ou da multa, "
+                    "inscrição em dívida ativa, ação de cobrança) e se o responsável ainda ocupa cargo ou função."),
+    "socio_com_contas_irregulares": dict(
+        familia=Familia.PRC, norma="Lei 14.133/2021, arts. 9º, 14 e 156; CF, art. 37, caput",
+        como_deveria="A Administração confere quem está por trás da contratada; um responsável condenado pelo "
+                     "tribunal de contas não volta ao dinheiro público por uma empresa.",
+        niveis=[Nivel.C],
+        providencia="Confirmar a identidade (CPF completo do sócio no contrato social e do responsável no "
+                    "processo do TCM-GO) antes de qualquer conclusão; sendo a mesma pessoa, pedir a análise de "
+                    "vínculo feita na contratação."),
 }
 
 
@@ -681,7 +759,8 @@ def ficha(a: Alerta, competencia: str | None = None) -> Ficha:
     sufixo = re.sub(r"[^A-Za-z0-9/._-]+", "-", a.chave)[:80]
     codigo = {"fns_divergencia": "RIO-FNS01", "fnde_divergencia": "RIO-FNDE01", "emenda_capital_plano": "PISO-EMD01",
               "emenda_capital_ano": "PISO-EMD02", "contratada_sancionada": "PRC-SANC01",
-              "cota_estadual_divergencia": "RIO-COTA01", "decisao_controle": "CTA-TC01"}[a.tipo]
+              "cota_estadual_divergencia": "RIO-COTA01", "decisao_controle": "CTA-TC01",
+              "contas_irregulares_tcm": "PCT-TC02", "socio_com_contas_irregulares": "PRC-TCM01"}[a.tipo]
     titulo = TITULOS[a.tipo] + (f": {a.orgao.title()}" if a.orgao else "")
     return emitir(codigo=f"{codigo}-{sufixo}", titulo=titulo, gravidade=a.gravidade,
                   como_esta=a.descricao[:1].upper() + a.descricao[1:] + ("" if a.descricao.endswith(".") else "."),

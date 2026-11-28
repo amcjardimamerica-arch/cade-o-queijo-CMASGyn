@@ -33,6 +33,20 @@ Sondagem de 28/11/2026 (run 46085340244):
   Município fica nas páginas ``detalhada`` e ``consolidada`` do mesmo aplicativo, cujos serviços a
   próxima sondagem lê. ``servicos_do_js`` tira os endereços de qualquer serviço desses;
 - ``recursos/municipios/uf/GO`` é JSON real (``coMunicipioIbge`` de 6 dígitos): ``municipios``.
+
+Sondagem de 28/11/2026 (rodada 4): ``recursos/repasse-dia/recuperar-data-ultimo-pagamento`` devolve
+``{"resultado": "26/11/2026"}`` e ``recursos/repasse-dia/consultar?ano=2025&mes=1&dia=15`` devolve a
+árvore do dia: bloco (``Manutenção das Ações e Serviços Públicos de Saúde``, ``OUTRAS TRANSFERÊNCIAS``),
+grupo e programa, cada nível com ``vlTotal`` e os filhos em ``repasses``; a folha traz a competência,
+o tipo de transferência e o nível (``ESTRATEGIA``, ``PO``). É o total nacional pago no dia, por
+programa: ``arvore_repasse_dia`` o achata e confere que as folhas somam o total de cada nível. O
+filtro por Município fica na consulta detalhada (``detalhadaService.js``: o recurso
+``recursos/consulta-detalhada`` com ``entidades``, ``detalhe-acao``, ``detalhe-pagamento``,
+``detalhe-conta``, ``detalhe-ordem-bancaria`` e os saldos; o controlador manda ``ano``, ``mes``,
+``tipoConsulta``, ``blocos``, ``grupo``, ``componentes``, ``acoes``, ``estado``, ``municipio`` (IBGE de 6
+dígitos), ``repasse``, ``dataInicialOb``, ``dataFinalOb``, ``page`` e ``count``). O modelo
+``consulta-detalhada/entidades`` com o Município entrou em ``MODELOS``; a resposta dele ainda não foi
+vista.
 """
 
 from __future__ import annotations
@@ -54,6 +68,9 @@ MODELOS = (
     API + "repasses?municipio_ibge={ibge6}&ano={ano}&pagina={pagina}&tamanho=1000",
     API + "v1/pagamentos?municipio_ibge={ibge6}&ano={ano}&pagina={pagina}&tamanho=1000",
     API + "repasses-fundo-a-fundo?municipio_ibge={ibge6}&ano={ano}&page={pagina}&size=1000",
+    # consultafns, consulta detalhada (detalhadaController.js): as entidades do Município no ano.
+    CONSULTA + "consulta-detalhada/entidades?page={pagina}&count=100&ano={ano}&mes=&tipoConsulta=&blocos="
+               "&grupo=&componentes=&acoes=&estado={uf}&municipio={ibge6}&repasse=&dataInicialOb=&dataFinalOb=",
     # consultafns: modelos da segunda rodada. Deram 400 ou 404 na sondagem de 28/11 (ver o topo);
     # ficam enquanto a trava da segunda rodada os pede e falham sem custo.
     CONSULTA + "repasse-dia/detalhar-pagamento?codigoMunicipio={ibge6}&dataPagamentoInicial={inicio}"
@@ -75,25 +92,60 @@ DESCARTADOS = (
 REPASSE_DIA = CONSULTA + "repasse-dia/"
 PAGINAS_DO_APP = ("detalhada", "consolidada", "entidade", "convenios", "detalhada-multisselecao", "saldo-mac")
 
-_RECURSO = re.compile(r"this\.resource\s*=\s*'([^']+)'")
-_METODO = re.compile(r"\.prototype\.(\w+)\s*=\s*function\s*\(([^)]*)\)\s*\{(.*?)\n\t\t\}", re.DOTALL)
+_VARIAVEL = re.compile(r"(?:\bvar\s+|\bthis\.)(\w+)\s*=\s*'([^']*)'")
+_METODO = re.compile(r"\b\w+\.prototype\.(\w+)\s*=\s*function\s*\(")
+_TERMO = r"\s*(?:(?:this\.)?\w+|'[^']*')\s*"
+_EXPR = rf"({_TERMO}(?:\+{_TERMO})*)"
+_COLECAO = re.compile(rf"\.all\({_EXPR}\)\s*(?:\.withHttpConfig\([^)]*\)\s*)?"
+                      rf"\.(customGET|customPOST|customPUT|post|get|remove)\(\s*(?:{_EXPR}[,)])?")
+
+
+def _avaliar(expr: str, variaveis: dict[str, str]) -> tuple[str, bool]:
+    """Uma concatenação de JS (``cGetUrl + '/' + this.recurso + '/x'``) com as variáveis de texto do
+    arquivo; diz também se algum termo era conhecido (literal ou variável de texto)."""
+    partes, conhecido = [], False
+    for termo in (t.strip() for t in expr.split("+")):
+        if termo.startswith("'"):
+            partes.append(termo.strip("'"))
+            conhecido = conhecido or bool(termo.strip("'"))
+        else:
+            nome = termo.removeprefix("this.")
+            if nome in variaveis:
+                partes.append(variaveis[nome])
+                conhecido = conhecido or bool(variaveis[nome])
+    return "".join(partes), conhecido
 
 
 def servicos_do_js(js: str) -> dict[str, tuple[str, str]]:
     """Os endereços que um serviço AngularJS do consultafns chama: {função: (método, caminho)}.
 
-    O caminho é o recurso (``this.resource``) mais o sufixo; métodos comentados não contam."""
+    O caminho junta a coleção do Restangular (``all(...)``) e o recurso de ``customGET`` ou do ``post``,
+    com as variáveis de texto do arquivo (``this.resource``, ``var cGetUrl``, ``this.nomeResourceDetalhada``);
+    métodos comentados e chamadas cujo recurso é um parâmetro não contam."""
     js = re.sub(r"/\*.*?\*/", "", js, flags=re.DOTALL)
-    recurso = _RECURSO.search(js)
-    if not recurso:
-        return {}
+    variaveis = dict(_VARIAVEL.findall(js))
+    inicios = [(m.start(), m.group(1)) for m in _METODO.finditer(js)]
     saida = {}
-    for nome, _params, corpo in _METODO.findall(js):
-        sufixo = re.search(r"this\.resource\s*\+\s*'([^']+)'", corpo)
-        if not sufixo:
+    for n, (pos, nome) in enumerate(inicios):
+        corpo = js[pos:inicios[n + 1][0] if n + 1 < len(inicios) else len(js)]
+        m = _COLECAO.search(corpo)
+        if not m:
             continue
-        metodo = "POST" if re.search(r"\.post\s*\(|customPOST", corpo) else "GET"
-        saida[nome] = (metodo, recurso.group(1) + sufixo.group(1))
+        colecao, verbo, recurso = m.group(1), m.group(2), m.group(3)
+        base_, base_conhecida = _avaliar(colecao, variaveis)
+        if verbo.startswith("custom"):
+            if recurso is None:
+                continue
+            fim, conhecido = _avaliar(recurso, variaveis)
+            if not conhecido:
+                continue                          # o recurso vem por parâmetro (cGet genérico)
+            caminho = "/".join(x.strip("/") for x in (base_, fim) if x.strip("/"))
+        else:
+            if not base_conhecida:
+                continue
+            caminho = base_.strip("/")
+        metodo = {"customPOST": "POST", "post": "POST", "customPUT": "PUT", "remove": "DELETE"}.get(verbo, "GET")
+        saida[nome] = (metodo, caminho)
     return saida
 
 
@@ -102,6 +154,47 @@ def url_repasse_dia(servico: str, **params) -> str:
     base = REPASSE_DIA + servico.strip("/")
     limpos = {k: v for k, v in params.items() if v is not None}
     return base + ("?" + urllib.parse.urlencode(limpos) if limpos else "")
+
+
+def data_ultimo_pagamento(conteudo: bytes) -> str:
+    """``recuperar-data-ultimo-pagamento``: a data do último pagamento, em ISO. Levanta ``ValueError``."""
+    obj = cf.json_ou_none(conteudo)
+    data = cf.data(obj.get("resultado")) if isinstance(obj, dict) else None
+    if not data:
+        raise ValueError("a data do último pagamento do FNS não veio no formato esperado")
+    return data
+
+
+def arvore_repasse_dia(conteudo: bytes, data: str) -> list[dict]:
+    """A árvore do ``repasse-dia/consultar`` achatada: uma linha por nó, com o nível (0 = bloco), o
+    caminho dos nomes e, na folha, a competência e o tipo. Confere que os filhos somam o pai.
+    Lista vazia é dia sem pagamento. Levanta ``ValueError`` se o formato mudar ou a soma não fechar."""
+    obj = cf.json_ou_none(conteudo)
+    if not isinstance(obj, dict) or not isinstance(obj.get("resultado"), list):
+        raise ValueError("o repasse do dia do FNS não traz a lista 'resultado'")  # noqa: TRY004
+    saida: list[dict] = []
+
+    def descer(no: dict, nivel: int, caminho: list[str]) -> float:
+        if not isinstance(no, dict) or "vlTotal" not in no:
+            raise ValueError("nó do repasse do dia sem vlTotal")
+        total = float(no.get("vlTotal") or 0)
+        filhos = no.get("repasses") or []
+        nome = _texto(no.get("nome"))
+        saida.append({
+            "data": data, "nivel": nivel, "caminho": " > ".join(caminho + [nome]), "codigo": _texto(no.get("codigo")),
+            "nome": nome, "valor_total": round(total, 2), "valor_desconto": no.get("vlDesconto"),
+            "valor_liquido": no.get("vlLiquido"), "competencia": no.get("dsCompetencia"),
+            "tipo_competencia": no.get("noTipoCompetencia"), "tipo_transferencia": no.get("noTipoTransferencia"),
+            "nivel_programa": no.get("dsNivel"), "processos": no.get("qtdProcesso"), "folha": int(not filhos)})
+        if filhos:
+            soma = sum(descer(f, nivel + 1, caminho + [nome]) for f in filhos)
+            if abs(soma - total) > 0.01:
+                raise ValueError(f"os repasses de {nome} não fecham: {soma:.2f} contra {total:.2f}")
+        return total
+
+    for raiz in obj["resultado"]:
+        descer(raiz, 0, [])
+    return saida
 
 
 def municipios(conteudo: bytes) -> dict[str, str]:
@@ -117,9 +210,16 @@ def municipios(conteudo: bytes) -> dict[str, str]:
             if isinstance(m, dict) and m.get("coMunicipioIbge")}
 
 
+# Código IBGE da UF (os dois primeiros dígitos do Município) para a sigla.
+UF_DO_IBGE = {"11": "RO", "12": "AC", "13": "AM", "14": "RR", "15": "PA", "16": "AP", "17": "TO", "21": "MA",
+              "22": "PI", "23": "CE", "24": "RN", "25": "PB", "26": "PE", "27": "AL", "28": "SE", "29": "BA",
+              "31": "MG", "32": "ES", "33": "RJ", "35": "SP", "41": "PR", "42": "SC", "43": "RS", "50": "MS",
+              "51": "MT", "52": "GO", "53": "DF"}
+
+
 def url(modelo: str, ibge: int | str, ano: int, pagina: int = 1) -> str:
     ibge = str(ibge)
-    return modelo.format(ibge6=ibge[:6], ibge=ibge, ano=ano, pagina=pagina,
+    return modelo.format(ibge6=ibge[:6], ibge=ibge, ano=ano, pagina=pagina, uf=UF_DO_IBGE.get(ibge[:2], ""),
                          inicio=f"01/01/{ano}", fim=f"31/12/{ano}")
 
 

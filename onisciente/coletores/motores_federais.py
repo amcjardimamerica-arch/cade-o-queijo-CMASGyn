@@ -26,7 +26,7 @@ import time
 import urllib.error
 import urllib.parse
 import zlib
-from datetime import UTC, date, datetime
+from datetime import UTC, date, datetime, timedelta
 
 from . import base, economia_go, emendas, fnde, fns, sancoes, tcm, tcu, transferegov
 from . import comum_federal as cf
@@ -56,7 +56,12 @@ CREATE INDEX IF NOT EXISTS sancoes_cnpj_cpf ON sancoes (cnpj_cpf);
 CREATE TABLE IF NOT EXISTS repasses_estado (mes TEXT, tributo TEXT, valor REAL, url TEXT,
     PRIMARY KEY (mes, tributo));
 CREATE TABLE IF NOT EXISTS contas_irregulares_tcm (lista TEXT, municipio TEXT, entidade TEXT, responsavel TEXT,
-    processo TEXT, exercicio TEXT, transito TEXT, url TEXT, json TEXT);
+    processo TEXT, exercicio TEXT, transito TEXT, url TEXT, json TEXT, cpf_parcial TEXT, assunto TEXT,
+    decisao TEXT, data_julgamento TEXT, tipo_lista TEXT, url_processo TEXT);
+CREATE TABLE IF NOT EXISTS repasse_dia_fns (data TEXT, nivel INTEGER, caminho TEXT, codigo TEXT, nome TEXT,
+    valor_total REAL, valor_desconto REAL, valor_liquido REAL, competencia TEXT, tipo_competencia TEXT,
+    tipo_transferencia TEXT, nivel_programa TEXT, processos INTEGER, folha INTEGER);
+CREATE TABLE IF NOT EXISTS repasse_dia_fns_dias (data TEXT PRIMARY KEY, registros INTEGER, quando TEXT);
 CREATE TABLE IF NOT EXISTS decisoes_controle (tribunal TEXT, chave TEXT, numero TEXT, ano INTEGER,
     colegiado TEXT, data TEXT, relator TEXT, processo TEXT, tipo TEXT, titulo TEXT, sumario TEXT, url TEXT,
     sobre_goiania INTEGER, PRIMARY KEY (tribunal, chave));
@@ -65,7 +70,8 @@ CREATE TABLE IF NOT EXISTS decisoes_controle (tribunal TEXT, chave TEXT, numero 
 MOTORES = ("fns", "fnde", "transferegov", "sancoes", "economia_go", "tcu", "tcm")
 
 TABELAS_DO_MOTOR = {
-    "fns": [("coletas", "motor = 'fns'"), ("repasses_fns", ""), ("fontes_federais", "motor = 'fns'")],
+    "fns": [("coletas", "motor = 'fns'"), ("repasses_fns", ""), ("repasse_dia_fns", ""),
+            ("repasse_dia_fns_dias", ""), ("fontes_federais", "motor = 'fns'")],
     "fnde": [("coletas", "motor = 'fnde'"), ("liberacoes_fnde", ""), ("fnde_entidades", ""),
              ("fontes_federais", "motor = 'fnde'")],
     "transferegov": [("coletas", "motor = 'transferegov'"), ("transferegov_planos_especiais", ""),
@@ -89,9 +95,19 @@ CICLO_DIAS = {"fns": 7, "fnde": 7, "transferegov": 7, "sancoes": 1, "economia_go
 PAGINAS_MAX = 50
 
 
+# Colunas que entraram depois da tabela existir (um banco antigo ganha a coluna sem perder as linhas).
+COLUNAS_NOVAS = {"contas_irregulares_tcm": ("cpf_parcial", "assunto", "decisao", "data_julgamento", "tipo_lista",
+                                            "url_processo")}
+
+
 def preparar(banco) -> None:
     """Cria as tabelas do bloco 5 num banco já aberto (idempotente)."""
     banco.con.executescript(ESQUEMA)
+    for tabela, colunas in COLUNAS_NOVAS.items():
+        existentes = {c[1] for c in banco.con.execute(f"PRAGMA table_info({tabela})")}
+        for coluna in colunas:
+            if coluna not in existentes:
+                banco.con.execute(f"ALTER TABLE {tabela} ADD COLUMN {coluna} TEXT")
 
 
 def _anos(ctx) -> list[int]:
@@ -163,6 +179,72 @@ def motor_fns(ctx, ibge: int) -> None:
             break
         else:
             _situacao(ctx, "fns", str(ano), situacao, erro=ultimo_erro)
+
+
+def motor_fns_repasse_dia(ctx, dias_max: int = 40) -> None:
+    """O repasse do dia do FNS (``repasse-dia/consultar``): o total nacional pago em cada dia, por bloco,
+    grupo e programa. Lê a data do último pagamento e desce dia a dia, do mais novo, dentro do período
+    da rodada; dia já lido não é lido de novo. Não traz o Município: é o calendário e o total dos
+    pagamentos, que a consulta detalhada (``consulta-detalhada/entidades``, em ``fns.MODELOS``) abre."""
+    preparar(ctx.banco)
+    alvo = "repasse_dia"
+    url = fns.url_repasse_dia("recuperar-data-ultimo-pagamento")
+    leitura = ctx.ler("fns", "repasse dia ultimo", url, tempo=60)
+    if not leitura.ok:
+        _situacao(ctx, "fns", alvo, "nao_publicado" if _ausente(leitura) else "falha", via=url,
+                  erro=leitura.erro or f"HTTP {leitura.http}")
+        return
+    try:
+        ultimo = date.fromisoformat(fns.data_ultimo_pagamento(leitura.conteudo))
+    except ValueError as e:
+        _anotar(ctx, "fns", "repasse dia ultimo", "", url, f"formato: {e}")
+        _situacao(ctx, "fns", alvo, "formato", via=url, erro=f"formato: {e}")
+        return
+    if not ctx.meses:
+        _situacao(ctx, "fns", alvo, "vazio", via=url, erro="período da rodada vazio")
+        return
+    inicio = date.fromisoformat(min(ctx.meses) + "-01")
+    fim = min(ultimo, fim_do_mes(max(ctx.meses)), ctx.hoje)
+    lidos = {d for (d,) in ctx.banco.consultar("SELECT data FROM repasse_dia_fns_dias")}
+    dias, dia = [], fim
+    while dia >= inicio and len(dias) < dias_max:
+        if dia.isoformat() not in lidos and dia.weekday() < 5:
+            dias.append(dia)
+        dia -= timedelta(days=1)
+    novos, linhas, falhas, formatos = 0, 0, [], []
+    for dia in dias:
+        url_dia = fns.url_repasse_dia("consultar", ano=dia.year, mes=dia.month, dia=dia.day)
+        leitura = ctx.ler("fns", f"repasse dia {dia.isoformat()}", url_dia, mes=dia.isoformat()[:7], tempo=60)
+        if not leitura.ok:
+            falhas.append(f"{dia.isoformat()} ({leitura.erro or leitura.http})")
+            if len(falhas) >= 3 and not novos:
+                break                            # o serviço caiu: a próxima rodada retoma
+            continue
+        try:
+            nos = fns.arvore_repasse_dia(leitura.conteudo, dia.isoformat())
+        except ValueError as e:
+            _anotar(ctx, "fns", f"repasse dia {dia.isoformat()}", dia.isoformat()[:7], url_dia, f"formato: {e}")
+            formatos.append(f"{dia.isoformat()} ({e})")
+            continue
+        ctx.banco.con.execute("DELETE FROM repasse_dia_fns WHERE data = ?", (dia.isoformat(),))
+        for n in nos:
+            ctx.banco.inserir("repasse_dia_fns", n)
+        ctx.banco.con.execute("INSERT OR REPLACE INTO repasse_dia_fns_dias VALUES (?, ?, ?)",
+                              (dia.isoformat(), len(nos), datetime.now(UTC).isoformat(timespec="seconds")))
+        novos, linhas = novos + 1, linhas + len(nos)
+    erro = "; ".join(x for x in (f"falha: {', '.join(falhas)}" if falhas else "",
+                                 f"formato: {', '.join(formatos)}" if formatos else "") if x) or None
+    total = ctx.banco.consultar("SELECT COUNT(*) FROM repasse_dia_fns")[0][0]
+    if novos or (lidos and not falhas and not formatos):
+        situacao = "lido" if total else "vazio"
+    elif formatos:
+        situacao = "formato"
+    elif falhas:
+        situacao = "falha"
+    else:
+        situacao = "lido" if total else "vazio"
+    _situacao(ctx, "fns", alvo, situacao, via=f"último pagamento {ultimo.isoformat()}", registros=linhas,
+              erro=erro)
 
 
 # --- FNDE ---------------------------------------------------------------------------------
@@ -307,52 +389,76 @@ def motor_transferegov(ctx, cnpjs, municipio: str | None = None, uf: str | None 
         for modulo in transferegov.MODULOS:
             _situacao(ctx, "transferegov", modulo, "formato", erro="nenhum CNPJ do Município para consultar")
         return
-    for modulo in transferegov.MODULOS:
-        raiz = ctx.ler("transferegov", f"{modulo} raiz", transferegov.url_raiz(modulo), tempo=90)
-        tabelas = dict(transferegov.PADRAO.get(modulo, {}))
-        if raiz.ok:
-            try:
-                descritas = transferegov.tabelas_com_cnpj(raiz.conteudo)
-                tabelas = descritas or tabelas
-            except ValueError as e:
-                _anotar(ctx, "transferegov", f"{modulo} raiz", "", raiz.url, f"formato: {e}")
-        lidos, falhas, ultimo = 0, 0, None
-        for tabela, coluna in sorted(tabelas.items()):
-            for cnpj in cnpjs:
-                offset = 0
-                while offset < transferegov.PAGINA * PAGINAS_MAX:
-                    url = transferegov.url_tabela(modulo, tabela, {coluna: f"eq.{cnpj}"}, offset=offset)
-                    leitura = ctx.ler("transferegov", f"{modulo}/{tabela} {cnpj} +{offset}", url, tempo=90)
-                    if not leitura.ok:
-                        falhas += 1
-                        ultimo = leitura.erro or f"HTTP {leitura.http}"
-                        break
-                    try:
-                        regs = transferegov.pagina(leitura.conteudo)
-                    except ValueError as e:
-                        _anotar(ctx, "transferegov", f"{modulo}/{tabela} {cnpj}", "", url, f"formato: {e}")
-                        falhas += 1
-                        ultimo = f"formato: {e}"
-                        break
-                    for r in regs:
-                        if modulo == transferegov.ESPECIAIS and tabela == transferegov.PLANOS:
-                            p = transferegov.plano(r)
-                            if p:
-                                ctx.banco.inserir("transferegov_planos_especiais", p)
-                                lidos += 1
-                        else:
-                            ctx.banco.inserir("transferegov_registros", transferegov.generico(modulo, tabela, r))
+    adiados = [m for m in transferegov.MODULOS if _modulo_transferegov(ctx, m, cnpjs, ultima=False)]
+    for modulo in adiados:                       # nova tentativa depois dos outros módulos
+        _modulo_transferegov(ctx, modulo, cnpjs, ultima=True)
+
+
+def _fora_do_ar(leitura) -> bool:
+    """Falha de rede ou 5xx (o ``ctx.ler`` já tentou de novo com espera): a API caiu, não falta o dado."""
+    return not leitura.ok and not _ausente(leitura) and (leitura.http is None or leitura.http >= 500)
+
+
+def _modulo_transferegov(ctx, modulo: str, cnpjs: list[str], *, ultima: bool) -> bool:
+    """Um módulo do Transferegov. Com a raiz e a primeira consulta fora do ar (a sondagem de 28/11/2026
+    viu 503 na API e 404 no repositório de dados abertos), não insiste em cada tabela e CNPJ: devolve
+    True para uma nova tentativa no fim do motor; na última, grava falha e a próxima rodada tenta de novo."""
+    raiz = ctx.ler("transferegov", f"{modulo} raiz", transferegov.url_raiz(modulo), tempo=90)
+    tabelas = dict(transferegov.PADRAO.get(modulo, {}))
+    if raiz.ok:
+        try:
+            descritas = transferegov.tabelas_com_cnpj(raiz.conteudo)
+            tabelas = descritas or tabelas
+        except ValueError as e:
+            _anotar(ctx, "transferegov", f"{modulo} raiz", "", raiz.url, f"formato: {e}")
+    raiz_caiu = _fora_do_ar(raiz)
+    lidos, falhas, ultimo, consultas = 0, 0, None, 0
+    for tabela, coluna in sorted(tabelas.items()):
+        for cnpj in cnpjs:
+            offset = 0
+            while offset < transferegov.PAGINA * PAGINAS_MAX:
+                url = transferegov.url_tabela(modulo, tabela, {coluna: f"eq.{cnpj}"}, offset=offset)
+                leitura = ctx.ler("transferegov", f"{modulo}/{tabela} {cnpj} +{offset}", url, tempo=90)
+                consultas += 1
+                if not leitura.ok:
+                    falhas += 1
+                    ultimo = leitura.erro or f"HTTP {leitura.http}"
+                    if raiz_caiu and consultas == 1 and _fora_do_ar(leitura):
+                        erro = (f"API fora do ar: a raiz e a primeira consulta falharam ({raiz.erro or raiz.http}; "
+                                f"{ultimo})")
+                        if not ultima:
+                            return True
+                        _situacao(ctx, "transferegov", modulo, "falha", via=transferegov.url_raiz(modulo),
+                                  erro=erro + "; tentado de novo no fim do motor, a próxima rodada tenta outra vez")
+                        return False
+                    break
+                try:
+                    regs = transferegov.pagina(leitura.conteudo)
+                except ValueError as e:
+                    _anotar(ctx, "transferegov", f"{modulo}/{tabela} {cnpj}", "", url, f"formato: {e}")
+                    falhas += 1
+                    ultimo = f"formato: {e}"
+                    break
+                for r in regs:
+                    if modulo == transferegov.ESPECIAIS and tabela == transferegov.PLANOS:
+                        p = transferegov.plano(r)
+                        if p:
+                            ctx.banco.inserir("transferegov_planos_especiais", p)
                             lidos += 1
-                    if len(regs) < transferegov.PAGINA:
-                        break
-                    offset += transferegov.PAGINA
-        tentadas = len(tabelas) * len(cnpjs)
-        if falhas and falhas >= tentadas:
-            situacao = "falha"
-        else:
-            situacao = "lido" if lidos else "vazio"
-        _situacao(ctx, "transferegov", modulo, situacao, via=transferegov.url_raiz(modulo), registros=lidos,
-                  erro=(f"{falhas} de {tentadas} consultas falharam; última: {ultimo}" if falhas else None))
+                    else:
+                        ctx.banco.inserir("transferegov_registros", transferegov.generico(modulo, tabela, r))
+                        lidos += 1
+                if len(regs) < transferegov.PAGINA:
+                    break
+                offset += transferegov.PAGINA
+    tentadas = len(tabelas) * len(cnpjs)
+    if falhas and falhas >= tentadas:
+        situacao = "falha"
+    else:
+        situacao = "lido" if lidos else "vazio"
+    _situacao(ctx, "transferegov", modulo, situacao, via=transferegov.url_raiz(modulo), registros=lidos,
+              erro=(f"{falhas} de {tentadas} consultas falharam; última: {ultimo}" if falhas else None))
+    return False
 
 
 # --- CEIS e CNEP --------------------------------------------------------------------------
@@ -473,7 +579,11 @@ def motor_economia_go(ctx, municipio: str, ibge: int, leituras_max: int = 25) ->
             elif urllib.parse.urlparse(url).path.lower().endswith(economia_go.ARQUIVOS):
                 sem_dado.append(url)
         por_chave = {(l["mes"], l["tributo"]): l for l in achadas}
-        for arquivo, meses in mensais.items():
+        # A planilha do mês mais recente primeiro: a conciliação traz o ano inteiro, e as outras só
+        # são baixadas para os meses que ela não cobriu (cada uma tem 15 MB).
+        for arquivo, meses in sorted(mensais.items(), key=lambda kv: max(kv[1]), reverse=True):
+            if all(any(k[0] == m for k in por_chave) for m in meses):
+                continue
             vistos.add(arquivo)
             if not economia_go.legivel(arquivo):
                 nao_lidos.append(arquivo)
@@ -594,8 +704,9 @@ def motor_listas_tcm(ctx, municipio: str = "Goiânia") -> None:
         ctx.banco.con.execute("DELETE FROM contas_irregulares_tcm WHERE lista = ?", (nome,))
         for a in achadas:
             ctx.banco.inserir("contas_irregulares_tcm", {
-                **{k: (None if a[k] is None else str(a[k])) for k in
-                   ("municipio", "entidade", "responsavel", "processo", "exercicio", "transito")},
+                **{k: (None if a.get(k) is None else str(a[k])) for k in
+                   ("municipio", "entidade", "responsavel", "processo", "exercicio", "transito", "cpf_parcial",
+                    "assunto", "decisao", "data_julgamento", "tipo_lista", "url_processo")},
                 "lista": nome, "url": url, "json": json.dumps(a["registro"], ensure_ascii=False)})
             linhas += 1
     erros = "; ".join(x for x in (
@@ -658,7 +769,7 @@ def motor_tcm(ctx, termo: str = "Goiânia", paginas: int = 5) -> None:
 def chamadas(ctx, alvo, cnpjs=None) -> dict:
     """As chamadas dos motores do bloco 5 para o ``rodar`` do historico."""
     return {
-        "fns": lambda: motor_fns(ctx, alvo.ibge),
+        "fns": lambda: (motor_fns(ctx, alvo.ibge), motor_fns_repasse_dia(ctx)),
         "fnde": lambda: motor_fnde(ctx, alvo.uf, str(alvo.ibge)[:6]),
         "transferegov": lambda: motor_transferegov(
             ctx, cnpjs if cnpjs is not None else cnpjs_do_municipio(ctx.banco, ()),
