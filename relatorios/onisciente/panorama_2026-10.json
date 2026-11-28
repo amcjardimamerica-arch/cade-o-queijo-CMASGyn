@@ -2,7 +2,7 @@
  "competencia": "2026-10",
  "alvo": "Prefeitura de Goiânia",
  "dominio": "Assistência Social",
- "em_uma_frase": "942 indícios: 16 críticos, 506 de gravidade alta, 420 de gravidade média. Integridade da trilha: 27 de 85 pontos medidos (tempestividade sem medida nesta competência). 87 documentos que a lei manda publicar não estão publicados.",
+ "em_uma_frase": "942 indícios: 16 críticos, 506 de gravidade alta, 420 de gravidade média. Integridade da trilha: 27 de 85 pontos medidos (tempestividade sem medida nesta competência). 86 documentos que a lei manda publicar não estão publicados.",
  "contagem": {
   "critica": 16,
   "alta": 506,
@@ -6053,8 +6053,8 @@
     "motor": "ctresb",
     "leituras": 21,
     "impressao_do_conjunto": "1cd2cfbf9f02aab1719c6b6de95654ba90c602b21b05b09a65d5bebded01387a",
-    "primeira": "2026-11-26",
-    "ultima": "2026-11-26"
+    "primeira": "2026-11-28",
+    "ultima": "2026-11-28"
    },
    {
     "motor": "economia_go",
@@ -6136,9 +6136,23 @@
    {
     "motor": "sileg",
     "leituras": 48,
-    "impressao_do_conjunto": "08454100e2bdf7e2543c55aae85361ce5e7e67901364fa987109fa7e0721ab31",
-    "primeira": "2026-11-26",
-    "ultima": "2026-11-26"
+    "impressao_do_conjunto": "8385da2a87c521f74bedc5210e57dc672ed17655062e1449e2371c036f13e07e",
+    "primeira": "2026-11-28",
+    "ultima": "2026-11-28"
+   },
+   {
+    "motor": "sileg-normas",
+    "leituras": 47,
+    "impressao_do_conjunto": "fcde08387c567b431b1c202d2604b0b573d81b6ce72504e07bf6487eb5f33485",
+    "primeira": "2026-11-28",
+    "ultima": "2026-11-28"
+   },
+   {
+    "motor": "sileg-procura",
+    "leituras": 15,
+    "impressao_do_conjunto": "8b043284890bb65151f04bdab4d437594bfdc6fe02d2057d4b46d7709e4bd096",
+    "primeira": "2026-11-28",
+    "ultima": "2026-11-28"
    },
    {
     "motor": "siope",
@@ -6186,23 +6200,22 @@
   "notas": [],
   "rastreio": {
    "rastreado": true,
-   "rodadas": 9,
+   "rodadas": 10,
    "ok": true,
    "ultima": {
-    "id": 9,
+    "id": 10,
     "modo": "somar",
-    "inicio": "2026-11-28T08:40:47+00:00",
-    "fim": "2026-11-28T08:54:00+00:00",
+    "inicio": "2026-11-28T09:16:15+00:00",
+    "fim": "2026-11-28T09:19:22+00:00",
     "motores": [
-     "fns",
-     "tcm",
-     "tcu"
+     "normas",
+     "sileg"
     ],
-    "respostas": 95,
-    "registros": 2380,
-    "raiz": "e69eaae214ce2f0efcab769aefd19a1de7e2dcabf662e233121590cbe81e90a4",
-    "hash": "fa027d00a676658c81741b7b1569bad2a1d5e0b5231057d6cc8414a516417055",
-    "anterior": "1f0e5be23e52b834da96bf0bd113742ea1457f73b17a628470c253d6a5fbbc6e",
+    "respostas": 133,
+    "registros": 542,
+    "raiz": "814e7eb9d6b5e0223f8a4d8a9a1ca390fdc03b5282a5546ecfbbc2b169bac141",
+    "hash": "5205f677d9c983b7da58d195da52b7fe6422c83700c961277424a5b66d065b57",
+    "anterior": "fa027d00a676658c81741b7b1569bad2a1d5e0b5231057d6cc8414a516417055",
     "herdada": false
    },
    "problemas": []
@@ -74885,7 +74898,7 @@
    "selo": "roxo"
   },
   {
-   "o_que_falta": "Texto oficial de Decretos 963, 967/2022 e 3.182/2023 (Regulamentos da Lei 14.133 em Goiânia)",
+   "o_que_falta": "Texto oficial: Decreto 963/2022, parte de Decretos 963, 967/2022 e 3.182/2023",
    "periodo": "",
    "conferencia_impedida": "Agente de contratação efetivo e segregação de funções; registro de preços com adesão até 50%; Controladoria analisa toda dispensa. Texto oficial não localizado: vira ofício. Conferências: VIN, PRC",
    "onde_deveria_estar": "Sistema de Legislação de Goiânia (Sileg) e Diário Oficial do Município, em transparência ativa",
@@ -74895,7 +74908,27 @@
    "selo": "roxo"
   },
   {
-   "o_que_falta": "Texto oficial de Parcerias com organizações sociais (Decreto da Lei 13.019 e Lei 8.248/2004)",
+   "o_que_falta": "Texto oficial: Decreto 967/2022, parte de Decretos 963, 967/2022 e 3.182/2023",
+   "periodo": "",
+   "conferencia_impedida": "Agente de contratação efetivo e segregação de funções; registro de preços com adesão até 50%; Controladoria analisa toda dispensa. Texto oficial não localizado: vira ofício. Conferências: VIN, PRC",
+   "onde_deveria_estar": "Sistema de Legislação de Goiânia (Sileg) e Diário Oficial do Município, em transparência ativa",
+   "fundamento": "Lei 12.527/2011, art. 8º; Lei municipal 9.262/2013, art. 7º; Lei Complementar 101/2000, art. 48",
+   "orgao": "",
+   "bloco": "Normas",
+   "selo": "roxo"
+  },
+  {
+   "o_que_falta": "Texto oficial: Decreto 3.182/2023, parte de Decretos 963, 967/2022 e 3.182/2023",
+   "periodo": "",
+   "conferencia_impedida": "Agente de contratação efetivo e segregação de funções; registro de preços com adesão até 50%; Controladoria analisa toda dispensa. Texto oficial não localizado: vira ofício. Conferências: VIN, PRC",
+   "onde_deveria_estar": "Sistema de Legislação de Goiânia (Sileg) e Diário Oficial do Município, em transparência ativa",
+   "fundamento": "Lei 12.527/2011, art. 8º; Lei municipal 9.262/2013, art. 7º; Lei Complementar 101/2000, art. 48",
+   "orgao": "",
+   "bloco": "Normas",
+   "selo": "roxo"
+  },
+  {
+   "o_que_falta": "Texto oficial: Lei 8.248/2004 (parcerias), parte de Parcerias com organizações sociais",
    "periodo": "",
    "conferencia_impedida": "Não localizados no sistema de legislação. Viram ofício. Conferências: PCT, Ofícios",
    "onde_deveria_estar": "Sistema de Legislação de Goiânia (Sileg) e Diário Oficial do Município, em transparência ativa",
@@ -74905,41 +74938,11 @@
    "selo": "roxo"
   },
   {
-   "o_que_falta": "Texto oficial de LC 091/2000 e Lei 7.997/2000 (Magistério municipal)",
-   "periodo": "",
-   "conferencia_impedida": "Progressão anual; titularidade de 30% a 50%; hora-atividade de 30%, abaixo do 1/3 da Lei 11.738. Texto compilado da Lei 7.997 não localizado. Conferências: PES-02",
-   "onde_deveria_estar": "Sistema de Legislação de Goiânia (Sileg) e Diário Oficial do Município, em transparência ativa",
-   "fundamento": "Lei 12.527/2011, art. 8º; Lei municipal 9.262/2013, art. 7º; Lei Complementar 101/2000, art. 48",
-   "orgao": "",
-   "bloco": "Normas",
-   "selo": "roxo"
-  },
-  {
-   "o_que_falta": "Texto oficial de Subsídios, diárias, veículos e telefonia (Benefícios de gestores)",
+   "o_que_falta": "Texto oficial: Lei de subsídios do Prefeito, do Vice e dos Secretários (2025-2028), parte de Subsídios, diárias, veículos e telefonia",
    "periodo": "",
    "conferencia_impedida": "Lei de subsídios 2025-2028, tabela de diárias, uso de veículos, telefonia e verba de representação não localizados. Viram ofício à Câmara, à Casa Civil e à Administração. Conferências: Gestores, Ofícios",
    "onde_deveria_estar": "Sistema de Legislação de Goiânia (Sileg) e Diário Oficial do Município, em transparência ativa",
    "fundamento": "Lei 12.527/2011, art. 8º; Lei municipal 9.262/2013, art. 7º; Lei Complementar 101/2000, art. 48",
-   "orgao": "",
-   "bloco": "Normas",
-   "selo": "roxo"
-  },
-  {
-   "o_que_falta": "Texto oficial de Plano Municipal de Saúde (Saúde)",
-   "periodo": "",
-   "conferencia_impedida": "Vigente o de 2022-2025, citado na programação anual de 2025. O de 2026-2029 não foi localizado: vira ofício. Conferências: Secretarias, Ofícios",
-   "onde_deveria_estar": "Sistema de Legislação de Goiânia (Sileg) e Diário Oficial do Município, em transparência ativa",
-   "fundamento": "Lei 12.527/2011, art. 8º; Lei municipal 9.262/2013, art. 7º; Lei Complementar 101/2000, art. 48",
-   "orgao": "",
-   "bloco": "Normas",
-   "selo": "roxo"
-  },
-  {
-   "o_que_falta": "Quadro de Detalhamento da Despesa (QDD) de 2026",
-   "periodo": "",
-   "conferencia_impedida": "dotação de cada ação por elemento de despesa e por fonte, a base da execução contra o orçamento",
-   "onde_deveria_estar": "Sistema de Legislação de Goiânia (Sileg) e Diário Oficial do Município, em transparência ativa",
-   "fundamento": "Lei 4.320/1964, art. 8º; Lei 12.527/2011, art. 8º; Lei Complementar 101/2000, art. 48",
    "orgao": "",
    "bloco": "Normas",
    "selo": "roxo"
