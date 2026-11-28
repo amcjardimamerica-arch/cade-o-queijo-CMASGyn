@@ -1,6 +1,6 @@
 # Diagnóstico da coleta histórica (2024-11 a 2026-11)
 
-Rodada de 2026-11-28T02:44:15+00:00. Banco: `dados/onisciente/historico.db`.
+Rodada de 2026-11-28T04:18:01+00:00. Banco: `dados/onisciente/historico.db`.
 
 Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna na fonte (ela respondeu e o dado não estava lá). As duas nunca se misturam.
 
@@ -11,7 +11,7 @@ Vermelho é falha do sistema (a fonte não respondeu). Roxo é lacuna na fonte (
 | Cadastro das empresas na Receita Federal (CNPJ e QSA) | 1355 | 1353 | 2 | 0 | 547.0 |
 | Normas federais (ctresb/leis) | 21 | 21 | 0 | 0 | 3.4 |
 | Cota-parte do Estado (Secretaria da Economia de Goiás) | 6 | 6 | 0 | 0 | 43.4 |
-| Execução item a item no portal de Goiânia (TransWeb) | 112 | 112 | 0 | 0 | 121.6 |
+| Execução item a item no portal de Goiânia (TransWeb) | 184 | 184 | 0 | 0 | 200.9 |
 | Repasses federais (FNAS) | 4 | 3 | 1 | 0 | 98.2 |
 | FNDE (liberações da educação) | 1231 | 1231 | 0 | 0 | 969.5 |
 | Fundo Nacional de Saúde (repasses fundo a fundo) | 201 | 177 | 24 | 0 | 710.3 |
