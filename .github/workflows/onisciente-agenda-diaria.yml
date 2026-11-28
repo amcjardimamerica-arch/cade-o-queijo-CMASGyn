@@ -15,7 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 330
     steps:
+      # O banco é estado: um pedido que esperou na fila deve partir da ponta do branch,
+      # não do commit da hora do pedido (senão a gravação final conflita com a rodada anterior).
       - uses: actions/checkout@v4
+        with: {ref: "${{ github.ref_name }}"}
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}
       - run: pip install --quiet PyYAML openpyxl pypdf requests
