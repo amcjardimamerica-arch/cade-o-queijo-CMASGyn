@@ -330,3 +330,4 @@ body.apresentando .palco{display:flex;position:fixed;left:0;right:0;bottom:0;z-i
   .botoes .bt span.longo{display:none}
 }
 @media print{.topo,.regua,.caminho,footer,#dica{display:none}.painel{box-shadow:none;break-inside:avoid}}
+ul.lista{margin:8px 0 4px;padding-left:18px}ul.lista li{margin:4px 0}

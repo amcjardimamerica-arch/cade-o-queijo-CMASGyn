@@ -538,3 +538,193 @@ def test_banco_real_rio_pisos_e_pessoal():
         assert serie and serie[-1]["rotulo"] == "RGF do 2º quadrimestre de 2026"
     finally:
         con.close()
+
+
+# ---------------------------------------------------------------------------------------------
+# As entradas das outras frentes (onisciente/telas/entradas.py)
+# ---------------------------------------------------------------------------------------------
+
+AUDITORIA = {
+    "ciclo": 2026, "hoje": "2026-11-27",
+    "declarado": {"selo": "Diamante", "ciclo": 2025, "indice": "acima de 95%", "fonte": "Notícia do selo",
+                  "url": "https://exemplo.gov.br/noticia", "ciclo_2026": "Resultado de 2026 não conferido."},
+    "veredito": {"oficial": "não confirmado", "restritiva": "cai", "frase": "Pela leitura oficial o selo não está confirmado."},
+    "notas": {
+        "oficial/comprovada": {"leitura": "oficial", "modo": "comprovada", "indice": 5.24, "essenciais_ok": False,
+                               "nivel": "Inicial", "selo": False, "essenciais_em_falta": ["3.1", "4.1"]},
+        "oficial/teto": {"leitura": "oficial", "modo": "teto", "indice": 100.0, "essenciais_ok": True,
+                         "nivel": "Diamante", "selo": True, "essenciais_em_falta": []},
+        "restritiva/comprovada": {"leitura": "restritiva", "modo": "comprovada", "indice": 4.62, "essenciais_ok": False,
+                                  "nivel": "Inicial", "selo": False, "essenciais_em_falta": ["3.1", "4.1", "O.2"]},
+        "restritiva/teto": {"leitura": "restritiva", "modo": "teto", "indice": 76.41, "essenciais_ok": False,
+                            "nivel": "Elevado", "selo": False, "essenciais_em_falta": ["O.2"]}},
+    "radar": {"lido": False, "motivo": "o Radar recusou a leitura"},
+    "criterios": [
+        {"id": "1.1", "dimensao": 1, "classe": "essencial", "texto": "Possui sítio oficial", "base_legal": "Lei 12.527/2011",
+         "situacao": {"oficial": "atendido", "restritiva": "atendido"},
+         "provas": [{"descricao": "o sítio respondeu", "fonte": "banco, tabela fontes: https://exemplo.gov.br/portal",
+                     "leituras": "ambas", "nivel": "B"}], "notas": {"oficial": [], "restritiva": []}},
+        {"id": "4.1", "dimensao": 4, "classe": "essencial", "texto": "Total das despesas empenhadas", "base_legal": "LC 101/2000",
+         "situacao": {"oficial": "não verificável", "restritiva": "não atendido"}, "provas": [],
+         "notas": {"oficial": ["fonte e_portal ainda não sondada"], "restritiva": []}}],
+    "fundos": [
+        {"id": f"F{i}", "orgao": "FMAS", "texto": f"Obrigação {i} do Fundo", "base": "LC 101/2000, art. 48-A",
+         "pntp": "3.1", "estado": "em falta", "alerta": True, "provas": ["não publicado, segundo o parecer"],
+         "valor_em_jogo": 1000.0 * i} for i in range(1, 6)] + [
+        {"id": f"C{i}", "orgao": "CMAS", "texto": f"Obrigação {i} do Conselho", "base": "Lei 8.742/1993, art. 16",
+         "pntp": "", "estado": "em falta", "alerta": True, "provas": [], "valor_em_jogo": 0.0} for i in range(1, 5)],
+    "pendencias": ["Uma pendência da auditoria."],
+    "fontes": [{"titulo": "Cartilha PNTP 2026", "url": "https://exemplo.gov.br/cartilha", "lida_em": "2026-11-27"}],
+}
+
+
+def _entradas_reais(banco: Path, tmp: Path) -> dict[str, dict]:
+    from onisciente.telas import entradas as ent
+    aud = tmp / "auditoria.json"
+    aud.write_text(json.dumps(AUDITORIA, ensure_ascii=False), encoding="utf-8")
+    arquivos = ent.escrever(banco, tmp / "entradas", hoje=date(2026, 11, 27), auditoria=aud)
+    return {nome: json.loads(arq.read_text(encoding="utf-8")) for nome, arq in arquivos.items()}
+
+
+@pytest.fixture(scope="module")
+def entradas_reais(banco, tmp_path_factory) -> dict[str, dict]:
+    return _entradas_reais(banco, tmp_path_factory.mktemp("entradas"))
+
+
+@pytest.fixture(scope="module")
+def site_entradas_reais(banco, entradas_reais, tmp_path_factory) -> Path:
+    destino = tmp_path_factory.mktemp("site3")
+    gerar(destino, banco=banco, panoramas={"2026-02": PANORAMA}, hoje=date(2026, 11, 27), entradas=entradas_reais)
+    return destino
+
+
+def test_entrada_do_selo_tem_as_duas_leituras_e_as_obrigacoes_do_fundo_e_do_conselho(entradas_reais, tmp_path):
+    from onisciente.telas import entradas as ent
+    s = entradas_reais["selo_transparencia"]
+    assert s["situacao"] == "dado"
+    assert s["declarado"]["nivel"] == "Diamante" and s["declarado"]["nota"] is None
+    assert s["declarado"]["nota_texto"] == "acima de 95%" and s["declarado"]["ciclo"] == "2025"
+    assert {(x["leitura"], x["modo"]) for x in s["leituras"]} == {("oficial", "comprovada"), ("oficial", "teto"),
+                                                                 ("restritiva", "comprovada"), ("restritiva", "teto")}
+    assert s["auditado"] == {"nivel": "Inicial", "nota": 5.24}
+    orgaos = {o["sigla"]: o for o in s["por_orgao"]}
+    assert [x["id"] for x in orgaos["FMAS"]["obrigacoes"]] == ["F1", "F2", "F3", "F4", "F5"]
+    assert [x["id"] for x in orgaos["CMAS"]["obrigacoes"]] == ["C1", "C2", "C3", "C4"]
+    assert orgaos["FMAS"]["cnpj"] == FMAS
+    crit = {c["id"]: c for c in s["criterios"]}
+    assert crit["1.1"]["auditado"] == "cumpre" and crit["1.1"]["prova_url"] == "https://exemplo.gov.br/portal"
+    assert crit["4.1"]["auditado"] == "sem_dado" and crit["4.1"]["auditado_restritiva"] == "falha"
+    # Sem a auditoria, a coleta não foi feita (cinza), nunca "o Município não publicou".
+    assert ent.selo(tmp_path / "nao_existe.json")["situacao"] == "coleta_nao_feita"
+
+
+def test_entrada_das_empresas_traz_cobertura_e_alertas_por_cnpj_e_nunca_cpf(entradas_reais):
+    e = entradas_reais["empresas"]
+    assert e["situacao"] == "dado"
+    assert set(e["cobertura"]["sancoes_nao_conferidas"]) == {"CEIS", "CNEP", "CEPIM", "TCU-INIDONEOS"}
+    assert e["cobertura"]["cadastro_coletado"] is False
+    assert all(len(x["cnpj"]) == 14 for x in e["empresas"]) and e["empresas"]
+    texto = json.dumps(e, ensure_ascii=False)
+    assert "52998224725" not in texto and "529.982.247-25" not in texto
+
+
+def test_entrada_da_execucao_vazia_sai_como_coleta_nao_feita(entradas_reais, banco, tmp_path):
+    from onisciente.telas import entradas as ent
+    x = entradas_reais["execucao"]
+    assert x["situacao"] == "coleta_nao_feita" and x["empenhos"] == [] and "execucao_goiania" in x["motivo"]
+    # Com eventos no banco, sai empenho a empenho, sem CPF nem nome de pessoa física.
+    copia = tmp_path / "h.db"
+    shutil.copyfile(banco, copia)
+    con = sqlite3.connect(copia)
+    from onisciente.coletores.goiania_transweb import criar_tabelas
+    criar_tabelas(con)
+    con.executemany("INSERT INTO despesa_eventos (tipo, empenho, data, orgao, credor, documento, valor, fonte, funcao, url, "
+                    "coletado_em) VALUES (?,?,?,?,?,?,?,?,?,?,?)", [
+                        ("empenho", "2026NE1", "2026-02-03", "SEMAS", "EMPRESA X", "12345678000199", 900.0, "1500", "08",
+                         "https://exemplo.gov.br/e", "2026-11-27"),
+                        ("liquidacao", "2026NE1", "2026-02-10", "SEMAS", "EMPRESA X", "12345678000199", 900.0, "1500", "08",
+                         "https://exemplo.gov.br/l", "2026-11-27"),
+                        ("empenho", "2026NE2", "2026-02-04", "SEMAS", "Fulana de Tal", "52998224725", 100.0, "1500", "08",
+                         "https://exemplo.gov.br/e2", "2026-11-27")])
+    con.commit()
+    y = ent.execucao(con)
+    con.close()
+    assert y["situacao"] == "dado"
+    por = {e["numero"]: e for e in y["empenhos"]}
+    assert [ev["estacao"] for ev in por["2026NE1"]["eventos"]] == ["empenho", "liquidacao"]
+    assert por["2026NE1"]["valor"] == 900.0 and por["2026NE1"]["credor_cnpj"] == "12345678000199"
+    assert por["2026NE2"]["credor"] == "Pessoa física" and por["2026NE2"]["credor_cnpj"] == ""
+    assert "52998224725" not in json.dumps(y)
+
+
+def test_entrada_dos_federais_diz_que_fonte_nao_foi_lida(entradas_reais, banco, tmp_path):
+    from onisciente.telas import entradas as ent
+    f = entradas_reais["federais"]
+    assert f["situacao"] == "coleta_nao_feita" and f["repasses"] == []
+    assert all(f["origens"][o]["situacao"] == "coleta_nao_feita" for o in ("FNS", "FNDE", "Transferegov", "FNAS"))
+    assert f["origens"]["FNS"]["motivo"]
+    copia = tmp_path / "h.db"
+    shutil.copyfile(banco, copia)
+    con = sqlite3.connect(copia)
+    con.execute("INSERT INTO repasses_fnas (competencia, tipo, bloco, programa, valor, planilha, origem) "
+                "VALUES ('2026-01', 'SERVIÇOS', 'PSB', 'PISO BÁSICO FIXO', 2500.0, 2026, 'planilha do FNAS')")
+    con.commit()
+    g = ent.federais(con, hoje=date(2026, 11, 27))
+    con.close()
+    assert g["situacao"] == "dado" and g["origens"]["FNAS"]["linhas"] == 1
+    assert g["repasses"][0] == {**g["repasses"][0], "origem": "FNAS", "mes": "2026-01", "valor": 2500.0}
+    assert g["origens"]["FNS"]["situacao"] == "coleta_nao_feita"
+
+
+@precisa_node
+def test_coleta_nao_feita_aparece_em_cinza_e_nunca_em_roxo(site_entradas_reais):
+    d = _dados(site_entradas_reais / "trilha.html")
+    assert d["d-tela"]["execucao"] is None
+    assert d["d-comum"]["coletas"]["execucao"]["situacao"] == "coleta_nao_feita"
+    assert "execucao" not in d["d-comum"]["entradas"] and "federais" not in d["d-comum"]["entradas"]
+    trilha = _desenhar(site_entradas_reais / "trilha.html", "2026-02|")["2026-02|"]["tela"]
+    rio = _desenhar(site_entradas_reais / "rio.html", "2026-02|")["2026-02|"]["tela"]
+    for tela, o_que in ((trilha, "execução, empenho a empenho"), (rio, "transferências federais")):
+        i = tela.index("Coleta ainda não feita: " + o_que)
+        quadro = tela[tela.rindex("<div class=\"vazio", 0, i):i]
+        assert "roxo" not in quadro
+        assert "falha do próprio sistema, não do Município" in tela
+    assert "FNS: coleta ainda não feita" in rio
+    # A prestação dos contratos continua "aguardando": sem execução lida, nada é cobrado do Município.
+    precos = _dados(site_entradas_reais / "precos.html")["d-tela"]
+    assert precos["contratos"] and {c[10] for c in precos["contratos"]} == {"aguardando"}
+
+
+@precisa_node
+def test_tela_do_selo_mostra_as_duas_leituras_e_as_obrigacoes(site_entradas_reais):
+    tela = _desenhar(site_entradas_reais / "transparencia.html", "2026-02|")["2026-02|"]["tela"]
+    assert "Diamante" in tela and "acima de 95%" in tela and "sem a nota exata publicada" in tela
+    for x in ("Leitura oficial", "Leitura restritiva", "comprovada", "no teto", "5,24%", "76,41%"):
+        assert x in tela
+    for x in ("F1", "F5", "C1", "C4", "Fundo Municipal de Assistência Social", "Conselho Municipal de Assistência Social"):
+        assert x in tela
+    secs = _dados(site_entradas_reais / "secretarias.html")["d-tela"]["transparencia"]
+    assert [o["id"] for o in secs[FMAS]["obrigacoes"]] == ["F1", "F2", "F3", "F4", "F5"]
+
+
+@precisa_node
+def test_tela_das_empresas_mostra_cobertura_e_sancoes_nao_conferidas(site_entradas_reais):
+    d = _dados(site_entradas_reais / "empresas.html")
+    assert set(d["d-tela"]["cobertura"]["sancoes_nao_conferidas"]) == {"CEIS", "CNEP", "CEPIM", "TCU-INIDONEOS"}
+    tela = _desenhar(site_entradas_reais / "empresas.html", "2026-02|")["2026-02|"]["tela"]
+    assert "O que a conferência das empresas já cobre" in tela and "CEIS não conferido" in tela
+    assert "cadastro não coletado" in tela
+    assert "Aguardando a coleta das empresas" not in tela
+    assert "52998224725" not in json.dumps(d) and "529.982.247-25" not in json.dumps(d)
+
+
+def test_comando_telas_escreve_as_entradas_ao_lado_do_banco_de_teste(banco, tmp_path):
+    from onisciente.__main__ import main
+    copia = tmp_path / "b" / "historico.db"
+    copia.parent.mkdir()
+    shutil.copyfile(banco, copia)
+    assert main(["telas", "--banco", str(copia), "--destino", str(tmp_path / "site")]) == 0
+    for nome in ("selo_transparencia", "empresas", "execucao", "federais"):
+        assert (copia.parent / "entradas" / f"{nome}.json").is_file()
+    d = _dados(tmp_path / "site" / "trilha.html")
+    assert d["d-comum"]["coletas"]["execucao"]["situacao"] == "coleta_nao_feita"
