@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import base64
 import hashlib
+import inspect
 import json
 import time
 import re
@@ -454,7 +455,8 @@ def _slug(url: str, formulario: dict | None = None) -> str:
     return f"{curto}-{hashlib.sha256(chave.encode()).hexdigest()[:8]}"
 
 
-def _guardar(fonte: str, url: str, leitura, formulario: dict | None = None) -> dict:
+def _guardar(fonte: str, url: str, leitura, formulario: dict | None = None,
+             cabecalhos: dict | None = None) -> dict:
     PASTA.mkdir(parents=True, exist_ok=True)
     arq = PASTA / f"{fonte}__{_slug(url, formulario)}.txt"
     bruto = leitura.conteudo[:LIMITE_GRANDE if fonte in GRANDES else LIMITE]
@@ -469,7 +471,8 @@ def _guardar(fonte: str, url: str, leitura, formulario: dict | None = None) -> d
         arq.with_suffix(sufixo).write_text(base64.b64encode(dados).decode())
     try:
         # Frente D1: o corpo da recusa também (a mensagem do 400/500 diz o parâmetro que falta).
-        corpo = bruto.decode("utf-8") if leitura.ok or fonte.startswith("d1_") else ""
+        # Frente D2 (rodada 10): a recusa do TransWeb (o HTTP 500 do OsAjax) também, para provar a causa.
+        corpo = bruto.decode("utf-8") if leitura.ok or fonte.startswith(("d1_", "d2_transweb")) else ""
     except UnicodeDecodeError:
         corpo = bruto.decode("latin-1")
     if fonte.startswith("d2_transweb"):
@@ -477,11 +480,34 @@ def _guardar(fonte: str, url: str, leitura, formulario: dict | None = None) -> d
         # CPF com "000", as diárias trazem o do servidor) fica só com os seis dígitos do meio.
         from .coletores.goiania_transweb import mascarar_cpfs_no_texto
         corpo = mascarar_cpfs_no_texto(corpo)
-    texto = (f"URL: {url}\nPOST: {json.dumps(formulario or {}, ensure_ascii=False)}\nOK: {leitura.ok}\nHTTP: {leitura.http}\nERRO: {leitura.erro}\n"
+    pedido = ""
+    if cabecalhos:
+        # O pedido inteiro fica guardado (Frente D2, rodada 10). Cookie vai só com o nome: o valor da
+        # sessão não entra no repositório.
+        visiveis = {k: (_sem_valor_de_cookie(v) if k.lower() == "cookie" else v) for k, v in cabecalhos.items()}
+        pedido = f"CABECALHOS: {json.dumps(visiveis, ensure_ascii=False)}\n"
+    texto = (f"URL: {url}\nPOST: {json.dumps(formulario or {}, ensure_ascii=False)}\n{pedido}OK: {leitura.ok}\nHTTP: {leitura.http}\nERRO: {leitura.erro}\n"
              f"BYTES: {len(leitura.conteudo)}\n\n{corpo}")
     arq.write_text(mascara_cpf.mascarar_texto(texto)[0], encoding="utf-8")   # CPF de pessoa física mascarado
     return {"fonte": fonte, "url": url, "post": formulario, "ok": leitura.ok, "http": leitura.http, "erro": leitura.erro,
             "bytes": len(leitura.conteudo), "arquivo": arq.name}
+
+
+def _sem_valor_de_cookie(valor: str) -> str:
+    """``a=1; b=2`` vira ``a=<valor omitido>; b=<valor omitido>``: o nome do cookie prova que a sessão
+    foi junto; o valor não se guarda."""
+    nomes = [p.split("=", 1)[0].strip() for p in str(valor).split(";") if p.strip()]
+    return "; ".join(f"{n}=<valor omitido>" for n in nomes)
+
+
+def _aceita(funcao, nome: str) -> bool:
+    """A função recebe o parâmetro ``nome`` (ou ``**kwargs``)? Os leitores e guardadores falsos das
+    travas antigas não recebem os parâmetros novos."""
+    try:
+        parametros = inspect.signature(funcao).parameters.values()
+    except (TypeError, ValueError):
+        return False
+    return any(p.name == nome or p.kind is inspect.Parameter.VAR_KEYWORD for p in parametros)
 
 
 def _siops_consultas(url: str, texto: str) -> list[tuple[str, dict]]:
@@ -704,17 +730,36 @@ def _popups_paginados(fonte: str, urls: list[str], *, ler_=None, guardar=None, p
         empenho = url.rsplit("Empenho=", 1)[-1]
         paginas = [0]
 
-        def ler_pop(destino, formulario=None, _url=url):
+        jarra: list = []
+
+        def ler_pop(destino, formulario=None, cabecalhos=None, _url=url):
             paginas[0] += 1
             inicio = time.monotonic()
-            lida = ler_(destino, tempo=90, fonte=fonte, formulario=formulario)
-            reg = guardar(fonte, destino if paginas[0] == 1 else f"{_url}#pagina-{paginas[0]}", lida, formulario)
-            reg.update({"passo": f"pagina_{paginas[0]}", "segundos": round(time.monotonic() - inicio, 1)})
+            # Rodada 10: o pedido inteiro como saiu (cabeçalhos do OsAjax e os nomes dos cookies da
+            # sessão que o GET da página 1 criou), para a próxima sondagem provar o que faltava.
+            enviados = dict(cabecalhos or {})
+            cookies = sorted({ck.name for ck in (jarra[0] if jarra else [])})
+            if cookies:
+                enviados["Cookie"] = "; ".join(f"{n}=x" for n in cookies)
+            extra = {"cabecalhos": cabecalhos} if cabecalhos and _aceita(ler_, "cabecalhos") else {}
+            lida = ler_(destino, tempo=90, fonte=fonte, formulario=formulario, **extra)
+            nome = destino if paginas[0] == 1 else f"{_url}#pagina-{paginas[0]}"
+            if enviados and _aceita(guardar, "cabecalhos"):
+                reg = guardar(fonte, nome, lida, formulario, cabecalhos=enviados)
+            else:
+                reg = guardar(fonte, nome, lida, formulario)
+            reg.update({"passo": f"pagina_{paginas[0]}", "segundos": round(time.monotonic() - inicio, 1),
+                        "destino": destino, "cookies": cookies,
+                        "cabecalhos": sorted(k for k in (cabecalhos or {}))})
             out.append(reg)
             return lida
 
-        pop = G.ler_popup(ler_pop, url, tipo, c.popups[tipo]["colunas"], {"empenho": empenho},
-                          paginas_maximas=paginas_maximas)
+        # Como o motor (sessao_de_cookies): uma sessão de cookies própria, criada pelo GET da página 1, e
+        # os nomes dos cookies que foram junto ficam no registro de cada página.
+        with G.sessao_de_cookies() as jar:
+            jarra.append(jar)
+            pop = G.ler_popup(ler_pop, url, tipo, c.popups[tipo]["colunas"], {"empenho": empenho},
+                              paginas_maximas=paginas_maximas)
         out.append({"fonte": fonte, "url": url, "ok": bool(pop.paginas), "http": None, "passo": "resumo",
                     "tipo": tipo,
                     "paginas": pop.paginas, "total": pop.total, "completo": pop.completo,

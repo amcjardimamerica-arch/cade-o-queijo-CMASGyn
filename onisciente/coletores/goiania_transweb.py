@@ -22,12 +22,14 @@ publicado num dia lido é outra coisa, e fica registrada como tal (lacuna do Mun
 from __future__ import annotations
 
 import csv
+import inspect
 import io
 import json
 import re
 import time
 import tomllib
 import unicodedata
+import urllib.parse
 import urllib.request
 from contextlib import contextmanager
 from dataclasses import dataclass, field
@@ -165,6 +167,8 @@ _POSTBACK = re.compile(r"__doPostBack\(\s*['\"]([^'\"]*)['\"]\s*,\s*['\"]([^'\"]
 _WEBFORM = re.compile(r"WebForm_PostBackOptions\(\s*['\"]([^'\"]*)['\"]\s*,\s*['\"]([^'\"]*)['\"]")
 # OutSystems: OsAjax(evento, id de origem, alvo (o name, com $), evento do servidor, baldes, ...).
 _OSAJAX = re.compile(r"OsAjax\(\s*[^,]*,\s*'([^']*)'\s*,\s*'([^']*)'\s*,\s*'([^']*)'\s*,\s*'([^']*)'")
+# O sexto argumento do OsAjax (o fim do contexto do evento, vazio nos links do navegador da lista).
+_OSAJAX_EXTRA = re.compile(r"\s*,\s*'([^']*)'")
 _VAZIOS = ("area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr")
 _OCULTO = re.compile(r"display\s*:\s*none", re.I)
 
@@ -283,9 +287,11 @@ class Formulario:
 
     def envio_ajax(self, valores: dict[str, str], alvo: str, *, evento: str = "",
                    baldes: str = "__OSVSTATE,") -> dict[str, str]:
-        """O corpo do pedido que o OsAjax do OutSystems monta (lido em _osjs.js): o formulário
-        serializado sem nenhum botão, ``__EVENTTARGET`` com o alvo, ``__AJAX`` com os baldes e,
-        quando há evento (``Change``, ``Notify``), ``__AJAXEVENT``."""
+        """O corpo do OsAjax como foi lido nas primeiras rodadas: o formulário serializado sem nenhum
+        botão, ``__EVENTTARGET`` com o alvo, ``__AJAX`` com os baldes e, quando há evento (``Change``,
+        ``Notify``), ``__AJAXEVENT``. Rodada 10 (28/11/2026): o _osjs.js põe no ``__AJAX`` o contexto do
+        evento, e não os baldes (ver ``envio_osajax``); todo OsAjax mandado assim voltou HTTP 500 com
+        894 bytes. Fica como está porque as travas antigas da lista fixam este corpo."""
         corpo = dict(self.campos)
         for n, _ in self.botoes:
             corpo.pop(n, None)
@@ -295,6 +301,27 @@ class Formulario:
         if evento:
             corpo["__AJAXEVENT"] = evento
         corpo.pop("__EVENTARGUMENT", None)
+        return corpo
+
+    def envio_osajax(self, valores: dict[str, str], chamada: dict) -> dict[str, str]:
+        """O corpo que o navegador manda de fato pelo OsAjax, conferido linha a linha no _osjs.js guardado
+        (sondagem de 28/11/2026): ``OsExecuteCallToServer(origem, alvo, evento, baldes, contexto, ...)``
+        chama ``CallToServer(form, alvo, evento, baldes, contexto, ...)``, e o ``PrepareFormForSubmit``
+        põe no ``__AJAX`` o quinto argumento, que é o CONTEXTO do evento (``OsBuildAjaxEventContext``),
+        e não os baldes. Antes do envio, ``OsPrepareCheckboxesForSubmit`` manda ``off`` para cada caixa
+        desmarcada, e o jQuery serializa a caixa marcada sem ``value`` como ``on``.
+
+        ``envio_ajax`` (os baldes no ``__AJAX``) fica como estava, porque as travas antigas da lista o
+        fixam; este é o envio que o popup usa."""
+        corpo = self.envio_ajax(valores, chamada["alvo"], evento=chamada.get("evento", ""))
+        corpo["__AJAX"] = contexto_osajax(chamada)
+        for nome, tipo in self.tipos.items():
+            if tipo != "checkbox" or nome in valores:
+                continue
+            if nome not in self.campos:
+                corpo[nome] = "off"
+            elif corpo.get(nome, "") == "":
+                corpo[nome] = "on"
         return corpo
 
     def valor_de_opcao(self, nome: str, valor: str) -> str:
@@ -342,9 +369,11 @@ class _Leitor(HTMLParser):
             self._ocultos.append(tag)
         chamada = None
         for valor in a.values():
-            for origem, alvo, evento, baldes in _OSAJAX.findall(valor):
+            for m in _OSAJAX.finditer(valor):
+                origem, alvo, evento, baldes = m.groups()
+                extra = _OSAJAX_EXTRA.match(valor, m.end())
                 chamada = {"id": origem, "alvo": alvo, "evento": evento, "baldes": baldes, "tag": tag,
-                           "classe": a.get("class", ""), "texto": ""}
+                           "classe": a.get("class", ""), "texto": "", "extra": extra.group(1) if extra else ""}
                 self.ajax.append(chamada)
                 if self._form is not None:
                     self._form.ajax.append(chamada)
@@ -1135,6 +1164,58 @@ def depois_da_resposta(estado: dict, ajax_da_pagina: list[dict], conteudo) -> tu
     return estado, lido.ajax + [a for a in ajax_da_pagina if a["alvo"] not in novos], html, lido
 
 
+# A janela que o contexto do evento declara (largura e altura do documento). O servidor lê os números;
+# o valor exato não importa, desde que sejam números, como os do navegador.
+LARGURA_DA_JANELA, ALTURA_DA_JANELA = 1280, 900
+
+
+def contexto_osajax(chamada: dict, *, largura: int = LARGURA_DA_JANELA, altura: int = ALTURA_DA_JANELA) -> str:
+    """O contexto do evento que o ``OsBuildAjaxEventContext`` do _osjs.js monta e que vai no ``__AJAX``:
+    largura e altura do documento, o id de origem (o do link), topo e esquerda do link, rolagem vertical
+    e horizontal, x e y do clique e o sexto argumento do OsAjax, tudo separado por vírgula. Sem clique
+    de mouse, o navegador manda zeros nas posições; aqui também."""
+    return ",".join([str(largura), str(altura), chamada.get("id", ""), "0", "0", "0", "0", "0", "0",
+                     chamada.get("extra", "")])
+
+
+def cabecalhos_osajax(pagina: str) -> dict[str, str]:
+    """Os cabeçalhos do pedido OsAjax: o ``$.ajax`` do _osjs.js manda o tipo do corpo com o charset, o
+    Accept do ``dataType: "text"``, e o jQuery acrescenta ``X-Requested-With`` (pedido do mesmo site).
+    O navegador manda ainda o Referer (a página do popup) e a Origin."""
+    partes = urllib.parse.urlsplit(pagina)
+    return {"X-Requested-With": "XMLHttpRequest",
+            "Accept": "text/plain, */*; q=0.01",
+            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+            "Referer": pagina,
+            "Origin": f"{partes.scheme}://{partes.netloc}"}
+
+
+def _aceita_cabecalhos(ler: Ler) -> bool:
+    """O leitor recebe ``cabecalhos``? O do motor (ctx.ler) e o comum (base.ler) recebem; um leitor sem
+    o parâmetro e sem ``**kwargs`` recebe o pedido sem eles."""
+    try:
+        parametros = inspect.signature(ler).parameters.values()
+    except (TypeError, ValueError):
+        return False
+    return any(p.name == "cabecalhos" or p.kind is inspect.Parameter.VAR_KEYWORD for p in parametros)
+
+
+def _so_com_cabecalhos(ler: Ler, cabecalhos: dict | None) -> dict:
+    """``{"cabecalhos": ...}`` quando há cabeçalhos e o leitor os recebe; vazio no resto."""
+    return {"cabecalhos": cabecalhos} if cabecalhos and _aceita_cabecalhos(ler) else {}
+
+
+def pedido_da_pagina_seguinte_do_popup(form: "Formulario | None", url: str, estado: dict, prox: dict
+                                       ) -> tuple[dict, dict]:
+    """O corpo e os cabeçalhos do pedido da página seguinte do popup, como o navegador manda pelo link
+    ``next``: o formulário da página (com os tipos, para as caixas de marcar), o ``__OSVSTATE`` da
+    resposta anterior, o alvo do link, o contexto do evento no ``__AJAX`` e os cabeçalhos do OsAjax."""
+    tipos = form.tipos if form is not None else {}
+    corpo = Formulario(form.acao if form is not None else url, "post", campos=dict(estado),
+                       tipos=tipos).envio_osajax({}, prox)
+    return corpo, cabecalhos_osajax(url)
+
+
 def corpo_proxima(acao: str, estado: dict, prox: dict, *, ajax: bool) -> dict:
     """O pedido da página seguinte pelo link do navegador (OsAjax ou postback com o alvo)."""
     if ajax:
@@ -1589,7 +1670,11 @@ def ler_popup(ler: Ler, url: str, tipo: str, colunas: dict, base: dict, *, pagin
             out.erro = (f"o popup diz {out.total} linha(s) e a página {out.paginas} não leva à seguinte"
                         if out.total else f"a página {out.paginas} está cheia e não leva à seguinte")
             return out
-        atual = ler(acao, formulario=corpo_proxima(acao, estado, prox, ajax=ajax))
+        if ajax:
+            corpo, cabecalhos = pedido_da_pagina_seguinte_do_popup(form, url, estado, prox)
+            atual = ler(acao, formulario=corpo, **_so_com_cabecalhos(ler, cabecalhos))
+        else:
+            atual = ler(acao, formulario=corpo_proxima(acao, estado, prox, ajax=False))
         if not atual.ok:
             out.erro = f"página {out.paginas + 1} do popup: {atual.erro or atual.http}"
             return out
@@ -1915,8 +2000,9 @@ def _meses_da_exportacao(ctx, portal: Portal, c: Consulta, resumo: dict, con) ->
         if fim is not None and time.monotonic() > fim - 120:
             break         # sem tempo para mais um mês inteiro: o que falta fica para a rodada seguinte
 
-        def ler(url, formulario=None, _mes=mes):
-            return ctx.ler("execucao_goiania", c.id, url, mes=_mes, formulario=formulario, tempo=120)
+        def ler(url, formulario=None, cabecalhos=None, _mes=mes):
+            return ctx.ler("execucao_goiania", c.id, url, mes=_mes, formulario=formulario, tempo=120,
+                           **_so_com_cabecalhos(ctx.ler, cabecalhos))
 
         exp, url, erro = exportar_mes(ler, portal, c, mes)
         if exp is None and erro.startswith("exportação: a resposta não é a planilha"):
@@ -1973,8 +2059,9 @@ def _motor_mensal(ctx, portal: Portal, c: Consulta, resumo: dict, *, limite_de_m
     """A lista de Portal_Despesas.aspx, mês a mês (mês e ano no formulário, todos os órgãos)."""
     con = ctx.banco.con
 
-    def ler(url, formulario=None):
-        return ctx.ler("execucao_goiania", c.id, url, formulario=formulario, tempo=90)
+    def ler(url, formulario=None, cabecalhos=None):
+        return ctx.ler("execucao_goiania", c.id, url, formulario=formulario, tempo=90,
+                       **_so_com_cabecalhos(ctx.ler, cabecalhos))
 
     aberta = abrir_consulta(ler, portal, c)
     if isinstance(aberta, str):
@@ -2031,8 +2118,9 @@ def motor(ctx, portal: Portal, *, consultas: Iterable[str] | None = None, limite
             _motor_mensal(ctx, portal, c, resumo, limite_de_meses=limite_de_meses)
             continue
 
-        def ler(url, formulario=None, _c=c):
-            return ctx.ler("execucao_goiania", _c.id, url, formulario=formulario, tempo=90)
+        def ler(url, formulario=None, cabecalhos=None, _c=c):
+            return ctx.ler("execucao_goiania", _c.id, url, formulario=formulario, tempo=90,
+                           **_so_com_cabecalhos(ctx.ler, cabecalhos))
 
         aberta = abrir_consulta(ler, portal, c)
         if isinstance(aberta, str):
