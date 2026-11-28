@@ -15,6 +15,8 @@ import yaml
 from . import RAIZ
 
 REGISTRO = RAIZ / "config" / "requisitos_onisciente.yml"
+# Os pedidos que vieram depois do projeto original (selo, Receita Federal, painel...), com ids a partir de 184.
+AMPLIACAO = RAIZ / "config" / "requisitos_ampliacao.yml"
 VALOR = {"cumprido": 1.0, "parcial": 0.5, "ausente": 0.0}
 
 
@@ -40,12 +42,17 @@ def contar(itens: list[dict]) -> dict:
     }
 
 
-def problemas(itens: list[dict], raiz: Path = RAIZ) -> list[str]:
-    """O que torna o registro desonesto: cumprido sem evidência, falta sem dono, trava inexistente."""
+def problemas(itens: list[dict], raiz: Path = RAIZ, *, desde: int = 1, contigua: bool = True) -> list[str]:
+    """O que torna o registro desonesto: cumprido sem evidência, falta sem dono, trava inexistente.
+
+    O registro original é contíguo de 1 a 183; o da ampliação começa em 184 e pode ter saltos
+    (cada frente reservou a sua faixa), mas nunca repete nem desce para dentro do original."""
     erros = []
     ids = [i["id"] for i in itens]
-    if ids != list(range(1, len(ids) + 1)):
+    if contigua and ids != list(range(desde, desde + len(ids))):
         erros.append("numeração fora de ordem ou com buraco")
+    if not contigua and (ids != sorted(set(ids)) or (ids and ids[0] < desde)):
+        erros.append("numeração repetida, fora de ordem ou dentro do registro original")
     for i in itens:
         n = i["id"]
         if i["situacao"] not in VALOR:
@@ -61,3 +68,11 @@ def problemas(itens: list[dict], raiz: Path = RAIZ) -> list[str]:
             if not caminho.exists() or f"def {funcao}(" not in caminho.read_text(encoding="utf-8"):
                 erros.append(f"#{n}: trava {trava} não existe")
     return erros
+
+
+def carregar_ampliacao(caminho: Path = AMPLIACAO) -> list[dict]:
+    return yaml.safe_load(caminho.read_text(encoding="utf-8")) if caminho.exists() else []
+
+
+def problemas_ampliacao(itens: list[dict], raiz: Path = RAIZ) -> list[str]:
+    return problemas(itens, raiz, desde=184, contigua=False)

@@ -219,6 +219,14 @@ def cmd_requisitos(args) -> int:
           f"{c['ausentes']} ausentes, de {c['total']}.")
     for bloco, v in c["por_bloco"].items():
         print(f"  {bloco}: {v['percentual']}% ({v['cumpridos']}/{v['parciais']}/{v['ausentes']})")
+    amp = requisitos.carregar_ampliacao()
+    if amp:
+        erros += requisitos.problemas_ampliacao(amp)
+        a = requisitos.contar(amp)
+        print(f"{a['percentual']}% dos pedidos depois do projeto original: {a['cumpridos']} cumpridos, "
+              f"{a['parciais']} parciais, {a['ausentes']} ausentes, de {a['total']}.")
+        for bloco, v in a["por_bloco"].items():
+            print(f"  {bloco}: {v['percentual']}% ({v['cumpridos']}/{v['parciais']}/{v['ausentes']})")
     for e in erros:
         print("ERRO:", e, file=sys.stderr)
     return 1 if erros else 0

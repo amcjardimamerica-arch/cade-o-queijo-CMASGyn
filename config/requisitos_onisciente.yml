@@ -6,18 +6,20 @@
 - id: 1
   bloco: Premissas
   requisito: 'Trilha e não cartório: cada número leva fonte e selo'
-  situacao: parcial
-  evidencia: Selos e custódia existem; os tetos do Município saem do RGF com duas vias seladas (RGF × RREO) desde o bloco
-    1; desde o bloco 3 cada afluente do rio do Município leva o selo da conferência RREO × matriz de saldos contábeis e a
-    origem (União × Município) leva o seu
-  falta: Selar as contas uma a uma da despesa e guardar o original de cada número
+  situacao: cumprido
+  evidencia: Cada linha dos quadros das conferências (conferencias/banco.py, Linha e Quadro) leva fonte, selo e o original
+    do banco; a despesa por função é conferida conta a conta entre o RREO e a matriz de saldos
+  falta: ''
+  trava: testes/test_conferencias_banco.py::test_despesa_por_funcao_selada_conta_a_conta_com_original
 - id: 2
   bloco: Premissas
   requisito: Funciona sozinho, no relógio
-  situacao: parcial
-  evidencia: Parecer roda todo domingo (domingo-avaliacao) e leis/SICONFI todo dia 1º; a coleta histórica (onisciente-historico)
-    não tem agenda, só roda por envio a um ramo de trabalho ou à mão
-  falta: Pôr a coleta histórica em agenda própria e mostrar a falha do parecer como falha do sistema
+  situacao: cumprido
+  evidencia: Fluxo onisciente-agenda-parecer.yml roda o parecer pelo relógio (domingo e dia 5) sem engolir erro; a falha vira
+    estado vermelho em relatorios/onisciente/agenda_estado.json e ficha SIS-COLETA. Os '|| echo' e '|| true' saíram de domingo-avaliacao.yml
+    e mensal-contas-e-leis.yml.
+  falta: ''
+  trava: testes/test_agenda.py::test_parecer_que_falha_sai_com_erro_e_deixa_registro_visivel
 - id: 3
   bloco: Premissas
   requisito: A fonte oficial certifica a si mesma (duas vias)
@@ -67,9 +69,12 @@
   bloco: Herança do Cadê o Queijo
   requisito: Trilhas Queijo, Rato, Gato, Mato e Fogo
   situacao: parcial
-  evidencia: Existem em cadeoqueijo/ e rodam nos fluxos mensal e dominical; o Onisciente não usa a do Mato (caso semelhante)
-    nem a do Rato (vínculos) nas fichas
-  falta: Ligar Mato e Rato às fichas do Onisciente
+  evidencia: conferencias/heranca.py liga o Rato (alertas viram fichas VIN-RATO por coincidência de nome, nunca confirmadas)
+    e o Mato (precedentes por tema, como caso semelhante que inspira e não fundamenta) às fichas do panorama; quando o alerta
+    A1 do Rato e o cruzamento sócio e servidor da conferência de empresas apontam a mesma pessoa, fica um único alerta citando
+    as duas fontes
+  falta: O arquivo de alertas do Rato está vazio no repositório (0 alertas); o Gato e o Fogo seguem como no Cadê o Queijo
+  trava: testes/test_conferencias_banco.py::test_alerta_a1_do_rato_e_cruzamento_de_empresas_viram_um_so
 - id: 11
   bloco: Herança do Cadê o Queijo
   requisito: Custódia por sha256
@@ -103,9 +108,11 @@
 - id: 16
   bloco: Herança do Cadê o Queijo
   requisito: Parecer mensal em HTML com gráficos
-  situacao: parcial
-  evidencia: docs/onisciente/parecer_2026-01 a 10 (3 gráficos SVG cada); os gráficos G/F/S de série não aparecem
-  falta: Repor os gráficos de série
+  situacao: cumprido
+  evidencia: parecer/html._series_mensais chama telas.graficos.series_do_parecer na seção 2 do parecer do alvo configurado;
+    o parecer e as telas desenham as mesmas séries mensais
+  falta: ''
+  trava: testes/test_regras_parecer.py::test_parecer_usa_as_series_das_telas
 - id: 17
   bloco: Herança do Cadê o Queijo
   requisito: 7 erros históricos como teste de regressão
@@ -148,10 +155,12 @@
   bloco: O rio
   requisito: As 4 margens (previsto não empenhado, empenhado não liquidado, liquidado não pago, pago sem vínculo)
   situacao: parcial
-  evidencia: As margens do Município inteiro (dotação não empenhada, empenhado não liquidado, liquidado não pago) saem do
-    RREO Anexo 1 conferido com a matriz de saldos contábeis e aparecem no parecer
-  falta: 'Pago sem vínculo publicado: depende da despesa item a item (bloco 5)'
-  trava: testes/test_rio_municipio.py::test_cada_especie_confere_com_a_matriz_de_saldos_contabeis
+  evidencia: As três primeiras margens de cada secretaria (previsto e não empenhado, empenhado e não liquidado, liquidado
+    e não pago) saem do RREO Anexo 2 conferido com a matriz de saldos contábeis (onisciente/rio/secretarias.py, ExecucaoSecretaria.margens)
+    e aparecem no parecer de cada pasta. A quarta (pago sem vínculo) é calculada com o item a item quando há (trilha_da_secretaria)
+    e, sem ele, fica sem medida (Margens.pago_com_vinculo = None), nunca zero.
+  falta: Rodar a coleta do portal (motor execucao_goiania) para medir o pago sem vínculo publicado com dados reais.
+  trava: testes/test_dominios.py::test_saude_2025_nos_numeros_do_rreo
 - id: 23
   bloco: O rio
   requisito: Receita realizada contra a prevista
@@ -171,9 +180,11 @@
 - id: 25
   bloco: O rio
   requisito: Sankey com modos Todo / Vinculada / Livre
-  situacao: parcial
-  evidencia: Parecer tem o rio em SVG estático, sem os modos
-  falta: Tela interativa do rio
+  situacao: cumprido
+  evidencia: Tela O rio (rio.html) com Sankey próprio em SVG nos modos Todo, Vinculada e Livre, parâmetro modo na URL; os
+    três modos fecham com a entrada e a saída
+  falta: ''
+  trava: testes/test_telas.py::test_sankey_tres_modos_fecham_e_separam_vinculada_de_livre
 - id: 26
   bloco: O rio
   requisito: Afluentes batem com o RREO em 1% (portão da fase 2)
@@ -207,32 +218,48 @@
   bloco: As 9 estações
   requisito: Percurso evento a evento de cada empenho
   situacao: parcial
-  evidencia: Classe Percurso existe; não é usada; o parecer diz que a cronologia aparece quando a execução for publicada
-  falta: Ler empenhos, liquidações e pagamentos do portal
+  evidencia: Coletor do TransWeb (onisciente/coletores/goiania_transweb.py) lê empenhos, liquidações e pagamentos por dia
+    e por órgão, com __VIEWSTATE, paginação e detalhe; conferencias/execucao.py monta um percurso por empenho pelas nove estações
+    (origem, fonte, previsão, dotação, empenho, liquidação, pagamento, vínculo, prestação). Testado com fixtures.
+  falta: 'Os caminhos .aspx e os nomes de campo do TransWeb não estão confirmados: rodar a sondagem d2_transweb, ajustar alvos/portais/goiania.toml
+    e rodar o motor execucao_goiania no GitHub.'
+  trava: testes/test_execucao.py::test_percursos_pelas_nove_estacoes
 - id: 31
   bloco: As 9 estações
   requisito: Integridade da trilha = fração do pago que cruza as 9
   situacao: parcial
-  evidencia: integridade_da_trilha() existe sem uso; o “7 de 100” do parecer é outro índice
-  falta: Calcular sobre pagamentos reais
+  evidencia: ConferenciasExecucao.integridade é a fração do pago que cruza as nove estações; sem pagamento lido devolve None
+    (sem medida), nunca zero. Testado com percursos montados (0,25 num caso de um empenho completo em quatro).
+  falta: Pagamentos reais do portal no banco (motor execucao_goiania).
+  trava: testes/test_execucao.py::test_integridade_e_a_fracao_do_pago_completo
 - id: 32
   bloco: As 9 estações
   requisito: Ordem violada (pagar antes de liquidar)
   situacao: parcial
-  evidencia: Percurso.ordem_violada só nos testes
-  falta: Idem
+  evidencia: A ordem violada de cada percurso vira achado e ficha (pagamento antes da liquidação, pagamento sem empenho ou
+    liquidação lidos), com tolerância de zero dias (config/limiares_execucao.yml). A fixture do portal paga em 05/03 o que
+    liquida em 10/03 e é apontada.
+  falta: Execução real do portal no banco.
+  trava: testes/test_execucao.py::test_ordem_violada_pagamento_antes_da_liquidacao
 - id: 33
   bloco: As 9 estações
   requisito: Exemplo de empenho na tela Trilha
-  situacao: ausente
-  evidencia: Não há tela Trilha no site
-  falta: Tela Trilha
+  situacao: parcial
+  evidencia: Tela Trilha (trilha.html) com as 9 estações por mês e por função, tiradas da matriz de saldos e do PNCP, com
+    as estações sem dado apagadas
+  falta: onisciente/telas/entradas.py já escreve execucao.json a partir de despesa_eventos, mas a tabela está vazia porque
+    o motor execucao_goiania ainda não rodou na coleta histórica; a tela mostra em cinza que a coleta não foi feita e desenha
+    empenho a empenho quando houver eventos
+  trava: testes/test_telas.py::test_trilha_tem_as_nove_estacoes_por_mes_e_funcao
 - id: 34
   bloco: As 9 estações
   requisito: Estação Prestação (nível C)
-  situacao: parcial
-  evidencia: Prestação entra como 0 ou 1 no índice
-  falta: Medir prestação por parceria
+  situacao: cumprido
+  evidencia: conferencias/prestacao.py mede cada parceria (termo, prestação publicada, individualização, prazo e saldo) e
+    nucleo/integridade.com_prestacao_por_parceria põe no índice de integridade a fração das parcerias em dia, no lugar do
+    sim ou não do portal; a ausência vai ao órgão com fundamento na Lei 13.019/2014
+  falta: ''
+  trava: testes/test_conferencias_banco.py::test_prestacao_entra_no_indice_parceria_a_parceria
 - id: 35
   bloco: Selos
   requisito: Quatro cores (verde, azul, roxo, vermelho)
@@ -250,15 +277,20 @@
 - id: 37
   bloco: Selos
   requisito: Nenhum número sem selo
-  situacao: parcial
-  evidencia: Rio e ausências têm selo; quadros de contas e fichas nem sempre
-  falta: Selo em todo número do parecer
+  situacao: cumprido
+  evidencia: Nenhuma linha de quadro sem selo; margens, leito, ritmos, desvios e compras por órgão do parecer também com selo;
+    o rio que não fecha com o RREO sai em vermelho
+  falta: ''
+  trava: testes/test_conferencias_banco.py::test_toda_linha_de_quadro_tem_selo
 - id: 38
   bloco: Selos
   requisito: Dica mostra a fonte e o clique abre o original
   situacao: parcial
-  evidencia: 43 dicas no parecer, nenhum link para o original
-  falta: Link para o original guardado
+  evidencia: Todo número das telas é {v, f}; a dica mostra a fonte, a data da leitura e a impressão digital; o clique abre
+    o endereço lido ou diz que o original não está guardado no banco; a cópia vai junto só quando a impressão digital bate
+  falta: As cópias dos originais só são publicadas com --brutos apontando para o artefato das respostas brutas da coleta,
+    que não foi lido nesta frente
+  trava: testes/test_telas.py::test_todo_numero_tem_fonte_e_a_fonte_diz_onde_esta_o_original
 - id: 39
   bloco: Selos
   requisito: Gravidade crítica / alta / média
@@ -269,28 +301,33 @@
   bloco: Pisos e tetos
   requisito: Saúde 15%
   situacao: cumprido
-  evidencia: SIOPS lido pelo formulário público, 17 bimestres de 2024 a 2026 no banco; base própria pelo RREO Anexo 3 e DCA; 21,74% (2024) e 21,56% (2025) contra 21,77% e 21,54% declarados, duas vias verdes; antes do 6º bimestre, o ritmo do ano anterior é a régua
+  evidencia: SIOPS lido pelo formulário público, 17 bimestres de 2024 a 2026 no banco; base própria pelo RREO Anexo 3 e DCA;
+    21,74% (2024) e 21,56% (2025) contra 21,77% e 21,54% declarados, duas vias verdes; antes do 6º bimestre, o ritmo do ano
+    anterior é a régua
   falta: ''
   trava: testes/test_fiscal.py::test_piso_da_saude_no_banco_real_com_duas_vias_em_cada_ano
 - id: 41
   bloco: Pisos e tetos
   requisito: Educação 25%
   situacao: cumprido
-  evidencia: SIOPE lido do PDF público do FNDE (RREO Anexo 8), 16 bimestres de 2024 a 2026 no banco; base própria com as cotas extras do FPM pela DCA; 25,07% (2024) e 25,85% (2025) contra 25,10% e 25,83% declarados, conferências verdes
+  evidencia: SIOPE lido do PDF público do FNDE (RREO Anexo 8), 16 bimestres de 2024 a 2026 no banco; base própria com as cotas
+    extras do FPM pela DCA; 25,07% (2024) e 25,85% (2025) contra 25,10% e 25,83% declarados, conferências verdes
   falta: ''
   trava: testes/test_fiscal.py::test_educacao_e_fundeb_no_banco_real_com_duas_vias_em_cada_ano
 - id: 42
   bloco: Pisos e tetos
   requisito: Fundeb 70% profissionais
   situacao: cumprido
-  evidencia: 'Linha 12 sobre as receitas do FUNDEB sem o VAAR: 83,93% (2024) e 84,01% (2025), iguais ao declarado; conferido com o RREO Anexo 14; abaixo de 70% no fechamento descumpre'
+  evidencia: 'Linha 12 sobre as receitas do FUNDEB sem o VAAR: 83,93% (2024) e 84,01% (2025), iguais ao declarado; conferido
+    com o RREO Anexo 14; abaixo de 70% no fechamento descumpre'
   falta: ''
   trava: testes/test_fiscal.py::test_educacao_e_fundeb_no_banco_real_com_duas_vias_em_cada_ano
 - id: 43
   bloco: Pisos e tetos
   requisito: Fundeb saldo até 10%
   situacao: cumprido
-  evidencia: 'Receita do FUNDEB menos o empenhado, no fechamento: 6,39% (2024) e 4,65% (2025), iguais ao declarado na linha 18'
+  evidencia: 'Receita do FUNDEB menos o empenhado, no fechamento: 6,39% (2024) e 4,65% (2025), iguais ao declarado na linha
+    18'
   falta: ''
   trava: testes/test_fiscal.py::test_educacao_e_fundeb_no_banco_real_com_duas_vias_em_cada_ano
 - id: 44
@@ -305,7 +342,8 @@
   bloco: Pisos e tetos
   requisito: Câmara 4,5% (faixa IV)
   situacao: cumprido
-  evidencia: fiscal._medir_camara (bloco 2) mede o art. 29-A com a despesa liquidada da Legislativa (RREO Anexo 2, com intraorçamentárias) sobre a base do ano anterior (RREO Anexo 3), conferidas pela DCA I-E e I-C; out/2026 4,28% de 4,5%, selo verde
+  evidencia: fiscal._medir_camara (bloco 2) mede o art. 29-A com a despesa liquidada da Legislativa (RREO Anexo 2, com intraorçamentárias)
+    sobre a base do ano anterior (RREO Anexo 3), conferidas pela DCA I-E e I-C; out/2026 4,28% de 4,5%, selo verde
   falta: ''
   trava: testes/test_fiscal.py::test_camara_pelo_art_29a_com_duas_vias
 - id: 46
@@ -326,14 +364,18 @@
   bloco: Pisos e tetos
   requisito: Emendas especiais com 70% em capital
   situacao: parcial
-  evidencia: Regra EMENDA-CAPITAL; sem fonte (Transferegov não coletado)
-  falta: Coletar Transferegov
+  evidencia: 'Conferência _emendas em conferencias/federais.py: os 70% em capital (CF, art. 166-A, § 5º) são conferidos plano
+    de ação a plano de ação e no total do ano, pela regra EMENDA-CAPITAL do mapa legal.'
+  falta: Depende dos planos de ação especiais do Transferegov (id 150), cuja API estava fora do ar na sondagem.
+  trava: testes/test_coletores_federais.py::test_emendas_70_por_cento_em_capital_plano_a_plano_e_no_ano
 - id: 49
   bloco: Pisos e tetos
   requisito: Fim de mandato (LRF arts. 21 e 42)
-  situacao: parcial
-  evidencia: Regra FIM-DE-MANDATO-PESSOAL; não medido
-  falta: Medir em 2028
+  situacao: cumprido
+  evidencia: conferencias/mandato.py aplica a LRF, arts. 21 e 42, sobre o banco (caixa por destinação e pessoal nos 180 dias),
+    com limiar zero no mapa legal
+  falta: ''
+  trava: testes/test_conferencias_banco.py::test_fim_de_mandato_sintetico_so_marca_a_destinacao_negativa
 - id: 50
   bloco: Pisos e tetos
   requisito: As 3 regras de cálculo (só liquidado na fonte certa, RP até o caixa, vinculada não conta)
@@ -344,7 +386,8 @@
   bloco: Pisos e tetos
   requisito: Cálculo próprio × declarado (mais de 1% = indício)
   situacao: cumprido
-  evidencia: Cálculo próprio × declarado no IGD, pessoal, dívida, crédito e, desde o bloco 2, saúde, MDE e os dois do FUNDEB (ficha PISO-DIV quando passa de 1%); a Câmara é conferida por duas vias
+  evidencia: Cálculo próprio × declarado no IGD, pessoal, dívida, crédito e, desde o bloco 2, saúde, MDE e os dois do FUNDEB
+    (ficha PISO-DIV quando passa de 1%); a Câmara é conferida por duas vias
   falta: ''
   trava: testes/test_fiscal.py::test_fundeb_abaixo_de_70_no_fim_do_ano_descumpre
 - id: 52
@@ -357,107 +400,129 @@
   bloco: Preço, entrega e prestação
   requisito: Preço × mediana nacional pelo código de catálogo (40% ou p95)
   situacao: cumprido
-  evidencia: 'Rodado no banco em 27/11: 8.543 itens das 2.328 compras (4.777 com código de catálogo) contra 176.057 preços do país em
-    2.504 itens-semestre; 1.850 itens comparados, 411 acima da curva (7 da pasta); 439 serviços por lote e 43 itens de unidade diferente
-    ficam fora, contados na cobertura'
+  evidencia: 'Rodado no banco em 27/11: 8.543 itens das 2.328 compras (4.777 com código de catálogo) contra 176.057 preços
+    do país em 2.504 itens-semestre; 1.850 itens comparados, 411 acima da curva (7 da pasta); 439 serviços por lote e 43 itens
+    de unidade diferente ficam fora, contados na cobertura'
   falta: ''
   trava: testes/test_conferencias_compras.py::test_preco_contra_a_mediana_nacional_na_mesma_unidade
 - id: 54
   bloco: Preço, entrega e prestação
   requisito: Aluguel por m²
-  situacao: ausente
-  evidencia: Nada no código
-  falta: Fonte de imóveis locados
+  situacao: parcial
+  evidencia: Regra ALUGUEL-M2 no mapa legal e conferência dos contratos de locação do banco pelo valor por metro quadrado
+  falta: A área dos imóveis não está nos contratos do PNCP; falta coletar os laudos de avaliação e os termos com a metragem
+  trava: testes/test_conferencias_banco.py::test_aluguel_por_metro_quadrado
 - id: 55
   bloco: Preço, entrega e prestação
   requisito: Liquidado × contratado
   situacao: parcial
-  evidencia: 'Notas fiscais × contrato rodado no banco: os 800 meses dos 32 órgãos lidos no PNCP e nenhuma nota publicada, o que vira
-    alerta de transparência (ENT-NF00, 27 órgãos, 3 da pasta); a liquidação ainda não é lida'
-  falta: Execução real (liquidações)
+  evidencia: Liquidações por fornecedor contra a soma dos contratos publicados no PNCP (o maior entre global, acumulado com
+    aditivos e inicial), tolerância de R$ 0,01.
+  falta: Liquidações reais do portal no banco.
+  trava: testes/test_execucao.py::test_liquidado_acima_do_contratado
 - id: 56
   bloco: Preço, entrega e prestação
   requisito: Medições repetidas
   situacao: parcial
-  evidencia: execucao.py só nos testes
-  falta: Idem
+  evidencia: Três liquidações seguidas iguais ao centavo no mesmo empenho viram achado (limiar justificado em config/limiares_execucao.yml).
+  falta: Liquidações reais do portal no banco.
+  trava: testes/test_execucao.py::test_medicoes_repetidas
 - id: 57
   bloco: Preço, entrega e prestação
   requisito: Pagamento antes da liquidação
   situacao: parcial
-  evidencia: Regra ORDEM-DESPESA; ficha_de_ordem só nos testes
-  falta: Idem
+  evidencia: 'Mesma conferência do 32: pagamento antes da liquidação no percurso de cada empenho, ficha de ordem da despesa.'
+  falta: Execução real do portal no banco.
+  trava: testes/test_execucao.py::test_ordem_violada_pagamento_antes_da_liquidacao
 - id: 58
   bloco: Preço, entrega e prestação
   requisito: Aditivo acima de 25%
   situacao: cumprido
-  evidencia: 'Rodado no banco em 27/11: 2.118 contratos com valor inicial e vigência e os 65 termos aditivos publicados; nenhum acréscimo
-    acima de 25% (ou 50% na reforma)'
+  evidencia: 'Rodado no banco em 27/11: 2.118 contratos com valor inicial e vigência e os 65 termos aditivos publicados; nenhum
+    acréscimo acima de 25% (ou 50% na reforma)'
   falta: ''
   trava: testes/test_conferencias_compras.py::test_aditivo_25_por_cento_e_reforma_50
 - id: 59
   bloco: Preço, entrega e prestação
   requisito: Fracionamento
   situacao: cumprido
-  evidencia: 'Rodado no banco em 27/11: amparo legal lido nas 2.105 dispensas e inexigibilidades; 16 fracionamentos (4 da pasta) e 30
-    dispensas ajustadas ao teto (10 da pasta)'
+  evidencia: 'Rodado no banco em 27/11: amparo legal lido nas 2.105 dispensas e inexigibilidades; 16 fracionamentos (4 da
+    pasta) e 30 dispensas ajustadas ao teto (10 da pasta)'
   falta: ''
   trava: testes/test_conferencias_compras.py::test_fracionamento_soma_o_mesmo_ramo_e_ignora_emergencial
 - id: 60
   bloco: Preço, entrega e prestação
   requisito: Prestação das parcerias (Lei 13.019)
-  situacao: parcial
-  evidencia: fichas_de_prestacao só nos testes; o parecer mostra a prestação ao Conselho, vinda do Cadê o Queijo
-  falta: Ligar parcerias
+  situacao: cumprido
+  evidencia: Prestação de contas de cada parceria (Lei 13.019/2014) em quadro com quatro colunas por termo, e a falta vira
+    pedido de acesso
+  falta: ''
+  trava: testes/test_conferencias_banco.py::test_prestacao_de_cada_parceria
 - id: 61
   bloco: Preço, entrega e prestação
   requisito: Triângulo preço × entrega × prestação na tela
-  situacao: ausente
-  evidencia: 'Seção 5 do parecer vazia: “nenhum evento de execução”'
-  falta: Tela do triângulo
+  situacao: parcial
+  evidencia: Tela Preço e entrega (precos.html) desenha o triângulo preço, entrega e prestação de cada contrato
+  falta: O vértice da prestação fica aguardando enquanto despesa_eventos (motor execucao_goiania) estiver vazia; com eventos,
+    entradas.py os leva à tela sem mudança de código
+  trava: testes/test_telas.py::test_preco_e_entrega_desenha_o_triangulo
 - id: 62
   bloco: Padrões de gasto
   requisito: Série de 3 anos
   situacao: parcial
-  evidencia: fora_da_serie() existe; o banco tem 25 meses
-  falta: Ampliar a coleta para 3 exercícios
+  evidencia: A coleta aceita início em 2019 (alvos/goiania.toml, primeiro_exercicio) e a rodada serie (onisciente-agenda-serie.yml,
+    dia 10) estende o banco 12 meses para trás a cada execução, somando sem refazer.
+  falta: 'Os dados de 2019 a 2024 ainda não foram coletados: depende das execuções da rodada serie no GitHub (sem rede aqui).'
+  trava: testes/test_agenda.py::test_serie_estende_para_tras_ate_2019
 - id: 63
   bloco: Padrões de gasto
   requisito: Concentração de 80%
   situacao: parcial
-  evidencia: 'Rodado sobre os 2.118 contratos do banco: 11 órgãos com 80% em poucos fornecedores; sobre pagamentos ainda não, porque
-    a execução não é lida'
-  falta: Rodar sobre pagamentos (execução)
+  evidencia: 'Concentração do pago por órgão e exercício: até 5 credores com 80% do pago, a partir de 5 credores, e credor
+    único com 40% ou mais (config/limiares_execucao.yml, endurecidos sobre o mapa legal).'
+  falta: Pagamentos reais do portal no banco.
+  trava: testes/test_execucao.py::test_concentracao_e_credor_unico
 - id: 64
   bloco: Padrões de gasto
   requisito: Credor recorrente sem contrato
   situacao: parcial
-  evidencia: recorrentes_sem_contrato só nos testes
-  falta: Idem
+  evidencia: Credor pago em dois meses distintos sem contrato no PNCP vira achado; ficam fora pessoal, dívida, benefícios
+    e transferências (elementos listados com a base no yml) e documentos mascarados (contados na cobertura).
+  falta: Pagamentos reais do portal no banco.
+  trava: testes/test_execucao.py::test_credor_recorrente_sem_contrato
 - id: 65
   bloco: Padrões de gasto
   requisito: Ação genérica
-  situacao: ausente
-  evidencia: Nada no código
-  falta: Regra e conferência
+  situacao: cumprido
+  evidencia: Regra ACAO-GENERICA aplicada em duas vias (RREO e matriz de saldos), com ficha quando a ação genérica passa do
+    limiar
+  falta: ''
+  trava: testes/test_conferencias_banco.py::test_acao_generica_em_duas_vias
 - id: 66
   bloco: Padrões de gasto
   requisito: Empenhos de fim de ano
   situacao: parcial
-  evidencia: empenhos_no_fim_do_ano só nos testes
-  falta: Idem
+  evidencia: 'Medido no banco real pela matriz de saldos contábeis: dezembro de cada função contra 1,5 vez a média do mês,
+    só exercícios completos (2025: nenhuma função acima de 12,5%). No item a item, empenhos dos últimos 15 dias de dezembro
+    acima de 1,5 vez a parcela uniforme, testado com fixture.'
+  falta: O corte de 15 dias por órgão precisa das datas dos empenhos do portal (motor execucao_goiania).
+  trava: testes/test_execucao.py::test_fim_de_ano_medido_na_matriz_real
 - id: 67
   bloco: Padrões de gasto
   requisito: Restos a pagar nunca liquidados
-  situacao: ausente
-  evidencia: Nada no código
-  falta: RREO Anexo 7 já está no banco
+  situacao: cumprido
+  evidencia: 'conferencias/restos.py: restos a pagar cancelados sem liquidar e parados por exercício de inscrição, com saldo
+    por ano reconstruído da matriz'
+  falta: ''
+  trava: testes/test_conferencias_banco.py::test_restos_cancelados_sem_liquidar_e_parados
 - id: 68
   bloco: Padrões de gasto
   requisito: Custo fixo mudando sem aditivo
-  situacao: parcial
-  evidencia: Só a ideia geral de fora_da_serie
-  falta: Conferência própria
+  situacao: cumprido
+  evidencia: 'conferencias/custo_fixo.py: pagamento mensal que não fecha com o valor do termo e sem aditivo publicado vira
+    ficha (limiar de um real)'
+  falta: ''
+  trava: testes/test_conferencias_banco.py::test_custo_fixo_que_nao_fecha_com_o_termo
 - id: 69
   bloco: Indícios e fichas
   requisito: Famílias RIO, PISO, ORC, VIN, PRC, ENT, PCT (+ PES, CTA, SIS)
@@ -467,9 +532,11 @@
 - id: 70
   bloco: Indícios e fichas
   requisito: Ficha em 7 partes
-  situacao: parcial
-  evidencia: Falta a parte “caso semelhante” (Mato não ligado)
-  falta: Ligar a trilha do Mato
+  situacao: cumprido
+  evidencia: A ficha emitida pelas conferências tem as sete partes; a parte do caso semelhante vem do Mato, marcada como inspiração
+    e não fundamento
+  falta: ''
+  trava: testes/test_conferencias_banco.py::test_mato_da_caso_semelhante_que_inspira_e_nao_fundamenta
 - id: 71
   bloco: Indícios e fichas
   requisito: Verificação decidida pelas travas
@@ -479,15 +546,19 @@
 - id: 72
   bloco: Indícios e fichas
   requisito: Fichas geradas pelo próprio Onisciente
-  situacao: parcial
-  evidencia: As 36 fichas vêm do Cadê o Queijo; o Onisciente só acrescenta IGD e fontes paradas
-  falta: Fichas das conferências novas
+  situacao: cumprido
+  evidencia: As conferências do banco, as federais (D1) e as de empresas (F) geram fichas do próprio Onisciente, juntadas
+    sem repetição em Panorama.completar e contadas no parecer
+  falta: ''
+  trava: testes/test_conferencias_banco.py::test_parecer_com_quadros_oficios_custodia_e_secao_externa
 - id: 73
   bloco: Indícios e fichas
   requisito: Filtros de fichas na tela
-  situacao: ausente
-  evidencia: Parecer em lista corrida
-  falta: Tela Indícios
+  situacao: cumprido
+  evidencia: Tela Indícios (indicios.html) filtra as fichas por família, gravidade, tema, estação, texto e período, pela tela
+    e pela URL
+  falta: ''
+  trava: testes/test_telas.py::test_filtros_dos_indicios
 - id: 74
   bloco: Indícios e fichas
   requisito: Nunca imputa crime
@@ -525,16 +596,19 @@
   bloco: Ausências e integridade
   requisito: Tempestividade
   situacao: parcial
-  evidencia: Edições do Diário ÷ dias úteis, conferidas contra o índice do SILEG; quando as leituras divergem, fica "não medida"
-    e não pesa contra o Município
-  falta: Contar os dias pelo SILEG no coletor e medir o prazo legal de cada documento
-  trava: testes/test_fiscal.py::test_leituras_do_diario_que_divergem_nao_pesam_contra_o_municipio
+  evidencia: 'onisciente/tempo.py mede cada RREO, RGF, DCA, MSC e SIOPS contra o prazo legal (no banco real: 31 no prazo,
+    15 atrasados, 31 não medidos por reenvio em lote). O motor sileg grava os dias com edição do Diário em diario_oficial_dias.'
+  falta: A tabela diario_oficial_dias só se enche na primeira rodada diária com rede; a contagem de dias de publicação por
+    mês depende dela. As regras PRAZO-<DOC> em regras/mapa_legal.yml são da Frente C.
+  trava: testes/test_agenda.py::test_tempestividade_medida_no_banco_real
 - id: 80
   bloco: Ausências e integridade
   requisito: Vínculo e prestação
-  situacao: parcial
-  evidencia: Vínculo por entidade (4,27); prestação 0 ou 1
-  falta: Medida fina
+  situacao: cumprido
+  evidencia: 'Vínculo e prestação medidos por parceria: a prestação do índice de integridade é a fração das parcerias com
+    prestação individualizada publicada e sem saldo por devolver, com o motivo contando parceria a parceria'
+  falta: ''
+  trava: testes/test_conferencias_banco.py::test_prestacao_entra_no_indice_parceria_a_parceria
 - id: 81
   bloco: Ausências e integridade
   requisito: Nota abaixo de 50 gera pedido
@@ -550,22 +624,29 @@
 - id: 83
   bloco: Ausências e integridade
   requisito: Integridade por secretaria
-  situacao: ausente
-  evidencia: Só Assistência
-  falta: Domínios
+  situacao: parcial
+  evidencia: 'IndiceIntegridade por secretaria (secretarias.integridade_da_secretaria): coerência medida (RREO Anexo 2 contra
+    matriz, 12 de 12 valores iguais em cada pasta em 2026) e tempestividade medida (matriz mensal e RREO no prazo pela data
+    da versão em vigor no SICONFI); cobertura e vínculo saem da trilha item a item da pasta quando há; prestação sem medida,
+    com motivo.'
+  falta: Cobertura e vínculo dependem da coleta do portal; a prestação de contas das parcerias por pasta ainda não é lida.
+    A tempestividade usa a data da versão em vigor, então uma retificação conta como entrega tardia.
+  trava: testes/test_dominios.py::test_integridade_por_secretaria
 - id: 84
   bloco: Mapa legal
   requisito: 9 áreas do direito
-  situacao: parcial
-  evidencia: 'Áreas no mapa: fiscal, trabalho, tributária, informação, parcerias, improbidade, controle externo, qualidade,
-    Goiânia; licitações e penal não aparecem como área'
-  falta: Completar as áreas
+  situacao: cumprido
+  evidencia: regras/mapa_legal.yml com as nove áreas do direito, cada uma com regra e norma, e problemas() vazio
+  falta: ''
+  trava: testes/test_regras_mapa.py::test_mapa_sem_problemas_e_com_as_nove_areas
 - id: 85
   bloco: Mapa legal
   requisito: Régua completa
-  situacao: parcial
-  evidencia: 21 regras; faltam quinquênio, piso do magistério, jeton, FGTS, aluguel, ação genérica, RP
-  falta: Regras novas
+  situacao: cumprido
+  evidencia: Todo limiar novo do mapa legal tem valor, justificativa e base do limiar, no ponto mais restritivo que a lei
+    e os dados sustentam
+  falta: ''
+  trava: testes/test_regras_mapa.py::test_cada_limiar_novo_tem_valor_justificativa_e_base
 - id: 86
   bloco: Mapa legal
   requisito: Folha até o dia 5
@@ -575,27 +656,34 @@
 - id: 87
   bloco: Mapa legal
   requisito: Lei Orgânica art. 28 (quinquênio)
-  situacao: ausente
-  evidencia: Sem regra
-  falta: Regra e conferência
+  situacao: parcial
+  evidencia: Regra QUINQUENIO e quadro da Lei Orgânica de Goiânia (art. 28) no parecer; a falta das tabelas vira pedido à
+    secretaria que guarda a folha
+  falta: O texto da Lei Orgânica e as folhas por servidor não estão no banco; falta coletá-los
+  trava: testes/test_conferencias_banco.py::test_lei_organica_quinquenio_e_controle_interno
 - id: 88
   bloco: Mapa legal
   requisito: Lei Orgânica art. 29 (servidor não dirige contratada)
-  situacao: ausente
-  evidencia: Sem regra; o cruzamento do Rato existe no Cadê o Queijo
-  falta: Ligar Rato × servidores
+  situacao: cumprido
+  evidencia: Regra SERVIDOR-CONTRATADA (Lei Orgânica, art. 29) no mapa legal, com limiar zero; o cruzamento sócio e servidor
+    é da Frente F
+  falta: ''
+  trava: testes/test_regras_mapa.py::test_servidor_em_contratada_fica_so_como_regra
 - id: 89
   bloco: Mapa legal
   requisito: Prazos das contas (45 dias, 60/60/75, 60 dias)
   situacao: parcial
-  evidencia: contas.py com os prazos, só nos testes
-  falta: Dados das contas
+  evidencia: 'contas.py: prazos dos demonstrativos e das contas (45 dias, 60/60/75, 60 dias); RGF homologado depois do prazo
+    vira ficha CTA'
+  falta: As datas de entrega das contas ao TCM não estão no banco; estado/contas_tcm.json está vazio à espera do registro
+  trava: testes/test_conferencias_banco.py::test_prazo_do_rgf_homologado_depois_vira_ficha_cta
 - id: 90
   bloco: Mapa legal
   requisito: Lei Orgânica art. 104
-  situacao: ausente
-  evidencia: Sem regra
-  falta: Regra
+  situacao: parcial
+  evidencia: Quadro da Lei Orgânica (art. 104, controle interno) e pedido à Controladoria quando o relatório não está publicado
+  falta: O relatório do controle interno e as comunicações do art. 104 não estão no banco; falta coletá-los
+  trava: testes/test_conferencias_banco.py::test_lei_organica_quinquenio_e_controle_interno
 - id: 91
   bloco: Mapa legal
   requisito: Área penal só aponta, nunca imputa
@@ -617,33 +705,43 @@
 - id: 94
   bloco: Leis e legislação de Goiânia
   requisito: Atualização semanal
-  situacao: parcial
-  evidencia: Roda por mês (dia 1º)
-  falta: Agenda semanal
+  situacao: cumprido
+  evidencia: 'Rodada leis (onisciente-agenda-leis.yml, toda segunda) roda o motor normas: ctresb/leis mais as normas municipais
+    do mapa legal no Sileg.'
+  falta: ''
+  trava: testes/test_agenda.py::test_agenda_cobre_os_motores_e_as_fontes_pedidas
 - id: 95
   bloco: Leis e legislação de Goiânia
   requisito: leis-mcp
-  situacao: ausente
-  evidencia: Não usado
-  falta: Avaliar se ainda é preciso
+  situacao: cumprido
+  evidencia: 'Decisão registrada em docs/onisciente/decisoes.md: o leis-mcp não é preciso; o motor normas lê o ctresb/leis
+    direto e o Sileg.'
+  falta: ''
+  trava: testes/test_leis.py::test_leis_vem_do_ctresb_e_do_sileg_sem_leis_mcp
 - id: 96
   bloco: Leis e legislação de Goiânia
   requisito: Leis de Goiânia pelo Sileg
   situacao: parcial
-  evidencia: Padrão de endereço no mapa; 504 atos do Diário indexados; só a Lei Orgânica entrou como norma
-  falta: Baixar as normas municipais
+  evidencia: Coletor onisciente/coletores/leis.py baixa cada norma municipal do mapa (47 endereços, 32 normas) para a tabela
+    normas_municipais, com sha256, formato e aviso de revogação.
+  falta: O download real do Sileg só acontece na primeira rodada leis com rede; o banco ainda tem normas_municipais com ok=0.
+  trava: testes/test_leis.py::test_normas_municipais_da_lista_sao_baixadas_do_sileg
 - id: 97
   bloco: Leis e legislação de Goiânia
   requisito: Normas municipais da lista (PPA, LDO, LOA, Estatuto, LC 335, previdência, Lei 9.262)
   situacao: parcial
-  evidencia: 70 normas no mapa, 65 localizadas; 5 não localizadas
-  falta: Buscar as 5
+  evidencia: PPA, LDO, LOA, Estatuto (LC 11/1992), LC 335, previdência (LC 312 e 336) e Lei 9.262 estão na lista baixada do
+    Sileg pelo motor normas.
+  falta: 'Textos reais ainda não baixados: depende da primeira rodada leis com rede.'
+  trava: testes/test_leis.py::test_normas_municipais_da_lista_sao_baixadas_do_sileg
 - id: 98
   bloco: Leis e legislação de Goiânia
   requisito: Norma não localizada vira ofício
-  situacao: parcial
-  evidencia: mapa.nao_localizadas() existe; os ofícios não as citam
-  falta: Incluir no ofício
+  situacao: cumprido
+  evidencia: onisciente/legal/normas.py transforma cada norma não localizada (e cada alvo que a procura no índice do Sileg
+    não achou, e cada endereço oficial fora do ar) em item de ofício à CGM; a rodada leis grava relatorios/onisciente/oficio_normas.txt.
+  falta: ''
+  trava: testes/test_leis.py::test_norma_nao_localizada_vira_item_de_oficio_sem_banco
 - id: 99
   bloco: Leis e legislação de Goiânia
   requisito: Extração só do texto, com link e hash
@@ -653,57 +751,78 @@
 - id: 100
   bloco: Contas fiscalizadas
   requisito: Contas de governo e de gestão de cada fundo, autarquia e estatal
-  situacao: parcial
-  evidencia: contas.py; só nos testes
-  falta: Cadastro das unidades e seus balanços
+  situacao: cumprido
+  evidencia: 'conferencias/contas_unidades.py: cadastro das contas de governo e de gestão de cada fundo, autarquia e estatal,
+    com a conferência possível, parcial ou impossível'
+  falta: ''
+  trava: testes/test_conferencias_banco.py::test_cadastro_de_contas_de_governo_e_de_gestao
 - id: 101
   bloco: Contas fiscalizadas
   requisito: Prazos da Lei Orgânica
   situacao: parcial
-  evidencia: contas.avaliar(); só nos testes
-  falta: Idem
+  evidencia: Prazos da Lei Orgânica aplicados quando o registro do Tribunal existe (estado/contas_tcm.json)
+  falta: O registro das datas do TCM está vazio; falta coletar ou registrar as datas de entrega
+  trava: testes/test_conferencias_banco.py::test_registro_do_tribunal_vira_ficha_de_prazo_da_lei_organica
 - id: 102
   bloco: Contas fiscalizadas
   requisito: Conferência possível / parcial / impossível
-  situacao: parcial
-  evidencia: Idem
-  falta: Idem
+  situacao: cumprido
+  evidencia: contas.conferencia_possivel classifica cada unidade em possível, parcial ou impossível
+  falta: ''
+  trava: testes/test_conferencias_banco.py::test_conferencia_possivel_parcial_ou_impossivel
 - id: 103
   bloco: Contas fiscalizadas
   requisito: Filtro global de período
-  situacao: ausente
-  evidencia: Sem tela
-  falta: Tela Contas
+  situacao: cumprido
+  evidencia: Seletor global de período no topo de todas as telas, guardado na URL (?c=) e no navegador, recortando números,
+    fichas e contadores
+  falta: ''
+  trava: testes/test_telas.py::test_seletores_de_periodo_e_secretaria_recortam_as_telas
 - id: 104
   bloco: Contas fiscalizadas
   requisito: Família CTA no parecer
-  situacao: ausente
-  evidencia: Nenhuma ficha CTA emitida
-  falta: Ligar contas.fichas()
+  situacao: cumprido
+  evidencia: Família CTA na seção 6 do parecer, com a contagem das fichas confirmadas e link para cada uma
+  falta: ''
+  trava: testes/test_conferencias_banco.py::test_familia_cta_no_parecer
 - id: 105
   bloco: Secretarias
   requisito: Autorizado, empenhado, liquidado e pago por secretaria
-  situacao: ausente
-  evidencia: Nada publicado
-  falta: Execução por órgão (RREO ou portal)
+  situacao: cumprido
+  evidencia: 'Autorizado, empenhado e liquidado de cada secretaria em duas vias (RREO Anexo 2 por função e subfunção e matriz
+    de saldos contábeis), iguais ao real em 2025 b3, 2025 b6 e 2026 b4 nas seis pastas (selo verde); pago pela matriz (selo
+    azul, o Anexo 2 não traz pago), aberto por fonte. A matriz não tem órgão: a secretaria é o recorte funcional do toml do
+    domínio.'
+  falta: ''
+  trava: testes/test_dominios.py::test_execucao_por_secretaria_rreo_igual_a_matriz
 - id: 106
   bloco: Secretarias
   requisito: Indicador de qualidade dos planos municipais
   situacao: parcial
-  evidencia: Indicadores listados em dominios/saude.toml e educacao.toml, ambos inativos
-  falta: Ativar
+  evidencia: 'Qualidade do plano de cada pasta no último exercício fechado: aderência (1 menos a parte da dotação inicial
+    refeita por créditos) e execução (liquidado sobre autorizado), nota de 0 a 100; o plano, a norma, o indicador setorial
+    e a fonte ficam no [qualidade] de cada dominios/*.toml.'
+  falta: O indicador de resultado de cada plano (cobertura da atenção primária no e-Gestor, IDEB etc.) depende de coletas
+    que ainda não rodam.
+  trava: testes/test_dominios.py::test_qualidade_do_plano_por_secretaria
 - id: 107
   bloco: Secretarias
   requisito: Benefícios dos gestores (subsídio × teto, diárias, veículos, suprimento, gabinete)
-  situacao: ausente
-  evidencia: Nada no código
-  falta: Coleta própria
+  situacao: cumprido
+  evidencia: Quadro dos benefícios dos gestores (diárias, passagens, veículos, suprimento, gabinete) pela matriz de saldos,
+    com o que não está publicado em roxo
+  falta: ''
+  trava: testes/test_conferencias_banco.py::test_beneficios_dos_gestores
 - id: 108
   bloco: Secretarias
   requisito: Saúde, Educação, Infraestrutura, Comurg, Assistência, Administração
-  situacao: parcial
-  evidencia: Só Assistência ativa; Saúde e Educação inativas; as outras 3 não existem
-  falta: Criar e ativar domínios
+  situacao: cumprido
+  evidencia: 'Saúde, Educação, Infraestrutura, Comurg, Assistência e Administração ativas em alvos/goiania.toml e dominios/*.toml,
+    com recorte por função e subfunção validado. O teste antigo testes/test_regua.py::test_alvo_e_dominios foi atualizado
+    por decisão do coordenador (27/11/2026), num commit separado, porque o requisito pede os domínios ativos: ele agora exige
+    o conjunto novo, ordenado e completo.'
+  falta: ''
+  trava: testes/test_dominios.py::test_seis_secretarias_ativas_com_recorte_valido
 - id: 109
   bloco: Secretarias
   requisito: Arquivo de domínio por secretaria, trocável
@@ -714,80 +833,96 @@
   bloco: Pessoal (família PES)
   requisito: Revisão geral anual
   situacao: parcial
-  evidencia: devidos.py só nos testes
-  falta: Folhas publicadas
+  evidencia: Regra REVISAO-GERAL-ANUAL; ficha PES-REVISAO indiciária e pedido das tabelas de vencimento
+  falta: O IPCA e as tabelas de vencimento não estão no banco; falta coletá-los para confirmar
+  trava: testes/test_conferencias_banco.py::test_revisao_geral_fica_indiciaria_e_pede_as_tabelas
 - id: 111
   bloco: Pessoal (família PES)
   requisito: Piso do magistério
-  situacao: ausente
-  evidencia: Sem regra nem código
-  falta: Regra e dado
+  situacao: parcial
+  evidencia: Regra PISO-MAGISTERIO e pedido da folha do magistério ao órgão que a guarda
+  falta: A folha por servidor não está no banco; falta coletá-la
+  trava: testes/test_conferencias_banco.py::test_cada_regra_da_folha_vira_pedido_ao_orgao_que_tem_a_folha
 - id: 112
   bloco: Pessoal (família PES)
   requisito: Quinquênio
-  situacao: ausente
-  evidencia: Sem regra
-  falta: Idem
+  situacao: parcial
+  evidencia: Regra QUINQUENIO (tolerância zero) e pedido da folha
+  falta: A folha por servidor não está no banco; falta coletá-la
+  trava: testes/test_conferencias_banco.py::test_cada_regra_da_folha_vira_pedido_ao_orgao_que_tem_a_folha
 - id: 113
   bloco: Pessoal (família PES)
   requisito: Jeton
-  situacao: ausente
-  evidencia: Nada
-  falta: Idem
+  situacao: parcial
+  evidencia: Regra JETON e pedido dos jetons pagos
+  falta: Os pagamentos de jeton por conselheiro não estão no banco; falta coletá-los
+  trava: testes/test_conferencias_banco.py::test_cada_regra_da_folha_vira_pedido_ao_orgao_que_tem_a_folha
 - id: 114
   bloco: Pessoal (família PES)
   requisito: Aposentadorias
-  situacao: ausente
-  evidencia: Nada
-  falta: Idem
+  situacao: cumprido
+  evidencia: Aposentadorias em duas vias (RREO e matriz de saldos) com a queda acima do limiar marcada
+  falta: ''
+  trava: testes/test_conferencias_banco.py::test_aposentadorias_duas_vias_e_queda
 - id: 115
   bloco: Pessoal (família PES)
   requisito: Repasse da previdência até o dia 20
-  situacao: parcial
-  evidencia: Regra PREVIDENCIA-DIA-20; devidos.py só nos testes
-  falta: Dado
+  situacao: cumprido
+  evidencia: Regra PREVIDENCIA-DIA-20 aplicada aos repasses ao regime próprio do banco, e a data que falta vira pedido
+  falta: ''
+  trava: testes/test_conferencias_banco.py::test_pessoal_atrasos_e_valor_devido
 - id: 116
   bloco: Pessoal (família PES)
   requisito: FGTS
-  situacao: ausente
-  evidencia: Nada
-  falta: Idem
+  situacao: cumprido
+  evidencia: Regra FGTS-DIA-20 aplicada aos recolhimentos do banco, e a data que falta vira pedido
+  falta: ''
+  trava: testes/test_conferencias_banco.py::test_pessoal_atrasos_e_valor_devido
 - id: 117
   bloco: Pessoal (família PES)
   requisito: Folha paga depois do dia 5
   situacao: parcial
-  evidencia: Regra FOLHA-DIA-5; só nos testes
-  falta: Dado
+  evidencia: Regra FOLHA-DIA-5 (saldo tolerado de um real) e pedido da data de crédito
+  falta: A data de crédito da folha não está no banco; falta coletá-la
+  trava: testes/test_conferencias_banco.py::test_cada_regra_da_folha_vira_pedido_ao_orgao_que_tem_a_folha
 - id: 118
   bloco: Pessoal (família PES)
   requisito: Valor devido estimado pelas folhas publicadas
-  situacao: ausente
-  evidencia: Nada
-  falta: Coleta das folhas
+  situacao: cumprido
+  evidencia: Valor devido estimado pelas folhas publicadas na matriz de saldos, com a folha por competência pedida quando
+    falta
+  falta: ''
+  trava: testes/test_conferencias_banco.py::test_pessoal_atrasos_e_valor_devido
 - id: 119
   bloco: Máquina do tempo
   requisito: De 2019 até o fim do PPA
   situacao: parcial
-  evidencia: Alvo diz 2019 a 2029; o banco começa em 2024-11
-  falta: Coletar desde 2019
+  evidencia: 'Série de três anos ou mais: a rodada serie estende o banco até 2019, uma janela de 12 meses por mês.'
+  falta: Depende das execuções da rodada serie no GitHub (ou de disparos manuais) até chegar em 2019.
+  trava: testes/test_agenda.py::test_serie_estende_para_tras_ate_2019
 - id: 120
   bloco: Máquina do tempo
   requisito: Projeção pela média de 3 anos
   situacao: parcial
-  evidencia: tempo.projetar() só nos testes
-  falta: Ligar
+  evidencia: 'conferencias/serie.py: série do previsto e do pago (RREO) de 2024 e 2025, projeção marcada como provisória'
+  falta: A média de três anos pede o RREO de 2023, que não está no banco; falta coletá-lo
+  trava: testes/test_conferencias_banco.py::test_serie_do_previsto_e_do_pago_com_projecao_marcada
 - id: 121
   bloco: Máquina do tempo
   requisito: Gráfico real × projetado
-  situacao: ausente
-  evidencia: Sem tela
-  falta: Tela
+  situacao: parcial
+  evidencia: Tela Máquina do tempo (tempo.html) desenha o real mês a mês e diz quantos exercícios fechados há no banco
+  falta: A projeção pede ao menos 3 exercícios fechados e o banco tem 2 (2024 e 2025); falta coletar a matriz de 2023 (historico
+    --desde 2023-01 --ate 2024-10 --motores siconfi --somar)
+  trava: testes/test_telas.py::test_pagina_de_contas_e_tempo_com_prazo_e_falta_da_serie
 - id: 122
   bloco: Máquina do tempo
   requisito: Fogo de domingo compara com a série
   situacao: parcial
-  evidencia: Avaliação dominical existe, sem série de 3 anos
-  falta: Série
+  evidencia: A agenda garante a série no banco (rodada serie).
+  falta: A comparação da série no parecer é da Frente C ou do parecer; aqui só a coleta. Os dados anteriores a 2024-11 ainda
+    não estão no banco.
+  trava: testes/test_agenda.py::test_serie_estende_para_tras_ate_2019
 - id: 123
   bloco: Ofícios e escada
   requisito: Ofício LAI com 2 pedidos e aviso do art. 32
@@ -797,33 +932,41 @@
 - id: 124
   bloco: Ofícios e escada
   requisito: Publicação na transparência ativa e envio por e-mail
-  situacao: ausente
-  evidencia: Só arquivos de texto; nada é publicado nem enviado (o envio dependeria do seu sim)
-  falta: Página pública dos ofícios
+  situacao: cumprido
+  evidencia: onisciente/oficios.py publica docs/onisciente/oficios/ com um ofício por órgão e por competência, texto inteiro
+    e link de e-mail; o índice dos pareceres liga a página
+  falta: ''
+  trava: testes/test_conferencias_banco.py::test_pagina_publica_dos_oficios
 - id: 125
   bloco: Ofícios e escada
   requisito: Prazo acompanhado
   situacao: parcial
-  evidencia: lai.vencimento() sem pedidos reais registrados
-  falta: Registro dos protocolos
+  evidencia: lai.acompanhar calcula o prazo de cada protocolo registrado em estado/protocolos_lai.json e a página dos ofícios
+    mostra a situação
+  falta: Nenhum protocolo registrado ainda; o registro depende de quem protocola
+  trava: testes/test_conferencias_banco.py::test_registro_dos_protocolos_e_recurso_pronto
 - id: 126
   bloco: Ofícios e escada
   requisito: Recurso pré-redigido
-  situacao: ausente
-  evidencia: lai.py só guarda a data do recurso
-  falta: Texto do recurso
+  situacao: cumprido
+  evidencia: lai.texto_recurso redige o recurso de cada degrau, mostrado pronto na página dos ofícios
+  falta: ''
+  trava: testes/test_conferencias_banco.py::test_registro_dos_protocolos_e_recurso_pronto
 - id: 127
   bloco: Ofícios e escada
   requisito: Escada de 7 degraus
-  situacao: parcial
-  evidencia: lai.ESCADA e proximo_passo(); sem uso real
-  falta: Idem
+  situacao: cumprido
+  evidencia: A escada de sete degraus (lai.ESCADA) acompanhada protocolo a protocolo e mostrada no parecer
+  falta: ''
+  trava: testes/test_conferencias_banco.py::test_registro_dos_protocolos_e_recurso_pronto
 - id: 128
   bloco: Ofícios e escada
   requisito: Ofício para o órgão competente de cada dado
-  situacao: parcial
-  evidencia: Todos para a CGM
-  falta: Órgão por documento
+  situacao: cumprido
+  evidencia: lai.orgao_competente leva cada documento ao órgão que o guarda, com cópia à Controladoria; para a União o fundamento
+    é a Lei 12.527/2011 e para o Estado a Lei 12.527/2011 e a Lei estadual 18.025/2013, registrada no mapa legal
+  falta: ''
+  trava: testes/test_regras_mapa.py::test_lei_estadual_de_acesso_no_mapa_e_no_oficio_ao_estado
 - id: 129
   bloco: Parecer
   requisito: Em uma frase
@@ -833,36 +976,45 @@
 - id: 130
   bloco: Parecer
   requisito: O rio
-  situacao: parcial
-  evidencia: Só previsto da Assistência
-  falta: Realizado e município
+  situacao: cumprido
+  evidencia: 'No parecer de cada pasta o rio é o realizado (o pago no exercício aberto por fonte, pela matriz) e o Município
+    inteiro vem junto (Fiscal.rio: receita realizada, margens e conferências); o cabeçalho da tabela de entradas passa a dizer
+    Pago no exercício.'
+  falta: ''
+  trava: testes/test_dominios.py::test_parecer_por_secretaria_no_banco
 - id: 131
   bloco: Parecer
   requisito: Pisos e tetos
   situacao: cumprido
-  evidencia: O parecer mensal traz IGD, pessoal, dívida, crédito, Câmara, saúde, MDE e FUNDEB com medidor, memória de cálculo, fonte e duas vias (pareceres de 2026 refeitos com o banco real)
+  evidencia: O parecer mensal traz IGD, pessoal, dívida, crédito, Câmara, saúde, MDE e FUNDEB com medidor, memória de cálculo,
+    fonte e duas vias (pareceres de 2026 refeitos com o banco real)
   falta: ''
   trava: testes/test_fiscal.py::test_parecer_traz_o_municipio_e_as_duas_vias
 - id: 132
   bloco: Parecer
   requisito: Contas uma a uma (9 maiores saídas, 4 estações, cronologia)
   situacao: parcial
-  evidencia: Só as entradas
-  falta: Execução
+  evidencia: 'Contas uma a uma de cada pasta: as nove maiores saídas com as quatro estações legais e a cronologia, item a
+    item pelo portal quando há (contas_item_a_item) e pela matriz por natureza da despesa sempre (contas_pela_matriz); o bloco
+    entra no parecer no lugar do aviso da seção 4.'
+  falta: Credor, ordem de pagamento e data de cada evento dependem do portal; a Frente C precisa pôr a seção no parecer/html.py
+    (hoje inserida por onisciente/rio/parecer_dominio.py).
+  trava: testes/test_dominios.py::test_contas_uma_a_uma_nove_maiores_com_quatro_estacoes
 - id: 133
   bloco: Parecer
   requisito: Preço e entrega
   situacao: cumprido
-  evidencia: 'Seção 5 de todos os pareceres de 2026 com a tabela das conferências da pasta, os órgãos do Município, a base lida e as
-    fichas PRC e ENT (out/2026: 3 alertas de notas fiscais não publicadas e 1 preço fora da curva)'
+  evidencia: 'Seção 5 de todos os pareceres de 2026 com a tabela das conferências da pasta, os órgãos do Município, a base
+    lida e as fichas PRC e ENT (out/2026: 3 alertas de notas fiscais não publicadas e 1 preço fora da curva)'
   falta: ''
   trava: testes/test_conferencias_compras.py::test_secao_preco_e_entrega_do_parecer_mostra_as_conferencias_e_a_base
 - id: 134
   bloco: Parecer
   requisito: Prestação
-  situacao: parcial
-  evidencia: Itens do Cadê o Queijo
-  falta: Parcerias
+  situacao: cumprido
+  evidencia: Estação Prestação aplicada por parceria (conferencias/prestacao.py), com a ausência ao órgão
+  falta: ''
+  trava: testes/test_conferencias_banco.py::test_prestacao_de_cada_parceria
 - id: 135
   bloco: Parecer
   requisito: Fichas
@@ -878,33 +1030,50 @@
 - id: 137
   bloco: Parecer
   requisito: Custódia
-  situacao: parcial
-  evidencia: Sem original na competência
-  falta: Originais
+  situacao: cumprido
+  evidencia: Seção 9 do parecer com os originais das coletas do banco histórico (motor, endereço, impressão digital) e os
+    problemas de cobertura das fontes federais em vermelho
+  falta: ''
+  trava: testes/test_conferencias_banco.py::test_custodia_dos_originais_do_banco
 - id: 138
   bloco: Parecer
   requisito: Parecer além da Assistência
-  situacao: ausente
-  evidencia: Só Assistência
-  falta: Domínios
+  situacao: cumprido
+  evidencia: onisciente/rio/parecer_dominio.gerar_todos gera um parecer por secretaria ativa (seis em Goiânia), com rio realizado,
+    margens, integridade, pisos do domínio, fichas da pasta e a execução, pelo mesmo gerador de parecer.
+  falta: ''
+  trava: testes/test_dominios.py::test_parecer_por_secretaria_no_banco
 - id: 139
   bloco: Fontes e cadência
   requisito: LOA e QDD (mensal)
   situacao: parcial
-  evidencia: LOA por fonte usada; QDD 2026 ausente
-  falta: Coletar o QDD de 2026
+  evidencia: O QDD 2026 está em onisciente/legal/procuras.yml e é procurado toda semana no índice do Sileg (Diário Oficial);
+    se não for achado, vira item de ofício.
+  falta: A procura real no índice do Sileg depende da primeira rodada leis com rede.
+  trava: testes/test_leis.py::test_norma_nao_localizada_e_procurada_no_indice_do_sileg
 - id: 140
   bloco: Fontes e cadência
   requisito: Diário Oficial (diário)
   situacao: parcial
-  evidencia: Querido Diário 0 de 50 (falha de TLS); Sileg 50 de 50
-  falta: Corrigir o Querido Diário
+  evidencia: motor_querido_diario tenta a via nova (queridodiario.ok.org.br/api/gazettes) e cai para a antiga só se a nova
+    não responder, gravando qd_via no meta; a sonda do fluxo testa as duas.
+  falta: 'A via nova não foi lida de verdade (sem rede aqui): conferir qd_via no meta após a primeira rodada diária.'
+  trava: testes/test_agenda.py::test_querido_diario_troca_para_a_via_que_responde
 - id: 141
   bloco: Fontes e cadência
   requisito: Portal da Transparência (diário)
   situacao: parcial
-  evidencia: Só checagem de endereço
-  falta: Ler despesas
+  evidencia: 'Coletor ajustado à página real Portal_Despesas.aspx lida pela sondagem (OutSystems): os nomes reais dos campos
+    (cboMes com __ossli_MM, cboAno, cboOrgao, NmFavorecido, NrEmpenho), o botão Buscar (wt86), a tabela de uma linha por empenho
+    (Beneficiário, Nr. Empenho, Data, Orgão, Natureza Despesa e os três valores), o contador, a tabela de totais e o next
+    da paginação; os popups LiquidacaoPopUp e PagamentoPopUp lidos com dados, cuja soma bate com a linha (empenho 20261101002310011:
+    1.170.877,06 liquidados depois de uma liquidação anulada e pagos em duas ordens); motor mensal que regrava por empenho
+    sem duplicar e não repede popup já gravado; o leitor ignora scripts e texto oculto nas células. Testado com recortes reais
+    em testes/dados/transweb/.'
+  falta: 'O envio do Buscar e da paginação por OsAjax (lido só no _osjs.js) e os valores do EmpenhoPopUp (a sondagem pediu
+    com &amp; e o popup veio vazio) ainda dependem de leitura real: sondar o POST do Buscar com mês e ano, a página 2 pelo
+    next, a exportação CSV e o EmpenhoPopUp com &. A lista de arquivos da categoria 49 do WordPress é montada no navegador.'
+  trava: testes/test_execucao.py::test_consulta_da_lista_real_com_popups_e_segunda_pagina
 - id: 142
   bloco: Fontes e cadência
   requisito: SICONFI RREO/RGF/DCA
@@ -914,37 +1083,54 @@
 - id: 143
   bloco: Fontes e cadência
   requisito: SIOPS
-  situacao: parcial
-  evidencia: 'Coletor pelo formulário público (motor siops): 17 bimestres de 2024 a 2026 homologados no banco; bimestre no prazo não é lacuna'
-  falta: Entrar na agenda mensal (bloco 6)
-  trava: testes/test_historico.py::test_siops_le_o_bimestre_pelo_formulario_e_guarda_linha_a_linha
+  situacao: cumprido
+  evidencia: 'Cada rodada tem fluxo próprio com cron: diária (PNCP, pncp_detalhe, Sileg, Querido Diário), preços (quarta),
+    mensal (dia 2), leis (segunda), serie (dia 10) e parecer (domingo e dia 5).'
+  falta: ''
+  trava: testes/test_agenda.py::test_cada_rodada_tem_fluxo_com_relogio_proprio
 - id: 144
   bloco: Fontes e cadência
   requisito: SIOPE
-  situacao: parcial
-  evidencia: 'Coletor do PDF público do FNDE no FTP do SIOPE (motor siope): 16 bimestres de 2024 a 2026 no banco; o 5º de 2026 ainda no prazo'
-  falta: Entrar na agenda mensal (bloco 6)
-  trava: testes/test_historico.py::test_siope_guarda_o_bimestre_e_o_ftp_sem_arquivo_vira_lacuna
+  situacao: cumprido
+  evidencia: 'Coleta incremental: janela somada ao banco por ATTACH sem refazer o resto; PNCP continua pelas janelas já lidas;
+    leitura que falha não apaga o que o banco já tinha; banco e relatórios publicados com commit.'
+  falta: ''
+  trava: testes/test_agenda.py::test_coleta_agendada_publica_banco_e_relatorios_e_e_incremental
 - id: 145
   bloco: Fontes e cadência
   requisito: 'Tesouro: FPM, ITR, ICMS e outras transferências'
   situacao: parcial
-  evidencia: FPM, ITR e royalties lidos do SIAFI pelo Portal da Transparência (transferências constitucionais) e conferidos
-    com a matriz; a matriz de saldos contábeis vem do Tesouro (SICONFI)
-  falta: 'A cota do ICMS e do IPVA é do Estado: sem segunda via fora do Município (requisito 149)'
-  trava: testes/test_rio_municipio.py::test_fpm_da_uniao_e_oitenta_por_cento_do_registrado_no_municipio
+  evidencia: 'A cota do ICMS, do IPVA e do IPI-exportação está tratada como receita do Estado entregue ao Município: a conferência
+    _cota_estadual (onisciente/conferencias/federais.py) cruza a via do Município (matriz de saldos, naturezas 1.7.2.1.50,
+    1.7.2.1.51 e 1.7.2.1.52) com a via do Estado (coletor economia_go). Os repasses da União têm a segunda via no SIAFI e
+    no RREO Anexo 12. Na rodada 1 eu tinha proposto cumprido; volto a parcial porque a segunda via do Estado ainda não foi
+    lida de verdade.'
+  falta: 'Ler a segunda via do Estado. A sondagem achou, no menu real do portal da Economia, a página goias.gov.br/economia/repasse-aos-municipios/,
+    que ainda não foi lida. Também falta saber se o CKAN do Estado libera o acesso: ele respondeu com o bloqueio do firewall.'
+  trava: testes/test_coletores_federais.py::test_transferencias_do_tesouro_e_do_estado_tem_cada_uma_a_sua_segunda_via
 - id: 146
   bloco: Fontes e cadência
   requisito: FNS
-  situacao: ausente
-  evidencia: Não coletado
-  falta: Coletor
+  situacao: parcial
+  evidencia: Coletor onisciente/coletores/fns.py, motor_fns e a conferência FNS x SIAFI x RREO Anexo 12. A sondagem mostrou
+    que apifns.saude.gov.br não existe no DNS, que /recursos/consolidado/municipio deu 404 e que /recursos/repasse-dia/detalhar-pagamento
+    existe, porque deu 400 com ano. Os modelos novos mandam o período em datas; os descartados estão em fns.DESCARTADOS.
+  falta: Achar o endereço e os parâmetros da API do consultafns. O app.js e o main.js não trazem os serviços; a próxima sondagem
+    (d1_fns) lê o portalController.js, o utilService.js e as páginas da rota repasse-dia, e tenta o serviço do repasse dia
+    com datas. Depois falta a primeira coleta real.
+  trava: testes/test_coletores_federais_reais.py::test_fns_sem_os_enderecos_descartados_e_com_o_periodo_em_datas
 - id: 147
   bloco: Fontes e cadência
   requisito: FNDE
-  situacao: ausente
-  evidencia: Não coletado
-  falta: Coletor
+  situacao: parcial
+  evidencia: 'O FNDE (SIMAD) respondeu com dado real: a lista de Goiânia em 2025 tem 406 entidades com CNPJ, incluída a PREF
+    MUN DE GOIANIA (01612092000123), e centenas de pessoas físicas sem CNPJ, que ficam de fora. O leitor foi ajustado às chamadas
+    enviarFormulario da página. As liberações de cada CNPJ saem do formulário oculto, no mesmo endereço liberacoes_result_pc
+    com p_cgc, porque o endereço antigo liberacoes_01_result_pc deu 404. A conferência FNDE x SIAFI por programa está pronta.'
+  falta: Ler a página de liberações de uma entidade, que ainda não foi lida (d1_fnde pede a da Prefeitura e a de um conselho
+    escolar), confirmar o formato presumido (programa, data, ordem bancária, banco, agência, conta, valor e a linha Total)
+    e fazer a primeira coleta real.
+  trava: testes/test_coletores_federais_reais.py::test_motor_fnde_com_a_lista_real_pede_cada_cnpj_pelo_formulario_oculto
 - id: 148
   bloco: Fontes e cadência
   requisito: FNAS
@@ -956,41 +1142,64 @@
 - id: 149
   bloco: Fontes e cadência
   requisito: Economia GO (cota de ICMS e IPVA)
-  situacao: ausente
-  evidencia: Não coletado
-  falta: Coletor
+  situacao: parcial
+  evidencia: 'Coletor onisciente/coletores/economia_go.py ajustado ao portal real: acha no menu de goias.gov.br/economia/
+    o link Repasses de Recursos aos Municípios, segue os links do Estado sobre repasse, ICMS, IPVA ou índice de participação
+    e reconhece a página Acesso Negado do firewall. Bloqueio vira falha, sem ofício; arquivo que o coletor não lê (PDF ou
+    planilha) vira formato, sem ofício. Só quando nada foi achado a ausência vira alerta roxo com ofício à Secretaria da Economia
+    (CF, art. 162).'
+  falta: Ler a página goias.gov.br/economia/repasse-aos-municipios/ (d1_economia_go) e o arquivo que ela publicar. Se for
+    PDF ou planilha, é preciso um leitor para esse formato.
+  trava: testes/test_coletores_federais_reais.py::test_economia_go_bloqueio_nao_e_ausencia_e_pdf_nao_lido_e_falha_do_sistema
 - id: 150
   bloco: Fontes e cadência
   requisito: Transferegov (semanal)
-  situacao: ausente
-  evidencia: Não coletado
-  falta: Coletor
+  situacao: parcial
+  evidencia: Coletor onisciente/coletores/transferegov.py (API PostgREST) e motor_transferegov. Na sondagem, todas as rotas
+    da API deram 503 (fora do ar); o motor registra isso como falha, nunca como ausência.
+  falta: A API voltar ao ar, ou uma via em arquivo. A próxima sondagem (d1_transferegov) repete a API e tenta a documentação,
+    o repositório de dados da SEGES (repositorio.dados.gov.br/seges/detru/), o arquivo de emendas parlamentares do Portal
+    da Transparência e o conjunto no dados.gov.br.
+  trava: testes/test_coletores_federais.py::test_transferegov_raiz_planos_e_paginas
 - id: 151
   bloco: Fontes e cadência
   requisito: PNCP (diário)
-  situacao: parcial
-  evidencia: 'Coleta completa dos 2 anos em 27/11: 32 órgãos, 25 meses, 2.328 contratações e 2.118 contratos, com amparo, itens, termos
-    e notas de todos (13.423 chamadas, 22 falhas, todas refeitas)'
-  falta: Agenda diária (bloco 6)
+  situacao: cumprido
+  evidencia: Todos os fluxos que gravam o banco estão no grupo de concorrência onisciente-banco, sem cancelar o que está rodando.
+  falta: ''
+  trava: testes/test_agenda.py::test_fluxos_que_gravam_o_banco_nao_se_atropelam
 - id: 152
   bloco: Fontes e cadência
   requisito: Painel de preços
-  situacao: parcial
-  evidencia: 'Pesquisa de preço do Compras.gov.br lida pelo motor de detalhe: 176.057 preços do país para os 2.504 itens-semestre do
-    banco'
-  falta: Agenda própria (bloco 6)
+  situacao: cumprido
+  evidencia: Nenhum fluxo do Onisciente usa '|| echo', '|| true' nem continue-on-error na coleta ou no parecer; motor quebrado
+    deixa a rodada vermelha.
+  falta: ''
+  trava: testes/test_agenda.py::test_nenhum_fluxo_engole_o_erro_do_parecer_nem_da_coleta
 - id: 153
   bloco: Fontes e cadência
   requisito: CNPJ e sanções
   situacao: parcial
-  evidencia: Enriquecimento de CNPJ no domingo; sanções não
-  falta: Coletar CEIS e CNEP
+  evidencia: Coletor onisciente/coletores/sancoes.py, a tabela sancoes(cnpj_cpf, cadastro, inicio, fim, orgao, tipo, ...)
+    e a conferência contratada x sancionada (qualquer dia do contrato, pelo CNPJ raiz). Os endereços com data deram 403. O
+    motor agora lê as datas na página de download do cadastro e tenta cada data no portal e no repositório da CGU. Com 403
+    em todas as vias, a situação fica nao_publicado e a conferência aparece como não feita, nunca como nenhuma sanção.
+  falta: Achar uma via que entregue o zip sem chave. A próxima sondagem (d1_sancoes) lê a página de download, o repositório
+    dadosabertos-download.cgu.gov.br e o conjunto no dados.gov.br. Depois falta a primeira coleta diária real.
+  trava: testes/test_coletores_federais_reais.py::test_sancoes_403_em_todas_as_vias_fica_nao_conferido
 - id: 154
   bloco: Fontes e cadência
   requisito: TCM-GO e TCU
   situacao: parcial
-  evidencia: Só checagem de endereço
-  falta: Ler decisões
+  evidencia: 'TCU com dado real: a pesquisa documentosResumidos foi lida, com o formato confirmado (quantidadeEncontrada 1374
+    para Goiânia). O leitor separa Goiânia de Aparecida de Goiânia pelos trechos, formata o processo (TC 016.497/2026-0),
+    usa o PDF e transforma determinação e cautelar em alerta. TCM-GO: as páginas reais da primeira rodada não pesquisam (índice
+    de ferramentas, busca de notícias, redirecionamento); o leitor devolve lista vazia, e o motor diz isso, sem fingir uma
+    busca sem resultado.'
+  falta: 'TCM-GO: ler a pesquisa real (virtual.tcmgo.tc.br/jurisprudencia/), a busca em JSON do portal (wp-json), a lista
+    de contas com parecer prévio pela rejeição e a de débitos e multas (d1_tcm). TCU: os dados abertos deram conexão recusada;
+    tentar de novo.'
+  trava: testes/test_coletores_federais_reais.py::test_motor_tcu_com_a_pesquisa_real_e_os_dados_abertos_fora_do_ar
 - id: 155
   bloco: Arquitetura
   requisito: Python
@@ -1000,15 +1209,19 @@
 - id: 156
   bloco: Arquitetura
   requisito: DuckDB / Parquet
-  situacao: parcial
-  evidencia: Usa SQLite (dados/onisciente/historico.db); funciona, mas diverge do desenho
-  falta: Decidir se migra
+  situacao: cumprido
+  evidencia: 'Decisão registrada em docs/onisciente/decisoes.md: fica em SQLite (69 MB; consulta de referência em 0,13 s).
+    Rever acima de 500 MB ou 2 s.'
+  falta: ''
+  trava: testes/test_agenda.py::test_sqlite_atende_o_tamanho_e_a_consulta_de_referencia
 - id: 157
   bloco: Arquitetura
   requisito: GitHub Actions agendado
-  situacao: parcial
-  evidencia: Parecer e leis agendados; coleta histórica não
-  falta: Agenda
+  situacao: cumprido
+  evidencia: Painel de preços com relógio próprio (onisciente-agenda-precos.yml, quarta), reabrindo os preços dos semestres
+    recentes no pncp_detalhe.
+  falta: ''
+  trava: testes/test_agenda.py::test_reabrir_meses_e_precos_so_tira_a_janela
 - id: 158
   bloco: Arquitetura
   requisito: GitHub Pages
@@ -1036,36 +1249,44 @@
 - id: 162
   bloco: Roteiro e portões
   requisito: 'Fase 2: afluentes batem com o RREO em 1%'
-  situacao: ausente
-  evidencia: Sem conferência
-  falta: Conferência rio × RREO dentro de 1% (bloco 3)
+  situacao: cumprido
+  evidencia: O rio do Município fecha com a receita realizada do RREO dentro de 1% em todos os períodos do banco; o parecer
+    marca em vermelho quando não fecha
+  falta: ''
+  trava: testes/test_regras_rio.py::test_rio_e_rreo_dentro_de_um_por_cento_em_todo_periodo
 - id: 163
   bloco: Roteiro e portões
   requisito: 'Fase 3: pisos batem com SIOPS, SIOPE e RGF 2024/2025'
   situacao: cumprido
-  evidencia: Pisos de 2024 e 2025 batem com SIOPS (saúde), SIOPE (MDE e FUNDEB) e RGF (pessoal, dívida, crédito), dentro de 1%
+  evidencia: Pisos de 2024 e 2025 batem com SIOPS (saúde), SIOPE (MDE e FUNDEB) e RGF (pessoal, dívida, crédito), dentro de
+    1%
   falta: ''
   trava: testes/test_fiscal.py::test_educacao_e_fundeb_no_banco_real_com_duas_vias_em_cada_ano
 - id: 164
   bloco: Roteiro e portões
   requisito: 'Fase 4: integridade de Saúde e Educação medida'
   situacao: parcial
-  evidencia: Pisos de saúde, educação e FUNDEB medidos com duas vias desde o bloco 2
-  falta: Domínios de Saúde e Educação ativos com FNS e FNDE (bloco 5)
+  evidencia: 'Parte FNS e FNDE: o FNDE leu a lista real de entidades. O FNS ainda procura o endereço da API (ids 146 e 147).'
+  falta: A ativação dos domínios pela Frente D2, as liberações por entidade do FNDE e o endereço da API do FNS.; FNS e FNDE
+    na origem (Frente D1).
+  trava: testes/test_coletores_federais_reais.py::test_fnde_lista_real_de_goiania_e_o_formulario_oculto_por_cnpj
 - id: 165
   bloco: Roteiro e portões
   requisito: 'Fase 5: cada contrato com item de catálogo comparado à mediana'
   situacao: cumprido
-  evidencia: Cada item de catálogo homologado das 2.328 compras comparado à mediana do país no semestre, quando há amostra na mesma
-    unidade (1.850); os demais contados na cobertura
+  evidencia: Cada item de catálogo homologado das 2.328 compras comparado à mediana do país no semestre, quando há amostra
+    na mesma unidade (1.850); os demais contados na cobertura
   falta: ''
   trava: testes/test_conferencias_compras.py::test_servico_por_lote_e_unidade_diferente_nao_viram_sobrepreco
 - id: 166
   bloco: Roteiro e portões
   requisito: 'Fase 6: 2º município só por configuração'
-  situacao: ausente
-  evidencia: Só goiania.toml
-  falta: Segundo alvo configurado e parecer gerado só pela configuração
+  situacao: cumprido
+  evidencia: alvos/anapolis.toml (IBGE 5201108, faixa III a conferir) reusa os dominios/*.toml; com um banco de fixture no
+    esquema do banco histórico, o pipeline gera os seis pareceres só pela configuração, sem nenhum texto de Goiânia, com números
+    e divergências conferidos.
+  falta: ''
+  trava: testes/test_dominios.py::test_segundo_municipio_so_pela_configuracao
 - id: 167
   bloco: Roteiro e portões
   requisito: 'Qualidade: nenhuma afirmação acima do nível de prova'
@@ -1081,87 +1302,104 @@
 - id: 169
   bloco: Telas do protótipo
   requisito: O rio
-  situacao: parcial
-  evidencia: Só dentro do parecer, estático
-  falta: Tela
+  situacao: cumprido
+  evidencia: 'rio.html: Sankey, cartões dos afluentes, COSIP e FNAS fora do leito com fonte, painel dos federais (vazio até
+    a coleta)'
+  falta: ''
+  trava: testes/test_telas.py::test_rio_tem_a_cosip_fora_do_leito_com_fonte
 - id: 170
   bloco: Telas do protótipo
   requisito: Trilha
-  situacao: ausente
-  evidencia: Não existe
-  falta: Tela
+  situacao: cumprido
+  evidencia: trilha.html com as 9 estações por mês e função
+  falta: ''
+  trava: testes/test_telas.py::test_trilha_tem_as_nove_estacoes_por_mes_e_funcao
 - id: 171
   bloco: Telas do protótipo
   requisito: Pisos e tetos
-  situacao: parcial
-  evidencia: Só IGD no parecer
-  falta: Tela
+  situacao: cumprido
+  evidencia: pisos.html com medidores de pisos e tetos (saúde, educação, pessoal e outros) a partir do RREO e do RGF, cada
+    percentual com fonte
+  falta: ''
+  trava: testes/test_telas.py::test_banco_real_rio_pisos_e_pessoal
 - id: 172
   bloco: Telas do protótipo
   requisito: Preço e entrega
-  situacao: parcial
-  evidencia: Seção 5 do parecer preenchida com os dados reais do banco
-  falta: Tela do protótipo (bloco 7)
+  situacao: cumprido
+  evidencia: precos.html com contratos, achados de preço e o triângulo; CNPJ público, CPF nunca
+  falta: ''
+  trava: testes/test_telas.py::test_preco_e_entrega_desenha_o_triangulo
 - id: 173
   bloco: Telas do protótipo
   requisito: Secretarias
-  situacao: ausente
-  evidencia: Não existe
-  falta: Tela
+  situacao: cumprido
+  evidencia: secretarias.html com órgãos, funções, contratos e fichas por secretaria
+  falta: ''
+  trava: testes/test_telas.py::test_todas_as_telas_desenham_sem_erro
 - id: 174
   bloco: Telas do protótipo
   requisito: Pessoal
-  situacao: ausente
-  evidencia: Não existe
-  falta: Tela
+  situacao: cumprido
+  evidencia: pessoal.html com a série do RGF e as contagens de nomeações, sem nomes nem CPF
+  falta: ''
+  trava: testes/test_telas.py::test_banco_real_rio_pisos_e_pessoal
 - id: 175
   bloco: Telas do protótipo
   requisito: Indícios
-  situacao: parcial
-  evidencia: Fichas no parecer, sem filtros
-  falta: Tela
+  situacao: cumprido
+  evidencia: indicios.html com todas as fichas e filtros pela URL
+  falta: ''
+  trava: testes/test_telas.py::test_tela_de_indicios_aplica_os_filtros_da_url
 - id: 176
   bloco: Telas do protótipo
   requisito: Ausências e ofícios
-  situacao: parcial
-  evidencia: Ausências no parecer; ofícios só em arquivo de texto fora do site
-  falta: Tela
+  situacao: cumprido
+  evidencia: transparencia.html com ausências, ofícios por mês, leituras que falharam e a escada da cobrança
+  falta: ''
+  trava: testes/test_telas.py::test_transparencia_tem_ausencias_oficio_e_escada
 - id: 177
   bloco: Telas do protótipo
   requisito: Contas
-  situacao: ausente
-  evidencia: Não existe
-  falta: Tela
+  situacao: cumprido
+  evidencia: contas.html com as entregas ao SICONFI, prazos e situação
+  falta: ''
+  trava: testes/test_telas.py::test_pagina_de_contas_e_tempo_com_prazo_e_falta_da_serie
 - id: 178
   bloco: Telas do protótipo
   requisito: Máquina do tempo
-  situacao: ausente
-  evidencia: Não existe
-  falta: Tela
+  situacao: cumprido
+  evidencia: tempo.html com o real mês a mês e o aviso de série curta; a projeção é o id 121
+  falta: ''
+  trava: testes/test_telas.py::test_pagina_de_contas_e_tempo_com_prazo_e_falta_da_serie
 - id: 179
   bloco: Telas do protótipo
   requisito: Leis
-  situacao: ausente
-  evidencia: Não existe no site (o mapa está só no repositório)
-  falta: Tela
+  situacao: cumprido
+  evidencia: leis.html com a régua de cada regra, a norma e o link
+  falta: ''
+  trava: testes/test_telas.py::test_leis_tem_a_regua_com_norma_e_link
 - id: 180
   bloco: Telas do protótipo
   requisito: Seletor de alvo
-  situacao: ausente
-  evidencia: Não existe
-  falta: Seletor de alvo no site
+  situacao: parcial
+  evidencia: Seletor de alvo no topo de todas as telas, alimentado pela lista de alvos do gerador
+  falta: A geração recebe um alvo por vez (alvos/goiania.toml é o único); falta gerar uma pasta por alvo e listar todos no
+    seletor quando houver um segundo alvo
+  trava: testes/test_telas.py::test_gera_as_treze_telas_com_seletores_e_regua
 - id: 181
   bloco: Telas do protótipo
   requisito: Seletor de período
-  situacao: parcial
-  evidencia: Lista de pareceres por mês
-  falta: Seletor de período nas telas, não só na lista de pareceres
+  situacao: cumprido
+  evidencia: Seletor de período global, na URL e no navegador
+  falta: ''
+  trava: testes/test_telas.py::test_seletores_de_periodo_e_secretaria_recortam_as_telas
 - id: 182
   bloco: Telas do protótipo
   requisito: Seletor de secretaria
-  situacao: ausente
-  evidencia: Não existe
-  falta: Seletor de secretaria no site
+  situacao: cumprido
+  evidencia: Seletor de secretaria global, recortando números (pela função inteira, avisado na tela) e fichas
+  falta: ''
+  trava: testes/test_telas.py::test_seletores_de_periodo_e_secretaria_recortam_as_telas
 - id: 183
   bloco: Telas do protótipo
   requisito: Em uma frase no topo
