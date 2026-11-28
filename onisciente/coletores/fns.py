@@ -56,6 +56,18 @@ Município foi respeitado). É a lista de quem recebeu, sem valores: ``entidades
 de repasse (``MODELOS_DE_REPASSE`` a deixa de fora). Pessoa física fica só com o CPF mascarado que o
 próprio FNS mostra. ``detalhar-pagamento-dia`` deu 500 e o ``-final`` deu 400 com os parâmetros do
 controlador (o corpo do erro não foi guardado pela sondagem).
+
+Sondagem da rodada 6 (28/11/2026): a página 2 das entidades com 100 por página fecha as 191 (``pagina`` 1,
+91 linhas), e entre elas está o Fundo Municipal de Saúde de Goiânia (esfera ``MUNICIPAL``). O
+``detalhar-pagamento-dia`` é um erro do servidor (``NullPointerException``), não parâmetro faltando. Os
+controladores das telas de ação e de pagamento (``acaoController.js``, ``pagamentoController.js``) dão
+os parâmetros do valor por entidade: ``detalhe-acao`` com ano, filtros vazios, ``estado``, ``municipio``
+(IBGE da entidade) e ``cpfCnpjUg`` (o CNPJ da entidade); cada linha traz ``id``, ``descricao``,
+``blocoPacto.nome``, ``grupoAcao.nome``, ``componenteBloco.nome``, ``valorTotal``, ``valorDesconto`` e
+``valorLiquido``. ``detalhe-pagamento`` usa os mesmos filtros com ``acoes`` = o ``id`` da ação e traz
+``valorTotal``, ``valorDescontoTotal``, ``valorLiquido``, ``numeroDocumentoSiafi`` (a ordem bancária),
+``codigoBanco``, ``codigoAgencia``, ``contaCorrente``, ``nuPortaria`` e ``id.processo``. As respostas
+desses dois ainda não foram vistas: ``acoes`` e ``pagamentos`` leem os campos que os controladores usam.
 """
 
 from __future__ import annotations
@@ -251,6 +263,82 @@ def entidades(conteudo: bytes, ibge6: str) -> tuple[list[dict], int, int]:
             "esfera": _texto(d.get("esferaAdministrativa")), "municipio_ibge": ibge,
             "sem_repasse": int(bool(d.get("entidadeSemRepasse")))})
     return saida, int(res.get("total") or len(saida)), int(res.get("totalPaginas") or 1)
+
+
+DETALHE = CONSULTA + "consulta-detalhada/"
+# Os parâmetros que cada tela manda, na ordem dos controladores (os vazios também vão).
+_PARAMETROS_DETALHE = {
+    "detalhe-acao": ("ano", "mes", "tipoConsulta", "blocos", "grupo", "planoOrcamentario", "componentes",
+                     "acoes", "estado", "municipio", "repasse", "dataInicialOb", "dataFinalOb", "cpfCnpjUg"),
+    "detalhe-pagamento": ("ano", "mes", "tipoConsulta", "blocos", "componentes", "acoes", "estado", "municipio",
+                          "repasse", "dataInicialOb", "dataFinalOb", "cpfCnpjUg"),
+}
+
+
+def url_detalhe(servico: str, ibge: int | str, ano: int, cnpj: str, pagina: int = 1, acao: str = "") -> str:
+    """Um endereço de ``detalhe-acao`` ou ``detalhe-pagamento`` para uma entidade do Município."""
+    ibge = str(ibge)
+    valores = {"ano": ano, "acoes": acao, "estado": UF_DO_IBGE.get(ibge[:2], ""), "municipio": ibge[:6],
+               "cpfCnpjUg": cf.digitos(cnpj)}
+    params = [("page", pagina), ("count", 100)] + [(k, valores.get(k, "")) for k in _PARAMETROS_DETALHE[servico]]
+    return DETALHE + servico + "?" + urllib.parse.urlencode(params)
+
+
+def _resultado(conteudo: bytes, o_que: str) -> tuple[list[dict], int]:
+    if cf.parece_pagina(conteudo):
+        raise ValueError(f"{o_que} do FNS veio como página HTML")
+    obj = cf.json_ou_none(conteudo)
+    res = obj.get("resultado") if isinstance(obj, dict) else None
+    if not isinstance(res, dict) or not isinstance(res.get("dados"), list):
+        raise ValueError(f"{o_que} do FNS não traz resultado.dados")  # noqa: TRY004
+    return [d for d in res["dados"] if isinstance(d, dict)], int(res.get("total") or len(res["dados"]))
+
+
+def _nome(v) -> str:
+    return _texto(v.get("nome") if isinstance(v, dict) else v)
+
+
+def acoes(conteudo: bytes) -> tuple[list[dict], int]:
+    """Uma página de ``detalhe-acao``: as ações de uma entidade no ano, com o valor (total). Linha sem
+    repasse no ano (valor zero) fica, com valor 0. Levanta ``ValueError`` se o formato mudar."""
+    dados, total = _resultado(conteudo, "o detalhe por ação")
+    saida = []
+    for d in dados:
+        if "valorTotal" not in d or d.get("id") is None:
+            raise ValueError("ação do FNS sem id ou sem valorTotal")
+        saida.append({
+            "id": _texto(d.get("id")), "bloco": _nome(d.get("blocoPacto")), "grupo": _nome(d.get("grupoAcao")),
+            "componente": _nome(d.get("componenteBloco")), "descricao": _texto(d.get("descricao")),
+            "valor_total": round(cf.numero(d.get("valorTotal")) or 0.0, 2),
+            "valor_desconto": round(cf.numero(d.get("valorDesconto")) or 0.0, 2),
+            "valor_liquido": round(cf.numero(d.get("valorLiquido")) or 0.0, 2)})
+    return saida, total
+
+
+def pagamentos(conteudo: bytes) -> tuple[list[dict], int]:
+    """Uma página de ``detalhe-pagamento``: cada ordem bancária de uma ação, nas colunas de
+    ``repasses_fns`` (sem bloco e programa, que vêm da ação). Levanta ``ValueError`` se o formato mudar."""
+    dados, total = _resultado(conteudo, "o detalhe por pagamento")
+    saida = []
+    for d in dados:
+        bruto = cf.numero(d.get("valorTotal"))
+        if bruto is None:
+            raise ValueError("pagamento do FNS sem valorTotal")
+        desconto = cf.numero(d.get("valorDescontoTotal")) or 0.0
+        liquido = cf.numero(d.get("valorLiquido"))
+        chave = d.get("id") if isinstance(d.get("id"), dict) else {}
+        data = cf.data(cf.campo(d, "dataPagamento", "dataOb", "dataOrdemBancaria", "dtPagamento", "data",
+                                contem=("datapag", "dataob", "dataordem", "dtpag", "dataemiss")))
+        saida.append({
+            "mes": (data or "")[:7] or None, "data": data,
+            "competencia": cf.mes_de(cf.campo(d, "competencia", contem=("competencia",))),
+            "valor_bruto": round(bruto, 2), "desconto": round(desconto, 2),
+            "valor_liquido": round(liquido if liquido is not None else bruto - desconto, 2),
+            "banco": _texto(d.get("codigoBanco")), "agencia": _texto(d.get("codigoAgencia")),
+            "conta": _texto(d.get("contaCorrente")), "ordem_bancaria": _texto(d.get("numeroDocumentoSiafi")),
+            "situacao": " ".join(x for x in (f"processo {chave['processo']}" if chave.get("processo") else "",
+                                             f"portaria {d['nuPortaria']}" if d.get("nuPortaria") else "") if x)})
+    return saida, total
 
 
 def url(modelo: str, ibge: int | str, ano: int, pagina: int = 1) -> str:
