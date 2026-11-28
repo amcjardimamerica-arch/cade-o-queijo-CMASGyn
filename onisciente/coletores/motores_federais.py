@@ -241,14 +241,54 @@ def _paginas_fns(ctx, alvo: str, mes: str, montar, ler) -> tuple[list[dict] | No
         linhas.extend(novas)
         if not novas or len(linhas) >= total:
             break
+    if len(linhas) < total:
+        return None, "falha", f"{len(linhas)} de {total} linhas"
     return linhas, None, None
+
+
+_SO_DA_LISTAGEM = ("programa_id", "fundo_a_fundo")
+
+
+def _ordens_da_listagem(ctx, alvo, ano, ibge, cnpj, nome, acoes):
+    """Todas as ordens do ano da entidade numa leitura (``detalhe-pagamento`` com ``acoes`` vazio, o
+    caminho que a sondagem da rodada 7 provou): (ordens fundo a fundo, pago por ação, notas) ou None
+    se a listagem não vier ou não disser a ação de cada ordem."""
+    todas, _sit, _erro = _paginas_fns(ctx, f"{alvo} {cnpj} pagamentos", f"{ano}-01",
+                                      lambda p: fns.url_detalhe("detalhe-pagamento", ibge, ano, cnpj, p),
+                                      fns.pagamentos)
+    if todas is None or any(not o.get("programa_id") for o in todas):
+        return None
+    por_id = {a["id"]: a for a in acoes}
+    pago: dict[str, float] = {}
+    ordens, fora, sem_fundo = [], [], []
+    for o in todas:
+        pago[o["programa_id"]] = round(pago.get(o["programa_id"], 0.0) + o["valor_bruto"], 2)
+        a = por_id.get(o["programa_id"])
+        if a is None:
+            fora.append(o)
+        if not o["fundo_a_fundo"]:
+            sem_fundo.append(o)
+            continue
+        linha = {k: v for k, v in o.items() if k not in _SO_DA_LISTAGEM}
+        ordens.append({**linha, "bloco": a["bloco"] if a else o["bloco"],
+                       "programa": a["descricao"] if a else o["programa"], "cnpj": cnpj, "favorecido": nome})
+    notas = []
+    if fora:
+        notas.append(f"{len(fora)} ordens de programa fora da lista de ações "
+                     f"({sum(o['valor_bruto'] for o in fora):.2f})")
+    if sem_fundo:
+        notas.append(f"{len(sem_fundo)} pagamentos fora do fundo a fundo "
+                     f"({sum(o['valor_bruto'] for o in sem_fundo):.2f}) ficam fora de repasses_fns")
+    return ordens, pago, notas
 
 
 def motor_fns_detalhe(ctx, ibge) -> None:
     """O valor pago pelo FNS a cada entidade municipal (o Fundo Municipal de Saúde), pela consulta
-    detalhada: as ações do ano (``detalhe-acao``) e, de cada ação com valor, as ordens bancárias
-    (``detalhe-pagamento``), que vão para ``repasses_fns`` quando nenhuma outra via preencheu o ano.
-    A soma das ordens de cada ação é conferida com o total da ação. As entidades vêm de ``fns_entidades``."""
+    detalhada: as ações do ano (``detalhe-acao``) e as ordens bancárias (``detalhe-pagamento``), que vão
+    para ``repasses_fns`` quando nenhuma outra via preencheu o ano. As ordens vêm de uma vez (``acoes``
+    vazio); se essa listagem não vier, de cada ação com valor, como na tela. A soma das ordens de cada
+    ação é conferida com o total da ação; só as ordens fundo a fundo entram em ``repasses_fns``. As
+    entidades vêm de ``fns_entidades``."""
     preparar(ctx.banco)
     via = fns.DETALHE + "detalhe-pagamento"
     for ano in _anos(ctx):
@@ -258,7 +298,7 @@ def motor_fns_detalhe(ctx, ibge) -> None:
         if not entidades:
             continue                              # sem a lista do ano, o motor das entidades já disse por quê
         outra_via = ctx.banco.consultar("SELECT COUNT(*) FROM repasses_fns WHERE ano = ? AND via <> ?", ano, via)[0][0]
-        problemas, acoes_lidas, ordens, divergentes = [], 0, [], []
+        problemas, acoes_lidas, ordens, divergentes, avisos = [], 0, [], [], []
         situacao_ruim = None
         for cnpj, nome in entidades:
             lidas, sit, erro = _paginas_fns(ctx, f"{alvo} {cnpj} acoes", f"{ano}-01",
@@ -269,6 +309,18 @@ def motor_fns_detalhe(ctx, ibge) -> None:
                 situacao_ruim = situacao_ruim or sit
                 continue
             ctx.banco.con.execute("DELETE FROM fns_acoes WHERE ano = ? AND cnpj = ?", (ano, cnpj))
+            listagem = _ordens_da_listagem(ctx, alvo, ano, ibge, cnpj, nome, lidas)
+            if listagem is not None:
+                da_entidade, pago, notas = listagem
+                ordens.extend(da_entidade)
+                avisos.extend(f"{nome}: {n}" for n in notas)
+                for a in lidas:
+                    soma = pago.get(a["id"], 0.0)
+                    if abs(soma - a["valor_total"]) > 0.01:
+                        divergentes.append(f"ação {a['id']}: ordens {soma:.2f} contra {a['valor_total']:.2f}")
+                    ctx.banco.inserir("fns_acoes", {"ano": ano, "cnpj": cnpj, "entidade": nome, **a, "pago": soma})
+                    acoes_lidas += 1
+                continue
             for a in lidas:
                 pagos = None
                 if a["valor_total"] > 0:
@@ -283,8 +335,9 @@ def motor_fns_detalhe(ctx, ibge) -> None:
                         soma = round(sum(o["valor_bruto"] for o in pagos), 2)
                         if abs(soma - a["valor_total"]) > 0.01:
                             divergentes.append(f"ação {a['id']}: ordens {soma:.2f} contra {a['valor_total']:.2f}")
-                        ordens.extend({**o, "bloco": a["bloco"], "programa": a["descricao"], "cnpj": cnpj,
-                                       "favorecido": nome} for o in pagos)
+                        ordens.extend({**{k: v for k, v in o.items() if k not in _SO_DA_LISTAGEM},
+                                       "bloco": a["bloco"], "programa": a["descricao"], "cnpj": cnpj,
+                                       "favorecido": nome} for o in pagos if o["fundo_a_fundo"])
                 ctx.banco.inserir("fns_acoes", {"ano": ano, "cnpj": cnpj, "entidade": nome, **a,
                                                 "pago": None if pagos is None else
                                                 round(sum(o["valor_bruto"] for o in pagos), 2)})
@@ -295,7 +348,8 @@ def motor_fns_detalhe(ctx, ibge) -> None:
                 ctx.banco.inserir("repasses_fns", {"ano": ano, **o, "via": via})
         erro = "; ".join(x for x in (
             "; ".join(problemas[:5]), ("as ordens não fecham com a ação: " + ", ".join(divergentes[:5]))
-            if divergentes else "", "o ano já tem repasses de outra via" if ordens and outra_via else "") if x) or None
+            if divergentes else "", "; ".join(avisos[:5]),
+            "o ano já tem repasses de outra via" if ordens and outra_via else "") if x) or None
         if acoes_lidas and not problemas:
             situacao = "lido"
         elif acoes_lidas:
@@ -780,7 +834,7 @@ def motor_tcu(ctx, termo: str = "Goiânia", paginas: int = 10) -> None:
             ("dados_abertos", lambda i: tcu.url_dados_abertos(i), True, tcu.QUANTIDADE)):
         guardadas, situacao, erro = 0, "vazio", None
         total = max(1, paginas * tcu.QUANTIDADE // por_pagina)                # o mesmo alcance com 50 por vez
-        if alvo == "pesquisa":
+        if alvo == "pesquisa" and tcu.LIMITE_PESQUISA:
             total = min(total, tcu.LIMITE_PESQUISA // por_pagina)             # a pesquisa para em 100
         for p in range(total):
             url = montar(p * por_pagina)
@@ -799,7 +853,7 @@ def motor_tcu(ctx, termo: str = "Goiânia", paginas: int = 10) -> None:
             datas = [d["data"] for d in decisoes if d.get("data")]
             if len(decisoes) < por_pagina or (desde and datas and max(datas) < desde):
                 break
-            if alvo == "pesquisa" and p == total - 1 and erro is None:
+            if alvo == "pesquisa" and tcu.LIMITE_PESQUISA and p == total - 1 and erro is None:
                 erro = (f"a pesquisa do TCU não devolve além de {tcu.LIMITE_PESQUISA} resultados; os mais "
                         "relevantes foram guardados e os recentes vêm dos dados abertos")
         if guardadas and situacao in ("falha", "formato", "nao_publicado"):
@@ -858,6 +912,9 @@ def motor_tcm(ctx, termo: str = "Goiânia", paginas: int = 5) -> None:
     """As decisões do TCM-GO sobre Goiânia, pelo primeiro candidato que responder. As listas de contas
     rejeitadas ou irregulares são de ``motor_listas_tcm``, que ``chamadas`` roda junto."""
     preparar(ctx.banco)
+    erro_api = _jurisprudencia_tcm(ctx, termo, paginas)
+    if erro_api is None:
+        return
     ultimo_erro, situacao = "nenhum candidato respondeu", "nao_publicado"
     sem_decisoes: list[str] = []                 # responderam, mas nenhuma decisão na página
     for indice in range(len(tcm.CANDIDATOS)):
@@ -892,7 +949,37 @@ def motor_tcm(ctx, termo: str = "Goiânia", paginas: int = 5) -> None:
         ultimo_erro = (f"{len(sem_decisoes)} endereço(s) responderam sem nenhuma decisão (páginas de serviço ou "
                        f"notícia, não resultado de pesquisa): " + ", ".join(sem_decisoes))
         situacao = "nao_publicado"
-    _situacao(ctx, "tcm", "decisoes", situacao, erro=ultimo_erro)
+    _situacao(ctx, "tcm", "decisoes", situacao, erro=f"jurisprudência: {erro_api}; {ultimo_erro}")
+
+
+def _jurisprudencia_tcm(ctx, termo: str, paginas: int) -> str | None:
+    """A pesquisa da jurisprudência do TCM-GO (``tcm.url_jurisprudencia``): guarda as decisões sobre
+    Goiânia e devolve None quando a API respondeu; senão, o motivo, e ``motor_tcm`` tenta os candidatos."""
+    guardadas, chaves, parcial = 0, set(), None
+    for p in range(1, paginas + 1):
+        url = tcm.url_jurisprudencia(termo, p)
+        leitura = ctx.ler("tcm", f"jurisprudencia p{p}", url, tempo=90, cabecalhos=tcm.CABECALHOS_JURISPRUDENCIA)
+        if not leitura.ok:
+            if p == 1:
+                return leitura.erro or f"HTTP {leitura.http}"
+            parcial = f"página {p}: {leitura.erro or f'HTTP {leitura.http}'}"   # as anteriores valem
+            break
+        try:
+            decisoes, mais = tcm.jurisprudencia(leitura.conteudo)
+        except ValueError as e:
+            _anotar(ctx, "tcm", f"jurisprudencia p{p}", "", url, f"formato: {e}")
+            if p == 1:
+                return f"formato: {e}"
+            parcial = f"página {p}: formato: {e}"
+            break
+        novas = [d for d in decisoes if d["chave"] not in chaves]
+        chaves.update(d["chave"] for d in novas)
+        guardadas += _guardar_decisoes(ctx, novas, True)
+        if not mais or not novas:
+            break
+    _situacao(ctx, "tcm", "decisoes", "lido" if guardadas else "vazio", via=tcm.JURISPRUDENCIA, registros=guardadas,
+              erro=parcial)
+    return None
 
 
 # --- Ligação com o historico --------------------------------------------------------------

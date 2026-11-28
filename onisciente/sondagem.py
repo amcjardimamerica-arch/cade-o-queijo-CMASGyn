@@ -4,6 +4,7 @@ Roda no GitHub, onde a rede é aberta. Para cada endereço candidato guarda o c�
 o tipo e o começo do corpo em ``relatorios/onisciente/sondagem/``. Quando a fonte é um catálogo
 CKAN ou um serviço OData, lista os recursos e lê uma amostra pequena de cada um. Só lê; não
 grava nada no banco. O resultado serve para escrever os coletores sem adivinhar endereço.
+O repositório é público: todo CPF de pessoa física é mascarado (``mascara_cpf``) antes de gravar.
 """
 
 from __future__ import annotations
@@ -14,6 +15,7 @@ import json
 import time
 import re
 import sys
+import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
 from http.cookiejar import CookieJar
@@ -21,7 +23,7 @@ from html import unescape
 from urllib.parse import quote, urljoin
 from urllib.request import HTTPCookieProcessor, build_opener, install_opener
 
-from . import RAIZ
+from . import RAIZ, mascara_cpf
 from .coletores.base import ler
 
 PASTA = RAIZ / "relatorios" / "onisciente" / "sondagem"
@@ -29,6 +31,8 @@ LIMITE = 600_000
 LIMITE_GRANDE = 6_000_000   # a MSC vem em páginas de milhares de linhas: guarda a página inteira
 GRANDES = {"msc", "pncp_detalhe", "pncp_dados", "d2_transweb"}   # d2_transweb: a exportação CSV do mês (1,5 MB)
 DADOS = "https://dadosabertos.compras.gov.br/"
+# Cabeçalhos que a própria página manda a um serviço (pelo começo do endereço).
+CABECALHOS = {"https://virtual.tcmgo.tc.br/jurisprudencia/api/": {"X-Cliente": "portal"}}
 
 OLINDA = "https://www.fnde.gov.br/olinda-ide/servico/"
 CANDIDATOS: dict[str, list[str]] = {
@@ -280,6 +284,18 @@ CANDIDATOS: dict[str, list[str]] = {
         # Erro do servidor (NullPointerException) nas duas rodadas: só para ver se mudou.
         "https://consultafns.saude.gov.br/recursos/repasse-dia/detalhar-pagamento-dia?ano=2025&mes=1&dia=15&"
         "codigoProgramaFundo=61861&tipoDetalhamento=PROGRAMA",
+        # Sétima rodada: detalhe-pagamento com acoes vazio trouxe a página 1 de 7 (676 ordens, pagina=0 na
+        # resposta). As páginas 2 e 7 mostram se page conta de 1 (sem repetir a 1) e se a última fecha o
+        # total; acoes=61659 mostra se o filtro por ação (o caminho da tela, que o motor usa de reserva) vale.
+        "https://consultafns.saude.gov.br/recursos/consulta-detalhada/detalhe-pagamento?page=2&count=100&ano=2025&"
+        "mes=&tipoConsulta=&blocos=&componentes=&acoes=&estado=GO&municipio=520870&repasse=&dataInicialOb=&"
+        "dataFinalOb=&cpfCnpjUg=37623352000103",
+        "https://consultafns.saude.gov.br/recursos/consulta-detalhada/detalhe-pagamento?page=7&count=100&ano=2025&"
+        "mes=&tipoConsulta=&blocos=&componentes=&acoes=&estado=GO&municipio=520870&repasse=&dataInicialOb=&"
+        "dataFinalOb=&cpfCnpjUg=37623352000103",
+        "https://consultafns.saude.gov.br/recursos/consulta-detalhada/detalhe-pagamento?page=1&count=100&ano=2025&"
+        "mes=&tipoConsulta=&blocos=&componentes=&acoes=61659&estado=GO&municipio=520870&repasse=&dataInicialOb=&"
+        "dataFinalOb=&cpfCnpjUg=37623352000103",
     ],
     "d1_fnde": [
         # As liberações por entidade já são lidas (terceira rodada): uma de prova, para a trava do formato.
@@ -314,6 +330,13 @@ CANDIDATOS: dict[str, list[str]] = {
         "&ordenacao=DTRELEVANCIA+desc%2C+NUMACORDAOINT+desc&quantidade=50&inicio=50&sinonimos=true",
         "https://pesquisa.apps.tcu.gov.br/rest/publico/base/acordao-completo/documentosResumidos?termo=%22Goi%C3%A2nia%22"
         "&ordenacao=DTRELEVANCIA+desc%2C+NUMACORDAOINT+desc&quantidade=50&inicio=100&sinonimos=true",
+        # Sétima rodada: inicio=100 com 50 respondeu (2/4/2024 a 26/10/2022) e a ordem por ano encerrou a
+        # conexão. A ordem padrão já vem da sessão mais nova para a mais antiga. Mais fundo, para ver se o
+        # corte da sexta rodada foi instabilidade: inicio=150 e inicio=1300 (são 1.374 resultados).
+        "https://pesquisa.apps.tcu.gov.br/rest/publico/base/acordao-completo/documentosResumidos?termo=%22Goi%C3%A2nia%22"
+        "&ordenacao=DTRELEVANCIA+desc%2C+NUMACORDAOINT+desc&quantidade=50&inicio=150&sinonimos=true",
+        "https://pesquisa.apps.tcu.gov.br/rest/publico/base/acordao-completo/documentosResumidos?termo=%22Goi%C3%A2nia%22"
+        "&ordenacao=DTRELEVANCIA+desc%2C+NUMACORDAOINT+desc&quantidade=50&inicio=1300&sinonimos=true",
     ],
     "d1_tcm": [
         # O pacote principal da jurisprudência só tem a base da API (/jurisprudencia/api, cabeçalho X-Cliente:
@@ -322,6 +345,14 @@ CANDIDATOS: dict[str, list[str]] = {
         "https://ws.tcm.go.gov.br/api/rest/dados/contas-irregulares",
         "https://virtual.tcmgo.tc.br/jurisprudencia/assets/jurisprudencia-page-zRQnq2W_.js",
         "https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/health",
+        # Sétima rodada: a tela chama {api}/v1/acordao/jurisprudencia/buscar (texto, page, page_size,
+        # sort_by=data_sessao, sort_order=desc) e /filtros (os valores de municipio e entidade), com o
+        # cabeçalho X-Cliente: portal (CABECALHOS, abaixo).
+        "https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/acordao/jurisprudencia/filtros",
+        "https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/acordao/jurisprudencia/buscar?texto=Goi%C3%A2nia&page=1"
+        "&page_size=100&sort_by=data_sessao&sort_order=desc",
+        "https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/acordao/jurisprudencia/buscar?texto=Goi%C3%A2nia&page=2"
+        "&page_size=100&sort_by=data_sessao&sort_order=desc",
     ],
     # Frente E (27/11): auditoria independente do Selo de Transparência (PNTP). As páginas que cada critério
     # da matriz (regras/pntp/matriz_2026.yml) manda olhar; onisciente/selo/coleta.py segue os links internos.
@@ -416,14 +447,21 @@ def _guardar(fonte: str, url: str, leitura, formulario: dict | None = None) -> d
     bruto = leitura.conteudo[:LIMITE_GRANDE if fonte in GRANDES else LIMITE]
     if leitura.ok and bruto.startswith((b"%PDF", b"PK\x03\x04")):   # binário: os bytes como vieram, em base64
         sufixo = ".pdf.b64" if bruto.startswith(b"%PDF") else ".zip.b64"
-        arq.with_suffix(sufixo).write_text(base64.b64encode(leitura.conteudo).decode())
+        dados = leitura.conteudo
+        if sufixo == ".zip.b64":
+            try:
+                dados = mascara_cpf.mascarar_zip(dados)[0]       # o repositório é público: CPF mascarado
+            except (zipfile.BadZipFile, RuntimeError, ValueError, EOFError):
+                pass                                            # ZIP que não abre não tem texto legível
+        arq.with_suffix(sufixo).write_text(base64.b64encode(dados).decode())
     try:
         # Frente D1: o corpo da recusa também (a mensagem do 400/500 diz o parâmetro que falta).
         corpo = bruto.decode("utf-8") if leitura.ok or fonte.startswith("d1_") else ""
     except UnicodeDecodeError:
         corpo = bruto.decode("latin-1")
-    arq.write_text(f"URL: {url}\nPOST: {json.dumps(formulario or {}, ensure_ascii=False)}\nOK: {leitura.ok}\nHTTP: {leitura.http}\nERRO: {leitura.erro}\n"
-                   f"BYTES: {len(leitura.conteudo)}\n\n{corpo}", encoding="utf-8")
+    texto = (f"URL: {url}\nPOST: {json.dumps(formulario or {}, ensure_ascii=False)}\nOK: {leitura.ok}\nHTTP: {leitura.http}\nERRO: {leitura.erro}\n"
+             f"BYTES: {len(leitura.conteudo)}\n\n{corpo}")
+    arq.write_text(mascara_cpf.mascarar_texto(texto)[0], encoding="utf-8")   # CPF de pessoa física mascarado
     return {"fonte": fonte, "url": url, "post": formulario, "ok": leitura.ok, "http": leitura.http, "erro": leitura.erro,
             "bytes": len(leitura.conteudo), "arquivo": arq.name}
 
@@ -650,7 +688,8 @@ def sondar(fontes: list[str] | None = None) -> list[dict]:
                 continue
             vistos.add(chave)
             inicio = time.monotonic()
-            leitura = ler(url, tempo=90, fonte=fonte, formulario=formulario)
+            cabecalhos = next((v for k, v in CABECALHOS.items() if url.startswith(k)), None)
+            leitura = ler(url, tempo=90, fonte=fonte, formulario=formulario, cabecalhos=cabecalhos)
             registro = _guardar(fonte, url, leitura, formulario)
             registro["segundos"] = round(time.monotonic() - inicio, 1)
             resultado.append(registro)
@@ -660,9 +699,9 @@ def sondar(fontes: list[str] | None = None) -> list[dict]:
                     url.split("?", 1)[0].endswith("/Portal_Despesas.aspx"):
                 resultado.extend(_conversa_despesas(fonte, url, leitura))
     nome = "indice.json" if not fontes else f"indice_{'_'.join(fontes)}.json"
-    (PASTA / nome).write_text(json.dumps(
+    (PASTA / nome).write_text(mascara_cpf.mascarar_texto(json.dumps(
         {"quando": datetime.now(timezone.utc).isoformat(timespec="seconds"), "leituras": resultado},
-        ensure_ascii=False, indent=1), encoding="utf-8")
+        ensure_ascii=False, indent=1))[0], encoding="utf-8")
     return resultado
 
 
