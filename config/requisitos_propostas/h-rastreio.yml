@@ -40,3 +40,16 @@
 # depois de os .gz conferirem com ela. A soma da janela troca a despesa por (consulta, empenho) e o registro das
 # consultas por (consulta, dia), em vez de refazer as tabelas só com os meses da janela. Travas em
 # testes/test_partes.py (caminho do rastreio sem fechar, commit sem fechar, soma da janela).
+# Retirada por privacidade no rastreio (28/11/2026): o hash de uma linha com CPF completo refaz o CPF por força
+# bruta (três dígitos livres). Toda rodada de máscara (modo mascara_cpf, a da Frente H e a da D2) retira, ao
+# fechar, o hash dos selos descartados das tabelas que mascarou: sai de rastreio_selos e fica em
+# rastreio_retiradas a marca "retirado por privacidade" (tabela, rodada do selo, rodada que retirou, motivo e o
+# hash do selo novo da linha mascarada), com secure_delete no arquivo. A raiz de Merkle e o hash de cada rodada
+# ficam como estavam; o resumo das marcas entra no detalhe da rodada que retirou. A verificação refaz a raiz das
+# tabelas sem retirada, confere a contagem das que perderam folhas, acusa marca não declarada e relata as
+# retiradas (quantas, em qual rodada, por quê). Rodadas de máscara anteriores à regra têm as folhas retiradas
+# numa rodada própria (modo retirada_privacidade) na abertura do Banco. impedimentos.gravar passa cada linha por
+# mascara_banco.mascarar_linha. Travas em testes/test_retirada_privacidade.py.
+# Cópia do banco inteiro (28/11/2026, divisão do banco em partes): partes.copiar_banco copia o principal e todas
+# as partes (a pasta despesa com os .gz) e partes.conectar grava nelas; os testes que copiavam só o historico.db
+# (test_fiscal, test_rio_municipio, test_agenda) passam a usá-los. Trava em testes/test_partes.py.

@@ -9,7 +9,6 @@ inteiro. Os CPFs destes testes são fictícios (dígitos verificadores calculado
 from __future__ import annotations
 
 import re
-import shutil
 from datetime import date
 from pathlib import Path
 
@@ -115,12 +114,33 @@ def test_mascara_nao_se_aplica_de_novo_ao_que_ja_esta_mascarado():
 
 def test_quem_grava_nas_tabelas_com_cpf_passa_pela_mascara():
     """Toda gravação nessas tabelas passa por ``Banco.inserir`` (a máscara): nenhum módulo tem um INSERT
-    escrito direto nelas (``partes`` e ``agenda`` copiam de banco para banco, já mascarado)."""
+    escrito direto nelas (``partes`` e ``agenda`` copiam de banco para banco, já mascarado), a não ser logo
+    depois de passar a linha por ``mascarar_linha`` da mesma tabela (``impedimentos.gravar``)."""
     tabelas = "|".join(mascara_banco.COLUNAS)
     direto = re.compile(rf"(?i)(INSERT|REPLACE)\s+(OR\s+\w+\s+)?INTO\s+[\w.]*\b({tabelas})\b")
-    achados = [f"{p.relative_to(RAIZ)}:{n}" for p in (RAIZ / "onisciente").rglob("*.py")
-               for n, linha in enumerate(p.read_text(encoding="utf-8").splitlines(), 1) if direto.search(linha)]
+    achados = []
+    for p in (RAIZ / "onisciente").rglob("*.py"):
+        linhas = p.read_text(encoding="utf-8").splitlines()
+        for n, linha in enumerate(linhas, 1):
+            m = direto.search(linha)
+            if m and f'mascarar_linha("{m.group(3)}"' not in "\n".join(linhas[max(0, n - 6):n]):
+                achados.append(f"{p.relative_to(RAIZ)}:{n}")
     assert achados == []
+
+
+def test_impedimentos_gravados_pelo_coletor_saem_mascarados(tmp_path):
+    """O coletor do CEPIM e do TCU grava pela própria função, sem ``Banco.inserir``: a máscara vale ali
+    também, e a leitura das conferências entende o CPF mascarado (os seis do meio)."""
+    from onisciente.coletores import impedimentos
+    b = _banco(tmp_path)
+    impedimentos.gravar(b.con, [{"cnpj_cpf": CPF_A, "cadastro": "TCU", "nome": f"FULANO {CPF_A}",
+                                 "processo": "TC 000.000/2025-0"},
+                                {"cnpj_cpf": CNPJ, "cadastro": "TCU", "nome": "EMPRESA LTDA"}], "TCU")
+    gravado = dict(b.con.execute("SELECT nome, cnpj_cpf FROM impedimentos").fetchall())
+    assert gravado == {f"FULANO {mascara_cpf.mascara(CPF_A)}": mascara_cpf.mascara(CPF_A), "EMPRESA LTDA": CNPJ}
+    docs = {(s.tipo_doc, s.doc) for s in impedimentos.ler_sancoes(b.con)}
+    assert docs == {("PF6", CPF_A[3:9]), ("PJ", CNPJ)}
+    b.fechar()
 
 
 # --- A migração das linhas antigas ----------------------------------------------------------------
@@ -154,9 +174,19 @@ def test_migracao_mascara_as_linhas_antigas_numa_rodada_e_o_rastreio_sela_de_nov
     novos = c.execute("SELECT t.nome, s.origem FROM rastreio_selos s JOIN rastreio_tabelas t ON t.id = s.tabela "
                       "WHERE s.rodada = ? ORDER BY t.nome", (rodada[0],)).fetchall()
     assert novos == [("contratos_pncp", origem), ("sancoes", origem)]   # a origem do selo antigo continua
-    assert c.execute("SELECT count(*) FROM rastreio_selos WHERE descartada = ?", (rodada[0],)).fetchone()[0] == 2
+    # Os selos antigos (das linhas com CPF completo) saíram na mesma rodada: o hash foi retirado e ficou a
+    # marca, com a referência ao selo novo da linha mascarada.
+    assert c.execute("SELECT count(*) FROM rastreio_selos WHERE descartada = ?", (rodada[0],)).fetchone()[0] == 0
+    marcas = [x for x in rastreio.retiradas(c) if x["retirada_por"] == rodada[0]]
+    assert sorted(x["tabela"] for x in marcas) == ["contratos_pncp", "sancoes"]
+    assert all(x["motivo"].startswith(rastreio.RETIRADO) and x["rodada"] == rid and x["descartada"] == rodada[0]
+               for x in marcas)
+    atuais = {rastreio.hash_registro(t, campos) for t in ("sancoes", "contratos_pncp")
+              for _, campos in rastreio._linhas(c, t)}
+    assert {x["novo"] for x in marcas} <= atuais
     v = rastreio.verificar(c)
     assert v["integro"], v
+    assert v["cadeia"]["retiradas"]["total"] == 2
     b.fechar()
     # Já mascarado: a abertura seguinte não abre outra rodada.
     b = historico.Banco.abrir(tmp_path / "historico.db")
@@ -188,13 +218,8 @@ def varredura_real(tmp_path_factory):
     """O banco real copiado e aberto pelo Banco (a abertura faz a migração da máscara), varrido inteiro."""
     if not BANCO_REAL.exists():
         pytest.skip("banco real ausente")
-    destino = tmp_path_factory.mktemp("real")
-    for arquivo in (BANCO_REAL, *partes.arquivos(BANCO_REAL), rastreio.caminho_do_rastreio(BANCO_REAL)):
-        if arquivo.is_file() and not arquivo.name.endswith(("-journal", ".tmp")):
-            alvo = destino / arquivo.relative_to(BANCO_REAL.parent)
-            alvo.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(arquivo, alvo)
-    b = historico.Banco.abrir(destino / BANCO_REAL.name)
+    destino = partes.copiar_banco(BANCO_REAL, tmp_path_factory.mktemp("real") / BANCO_REAL.name, rastreio=True)
+    b = historico.Banco.abrir(destino)
     try:
         return mascara_banco.varrer(b.con)
     finally:

@@ -281,6 +281,9 @@ class Banco:
         _rastrear(banco, goiania_transweb.migrar_cpfs)
         # Frente H: o mesmo nas demais tabelas com CPF (sancoes, PNCP, emendas; onisciente.mascara_banco).
         _rastrear(banco, mascara_banco.migrar)
+        # Privacidade: rodadas de máscara de antes da retirada deixaram nos selos descartados o hash das linhas
+        # com CPF completo; uma rodada própria tira o hash e deixa a marca (as novas já retiram ao fechar).
+        _rastrear(banco, rastreio.retirar_antigas)
         return banco
 
     def _iniciar_rastreio(self) -> None:

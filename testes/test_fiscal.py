@@ -4,13 +4,11 @@ Os testes rodam sobre o banco histórico real (``dados/onisciente/historico.db``
 As divergências são provocadas numa cópia do banco, nunca no original.
 """
 
-import shutil
-import sqlite3
 from datetime import date
 
 import pytest
 
-from onisciente import RAIZ, fiscal
+from onisciente import RAIZ, fiscal, partes
 from onisciente.adaptadores import cadeoqueijo
 from onisciente.nucleo import IndiceIntegridade, Selo
 from onisciente.nucleo.indicios import Familia
@@ -89,7 +87,7 @@ def test_despesa_com_saude_do_siops_diverge_do_rreo_no_comeco_de_2026():
 
 
 def test_duas_vias_rgf_contra_rreo_em_todos_os_quadrimestres():
-    con = sqlite3.connect(BANCO)
+    con = partes.conectar_leitura(BANCO)   # 28/11/2026, divisão do banco em partes
     periodos = con.execute("select exercicio, periodo, termina from siconfi_periodos where "
                            "demonstrativo='RGF' and situacao='entregue'").fetchall()
     con.close()
@@ -108,8 +106,9 @@ def test_duas_vias_rgf_contra_rreo_em_todos_os_quadrimestres():
 
 def test_divergencia_entre_rgf_e_rreo_vira_ficha(tmp_path):
     copia = tmp_path / "historico.db"
-    shutil.copy(BANCO, copia)
-    con = sqlite3.connect(copia)
+    # 28/11/2026, divisão do banco em partes: a cópia leva as partes e a conexão as enxerga.
+    partes.copiar_banco(BANCO, copia)
+    con = partes.conectar(copia)   # 28/11/2026, divisão do banco em partes
     con.execute("update siconfi_itens set valor = valor * 1.05 where demonstrativo='RREO' and "
                 "exercicio=2025 and periodo=6 and anexo='RREO-Anexo 03' and "
                 "cod_conta='RREO3ReceitaCorrenteLiquida' and coluna like 'TOTAL%'")
@@ -125,8 +124,9 @@ def test_divergencia_entre_rgf_e_rreo_vira_ficha(tmp_path):
 
 def test_declarado_diferente_do_calculo_proprio_vira_ficha(tmp_path):
     copia = tmp_path / "historico.db"
-    shutil.copy(BANCO, copia)
-    con = sqlite3.connect(copia)
+    # 28/11/2026, divisão do banco em partes: a cópia leva as partes e a conexão as enxerga.
+    partes.copiar_banco(BANCO, copia)
+    con = partes.conectar(copia)   # 28/11/2026, divisão do banco em partes
     con.execute("update siconfi_itens set valor = 40.0 where demonstrativo='RGF' and exercicio=2025 and "
                 "periodo=3 and anexo='RGF-Anexo 01' and cod_conta='DespesaComPessoalTotal' and "
                 "coluna='% sobre a RCL Ajustada'")
@@ -226,7 +226,8 @@ def _banco_com_siops(tmp_path, *, exercicio=2025, periodo=6, ajuste=None):
     from onisciente import historico
     from onisciente.coletores import siops
     copia = tmp_path / "historico.db"
-    shutil.copy(BANCO, copia)
+    # 28/11/2026, divisão do banco em partes: a cópia leva as partes e a conexão as enxerga.
+    partes.copiar_banco(BANCO, copia)
     b = historico.Banco.abrir(copia)
     d = siops.ler((DADOS / "siops_goiania_2025_6bim.html").read_text(encoding="utf-8"))
     for linha in d.linhas:
@@ -307,7 +308,8 @@ def _banco_com_siope(tmp_path, *, ajuste=None):
     from onisciente import historico
     from onisciente.coletores import siope
     copia = tmp_path / "historico.db"
-    shutil.copy(BANCO, copia)
+    # 28/11/2026, divisão do banco em partes: a cópia leva as partes e a conexão as enxerga.
+    partes.copiar_banco(BANCO, copia)
     b = historico.Banco.abrir(copia)
     b.con.execute("DELETE FROM externos_itens WHERE fonte = 'SIOPE'")
     b.con.execute("DELETE FROM externos_periodos WHERE fonte = 'SIOPE'")
@@ -372,8 +374,9 @@ def test_piso_antes_do_fim_do_ano_segue_o_ritmo_do_ano_anterior():
 
 def test_piso_abaixo_do_ritmo_do_ano_anterior_e_alerta(tmp_path):
     copia = tmp_path / "historico.db"
-    shutil.copy(BANCO, copia)
-    con = sqlite3.connect(copia)
+    # 28/11/2026, divisão do banco em partes: a cópia leva as partes e a conexão as enxerga.
+    partes.copiar_banco(BANCO, copia)
+    con = partes.conectar(copia)   # 28/11/2026, divisão do banco em partes
     con.execute("update externos_itens set valor = 500000000 where fonte = 'SIOPE' and exercicio = 2026 "
                 "and periodo = 4 and rotulo like '28-%' and coluna = 0")
     con.commit()

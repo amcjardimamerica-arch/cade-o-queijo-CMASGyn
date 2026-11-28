@@ -262,3 +262,42 @@ def test_soma_da_janela_troca_so_os_empenhos_e_os_meses_relidos_da_despesa(tmp_p
     assert con.execute("SELECT dia, quando FROM despesa_consultas ORDER BY dia").fetchall() == [
         ("2025-03", "2026-11-01"), ("2026-03", "2026-11-28")]
     con.close()
+
+
+# --- Cópia do banco inteiro (28/11/2026, divisão do banco em partes) ----------------------------------
+# Um teste que copiava só o historico.db (shutil.copy) ficou sem siconfi_itens, msc_itens, externos_itens,
+# sancoes e a despesa: partes.copiar_banco copia o principal e todas as partes, e partes.conectar grava nelas.
+
+def test_copia_do_banco_leva_todas_as_partes_e_a_conexao_grava_nelas(tmp_path):
+    from onisciente.coletores import goiania_transweb as gt
+    origem = tmp_path / "a" / "historico.db"
+    origem.parent.mkdir()
+    b = historico.Banco(origem)
+    b.inserir("precos_referencia", PRECO)
+    b.inserir("sancoes", SANCAO)
+    b.inserir("msc_itens", {"mes": "2026-03", "conta_contabil": "621200000", "valor": 10.0})
+    gt.gravar(b.con, _eventos(2025, 3) + _eventos(2026, 4))
+    b.con.commit()
+    b.fechar()
+    copia = partes.copiar_banco(origem, tmp_path / "b" / "historico.db", rastreio=True)
+    assert sorted(p.name for p in (tmp_path / "b").rglob("*") if p.is_file()) == sorted(
+        p.name for p in (tmp_path / "a").rglob("*") if p.is_file() and not p.name.endswith(("-journal", ".tmp")))
+    con = partes.conectar(copia)
+    for tabela, n in (("precos_referencia", 1), ("sancoes", 1), ("msc_itens", 1), ("despesa_eventos", 7)):
+        assert con.execute(f"SELECT count(*) FROM {tabela}").fetchone()[0] == n, tabela
+    con.execute("UPDATE msc_itens SET valor = valor * 2")
+    con.execute("DELETE FROM despesa_eventos WHERE data LIKE '2025%'")
+    con.commit()
+    con.close()
+    # A adulteração chegou às partes da cópia (e aos .gz da despesa); a origem ficou como estava.
+    assert _clone(copia).execute("SELECT (SELECT valor FROM msc_itens), (SELECT count(*) FROM despesa_eventos)"
+                                 ).fetchone() == (20.0, 4)
+    assert _clone(origem).execute("SELECT (SELECT valor FROM msc_itens), (SELECT count(*) FROM despesa_eventos)"
+                                  ).fetchone() == (10.0, 7)
+    # Copiar só o principal: as tabelas das partes não existem (o que quebrava os testes antigos).
+    so = tmp_path / "c" / "historico.db"
+    so.parent.mkdir()
+    so.write_bytes(origem.read_bytes())
+    sozinho = sqlite3.connect(so)
+    assert not sozinho.execute("SELECT 1 FROM sqlite_master WHERE name = 'msc_itens'").fetchone()
+    sozinho.close()

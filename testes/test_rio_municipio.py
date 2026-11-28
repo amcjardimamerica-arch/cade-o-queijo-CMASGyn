@@ -6,13 +6,11 @@ janeiro a outubro, Portal da Transparência no mesmo período). As adulteraçõe
 
 from __future__ import annotations
 
-import shutil
-import sqlite3
 from datetime import date
 
 import pytest
 
-from onisciente import RAIZ
+from onisciente import RAIZ, partes
 from onisciente.adaptadores import cadeoqueijo
 from onisciente.fiscal import Leitor
 from onisciente.nucleo import Selo
@@ -133,7 +131,7 @@ def test_origem_confere_fpm_itr_royalties_e_aponta_fnas(rm):
 
 def test_fpm_da_uniao_e_oitenta_por_cento_do_registrado_no_municipio():
     """O Portal traz o FPM líquido da retenção do FUNDEB; a matriz, o bruto: a conferência desconta."""
-    con = sqlite3.connect(BANCO)
+    con = partes.conectar_leitura(BANCO)   # 28/11/2026, divisão do banco em partes
     try:
         bruto = mz.receita(con, mz.Natureza(("1711511",)), ["2026-03"])["2026-03"]
         portal = con.execute(
@@ -171,12 +169,13 @@ def test_cosip_empenhada_fora_do_leito(rm):
 @pytest.fixture()
 def copia(tmp_path):
     destino = tmp_path / "historico.db"
-    shutil.copy(BANCO, destino)
+    # 28/11/2026, divisão do banco em partes: a cópia leva as partes e a conexão as enxerga.
+    partes.copiar_banco(BANCO, destino)
     return destino
 
 
 def test_matriz_adulterada_no_iptu_vira_ficha_rio_msc(copia):
-    con = sqlite3.connect(copia)
+    con = partes.conectar(copia)   # 28/11/2026, divisão do banco em partes
     con.execute("update msc_itens set valor = valor * 1.10 where mes='2026-03' and conta_contabil like '6212%' "
                 "and natureza_receita like '111250%'")
     con.commit()
@@ -190,7 +189,7 @@ def test_matriz_adulterada_no_iptu_vira_ficha_rio_msc(copia):
 
 
 def test_salario_educacao_na_saude_e_alienacao_no_custeio_viram_desvio(copia):
-    con = sqlite3.connect(copia)
+    con = partes.conectar(copia)   # 28/11/2026, divisão do banco em partes
     linha = ("2026-05", "622130400", "10131", 2026, "1550", "10", "302", None, "33903900", None, None, "C",
              250_000.0)
     con.execute("insert into msc_itens values (?,?,?,?,?,?,?,?,?,?,?,?,?)", linha)
@@ -208,7 +207,7 @@ def test_salario_educacao_na_saude_e_alienacao_no_custeio_viram_desvio(copia):
 
 
 def test_transferencia_que_some_da_matriz_vira_ficha_de_origem(copia):
-    con = sqlite3.connect(copia)
+    con = partes.conectar(copia)   # 28/11/2026, divisão do banco em partes
     con.execute("delete from msc_itens where mes='2026-04' and natureza_receita like '1711511%'")
     con.commit()
     con.close()
@@ -219,7 +218,7 @@ def test_transferencia_que_some_da_matriz_vira_ficha_de_origem(copia):
 
 
 def test_sem_matriz_o_rio_fica_nas_fontes_padrao_e_diz_por_que(copia):
-    con = sqlite3.connect(copia)
+    con = partes.conectar(copia)   # 28/11/2026, divisão do banco em partes
     con.execute("delete from msc_meses where mes='2026-02'")
     con.commit()
     con.close()

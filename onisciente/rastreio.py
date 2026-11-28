@@ -27,6 +27,16 @@ pode empurrá-lo para fora. No banco da coleta ficam só as colunas novas de ``c
 as pendências (``rastreio_pendentes`` e ``rastreio_cursor``: o SQLite não deixa um gatilho gravar em
 banco anexado), e as pendências são esvaziadas ao fechar cada rodada.
 
+Privacidade (28/11/2026): o hash de uma linha com CPF completo permite refazer o CPF por força bruta
+(com a máscara ``***.NNN.NNN-**`` faltam três dígitos livres). Toda rodada de máscara (modo
+``mascara_cpf``) retira, ao fechar, os selos descartados das tabelas que ela mascarou: o hash sai de
+``rastreio_selos`` e fica em ``rastreio_retiradas`` só a marca (a tabela, a rodada em que o selo
+entrou, a origem, a rodada que retirou, o motivo e o hash do selo novo da linha mascarada). A raiz e o
+hash de cada rodada ficam como estão: a cadeia continua conferindo, a raiz das tabelas com folhas
+retiradas passa a valer pelo hash da rodada, e o resumo das retiradas entra no detalhe da rodada que
+retirou (uma retirada que não está lá é acusada). Rodadas de máscara de antes desta regra têm as
+folhas retiradas numa rodada própria (modo ``retirada_privacidade``).
+
 Como a origem chega ao selo: cada tabela de dados tem gatilhos (``AFTER INSERT`` e ``AFTER UPDATE``)
 que anotam a linha em ``rastreio_pendentes`` com a coleta corrente (``rastreio_cursor``), que o
 ``Banco.inserir`` de ``coletas`` atualiza a cada resposta. Assim o motor que grava direto pela conexão
@@ -52,6 +62,19 @@ FORA = ("meta",)
 PREFIXO = "rastreio_"
 COLUNAS_COLETAS = {"requisicao": "TEXT", "metodo": "TEXT", "parametros": "TEXT", "sem_resposta": "INTEGER"}
 MODO_MIGRACAO = "migracao"
+MODO_MASCARA = "mascara_cpf"
+MODO_RETIRADA = "retirada_privacidade"
+RETIRADO = "retirado por privacidade"
+# A raiz guardada de uma tabela que perdeu só k folhas deixa testar 1000^k combinações de CPF (três dígitos
+# livres por linha): até 8 (cerca de 2^80) a verificação avisa, sem acusar adulteração.
+POUCAS_RETIRADAS = 8
+# O selo que a própria rodada de máscara descartou: a linha tinha o CPF completo e foi substituída pela
+# mascarada. Os demais selos descartados da mesma tabela, de antes da máscara, saem por precaução: a
+# linha já não existe e não há como saber se tinha CPF completo.
+MOTIVO_MASCARA = (f"{RETIRADO}: o hash era de uma linha com CPF completo, substituída pela linha com a máscara "
+                  "***.NNN.NNN-**")
+MOTIVO_PRECAUCAO = (f"{RETIRADO}: selo descartado antes da máscara numa tabela que guardava CPF completo; a linha "
+                    "já não existe e o hash sai por precaução")
 ANTERIOR_AO_RASTREIO = "anterior ao rastreio"
 
 ESQ = "rastreio"            # o nome do arquivo anexado na conexão (ATTACH ... AS rastreio)
@@ -61,6 +84,9 @@ ESQUEMA_RASTREIO = {
     "rastreio_origens": "(id INTEGER PRIMARY KEY, coleta BLOB UNIQUE NOT NULL, resposta TEXT, requisicao TEXT)",
     "rastreio_selos": "(tabela INTEGER NOT NULL, hash BLOB NOT NULL, rodada INTEGER NOT NULL, origem INTEGER, "
                       "n INTEGER NOT NULL DEFAULT 1, descartada INTEGER, PRIMARY KEY (tabela, hash)) WITHOUT ROWID",
+    "rastreio_retiradas": "(id INTEGER PRIMARY KEY, tabela INTEGER NOT NULL, rodada INTEGER NOT NULL, origem INTEGER, "
+                          "n INTEGER NOT NULL, descartada INTEGER, retirada_por INTEGER NOT NULL, motivo TEXT NOT NULL, "
+                          "novo BLOB)",
     "rastreio_rodadas": "(id INTEGER PRIMARY KEY, inicio TEXT, fim TEXT, modo TEXT, motores TEXT, respostas INTEGER, "
                         "registros INTEGER, raiz TEXT, tabelas TEXT, abertura TEXT, descartes TEXT, detalhe TEXT, "
                         "anterior TEXT, hash TEXT, herdada INTEGER NOT NULL DEFAULT 0)",
@@ -468,7 +494,139 @@ def abrir_rodada(con, motores: Iterable[str] = (), modo: str = "coleta", *, deta
          json.dumps(detalhe, ensure_ascii=False, sort_keys=True) if detalhe else None)).lastrowid
     con.execute("INSERT OR REPLACE INTO rastreio_cursor (chave, valor) VALUES ('origem', NULL)")
     con.execute("INSERT OR REPLACE INTO rastreio_cursor (chave, valor) VALUES ('rodada', ?)", (rid,))
+    if modo == MODO_MASCARA:
+        _guardar_antes(con)
     con.commit()
+    return rid
+
+
+# --- Retirada por privacidade -------------------------------------------------------------------
+
+def _guardar_antes(con) -> None:
+    """Rodada de máscara: gatilhos TEMP guardam, de cada linha alterada, o conteúdo de antes (só na
+    memória da conexão), para a retirada apontar o selo novo de cada selo retirado. Saem ao fechar."""
+    con.execute("CREATE TEMP TABLE IF NOT EXISTS rastreio_antes (tabela TEXT, linha INTEGER, campos TEXT, "
+                "PRIMARY KEY (tabela, linha))")
+    for t, esquema in _tabelas_de_dados_com_esquema(con).items():
+        cols = _colunas_em(con, esquema, t)
+        if not cols:
+            continue
+        pares = ", ".join(f"'{c}', json_array(typeof(OLD.\"{c}\"), CASE typeof(OLD.\"{c}\") WHEN 'blob' "
+                          f"THEN hex(OLD.\"{c}\") WHEN 'real' THEN printf('%!.17g', OLD.\"{c}\") "
+                          f"ELSE OLD.\"{c}\" END)" for c in cols)
+        con.execute(f'DROP TRIGGER IF EXISTS temp."rastreio_a_{t}"')
+        con.execute(f'CREATE TEMP TRIGGER "rastreio_a_{t}" AFTER UPDATE ON {esquema}."{t}" BEGIN '
+                    f"INSERT OR IGNORE INTO rastreio_antes VALUES ('{t}', OLD.rowid, json_object({pares})); END")
+
+
+def _colunas_em(con, esquema: str, tabela: str) -> list[str]:
+    return [c[1] for c in con.execute(f'PRAGMA {esquema}.table_info("{tabela}")')]
+
+
+def _soltar_antes(con) -> dict[str, dict[int, dict]]:
+    """O conteúdo de antes das linhas alteradas na rodada de máscara, por tabela e linha; e limpa."""
+    antes: dict[str, dict[int, dict]] = {}
+    try:
+        linhas = con.execute("SELECT tabela, linha, campos FROM temp.rastreio_antes").fetchall()
+    except sqlite3.OperationalError:
+        return antes
+    for t, rowid, campos in linhas:
+        valores = {}
+        for c, (tipo, v) in json.loads(campos).items():
+            valores[c] = (None if tipo == "null" else bytes.fromhex(v) if tipo == "blob" else int(v)
+                          if tipo == "integer" else float(v) if tipo == "real" else v)
+        antes.setdefault(t, {})[rowid] = valores
+    con.execute("DELETE FROM temp.rastreio_antes")
+    for (nome,) in con.execute("SELECT name FROM temp.sqlite_master WHERE type = 'trigger' "
+                               "AND name LIKE 'rastreio_a_%'").fetchall():
+        con.execute(f'DROP TRIGGER temp."{nome}"')
+    return antes
+
+
+def _retirar(con, rid: int, modo: str) -> dict | None:
+    """Retira os selos descartados das tabelas que a rodada de máscara mascarou: o hash sai de
+    ``rastreio_selos`` e fica em ``rastreio_retiradas`` só a marca. Saem o que a própria rodada
+    descartou (a linha com CPF completo) e, por precaução, os descartados antes dela na mesma tabela.
+    Na rodada de retirada (``retirada_privacidade``), o mesmo para as tabelas que rodadas de máscara
+    anteriores a esta regra mascararam. Devolve o resumo que entra no detalhe da rodada (None se nada saiu)."""
+    antes = _soltar_antes(con) if modo == MODO_MASCARA else {}
+    mascaras = {rid} if modo == MODO_MASCARA else {
+        i for (i,) in con.execute("SELECT id FROM rastreio_rodadas WHERE modo = ?", (MODO_MASCARA,))}
+    alvo = sorted({tid for (tid,) in con.execute(
+        f"SELECT DISTINCT tabela FROM rastreio_selos WHERE descartada IN ({','.join('?' * len(mascaras))})",
+        sorted(mascaras))}) if mascaras else []
+    if not alvo:
+        return None
+    nomes = _nomes_das_tabelas(con)
+    novo_de: dict[tuple[int, bytes], bytes] = {}
+    for t, linhas in antes.items():
+        tid = _id_tabela(con, t)
+        for rowid, campos in linhas.items():
+            atual = linha(con, t, rowid)
+            if atual is not None:
+                novo_de[(tid, _digest(t, campos))] = _digest(t, atual)
+    # O SQLite deixa o conteúdo apagado nas páginas livres do arquivo: com secure_delete, os bytes do hash
+    # retirado são zerados no próprio arquivo (o rastreio.db vai ao repositório público).
+    con.execute(f"PRAGMA {ESQ if anexado(con) else 'main'}.secure_delete = ON")
+    marcas: list[str] = []
+    por_tabela: Counter = Counter()
+    por_motivo: Counter = Counter()
+    for tid in alvo:
+        selos = con.execute("SELECT hash, rodada, origem, n, descartada FROM rastreio_selos WHERE tabela = ? "
+                            "AND descartada IS NOT NULL AND descartada <= ? ORDER BY hash", (tid, rid)).fetchall()
+        for h, rodada, origem, n, descartada in selos:
+            novo = novo_de.get((tid, h))
+            motivo = MOTIVO_MASCARA if descartada in mascaras else MOTIVO_PRECAUCAO
+            con.execute("INSERT INTO rastreio_retiradas (tabela, rodada, origem, n, descartada, retirada_por, motivo, "
+                        "novo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (tid, rodada, origem, n, descartada, rid, motivo, novo))
+            con.execute("DELETE FROM rastreio_selos WHERE tabela = ? AND hash = ?", (tid, h))
+            nome = nomes.get(tid, str(tid))
+            marcas.append(_linha_retirada(nome, rodada, origem, n, descartada, motivo, novo))
+            por_tabela[nome] += 1
+            por_motivo[motivo] += 1
+    if not marcas:
+        return None
+    return {"total": len(marcas), "por_tabela": dict(sorted(por_tabela.items())),
+            "motivos": dict(sorted(por_motivo.items())), "resumo": _resumo_das_marcas(marcas)}
+
+
+def _linha_retirada(nome: str, rodada, origem, n, descartada, motivo, novo) -> str:
+    return f"{nome}|{rodada}|{origem}|{n}|{descartada}|{motivo}|{novo.hex() if novo else ''}"
+
+
+def _resumo_das_marcas(marcas: list[str]) -> str:
+    return hashlib.sha256("\n".join(sorted(marcas)).encode("utf-8")).hexdigest()
+
+
+def retiradas(con) -> list[dict]:
+    """As marcas das folhas retiradas (sem hash): tabela, rodada do selo, rodada que retirou, motivo e
+    o hash do selo novo da linha mascarada (quando a retirada foi na própria rodada da máscara)."""
+    _ler(con)
+    if "rastreio_retiradas" not in _tabelas_rastreio(con):
+        return []
+    nomes = _nomes_das_tabelas(con)
+    cur = con.execute("SELECT id, tabela, rodada, origem, n, descartada, retirada_por, motivo, novo "
+                      "FROM rastreio_retiradas ORDER BY id")
+    campos = [d[0] for d in cur.description]
+    saida = []
+    for r in cur:
+        x = dict(zip(campos, r))
+        x["tabela"] = nomes.get(x["tabela"], str(x["tabela"]))
+        x["novo"] = x["novo"].hex() if x["novo"] else None
+        saida.append(x)
+    return saida
+
+
+def retirar_antigas(con) -> int | None:
+    """Rodadas de máscara de antes da retirada deixaram os selos descartados com o hash: uma rodada
+    própria (``retirada_privacidade``) os retira. Devolve o id dela (None se não havia o que retirar)."""
+    preparar(con)
+    if not con.execute("SELECT 1 FROM rastreio_selos s JOIN rastreio_rodadas r ON r.id = s.descartada "
+                       "WHERE r.modo = ? LIMIT 1", (MODO_MASCARA,)).fetchone():
+        return None
+    rid = abrir_rodada(con, (), MODO_RETIRADA, detalhe={
+        "nota": "selos descartados por rodadas de máscara anteriores à retirada: o hash sai, fica a marca"})
+    fechar_rodada(con, rid)
     return rid
 
 
@@ -515,6 +673,8 @@ def fechar_rodada(con, rid: int, *, nota: str | None = None) -> dict:
     """Fecha a rodada: sela o que falta, calcula a raiz de Merkle dos selos novos, liga a rodada à
     anterior pelo hash e grava o hash da própria rodada."""
     selar(con, rid)
+    modo = con.execute("SELECT modo FROM rastreio_rodadas WHERE id = ?", (rid,)).fetchone()[0]
+    retiradas = _retirar(con, rid, modo) if modo in (MODO_MASCARA, MODO_RETIRADA) else None
     folhas = _folhas_da_rodada(con, rid)
     raiz, por_tabela = _raizes(folhas)
     respostas = len(folhas.get("coletas", []))
@@ -529,9 +689,12 @@ def fechar_rodada(con, rid: int, *, nota: str | None = None) -> dict:
     anterior = linha_[0] if linha_ else ZERO
     r = dict(zip(("id", "inicio", "modo", "motores", "abertura", "detalhe"), con.execute(
         "SELECT id, inicio, modo, motores, abertura, detalhe FROM rastreio_rodadas WHERE id = ?", (rid,)).fetchone()))
-    if nota:
+    if nota or retiradas:
         det = json.loads(r["detalhe"]) if r["detalhe"] else {}
-        det["nota"] = nota
+        if nota:
+            det["nota"] = nota
+        if retiradas:
+            det["retiradas"] = retiradas
         r["detalhe"] = json.dumps(det, ensure_ascii=False, sort_keys=True)
     r.update(fim=agora(), respostas=respostas, registros=registros, raiz=raiz,
              tabelas=json.dumps(por_tabela, sort_keys=True), descartes=json.dumps(descartes, sort_keys=True),
@@ -544,6 +707,10 @@ def fechar_rodada(con, rid: int, *, nota: str | None = None) -> dict:
     con.execute("DELETE FROM rastreio_cursor WHERE chave = 'rodada'")
     con.execute("INSERT OR REPLACE INTO rastreio_cursor (chave, valor) VALUES ('origem', NULL)")
     con.commit()
+    if retiradas:
+        # A árvore do índice guarda cópias de chaves nas páginas internas (divisórias), que o DELETE não
+        # apaga nem o secure_delete zera: o VACUUM refaz o arquivo só com o que ficou.
+        con.execute(f"VACUUM {ESQ if anexado(con) else 'main'}")
     return r
 
 
@@ -741,12 +908,33 @@ def _rodadas(con) -> list[dict]:
     return [dict(zip(nomes, r)) for r in cur]
 
 
+def _retiradas_por_rodada(con) -> tuple[dict[int, Counter], dict[int, list[str]]]:
+    """Das marcas: quantas folhas cada rodada perdeu, por tabela; e as linhas das marcas por rodada que
+    retirou (para conferir com o resumo declarado nela)."""
+    perdidas: dict[int, Counter] = {}
+    marcas: dict[int, list[str]] = {}
+    for x in retiradas(con):
+        perdidas.setdefault(x["rodada"], Counter())[x["tabela"]] += 1
+        novo = bytes.fromhex(x["novo"]) if x["novo"] else None
+        marcas.setdefault(x["retirada_por"], []).append(
+            _linha_retirada(x["tabela"], x["rodada"], x["origem"], x["n"], x["descartada"], x["motivo"], novo))
+    return perdidas, marcas
+
+
 def verificar_cadeia(con, *, raizes: bool = True) -> dict:
     """Confere cada rodada: o hash recalculado, o elo com a anterior e (``raizes``) a raiz de Merkle
-    recalculada dos selos dela. Aponta a rodada e a tabela onde algo mudou."""
+    recalculada dos selos dela. Aponta a rodada e a tabela onde algo mudou.
+
+    Folhas retiradas por privacidade: a tabela que perdeu folhas numa rodada não tem a raiz refeita
+    (o hash que faltaria é justamente o que saiu); ela confere pela contagem (as que ficaram mais as
+    retiradas dão o total gravado), e a raiz gravada vale pelo hash da rodada, que a cobre. As demais
+    tabelas da rodada são refeitas como sempre. Cada retirada tem de estar declarada (total e resumo)
+    no detalhe da rodada que retirou: marca a mais, a menos ou alterada é acusada."""
     rodadas = _rodadas(con)
     problemas: list[dict] = []
     folhas = _folhas_por_rodada(con) if raizes and rodadas else {}
+    perdidas, marcas = _retiradas_por_rodada(con) if rodadas else ({}, {})
+    declaradas: dict[int, dict] = {}
     anterior = None
     for r in rodadas:
         if r.get("hash") is None:
@@ -759,17 +947,58 @@ def verificar_cadeia(con, *, raizes: bool = True) -> dict:
             problemas.append({"rodada": r["id"], "motivo": "elo quebrado: o hash da rodada anterior não confere",
                               "grave": True})
         anterior = r["hash"]
+        det = json.loads(r.get("detalhe") or "{}") if (r.get("detalhe") or "").startswith("{") else {}
+        if det.get("retiradas"):
+            declaradas[r["id"]] = det["retiradas"]
         if raizes and not r.get("herdada"):
             raiz, por_tabela = _raizes(folhas.get(r["id"], {}))
-            if raiz != r.get("raiz"):
-                gravado = json.loads(r.get("tabelas") or "{}")
-                tabelas = sorted(t for t in set(gravado) | set(por_tabela) if gravado.get(t) != por_tabela.get(t))
+            gravado = json.loads(r.get("tabelas") or "{}")
+            menos = perdidas.get(r["id"], Counter())
+            if not menos:
+                if raiz != r.get("raiz"):
+                    tabelas = sorted(t for t in set(gravado) | set(por_tabela) if gravado.get(t) != por_tabela.get(t))
+                    problemas.append({"rodada": r["id"], "motivo": "os selos da rodada foram alterados (raiz de "
+                                      "Merkle não confere)", "tabelas": tabelas, "grave": True})
+                continue
+            poucas = sorted(t for t, k in menos.items() if k <= POUCAS_RETIRADAS)
+            if poucas:
+                problemas.append({"rodada": r["id"], "motivo": f"tabela com até {POUCAS_RETIRADAS} folhas retiradas: "
+                                  "a raiz guardada dela ainda deixa testar candidatos ao CPF", "tabelas": poucas,
+                                  "grave": False})
+            tabelas = []
+            for t in sorted(set(gravado) | set(por_tabela) | set(menos)):
+                if t in menos:
+                    total = (gravado.get(t) or [0])[0]
+                    if (por_tabela.get(t) or [0])[0] + menos[t] != total:
+                        tabelas.append(t)
+                elif gravado.get(t) != por_tabela.get(t):
+                    tabelas.append(t)
+            if tabelas:
                 problemas.append({"rodada": r["id"], "motivo": "os selos da rodada foram alterados (raiz de Merkle "
-                                  "não confere)", "tabelas": tabelas, "grave": True})
+                                  "ou contagem com as folhas retiradas não confere)", "tabelas": tabelas,
+                                  "grave": True})
+    for rid in sorted(set(marcas) | set(declaradas)):
+        d = declaradas.get(rid) or {}
+        linhas = marcas.get(rid, [])
+        if d.get("total") != len(linhas) or d.get("resumo") != (_resumo_das_marcas(linhas) if linhas else None):
+            problemas.append({"rodada": rid, "motivo": "as marcas das folhas retiradas não conferem com o que a "
+                              "rodada que retirou declarou", "grave": True})
     ultima = next((r for r in reversed(rodadas) if r.get("hash")), None)
     return {"rodadas": len(rodadas), "herdadas": sum(1 for r in rodadas if r.get("herdada")),
             "problemas": problemas, "ok": not any(p["grave"] for p in problemas),
-            "ultima": _resumo_rodada(ultima) if ultima else None}
+            "ultima": _resumo_rodada(ultima) if ultima else None,
+            "retiradas": _resumo_das_retiradas(perdidas, declaradas, marcas)}
+
+
+def _resumo_das_retiradas(perdidas: dict[int, Counter], declaradas: dict[int, dict],
+                          marcas: dict[int, list[str]]) -> dict:
+    """Quantas folhas foram retiradas, em qual rodada (a que retirou e as que perderam) e por quê."""
+    if not marcas and not declaradas:
+        return {"total": 0}
+    return {"total": sum(len(v) for v in marcas.values()),
+            "por_rodada_que_retirou": {str(rid): {k: d.get(k) for k in ("total", "por_tabela", "motivos")}
+                                       for rid, d in sorted(declaradas.items())},
+            "por_rodada_do_selo": {str(r): dict(sorted(c.items())) for r, c in sorted(perdidas.items())}}
 
 
 def _resumo_rodada(r: dict) -> dict:
@@ -835,8 +1064,15 @@ def _selo(con, tabela: str, h: bytes) -> dict | None:
         return None
     r = con.execute("SELECT id, modo, inicio, fim, hash FROM rastreio_rodadas WHERE id = ?", (s[0],)).fetchone()
     rodada = dict(zip(("id", "modo", "inicio", "fim", "hash"), r)) if r else {"id": s[0]}
-    return {"rodada": rodada, "origem": _origem(con, s[1], rodada.get("modo")), "iguais": s[2],
-            "descartada_na_rodada": s[3]}
+    saida = {"rodada": rodada, "origem": _origem(con, s[1], rodada.get("modo")), "iguais": s[2],
+             "descartada_na_rodada": s[3]}
+    if "rastreio_retiradas" in _tabelas_rastreio(con):
+        substituiu = [dict(zip(("rodada", "retirada_por", "motivo"), x)) for x in con.execute(
+            "SELECT r.rodada, r.retirada_por, r.motivo FROM rastreio_retiradas r JOIN rastreio_tabelas t "
+            "ON t.id = r.tabela WHERE t.nome = ? AND r.novo = ?", (tabela, h))]
+        if substituiu:
+            saida["substituiu_retirados"] = substituiu
+    return saida
 
 
 def registro(con, tabela: str, rowid: int) -> dict | None:

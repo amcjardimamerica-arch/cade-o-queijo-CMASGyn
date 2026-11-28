@@ -147,6 +147,37 @@ def conectar_leitura(caminho, **kw) -> sqlite3.Connection:
     return con
 
 
+def conectar(caminho, **kw) -> sqlite3.Connection:
+    """Conexão de gravação com o banco e as partes dele (a ``Conexao`` do Banco, sem o rastreio): um
+    ``UPDATE msc_itens`` ou ``DELETE FROM siconfi_itens`` chega à parte, e o que muda na despesa vai aos
+    .gz no commit."""
+    con = sqlite3.connect(caminho, factory=Conexao, **kw)
+    anexar(con)
+    return con
+
+
+def copiar_banco(origem, destino, *, rastreio: bool = False) -> Path:
+    """Copia o banco inteiro: o principal e todas as partes (os .db e a pasta da parte comprimida com os
+    .gz e o SQLite de trabalho), cada uma ao lado do destino. Com ``rastreio``, também o rastreio.db.
+    O destino tem de se chamar ``historico.db`` para as partes serem anexadas. Copiar só o principal deixa
+    a cópia sem ``siconfi_itens``, ``msc_itens``, ``sancoes``, a despesa... (28/11/2026)."""
+    import shutil
+    origem, destino = Path(origem), Path(destino)
+    if divide(origem) and not divide(destino):
+        raise ValueError(f"a cópia de um banco em partes tem de se chamar {NOME_DIVIDIDO}: {destino}")
+    destino.parent.mkdir(parents=True, exist_ok=True)
+    copiar = [origem, *(a for a in arquivos(origem) if not a.name.endswith(("-journal", ".tmp")))]
+    if rastreio:
+        from . import rastreio as _rastreio
+        copiar.append(_rastreio.caminho_do_rastreio(origem))
+    for arquivo in copiar:
+        if arquivo.is_file():
+            alvo = destino.parent / arquivo.relative_to(origem.parent)
+            alvo.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(arquivo, alvo)
+    return destino
+
+
 def esquemas(con) -> list[str]:
     """Os esquemas que guardam dados da coleta: o principal e as partes anexadas."""
     return ["main", *anexadas(con)]

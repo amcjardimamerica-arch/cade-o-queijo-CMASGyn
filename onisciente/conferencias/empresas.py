@@ -442,6 +442,8 @@ class _Conferidor:
         self.ausentes, self.sancoes, self.servidores, self.itens = ausentes, sancoes, servidores, itens
         self.achados: list[Achado] = achados
         self.pessoas = {cnpj: pessoas_da_empresa(lista) for cnpj, lista in socios.items()}
+        self._indice: tuple | None = None          # das sanções, montado no primeiro uso (_candidatas)
+        self._do_basico: tuple | None = None       # contratos e itens por CNPJ básico (_experiencia)
 
     def add(self, tipo: str, c: Contrato, chave: str, descricao: str, *, valor: float | None = None,
             limite: float = 0.0, contratos: list[str] | None = None, **dados) -> None:
@@ -636,12 +638,19 @@ class _Conferidor:
         minimo = int(_v(self.cfg, "contratos_anteriores_minimos"))
         anteriores = 0
         p_obj = palavras(c.objeto)
-        for o in self.contratos:
+        if self._do_basico is None:                # contratos e itens agrupados pelo CNPJ básico
+            self._do_basico = ({}, {})
+            for o in self.contratos:
+                self._do_basico[0].setdefault(o.basico, []).append(o)
+            for item in self.itens:
+                forn = item[1]
+                self._do_basico[1].setdefault(forn[:8] if len(forn) == 14 else forn, []).append(item)
+        for o in self._do_basico[0].get(c.basico, ()):
             if o.id == c.id or o.basico != c.basico or not o.data or o.data >= c.data:
                 continue
             if (c.ramo and o.ramo == c.ramo) or (not c.ramo and len(p_obj & palavras(o.objeto)) >= 2):
                 anteriores += 1
-        for compra, forn, data, desc in self.itens:
+        for compra, forn, data, desc in self._do_basico[1].get(c.basico, ()):
             if (forn[:8] if len(forn) == 14 else forn) != c.basico or not data or data[:10] >= c.data:
                 continue
             if compra == c.compra_id:
@@ -674,6 +683,40 @@ class _Conferidor:
             return sm == m and (not s.nome or not nome or _mesmo_nome(s.nome, nome)), True
         return (not sm and _mesmo_nome(s.nome, nome)), True
 
+    def _candidatas(self, tipo: str, doc: str, nome: str) -> list[Sancao]:
+        """As sanções que podem casar (as que ``_casa`` aceitaria estão todas aqui), na ordem da lista.
+        Comparar cada contrato com a lista inteira dava 800 milhões de comparações por parecer."""
+        if self._indice is None:
+            raiz: dict[str, list[int]] = {}
+            miolo: dict[str, list[int]] = {}
+            nome_pj: dict[str, list[int]] = {}       # sem documento: casa com empresa pelo nome
+            nome_sem_cpf: dict[str, list[int]] = {}  # sem CPF (nem inteiro nem mascarado): casa com pessoa pelo nome
+            for i, x in enumerate(self.sancoes):
+                if x.tipo_doc == "PJ":
+                    raiz.setdefault(x.doc[:8], []).append(i)
+                elif x.tipo_doc in ("PF", "PF6"):
+                    miolo.setdefault(x.doc[3:9] if x.tipo_doc == "PF" else x.doc, []).append(i)
+                if x.tipo_doc not in ("PF", "PF6") and x.nome:
+                    for chave in {x.nome, _sem_cpf(x.nome)} - {""}:
+                        nome_sem_cpf.setdefault(chave, []).append(i)
+                        if not x.tipo_doc:
+                            nome_pj.setdefault(chave, []).append(i)
+            self._indice = (raiz, miolo, nome_pj, nome_sem_cpf)
+        raiz, miolo, nome_pj, nome_sem_cpf = self._indice
+        chaves = {nome, _sem_cpf(nome)} - {""} if nome else set()
+        achadas: set[int] = set()
+        if tipo == "PJ":
+            achadas.update(raiz.get(doc[:8], ()))
+            for k in chaves:
+                achadas.update(nome_pj.get(k, ()))
+        else:
+            m = doc[3:9] if tipo == "PF" else doc if tipo == "PF6" else ""
+            if m:
+                achadas.update(miolo.get(m, ()))
+            for k in chaves:
+                achadas.update(nome_sem_cpf.get(k, ()))
+        return [self.sancoes[i] for i in sorted(achadas)]
+
     def _sancoes(self, c: Contrato) -> None:
         if not self.sancoes:
             return
@@ -689,7 +732,7 @@ class _Conferidor:
             alvos = [("empresa", "PF6" if len(c.ni) == 6 else "PF", c.ni, _norm(c.fornecedor), None)]
         vigencia_fim = c.vigencia_fim or c.data
         for quem, tipo, doc, nome, pessoa in alvos:
-            for s in self.sancoes:
+            for s in self._candidatas(tipo, doc, nome):
                 casa, parcial = self._casa(s, tipo, doc, nome)
                 if not casa:
                     continue
