@@ -494,7 +494,12 @@ def test_portal_despesas_real_formulario_tabela_e_paginacao():
     assert len(f.opcoes[prefixo + "wtcboOrgao"]) == 38                 # "Selecione" e os 37 órgãos
     assert f.botao(LISTA.botao) == (prefixo + "wt86", "Buscar")
     corpo = f.envio_ajax({mes: "__ossli_11"}, prefixo + "wt86")
-    assert corpo["__EVENTTARGET"] == prefixo + "wt86" and corpo["__AJAX"] == "__OSVSTATE,"
+    # 28/11/2026, mudança autorizada pelo coordenador da Frente D2 (rodada 11): esta trava fixava
+    # __AJAX == "__OSVSTATE," (os baldes). Prova: o _osjs.js põe no __AJAX o contexto do evento, e a
+    # sondagem de 28/11/2026 07:30Z abriu a página 2 dos popups (HTTP 200) com o contexto, depois de
+    # todo OsAjax com os baldes voltar HTTP 500 de 894 bytes. Trava nova: test_lista_osajax_*.
+    assert corpo["__EVENTTARGET"] == prefixo + "wt86"
+    assert corpo["__AJAX"] == "1280,900,WebPatterns_wt2_block_wtMainContent_DespesasWebBlocks_wt1_block_wt86,0,0,0,0,0,0,"
     assert corpo["__OSVSTATE"] == f.campos["__OSVSTATE"] and corpo[mes] == "__ossli_11"
     assert "__AJAXEVENT" not in corpo and not any(n in corpo for n, _ in f.botoes)
     # A tabela: uma linha por empenho, sem o texto dos scripts e dos links de ordenação.
@@ -570,7 +575,12 @@ def test_consulta_da_lista_real_com_popups_e_segunda_pagina():
     posts = [f for _u, f in ler.pedidos if f]
     prefixo = "WebPatterns_wt2$block$wtMainContent$DespesasWebBlocks_wt1$block$"
     assert posts[0][prefixo + "wtcboMes"] == "__ossli_11" and posts[0][prefixo + "wtcboAno"] == "2026"
-    assert posts[0]["__AJAX"] == "__OSVSTATE," and posts[0]["__EVENTTARGET"] == prefixo + "wt86"
+    # 28/11/2026, mudança autorizada pelo coordenador da Frente D2 (rodada 11): esta trava fixava
+    # __AJAX == "__OSVSTATE," (os baldes). Prova: o _osjs.js põe no __AJAX o contexto do evento, e a
+    # sondagem de 28/11/2026 07:30Z abriu a página 2 dos popups (HTTP 200) com o contexto, depois de
+    # todo OsAjax com os baldes voltar HTTP 500 de 894 bytes. Trava nova: test_lista_osajax_*.
+    assert posts[0]["__AJAX"].startswith("1280,900,WebPatterns_wt2_block_wtMainContent_DespesasWebBlocks_wt1_block_wt86,")
+    assert posts[0]["__EVENTTARGET"] == prefixo + "wt86"
     assert posts[1]["__EVENTTARGET"] == prefixo + "RichWidgets_wt150$block$wt28"
     assert posts[1]["__OSVSTATE"] == G.formularios(_f("portal_despesas_real.html"))[0].campos["__OSVSTATE"]
     empenhos = [e["empenho"] for e in res.eventos if e["tipo"] == "empenho"]
@@ -656,10 +666,17 @@ def test_sondagem_monta_buscar_pagina_2_e_exportacao():
     inicial = G.formularios(_f("portal_despesas_real.html"))[0].campos["__OSVSTATE"]
     (u1, a, _), (u2, b, _), (u3, c, _), (u4, d, _) = pedidos
     assert u1.startswith(url + "?_ts=") and u2.startswith(url + "?_ts=") and u3 == u4 == url
-    assert a["__EVENTTARGET"] == prefixo + "wt86" and a["__AJAX"] == "__OSVSTATE," and a["__OSVSTATE"] == inicial
+    # 28/11/2026, mudança autorizada pelo coordenador da Frente D2 (rodada 11): esta trava fixava
+    # __AJAX == "__OSVSTATE," (os baldes). Prova: o _osjs.js põe no __AJAX o contexto do evento, e a
+    # sondagem de 28/11/2026 07:30Z abriu a página 2 dos popups (HTTP 200) com o contexto, depois de
+    # todo OsAjax com os baldes voltar HTTP 500 de 894 bytes. Trava nova: test_lista_osajax_*.
+    assert a["__EVENTTARGET"] == prefixo + "wt86" and a["__OSVSTATE"] == inicial
+    assert a["__AJAX"] == "1280,900,WebPatterns_wt2_block_wtMainContent_DespesasWebBlocks_wt1_block_wt86,0,0,0,0,0,0,"
     assert a[prefixo + "wtcboMes"] == "__ossli_10" and a[prefixo + "wtcboAno"] == "2026"
     assert prefixo + "wt86" not in a                                     # o OsAjax não manda botão
-    assert b["__EVENTTARGET"] == prefixo + "RichWidgets_wt150$block$wt28" and b["__AJAX"] == "__OSVSTATE,"
+    assert b["__EVENTTARGET"] == prefixo + "RichWidgets_wt150$block$wt28"            # (28/11/2026: ver acima)
+    assert b["__AJAX"] == ("1280,900,WebPatterns_wt2_block_wtMainContent_DespesasWebBlocks_wt1_block_"
+                           "RichWidgets_wt150_block_wt28,0,0,0,0,0,0,")
     assert b["__OSVSTATE"] == "ESTADO-SINTETICO-DA-PAGINA-2"            # o estado da resposta (a)
     assert c[prefixo + "wtselExportar"] == "__ossli_2" and c[prefixo + "wtbtnExportar"] == "OK"
     assert "__AJAX" not in c and c["__OSVSTATE"] == "ESTADO-SINTETICO-DA-PAGINA-2"
@@ -1496,9 +1513,12 @@ def test_pedido_da_pagina_2_do_popup_real_leva_o_contexto_do_evento_e_os_cabecal
     # O id do next do popup é o da página (não o da lista), e é o que o motor mandou.
     assert prox["alvo"] == antigo["post"]["__EVENTTARGET"] == _NEXT_REAL
     assert prox["id"] == "WebPatterns_wt13_block_wtMainContent_RichWidgets_wt1_block_wt28" and prox["extra"] == ""
-    # O recorte do 500 é o pedido que o motor montava: o mesmo corpo, campo a campo.
+    # O recorte do 500 é o pedido que o motor montava: o mesmo corpo, campo a campo, fora o __AJAX e a
+    # caixa (28/11/2026, rodada 11: corpo_proxima da lista passou a mandar o contexto, como o popup).
     acao = "https://www10.goiania.go.gov.br/DespesasWebBlocks/LiquidacaoPopUp.aspx"
-    assert G.corpo_proxima(acao, estado, prox, ajax=True) == antigo["post"]
+    lista = G.corpo_proxima(acao, estado, prox, ajax=True)
+    assert {k: v for k, v in lista.items() if k not in ("__AJAX", _CAIXA_REAL)} == \
+        {k: v for k, v in antigo["post"].items() if k not in ("__AJAX", _CAIXA_REAL)}
     assert antigo["post"]["__AJAX"] == "__OSVSTATE," and antigo["post"][_CAIXA_REAL] == ""
     assert "X-Requested-With" not in antigo["cabecalhos"]
     # O pedido novo leva o que faltava: o contexto do evento no __AJAX, a caixa marcada como "on" e os
@@ -1512,8 +1532,9 @@ def test_pedido_da_pagina_2_do_popup_real_leva_o_contexto_do_evento_e_os_cabecal
     assert cab == {"X-Requested-With": "XMLHttpRequest", "Accept": "text/plain, */*; q=0.01",
                    "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
                    "Referer": _URL_POPUP_REAL, "Origin": "https://www10.goiania.go.gov.br"}
-    # A lista fica como estava (as travas antigas a fixam): envio_ajax segue com os baldes no __AJAX.
-    assert G.Formulario(acao, "post", campos=estado).envio_ajax({}, _NEXT_REAL)["__AJAX"] == "__OSVSTATE,"
+    # 28/11/2026, rodada 11 (autorizado pelo coordenador): esta linha fixava a lista com os baldes no
+    # __AJAX; a sondagem de 07:30Z abriu a página 2 dos popups com o contexto, e a lista passa a mandá-lo.
+    assert G.Formulario(acao, "post", campos=estado).envio_ajax({}, _NEXT_REAL)["__AJAX"] == corpo["__AJAX"]
 
 
 def test_ler_popup_real_manda_o_pedido_novo_e_o_500_fica_como_pagina_incompleta():
@@ -1571,3 +1592,117 @@ def test_sondagem_guarda_o_pedido_inteiro_e_o_corpo_do_500_do_popup(monkeypatch,
                                  cabecalhos={"Cookie": "ASP.NET_SessionId=segredo123", "Referer": _URL_POPUP_REAL})
     texto = (tmp_path / guardado["arquivo"]).read_text(encoding="utf-8")
     assert "segredo123" not in texto and "ASP.NET_SessionId=<valor omitido>" in texto
+
+
+# --- Rodada 11 (28/11/2026): a página 2 real dos popups, aberta pelo contexto do evento ------------------
+# A sondagem de 28/11/2026 07:30Z, com o pedido da rodada 10, leu a página 2 de liquidação e de pagamento
+# dos 4 empenhos (HTTP 200, 18 a 54 KB) e as páginas 2 e 3 do de 1.695 e 1.718 linhas. Fixtures reais do
+# empenho 20262150000230001 (credor pessoa jurídica): as páginas 1 e 2 dos dois popups e as linhas da
+# exportação desse empenho no banco real (despesa_eventos, coleta de 28/11/2026).
+
+_EMP_REAL = "20262150000230001"
+_POPUPS_REAIS = {
+    "liquidacao": ("liquidacao_popup_pagina1_real.html", "liquidacao_popup_pagina2_real.txt", 65),
+    "pagamento": ("pagamento_popup_pagina1_real.html", "pagamento_popup_pagina2_real.txt", 60),
+}
+
+
+def _exportacao_real() -> list[dict]:
+    import json
+    return json.loads(_f(f"exportacao_empenho_{_EMP_REAL}_real.json").decode("utf-8"))["eventos"]
+
+
+class LeitorDosPopupsReais:
+    """GET: a página 1 real do popup; POST pelo next: a página 2 real (resposta OsAjax)."""
+
+    def __init__(self):
+        self.pedidos = []
+
+    def __call__(self, url, formulario=None, cabecalhos=None):
+        self.pedidos.append((url, formulario, cabecalhos))
+        tipo = "liquidacao" if "LiquidacaoPopUp" in url else "pagamento"
+        p1, p2, _total = _POPUPS_REAIS[tipo]
+        return Leitura(True, url, _f(p1) if formulario is None else _f(p2), http=200)
+
+
+@pytest.mark.parametrize("tipo", ["liquidacao", "pagamento"])
+def test_popup_real_pagina_2_le_da_linha_51_em_diante_sem_repetir_a_primeira(tipo):
+    p1, p2, total = _POPUPS_REAIS[tipo]
+    cfg = LISTA.popups[tipo]
+    # A página 2 real é a resposta OsAjax do next: o contador diz 51 em diante, e ela não repete a 1.
+    _e, _l, html2, _lido = G.depois_da_resposta({}, [], _f(p2))
+    assert G.contador(html2) == (51, total, total)
+    chave = lambda e: (e["tipo"], e["ordem"], e["data"], e["valor"])   # noqa: E731
+    pag1 = [chave(e) for e in G.eventos_do_popup(_f(p1).decode("utf-8"), tipo, cfg["colunas"],
+                                                    {"empenho": _EMP_REAL}, url="u")]
+    pag2 = [chave(e) for e in G.eventos_do_popup(html2, tipo, cfg["colunas"], {"empenho": _EMP_REAL}, url="u")]
+    assert len(pag1) == 50 and len(pag2) == total - 50 and not set(pag1) & set(pag2)
+    # ler_popup lê as duas e para no contador: todas as linhas, nenhuma repetida.
+    ler = LeitorDosPopupsReais()
+    url = cfg["endereco"].format(empenho=_EMP_REAL)
+    pop = G.ler_popup(ler, url, tipo, cfg["colunas"], {"empenho": _EMP_REAL})
+    assert pop.completo and pop.paginas == 2 and pop.total == total and not pop.erro
+    assert [chave(e) for e in pop.eventos] == pag1 + pag2
+    # O pedido que abriu a página 2: o contexto do evento no __AJAX e os cabeçalhos do OsAjax.
+    _u, corpo, cab = ler.pedidos[1]
+    assert corpo["__AJAX"].startswith("1280,900,") and cab["X-Requested-With"] == "XMLHttpRequest"
+
+
+def test_popup_real_soma_das_duas_paginas_bate_com_a_exportacao_linha_a_linha():
+    exportacao = _exportacao_real()
+    cfg = LISTA.popups
+    for tipo, (_p1, _p2, _total) in _POPUPS_REAIS.items():
+        pop = G.ler_popup(LeitorDosPopupsReais(), cfg[tipo]["endereco"].format(empenho=_EMP_REAL), tipo,
+                          cfg[tipo]["colunas"], {"empenho": _EMP_REAL})
+        do_popup = sorted((e["ordem"], round(e["valor"], 2)) for e in pop.eventos if e["tipo"] == tipo)
+        da_exportacao = sorted((e["ordem"], round(e["valor"], 2)) for e in exportacao if e["tipo"] == tipo)
+        assert len(do_popup) == 59 and do_popup == da_exportacao
+        assert round(sum(v for _o, v in do_popup), 2) == 568_320_000.00
+    # As outras linhas do popup não são liquidação nem pagamento: 6 anulações (65 - 59) e 1 ordem (60 - 59).
+    liq = G.ler_popup(LeitorDosPopupsReais(), cfg["liquidacao"]["endereco"].format(empenho=_EMP_REAL),
+                      "liquidacao", cfg["liquidacao"]["colunas"], {"empenho": _EMP_REAL})
+    assert sorted({e["tipo"] for e in liq.eventos}) == ["anulacao", "liquidacao"]
+    assert len([e for e in liq.eventos if e["tipo"] == "anulacao"]) == 6
+    # Na amostra do motor: as duas páginas somadas batem com a exportação e nenhuma nota sai.
+    assert G.conferir_amostra(LeitorDosPopupsReais(), LISTA, exportacao, amostra=1) == []
+
+
+def test_popup_no_teto_de_paginas_diz_que_parou_no_teto():
+    emp = "20265151000730001"
+    cfg = LISTA.popups["liquidacao"]
+    pop = G.ler_popup(LeitorDePopupPaginado(120, emp), cfg["endereco"].format(empenho=emp), "liquidacao",
+                      cfg["colunas"], {"empenho": emp}, paginas_maximas=2)
+    assert not pop.completo and pop.paginas == 2 and len(pop.eventos) == 100
+    assert pop.erro == "parou no teto de 2 página(s): 100 de 120 linha(s) lidas"
+
+
+class LeitorRealComCabecalhos(LeitorReal):
+    def __init__(self):
+        super().__init__()
+        self.cabecalhos = []
+
+    def __call__(self, url, formulario=None, cabecalhos=None, **kw):
+        self.cabecalhos.append((formulario, cabecalhos))
+        return super().__call__(url, formulario, **kw)
+
+
+def test_lista_osajax_leva_o_contexto_do_evento_e_os_cabecalhos_como_o_popup_aberto():
+    # 28/11/2026, rodada 11: autorizado pelo coordenador depois da sondagem de 07:30Z (a página 2 dos
+    # popups abriu com o contexto do evento no __AJAX). O Buscar e o next da lista mandam o mesmo.
+    ler = LeitorRealComCabecalhos()
+    res = G.consultar_lista(ler, PORTAL, LISTA, {"mes": "11", "ano": "2026"})
+    assert res.ok and res.paginas == 2, res.erro
+    prefixo = "WebPatterns_wt2_block_wtMainContent_DespesasWebBlocks_wt1_block_"
+    posts = [(f, c) for f, c in ler.cabecalhos if f]
+    (buscar, cab1), (proxima, cab2) = posts[0], posts[1]
+    assert buscar["__AJAX"] == f"1280,900,{prefixo}wt86,0,0,0,0,0,0,"               # o id do botão Buscar
+    assert proxima["__AJAX"] == f"1280,900,{prefixo}RichWidgets_wt150_block_wt28,0,0,0,0,0,0,"
+    assert "__OSVSTATE," not in (buscar["__AJAX"], proxima["__AJAX"])
+    for cab in (cab1, cab2):
+        assert cab["X-Requested-With"] == "XMLHttpRequest" and cab["Accept"] == "text/plain, */*; q=0.01"
+        assert cab["Content-Type"] == "application/x-www-form-urlencoded; charset=UTF-8"
+        assert cab["Referer"] == PORTAL.base + "Portal_Despesas.aspx" and cab["Origin"] == "https://www10.goiania.go.gov.br"
+    # Sem a chamada OsAjax na página, o id de origem é o alvo com $ trocado por _ (o id do ASP.NET).
+    f = G.Formulario("x.aspx", "post", campos={"__OSVSTATE": "E"}, tipos={"c": "checkbox"})
+    corpo = f.envio_ajax({}, "a$b$wt9")
+    assert corpo["__AJAX"] == "1280,900,a_b_wt9,0,0,0,0,0,0," and corpo["c"] == "off"

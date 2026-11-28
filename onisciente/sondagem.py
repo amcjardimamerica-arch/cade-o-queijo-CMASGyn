@@ -633,8 +633,13 @@ def _conversa_despesas(fonte: str, url: str, leitura, *, ler_=None, guardar=None
             return None
         destino = f"{acao}?_ts={int(time.time() * 1000)}" if ajax else acao   # como o _osjs.js
         inicio = time.monotonic()
-        lida = ler_(destino, tempo=90, fonte=fonte, formulario=corpo)
-        registro = guardar(fonte, destino, lida, corpo)
+        cab = G.cabecalhos_osajax(url) if ajax else {}       # rodada 11: os cabeçalhos do OsAjax, como no popup
+        extra = {"cabecalhos": cab} if cab and _aceita(ler_, "cabecalhos") else {}
+        lida = ler_(destino, tempo=90, fonte=fonte, formulario=corpo, **extra)
+        if cab and _aceita(guardar, "cabecalhos"):
+            registro = guardar(fonte, destino, lida, corpo, cabecalhos=cab)
+        else:
+            registro = guardar(fonte, destino, lida, corpo)
         registro["segundos"] = round(time.monotonic() - inicio, 1)
         registro["passo"] = passo
         out.append(registro)
@@ -650,7 +655,7 @@ def _conversa_despesas(fonte: str, url: str, leitura, *, ler_=None, guardar=None
         if prox is None:
             enviar("b_pagina_2_osajax", "o link da página seguinte não foi achado", ajax=True)
         else:
-            lida2 = enviar("b_pagina_2_osajax", G.corpo_proxima(acao, estado, prox, ajax=True), ajax=True)
+            lida2 = enviar("b_pagina_2_osajax", G.corpo_proxima(acao, estado, prox, ajax=True, tipos=form.tipos), ajax=True)
             if lida2 is not None and lida2.ok:
                 estado, ajax_da_pagina, _html, _lido = G.depois_da_resposta(estado, ajax_da_pagina, lida2.conteudo)
     enviar("c_exportar_csv", G.corpo_exportar(form, c, valores, "CSV", estado=estado), ajax=False)
@@ -725,8 +730,14 @@ def _caminho_do_motor(fonte: str, *, ler_=None, guardar=None, meses=MESES_DO_MOT
     return out
 
 
-def _popups_paginados(fonte: str, urls: list[str], *, ler_=None, guardar=None, paginas_maximas: int = 3
-                      ) -> list[dict]:
+# Rodada 11: o teto era 3 e o empenho de 1.695 e 1.718 linhas parou na página 3; 40 páginas (2.000
+# linhas) leem os popups da amostra inteiros, como o motor (até 60).
+PAGINAS_DO_POPUP_NA_SONDAGEM = 40
+PAGINAS_GUARDADAS_DO_POPUP = 3      # o corpo das três primeiras (e de toda página recusada) fica guardado
+
+
+def _popups_paginados(fonte: str, urls: list[str], *, ler_=None, guardar=None,
+                      paginas_maximas: int = PAGINAS_DO_POPUP_NA_SONDAGEM) -> list[dict]:
     """d2_transweb_popup: cada popup de liquidação e de pagamento lido como o motor lê
     (goiania_transweb.ler_popup: a primeira página por GET e as seguintes pelo next do navegador da
     lista, por OsAjax), até ``paginas_maximas`` páginas; o corpo de cada página fica guardado e um
@@ -756,7 +767,11 @@ def _popups_paginados(fonte: str, urls: list[str], *, ler_=None, guardar=None, p
             extra = {"cabecalhos": cabecalhos} if cabecalhos and _aceita(ler_, "cabecalhos") else {}
             lida = ler_(destino, tempo=90, fonte=fonte, formulario=formulario, **extra)
             nome = destino if paginas[0] == 1 else f"{_url}#pagina-{paginas[0]}"
-            if enviados and _aceita(guardar, "cabecalhos"):
+            if paginas[0] > PAGINAS_GUARDADAS_DO_POPUP and lida.ok:
+                # Da quarta página em diante, só o registro (o repositório não guarda 35 páginas por popup).
+                reg = {"fonte": fonte, "url": nome, "post": None, "ok": lida.ok, "http": lida.http,
+                       "erro": lida.erro, "bytes": len(lida.conteudo), "arquivo": ""}
+            elif enviados and _aceita(guardar, "cabecalhos"):
                 reg = guardar(fonte, nome, lida, formulario, cabecalhos=enviados)
             else:
                 reg = guardar(fonte, nome, lida, formulario)
