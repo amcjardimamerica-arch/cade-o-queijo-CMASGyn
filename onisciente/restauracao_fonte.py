@@ -284,24 +284,31 @@ def planejar(con, antigos: Antigos) -> Plano:
                 motivo = "sem original no git" if tabela in COLUNAS else "mascarada pelo coletor, sem original no git"
                 _para_reler(p, tabela, rowid, linha, mascaradas, motivo)
                 continue
-            if len(valores_possiveis) > 1:
-                # Mais de um original possível (o mesmo miolo e o resto igual): vale só o que o rastreio antigo
-                # prova pelo hash da linha refeita; senão, a linha fica e vai para a releitura.
-                provados = [v for v in valores_possiveis.values()
-                            if rastreio._digest(tabela, {**linha, **v[0]}) in folhas]
-                if len(provados) != 1:
-                    p.ambiguas[tabela] += 1
-                    _para_reler(p, tabela, rowid, linha, mascaradas, "mais de um original possível")
-                    continue
-                valores_possiveis = {"provado": provados[0]}
-            ((novos, commit, antiga),) = valores_possiveis.values()
-            refeita = {**linha, **novos}
-            if rastreio._digest(tabela, refeita) in folhas:
-                prova = "hash"
-            elif rastreio._digest(tabela, antiga) in folhas and \
-                    {k for k in set(refeita) | set(antiga) if refeita.get(k) != antiga.get(k)} <= set(PROVENIENCIA):
-                prova = "linha_antiga"
+            opcoes = list(valores_possiveis.values())
+            escolha = None
+            if len(opcoes) > 1:
+                # Uma versão antiga pode devolver mais colunas que outra (coletada antes da primeira máscara ou
+                # entre uma e outra). Se uma devolve tudo o que as outras devolvem, com os mesmos valores, e tem
+                # prova, é ela: senão a linha voltaria em parte e uma segunda rodada acharia o resto.
+                maior = max(opcoes, key=lambda o: len(o[0]))
+                if all(maior[0].get(c) == v for o in opcoes for c, v in o[0].items()) and \
+                        _prova(tabela, linha, maior, folhas):
+                    escolha = maior
+                else:
+                    # Mais de um original possível (o mesmo miolo e o resto igual): vale só o que o rastreio
+                    # antigo prova pelo hash da linha refeita; senão, a linha fica e vai para a releitura.
+                    provados = [o for o in opcoes if rastreio._digest(tabela, {**linha, **o[0]}) in folhas]
+                    if len(provados) != 1:
+                        p.ambiguas[tabela] += 1
+                        _para_reler(p, tabela, rowid, linha, mascaradas, "mais de um original possível")
+                        continue
+                    escolha = provados[0]
             else:
+                escolha = opcoes[0]
+            novos, commit, _antiga = escolha
+            refeita = {**linha, **novos}
+            prova = _prova(tabela, linha, escolha, folhas)
+            if prova is None:
                 p.sem_prova[tabela] += 1
                 _para_reler(p, tabela, rowid, linha, mascaradas, "sem prova no rastreio antigo")
                 continue
@@ -313,6 +320,18 @@ def planejar(con, antigos: Antigos) -> Plano:
             if restam:
                 _para_reler(p, tabela, rowid, refeita, restam, "voltou em parte; o resto sem original no git")
     return p
+
+
+def _prova(tabela: str, linha: dict, opcao: tuple, folhas: set) -> str | None:
+    """A prova da linha refeita: o hash dela no rastreio antigo, ou o da linha antiga que só difere na proveniência."""
+    novos, _commit, antiga = opcao
+    refeita = {**linha, **novos}
+    if rastreio._digest(tabela, refeita) in folhas:
+        return "hash"
+    if rastreio._digest(tabela, antiga) in folhas and \
+            {k for k in set(refeita) | set(antiga) if refeita.get(k) != antiga.get(k)} <= set(PROVENIENCIA):
+        return "linha_antiga"
+    return None
 
 
 def _para_reler(p: Plano, tabela: str, rowid: int, linha: dict, mascaradas: list[str], motivo: str) -> None:
@@ -455,15 +474,19 @@ def _mascarar_arquivo(nome: str, dados: bytes) -> bytes:
 
 def _molde(atual: str):
     """Uma expressão que casa o texto antigo com o atual: igual, menos onde o atual tem a máscara do sistema, que
-    no antigo pode ser o CPF (formatado, só dígitos ou com 000 na frente) ou a própria máscara."""
+    no antigo pode ser o CPF (formatado, só dígitos ou com 000 na frente) ou a própria máscara. A máscara antiga
+    regravava o arquivo em modo texto e trocava o fim de linha CRLF da fonte por LF: o antigo pode ter o CR."""
+    def literal(trecho: str) -> str:
+        return r"\r?\n".join(re.escape(s) for s in trecho.split("\n"))
+
     partes_, fim = [], 0
     for m in PADRAO.finditer(atual):
-        partes_.append(re.escape(atual[fim:m.start()]))
+        partes_.append(literal(atual[fim:m.start()]))
         meio = m.group(0)[4:11]                       # "NNN.NNN"
         a, b = meio.split(".")
         partes_.append(rf"(?:\d{{3}}\.{a}\.{b}-\d{{2}}|(?:000)?\d{{3}}{a}{b}\d{{2}}|\*\*\*\.{a}\.{b}-\*\*)")
         fim = m.end()
-    partes_.append(re.escape(atual[fim:]))
+    partes_.append(literal(atual[fim:]))
     return re.compile("".join(partes_), re.S)
 
 

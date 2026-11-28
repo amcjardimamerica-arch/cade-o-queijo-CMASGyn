@@ -223,3 +223,37 @@ def test_linha_que_volta_em_parte_tambem_vai_para_a_releitura():
     assert plano.reler["despesa_eventos"]["voltou em parte; o resto sem original no git"] == 1
     assert plano.reler["despesa_eventos"]["coluna documento"] == 1
     assert plano.reler["despesa_eventos"]["mês 2025-03"] == 1
+
+
+def test_a_versao_que_devolve_mais_colunas_vence_a_que_devolve_em_parte():
+    """Duas versões antigas da mesma linha: uma de antes de toda máscara (documento e credor inteiros, relida depois
+    com outro sha256) e uma de entre as máscaras (só o credor inteiro, provada pelo hash). Volta a que devolve tudo,
+    para que uma segunda rodada não ache mais nada (decisão do usuário de 28/11/2026, 11:18Z, P-01)."""
+    import sqlite3
+    con = sqlite3.connect(":memory:")
+    con.execute("CREATE TABLE despesa_eventos (tipo, empenho, data, orgao, valor, documento, credor, historico, "
+                "consulta, sha256, coletado_em)")
+    inteira = _evento("6", CPF_EXEMPLO, f"FULANO DE TAL {FORMATADO}", sha="a" * 64)
+    meio = {**inteira, "documento": G.documento_gravavel(CPF_EXEMPLO), "sha256": "b" * 64}
+    atual = {**meio, "credor": G.texto_gravavel(meio["credor"])}
+    con.execute(f"INSERT INTO despesa_eventos ({', '.join(atual)}) VALUES ({', '.join('?' * len(atual))})",
+                list(atual.values()))
+    chave = R._chave(R.mascarar("despesa_eventos", inteira))
+    assert chave == R._chave(R.mascarar("despesa_eventos", meio))
+    antigos = R.Antigos(linhas={"despesa_eventos": {chave: [("v1", inteira), ("v2", meio)]}},
+                        folhas={"despesa_eventos": {rastreio._digest("despesa_eventos", inteira),
+                                                    rastreio._digest("despesa_eventos", meio)}})
+    plano = R.planejar(con, antigos)
+    assert [(r["prova"], r["valores"]) for r in plano.restaurar] == \
+        [("linha_antiga", {"documento": CPF_EXEMPLO, "credor": inteira["credor"]})]
+    assert not plano.ambiguas and not plano.reler
+
+
+def test_sondagem_volta_ao_original_com_o_fim_de_linha_da_fonte():
+    """A máscara antiga regravou os arquivos da sondagem em modo texto (CRLF virou LF): o original do git, com o CPF
+    e o CRLF, casa com o arquivo mascarado e é o que volta."""
+    original = "Credor;Documento\r\nFULANO;00052998224725\r\nEMPRESA;31537116000198\r\n"
+    mascarado = "Credor;Documento\nFULANO;***.982.247-**\nEMPRESA;31537116000198\n"
+    assert R._molde(mascarado).fullmatch(original)
+    assert not R._molde(mascarado).fullmatch(original.replace("FULANO", "BELTRANO"))
+    assert R._mascaras("x.txt", original.encode()) == 0 and R._mascaras("x.txt", mascarado.encode()) == 1
