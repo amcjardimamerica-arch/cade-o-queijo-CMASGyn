@@ -1,5 +1,5 @@
 {
- "quando": "2026-11-28T06:50:02+00:00",
+ "quando": "2026-11-28T07:09:21+00:00",
  "leituras": [
   {
    "fonte": "d2_transweb_popup",
@@ -11,13 +11,13 @@
    "bytes": 41862,
    "arquivo": "d2_transweb_popup__www10-goiania-go-gov-br-despesaswebblocks-liquidacaopopup-aspx-empenho-4c444fbd.txt",
    "passo": "pagina_1",
-   "segundos": 0.8
+   "segundos": 1.1
   },
   {
    "fonte": "d2_transweb_popup",
    "url": "https://www10.goiania.go.gov.br/DespesasWebBlocks/LiquidacaoPopUp.aspx?Empenho=20262150000230001#pagina-2",
    "post": {
-    "__OSVSTATE": "KKi45pJLD7KlBWQFkpflKZnCdOAAM0lK7ijQKjQwnvky3kKSEvqnLl1688dmNZpenHNB9XdkUuEWOPhPyWn5ldMOVMeOOQWbjkJzf/2XalNwQQLWPkMvNP5pZ1u7FXgeIEwLY3IQS1IAwGVssP//Zu5rw7OPUM+a/MMRY5l5dO9K69syUpC1Ey8xBgIps2dSbU1S/miBF6fAKXF6GP/mGwiC8EL3Bxc+I6UkfGpZvfXsMz9bU5y1bvHHqTRP8dVHmVyRcupwfJYFj/Qdt3nqHwe6oyrJZ0Ma0vGweU97XpwH7jGFyUMbM1lxc7sOBxkck4xsMHe7KJjFVqpZSdZwjOVJpWXN4Pb8pORUul+FwNyDTBFqAoQPfQHtUHUXFUvwYpv0QBE/W8XXCQhTXpL3pMp1wTSMI6UNN196klfvaH7X8vUAIyCS+e5ixiv51REE7HU3rsKZJkIbSvnMO7fKTeOyOounZmGtrFVvZD8W14k8YgXE95HXL4Q6loAZt5Y3rQOqPrk9PT7HgYt4iFuMuUYnJyas8YVpizaRiv5ziioHmpYkB9v/4oh++TYQZ9c65GsW0fs6c6ChzDLq5gYTtOM+pzt68ZEww25Xno4g0WK02xVktWz/DTMEJBQ5wHy6uDSmZbE4BLWHsynbbhAcRA==",
+    "__OSVSTATE": "YC3xe0WAIin8tyFYgMPinuDw5aUcXyehxEj6GrOknhEBZlaeLr+G6+ymMxctZpJYNQ0tsUEEFnrXUlpEymxZjFTZemnG30XrADYArj2fNqmZeswVeAEELDkxpCSYP6scpj6tFWzfptVst/qn+aa54GvJ7pOPepT4oxor/yp7Ot9eCw1QaSGE08ZthYwu+4/fMy0+fH+KkALb+ZpKgsPCPgpe8wZJdvzb53D0rvc8uRKQdiJdKYxvTFl5Ys3odK4Av3xgz90RWpQUSfJzwdz7f881hka5eSy4DBuc0YUcD//QVweuStNVIR7jQbqPbhUjl1Q5J9HOUYDA0MqnJUsZDWG61eckhCtahRp5nyOqnrKuL/rH4XBj19QfAhoE7C9PDILLTWPdcvfy12CAVmKXqJrFhwtK2MM6axwJ1slIGnLEAMc6j7GZ+9pBqh1ZzYtAav2F2XFbtQY/pnTDyhrWeWdGOtwBKJ7h/Tfman6mev/bj+TvAvm1HjtEQn+LyOm9fLbzC9WShQpIVw8x+aszWAk96+XcaE0V9V4rT7JSAFaAP4cjsOemBVznTjcu4oBgeXcQ1tWsMkiXsa+Prb5rQEx2z53UAQnfAgNo+6L3n4DgLG9Ce6B3EXXg7Hz3pOEyEydTg3pqgZhlcUaLUkNvtA==",
     "__VIEWSTATE": "",
     "__VIEWSTATEGENERATOR": "D5E361D8",
     "WebPatterns_wt13$block$wtMainContent$wtLiqTable$ctl02$RichWidgets_wt22$block$wttxtTableRecordsId": "",
@@ -31,9 +31,9 @@
    "http": 500,
    "erro": "HTTP 500",
    "bytes": 894,
-   "arquivo": "d2_transweb_popup__www10-goiania-go-gov-br-despesaswebblocks-liquidacaopopup-aspx-empenho-4f7c1915.txt",
+   "arquivo": "d2_transweb_popup__www10-goiania-go-gov-br-despesaswebblocks-liquidacaopopup-aspx-empenho-576fb0a1.txt",
    "passo": "pagina_2",
-   "segundos": 3.4
+   "segundos": 1.3
   },
   {
    "fonte": "d2_transweb_popup",
@@ -59,13 +59,13 @@
    "bytes": 54091,
    "arquivo": "d2_transweb_popup__www10-goiania-go-gov-br-despesaswebblocks-pagamentopopup-aspx-empenho-891cf859.txt",
    "passo": "pagina_1",
-   "segundos": 2.0
+   "segundos": 1.0
   },
   {
    "fonte": "d2_transweb_popup",
    "url": "https://www10.goiania.go.gov.br/DespesasWebBlocks/PagamentoPopUp.aspx?Empenho=20262150000230001#pagina-2",
    "post": {
-    "__OSVSTATE": "Fx5DT49rnOPmNaJ5nz2q7ABV0m/ZSvl/H9FSmNnXD8AfIupkPFZMBXv9hXqXx0r94o2yxYtS3XabaqB/YgEw8zr9hBacsCJdtf7phZeq+rD8+U789rCtUxMaXotTE3cdB2I950LTRPj/60AwVRwyJ0d4FuGI6YvdH6fpp/3DCqh24lGGIhU2XeKTnqDouIndbBlDVyFVC2D5yj4TH+pymj3A3HPFUWOG0EXXxKds6CbGDStZtXYyf2FATI8WpkhDkI5ExqiKOlOHHREPTGszTAaHrSFmFr8M8ECFah29Sg8or14OcfDUwB2mPlv9T6nxW5uL3D5V4321Qj/O80Eg8rQORRUmxMhOeYpUq6yQAVcuXGGbvvaOkRkhzPNvTAyuE22RUwqtLre8xWdECr7r1WB1ekzzPFfpe3mg4YAqQZdXmFRLAbs0CoJWtbOtVSOIOeqS5j8UNz1VFKXs+pQt0vkZ1vkf783yZAyZXBfsjGFG2zkbRJ7/EEMGnrjYsEuSNJivGEmkANwJP2lsR224StnPPMb/QhQKh+yXsX11nfONvpiptdSdE+zO/q+WGdXQ5XEEJNbhgoPGLWm5XKXknRpBfufMD2s4yhcqOvywGLWrRrBVzbXZc1EWYf1gVM6318+K5iYgsl5MownYvWn9vaRPsc7tcXmaY+dnYt0LbEwUHXMjpFTcjQ/ifpQzN2HAUeOZK90hDv+ryJlToJZOqwzRGUOGRnp/1JpmDg0E84J7qRqdG8NNQMapcN3kZLZs",
+    "__OSVSTATE": "zENsgxW9WDEGoK+1PPNc5qR14d58sgshl22lTOVC+hy7ta0kf6ZN6qy4yYzTLAFlilsGuIPfeZuQAChuZ/xFgdsUTwWPOy/0IBSUMtp5v3eQqgZaWIzt9QAbInAtL78U/6DTzt+DuyvQLmdlEODzYYIbqldB8IU04as4zwMtsrE06RzPPWQfWrFGrp6e8V6w5exNnyBOo5YyjxuAO8rufrhjVO6KdcDKl/0TtLCWRs2HXgsclH3azuyUKWvFIv96c/bGjQV8kavOmv3v+ROMY0zevQ0VgyB2CM2/dgLqSLkuueXfhTeZ3Rn4CYpTsUPrxwQoDaNz9sguEDQa8SwnR1f010bmZ0FM6jmn4N67E2g3hxj8aHqYssG8eQSFjnFKmks4fYJCnlv0Ljh1qFviIEMQ9HXRvlOvwM0saq/jbfklIkTDQKI0mf565t2H+W0VB2EcJjfOI1toEpkeu4IF8L65sj6fPa9lEfVsdKSto8i8JggSwXIjBKyvjwJqejxexVG7c6KArW0JrQRkw7NqtNQqFx/Ptgn5wsh9t2b1F1nIdU4VirdC6fWjCA5wwoKX4Vsk7Bs+Nt/rykBmVg/Kvzsk8nyU4whmQBR8cy5YN2IKpI8sADz+L/1h/V5CJ3avBgQNRpngUuFmzQ8AMFf5eo5RHpTODYsGuB7ngwch87eDY5e892E8noeJCZWPMdmomjfft4NT2EPI+V10aFO9vtojjOTadn2cD3gu1gXbEuDeWc33Sel2XqGhwDWVBWMF",
     "__VIEWSTATE": "",
     "__VIEWSTATEGENERATOR": "8C747442",
     "WebPatterns_wt59$block$wtMainContent$wtLiqTable$ctl02$RichWidgets_wt8$block$wttxtTableRecordsId": "",
@@ -84,9 +84,9 @@
    "http": 500,
    "erro": "HTTP 500",
    "bytes": 894,
-   "arquivo": "d2_transweb_popup__www10-goiania-go-gov-br-despesaswebblocks-pagamentopopup-aspx-empenho-8470f701.txt",
+   "arquivo": "d2_transweb_popup__www10-goiania-go-gov-br-despesaswebblocks-pagamentopopup-aspx-empenho-a67e2813.txt",
    "passo": "pagina_2",
-   "segundos": 0.6
+   "segundos": 1.3
   },
   {
    "fonte": "d2_transweb_popup",
@@ -112,13 +112,13 @@
    "bytes": 41874,
    "arquivo": "d2_transweb_popup__www10-goiania-go-gov-br-despesaswebblocks-liquidacaopopup-aspx-empenho-b823f9bb.txt",
    "passo": "pagina_1",
-   "segundos": 1.6
+   "segundos": 0.3
   },
   {
    "fonte": "d2_transweb_popup",
    "url": "https://www10.goiania.go.gov.br/DespesasWebBlocks/LiquidacaoPopUp.aspx?Empenho=20265150000230001#pagina-2",
    "post": {
-    "__OSVSTATE": "hJBiI2+QSCKJx3CukpxZYJJduCH7T+ohORkYZ65q9f6VRNhlCYyedF3I08tiyP8CpXphcVz5qTpY+ayWQkp0z8yKCrp15Km5dh04SycoI24xl4PNPbqkE4eRT1TkUWbLPvwpcm67epU+CypGMHf2yeFxZFx0zIDxUiJQ26henWkRWpyrvYfmu8TZ7Y47T/W9Z2wuzkM4LZIX2jlTzaJriazpQ1M7OXXoz31ZS8I8Ue68UoW3pqcvZnQTiKSYHoG43uaiCT320eIqx9smCn1OIHSHLibrY36vK4r8SBaJs0AVL0sVVoEphNvm8uXJfj5PDyH5v2F/lZ6bb2vphhHX4sCaRDIOrTEf/PEw2BfNKNUp+o0jisF/n8PQs+lPhw7JqMH/musuWsp6byynPcNx8PWwg4DILI1kQsXgbqmI8suQ/VUFk9EedgMRHyfeYteugAcpsi9rVTH+7l7ka5vNzvMxPj08MZ/Xs4XSdbc9ATN6IPyk11gO8QvMh1IBJ2rk/t0cKWUMZtqUb9YpujbNlv0tc8JrWtlBmMzHWmx+ew1F9RAXIp/d8NMC5VNh+SBI0Bt/W4A37v6xy7drCV/6NkZ6kcWz/esUjezko32nrN72tWQJbtRRZO7DmCqt2aPZ7IjlGRyyTSg0R2SyGk/1ZA==",
+    "__OSVSTATE": "mRaDcoqyH2FNUN0xBdeFyNmiw+Fq3GTxiniBJehXFyRSbNCclMc/xLqQxm4l82Ke+ng+hnrRzOp8lrlmPF2B+sQLZEn4SVX9Z5FmgvWTQxPBOOtOMZJGOGEfSQsy8K4VPDKUmqCuyRzNEwEYJlFETCJYdynSedPiJ/U/KTLkoBhgV2WKV508C5PSNeA6sS1TWdamjYuM3F0OFKBLuPVjtvfIDm3ObtkRUjPBmAZA0uX3YkmA3M9/xDhsPSJZ7QoHp61U0/w5gmfkPPP59Il57MOargojuRyY3Jon3ucbF0pHWHAio88gGRr/JiH9fzWz8y2szfRlDr8clhPhsfZolnHwhwtYxZIWCp6U9ZAr0LcZxgv+Ffw1aU0mddBqZQULinzsxj4xncAdxoSIwXCUqbh4vcWhmPASTDXchhQw75OXC5o5hQCATqWamQZTkLjk6Az9zTiZdRt7LOXOWFj6zsFl1pIuvC9Cdf9L5rYd1s1ImX4B9WRGFq0TOmp62Vd42VBsHWcSFulYeU3xiAYrmZUA++3i7j3OwzOW/Awz95hFbCsPOLF3LQqOojI9S7ia9OrFGfwfbfWYERBZeNs2rZbAc/H17Npy+HZWdx6JX99yezX13Wb2iLifBmie8318M1NKN2S45ssl2bOTg/S/bA==",
     "__VIEWSTATE": "",
     "__VIEWSTATEGENERATOR": "D5E361D8",
     "WebPatterns_wt13$block$wtMainContent$wtLiqTable$ctl02$RichWidgets_wt22$block$wttxtTableRecordsId": "",
@@ -132,9 +132,9 @@
    "http": 500,
    "erro": "HTTP 500",
    "bytes": 894,
-   "arquivo": "d2_transweb_popup__www10-goiania-go-gov-br-despesaswebblocks-liquidacaopopup-aspx-empenho-40cd8c92.txt",
+   "arquivo": "d2_transweb_popup__www10-goiania-go-gov-br-despesaswebblocks-liquidacaopopup-aspx-empenho-eaa2c757.txt",
    "passo": "pagina_2",
-   "segundos": 2.2
+   "segundos": 0.9
   },
   {
    "fonte": "d2_transweb_popup",
@@ -160,13 +160,13 @@
    "bytes": 54083,
    "arquivo": "d2_transweb_popup__www10-goiania-go-gov-br-despesaswebblocks-pagamentopopup-aspx-empenho-f3680d95.txt",
    "passo": "pagina_1",
-   "segundos": 1.1
+   "segundos": 0.6
   },
   {
    "fonte": "d2_transweb_popup",
    "url": "https://www10.goiania.go.gov.br/DespesasWebBlocks/PagamentoPopUp.aspx?Empenho=20265150000230001#pagina-2",
    "post": {
-    "__OSVSTATE": "eSgDLFXhxpPgiit5tl9Ykrc9PUof51ogiADKOc4G/KnXp2zg9qsSiU0Zz+eV++/KcZ/FKgiJg7ODyUOod0S1+2Tj0/BV4hG3zhhNpKMSr9Rmjf2LqGZ1YeXxaNSidBdHZgs7l45oMprrsAMmDAbNuX2HE7ckHhJe61sGZBT+fgsc4EUvDa815IdnIerkXQTXmnfsnpgc6HpQP01jtopIuYitB5TnxTzSl2szpNJMCBJ+7ZSY7yqH/QG3yumHF/rddknh1oTjZJ7AOgtAZ0f7uAOri5nWE+NXZro04q6FSMZOir63LsJt14Wz7LqMVpa8s+b+ldGJnooKTPaZ8bBERIpTx6fPimPFBjgMl7UedCo6FzZnOsPP8lLUsQAqRhiuEtBkCQkiKWKNM8mWT9J6/CQtw4OLqLPVg0wAPhjr3wNT3AwqyhGmpiOQFnhAXEli7cw3a67qltKB/MCsLT/PGaSzfCIhAze3AiG+N0yqR3WeE7s8sctYilyCoRI6wnSJVmcFIXAKTDsCvpW+Q0BxpJHKLvijKUc1omBQi0Pp34C4rEVi39cHsKCKNNKSvfyNJ0NSFvkPiCf79ip9nMp/tsMfI4/eHZGc29DewHoVXuzrso3uP8mNvIpq+zFinq4xVBaHOHSvZ/HknEy49nHD0VMSwNA0pzFmCTHHPcf6DDl9fn30eYdiU4ZMClGE2JW+xKSKVsL+mC7UCQwg/q7iOs0hHlLIpvuTVU9RkMWaSXra6RSScuSd1V3lNGVEpqjJ",
+    "__OSVSTATE": "IVl+/MzHbEdsxTjANgz0I9ybRAAMd1Ka6I3OI/65f1aslx9Pk1omUPaJuAAsOi4wEZOUTz1WFxIsrmWa02PMDc4xjP4gGYwB//8FLw5xFPrXFFr9bf6OE78jCoM/tT1yxd+C/zXDtCAKcAlDOPOGtroFScFZ8HDWDPxLR01PC+Wm3mKGm6lzjMMQjAJOmFwOOlvH0rqP+z4tlxK5NS2UEjxAfCjhZqNxcCGGBiolrkyR8mfV8GEdxkFfYpsMBkMw2eoZz+ZdHyL/dPmqNSZUvJVUwrJoK9VJq/YL18OSkl1aIOhfXt9Ziqw96pUXFnDp3dpkpV0y+vo8zLDp0332dmETljMGwWGGxw3voCQDv7RkwTpURjpmZwCAwm5s1zBEBX+MR2a1fjuDL6iFZR5zbpi9ofsfhx/XufR542z4uP1stwC9rvWyUicuv4NFFiJgaTD9G8zKkd60OsFJORZHdWJGL0BhkoxAt2GZFK3XrsiuX/LqLrbbnNiLwi9x1emSvLGRinTvT+X2fxzPjmaYjizIUKqm3gj4z1nalfCz3A69+SDRrObZkn7k4Zl9So2me9RUhuzpcRiXHMlxnzYKqA/qs45/TJtEnOjjEldh/yAC8JW9H6/QEhqYyOL2tShl2rWbB41bEQlygG/mVIBH5+MxuO6cFHl6qSDK3EYQuxVoH1hzGWxlJgY6iKsDOmeXpsKqgZeQ140Yv0i0JIDb68B/S8vOD15TyANTfMHbrVDBb8YSJEtQS1a64QLfqciV",
     "__VIEWSTATE": "",
     "__VIEWSTATEGENERATOR": "8C747442",
     "WebPatterns_wt59$block$wtMainContent$wtLiqTable$ctl02$RichWidgets_wt8$block$wttxtTableRecordsId": "",
@@ -185,9 +185,9 @@
    "http": 500,
    "erro": "HTTP 500",
    "bytes": 894,
-   "arquivo": "d2_transweb_popup__www10-goiania-go-gov-br-despesaswebblocks-pagamentopopup-aspx-empenho-878a1671.txt",
+   "arquivo": "d2_transweb_popup__www10-goiania-go-gov-br-despesaswebblocks-pagamentopopup-aspx-empenho-9f05f71b.txt",
    "passo": "pagina_2",
-   "segundos": 1.8
+   "segundos": 0.9
   },
   {
    "fonte": "d2_transweb_popup",
@@ -213,13 +213,13 @@
    "bytes": 41782,
    "arquivo": "d2_transweb_popup__www10-goiania-go-gov-br-despesaswebblocks-liquidacaopopup-aspx-empenho-5c45fa12.txt",
    "passo": "pagina_1",
-   "segundos": 1.3
+   "segundos": 0.3
   },
   {
    "fonte": "d2_transweb_popup",
    "url": "https://www10.goiania.go.gov.br/DespesasWebBlocks/LiquidacaoPopUp.aspx?Empenho=20265151000730001#pagina-2",
    "post": {
-    "__OSVSTATE": "/9Jgsghf8HHdhOyIDoInWgSClVjwQodLfHZTkvJgTXeE3CVv5zIDWew3GOqs9RoVvnpqhMXTwXUOt20XjswkAJqnqxKvzfBACAiQCSlYZzRwxpuXQq8pdAW8oK123eYFU513LqBkSid2N4Q8p3vDzVntRaa/JsR+ggU5bTlWWupeo2A0BtkYfE7d268xkb50Xf7Y5p51clN4vk4mrQ+OzvkhNiUeTfcI+YUb8lKzAVOKyAt1NX5MW0tNqvAUTYGolPwdDqPpHDd4NDNX1nInPPvloMvVNjDuy1l0dAXIXF0QRND3P+lygYkzFAt9DxxSeckxTSzRfom8VM4XCa8kluM77dpXhrAUkraE/RP4hEUZJ4G7i8HpPlcFxLH0/b0V0B6EBkwDsXp5RJXHDHDTagK/gNAEGkWrPls5Kh9U6OFLBlGELA9QyZl/1v5blCwjKn59gA1hka0nThicQy994bIuCemr7Vk2XtFMzZAhVNZ1zvu4UE4D4w4TczfWq4/AbKfTK2DyNTTSuJiDukjbaVmtxokSlL44BTpvP+S1lZmnG9KwcIpI/PhAdqgPEfS8wofyVQ1Y3cDVidFgV8KcovMoO2Z3tpCHV4XIjWZ2LFB7sPDA1Dj/a9/CUaNS3DUjUKSXmP8D/Zcouamt145/BA==",
+    "__OSVSTATE": "t4vdrc9E3hbpNIgeIyEetR2eEEdqBMGGuVPAUPH8OulOC0AzcfWJd+3q7m9gi7/CsCUnZpNmkR1LJmSIs+1Ip2vmW+oyLrxzi/DOUpedlxCmkaudNA/Y12lk/ZGi4S6uoA3SfQ6A7Gud3yjRj7BI7NFefv+zNaChcfdYENpVZ0EAkbhJ+03vLDJI6e1cSsJhmkSEc9MR/Nm+iavBdoqEHw7V2DdlOiomiVXAIvPtLaQvCPdcUZWL8U6jLzYvHqbX+WOLWjvFyKS8+ts9zsfdkzK8XVjQkK5jXJO9eNbye7CTjgRrBHWarnK80gYvlQ2XW371/ThaQmAP7IJTSCuiFbc3c1/+1KN4YZ4y7A4gZkFyybkpTlBk3pX7x+IAkOGHTMzQKFrb6xMAxZGCyQV5YE6/STI/8tVKHBjxj3RwuMOM5RTyEuoiauHhqUcqUiGahet/CGIHqdr0G7UZzF1sEap4YmhUhMGLAgO4M70CnPu1qcNFXFxzjZ3lm/KWfKy8hzPV8gnI6cRVcjalNCwmXLif6orYT+on3HtZ6Ur11uN0dvNPKtoj2rSSDk/DconRBEa5jv8QBwkG9HhfP8U0EugkPh4svTQkJ9F0Wv1SOWwgllVh30LQWd9yjJA3GiXJwDalwi+jKsizV3G1nJ6KcA==",
     "__VIEWSTATE": "",
     "__VIEWSTATEGENERATOR": "D5E361D8",
     "WebPatterns_wt13$block$wtMainContent$wtLiqTable$ctl02$RichWidgets_wt22$block$wttxtTableRecordsId": "",
@@ -233,9 +233,9 @@
    "http": 500,
    "erro": "HTTP 500",
    "bytes": 894,
-   "arquivo": "d2_transweb_popup__www10-goiania-go-gov-br-despesaswebblocks-liquidacaopopup-aspx-empenho-b57c4175.txt",
+   "arquivo": "d2_transweb_popup__www10-goiania-go-gov-br-despesaswebblocks-liquidacaopopup-aspx-empenho-eba639fb.txt",
    "passo": "pagina_2",
-   "segundos": 1.1
+   "segundos": 1.0
   },
   {
    "fonte": "d2_transweb_popup",
@@ -261,13 +261,13 @@
    "bytes": 54009,
    "arquivo": "d2_transweb_popup__www10-goiania-go-gov-br-despesaswebblocks-pagamentopopup-aspx-empenho-198d19dd.txt",
    "passo": "pagina_1",
-   "segundos": 1.3
+   "segundos": 0.7
   },
   {
    "fonte": "d2_transweb_popup",
    "url": "https://www10.goiania.go.gov.br/DespesasWebBlocks/PagamentoPopUp.aspx?Empenho=20265151000730001#pagina-2",
    "post": {
-    "__OSVSTATE": "okfzolZkZnwAqM7cGoNVFVgP3diN5/6JJaVs+2FdcnS9F/gHLjZq89egzpLchCOksJwiKDcNlRxvoJqfKkBp7u1b43qSbaa8EN7dKv08LMgllg8nwvFb2grVprgn5fqNNP1oRyMqPIB/Wu0cD1Jut2BKcCfdh9Pzy9TlqkLF1hWIqo6DKXDlp0I8OYKTorYdWx9Zc+XfzaxlMhwCVAahKfCYqoBvBwDOhG+cr4weVDXnSzzlcjHCDPsxbgPX2K3hbOX3ql7+5UMgIeq989J105lqR0p7OYf5POgmJstMloTxZUAeyNGw6HiYWcIR/gk7WxV4BHa8vmqqKixPqZpR4D3jrPdhoyHNvXdtBvJcq0B1tFviCUlFbbnRAS0Vt8F5os1JTg9NAd/jx7Qwmii9qn9TRc0N7d8d+URntqTfpYRhkSkoGUVK5JOyKDJdoAOO7VUaQyf1lFfnYz42aYTagxFxdoewyL2u3Z1CpLSsZx8ziZ0i6j5jn1yOD+FGTlTfEiBPK86OE+7CyXm6cqbK6PxpCTGxR7qDSMYhXwbTJzO2F7938G+14vWeDO38bZxGjHeed1mjTXIoOBaD+r3Xe9B0yWXkTF6HBhk9izOIxdB/G5Xg0mmftJKGxQZgj4n0E0cUXlBf+eF3uA+YbZcarVpouhUY/u4GqNBm4MXPFnITyHe+7yJ/17uMH/Ic8U+tgnjXVR/e4h6phP6lHLpsbaN5xWk7SNC8G2hWo0KSRho/QCHc1IFvJuOMUzQJTSDS",
+    "__OSVSTATE": "nDHP7HzxQDcmAqM1jKz6OagUMwKdpvmusssosPCrJfgT5jOAXLn1s5XlDTui982HI9I+eSilm03rtJkNRHu+Q/nwK8UeWLvuvqQ5l5PSCjPSocUgjobwFUSafup7fa0csJ+XSiWHf3vIJk3W7TM6QZexJhnY5kBpAMPHik2wtTkx+syGdldmfPYbQekFoJOUuxKlx8d7PhdqX+hwVKnHG0U6DXp1CuLiEbBq1Q0W1oKZf6sAA4v/B1va8p1SzKHdoc7/GoG0mgfmYiFdvIDoQs/c3xc3Can+rJK0WoXduMs0bfDYFt5kilgT2PuxxnYJ5nWP7djeA3UEFGfa/bfBbojhUW2QWufeFsfmpeGw+Q1XrwN37tjKQrAwAGZ47iXOzYVleG4T4VhtED0ZKikCpr09WbES2yHxjPKfxIJ8EgxC9rn/R92h1tyeCRksnhLoGwiEsMXCSJ7BFVKvxk8RZ3AeqL545vBWCUcwcgpm0I80RyaDhApCYQ43m1lB/PYVPas8a6gdTCX56KaN4Wvr59oLFcO2DCLr5whAdIGCQ4v9S9HEv1mUQSm2CND4H51t9MTSer1swfqx96NkMF1Jr+A6iwhkVkM7Q5xp5hVcchcd7VV8JMxkqJTm3zzh0LFI1uXYRwK58rDtkuwlvCFqbD4heUNesmo7dIRudinPj9I3GAJ4vfryJ1pil0viEGuPYgE5Hfs9y2JzRz/8dG+JurQuWUf73ZVfBCno559TsIQtgB51Wn+hXdKwmlEJ9HGh",
     "__VIEWSTATE": "",
     "__VIEWSTATEGENERATOR": "8C747442",
     "WebPatterns_wt59$block$wtMainContent$wtLiqTable$ctl02$RichWidgets_wt8$block$wttxtTableRecordsId": "",
@@ -286,7 +286,7 @@
    "http": 500,
    "erro": "HTTP 500",
    "bytes": 894,
-   "arquivo": "d2_transweb_popup__www10-goiania-go-gov-br-despesaswebblocks-pagamentopopup-aspx-empenho-1643f35e.txt",
+   "arquivo": "d2_transweb_popup__www10-goiania-go-gov-br-despesaswebblocks-pagamentopopup-aspx-empenho-fee90962.txt",
    "passo": "pagina_2",
    "segundos": 0.5
   },
@@ -314,13 +314,13 @@
    "bytes": 43001,
    "arquivo": "d2_transweb_popup__www10-goiania-go-gov-br-despesaswebblocks-liquidacaopopup-aspx-empenho-9946579d.txt",
    "passo": "pagina_1",
-   "segundos": 1.1
+   "segundos": 0.7
   },
   {
    "fonte": "d2_transweb_popup",
    "url": "https://www10.goiania.go.gov.br/DespesasWebBlocks/LiquidacaoPopUp.aspx?Empenho=20261201000430004#pagina-2",
    "post": {
-    "__OSVSTATE": "4d33erQGuomHJcissiUotHI+8fX8S958CjOdSEskcIluYBLUkxETUfnFXT7H8Fi5pp4+lg7PYJDW9/mXW20TdjIWpY17+0c0lLOJnEQeADBbX4Go3RjzWCxR0l+VtP4ggNFM6oQ0L1LYjEcj7w9T0deYAv/pYp64fIAflXpqTnLLHZiOynNSkcnw4kvDxrGlMqUcdmF3qyZUoHS28UO86faHtkwdDVTSejHN83jJvcfoZY4yd1U7Z+CGMFTxm8QauoqGEPwA2B9EUHbuZIkDOcBQEF+rYkEqJUyNdPGDYdy2GpzsiSUZ8DvnScPFRbPnNqBMbeLm5NFpMQfCeG7lhJG1axzYwpzzaRt/qjAAypDvmbCIaCl1ThacOSJyoe7aULS6fBrKyhH6nDs4+DGfQ+sqna0wTTo+H1HJA/Y8jpC4oX5iTrfRc1TkOufEibf0Bgenq/4RksBmkDEyHFlpm80m9hQY3aBoee3eV3x6E3dnOTF5brfJFWij4iMhThJQYcdzQRI50pMmy/yTYKvXc5Yo6o+OERt66OWZwJlf4P8gv4A/1QVtSvmN1xyaT7ex+83pS5nXetwnIg7sIxPX4ezZqyztbvaUL09XP/twYaCxzapPEWHK0gcjr7DW5MHkf7o+qiXvoh7jCaBk8wlXJCO9PicizF6Euhoc+8ZZUiY=",
+    "__OSVSTATE": "GTgMnOkJSkbnnG5+yVaeW2RcGyhoTBu6Kh2ZY8MKpaRtJ9kOpRg4BfPAYjSyjmuQnhPC2ZwhPCxwiPEE5WQRiCVWrxX8b+wpqYwz15gciYKfxxJ1I4KCFIkQCa7dEbhwijVVtSHDmo1dJUJKR9hLjl1ovL8UFhc7ilZSLlDldTbkzKQokJRi+RZH2vtCGl/djTIQkt3yDnNOPKMhDkjb4qkxG/P610v44mj6BwFdO4Wf2thaT1CevtayLmc7YLvonFg8axO7EGY72WbsOBo5svLMsIFtNoTAYLCZS3Gxi3bZVdBUbSbUprYJszGRhSNKwfN8ZGPG/xeBbPeGvBSUjTTr45ePVSs4kfJ5TAqAui3c4EC5b9WZkn2Dmr7h+Y2QR3gxIKbGscI8LmoHok1N98CXLfjrc7z3vP8dUywiSYOUdxGAGyrfgd/kll6qh4JDQ1p9CQZU0pC3HR1jnri88VVpUGhLPRZeHI7qwTaaczK0gOKf4FroiD8Y5cnRCmq61hLHws3/eoT8xUn/RTPi7yyUV+WiGpcCc8KO57HH9cF9i3UXiPHrIYXC2Ca7LD3SzEcAWnTu8xyvxGW21DG9pRh5sAG8qx3UM2RDSShbC4+eE2Ny2JmlAIenlRp2V98S1ny/ISVhGaldBqb+ewFdEOwciyXctnQvlCMUJ+g6YAQ=",
     "__VIEWSTATE": "",
     "__VIEWSTATEGENERATOR": "D5E361D8",
     "WebPatterns_wt13$block$wtMainContent$wtLiqTable$ctl02$RichWidgets_wt22$block$wttxtTableRecordsId": "",
@@ -334,9 +334,9 @@
    "http": 500,
    "erro": "HTTP 500",
    "bytes": 894,
-   "arquivo": "d2_transweb_popup__www10-goiania-go-gov-br-despesaswebblocks-liquidacaopopup-aspx-empenho-520a5524.txt",
+   "arquivo": "d2_transweb_popup__www10-goiania-go-gov-br-despesaswebblocks-liquidacaopopup-aspx-empenho-da3d2ed1.txt",
    "passo": "pagina_2",
-   "segundos": 0.6
+   "segundos": 0.9
   },
   {
    "fonte": "d2_transweb_popup",
@@ -362,13 +362,13 @@
    "bytes": 55237,
    "arquivo": "d2_transweb_popup__www10-goiania-go-gov-br-despesaswebblocks-pagamentopopup-aspx-empenho-dca0971c.txt",
    "passo": "pagina_1",
-   "segundos": 11.4
+   "segundos": 1.2
   },
   {
    "fonte": "d2_transweb_popup",
    "url": "https://www10.goiania.go.gov.br/DespesasWebBlocks/PagamentoPopUp.aspx?Empenho=20261201000430004#pagina-2",
    "post": {
-    "__OSVSTATE": "iPasS/qqF7IwEWLlqn1xuDf97ytSBdA/Ac5XkZFq6WduSAvYr3YEAhno/1+pHQu5TuCpTfpmHkbFWcf7opU+9BT8aOcuGGgDHn+G3DwQAocWnb/K5NVxYWYgANclgEvg4SgtaeULAN3gb7Gpdg8qj3eJZk6UTicch+I7V6FYsjWmJo+CgkIBUrJud5Vn73BWZGsb09Nrbm9PaaWYqKSWbFAzjbiRB2/ZYHkIRpbhaKZHAcd/LhfkO515gAy+OdbKpKDP1Hj8YoAGG2HCzH3Nl8emIXiZubt7eb3bKshGR7djO5dsiIVNf+Z41nWNrBXWpUaSWyu1MiA2c4o1L5FeyUsNiAhLX+368M93RhhUNapsm89t+1SrThD+uOBwYBs9E6vCQaZuIKzILBMnTfoBJnCZULa9VzvGcw+QtyzSvvfqy5tOTLEQU9/P25X8DnLd+5tT9+/YaNDMGnu+M9ZMtYqzoAXyqL/exUDxn1akGksfHakmObqCDBj4+76wnMxbs6a4GuU93eUdbwfDhc3KTS3dCD5oNf7t+4WEnJO7ThP65AFUmyXnv+1/4tCEJPTvkW2FCdbnBDs4fG0Di7nkT1M7AhVIOs19aqXlY7245MI6xx8JyBNL6JoULqcfjzZenV7Hzs0+V3qoR1NAGjlnld/06aHb1ryvsyH25dlJYy4I7eksNDvpYyfwCz4J8xx95OSEp6lpPKTHgUOk15RUKXdr56j2xTL3uA+ptFzzsWQaBOkKZQpJWD0sJVaO1sRVI6d4bO+FZgGT7WsDzvxYWQ==",
+    "__OSVSTATE": "4uUjSj2Y8yaDOzB4hlOz6KvmuDsbugsUpXY2Ce+KICqUynL24DhMpa2Qje61k8vvmYafVM41tw44hDP0T8GqFT4okrp4IRGKpPN2IuDvP8ChOKsOs9T86ReP93z/SQZRdQyeNgrgoVAbV5mX7hS+yQmmQOT8SA1maVlBKKwcFtayg+wsWmyzqiIWQVxKRdpmbPAxcyJoaV9T2YvCpEI/i2jyDeAd4M/3N00kUTphGkVwtXBPOSDjRyxQpwtg1p14s0Z/JgTIS0e4YnL+VfppoZhN+cs6y55czt41MOfrPaJ6iwSIGINRPK5ADQ9Pok2i7BjB6lyflnMM3IUStq8LXAgD8fAG6dm0wYiQU3o3aciWC0Mz/nXsKKy9DmwFrB85ag5ldtlWZCTd1YG9cCAYsthCyPZ014D/hRpTfP+N3qc3khp6AGVhm21YScs47gxxO0WBOior0KPy6hywHFvYYpHR6S2pm6hPLhywLr5StsDKjPLw0opvc1i5ymLopdbLWI44fONN91eIWgQzN9j1uaBwunIap6NndRbwN+Xv69RRmZqq7zJ63hsl3ksoMVZjwOyci6mmcj+qvwuggvoC4G7q/RVYO283mMSe6egqWtwluH74Pz+7ev2kStnRQst7iU4Fr0BtoDgSl9LYWkmS1/SnyRUILthcVDD5r2A5FEctlLS9RZA08tlFQQEKspkgn0Qfun+i4dhZt1HRPg66wQ27NraJ2S+w1c7RWx4syQVaWKzBDHjauB7mmbDwCXC/AqGYhKdAJH8n/QG2AtigmQ==",
     "__VIEWSTATE": "",
     "__VIEWSTATEGENERATOR": "8C747442",
     "WebPatterns_wt59$block$wtMainContent$wtLiqTable$ctl02$RichWidgets_wt8$block$wttxtTableRecordsId": "",
@@ -387,9 +387,9 @@
    "http": 500,
    "erro": "HTTP 500",
    "bytes": 894,
-   "arquivo": "d2_transweb_popup__www10-goiania-go-gov-br-despesaswebblocks-pagamentopopup-aspx-empenho-fd6cf88a.txt",
+   "arquivo": "d2_transweb_popup__www10-goiania-go-gov-br-despesaswebblocks-pagamentopopup-aspx-empenho-20da415f.txt",
    "passo": "pagina_2",
-   "segundos": 0.5
+   "segundos": 0.9
   },
   {
    "fonte": "d2_transweb_popup",
@@ -414,7 +414,7 @@
    "erro": "",
    "bytes": 4344,
    "arquivo": "d1_fns__consultafns-saude-gov-br-app-controllers-portalcontroller-js-989db824.txt",
-   "segundos": 0.9
+   "segundos": 1.1
   },
   {
    "fonte": "d1_fns",
@@ -425,7 +425,7 @@
    "erro": "",
    "bytes": 21763,
    "arquivo": "d1_fns__consultafns-saude-gov-br-recursos-consulta-detalhada-detalhe-acao-page-db2ee968.txt",
-   "segundos": 1.1
+   "segundos": 1.2
   },
   {
    "fonte": "d1_fns",
@@ -436,7 +436,7 @@
    "erro": "",
    "bytes": 102109,
    "arquivo": "d1_fns__consultafns-saude-gov-br-recursos-consulta-detalhada-detalhe-pagamento-84ff9ee6.txt",
-   "segundos": 1.9
+   "segundos": 2.6
   },
   {
    "fonte": "d1_fns",
@@ -447,7 +447,7 @@
    "erro": "",
    "bytes": 20285,
    "arquivo": "d1_fns__consultafns-saude-gov-br-app-pages-detalhada-controllers-acaocontrolle-4dc738ab.txt",
-   "segundos": 0.8
+   "segundos": 1.3
   },
   {
    "fonte": "d1_fns",
@@ -458,7 +458,7 @@
    "erro": "",
    "bytes": 3132,
    "arquivo": "d1_fns__consultafns-saude-gov-br-app-pages-consolidada-services-consolidadaser-d38f8864.txt",
-   "segundos": 0.5
+   "segundos": 1.2
   },
   {
    "fonte": "d1_fns",
@@ -469,7 +469,7 @@
    "erro": "",
    "bytes": 30886,
    "arquivo": "d1_fns__consultafns-saude-gov-br-recursos-consulta-detalhada-entidades-page-1-c1fa264c.txt",
-   "segundos": 0.9
+   "segundos": 1.0
   },
   {
    "fonte": "d1_fns",
@@ -480,7 +480,7 @@
    "erro": "HTTP 500",
    "bytes": 10144,
    "arquivo": "d1_fns__consultafns-saude-gov-br-recursos-repasse-dia-detalhar-pagamento-dia-a-4da12869.txt",
-   "segundos": 0.5
+   "segundos": 1.0
   },
   {
    "fonte": "d1_fns",
@@ -491,7 +491,7 @@
    "erro": "",
    "bytes": 101526,
    "arquivo": "d1_fns__consultafns-saude-gov-br-recursos-consulta-detalhada-detalhe-pagamento-2b40e692.txt",
-   "segundos": 1.9
+   "segundos": 2.8
   },
   {
    "fonte": "d1_fns",
@@ -502,7 +502,7 @@
    "erro": "",
    "bytes": 77984,
    "arquivo": "d1_fns__consultafns-saude-gov-br-recursos-consulta-detalhada-detalhe-pagamento-b9d6e5ec.txt",
-   "segundos": 2.0
+   "segundos": 2.2
   },
   {
    "fonte": "d1_fns",
@@ -513,7 +513,18 @@
    "erro": "",
    "bytes": 103079,
    "arquivo": "d1_fns__consultafns-saude-gov-br-recursos-consulta-detalhada-detalhe-pagamento-5934565a.txt",
-   "segundos": 1.7
+   "segundos": 2.3
+  },
+  {
+   "fonte": "d1_fns",
+   "url": "https://consultafns.saude.gov.br/recursos/consulta-detalhada/detalhe-pagamento?page=1&count=1000&ano=2025&mes=&tipoConsulta=&blocos=&componentes=&acoes=&estado=GO&municipio=520870&repasse=&dataInicialOb=&dataFinalOb=&cpfCnpjUg=37623352000103",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 691235,
+   "arquivo": "d1_fns__consultafns-saude-gov-br-recursos-consulta-detalhada-detalhe-pagamento-9bbfa1b4.txt",
+   "segundos": 3.4
   },
   {
    "fonte": "d1_tcu",
@@ -524,7 +535,7 @@
    "erro": "URLError: [Errno 104] Connection reset by peer",
    "bytes": 0,
    "arquivo": "d1_tcu__pesquisa-apps-tcu-gov-br-rest-publico-base-acordao-completo-documentos-80724175.txt",
-   "segundos": 0.3
+   "segundos": 0.5
   },
   {
    "fonte": "d1_tcu",
@@ -535,7 +546,7 @@
    "erro": "",
    "bytes": 70006,
    "arquivo": "d1_tcu__pesquisa-apps-tcu-gov-br-rest-publico-base-acordao-completo-documentos-8ebb2eba.txt",
-   "segundos": 5.9
+   "segundos": 6.1
   },
   {
    "fonte": "d1_tcu",
@@ -546,7 +557,7 @@
    "erro": "",
    "bytes": 71371,
    "arquivo": "d1_tcu__pesquisa-apps-tcu-gov-br-rest-publico-base-acordao-completo-documentos-923ea092.txt",
-   "segundos": 6.3
+   "segundos": 6.4
   },
   {
    "fonte": "d1_tcu",
@@ -557,7 +568,7 @@
    "erro": "",
    "bytes": 70763,
    "arquivo": "d1_tcu__pesquisa-apps-tcu-gov-br-rest-publico-base-acordao-completo-documentos-58e7a293.txt",
-   "segundos": 6.9
+   "segundos": 6.8
   },
   {
    "fonte": "d1_tcu",
@@ -568,7 +579,7 @@
    "erro": "",
    "bytes": 74464,
    "arquivo": "d1_tcu__pesquisa-apps-tcu-gov-br-rest-publico-base-acordao-completo-documentos-0bda4b46.txt",
-   "segundos": 7.2
+   "segundos": 6.9
   },
   {
    "fonte": "d1_tcm",
@@ -579,7 +590,7 @@
    "erro": "",
    "bytes": 936,
    "arquivo": "d1_tcm__virtual-tcmgo-tc-br-jurisprudencia-f32664df.txt",
-   "segundos": 0.6
+   "segundos": 0.8
   },
   {
    "fonte": "d1_tcm",
@@ -590,7 +601,7 @@
    "erro": "",
    "bytes": 351600,
    "arquivo": "d1_tcm__ws-tcm-go-gov-br-api-rest-dados-contas-irregulares-2aac2857.txt",
-   "segundos": 2.9
+   "segundos": 6.2
   },
   {
    "fonte": "d1_tcm",
@@ -601,7 +612,7 @@
    "erro": "",
    "bytes": 186501,
    "arquivo": "d1_tcm__virtual-tcmgo-tc-br-jurisprudencia-assets-jurisprudencia-page-zrqnq2w-fa2db409.txt",
-   "segundos": 1.1
+   "segundos": 1.2
   },
   {
    "fonte": "d1_tcm",
@@ -610,9 +621,9 @@
    "ok": true,
    "http": 200,
    "erro": "",
-   "bytes": 161,
+   "bytes": 160,
    "arquivo": "d1_tcm__virtual-tcmgo-tc-br-jurisprudencia-api-v1-health-4a4bba93.txt",
-   "segundos": 0.6
+   "segundos": 0.7
   },
   {
    "fonte": "d1_tcm",
@@ -623,7 +634,7 @@
    "erro": "",
    "bytes": 19530,
    "arquivo": "d1_tcm__virtual-tcmgo-tc-br-jurisprudencia-api-v1-acordao-jurisprudencia-filtr-2ecda46a.txt",
-   "segundos": 3.0
+   "segundos": 2.6
   },
   {
    "fonte": "d1_tcm",
@@ -632,9 +643,9 @@
    "ok": true,
    "http": 200,
    "erro": "",
-   "bytes": 306896,
+   "bytes": 306895,
    "arquivo": "d1_tcm__virtual-tcmgo-tc-br-jurisprudencia-api-v1-acordao-jurisprudencia-busca-0623a709.txt",
-   "segundos": 2.8
+   "segundos": 1.9
   },
   {
    "fonte": "d1_tcm",
@@ -645,7 +656,7 @@
    "erro": "",
    "bytes": 302141,
    "arquivo": "d1_tcm__virtual-tcmgo-tc-br-jurisprudencia-api-v1-acordao-jurisprudencia-busca-8548df31.txt",
-   "segundos": 1.9
+   "segundos": 2.1
   }
  ]
 }
