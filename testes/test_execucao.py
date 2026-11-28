@@ -512,7 +512,9 @@ def test_popups_reais_de_liquidacao_e_pagamento_somam_a_linha():
 def test_empenho_popup_real_tem_os_campos_e_veio_vazio():
     """A sondagem pediu o popup com "&amp;": os campos existem, os valores não vieram."""
     cfg = LISTA.popups["empenho"]
-    assert not cfg["confirmado"]
+    # Quinta rodada: a sondagem de 28/11/2026 pediu com "&" e o popup trouxe os valores; o coordenador
+    # mandou marcar confirmado = true (ver test_empenho_popup_com_dados_real). O recorte antigo continua vazio.
+    assert cfg["confirmado"]
     f = G.formularios(_f("empenho_popup_real.html"))[0]
     for campo, cands in cfg["campos"].items():
         assert f.achar(cands), campo
@@ -628,4 +630,193 @@ def test_sondagem_monta_buscar_pagina_2_e_exportacao():
     assert "__AJAX" not in c and c["__OSVSTATE"] == "ESTADO-SINTETICO-DA-PAGINA-2"
     assert c[prefixo + "wtcboMes"] == "__ossli_10" and c["__EVENTTARGET"] == ""
     assert d[prefixo + "wt86"] == "Buscar" and "__AJAX" not in d and d["__OSVSTATE"] == inicial
-    assert not LISTA.exportar["confirmado"]
+    # Quinta rodada: a exportação montada assim respondeu com a planilha (sondagem de 28/11/2026).
+    assert LISTA.exportar["confirmado"]
+
+
+# --- A exportação CSV (quinta rodada): o caminho principal da página real ---------------------------
+# exportacao_outubro_real.csv: o cabeçalho e todas as linhas de dez empenhos (credores pessoas
+# jurídicas) da planilha que a sondagem de 28/11/2026 (run 46087866124) baixou para outubro de 2026,
+# byte a byte. empenho_popup_com_dados_real.html: o EmpenhoPopUp pedido com "&" na mesma sondagem.
+
+CSV_OUT = "exportacao_outubro_real.csv"
+PREFIXO = "WebPatterns_wt2$block$wtMainContent$DespesasWebBlocks_wt1$block$"
+
+
+def _exportacao():
+    return G.eventos_da_exportacao(_f(CSV_OUT), LISTA.exportar["colunas"], consulta=LISTA.id)
+
+
+def test_exportacao_real_vira_empenho_liquidacao_e_pagamento():
+    assert LISTA.exportar["confirmado"] and LISTA.exportar["formato"] == "CSV"
+    exp = _exportacao()
+    assert (exp.linhas, exp.incompletas, exp.empenhos) == (19, 0, 10)
+    assert exp.por_mes == {"2026-10": 19}                     # só os empenhos do mês pedido
+    tipos = [e["tipo"] for e in exp.eventos]
+    assert {t: tipos.count(t) for t in set(tipos)} == {"empenho": 10, "liquidacao": 13, "pagamento": 13,
+                                                        "anulacao": 1}
+    por = {}
+    for e in exp.eventos:
+        por.setdefault(e["empenho"], []).append(e)
+    emp = next(e for e in por["20261601023130011"] if e["tipo"] == "empenho")
+    assert (emp["data"], emp["valor"], emp["documento"], emp["credor"]) == \
+        ("2026-10-09", 19775.4, "40155486000151", "FS COMERCIO E DISTRIBUICAO DE BRINQUEDOS LTDA")
+    assert (emp["modalidade"], emp["licitacao"], emp["elemento"]) == ("Dispensa de Licitação", "000000532026", "44905200")
+    assert (emp["funcao"], emp["subfuncao"], emp["fonte"]) == ("04", "122", "100")
+    assert emp["historico"].startswith("EMPENHO DE DESPESA COM CONTRATACAO DE EMPRESA ESPECIALIZADA")
+    assert emp["orgao"] == "SECRETARIA MUNICIPAL DE FINANCAS"
+    # Duas liquidações anuladas (saldo 0,00, uma com ordem de pagamento de 0,00) ficam fora.
+    assert [(e["tipo"], e["ordem"], e["data"], e["valor"]) for e in por["20261601023130011"] if e["tipo"] != "empenho"] == \
+        [("liquidacao", "0278952026", "2026-10-15", 19775.4), ("pagamento", "202616010231300110002", "2026-10-15", 19775.4)]
+    # Três linhas iguais na planilha: uma liquidação e um pagamento só.
+    assert sorted(e["tipo"] for e in por["20261601020830005"]) == ["empenho", "liquidacao", "pagamento"]
+    # Empenho anulado por inteiro: o empenho e a anulação, sem liquidação.
+    assert [(e["tipo"], e["valor"]) for e in por["20261401002010001"]] == [("empenho", 23368.8), ("anulacao", 23368.8)]
+    folha = next(e for e in por["20261101002310009"] if e["tipo"] == "empenho")
+    assert folha["licitacao"] == "" and folha["modalidade"] == "Não se aplica (Ex.: Despesas com Pessoal)"
+    assert folha["documento"] == "60701190000104" and folha["elemento"] == "31901100"
+    somas = G.somas_por_empenho(exp.eventos)
+    assert somas["20261101002310009"] == {"empenho": 1171475.97, "liquidacao": 1171475.97, "pagamento": 1171475.97}
+    # Liquidação e pagamento de novembro num empenho de outubro: a planilha vai até a data da leitura.
+    assert ("pagamento", "2026-11-06", 24975.0) in [(e["tipo"], e["data"], e["valor"]) for e in por["20261601020730019"]]
+
+
+def test_exportacao_recusa_pagina_de_erro_e_pula_linha_cortada():
+    with pytest.raises(ValueError, match="não é a planilha"):
+        G.eventos_da_exportacao(b"<html><body>Erro Interno</body></html>", LISTA.exportar["colunas"])
+    cortado = _f(CSV_OUT).rsplit(b";", 5)[0]                  # a última linha sem as cinco últimas colunas
+    exp = G.eventos_da_exportacao(cortado, LISTA.exportar["colunas"])
+    assert (exp.linhas, exp.incompletas) == (18, 1)
+
+
+def test_cpf_com_zeros_na_coluna_cnpj_vira_cpf():
+    # Valores sintéticos: um CPF válido de exemplo (não é de ninguém conhecido) e o CNPJ do Itaú.
+    assert G.cpf_valido("52998224725") and not G.cpf_valido("52998224724")
+    assert G.cnpj_valido("60701190000104") and not G.cnpj_valido("60701190000105")
+    assert G.documento_do_credor("00052998224725") == "52998224725"
+    assert G.documento_do_credor("60701190000104") == "60701190000104"
+    assert G.documento_do_credor("01536754000123") == "01536754000123"     # CNPJ que começa com 0
+    assert G.documento_do_credor("00052998224724") == "00052998224724"     # nem CPF nem CNPJ: fica
+
+
+def test_empenho_popup_com_dados_real():
+    cfg = LISTA.popups["empenho"]
+    assert cfg["confirmado"]
+    d = G.dados_do_empenho(_f("empenho_popup_com_dados_real.html"), cfg["campos"])
+    assert d["documento"] == "60701190000104" and d["credor"] == "ITAU UNIBANCO S.A."
+    assert (d["funcao"], d["subfuncao"], d["elemento"], d["dotacao"]) == ("04", "122", "31901100", "202611010023")
+    assert d["data"] == "2026-11-24"
+    assert "licitacao" not in d                              # 000000000000: sem processo licitatório
+    assert d["historico"].startswith("EMPENHO ORDINARIO PARA PAGAMENTO DA FOLHA")
+
+
+def test_banco_antigo_ganha_modalidade_e_licitacao():
+    con = sqlite3.connect(":memory:")
+    con.execute("CREATE TABLE despesa_eventos (tipo TEXT, empenho TEXT, ordem TEXT, data TEXT, orgao TEXT, credor TEXT, "
+                "documento TEXT, valor REAL, elemento TEXT, fonte TEXT, funcao TEXT, subfuncao TEXT, dotacao TEXT, "
+                "historico TEXT, consulta TEXT, url TEXT, sha256 TEXT, coletado_em TEXT)")
+    G.criar_tabelas(con)
+    colunas = [r[1] for r in con.execute("PRAGMA table_info(despesa_eventos)")]
+    assert colunas[-2:] == ["modalidade", "licitacao"]
+    assert G.gravar(con, _exportacao().eventos) == 37
+
+
+def _popup(cabecalho, linhas):
+    """Popup SINTÉTICO no formato dos recortes reais (uma tabela com o cabeçalho real)."""
+    th = "".join(f"<th>{c}</th>" for c in cabecalho)
+    trs = "".join("<tr>" + "".join(f"<td>{x}</td>" for x in ln) + "</tr>" for ln in linhas)
+    return f"<html><body><table><tr>{th}</tr>{trs}</table></body></html>".encode()
+
+
+class LeitorExportacao:
+    """GET da página real; o postback da exportação devolve o recorte real da planilha; os popups da
+    amostra são sintéticos (nenhum popup de outubro foi lido) ou faltam."""
+
+    def __init__(self, exportacao=CSV_OUT, popups=None):
+        self.pedidos: list[tuple[str, dict | None]] = []
+        self.exportacao = exportacao
+        self.popups = popups or {}
+
+    def __call__(self, url, formulario=None, **_):
+        self.pedidos.append((url, formulario))
+        if formulario is not None:
+            if formulario.get(PREFIXO + "wtbtnExportar") and self.exportacao:
+                return Leitura(True, url, _f(self.exportacao), http=200)
+            return Leitura(False, url, b"", erro="HTTP 500", http=500)
+        if url.endswith("Portal_Despesas.aspx"):
+            return Leitura(True, url, _f("portal_despesas_real.html"), http=200)
+        if url in self.popups:
+            return Leitura(True, url, self.popups[url], http=200)
+        return Leitura(False, url, b"", erro="HTTP 404", http=404)
+
+
+def test_motor_le_o_mes_pela_exportacao_e_confere_a_amostra():
+    liq = "https://www10.goiania.go.gov.br/DespesasWebBlocks/LiquidacaoPopUp.aspx?Empenho="
+    pag = "https://www10.goiania.go.gov.br/DespesasWebBlocks/PagamentoPopUp.aspx?Empenho="
+    cab_l, cab_p = ["Liquidação", "Data", "Saldo Liquidado", "Valor Anulado"], ["Ordem de Pagamento", "Data OP",
+                                                                                 "Valor Pago", "Valor OP"]
+    popups = {
+        liq + "20261101002310009": _popup(cab_l, [["0289912026", "26/10/2026", "732.127,06", "0,00"],
+                                                  ["0290112026", "26/10/2026", "439.348,91", "0,00"]]),
+        pag + "20261101002310009": _popup(cab_p, [["202611010023100090001", "26/10/2026", "732.127,06", "732.127,06"],
+                                                  ["202611010023100090002", "26/10/2026", "439.348,91", "439.348,91"]]),
+        liq + "20261101002310010": _popup(cab_l, [["0290182026", "26/10/2026", "726.516,79", "0,00"]]),  # falta uma
+    }
+    con = sqlite3.connect(":memory:")
+    ctx = _Ctx(_Banco(con), ["2026-10"], date(2026, 11, 28), LeitorFalso())
+    ctx.ler_falso = LeitorExportacao(popups=popups)
+    resumo = G.motor(ctx, PORTAL)
+    assert resumo == {"eventos": 37, "consultas": 1, "falhas": 0, "vazias": 0}
+    (cid, mes, sit, linhas, url, nota), = con.execute(
+        "select consulta, dia, situacao, linhas, url, erro from despesa_consultas").fetchall()
+    assert (cid, mes, sit, linhas, url) == ("despesas_favorecido", "2026-10", "lida", 19, PORTAL.base + "Portal_Despesas.aspx")
+    assert nota.startswith("exportação CSV")
+    assert "amostra 20261101002310010: liquidacao soma 726516.79 no popup e 982660.12 na exportação" in nota
+    assert "amostra 20261101002310010: popup de pagamento não lido (HTTP 404)" in nota
+    assert "20261101002310009" not in nota                   # a amostra que bateu não vira nota
+    corpo = next(f for _u, f in ctx.ler_falso.pedidos if f)
+    assert corpo[PREFIXO + "wtselExportar"] == "__ossli_2" and corpo[PREFIXO + "wtbtnExportar"] == "OK"
+    assert corpo[PREFIXO + "wtcboMes"] == "__ossli_10" and corpo[PREFIXO + "wtcboAno"] == "2026"
+    assert "__AJAX" not in corpo and corpo["__EVENTTARGET"] == ""
+    assert not any(f and f.get("__EVENTTARGET", "").endswith("$wt86") for _u, f in ctx.ler_falso.pedidos)
+    linha = con.execute("select documento, credor, historico, modalidade, licitacao, fonte, funcao, elemento "
+                        "from despesa_eventos where tipo = 'empenho' and empenho = '20261601020730019'").fetchone()
+    assert linha[:2] == ("31537116000198", "GMS GOIAS MERCANTIL E SOLUCOES LTDA") and linha[3:] == \
+        ("Pregão", "000000582023", "100", "04", "33903900")
+    # A releitura do mês troca o que a exportação anterior gravou dos mesmos empenhos, sem duplicar.
+    ctx.ler_falso = LeitorExportacao(popups=popups)
+    G.motor(ctx, PORTAL)
+    assert con.execute("select count(*) from despesa_eventos").fetchone()[0] == 37
+
+
+def test_motor_sem_pagina_para_e_registra_a_falha():
+    con = sqlite3.connect(":memory:")
+    ctx = _Ctx(_Banco(con), ["2026-09", "2026-10"], date(2026, 11, 28), LeitorFalso())
+
+    class Fora(LeitorExportacao):
+        def __call__(self, url, formulario=None, **_):
+            self.pedidos.append((url, formulario))
+            return Leitura(False, url, b"", erro="HTTP 503", http=503)
+
+    ctx.ler_falso = Fora()
+    resumo = G.motor(ctx, PORTAL)
+    assert resumo["falhas"] == 1 and resumo["consultas"] == 1          # um mês só: a página não abriu
+    assert con.execute("select dia, situacao from despesa_consultas").fetchall() == [("2026-10", "falha")]
+
+
+def test_conferencias_rodam_no_recorte_real_da_exportacao():
+    """Percursos e ordem da despesa com a execução real (o recorte de dez empenhos de outubro)."""
+    con = sqlite3.connect(":memory:")
+    G.gravar(con, _exportacao().eventos)
+    conf = X.conferir_execucao(con)
+    assert conf.cobertura["por_tipo"] == {"empenho": 10, "liquidacao": 13, "ordem_pagamento": 0, "pagamento": 13,
+                                          "anulacao": 1}
+    p = {x.chave.split("|")[1]: x for x in conf.percursos}
+    assert len(p) == 10
+    assert {Estacao.EMPENHO, Estacao.LIQUIDACAO, Estacao.PAGAMENTO} <= p["20261601020730019"].acesas()
+    assert p["20261601020730019"].valor_pago() == 62695.0
+    assert p["20261401002010001"].acesas() == {Estacao.EMPENHO}          # anulado: só o empenho
+    ordem = {a.chave.split("|")[1]: a for a in conf.achados if a.tipo == "ordem"}
+    # Pago em 15/10/2026 e liquidado em 16/10/2026 (juros do contrato com o BNDES): indício, não acusação.
+    assert list(ordem) == ["20261603003530022"]
+    assert "pagamento antes da liquidação" in ordem["20261603003530022"].descricao

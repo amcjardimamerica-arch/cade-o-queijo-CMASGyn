@@ -89,6 +89,36 @@ def documento(texto) -> str:
     return re.sub(r"\D", "", str(texto or ""))
 
 
+def cnpj_valido(d: str) -> bool:
+    if len(d) != 14 or not d.isdigit() or len(set(d)) == 1:
+        return False
+    for n in (12, 13):
+        pesos = list(range(n - 7, 1, -1)) + list(range(9, 1, -1))
+        dv = 11 - sum(int(x) * p for x, p in zip(d[:n], pesos)) % 11
+        if int(d[n]) != (0 if dv >= 10 else dv):
+            return False
+    return True
+
+
+def cpf_valido(d: str) -> bool:
+    if len(d) != 11 or not d.isdigit() or len(set(d)) == 1:
+        return False
+    for n in (9, 10):
+        dv = sum(int(x) * p for x, p in zip(d[:n], range(n + 1, 1, -1))) * 10 % 11
+        if int(d[n]) != (0 if dv == 10 else dv):
+            return False
+    return True
+
+
+def documento_do_credor(texto) -> str:
+    """O CNPJ, ou o CPF quando a coluna CNPJ da exportação traz o CPF com "000" na frente
+    (14 dígitos que não são um CNPJ válido e cujos 11 últimos são um CPF válido)."""
+    d = documento(texto)
+    if len(d) == 14 and d.startswith("000") and not cnpj_valido(d) and cpf_valido(d[3:]):
+        return d[3:]
+    return d
+
+
 # --- O HTML: formulários ASP.NET, tabelas e links ------------------------------------------------
 
 _POSTBACK = re.compile(r"__doPostBack\(\s*['\"]([^'\"]*)['\"]\s*,\s*['\"]([^'\"]*)['\"]\s*\)")
@@ -456,7 +486,8 @@ class Consulta:
     envio_confirmado: bool = False
     popups: dict = field(default_factory=dict)
     tabela: str = ""                    # o fim do id da tabela de resultado
-    exportar: dict = field(default_factory=dict)   # campo, botão e confirmado da exportação da lista
+    exportar: dict = field(default_factory=dict)   # campo, botão, colunas e confirmado da exportação
+    envio_recusado: str = ""            # o que o portal respondeu ao envio configurado, quando recusou
 
 
 @dataclass(frozen=True)
@@ -495,10 +526,19 @@ def carregar_portal(caminho: Path | str) -> Portal:
     bruto = tomllib.loads(caminho.read_text(encoding="utf-8"))
     tw = bruto.get("transweb", {})
 
+    def _exportar(e: dict | None) -> dict:
+        if not e:
+            return {}
+        return {"campo": tuple(e.get("campo", ())), "botao": tuple(e.get("botao", ())),
+                "confirmado": bool(e.get("confirmado")), "formato": str(e.get("formato", "CSV")),
+                "colunas": dict(e.get("colunas") or {}), "amostra": int(e.get("amostra", 3)),
+                "releitura": int(e.get("releitura", 12)), "meses_por_rodada": int(e.get("meses_por_rodada", 14))}
+
     def _consulta(c: dict) -> Consulta:
         popups = {}
         for tipo, p in (c.get("popups") or {}).items():
             popups[tipo] = {"pagina": p["pagina"], "confirmado": bool(p.get("confirmado")),
+                            "endereco": str(p.get("endereco", "")),
                             "colunas": {k: tuple(v) for k, v in (p.get("colunas") or {}).items()},
                             "campos": {k: tuple(v) for k, v in (p.get("campos") or {}).items()}}
         envio = c.get("envio") or {}
@@ -511,9 +551,7 @@ def carregar_portal(caminho: Path | str) -> Portal:
             colunas={k: tuple(v) for k, v in (c.get("colunas") or {}).items()},
             confirmado=bool(c.get("confirmado")), envio=str(envio.get("modo", "postback")),
             envio_confirmado=bool(envio.get("confirmado")), popups=popups, tabela=str(c.get("tabela", "")),
-            exportar={"campo": tuple((c.get("exportar") or {}).get("campo", ())),
-                      "botao": tuple((c.get("exportar") or {}).get("botao", ())),
-                      "confirmado": bool((c.get("exportar") or {}).get("confirmado"))} if c.get("exportar") else {})
+            exportar=_exportar(c.get("exportar")), envio_recusado=str(envio.get("recusado", "")))
 
     consultas = [_consulta(c) for c in tw.get("consultas", [])]
     despesas = [_consulta(c) for c in tw.get("despesas", [])]
@@ -529,7 +567,7 @@ def carregar_portal(caminho: Path | str) -> Portal:
 
 CAMPOS_EVENTO = ("tipo", "empenho", "ordem", "data", "orgao", "credor", "documento", "valor", "elemento",
                  "fonte", "funcao", "subfuncao", "dotacao", "historico", "consulta", "url", "sha256",
-                 "coletado_em")
+                 "coletado_em", "modalidade", "licitacao")
 
 
 def mapear(tabela: Tabela, colunas: dict[str, tuple[str, ...]]) -> dict[str, int]:
@@ -905,6 +943,8 @@ def dados_do_empenho(html, campos: dict[str, tuple[str, ...]], *, padrao_dotacao
         elif campo == "data":
             d = data_br(v)
             v = d.isoformat() if d else ""
+        elif campo == "licitacao" and not v.strip("0"):
+            v = ""                                   # 000000000000: sem processo licitatório
         if v:
             out[campo] = v
     if out.get("dotacao"):
@@ -1255,12 +1295,150 @@ def eventos_do_csv(conteudo: bytes, colunas: dict[str, tuple[str, ...]], tipo: s
     return evs
 
 
+# --- A exportação CSV da página real ---------------------------------------------------------------
+
+
+@dataclass
+class Exportacao:
+    eventos: list[dict]
+    linhas: int = 0                     # linhas de dados lidas
+    incompletas: int = 0                # linhas com outro número de colunas (cortadas), puladas
+    empenhos: int = 0
+    por_mes: dict = field(default_factory=dict)   # AAAA-MM da data do empenho -> linhas
+
+
+def _codigo_final(texto: str) -> str:
+    """O código depois do último " - " ("ADMINISTRACAO - 04" vira "04")."""
+    m = re.search(r"-\s*(\d+)\s*$", str(texto or ""))
+    return m.group(1) if m else ""
+
+
+def eventos_da_exportacao(conteudo: bytes | str, colunas: dict[str, str], *, consulta: str = "",
+                          url: str = "", sha256: str = "") -> Exportacao:
+    """A planilha CSV do Portal_Despesas.aspx: uma linha por liquidação e ordem de pagamento.
+
+    Vira um evento ``empenho`` por empenho (o valor empenhado, com CNPJ, favorecido, objeto,
+    modalidade, licitação, natureza, função, subfunção e fonte), um ``anulacao`` quando o empenho tem
+    valor anulado, uma ``liquidacao`` por liquidação com saldo (a anulada vem com 0,00 e fica fora) e
+    um ``pagamento`` por ordem de pagamento com valor pago. As linhas repetidas não contam duas vezes."""
+    if isinstance(conteudo, bytes):
+        try:
+            texto = conteudo.decode("utf-8-sig")
+        except UnicodeDecodeError:
+            texto = conteudo.decode("latin-1")
+    else:
+        texto = conteudo
+    linhas = list(csv.reader(io.StringIO(texto), delimiter=";"))
+    if not linhas:
+        raise ValueError("a exportação veio vazia")
+    cab = [norm(c) for c in linhas[0]]
+    idx = {campo: cab.index(norm(nome)) for campo, nome in colunas.items() if norm(nome) in cab}
+    if "empenho" not in idx or "valor_empenhado" not in idx:
+        inicio = " ".join(texto[:80].split())
+        raise ValueError(f"a resposta não é a planilha da exportação (começa com {inicio!r})")
+    out = Exportacao([])
+    vistos_emp: set[str] = set()
+    vistos_liq: set[tuple[str, str]] = set()
+    vistos_op: set[tuple[str, str]] = set()
+    for ln in linhas[1:]:
+        if not ln or not any(x.strip() for x in ln):
+            continue
+        if len(ln) != len(cab):
+            out.incompletas += 1
+            continue
+        out.linhas += 1
+
+        def cel(campo: str) -> str:
+            i = idx.get(campo)
+            return ln[i].strip() if i is not None else ""
+
+        emp = re.sub(r"\D", "", cel("empenho"))
+        if not emp:
+            continue
+        dia = data_br(cel("data_empenho"))
+        if dia:
+            out.por_mes[dia.strftime("%Y-%m")] = out.por_mes.get(dia.strftime("%Y-%m"), 0) + 1
+        base = {k: "" for k in CAMPOS_EVENTO}
+        base.update({
+            "empenho": emp, "orgao": " ".join(cel("orgao").split()), "credor": " ".join(cel("credor").split()),
+            "documento": documento_do_credor(cel("documento")), "elemento": re.sub(r"\D", "", cel("elemento")),
+            "fonte": _codigo_final(cel("fonte")), "funcao": _codigo_final(cel("funcao")),
+            "subfuncao": _codigo_final(cel("subfuncao")), "consulta": consulta, "url": url, "sha256": sha256})
+        if emp not in vistos_emp:
+            vistos_emp.add(emp)
+            licitacao = re.sub(r"\D", "", cel("licitacao"))
+            ev = {**base, "tipo": "empenho", "data": dia.isoformat() if dia else "",
+                  "valor": round(valor_br(cel("valor_empenhado")) or 0.0, 2),
+                  "historico": " ".join(cel("historico").split()),
+                  "modalidade": " ".join(cel("modalidade").split()),
+                  "licitacao": licitacao if licitacao.strip("0") else ""}
+            out.eventos.append(ev)
+            anulado = valor_br(cel("valor_anulado")) or 0.0
+            if anulado > 0:
+                out.eventos.append({**base, "tipo": "anulacao", "data": ev["data"], "valor": round(anulado, 2),
+                                    "historico": "anulação do empenho"})
+        liq = cel("liquidacao")
+        if liq and (emp, liq) not in vistos_liq:
+            vistos_liq.add((emp, liq))
+            valor = valor_br(cel("valor_liquidado")) or 0.0
+            if valor > 0:
+                d = data_br(cel("data_liquidacao"))
+                out.eventos.append({**base, "tipo": "liquidacao", "ordem": liq, "data": d.isoformat() if d else "",
+                                    "valor": round(valor, 2)})
+        op = cel("ordem")
+        if op and (emp, op) not in vistos_op:
+            vistos_op.add((emp, op))
+            valor = valor_br(cel("valor_pago")) or 0.0
+            if valor > 0:
+                d = data_br(cel("data_pagamento"))
+                out.eventos.append({**base, "tipo": "pagamento", "ordem": op, "data": d.isoformat() if d else "",
+                                    "valor": round(valor, 2)})
+    out.empenhos = len(vistos_emp)
+    return out
+
+
+def somas_por_empenho(eventos: Iterable[dict]) -> dict[str, dict[str, float]]:
+    out: dict[str, dict[str, float]] = {}
+    for e in eventos:
+        if e.get("empenho") and e.get("tipo") in ("empenho", "liquidacao", "pagamento"):
+            d = out.setdefault(e["empenho"], {"empenho": 0.0, "liquidacao": 0.0, "pagamento": 0.0})
+            d[e["tipo"]] = round(d[e["tipo"]] + float(e.get("valor") or 0.0), 2)
+    return out
+
+
+def conferir_amostra(ler: Ler, c: Consulta, eventos: list[dict], *, amostra: int | None = None) -> list[str]:
+    """Confere nos popups de liquidação e de pagamento os empenhos de maior valor pago da exportação:
+    a soma dos saldos liquidados e dos valores pagos do popup tem de bater com a da planilha.
+    Devolve as notas (divergência ou popup não lido); vazio quando tudo bateu."""
+    n = c.exportar.get("amostra", 3) if amostra is None else amostra
+    somas = somas_por_empenho(eventos)
+    escolhidos = sorted((e for e in somas if somas[e]["pagamento"] > 0),
+                        key=lambda e: (-somas[e]["pagamento"], e))[:n]
+    notas: list[str] = []
+    for emp in escolhidos:
+        for tipo in ("liquidacao", "pagamento"):
+            p = c.popups.get(tipo) or {}
+            if not p.get("endereco"):
+                continue
+            url = p["endereco"].format(empenho=emp)
+            lida = ler(url)
+            if not lida.ok:
+                notas.append(f"amostra {emp}: popup de {tipo} não lido ({lida.erro or lida.http})")
+                continue
+            evs = eventos_do_popup(lida.conteudo, tipo, p["colunas"], {"empenho": emp}, url=url)
+            soma = round(sum(e["valor"] for e in evs if e["tipo"] == tipo), 2)
+            if abs(soma - somas[emp][tipo]) > 0.01:
+                notas.append(f"amostra {emp}: {tipo} soma {soma:.2f} no popup e {somas[emp][tipo]:.2f} na exportação")
+    return notas
+
+
 # --- O banco ----------------------------------------------------------------------------------------
 
 TABELAS_SQL = """
 CREATE TABLE IF NOT EXISTS despesa_eventos (tipo TEXT, empenho TEXT, ordem TEXT, data TEXT, orgao TEXT,
     credor TEXT, documento TEXT, valor REAL, elemento TEXT, fonte TEXT, funcao TEXT, subfuncao TEXT,
-    dotacao TEXT, historico TEXT, consulta TEXT, url TEXT, sha256 TEXT, coletado_em TEXT);
+    dotacao TEXT, historico TEXT, consulta TEXT, url TEXT, sha256 TEXT, coletado_em TEXT, modalidade TEXT,
+    licitacao TEXT);
 CREATE UNIQUE INDEX IF NOT EXISTS despesa_eventos_chave ON despesa_eventos
     (tipo, empenho, ordem, data, documento, valor, orgao);
 CREATE TABLE IF NOT EXISTS despesa_consultas (consulta TEXT, dia TEXT, orgao TEXT, situacao TEXT,
@@ -1272,6 +1450,11 @@ TABELAS_DO_MOTOR = [("coletas", "motor = 'execucao_goiania'"), ("despesa_eventos
 
 def criar_tabelas(con) -> None:
     con.executescript(TABELAS_SQL)
+    # Bancos criados antes da exportação não têm as colunas da modalidade e da licitação.
+    tem = {r[1] for r in con.execute("PRAGMA table_info(despesa_eventos)")}
+    for coluna in ("modalidade", "licitacao"):
+        if coluna not in tem:
+            con.execute(f"ALTER TABLE despesa_eventos ADD COLUMN {coluna} TEXT")
 
 
 def gravar(con, eventos: Iterable[dict], *, coletado_em: str | None = None) -> int:
@@ -1362,6 +1545,92 @@ def gravar_lista(con, eventos: list[dict], consulta: str, *, coletado_em: str | 
     return gravar(con, eventos, coletado_em=coletado_em)
 
 
+def substituir_empenhos(con, eventos: list[dict], consulta: str, *, coletado_em: str | None = None) -> int:
+    """Grava a exportação trocando tudo o que a consulta tinha gravado dos empenhos dela: a planilha
+    traz o empenho inteiro (liquidações e pagamentos até a data da leitura)."""
+    criar_tabelas(con)
+    for emp in {e["empenho"] for e in eventos if e.get("empenho")}:
+        con.execute("DELETE FROM despesa_eventos WHERE consulta = ? AND empenho = ?", (consulta, emp))
+    return gravar(con, eventos, coletado_em=coletado_em)
+
+
+def exportar_mes(ler: Ler, portal: Portal, c: Consulta, mes: str) -> tuple[Exportacao | None, str, str]:
+    """GET da página, postback com mês e ano e a exportação CSV. Devolve a exportação lida (ou None),
+    o endereço e o erro."""
+    aberta = abrir_consulta(ler, portal, c)
+    if isinstance(aberta, str):
+        return None, portal.base, aberta
+    acao, form, _ = aberta
+    ano, mm = mes.split("-")
+    corpo = corpo_exportar(form, c, {"mes": mm, "ano": ano}, c.exportar.get("formato", "CSV"))
+    if isinstance(corpo, str):
+        return None, acao, f"exportação: {corpo}"
+    lida = ler(acao, corpo)
+    if not lida.ok:
+        return None, acao, f"exportação: {lida.erro or lida.http}"
+    sha = lida.original.sha256 if lida.original else ""
+    try:
+        exp = eventos_da_exportacao(lida.conteudo, c.exportar.get("colunas") or {}, consulta=c.id, url=acao,
+                                    sha256=sha)
+    except ValueError as e:
+        return None, acao, f"exportação: {e}"
+    return exp, acao, ""
+
+
+def _motor_exportacao(ctx, portal: Portal, c: Consulta, resumo: dict) -> None:
+    """O caminho principal da página real: a exportação CSV de cada mês, com conferência por amostra
+    nos popups. Se a exportação de um mês falhar, o mês é lido pela lista (o Buscar), que é a reserva."""
+    con = ctx.banco.con
+
+    def ler(url, formulario=None):
+        return ctx.ler("execucao_goiania", c.id, url, formulario=formulario, tempo=120)
+
+    meses = [m for m in ctx.meses if m <= ctx.hoje.strftime("%Y-%m")]
+    lista_aberta = None
+    for mes in meses_a_ler(con, c.id, meses, releitura=c.exportar.get("releitura", 12))[
+            :c.exportar.get("meses_por_rodada", 14)]:
+        exp, url, erro = exportar_mes(ler, portal, c, mes)
+        if exp is None and not erro.startswith("exportação"):
+            # A página nem abriu: os outros meses dariam no mesmo.
+            con.execute("INSERT INTO despesa_consultas VALUES (?,?,?,?,?,?,?,?,?)",
+                        (c.id, mes, "", "falha", 0, 0, url, erro, datetime.now().isoformat()))
+            resumo["consultas"] += 1
+            resumo["falhas"] += 1
+            con.commit()
+            break
+        if exp is None:
+            # A reserva: a lista do mês pelo Buscar (a sondagem de 28/11/2026 viu o portal recusar o
+            # Buscar; fica para quando a exportação falhar e o Buscar voltar a responder).
+            if lista_aberta is None:
+                lista_aberta = abrir_consulta(ler, portal, c)
+            if isinstance(lista_aberta, str):
+                res = Resultado(False, c.id, url=url, erro=f"{erro}; lista: {lista_aberta}")
+            else:
+                ano, mm = mes.split("-")
+                res = consultar_lista(ler, portal, c, {"mes": mm, "ano": ano}, aberta=lista_aberta,
+                                      conhecidos=conhecidos_do_banco(con))
+            novos = gravar_lista(con, [e for e in res.eventos if e["tipo"] != "falha_detalhe"], c.id) if res.ok else 0
+            notas = [f"{erro}; lida pela lista"] + [e["historico"] for e in res.eventos if e["tipo"] == "falha_detalhe"]
+            situacao = "falha" if not res.ok else ("vazia" if res.vazio else "lida")
+            linhas, paginas, url_res = len(res.eventos), res.paginas, res.url or url
+            nota = res.erro if not res.ok else "; ".join(notas[:5]) + (f" (+{len(notas) - 5})" if len(notas) > 5 else "")
+        else:
+            novos = substituir_empenhos(con, exp.eventos, c.id)
+            notas = conferir_amostra(ler, c, exp.eventos) if exp.eventos else []
+            if exp.incompletas:
+                notas.insert(0, f"{exp.incompletas} linha(s) incompleta(s) pulada(s)")
+            situacao = "lida" if exp.eventos else "vazia"
+            linhas, paginas, url_res = exp.linhas, 1, url
+            nota = "exportação CSV" + (": " + "; ".join(notas) if notas else "")
+        con.execute("INSERT INTO despesa_consultas VALUES (?,?,?,?,?,?,?,?,?)",
+                    (c.id, mes, "", situacao, linhas, paginas, url_res, nota, datetime.now().isoformat()))
+        resumo["eventos"] += novos
+        resumo["consultas"] += 1
+        resumo["falhas"] += situacao == "falha"
+        resumo["vazias"] += situacao == "vazia"
+        con.commit()
+
+
 def _motor_mensal(ctx, portal: Portal, c: Consulta, resumo: dict, *, limite_de_meses: int) -> None:
     """A lista de Portal_Despesas.aspx, mês a mês (mês e ano no formulário, todos os órgãos)."""
     con = ctx.banco.con
@@ -1417,6 +1686,9 @@ def motor(ctx, portal: Portal, *, consultas: Iterable[str] | None = None, limite
 
     for cid in consultas:
         c = portal.consulta(cid)
+        if c.granularidade == "mes" and c.exportar.get("confirmado"):
+            _motor_exportacao(ctx, portal, c, resumo)
+            continue
         if c.granularidade == "mes":
             _motor_mensal(ctx, portal, c, resumo, limite_de_meses=limite_de_meses)
             continue
