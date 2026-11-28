@@ -23,3 +23,14 @@
 - {id: 181, situacao: cumprido, evidencia: "Seletor de período global, na URL e no navegador", falta: "", trava: "testes/test_telas.py::test_seletores_de_periodo_e_secretaria_recortam_as_telas"}
 - {id: 182, situacao: cumprido, evidencia: "Seletor de secretaria global, recortando números (pela função inteira, avisado na tela) e fichas", falta: "", trava: "testes/test_telas.py::test_seletores_de_periodo_e_secretaria_recortam_as_telas"}
 - {id: 225, situacao: cumprido, evidencia: "Sem a metáfora do rio (decisão do usuário de 28/11/2026): origem.html no lugar de rio.html; a página inicial abre com o diagrama das seis etapas do gasto, cada uma com conforme, alerta e sem dado e o link para a lista inteira da etapa (dois cliques até qualquer ficha); ícones SVG próprios das etapas e das condições, iguais em todas as páginas; onisciente/linguagem.py mantém a régua e a troca dos textos guardados", falta: "", trava: "testes/test_telas.py::test_inicio_tem_o_diagrama_das_etapas_e_toda_ficha_a_dois_cliques"}
+# Pedido da titular de 28/11/2026 (id 226, rastreio por hash, proposto pela Frente H): a parte das telas.
+# Evidência: docs/onisciente/app mostra o hash do achado (12 caracteres, completo no title, copiável) em cada
+# ficha, o hash da resposta e o do registro no balão de origem de cada número, a busca por hash na tela de
+# indícios, o topo da cadeia e se ela confere no rodapé de todas as páginas (em cinza "rastreio começa na
+# próxima coleta" sem rastreio.db) e o ícone próprio de verificado por hash. Travas em testes/test_telas.py:
+#   test_sem_rastreio_db_o_rodape_diz_em_cinza_que_o_rastreio_comeca_na_proxima_coleta
+#   test_rodape_mostra_o_topo_da_cadeia_e_se_ela_confere
+#   test_cada_ficha_mostra_o_hash_curto_com_o_completo_no_title_e_copiavel
+#   test_balao_de_origem_tem_o_hash_da_resposta_e_do_registro
+#   test_busca_por_hash_acha_a_ficha_e_a_fonte_pelo_comeco
+#   test_icone_de_verificado_por_hash_e_proprio_e_igual_em_todas_as_paginas

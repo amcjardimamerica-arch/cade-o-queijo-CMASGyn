@@ -828,3 +828,168 @@ def test_selos_e_fichas_usam_o_icone_da_condicao(site):
     inicio = _desenhar(site / "index.html", "2026-02|")["2026-02|"]["tela"]
     for cd, icone in (("conforme", "conforme"), ("alerta", "alerta"), ("sem_dado", "semdado")):
         assert re.search(rf'<svg class="ic cond {cd}[^"]*"[^>]*><use href="#i-{icone}"/>', inicio), cd
+
+
+# ---------------------------------------------------------------------------------------------
+# Rastreio por hash nas telas (pedido da titular de 28/11/2026: "Ao coletar as informações gere um código
+# hash para rastreio dos dados e validação de cada informação obtida")
+# ---------------------------------------------------------------------------------------------
+
+def _rastreado(pasta: Path) -> Path:
+    """O banco de teste com o rastreio por hash: o rastreio.db ao lado, com a rodada de migração."""
+    from onisciente import rastreio
+    b = _banco(pasta / "historico.db")
+    con = sqlite3.connect(b)
+    assert rastreio.migrar(con)
+    con.commit()
+    con.close()
+    return b
+
+
+@pytest.fixture(scope="module")
+def banco_rastreado(tmp_path_factory) -> Path:
+    return _rastreado(tmp_path_factory.mktemp("banco_rastreado"))
+
+
+@pytest.fixture(scope="module")
+def site_rastreado(banco_rastreado, tmp_path_factory) -> Path:
+    destino = tmp_path_factory.mktemp("site_rastreado")
+    gerar(destino, banco=banco_rastreado, panoramas={"2026-02": PANORAMA}, hoje=date(2026, 11, 27), entradas={})
+    return destino
+
+
+def _registro_da_coleta(banco: Path, url: str) -> str:
+    from onisciente import rastreio
+    con = sqlite3.connect(banco)
+    try:
+        (rowid,) = con.execute("SELECT rowid FROM coletas WHERE url = ?", (url,)).fetchone()
+        return rastreio.hash_do_registro(con, "coletas", rowid)
+    finally:
+        con.close()
+
+
+def test_sem_rastreio_db_o_rodape_diz_em_cinza_que_o_rastreio_comeca_na_proxima_coleta(site, banco):
+    for p in PAGINAS:
+        html = (site / f"{p}.html").read_text(encoding="utf-8")
+        m = re.search(r'<p class="rastreio-cadeia ([a-z]+)" id="rastreio-cadeia"[^>]*>(.*?)</p>', html, re.S)
+        assert m, p
+        assert m.group(1) == "sem", p                                   # cinza, nunca erro
+        assert "rastreio começa na próxima coleta" in m.group(2), p
+        assert 'href="#i-hash"' in m.group(2), p
+        assert _dados(site / f"{p}.html")["d-comum"]["rastreio"] == {"rastreado": False}, p
+    assert not (banco.parent / "rastreio.db").exists()                  # as telas só leem: nada é criado
+
+
+def test_rodape_mostra_o_topo_da_cadeia_e_se_ela_confere(site_rastreado, banco_rastreado, tmp_path):
+    from onisciente import rastreio
+    from onisciente.telas import dados as D
+    from onisciente.telas.pagina import rodape_rastreio
+    con = sqlite3.connect(f"file:{banco_rastreado}?mode=ro", uri=True)
+    resumo = rastreio.resumo_da_cadeia(con)
+    con.close()
+    topo, raiz = resumo["ultima"]["hash"], resumo["ultima"]["raiz"]
+    assert resumo["ok"] and len(topo) == 64
+    for p in PAGINAS:
+        html = (site_rastreado / f"{p}.html").read_text(encoding="utf-8")
+        m = re.search(r'<p class="rastreio-cadeia ok" id="rastreio-cadeia" data-confere="1">(.*?)</p>', html, re.S)
+        assert m, p
+        rodape = m.group(1)
+        assert f'title="hash da rodada: {topo}">{topo[:12]}</code>' in rodape, p
+        assert f'data-copiar="{topo}"' in rodape and f'data-copiar="{raiz}"' in rodape, p
+        assert "a cadeia confere" in rodape and 'class="ic hash ok"' in rodape, p
+    # Uma rodada adulterada: o rodapé diz que a cadeia não confere.
+    copia = tmp_path / "historico.db"
+    shutil.copyfile(banco_rastreado, copia)
+    shutil.copyfile(banco_rastreado.parent / "rastreio.db", tmp_path / "rastreio.db")
+    con = sqlite3.connect(copia)
+    rastreio.anexar(con)
+    con.execute("UPDATE rastreio.rastreio_rodadas SET raiz = ?", ("0" * 64,))
+    con.commit()
+    con.close()
+    con = sqlite3.connect(f"file:{copia}?mode=ro", uri=True)
+    cadeia = D.cadeia(con)
+    con.close()
+    assert cadeia["rastreado"] and not cadeia["ok"]
+    html = rodape_rastreio(cadeia)
+    assert 'class="rastreio-cadeia falha"' in html and "a cadeia não confere" in html and 'data-confere="0"' in html
+
+
+@precisa_node
+def test_cada_ficha_mostra_o_hash_curto_com_o_completo_no_title_e_copiavel(site):
+    from onisciente import rastreio
+    esperado = rastreio.hash_achado(PANORAMA["fichas"][0])               # o mesmo hash que o parecer calcula
+    dados = _dados(site / "indicios.html")["d-tela"]
+    fi = next(f for f in dados["fichas"] if f["codigo"] == "PES-01")
+    assert fi["rastreio"]["achado"] == esperado
+    assert fi["rastreio"]["apoio"] == "d" * 64 and fi["rastreio"]["provas"] == ["d" * 64]
+    r = _desenhar(site / "indicios.html", "2026-02|")["2026-02|"]
+    assert not r["erros"]
+    bloco = re.search(r'<details class="ficha[^"]*" id="ficha-PES-01".*?</details>', r["fichas"], re.S).group(0)
+    resumo = re.search(r"<summary>(.*?)</summary>", bloco, re.S).group(1)
+    assert f'<span class="hash-curto" title="hash do achado: {esperado}">' in resumo
+    assert f'<use href="#i-hash"/></svg>{esperado[:12]}</span>' in resumo
+    assert esperado[12:] not in re.sub(r'title="[^"]*"', "", resumo)     # na tela, só os 12 primeiros
+    assert f'data-copiar="{esperado}"' in bloco and f'data-copiar="{"d" * 64}"' in bloco
+    # As fichas das outras telas levam o mesmo hash.
+    for p in PAGINAS:
+        for f in _dados(site / f"{p}.html")["d-tela"].get("fichas") or []:
+            assert len(f["rastreio"]["achado"]) == 64, p
+
+
+def test_balao_de_origem_tem_o_hash_da_resposta_e_do_registro(site, site_rastreado, banco_rastreado):
+    sem = _dados(site / "origem.html")["d-fontes"]["msc:2026-01"]
+    assert sem["h"] == SHA_MSC and "hr" not in sem                       # sem rastreio.db: só a resposta
+    com = _dados(site_rastreado / "origem.html")["d-fontes"]["msc:2026-01"]
+    assert com["h"] == SHA_MSC
+    assert com["hr"] == _registro_da_coleta(banco_rastreado, "https://exemplo.gov.br/msc?mes=1")
+    assert com["hv"] == 1                                                # confere com o selo da rodada
+    js = APP_JS.read_text(encoding="utf-8")
+    mostrar = re.search(r"function mostrar\(el, fixar\) \{(.*?)\n  \}", js, re.S).group(1)
+    assert "hash da resposta (sha256)" in mostrar and "f.h" in mostrar
+    assert "hash do registro" in mostrar and "f.hr" in mostrar and "f.hv" in mostrar
+    assert "hashCurto(" in mostrar and "icHash(" in mostrar
+
+
+@precisa_node
+def test_busca_por_hash_acha_a_ficha_e_a_fonte_pelo_comeco(site_rastreado, banco_rastreado):
+    from onisciente import rastreio
+    achado = rastreio.hash_achado(PANORAMA["fichas"][1])
+    registro = _registro_da_coleta(banco_rastreado, "https://exemplo.gov.br/msc?mes=1")
+    pg = site_rastreado / "indicios.html"
+    hashes = _dados(pg)["d-tela"]["hashes"]
+    assert {"h": registro, "t": "registro", "v": 1}.items() <= next(h for h in hashes if h["h"] == registro).items()
+    r = _desenhar(pg, f"2026-02||hash={achado[:6]}", f"2026-02||hash={registro[:8].upper()}", "2026-02||hash=zz",
+                  "2026-02||hash=0f0f0f0f")
+    tela = r[f"2026-02||hash={achado[:6]}"]["tela"]
+    assert 'id="busca-hash"' in tela and 'id="f-hash"' in tela
+    assert "#ficha-VIN-DESVIO-751-04-2026-02" in tela and f'data-copiar="{achado}"' in tela
+    tela = r[f"2026-02||hash={registro[:8].upper()}"]["tela"]
+    assert "hash do registro da coleta" in tela and "confere com o selo da rodada" in tela
+    assert f'data-copiar="{registro}"' in tela
+    assert "pelo menos 4 caracteres" in r["2026-02||hash=zz"]["tela"]
+    assert "python -m onisciente rastreio --hash 0f0f0f0f" in r["2026-02||hash=0f0f0f0f"]["tela"]
+    assert all(not v["erros"] for v in r.values())
+    # A função pura: prefixo de 4 caracteres ou mais, sem diferença entre maiúsculas e minúsculas.
+    dados = _dados(pg)["d-tela"]
+    achados = _js("return [L.buscarHash(D.q, D.fichas, D.hashes), L.buscarHash(D.q.slice(0, 3), D.fichas, D.hashes)];",
+                  {"q": achado[:10].upper(), "fichas": dados["fichas"], "hashes": hashes})
+    assert [(a["t"], a["ficha"]) for a in achados[0]] == [("achado", "VIN-DESVIO-751-04-2026-02")]
+    assert achados[1] == []
+    for p in PAGINAS:                                                    # o rodapé de toda página leva à busca
+        assert 'href="indicios.html#busca-hash"' in (site_rastreado / f"{p}.html").read_text(encoding="utf-8"), p
+
+
+def test_icone_de_verificado_por_hash_e_proprio_e_igual_em_todas_as_paginas(site):
+    desenhos = set()
+    for p in PAGINAS:
+        html = (site / f"{p}.html").read_text(encoding="utf-8")
+        sprite = re.search(r'<svg[^>]*class="simbolos"[^>]*>(.*?)</svg>', html, re.S).group(1)
+        simbolos = dict(re.findall(r'<symbol id="i-([a-z]+)"[^>]*>(.*?)</symbol>', sprite, re.S))
+        assert html.count('<symbol id="i-hash"') == 1, p
+        assert simbolos["hash"] not in {simbolos["conforme"], simbolos["alerta"], simbolos["semdado"]}, p
+        estilo = re.match(r'<g [^>]*>', simbolos["hash"]).group(0)       # o mesmo traço das condições
+        assert estilo == re.match(r'<g [^>]*>', simbolos["conforme"]).group(0), p
+        desenhos.add(simbolos["hash"])
+    assert len(desenhos) == 1
+    js = APP_JS.read_text(encoding="utf-8")
+    assert "ic('hash'" in js

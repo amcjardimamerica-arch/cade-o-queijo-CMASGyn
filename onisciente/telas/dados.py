@@ -15,7 +15,7 @@ from dataclasses import dataclass, field
 from datetime import date, timedelta
 from pathlib import Path
 
-from .. import RAIZ, __version__
+from .. import RAIZ, __version__, rastreio
 from ..config import Alvo
 from ..legal.mapa import MapaLegal
 from ..nucleo.estacoes import Estacao, Evento, Percurso
@@ -264,7 +264,39 @@ def comum(ctx: Contexto) -> dict:
         "gerado_em": ctx.hoje.isoformat(),
         "versao": __version__,
         "dominio": {d.id: {"nome": d.nome, "funcao": d.funcao} for d in ctx.alvo.ativos()},
+        "rastreio": cadeia(ctx.con),
     }
+
+
+def cadeia(con) -> dict:
+    """O topo da cadeia do rastreio por hash, para o rodapé de todas as páginas (só leitura). Sem
+    ``rastreio.db`` ao lado do banco (banco ainda não migrado), ``{"rastreado": False}``, sem erro."""
+    if con is None:
+        return {"rastreado": False}
+    try:
+        r = rastreio.resumo_da_cadeia(con)
+    except Exception as e:  # noqa: BLE001 - o rodapé nunca derruba a geração das telas
+        return {"rastreado": False, "erro": str(e)}
+    if not r.get("rastreado"):
+        return {k: v for k, v in r.items() if k in ("rastreado", "erro")}
+    u = r.get("ultima") or {}
+    return {"rastreado": True, "ok": bool(r.get("ok")), "rodadas": r.get("rodadas", 0),
+            "problemas": len(r.get("problemas") or []),
+            "ultima": {k: u.get(k) for k in ("id", "modo", "inicio", "fim", "respostas", "registros", "raiz", "hash")}}
+
+
+def rastreio_da_ficha(f: dict) -> dict:
+    """Os hashes de um achado, como no parecer: o do próprio achado (a ficha sem a chave ``rastreio``) e o
+    do conjunto das provas em que ele se apoia (o registro de cada original, ou o sha256 da resposta;
+    um só, o próprio hash; vários, a raiz de Merkle em ordem; nenhum, vazio, porque a falta é o achado)."""
+    r = f.get("rastreio") if isinstance(f.get("rastreio"), dict) else {}
+    provas: list[str] = []
+    for h in [*(r.get("apoio") or []), *(f.get("apoio") or []),
+              *((o.get("registro") or o.get("sha256")) for o in f.get("custodia") or [])]:
+        if h and h not in provas:
+            provas.append(h)
+    apoio = r.get("hash_apoio") or (provas[0] if len(provas) == 1 else rastreio.raiz_de(provas) if provas else "")
+    return {"achado": r.get("hash_achado") or rastreio.hash_achado(f), "apoio": apoio, "provas": provas}
 
 
 # =============================================================================================
@@ -304,7 +336,8 @@ def _fonte_ano(ctx: Contexto, c: str) -> str:
         nota = ("Soma das matrizes de cada mês do exercício; o original aberto é o do último mês, e os "
                 "demais estão na tela Origem do dinheiro, mês a mês.") if meses else ""
         if base and base.url:
-            ctx.originais.externo(chave, rotulo, base.url, sha256=base.sha256, quando=base.quando, nota=nota)
+            ctx.originais.externo(chave, rotulo, base.url, sha256=base.sha256, quando=base.quando, nota=nota,
+                                  registro=base.registro, confere=base.confere)
         else:
             ctx.originais.sem_original(chave, rotulo, nota)
     return chave
@@ -319,7 +352,8 @@ def _fonte_transf_ano(ctx: Contexto, c: str) -> str:
         rotulo = f"Portal da Transparência: transferências da União, {c[:4]} até {rotulo_mes(c)}"
         nota = "Soma dos arquivos mensais do Portal; o original aberto é o do último mês."
         if base and base.url:
-            ctx.originais.externo(chave, rotulo, base.url, sha256=base.sha256, quando=base.quando, nota=nota)
+            ctx.originais.externo(chave, rotulo, base.url, sha256=base.sha256, quando=base.quando, nota=nota,
+                                  registro=base.registro, confere=base.confere)
         else:
             ctx.originais.sem_original(chave, rotulo, nota)
     return chave
@@ -963,7 +997,9 @@ def _ficha(f: dict, secs: list[str], cs: list[str]) -> dict:
             "providencia": limpa(f.get("providencia")), "caso": limpa(f.get("caso_semelhante")),
             "observacao": limpa(f.get("observacao")),
             "custodia": [{"url": o.get("url"), "quando": o.get("coletado_em"), "sha256": o.get("sha256"),
-                          "edicao": o.get("edicao"), "pagina": o.get("pagina")} for o in f.get("custodia") or []],
+                          "registro": o.get("registro") or "", "edicao": o.get("edicao"), "pagina": o.get("pagina")}
+                         for o in f.get("custodia") or []],
+            "rastreio": rastreio_da_ficha(f),
             "secretarias": secs, "cs": list(cs), "tema": tema,
             "etapa": ETAPA_DO_TEMA.get(tema, ""), "condicao": condicao_da_ficha(f["codigo"], tema, f["titulo"])}
 
