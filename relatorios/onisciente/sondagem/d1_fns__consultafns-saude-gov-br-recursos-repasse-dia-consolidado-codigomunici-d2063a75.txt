@@ -1,0 +1,7 @@
+URL: https://consultafns.saude.gov.br/recursos/repasse-dia/consolidado?codigoMunicipio=520870&dataPagamentoInicial=01/01/2025&dataPagamentoFinal=31/01/2025&page=1&count=10
+POST: {}
+OK: False
+HTTP: 404
+ERRO: HTTP 404
+BYTES: 1093
+

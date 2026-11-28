@@ -1,0 +1,872 @@
+URL: https://www.fnde.gov.br/pls/simad/internet_fnde.liberacoes_result_pc?p_ano=2025&p_programa=&p_uf=GO&p_municipio=520870&p_tp_entidade=&p_cgc=01612092000123
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 50958
+
+<html>
+<head>
+<title>LIBERAÇÕES - CONSULTAS GERAIS</title>
+<style type="text/css">
+<!--
+.fundo_laranja {BACKGROUND-COLOR: #f1db9f }
+.pagina_titulo {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 12px;
+	TEXT-TRANSFORM: uppercase;
+	COLOR: #ffffff;
+	FONT-STYLE: normal;
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+	BACKGROUND-COLOR: #000099;
+}
+.cabecalho_letras {
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 12px;
+	COLOR: #09548d;
+	FONT-FAMILY: Verdana,Tahoma,Arial,Helvetica,MS Sans Serif; TEXT-DECORATION: none
+}
+-->
+    </style>
+</head>
+<body bgcolor="#FFFFFF" leftmargin=0 topmargin=0>
+<TABLE class="fundo_laranja" cellSpacing="0" cellPadding="1" width="100%" border="0">
+  <TR>
+    <TD vAlign="center" noWrap rowSpan="2">
+    	<img src="http://www.fnde.gov.br/pnld/imagens/logo_fnde.gif" height="35" width="97">
+    </TD>
+    <TD vAlign="center" noWrap rowSpan="2">&nbsp; </TD>
+    <TD vAlign="center" noWrap align="right" width="100%">&nbsp;</TD>
+    <TD vAlign="center" noWrap rowSpan="2">&nbsp;</TD>
+    <TD vAlign="center" noWrap rowSpan="2">
+    	<img src="http://www.fnde.gov.br/pnld/imagens/logo_mec_descricao.gif" height="42" width="97" align="absMiddle">
+    </TD>
+  </TR>
+  <TR>
+    <TD class="cabecalho_letras" vAlign="middle" noWrap align="left" width="100%">
+    		Fundo Nacional de<BR>Desenvolvimento da Educação
+    </TD>
+  </TR>
+</TABLE>
+<TABLE cellSpacing="0" cellPadding="3" width="100%" border="0">
+  <TR>
+    <TD width="100%" align="center" class="pagina_titulo">
+      :: LIBERAÇÕES - CONSULTAS GERAIS ::
+    </TD>
+  </TR>
+</TABLE>
+&nbsp;<br>
+<font face="Tahoma,Arial" size="2">
+<font face="Verdana,Tahoma,Arial" size="2">
+<table border=1 cellspacing=2 cellpadding=2 width="100%">
+<tr bgcolor="#006699">
+<td colspan=9 align=left width = "70%"><font face="Tahoma,Arial" size="2" color="#FFFFFF"><b>Entidade..: 01.612.092/0001-23 - PREF MUN DE GOIANIA</b></font></td>
+<td colspan=9 align=left width = "30%"><font face="Tahoma,Arial" size="2" color="#FFFFFF"><b>Município.: GOIANIA - GO</b></font></td>
+</tr>
+</table>
+<br>
+<table border=1 cellspacing=2 cellpadding=2 width="100%">
+<tr bgcolor="#006699">
+<td colspan=9 align=left><font face="Tahoma,Arial" size="2" color="#FFFFFF"><b>ALIMENTAÇÃO ESCOLAR - PROG.NACIONAL DE ALIMENTAÇÃO ESCOLAR</b></font></td>
+</tr>
+<tr bgcolor="#F8C400">
+<td align=center width = "10%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Data Pgto</b></font></td>
+<td align=center width = "10%"><font face="Tahoma,Arial" size="2" color="#006699"><b>OB</b></font></td>
+<td align=center width = "15%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Valor</b></font></td>
+<td align=center width = "20%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Parcela</b></font></td>
+<td align=center width = "20%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Programa</b></font></td>
+<td align=center width = "20%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Banco</b></font></td>
+<td align=center width = "10%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Agência</b></font></td>
+<td align=center width = "15%"><font face="Tahoma,Arial" size="2" color="#006699"><b>C/C</b></font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">06/FEV/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">001163</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">32.963,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">001</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - AEE</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">06/FEV/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">001161</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">225,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">001</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - Ensino Médio</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">06/FEV/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">001174</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">603.553,50</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">001</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - Creche</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">06/FEV/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">001159</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">39.698,25</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">001</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - EJA</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">07/MAR/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">002253</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">603.553,50</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">002</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - Creche</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">07/MAR/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">002105</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">32.963,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">002</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - AEE</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">07/MAR/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">002119</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">39.698,25</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">002</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - EJA</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">10/MAR/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">002400</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">225,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">002</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - Ensino Médio</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">08/ABR/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">004366</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">1.130.349,75</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">001</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar -Ensino Fundamental</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">08/ABR/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">004272</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">1.130.349,75</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">002</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar -Ensino Fundamental</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">09/ABR/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">004520</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">111.575,69</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">001</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - Pré-escola.</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">09/ABR/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">004538</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">476.137,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">002</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - Pré-escola.</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">03/JUN/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">010492</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">225,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">003</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - Ensino Médio</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">03/JUN/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">010461</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">1.130.349,75</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">004</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar -Ensino Fundamental</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">03/JUN/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">010344</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">39.698,25</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">004</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - EJA</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">03/JUN/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">010455</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">603.553,50</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">005</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - Creche</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">04/JUN/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">010992</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">1.130.349,75</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">003</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar -Ensino Fundamental</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">04/JUN/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">010917</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">603.553,50</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">003</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - Creche</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">04/JUN/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">010546</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">476.137,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">003</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - Pré-escola.</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">04/JUN/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">010786</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">39.698,25</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">003</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - EJA</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">04/JUN/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">011003</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">32.963,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">003</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - AEE</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">04/JUN/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">010566</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">476.137,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">004</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - Pré-escola.</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">04/JUN/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">010594</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">225,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">004</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - Ensino Médio</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">04/JUN/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">010999</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">603.553,50</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">004</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - Creche</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">04/JUN/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">010816</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">32.963,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">004</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - AEE</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">04/JUN/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">010599</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">1.130.349,75</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">005</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar -Ensino Fundamental</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">04/JUN/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">010642</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">476.137,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">005</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - Pré-escola.</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">04/JUN/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">010876</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">32.963,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">005</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - AEE</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">04/JUN/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">010910</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">39.698,25</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">005</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - EJA</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">04/JUN/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">011033</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">225,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">005</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - Ensino Médio</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">03/JUL/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">014026</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">1.130.349,75</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">006</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar -Ensino Fundamental</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">03/JUL/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">014500</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">225,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">006</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - Ensino Médio</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">03/JUL/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">014064</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">39.698,25</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">006</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - EJA</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">03/JUL/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">013907</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">603.553,50</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">006</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - Creche</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">03/JUL/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">013831</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">476.137,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">006</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - Pré-escola.</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">03/JUL/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">013965</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">32.963,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">006</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - AEE</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">05/AGO/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">017340</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">603.553,50</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">007</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - Creche</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">05/AGO/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">017513</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">39.698,25</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">007</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - EJA</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">05/AGO/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">017741</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">476.137,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">007</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - Pré-escola.</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">05/AGO/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">017596</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">225,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">007</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - Ensino Médio</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">05/AGO/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">017629</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">1.130.349,75</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">007</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar -Ensino Fundamental</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">05/AGO/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">017692</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">32.963,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">007</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - AEE</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">15/SET/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">020933</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">39.698,25</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">008</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - EJA</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">15/SET/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">021827</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">1.130.349,75</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">008</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar -Ensino Fundamental</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">15/SET/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">021628</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">32.963,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">008</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - AEE</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">15/SET/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">020932</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">225,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">008</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - Ensino Médio</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">23/SET/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">023193</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">476.137,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">008</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - Pré-escola.</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">23/SET/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">023176</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">603.553,50</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">008</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNAE - Alimentação Escolar - Creche</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000198293</font></td>
+</tr>
+<tr bgcolor="#0000CC">
+<td colspan=2 bgcolor="#FFCC66">
+<font face="Tahoma,Arial" size="2" color="#006699">
+<b>Total: </b>
+</font>
+</td>
+<td align=right colspan=1 bgcolor="#FFCC66">
+<font face="Tahoma,Arial" size="2" color="#006699">
+<b>17.898.850,69</b>
+</font>
+</td>
+<td colspan=5 bgcolor="#FFCC66">
+<font face="Tahoma,Arial" size="2" color="#FFFFFF">
+&nbsp;
+</font>
+</td>
+</tr>
+</table>
+<font face="Tahoma,Arial" size="2">
+<br>
+<table border=1 cellspacing=2 cellpadding=2 width="100%">
+<tr bgcolor="#006699">
+<td colspan=9 align=left><font face="Tahoma,Arial" size="2" color="#FFFFFF"><b>PNATE - PROGRAMA NACIONAL DE APOIO AO TRANSP DO ESCOLAR</b></font></td>
+</tr>
+<tr bgcolor="#F8C400">
+<td align=center width = "10%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Data Pgto</b></font></td>
+<td align=center width = "10%"><font face="Tahoma,Arial" size="2" color="#006699"><b>OB</b></font></td>
+<td align=center width = "15%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Valor</b></font></td>
+<td align=center width = "20%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Programa</b></font></td>
+<td align=center width = "20%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Banco</b></font></td>
+<td align=center width = "10%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Agência</b></font></td>
+<td align=center width = "15%"><font face="Tahoma,Arial" size="2" color="#006699"><b>C/C</b></font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">26/MAR/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">003747</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">325,56</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNATE- Educação Infantil - Port/MEC n°3/21.</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000147516</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">26/MAR/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">003761</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">162,78</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNATE - Ensino Médio - Port/MEC n°3/21.</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000147516</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">04/ABR/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">004121</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">7.162,31</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNATE - Ensino Fundamental - Port/MEC n°3/21</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000147516</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">29/AGO/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">020347</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">7.162,32</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNATE - Ensino Fundamental - Port/MEC n°3/21</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000147516</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">29/AGO/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">020319</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">325,56</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNATE- Educação Infantil - Port/MEC n°3/21.</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000147516</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">02/SET/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">020475</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">162,78</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">PNATE - Ensino Médio - Port/MEC n°3/21.</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000147516</font></td>
+</tr>
+<tr bgcolor="#0000CC">
+<td colspan=2 bgcolor="#FFCC66">
+<font face="Tahoma,Arial" size="2" color="#006699">
+<b>Total: </b>
+</font>
+</td>
+<td align=right colspan=1 bgcolor="#FFCC66">
+<font face="Tahoma,Arial" size="2" color="#006699">
+<b>15.301,31</b>
+</font>
+</td>
+<td colspan=5 bgcolor="#FFCC66">
+<font face="Tahoma,Arial" size="2" color="#FFFFFF">
+&nbsp;
+</font>
+</td>
+</tr>
+</table>
+<font face="Tahoma,Arial" size="2">
+<br>
+<table border=1 cellspacing=2 cellpadding=2 width="100%">
+<tr bgcolor="#006699">
+<td colspan=9 align=left><font face="Tahoma,Arial" size="2" color="#FFFFFF"><b>QUOTA - QUOTA ESTADUAL / MUNICIPAL</b></font></td>
+</tr>
+<tr bgcolor="#F8C400">
+<td align=center width = "10%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Data Pgto</b></font></td>
+<td align=center width = "10%"><font face="Tahoma,Arial" size="2" color="#006699"><b>OB</b></font></td>
+<td align=center width = "15%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Valor</b></font></td>
+<td align=center width = "20%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Programa</b></font></td>
+<td align=center width = "20%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Banco</b></font></td>
+<td align=center width = "10%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Agência</b></font></td>
+<td align=center width = "15%"><font face="Tahoma,Arial" size="2" color="#006699"><b>C/C</b></font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">21/JAN/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">000337</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">7.983.330,45</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">Salário-Educação: Repasse a Estado/Município</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">CAIXA ECONOMICA FEDERAL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">2510</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0066720045</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">18/FEV/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">001629</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">4.669.021,72</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">Salário-Educação: Repasse a Estado/Município</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">CAIXA ECONOMICA FEDERAL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">2510</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0066720045</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">19/MAR/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">002907</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">4.660.092,94</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">Salário-Educação: Repasse a Estado/Município</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">CAIXA ECONOMICA FEDERAL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">2510</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0066720045</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">15/ABR/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">005345</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">4.615.943,07</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">Salário-Educação: Repasse a Estado/Município</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">CAIXA ECONOMICA FEDERAL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">2510</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0066720045</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">16/MAI/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">008928</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">4.605.120,60</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">Salário-Educação: Repasse a Estado/Município</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">CAIXA ECONOMICA FEDERAL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">2510</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0066720045</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">18/JUN/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">012327</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">4.745.765,72</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">Salário-Educação: Repasse a Estado/Município</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">CAIXA ECONOMICA FEDERAL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">2510</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0066720045</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">16/JUL/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">016090</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">4.905.438,89</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">Salário-Educação: Repasse a Estado/Município</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">CAIXA ECONOMICA FEDERAL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">2510</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0066720045</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">18/AGO/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">019709</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">4.482.968,84</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">Salário-Educação: Repasse a Estado/Município</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">CAIXA ECONOMICA FEDERAL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">2510</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0066720045</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">17/SET/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">022931</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">4.454.251,68</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">Salário-Educação: Repasse a Estado/Município</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">CAIXA ECONOMICA FEDERAL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">2510</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0066720045</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">17/OUT/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">027291</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">4.910.196,85</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">Salário-Educação: Repasse a Estado/Município</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">CAIXA ECONOMICA FEDERAL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">2510</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0066720045</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">17/NOV/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">030974</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">4.654.768,42</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">Salário-Educação: Repasse a Estado/Município</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">CAIXA ECONOMICA FEDERAL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">2510</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0066720045</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">17/DEZ/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">036159</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">4.607.844,53</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">Salário-Educação: Repasse a Estado/Município</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">CAIXA ECONOMICA FEDERAL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">2510</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0066720045</font></td>
+</tr>
+<tr bgcolor="#0000CC">
+<td colspan=2 bgcolor="#FFCC66">
+<font face="Tahoma,Arial" size="2" color="#006699">
+<b>Total: </b>
+</font>
+</td>
+<td align=right colspan=1 bgcolor="#FFCC66">
+<font face="Tahoma,Arial" size="2" color="#006699">
+<b>59.294.743,71</b>
+</font>
+</td>
+<td colspan=5 bgcolor="#FFCC66">
+<font face="Tahoma,Arial" size="2" color="#FFFFFF">
+&nbsp;
+</font>
+</td>
+</tr>
+</table>
+<font face="Tahoma,Arial" size="2">
+<br>
+<table border=1 cellspacing=2 cellpadding=2 width="100%">
+<tr bgcolor="#006699">
+<td colspan=9 align=left><font face="Tahoma,Arial" size="2" color="#FFFFFF"><b>TRANSFERÊNCIA A ESTADO E MUNICIPIOS PBA  - TRANSFERÊNCIA A ESTADO E MUNICIPIOS PBA  - TD</b></font></td>
+</tr>
+<tr bgcolor="#F8C400">
+<td align=center width = "10%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Data Pgto</b></font></td>
+<td align=center width = "10%"><font face="Tahoma,Arial" size="2" color="#006699"><b>OB</b></font></td>
+<td align=center width = "15%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Valor</b></font></td>
+<td align=center width = "20%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Programa</b></font></td>
+<td align=center width = "20%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Banco</b></font></td>
+<td align=center width = "10%"><font face="Tahoma,Arial" size="2" color="#006699"><b>Agência</b></font></td>
+<td align=center width = "15%"><font face="Tahoma,Arial" size="2" color="#006699"><b>C/C</b></font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">07/OUT/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">025742</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">5.000,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">AJA - PROGRAMA BRASIL ALFABETIZADO</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000238007</font></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td align=center><font face="Tahoma,Arial" size="2">07/OUT/2025</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">025756</font></td>
+<td align=right><font face="Tahoma,Arial" size="2">10.700,00</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">AJA - PROGRAMA BRASIL ALFABETIZADO</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">BANCO DO BRASIL</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0086</font></td>
+<td align=center><font face="Tahoma,Arial" size="2">0000238007</font></td>
+</tr>
+<tr bgcolor="#0000CC">
+<td colspan=2 bgcolor="#FFCC66">
+<font face="Tahoma,Arial" size="2" color="#006699">
+<b>Total: </b>
+</font>
+</td>
+<td align=right colspan=1 bgcolor="#FFCC66">
+<font face="Tahoma,Arial" size="2" color="#006699">
+<b>15.700,00</b>
+</font>
+</td>
+<td colspan=5 bgcolor="#FFCC66">
+<font face="Tahoma,Arial" size="2" color="#FFFFFF">
+&nbsp;
+</font>
+</td>
+</tr>
+</table>
+<center>
+<font face="Verdana,Tahoma,Arial" size="2" color="#000000">
+Dados referentes ao fechamento do dia: <b>26/11/2026</b><br>
+</font>
+<br>
+<font face="Tahoma,Arial" size="1">
+<a href="javascript:history.back();">
+Volta a consulta de liberações
+</a>
+</font>
+</center>
+</body>
+</html>
+                                                                                                                                
