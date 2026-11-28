@@ -1,0 +1,82 @@
+URL: https://consultafns.saude.gov.br/app/pages/release/controllers/releaseController.js
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 1641
+
+/**
+ * @desc Define um módulo anonimo dependente de app e
+ * cria o controlador releaseController
+ */
+define([
+	'app',
+	'pages/release/services/releaseService'
+],
+	/**
+	 * @param app
+	 * @returns {*}
+	 */
+	function (app) {
+
+		/**
+		 * @constructor
+		 */
+		var ReleaseController = function ($scope, $filter, appModalService, releaseService) {
+
+			this.$scope = $scope;
+			this.$filter = $filter;
+			this.appModalService = appModalService;
+
+			this.releaseService = releaseService;
+			this.releases = [];
+		}
+
+		ReleaseController.prototype.showReleaseNotes = function () {
+
+			var $this = this;
+
+			this.releaseService.obter().then(function(sucesso) {
+
+				var releases = sucesso.releases.map(function(release) {
+					release.data = moment(release.data, 'DD/MM/YYYY HH:mm').toDate()
+					return release;
+				});
+
+				$this.releases = $this.$filter('orderBy')(releases, 'data', 'desc');
+			});
+
+			$this.appModalService.setOptions({
+				title: "Notas de Release",
+				size: "lg",
+				scope: $this.$scope,
+				backdrop: 'static',
+				keyboard: false,
+				templateUrl: 'app/pages/release/views/release-notes.tpl.html',
+				buttons: {
+					"btn1": {
+						ngClick: function(){
+							$this.appModalService.close();
+						},
+						name: $this.$filter('translate')('default.btn.fechar.label'),
+						style: 'btn btn-primary'
+					}
+				}
+			}).open();
+		}
+
+		/**
+		 * @desc
+		 * Dependency Injection
+		 */
+		ReleaseController.$inject = [ '$scope', '$filter', 'appModalService' , 'releaseService' ];
+
+		/**
+		 * @desc Criação do controlador
+		 * @type {boolean}
+		 */
+		app.controller('releaseController', ReleaseController);
+
+		return app;
+	}
+);

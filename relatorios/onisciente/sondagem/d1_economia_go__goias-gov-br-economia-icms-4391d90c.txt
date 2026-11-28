@@ -1,0 +1,1878 @@
+URL: https://goias.gov.br/economia/icms/
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 184514
+
+                                <!DOCTYPE html>
+<html lang="pt-BR" dir="ltr">
+                
+<head>
+    
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        
+
+                <link rel="icon" type="image/x-icon" href="https://goias.gov.br/wp-content/themes/g5_padrao-institucional-2023/images/favicon-96x96.png" />
+        
+                <link rel="apple-touch-icon" sizes="180x180" href="https://goias.gov.br/wp-content/themes/g5_padrao-institucional-2023/images/favicon-96x96.png">
+        <link rel="icon" sizes="192x192" href="https://goias.gov.br/wp-content/themes/g5_padrao-institucional-2023/images/favicon-96x96.png">
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="profile" href="http://gmpg.org/xfn/11" />
+    <link rel="pingback" href="https://goias.gov.br/economia/xmlrpc.php" />
+    <title>ICMS &#8211; Secretaria da Economia</title>
+<meta name='robots' content='max-image-preview:large' />
+<link rel='dns-prefetch' href='//cdn.jsdelivr.net' />
+<link rel='dns-prefetch' href='//cdnjs.cloudflare.com' />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://goias.gov.br/economia/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fgoias.gov.br%2Feconomia%2Ficms%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://goias.gov.br/economia/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fgoias.gov.br%2Feconomia%2Ficms%2F&#038;format=xml" />
+<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<link rel='stylesheet' id='fa-all-css' href='https://goias.gov.br/economia/wp-content/plugins/servicos_do_orgao/assets/fontawesome/css/all.min.css' media='all' />
+<style id="wp-emoji-styles-inline-css">
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+/*# sourceURL=wp-emoji-styles-inline-css */
+</style>
+<style id="classic-theme-styles-inline-css">
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+</style>
+<style id="lista-facil-bloco-style-inline-css">
+nao tem css
+/*# sourceURL=https://goias.gov.br/economia/wp-content/plugins/lista-facil-de-arquivos/blocks/lista-facil/style.css */
+</style>
+<style id="global-styles-inline-css">
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}.wp-block-button{--wp--preset--dimension--25: 25%;--wp--preset--dimension--50: 50%;--wp--preset--dimension--75: 75%;--wp--preset--dimension--100: 100%;}:where(body) { margin: 0; }:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:root :where(.wp-block-icon svg){width: 24px;}
+:where(.wp-block-gallery.is-layout-flex){gap: var( --wp--style--gallery-gap-default, var( --gallery-block--gutter-size, var( --wp--style--block-gap, 0.5em ) ) );}:where(.wp-block-gallery.is-layout-grid){gap: var( --wp--style--gallery-gap-default, var( --gallery-block--gutter-size, var( --wp--style--block-gap, 0.5em ) ) );}
+:where(.wp-block-latest-posts.is-layout-flex){gap: 1.25em;}:where(.wp-block-latest-posts.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-term-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-term-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+<link rel='stylesheet' id='contraste-css-css' href='https://goias.gov.br/economia/wp-content/plugins/alto-contraste/includes/assets/style.css?ver=834ca5b7cecd8022a8d776713e22b5d1' media='all' />
+<link rel='stylesheet' id='contact-form-7-css' href='https://goias.gov.br/economia/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.2.6' media='all' />
+<link rel='stylesheet' id='lfa-fontawesome-solid-css' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css?ver=6.5.1' media='all' />
+<link rel='stylesheet' id='lfa-style-css' href='https://goias.gov.br/economia/wp-content/plugins/lista-facil-de-arquivos/assets/css/lista-facil.css?ver=13.1' media='all' />
+<link rel='stylesheet' id='searchandfilter-css' href='https://goias.gov.br/economia/wp-content/plugins/search-filter/style.css?ver=1' media='all' />
+<link rel='stylesheet' id='rt-fontawsome-css' href='https://goias.gov.br/economia/wp-content/plugins/the-post-grid/assets/vendor/font-awesome/css/font-awesome.min.css?ver=7.9.11' media='all' />
+<link rel='stylesheet' id='rt-tpg-shortcode-css' href='https://goias.gov.br/economia/wp-content/plugins/the-post-grid/assets/css/tpg-shortcode.min.css?ver=7.9.11' media='all' />
+<link rel='stylesheet' id='bootstrap-css-css' href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' media='all' />
+<link rel='stylesheet' id='magnific-popup-css' href='https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css?ver=834ca5b7cecd8022a8d776713e22b5d1' media='all' />
+<link rel='stylesheet' id='table-style-css' href='https://goias.gov.br/economia/wp-content/plugins/planilhaview/assets/datatables.min.css?ver=834ca5b7cecd8022a8d776713e22b5d1' media='all' />
+<link rel='stylesheet' id='slick-style-css' href='https://goias.gov.br/economia/wp-content/plugins/servicos_do_orgao/assets/css/slick.min.css?ver=834ca5b7cecd8022a8d776713e22b5d1' media='all' />
+<link rel='stylesheet' id='slick-theme-style-css' href='https://goias.gov.br/economia/wp-content/plugins/servicos_do_orgao/assets/css/slick-theme.min.css?ver=834ca5b7cecd8022a8d776713e22b5d1' media='all' />
+<link rel='stylesheet' id='services-style-css' href='https://goias.gov.br/economia/wp-content/plugins/servicos_do_orgao/assets/css/_services.css?ver=834ca5b7cecd8022a8d776713e22b5d1' media='all' />
+<link rel='stylesheet' id='megamenu-css' href='https://goias.gov.br/economia/wp-content/uploads/sites/45/maxmegamenu/style.css?ver=c43f7d' media='all' />
+<link rel='stylesheet' id='dashicons-css' href='https://goias.gov.br/economia/wp-includes/css/dashicons.min.css?ver=834ca5b7cecd8022a8d776713e22b5d1' media='all' />
+<link rel='stylesheet' id='dflip-style-css' href='https://goias.gov.br/economia/wp-content/plugins/3d-flipbook-dflip-lite/assets/css/dflip.min.css?ver=2.4.37' media='all' />
+<link rel='stylesheet' id='jluikit.min-css' href='https://goias.gov.br/wp-content/themes/g5_padrao-institucional-2023/scss/particles/jluikit.min.css?ver=834ca5b7cecd8022a8d776713e22b5d1' media='all' />
+<link rel='stylesheet' id='nucleus-css' href='https://goias.gov.br/wp-content/plugins/gantry5/engines/nucleus/css-compiled/nucleus.css?ver=6b059fc3' media='all' />
+<link rel='stylesheet' id='padrao-institucional-css' href='https://goias.gov.br/wp-content/themes/g5_padrao-institucional-2023/custom/blog-45/css-compiled/padrao-institucional.css?ver=6b059fe2' media='all' />
+<link rel='stylesheet' id='wordpress-css' href='https://goias.gov.br/wp-content/plugins/gantry5/engines/nucleus/css-compiled/wordpress.css?ver=6b059fc3' media='all' />
+<link rel='stylesheet' id='style-css' href='https://goias.gov.br/wp-content/themes/g5_padrao-institucional-2023/style.css?ver=834ca5b7cecd8022a8d776713e22b5d1' media='all' />
+<link rel='stylesheet' id='font-awesome.min-css' href='https://goias.gov.br/wp-content/plugins/gantry5/assets/css/font-awesome.min.css?ver=6b059fc1' media='all' />
+<link rel='stylesheet' id='padrao-institucional-wordpress-css' href='https://goias.gov.br/wp-content/themes/g5_padrao-institucional-2023/custom/blog-45/css-compiled/padrao-institucional-wordpress.css?ver=6b059fe2' media='all' />
+<link rel='stylesheet' id='custom-css' href='https://goias.gov.br/wp-content/themes/g5_padrao-institucional-2023/custom/blog-45/css-compiled/custom.css?ver=6b059fe2' media='all' />
+<link rel='stylesheet' id='elementor-frontend-css' href='https://goias.gov.br/economia/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=4.4.1' media='all' />
+<style id="elementor-frontend-inline-css">
+.e-heading-base a, .e-paragraph-base a { all: unset; cursor: pointer; }.elementor :where(.e-svg-base) { width: var(--e-svg-width, 65px); height: var(--e-svg-height, 65px); }form[data-element_type="e-form"].form-state-success [data-element_type="e-form-success-message"],form[data-element_type="e-form"].form-state-error [data-element_type="e-form-error-message"]{ display: block; }.elementor-edit-mode [data-element_type="e-form-success-message"]:is(.elementor-element-editable, :has(.elementor-element-editable), :has(> .elementor-empty-view)),.elementor-edit-mode [data-element_type="e-form-error-message"]:is(.elementor-element-editable, :has(.elementor-element-editable), :has(> .elementor-empty-view)){ display: block; }.e-background-video { position: relative; overflow: hidden; }.e-background-video__media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; z-index: 0; }.e-background-video__content { position: relative; z-index: 1; flex: 1 1 auto; }.elementor-edit-mode .e-background-video__content.e-atomic-element:has(> .elementor-empty-view) { display: flex; flex-direction: column; flex: 1 1 auto; min-height: 0; }.elementor-edit-mode .e-background-video__content.e-atomic-element:has(> .elementor-empty-view) > .elementor-empty-view.elementor-empty-view { position: relative; flex: 1 1 auto; min-height: 120px; height: auto; width: 100%; }.elementor-edit-mode .e-background-video__content.e-atomic-element:has(> .elementor-empty-view) > .elementor-empty-view > .elementor-first-add { position: absolute; inset: 0; width: 100%; height: 100%; }.e-background-video__controls { z-index: 2; }.e-background-video__play, .e-background-video__pause { appearance: none; -webkit-appearance: none; }.e-background-video.e-background-video--playing .e-background-video__play { display: none; }.e-background-video.e-background-video--paused .e-background-video__pause { display: none; }.e-background-video:not(.e-background-video--playing):not(.e-background-video--paused) .e-background-video__controls,.e-background-video:not(.e-background-video--playing):not(.e-background-video--paused) .e-background-video__play,.e-background-video:not(.e-background-video--playing):not(.e-background-video--paused) .e-background-video__pause { display: none; }.e-accordion-item-header-base { list-style: none; }.e-accordion-item-header-base::-webkit-details-marker { display: none; }.e-accordion-item-base { interpolate-size: allow-keywords; }.e-accordion-item-base::details-content {block-size: 0; overflow: hidden;transition: block-size .3s ease, content-visibility .3s ease allow-discrete;}.e-accordion-item-base[open]::details-content { block-size: auto; }.e-accordion-item-icon-base, .e-accordion-item-icon-open-base { --e-svg-width: auto; --e-svg-height: 100%; }:where(.e-accordion-item-icon-base, .e-accordion-item-icon-open-base) .e-svg-base { max-width: 100%; }.e-accordion-item-icon-base.e-accordion-item-icon-base .e-svg-base svg, .e-accordion-item-icon-open-base.e-accordion-item-icon-open-base .e-svg-base svg { width: auto !important; }.e-accordion-item-icon-base svg, .e-accordion-item-icon-open-base svg { transition: transform .3s ease; }.e-accordion-item-base:not([open]) > summary :is(.e-accordion-item-icon-base, .e-accordion-item-icon-open-base) svg { transform: rotate(var(--e-accordion-icon-rotation-closed)); }.e-accordion-item-base[open] > summary :is(.e-accordion-item-icon-base, .e-accordion-item-icon-open-base) svg { transform: rotate(var(--e-accordion-icon-rotation, 180deg)); }.e-accordion-item-header-base.e-accordion-item-header-base:has(> .e-accordion-item-icon-open-base) { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; }.e-accordion-item-header-base:has(> .e-accordion-item-icon-open-base) > .e-accordion-item-title-base { grid-column: 1; grid-row: 1; }.e-accordion-item-header-base:has(> .e-accordion-item-icon-open-base) > :is(.e-accordion-item-icon-base, .e-accordion-item-icon-open-base) { grid-column: 2; grid-row: 1; }.e-accordion-item-base .e-accordion-item-icon-open-base.e-accordion-item-icon-open-base { visibility: hidden; }.e-accordion-item-base[open] > summary .e-accordion-item-icon-open-base { visibility: visible; }.e-accordion-item-base[open] > summary:has(.e-accordion-item-icon-open-base) .e-accordion-item-icon-base { visibility: hidden; }.e-list-item-marker-base { --e-svg-width: 0.6em; --e-svg-height: 0.6em; }:where(.e-list-item-marker-base) .e-svg-base { flex-shrink: 0; }.e-list-item-marker-base .e-svg-base svg { display: block; }
+/*# sourceURL=elementor-frontend-inline-css */
+</style>
+<link rel='stylesheet' id='elementor-post-336265-css' href='https://goias.gov.br/economia/wp-content/uploads/sites/45/elementor/css/post-336265.css?ver=1795635280' media='all' />
+<link rel='stylesheet' id='widget-heading-css' href='https://goias.gov.br/economia/wp-content/plugins/elementor/assets/css/widget-heading.min.css?ver=4.4.1' media='all' />
+<link rel='stylesheet' id='elementor-post-19255-css' href='https://goias.gov.br/economia/wp-content/uploads/sites/45/elementor/css/post-19255.css?ver=1795638950' media='all' />
+<link rel='stylesheet' id='base-desktop-css' href='https://goias.gov.br/economia/wp-content/uploads/sites/45/elementor/css/base-desktop.css?ver=6b073850826a6' media='all' />
+<link rel='stylesheet' id='base-mobile-css' href='https://goias.gov.br/economia/wp-content/uploads/sites/45/elementor/css/base-mobile.css?ver=6b073850826a6' media='(max-width:767px)' />
+<link rel='stylesheet' id='eael-general-css' href='https://goias.gov.br/economia/wp-content/plugins/essential-addons-for-elementor-lite/assets/front-end/css/view/general.min.css?ver=6.8.9' media='all' />
+<link rel='stylesheet' id='elementor-gf-librebaskerville-css' href='https://fonts.googleapis.com/css?family=Libre+Baskerville:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic&#038;display=swap' media='all' />
+<link rel='stylesheet' id='elementor-gf-local-robotoslab-css' href='https://goias.gov.br/economia/wp-content/uploads/sites/45/elementor/google-fonts/css/robotoslab.css?ver=1758039681' media='all' />
+<link rel='stylesheet' id='elementor-gf-ibmplexsans-css' href='https://fonts.googleapis.com/css?family=IBM+Plex+Sans:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic&#038;display=swap' media='all' />
+<link rel='stylesheet' id='elementor-gf-local-roboto-css' href='https://goias.gov.br/economia/wp-content/uploads/sites/45/elementor/google-fonts/css/roboto.css?ver=1758033682' media='all' />
+<!--n2css--><!--n2js--><script id="cookie-law-info-js-extra" nitro-exclude>
+var _ckyConfig = {"_ipData":[],"_assetsURL":"https://goias.gov.br/economia/wp-content/plugins/cookie-law-info/lite/frontend/images/","_publicURL":"https://goias.gov.br/economia","_expiry":"365","_categories":[{"name":"Necess\u00e1rios","slug":"necessary","isNecessary":true,"ccpaDoNotSell":true,"cookies":[{"cookieID":"wordpress_test_cookie","domain":"Propriet\u00e1rio","provider":""},{"cookieID":"contrast.actived","domain":"Propriet\u00e1rio","provider":""},{"cookieID":"wordpress_sec_[hash]","domain":"Propriet\u00e1rio","provider":""},{"cookieID":"wp-settings-","domain":"Propriet\u00e1rio","provider":""},{"cookieID":"wp-settings-time-","domain":"Propriet\u00e1rio","provider":""},{"cookieID":"wordpress_logged_in_[hash]","domain":"Propriet\u00e1rio","provider":""}],"active":true,"defaultConsent":{"gdpr":true,"ccpa":true}},{"name":"Funcionalidade","slug":"functional","isNecessary":false,"ccpaDoNotSell":true,"cookies":[{"cookieID":"CookieLawInfoConsent","domain":"Propriet\u00e1rio","provider":""},{"cookieID":"cookielawinfo-checkbox-advertisement","domain":"Propriet\u00e1rio","provider":""},{"cookieID":"cookielawinfo-checkbox-analytics","domain":"Propriet\u00e1rio","provider":""},{"cookieID":"cookielawinfo-checkbox-functional","domain":"Propriet\u00e1rio","provider":""},{"cookieID":"cookielawinfo-checkbox-necessary","domain":"Propriet\u00e1rio","provider":""},{"cookieID":"cookielawinfo-checkbox-others","domain":"Propriet\u00e1rio","provider":""},{"cookieID":"cookielawinfo-checkbox-performance","domain":"Propriet\u00e1rio","provider":""}],"active":true,"defaultConsent":{"gdpr":false,"ccpa":false}},{"name":"Anal\u00edticos ou de Desempenho","slug":"analytics","isNecessary":false,"ccpaDoNotSell":true,"cookies":[{"cookieID":"_ga","domain":"goias.gov.br","provider":""},{"cookieID":"_ga_","domain":"goias.gov.br","provider":""}],"active":true,"defaultConsent":{"gdpr":false,"ccpa":false}},{"name":"Performance","slug":"performance","isNecessary":false,"ccpaDoNotSell":true,"cookies":[],"active":true,"defaultConsent":{"gdpr":false,"ccpa":false}},{"name":"Publicidade","slug":"advertisement","isNecessary":false,"ccpaDoNotSell":true,"cookies":[],"active":true,"defaultConsent":{"gdpr":false,"ccpa":false}}],"_activeLaw":"gdpr","_rootDomain":"","_block":"1","_showBanner":"1","_bannerConfig":{"settings":{"type":"box","preferenceCenterType":"popup","position":"bottom-left","applicableLaw":"gdpr"},"behaviours":{"reloadBannerOnAccept":false,"loadAnalyticsByDefault":false,"animations":{"onLoad":"animate","onHide":"sticky"}},"config":{"revisitConsent":{"status":true,"tag":"revisit-consent","position":"bottom-left","meta":{"url":"#"},"styles":{"background-color":"#2da44a"},"elements":{"title":{"type":"text","tag":"revisit-consent-title","status":true,"styles":{"color":"#0056a7"}}}},"preferenceCenter":{"toggle":{"status":true,"tag":"detail-category-toggle","type":"toggle","states":{"active":{"styles":{"background-color":"#1863DC"}},"inactive":{"styles":{"background-color":"#D0D5D2"}}}}},"categoryPreview":{"status":false,"toggle":{"status":true,"tag":"detail-category-preview-toggle","type":"toggle","states":{"active":{"styles":{"background-color":"#1863DC"}},"inactive":{"styles":{"background-color":"#D0D5D2"}}}}},"videoPlaceholder":{"status":true,"styles":{"background-color":"#2da44a","border-color":"#2da44a","color":"#ffffff"}},"readMore":{"status":false,"tag":"readmore-button","type":"link","meta":{"noFollow":true,"newTab":true},"styles":{"color":"#1863DC","background-color":"transparent","border-color":"transparent"}},"showMore":[],"showLess":[],"alwaysActive":[],"manualLinks":[],"auditTable":{"status":true},"optOption":{"status":true,"toggle":{"status":true,"tag":"optout-option-toggle","type":"toggle","states":{"active":{"styles":{"background-color":"#1863dc"}},"inactive":{"styles":{"background-color":"#FFFFFF"}}}}}}},"_version":"3.5.9","_logConsent":"1","_tags":[{"tag":"accept-button","styles":{"color":"#FFFFFF","background-color":"#2da44a","border-color":"#2da44a"}},{"tag":"reject-button","styles":{"color":"#1863DC","background-color":"transparent","border-color":"#1863DC"}},{"tag":"settings-button","styles":{"color":"#2da44a","background-color":"transparent","border-color":"#2da44a"}},{"tag":"readmore-button","styles":{"color":"#1863DC","background-color":"transparent","border-color":"transparent"}},{"tag":"donotsell-button","styles":{"color":"#1863DC","background-color":"transparent","border-color":"transparent"}},{"tag":"show-desc-button","styles":[]},{"tag":"hide-desc-button","styles":[]},{"tag":"cky-always-active","styles":[]},{"tag":"cky-link","styles":[]},{"tag":"accept-button","styles":{"color":"#FFFFFF","background-color":"#2da44a","border-color":"#2da44a"}},{"tag":"revisit-consent","styles":{"background-color":"#2da44a"}}],"_shortCodes":[{"key":"cky_readmore","content":"\u003Ca href=\"#\" class=\"cky-policy\" aria-label=\"Cookie Policy\" target=\"_blank\" rel=\"noopener\" data-cky-tag=\"readmore-button\"\u003ECookie Policy\u003C/a\u003E","tag":"readmore-button","status":false,"attributes":{"rel":"nofollow","target":"_blank"}},{"key":"cky_show_desc","content":"\u003Cbutton class=\"cky-show-desc-btn\" data-cky-tag=\"show-desc-button\" aria-label=\"Mostre mais\"\u003EMostre mais\u003C/button\u003E","tag":"show-desc-button","status":true,"attributes":[]},{"key":"cky_hide_desc","content":"\u003Cbutton class=\"cky-show-desc-btn\" data-cky-tag=\"hide-desc-button\" aria-label=\"Mostre menos\"\u003EMostre menos\u003C/button\u003E","tag":"hide-desc-button","status":true,"attributes":[]},{"key":"cky_optout_show_desc","content":"[cky_optout_show_desc]","tag":"optout-show-desc-button","status":true,"attributes":[]},{"key":"cky_optout_hide_desc","content":"[cky_optout_hide_desc]","tag":"optout-hide-desc-button","status":true,"attributes":[]},{"key":"cky_category_toggle_label","content":"[cky_{{status}}_category_label] [cky_preference_{{category_slug}}_title]","tag":"","status":true,"attributes":[]},{"key":"cky_enable_category_label","content":"Enable","tag":"","status":true,"attributes":[]},{"key":"cky_disable_category_label","content":"Disable","tag":"","status":true,"attributes":[]},{"key":"cky_video_placeholder","content":"\u003Cdiv class=\"video-placeholder-normal\" data-cky-tag=\"video-placeholder\" id=\"[UNIQUEID]\"\u003E\u003Cp class=\"video-placeholder-text-normal\" data-cky-tag=\"placeholder-title\"\u003EAceite os cookies para acessar este conte\u00fado\u003C/p\u003E\u003C/div\u003E","tag":"","status":true,"attributes":[]},{"key":"cky_enable_optout_label","content":"Enable","tag":"","status":true,"attributes":[]},{"key":"cky_disable_optout_label","content":"Disable","tag":"","status":true,"attributes":[]},{"key":"cky_optout_toggle_label","content":"[cky_{{status}}_optout_label] [cky_optout_option_title]","tag":"","status":true,"attributes":[]},{"key":"cky_optout_option_title","content":"Do Not Sell or Share My Personal Information","tag":"","status":true,"attributes":[]},{"key":"cky_optout_close_label","content":"Close","tag":"","status":true,"attributes":[]},{"key":"cky_preference_close_label","content":"Close","tag":"","status":true,"attributes":[]}],"_rtl":"","_language":"en","_providersToBlock":[]};
+var _ckyStyles = {"css":".cky-overlay{background: #000000; opacity: 0.4; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 99999999;}.cky-hide{display: none;}.cky-btn-revisit-wrapper{display: flex; align-items: center; justify-content: center; background: #0056a7; width: 45px; height: 45px; border-radius: 50%; position: fixed; z-index: 999999; cursor: pointer;}.cky-revisit-bottom-left{bottom: 15px; left: 15px;}.cky-revisit-bottom-right{bottom: 15px; right: 15px;}.cky-btn-revisit-wrapper .cky-btn-revisit{display: flex; align-items: center; justify-content: center; background: none; border: none; cursor: pointer; position: relative; margin: 0; padding: 0;}.cky-btn-revisit-wrapper .cky-btn-revisit img{max-width: fit-content; margin: 0; height: 30px; width: 30px;}.cky-revisit-bottom-left:hover::before{content: attr(data-tooltip); position: absolute; background: #4e4b66; color: #ffffff; left: calc(100% + 7px); font-size: 12px; line-height: 16px; width: max-content; padding: 4px 8px; border-radius: 4px;}.cky-revisit-bottom-left:hover::after{position: absolute; content: \"\"; border: 5px solid transparent; left: calc(100% + 2px); border-left-width: 0; border-right-color: #4e4b66;}.cky-revisit-bottom-right:hover::before{content: attr(data-tooltip); position: absolute; background: #4e4b66; color: #ffffff; right: calc(100% + 7px); font-size: 12px; line-height: 16px; width: max-content; padding: 4px 8px; border-radius: 4px;}.cky-revisit-bottom-right:hover::after{position: absolute; content: \"\"; border: 5px solid transparent; right: calc(100% + 2px); border-right-width: 0; border-left-color: #4e4b66;}.cky-revisit-hide{display: none;}.cky-consent-container{position: fixed; width: 440px; box-sizing: border-box; z-index: 9999999; border-radius: 6px;}.cky-consent-container .cky-consent-bar{background: #ffffff; border: 1px solid; padding: 20px 26px; box-shadow: 0 -1px 10px 0 #acabab4d; border-radius: 6px;}.cky-box-bottom-left{bottom: 40px; left: 40px;}.cky-box-bottom-right{bottom: 40px; right: 40px;}.cky-box-top-left{top: 40px; left: 40px;}.cky-box-top-right{top: 40px; right: 40px;}.cky-custom-brand-logo-wrapper .cky-custom-brand-logo{width: 100px; height: auto; margin: 0 0 12px 0;}.cky-notice .cky-title{color: #212121; font-weight: 700; font-size: 18px; line-height: 24px; margin: 0 0 12px 0;}.cky-notice-des *,.cky-preference-content-wrapper *,.cky-accordion-header-des *,.cky-gpc-wrapper .cky-gpc-desc *{font-size: 14px;}.cky-notice-des{color: #212121; font-size: 14px; line-height: 24px; font-weight: 400;}.cky-notice-des img{height: 25px; width: 25px;}.cky-consent-bar .cky-notice-des p,.cky-gpc-wrapper .cky-gpc-desc p,.cky-preference-body-wrapper .cky-preference-content-wrapper p,.cky-accordion-header-wrapper .cky-accordion-header-des p,.cky-cookie-des-table li div:last-child p{color: inherit; margin-top: 0; overflow-wrap: break-word;}.cky-notice-des P:last-child,.cky-preference-content-wrapper p:last-child,.cky-cookie-des-table li div:last-child p:last-child,.cky-gpc-wrapper .cky-gpc-desc p:last-child{margin-bottom: 0;}.cky-notice-des a.cky-policy,.cky-notice-des button.cky-policy{font-size: 14px; color: #1863dc; white-space: nowrap; cursor: pointer; background: transparent; border: 1px solid; text-decoration: underline;}.cky-notice-des button.cky-policy{padding: 0;}.cky-notice-des a.cky-policy:focus-visible,.cky-notice-des button.cky-policy:focus-visible,.cky-preference-content-wrapper .cky-show-desc-btn:focus-visible,.cky-accordion-header .cky-accordion-btn:focus-visible,.cky-preference-header .cky-btn-close:focus-visible,.cky-switch input[type=\"checkbox\"]:focus-visible,.cky-footer-wrapper a:focus-visible,.cky-btn:focus-visible{outline: 2px solid #1863dc; outline-offset: 2px;}.cky-btn:focus:not(:focus-visible),.cky-accordion-header .cky-accordion-btn:focus:not(:focus-visible),.cky-preference-content-wrapper .cky-show-desc-btn:focus:not(:focus-visible),.cky-btn-revisit-wrapper .cky-btn-revisit:focus:not(:focus-visible),.cky-preference-header .cky-btn-close:focus:not(:focus-visible),.cky-consent-bar .cky-banner-btn-close:focus:not(:focus-visible){outline: 0;}button.cky-show-desc-btn:not(:hover):not(:active){color: #1863dc; background: transparent;}button.cky-accordion-btn:not(:hover):not(:active),button.cky-banner-btn-close:not(:hover):not(:active),button.cky-btn-revisit:not(:hover):not(:active),button.cky-btn-close:not(:hover):not(:active){background: transparent;}.cky-consent-bar button:hover,.cky-modal.cky-modal-open button:hover,.cky-consent-bar button:focus,.cky-modal.cky-modal-open button:focus{text-decoration: none;}.cky-notice-btn-wrapper{display: flex; justify-content: flex-start; align-items: center; flex-wrap: wrap; margin-top: 16px;}.cky-notice-btn-wrapper .cky-btn{text-shadow: none; box-shadow: none;}.cky-btn{flex: auto; max-width: 100%; font-size: 14px; font-family: inherit; line-height: 24px; padding: 8px; font-weight: 500; margin: 0 8px 0 0; border-radius: 2px; cursor: pointer; text-align: center; text-transform: none; min-height: 0;}.cky-btn:hover{opacity: 0.8;}.cky-btn-customize{color: #1863dc; background: transparent; border: 2px solid #1863dc;}.cky-btn-reject{color: #1863dc; background: transparent; border: 2px solid #1863dc;}.cky-btn-accept{background: #1863dc; color: #ffffff; border: 2px solid #1863dc;}.cky-btn:last-child{margin-right: 0;}@media (max-width: 576px){.cky-box-bottom-left{bottom: 0; left: 0;}.cky-box-bottom-right{bottom: 0; right: 0;}.cky-box-top-left{top: 0; left: 0;}.cky-box-top-right{top: 0; right: 0;}}@media (max-height: 480px){.cky-consent-container{max-height: 100vh;overflow-y: scroll}.cky-notice-des{max-height: unset !important;overflow-y: unset !important}.cky-preference-center{height: 100vh;overflow: auto !important}.cky-preference-center .cky-preference-body-wrapper{overflow: unset}}@media (max-width: 440px){.cky-box-bottom-left, .cky-box-bottom-right, .cky-box-top-left, .cky-box-top-right{width: 100%; max-width: 100%;}.cky-consent-container .cky-consent-bar{padding: 20px 0;}.cky-custom-brand-logo-wrapper, .cky-notice .cky-title, .cky-notice-des, .cky-notice-btn-wrapper{padding: 0 24px;}.cky-notice-des{max-height: 40vh; overflow-y: scroll;}.cky-notice-btn-wrapper{flex-direction: column; margin-top: 0;}.cky-btn{width: 100%; margin: 10px 0 0 0;}.cky-notice-btn-wrapper .cky-btn-customize{order: 2;}.cky-notice-btn-wrapper .cky-btn-reject{order: 3;}.cky-notice-btn-wrapper .cky-btn-accept{order: 1; margin-top: 16px;}}@media (max-width: 352px){.cky-notice .cky-title{font-size: 16px;}.cky-notice-des *{font-size: 12px;}.cky-notice-des, .cky-btn{font-size: 12px;}}.cky-modal.cky-modal-open{display: flex; visibility: visible; -webkit-transform: translate(-50%, -50%); -moz-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); -o-transform: translate(-50%, -50%); transform: translate(-50%, -50%); top: 50%; left: 50%; transition: all 1s ease;}.cky-modal{box-shadow: 0 32px 68px rgba(0, 0, 0, 0.3); margin: 0 auto; position: fixed; max-width: 100%; background: #ffffff; top: 50%; box-sizing: border-box; border-radius: 6px; z-index: 999999999; color: #212121; -webkit-transform: translate(-50%, 100%); -moz-transform: translate(-50%, 100%); -ms-transform: translate(-50%, 100%); -o-transform: translate(-50%, 100%); transform: translate(-50%, 100%); visibility: hidden; transition: all 0s ease;}.cky-preference-center{max-height: 79vh; overflow: hidden; width: 845px; overflow: hidden; flex: 1 1 0; display: flex; flex-direction: column; border-radius: 6px;}.cky-preference-header{display: flex; align-items: center; justify-content: space-between; padding: 22px 24px; border-bottom: 1px solid;}.cky-preference-header .cky-preference-title{font-size: 18px; font-weight: 700; line-height: 24px;}.cky-preference-header .cky-btn-close{margin: 0; cursor: pointer; vertical-align: middle; padding: 0; background: none; border: none; width: 24px; height: 24px; min-height: 0; line-height: 0; text-shadow: none; box-shadow: none;}.cky-preference-header .cky-btn-close img{margin: 0; height: 10px; width: 10px;}.cky-preference-body-wrapper{padding: 0 24px; flex: 1; overflow: auto; box-sizing: border-box;}.cky-preference-content-wrapper,.cky-gpc-wrapper .cky-gpc-desc{font-size: 14px; line-height: 24px; font-weight: 400; padding: 12px 0;}.cky-preference-content-wrapper{border-bottom: 1px solid;}.cky-preference-content-wrapper img{height: 25px; width: 25px;}.cky-preference-content-wrapper .cky-show-desc-btn{font-size: 14px; font-family: inherit; color: #1863dc; text-decoration: none; line-height: 24px; padding: 0; margin: 0; white-space: nowrap; cursor: pointer; background: transparent; border-color: transparent; text-transform: none; min-height: 0; text-shadow: none; box-shadow: none;}.cky-accordion-wrapper{margin-bottom: 10px;}.cky-accordion{border-bottom: 1px solid;}.cky-accordion:last-child{border-bottom: none;}.cky-accordion .cky-accordion-item{display: flex; margin-top: 10px;}.cky-accordion .cky-accordion-body{display: none;}.cky-accordion.cky-accordion-active .cky-accordion-body{display: block; padding: 0 22px; margin-bottom: 16px;}.cky-accordion-header-wrapper{cursor: pointer; width: 100%;}.cky-accordion-item .cky-accordion-header{display: flex; justify-content: space-between; align-items: center;}.cky-accordion-header .cky-accordion-btn{font-size: 16px; font-family: inherit; color: #212121; line-height: 24px; background: none; border: none; font-weight: 700; padding: 0; margin: 0; cursor: pointer; text-transform: none; min-height: 0; text-shadow: none; box-shadow: none;}.cky-accordion-header .cky-always-active{color: #008000; font-weight: 600; line-height: 24px; font-size: 14px;}.cky-accordion-header-des{font-size: 14px; line-height: 24px; margin: 10px 0 16px 0;}.cky-accordion-chevron{margin-right: 22px; position: relative; cursor: pointer;}.cky-accordion-chevron-hide{display: none;}.cky-accordion .cky-accordion-chevron i::before{content: \"\"; position: absolute; border-right: 1.4px solid; border-bottom: 1.4px solid; border-color: inherit; height: 6px; width: 6px; -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); transition: all 0.2s ease-in-out; top: 8px;}.cky-accordion.cky-accordion-active .cky-accordion-chevron i::before{-webkit-transform: rotate(45deg); -moz-transform: rotate(45deg); -ms-transform: rotate(45deg); -o-transform: rotate(45deg); transform: rotate(45deg);}.cky-audit-table{background: #f4f4f4; border-radius: 6px;}.cky-audit-table .cky-empty-cookies-text{color: inherit; font-size: 12px; line-height: 24px; margin: 0; padding: 10px;}.cky-audit-table .cky-cookie-des-table{font-size: 12px; line-height: 24px; font-weight: normal; padding: 15px 10px; border-bottom: 1px solid; border-bottom-color: inherit; margin: 0;}.cky-audit-table .cky-cookie-des-table:last-child{border-bottom: none;}.cky-audit-table .cky-cookie-des-table li{list-style-type: none; display: flex; padding: 3px 0;}.cky-audit-table .cky-cookie-des-table li:first-child{padding-top: 0;}.cky-cookie-des-table li div:first-child{width: 100px; font-weight: 600; word-break: break-word; word-wrap: break-word;}.cky-cookie-des-table li div:last-child{flex: 1; word-break: break-word; word-wrap: break-word; margin-left: 8px;}.cky-footer-shadow{display: block; width: 100%; height: 40px; background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 100%); position: absolute; bottom: calc(100% - 1px);}.cky-footer-wrapper{position: relative;}.cky-prefrence-btn-wrapper{display: flex; flex-wrap: wrap; align-items: center; justify-content: center; padding: 22px 24px; border-top: 1px solid;}.cky-prefrence-btn-wrapper .cky-btn{flex: auto; max-width: 100%; text-shadow: none; box-shadow: none;}.cky-btn-preferences{color: #1863dc; background: transparent; border: 2px solid #1863dc;}.cky-preference-header,.cky-preference-body-wrapper,.cky-preference-content-wrapper,.cky-accordion-wrapper,.cky-accordion,.cky-accordion-wrapper,.cky-footer-wrapper,.cky-prefrence-btn-wrapper{border-color: inherit;}@media (max-width: 845px){.cky-modal{max-width: calc(100% - 16px);}}@media (max-width: 576px){.cky-modal{max-width: 100%;}.cky-preference-center{max-height: 100vh;}.cky-prefrence-btn-wrapper{flex-direction: column;}.cky-accordion.cky-accordion-active .cky-accordion-body{padding-right: 0;}.cky-prefrence-btn-wrapper .cky-btn{width: 100%; margin: 10px 0 0 0;}.cky-prefrence-btn-wrapper .cky-btn-reject{order: 3;}.cky-prefrence-btn-wrapper .cky-btn-accept{order: 1; margin-top: 0;}.cky-prefrence-btn-wrapper .cky-btn-preferences{order: 2;}}@media (max-width: 425px){.cky-accordion-chevron{margin-right: 15px;}.cky-notice-btn-wrapper{margin-top: 0;}.cky-accordion.cky-accordion-active .cky-accordion-body{padding: 0 15px;}}@media (max-width: 352px){.cky-preference-header .cky-preference-title{font-size: 16px;}.cky-preference-header{padding: 16px 24px;}.cky-preference-content-wrapper *, .cky-accordion-header-des *{font-size: 12px;}.cky-preference-content-wrapper, .cky-preference-content-wrapper .cky-show-more, .cky-accordion-header .cky-always-active, .cky-accordion-header-des, .cky-preference-content-wrapper .cky-show-desc-btn, .cky-notice-des a.cky-policy{font-size: 12px;}.cky-accordion-header .cky-accordion-btn{font-size: 14px;}}.cky-switch{display: flex;}.cky-switch input[type=\"checkbox\"]{position: relative; width: 44px; height: 24px; margin: 0; background: #d0d5d2; -webkit-appearance: none; border-radius: 50px; cursor: pointer; outline: 0; border: none; top: 0;}.cky-switch input[type=\"checkbox\"]:checked{background: #1863dc;}.cky-switch input[type=\"checkbox\"]:before{position: absolute; content: \"\"; height: 20px; width: 20px; left: 2px; bottom: 2px; border-radius: 50%; background-color: white; -webkit-transition: 0.4s; transition: 0.4s; margin: 0;}.cky-switch input[type=\"checkbox\"]:after{display: none;}.cky-switch input[type=\"checkbox\"]:checked:before{-webkit-transform: translateX(20px); -ms-transform: translateX(20px); transform: translateX(20px);}@media (max-width: 425px){.cky-switch input[type=\"checkbox\"]{width: 38px; height: 21px;}.cky-switch input[type=\"checkbox\"]:before{height: 17px; width: 17px;}.cky-switch input[type=\"checkbox\"]:checked:before{-webkit-transform: translateX(17px); -ms-transform: translateX(17px); transform: translateX(17px);}}.cky-consent-bar .cky-banner-btn-close{position: absolute; right: 9px; top: 5px; background: none; border: none; cursor: pointer; padding: 0; margin: 0; min-height: 0; line-height: 0; height: 24px; width: 24px; text-shadow: none; box-shadow: none;}.cky-consent-bar .cky-banner-btn-close img{height: 9px; width: 9px; margin: 0;}.cky-notice-group{font-size: 14px; line-height: 24px; font-weight: 400; color: #212121;}.cky-notice-btn-wrapper .cky-btn-do-not-sell{font-size: 14px; line-height: 24px; padding: 6px 0; margin: 0; font-weight: 500; background: none; border-radius: 2px; border: none; cursor: pointer; text-align: left; color: #1863dc; background: transparent; border-color: transparent; box-shadow: none; text-shadow: none;}.cky-consent-bar .cky-banner-btn-close:focus-visible,.cky-notice-btn-wrapper .cky-btn-do-not-sell:focus-visible,.cky-opt-out-btn-wrapper .cky-btn:focus-visible,.cky-opt-out-checkbox-wrapper input[type=\"checkbox\"].cky-opt-out-checkbox:focus-visible{outline: 2px solid #1863dc; outline-offset: 2px;}@media (max-width: 440px){.cky-consent-container{width: 100%;}}@media (max-width: 352px){.cky-notice-des a.cky-policy, .cky-notice-btn-wrapper .cky-btn-do-not-sell{font-size: 12px;}}.cky-opt-out-wrapper{padding: 12px 0;}.cky-opt-out-wrapper .cky-opt-out-checkbox-wrapper{display: flex; align-items: center;}.cky-opt-out-checkbox-wrapper .cky-opt-out-checkbox-label{font-size: 16px; font-weight: 700; line-height: 24px; margin: 0 0 0 12px; cursor: pointer;}.cky-opt-out-checkbox-wrapper input[type=\"checkbox\"].cky-opt-out-checkbox{background-color: #ffffff; border: 1px solid black; width: 20px; height: 18.5px; margin: 0; -webkit-appearance: none; position: relative; display: flex; align-items: center; justify-content: center; border-radius: 2px; cursor: pointer;}.cky-opt-out-checkbox-wrapper input[type=\"checkbox\"].cky-opt-out-checkbox:checked{background-color: #1863dc; border: none;}.cky-opt-out-checkbox-wrapper input[type=\"checkbox\"].cky-opt-out-checkbox:checked::after{left: 6px; bottom: 4px; width: 7px; height: 13px; border: solid #ffffff; border-width: 0 3px 3px 0; border-radius: 2px; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); content: \"\"; position: absolute; box-sizing: border-box;}.cky-opt-out-checkbox-wrapper.cky-disabled .cky-opt-out-checkbox-label,.cky-opt-out-checkbox-wrapper.cky-disabled input[type=\"checkbox\"].cky-opt-out-checkbox{cursor: no-drop;}.cky-gpc-wrapper{margin: 0 0 0 32px;}.cky-footer-wrapper .cky-optout-action-area{padding:0 24px 22px 24px;box-sizing:border-box;border-color:inherit}.cky-footer-wrapper .cky-opt-out-btn-wrapper{padding-top:22px;border-top:1px solid;border-color:inherit}.cky-footer-wrapper .cky-opt-out-btn-wrapper{display: flex; flex-wrap: wrap; align-items: center; justify-content: center;}.cky-opt-out-btn-wrapper .cky-btn{flex: auto; max-width: 100%; text-shadow: none; box-shadow: none;}.cky-opt-out-btn-wrapper .cky-btn-cancel{border: 1px solid #dedfe0; background: transparent; color: #858585;}.cky-opt-out-btn-wrapper .cky-btn-confirm{background: #1863dc; color: #ffffff; border: 1px solid #1863dc;}\n.cky-optout-success{width:798px;max-width:100%;border-radius:8px;padding:8px 12px;margin:0 auto;box-sizing:border-box;outline:none}.cky-optout-success .cky-optout-success-inner{display:flex;flex-direction:column;gap:4px}.cky-optout-success .cky-optout-success-row{display:flex;align-items:flex-start}.cky-optout-success .cky-optout-success-icon{width:20px;flex-shrink:0}.cky-optout-success .cky-optout-success-text{margin:0;margin-inline-start:8px;margin-top:1px;font-weight:400;font-size:13px;line-height:20px}.cky-optout-success .cky-optout-success-text p{margin:0}.cky-optout-success .cky-optout-success-subtext{margin:0;font-weight:400;font-size:12px;line-height:20px}@media (max-width: 352px){.cky-opt-out-checkbox-wrapper .cky-opt-out-checkbox-label{font-size: 14px;}.cky-gpc-wrapper .cky-gpc-desc, .cky-gpc-wrapper .cky-gpc-desc *{font-size: 12px;}.cky-opt-out-checkbox-wrapper input[type=\"checkbox\"].cky-opt-out-checkbox{width: 16px; height: 16px;}.cky-opt-out-checkbox-wrapper input[type=\"checkbox\"].cky-opt-out-checkbox:checked::after{left: 5px; bottom: 4px; width: 3px; height: 9px;}.cky-gpc-wrapper{margin: 0 0 0 28px;}}.video-placeholder-youtube{background-size: 100% 100%; background-position: center; background-repeat: no-repeat; background-color: #b2b0b059; position: relative; display: flex; align-items: center; justify-content: center; max-width: 100%;}.video-placeholder-text-youtube{text-align: center; align-items: center; padding: 10px 16px; background-color: #000000cc; color: #ffffff; border: 1px solid; border-radius: 2px; cursor: pointer;}.video-placeholder-normal{background-image: url(\"/wp-content/plugins/cookie-law-info/lite/frontend/images/placeholder.svg\"); background-size: 80px; background-position: center; background-repeat: no-repeat; background-color: #b2b0b059; position: relative; display: flex; align-items: flex-end; justify-content: center; max-width: 100%;}.video-placeholder-text-normal{align-items: center; padding: 10px 16px; text-align: center; border: 1px solid; border-radius: 2px; cursor: pointer;}.cky-rtl{direction: rtl; text-align: right;}.cky-rtl .cky-banner-btn-close{left: 9px; right: auto;}.cky-rtl .cky-notice-btn-wrapper .cky-btn:last-child{margin-right: 8px;}.cky-rtl .cky-notice-btn-wrapper .cky-btn:first-child{margin-right: 0;}.cky-rtl .cky-notice-btn-wrapper{margin-left: 0; margin-right: 15px;}.cky-rtl .cky-prefrence-btn-wrapper .cky-btn{margin-right: 8px;}.cky-rtl .cky-prefrence-btn-wrapper .cky-btn:first-child{margin-right: 0;}.cky-rtl .cky-accordion .cky-accordion-chevron i::before{border: none; border-left: 1.4px solid; border-top: 1.4px solid; left: 12px;}.cky-rtl .cky-accordion.cky-accordion-active .cky-accordion-chevron i::before{-webkit-transform: rotate(-135deg); -moz-transform: rotate(-135deg); -ms-transform: rotate(-135deg); -o-transform: rotate(-135deg); transform: rotate(-135deg);}@media (max-width: 768px){.cky-rtl .cky-notice-btn-wrapper{margin-right: 0;}}@media (max-width: 576px){.cky-rtl .cky-notice-btn-wrapper .cky-btn:last-child{margin-right: 0;}.cky-rtl .cky-prefrence-btn-wrapper .cky-btn{margin-right: 0;}.cky-rtl .cky-accordion.cky-accordion-active .cky-accordion-body{padding: 0 22px 0 0;}}@media (max-width: 425px){.cky-rtl .cky-accordion.cky-accordion-active .cky-accordion-body{padding: 0 15px 0 0;}}.cky-rtl .cky-opt-out-btn-wrapper .cky-btn{margin-right: 12px;}.cky-rtl .cky-opt-out-btn-wrapper .cky-btn:first-child{margin-right: 0;}.cky-rtl .cky-opt-out-checkbox-wrapper .cky-opt-out-checkbox-label{margin: 0 12px 0 0;}"};
+//# sourceURL=cookie-law-info-js-extra
+</script>
+<script nitro-exclude id="cookie-law-info-js" src="https://goias.gov.br/economia/wp-content/plugins/cookie-law-info/lite/frontend/js/script.min.js?ver=3.5.9"></script>
+<script id="jquery-core-js" src="https://goias.gov.br/economia/wp-includes/js/jquery/jquery.min.js?ver=3.7.1"></script>
+<script id="jquery-migrate-js" src="https://goias.gov.br/economia/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1"></script>
+<script id="jluikit.min-js" src="https://goias.gov.br/wp-content/themes/g5_padrao-institucional-2023/js/jluikit.min.js?ver=834ca5b7cecd8022a8d776713e22b5d1"></script>
+<script id="acessibilidade-js" src="https://goias.gov.br/wp-content/themes/g5_padrao-institucional-2023/js/acessibilidade.js?ver=834ca5b7cecd8022a8d776713e22b5d1"></script>
+<script id="jquery.cookie-js" src="https://goias.gov.br/wp-content/themes/g5_padrao-institucional-2023/js/jquery.cookie.js?ver=834ca5b7cecd8022a8d776713e22b5d1"></script>
+<link rel="https://api.w.org/" href="https://goias.gov.br/economia/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://goias.gov.br/economia/wp-json/wp/v2/pages/19255" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://goias.gov.br/economia/xmlrpc.php?rsd" />
+<link rel="canonical" href="https://goias.gov.br/economia/icms/" />
+<link rel='shortlink' href='https://goias.gov.br/economia/?p=19255' />
+<style id="cky-style-inline" data-noptimize nitro-exclude>[data-cky-tag]{visibility:hidden;}</style>        <style>
+            :root {
+                --tpg-primary-color: #0d6efd;
+                --tpg-secondary-color: #0654c4;
+                --tpg-primary-light: #c4d0ff
+            }
+
+                        body .rt-tpg-container .rt-loading,
+            body #bottom-script-loader .rt-ball-clip-rotate {
+                color: #0367bf !important;
+            }
+
+                    </style>
+		    <style>
+        .post-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+        }
+        .post-table th, .post-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+            text-align: left;
+        }
+        .post-table th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+        .post-table td a {
+            color: #0073aa;
+            text-decoration: none;
+        }
+        .post-table td a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <meta name="generator" content="Elementor 4.4.1; features: e_font_icon_svg, additional_custom_breakpoints; settings: css_print_method-external, google_font-enabled, font_display-swap">
+			<style>
+				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload),
+				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload) * {
+					background-image: none !important;
+				}
+				@media screen and (max-height: 1024px) {
+					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload),
+					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload) * {
+						background-image: none !important;
+					}
+				}
+				@media screen and (max-height: 640px) {
+					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload),
+					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload) * {
+						background-image: none !important;
+					}
+				}
+			</style>
+			<noscript><style>.lazyload[data-src]{display:none !important;}</style></noscript><style>.lazyload{background-image:none !important;}.lazyload:before{background-image:none !important;}</style>			<meta name="theme-color" content="#F5F3EE">
+			<link rel="icon" href="https://goias.gov.br/economia/wp-content/uploads/sites/45/2024/01/cropped-favicon-96x96-1-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://goias.gov.br/economia/wp-content/uploads/sites/45/2024/01/cropped-favicon-96x96-1-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://goias.gov.br/economia/wp-content/uploads/sites/45/2024/01/cropped-favicon-96x96-1-180x180.png" />
+<meta name="msapplication-TileImage" content="https://goias.gov.br/economia/wp-content/uploads/sites/45/2024/01/cropped-favicon-96x96-1-270x270.png" />
+
+                    <!-- SCRIPT PARA VISÃO DE TODA REDE - ANALYTICS -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NV8QTE7B39"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NV8QTE7B39');
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EDDY24V42G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EDDY24V42G');
+</script>
+            
+</head>
+
+    
+    <body class="gantry g-offcanvas-right g-default g-style-preset1 wp-singular page-template page-template-elementor_header_footer page page-id-19255 wp-theme-g5_padrao-institucional-2023 site outline-default dir-ltr rttpg rttpg-7.9.11 radius-frontend rttpg-body-wrap mega-menu-max-mega-menu-1 mega-menu-max-mega-menu-2 mega-menu-max-mega-menu-3 elementor-default elementor-template-full-width elementor-kit-336265 elementor-page elementor-page-19255">
+        
+                    
+
+        <div id="g-offcanvas"  data-g-offcanvas-swipe="0" data-g-offcanvas-css3="1">
+                        <div class="g-grid">                        
+
+        <div class="g-block size-100">
+             <div class="g-content">
+                                    <div id="search--2" class="widget widget_search">
+
+<form role="search" method="get" class="search-form form" action="https://goias.gov.br/economia/">
+<label>
+<span class="screen-reader-text">Buscar por:</span>
+<input type="search" class="search-field" placeholder="O que você procura …" value="" name="s" title="Buscar por:" />
+</label>
+<input type="submit" class="search-submit button button-small" id="search-button" value="Buscar" />
+</form>
+
+</div>
+            
+        </div>
+        </div>
+            </div>
+                    <div class="g-grid">                        
+
+        <div class="g-block size-100">
+             <div id="mobile-menu-6668-particle" class="g-content g-particle">            <div id="g-mobilemenu-container" data-g-menu-breakpoint="48rem"></div>
+            </div>
+        </div>
+            </div>
+    </div>
+        <div id="g-page-surround">
+            <div class="g-offcanvas-hide g-offcanvas-toggle" role="navigation" data-offcanvas-toggle aria-controls="g-offcanvas" aria-expanded="false"><i class="fa fa-fw fa-bars"></i></div>                        
+
+                                                        
+                <section id="g-topbar">
+                <div class="g-container">                                <div class="g-grid">                        
+
+        <div class="g-block size-100 nopaddingtop nopaddingbottom visible-desktop">
+             <div id="accessibilitybar-2793-particle" class="g-content g-particle">            <div class="g-accessibility-bar">
+
+    <ul class="accessibility">
+        <li class="gov-br"><a href="../">GOIAS.GOV.BR </a></li>
+                <li><a accesskey="1" href="#g-main">Ir para conteúdo <span class="accesskey">1</span></a></li>
+                <li><a accesskey="2" href="#g-navigation">Ir para menu <span class="accesskey">2</span></a></li>
+                <li><a accesskey="3" href="#g-search">Ir para busca <span class="accesskey">3</span></a></li>
+                <li><a accesskey="4" href="#g-footer">Ir para rodapé <span class="accesskey">4</span></a></li>
+            </ul>
+    <ul class="portal-siteactions">
+                                <li class=""><img src="" /><span class=""></span> <a accesskey="" href="#" data-toggle="fontemenor">A-</a></li>
+                                <li class=""><img src="" /><span class=""></span> <a accesskey="" href="#" data-toggle="resetfonte">A</a></li>
+                                <li class=""><img src="" /><span class=""></span> <a accesskey="" href="#" data-toggle="fontemaior">A+</a></li>
+                                <li class=""><img src="" /><span class="fa fa-adjust fa-lg"></span> <a accesskey="" href="#" id="btn-contraste">Alto contraste</a></li>
+                                <li class=""><img src="" /><span class="fa fa-universal-access fa-lg"></span> <a accesskey="" href="/economia/acessibilidade">Acessibilidade</a></li>
+                                <li class=""><img src="" /><span class="fa fa-sitemap fa-lg"></span> <a accesskey="" href="/economia/mapa-do-site/">Mapa do site</a></li>
+            </ul>
+
+    
+</div>
+            </div>
+        </div>
+            </div>
+            </div>
+        
+    </section>
+                                                    
+                <header id="g-header">
+                <div class="g-container">                                <div class="g-grid">                        
+
+        <div id="g-identificacao" class="g-block size-50">
+             <div id="agency-4798-particle" class="g-content g-particle">            <a href="https://goias.gov.br/economia" title="Economia" rel="home" class="g-agency logotipo">
+                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Economia" data-src="https://goias.gov.br/wp-content/uploads/logos/ECONOMIA_DESKTOP.png" decoding="async" class="lazyload" /><noscript><img src="https://goias.gov.br/wp-content/uploads/logos/ECONOMIA_DESKTOP.png" alt="Economia" data-eio="l" /></noscript>
+            </a>
+            </div>
+        </div>
+                    
+
+        <div id="g-search" class="g-block size-50 align-right visible-desktop">
+             <div class="g-content">
+                                    <div id="search--3" class="widget widget_search">
+
+<form role="search" method="get" class="search-form form" action="https://goias.gov.br/economia/">
+<label>
+<span class="screen-reader-text">Buscar por:</span>
+<input type="search" class="search-field" placeholder="O que você procura …" value="" name="s" title="Buscar por:" />
+</label>
+<input type="submit" class="search-submit button button-small" id="search-button" value="Buscar" />
+</form>
+
+</div>
+            
+        </div>
+        </div>
+            </div>
+            </div>
+        
+    </header>
+                                                    
+                <section id="g-navigation">
+                <div class="g-container">                                <div class="g-grid">                        
+
+        <div id="mega-menu" class="g-block size-80 visible-desktop nomarginall">
+             <div class="g-content">
+                                    <div id="maxmegamenu--4" class="widget widget_maxmegamenu"><div id="mega-menu-wrap-max_mega_menu_1" class="mega-menu-wrap"><div class="mega-menu-toggle"><div class="mega-toggle-blocks-left"></div><div class="mega-toggle-blocks-center"></div><div class="mega-toggle-blocks-right"><div class='mega-toggle-block mega-menu-toggle-animated-block mega-toggle-block-0' id='mega-toggle-block-0'><button aria-controls="mega-menu-max_mega_menu_1" aria-expanded="false" aria-haspopup="true" aria-label="Toggle Menu" class="mega-toggle-animated mega-toggle-animated-slider" type="button">
+                  <span class="mega-toggle-animated-box">
+                    <span class="mega-toggle-animated-inner"></span>
+                  </span>
+                </button></div></div></div><ul id="mega-menu-max_mega_menu_1" class="mega-menu max-mega-menu mega-menu-horizontal mega-no-js" data-event="hover_intent" data-effect="disabled" data-effect-speed="200" data-effect-mobile="disabled" data-effect-speed-mobile="0" data-mobile-force-width="false" data-second-click="go" data-document-click="collapse" data-vertical-behaviour="standard" data-breakpoint="768" data-unbind="true" data-mobile-state="collapse_all" data-mobile-direction="vertical"><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-39028" id="mega-menu-item-39028"><a class="mega-menu-link" href="https://goias.gov.br/economia/institucional/">Institucional</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-39029" id="mega-menu-item-39029"><a target="_blank" class="mega-menu-link" href="https://www.go.gov.br/servicos/servicos-por-orgao/secretaria-de-estado-da-economia">Carta de Serviços</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-ancestor mega-menu-item-has-children mega-menu-megamenu mega-menu-grid mega-align-bottom-left mega-menu-item-39021" id="mega-menu-item-39021"><a class="mega-menu-link" href="#" aria-expanded="false" aria-controls="mega-sub-menu-39021">Acesso Rápido<span class="mega-indicator" aria-hidden="true"></span></a>
+<ul class="mega-sub-menu" role='presentation' id='mega-sub-menu-39021'>
+<li class="mega-menu-row" id="mega-menu-39021-0">
+	<ul class="mega-sub-menu" style='--columns:12' role='presentation'>
+<li class="mega-menu-column mega-menu-columns-3-of-12" style="--columns:12; --span:3" id="mega-menu-39021-0-0">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-item-41512" id="mega-menu-item-41512"><a class="mega-menu-link" href="https://goias.gov.br/economia/legislacao">Legislação<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-41512'>
+<li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-41674" id="mega-menu-item-41674"><a class="mega-menu-link" href="https://goias.gov.br/economia/legislacao-tributaria/">Legislação Tributária</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-post mega-menu-item-328638" id="mega-menu-item-328638"><a class="mega-menu-link" href="https://goias.gov.br/economia/legislacao-do-planejamento/">Legislação do Planejamento</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-41675" id="mega-menu-item-41675"><a class="mega-menu-link" href="https://goias.gov.br/economia/legislacao-financas/">Legislação de Finanças</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-41677" id="mega-menu-item-41677"><a class="mega-menu-link" href="https://goias.gov.br/economia/legislacao-diversa/">Legislação Diversa</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-41676" id="mega-menu-item-41676"><a class="mega-menu-link" href="https://goias.gov.br/economia/legislacao-servidor/">Legislação do Servidor</a></li>			</ul>
+</li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-item-41692" id="mega-menu-item-41692"><a class="mega-menu-link" href="https://goias.gov.br/nfgoiana/">Nota Fiscal Goiana<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-41692'>
+<li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-41697" id="mega-menu-item-41697"><a class="mega-menu-link" href="https://nfgoiana.economia.go.gov.br/nfg/cidadao/cadastrar">Cadastro</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-41701" id="mega-menu-item-41701"><a class="mega-menu-link" href="https://goias.gov.br/nfgoiana/regulamento/">Regulamento</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-41698" id="mega-menu-item-41698"><a class="mega-menu-link" href="https://goias.gov.br/nfgoiana/numero-dos-sorteios/">Calendário de Sorteios</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-41699" id="mega-menu-item-41699"><a class="mega-menu-link" href="https://goias.gov.br/nfgoiana/numero-dos-sorteios/">Resultados</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-41700" id="mega-menu-item-41700"><a class="mega-menu-link" href="https://goias.gov.br/nfgoiana/nota-fiscal-goiana-time-goiano-do-coracao-3/">Time Goiano</a></li>			</ul>
+</li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-item-41703" id="mega-menu-item-41703"><a class="mega-menu-link" href="#">Corregedoria Fiscal<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-41703'>
+<li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-41704" id="mega-menu-item-41704"><a class="mega-menu-link" href="https://goias.gov.br/economia/atuacao-da-corregedoria-fiscal-2/">Atuação</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-41705" id="mega-menu-item-41705"><a class="mega-menu-link" href="https://goias.gov.br/economia/em-que-consiste-a-denuncia/">Denúncias</a></li>			</ul>
+</li>		</ul>
+</li><li class="mega-menu-column mega-menu-columns-3-of-12" style="--columns:12; --span:3" id="mega-menu-39021-0-1">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-current-menu-ancestor mega-current-menu-parent mega-menu-item-has-children mega-menu-item-39015" id="mega-menu-item-39015"><a class="mega-menu-link" href="#">Receita Estadual<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-39015'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-39041" id="mega-menu-item-39041"><a class="mega-menu-link" href="https://goias.gov.br/economia/arrecadacao-estadual/">Arrecadação Estadual</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-39042" id="mega-menu-item-39042"><a class="mega-menu-link" href="https://goias.gov.br/economia/cce/">Cadastro de Contribuintes</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-39264" id="mega-menu-item-39264"><a class="mega-menu-link" href="https://goias.gov.br/economia/cadin-estadual/">CADIN Estadual</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-39026" id="mega-menu-item-39026"><a class="mega-menu-link" href="https://goias.gov.br/economia/coindice/">Coindice</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-39027" id="mega-menu-item-39027"><a class="mega-menu-link" href="https://goias.gov.br/economia/documentos-fiscais/">Documentos Fiscais</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-post mega-menu-item-38652" id="mega-menu-item-38652"><a class="mega-menu-link" href="https://goias.gov.br/economia/divida-ativa/">Dívida Ativa</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-post mega-menu-item-38689" id="mega-menu-item-38689"><a class="mega-menu-link" href="https://goias.gov.br/economia/sobre-o-dte/">Domicílio Tributário Eletrônico</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-39043" id="mega-menu-item-39043"><a class="mega-menu-link" href="https://goias.gov.br/economia/efd/">Escrituração Fiscal Digital</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-current-menu-item mega-page_item mega-page-item-19255 mega-current_page_item mega-menu-item-39025" id="mega-menu-item-39025"><a class="mega-menu-link" href="https://goias.gov.br/economia/icms/" aria-current="page">ICMS</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-post mega-menu-item-38667" id="mega-menu-item-38667"><a class="mega-menu-link" href="https://goias.gov.br/economia/orientacao-tributaria1/">Orientação Tributária</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-38755" id="mega-menu-item-38755"><a class="mega-menu-link" href="https://difal-dnc.economia.go.gov.br/sobre/">Portal Difal DNC</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-post mega-menu-item-60169" id="mega-menu-item-60169"><a class="mega-menu-link" href="https://goias.gov.br/economia/praterondemorar/">Pra Ter Onde Morar</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-post mega-menu-item-123110" id="mega-menu-item-123110"><a class="mega-menu-link" href="https://goias.gov.br/economia/concurso-auditor-fiscal/">Concurso Auditor Fiscal</a></li>			</ul>
+</li>		</ul>
+</li><li class="mega-menu-column mega-menu-columns-3-of-12" style="--columns:12; --span:3" id="mega-menu-39021-0-2">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-item-39016" id="mega-menu-item-39016"><a class="mega-menu-link" href="#">Tesouro Estadual<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-39016'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-39032" id="mega-menu-item-39032"><a class="mega-menu-link" href="https://goias.gov.br/economia/divida-publica/">Dívida Pública</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-39031" id="mega-menu-item-39031"><a class="mega-menu-link" href="https://goias.gov.br/economia/fundo-protege/">Fundo Protege Goiás</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-post mega-menu-item-38654" id="mega-menu-item-38654"><a class="mega-menu-link" href="https://goias.gov.br/economia/sistema-da-conta-unica-2/">Sistema Conta Única</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-post mega-menu-item-38653" id="mega-menu-item-38653"><a class="mega-menu-link" href="https://goias.gov.br/economia/sistema-de-financas-estaduais/">Sistema de Finanças Estaduais</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-post mega-menu-item-38650" id="mega-menu-item-38650"><a class="mega-menu-link" href="https://goias.gov.br/economia/programa-de-ajuste-fiscalsss/">Programa de Ajuste Fiscal</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-post mega-menu-item-38651" id="mega-menu-item-38651"><a class="mega-menu-link" href="https://goias.gov.br/economia/repasse-aos-municipios/">Repasses de Recursos aos Municípios</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-401499" id="mega-menu-item-401499"><a class="mega-menu-link" href="https://goias.gov.br/economia/programa-de-pleno-pagamento-de-dividas-dos-estados-propag/">Programa de Pleno Pagamento de Dívidas dos Estados – Propag</a></li>			</ul>
+</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-has-children mega-menu-item-243688" id="mega-menu-item-243688"><a class="mega-menu-link" href="https://goias.gov.br/economia/planejamento/">Planejamento<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-243688'>
+<li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-245732" id="mega-menu-item-245732"><a class="mega-menu-link" href="https://ppa.go.gov.br/">Portal Plano Plurianual</a></li>			</ul>
+</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-39045" id="mega-menu-item-39045"><a class="mega-menu-link" href="https://goias.gov.br/economia/orcamento-geral-do-estado/">Orçamento</a></li>		</ul>
+</li><li class="mega-menu-column mega-menu-columns-3-of-12" style="--columns:12; --span:3" id="mega-menu-39021-0-3">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-item-39012" id="mega-menu-item-39012"><a class="mega-menu-link" href="#">Licitações e Contratos<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-39012'>
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-post mega-menu-item-38666" id="mega-menu-item-38666"><a class="mega-menu-link" href="https://goias.gov.br/economia/licitacoes-e-contratacoes/">Licitações, contratos e convênios</a></li>			</ul>
+</li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-menu-item-39014" id="mega-menu-item-39014"><a class="mega-menu-link" href="#">Contabilidade Pública<span class="mega-indicator" aria-hidden="true"></span></a>
+			<ul class="mega-sub-menu" id='mega-sub-menu-39014'>
+<li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-38680" id="mega-menu-item-38680"><a class="mega-menu-link" href="https://goias.gov.br/economia/scgi/">Portal de Informações Contábeis</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-38681" id="mega-menu-item-38681"><a class="mega-menu-link" href="https://goias.gov.br/economia/relatorios-fiscais/">Relatórios da LRF</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-post mega-menu-item-120511" id="mega-menu-item-120511"><a class="mega-menu-link" href="https://goias.gov.br/economia/balanco-cidadao-transparencia/">Balanço Cidadão</a></li>			</ul>
+</li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-post mega-menu-item-120631" id="mega-menu-item-120631"><a target="_blank" class="mega-menu-link" href="https://goias.gov.br/economia/encarregado-pelo-tratamento-de-dados-pessoais-economia-go/">LGPD</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-258309" id="mega-menu-item-258309"><a class="mega-menu-link" href="https://goias.gov.br/economia/programa-de-compliance-publico/">Programa de Compliance Público</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-post mega-menu-item-215609" id="mega-menu-item-215609"><a class="mega-menu-link" href="https://goias.gov.br/economia/matriz-de-insumo-produto-de-goias/">Matriz de Insumo-Produto de Goiás</a></li>		</ul>
+</li>	</ul>
+</li><li class="mega-menu-row" id="mega-menu-39021-1">
+	<ul class="mega-sub-menu" style='--columns:12' role='presentation'>
+<li class="mega-menu-column mega-menu-columns-3-of-12" style="--columns:12; --span:3" id="mega-menu-39021-1-0">
+		<ul class="mega-sub-menu">
+<li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-232667" id="mega-menu-item-232667"><a class="mega-menu-link" href="https://goias.gov.br/economia/boletins-e-relatorios/">BOLETINS E RELATÓRIOS</a></li>		</ul>
+</li>	</ul>
+</li><li class="mega-menu-row" id="mega-menu-39021-2">
+	<ul class="mega-sub-menu" style='--columns:12' role='presentation'>
+<li class="mega-menu-column mega-menu-columns-3-of-12" style="--columns:12; --span:3" id="mega-menu-39021-2-0"></li>	</ul>
+</li></ul>
+</li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-has-children mega-align-bottom-left mega-menu-flyout mega-menu-item-293266" id="mega-menu-item-293266"><a class="mega-menu-link" href="#" aria-expanded="false" aria-controls="mega-sub-menu-293266">Governança<span class="mega-indicator" aria-hidden="true"></span></a>
+<ul class="mega-sub-menu" id='mega-sub-menu-293266'>
+<li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-293271" id="mega-menu-item-293271"><a class="mega-menu-link" href="https://transparencia.go.gov.br/">Portal da Transparência</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-293276" id="mega-menu-item-293276"><a class="mega-menu-link" href="https://dadosabertos.go.gov.br/">Dados Abertos</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-293283" id="mega-menu-item-293283"><a class="mega-menu-link" href="https://www.go.gov.br/servicos-digitais/cge/nova-ouvidoria/pedido-informacao-publica?orgao=11&#038;tipo_manifestacao=7">e-SIC</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-293292" id="mega-menu-item-293292"><a class="mega-menu-link" href="https://www.go.gov.br/servicos-digitais/cge/nova-ouvidoria?orgao=11">Ouvidoria</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-293297" id="mega-menu-item-293297"><a class="mega-menu-link" href="https://www.go.gov.br/servicos-digitais/cge/nova-ouvidoria/nova-manifestacao/tela-negativo?orgao=11">Denúncias contra Corrupção</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-293300" id="mega-menu-item-293300"><a class="mega-menu-link" href="https://lgpd.go.gov.br/">LGPD</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-293303" id="mega-menu-item-293303"><a class="mega-menu-link" href="https://radardatransparencia.atricon.org.br/">Radar da Transparência</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-293308" id="mega-menu-item-293308"><a class="mega-menu-link" href="https://legisla.casacivil.go.gov.br/pesquisa_legislacao/103904/decreto-9837">Código de Ética</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-293311" id="mega-menu-item-293311"><a class="mega-menu-link" href="https://goias.gov.br/controladoria/programa-de-compliance-publico-do-governo-de-goias/">PCP</a></li><li class="mega-menu-item mega-menu-item-type-custom mega-menu-item-object-custom mega-menu-item-293315" id="mega-menu-item-293315"><a class="mega-menu-link" href="https://goias.gov.br/administracao/siga-eng/">SIGA</a></li></ul>
+</li><li class="mega-acesso-informacao mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-post mega-menu-item-39020 acesso-informacao" id="mega-menu-item-39020"><a class="mega-menu-link" href="https://goias.gov.br/economia/acesso-a-informacao/">Acesso à Informação</a></li><li class="mega-menu-item mega-menu-item-type-post_type mega-menu-item-object-page mega-menu-item-39037" id="mega-menu-item-39037"><a class="mega-menu-link" href="https://goias.gov.br/economia/fale-conosco/"> Fale Conosco</a></li></ul></div></div>
+            
+        </div>
+        </div>
+                    
+
+        <div class="g-block size-20 align-right visible-desktop nomarginall mega-menu-social">
+             <div id="social-4103-particle" class="g-content g-particle">            <div class="g-social social">
+                                            <a href="https://whatsapp.com/channel/0029VaBwUMG5a24BRPwtcR3k" target="_blank" rel="noopener noreferrer" title="WhatsApp" aria-label="WhatsApp">
+                <span class="fa fa-whatsapp"></span>                            </a>
+                                            <a href="https://www.youtube.com/@EconomiaGoias" target="_blank" rel="noopener noreferrer" title="Youtube" aria-label="Youtube">
+                <span class="fa fa-youtube"></span>                            </a>
+                                            <a href="https://www.facebook.com/economiagoias" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook">
+                <span class="fa fa-facebook-f"></span>                            </a>
+                                            <a href="https://www.instagram.com/economiagoias/" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram">
+                <span class="fa fa-instagram"></span>                            </a>
+                                            <a href="https://x.com/governogoias" target="_blank" rel="noopener noreferrer" title="Twitter" aria-label="Twitter">
+                <span class="fa-brands fa-x-twitter"></span>                            </a>
+                                            <a href="https://www.tiktok.com/@governodegoias" target="_blank" rel="noopener noreferrer" title="TikTok" aria-label="TikTok">
+                <span class="fa fa-tiktok"></span>                            </a>
+                                            <a href="https://linkedin.com/company/governogoias/mycompany/verification/?viewAsMember=true" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn">
+                <span class="fa-brands fa-linkedin"></span>                            </a>
+            </div>
+            </div>
+        </div>
+            </div>
+                            <div class="g-grid">                        
+
+        <div class="g-block size-100 align-left hidden-desktop">
+             <div id="menu-9883-particle" class="g-content g-particle">            <nav class="g-main-nav" data-g-mobile-target data-g-hover-expand="true">
+        <ul class="g-toplevel">
+                                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-39028 g-standard  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/institucional/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Institucional</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+                                                                                                                                
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-custom g-menu-item-39029 g-standard  ">
+                            <a class="g-menu-item-container" href="https://www.go.gov.br/servicos/servicos-por-orgao/secretaria-de-estado-da-economia" target="_blank" rel="noopener&#x20;noreferrer">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Carta de Serviços</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-separator g-menu-item-39021 g-parent active g-standard  ">
+                            <div class="g-menu-item-container" data-g-menuparent="">                                                                            <span class="g-separator g-menu-item-content">            <span class="g-menu-item-title">Acesso Rápido</span>
+            </span>
+                                        <span class="g-menu-parent-indicator"></span>                            </div>                                                                <ul class="g-dropdown g-inactive g-fade g-dropdown-right">
+            <li class="g-dropdown-column">
+                        <div class="g-grid">
+                        <div class="g-block size-100">
+            <ul class="g-sublevel">
+                <li class="g-level-1 g-go-back">
+                    <a class="g-menu-item-container" href="#" data-g-menuparent=""><span>Back</span></a>
+                </li>
+                                                                                                                    
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-custom g-menu-item-41512 g-parent g-menu-item-link-parent ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/legislacao">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Legislação</span>
+            
+                    </span>
+                    <span class="g-menu-parent-indicator" data-g-menuparent=""></span>                            </a>
+                                                                            <ul class="g-dropdown g-inactive g-fade g-dropdown-right">
+            <li class="g-dropdown-column">
+                        <div class="g-grid">
+                        <div class="g-block size-100">
+            <ul class="g-sublevel">
+                <li class="g-level-2 g-go-back">
+                    <a class="g-menu-item-container" href="#" data-g-menuparent=""><span>Back</span></a>
+                </li>
+                                                                                                                    
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-custom g-menu-item-41674  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/legislacao-tributaria/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Legislação Tributária</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-328638  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/legislacao-do-planejamento/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Legislação do Planejamento</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-custom g-menu-item-41675  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/legislacao-financas/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Legislação de Finanças</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-custom g-menu-item-41677  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/legislacao-diversa/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Legislação Diversa</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-custom g-menu-item-41676  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/legislacao-servidor/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Legislação do Servidor</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+    
+            </ul>
+        </div>
+            </div>
+
+            </li>
+        </ul>
+            </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-custom g-menu-item-41692 g-parent g-menu-item-link-parent ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/nfgoiana/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Nota Fiscal Goiana</span>
+            
+                    </span>
+                    <span class="g-menu-parent-indicator" data-g-menuparent=""></span>                            </a>
+                                                                            <ul class="g-dropdown g-inactive g-fade g-dropdown-right">
+            <li class="g-dropdown-column">
+                        <div class="g-grid">
+                        <div class="g-block size-100">
+            <ul class="g-sublevel">
+                <li class="g-level-2 g-go-back">
+                    <a class="g-menu-item-container" href="#" data-g-menuparent=""><span>Back</span></a>
+                </li>
+                                                                                                                    
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-custom g-menu-item-41697  ">
+                            <a class="g-menu-item-container" href="https://nfgoiana.economia.go.gov.br/nfg/cidadao/cadastrar">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Cadastro</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-custom g-menu-item-41701  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/nfgoiana/regulamento/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Regulamento</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-custom g-menu-item-41698  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/nfgoiana/numero-dos-sorteios/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Calendário de Sorteios</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-custom g-menu-item-41699  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/nfgoiana/numero-dos-sorteios/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Resultados</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-custom g-menu-item-41700  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/nfgoiana/nota-fiscal-goiana-time-goiano-do-coracao-3/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Time Goiano</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+    
+            </ul>
+        </div>
+            </div>
+
+            </li>
+        </ul>
+            </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-separator g-menu-item-39015 g-parent active  ">
+                            <div class="g-menu-item-container" data-g-menuparent="">                                                                            <span class="g-separator g-menu-item-content">            <span class="g-menu-item-title">Receita Estadual</span>
+            </span>
+                                        <span class="g-menu-parent-indicator"></span>                            </div>                                                                <ul class="g-dropdown g-inactive g-fade g-dropdown-right">
+            <li class="g-dropdown-column">
+                        <div class="g-grid">
+                        <div class="g-block size-100">
+            <ul class="g-sublevel">
+                <li class="g-level-2 g-go-back">
+                    <a class="g-menu-item-container" href="#" data-g-menuparent=""><span>Back</span></a>
+                </li>
+                                                                                                                    
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-39041  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/arrecadacao-estadual/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Arrecadação Estadual</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-39042  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/cce/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Cadastro de Contribuintes</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-39264  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/cadin-estadual/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">CADIN Estadual</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-39026  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/coindice/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Coindice</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-39027  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/documentos-fiscais/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Documentos Fiscais</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-38652  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/divida-ativa/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Dívida Ativa</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-38689  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/sobre-o-dte/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Domicílio Tributário Eletrônico</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-39043  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/efd/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Escrituração Fiscal Digital</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-39025 active  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/icms/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">ICMS</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-38667  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/orientacao-tributaria1/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Orientação Tributária</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-custom g-menu-item-38755  ">
+                            <a class="g-menu-item-container" href="https://difal-dnc.economia.go.gov.br/sobre/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Portal Difal DNC</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-60169  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/praterondemorar/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Pra Ter Onde Morar</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-123110  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/concurso-auditor-fiscal/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Concurso Auditor Fiscal</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+    
+            </ul>
+        </div>
+            </div>
+
+            </li>
+        </ul>
+            </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-separator g-menu-item-39016 g-parent  ">
+                            <div class="g-menu-item-container" data-g-menuparent="">                                                                            <span class="g-separator g-menu-item-content">            <span class="g-menu-item-title">Tesouro Estadual</span>
+            </span>
+                                        <span class="g-menu-parent-indicator"></span>                            </div>                                                                <ul class="g-dropdown g-inactive g-fade g-dropdown-right">
+            <li class="g-dropdown-column">
+                        <div class="g-grid">
+                        <div class="g-block size-100">
+            <ul class="g-sublevel">
+                <li class="g-level-2 g-go-back">
+                    <a class="g-menu-item-container" href="#" data-g-menuparent=""><span>Back</span></a>
+                </li>
+                                                                                                                    
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-39032  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/divida-publica/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Dívida Pública</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-39031  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/fundo-protege/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Fundo Protege Goiás</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-38654  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/sistema-da-conta-unica-2/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Sistema Conta Única</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-38653  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/sistema-de-financas-estaduais/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Sistema de Finanças Estaduais</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-38650  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/programa-de-ajuste-fiscalsss/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Programa de Ajuste Fiscal</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-38651  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/repasse-aos-municipios/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Repasses de Recursos aos Municípios</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-401499  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/programa-de-pleno-pagamento-de-dividas-dos-estados-propag/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Programa de Pleno Pagamento de Dívidas dos Estados – Propag</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+    
+            </ul>
+        </div>
+            </div>
+
+            </li>
+        </ul>
+            </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-243688 g-parent g-menu-item-link-parent ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/planejamento/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Planejamento</span>
+            
+                    </span>
+                    <span class="g-menu-parent-indicator" data-g-menuparent=""></span>                            </a>
+                                                                            <ul class="g-dropdown g-inactive g-fade g-dropdown-right">
+            <li class="g-dropdown-column">
+                        <div class="g-grid">
+                        <div class="g-block size-100">
+            <ul class="g-sublevel">
+                <li class="g-level-2 g-go-back">
+                    <a class="g-menu-item-container" href="#" data-g-menuparent=""><span>Back</span></a>
+                </li>
+                                                                                                                    
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-custom g-menu-item-245732  ">
+                            <a class="g-menu-item-container" href="https://ppa.go.gov.br/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Portal Plano Plurianual</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+    
+            </ul>
+        </div>
+            </div>
+
+            </li>
+        </ul>
+            </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-39045  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/orcamento-geral-do-estado/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Orçamento</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-215609  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/matriz-de-insumo-produto-de-goias/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Matriz de Insumo-Produto de Goiás</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-separator g-menu-item-39012 g-parent  ">
+                            <div class="g-menu-item-container" data-g-menuparent="">                                                                            <span class="g-separator g-menu-item-content">            <span class="g-menu-item-title">Licitações e Contratos</span>
+            </span>
+                                        <span class="g-menu-parent-indicator"></span>                            </div>                                                                <ul class="g-dropdown g-inactive g-fade g-dropdown-right">
+            <li class="g-dropdown-column">
+                        <div class="g-grid">
+                        <div class="g-block size-100">
+            <ul class="g-sublevel">
+                <li class="g-level-2 g-go-back">
+                    <a class="g-menu-item-container" href="#" data-g-menuparent=""><span>Back</span></a>
+                </li>
+                                                                                                                    
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-38666  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/licitacoes-e-contratacoes/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Licitações, contratos e convênios</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+    
+            </ul>
+        </div>
+            </div>
+
+            </li>
+        </ul>
+            </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-separator g-menu-item-39014 g-parent  ">
+                            <div class="g-menu-item-container" data-g-menuparent="">                                                                            <span class="g-separator g-menu-item-content">            <span class="g-menu-item-title">Contabilidade Pública</span>
+            </span>
+                                        <span class="g-menu-parent-indicator"></span>                            </div>                                                                <ul class="g-dropdown g-inactive g-fade g-dropdown-right">
+            <li class="g-dropdown-column">
+                        <div class="g-grid">
+                        <div class="g-block size-100">
+            <ul class="g-sublevel">
+                <li class="g-level-2 g-go-back">
+                    <a class="g-menu-item-container" href="#" data-g-menuparent=""><span>Back</span></a>
+                </li>
+                                                                                                                    
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-custom g-menu-item-38680  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/scgi/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Portal de Informações Contábeis</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-custom g-menu-item-38681  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/relatorios-fiscais/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Relatórios da LRF</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-120511  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/balanco-cidadao-transparencia/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Balanço Cidadão</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+    
+            </ul>
+        </div>
+            </div>
+
+            </li>
+        </ul>
+            </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-separator g-menu-item-41703 g-parent  ">
+                            <div class="g-menu-item-container" data-g-menuparent="">                                                                            <span class="g-separator g-menu-item-content">            <span class="g-menu-item-title">Corregedoria Fiscal</span>
+            </span>
+                                        <span class="g-menu-parent-indicator"></span>                            </div>                                                                <ul class="g-dropdown g-inactive g-fade g-dropdown-right">
+            <li class="g-dropdown-column">
+                        <div class="g-grid">
+                        <div class="g-block size-100">
+            <ul class="g-sublevel">
+                <li class="g-level-2 g-go-back">
+                    <a class="g-menu-item-container" href="#" data-g-menuparent=""><span>Back</span></a>
+                </li>
+                                                                                                                    
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-custom g-menu-item-41704  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/atuacao-da-corregedoria-fiscal-2/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Atuação</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-custom g-menu-item-41705  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/em-que-consiste-a-denuncia/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Denúncias</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+    
+            </ul>
+        </div>
+            </div>
+
+            </li>
+        </ul>
+            </li>
+    
+                                                                                                
+                                                                                                                                
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-120631  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/encarregado-pelo-tratamento-de-dados-pessoais-economia-go/" target="_blank" rel="noopener&#x20;noreferrer">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">LGPD</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-258309  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/programa-de-compliance-publico/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Programa de Compliance Público</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-232667  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/boletins-e-relatorios/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">BOLETINS E RELATÓRIOS</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+    
+            </ul>
+        </div>
+            </div>
+
+            </li>
+        </ul>
+            </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-separator g-menu-item-293266 g-parent g-standard  ">
+                            <div class="g-menu-item-container" data-g-menuparent="">                                                                            <span class="g-separator g-menu-item-content">            <span class="g-menu-item-title">Governança</span>
+            </span>
+                                        <span class="g-menu-parent-indicator"></span>                            </div>                                                                <ul class="g-dropdown g-inactive g-fade g-dropdown-right">
+            <li class="g-dropdown-column">
+                        <div class="g-grid">
+                        <div class="g-block size-100">
+            <ul class="g-sublevel">
+                <li class="g-level-1 g-go-back">
+                    <a class="g-menu-item-container" href="#" data-g-menuparent=""><span>Back</span></a>
+                </li>
+                                                                                                                    
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-custom g-menu-item-293271  ">
+                            <a class="g-menu-item-container" href="https://transparencia.go.gov.br/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Portal da Transparência</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-custom g-menu-item-293276  ">
+                            <a class="g-menu-item-container" href="https://dadosabertos.go.gov.br/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Dados Abertos</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-custom g-menu-item-293283  ">
+                            <a class="g-menu-item-container" href="https://www.go.gov.br/servicos-digitais/cge/nova-ouvidoria/pedido-informacao-publica?orgao=11&amp;tipo_manifestacao=7">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">e-SIC</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-custom g-menu-item-293292  ">
+                            <a class="g-menu-item-container" href="https://www.go.gov.br/servicos-digitais/cge/nova-ouvidoria?orgao=11">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Ouvidoria</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-custom g-menu-item-293297  ">
+                            <a class="g-menu-item-container" href="https://www.go.gov.br/servicos-digitais/cge/nova-ouvidoria/nova-manifestacao/tela-negativo?orgao=11">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Denúncias contra Corrupção</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-custom g-menu-item-293300  ">
+                            <a class="g-menu-item-container" href="https://lgpd.go.gov.br/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">LGPD</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-custom g-menu-item-293303  ">
+                            <a class="g-menu-item-container" href="https://radardatransparencia.atricon.org.br/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Radar da Transparência</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-custom g-menu-item-293308  ">
+                            <a class="g-menu-item-container" href="https://legisla.casacivil.go.gov.br/pesquisa_legislacao/103904/decreto-9837">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Código de Ética</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-custom g-menu-item-293311  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/controladoria/programa-de-compliance-publico-do-governo-de-goias/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">PCP</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-custom g-menu-item-293315  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/administracao/siga-eng/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">SIGA</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+    
+            </ul>
+        </div>
+            </div>
+
+            </li>
+        </ul>
+            </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-39020 g-standard  acesso-informacao">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/acesso-a-informacao/">
+                                                <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Acesso à Informação" data-src="https://goias.gov.br/wp-content/themes/g5_padrao-institucional-2023/images/acessoinformacao-megamenu.png" decoding="async" class="lazyload" /><noscript><img src="https://goias.gov.br/wp-content/themes/g5_padrao-institucional-2023/images/acessoinformacao-megamenu.png" alt="Acesso à Informação" data-eio="l" /></noscript>
+                                                    <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title">Acesso à Informação</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+                                                                                                
+        
+                
+        
+                
+        
+        <li class="g-menu-item g-menu-item-type-post_type g-menu-item-39037 g-standard  ">
+                            <a class="g-menu-item-container" href="https://goias.gov.br/economia/fale-conosco/">
+                                                                <span class="g-menu-item-content">
+                                    <span class="g-menu-item-title"> Fale Conosco</span>
+            
+                    </span>
+                                                </a>
+                                </li>
+    
+    
+        </ul>
+    </nav>
+            </div>
+        </div>
+            </div>
+            </div>
+        
+    </section>
+                                    
+                                
+                
+    
+                <section id="g-container-main" class="g-wrapper">
+                <div class="g-container">                    <div class="g-grid">                        
+
+        <div class="g-block size-100">
+             <main id="g-main">
+                <div class="g-container">                                <div class="g-grid">                        
+
+        <div class="g-block size-100">
+             <div class="g-content">
+                                    <div id="bcn_widget--5" class="widget widget_breadcrumb_navxt"><div class="breadcrumbs" vocab="https://schema.org/" typeof="BreadcrumbList"><span property="itemListElement" typeof="ListItem"><a property="item" typeof="WebPage" title="Ir para Secretaria da Economia." href="https://goias.gov.br/economia" class="home" ><span property="name">Home</span></a><meta property="position" content="1"></span>&nbsp; <i class="fa fa fa-solid fa-chevron-right"></i> &nbsp;<span property="itemListElement" typeof="ListItem"><span property="name" class="post post-page current-item">ICMS</span><meta property="url" content="https://goias.gov.br/economia/icms/"><meta property="position" content="2"></span></div></div>
+            
+        </div>
+        </div>
+            </div>
+                            <div class="g-grid">                        
+
+        <div class="g-block size-100">
+             <div class="g-system-messages">
+                                            <div id="system-message-container">
+    <div id="system-message">
+            </div>
+</div>
+            
+    </div>
+        </div>
+            </div>
+                            <div class="g-grid">                        
+
+        <div class="g-block size-100">
+             <div class="g-content">
+                                                        
+    <div class="platform-content">
+        <div class="plugin-content">
+            		<div data-elementor-type="wp-page" data-elementor-id="19255" class="elementor elementor-19255">
+				<div class="elementor-element elementor-element-338b7c4 e-flex e-con-boxed e-con e-parent" data-id="338b7c4" data-element_type="container" data-e-type="container">
+					<div class="e-con-inner">
+		<div class="elementor-element elementor-element-8ce919c e-con-full e-flex e-con e-child" data-id="8ce919c" data-element_type="container" data-e-type="container">
+				<div class="elementor-element elementor-element-45c7aff elementor-widget elementor-widget-shortcode" data-id="45c7aff" data-element_type="widget" data-e-type="widget" data-widget_type="shortcode.default">
+							<div class="elementor-shortcode"><div data-post-id="29444" class="insert-page insert-page-29444 "><h1 class='insert-page-title'>ICMS &#8211; Imposto sobre Circulação de Mercadorias e Serviços</h1><p class="nomargintop">O ICMS (Imposto sobre Opera&ccedil;&otilde;es relativas &agrave; Circula&ccedil;&atilde;o de Mercadorias e Presta&ccedil;&atilde;o de Servi&ccedil;os de Transporte Interestadual e Intermunicipal e de Comunica&ccedil;&atilde;o), de compet&ecirc;ncia dos Estados e do Distrito Federal, &eacute; a principal fonte de arrecada&ccedil;&atilde;o do Governo do Estado de Goi&aacute;s. O valor da al&iacute;quota do ICMS varia de estado para estado, por&eacute;m a maioria dos estados utiliza uma al&iacute;quota de 17% do pre&ccedil;o da mercadoria. O ICMS &eacute; pago de maneira indireta, pois j&aacute; est&aacute; inclu&iacute;do nos pre&ccedil;os dos produtos.</p>
+<p>O imposto &eacute; devido por qualquer pessoa ou empresa que realize atividade que caracterize a&ccedil;&atilde;o comercial, opera&ccedil;&otilde;es de circula&ccedil;&atilde;o de mercadorias (venda, transfer&ecirc;ncia, transporte, entre outros) ou servi&ccedil;os de transporte interestadual ou intermunicipal e comunica&ccedil;&otilde;es. Algumas atividades s&atilde;o isentas da cobran&ccedil;a de ICMS, definida na Legisla&ccedil;&atilde;o Tribut&aacute;ria Estadual.</p>
+<ul class="post-meta"><li><span class="post-meta-key">tpg-post-view-count:</span> 2337</li>
+<li><span class="post-meta-key">rank_math_analytic_object_id:</span> 3374</li>
+</ul>
+</div></div>
+						</div>
+				</div>
+		<div class="elementor-element elementor-element-75fad98 e-con-full e-flex e-con e-child" data-id="75fad98" data-element_type="container" data-e-type="container">
+				<div class="elementor-element elementor-element-80631b5 elementor-widget elementor-widget-heading" data-id="80631b5" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
+					<h3 class="elementor-heading-title elementor-size-default">REGIME DE RECUPERAÇÃO FISCAL</h3>				</div>
+				<div class="elementor-element elementor-element-3fa94f9 elementor-widget elementor-widget-text-editor" data-id="3fa94f9" data-element_type="widget" data-e-type="widget" data-widget_type="text-editor.default">
+									<p>Saiba como solicitar a isenção, restituição e redução da base de cálculo do ICMS.</p>								</div>
+				<div class="elementor-element elementor-element-573749c elementor-align-justify elementor-widget elementor-widget-button" data-id="573749c" data-element_type="widget" data-e-type="widget" data-widget_type="button.default">
+										<a class="elementor-button elementor-button-link elementor-size-sm" href="/economia/isencao-do-icms/" target="_blank">
+						<span class="elementor-button-content-wrapper">
+									<span class="elementor-button-text">Saiba como obter a isenção do ICMS</span>
+					</span>
+					</a>
+								</div>
+				<div class="elementor-element elementor-element-7a0fa1b elementor-widget elementor-widget-shortcode" data-id="7a0fa1b" data-element_type="widget" data-e-type="widget" data-widget_type="shortcode.default">
+							<div class="elementor-shortcode"><div data-post-id="27886" class="insert-page insert-page-27886 "><h1 class='insert-page-title'>Saiba mais sobre o ICMS</h1><ul>
+<li><a href="https://goias.gov.br/economia/pauta-de-valores-referenciais-do-icms/">Pauta de Valores Referenciais do ICMS</a></li>
+<li><a href="https://goias.gov.br/economia/calendario-de-recolhimento-de-icms-2/">Calendário de Recolhimento de ICMS</a></li>
+<li><a href="https://goias.gov.br/economia/wp-content/uploads/sites/45/2026/01/Calendario_PROTEGE_20250401-4.pdf" target="_blank" rel="noopener">Calendário de Pagamento ao PROTEGE</a></li>
+<li><a href="https://goias.gov.br/economia/wp-content/uploads/sites/45/2012/08/Demonstrativo_de_Apuracao_Mensal_da_Restituicao_ou_Complementacao_do_ICMS_ST_Simples_Nacional_20230801-199.pdf" target="_blank" rel="noopener">Demonstrativo de Apuração de Restituição ou Complementação do ICMS/ST &#8211; Regime Simples</a></li>
+<li><a href="https://goias.gov.br/economia/wp-content/uploads/sites/45/2012/08/Demonstrativo_de_Apuracao_da_Restituicao_ou_Complementacao_do_ICMS_ST_Regime_Normal-124.pdf" target="_blank" rel="noopener">Demonstrativo de Apuração de Restituição ou Complementação do ICMS/ST &#8211; Período entre 27/10/2016 a 31/03/2023</a></li>
+<li><a href="https://goias.gov.br/economia/requerimentos/" target="_blank" rel="noopener">Requerimentos</a></li>
+<li><a id="" title="" href="https://goias.gov.br/economia/wp-content/uploads/sites/45/2012/08/ApuracaodoICMSFomentarProduzireMicroproduzir-4fe.xlsx" target="" rel="noopener">Apuração do ICMS (Fomentar, Produzir e Microproduzir) após 01/01/2023</a></li>
+<li><a href="https://goias.gov.br/economia/wp-content/uploads/sites/45/2012/08/demonstrativo-versao-3_51-d0f.xlsx">Apuração do ICMS (Fomentar, Produzir e Microproduzir) até 31/12/2022 </a></li>
+<li><a href="https://goias.gov.br/economia/wp-content/uploads/sites/45/2012/08/arq_473_DECLARACAOADEADISPONIBILIDADEAFINANCEIRAAOUAPATRIMONIAL-7cc.doc" target="_blank" rel="noopener">Declaração de Disponibilidade Financeira ou Patrimonial</a></li>
+<li><a href="https://goias.gov.br/economia/os-maiores-contribuintes-do-icms/">Os maiores contribuintes do ICMS</a></li>
+</ul>
+<ul class="post-meta"><li><span class="post-meta-key">tpg-post-view-count:</span> 1072</li>
+<li><span class="post-meta-key">rank_math_analytic_object_id:</span> 5229</li>
+<li><span class="post-meta-key">rank_math_internal_links_processed:</span> 1</li>
+</ul>
+</div></div>
+						</div>
+				</div>
+					</div>
+				</div>
+				</div>
+		
+        </div> <!-- /content-wrapper -->
+    </div>
+
+    
+            
+    </div>
+        </div>
+            </div>
+            </div>
+        
+    </main>
+        </div>
+            </div>
+    </div>
+        
+    </section>
+    
+                                                    
+                <section id="g-pagination">
+                <div class="g-container">                                <div class="g-grid">                        
+
+        <div class="g-block size-100 center banner-secom">
+             <div class="g-content">
+                                    <div id="block-9" class="widget widget_block"><p><a href="https://linktr.ee/matriculasgoias" target="_blank"><img decoding="async" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Banner Padrão" data-src="https://goias.gov.br/wp-content/uploads/2026/11/GOV_GOIAIS_MATRICULAS_2027_BANNER_WEB_1280x246px_B.gif" class="lazyload"><noscript><img decoding="async" src="https://goias.gov.br/wp-content/uploads/2026/11/GOV_GOIAIS_MATRICULAS_2027_BANNER_WEB_1280x246px_B.gif" alt="Banner Padrão" data-eio="l"></noscript></a></p>
+</div>
+            
+        </div>
+        </div>
+            </div>
+                            <div class="g-grid">                        
+
+        <div class="g-block size-100">
+             <div id="custom-5835-particle" class="g-content g-particle">            <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+            </div>
+        </div>
+            </div>
+            </div>
+        
+    </section>
+                                                    
+                <section id="g-branding">
+                <div class="g-container">                                <div class="g-grid">                        
+
+        <div class="g-block size-50">
+             <div id="logo-9735-particle" class="g-content g-particle">            <a href="https://goias.gov.br/economia" target="_self" title="Gantry 5" aria-label="Gantry 5" rel="home" class="gantry-logo">
+                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="  alt="Gantry 5" data-src="https://goias.gov.br/wp-content/themes/g5_padrao-institucional-2023/images/goias_white.png" decoding="async" class="lazyload" /><noscript><img src="https://goias.gov.br/wp-content/themes/g5_padrao-institucional-2023/images/goias_white.png"  alt="Gantry 5" data-eio="l" /></noscript>
+            </a>
+            </div>
+        </div>
+                    
+
+        <div class="g-block size-50 align-right g-share-app">
+             <div id="custom-1986-particle" class="g-content g-particle">            <h3>Governo na palma da mão</h3>
+<a href="https://play.google.com/store/apps/dev?id=8919028859101894808
+"  target="_blank"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="/wp-content/themes/g5_padrao-institucional-2023/images/google-play-v2.png" decoding="async" class="lazyload" /><noscript><img src="/wp-content/themes/g5_padrao-institucional-2023/images/google-play-v2.png" data-eio="l" /></noscript></a>
+<a href="https://apps.apple.com/br/developer/estado-de-goias/id1520475540
+" target="_blank"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="/wp-content/themes/g5_padrao-institucional-2023/images/app-store-v2.png" decoding="async" class="lazyload" /><noscript><img src="/wp-content/themes/g5_padrao-institucional-2023/images/app-store-v2.png" data-eio="l" /></noscript></a>
+            </div>
+        </div>
+            </div>
+            </div>
+        
+    </section>
+                                                    
+                <footer id="g-footer">
+                <div class="g-container">                                <div class="g-grid">                        
+
+        <div class="g-block  size-33-3">
+             <div class="g-content">
+                                    <div id="nav_menu--6" class="widget widget_nav_menu"><h2 class="widgettitle">Serviços</h2><div class="menu-servicos-container"><ul id="menu-servicos" class="menu"><li id="menu-item-38692" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-38692"><a target="_blank" href="https://www.go.gov.br/">Expresso Goiás</a></li>
+<li id="menu-item-38690" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-38690"><a target="_blank" href="https://portal.go.gov.br/">Expresso Aplicações</a></li>
+<li id="menu-item-38670" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-38670"><a target="_blank" href="https://www.go.gov.br/">Expresso Servidor</a></li>
+<li id="menu-item-41480" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41480"><a target="_blank" href="https://sei.go.gov.br/sei/modulos/goias/login-sei/MdGoiasLoginSEI.php?acao=md_goias_login_SEI&#038;sigla_orgao_sistema=GOVERNADORIA&#038;sigla_sistema=SEI&#038;infra_url=L3NlaS8=">SEI Governadoria</a></li>
+<li id="menu-item-41481" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41481"><a target="_blank" href="https://goias.gov.br/governo/cadastro-de-autoridade/">Cadastro de Autoridades</a></li>
+<li id="menu-item-41482" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41482"><a target="_blank" href="https://goias.gov.br/escoladegoverno/">Escola de Governo</a></li>
+<li id="menu-item-41483" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-41483"><a target="_blank" href="https://goias.gov.br/economia/agenda-de-autoridades/">Agenda de Autoridades</a></li>
+<li id="menu-item-77133" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-77133"><a href="https://goias.gov.br/economia/programa-de-compliance-publico/">Programa de Compliance Público</a></li>
+</ul></div></div>
+            
+        </div>
+        </div>
+                    
+
+                    
+
+        <div class="g-block  size-33-3">
+             <div class="g-content">
+                                    <div id="nav_menu--8" class="widget widget_nav_menu"><h2 class="widgettitle">Transparência e Ouvidoria</h2><div class="menu-ouvidoria-e-transparenci-container"><ul id="menu-ouvidoria-e-transparenci" class="menu"><li id="menu-item-120642" class="menu-item menu-item-type-post_type menu-item-object-post menu-item-120642"><a target="_blank" href="https://goias.gov.br/economia/encarregado-pelo-tratamento-de-dados-pessoais-economia-go/">LGPD</a></li>
+<li id="menu-item-38648" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-38648"><a target="_blank" href="https://transparencia.go.gov.br/">Goiás Transparência</a></li>
+<li id="menu-item-41486" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-41486"><a target="_blank" href="https://dadosabertos.go.gov.br/">Dados Abertos Goiás</a></li>
+<li id="menu-item-38661" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-38661"><a target="_blank" href="https://www.go.gov.br/unidadesvaptvupt">SIC &#8211; Serviço de Informação ao Cidadão</a></li>
+<li id="menu-item-38662" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-38662"><a target="_blank" href="https://www.go.gov.br/servicos-digitais/cge/nova-ouvidoria/pedido-informacao-publica?orgao=11&#038;tipo_manifestacao=7">e-SIC &#8211; Serviço Eletrônico de Informação ao Cidadão</a></li>
+<li id="menu-item-38660" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-38660"><a target="_blank" href="https://www.go.gov.br/servicos-digitais/cge/nova-ouvidoria?orgao=11">Ouvidoria Setorial (Expresso)</a></li>
+<li id="menu-item-110963" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-110963"><a href="https://goias.gov.br/economia/ouvidoria-setorial/">Ouvidoria Setorial (Presencial)</a></li>
+</ul></div></div>
+            
+        </div>
+        </div>
+            </div>
+            </div>
+        
+    </footer>
+                                
+                        
+
+        </div>
+                    
+
+                    <script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/economia/*"},{"not":{"href_matches":["/economia/wp-*.php","/economia/wp-admin/*","/economia/wp-content/uploads/sites/45/*","/economia/wp-content/*","/economia/wp-content/plugins/*","/economia/wp-content/themes/g5_padrao-institucional-2023/*","/economia/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script id="ckyBannerTemplate" type="text/template" nitro-exclude><div class="cky-overlay cky-hide"></div><div class="cky-btn-revisit-wrapper cky-revisit-hide" data-cky-tag="revisit-consent" data-tooltip="Configurações de Cookies" style="background-color:#2da44a"> <button class="cky-btn-revisit" aria-label="Configurações de Cookies"> <img src="https://goias.gov.br/economia/wp-content/plugins/cookie-law-info/lite/frontend/images/revisit.svg" alt="Revisit consent button"> </button></div><div class="cky-consent-container cky-hide" tabindex="0"> <div class="cky-consent-bar" data-cky-tag="notice" style="background-color:#FFFFFF;border-color:#f4f4f4">  <div class="cky-notice"> <p class="cky-title" role="heading" aria-level="2" data-cky-tag="title" style="color:#212121">Nós usamos cookies!</p><div class="cky-notice-group"> <div class="cky-notice-des" data-cky-tag="description" style="color:#212121"> <p>Utilizamos cookies essenciais e tecnológicos semelhantes de acordo com a nossa <a href="https://www.goias.gov.br/servico/politica-de-privacidade.html" target="_blank" rel="noopener">Política de Privacidade </a> e <a href="https://www.goias.gov.br/servico/politica-de-cookies.html" target="_blank" rel="noopener">Política de Cookies </a>, ao continuar navegando, você concorda com estas condições.</p> </div><div class="cky-notice-btn-wrapper" data-cky-tag="notice-buttons"> <button class="cky-btn cky-btn-customize" aria-label="Redefinir Cookies" aria-haspopup="true" aria-controls="ckyPreferenceCenter" data-cky-tag="settings-button" style="color:#2da44a;background-color:transparent;border-color:#2da44a">Redefinir Cookies</button>  <button class="cky-btn cky-btn-accept" aria-label="Concordo" data-cky-tag="accept-button" style="color:#FFFFFF;background-color:#2da44a;border-color:#2da44a">Concordo</button>  </div></div></div></div></div><div class="cky-modal" tabindex="0"> <div class="cky-preference-center" id="ckyPreferenceCenter" data-cky-tag="detail" style="color:#212121;background-color:#FFFFFF;border-color:#f4f4f4"> <div class="cky-preference-header"> <span class="cky-preference-title" role="heading" aria-level="2" data-cky-tag="detail-title" style="color:#212121">Personalizar Preferências de Consentimento</span> <button class="cky-btn-close" aria-label="Close" data-cky-tag="detail-close"> <img src="https://goias.gov.br/economia/wp-content/plugins/cookie-law-info/lite/frontend/images/close.svg" alt=""> </button> </div><div class="cky-preference-body-wrapper"> <div class="cky-preference-content-wrapper" data-cky-tag="detail-description" style="color:#212121"> <p>Usamos cookies essenciais e tecnológicos semelhantes de acordo com a nossa <a href="https://www.goias.gov.br/servico/politica-de-privacidade" target="_blank" rel="noopener">Política de Privacidade </a> e <a href="https://www.goias.gov.br/servico/politica-de-cookies" target="_blank" rel="noopener">Política de Cookies </a> para ajudá-lo a navegar com eficiência e executar determinadas funções. Você encontrará informações detalhadas sobre todos os cookies em cada categoria de consentimento abaixo.</p>
+<p>Os cookies categorizados como "Necessários" são armazenados no seu navegador, pois são essenciais para permitir as funcionalidades básicas do site.</p>
+<p>Também usamos cookies de terceiros que nos ajudam a analisar como você usa este site. Estes cookies só serão armazenados no seu navegador com o seu consentimento prévio.</p>
+<p>Você pode optar por habilitar ou desabilitar alguns ou todos esses cookies, mas desabilitar alguns deles pode afetar sua experiência de navegação.</p> </div><div class="cky-accordion-wrapper" data-cky-tag="detail-categories"> <div class="cky-accordion" id="ckyDetailCategorynecessary"> <div class="cky-accordion-item"> <div class="cky-accordion-chevron"><i class="cky-chevron-right"></i></div> <div class="cky-accordion-header-wrapper"> <div class="cky-accordion-header"><button class="cky-accordion-btn" aria-label="Necessários" data-cky-tag="detail-category-title" style="color:#212121">Necessários</button><span class="cky-always-active">Sempre ativo</span> <div class="cky-switch" data-cky-tag="detail-category-toggle"><input type="checkbox" id="ckySwitchnecessary"></div> </div> <div class="cky-accordion-header-des" data-cky-tag="detail-category-description" style="color:#212121"> <p>São aqueles utilizados para que o site ou aplicação realize funções básicas e opere corretamente.</p></div> </div> </div> <div class="cky-accordion-body"> <div class="cky-audit-table" data-cky-tag="audit-table" style="color:#212121;background-color:#f4f4f4;border-color:#ebebeb"><ul class="cky-cookie-des-table"><li><div>Cookie</div><div>wordpress_test_cookie</div></li><li><div>Duração</div><div>Temporário</div></li><li><div>Descrição</div><div><p>Testa se o navegador aceita cookies.</p></div></li></ul><ul class="cky-cookie-des-table"><li><div>Cookie</div><div>contrast.actived</div></li><li><div>Duração</div><div>Temporário</div></li><li><div>Descrição</div><div><p>Usado para manter o estado das opções de acessibilidade.</p></div></li></ul><ul class="cky-cookie-des-table"><li><div>Cookie</div><div>wordpress_sec_[hash]</div></li><li><div>Duração</div><div>Temporário</div></li><li><div>Descrição</div><div><p>Fornecer proteção contra hackers, armazenar detalhes da conta do editor de conteúdos.</p></div></li></ul><ul class="cky-cookie-des-table"><li><div>Cookie</div><div>wp-settings-</div></li><li><div>Duração</div><div>1 ano</div></li><li><div>Descrição</div><div><p>Usado para persistir a configuração wp-admin de um usuário.</p></div></li></ul><ul class="cky-cookie-des-table"><li><div>Cookie</div><div>wp-settings-time-</div></li><li><div>Duração</div><div>1 ano</div></li><li><div>Descrição</div><div><p>Hora em que wp-settings-{user} foi definido.</p></div></li></ul><ul class="cky-cookie-des-table"><li><div>Cookie</div><div>wordpress_logged_in_[hash]</div></li><li><div>Duração</div><div>Temporário</div></li><li><div>Descrição</div><div><p>Lembrar sessão do usuário logado.</p></div></li></ul></div> </div> </div><div class="cky-accordion" id="ckyDetailCategoryfunctional"> <div class="cky-accordion-item"> <div class="cky-accordion-chevron"><i class="cky-chevron-right"></i></div> <div class="cky-accordion-header-wrapper"> <div class="cky-accordion-header"><button class="cky-accordion-btn" aria-label="Funcionalidade" data-cky-tag="detail-category-title" style="color:#212121">Funcionalidade</button><span class="cky-always-active">Sempre ativo</span> <div class="cky-switch" data-cky-tag="detail-category-toggle"><input type="checkbox" id="ckySwitchfunctional"></div> </div> <div class="cky-accordion-header-des" data-cky-tag="detail-category-description" style="color:#212121"> <p>São usados para fornecer os serviços básicos solicitados pelo usuário e possibilitam lembrar preferências do site ou aplicação.</p></div> </div> </div> <div class="cky-accordion-body"> <div class="cky-audit-table" data-cky-tag="audit-table" style="color:#212121;background-color:#f4f4f4;border-color:#ebebeb"><ul class="cky-cookie-des-table"><li><div>Cookie</div><div>CookieLawInfoConsent</div></li><li><div>Duração</div><div>1 ano</div></li><li><div>Descrição</div><div><p>Registra o consentimento do usuário quando a aceitação das políticas de privacidade.</p></div></li></ul><ul class="cky-cookie-des-table"><li><div>Cookie</div><div>cookielawinfo-checkbox-advertisement</div></li><li><div>Duração</div><div>1 ano</div></li><li><div>Descrição</div><div><p>Registra o consentimento do usuário para o uso dos cookies na categoria correspondente.</p></div></li></ul><ul class="cky-cookie-des-table"><li><div>Cookie</div><div>cookielawinfo-checkbox-analytics</div></li><li><div>Duração</div><div>1 ano</div></li><li><div>Descrição</div><div><p>Registra o consentimento do usuário para o uso dos cookies na categoria correspondente.</p></div></li></ul><ul class="cky-cookie-des-table"><li><div>Cookie</div><div>cookielawinfo-checkbox-functional</div></li><li><div>Duração</div><div>1 ano</div></li><li><div>Descrição</div><div><p>Registra o consentimento do usuário para o uso dos cookies na categoria correspondente.</p></div></li></ul><ul class="cky-cookie-des-table"><li><div>Cookie</div><div>cookielawinfo-checkbox-necessary</div></li><li><div>Duração</div><div>1 ano</div></li><li><div>Descrição</div><div><p>Registra o consentimento do usuário para o uso dos cookies na categoria correspondente.</p></div></li></ul><ul class="cky-cookie-des-table"><li><div>Cookie</div><div>cookielawinfo-checkbox-others</div></li><li><div>Duração</div><div>1 ano</div></li><li><div>Descrição</div><div><p>Registra o consentimento do usuário para o uso dos cookies na categoria correspondente.</p></div></li></ul><ul class="cky-cookie-des-table"><li><div>Cookie</div><div>cookielawinfo-checkbox-performance</div></li><li><div>Duração</div><div>1 ano</div></li><li><div>Descrição</div><div><p>Registra o consentimento do usuário para o uso dos cookies na categoria correspondente.</p></div></li></ul></div> </div> </div><div class="cky-accordion" id="ckyDetailCategoryanalytics"> <div class="cky-accordion-item"> <div class="cky-accordion-chevron"><i class="cky-chevron-right"></i></div> <div class="cky-accordion-header-wrapper"> <div class="cky-accordion-header"><button class="cky-accordion-btn" aria-label="Analíticos ou de Desempenho" data-cky-tag="detail-category-title" style="color:#212121">Analíticos ou de Desempenho</button><span class="cky-always-active">Sempre ativo</span> <div class="cky-switch" data-cky-tag="detail-category-toggle"><input type="checkbox" id="ckySwitchanalytics"></div> </div> <div class="cky-accordion-header-des" data-cky-tag="detail-category-description" style="color:#212121"> <p>Possibilitam coletar dados e informações sobre como os usuários utilizam o site, quais páginas visitam com mais frequência naquele site, a ocorrência de erros ou informações sobre o próprio desempenho do site ou da aplicação.</p></div> </div> </div> <div class="cky-accordion-body"> <div class="cky-audit-table" data-cky-tag="audit-table" style="color:#212121;background-color:#f4f4f4;border-color:#ebebeb"><ul class="cky-cookie-des-table"><li><div>Cookie</div><div>_ga</div></li><li><div>Duração</div><div>2 anos</div></li><li><div>Descrição</div><div><p>Google Analytics - Usado para distinguir usuários.</p></div></li></ul><ul class="cky-cookie-des-table"><li><div>Cookie</div><div>_ga_</div></li><li><div>Duração</div><div>1 ano</div></li><li><div>Descrição</div><div><p>Google Analytics - Usado para manter o estado da sessão.</p></div></li></ul></div> </div> </div> </div></div><div class="cky-footer-wrapper"> <span class="cky-footer-shadow"></span> <div class="cky-prefrence-btn-wrapper" data-cky-tag="detail-buttons">  <button class="cky-btn cky-btn-preferences" aria-label="Salvar Preferências" data-cky-tag="detail-save-button" style="color:#2da44a;background-color:transparent;border-color:#2da44a"> Salvar Preferências </button> <button class="cky-btn cky-btn-accept" aria-label="Concordo" data-cky-tag="detail-accept-button" style="color:#FFFFFF;background-color:#2da44a;border-color:#2da44a"> Concordo </button> </div></div></div></div></script><script>
+  jQuery(function($){
+    if($(window).width()<=768){
+      $('.api-card-container').slick({infinite:false,slidesToShow:1,centerMode:false,variableWidth:true});
+    }
+  });
+  </script>			<script>
+				( () => {
+					const lazyloadRunObserver = () => {
+						const lazyloadBackgrounds = document.querySelectorAll( `.e-con.e-parent:not(.e-lazyloaded)` );
+						const lazyloadBackgroundObserver = new IntersectionObserver( ( entries ) => {
+							entries.forEach( ( entry ) => {
+								if ( entry.isIntersecting ) {
+									let lazyloadBackground = entry.target;
+									if( lazyloadBackground ) {
+										lazyloadBackground.classList.add( 'e-lazyloaded' );
+									}
+									lazyloadBackgroundObserver.unobserve( entry.target );
+								}
+							});
+						}, { rootMargin: '200px 0px 200px 0px' } );
+						lazyloadBackgrounds.forEach( ( lazyloadBackground ) => {
+							lazyloadBackgroundObserver.observe( lazyloadBackground );
+						} );
+					};
+					const events = [
+						'DOMContentLoaded',
+						'elementor/lazyload/observe',
+					];
+					events.forEach( ( event ) => {
+						document.addEventListener( event, lazyloadRunObserver );
+					} );
+				} )();
+			</script>
+			<script id="eio-lazy-load-js-before">
+const eio_lazy_vars = {"bg_min_dpr":1.1,"exactdn_domain":"","safe_paths":["\/economia\/wp-content\/plugins","\/economia\/wp-content\/themes","\/economia\/wp-includes\/"],"safe_domains":["goias.gov.br","www.goias.gov.br"],"skip_autoscale":0,"threshold":0,"use_dpr":1};Object.freeze(eio_lazy_vars);
+//# sourceURL=eio-lazy-load-js-before
+</script>
+<script async data-wp-strategy="async" id="eio-lazy-load-js" src="https://goias.gov.br/economia/wp-content/plugins/ewww-image-optimizer/includes/lazysizes.min.js?ver=892"></script>
+<script id="so-fa-js-js-before">
+(function(){
+  var CFG = {
+    autoReplaceSvg: false,          // não processa a página inteira
+    observeMutations: false,        // não observa DOM global
+    searchPseudoElements: false,    // evita varrer :before/:after
+    autoA11y: true                  // ok manter acessibilidade
+  };
+  // Compat: FA5/FA6 podem ler chaves em locais diferentes
+  window.FontAwesomeConfig = Object.assign({}, window.FontAwesomeConfig || {}, CFG);
+  if (window.FontAwesome && window.FontAwesome.config) {
+    Object.assign(window.FontAwesome.config, CFG);
+  }
+})();
+//# sourceURL=so-fa-js-js-before
+</script>
+<script id="so-fa-js-js" src="https://goias.gov.br/economia/wp-content/plugins/servicos_do_orgao/assets/fontawesome/js/all.min.js?ver=6.7.2"></script>
+<script id="contraste-js-js" src="https://goias.gov.br/economia/wp-content/plugins/alto-contraste/includes/script.js?ver=834ca5b7cecd8022a8d776713e22b5d1"></script>
+<script id="wp-hooks-js" src="https://goias.gov.br/economia/wp-includes/js/dist/hooks.min.js?ver=f0f188028580e8dc1255"></script>
+<script id="wp-i18n-js" src="https://goias.gov.br/economia/wp-includes/js/dist/i18n.min.js?ver=1dfe7db3940c23ea9216"></script>
+<script id="wp-i18n-js-after">
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+//# sourceURL=wp-i18n-js-after
+</script>
+<script id="swv-js" src="https://goias.gov.br/economia/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.2.6"></script>
+<script id="contact-form-7-js-translations">
+( function( domain, translations ) {
+	var localeData = translations.locale_data[ domain ] || translations.locale_data.messages;
+	localeData[""].domain = domain;
+	wp.i18n.setLocaleData( localeData, domain );
+} )( "contact-form-7", {"translation-revision-date":"2025-05-19 13:41:20+0000","generator":"GlotPress\/4.0.1","domain":"messages","locale_data":{"messages":{"":{"domain":"messages","plural-forms":"nplurals=2; plural=n > 1;","lang":"pt_BR"},"Error:":["Erro:"]}},"comment":{"reference":"includes\/js\/index.js"}} );
+//# sourceURL=contact-form-7-js-translations
+</script>
+<script id="contact-form-7-js-before">
+var wpcf7 = {
+    "api": {
+        "root": "https:\/\/goias.gov.br\/economia\/wp-json\/",
+        "namespace": "contact-form-7\/v1"
+    },
+    "cached": 1
+};
+//# sourceURL=contact-form-7-js-before
+</script>
+<script id="contact-form-7-js" src="https://goias.gov.br/economia/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.2.6"></script>
+<script id="bootstrap-js-js" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script id="ics-calendar-select-script-js" src="https://goias.gov.br/economia/wp-content/plugins/agenda-de-autoridades-2.0/js/ics-calendar-select.js?ver=1"></script>
+<script id="magnific-popup-js" src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js?ver=834ca5b7cecd8022a8d776713e22b5d1"></script>
+<script id="datatable-js" src="https://goias.gov.br/economia/wp-content/plugins/planilhaview/assets/datatables.min.js"></script>
+<script id="custom-js-js" src="https://goias.gov.br/economia/wp-content/plugins/planilhaview/assets/custom.js"></script>
+<script id="custom-js-js-after">
+var $ = jQuery.noConflict();
+//# sourceURL=custom-js-js-after
+</script>
+<script id="slick-js-js" src="https://goias.gov.br/economia/wp-content/plugins/servicos_do_orgao/assets/js/slick.min.js"></script>
+<script id="my-popup-script-js" src="https://goias.gov.br/economia/wp-content/plugins/servicos_do_orgao/assets/js/my-popup-script.js"></script>
+<script id="dflip-script-js" src="https://goias.gov.br/economia/wp-content/plugins/3d-flipbook-dflip-lite/assets/js/dflip.min.js?ver=2.4.37"></script>
+<script id="elementor-webpack-runtime-js" src="https://goias.gov.br/economia/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=4.4.1"></script>
+<script id="elementor-frontend-modules-js" src="https://goias.gov.br/economia/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=4.4.1"></script>
+<script id="jquery-ui-core-js-before">
+jQuery.uiBackCompat = true;
+//# sourceURL=jquery-ui-core-js-before
+</script>
+<script id="jquery-ui-core-js" src="https://goias.gov.br/economia/wp-includes/js/jquery/ui/core.min.js?ver=1.14.2"></script>
+<script id="elementor-frontend-js-extra">
+var EAELImageMaskingConfig = {"svg_dir_url":"https://goias.gov.br/economia/wp-content/plugins/essential-addons-for-elementor-lite/assets/front-end/img/image-masking/svg-shapes/"};
+//# sourceURL=elementor-frontend-js-extra
+</script>
+<script id="elementor-frontend-js-before">
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Compartilhar no Facebook","shareOnX":"Compartilhar no X","pinIt":"Fixar","download":"Baixar","downloadImage":"Baixar imagem","fullscreen":"Tela cheia","zoom":"Zoom","share":"Compartilhar","playVideo":"Reproduzir v\u00eddeo","previous":"Anterior","next":"Pr\u00f3ximo","close":"Fechar","a11yCarouselPrevSlideMessage":"Slide anterior","a11yCarouselNextSlideMessage":"Pr\u00f3ximo slide","a11yCarouselFirstSlideMessage":"Este \u00e9 o primeiro slide","a11yCarouselLastSlideMessage":"Este \u00e9 o \u00faltimo slide","a11yCarouselPaginationBulletMessage":"Ir para o slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Dispositivos m\u00f3veis no modo retrato","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Dispositivos m\u00f3veis no modo paisagem","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet no modo retrato","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet no modo paisagem","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Notebook","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Tela ampla (widescreen)","value":2400,"default_value":2400,"direction":"min","is_enabled":false}},"hasCustomBreakpoints":false},"version":"4.4.1","is_static":false,"experimentalFeatures":{"e_font_icon_svg":true,"additional_custom_breakpoints":true,"container":true,"e_optimized_markup":true,"e_mcp_revision_snapshots":true,"nested-elements":true,"e_atomic_elements":true,"e_opt_in_v4":true,"import-export-customization":true},"urls":{"assets":"https:\/\/goias.gov.br\/economia\/wp-content\/plugins\/elementor\/assets\/","ajaxurl":"https:\/\/goias.gov.br\/economia\/wp-admin\/admin-ajax.php","uploadUrl":"https:\/\/goias.gov.br\/economia\/wp-content\/uploads\/sites\/45"},"nonces":{"floatingButtonsClickTracking":"f4889b1885","atomicFormsSendForm":"06751919d0"},"swiperClass":"swiper","settings":{"page":[],"editorPreferences":[]},"kit":{"active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":19255,"title":"ICMS%20%E2%80%93%20Secretaria%20da%20Economia","excerpt":"","featuredImage":false}};
+//# sourceURL=elementor-frontend-js-before
+</script>
+<script id="elementor-frontend-js" src="https://goias.gov.br/economia/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=4.4.1"></script>
+<script id="eael-general-js-extra">
+var localize = {"ajaxurl":"https://goias.gov.br/economia/wp-admin/admin-ajax.php","nonce":"ad4a3cf347","i18n":{"added":"Adicionado ","compare":"Comparar","loading":"Carregando..."},"eael_translate_text":{"required_text":"\u00e9 um campo obrigat\u00f3rio","invalid_text":"Inv\u00e1lido","billing_text":"Cobran\u00e7a","shipping_text":"Envio","fg_mfp_counter_text":"de"},"page_permalink":"https://goias.gov.br/economia/icms/","cart_redirectition":"","cart_page_url":"","el_breakpoints":{"mobile":{"label":"Dispositivos m\u00f3veis no modo retrato","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Dispositivos m\u00f3veis no modo paisagem","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet no modo retrato","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet no modo paisagem","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Notebook","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Tela ampla (widescreen)","value":2400,"default_value":2400,"direction":"min","is_enabled":false}}};
+//# sourceURL=eael-general-js-extra
+</script>
+<script id="eael-general-js" src="https://goias.gov.br/economia/wp-content/plugins/essential-addons-for-elementor-lite/assets/front-end/js/view/general.min.js?ver=6.8.9"></script>
+<script id="hoverIntent-js" src="https://goias.gov.br/economia/wp-includes/js/hoverIntent.min.js?ver=1.10.2"></script>
+<script id="megamenu-js" src="https://goias.gov.br/economia/wp-content/plugins/megamenu/js/maxmegamenu.min.js?ver=3.10.10"></script>
+<script id="main-js" src="https://goias.gov.br/wp-content/plugins/gantry5/assets/js/main.js?ver=6b059fc1"></script>
+        <script data-cfasync="false">
+            window.dFlipLocation = 'https://goias.gov.br/economia/wp-content/plugins/3d-flipbook-dflip-lite/assets/';
+            window.dFlipWPGlobal = {"text":{"toggleSound":"Ativar\/desativar som","toggleThumbnails":"Ativar miniaturas","toggleOutline":"Ativar estrutura\/marcadores","previousPage":"P\u00e1gina anterior","nextPage":"Pr\u00f3xima p\u00e1gina","toggleFullscreen":"Ativar tela cheia","zoomIn":"Aumentar zoom","zoomOut":"Diminuir zoom","toggleHelp":"Ativar ajuda","singlePageMode":"Modo de p\u00e1gina individual","doublePageMode":"Modo de p\u00e1gina dupla","downloadPDFFile":"Baixar arquivo PDF","gotoFirstPage":"Ir para a primeira p\u00e1gina","gotoLastPage":"Ir para a \u00faltima p\u00e1gina","share":"Compartilhar","mailSubject":"Eu gostaria que voc\u00ea visse este FlipBook","mailBody":"Consulte este site {{url}}","loading":"DearFlip: carregando "},"viewerType":"flipbook","moreControls":"download,pageMode,startPage,endPage,sound","hideControls":"","scrollWheel":"false","backgroundColor":"#777","backgroundImage":"","height":"auto","paddingLeft":"20","paddingRight":"20","controlsPosition":"bottom","duration":800,"soundEnable":"true","enableDownload":"true","showSearchControl":"false","showPrintControl":"false","enableAnnotation":false,"enableAnalytics":"false","webgl":"true","hard":"none","maxTextureSize":"1600","rangeChunkSize":"524288","zoomRatio":1.5,"stiffness":3,"pageMode":"0","singlePageMode":"0","pageSize":"0","autoPlay":"false","autoPlayDuration":5000,"autoPlayStart":"false","linkTarget":"2","sharePrefix":"flipbook-"};
+        </script>
+      <script id="wp-emoji-settings" type="application/json">
+{"baseUrl":"https://s.w.org/images/core/emoji/17.0.2/72x72/","ext":".png","svgUrl":"https://s.w.org/images/core/emoji/17.0.2/svg/","svgExt":".svg","source":{"concatemoji":"https://goias.gov.br/economia/wp-includes/js/wp-emoji-release.min.js?ver=834ca5b7cecd8022a8d776713e22b5d1"}}
+</script>
+<script type="module">
+/*! This file is auto-generated */
+var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof HTMLScriptElement))throw new Error("Element missing: "+e);const r=JSON.parse(t.text),s=(window._wpemojiSettings=r,"wpEmojiSettingsSupports"),o=["flag","emoji"];function i(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(s,JSON.stringify(t))}catch(e){}}function c(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0);const r=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data);return t.every((e,t)=>e===r[t])}function p(e,t){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var n=e.getImageData(16,16,1,1);for(let e=0;e<n.data.length;e++)if(0!==n.data[e])return!1;return!0}function u(e,t,n,r){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\udde8\ud83c\uddf6","\ud83c\udde8\u200b\ud83c\uddf6")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!r(e,"\ud83e\u1fac8")}return!1}function f(e,t,n,r){let a;const s=(a="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):document.createElement("canvas")).getContext("2d",{willReadFrequently:!0}),o=(s.textBaseline="top",s.font="600 32px Arial",{});return e.forEach(e=>{o[e]=t(s,e,n,r)}),o}function a(e){var t=document.createElement("script");t.src=e,t.defer=!0,document.head.appendChild(t)}r.supports={everything:!0,everythingExceptFlag:!0},new Promise(t=>{let n=function(){try{var e=JSON.parse(sessionStorage.getItem(s));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(o),u.toString(),c.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"});const a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=e=>{i(n=e.data),a.terminate(),t(n)})}catch(e){}i(n=f(o,u,c,p))}t(n)}).then(e=>{for(const n in e)r.supports[n]=e[n],r.supports.everything=r.supports.everything&&r.supports[n],"flag"!==n&&(r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&r.supports[n]);var t;r.supports.everythingExceptFlag=r.supports.everythingExceptFlag&&!r.supports.flag,r.supports.everything||((t=r.source||{}).concatemoji?a(t.concatemoji):t.wpemoji&&t.twemoji&&(a(t.twemoji),a(t.wpemoji)))});
+//# sourceURL=https://goias.gov.br/economia/wp-includes/js/wp-emoji-loader.min.js
+</script>
+
+
+    
+
+        
+    </body>
+</html>
+
+<!--
+Performance optimized by W3 Total Cache. Learn more: https://www.boldgrid.com/w3-total-cache/?utm_source=w3tc&utm_medium=footer_comment&utm_campaign=free_plugin
+
+Object Caching 162/229 objects using Memcache
+Page Caching using Memcache 
+
+Served from: goias.gov.br @ 2026-11-27 20:08:03 by W3 Total Cache
+-->
