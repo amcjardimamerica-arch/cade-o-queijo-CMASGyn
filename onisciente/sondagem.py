@@ -225,6 +225,10 @@ CANDIDATOS: dict[str, list[str]] = {
         "https://www10.goiania.go.gov.br/DespesasWebBlocks/EmpenhoPopUp.aspx?CdOrgao=1101&Empenho=20261101002430005"
         "&NmOrgao=SECRETARIA+MUNICIPAL+DE+GOVERNO",
     ],
+    # Frente D2, sexta rodada: o caminho do motor execucao_goiania, reproduzido pelo próprio código do
+    # motor (goiania_transweb.exportar_mes) em três meses e em três variantes. Sem endereços na fila:
+    # quem lê é _caminho_do_motor.
+    "d2_transweb_motor": [],
     "d2_wordpress": [
         "https://www.goiania.go.gov.br/transparencia/",
         "https://www.goiania.go.gov.br/transparencia/?filtro_simplificado=categoria&categoria=49",
@@ -552,11 +556,81 @@ def _conversa_despesas(fonte: str, url: str, leitura, *, ler_=None, guardar=None
     return out
 
 
+MESES_DO_MOTOR = ("2024-11", "2025-06", "2026-10")
+
+
+def _caminho_do_motor(fonte: str, *, ler_=None, guardar=None, meses=MESES_DO_MOTOR,
+                      abridor=None) -> list[dict]:
+    """d2_transweb_motor: o motor execucao_goiania gravou zero eventos (rodada 46093388087: o POST da
+    exportação voltou com 19.654 bytes, não com a planilha). Repete o caminho do motor com o código
+    dele (exportar_mes: GET da página e postback da exportação) e guarda o corpo de cada resposta:
+
+    * ``sem_cookies``: como o motor rodou (o leitor comum não guarda cookies), no mês 2026-10;
+    * ``com_cookies``: como o motor corrigido (sessão de cookies, sessao_de_cookies), nos três meses;
+    * ``buscar_antes``: com cookies, o Buscar por OsAjax antes da exportação, como a sondagem que
+      recebeu a planilha, no mês 2026-10.
+
+    Cada registro diz se a resposta é a planilha (o leitor do motor) e, se não for, o motivo legível."""
+    from .coletores import goiania_transweb as G
+    ler_ = ler_ or ler
+    guardar = guardar or _guardar
+    abridor = abridor or (lambda cookies: install_opener(
+        build_opener(HTTPCookieProcessor(CookieJar())) if cookies else build_opener()))
+    portal = G.carregar_portal(RAIZ / "alvos" / "portais" / "goiania.toml")
+    c = portal.consulta("despesas_favorecido")
+    out: list[dict] = []
+    variantes = [("sem_cookies", False, "2026-10", False)] + \
+        [("com_cookies", True, m, False) for m in meses] + [("buscar_antes", True, "2026-10", True)]
+    for nome, cookies, mes, buscar in variantes:
+        abridor(cookies)                     # sessão nova (ou nenhuma) para cada variante
+        etiqueta = f"{nome}-{mes}"
+
+        def ler_motor(url, formulario=None, _et=etiqueta, _buscar=buscar, _mes=mes):
+            if _buscar and formulario and formulario.get("__EVENTTARGET") == "":
+                # Antes da exportação, o Buscar por OsAjax com a página recém-lida (o passo a).
+                pagina = ultimas.get("pagina")
+                if pagina is not None:
+                    f = [x for x in G.formularios(pagina.conteudo) if x.achar(c.campos["mes"])]
+                    if f:
+                        ano, mm = _mes.split("-")
+                        corpo = G.corpo_buscar(f[0], c, {"mes": mm, "ano": ano}, ajax=True)
+                        if isinstance(corpo, dict):
+                            destino = f"{url}?_ts={int(time.time() * 1000)}"
+                            lida = ler_(destino, tempo=90, fonte=fonte, formulario=corpo)
+                            reg = guardar(fonte, f"{destino}#{_et}-buscar", lida, corpo)
+                            reg.update({"variante": _et, "passo": "buscar_osajax"})
+                            out.append(reg)
+            inicio = time.monotonic()
+            lida = ler_(url, tempo=120, fonte=fonte, formulario=formulario)
+            reg = guardar(fonte, f"{url}#{_et}-{'exportar' if formulario else 'get'}", lida, formulario)
+            reg.update({"variante": _et, "passo": "exportar" if formulario else "get",
+                        "segundos": round(time.monotonic() - inicio, 1)})
+            if formulario is None:
+                ultimas["pagina"] = lida
+            else:
+                try:
+                    exp = G.eventos_da_exportacao(lida.conteudo, c.exportar.get("colunas") or {})
+                    reg.update({"planilha": True, "linhas": exp.linhas, "empenhos": exp.empenhos,
+                                "por_mes": exp.por_mes})
+                except ValueError as e:
+                    reg.update({"planilha": False, "motivo": str(e)})
+            out.append(reg)
+            return lida
+
+        ultimas: dict = {}
+        G.exportar_mes(ler_motor, portal, c, mes)
+    abridor(True)
+    return out
+
+
 def sondar(fontes: list[str] | None = None) -> list[dict]:
     resultado = []
     install_opener(build_opener(HTTPCookieProcessor(CookieJar())))   # sessão, como num navegador
     for fonte, urls in CANDIDATOS.items():
         if fontes and fonte not in fontes:
+            continue
+        if fonte == "d2_transweb_motor":
+            resultado.extend(_caminho_do_motor(fonte))
             continue
         fila: list = list(urls)
         vistos: set[str] = set()

@@ -820,3 +820,152 @@ def test_conferencias_rodam_no_recorte_real_da_exportacao():
     # Pago em 15/10/2026 e liquidado em 16/10/2026 (juros do contrato com o BNDES): indício, não acusação.
     assert list(ordem) == ["20261603003530022"]
     assert "pagamento antes da liquidação" in ordem["20261603003530022"].descricao
+
+
+# --- Sexta rodada: a coleta real gravou zero eventos (rodada 46093388087) --------------------------
+# O POST da exportação voltou com 19.654 bytes, sem a planilha. O corpo do pedido montado pelo motor é
+# igual, campo a campo, ao da sondagem que recebeu a planilha; a diferença é a sessão: a sondagem lê
+# com um CookieJar, e o leitor comum do banco histórico (coletores/base.py) não guarda cookies, então
+# o postback chegava sem o ASP.NET_SessionId do GET. erro_interno_real.html: a página "Erro Interno"
+# que o portal deu ao Buscar por postback na sondagem de 28/11/2026.
+
+import threading
+import urllib.request
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+
+
+def test_postback_da_exportacao_vai_com_o_cookie_da_sessao_do_get():
+    """Servidor local (sem rede): o GET dá o cookie de sessão; o POST só o devolve dentro da sessão."""
+    from onisciente.coletores.base import ler
+    cookies = []
+
+    class Portal(BaseHTTPRequestHandler):
+        def log_message(self, *_):
+            pass
+
+        def do_GET(self):
+            self.send_response(200)
+            self.send_header("Set-Cookie", "ASP.NET_SessionId=sessao-de-teste; path=/; HttpOnly")
+            self.end_headers()
+            self.wfile.write(b"<html><form id='WebForm1'></form></html>")
+
+        def do_POST(self):
+            self.rfile.read(int(self.headers.get("Content-Length", 0)))
+            cookies.append(self.headers.get("Cookie"))
+            self.send_response(200)
+            self.end_headers()
+            self.wfile.write(b"Empenho;VlEmpenhado\r\n")
+
+    servidor = ThreadingHTTPServer(("127.0.0.1", 0), Portal)
+    threading.Thread(target=servidor.serve_forever, daemon=True).start()
+    url = f"http://127.0.0.1:{servidor.server_address[1]}/transweb/Portal_Despesas.aspx"
+    try:
+        ler(url)
+        ler(url, formulario={"__OSVSTATE": "x"})                 # como o motor da rodada 5 lia
+        antes = urllib.request._opener
+        with G.sessao_de_cookies():
+            ler(url)
+            ler(url, formulario={"__OSVSTATE": "x"})
+        assert urllib.request._opener is antes                  # o abridor anterior volta no fim
+        ler(url, formulario={"__OSVSTATE": "x"})
+    finally:
+        servidor.shutdown()
+    assert cookies == [None, "ASP.NET_SessionId=sessao-de-teste", None]
+
+
+def test_corpo_da_exportacao_do_motor_e_o_da_sondagem_que_funcionou():
+    """O pedido do motor, montado da mesma página, é igual ao que a sondagem enviou (o POST guardado
+    no cabeçalho da resposta real d4b55a13): a diferença não está no corpo."""
+    import json
+    pasta = RAIZ / "relatorios" / "onisciente" / "sondagem"
+    resp = pasta / "d2_transweb__www10-goiania-go-gov-br-transweb-portal-despesas-aspx-d4b55a13.txt"
+    pag = pasta / "d2_transweb__www10-goiania-go-gov-br-transweb-portal-despesas-aspx-9cc968ae.txt"
+    if not (resp.exists() and pag.exists()):
+        pytest.skip("respostas da sondagem ausentes")
+    cab = resp.read_bytes().split(b"\n\n", 1)[0].decode()
+    enviado = json.loads(next(ln[6:] for ln in cab.splitlines() if ln.startswith("POST: ")))
+    bruto = pag.read_bytes()
+    form = G.formularios(bruto[bruto.index(b"\n\n") + 2:])[0]
+    assert G.corpo_exportar(form, LISTA, {"mes": "10", "ano": "2026"}, "CSV") == enviado
+
+
+def test_motivo_legivel_da_resposta_que_nao_e_a_planilha():
+    m = G.motivo_da_resposta(_f("erro_interno_real.html"))
+    assert m.startswith("título 'Internal Error'; texto 'TransWeb salva Voltar Erro Interno Um erro interno ocorreu")
+    assert "Device Emulation" not in m
+    with pytest.raises(ValueError, match="não é a planilha.*Erro Interno"):
+        G.eventos_da_exportacao(_f("erro_interno_real.html"), LISTA.exportar["colunas"])
+    assert G.motivo_da_resposta(b"") == "resposta vazia"
+
+
+@dataclass
+class _CtxColetas(_Ctx):
+    """Como o banco histórico: cada leitura vira uma linha de coletas, com o mês que o motor passou."""
+
+    def ler(self, motor, alvo, url, mes=None, formulario=None, tempo=60):
+        lida = self.ler_falso(url, formulario=formulario)
+        self.banco.con.execute("INSERT INTO coletas VALUES (?,?,?,?,?,?,?,?)",
+                               (motor, alvo, mes or "", url, int(lida.ok), lida.http, lida.erro or None,
+                                len(lida.conteudo)))
+        return lida
+
+
+def test_motor_anota_o_motivo_na_coleta_grava_o_mes_e_nao_repete_a_reserva():
+    con = sqlite3.connect(":memory:")
+    con.execute("CREATE TABLE coletas (motor, alvo, mes, url, ok, http, erro, bytes)")
+    ctx = _CtxColetas(_Banco(con), ["2026-09", "2026-10"], date(2026, 11, 28), LeitorFalso())
+    sessoes = []
+
+    class ErroInterno(LeitorExportacao):
+        def __call__(self, url, formulario=None, **kw):
+            sessoes.append(any(isinstance(h, urllib.request.HTTPCookieProcessor)
+                               for h in urllib.request._opener.handlers))
+            if formulario is not None and formulario.get(PREFIXO + "wtbtnExportar"):
+                self.pedidos.append((url, formulario))
+                return Leitura(True, url, _f("erro_interno_real.html"), http=200)
+            return super().__call__(url, formulario, **kw)
+
+    ctx.ler_falso = ErroInterno()
+    resumo = G.motor(ctx, PORTAL)
+    assert all(sessoes)                                         # toda leitura dentro da sessão de cookies
+    assert resumo == {"eventos": 0, "consultas": 2, "falhas": 2, "vazias": 0}
+    linhas = con.execute("select mes, ok, http, erro from coletas order by rowid").fetchall()
+    assert {m for m, *_ in linhas} == {"2026-10", "2026-09"}      # coletas.mes preenchido
+    exportacoes = [ln for ln in linhas if ln[2] == 200 and ln[3]]
+    assert len(exportacoes) == 2 and all(ok == 0 for _m, ok, _h, _e in exportacoes)
+    assert "não é a planilha" in exportacoes[0][3] and "Erro Interno" in exportacoes[0][3]
+    buscar = [ln for ln in linhas if ln[2] == 500]
+    assert len(buscar) == 1 and buscar[0][0] == "2026-10"        # a reserva tentada uma vez só
+    notas = dict(con.execute("select dia, erro from despesa_consultas").fetchall())
+    assert "Erro Interno" in notas["2026-10"] and "reserva (Buscar): HTTP 500" in notas["2026-10"]
+    assert "reserva não tentada (o Buscar deu HTTP 500 no mês 2026-10)" in notas["2026-09"]
+
+
+def test_sondagem_repete_o_caminho_do_motor_em_tres_meses():
+    from onisciente import sondagem
+    pedidos, guardados, abridores = [], [], []
+
+    def ler(destino, *, tempo=60, fonte="", formulario=None):
+        pedidos.append((destino, formulario))
+        if formulario is None:
+            return Leitura(True, destino, _f("portal_despesas_real.html"), http=200)
+        if formulario.get("__AJAX"):
+            return Leitura(False, destino, b"", erro="HTTP 500", http=500)
+        return Leitura(True, destino, _f(CSV_OUT if abridores[-1] else "erro_interno_real.html"), http=200)
+
+    def guardar(fonte, destino, leitura, formulario):
+        guardados.append(destino)
+        return {"fonte": fonte, "url": destino, "ok": leitura.ok}
+
+    regs = sondagem._caminho_do_motor("d2_transweb_motor", ler_=ler, guardar=guardar, abridor=abridores.append)
+    assert abridores == [False, True, True, True, True, True]       # cada variante com sessão nova
+    exportar = [r for r in regs if r["passo"] == "exportar"]
+    assert [r["variante"] for r in exportar] == ["sem_cookies-2026-10", "com_cookies-2024-11", "com_cookies-2025-06",
+                                                 "com_cookies-2026-10", "buscar_antes-2026-10"]
+    assert not exportar[0]["planilha"] and "Erro Interno" in exportar[0]["motivo"]
+    assert all(r["planilha"] and r["linhas"] == 19 for r in exportar[1:])
+    assert [r["passo"] for r in regs if r["variante"] == "buscar_antes-2026-10"] == ["get", "buscar_osajax", "exportar"]
+    meses = [f[PREFIXO + "wtcboMes"] for _d, f in pedidos if f and not f.get("__AJAX")]
+    assert meses == ["__ossli_10", "__ossli_11", "__ossli_06", "__ossli_10", "__ossli_10"]
+    assert len(set(guardados)) == len(guardados)                    # nenhuma resposta sobrescreve outra
+    assert sondagem.CANDIDATOS["d2_transweb_motor"] == []

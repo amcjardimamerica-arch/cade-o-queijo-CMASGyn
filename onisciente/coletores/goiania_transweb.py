@@ -27,11 +27,14 @@ import json
 import re
 import tomllib
 import unicodedata
+import urllib.request
+from contextlib import contextmanager
 from dataclasses import dataclass, field
 from datetime import date, datetime, timedelta
 from html import unescape
 from html.parser import HTMLParser
 from pathlib import Path
+from http.cookiejar import CookieJar
 from typing import Callable, Iterable
 from urllib.parse import urljoin
 
@@ -1307,6 +1310,31 @@ class Exportacao:
     por_mes: dict = field(default_factory=dict)   # AAAA-MM da data do empenho -> linhas
 
 
+def motivo_da_resposta(conteudo: bytes | str, limite: int = 240) -> str:
+    """O começo legível de uma resposta que não é a planilha: o título da página e o primeiro texto
+    visível (sem scripts, estilos e o simulador de dispositivos do OutSystems), numa linha."""
+    if isinstance(conteudo, bytes):
+        try:
+            texto = conteudo.decode("utf-8")
+        except UnicodeDecodeError:
+            texto = conteudo.decode("latin-1")
+    else:
+        texto = conteudo
+    if not texto.strip():
+        return "resposta vazia"
+    m = re.search(r"<title[^>]*>(.*?)</title>", texto, re.S | re.I)
+    titulo = " ".join(unescape(m.group(1)).split()) if m else ""
+    corpo = re.sub(r"<head.*?</head>|<script.*?</script>|<style.*?</style>", " ", texto, flags=re.S | re.I)
+    corpo = re.split(r'class="ResponsiveOverlay"|Device Emulation Preview', corpo, maxsplit=1)[0]
+    visivel = " ".join(unescape(re.sub(r"<[^>]+>", " ", corpo)).split())
+    if titulo and visivel.startswith(titulo):
+        visivel = visivel[len(titulo):].strip()
+    partes = [f"título {titulo!r}"] if titulo else []
+    if visivel:
+        partes.append(f"texto {visivel[:limite]!r}")
+    return "; ".join(partes) or f"começa com {' '.join(texto[:80].split())!r}"
+
+
 def _codigo_final(texto: str) -> str:
     """O código depois do último " - " ("ADMINISTRACAO - 04" vira "04")."""
     m = re.search(r"-\s*(\d+)\s*$", str(texto or ""))
@@ -1334,8 +1362,8 @@ def eventos_da_exportacao(conteudo: bytes | str, colunas: dict[str, str], *, con
     cab = [norm(c) for c in linhas[0]]
     idx = {campo: cab.index(norm(nome)) for campo, nome in colunas.items() if norm(nome) in cab}
     if "empenho" not in idx or "valor_empenhado" not in idx:
-        inicio = " ".join(texto[:80].split())
-        raise ValueError(f"a resposta não é a planilha da exportação (começa com {inicio!r})")
+        raise ValueError(f"a resposta não é a planilha da exportação ({len(texto.encode())} bytes; "
+                         f"{motivo_da_resposta(texto)})")
     out = Exportacao([])
     vistos_emp: set[str] = set()
     vistos_liq: set[tuple[str, str]] = set()
@@ -1554,6 +1582,34 @@ def substituir_empenhos(con, eventos: list[dict], consulta: str, *, coletado_em:
     return gravar(con, eventos, coletado_em=coletado_em)
 
 
+@contextmanager
+def sessao_de_cookies():
+    """Uma sessão de cookies, como no navegador e na sondagem, enquanto o motor lê o TransWeb.
+
+    O OutSystems liga o __OSVSTATE da página à sessão (o cookie ASP.NET_SessionId que o GET cria). O
+    leitor comum (coletores/base.py) não guarda cookies: o postback da exportação chegava sem a sessão
+    do GET. Instala, só durante o motor, um abridor com CookieJar no urllib (os cookies ficam presos ao
+    domínio do portal) e devolve o abridor anterior no fim."""
+    anterior = getattr(urllib.request, "_opener", None)
+    jar = CookieJar()
+    urllib.request.install_opener(urllib.request.build_opener(urllib.request.HTTPCookieProcessor(jar)))
+    try:
+        yield jar
+    finally:
+        urllib.request._opener = anterior
+
+
+def anotar_coleta(con, url: str, erro: str, *, motor: str = "execucao_goiania") -> None:
+    """Põe o motivo na última linha de ``coletas`` deste endereço (a leitura veio com HTTP 200, mas não
+    trouxe o que o motor pediu): ok = 0 e o erro legível. Sem a tabela (fora do banco histórico), nada."""
+    try:
+        linha = con.execute("SELECT max(rowid) FROM coletas WHERE motor = ? AND url = ?", (motor, url)).fetchone()
+    except Exception:  # noqa: BLE001 (sem a tabela coletas: o motor roda fora do banco histórico)
+        return
+    if linha and linha[0]:
+        con.execute("UPDATE coletas SET ok = 0, erro = ? WHERE rowid = ?", (erro[:500], linha[0]))
+
+
 def exportar_mes(ler: Ler, portal: Portal, c: Consulta, mes: str) -> tuple[Exportacao | None, str, str]:
     """GET da página, postback com mês e ano e a exportação CSV. Devolve a exportação lida (ou None),
     o endereço e o erro."""
@@ -1581,15 +1637,23 @@ def _motor_exportacao(ctx, portal: Portal, c: Consulta, resumo: dict) -> None:
     """O caminho principal da página real: a exportação CSV de cada mês, com conferência por amostra
     nos popups. Se a exportação de um mês falhar, o mês é lido pela lista (o Buscar), que é a reserva."""
     con = ctx.banco.con
+    with sessao_de_cookies():
+        _meses_da_exportacao(ctx, portal, c, resumo, con)
 
-    def ler(url, formulario=None):
-        return ctx.ler("execucao_goiania", c.id, url, formulario=formulario, tempo=120)
 
+def _meses_da_exportacao(ctx, portal: Portal, c: Consulta, resumo: dict, con) -> None:
     meses = [m for m in ctx.meses if m <= ctx.hoje.strftime("%Y-%m")]
     lista_aberta = None
+    reserva_recusada = ""
     for mes in meses_a_ler(con, c.id, meses, releitura=c.exportar.get("releitura", 12))[
             :c.exportar.get("meses_por_rodada", 14)]:
+
+        def ler(url, formulario=None, _mes=mes):
+            return ctx.ler("execucao_goiania", c.id, url, mes=_mes, formulario=formulario, tempo=120)
+
         exp, url, erro = exportar_mes(ler, portal, c, mes)
+        if exp is None and erro.startswith("exportação: a resposta não é a planilha"):
+            anotar_coleta(con, url, erro)
         if exp is None and not erro.startswith("exportação"):
             # A página nem abriu: os outros meses dariam no mesmo.
             con.execute("INSERT INTO despesa_consultas VALUES (?,?,?,?,?,?,?,?,?)",
@@ -1601,14 +1665,20 @@ def _motor_exportacao(ctx, portal: Portal, c: Consulta, resumo: dict) -> None:
         if exp is None:
             # A reserva: a lista do mês pelo Buscar (a sondagem de 28/11/2026 viu o portal recusar o
             # Buscar; fica para quando a exportação falhar e o Buscar voltar a responder).
-            if lista_aberta is None:
+            if lista_aberta is None and not reserva_recusada:
                 lista_aberta = abrir_consulta(ler, portal, c)
-            if isinstance(lista_aberta, str):
+            if reserva_recusada:
+                # O Buscar já foi recusado nesta rodada: não se bate de novo na mesma porta a cada mês.
+                res = Resultado(False, c.id, url=url, erro=f"{erro}; reserva não tentada ({reserva_recusada})")
+            elif isinstance(lista_aberta, str):
                 res = Resultado(False, c.id, url=url, erro=f"{erro}; lista: {lista_aberta}")
             else:
                 ano, mm = mes.split("-")
                 res = consultar_lista(ler, portal, c, {"mes": mm, "ano": ano}, aberta=lista_aberta,
                                       conhecidos=conhecidos_do_banco(con))
+                if not res.ok:
+                    reserva_recusada = f"o Buscar deu {res.erro or 'falha'} no mês {mes}"
+                    res.erro = f"{erro}; reserva (Buscar): {res.erro}"
             novos = gravar_lista(con, [e for e in res.eventos if e["tipo"] != "falha_detalhe"], c.id) if res.ok else 0
             notas = [f"{erro}; lida pela lista"] + [e["historico"] for e in res.eventos if e["tipo"] == "falha_detalhe"]
             situacao = "falha" if not res.ok else ("vazia" if res.vazio else "lida")
