@@ -28,7 +28,7 @@ from pathlib import Path
 from typing import Callable
 from urllib.parse import urlencode
 
-from . import RAIZ, partes, rastreio
+from . import RAIZ, mascara_banco, partes, rastreio
 from .coletores import base, goiania_transweb, msc, siope, siops, transparencia
 from .nucleo.custodia import impressao
 
@@ -277,6 +277,8 @@ class Banco:
         banco._atualizar_colunas()
         banco._iniciar_rastreio()
         rastreio.migrar(banco.con)
+        # CPF completo gravado antes da máscara (28/11/2026): mascarado numa rodada própria do rastreio.
+        mascara_banco.migrar(banco.con)
         return banco
 
     def _iniciar_rastreio(self) -> None:
@@ -310,6 +312,7 @@ class Banco:
         self.con.execute("DELETE FROM meta WHERE chave = ?", (f"motor:{motor}",))
 
     def inserir(self, tabela: str, linha: dict) -> None:
+        linha = mascara_banco.mascarar_linha(tabela, linha)   # CPF de pessoa física: ***.NNN.NNN-**
         coleta = tabela == "coletas"
         if coleta:
             # A coleta ganha o hash da requisição e a marca de ausência; a anotação sobre uma resposta

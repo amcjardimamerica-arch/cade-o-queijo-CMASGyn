@@ -28,3 +28,10 @@
 # Mais partes (28/11/2026, historico.db em 88,7 MB com a despesa de Goiânia): series.db (siconfi_itens, msc_itens,
 # externos_itens) e a despesa comprimida em dados/onisciente/despesa/despesa_eventos_AAAA.jsonl.gz (um por ano; o
 # SQLite de trabalho é refeito deles e fica fora do git). Travas em testes/test_partes.py.
+# CPF mascarado no banco (28/11/2026, o banco vai a um repositório público): onisciente/mascara_banco.py troca o
+# CPF de pessoa física por ***.NNN.NNN-** (onisciente.mascara_cpf, os seis do meio) na gravação (Banco.inserir) em
+# sancoes, pncp_itens, contratos_pncp, contratacoes_pncp e emendas_municipio, e nas linhas antigas na abertura do
+# Banco, numa rodada do rastreio (modo mascara_cpf) que sela de novo com a origem do selo anterior. CNPJ fica
+# inteiro; despesa_eventos fica com o coletor da D2. Pessoa física casa com a sanção pelos seis do meio e pelo
+# nome, como o QSA. Travas em testes/test_mascara_banco.py (a do banco real inteiro é xfail estrito até a D2
+# migrar despesa_eventos).
