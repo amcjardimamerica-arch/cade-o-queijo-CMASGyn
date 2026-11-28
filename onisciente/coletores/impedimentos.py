@@ -35,7 +35,6 @@ import zipfile
 from dataclasses import dataclass
 from datetime import date, timedelta
 
-from .. import mascara_banco
 from .. import partes as _partes
 from .cnpj import cnpj_valido, data_iso, so_cnpj
 
@@ -175,9 +174,7 @@ def gravar(con, linhas: list[dict], cadastro: str) -> None:
     preparar(con)
     con.execute("DELETE FROM impedimentos WHERE cadastro = ?", (cadastro,))
     for l in linhas:
-        # O CPF de pessoa física sai mascarado (***.NNN.NNN-**), como em Banco.inserir: esta gravação vai
-        # direto pela conexão.
-        l = mascara_banco.mascarar_linha("impedimentos", l)
+        # A linha fica como a fonte publicou (decisão do usuário de 28/11/2026, config/decisoes_usuario.yml).
         con.execute(f"INSERT INTO impedimentos ({', '.join(l)}) VALUES ({', '.join('?' * len(l))})",
                     list(l.values()))
     con.commit()

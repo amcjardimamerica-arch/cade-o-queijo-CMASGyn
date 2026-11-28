@@ -284,9 +284,13 @@ class ContextoTrilha:
     dotacoes: set = field(default_factory=set)        # (ano, função) com dotação
     dotacoes_fonte: set = field(default_factory=set)  # (ano, função, destinação) com dotação
     contratos: dict = field(default_factory=dict)     # documento do fornecedor -> [Contrato]
-    # Pessoa física: os seis dígitos do meio do CPF e o nome -> [Contrato]. O CPF é gravado mascarado
-    # (***.NNN.NNN-**), então o cruzamento com o PNCP casa como o QSA da Receita: miolo e nome.
+    # Pessoa física com o CPF que a fonte publicou mascarado (***.NNN.NNN-**): os seis dígitos do meio e o
+    # nome -> [Contrato]. O CPF inteiro casa pelo CPF inteiro (``contratos``); o miolo e o nome só entram
+    # quando um dos lados veio mascarado da fonte (decisão do usuário de 28/11/2026, P-01: o sistema não
+    # mascara; o que a fonte publica inteiro casa inteiro).
     contratos_pf: dict = field(default_factory=dict)
+    # Pessoa física com o CPF inteiro, pelo miolo e o nome: para o credor que a fonte publicou mascarado.
+    contratos_pf_inteiro: dict = field(default_factory=dict)
     rreo: set = field(default_factory=set)            # (ano, bimestre) entregues
     # Nome do órgão normalizado -> CNPJs dele no PNCP: o portal publica o órgão só pelo nome.
     orgaos_pncp: dict = field(default_factory=dict)
@@ -351,13 +355,20 @@ def chave_pf(documento: str, nome: str) -> tuple[str, str] | None:
 
 
 def contratos_do_credor(ctx: ContextoTrilha, documento: str, credor: str = "") -> list:
-    """Os contratos do PNCP do credor: pelo CNPJ (ou CPF inteiro) ou, para a pessoa física com o CPF
-    mascarado, pelos seis dígitos do meio e o nome, como o QSA."""
-    doc = re.sub(r"\D", "", documento or "")
-    if "*" not in str(documento or "") and len(doc) >= 11 and ctx.contratos.get(doc):
-        return ctx.contratos[doc]
+    """Os contratos do PNCP do credor. CNPJ e CPF inteiro casam pelo documento inteiro; o CPF inteiro também
+    casa com o contrato cujo CPF a fonte publicou mascarado, pelos seis dígitos do meio e o nome, como o QSA.
+    O credor com o CPF mascarado pela fonte casa pelo miolo e o nome com qualquer contrato de pessoa física."""
+    bruto = str(documento or "")
+    doc = re.sub(r"\D", "", bruto)
     pf = chave_pf(documento, credor)
-    return ctx.contratos_pf.get(pf, []) if pf else []
+    if "*" not in bruto and len(doc) >= 11:
+        achados = list(ctx.contratos.get(doc, []))
+        if pf and len(doc) == 11:
+            achados += [c for c in ctx.contratos_pf.get(pf, []) if c not in achados]
+        return achados
+    if not pf:
+        return []
+    return list(ctx.contratos_pf.get(pf, [])) + list(ctx.contratos_pf_inteiro.get(pf, []))
 
 
 def contratos_do_orgao(ctx: ContextoTrilha, documento: str, credor: str, orgao: str) -> list:
@@ -377,8 +388,8 @@ def cruzavel(documento: str, credor: str = "") -> bool:
 
 
 def chave_do_credor(documento: str, credor: str = "") -> str:
-    """O credor para agrupar: o documento; o CPF mascarado com o nome, porque os seis do meio não
-    bastam para separar duas pessoas."""
+    """O credor para agrupar: o documento; o CPF que a fonte publicou mascarado vai com o nome, porque os
+    seis do meio não bastam para separar duas pessoas."""
     return f"{documento}|{_nome(credor)}" if "*" in str(documento or "") else documento
 
 
@@ -417,7 +428,8 @@ def contexto_do_banco(con: _sqlite3.Connection) -> ContextoTrilha:
                 ctx.contratos.setdefault(doc, []).append(contrato)
                 pf = chave_pf(forn, nome)
                 if pf:
-                    ctx.contratos_pf.setdefault(pf, []).append(contrato)
+                    destino = ctx.contratos_pf if "*" in str(forn or "") else ctx.contratos_pf_inteiro
+                    destino.setdefault(pf, []).append(contrato)
     ctx.orgaos_pncp = orgaos_do_pncp(con)
     if _tem_tabela(con, "siconfi_periodos"):
         for ex, per in con.execute("select exercicio, periodo from siconfi_periodos where demonstrativo = 'RREO' "
@@ -866,7 +878,7 @@ def contas_item_a_item(eventos: Iterable[EventoDespesa], filtro=None, *, maiores
     por_credor: dict[str, list[EventoDespesa]] = defaultdict(list)
     for e in eventos:
         if filtro is None or filtro(e):
-            # CPF mascarado: os seis do meio não bastam para separar duas pessoas; o nome entra na chave.
+            # CPF mascarado pela fonte: os seis do meio não bastam para separar duas pessoas; o nome entra.
             por_credor[chave_do_credor(e.documento, e.credor) or e.credor].append(e)
     linhas = []
     for chave, evs in por_credor.items():

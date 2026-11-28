@@ -22,7 +22,7 @@ from ..config import carregar_alvo
 from ..legal.mapa import carregar as carregar_mapa
 from . import dados as D
 from . import originais as og
-from .base import abrir, chaves_de_fonte, sem_cpf
+from .base import abrir, chaves_de_fonte, pronto_para_tela
 from .pagina import html
 
 ESTATICO = Path(__file__).parent / "estatico"
@@ -141,9 +141,9 @@ def gerar(destino: Path = DESTINO, *, banco: Path = BANCO, alvo: str = "goiania"
     if "indicios" in paginas:
         paginas["indicios"]["hashes"] = indice_de_hashes(comum["paginas"], chaves, originais)
     for p in comum["paginas"]:
-        dados = sem_cpf(paginas[p["id"]])
-        fontes = sem_cpf(originais.como_dict(chaves_comum | chaves_de_fonte(dados)))
+        dados = pronto_para_tela(paginas[p["id"]])
+        fontes = pronto_para_tela(originais.como_dict(chaves_comum | chaves_de_fonte(dados)))
         arq = destino / f"{p['id']}.html"
-        arq.write_text(html(p, sem_cpf(comum), dados, fontes, indice, versao_estatico=versao), encoding="utf-8")
+        arq.write_text(html(p, pronto_para_tela(comum), dados, fontes, indice, versao_estatico=versao), encoding="utf-8")
         escritos.append(arq)
     return escritos

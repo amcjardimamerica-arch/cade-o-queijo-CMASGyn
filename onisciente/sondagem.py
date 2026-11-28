@@ -4,7 +4,8 @@ Roda no GitHub, onde a rede é aberta. Para cada endereço candidato guarda o c�
 o tipo e o começo do corpo em ``relatorios/onisciente/sondagem/``. Quando a fonte é um catálogo
 CKAN ou um serviço OData, lista os recursos e lê uma amostra pequena de cada um. Só lê; não
 grava nada no banco. O resultado serve para escrever os coletores sem adivinhar endereço.
-O repositório é público: todo CPF de pessoa física é mascarado (``mascara_cpf``) antes de gravar.
+Cada resposta é guardada como a fonte publicou, sem máscara (decisão do usuário de 28/11/2026,
+config/decisoes_usuario.yml, P-01: o que a fonte publica inteiro fica inteiro).
 """
 
 from __future__ import annotations
@@ -16,7 +17,6 @@ import json
 import time
 import re
 import sys
-import zipfile
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
@@ -25,7 +25,7 @@ from html import unescape
 from urllib.parse import quote, urljoin
 from urllib.request import HTTPCookieProcessor, build_opener, install_opener
 
-from . import RAIZ, mascara_cpf
+from . import RAIZ
 from .coletores.base import ler
 
 PASTA = RAIZ / "relatorios" / "onisciente" / "sondagem"
@@ -503,24 +503,13 @@ def _guardar(fonte: str, url: str, leitura, formulario: dict | None = None,
     bruto = leitura.conteudo[:LIMITE_GRANDE if fonte in GRANDES else LIMITE]
     if leitura.ok and bruto.startswith((b"%PDF", b"PK\x03\x04")):   # binário: os bytes como vieram, em base64
         sufixo = ".pdf.b64" if bruto.startswith(b"%PDF") else ".zip.b64"
-        dados = leitura.conteudo
-        if sufixo == ".zip.b64":
-            try:
-                dados = mascara_cpf.mascarar_zip(dados)[0]       # o repositório é público: CPF mascarado
-            except (zipfile.BadZipFile, RuntimeError, ValueError, EOFError):
-                pass                                            # ZIP que não abre não tem texto legível
-        arq.with_suffix(sufixo).write_text(base64.b64encode(dados).decode())
+        arq.with_suffix(sufixo).write_text(base64.b64encode(leitura.conteudo).decode())
     try:
         # Frente D1: o corpo da recusa também (a mensagem do 400/500 diz o parâmetro que falta).
         # Frente D2 (rodada 10): a recusa do TransWeb (o HTTP 500 do OsAjax) também, para provar a causa.
         corpo = bruto.decode("utf-8") if leitura.ok or fonte.startswith(("d1_", "d2_transweb")) else ""
     except UnicodeDecodeError:
         corpo = bruto.decode("latin-1")
-    if fonte.startswith("d2_transweb"):
-        # Frente D2: o repositório é público; o CPF de pessoa física (a coluna CNPJ da exportação traz o
-        # CPF com "000", as diárias trazem o do servidor) fica só com os seis dígitos do meio.
-        from .coletores.goiania_transweb import mascarar_cpfs_no_texto
-        corpo = mascarar_cpfs_no_texto(corpo)
     pedido = ""
     if cabecalhos:
         # O pedido inteiro fica guardado (Frente D2, rodada 10). Cookie vai só com o nome: o valor da
@@ -529,7 +518,7 @@ def _guardar(fonte: str, url: str, leitura, formulario: dict | None = None,
         pedido = f"CABECALHOS: {json.dumps(visiveis, ensure_ascii=False)}\n"
     texto = (f"URL: {url}\nPOST: {json.dumps(formulario or {}, ensure_ascii=False)}\n{pedido}OK: {leitura.ok}\nHTTP: {leitura.http}\nERRO: {leitura.erro}\n"
              f"BYTES: {len(leitura.conteudo)}\n\n{corpo}")
-    arq.write_text(mascara_cpf.mascarar_texto(texto)[0], encoding="utf-8")   # CPF de pessoa física mascarado
+    arq.write_text(texto, encoding="utf-8")          # como a fonte respondeu (decisão de 28/11/2026, P-01)
     return {"fonte": fonte, "url": url, "post": formulario, "ok": leitura.ok, "http": leitura.http, "erro": leitura.erro,
             "bytes": len(leitura.conteudo), "arquivo": arq.name}
 
@@ -878,10 +867,10 @@ def sondar(fontes: list[str] | None = None) -> list[dict]:
                     url.split("?", 1)[0].endswith("/Portal_Despesas.aspx"):
                 resultado.extend(_conversa_despesas(fonte, url, leitura))
     nome = "indice.json" if not fontes else f"indice_{'_'.join(fontes)}.json"
-    (PASTA / nome).write_text(mascara_cpf.mascarar_texto(json.dumps(
+    (PASTA / nome).write_text(json.dumps(
         {"quando": datetime.now(timezone.utc).isoformat(timespec="seconds"), "leituras": resultado,
          **({"fontes_desconhecidas": desconhecidas} if desconhecidas else {})},
-        ensure_ascii=False, indent=1))[0], encoding="utf-8")
+        ensure_ascii=False, indent=1), encoding="utf-8")
     return resultado
 
 

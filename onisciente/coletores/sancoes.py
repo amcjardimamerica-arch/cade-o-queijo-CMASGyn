@@ -147,7 +147,7 @@ def ler(conteudo: bytes, cadastro: str) -> list[dict]:
                 "esfera": reg.get("esfera", ""),
                 "abrangencia": reg.get("abrangencia", ""),
                 "processo": reg.get("processo", ""),
-                "fundamentacao": reg.get("fundamentacao", "")[:500],
+                "fundamentacao": reg.get("fundamentacao", ""),
                 "publicacao": cf.data(reg.get("publicacao")),
                 "multa": cf.numero(reg.get("multa")),
                 "codigo": reg.get("codigo", ""),

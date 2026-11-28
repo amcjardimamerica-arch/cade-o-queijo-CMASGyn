@@ -745,8 +745,9 @@ def test_cpf_com_zeros_na_coluna_cnpj_vira_cpf():
     # Valores sintéticos: um CPF válido de exemplo (não é de ninguém conhecido) e o CNPJ do Itaú.
     assert G.cpf_valido("52998224725") and not G.cpf_valido("52998224724")
     assert G.cnpj_valido("60701190000104") and not G.cnpj_valido("60701190000105")
-    # Sétima rodada: o CPF é gravado mascarado (repositório público), como o Portal e o QSA publicam.
-    assert G.documento_do_credor("00052998224725") == "***.982.247-**"
+    # Sétima rodada gravava o CPF mascarado; revogado pela decisão do usuário de 28/11/2026, 11:18Z (config/decisoes_usuario.yml, P-01): o CPF da exportação fica
+    # inteiro (só sai o "000" que a coluna CNPJ põe na frente), como antes da máscara (07e130c).
+    assert G.documento_do_credor("00052998224725") == "52998224725"
     assert G.documento_do_credor("60701190000104") == "60701190000104"
     assert G.documento_do_credor("01536754000123") == "01536754000123"     # CNPJ que começa com 0
     assert G.documento_do_credor("00052998224724") == "00052998224724"     # nem CPF nem CNPJ: fica
@@ -1080,73 +1081,15 @@ def test_sondagem_repete_o_caminho_do_motor_em_tres_meses():
 # era 14, e a soma (historico.rodar com somar) apagava despesa_eventos e despesa_consultas antes de
 # o motor rodar, então nada continuava de onde parou. O CPF de pessoa física ia inteiro para o banco
 # (7.292 linhas num repositório público). CPFs dos testes: números de exemplo válidos, sem dono.
+# Revogação: a máscara do CPF que esta rodada pôs no coletor saiu pela decisão do usuário de 28/11/2026, 11:18Z (config/decisoes_usuario.yml, P-01);
+# test_coletor_nunca_grava_cpf_completo e test_migracao_mascara_as_linhas_antigas_numa_rodada_do_rastreio saíram
+# daqui pela mesma decisão e foram invertidas em testes/test_dado_da_fonte.py
+# (test_despesa_de_goiania_guarda_documento_credor_e_historico_como_o_portal_publica e
+# test_banco_abrir_nao_muda_nenhuma_linha_nem_abre_rodada_de_mascara).
 
 import time
 
 CPF_EXEMPLO = "52998224725"                  # o número de exemplo de validadores públicos de CPF
-
-
-def test_coletor_nunca_grava_cpf_completo():
-    con = sqlite3.connect(":memory:")
-    base = {"tipo": "empenho", "data": "2026-10-01", "orgao": "SAUDE", "valor": 10.0, "credor": "FULANO"}
-    eventos = [dict(base, empenho="1", documento=CPF_EXEMPLO),
-               dict(base, empenho="2", documento="529.982.247-25"),
-               dict(base, empenho="3", documento="000" + CPF_EXEMPLO),        # a coluna CNPJ da exportação
-               dict(base, empenho="4", documento="***.982.247-**"),
-               dict(base, empenho="5", documento="31537116000198", credor="GMS GOIAS MERCANTIL E SOLUCOES LTDA")]
-    assert G.gravar(con, eventos) == 5
-    docs = dict(con.execute("select empenho, documento from despesa_eventos").fetchall())
-    assert docs == {"1": "***.982.247-**", "2": "***.982.247-**", "3": "***.982.247-**", "4": "***.982.247-**",
-                    "5": "31537116000198"}                                     # o CNPJ fica inteiro
-    assert not con.execute("select 1 from despesa_eventos where documento like '%" + CPF_EXEMPLO + "%' "
-                           "or documento like '%52998224%'").fetchone()
-    # A exportação real: nenhuma linha gravada com 11 dígitos, nem "000" e um CPF.
-    con2 = sqlite3.connect(":memory:")
-    G.substituir_empenhos(con2, _exportacao().eventos, LISTA.id)
-    for (doc,) in con2.execute("select distinct documento from despesa_eventos"):
-        assert G.documento_gravavel(doc) == doc and len(G.documento(doc)) != 11, doc
-    # A resposta crua guardada pela sondagem também sai mascarada; o CNPJ válido fica.
-    texto = f"x;{CPF_EXEMPLO};000{CPF_EXEMPLO};31537116000198;12345678901\r\n"
-    assert G.mascarar_cpfs_no_texto(texto) == "x;***.982.247-**;***.982.247-**;31537116000198;12345678901\r\n"
-
-
-def test_migracao_mascara_as_linhas_antigas_numa_rodada_do_rastreio(tmp_path):
-    from onisciente import historico, rastreio
-    caminho = tmp_path / "antigo.db"
-    con = sqlite3.connect(caminho)
-    con.executescript(historico.ESQUEMA)
-    G.criar_tabelas(con)
-    colunas = ", ".join(G.CAMPOS_EVENTO)
-    def linha(emp, doc, credor="FULANO"):
-        ev = {k: "" for k in G.CAMPOS_EVENTO}
-        ev.update(tipo="empenho", empenho=emp, data="2025-10-01", orgao="SAUDE", valor=10.0, documento=doc,
-                  credor=credor, coletado_em="2026-11-20")
-        return [ev[k] for k in G.CAMPOS_EVENTO]
-    # Como a rodada antiga gravava: o CPF inteiro, direto na tabela (sem passar pelo gravar de agora).
-    con.executemany(f"INSERT INTO despesa_eventos ({colunas}) VALUES ({', '.join('?' for _ in G.CAMPOS_EVENTO)})",
-                    [linha("1", CPF_EXEMPLO), linha("2", "000" + CPF_EXEMPLO), linha("3", "31537116000198", "GMS"),
-                     linha("4", CPF_EXEMPLO), linha("4", "***.982.247-**")])   # o 4 já existe mascarado
-    con.commit()
-    con.close()
-    banco = historico.Banco.abrir(caminho)
-    con = banco.con
-    docs = sorted(con.execute("select empenho, documento from despesa_eventos").fetchall())
-    assert docs == [("1", "***.982.247-**"), ("2", "***.982.247-**"), ("3", "31537116000198"),
-                    ("4", "***.982.247-**")]                      # a cópia mascarada do 4 não se repete
-    modos = [m for (m,) in con.execute("select modo from rastreio_rodadas order by id")]
-    assert modos == [rastreio.MODO_MIGRACAO, "mascara_cpf"]
-    nota = con.execute("select detalhe from rastreio_rodadas where modo = 'mascara_cpf'").fetchone()[0]
-    assert "3 linha(s)" in nota
-    v = rastreio.verificar(con)
-    assert v["integro"], v                                         # as linhas novas ganharam selo
-    r = rastreio.registro(con, "despesa_eventos", con.execute(
-        "select rowid from despesa_eventos where empenho = '1'").fetchone()[0])
-    assert r["confere"]
-    con.close()
-    # Abrir de novo não abre outra rodada: não sobrou CPF inteiro.
-    banco = historico.Banco.abrir(caminho)
-    assert banco.con.execute("select count(*) from rastreio_rodadas").fetchone() == (2,)
-    banco.con.close()
 
 
 def _ctx_meses(con, meses):
@@ -1209,9 +1152,10 @@ def test_motor_para_antes_do_fim_do_tempo_e_a_soma_nao_apaga_o_que_ja_leu():
     assert tabelas == {"coletas"}
 
 
-def test_cruzamento_com_o_pncp_casa_o_cpf_mascarado_pelos_seis_do_meio_e_o_nome(tmp_path):
-    # Nenhuma conferência de empresas, impedimentos ou sócios lê despesa_eventos; o único cruzamento que
-    # usava o documento inteiro do credor é o vínculo com o contrato do PNCP, que passa a casar como o QSA.
+def test_cruzamento_com_o_pncp_casa_o_cpf_inteiro_e_o_mascarado_pela_fonte(tmp_path):
+    # O vínculo com o contrato do PNCP: o CPF inteiro casa pelo CPF inteiro; o credor que a fonte publicou
+    # mascarado casa pelos seis do meio e o nome, como o QSA. Antes, com o CPF mascarado pelo coletor, tudo
+    # casava pelo miolo; pela decisão do usuário de 28/11/2026, 11:18Z (config/decisoes_usuario.yml, P-01) o CPF fica inteiro.
     from onisciente.historico import Banco
     b = Banco(tmp_path / "historico.db")
     con = b.con
@@ -1229,15 +1173,17 @@ def test_cruzamento_com_o_pncp_casa_o_cpf_mascarado_pelos_seis_do_meio_e_o_nome(
     assert X.chave_pf("***.982.247-**", "Fulano  de Tál") == X.chave_pf(CPF_EXEMPLO, "FULANO DE TAL") == \
         ("982247", "FULANO DE TAL")
     assert X.chave_pf("31537116000198", "GMS") is None and X.chave_pf("***.982.247-**", "") is None
+    assert [c.id for c in X.contratos_do_credor(ctx, CPF_EXEMPLO, "FULANO DE TAL")] == ["pf1"]
     assert [c.id for c in X.contratos_do_credor(ctx, "***.982.247-**", "FULANO DE TAL")] == ["pf1"]
     assert X.contratos_do_credor(ctx, "***.982.247-**", "OUTRA PESSOA") == []
     conf = X.conferir_execucao(tmp_path / "historico.db")
     acima = [a for a in conf.achados if a.tipo == "liquidado_acima"]
-    assert len(acima) == 1 and "***.982.247-**" in acima[0].chave              # o vínculo casou pelo miolo
-    assert CPF_EXEMPLO not in repr(conf.achados)
+    assert len(acima) == 1 and CPF_EXEMPLO in acima[0].chave                  # o vínculo casou pelo CPF inteiro
 
 
-def test_tela_da_execucao_mostra_pessoa_fisica_para_o_cpf_mascarado():
+def test_tela_da_execucao_mostra_o_credor_pessoa_fisica_como_o_portal_publica():
+    # Antes a tela trocava o nome da pessoa física por "Pessoa física" e omitia o documento; pela
+    # decisão do usuário de 28/11/2026, 11:18Z (config/decisoes_usuario.yml, P-01) o nome e o documento aparecem como a fonte publicou.
     from onisciente import historico
     from onisciente.telas import entradas
     con = sqlite3.connect(":memory:")
@@ -1245,7 +1191,8 @@ def test_tela_da_execucao_mostra_pessoa_fisica_para_o_cpf_mascarado():
     G.gravar(con, [_evento("empenho", "2025/000800", "2025-04-01", 1_000.0, doc="***.982.247-**", credor="FULANO"),
                    _evento("empenho", "2025/000801", "2025-04-01", 1_000.0, doc="31537116000198", credor="GMS")])
     emp = {e["numero"]: e for e in entradas.execucao(con)["empenhos"]}
-    assert emp["2025/000800"]["credor"] == "Pessoa física" and emp["2025/000800"]["credor_cnpj"] == ""
+    assert emp["2025/000800"]["credor"] == "FULANO" and emp["2025/000800"]["credor_cnpj"] == "***.982.247-**"
+    assert emp["2025/000800"]["pessoa_fisica"] is True
     assert emp["2025/000801"]["credor"] == "GMS" and emp["2025/000801"]["credor_cnpj"] == "31537116000198"
     # Duas pessoas com o mesmo miolo e nomes diferentes não se somam.
     assert X.chave_do_credor("***.982.247-**", "Fulano") != X.chave_do_credor("***.982.247-**", "Outra Pessoa")
@@ -1256,63 +1203,10 @@ def test_tela_da_execucao_mostra_pessoa_fisica_para_o_cpf_mascarado():
 # A varredura da Frente H (mascara_banco.varrer) achou CPF completo em despesa_eventos.credor (o MEI vem
 # como "NOME 12345678901") e em despesa_eventos.historico ("TOMADORA: NOME - CPF:NNN.NNN.NNN-NN").
 # A regra é a da H para texto livre: o CPF formatado e os 11 dígitos isolados com dígito válido.
-
-TELEFONE = "62999998888"                       # 11 dígitos sem dígito verificador de CPF
-PROCESSO = "52998224724"                       # o CPF de exemplo com o último dígito trocado
-
-
-def _formatado(cpf):
-    return f"{cpf[:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:]}"
-
-
-def test_coletor_mascara_o_cpf_no_credor_e_no_historico_e_deixa_telefone_processo_e_hash():
-    con = sqlite3.connect(":memory:")
-    historico = (f"ADIANTAMENTO, TOMADORA: FULANA - CPF:{_formatado(CPF_EXEMPLO)}, FONE {TELEFONE}, "
-                 f"PROCESSO {PROCESSO}, EMPENHO 20261101002310009, HASH ab{CPF_EXEMPLO}cd, CPF {CPF_EXEMPLO}.")
-    ev = {"tipo": "empenho", "empenho": "1", "data": "2026-10-01", "orgao": "SAUDE", "valor": 10.0,
-          "documento": "000" + CPF_EXEMPLO, "credor": f"FULANO DE TAL {CPF_EXEMPLO}", "historico": historico}
-    G.gravar(con, [ev])
-    doc, credor, hist = con.execute("select documento, credor, historico from despesa_eventos").fetchone()
-    assert doc == "***.982.247-**" and credor == "FULANO DE TAL ***.982.247-**"
-    assert hist == (f"ADIANTAMENTO, TOMADORA: FULANA - CPF:***.982.247-**, FONE {TELEFONE}, PROCESSO {PROCESSO}, "
-                    f"EMPENHO 20261101002310009, HASH ab{CPF_EXEMPLO}cd, CPF ***.982.247-**.")
-    from onisciente import mascara_banco
-    assert mascara_banco.varrer(con) == {}                           # a trava da H não acha nada
-
-
-def test_migracao_mascara_credor_e_historico_antigos_numa_rodada_do_rastreio(tmp_path):
-    from onisciente import historico, mascara_banco, rastreio
-    caminho = tmp_path / "antigo.db"
-    con = sqlite3.connect(caminho)
-    con.executescript(historico.ESQUEMA)
-    G.criar_tabelas(con)
-    colunas = list(G.CAMPOS_EVENTO)
-    def linha(emp, doc, credor, hist):
-        ev = {k: "" for k in colunas}
-        ev.update(tipo="empenho", empenho=emp, data="2025-10-01", orgao="SAUDE", valor=10.0, documento=doc,
-                  credor=credor, historico=hist, coletado_em="2026-11-20")
-        return [ev[k] for k in colunas]
-    # Como a coleta 550c30b gravou: o documento já mascarado, o CPF ainda no nome e no histórico.
-    con.executemany(f"INSERT INTO despesa_eventos ({', '.join(colunas)}) VALUES ({', '.join('?' for _ in colunas)})",
-                    [linha("1", "***.982.247-**", f"FULANO {CPF_EXEMPLO}", "COMPRA"),
-                     linha("2", "31537116000198", "GMS", f"TOMADOR: FULANO - CPF:{_formatado(CPF_EXEMPLO)}"),
-                     linha("3", "31537116000198", "GMS", f"FONE {TELEFONE} PROCESSO {PROCESSO}")])
-    con.commit()
-    assert mascara_banco.varrer(con) == {("despesa_eventos", "credor"): 1, ("despesa_eventos", "historico"): 1}
-    con.close()
-    banco = historico.Banco.abrir(caminho)
-    con = banco.con
-    linhas = dict((e, (c, h)) for e, c, h in con.execute("select empenho, credor, historico from despesa_eventos"))
-    assert linhas == {"1": ("FULANO ***.982.247-**", "COMPRA"), "2": ("GMS", "TOMADOR: FULANO - CPF:***.982.247-**"),
-                      "3": ("GMS", f"FONE {TELEFONE} PROCESSO {PROCESSO}")}
-    nota = con.execute("select detalhe from rastreio_rodadas where modo = 'mascara_cpf'").fetchone()[0]
-    assert "2 linha(s)" in nota and "documento 0, credor 1, histórico 1" in nota
-    assert mascara_banco.varrer(con) == {}
-    assert rastreio.verificar(con)["integro"]
-    con.close()
-    banco = historico.Banco.abrir(caminho)                          # abrir de novo não abre outra rodada
-    assert banco.con.execute("select count(*) from rastreio_rodadas where modo = 'mascara_cpf'").fetchone() == (1,)
-    banco.con.close()
+# Revogação: a decisão do usuário de 28/11/2026, 11:18Z (config/decisoes_usuario.yml, P-01) manda guardar o credor e o histórico
+# como o portal publica; test_coletor_mascara_o_cpf_no_credor_e_no_historico_e_deixa_telefone_processo_e_hash e
+# test_migracao_mascara_credor_e_historico_antigos_numa_rodada_do_rastreio saíram daqui pela mesma decisão
+# (invertidas em testes/test_dado_da_fonte.py).
 
 
 def _popup_paginado(cabecalho, linhas, contador=None):

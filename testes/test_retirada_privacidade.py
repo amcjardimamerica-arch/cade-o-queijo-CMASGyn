@@ -1,9 +1,20 @@
-"""Travas da retirada por privacidade no rastreio (28/11/2026).
+"""Travas do rastreio com as folhas retiradas pela máscara (28/11/2026), depois da revogação.
 
-O hash de uma linha com CPF completo refaz o CPF por força bruta (a máscara ``***.NNN.NNN-**`` deixa três
-dígitos livres; os dois do fim são o dígito verificador). Toda rodada de máscara retira, ao fechar, o hash dos
-selos descartados das tabelas que mascarou e deixa só a marca "retirado por privacidade". A raiz de Merkle e o
-hash de cada rodada ficam como estavam; a verificação aceita as folhas retiradas e continua acusando adulteração.
+Revogação (decisão do usuário de 28/11/2026, 11:18Z, config/decisoes_usuario.yml, P-01: "Os dados devem ser
+públicos e não mascarar"): a máscara do CPF e a retirada do hash por privacidade saíram. Nenhuma abertura do Banco
+mascara nem retira mais nada, e o ``restaurar-fonte`` devolve o hash das folhas retiradas numa rodada
+``restauracao_fonte``. Saíram daqui, revogadas pela mesma decisão (não para fazer teste passar):
+
+* test_depois_da_migracao_nenhum_hash_do_rastreio_bate_com_uma_linha_de_cpf_completo (exigia o hash fora do
+  rastreio; agora ele volta);
+* test_a_marca_fica_no_lugar_do_hash_com_a_rodada_e_o_selo_novo e
+  test_rodada_de_mascara_antiga_tem_as_folhas_retiradas_numa_rodada_propria (exigiam a migração da máscara e a
+  retirada na abertura do Banco);
+* test_o_hash_retirado_nao_fica_nos_bytes_do_arquivo (privacidade do hash, revogada).
+
+Ficam as que defendem a verificação do que já está no banco real: as rodadas antigas de máscara retiraram folhas,
+e a cadeia continua verificável com elas, acusando adulteração. A máscara antiga é refeita aqui como as rodadas
+antigas faziam (uma rodada ``mascara_cpf`` aberta direto no rastreio), só para reproduzir o banco real.
 
 Os CPFs daqui são fictícios (dígito verificador válido, gerado pelo próprio teste).
 """
@@ -111,57 +122,32 @@ def _montar(tmp_path: Path) -> tuple[Path, set[bytes]]:
                                                                           f"{CPF_B}%"))
     c.commit()
     rastreio.fechar_rodada(c, rid)
+    mascarar_como_antes(c)
     assert len(vistos) == 6
     b.fechar()
     return tmp_path / "historico.db", vistos
 
 
-def test_depois_da_migracao_nenhum_hash_do_rastreio_bate_com_uma_linha_de_cpf_completo(tmp_path):
-    caminho, vistos = _montar(tmp_path)
-    # Antes, o rastreio guardava o hash de cada uma delas (o teste mede de fato o vazamento).
-    assert len(_vazados(caminho, vistos)) == 5        # a da despesa já saiu na rodada de máscara do coletor
-    b = historico.Banco.abrir(caminho)                # a abertura mascara as demais tabelas
-    assert mascara_banco.varrer(b.con) == {}
-    v = rastreio.verificar(b.con)
-    assert v["integro"], v
-    b.fechar()
-    assert _vazados(caminho, vistos) == []
-
-
-def test_a_marca_fica_no_lugar_do_hash_com_a_rodada_e_o_selo_novo(tmp_path):
-    caminho, vistos = _montar(tmp_path)
-    b = historico.Banco.abrir(caminho)
-    c = b.con
-    marcas = rastreio.retiradas(c)
-    assert all(m["motivo"].startswith(rastreio.RETIRADO) for m in marcas)
-    mascaras = [r for (r,) in c.execute("SELECT id FROM rastreio_rodadas WHERE modo = 'mascara_cpf' ORDER BY id")]
-    assert len(mascaras) == 2
-    por_tabela = {}
-    for m in marcas:
-        por_tabela.setdefault(m["tabela"], []).append(m)
-    # A despesa avulsa: retirada pela rodada de máscara do coletor, com o selo novo da linha mascarada.
-    (d,) = por_tabela["despesa_avulsa"]
-    assert d["retirada_por"] == d["descartada"] == mascaras[0] and d["motivo"] == rastreio.MOTIVO_MASCARA
-    novo = c.execute("SELECT * FROM despesa_avulsa WHERE empenho = 7").fetchone()
-    cols = [x[0] for x in c.execute("SELECT * FROM despesa_avulsa").description]
-    assert d["novo"] == rastreio.hash_registro("despesa_avulsa", dict(zip(cols, novo)))
-    # As sanções: as duas linhas com CPF (selo novo de cada uma) e, por precaução, a versão antiga do CPF_D,
-    # refeita por uma coleta antes da máscara (sem selo novo: aquela linha não foi mascarada, foi refeita).
-    s = sorted(por_tabela["sancoes"], key=lambda m: m["descartada"])
-    assert [m["motivo"] for m in s] == [rastreio.MOTIVO_PRECAUCAO, rastreio.MOTIVO_MASCARA, rastreio.MOTIVO_MASCARA]
-    assert s[0]["novo"] is None and all(m["novo"] for m in s[1:])
-    assert {m["retirada_por"] for m in s} == {mascaras[1]}
-    assert len(por_tabela["contratos_pncp"]) == len(por_tabela["impedimentos"]) == 1
-    # O selo novo diz o que substituiu; a consulta pelo registro mostra.
-    linha = c.execute("SELECT rowid FROM sancoes WHERE nome LIKE 'FULANO%'").fetchone()[0]
-    reg = rastreio.registro(c, "sancoes", linha)
-    assert reg["confere"] and reg["selo"]["substituiu_retirados"][0]["retirada_por"] == mascaras[1]
-    # A rodada que retirou declara o total, as tabelas e o motivo; a verificação relata.
-    ret = rastreio.verificar(c)["cadeia"]["retiradas"]
-    assert ret["total"] == len(marcas) == 6
-    assert ret["por_rodada_que_retirou"][str(mascaras[1])]["por_tabela"] == {
-        "contratos_pncp": 1, "impedimentos": 1, "sancoes": 3}
-    b.fechar()
+def mascarar_como_antes(c, tabelas=("sancoes", "contratos_pncp", "impedimentos")) -> int:
+    """O que a abertura do Banco fazia entre ee68c14 e a revogação de 28/11/2026 (mascara_banco.migrar): uma
+    rodada ``mascara_cpf`` que troca o CPF pela máscara e, ao fechar, retira o hash das folhas antigas. Só para
+    reproduzir o banco real nas travas; nenhum módulo do onisciente faz isso mais (P-01)."""
+    rid = rastreio.abrir_rodada(c, ["mascara_banco"], rastreio.MODO_MASCARA,
+                                detalhe={"nota": "reprodução da máscara antiga"})
+    n = 0
+    for t in tabelas:
+        cols = [x[1] for x in c.execute(f"PRAGMA table_info({t})")]
+        for rowid, *vals in c.execute(f"SELECT rowid, * FROM {t}").fetchall():
+            linha = dict(zip(cols, vals))
+            nova = mascara_banco.mascarar_linha(t, linha)
+            mudou = {k: v for k, v in nova.items() if linha.get(k) != v}
+            if mudou:
+                c.execute(f"UPDATE {t} SET {', '.join(f'{k} = ?' for k in mudou)} WHERE rowid = ?",
+                          [*mudou.values(), rowid])
+                n += 1
+    c.commit()
+    rastreio.fechar_rodada(c, rid)
+    return n
 
 
 def test_verificacao_integra_com_folhas_retiradas_e_acusa_adulteracao(tmp_path):
@@ -216,34 +202,6 @@ def test_verificacao_integra_com_folhas_retiradas_e_acusa_adulteracao(tmp_path):
     b.fechar()
 
 
-def test_rodada_de_mascara_antiga_tem_as_folhas_retiradas_numa_rodada_propria(tmp_path, monkeypatch):
-    """Rodadas de máscara de antes da regra (a da D2 no banco real) deixaram o hash: a abertura do Banco
-    retira numa rodada de retirada, sem mexer na raiz nem no hash das rodadas antigas."""
-    with monkeypatch.context() as m:
-        m.setattr(rastreio, "_retirar", lambda *a, **k: None)            # como era antes da regra
-        m.setattr(rastreio, "retirar_antigas", lambda con: None)
-        caminho, vistos = _montar(tmp_path)
-        historico.Banco.abrir(caminho).fechar()
-    assert len(_vazados(caminho, vistos)) == 6
-    b = historico.Banco.abrir(caminho)
-    c = b.con
-    antes = c.execute("SELECT id, raiz, hash FROM rastreio_rodadas WHERE modo != ? ORDER BY id",
-                      (rastreio.MODO_RETIRADA,)).fetchall()
-    rid, modo, det = c.execute("SELECT id, modo, detalhe FROM rastreio_rodadas ORDER BY id DESC LIMIT 1").fetchone()
-    assert modo == rastreio.MODO_RETIRADA and '"retiradas"' in det
-    assert all(x["retirada_por"] == rid and x["novo"] is None for x in rastreio.retiradas(c))
-    v = rastreio.verificar(c)
-    assert v["integro"], v
-    assert v["cadeia"]["retiradas"]["total"] == 6
-    b.fechar()
-    assert _vazados(caminho, vistos) == []
-    b = historico.Banco.abrir(caminho)                # nada mais a retirar: nenhuma rodada nova
-    assert b.con.execute("SELECT max(id) FROM rastreio_rodadas").fetchone()[0] == rid
-    assert b.con.execute("SELECT id, raiz, hash FROM rastreio_rodadas WHERE modo != ? ORDER BY id",
-                         (rastreio.MODO_RETIRADA,)).fetchall() == antes
-    b.fechar()
-
-
 @pytest.mark.parametrize("valor", [1234.5678901234567, 0.1, 1e-300])
 def test_o_selo_novo_acha_a_linha_mesmo_com_numero_real(tmp_path, valor):
     """A marca aponta o selo novo pelo conteúdo de antes, guardado pelo gatilho: o número real volta igual."""
@@ -261,22 +219,3 @@ def test_o_selo_novo_acha_a_linha_mesmo_com_numero_real(tmp_path, valor):
     b.fechar()
 
 
-def test_o_hash_retirado_nao_fica_nos_bytes_do_arquivo(tmp_path):
-    """Com milhares de selos, a árvore do índice guarda cópias de chaves nas páginas internas, que o DELETE
-    não apaga: o arquivo do rastreio é refeito (VACUUM) depois da retirada, e nenhum byte do hash sobra."""
-    b = historico.Banco(tmp_path / "historico.db")
-    b.con.execute("CREATE TABLE avulsa (credor TEXT, n INTEGER)")
-    b.con.commit()
-    rid = rastreio.abrir_rodada(b.con, [])
-    cpfs = [_cpf(f"{100000000 + 7919 * i:09d}") for i in range(4000)]
-    b.con.executemany("INSERT INTO avulsa VALUES (?, ?)", [(c, i) for i, c in enumerate(cpfs)])
-    rastreio.fechar_rodada(b.con, rid)
-    vistos = {rastreio._digest("avulsa", {"credor": c, "n": i}) for i, c in enumerate(cpfs) if i % 2 == 0}
-    rid = rastreio.abrir_rodada(b.con, [], "mascara_cpf")
-    for i, c in enumerate(cpfs):
-        if i % 2 == 0:
-            b.con.execute("UPDATE avulsa SET credor = ? WHERE n = ?", (mascara_cpf.mascara(c), i))
-    rastreio.fechar_rodada(b.con, rid)
-    assert len(rastreio.retiradas(b.con)) == 2000
-    b.con.close()                   # sem Banco.fechar (que compacta): o caminho do rastreio e das telas
-    assert _vazados(tmp_path / "historico.db", vistos) == []

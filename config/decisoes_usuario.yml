@@ -1,0 +1,54 @@
+# Decisões do usuário que o Onisciente cumpre e que as travas leem.
+#
+# Cada decisão tem a data, o texto do usuário como ele escreveu, a regra que sai dela, o que ela revoga, onde é
+# cumprida e as travas (testes) que a defendem. testes/test_dado_da_fonte.py falha se a decisão perder a regra,
+# o texto ou uma trava listada.
+
+decisoes:
+  - id: P-01
+    data: "2026-11-28T11:18Z"
+    texto_do_usuario: >-
+      Os dados devem ser públicos e não mascarar. Caso fossem necessário mascarar deveriam ter sido feito na
+      fonte. Neste caso os dados são necessários para fiscalizar o recurso público e sem estes dados seria
+      impossível rastrear [...] Quando a pessoa torna fornecedor ou servidor público ela implicitamente concorda
+      com a divulgação dos dados pessoais e da empresa, se sujeitando a lei de transparencia. Organize o sistema
+      par que nenhuma informação ou dado seja modificado, servindo como foi desenhado inicialmente, um validador
+      que cruza informações e dados para verificar os recursos públicos. Uma pessoa não pode se esconder atrás
+      de várias empresas e principalmente em caso de acionamento judicial ou denuncia é necessário ter os dados
+      pessoais para individualizar ela e não ter nenhum homônimo ou terceiro inocente sofrendo denúncias,
+      processos ou sanções em seu nome.
+    regra: >-
+      O dado é guardado e mostrado exatamente como a fonte o publica. O que a fonte já publica mascarado fica
+      como veio; o que o sistema mascarou por conta própria volta ao valor da fonte. Nenhum coletor, nem o
+      Banco.inserir, nem a abertura do banco, nem a sondagem, nem as telas mascaram, cortam ou trocam um dado
+      da fonte. Uma coluna derivada (normalizada) pode existir desde que o original fique guardado. O CPF
+      inteiro casa pelo CPF inteiro; o reconhecimento do CPF mascarado pela fonte (os seis do meio e o nome)
+      continua só para o que a fonte publica mascarado.
+    revoga:
+      - commit: b8bf2e6
+        o_que: CPF de pessoa física mascarado na sondagem (D1 rodada 8)
+      - commit: 24fc099
+        o_que: CPF de pessoa física mascarado no documento da despesa de Goiânia (D2)
+      - commit: ee68c14
+        o_que: CPF mascarado no banco inteiro (mascara_banco, Banco.inserir e a migração no Banco.abrir)
+      - commit: 91240af
+        o_que: CPF mascarado no credor e no histórico da despesa (D2 rodada 8)
+      - commit: 69017a5
+        o_que: o rastreio retirava o hash das linhas com CPF completo (rodada retirada_privacidade)
+      - commit: e98f23e
+        o_que: site refeito do banco mascarado; CPF depois de "N." mascarado nos arquivos da sondagem
+      - pedido: o pedido anterior de mascarar o CPF (repositório público), feito na madrugada de 28/11/2026
+    cumprida_em:
+      - onisciente/historico.py (Banco.inserir e Banco.abrir não mascaram nem cortam)
+      - onisciente/coletores/goiania_transweb.py (documento_do_credor e gravar guardam o que o portal publica)
+      - onisciente/coletores/impedimentos.py, fns.py, sancoes.py, tcm.py, tcu.py, transferegov.py
+      - onisciente/sondagem.py (o corpo e o zip guardados como vieram)
+      - onisciente/telas (pronto_para_tela e documento_publico não escondem o CPF)
+      - onisciente/conferencias/execucao.py e empresas.py (CPF inteiro casa pelo CPF inteiro)
+      - onisciente/restauracao_fonte.py (python -m onisciente restaurar-fonte: devolve o dado da fonte)
+    travas:
+      - testes/test_dado_da_fonte.py
+    nota: >-
+      O que foi coletado mascarado depois de ee68c14 e não tem original no git precisa ser lido de novo da
+      fonte; o restaurar-fonte lista essas linhas, e a despesa de Goiânia tem a releitura completa
+      (python -m onisciente coletar-execucao --releitura-completa) para isso.

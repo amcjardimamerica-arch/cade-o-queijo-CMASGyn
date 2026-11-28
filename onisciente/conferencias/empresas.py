@@ -727,8 +727,8 @@ class _Conferidor:
                              else ("PF6", miolo_cpf(p.doc)) if miolo_cpf(p.doc) else ("", ""))
                 alvos.append(("socio", tipo, doc, p.nome, p))
         else:
-            # Pessoa física: o CPF inteiro, ou os seis do meio quando o banco o guarda mascarado
-            # (***.NNN.NNN-**, desde 28/11/2026), como o QSA da Receita.
+            # Pessoa física: o CPF inteiro casa pelo CPF inteiro; os seis do meio só quando a fonte publicou o
+            # CPF mascarado (***.NNN.NNN-**), como o QSA da Receita (decisão do usuário de 28/11/2026, P-01).
             alvos = [("empresa", "PF6" if len(c.ni) == 6 else "PF", c.ni, _norm(c.fornecedor), None)]
         vigencia_fim = c.vigencia_fim or c.data
         for quem, tipo, doc, nome, pessoa in alvos:

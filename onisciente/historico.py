@@ -28,7 +28,7 @@ from pathlib import Path
 from typing import Callable
 from urllib.parse import urlencode
 
-from . import RAIZ, mascara_banco, partes, rastreio
+from . import RAIZ, partes, rastreio
 from .coletores import base, goiania_transweb, msc, siope, siops, transparencia
 from .nucleo.custodia import impressao
 
@@ -277,13 +277,10 @@ class Banco:
         banco._atualizar_colunas()
         banco._iniciar_rastreio()
         rastreio.migrar(banco.con)
-        # Frente D2: o CPF inteiro gravado por rodadas antigas sai mascarado, numa rodada própria do rastreio.
-        _rastrear(banco, goiania_transweb.migrar_cpfs)
-        # Frente H: o mesmo nas demais tabelas com CPF (sancoes, PNCP, emendas; onisciente.mascara_banco).
-        _rastrear(banco, mascara_banco.migrar)
-        # Privacidade: rodadas de máscara de antes da retirada deixaram nos selos descartados o hash das linhas
-        # com CPF completo; uma rodada própria tira o hash e deixa a marca (as novas já retiram ao fechar).
-        _rastrear(banco, rastreio.retirar_antigas)
+        # Decisão do usuário de 28/11/2026 (config/decisoes_usuario.yml, P-01): abrir o banco não muda nenhuma
+        # linha. As migrações que mascaravam o CPF (goiania_transweb.migrar_cpfs, mascara_banco.migrar) e a que
+        # tirava o hash do rastreio (rastreio.retirar_antigas) saíram; o que elas mascararam volta à fonte pelo
+        # ``python -m onisciente restaurar-fonte``.
         return banco
 
     def _iniciar_rastreio(self) -> None:
@@ -317,7 +314,6 @@ class Banco:
         self.con.execute("DELETE FROM meta WHERE chave = ?", (f"motor:{motor}",))
 
     def inserir(self, tabela: str, linha: dict) -> None:
-        linha = mascara_banco.mascarar_linha(tabela, linha)   # CPF de pessoa física: ***.NNN.NNN-**
         coleta = tabela == "coletas"
         if coleta:
             # A coleta ganha o hash da requisição e a marca de ausência; a anotação sobre uma resposta
@@ -920,7 +916,7 @@ def _pncp_contratos(ctx: Contexto, cnpj: str, nome: str, janela: list[str]) -> b
                 "unidade": (c.get("unidadeOrgao") or {}).get("nomeUnidade"),
                 "fornecedor_ni": c.get("niFornecedor"),
                 "fornecedor": c.get("nomeRazaoSocialFornecedor"),
-                "objeto": (c.get("objetoContrato") or "")[:500],
+                "objeto": c.get("objetoContrato") or "",
                 "valor_global": c.get("valorGlobal"),
                 "da_pasta": int(any(t in tudo for t in TERMOS_PASTA))})
         if pagina >= int(dados.get("totalPaginas") or 1):
@@ -964,7 +960,7 @@ def _pncp_descobrir(ctx: Contexto, ibge: int, municipio: str, orgaos: dict[str, 
                         "modalidade": c.get("modalidadeNome"), "orgao_cnpj": cnpj,
                         "orgao": org.get("razaoSocial"), "esfera": org.get("esferaId"),
                         "unidade": (c.get("unidadeOrgao") or {}).get("nomeUnidade"),
-                        "objeto": (c.get("objetoCompra") or "")[:500],
+                        "objeto": c.get("objetoCompra") or "",
                         "valor_estimado": c.get("valorTotalEstimado"),
                         "valor_homologado": c.get("valorTotalHomologado"),
                         "situacao": c.get("situacaoCompraNome")})
@@ -1146,8 +1142,8 @@ def _itens_do_orgao(ctx: Contexto, cnpj: str, d1: str, d2: str, rotulo: str) -> 
                 "numero_item": it.get("numeroItemPncp") or it.get("numeroItemCompra"),
                 "orgao_cnpj": it.get("orgaoEntidadeCnpj") or cnpj,
                 "unidade": it.get("unidadeOrgaoCodigoUnidade"),
-                "descricao": (it.get("descricaoResumida") or "")[:300],
-                "detalhe": (it.get("descricaodetalhada") or "")[:500],
+                "descricao": it.get("descricaoResumida") or "",
+                "detalhe": it.get("descricaodetalhada") or "",
                 "material_servico": it.get("materialOuServico"), "classe": it.get("codigoClasse"),
                 "grupo": it.get("codigoGrupo"), "catalogo": it.get("codItemCatalogo"),
                 "pdm": it.get("codigoPdm"), "nome_pdm": it.get("nomePdm"), "ncm": it.get("codigoNCM"),
@@ -1218,7 +1214,7 @@ def _guardar_amparo(ctx: Contexto, compra_id: str, c: dict) -> None:
     amparo = c.get("amparoLegal") or {}
     ctx.banco.inserir("pncp_amparos", {
         "compra_id": compra_id, "codigo": amparo.get("codigo"), "nome": amparo.get("nome"),
-        "descricao": (amparo.get("descricao") or "")[:400], "srp": int(bool(c.get("srp"))),
+        "descricao": amparo.get("descricao") or "", "srp": int(bool(c.get("srp"))),
         "processo": c.get("processo"), "modo_disputa": c.get("modoDisputaNome"),
         "data_publicacao": str(c.get("dataPublicacaoPncp") or "")[:10],
         "valor_estimado": _num(c.get("valorTotalEstimado")),
@@ -1290,8 +1286,8 @@ def _termos_do_contrato(ctx: Contexto, contrato_id: str) -> bool:
             "qualif_vigencia": int(bool(t.get("qualificacaoVigencia"))),
             "qualif_reajuste": int(bool(t.get("qualificacaoReajuste"))),
             "qualif_fornecedor": int(bool(t.get("qualificacaoFornecedor"))),
-            "fundamento": (t.get("fundamentoLegal") or "")[:300],
-            "objeto": (t.get("objetoTermoContrato") or "")[:500]})
+            "fundamento": t.get("fundamentoLegal") or "",
+            "objeto": t.get("objetoTermoContrato") or ""})
     return True
 
 
@@ -1323,7 +1319,7 @@ def _precos_nacionais(ctx: Contexto, catalogo: int, servico: bool, semestre: str
             or r.get("nomeUnidadeMedida"),
             "uasg": r.get("codigoUasg"), "orgao": r.get("nomeOrgao"), "uf": r.get("estado"),
             "municipio": r.get("municipio"), "esfera": r.get("esfera"),
-            "descricao": (r.get("descricaoItem") or "")[:300]})
+            "descricao": r.get("descricaoItem") or ""})
     return True
 
 
@@ -1364,7 +1360,7 @@ def _cobrancas_do_orgao(ctx: Contexto, cnpj: str, mes: str) -> bool:
             for it in nf.get("itens") or []:
                 ctx.banco.inserir("pncp_nf_itens", {
                     "contrato_id": cid, "sequencial": seq, "numero_item": it.get("numeroItem"),
-                    "descricao": (it.get("descricaoProdutoServico") or "")[:300], "ncm": it.get("codigoNCM"),
+                    "descricao": it.get("descricaoProdutoServico") or "", "ncm": it.get("codigoNCM"),
                     "quantidade": _num(it.get("quantidade")), "unidade": it.get("unidade"),
                     "unitario": _num(it.get("valorUnitario")), "total": _num(it.get("valorTotal"))})
         if pagina >= int(dados.get("totalPaginas") or 1):
@@ -1414,8 +1410,8 @@ def _itens_da_compra(ctx: Contexto, compra_id: str) -> bool:
         cat = str(it.get("catalogoCodigoItem") or "").strip()
         ctx.banco.inserir("pncp_itens", {
             "compra_id": compra_id, "numero_item": numero, "orgao_cnpj": cnpj, "unidade": None,
-            "descricao": (it.get("descricao") or "")[:300],
-            "detalhe": (it.get("informacaoComplementar") or "")[:500],
+            "descricao": it.get("descricao") or "",
+            "detalhe": it.get("informacaoComplementar") or "",
             "material_servico": it.get("materialOuServico"), "classe": None, "grupo": None,
             "catalogo": int(cat) if cat.isdigit() else None, "pdm": None,
             "nome_pdm": it.get("itemCategoriaNome"), "ncm": it.get("ncmNbsCodigo"),
@@ -1907,7 +1903,7 @@ def motor_siope(ctx: Contexto, ibge6: str) -> None:
                 for coluna, valor in enumerate(item.valores):
                     ctx.banco.inserir("externos_itens", {
                         "fonte": "SIOPE", "exercicio": ano, "periodo": bim, "quadro": 0, "titulo_quadro": "",
-                        "ordem": item.ordem, "rotulo": f"{item.codigo}- {item.rotulo}"[:200],
+                        "ordem": item.ordem, "rotulo": f"{item.codigo}- {item.rotulo}",
                         "coluna": coluna, "valor": valor})
             linha_periodo.update(situacao="homologado", linhas=len(d.itens))
             ctx.banco.inserir("externos_periodos", linha_periodo)

@@ -617,19 +617,6 @@ def retiradas(con) -> list[dict]:
     return saida
 
 
-def retirar_antigas(con) -> int | None:
-    """Rodadas de máscara de antes da retirada deixaram os selos descartados com o hash: uma rodada
-    própria (``retirada_privacidade``) os retira. Devolve o id dela (None se não havia o que retirar)."""
-    preparar(con)
-    if not con.execute("SELECT 1 FROM rastreio_selos s JOIN rastreio_rodadas r ON r.id = s.descartada "
-                       "WHERE r.modo = ? LIMIT 1", (MODO_MASCARA,)).fetchone():
-        return None
-    rid = abrir_rodada(con, (), MODO_RETIRADA, detalhe={
-        "nota": "selos descartados por rodadas de máscara anteriores à retirada: o hash sai, fica a marca"})
-    fechar_rodada(con, rid)
-    return rid
-
-
 def _resumo_abertura(v: dict) -> dict | None:
     """O que a conferência da abertura achou fora do lugar (vazio quando nada mudou fora de rodada)."""
     saida = {}

@@ -121,6 +121,6 @@ def generico(modulo: str, tabela: str, registro: dict) -> dict:
         "valor": valor,
         "situacao": str(cf.campo(registro, "situacao", contem=("situacao",)) or ""),
         "descricao": str(cf.campo(registro, "objeto", "descricao", "nome", contem=("objeto", "descricao"))
-                         or "")[:500],
-        "json": json.dumps(registro, ensure_ascii=False, sort_keys=True)[:8000],
+                         or ""),
+        "json": json.dumps(registro, ensure_ascii=False, sort_keys=True),
     }

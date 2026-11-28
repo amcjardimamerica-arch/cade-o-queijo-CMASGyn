@@ -224,7 +224,7 @@ def _decisao(tipo: str, numero: str, ano: str, trecho: str, url: str) -> dict:
         "tribunal": "TCM-GO", "chave": f"TCMGO-{cf.chave(tipo)}-{int(numero)}-{ano}",
         "numero": str(int(numero)), "ano": int(ano), "colegiado": "", "data": None, "relator": "",
         "processo": re.sub(r"\s+", "", proc.group(1)) if proc else "", "tipo": tipo,
-        "titulo": f"{tipo} {int(numero)}/{ano}", "sumario": trecho[:4000], "url": url,
+        "titulo": f"{tipo} {int(numero)}/{ano}", "sumario": trecho, "url": url,
         "sobre_goiania": int(sobre(trecho)),
     }
 
@@ -387,7 +387,7 @@ def _da_busca(r: dict) -> dict | None:
     onde = " ".join(str(r.get(k) or "") for k in ("entidade_fiscalizada", "entidade", "municipio"))
     d["sobre_goiania"] = int(sobre(onde) if onde.strip() else sobre(trecho))
     if r.get("resultado"):
-        d["sumario"] = f"{d['sumario']} Resultado: {r['resultado']}."[:4000].strip()
+        d["sumario"] = f"{d['sumario']} Resultado: {r['resultado']}.".strip()
     return d
 
 

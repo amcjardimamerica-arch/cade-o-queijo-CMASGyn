@@ -121,7 +121,7 @@ def acordao(registro: dict) -> dict | None:
         "processo": processo_tc(cf.campo(registro, "processo", "PROC", "numeroProcesso", contem=("processo",))),
         "tipo": _limpo(cf.campo(registro, "tipo", "TIPOPROCESSO", contem=("tipoprocesso",))) or "Acórdão",
         "titulo": titulo or f"Acórdão {numero}/{ano}",
-        "sumario": (sumario + (" " + entidade if entidade else ""))[:4000],
+        "sumario": sumario + (" " + entidade if entidade else ""),
         "url": str(cf.campo(registro, "urlAcordao", "URLARQUIVOPDF", "urlArquivoPdf", "urlArquivo", "url",
                             contem=("url",)) or ""),
     }
