@@ -10,7 +10,7 @@
 #   227: item novo ao fim de config/requisitos_ampliacao.yml.
 # 174 (pessoal.html "sem nomes nem CPF") não muda: a tela mostra contagens, não pessoas, e não esconde dado
 # nenhum da fonte. 149 (credor recorrente) continua deixando de fora o documento mascarado; depois da restauração
-# isso vale só para o que a fonte publica mascarado e para as 7.275 linhas da despesa que esperam a releitura.
+# isso vale só para o que a fonte publica mascarado e para as 7.755 linhas da despesa que esperam a releitura.
 - id: 141
   trocar:
     - de: >-
@@ -68,12 +68,14 @@
     mostram o dado como a fonte publica, sem máscara e sem corte de texto; o CPF inteiro casa pelo CPF inteiro.
     python -m onisciente restaurar-fonte --de 07e130c devolve o que o sistema mascarou, cada linha provada pelo hash
     do rastreio antigo (ou pela linha antiga que só difere na proveniência), e lista o que não tem original. Na cópia
-    do banco de 28/11/2026: 19.094 linhas voltaram (contratacoes_pncp 19, contratos_pncp 925, despesa_eventos 7.833,
-    emendas_municipio 21, pncp_itens 983, sancoes 9.113), 95.123 folhas retiradas voltaram provadas pela raiz, e a
-    verificação ficou íntegra.
+    do banco de 28/11/2026: 18.901 linhas voltaram (contratacoes_pncp 19, contratos_pncp 925, despesa_eventos 7.840,
+    emendas_municipio 21, pncp_itens 983, sancoes 9.113), nenhuma ambígua nem sem prova, 95.123 folhas retiradas
+    voltaram provadas pela raiz, e a verificação ficou íntegra. Os 16 arquivos da sondagem que o sistema mascarou
+    voltaram à versão que a coleta gravou.
   falta: >-
     Rodar restaurar-fonte --gravar no banco real e ler de novo da fonte o que foi coletado já mascarado: a despesa de
-    Goiânia (cerca de 7.900 linhas, todos os 25 meses, pela releitura completa) e 82 entidades do FNS (motor fns).
+    Goiânia (7.755 linhas com o documento mascarado, de 2024-11 a 2026-11, pela releitura completa), 82 entidades do
+    FNS (motor fns) e 6 arquivos de d2_transweb da sondagem (a próxima sondagem).
     Quando o banco real estiver limpo, a trava xfail estrita test_banco_real_sem_nada_mascarado_pelo_sistema passa e
     a marca xfail sai.
   trava: testes/test_dado_da_fonte.py::test_nenhum_modulo_chama_a_mascara_nem_abre_rodada_de_mascara_ou_retirada
