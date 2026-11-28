@@ -1,6 +1,6 @@
 {
  "intervalo": "2024-11 a 2026-11",
- "rodada": "2026-11-28T04:18:01+00:00",
+ "rodada": "2026-11-28T06:07:01+00:00",
  "meses": [
   "2024-11",
   "2024-12",
@@ -102,12 +102,12 @@
   {
    "motor": "fns",
    "nome": "Fundo Nacional de Saúde (repasses fundo a fundo)",
-   "chamadas": 201,
-   "ok": 177,
+   "chamadas": 96,
+   "ok": 72,
    "falhas": 24,
-   "tentativas": 225,
+   "tentativas": 120,
    "http_429": 0,
-   "segundos": 710.3,
+   "segundos": 564.6,
    "erros": {
     "URLError: [Errno -2] Name or service not known": 12,
     "HTTP 400: <html><head><title>JBWEB000065: HTTP Status 400 - </title><style><!--H1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} H2 {font-family:Tahoma,Arial,sans-ser": 9,
@@ -134,9 +134,9 @@
    "chamadas": 3,
    "ok": 1,
    "falhas": 2,
-   "tentativas": 4,
+   "tentativas": 3,
    "http_429": 0,
-   "segundos": 7.7,
+   "segundos": 1.7,
    "erros": {
     "HTTP 403: <?xml version=\"1.0\" encoding=\"UTF-8\"?> <Error><Code>AccessDenied</Code><Message>Access Denied</Message></Error>": 1,
     "HTTP 405: {\"mensagem\":\"Método não suportado na requisição para o endpoint /api/publico/responsaveis-inidoneos-com-paginacao. org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'G": 1
@@ -199,7 +199,7 @@
    "falhas": 0,
    "tentativas": 4,
    "http_429": 0,
-   "segundos": 3.2,
+   "segundos": 1.4,
    "erros": {}
   },
   {
@@ -264,12 +264,12 @@
   {
    "motor": "tcm",
    "nome": "Decisões do TCM-GO",
-   "chamadas": 12,
-   "ok": 6,
+   "chamadas": 14,
+   "ok": 8,
    "falhas": 6,
-   "tentativas": 12,
+   "tentativas": 14,
    "http_429": 0,
-   "segundos": 21.5,
+   "segundos": 25.6,
    "erros": {
     "HTTP 403: <html>\r <head><title>403 Forbidden</title></head>\r <body>\r <center><h1>403 Forbidden</h1></center>\r </body>\r </html>": 6
    }
@@ -277,15 +277,13 @@
   {
    "motor": "tcu",
    "nome": "Decisões do TCU",
-   "chamadas": 4,
-   "ok": 3,
-   "falhas": 1,
-   "tentativas": 9,
-   "http_429": 1,
-   "segundos": 172.0,
-   "erros": {
-    "HTTP 429: <html>\r <head><title>429 Too Many Requests</title></head>\r <body>\r <center><h1>429 Too Many Requests</h1></center>\r <hr><center>nginx</center>\r </body>\r </html>": 1
-   }
+   "chamadas": 12,
+   "ok": 12,
+   "falhas": 0,
+   "tentativas": 13,
+   "http_429": 0,
+   "segundos": 40.8,
+   "erros": {}
   },
   {
    "motor": "tesouro",
@@ -596,13 +594,6 @@
    "titulo": "Contratações (PNCP): 1 de 618 chamadas falharam",
    "detalhe": "Erro mais comum: RemoteDisconnected: Remote end closed connection without response (1 vezes).",
    "proposta": "Ver a tabela coletas do banco para os endereços exatos."
-  },
-  {
-   "tipo": "melhoria",
-   "motor": "tcu",
-   "titulo": "Decisões do TCU pediu para ir mais devagar",
-   "detalhe": "1 respostas 429 (muitas requisições).",
-   "proposta": "Aumentar a pausa entre chamadas e coletar em janelas menores, todo dia, em vez de tudo de uma vez."
   },
   {
    "tipo": "melhoria",
