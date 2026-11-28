@@ -1,27 +1,16 @@
-# Coleta em andamento: boletim de 2026-11-28T09:19+00:00
+# Coleta em andamento: boletim de 2026-11-28T09:20+00:00
 
-Desde 2026-11-28T09:16:03+00:00: 133 chamadas registradas.
-Última chamada: 2026-11-28T09:19:20+00:00 (com_termos).
+Desde 2026-11-28T09:20:18+00:00: 0 chamadas registradas.
 
 ## Por fonte
 
 | fonte | situação | chamadas |
 |---|---|---|
-| raw.githubusercontent.com | ok | 21 |
-| saude.goiania.go.gov.br | ok | 1 |
-| sileg.goiania.go.gov.br | ok | 63 |
-| sme.goiania.go.gov.br | ok | 1 |
-| www.goiania.go.gov.br | ok | 47 |
 
 ## Tempo das respostas boas (segundos)
 
 | fonte | n | mediana | p90 | máximo |
 |---|---|---|---|---|
-| raw.githubusercontent.com | 21 | 0.2 | 0.3 | 0.3 |
-| saude.goiania.go.gov.br | 1 | 1.5 | 1.5 | 1.5 |
-| sileg.goiania.go.gov.br | 63 | 0.3 | 0.6 | 1.2 |
-| sme.goiania.go.gov.br | 1 | 2.2 | 2.2 | 2.2 |
-| www.goiania.go.gov.br | 47 | 0.4 | 0.8 | 1.6 |
 
 ## O que o banco tem agora
 
