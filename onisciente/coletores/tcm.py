@@ -64,6 +64,10 @@ DESCARTADOS = (
 
 JURISPRUDENCIA = "https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/acordao/jurisprudencia/"
 CABECALHOS_JURISPRUDENCIA = {"X-Cliente": "portal"}
+# Na coleta de 28/11/2026 (d532c1d) a busca por "Goiânia", da sessão mais nova para a mais antiga, deu 100
+# decisões por página em uns 2 s; as 5 primeiras páginas (500 decisões, 190 sobre Goiânia) só cobriram de
+# 03/09 a 27/10/2026. O motor segue até a sessão mais antiga do intervalo, com este teto de páginas.
+PAGINAS_JURISPRUDENCIA = 80
 
 ACESSO = "https://acessoainformacao.tcmgo.tc.br/"
 DADOS_ABERTOS = "https://ws.tcm.go.gov.br/api/rest/dados/contas-irregulares"

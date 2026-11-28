@@ -26,6 +26,7 @@ import time
 import urllib.error
 import urllib.parse
 import zlib
+from collections import Counter
 from datetime import UTC, date, datetime, timedelta
 
 from .. import partes as _partes
@@ -225,24 +226,55 @@ def motor_fns_entidades(ctx, ibge, paginas_max: int = 20) -> None:
         _situacao(ctx, "fns", alvo, situacao, via=fns.ENTIDADES, registros=len(linhas), erro=erro)
 
 
+# A listagem da consulta detalhada pagina sem ordem estável: na coleta de 28/11/2026 (d532c1d) as 7
+# páginas de 2025 eram diferentes umas das outras (nenhuma repetiu a primeira) e somaram as 676 ordens do
+# total, mas algumas ordens vieram em duas páginas e outras em nenhuma. Repetidas e perdidas se anularam na
+# contagem e apareceram na soma: em 2025 a ação 68058 teve 1.309.828,83 a mais, exatamente duas ordens
+# repetidas; em 2026 a 67738 teve 921.567,18 a mais, uma ordem repetida. Por isso a linha que reaparece em
+# outra página não conta de novo, e a listagem que fica curta é relida até achar as que faltam.
+RELEITURAS_FNS = 2
+
+
 def _paginas_fns(ctx, alvo: str, mes: str, montar, ler) -> tuple[list[dict] | None, str | None, str | None]:
-    """Lê todas as páginas (100 por vez) de um detalhe da consulta detalhada: (linhas, situação, erro)."""
+    """Lê todas as páginas (100 por vez) de um detalhe da consulta detalhada: (linhas, situação, erro).
+    Uma linha igual a outra de página anterior é repetição da paginação e fica de fora (iguais na mesma
+    página contam, até o número de vezes que vieram juntas). Se faltar linha para o total, relê tudo até
+    ``RELEITURAS_FNS`` vezes, juntando as que aparecerem; se ainda faltar, falha e diz quantas."""
     linhas: list[dict] = []
-    for pagina in range(1, PAGINAS_MAX + 1):
-        url = montar(pagina)
-        leitura = ctx.ler("fns", f"{alvo} p{pagina}", url, mes=mes, tempo=120)
-        if not leitura.ok:
-            return None, ("nao_publicado" if _ausente(leitura) else "falha"), leitura.erro or f"HTTP {leitura.http}"
-        try:
-            novas, total = ler(leitura.conteudo)
-        except ValueError as e:
-            _anotar(ctx, "fns", f"{alvo} p{pagina}", mes, url, f"formato: {e}")
-            return None, "formato", f"formato: {e}"
-        linhas.extend(novas)
-        if not novas or len(linhas) >= total:
+    vezes: Counter = Counter()                   # chave da linha -> quantas já guardadas
+    repetidas, total = 0, 0
+    for passada in range(1 + RELEITURAS_FNS):
+        sufixo = f" releitura {passada}" if passada else ""
+        lidas = 0
+        for pagina in range(1, PAGINAS_MAX + 1):
+            url = montar(pagina)
+            leitura = ctx.ler("fns", f"{alvo} p{pagina}{sufixo}", url, mes=mes, tempo=120)
+            if not leitura.ok:
+                return None, ("nao_publicado" if _ausente(leitura) else "falha"), leitura.erro or f"HTTP {leitura.http}"
+            try:
+                novas, total = ler(leitura.conteudo)
+            except ValueError as e:
+                _anotar(ctx, "fns", f"{alvo} p{pagina}{sufixo}", mes, url, f"formato: {e}")
+                return None, "formato", f"formato: {e}"
+            lidas += len(novas)
+            grupos: dict[str, list[dict]] = {}
+            for linha in novas:
+                grupos.setdefault(json.dumps(linha, sort_keys=True, default=str), []).append(linha)
+            for chave, iguais in grupos.items():
+                ja = vezes[chave]
+                if passada == 0:
+                    repetidas += min(ja, len(iguais))
+                if len(iguais) > ja:
+                    linhas.extend(iguais[ja:])
+                    vezes[chave] = len(iguais)
+            if not novas or lidas >= total:
+                break
+        if len(linhas) >= total or not repetidas:
             break
     if len(linhas) < total:
-        return None, "falha", f"{len(linhas)} de {total} linhas"
+        motivo = (f"; a paginação repetiu {repetidas} linhas em outra página e {RELEITURAS_FNS} releituras "
+                  "não trouxeram as que faltam") if repetidas else ""
+        return None, "falha", f"{len(linhas)} de {total} linhas{motivo}"
     return linhas, None, None
 
 
@@ -251,13 +283,15 @@ _SO_DA_LISTAGEM = ("programa_id", "fundo_a_fundo")
 
 def _ordens_da_listagem(ctx, alvo, ano, ibge, cnpj, nome, acoes):
     """Todas as ordens do ano da entidade numa leitura (``detalhe-pagamento`` com ``acoes`` vazio, o
-    caminho que a sondagem da rodada 7 provou): (ordens fundo a fundo, pago por ação, notas) ou None
-    se a listagem não vier ou não disser a ação de cada ordem."""
-    todas, _sit, _erro = _paginas_fns(ctx, f"{alvo} {cnpj} pagamentos", f"{ano}-01",
+    caminho que a sondagem da rodada 7 provou): (ordens fundo a fundo, pago por ação, notas); o motivo
+    (texto) se a listagem veio mas não inteira ou sem a ação de cada ordem; None se foi recusada."""
+    todas, sit, erro = _paginas_fns(ctx, f"{alvo} {cnpj} pagamentos", f"{ano}-01",
                                       lambda p: fns.url_detalhe("detalhe-pagamento", ibge, ano, cnpj, p),
                                       fns.pagamentos)
-    if todas is None or any(not o.get("programa_id") for o in todas):
-        return None
+    if todas is None:
+        return None if sit == "nao_publicado" else erro or "não veio"   # recusada: vai por ação, calada
+    if any(not o.get("programa_id") for o in todas):
+        return "ordem sem a ação"
     por_id = {a["id"]: a for a in acoes}
     pago: dict[str, float] = {}
     ordens, fora, sem_fundo = [], [], []
@@ -286,7 +320,8 @@ def motor_fns_detalhe(ctx, ibge) -> None:
     """O valor pago pelo FNS a cada entidade municipal (o Fundo Municipal de Saúde), pela consulta
     detalhada: as ações do ano (``detalhe-acao``) e as ordens bancárias (``detalhe-pagamento``), que vão
     para ``repasses_fns`` quando nenhuma outra via preencheu o ano. As ordens vêm de uma vez (``acoes``
-    vazio); se essa listagem não vier, de cada ação com valor, como na tela. A soma das ordens de cada
+    vazio); se essa listagem não vier inteira (a paginação dela repete e perde ordens, ver
+    ``RELEITURAS_FNS``), de cada ação com valor, como na tela, e o porquê fica anotado. A soma das ordens de cada
     ação é conferida com o total da ação; só as ordens fundo a fundo entram em ``repasses_fns``. As
     entidades vêm de ``fns_entidades``."""
     preparar(ctx.banco)
@@ -310,7 +345,9 @@ def motor_fns_detalhe(ctx, ibge) -> None:
                 continue
             ctx.banco.con.execute("DELETE FROM fns_acoes WHERE ano = ? AND cnpj = ?", (ano, cnpj))
             listagem = _ordens_da_listagem(ctx, alvo, ano, ibge, cnpj, nome, lidas)
-            if listagem is not None:
+            if isinstance(listagem, str):
+                avisos.append(f"{nome}: a listagem de uma vez não serviu ({listagem}); as ordens vêm por ação")
+            elif listagem is not None:
                 da_entidade, pago, notas = listagem
                 ordens.extend(da_entidade)
                 avisos.extend(f"{nome}: {n}" for n in notas)
@@ -912,7 +949,7 @@ def motor_tcm(ctx, termo: str = "Goiânia", paginas: int = 5) -> None:
     """As decisões do TCM-GO sobre Goiânia, pelo primeiro candidato que responder. As listas de contas
     rejeitadas ou irregulares são de ``motor_listas_tcm``, que ``chamadas`` roda junto."""
     preparar(ctx.banco)
-    erro_api = _jurisprudencia_tcm(ctx, termo, paginas)
+    erro_api = _jurisprudencia_tcm(ctx, termo, tcm.PAGINAS_JURISPRUDENCIA)
     if erro_api is None:
         return
     ultimo_erro, situacao = "nenhum candidato respondeu", "nao_publicado"
@@ -953,9 +990,11 @@ def motor_tcm(ctx, termo: str = "Goiânia", paginas: int = 5) -> None:
 
 
 def _jurisprudencia_tcm(ctx, termo: str, paginas: int) -> str | None:
-    """A pesquisa da jurisprudência do TCM-GO (``tcm.url_jurisprudencia``): guarda as decisões sobre
-    Goiânia e devolve None quando a API respondeu; senão, o motivo, e ``motor_tcm`` tenta os candidatos."""
-    guardadas, chaves, parcial = 0, set(), None
+    """A pesquisa da jurisprudência do TCM-GO (``tcm.url_jurisprudencia``), da sessão mais nova para a mais
+    antiga, até passar do começo do intervalo (ou até ``paginas``): guarda as decisões sobre Goiânia e
+    devolve None quando a API respondeu; senão, o motivo, e ``motor_tcm`` tenta os candidatos."""
+    desde = f"{min(ctx.meses)}-01" if ctx.meses else None
+    guardadas, chaves, parcial, mais_antiga, mais = 0, set(), None, None, False
     for p in range(1, paginas + 1):
         url = tcm.url_jurisprudencia(termo, p)
         leitura = ctx.ler("tcm", f"jurisprudencia p{p}", url, tempo=90, cabecalhos=tcm.CABECALHOS_JURISPRUDENCIA)
@@ -975,8 +1014,15 @@ def _jurisprudencia_tcm(ctx, termo: str, paginas: int) -> str | None:
         novas = [d for d in decisoes if d["chave"] not in chaves]
         chaves.update(d["chave"] for d in novas)
         guardadas += _guardar_decisoes(ctx, novas, True)
-        if not mais or not novas:
+        datas = [d["data"] for d in decisoes if d.get("data")]   # de todas, não só as de Goiânia
+        if datas:
+            mais_antiga = min([*datas, mais_antiga] if mais_antiga else datas)
+        if not mais or not novas or (desde and mais_antiga and mais_antiga < desde):
+            mais = False
             break
+    if parcial is None and mais and desde and mais_antiga and mais_antiga >= desde:
+        parcial = (f"{paginas} páginas lidas (o teto): as decisões chegam a {mais_antiga}, "
+                   f"e o intervalo começa em {desde}")
     _situacao(ctx, "tcm", "decisoes", "lido" if guardadas else "vazio", via=tcm.JURISPRUDENCIA, registros=guardadas,
               erro=parcial)
     return None
