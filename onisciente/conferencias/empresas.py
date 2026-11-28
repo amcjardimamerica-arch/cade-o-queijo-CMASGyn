@@ -31,6 +31,7 @@ import re
 import sqlite3
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
+from functools import lru_cache
 from datetime import date, timedelta
 from html import escape
 from itertools import combinations
@@ -210,6 +211,25 @@ class Contrato:
     @property
     def basico(self) -> str:
         return self.ni[:8] if self.pj else self.ni
+
+
+def _doc(ni: str) -> str:
+    """O documento do fornecedor como aparece no texto: o CNPJ, ou o CPF mascarado (os seis do meio)."""
+    return f"***.{ni[:3]}.{ni[3:]}-**" if len(ni) == 6 and ni.isdigit() else ni
+
+
+_CPF_NO_NOME = re.compile(r"\*{3}\.\d{3}\.\d{3}-\*{2}|(?<![\d.])\d{3}\.\d{3}\.\d{3}-\d{2}(?!\d)|(?<!\d)\d{11}(?!\d)")
+
+
+def _mesmo_nome(a: str, b: str) -> bool:
+    """Mesmo nome, com ou sem o CPF (inteiro ou mascarado) que algumas fontes juntam a ele."""
+    return bool(a) and bool(b) and (a == b or _sem_cpf(a) == _sem_cpf(b) != "")
+
+
+@lru_cache(maxsize=None)
+def _sem_cpf(nome: str) -> str:
+    """O nome sem o CPF que algumas fontes juntam a ele (inteiro ou mascarado), para comparar nomes."""
+    return " ".join(_CPF_NO_NOME.sub(" ", nome or "").split())
 
 
 @dataclass
@@ -632,7 +652,7 @@ class _Conferidor:
         if anteriores < minimo:
             inicio = min((o.data for o in self.contratos if o.data), default="")
             self.add("sem_experiencia", c, c.id,
-                     f"a contratada {c.fornecedor} ({c.ni}) não tem, no banco (contratos e itens do PNCP de todos "
+                     f"a contratada {c.fornecedor} ({_doc(c.ni)}) não tem, no banco (contratos e itens do PNCP de todos "
                      f"os órgãos do Município desde {_data_br(inicio)}), nenhum contrato ou item ganho antes de "
                      f"{_data_br(c.data)} no ramo {c.ramo or 'do objeto'}; contrato {c.id}, de {_moeda(c.valor)}",
                      gravidade="media", limite=minimo, ramo=c.ramo)
@@ -642,18 +662,17 @@ class _Conferidor:
     def _casa(self, s: Sancao, tipo: str, doc: str, nome: str) -> tuple[bool, bool]:
         """(casa, casou só pelo nome ou pelo CPF parcial). PJ casa pela raiz do CNPJ; PF pelo CPF inteiro,
         ou pelos seis dígitos do meio somados ao nome quando um dos lados vem mascarado."""
-        nome_ok = bool(s.nome) and bool(nome) and s.nome == nome
         if tipo == "PJ":
             if s.tipo_doc == "PJ":
                 return s.doc[:8] == doc[:8], False
-            return (not s.tipo_doc and nome_ok), True
+            return (not s.tipo_doc and _mesmo_nome(s.nome, nome)), True
         if tipo == "PF" and s.tipo_doc == "PF":
             return s.doc == doc, False
         m = doc[3:9] if tipo == "PF" else doc if tipo == "PF6" else ""
         sm = s.doc[3:9] if s.tipo_doc == "PF" else s.doc if s.tipo_doc == "PF6" else ""
         if sm and m:
-            return sm == m and (nome_ok or not s.nome or not nome), True
-        return (not sm and nome_ok), True
+            return sm == m and (not s.nome or not nome or _mesmo_nome(s.nome, nome)), True
+        return (not sm and _mesmo_nome(s.nome, nome)), True
 
     def _sancoes(self, c: Contrato) -> None:
         if not self.sancoes:
@@ -665,7 +684,9 @@ class _Conferidor:
                              else ("PF6", miolo_cpf(p.doc)) if miolo_cpf(p.doc) else ("", ""))
                 alvos.append(("socio", tipo, doc, p.nome, p))
         else:
-            alvos = [("empresa", "PF", c.ni, _norm(c.fornecedor), None)]
+            # Pessoa física: o CPF inteiro, ou os seis do meio quando o banco o guarda mascarado
+            # (***.NNN.NNN-**, desde 28/11/2026), como o QSA da Receita.
+            alvos = [("empresa", "PF6" if len(c.ni) == 6 else "PF", c.ni, _norm(c.fornecedor), None)]
         vigencia_fim = c.vigencia_fim or c.data
         for quem, tipo, doc, nome, pessoa in alvos:
             for s in self.sancoes:
@@ -681,7 +702,7 @@ class _Conferidor:
                 momento = "na data da assinatura" if na_data else "durante a vigência do contrato"
                 if quem == "empresa":
                     self.add("sancionada", c, f"{c.id}-{s.cadastro}",
-                             f"{'a contratada' if c.pj else 'o fornecedor pessoa física'} {c.fornecedor} ({c.ni}) "
+                             f"{'a contratada' if c.pj else 'o fornecedor pessoa física'} {c.fornecedor} ({_doc(c.ni)}) "
                              f"consta no {s.cadastro} ({s.tipo or 'sanção'}, {s.orgao or 'órgão não informado'}; "
                              f"{periodo}) {momento} do contrato {c.id}, assinado em {_data_br(c.data)}",
                              gravidade="critica" if na_data else "alta", cadastro=s.cadastro,
@@ -702,7 +723,7 @@ class _Conferidor:
                 if p.chave.startswith("PF:"):
                     alvos.append((p.nome, miolo_cpf(p.doc), p.qualificacao or "sócio"))
         else:
-            alvos.append((_norm(c.fornecedor), c.ni[3:9], "fornecedor pessoa física"))
+            alvos.append((_norm(c.fornecedor), c.ni if len(c.ni) == 6 else c.ni[3:9], "fornecedor pessoa física"))
         for nome, miolo, papel in alvos:
             for s in self.servidores:
                 if _norm(s.get("nome")) != nome:

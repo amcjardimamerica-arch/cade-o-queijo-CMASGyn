@@ -29,3 +29,4 @@ estado/fnas/*.xlsx
 dados/onisciente/despesa/*.sqlite
 dados/onisciente/despesa/*.sqlite-journal
 dados/onisciente/despesa/*.sqlite.tmp
+dados/onisciente/despesa/*.tmp

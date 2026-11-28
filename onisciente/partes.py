@@ -22,6 +22,12 @@ vazia no principal; o esquema é reescrito com ``esquema_com_partes``, e a conex
 ``Conexao`` que reescreve sozinha todo CREATE que passa por ela, inclusive o dos motores), saber se a
 tabela existe (``tem_tabela`` olha todos os esquemas) e abrir para leitura (``conectar_leitura``).
 
+A parte comprimida nunca fica só no SQLite de trabalho (que não vai ao ramo): a conexão do ``Banco`` anota,
+por gatilho TEMP, os anos da despesa que mudaram, e todo ``commit`` regrava os .gz desses anos; a mudança
+de uma tabela antiga para a parte só apaga a tabela do principal depois de os .gz conferirem com ela. Um
+caminho que abre o banco e grava sem chamar ``Banco.fechar`` (rastreio, parecer, telas, a soma da janela)
+não perde a despesa.
+
 Só o banco chamado ``historico.db`` é dividido (o da coleta e os de teste com esse nome); a janela da
 agenda e outros bancos de trabalho ficam inteiros, e a soma da janela grava cada tabela no esquema
 onde ela está no banco principal (``esquema_da_tabela``).
@@ -50,7 +56,8 @@ COMPRIMIDAS: dict[str, dict[str, str]] = {"despesa": {"despesa_eventos": "data"}
 PARTE_DA_TABELA = {t: p for p, tabelas in PARTES.items() for t in tabelas}
 NOME_DIVIDIDO = "historico.db"
 CONTROLE = "partes_comprimidas"     # no SQLite de trabalho: os .gz de que ele foi feito (arquivo, sha256)
-INTERNAS = (CONTROLE,)
+SUJAS = "partes_sujas"              # TEMP, na conexão que grava: (parte, tabela, ano) mudados desde o commit
+INTERNAS = (CONTROLE, SUJAS)
 SEM_ANO = "sem_ano"
 NIVEL_GZIP = 6
 
@@ -128,6 +135,8 @@ def anexar(con, *, somente_leitura: bool = False) -> list[str]:
         if parte in COMPRIMIDAS and not somente_leitura:
             sqlite3.Connection.execute(
                 con, f"CREATE TABLE IF NOT EXISTS {parte}.{CONTROLE} (arquivo TEXT PRIMARY KEY, sha256 TEXT)")
+    if not somente_leitura:
+        vigiar(con)
     return anexadas(con)
 
 
@@ -200,15 +209,68 @@ class Conexao(sqlite3.Connection):
     da tabela, inclusive o dos motores que criam as próprias tabelas (o de Goiânia cria
     ``despesa_eventos`` a cada gravação)."""
 
+    _exportando = False
+
     def execute(self, sql, *args, **kw):
         if _cria(sql) and sql.lstrip()[:6].upper() == "CREATE":
-            sql = esquema_com_partes(self, sql)
+            cur = super().execute(esquema_com_partes(self, sql), *args, **kw)
+            vigiar(self)                  # tabela comprimida criada agora: os gatilhos dos anos mudados
+            return cur
         return super().execute(sql, *args, **kw)
 
     def executescript(self, sql):
         if _cria(sql):
-            sql = esquema_com_partes(self, sql)
+            cur = super().executescript(esquema_com_partes(self, sql))
+            vigiar(self)
+            return cur
         return super().executescript(sql)
+
+    def commit(self):
+        """Grava e, se a parte comprimida mudou, regrava os .gz dos anos mudados (o SQLite de trabalho não
+        vai ao ramo: sem isto, um caminho que não chama ``Banco.fechar`` perderia o que gravou nela)."""
+        super().commit()
+        if not self._exportando and _sujas(self):
+            self._exportando = True
+            try:
+                exportar(self, so_sujas=True)
+            finally:
+                self._exportando = False
+
+
+def _ano_de(ref: str) -> str:
+    return f"CASE WHEN {ref} GLOB '[0-9][0-9][0-9][0-9]*' THEN substr({ref}, 1, 4) ELSE '{SEM_ANO}' END"
+
+
+def vigiar(con) -> None:
+    """Gatilhos TEMP que anotam (parte, tabela, ano) de cada linha que entra, muda ou sai de uma tabela
+    comprimida, para o ``commit`` regravar só os .gz desses anos. Idempotente."""
+    for parte, tabelas_ in COMPRIMIDAS.items():
+        if parte not in anexadas(con):
+            continue
+        for tabela, coluna in tabelas_.items():
+            if not con.execute(f"SELECT 1 FROM {parte}.sqlite_master WHERE type = 'table' AND name = ?",
+                               (tabela,)).fetchone():
+                continue
+            nome_col = f'"{coluna}"'
+            sqlite3.Connection.execute(con, f"CREATE TEMP TABLE IF NOT EXISTS {SUJAS} "
+                                            "(parte TEXT, tabela TEXT, ano TEXT, PRIMARY KEY (parte, tabela, ano))")
+            for quando, refs in (("INSERT", ("NEW",)), ("UPDATE", ("OLD", "NEW")), ("DELETE", ("OLD",))):
+                corpo = " ".join(f"INSERT OR IGNORE INTO {SUJAS} VALUES ('{parte}', '{tabela}', "
+                                 f"{_ano_de(r + '.' + nome_col)});" for r in refs)
+                sqlite3.Connection.execute(
+                    con, f'CREATE TEMP TRIGGER IF NOT EXISTS "{SUJAS}_{quando.lower()}_{tabela}" AFTER {quando} '
+                         f"ON {parte}.\"{tabela}\" BEGIN {corpo} END")
+
+
+def _sujas(con) -> dict[tuple[str, str], set[str]]:
+    try:
+        linhas = con.execute(f"SELECT parte, tabela, ano FROM temp.{SUJAS}").fetchall()
+    except sqlite3.OperationalError:
+        return {}
+    saida: dict[tuple[str, str], set[str]] = {}
+    for parte, tabela, ano in linhas:
+        saida.setdefault((parte, tabela), set()).add(ano)
+    return saida
 
 
 def mover_para_as_partes(con) -> dict[str, int]:
@@ -245,9 +307,19 @@ def mover_para_as_partes(con) -> dict[str, int]:
         for s in indices:
             sqlite3.Connection.execute(con, re.sub(r"^CREATE (UNIQUE )?INDEX (IF NOT EXISTS )?\"?(\w+)\"?",
                                                    f"CREATE \\1INDEX IF NOT EXISTS {parte}.\\3", s, count=1))
+        if parte in COMPRIMIDAS:
+            # O SQLite de trabalho não vai ao ramo: a tabela só sai do principal depois de os .gz existirem e
+            # conferirem com ela. Se algo falhar aqui, o principal continua com a tabela inteira.
+            sqlite3.Connection.commit(con)
+            gravados = exportar(con, partes_=(parte,))
+            nos_gz = sum(n for nome, n in gravados.items() if nome.startswith(f"{tabela}_"))
+            if nos_gz != depois:
+                raise RuntimeError(f"{tabela}: {nos_gz} linhas nos .gz, {depois} na parte; o principal fica como está")
         con.execute(f"DROP TABLE main.{tabela}")
         con.commit()
         movidas[tabela] = antes
+    if movidas:
+        vigiar(con)
     return movidas
 
 
@@ -327,20 +399,26 @@ def _ano(coluna: str) -> str:
             f"ELSE '{SEM_ANO}' END")
 
 
-def exportar(con) -> dict[str, int]:
+def exportar(con, *, partes_: tuple[str, ...] | None = None, so_sujas: bool = False) -> dict[str, int]:
     """Grava os .jsonl.gz das partes comprimidas a partir do SQLite de trabalho: um por tabela e ano,
     em ordem estável e sem data no cabeçalho do gzip (ano que não mudou dá o mesmo arquivo, e o git não
-    vê mudança). Tira o .gz de um ano que ficou sem linhas. Devolve as linhas gravadas por arquivo."""
+    vê mudança). Tira o .gz de um ano que ficou sem linhas. ``so_sujas``: só os anos que a conexão anotou
+    como mudados desde o último commit (o ``commit`` da ``Conexao``). Devolve as linhas gravadas por arquivo."""
     principal = _arquivo_principal(con)
     gravados: dict[str, int] = {}
     if not divide(principal):
         return gravados
+    sujas = _sujas(con)
+    if so_sujas and not sujas:
+        return gravados
     for parte, tabelas_ in COMPRIMIDAS.items():
-        if parte not in anexadas(con):
+        if parte not in anexadas(con) or (partes_ is not None and parte not in partes_):
+            continue
+        if so_sujas and not any(p == parte for p, _ in sujas):
             continue
         pasta = pasta_da_parte(principal, parte)
         pasta.mkdir(parents=True, exist_ok=True)
-        feitos: dict[str, str] = {}
+        feitos: dict[str, str | None] = {}           # arquivo -> sha256 (None: o ano ficou sem linhas)
         for tabela, coluna in tabelas_.items():
             linha = con.execute(f"SELECT sql FROM {parte}.sqlite_master WHERE type = 'table' AND name = ?",
                                 (tabela,)).fetchone()
@@ -350,7 +428,14 @@ def exportar(con) -> dict[str, int]:
                                                  "AND tbl_name = ? AND sql IS NOT NULL ORDER BY name", (tabela,))]
             colunas = [c[1] for c in con.execute(f"PRAGMA {parte}.table_info({tabela})")]
             ordem = ", ".join(f'"{c}"' for c in colunas)
-            anos = [a for (a,) in con.execute(f"SELECT DISTINCT {_ano(coluna)} FROM {parte}.{tabela} ORDER BY 1")]
+            presentes = [a for (a,) in con.execute(f"SELECT DISTINCT {_ano(coluna)} FROM {parte}.{tabela} ORDER BY 1")]
+            if so_sujas:
+                mudados = sujas.get((parte, tabela), set())
+                anos = sorted(mudados & set(presentes))
+                for ano in sorted(mudados - set(presentes)):
+                    feitos[f"{tabela}_{ano}.jsonl.gz"] = None
+            else:
+                anos = presentes
             for ano in anos:
                 cab = {"tabela": tabela, "ano": ano, "sql": linha[0], "indices": indices, "colunas": colunas}
                 buf = io.BytesIO()
@@ -365,13 +450,27 @@ def exportar(con) -> dict[str, int]:
                 dados = buf.getvalue()
                 destino = pasta / f"{tabela}_{ano}.jsonl.gz"
                 if not destino.exists() or destino.read_bytes() != dados:
-                    destino.write_bytes(dados)
+                    tmp = destino.with_name(destino.name + ".tmp")
+                    tmp.write_bytes(dados)
+                    os.replace(tmp, destino)            # nunca um .gz pela metade no ramo
                 feitos[destino.name] = hashlib.sha256(dados).hexdigest()
                 gravados[destino.name] = n
-        for velho in comprimidos(principal, parte):
-            if velho.name not in feitos:
-                velho.unlink()                          # o ano ficou sem linhas
-        con.execute(f"DELETE FROM {parte}.{CONTROLE}")
-        con.executemany(f"INSERT INTO {parte}.{CONTROLE} VALUES (?, ?)", sorted(feitos.items()))
-        con.commit()
+        if so_sujas:
+            for nome, sha in feitos.items():
+                if sha is None:
+                    (pasta / nome).unlink(missing_ok=True)       # o ano ficou sem linhas
+                    sqlite3.Connection.execute(con, f"DELETE FROM {parte}.{CONTROLE} WHERE arquivo = ?", (nome,))
+                else:
+                    sqlite3.Connection.execute(con, f"INSERT OR REPLACE INTO {parte}.{CONTROLE} VALUES (?, ?)",
+                                               (nome, sha))
+        else:
+            for velho in comprimidos(principal, parte):
+                if velho.name not in feitos:
+                    velho.unlink()                      # o ano ficou sem linhas
+            sqlite3.Connection.execute(con, f"DELETE FROM {parte}.{CONTROLE}")
+            sqlite3.Connection.executemany(con, f"INSERT INTO {parte}.{CONTROLE} VALUES (?, ?)",
+                                           sorted(feitos.items()))
+        if sujas:
+            sqlite3.Connection.execute(con, f"DELETE FROM temp.{SUJAS} WHERE parte = ?", (parte,))
+        sqlite3.Connection.commit(con)
     return gravados
