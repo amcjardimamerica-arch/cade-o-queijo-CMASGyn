@@ -41,6 +41,7 @@ def test_todo_fluxo_do_banco_tem_a_guarda_de_tamanho_e_adiciona_o_rastreio():
             assert "95000000" in guarda["run"] and "GITHUB_STEP_SUMMARY" in guarda["run"], p.name
             assert "grande=1" in guarda["run"] and "dados/onisciente/*.db" in guarda["run"], p.name
             assert "70000000" in guarda["run"], p.name                                 # o aviso antes do limite
+            assert "dados/onisciente/despesa/*.jsonl.gz" in guarda["run"], p.name
             # O passo que publica (o último que faz commit e push; o boletim da coleta em andamento, que só
             # envia relatorios/onisciente/boletim_coleta.md de outra cópia do ramo, vem antes e não conta).
             envios = [i for i, s in enumerate(passos) if "git commit" in str(s.get("run", ""))
@@ -53,7 +54,9 @@ def test_todo_fluxo_do_banco_tem_a_guarda_de_tamanho_e_adiciona_o_rastreio():
                 assert f"{GRANDE} != '1'" in passos[i].get("if", ""), p.name        # não envia se passou
                 laco = re.search(r"for f in ([^;]+); do\s+\[ ! -f \"\$f\" \] \|\| git add \"\$f\"", passos[i]["run"])
                 assert laco, p.name
-                assert set(laco.group(1).split()) >= {f"dados/onisciente/{n}.db" for n in ("rastreio", "precos", "sancoes")}
+                assert set(laco.group(1).split()) >= {f"dados/onisciente/{n}.db"
+                                                      for n in ("rastreio", "precos", "sancoes", "series")}
+                assert "git add -A dados/onisciente/despesa" in passos[i]["run"], p.name   # a despesa comprimida
             artefato = [i for i, s in enumerate(passos) if str(s.get("uses", "")).startswith("actions/upload-artifact")
                         and f"{GRANDE} == '1'" in s.get("if", "")]
             assert artefato and ids["tamanho"] < artefato[0] < commit[0], p.name

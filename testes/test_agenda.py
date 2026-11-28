@@ -376,8 +376,13 @@ def test_tempestividade_medida_no_banco_real(tmp_path):
 def test_sqlite_atende_o_tamanho_e_a_consulta_de_referencia():
     """Decisão em docs/onisciente/decisoes.md: revê-la se o banco passar de 500 MB ou a consulta
     de referência passar de 2 segundos."""
-    assert BANCO_REAL.stat().st_size < 500 * 1024 * 1024
-    con = sqlite3.connect(f"file:{BANCO_REAL}?mode=ro", uri=True)
+    # 28/11/2026, divisão do banco em partes (onisciente/partes.py): precos_referencia, sancoes, as séries e a
+    # despesa saíram do historico.db para arquivos anexados. O limite de 500 MB vale para o banco inteiro (o
+    # principal somado às partes), e a consulta de referência passa pela conexão que anexa as partes.
+    from onisciente import partes
+    con = partes.conectar_leitura(BANCO_REAL)
+    arquivos = [BANCO_REAL] + [partes.caminho_da_parte(BANCO_REAL, p) for p in partes.PARTES]
+    assert sum(a.stat().st_size for a in arquivos if a.exists()) < 500 * 1024 * 1024
     inicio = time.perf_counter()
     linhas = con.execute(
         "SELECT i.catalogo, substr(COALESCE(i.data_resultado, i.data_inclusao), 1, 7), COUNT(*), "

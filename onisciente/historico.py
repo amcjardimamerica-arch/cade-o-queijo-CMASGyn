@@ -255,8 +255,8 @@ class Banco:
                 if arquivo.exists():
                     arquivo.unlink()           # cada rodada refaz o banco do zero (e as partes dele)
             rastreio.apagar_rastreio(self.caminho)   # e o arquivo do rastreio (a cadeia já foi lida)
-        self.con = sqlite3.connect(str(caminho))
-        partes.anexar(self.con)                # precos.db e sancoes.db, ao lado (onisciente.partes)
+        self.con = sqlite3.connect(str(caminho), factory=partes.Conexao)
+        partes.anexar(self.con)                # as partes ao lado: precos, sancoes, series, despesa
         self.con.executescript(partes.esquema_com_partes(self.con, ESQUEMA))
         self._iniciar_rastreio()
         if herdadas:
@@ -268,7 +268,7 @@ class Banco:
         selo de cada linha que já existe (migração; a origem fica "anterior ao rastreio")."""
         banco = cls.__new__(cls)
         banco.caminho = caminho
-        banco.con = sqlite3.connect(str(caminho))
+        banco.con = sqlite3.connect(str(caminho), factory=partes.Conexao)
         partes.anexar(banco.con)
         if partes.mover_para_as_partes(banco.con):
             # Banco antigo, com as tabelas grandes dentro: saíram para as partes; o principal encolhe.
@@ -331,6 +331,7 @@ class Banco:
     def fechar(self) -> None:
         rastreio.antes_de_compactar(self.con)   # o VACUUM pode renumerar as linhas pendentes
         self.con.commit()
+        partes.exportar(self.con)               # os .jsonl.gz da despesa, um por ano (parte comprimida)
         self.con.execute("VACUUM")
         for parte in partes.anexadas(self.con):
             self.con.execute(f"VACUUM {parte}")

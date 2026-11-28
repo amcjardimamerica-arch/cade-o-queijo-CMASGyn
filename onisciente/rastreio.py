@@ -239,7 +239,7 @@ def _tabelas_de_dados_com_esquema(con) -> dict[str, str]:
     for esquema in partes.esquemas(con):
         for nome, sql in con.execute(f"SELECT name, sql FROM {esquema}.sqlite_master WHERE type = 'table' "
                                      "AND name NOT LIKE 'sqlite_%'"):
-            if nome.startswith(PREFIXO) or nome in FORA or nome in saida:
+            if nome.startswith(PREFIXO) or nome in FORA or nome in partes.INTERNAS or nome in saida:
                 continue
             s = (sql or "").upper()
             if "VIRTUAL TABLE" in s or "WITHOUT ROWID" in s:
