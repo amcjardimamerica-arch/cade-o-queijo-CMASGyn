@@ -200,3 +200,26 @@ def test_o_comando_sem_gravar_nao_muda_o_banco(tmp_path, monkeypatch):
     assert {p: p.read_bytes() for p in arquivos} == arquivos
     r = R.rodar(caminho, "v_antes", cache=tmp_path / "cache", gravar=True)
     assert r["verificacao"]["integro"] and r["aplicado"]["linhas"]["despesa_eventos"] == 3
+
+
+def test_linha_que_volta_em_parte_tambem_vai_para_a_releitura():
+    """Uma linha coletada entre a máscara do documento (24fc099) e a do credor (91240af): o git guarda o credor
+    inteiro e o documento já mascarado. O credor volta, provado pelo hash; o documento segue mascarado e a linha
+    entra na contagem do que ler de novo (decisão do usuário de 28/11/2026, 11:18Z, P-01)."""
+    import sqlite3
+    con = sqlite3.connect(":memory:")
+    con.execute("CREATE TABLE despesa_eventos (tipo, empenho, data, orgao, valor, documento, credor, historico, "
+                "consulta, sha256, coletado_em)")
+    antiga = _evento("5", "***.982.247-**", f"FULANO DE TAL {FORMATADO}")
+    atual = {**antiga, "credor": G.texto_gravavel(antiga["credor"])}
+    assert atual["credor"] != antiga["credor"] and R.tem_mascara(atual["credor"])
+    con.execute(f"INSERT INTO despesa_eventos ({', '.join(atual)}) VALUES ({', '.join('?' * len(atual))})",
+                list(atual.values()))
+    antigos = R.Antigos(linhas={"despesa_eventos": {R._chave(R.mascarar("despesa_eventos", antiga)):
+                                                    [("vX", antiga)]}},
+                        folhas={"despesa_eventos": {rastreio._digest("despesa_eventos", antiga)}})
+    plano = R.planejar(con, antigos)
+    assert [(r["prova"], r["valores"]) for r in plano.restaurar] == [("hash", {"credor": antiga["credor"]})]
+    assert plano.reler["despesa_eventos"]["voltou em parte; o resto sem original no git"] == 1
+    assert plano.reler["despesa_eventos"]["coluna documento"] == 1
+    assert plano.reler["despesa_eventos"]["mês 2025-03"] == 1

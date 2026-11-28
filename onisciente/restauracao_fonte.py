@@ -282,16 +282,7 @@ def planejar(con, antigos: Antigos) -> Plano:
                                                  (novos, commit, antiga))
             if not valores_possiveis:
                 motivo = "sem original no git" if tabela in COLUNAS else "mascarada pelo coletor, sem original no git"
-                p.reler.setdefault(tabela, Counter())[motivo] += 1
-                p.reler[tabela]["coluna " + "+".join(mascaradas)] += 1
-                if tabela == "despesa_eventos":
-                    p.reler[tabela][f"mês {_mes(linha)}"] += 1
-                    p.reler[tabela][f"consulta {linha.get('consulta') or ''}"] += 1
-                ex = p.exemplos_reler.setdefault(tabela, [])
-                if len(ex) < 5:
-                    ex.append({"linha": rowid, **{c: linha.get(c) for c in mascaradas},
-                               **({"empenho": linha.get("empenho"), "data": linha.get("data")}
-                                  if tabela == "despesa_eventos" else {})})
+                _para_reler(p, tabela, rowid, linha, mascaradas, motivo)
                 continue
             if len(valores_possiveis) > 1:
                 # Mais de um original possível (o mesmo miolo e o resto igual): vale só o que o rastreio antigo
@@ -300,7 +291,7 @@ def planejar(con, antigos: Antigos) -> Plano:
                             if rastreio._digest(tabela, {**linha, **v[0]}) in folhas]
                 if len(provados) != 1:
                     p.ambiguas[tabela] += 1
-                    p.reler.setdefault(tabela, Counter())["mais de um original possível"] += 1
+                    _para_reler(p, tabela, rowid, linha, mascaradas, "mais de um original possível")
                     continue
                 valores_possiveis = {"provado": provados[0]}
             ((novos, commit, antiga),) = valores_possiveis.values()
@@ -312,11 +303,29 @@ def planejar(con, antigos: Antigos) -> Plano:
                 prova = "linha_antiga"
             else:
                 p.sem_prova[tabela] += 1
-                p.reler.setdefault(tabela, Counter())["sem prova no rastreio antigo"] += 1
+                _para_reler(p, tabela, rowid, linha, mascaradas, "sem prova no rastreio antigo")
                 continue
             p.restaurar.append({"tabela": tabela, "rowid": rowid, "valores": novos, "prova": prova,
                                 "commit": commit, "hash": rastreio._digest(tabela, refeita)})
+            # A linha antiga pode já ter vindo com uma coluna mascarada (coletada entre uma máscara e a seguinte):
+            # o que ela devolve volta; a coluna que segue mascarada também vai para a releitura.
+            restam = [c for c in mascaradas if tem_mascara(refeita.get(c))]
+            if restam:
+                _para_reler(p, tabela, rowid, refeita, restam, "voltou em parte; o resto sem original no git")
     return p
+
+
+def _para_reler(p: Plano, tabela: str, rowid: int, linha: dict, mascaradas: list[str], motivo: str) -> None:
+    p.reler.setdefault(tabela, Counter())[motivo] += 1
+    p.reler[tabela]["coluna " + "+".join(mascaradas)] += 1
+    if tabela == "despesa_eventos":
+        p.reler[tabela][f"mês {_mes(linha)}"] += 1
+        p.reler[tabela][f"consulta {linha.get('consulta') or ''}"] += 1
+    ex = p.exemplos_reler.setdefault(tabela, [])
+    if len(ex) < 5:
+        ex.append({"linha": rowid, **{c: linha.get(c) for c in mascaradas},
+                   **({"empenho": linha.get("empenho"), "data": linha.get("data")}
+                      if tabela == "despesa_eventos" else {})})
 
 
 def _existe(con, tabela: str) -> bool:
@@ -444,54 +453,73 @@ def _mascarar_arquivo(nome: str, dados: bytes) -> bytes:
     return texto.encode("utf-8", errors="surrogateescape")
 
 
+def _molde(atual: str):
+    """Uma expressão que casa o texto antigo com o atual: igual, menos onde o atual tem a máscara do sistema, que
+    no antigo pode ser o CPF (formatado, só dígitos ou com 000 na frente) ou a própria máscara."""
+    partes_, fim = [], 0
+    for m in PADRAO.finditer(atual):
+        partes_.append(re.escape(atual[fim:m.start()]))
+        meio = m.group(0)[4:11]                       # "NNN.NNN"
+        a, b = meio.split(".")
+        partes_.append(rf"(?:\d{{3}}\.{a}\.{b}-\d{{2}}|(?:000)?\d{{3}}{a}{b}\d{{2}}|\*\*\*\.{a}\.{b}-\*\*)")
+        fim = m.end()
+    partes_.append(re.escape(atual[fim:]))
+    return re.compile("".join(partes_), re.S)
+
+
+def _mascaras(nome: str, dados: bytes) -> int:
+    """Quantas máscaras ``***.NNN.NNN-**`` há no arquivo (no zip, nos arquivos de dentro)."""
+    if nome.endswith(".zip.b64"):
+        import base64
+        import io
+        import zipfile
+        try:
+            with zipfile.ZipFile(io.BytesIO(base64.b64decode(dados))) as z:
+                return sum(len(PADRAO.findall(z.read(n).decode("latin-1"))) for n in z.namelist())
+        except (zipfile.BadZipFile, ValueError):
+            return 0
+    return len(PADRAO.findall(dados.decode("utf-8", errors="replace")))
+
+
 def restaurar_sondagem(*, gravar: bool = False, pasta: Path | None = None) -> dict:
-    """Os arquivos da sondagem que o sistema mascarou voltam à versão do git que, mascarada pela mesma regra, dá o
-    arquivo atual (a mais recente delas). Os que não têm essa versão ficam como estão (listados)."""
+    """Os arquivos da sondagem que o sistema mascarou voltam à versão do git que é o mesmo arquivo com o CPF no
+    lugar da máscara (a com menos máscaras; no zip, a que mascarada pela mesma regra dá o atual). Os que não têm
+    essa versão ficam como estão (listados); o que só tem uma versão com parte das máscaras volta a ela."""
     pasta = pasta or RAIZ / SONDAGEM
     feitos, sem_original = [], []
     for arq in sorted(pasta.iterdir()):
         if not arq.is_file():
             continue
         atual = arq.read_bytes()
-        rel = arq.relative_to(RAIZ).as_posix()
-        if arq.name.endswith(".zip.b64"):
-            import base64
-            try:
-                tem = _zip_tem_mascara(base64.b64decode(atual))
-            except ValueError:
-                tem = False
-        else:
-            tem = bool(PADRAO.search(atual.decode("utf-8", errors="replace")))
-        if not tem:
+        n_atual = _mascaras(arq.name, atual)
+        if not n_atual:
             continue
-        alvo = _mascarar_arquivo(arq.name, atual)
-        achado = None
+        rel = arq.relative_to(RAIZ).as_posix()
+        zipado = arq.name.endswith(".zip.b64")
+        alvo = _mascarar_arquivo(arq.name, atual) if zipado else None
+        molde = None if zipado else _molde(atual.decode("utf-8", errors="surrogateescape"))
+        melhor = None
         for commit in _git("log", "--format=%h", "--", rel).split():
             try:
                 antigo = _git("show", f"{commit}:{rel}", binario=True)
             except subprocess.CalledProcessError:
                 continue
-            if antigo != atual and _mascarar_arquivo(arq.name, antigo) == alvo:
-                achado = (commit, antigo)
-                break
-        if achado is None:
+            if antigo == atual:
+                continue
+            if zipado:
+                casa = _mascarar_arquivo(arq.name, antigo) == alvo
+            else:
+                casa = bool(molde.fullmatch(antigo.decode("utf-8", errors="surrogateescape")))
+            n = _mascaras(arq.name, antigo)
+            if casa and n < n_atual and (melhor is None or n < melhor[2]):
+                melhor = (commit, antigo, n)
+        if melhor is None:
             sem_original.append(arq.name)
             continue
-        feitos.append({"arquivo": arq.name, "de": achado[0],
-                       "cpfs": len(PADRAO.findall(atual.decode("utf-8", errors="replace")))})
+        feitos.append({"arquivo": arq.name, "de": melhor[0], "mascaras_antes": n_atual, "mascaras_depois": melhor[2]})
         if gravar:
-            arq.write_bytes(achado[1])
+            arq.write_bytes(melhor[1])
     return {"restaurados": feitos, "sem_original": sem_original}
-
-
-def _zip_tem_mascara(dados: bytes) -> bool:
-    import io
-    import zipfile
-    try:
-        with zipfile.ZipFile(io.BytesIO(dados)) as z:
-            return any(PADRAO.search(z.read(n).decode("latin-1")) for n in z.namelist())
-    except zipfile.BadZipFile:
-        return False
 
 
 # --- O comando -------------------------------------------------------------------------------------
