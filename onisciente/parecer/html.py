@@ -7,6 +7,7 @@ prontos) e custódia. O que está em ordem foi omitido.
 
 from __future__ import annotations
 
+import re
 from datetime import date
 from html import escape
 from typing import Callable
@@ -39,6 +40,7 @@ h3{font-size:18px;margin:0 0 6px}
 .sub{color:var(--apagado);margin:0 0 20px}
 .frase{font-size:19px;background:var(--cartao);border:1px solid var(--linha);border-radius:10px;padding:16px 18px}
 .omitido{color:var(--apagado);font-style:italic}
+.painel a{display:inline-block;padding:10px 16px;border-radius:10px;background:var(--azul);color:#fff;font-weight:600;text-decoration:none}
 .grafico{width:100%;height:auto;display:block;margin:8px 0}
 .grafico .t{font-size:13px;fill:#1F2933}.grafico .ts{font-size:11.5px;fill:#5B6672}
 .grafico .th{font-size:15px;font-weight:600;fill:#1F2933}
@@ -243,6 +245,26 @@ def _secao_familias(p: Panorama, familias: set[Familia], vazio: str) -> str:
         for f in fichas)
 
 
+_TEMA_ESCURO_DAS_TELAS = re.compile(r"@media \(prefers-color-scheme:dark\)\{[^{}]*\{[^{}]*\}\}\n?")
+
+
+def _series_mensais(p: Panorama) -> str:
+    """As séries mensais do exercício, as mesmas das telas (``telas.graficos.series_do_parecer``).
+
+    Saem do banco histórico do alvo configurado, como as conferências do banco; para outro alvo, nada.
+    A adaptação fica deste lado: o parecer é impresso em papel claro, então o tema escuro das telas sai,
+    e o título da seção vira subtítulo para não quebrar a numeração das seções do parecer.
+    """
+    if not p.do_alvo_configurado():
+        return ""
+    from ..telas.graficos import BANCO, series_do_parecer
+    trecho = series_do_parecer(p.competencia, banco=p.banco or BANCO)
+    if not trecho:
+        return ""
+    trecho = _TEMA_ESCURO_DAS_TELAS.sub("", trecho)
+    return trecho.replace("<h2>", "<h3>", 1).replace("</h2>", "</h3>", 1)
+
+
 def gerar(p: Panorama, *, hoje: date | None = None) -> str:
     hoje = hoje or date.today()
     p.completar()
@@ -294,6 +316,7 @@ def gerar(p: Panorama, *, hoje: date | None = None) -> str:
         s.append(f'<div class="vermelho">{_selo(Selo.VERMELHO)}{escape(v)}</div>')
     if p.fiscal is not None and p.fiscal.rio is not None:
         s.extend(_rio_municipal(p.fiscal.rio))
+    s.append(_series_mensais(p))
 
     # 3. Pisos e tetos
     s.append("<h2>3. Pisos e tetos</h2>")
@@ -456,6 +479,7 @@ def indice(pareceres: list[tuple[str, str]], alvo: str, *, banco: bool = False) 
             "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">"
             f"<title>Onisciente</title><style>{CSS}</style></head><body><main>"
             f"<h1>Onisciente</h1><p class=\"sub\">{escape(alvo)} · a trilha do dinheiro público</p>"
+            "<p class=\"painel\"><a href=\"app/index.html\">Abrir o painel do Onisciente</a></p>"
             f"<h2>Pareceres mensais</h2><ul>{itens or '<li>Nenhum parecer ainda.</li>'}</ul>"
             f"{ligacao}</main></body></html>")
 

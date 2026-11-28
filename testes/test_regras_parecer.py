@@ -83,3 +83,44 @@ def test_notas_fiscais_no_pncp_citam_o_inciso_vi():
     from onisciente.conferencias import compras
     fonte = inspect.getsource(compras)
     assert "art. 174, § 2º, VI" in fonte and "174, § 2º, V;" not in fonte
+
+
+def test_indice_abre_o_painel_no_topo():
+    """Pedido da frente A: o índice dos pareceres leva ao painel (app/index.html), antes de tudo o mais."""
+    pagina = html.indice([("2026-10", "parecer_2026-10.html")], "Alvo")
+    assert '<a href="app/index.html">Abrir o painel do Onisciente</a>' in pagina
+    assert pagina.index("app/index.html") < pagina.index("Pareceres mensais")
+
+
+def test_parecer_usa_as_series_das_telas(monkeypatch):
+    """Pedido da frente A: o parecer e as telas desenham as mesmas séries mensais (series_do_parecer),
+    só para o alvo configurado, na seção 2, sem o tema escuro das telas e sem quebrar a numeração."""
+    from onisciente.telas import graficos
+    chamadas = []
+
+    def falsa(competencia, *, banco=graficos.BANCO):
+        chamadas.append((competencia, banco))
+        return (f'<section class="series-onisciente">{graficos.ESTILO}<h2>SERIES-DAS-TELAS</h2>'
+                "<figure><svg></svg></figure></section>")
+
+    monkeypatch.setattr(graficos, "series_do_parecer", falsa)
+    assert "SERIES-DAS-TELAS" not in html.gerar(_panorama(), hoje=date(2026, 11, 27)) and not chamadas
+    monkeypatch.setattr(Panorama, "do_alvo_configurado", lambda self: True)
+    pagina = html.gerar(_panorama(), hoje=date(2026, 11, 27))
+    assert chamadas == [("2026-10", graficos.BANCO)]
+    assert pagina.index("2. O rio") < pagina.index("<h3>SERIES-DAS-TELAS</h3>") < pagina.index("3. Pisos e tetos")
+    assert "prefers-color-scheme" not in pagina and "<h2>SERIES-DAS-TELAS" not in pagina
+
+
+def test_series_do_parecer_no_banco_real():
+    """No banco histórico do alvo, o trecho das telas entra no parecer com os três gráficos."""
+    import pytest
+
+    from onisciente.telas import graficos
+    if not graficos.BANCO.exists():
+        pytest.skip("banco histórico ausente")
+    p = _panorama()
+    p.competencia = "2026-02"
+    p.do_alvo_configurado = lambda: True
+    trecho = html._series_mensais(p)
+    assert trecho.count("<svg") == 3 and "<h3>As séries de 2026" in trecho
