@@ -35,3 +35,8 @@
 # inteiro; despesa_eventos fica com o coletor da D2. Pessoa física casa com a sanção pelos seis do meio e pelo
 # nome, como o QSA. Travas em testes/test_mascara_banco.py (a do banco real inteiro é xfail estrito até a D2
 # migrar despesa_eventos).
+# A despesa nunca fica só no SQLite de trabalho (28/11/2026): a conexão do Banco anota por gatilho TEMP os anos
+# de despesa_eventos que mudaram e cada commit regrava os .gz desses anos; a tabela antiga só sai do principal
+# depois de os .gz conferirem com ela. A soma da janela troca a despesa por (consulta, empenho) e o registro das
+# consultas por (consulta, dia), em vez de refazer as tabelas só com os meses da janela. Travas em
+# testes/test_partes.py (caminho do rastreio sem fechar, commit sem fechar, soma da janela).

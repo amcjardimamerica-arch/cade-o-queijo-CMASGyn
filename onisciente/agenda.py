@@ -171,6 +171,11 @@ CHAVES_DA_JANELA: dict[str, tuple[str, ...]] = {
     "normas": ("caminho",),
     "normas_municipais": ("url",),
     "normas_procura": ("norma_id", "alvo"),
+    # A despesa de Goiânia (execucao_goiania, grupo em janela): sem chave, a soma refaria a tabela inteira
+    # só com os meses da janela. A exportação de um mês troca os eventos dos empenhos que ela traz (como
+    # goiania_transweb.substituir_empenhos) e o registro das consultas troca só os meses relidos.
+    "despesa_eventos": ("consulta", "empenho"),
+    "despesa_consultas": ("consulta", "dia"),
 }
 # Linha nova que só registra que a fonte não respondeu (falha do sistema, não dado novo): ela
 # não apaga o que o banco já tinha da mesma chave. Sem linha antiga, entra para o buraco aparecer.

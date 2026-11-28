@@ -162,3 +162,103 @@ def test_series_ficam_numa_parte_propria(tmp_path):
         assert partes.esquema_da_tabela(b.con, tabela) == "series", tabela
     b.fechar()
     assert (tmp_path / "series.db").exists()
+
+
+# --- A despesa nunca fica só no SQLite de trabalho (28/11/2026) ----------------------------------------
+# O SQLite de trabalho (despesa/despesa.sqlite) não vai ao ramo. Um caminho que abre o banco pelo Banco.abrir
+# e grava sem chamar Banco.fechar (o rastreio, o parecer, as telas, a soma da janela) não pode deixar o
+# historico.db sem a despesa e sem os .gz: o commit regrava os .gz dos anos mudados, e a tabela antiga só sai
+# do principal depois de os .gz conferirem com ela.
+
+def _clone(caminho):
+    """O que o ramo guarda: sem o SQLite de trabalho, a despesa vem só dos .gz."""
+    for sobra in (caminho.parent / "despesa").glob("despesa.sqlite*"):
+        sobra.unlink()
+    return partes.conectar_leitura(caminho)
+
+
+def test_banco_antigo_aberto_pelo_rastreio_sem_fechar_nao_perde_a_despesa(tmp_path):
+    import subprocess
+    import sys
+    from pathlib import Path
+
+    from onisciente.coletores import goiania_transweb as gt
+    caminho = tmp_path / "historico.db"
+    antigo = sqlite3.connect(caminho)                 # banco de antes das partes: a despesa dentro dele
+    gt.gravar(antigo, _eventos(2025, 30) + _eventos(2026, 40))
+    antigo.commit()
+    antigo.close()
+    raiz = Path(__file__).resolve().parent.parent
+    r = subprocess.run([sys.executable, "-m", "onisciente", "rastreio", "--banco", str(caminho)], cwd=raiz,
+                       capture_output=True, text=True, timeout=300)
+    assert r.returncode == 0, r.stderr
+    assert "despesa_eventos" not in _no_principal(caminho)
+    assert sorted(p.name for p in (tmp_path / "despesa").glob("*.jsonl.gz")) == [
+        "despesa_eventos_2025.jsonl.gz", "despesa_eventos_2026.jsonl.gz"]
+    con = _clone(caminho)
+    assert con.execute("SELECT count(*) FROM despesa_eventos").fetchone() == (70,)
+    con.close()
+
+
+def test_gravacao_na_despesa_sem_fechar_vai_aos_gz_no_commit(tmp_path):
+    from onisciente.coletores import goiania_transweb as gt
+    caminho = tmp_path / "historico.db"
+    b = historico.Banco(caminho)
+    gt.gravar(b.con, _eventos(2025, 10) + _eventos(2026, 20))
+    b.con.commit()
+    b.con.close()                                     # sem fechar
+    con = _clone(caminho)
+    assert con.execute("SELECT count(*) FROM despesa_eventos").fetchone() == (30,)
+    con.close()
+    # Só o ano mudado é regravado; o ano que ficou sem linhas perde o .gz.
+    pasta = tmp_path / "despesa"
+    antes_2026 = (pasta / "despesa_eventos_2026.jsonl.gz").read_bytes()
+    b = historico.Banco.abrir(caminho)
+    b.con.execute("DELETE FROM despesa_eventos WHERE data LIKE '2025%'")
+    gt.gravar(b.con, _eventos(2019, 3))
+    b.con.commit()
+    b.con.close()
+    assert sorted(p.name for p in pasta.glob("*.jsonl.gz")) == ["despesa_eventos_2019.jsonl.gz",
+                                                               "despesa_eventos_2026.jsonl.gz"]
+    assert (pasta / "despesa_eventos_2026.jsonl.gz").read_bytes() == antes_2026
+    con = _clone(caminho)
+    assert con.execute("SELECT substr(data, 1, 4), count(*) FROM despesa_eventos GROUP BY 1").fetchall() == [
+        ("2019", 3), ("2026", 20)]
+    con.close()
+    # Desfeito (rollback), nada vai aos .gz.
+    b = historico.Banco.abrir(caminho)
+    b.con.execute("DELETE FROM despesa_eventos")
+    b.con.rollback()
+    b.con.commit()
+    b.con.close()
+    con = _clone(caminho)
+    assert con.execute("SELECT count(*) FROM despesa_eventos").fetchone() == (23,)
+    con.close()
+
+
+def test_soma_da_janela_troca_so_os_empenhos_e_os_meses_relidos_da_despesa(tmp_path):
+    """O grupo execucao_goiania roda em janela: a soma não pode refazer a despesa só com os meses da janela."""
+    from onisciente.coletores import goiania_transweb as gt
+    caminho = tmp_path / "historico.db"
+    principal = historico.Banco(caminho)
+    gt.gravar(principal.con, _eventos(2025, 5) + _eventos(2026, 5))
+    for mes in ("2025-03", "2026-03"):
+        principal.con.execute("INSERT INTO despesa_consultas VALUES (?,?,?,?,?,?,?,?,?)",
+                              ("lista", mes, "", "lida", 5, 1, "https://exemplo", "", "2026-11-01"))
+    principal.con.commit()
+    janela = historico.Banco(tmp_path / "janela.db")
+    relidos = [{**e, "valor": e["valor"] + 1000} for e in _eventos(2026, 3)]     # 3 empenhos de 2026 relidos
+    gt.gravar(janela.con, relidos)
+    janela.con.execute("INSERT INTO despesa_consultas VALUES (?,?,?,?,?,?,?,?,?)",
+                       ("lista", "2026-03", "", "lida", 3, 1, "https://exemplo", "", "2026-11-28"))
+    janela.con.commit()
+    janela.con.close()
+    agenda.somar_janela(principal, tmp_path / "janela.db", ["2026-03"])
+    principal.con.close()                             # sem fechar
+    con = _clone(caminho)
+    por_ano = con.execute("SELECT substr(data, 1, 4), count(*), sum(valor > 1000) FROM despesa_eventos "
+                          "GROUP BY 1").fetchall()
+    assert por_ano == [("2025", 5, 0), ("2026", 5, 3)]   # 2025 fica; dos 5 empenhos de 2026, 3 trocados
+    assert con.execute("SELECT dia, quando FROM despesa_consultas ORDER BY dia").fetchall() == [
+        ("2025-03", "2026-11-01"), ("2026-03", "2026-11-28")]
+    con.close()
