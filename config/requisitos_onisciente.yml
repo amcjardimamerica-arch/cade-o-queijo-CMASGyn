@@ -1084,11 +1084,19 @@
     a sessão do GET (19.654 bytes, sem a planilha); o motor agora lê o TransWeb numa sessão de cookies, grava o mês em coletas
     e, quando a resposta não é a planilha, o motivo legível (título e texto da página) no erro da coleta. Testado com o recorte
     real da planilha (dez empenhos de credores pessoas jurídicas, byte a byte) e o EmpenhoPopUp real. A lista de arquivos
-    da categoria 49 do WordPress continua montada no navegador (fonte secundária, não usada).'
-  falta: Rodar de novo o motor execucao_goiania no GitHub com a sessão de cookies e ver eventos gravados em despesa_eventos;
-    se ainda vier sem a planilha, a sondagem d2_transweb_motor repete o caminho do motor em 2024-11, 2025-06 e 2026-10, com
-    e sem cookies e com o Buscar antes, guardando o corpo das respostas.
-  trava: testes/test_execucao.py::test_postback_da_exportacao_vai_com_o_cookie_da_sessao_do_get
+    da categoria 49 do WordPress continua montada no navegador (fonte secundária, não usada). Sétima rodada: a coleta com
+    cookies gravou 86.401 eventos, só de 2025-10 a 2026-11, porque o limite era de 14 meses por rodada (338 s de 60 min) e
+    a soma apagava despesa_eventos e despesa_consultas antes de o motor rodar; agora o limite é 40, os meses que faltam (ou
+    incompletos) vêm antes das releituras, o motor para dois minutos antes do fim do tempo e a soma só apaga as coletas do
+    motor. O CPF de pessoa física é gravado mascarado (***.NNN.NNN-**), no coletor, nas respostas guardadas da sondagem e
+    nas linhas antigas (migração no Banco.abrir, numa rodada própria do rastreio); o vínculo com o contrato do PNCP casa a
+    pessoa física pelos seis do meio e o nome. Oitava rodada: a coleta 550c30b trouxe os 25 meses (155.879 eventos); o CPF
+    que sobrava no credor e no histórico também sai mascarado (coletor e migração); as divergências da amostra eram a paginação
+    do popup (50 linhas por página: cada soma do popup é a das primeiras linhas da exportação), e a primeira página passa
+    a ser conferida linha a linha pelo número.'
+  falta: Ler as páginas seguintes dos popups paginados (a sondagem d2_transweb_popup guarda o contador e a navegação dos quatro
+    empenhos com mais de 50 eventos) para conferir a soma inteira, não só a primeira página.
+  trava: testes/test_execucao.py::test_amostra_com_popup_paginado_confere_a_primeira_pagina_pelo_numero
 - id: 142
   bloco: Fontes e cadência
   requisito: SICONFI RREO/RGF/DCA
@@ -1127,17 +1135,21 @@
   requisito: FNS
   situacao: parcial
   evidencia: 'Coletor onisciente/coletores/fns.py, com motor_fns, motor_fns_entidades, motor_fns_detalhe e motor_fns_repasse_dia.
-    As entidades reais de Goiânia (consulta-detalhada/entidades com estado e município) fecham em duas páginas de 100: 191
-    em 2025, todas com o IBGE 520870, entre elas o Fundo Municipal de Saúde (37.623.352/0001-03, esfera MUNICIPAL); pessoa
-    física fica só com o CPF mascarado do FNS. Com os parâmetros dos controladores reais (acaoController.js e pagamentoController.js),
-    motor_fns_detalhe pede, para cada entidade municipal, as ações do ano (detalhe-acao com cpfCnpjUg) e as ordens bancárias
-    de cada ação com valor (detalhe-pagamento com acoes), confere a soma das ordens com o total da ação, grava as ações em
-    fns_acoes e as ordens em repasses_fns (sem duplicar quando outra via já preencheu o ano). O repasse do dia nacional é
-    lido dia a dia e fecha as somas.'
-  falta: Ver as respostas reais de detalhe-acao e detalhe-pagamento do Fundo (a próxima sondagem d1_fns as pede); o teste
-    do motor usa respostas montadas com os campos dos controladores. Se a ordem bancária vier sem data, falta a data para
-    a conferência mês a mês.
-  trava: testes/test_coletores_federais_sexta.py::test_motor_fns_detalhe_le_acoes_e_ordens_do_fundo_e_confere_a_soma
+    As entidades reais de Goiânia fecham em duas páginas de 100 (191 em 2025, 197 em 2024, todas com o IBGE 520870), entre
+    elas o Fundo Municipal de Saúde (37.623.352/0001-03); pessoa física fica só com o CPF mascarado do FNS. Com as respostas
+    reais do Fundo em 2025: detalhe-acao traz as 40 ações, e a soma delas é o total geral que a própria resposta declara (R$
+    1.030.381.073,26 brutos, R$ 69.478.347,99 de desconto); detalhe-pagamento com acoes vazio traz todas as ordens do ano
+    (676, em 7 páginas), cada uma com a ação (id.programaFundo.id), o mês do pagamento, o documento do SIAFI (2025OB000028)
+    e a parcela. motor_fns_detalhe lê as ações e todas as ordens de uma vez, confere a soma das ordens de cada ação com o
+    total dela, grava as ações em fns_acoes e só as ordens fundo a fundo em repasses_fns (os pagamentos com indicadorFundoAFundo
+    N, documento PF e conta UNICA, ficam de fora e anotados), não grava nada se a listagem vier pela metade e não duplica
+    quando outra via já preencheu o ano. Se a listagem não vier, lê ação por ação, como a tela. O repasse do dia nacional
+    é lido dia a dia e fecha as somas.'
+  falta: 'Ver as páginas 2 a 7 das ordens do Fundo (a sondagem d1_fns pede a 2 e a 7) para provar que page conta de 1 sem
+    repetir a primeira e que as 676 fecham com o total geral das ordens (R$ 1.036.219.851,35), que passa o das ações em R$
+    5.838.778,09: há ordens de programa que não está na lista de ações do ano, e o motor as anota. O filtro por uma ação (acoes=61659),
+    o caminho de reserva, também está na sondagem.'
+  trava: testes/test_coletores_federais_setima.py::test_motor_fns_detalhe_com_as_respostas_reais_le_as_ordens_de_uma_vez
 - id: 147
   bloco: Fontes e cadência
   requisito: FNDE
@@ -1211,21 +1223,21 @@
   bloco: Fontes e cadência
   requisito: TCM-GO e TCU
   situacao: parcial
-  evidencia: 'TCU com as duas vias reais (pesquisa documentosResumidos e dados abertos). A pesquisa vai de 50 em 50 e para
-    em 100 resultados: inicio=50 veio inteira (50 acórdãos, 42 sobre Goiânia) e inicio=100 encerrou a conexão com 100 e com
-    50 por página; o motor não pede além disso e diz por quê, e uma página que cai guarda as anteriores e anota o erro. TCM-GO:
-    os dados abertos de contas irregulares (ws.tcm.go.gov.br, CSV real com 1.395 linhas, 94 de Goiânia) são lidos por tcm.contas:
-    o órgão sai do nome do Município (GOIANIA - COMURG), Aparecida de Goiânia e Goianira não entram, e a tabela contas_irregulares_tcm
-    ganhou CPF parcial, assunto, decisão, data do julgamento, tipo de lista e endereço do processo (banco antigo recebe as
-    colunas sem perder linhas). A conferência transforma cada linha em alerta (com débito, alerta alto) e procura o mesmo
-    nome entre os sócios das contratadas, como indício de possível homônimo, porque o TCM mostra só os dois primeiros dígitos
-    do CPF e a Receita só os do meio.'
-  falta: 'A pesquisa de jurisprudência do TCM-GO (virtual.tcmgo) ainda não devolve decisões; o acesso à informação e o painel
-    das câmaras deram 403. A jurisprudência é um aplicativo React cujo pacote principal só traz a base da API (/jurisprudencia/api,
-    com o cabeçalho X-Cliente: portal) e o /v1/health; as chamadas de pesquisa estão no pacote da tela (jurisprudencia-page-*.js),
-    que a próxima sondagem (d1_tcm) baixa. No TCU, falta saber se outra ordenação traz os acórdãos mais recentes dentro dos
-    100.'
-  trava: testes/test_coletores_federais_quarta.py::test_contas_irregulares_viram_alerta_e_o_socio_homonimo_e_indicio
+  evidencia: 'TCU com as duas vias reais (pesquisa documentosResumidos e dados abertos). A ordem padrão da pesquisa (DTRELEVANCIA
+    desc) já vem da sessão mais nova para a mais antiga: as páginas reais com inicio=50 e inicio=100 vão de 28/10/2025 a 26/10/2022
+    sem quebrar a ordem; a ordem por ano e número encerrou a conexão. Uma página que cai guarda as anteriores e anota o erro.
+    TCM-GO: os dados abertos de contas irregulares (ws.tcm.go.gov.br, CSV real com 1.395 linhas, 94 de Goiânia) são lidos
+    por tcm.contas, com CPF parcial, assunto, decisão, data do julgamento, tipo de lista e endereço do processo; a conferência
+    transforma cada linha em alerta e procura o mesmo nome entre os sócios das contratadas, como indício de possível homônimo.
+    A jurisprudência do TCM-GO tem API (o pacote real da tela de pesquisa): motor_tcm lê buscar (texto, page, page_size, sort_by=data_sessao,
+    com o cabeçalho X-Cliente: portal) e guarda as decisões sobre Goiânia (Aparecida de Goiânia fica de fora); se a API não
+    responder, tenta os candidatos antigos e diz por quê. O /v1/health real respondeu healthy.'
+  falta: 'A resposta real de buscar e de filtros da jurisprudência do TCM-GO (a sondagem d1_tcm pede as duas, com o cabeçalho);
+    o teste usa uma resposta montada com os campos da tela. No TCU, inicio=100 respondeu nesta rodada e encerrou a conexão
+    na anterior: o motor ainda para em 100 resultados porque a trava da sexta rodada (test_tcu_pesquisa_nao_pede_alem_de_100_e_diz_por_que)
+    exige isso; tirar o corte depende de decisão do coordenador sobre essa trava. A sondagem pede inicio=150 e inicio=1300.
+    O acesso à informação e o painel das câmaras deram 403.'
+  trava: testes/test_coletores_federais_setima.py::test_motor_tcm_le_a_api_com_o_cabecalho_e_so_cai_nos_candidatos_se_ela_falhar
 - id: 155
   bloco: Arquitetura
   requisito: Python
@@ -1292,11 +1304,12 @@
   bloco: Roteiro e portões
   requisito: 'Fase 4: integridade de Saúde e Educação medida'
   situacao: parcial
-  evidencia: O FNDE está lido no formato real (id 147). O FNS lê as 191 entidades reais de Goiânia, pede as ações e as ordens
-    bancárias do Fundo Municipal de Saúde e lê o repasse do dia real (id 146).
-  falta: A ativação dos domínios pela Frente D2 e a primeira resposta real do valor por entidade do FNS.; FNS e FNDE na origem
-    (Frente D1).
-  trava: testes/test_coletores_federais_sexta.py::test_fns_entidades_pagina_2_real_fecha_as_191_e_traz_o_fundo
+  evidencia: 'O FNDE está lido no formato real (id 147). O FNS lê as entidades reais de Goiânia (191 em 2025, 197 em 2024)
+    e o valor pago ao Fundo Municipal de Saúde pelas respostas reais: as 40 ações de 2025 fecham com o total geral declarado,
+    e as ordens trazem a ação, o mês do pagamento e o documento do SIAFI (id 146). O repasse do dia real também é lido.'
+  falta: A ativação dos domínios pela Frente D2 e as páginas 2 a 7 das ordens do Fundo (id 146), para fechar o valor pago
+    no ano.; FNS e FNDE na origem (Frente D1).
+  trava: testes/test_coletores_federais_setima.py::test_fns_acoes_reais_do_fundo_fecham_com_o_total_geral
 - id: 165
   bloco: Roteiro e portões
   requisito: 'Fase 5: cada contrato com item de catálogo comparado à mediana'
