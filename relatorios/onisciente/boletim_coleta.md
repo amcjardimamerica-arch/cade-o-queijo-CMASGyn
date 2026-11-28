@@ -1,7 +1,7 @@
-# Coleta em andamento: boletim de 2026-11-28T11:30+00:00
+# Coleta em andamento: boletim de 2026-11-28T11:31+00:00
 
-Desde 2026-11-28T09:49:53+00:00: 1015 chamadas registradas.
-Última chamada: 2026-11-28T10:14:59+00:00 (2024 planilha 2024-12).
+Desde 2026-11-28T09:49:53+00:00: 1461 chamadas registradas.
+Última chamada: 2026-11-28T11:30:57+00:00 (contratacoes m4).
 
 ## Por fonte
 
@@ -16,6 +16,8 @@ Desde 2026-11-28T09:49:53+00:00: 1015 chamadas registradas.
 | fnas.mds.gov.br | ok | 3 |
 | ftp.fnde.gov.br | ok | 12 |
 | goias.gov.br | ok | 4 |
+| pncp.gov.br/api/consulta | ok | 409 |
+| pncp.gov.br/api/consulta | tempo do motor nesta rodada esgotado | 37 |
 | portaldatransparencia.gov.br | ok | 13 |
 | queridodiario.ok.org.br/api/gazettes?territory_ids=5208707&published_since=2023-11-01&published_until=2023-11-30&size=100&offset=0 | ok | 1 |
 | queridodiario.ok.org.br/api/gazettes?territory_ids=5208707&published_since=2023-11-01&published_until=2023-11-30&size=100&offset=0&querystring=%22Assist%C3%AAncia+Social%22+%7C+%22CMASGyn%22+%7C+%22Fundo+Municipal+de+Assist%C3%AAncia+Social%22+%7C+%22%C3%8Dndice+de+Gest%C3%A3o+Descentralizada%22 | ok | 1 |
@@ -55,6 +57,7 @@ Desde 2026-11-28T09:49:53+00:00: 1015 chamadas registradas.
 | fnas.mds.gov.br | 3 | 36.5 | 79.0 | 79.0 |
 | ftp.fnde.gov.br | 12 | 2.2 | 2.3 | 2.4 |
 | goias.gov.br | 4 | 3.4 | 9.1 | 9.1 |
+| pncp.gov.br/api/consulta | 409 | 8.7 | 17.2 | 35.8 |
 | portaldatransparencia.gov.br | 13 | 2.1 | 2.6 | 7.5 |
 | queridodiario.ok.org.br/api/gazettes?territory_ids=5208707&published_since=2023-11-01&published_until=2023-11-30&size=100&offset=0 | 1 | 57.5 | 57.5 | 57.5 |
 | queridodiario.ok.org.br/api/gazettes?territory_ids=5208707&published_since=2023-11-01&published_until=2023-11-30&size=100&offset=0&querystring=%22Assist%C3%AAncia+Social%22+%7C+%22CMASGyn%22+%7C+%22Fundo+Municipal+de+Assist%C3%AAncia+Social%22+%7C+%22%C3%8Dndice+de+Gest%C3%A3o+Descentralizada%22 | 1 | 23.1 | 23.1 | 23.1 |
