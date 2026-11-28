@@ -146,12 +146,24 @@ def _ausente(leitura) -> bool:
 
 # --- FNS ----------------------------------------------------------------------------------
 
+# Rodada 13 (28/11/2026): na coleta 6c474b1 (run 46126887222), como já na d532c1d, as vias antigas não
+# responderam em nenhum ano: os 4 modelos de apifns.saude.gov.br não resolvem no DNS (3 tentativas, uns 36 s
+# cada, 12 chamadas e 7 minutos), os 2 de repasse-dia/detalhar-pagamento e o de detalhe-acao com
+# codigoMunicipio dão HTTP 400 e o de repasse-dia/consolidado dá 404. Os 3 anos vieram inteiros pela consulta
+# detalhada (detalhe 2024, 2025 e 2026: 526, 480 e 472 ordens), mas cada ano ficava com uma linha "falha HTTP
+# 400" que pesava na cobertura. O ano que a consulta detalhada já preencheu não é tentado aqui.
 def motor_fns(ctx, ibge: int) -> None:
-    """Os repasses do FNS ao Município, ano a ano. O modelo de endereço que respondeu num ano é
-    tentado primeiro no seguinte."""
+    """Os repasses do FNS ao Município, ano a ano, pelas vias antigas (``fns.MODELOS_DE_REPASSE``). O modelo
+    de endereço que respondeu num ano é tentado primeiro no seguinte. O ano que ``motor_fns_detalhe`` já
+    gravou em ``repasses_fns`` fica de fora, sem linha de situação própria (a do ``detalhe`` vale)."""
     preparar(ctx.banco)
     preferido: str | None = None
+    pelo_detalhe = {a for (a,) in ctx.banco.consultar(
+        "SELECT DISTINCT ano FROM repasses_fns WHERE via = ?", fns.DETALHE + "detalhe-pagamento")}
     for ano in _anos(ctx):
+        if ano in pelo_detalhe:
+            ctx.banco.con.execute("DELETE FROM fontes_federais WHERE motor = 'fns' AND alvo = ?", (str(ano),))
+            continue
         modelos = ([preferido] if preferido else []) + [m for m in fns.MODELOS_DE_REPASSE if m != preferido]
         ultimo_erro, situacao = "nenhum modelo de endereço respondeu", "nao_publicado"
         for modelo in modelos:
@@ -878,6 +890,18 @@ def motor_economia_go(ctx, municipio: str, ibge: int, leituras_max: int = 25) ->
 
 # --- TCU e TCM-GO -------------------------------------------------------------------------
 
+def _novas(decisoes: list[dict], vistas: set[str]) -> list[dict]:
+    """As decisões de chave ainda não vista, na ordem, uma vez cada. Rodada 13 (28/11/2026): na coleta 6c474b1
+    a mesma chave veio duas vezes dentro de uma exportação (2.411 contadas, 2.409 gravadas). Entre duas com
+    a chave repetida, fica a que é sobre Goiânia."""
+    nesta: dict[str, dict] = {}
+    for d in decisoes:
+        ja = nesta.get(d["chave"])
+        if d["chave"] not in vistas and (ja is None or (d.get("sobre_goiania") and not ja.get("sobre_goiania"))):
+            nesta[d["chave"]] = d
+    return list(nesta.values())
+
+
 def _guardar_decisoes(ctx, decisoes: list[dict], so_goiania: bool) -> int:
     n = 0
     for d in decisoes:
@@ -906,9 +930,12 @@ def motor_tcu(ctx, termo: str = "Goiânia", paginas: int = 10) -> None:
         declarados, lidos, completa, curta, p = None, 0, False, False, 0
         while p < total:
             url = montar(p * por_pagina)
-            leitura = ctx.ler("tcu", f"{alvo} {p}", url, tempo=90)
+            leitura, recusa = ctx.ler("tcu", f"{alvo} {p}", url, tempo=90), ""
+            if not leitura.ok and leitura.http == 429:
+                leitura, recusa = _de_novo_depois_do_429(ctx, f"{alvo} {p}", url, leitura)
             if not leitura.ok:
-                situacao, erro = ("nao_publicado" if _ausente(leitura) else "falha"), leitura.erro
+                situacao = "nao_publicado" if _ausente(leitura) else "falha"
+                erro = recusa if leitura.http == 429 else leitura.erro
                 break
             try:
                 decisoes = tcu.ler(leitura.conteudo, pesquisa=alvo == "pesquisa")
@@ -940,6 +967,19 @@ def motor_tcu(ctx, termo: str = "Goiânia", paginas: int = 10) -> None:
         if guardadas and situacao in ("falha", "formato", "nao_publicado"):
             situacao = "lido"                            # as páginas anteriores valem; o erro fica anotado
         _situacao(ctx, "tcu", alvo, situacao, via=alvo, registros=guardadas, erro=erro)
+
+
+def _de_novo_depois_do_429(ctx, alvo: str, url: str, leitura) -> tuple:
+    """Uma página do TCU recusada com 429 depois das tentativas do ``Contexto``: espera
+    ``tcu.ESPERA_429`` e lê mais uma vez. Devolve a leitura e a descrição da recusa (com o que o servidor
+    pediu de espera, se pediu)."""
+    pedida = (f"o servidor pediu {leitura.espera:.0f} s de espera" if leitura.espera is not None
+              else "sem Retry-After")
+    ctx.dormir(tcu.ESPERA_429)
+    nova = ctx.ler("tcu", f"{alvo} depois de {tcu.ESPERA_429} s", url, tempo=90)
+    recusa = (f"HTTP 429 ({pedida}); a nova leitura depois de {tcu.ESPERA_429} s também foi recusada"
+              if nova.http == 429 else "")
+    return nova, recusa
 
 
 def motor_listas_tcm(ctx, municipio: str = "Goiânia") -> None:
@@ -1015,7 +1055,7 @@ def motor_tcm(ctx, termo: str = "Goiânia", paginas: int = 5) -> None:
                 ultimo_erro, situacao = f"formato: {e}", "formato"
                 break
             ok = True
-            novas = [d for d in decisoes if d["chave"] not in chaves]
+            novas = _novas(decisoes, chaves)
             chaves.update(d["chave"] for d in novas)
             guardadas += _guardar_decisoes(ctx, novas, True)
             if not novas:
@@ -1090,7 +1130,7 @@ def _exportacoes_tcm(ctx, municipio: str, vistas: set[str]) -> tuple[int, str | 
             _anotar(ctx, "tcm", alvo, f"{ano}-01", url, f"formato: {e}")
             faltas.append(f"{ano}: formato: {e}")
             continue
-        novas = [d for d in decisoes if d["chave"] not in vistas]
+        novas = _novas(decisoes, vistas)
         vistas.update(d["chave"] for d in novas)
         guardadas += _guardar_decisoes(ctx, novas, True)
     if not anos:
@@ -1137,9 +1177,9 @@ def _paginas_jurisprudencia(ctx, texto: str, municipio: str | None, paginas: int
             if not decisoes or 2 * de_goiania < len(decisoes):
                 return 0, None, (f"o filtro municipio={municipio} não valeu ({de_goiania} de {len(decisoes)} "
                                  "decisões da primeira página sobre Goiânia); a busca seguiu pelo texto")
-        novas = [d for d in decisoes if d["chave"] not in desta]
+        novas = _novas(decisoes, desta)
         desta.update(d["chave"] for d in novas)
-        a_guardar = [d for d in novas if d["chave"] not in chaves]
+        a_guardar = _novas(novas, chaves)
         chaves.update(d["chave"] for d in a_guardar)
         guardadas += _guardar_decisoes(ctx, a_guardar, True)
         datas = [d["data"] for d in decisoes if d.get("data")]   # de todas, não só as de Goiânia
@@ -1160,8 +1200,10 @@ def _paginas_jurisprudencia(ctx, texto: str, municipio: str | None, paginas: int
 def chamadas(ctx, alvo, cnpjs=None) -> dict:
     """As chamadas dos motores do bloco 5 para o ``rodar`` do historico."""
     return {
-        "fns": lambda: (motor_fns(ctx, alvo.ibge), motor_fns_entidades(ctx, alvo.ibge),
-                        motor_fns_detalhe(ctx, alvo.ibge), motor_fns_repasse_dia(ctx)),
+        # Rodada 13 (28/11/2026): a consulta detalhada vem antes das vias antigas de motor_fns, que só
+        # tentam os anos que ela não preencheu (na coleta 6c474b1, as 8 vias antigas falharam nos 3 anos).
+        "fns": lambda: (motor_fns_entidades(ctx, alvo.ibge), motor_fns_detalhe(ctx, alvo.ibge),
+                        motor_fns(ctx, alvo.ibge), motor_fns_repasse_dia(ctx)),
         "fnde": lambda: motor_fnde(ctx, alvo.uf, str(alvo.ibge)[:6]),
         "transferegov": lambda: motor_transferegov(
             ctx, cnpjs if cnpjs is not None else cnpjs_do_municipio(ctx.banco, ()),

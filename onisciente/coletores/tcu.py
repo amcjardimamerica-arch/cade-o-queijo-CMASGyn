@@ -47,6 +47,11 @@ QUANTIDADE_PESQUISA = 50
 LIMITE_PESQUISA: int | None = None
 # Teto de páginas da pesquisa (de 50), para uma resposta que declare um total sem fim.
 PAGINAS_MAX_PESQUISA = 60
+# Rodada 13 (28/11/2026): na coleta 6c474b1, os dados abertos responderam inicio=0 e 100 e recusaram inicio=200
+# com HTTP 429 nas 3 tentativas do Contexto, em 106,6 s: são as esperas sem Retry-After (15, 30 e 60 s) mais
+# as 3 leituras, então o servidor não disse quanto esperar, e a recusa durou pelo menos 105 s. Na coleta
+# d532c1d as 10 páginas tinham vindo. O motor espera mais 2 minutos e lê a página uma vez mais.
+ESPERA_429 = 120
 
 # Aparecida de Goiânia fica de fora com ou sem o "de": a jurisprudência real do TCM-GO escreve a entidade
 # como "APARECIDA GOIANIA - APARECIDAPREV" (sondagem a8761d9), e 8 das 35 decisões da página 1 que pareciam de

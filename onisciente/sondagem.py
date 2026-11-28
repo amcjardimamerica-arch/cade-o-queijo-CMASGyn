@@ -396,6 +396,12 @@ CANDIDATOS: dict[str, list[str]] = {
          "&page_size=100&sort_by=data_sessao&sort_order=desc&municipio=GOIANIA&ano_votacao=2025"),
         ("https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/acordao/jurisprudencia/exportar?texto="
          "&sort_by=data_sessao&sort_order=desc&municipio=GOIANIA&ano_votacao=2025&formato=csv"),
+        # Rodada 13: a coleta 6c474b1 leu o exportar de 2024 e de 2026 (1.570.614 e 1.667.897 bytes; 732 e 804
+        # decisões de Goiânia). O total que a busca declara para esses anos confere se vieram inteiros.
+        ("https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/acordao/jurisprudencia/buscar?texto=&page=1"
+         "&page_size=100&sort_by=data_sessao&sort_order=desc&municipio=GOIANIA&ano_votacao=2024"),
+        ("https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/acordao/jurisprudencia/buscar?texto=&page=1"
+         "&page_size=100&sort_by=data_sessao&sort_order=desc&municipio=GOIANIA&ano_votacao=2026"),
     ],
     # Frente E (27/11): auditoria independente do Selo de Transparência (PNTP). As páginas que cada critério
     # da matriz (regras/pntp/matriz_2026.yml) manda olhar; onisciente/selo/coleta.py segue os links internos.
