@@ -131,6 +131,11 @@ botao = ["wt86", "Buscar"]
 # "__OSVSTATE,"; a resposta são blocos OsJSONUpdate). Lido no _osjs.js, não numa resposta real.
 modo = "ajax"
 confirmado = false
+[transweb.despesas.exportar]
+# select selExportar (Exportar, XLS, CSV, JSON) e o botão OK escondido, sem OsAjax: postback comum.
+campo = ["wtselExportar"]
+botao = ["wtbtnExportar"]
+confirmado = false         # os nomes estão no HTML; a resposta (o arquivo) ainda não foi lida
 [transweb.despesas.campos]
 mes = ["wtcboMes"]
 ano = ["wtcboAno"]

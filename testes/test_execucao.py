@@ -581,3 +581,51 @@ def test_sondagem_cobre_a_pagina_real_e_os_popups():
             assert PORTAL.base + p in urls
     popups = [u for u in urls if "EmpenhoPopUp.aspx" in u]
     assert popups and all("&amp;" not in u and "&Empenho=" in u for u in popups)
+
+
+# --- A sondagem da página real (quarta rodada): os pedidos montados pelo coletor, sem rede --------
+
+def test_sondagem_segue_o_empenho_popup_com_e_comercial():
+    from onisciente import sondagem
+    url = PORTAL.base + "Portal_Despesas.aspx"
+    novos = sondagem._seguir("d2_transweb", url, Leitura(True, url, _f("portal_despesas_real.html"), http=200))
+    popups = [u for u in novos if "EmpenhoPopUp.aspx" in u]
+    assert popups and all("&amp;" not in u and "&Empenho=" in u for u in popups)
+    assert popups[0].startswith("https://www10.goiania.go.gov.br/DespesasWebBlocks/EmpenhoPopUp.aspx?CdOrgao=1101"
+                                f"&Empenho={EMP1}&NmOrgao=")
+
+
+def test_sondagem_monta_buscar_pagina_2_e_exportacao():
+    from onisciente import sondagem
+    url = PORTAL.base + "Portal_Despesas.aspx"
+    pedidos, guardados = [], []
+
+    def ler(destino, *, tempo=60, fonte="", formulario=None):
+        pedidos.append((destino, formulario, tempo))
+        if formulario.get("__AJAX") and formulario["__EVENTTARGET"].endswith("$wt86"):
+            return Leitura(True, destino, _f("portal_despesas_pagina2_sintetico.txt"), http=200)
+        return Leitura(True, destino, b"ok", http=200)
+
+    def guardar(fonte, destino, leitura, formulario):
+        guardados.append((fonte, destino, formulario))
+        return {"fonte": fonte, "url": destino, "ok": leitura.ok}
+
+    pagina = Leitura(True, url, _f("portal_despesas_real.html"), http=200)
+    regs = sondagem._conversa_despesas("d2_transweb", url, pagina, ler_=ler, guardar=guardar)
+    assert [r["passo"] for r in regs] == ["a_buscar_osajax", "b_pagina_2_osajax", "c_exportar_csv",
+                                          "d_buscar_postback"]
+    assert len(guardados) == 4 and all(t == 90 for _d, _f2, t in pedidos)
+    prefixo = "WebPatterns_wt2$block$wtMainContent$DespesasWebBlocks_wt1$block$"
+    inicial = G.formularios(_f("portal_despesas_real.html"))[0].campos["__OSVSTATE"]
+    (u1, a, _), (u2, b, _), (u3, c, _), (u4, d, _) = pedidos
+    assert u1.startswith(url + "?_ts=") and u2.startswith(url + "?_ts=") and u3 == u4 == url
+    assert a["__EVENTTARGET"] == prefixo + "wt86" and a["__AJAX"] == "__OSVSTATE," and a["__OSVSTATE"] == inicial
+    assert a[prefixo + "wtcboMes"] == "__ossli_10" and a[prefixo + "wtcboAno"] == "2026"
+    assert prefixo + "wt86" not in a                                     # o OsAjax não manda botão
+    assert b["__EVENTTARGET"] == prefixo + "RichWidgets_wt150$block$wt28" and b["__AJAX"] == "__OSVSTATE,"
+    assert b["__OSVSTATE"] == "ESTADO-SINTETICO-DA-PAGINA-2"            # o estado da resposta (a)
+    assert c[prefixo + "wtselExportar"] == "__ossli_2" and c[prefixo + "wtbtnExportar"] == "OK"
+    assert "__AJAX" not in c and c["__OSVSTATE"] == "ESTADO-SINTETICO-DA-PAGINA-2"
+    assert c[prefixo + "wtcboMes"] == "__ossli_10" and c["__EVENTTARGET"] == ""
+    assert d[prefixo + "wt86"] == "Buscar" and "__AJAX" not in d and d["__OSVSTATE"] == inicial
+    assert not LISTA.exportar["confirmado"]
