@@ -1,0 +1,94 @@
+URL: https://consultafns.saude.gov.br/app/pages/entidade/services/entidadeService.js
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 2387
+
+/**
+ * @desc Define um módulo anonimo dependente de app e
+ * cria o serviço entidadeService
+ */
+define([
+    'app'
+],
+    /**
+     *
+     * @param app
+     * @returns {*}
+     */
+    function (app) {
+
+        /**
+         *
+         * @type {string}
+         * @desc var privada que referencia a URL de acesso à API entidade/api/v1/
+         */
+        var cGetUrl = window.location.pathname;
+
+        /**
+         * @param Restangular, $log
+         * @constructor
+         */
+        var EntidadeService = function (Restangular, $log) {
+            this.$log = $log;
+            this.Restangular = Restangular;
+        }
+
+        /**
+         * @desc Dependency Injection
+         */
+        EntidadeService.$inject = ['Restangular', '$log'];
+
+        /**
+         * @method
+         * @desc Recuperaçao de collection para recurso entidade
+         * @returns {*}
+         */
+        EntidadeService.prototype.cGet = function (resource, params) {
+            resource = resource || 'entidade';
+            return this.Restangular.all(cGetUrl).customGET(resource, params);
+        }
+
+        /**
+         * @method
+         * @desc Permite inserção de recurso entidade
+         * @returns {*}
+         */
+        EntidadeService.prototype.post = function (params) {
+            return this.Restangular.all(cGetUrl + 'entidade').post(params);
+        }
+        /**
+         * @method
+         * @desc Recuperaçao de objeto único para recurso entidade
+         * @returns {*}
+         */
+        EntidadeService.prototype.get = function (params) {
+            return this.Restangular.one(cGetUrl + 'entidade', params).get();
+        }
+        /**
+         * @method
+         * @desc Permite remoção de recurso entidade
+         * @returns {*}
+         */
+        EntidadeService.prototype.remove = function (params) {
+            return this.Restangular.one(cGetUrl + 'entidade', params).remove();
+        }
+        /**
+         * @method
+         * @desc Permite edição de dados para recurso entidade
+         * @returns {*}
+         */
+        EntidadeService.prototype.put = function (params) {
+            return this.Restangular.all(cGetUrl).customPUT('entidade', params);
+        }
+
+        /**
+         * @desc Criação do serviço angularJS
+         * @type {boolean}
+         */
+        app.service('entidadeService', EntidadeService);
+
+        return app;
+    }
+);

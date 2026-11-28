@@ -1,0 +1,313 @@
+{
+ "quando": "2026-11-28T00:40:21+00:00",
+ "leituras": [
+  {
+   "fonte": "d1_fns",
+   "url": "https://consultafns.saude.gov.br/app/controllers/portalController.js",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 4344,
+   "arquivo": "d1_fns__consultafns-saude-gov-br-app-controllers-portalcontroller-js-989db824.txt",
+   "segundos": 0.9
+  },
+  {
+   "fonte": "d1_fns",
+   "url": "https://consultafns.saude.gov.br/app/menu.json?t=1.50.9",
+   "post": null,
+   "ok": false,
+   "http": 404,
+   "erro": "HTTP 404",
+   "bytes": 1036,
+   "arquivo": "d1_fns__consultafns-saude-gov-br-app-menu-json-t-1-50-9-f80de826.txt",
+   "segundos": 0.9
+  },
+  {
+   "fonte": "d1_fns",
+   "url": "https://consultafns.saude.gov.br/app/pages/detalhada/routes/detalhadaRoute.js",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 4045,
+   "arquivo": "d1_fns__consultafns-saude-gov-br-app-pages-detalhada-routes-detalhadaroute-js-409820bd.txt",
+   "segundos": 1.8
+  },
+  {
+   "fonte": "d1_fns",
+   "url": "https://consultafns.saude.gov.br/app/pages/detalhada/services/detalhadaService.js",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 7536,
+   "arquivo": "d1_fns__consultafns-saude-gov-br-app-pages-detalhada-services-detalhadaservice-82ba06f3.txt",
+   "segundos": 0.9
+  },
+  {
+   "fonte": "d1_fns",
+   "url": "https://consultafns.saude.gov.br/app/pages/detalhada/controllers/detalhadaController.js",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 18896,
+   "arquivo": "d1_fns__consultafns-saude-gov-br-app-pages-detalhada-controllers-detalhadacont-ec1984fc.txt",
+   "segundos": 0.8
+  },
+  {
+   "fonte": "d1_fns",
+   "url": "https://consultafns.saude.gov.br/app/pages/consolidada/routes/consolidadaRoute.js",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 1099,
+   "arquivo": "d1_fns__consultafns-saude-gov-br-app-pages-consolidada-routes-consolidadaroute-35ba960f.txt",
+   "segundos": 0.9
+  },
+  {
+   "fonte": "d1_fns",
+   "url": "https://consultafns.saude.gov.br/app/pages/consolidada/services/consolidadaService.js",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 3132,
+   "arquivo": "d1_fns__consultafns-saude-gov-br-app-pages-consolidada-services-consolidadaser-d38f8864.txt",
+   "segundos": 1.2
+  },
+  {
+   "fonte": "d1_fns",
+   "url": "https://consultafns.saude.gov.br/app/pages/entidade/services/entidadeService.js",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 2387,
+   "arquivo": "d1_fns__consultafns-saude-gov-br-app-pages-entidade-services-entidadeservice-j-82fb0dc6.txt",
+   "segundos": 1.1
+  },
+  {
+   "fonte": "d1_fns",
+   "url": "https://consultafns.saude.gov.br/recursos/repasse-dia/recuperar-data-ultimo-pagamento",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 26,
+   "arquivo": "d1_fns__consultafns-saude-gov-br-recursos-repasse-dia-recuperar-data-ultimo-pa-dfdbe1ce.txt",
+   "segundos": 0.6
+  },
+  {
+   "fonte": "d1_fns",
+   "url": "https://consultafns.saude.gov.br/recursos/repasse-dia/consultar?ano=2025&mes=1&dia=15",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 1285,
+   "arquivo": "d1_fns__consultafns-saude-gov-br-recursos-repasse-dia-consultar-ano-2025-mes-1-0723ce8a.txt",
+   "segundos": 10.9
+  },
+  {
+   "fonte": "d1_transferegov",
+   "url": "https://api.transferegov.gestao.gov.br/transferenciasespeciais/",
+   "post": null,
+   "ok": false,
+   "http": 503,
+   "erro": "HTTP 503",
+   "bytes": 1665,
+   "arquivo": "d1_transferegov__api-transferegov-gestao-gov-br-transferenciasespeciais-8cd59b90.txt",
+   "segundos": 0.5
+  },
+  {
+   "fonte": "d1_transferegov",
+   "url": "https://api.transferegov.gestao.gov.br/transferenciasespeciais/plano_acao_especial?cnpj_beneficiario_plano_acao=eq.01612092000123&limit=5&offset=0",
+   "post": null,
+   "ok": false,
+   "http": 503,
+   "erro": "HTTP 503",
+   "bytes": 1665,
+   "arquivo": "d1_transferegov__api-transferegov-gestao-gov-br-transferenciasespeciais-plano-acao-espe-b628d692.txt",
+   "segundos": 0.5
+  },
+  {
+   "fonte": "d1_transferegov",
+   "url": "https://repositorio.dados.gov.br/seges/detru/",
+   "post": null,
+   "ok": false,
+   "http": 404,
+   "erro": "HTTP 404",
+   "bytes": 153,
+   "arquivo": "d1_transferegov__repositorio-dados-gov-br-seges-detru-804405dc.txt",
+   "segundos": 0.5
+  },
+  {
+   "fonte": "d1_sancoes",
+   "url": "https://portaldatransparencia.gov.br/download-de-dados/cnep",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 82824,
+   "arquivo": "d1_sancoes__portaldatransparencia-gov-br-download-de-dados-cnep-6ca53573.txt",
+   "segundos": 0.8
+  },
+  {
+   "fonte": "d1_sancoes",
+   "url": "https://dadosabertos-download.cgu.gov.br/PortalDaTransparencia/saida/cnep/20261127_CNEP.zip",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 208073,
+   "arquivo": "d1_sancoes__dadosabertos-download-cgu-gov-br-portaldatransparencia-saida-cnep-2026-15e56984.txt",
+   "segundos": 0.3
+  },
+  {
+   "fonte": "d1_sancoes",
+   "url": "https://portaldatransparencia.gov.br/download-de-dados/cnep/20261127",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 208073,
+   "arquivo": "d1_sancoes__portaldatransparencia-gov-br-download-de-dados-cnep-20261127-cce65b62.txt",
+   "segundos": 0.2
+  },
+  {
+   "fonte": "d1_sancoes",
+   "url": "https://dadosabertos-download.cgu.gov.br/PortalDaTransparencia/saida/ceis/20261128_CEIS.zip",
+   "post": null,
+   "ok": false,
+   "http": 403,
+   "erro": "HTTP 403",
+   "bytes": 111,
+   "arquivo": "d1_sancoes__dadosabertos-download-cgu-gov-br-portaldatransparencia-saida-ceis-2026-3b0e002b.txt",
+   "segundos": 0.4
+  },
+  {
+   "fonte": "d1_economia_go",
+   "url": "https://goias.gov.br/economia/repasse-aos-municipios/",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 216200,
+   "arquivo": "d1_economia_go__goias-gov-br-economia-repasse-aos-municipios-a6118972.txt",
+   "segundos": 1.6
+  },
+  {
+   "fonte": "d1_economia_go",
+   "url": "https://goias.gov.br/economia/wp-content/uploads/sites/45/2026/05/Conciliacao_das_Distribuicoes-2025.xlsx",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 15759814,
+   "arquivo": "d1_economia_go__goias-gov-br-economia-wp-content-uploads-sites-45-2026-05-conciliacao-ab2056f5.txt",
+   "segundos": 10.5
+  },
+  {
+   "fonte": "d1_economia_go",
+   "url": "https://goias.gov.br/economia/wp-content/uploads/sites/45/2026/11/Conciliacao-das-Distribuicoes-2026.xlsx",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 15756457,
+   "arquivo": "d1_economia_go__goias-gov-br-economia-wp-content-uploads-sites-45-2026-11-conciliacao-f4e23a1e.txt",
+   "segundos": 10.2
+  },
+  {
+   "fonte": "d1_economia_go",
+   "url": "https://goias.gov.br/economia/wp-content/uploads/sites/45/2024/06/transf-municipios_2024_02-1.xlsx",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 482677,
+   "arquivo": "d1_economia_go__goias-gov-br-economia-wp-content-uploads-sites-45-2024-06-transf-munic-6d28d2aa.txt",
+   "segundos": 1.9
+  },
+  {
+   "fonte": "d1_tcu",
+   "url": "https://pesquisa.apps.tcu.gov.br/rest/publico/base/acordao-completo/documentosResumidos?termo=%22Goi%C3%A2nia%22&ordenacao=DTRELEVANCIA+desc%2C+NUMACORDAOINT+desc&quantidade=100&inicio=100&sinonimos=true",
+   "post": null,
+   "ok": false,
+   "http": null,
+   "erro": "URLError: [Errno 104] Connection reset by peer",
+   "bytes": 0,
+   "arquivo": "d1_tcu__pesquisa-apps-tcu-gov-br-rest-publico-base-acordao-completo-documentos-ef620fb3.txt",
+   "segundos": 0.4
+  },
+  {
+   "fonte": "d1_tcm",
+   "url": "https://virtual.tcmgo.tc.br/jurisprudencia/",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 936,
+   "arquivo": "d1_tcm__virtual-tcmgo-tc-br-jurisprudencia-f32664df.txt",
+   "segundos": 1.0
+  },
+  {
+   "fonte": "d1_tcm",
+   "url": "https://ws.tcm.go.gov.br/api/rest/dados/contas-irregulares",
+   "post": null,
+   "ok": true,
+   "http": 200,
+   "erro": "",
+   "bytes": 351600,
+   "arquivo": "d1_tcm__ws-tcm-go-gov-br-api-rest-dados-contas-irregulares-2aac2857.txt",
+   "segundos": 7.4
+  },
+  {
+   "fonte": "d1_tcm",
+   "url": "https://acessoainformacao.tcmgo.tc.br/cidadao/outras_informacoes/contas_irregulares_tcm/tipo_id=1",
+   "post": null,
+   "ok": false,
+   "http": 403,
+   "erro": "HTTP 403",
+   "bytes": 118,
+   "arquivo": "d1_tcm__acessoainformacao-tcmgo-tc-br-cidadao-outras-informacoes-contas-irregu-e305f2d8.txt",
+   "segundos": 0.4
+  },
+  {
+   "fonte": "d1_tcm",
+   "url": "https://acessoainformacao.tcmgo.tc.br/cidadao/outras_informacoes/contas_irregulares_tcm/tipo_id=3",
+   "post": null,
+   "ok": false,
+   "http": 403,
+   "erro": "HTTP 403",
+   "bytes": 118,
+   "arquivo": "d1_tcm__acessoainformacao-tcmgo-tc-br-cidadao-outras-informacoes-contas-irregu-a9407236.txt",
+   "segundos": 0.1
+  },
+  {
+   "fonte": "d1_tcm",
+   "url": "https://acessoainformacao.tcmgo.tc.br/informacao/mp/id=44",
+   "post": null,
+   "ok": false,
+   "http": 403,
+   "erro": "HTTP 403",
+   "bytes": 118,
+   "arquivo": "d1_tcm__acessoainformacao-tcmgo-tc-br-informacao-mp-id-44-6bf8b271.txt",
+   "segundos": 0.2
+  },
+  {
+   "fonte": "d1_tcm",
+   "url": "https://www.tcmgo.tc.br/contaseleicoes/",
+   "post": null,
+   "ok": false,
+   "http": 403,
+   "erro": "HTTP 403",
+   "bytes": 118,
+   "arquivo": "d1_tcm__www-tcmgo-tc-br-contaseleicoes-42831923.txt",
+   "segundos": 1.0
+  }
+ ]
+}

@@ -1,0 +1,7 @@
+URL: https://www.tcmgo.tc.br/contaseleicoes/
+POST: {}
+OK: False
+HTTP: 403
+ERRO: HTTP 403
+BYTES: 118
+

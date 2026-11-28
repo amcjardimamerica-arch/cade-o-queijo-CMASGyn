@@ -1,0 +1,113 @@
+URL: https://consultafns.saude.gov.br/app/pages/consolidada/services/consolidadaService.js
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 3132
+
+/**
+ * @desc Define um módulo anonimo dependente de app e
+ * cria o serviço consolidadaService
+ */
+define([
+    'app'
+],
+    /**
+     *
+     * @param app
+     * @returns {*}
+     */
+    function (app) {
+
+        /**
+         *
+         * @type {string}
+         * @desc var privada que referencia a URL de acesso à API consolidada/api/v1/
+         */
+        var cGetUrl = 'recursos';
+
+        /**
+         * @param Restangular, $log
+         * @constructor
+         */
+        var ConsolidadaService = function (Restangular, $log) {
+            this.$log = $log;
+            this.Restangular = Restangular;
+        }
+
+        /**
+         * @desc Dependency Injection
+         */
+        ConsolidadaService.$inject = ['Restangular', '$log'];
+
+        /**
+         * @method
+         * @desc Recuperaçao de collection para recurso consolidada
+         * @returns {*}
+         */
+        ConsolidadaService.prototype.cGet = function (resource, params) {
+            resource = resource || 'consolidada';
+            return this.Restangular.all(cGetUrl).customGET(resource, params);
+        }
+
+        /**
+         * @method
+         * @desc Permite inserção de recurso consolidada
+         * @returns {*}
+         */
+        ConsolidadaService.prototype.post = function (params) {
+            return this.Restangular.all(cGetUrl + 'consolidada').post(params);
+        }
+        /**
+         * @method
+         * @desc Recuperaçao de objeto único para recurso consolidada
+         * @returns {*}
+         */
+        ConsolidadaService.prototype.get = function (params) {
+            return this.Restangular.one(cGetUrl + 'consolidada', params).get();
+        }
+        /**
+         * @method
+         * @desc Permite remoção de recurso consolidada
+         * @returns {*}
+         */
+        ConsolidadaService.prototype.remove = function (params) {
+            return this.Restangular.one(cGetUrl + 'consolidada', params).remove();
+        }
+        /**
+         * @method
+         * @desc Permite edição de dados para recurso consolidada
+         * @returns {*}
+         */
+        ConsolidadaService.prototype.put = function (params) {
+            return this.Restangular.all(cGetUrl).customPUT('consolidada', params);
+        }
+        
+        /**
+         * @method
+         * @desc 
+         * @returns {*}
+         */
+        ConsolidadaService.prototype.gerarPlanilhaConsolidada = function (params) {
+            return this.Restangular.all(cGetUrl + '/consulta-consolidada/planilha').withHttpConfig({ responseType: 'arraybuffer' }).post(params);
+        }
+        
+        /**
+         * @method
+         * @desc 
+         * @returns {*}
+         */
+        ConsolidadaService.prototype.gerarPlanilhaConsolidadaDetalhada = function (params) {
+            return this.Restangular.all(cGetUrl + '/consulta-consolidada/planilha-detalhada').withHttpConfig({ responseType: 'arraybuffer' }).post(params);
+        }
+        
+
+        /**
+         * @desc Criação do serviço angularJS
+         * @type {boolean}
+         */
+        app.service('consolidadaService', ConsolidadaService);
+
+        return app;
+    }
+);

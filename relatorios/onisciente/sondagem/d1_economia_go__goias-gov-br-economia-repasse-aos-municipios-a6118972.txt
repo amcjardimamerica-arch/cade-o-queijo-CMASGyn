@@ -3,7 +3,7 @@ POST: {}
 OK: True
 HTTP: 200
 ERRO: 
-BYTES: 216199
+BYTES: 216200
 
                                 <!DOCTYPE html>
 <html lang="pt-BR" dir="ltr">
@@ -23,7 +23,7 @@ BYTES: 216199
     <link rel="pingback" href="https://goias.gov.br/economia/xmlrpc.php" />
     <title>Repasse aos Municípios &#8211; Secretaria da Economia</title>
 <meta name='robots' content='max-image-preview:large' />
-<script type="text/javascript" src="/ruxitagentjs_ICA7NVfqrux_10349261020121938.js" data-dtconfig="rid=RID_-1380992679|rpid=195293036|domain=goias.gov.br|reportUrl=/rb_bf42844fel|app=d23463925d82f5ff|srtbv=4|owasp=1|featureHash=ICA7NVfqrux|srsr=5000|rdnt=1|uxrgce=1|cuc=eramtvi6|mel=100000|expw=1|dpvc=1|lastModification=1795704866023|postfix=eramtvi6|tp=500,50,0|srbbv=3|agentUri=/ruxitagentjs_ICA7NVfqrux_10349261020121938.js"></script><link rel='dns-prefetch' href='//cdn.jsdelivr.net' />
+<script type="text/javascript" src="/ruxitagentjs_ICA7NVfqrux_10349261020121938.js" data-dtconfig="rid=RID_-1380992679|rpid=1105358478|domain=goias.gov.br|reportUrl=/rb_bf42844fel|app=d23463925d82f5ff|srtbv=4|owasp=1|featureHash=ICA7NVfqrux|srsr=5000|rdnt=1|uxrgce=1|cuc=eramtvi6|mel=100000|expw=1|dpvc=1|lastModification=1795704866023|postfix=eramtvi6|tp=500,50,0|srbbv=3|agentUri=/ruxitagentjs_ICA7NVfqrux_10349261020121938.js"></script><link rel='dns-prefetch' href='//cdn.jsdelivr.net' />
 <link rel='dns-prefetch' href='//cdnjs.cloudflare.com' />
 <link rel="alternate" type="application/rss+xml" title="Feed de comentários para Secretaria da Economia &raquo; Repasse aos Municípios" href="https://goias.gov.br/economia/repasse-aos-municipios/feed/" />
 <link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://goias.gov.br/economia/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fgoias.gov.br%2Feconomia%2Frepasse-aos-municipios%2F" />
