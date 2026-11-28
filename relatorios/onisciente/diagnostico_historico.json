@@ -1,6 +1,6 @@
 {
  "intervalo": "2024-11 a 2026-11",
- "rodada": "2026-11-28T01:30:19+00:00",
+ "rodada": "2026-11-28T02:44:15+00:00",
  "meses": [
   "2024-11",
   "2024-12",
@@ -61,21 +61,19 @@
    "falhas": 0,
    "tentativas": 6,
    "http_429": 0,
-   "segundos": 48.1,
+   "segundos": 43.4,
    "erros": {}
   },
   {
    "motor": "execucao_goiania",
    "nome": "Execução item a item no portal de Goiânia (TransWeb)",
-   "chamadas": 43,
-   "ok": 29,
-   "falhas": 14,
-   "tentativas": 71,
+   "chamadas": 112,
+   "ok": 112,
+   "falhas": 0,
+   "tentativas": 112,
    "http_429": 0,
-   "segundos": 567.7,
-   "erros": {
-    "HTTP 500": 14
-   }
+   "segundos": 121.6,
+   "erros": {}
   },
   {
    "motor": "fnas",
@@ -104,16 +102,15 @@
   {
    "motor": "fns",
    "nome": "Fundo Nacional de Saúde (repasses fundo a fundo)",
-   "chamadas": 71,
-   "ok": 44,
-   "falhas": 27,
-   "tentativas": 92,
+   "chamadas": 201,
+   "ok": 177,
+   "falhas": 24,
+   "tentativas": 225,
    "http_429": 0,
-   "segundos": 528.5,
+   "segundos": 710.3,
    "erros": {
     "URLError: [Errno -2] Name or service not known": 12,
     "HTTP 400: <html><head><title>JBWEB000065: HTTP Status 400 - </title><style><!--H1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} H2 {font-family:Tahoma,Arial,sans-ser": 9,
-    "formato: os registros não têm data e valor reconhecíveis": 3,
     "HTTP 404: <html><head><title>JBWEB000065: HTTP Status 404 - /recursos/repasse-dia/consolidado</title><style><!--H1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} H2 {": 3
    }
   },
@@ -270,9 +267,9 @@
    "chamadas": 12,
    "ok": 6,
    "falhas": 6,
-   "tentativas": 13,
+   "tentativas": 12,
    "http_429": 0,
-   "segundos": 127.7,
+   "segundos": 21.5,
    "erros": {
     "HTTP 403: <html>\r <head><title>403 Forbidden</title></head>\r <body>\r <center><h1>403 Forbidden</h1></center>\r </body>\r </html>": 6
    }
@@ -280,13 +277,15 @@
   {
    "motor": "tcu",
    "nome": "Decisões do TCU",
-   "chamadas": 12,
-   "ok": 12,
-   "falhas": 0,
-   "tentativas": 15,
-   "http_429": 0,
-   "segundos": 66.0,
-   "erros": {}
+   "chamadas": 4,
+   "ok": 3,
+   "falhas": 1,
+   "tentativas": 9,
+   "http_429": 1,
+   "segundos": 172.0,
+   "erros": {
+    "HTTP 429: <html>\r <head><title>429 Too Many Requests</title></head>\r <body>\r <center><h1>429 Too Many Requests</h1></center>\r <hr><center>nginx</center>\r </body>\r </html>": 1
+   }
   },
   {
    "motor": "tesouro",
@@ -299,6 +298,20 @@
    "segundos": 243.0,
    "erros": {
     "URLError: [Errno 104] Connection reset by peer": 2
+   }
+  },
+  {
+   "motor": "transferegov",
+   "nome": "Transferegov (transferências especiais e convênios)",
+   "chamadas": 13,
+   "ok": 1,
+   "falhas": 12,
+   "tentativas": 19,
+   "http_429": 0,
+   "segundos": 225.6,
+   "erros": {
+    "HTTP 503": 6,
+    "não tentado: 6 falhas de rede seguidas nesta fonte": 6
    }
   },
   {
@@ -583,6 +596,13 @@
    "titulo": "Contratações (PNCP): 1 de 618 chamadas falharam",
    "detalhe": "Erro mais comum: RemoteDisconnected: Remote end closed connection without response (1 vezes).",
    "proposta": "Ver a tabela coletas do banco para os endereços exatos."
+  },
+  {
+   "tipo": "melhoria",
+   "motor": "tcu",
+   "titulo": "Decisões do TCU pediu para ir mais devagar",
+   "detalhe": "1 respostas 429 (muitas requisições).",
+   "proposta": "Aumentar a pausa entre chamadas e coletar em janelas menores, todo dia, em vez de tudo de uma vez."
   },
   {
    "tipo": "melhoria",
