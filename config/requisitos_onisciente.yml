@@ -1172,12 +1172,20 @@
     a8761d9, as páginas 1, 2 e 7 da listagem de 2025 vieram byte a byte iguais às da coleta (sha256 b773ee82, dee7cb79, f0bc6bcb,
     35 minutos depois): a repetição de ordens entre páginas é fixa, por isso fica uma releitura só (RELEITURAS_FNS = 1) antes
     de ir por ação. O filtro por ação respondeu de verdade: acoes=61659 trouxe só ordens da ação 61659, 166 no total, em 2
-    páginas (a 1: 100 ordens, 27 fundo a fundo, R$ 427.949.655,59).'
-  falta: 'count=1000 (as 676 ordens numa página só, sem paginação) ainda não foi lido: a sondagem de 06:50Z rodou antes de
-    essa leitura entrar, e a sondagem d1_fns a pede de novo, com a página 2 de acoes=61659. Sem a página 2, a diferença de
-    R$ 5.838.778,09 da ação 61659 em 2025 segue sem explicação: as 100 primeiras ordens filtradas não bastam para fechar a
-    ação, e 52 delas aparecem também nas páginas 1, 2 e 7 da listagem.'
-  trava: testes/test_coletores_federais_decima.py::test_fns_filtro_por_acao_real_traz_so_a_acao_e_o_total_dela
+    páginas (a 1: 100 ordens, 27 fundo a fundo, R$ 427.949.655,59). Na sondagem 9cc559c, count=1000 trouxe a listagem de 2025
+    numa página só, de 691.235 bytes: o recorte guardado (os primeiros 600 KB, 587 ordens inteiras) não repete nenhuma ordem,
+    começa pelas 100 da página 1 na mesma ordem e contém todas as da página 2; o motor agora pede as ordens com count=1000
+    (fns.POR_PAGINA_PAGAMENTOS), uma leitura por ano, e a releitura fica de reserva. A página 2 de acoes=61659 mostrou que,
+    com 100 por página, o filtro por ação também repete (6 ordens) e perde outras 6; as 160 únicas mais as 6 que só a página
+    de 1000 trouxe dão as 166 ordens da ação, que somam R$ 669.552.284,15. A diferença de R$ 5.838.778,09 é uma ordem só,
+    a 2025OB016558 (fundo a fundo, portaria 6464), com motivoRejeicao de cancelamento parcial por comando do gestor: sem ela,
+    as ordens dão exatamente os R$ 663.713.506,06 que detalhe-acao declara para a ação. O leitor guarda o motivoRejeicao,
+    e o motor tira a ordem rejeitada do pago e de repasses_fns, com nota, nos dois caminhos (listagem e por ação).'
+  falta: 'A página de 1000 ainda não foi vista inteira: a sondagem guardava só 600 KB, e as 676 ordens do ano (a página 1
+    de 100 declara 676) não couberam; com d1_fns entre as fontes grandes, a próxima sondagem guarda a resposta inteira. Falta
+    também uma coleta com count=1000 que feche as 40 ações de 2025 (e as de 2024 e 2026) com o total de cada uma. O detalhar-pagamento-dia
+    do repasse do dia segue com erro 500 do servidor.'
+  trava: testes/test_coletores_federais_decima_primeira.py::test_fns_acao_61659_fecha_com_o_total_quando_a_ordem_rejeitada_sai
 - id: 147
   bloco: Fontes e cadência
   requisito: FNDE
@@ -1270,11 +1278,22 @@
     o escolhido como municipio; a busca pelo texto Goiânia traz 13.493 decisões do Estado todo (27 de Goiânia nas 100 primeiras).
     O motor pede primeiro pelo município, sem texto, e volta ao texto, com nota, se a primeira página não for na maior parte
     de Goiânia. Aparecida de Goiânia escrita sem o de (APARECIDA GOIANIA - APARECIDAPREV, como a jurisprudência real escreve)
-    passava por Goiânia: 8 das 35 da página 1; agora fica de fora, no TCU e no TCM-GO.'
-  falta: 'A busca com municipio=GOIANIA sem texto ainda não foi lida (a sondagem d1_tcm pede as páginas 1 e 20): até lá o
-    motor confere a primeira página e volta ao texto se o filtro não valer. As decisões do TCM-GO gravadas na coleta d532c1d
-    (190) incluem as de Aparecida escritas sem o de; a próxima coleta as tira. O acesso à informação do TCM-GO (3 listas,
-    mp/id=44 e mp/id=45) e o painel das câmaras respondem 403 do próprio servidor.'
+    passava por Goiânia: 8 das 35 da página 1; agora fica de fora, no TCU e no TCM-GO. Na sondagem 9cc559c a busca com municipio=GOIANIA,
+    sem texto, respondeu: 5.491 decisões (55 páginas de 100), e na página 1 92 das 100 são de Goiânia (GOIANIA - IPSM, GOIANIA,
+    AMMA, IMAS), as outras 8 de consórcios, do próprio TCM e do MP, nenhuma de Aparecida; o motor pede por esse filtro. A
+    página 20 respondeu HTTP 422: sem chave de API, a busca pagina só até o resultado 1000 e manda usar /acordao/jurisprudencia/exportar
+    com os mesmos filtros. O motor agora lê no máximo as 10 primeiras páginas (tcm.RESULTADOS_SEM_CHAVE), diz que parou por
+    esse limite e, se o servidor recusar antes, anota o motivo que a própria recusa traz (trava test_motor_tcm_para_na_pagina_10_e_diz_por_que,
+    com a resposta real). TCU: o motor pede a pesquisa na ordem DTRELEVANCIA (cronológica, da mais nova para a mais antiga),
+    a que deixa parar no começo do intervalo; o inicio=0 dessa ordem respondeu na coleta d532c1d na 2ª tentativa (a nova tentativa
+    já existe em historico.Contexto.ler), e o inicio=0 que encerra a conexão nas sondagens é o da ordem ANOACORDAO, que o
+    motor não usa (a sondagem agora pede também o inicio=0 do motor).'
+  falta: 'Sem chave de API, a jurisprudência do TCM-GO só dá as 1.000 decisões mais novas de Goiânia (de 5.491, uns meses):
+    o resto exige /exportar (CSV, com os mesmos filtros) ou uma busca por ano da votação, que a sondagem d1_tcm pede agora
+    (municipio=GOIANIA com ano_votacao=2025, em buscar e em exportar) e ainda não foi lida; a chave de API é por chamado ao
+    TCM-GO. As decisões do TCM-GO gravadas na coleta d532c1d (190) incluem as de Aparecida escritas sem o de; a próxima coleta
+    as tira. O acesso à informação do TCM-GO (3 listas, mp/id=44 e mp/id=45) e o painel das câmaras respondem 403 do próprio
+    servidor.'
   trava: testes/test_coletores_federais_decima.py::test_tcu_pesquisa_le_ate_o_total_e_diz_o_que_faltou
 - id: 155
   bloco: Arquitetura
@@ -1344,11 +1363,13 @@
   situacao: parcial
   evidencia: 'O FNDE está lido no formato real (id 147). O FNS lê as entidades reais de Goiânia (191 em 2025, 197 em 2024)
     e o valor pago ao Fundo Municipal de Saúde pelas respostas reais: as 40 ações de 2025 fecham com o total geral declarado,
-    e as ordens trazem a ação, o mês do pagamento e o documento do SIAFI (id 146). O repasse do dia real também é lido.'
-  falta: 'A ativação dos domínios pela Frente D2 e a listagem das ordens fechada sem repetição (id 146): as ordens de 2024
-    a 2026 estão em repasses_fns pela coleta d532c1d, mas a paginação do FNS repete ordens de forma fixa; o motor relê uma
-    vez e vai por ação (filtro provado na sondagem a8761d9), e count=1000 ainda não foi lido.; FNS e FNDE na origem (Frente
-    D1).'
+    e as ordens trazem a ação, o mês do pagamento e o documento do SIAFI (id 146). O repasse do dia real também é lido. Na
+    sondagem 9cc559c as ordens do ano vieram numa página só com count=1000, que o motor agora pede, e as ordens reais da ação
+    61659 fecham com o total dela ao sair a ordem rejeitada (2025OB016558, motivoRejeicao de cancelamento parcial), que fica
+    fora do pago e de repasses_fns.'
+  falta: 'A ativação dos domínios pela Frente D2 e a listagem das ordens vista inteira (id 146): a página de 1000 ainda não
+    foi guardada inteira (a sondagem cortava em 600 KB), e falta uma coleta com count=1000 que feche todas as ações de 2024
+    a 2026 com o total de cada uma.; FNS e FNDE na origem (Frente D1).'
   trava: testes/test_coletores_federais_setima.py::test_fns_acoes_reais_do_fundo_fecham_com_o_total_geral
 - id: 165
   bloco: Roteiro e portões
