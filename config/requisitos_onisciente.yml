@@ -369,10 +369,11 @@
   situacao: parcial
   evidencia: 'Conferência _emendas em conferencias/federais.py: os 70% em capital (CF, art. 166-A, § 5º) são conferidos plano
     de ação a plano de ação e no total do ano, pela regra EMENDA-CAPITAL do mapa legal. Os planos de transferência especial
-    de Goiânia já são lidos do arquivo do Portal (id 150).'
+    de Goiânia já são lidos do arquivo do Portal (id 150), e o motor da API lê os planos de ação assim que ela volta (trava
+    da nova tentativa).'
   falta: A planilha de planos do Portal não separa custeio de investimento. A separação continua dependendo dos planos de
     ação da API do Transferegov, que está fora do ar.
-  trava: testes/test_coletores_federais.py::test_emendas_70_por_cento_em_capital_plano_a_plano_e_no_ano
+  trava: testes/test_coletores_federais_quarta.py::test_transferegov_que_volta_na_nova_tentativa_e_lido
 - id: 49
   bloco: Pisos e tetos
   requisito: Fim de mandato (LRF arts. 21 e 42)
@@ -1109,26 +1110,28 @@
 - id: 145
   bloco: Fontes e cadência
   requisito: 'Tesouro: FPM, ITR, ICMS e outras transferências'
-  situacao: parcial
+  situacao: cumprido
   evidencia: 'A cota do ICMS, do IPVA e do IPI-exportação é conferida como receita do Estado entregue ao Município (_cota_estadual
     em onisciente/conferencias/federais.py), com a via do Município (matriz de saldos, naturezas 1.7.2.1.50, 1.7.2.1.51 e
-    1.7.2.1.52) e a via do Estado (coletor economia_go). A página real de repasses da Economia foi lida: ela publica uma planilha
-    por mês, e o coletor agora segue essas planilhas.'
-  falta: Ler o conteúdo de uma planilha do Estado. A próxima sondagem (d1_economia_go) baixa as de 2025 e 2026 para confirmar
-    as colunas.
-  trava: testes/test_coletores_federais_terceira.py::test_motor_economia_go_pelas_planilhas_mensais
+    1.7.2.1.52) e a via do Estado, agora lida das planilhas reais da Economia: a página real aponta a Conciliação das Distribuições
+    de 2025, o motor baixa só a mais nova (ela cobre o ano inteiro) e grava os 36 valores de Goiânia em repasses_estado, que
+    a conferência lê.'
+  falta: ''
+  trava: testes/test_coletores_federais_quarta.py::test_motor_economia_go_com_a_pagina_e_a_conciliacao_reais_baixa_uma_planilha
 - id: 146
   bloco: Fontes e cadência
   requisito: FNS
   situacao: parcial
-  evidencia: 'Coletor onisciente/coletores/fns.py e motor_fns. O repasseDiaService.js real mostra o serviço recursos/repasse-dia:
-    consultar por ano, mês e dia, os detalhamentos, a data do último pagamento e as planilhas por POST. É um serviço nacional
-    por dia, não por Município. servicos_do_js tira os endereços de qualquer serviço do aplicativo, e a lista real de municípios
-    de Goiás (recursos/municipios/uf/GO) é lida.'
-  falta: Achar o serviço com filtro de Município, nas páginas detalhada e consolidada do aplicativo. A próxima sondagem (d1_fns)
-    lê as rotas, os serviços e o menu, e prova recuperar-data-ultimo-pagamento e consultar. Depois falta a primeira coleta
-    real.
-  trava: testes/test_coletores_federais_terceira.py::test_fns_servico_real_do_repasse_dia_e_municipios_de_goias
+  evidencia: 'Coletor onisciente/coletores/fns.py, com motor_fns e motor_fns_repasse_dia. O repasse do dia real (recursos/repasse-dia/consultar)
+    e a data do último pagamento (26/11/2026) são lidos: arvore_repasse_dia achata bloco, grupo e programa e confere que os
+    filhos somam o pai; o motor desce do último pagamento, dia útil a dia útil, dentro do período, sem ler de novo um dia
+    já lido, e para depois de três falhas seguidas. Esse serviço é o total nacional do dia, sem Município. O serviço real
+    da consulta detalhada (detalhadaService.js) mostra o filtro por Município: recursos/consulta-detalhada/entidades com estado
+    e municipio (IBGE de 6 dígitos); esse modelo entrou em fns.MODELOS.'
+  falta: A resposta de consulta-detalhada/entidades com municipio=520870 ainda não foi vista (a próxima sondagem d1_fns a
+    pede, com o detalhe do dia por programa). Depois de ver o formato, ajustar fns.ler se for preciso e fazer a primeira coleta
+    real do Município.
+  trava: testes/test_coletores_federais_quarta.py::test_fns_servico_real_da_consulta_detalhada_e_o_modelo_do_municipio
 - id: 147
   bloco: Fontes e cadência
   requisito: FNDE
@@ -1151,27 +1154,27 @@
 - id: 149
   bloco: Fontes e cadência
   requisito: Economia GO (cota de ICMS e IPVA)
-  situacao: parcial
-  evidencia: 'Coletor onisciente/coletores/economia_go.py. A página real goias.gov.br/economia/repasse-aos-municipios/ foi
-    lida: ela publica uma planilha por mês (.xlsx desde 2021, .xls até 2020), em links cujo texto é só o mês. arquivos_mensais
-    tira o mês e o endereço, e o motor lê as .xlsx procurando a linha do Município e as colunas de ICMS e IPVA. Uma planilha
-    lida sem isso fica formato, nunca ausência. A .xls antiga fica registrada como arquivo que o coletor não lê. O bloqueio
-    do firewall continua separado da ausência.'
-  falta: Confirmar as colunas de uma planilha real (d1_economia_go baixa as de 2025 e 2026). Se a planilha não trouxer o Município
-    numa linha, ajustar o leitor a ela.
-  trava: testes/test_coletores_federais_terceira.py::test_motor_economia_go_planilha_sem_o_municipio_e_formato_nao_ausencia
+  situacao: cumprido
+  evidencia: 'Coletor onisciente/coletores/economia_go.py lido com as planilhas reais. A Conciliação das Distribuições (2025
+    e 2026, 15 MB cada) tem a aba Agregado, com o Município, a referência (mês) e as colunas de ICMS, IPVA e IPI: Goiânia
+    em janeiro de 2025 recebeu R$ 65.536.440,65 de ICMS, R$ 92.903.230,14 de IPVA e R$ 371.219,44 de IPI. O demonstrativo
+    antigo (transf-municipios de 2024) tem uma aba por mês (01-2024...) e o leitor fica com a cota bruta de cada tributo:
+    janeiro de 2024, ICMS R$ 75.103.392,63. Aparecida de Goiânia, na mesma aba, não se mistura. A .xls de 2020 e antes fica
+    registrada como arquivo que o coletor não lê (não há leitor de .xls no ambiente).'
+  falta: ''
+  trava: testes/test_coletores_federais_quarta.py::test_conciliacao_real_le_a_aba_agregado_mes_a_mes
 - id: 150
   bloco: Fontes e cadência
   requisito: Transferegov (semanal)
   situacao: parcial
-  evidencia: Duas vias. A API PostgREST do Transferegov (transferegov.py) deu 503 de novo, e o motor registra isso como falha.
-    O arquivo único de emendas do Portal da Transparência (47 MB, seis planilhas) agora é lido em fluxo, sem guardar o zip
-    (onisciente/coletores/emendas.py). O motor lê os cabeçalhos locais do zip, descompacta aos pedaços e filtra Goiânia pelo
-    código IBGE, pelo CNPJ ou pelo nome. Pessoas físicas ficam de fora. A tabela emendas_municipio só é trocada quando a leitura
-    chega ao fim. No arquivo real de 28/11, isso deu 63 linhas de emendas, 34 convênios, 158 parcerias, 500 itens de plano
-    de trabalho, 17 planos de transferência especial do Município e 6.823 favorecidos pessoa jurídica, em 4 segundos.
+  evidencia: 'Duas vias. O arquivo único de emendas do Portal da Transparência é lido em fluxo (onisciente/coletores/emendas.py):
+    no arquivo real de 28/11, 63 emendas, 34 convênios, 158 parcerias, 500 itens de plano de trabalho, 17 planos de transferência
+    especial e 6.823 favorecidos pessoa jurídica de Goiânia. A API do Transferegov deu 503 e o repositório de dados abertos
+    deu 404 na quarta rodada. O motor agora tolera a queda: com a raiz e a primeira consulta fora do ar, não insiste em cada
+    tabela e CNPJ, tenta o módulo de novo no fim do motor e, se continuar fora, grava falha dizendo que a próxima rodada tenta
+    outra vez; as emendas do Portal não dependem disso.'
   falta: O fundo a fundo e os TED dependem da API, que segue fora do ar (d1_transferegov tenta de novo).
-  trava: testes/test_coletores_federais_terceira.py::test_emendas_reais_filtradas_por_goiania_em_fluxo
+  trava: testes/test_coletores_federais_quarta.py::test_transferegov_fora_do_ar_tenta_de_novo_no_fim_e_nao_insiste_em_cada_tabela
 - id: 151
   bloco: Fontes e cadência
   requisito: PNCP (diário)
@@ -1190,26 +1193,29 @@
 - id: 153
   bloco: Fontes e cadência
   requisito: CNPJ e sanções
-  situacao: parcial
-  evidencia: 'O CEIS real de 27/11/2026 foi lido: 23.609 linhas, em latin-1, separadas por '';''. Ele veio do repositório
-    da CGU, na data que a página de download anuncia (o dia anterior dá 403), e a tabela sancoes(cnpj_cpf, cadastro, inicio,
-    fim, orgao, tipo, ...) fica cheia. O cabeçalho real escreve ABRAGÊNCIA, e o leitor aceita essa grafia. O alcance considera
-    a esfera do órgão e a Lei 8.429. Sem a página, o motor recua de hoje, dia a dia.'
-  falta: O CNEP do mesmo dia ainda não foi tentado; a próxima sondagem (d1_sancoes) baixa o 20261127_CNEP.zip. Depois falta
-    a primeira coleta diária pelo motor.
-  trava: testes/test_coletores_federais_terceira.py::test_sancoes_ceis_real_pela_data_da_pagina_e_403_no_dia_anterior
+  situacao: cumprido
+  evidencia: CEIS e CNEP reais lidos pelo motor. O CEIS de 27/11/2026 (23.609 linhas) e o CNEP do mesmo dia (1.869 linhas,
+    208 KB) vêm do repositório da CGU na data que cada página de download anuncia; o CEIS de 28/11 dava 403 e o motor fica
+    com a data da página. A tabela sancoes(cnpj_cpf, cadastro, inicio, fim, orgao, tipo, multa, ...) tem os dois cadastros,
+    que a Frente F lê. No CNEP real, a inidoneidade estadual de 24/07/2025 a 23/07/2030 alcança todos os entes, e um contrato
+    com essa empresa durante a sanção vira alerta grave de contratada sancionada.
+  falta: ''
+  trava: testes/test_coletores_federais_quarta.py::test_motor_sancoes_le_o_cnep_real_e_o_ceis_do_dia_publicado
 - id: 154
   bloco: Fontes e cadência
   requisito: TCM-GO e TCU
   situacao: parcial
-  evidencia: 'TCU com as duas vias reais. A pesquisa documentosResumidos devolveu 100 acórdãos, 86 sobre Goiânia. Os dados
-    abertos (recupera-acordaos) voltaram ao ar, e o leitor lê o formato real; acórdãos sem Goiânia não são guardados. TCM-GO:
-    as duas páginas das listas só apontam as listas. links_das_listas tira os endereços: as três relações do acesso à informação,
-    as contas de governo julgadas pelas câmaras, as encaminhadas ao TRE, os dados abertos em ws.tcm.go.gov.br e o painel das
-    câmaras. motor_listas_tcm guarda as linhas de Goiânia em contas_irregulares_tcm.'
-  falta: 'TCM-GO: ler uma das listas de verdade (d1_tcm baixa os dados abertos, as relações e o painel) e a pesquisa de jurisprudência
-    do virtual.tcmgo.'
-  trava: testes/test_coletores_federais_terceira.py::test_tcu_dados_abertos_reais_sem_goiania_ficam_vazios
+  evidencia: 'TCU com as duas vias reais (pesquisa documentosResumidos e dados abertos). TCM-GO: os dados abertos de contas
+    irregulares (ws.tcm.go.gov.br, CSV real com 1.395 linhas, 94 de Goiânia) são lidos por tcm.contas: o órgão sai do nome
+    do Município (GOIANIA - COMURG), Aparecida de Goiânia e Goianira não entram, e a tabela contas_irregulares_tcm ganhou
+    CPF parcial, assunto, decisão, data do julgamento, tipo de lista e endereço do processo (banco antigo recebe as colunas
+    sem perder linhas). A conferência transforma cada linha em alerta (com débito, alerta alto) e procura o mesmo nome entre
+    os sócios das contratadas, como indício de possível homônimo, porque o TCM mostra só os dois primeiros dígitos do CPF
+    e a Receita só os do meio.'
+  falta: 'A pesquisa de jurisprudência do TCM-GO (virtual.tcmgo) ainda não devolve decisões; o acesso à informação e o painel
+    das câmaras deram 403. No TCU, a página 2 da pesquisa (inicio=100) falhou sem resposta na quarta rodada: o motor guarda
+    a página 1 e anota o erro, e d1_tcu tenta de novo.'
+  trava: testes/test_coletores_federais_quarta.py::test_contas_irregulares_viram_alerta_e_o_socio_homonimo_e_indicio
 - id: 155
   bloco: Arquitetura
   requisito: Python
@@ -1276,9 +1282,11 @@
   bloco: Roteiro e portões
   requisito: 'Fase 4: integridade de Saúde e Educação medida'
   situacao: parcial
-  evidencia: O FNDE está lido no formato real (id 147). O FNS ainda procura o serviço por Município (id 146).
-  falta: A ativação dos domínios pela Frente D2 e o serviço do FNS por Município.; FNS e FNDE na origem (Frente D1).
-  trava: testes/test_coletores_federais_terceira.py::test_motor_fnde_com_a_lista_e_as_liberacoes_reais
+  evidencia: O FNDE está lido no formato real (id 147). O FNS lê o repasse do dia real (nacional) e já tem o modelo da consulta
+    detalhada por Município (id 146).
+  falta: A ativação dos domínios pela Frente D2 e a primeira resposta real do FNS por Município.; FNS e FNDE na origem (Frente
+    D1).
+  trava: testes/test_coletores_federais_quarta.py::test_motor_fns_repasse_dia_le_os_dias_do_periodo_uma_vez
 - id: 165
   bloco: Roteiro e portões
   requisito: 'Fase 5: cada contrato com item de catálogo comparado à mediana'
