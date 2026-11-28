@@ -1,6 +1,6 @@
 {
  "intervalo": "2024-11 a 2026-11",
- "rodada": "2026-11-28T02:44:15+00:00",
+ "rodada": "2026-11-28T04:18:01+00:00",
  "meses": [
   "2024-11",
   "2024-12",
@@ -67,12 +67,12 @@
   {
    "motor": "execucao_goiania",
    "nome": "Execução item a item no portal de Goiânia (TransWeb)",
-   "chamadas": 112,
-   "ok": 112,
+   "chamadas": 184,
+   "ok": 184,
    "falhas": 0,
-   "tentativas": 112,
+   "tentativas": 184,
    "http_429": 0,
-   "segundos": 121.6,
+   "segundos": 200.9,
    "erros": {}
   },
   {
