@@ -11,6 +11,9 @@ on:
       desde: {description: "Primeiro mês (AAAA-MM)", default: "2024-11"}
       ate: {description: "Último mês (AAAA-MM)", default: "2026-11"}
       motores: {description: "Motores, separados por vírgula (vazio = todos)", default: ""}
+      # Uma rodada da agenda (onisciente/agenda.py), como a serie, que estende o banco para trás.
+      # Os fluxos da agenda só podem ser pedidos quando estão na main; até lá, este fluxo os roda (28/11/2026).
+      rodada: {description: "Rodada da agenda no lugar dos motores (serie, leis, diaria...; vazio = coleta comum)", default: ""}
 permissions: {contents: write}
 # O mesmo grupo dos fluxos da agenda (onisciente-agenda-*.yml): nunca dois gravando o banco.
 concurrency: {group: onisciente-banco, cancel-in-progress: false}
@@ -22,6 +25,7 @@ jobs:
       DESDE: ${{ inputs.desde || '2024-11' }}
       ATE: ${{ inputs.ate || '2026-11' }}
       MOTORES: ${{ inputs.motores || '' }}
+      RODADA: ${{ inputs.rodada || '' }}
     steps:
       # O banco é estado: um pedido que esperou na fila deve partir da ponta do branch,
       # não do commit da hora do pedido (senão a gravação final conflita com a rodada anterior).
@@ -46,8 +50,12 @@ jobs:
         # numa cópia à parte do ramo, para os erros aparecerem durante a rodada e não só no fim.
         run: |
           INICIO=$(date -u +%Y-%m-%dT%H:%M:%S+00:00)
-          python -m onisciente historico --desde "$DESDE" --ate "$ATE" \
-            ${MOTORES:+--motores "$MOTORES" --somar} --brutos "$RUNNER_TEMP/brutos" &
+          if [ -n "$RODADA" ]; then
+            python -m onisciente.agenda "$RODADA" --brutos "$RUNNER_TEMP/brutos" &
+          else
+            python -m onisciente historico --desde "$DESDE" --ate "$ATE" \
+              ${MOTORES:+--motores "$MOTORES" --somar} --brutos "$RUNNER_TEMP/brutos" &
+          fi
           MOTOR=$!
           git config --global user.name "vigilancia-bot"; git config --global user.email "bot@users.noreply.github.com"
           git worktree add -q "$RUNNER_TEMP/boletim" HEAD
@@ -128,8 +136,11 @@ jobs:
           done
           # A despesa vai comprimida, um .jsonl.gz por ano (o SQLite de trabalho dela fica fora do git).
           [ ! -d dados/onisciente/despesa ] || git add -A dados/onisciente/despesa
+          for f in relatorios/onisciente/agenda_estado.json docs/onisciente/agenda.html; do
+            [ -z "$RODADA" ] || [ ! -f "$f" ] || git add "$f"   # o estado da rodada da agenda, quando foi uma
+          done
           git diff --staged --quiet && exit 0
-          git commit -m "Onisciente: coleta histórica $DESDE a $ATE"
+          git commit -m "Onisciente: ${RODADA:+rodada $RODADA da agenda}${RODADA:-coleta histórica $DESDE a $ATE}"
           for n in 1 2 3; do
             git pull --rebase origin "$GITHUB_REF_NAME" && git push origin "HEAD:$GITHUB_REF_NAME" && exit 0
             sleep $((n * 10))
