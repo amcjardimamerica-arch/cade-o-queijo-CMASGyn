@@ -1,4 +1,4 @@
-# Coleta em andamento: boletim de 2026-11-28T10:50+00:00
+# Coleta em andamento: boletim de 2026-11-28T11:00+00:00
 
 Desde 2026-11-28T09:49:53+00:00: 1015 chamadas registradas.
 Última chamada: 2026-11-28T10:14:59+00:00 (2024 planilha 2024-12).
