@@ -34,6 +34,9 @@ QUANTIDADE = 100
 # A pesquisa responde 100 por vez na primeira página, mas a seguinte (inicio=100) caiu sem resposta duas
 # vezes na sondagem (conexão encerrada); com 50 por página, inicio=50 veio inteira (50 acórdãos, 70 KB).
 QUANTIDADE_PESQUISA = 50
+# Rodada 6: inicio=100 encerrou a conexão também com 50 por página, e inicio=50 veio de novo: a pesquisa
+# não passa dos 100 primeiros resultados.
+LIMITE_PESQUISA = 100
 
 GOIANIA = re.compile(r"(?<!APARECIDA DE )\bGOIANIA\b")
 

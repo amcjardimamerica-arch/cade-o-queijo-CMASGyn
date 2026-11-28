@@ -258,17 +258,22 @@ CANDIDATOS: dict[str, list[str]] = {
     ],
     # Frente D1 (bloco 5), segunda rodada (27/11/2026): o que a primeira sondagem deixou em aberto.
     "d1_fns": [
-        # Quinta rodada (28/11): entidades com o Município respondeu (191 de Goiânia, filtro respeitado) e
-        # já é lida. Falta o valor por entidade: os controladores das telas de ação e pagamento dizem os
-        # parâmetros de detalhe-acao e detalhe-pagamento; o detalhe do dia de novo, agora com o corpo do erro.
+        # Sexta rodada (28/11): as 191 entidades fecham em duas páginas e o Fundo Municipal de Saúde
+        # (37.623.352/0001-03) está entre elas; acaoController e pagamentoController deram os parâmetros.
+        # Agora as respostas: as ações do Fundo em 2025 e os pagamentos (sem ação e com a primeira).
         "https://consultafns.saude.gov.br/app/controllers/portalController.js",
+        "https://consultafns.saude.gov.br/recursos/consulta-detalhada/detalhe-acao?page=1&count=100&ano=2025&mes=&"
+        "tipoConsulta=&blocos=&grupo=&planoOrcamentario=&componentes=&acoes=&estado=GO&municipio=520870&repasse=&"
+        "dataInicialOb=&dataFinalOb=&cpfCnpjUg=37623352000103",
+        "https://consultafns.saude.gov.br/recursos/consulta-detalhada/detalhe-pagamento?page=1&count=100&ano=2025&mes=&"
+        "tipoConsulta=&blocos=&componentes=&acoes=&estado=GO&municipio=520870&repasse=&dataInicialOb=&dataFinalOb=&"
+        "cpfCnpjUg=37623352000103",
         "https://consultafns.saude.gov.br/app/pages/detalhada/controllers/acaoController.js",
-        "https://consultafns.saude.gov.br/app/pages/detalhada/controllers/pagamentoController.js",
-        "https://consultafns.saude.gov.br/app/pages/detalhada/controllers/entidadeController.js",
-        "https://consultafns.saude.gov.br/app/pages/consolidada/controllers/consolidadaController.js",
-        "https://consultafns.saude.gov.br/recursos/consulta-detalhada/entidades?page=2&count=100&ano=2025&mes=&"
+        "https://consultafns.saude.gov.br/app/pages/consolidada/services/consolidadaService.js",
+        "https://consultafns.saude.gov.br/recursos/consulta-detalhada/entidades?page=1&count=100&ano=2024&mes=&"
         "tipoConsulta=&blocos=&grupo=&componentes=&acoes=&estado=GO&municipio=520870&repasse=&dataInicialOb=&"
         "dataFinalOb=",
+        # Erro do servidor (NullPointerException) nas duas rodadas: só para ver se mudou.
         "https://consultafns.saude.gov.br/recursos/repasse-dia/detalhar-pagamento-dia?ano=2025&mes=1&dia=15&"
         "codigoProgramaFundo=61861&tipoDetalhamento=PROGRAMA",
     ],
@@ -297,19 +302,22 @@ CANDIDATOS: dict[str, list[str]] = {
         "https://goias.gov.br/economia/wp-content/uploads/sites/45/2026/05/Conciliacao_das_Distribuicoes-2025.xlsx",
     ],
     "d1_tcu": [
-        # A pesquisa agora vai de 50 em 50 (inicio=50 veio inteira); inicio=100 caiu duas vezes: a terceira
-        # página com 50 e a de 100 de novo, para saber se o problema é o tamanho ou o deslocamento.
+        # inicio=100 encerrou a conexão com 100 e com 50 por página: a pesquisa para em 100 resultados. Uma
+        # ordenação por ano e número traria os mais recentes nos 100; inicio=50 fica como prova do formato.
         "https://pesquisa.apps.tcu.gov.br/rest/publico/base/acordao-completo/documentosResumidos?termo=%22Goi%C3%A2nia%22"
-        "&ordenacao=DTRELEVANCIA+desc%2C+NUMACORDAOINT+desc&quantidade=50&inicio=100&sinonimos=true",
+        "&ordenacao=ANOACORDAO+desc%2C+NUMACORDAOINT+desc&quantidade=50&inicio=0&sinonimos=true",
         "https://pesquisa.apps.tcu.gov.br/rest/publico/base/acordao-completo/documentosResumidos?termo=%22Goi%C3%A2nia%22"
         "&ordenacao=DTRELEVANCIA+desc%2C+NUMACORDAOINT+desc&quantidade=50&inicio=50&sinonimos=true",
+        "https://pesquisa.apps.tcu.gov.br/rest/publico/base/acordao-completo/documentosResumidos?termo=%22Goi%C3%A2nia%22"
+        "&ordenacao=DTRELEVANCIA+desc%2C+NUMACORDAOINT+desc&quantidade=50&inicio=100&sinonimos=true",
     ],
     "d1_tcm": [
-        # Contas irregulares já lidas; a raiz da API deu 404 e o contaseleicoes 403. A jurisprudência é um
-        # aplicativo React (div root vazia): o pacote JavaScript diz o endereço da API de pesquisa.
+        # O pacote principal da jurisprudência só tem a base da API (/jurisprudencia/api, cabeçalho X-Cliente:
+        # portal) e o /v1/health; a tela de pesquisa é carregada à parte (jurisprudencia-page-*.js).
         "https://virtual.tcmgo.tc.br/jurisprudencia/",
         "https://ws.tcm.go.gov.br/api/rest/dados/contas-irregulares",
-        "https://virtual.tcmgo.tc.br/jurisprudencia/assets/index-CXB0WfQ4.js",
+        "https://virtual.tcmgo.tc.br/jurisprudencia/assets/jurisprudencia-page-zRQnq2W_.js",
+        "https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/health",
     ],
     # Frente E (27/11): auditoria independente do Selo de Transparência (PNTP). As páginas que cada critério
     # da matriz (regras/pntp/matriz_2026.yml) manda olhar; onisciente/selo/coleta.py segue os links internos.
