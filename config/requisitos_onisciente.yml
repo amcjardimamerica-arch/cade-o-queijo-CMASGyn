@@ -1370,11 +1370,27 @@
     de 26/10/2022 a 02/04/2024) e parou porque passou do começo do intervalo; 79 dos 150 acórdãos são de 11/2024 em diante,
     e nada do intervalo faltou. Os dados abertos do TCU recusaram inicio=200 com HTTP 429 nas 3 tentativas, em 106,6 s, que
     são as esperas sem Retry-After (15, 30 e 60 s) mais as leituras: o servidor não disse quanto esperar. O motor agora espera
-    mais 2 minutos (tcu.ESPERA_429) e lê a página uma vez mais, e a nota diz se o servidor pediu espera.'
-  falta: O total da busca do TCM-GO para 2024 e 2026 (a sondagem d1_tcm agora pede), para conferir as 732 e 804 decisões desses
-    anos como a de 2025 foi conferida. Os dados abertos do TCU com a nova leitura depois do 429 ainda não rodaram numa coleta.
-    O acesso à informação do TCM-GO (3 listas, mp/id=44 e mp/id=45) e o painel das câmaras respondem 403 do próprio servidor
-    (as contas irregulares vêm dos dados abertos).
+    mais 2 minutos (tcu.ESPERA_429) e lê a página uma vez mais, e a nota diz se o servidor pediu espera. Na sondagem d1_tcm
+    d1_tcu de 09:11Z (run 46129272224), a busca com municipio=GOIANIA e ano_votacao declarou 747 decisões em 2024 (8 páginas)
+    e 851 em 2026 (9 páginas), como as 918 de 2025: o total conta todas as entidades do filtro, e Goiânia é a maior parte
+    (99 de 100 na página 1 de 2024, 92 de 100 na de 2026, 96 de 100 na de 2025). As 99 de Goiânia da página 1 de 2024 e as
+    92 da de 2026 estão todas entre as 732 e 804 que a coleta 6c474b1 guardou pela exportação, e nenhuma das outras entrou;
+    a sessão mais nova de 2026 é a mesma nas duas (22/10/2026), e as datas guardadas vão de 16/01 a 18/12/2024 e de 13/01
+    a 22/10/2026. A coleta guardou só o tamanho dos CSVs de 2024 e 2026 (1.570.614 e 1.667.897 bytes), não as linhas: com
+    747 e 851 linhas, são 2.103 e 1.960 bytes por linha, perto dos 2.044 do CSV de 2025, que tem 918 linhas conferidas. Com
+    cada ano abaixo de 1000, o ano que não vier pela exportação agora vem pela busca daquele ano (ano_votacao), inteiro, em
+    vez da busca geral, que para no resultado 1000 e não chega a 2024; o ano só conta como coberto se a busca chegou à última
+    página, se a página 1 é na maior parte de Goiânia e se todas as decisões são daquele ano (travas test_busca_real_de_cada_ano_cabe_no_limite_sem_chave_e_separa_goiania
+    e test_motor_tcm_cobre_o_ano_sem_exportacao_pela_busca_daquele_ano). Na mesma sondagem a pesquisa do TCU, na ordem do
+    motor, respondeu inicio=0, 50, 100, 150 e 1300 de primeira (só o inicio=0 da ordem por ano, que o motor não usa, encerrou
+    a conexão). A sondagem d1_tcu agora pede também as páginas inicio=0, 100 e 200 dos dados abertos do TCU, em seguida, como
+    o motor.'
+  falta: 'Os dados abertos do TCU: na coleta 6c474b1 a página inicio=200 foi recusada com HTTP 429 (sem Retry-After) e a via
+    ficou em falha, o que a conferência de cobertura aponta; a nova leitura depois de 2 minutos ainda não rodou numa coleta,
+    e a próxima sondagem d1_tcu mostra se o 429 vem já na terceira página seguida. O acesso à informação do TCM-GO (3 listas,
+    mp/id=44 e mp/id=45) e o painel das câmaras respondem 403 do próprio servidor; pelo texto do requisito (TCM-GO e TCU)
+    isso não impede o cumprido, porque o TCM-GO é lido por duas vias reais (a jurisprudência inteira de cada ano e as contas
+    irregulares dos dados abertos) e a falta das listas fica anotada na coleta.'
   trava: testes/test_coletores_federais_decima.py::test_tcu_pesquisa_le_ate_o_total_e_diz_o_que_faltou
 - id: 155
   bloco: Arquitetura
