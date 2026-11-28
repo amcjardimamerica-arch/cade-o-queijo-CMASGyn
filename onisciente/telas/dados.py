@@ -666,6 +666,7 @@ def _estacoes(ctx, m, f, exec_, tf, dot, emp_mes, contratos) -> list:
 # no máximo 200 por recorte; com a despesa inteira de Goiânia (24 mil empenhos, 155 mil eventos), a trilha
 # levava todos e passou de 48 MB (28/11/2026). A contagem completa de cada recorte vai em ``execucao_total``.
 EMPENHOS_POR_RECORTE = 50
+EMPENHOS_POR_ORGAO = 20       # o recorte do órgão escolhido na tela (o:<CNPJ>:*), para a página não crescer
 _ESTACOES_EXEC = ("empenho", "liquidacao", "pagamento")
 
 
@@ -677,13 +678,19 @@ def _execucao_entrada(ctx: Contexto, dados: dict) -> tuple[list[dict], dict]:
     grupos: dict[tuple[str, str], list[int]] = defaultdict(list)
     for i, e in enumerate(empenhos):
         mes, fun = str(e.get("data") or "")[:7], str(e.get("funcao") or "")
-        for f in ("*", fun):
+        orgao = str(e.get("orgao_cnpj") or "")
+        # O órgão (a secretaria escolhida na tela) tem os seus próprios maiores e a sua contagem, em
+        # "o:<CNPJ>:*", para a tela não dizer que os maiores do Município são todos os da pasta.
+        recortes = ("*", fun) + ((f"o:{orgao}:*",) if orgao else ())
+        for f in recortes:
             total[mes][f] += 1
             grupos[(mes, f)].append(i)
+        if orgao:
+            total[mes][f"o:{orgao}:{fun}"] += 1         # só a contagem; os maiores vêm dos recortes acima
     escolhidos: set[int] = set()
-    for idx in grupos.values():
+    for (_, f), idx in grupos.items():
         idx.sort(key=lambda i: -float(empenhos[i].get("valor") or 0))
-        escolhidos.update(idx[:EMPENHOS_POR_RECORTE])
+        escolhidos.update(idx[:EMPENHOS_POR_ORGAO if f.startswith("o:") else EMPENHOS_POR_RECORTE])
     out = []
     for i in sorted(escolhidos, key=lambda i: (str(empenhos[i].get("data") or ""), str(empenhos[i].get("numero")))):
         e = empenhos[i]
@@ -850,6 +857,28 @@ def _achados(ctx: Contexto) -> list:
     return ctx.compras().achados
 
 
+def vertice_da_prestacao(execucao: dict):
+    """O vértice da prestação de cada contrato no triângulo: ``conferido`` quando um empenho ligado ao
+    contrato (``contrato`` em ``execucao.json``) tem liquidação; ``ausente`` quando o contrato é de um órgão
+    que a execução lida identifica e foi assinado dentro dos meses que ela cobre, sem liquidação ligada;
+    ``aguardando`` no resto (sem execução lida, a Câmara, o fundo da Educação, um contrato anterior à
+    coleta), porque a execução não diz nada sobre ele. Até 28/11/2026 nenhum empenho trazia o contrato e,
+    com o banco cheio, os 2.118 contratos saíam todos como ausentes."""
+    empenhos = execucao.get("empenhos") or []
+    liquidados = {e.get("contrato") for e in empenhos
+                  if e.get("contrato") and any(ev.get("estacao") == "liquidacao" for ev in e.get("eventos") or [])}
+    orgaos = {e.get("orgao_cnpj") for e in empenhos if e.get("orgao_cnpj")}
+    inicio = min((str(e.get("data") or "") for e in empenhos if e.get("data")), default="")
+
+    def vertice(pid: str, orgao_cnpj: str, assinatura) -> str:
+        if pid in liquidados:
+            return "conferido"
+        if empenhos and orgao_cnpj in orgaos and str(assinatura or "")[:10] >= inicio:
+            return "ausente"
+        return "aguardando"
+    return vertice
+
+
 def precos(ctx: Contexto) -> dict:
     from ..conferencias.compras import TITULOS
     achados = _achados(ctx)
@@ -860,16 +889,14 @@ def precos(ctx: Contexto) -> dict:
     com_catalogo = {c for (c,) in consultar(ctx.con, "SELECT DISTINCT compra_id FROM pncp_itens WHERE catalogo IS NOT NULL")}
     com_nota = {c for (c,) in consultar(ctx.con, "SELECT DISTINCT contrato_id FROM pncp_cobrancas")}
     sem_nota = {a.orgao_cnpj for a in achados if a.tipo == "nf_ausente"}
-    execucao = ctx.entrada("execucao") or {}
-    liquidados = {e.get("contrato") for e in execucao.get("empenhos") or []
-                  if any(ev.get("estacao") == "liquidacao" for ev in e.get("eventos") or [])}
+    prestacao = vertice_da_prestacao(ctx.entrada("execucao") or {})
     contratos = []
     for (pid, mes, cnpj, orgao, forn, ni, objeto, valor, compra, inicial, vi, vf, assin) in _contratos_mes(ctx):
         k = og.pncp(ctx.originais, cnpj, mes, orgao)
         preco = ("indicio" if compra and preco_por_compra.get(compra) else
                  "conferido" if compra in com_catalogo else "sem_comparacao")
         entrega = "conferido" if pid in com_nota else ("ausente" if cnpj in sem_nota else "sem_leitura")
-        prest = "conferido" if pid in liquidados else ("aguardando" if not execucao else "ausente")
+        prest = prestacao(pid, cnpj, assin)
         contratos.append([pid, mes, cnpj, limpa(forn, 90), documento_publico(ni), limpa(objeto, 160), N(valor or 0, k), preco,
                           preco_por_compra.get(compra or "", 0), entrega, prest, compra or ""])
     lista = []

@@ -513,17 +513,28 @@ def evento_da_secretaria(e, d: Dominio) -> bool:
     return any(_norm(o) and _norm(o) in nome for o in d.orgaos)
 
 
-def trilha_da_secretaria(percursos, eventos, d: Dominio) -> tuple[float | None, float | None]:
+def trilha_da_secretaria(percursos, eventos, d: Dominio, *, exercicio: int | None = None,
+                         ate_mes: int = 12) -> tuple[float | None, float | None]:
     """(cobertura, vínculo) do pago da pasta: a fração que cruza as nove estações e a fração com
-    instrumento publicado. None quando a pasta não tem pagamento lido item a item."""
+    instrumento publicado. None quando a pasta não tem pagamento lido item a item.
+
+    Com ``exercicio``, conta só o pago com data no exercício até ``ate_mes``: é o período do pago da pasta
+    no parecer, que multiplica a fração para dar a margem do pago sem vínculo (requisito 22). Sem ele,
+    conta o pago de todos os exercícios lidos."""
     from ..nucleo.estacoes import Estacao
     chaves = {e.chave for e in eventos if evento_da_secretaria(e, d)}
     meus = [p for p in percursos if p.chave in chaves]
-    total = sum(p.valor_pago() for p in meus)
+
+    def pago(p) -> float:
+        if exercicio is None:
+            return p.valor_pago()
+        return sum(e.valor or 0.0 for e in p.eventos if e.estacao is Estacao.PAGAMENTO and e.acende and e.data
+                   and e.data.year == exercicio and e.data.month <= ate_mes)
+    total = sum(pago(p) for p in meus)
     if total <= 0:
         return None, None
-    completo = sum(p.valor_pago() for p in meus if p.completo)
-    com_vinculo = sum(p.valor_pago() for p in meus if Estacao.VINCULO in p.acesas())
+    completo = sum(pago(p) for p in meus if p.completo)
+    com_vinculo = sum(pago(p) for p in meus if Estacao.VINCULO in p.acesas())
     return completo / total, com_vinculo / total
 
 

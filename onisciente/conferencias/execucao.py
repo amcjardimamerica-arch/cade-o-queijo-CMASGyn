@@ -288,6 +288,46 @@ class ContextoTrilha:
     # (***.NNN.NNN-**), então o cruzamento com o PNCP casa como o QSA da Receita: miolo e nome.
     contratos_pf: dict = field(default_factory=dict)
     rreo: set = field(default_factory=set)            # (ano, bimestre) entregues
+    # Nome do órgão normalizado -> CNPJs dele no PNCP: o portal publica o órgão só pelo nome.
+    orgaos_pncp: dict = field(default_factory=dict)
+    _cnpj_de: dict = field(default_factory=dict, repr=False)   # nome do órgão do portal -> CNPJ (memória)
+
+    def cnpj(self, orgao: str) -> str:
+        if orgao not in self._cnpj_de:
+            self._cnpj_de[orgao] = cnpj_do_orgao(orgao, self.orgaos_pncp) if self.orgaos_pncp else ""
+        return self._cnpj_de[orgao]
+
+
+def chave_orgao(nome) -> str:
+    """O nome do órgão sem acento, espaço e pontuação: o portal quebra nomes longos com espaço no meio
+    ("SERVIDO RES") e o PNCP acrescenta a sigla no fim ("... DE GOIANIA - IMAS")."""
+    t = unicodedata.normalize("NFKD", str(nome or "")).encode("ascii", "ignore").decode().upper()
+    return re.sub(r"[^A-Z0-9]", "", t)
+
+
+def cnpj_do_orgao(nome: str, orgaos: dict) -> str:
+    """O CNPJ do órgão do portal pelo nome no PNCP: igual, ou um começo do outro; vazio quando não há
+    um só CNPJ (no banco de 28/11/2026, a Educação do portal paga pelo fundo, que tem outro nome no PNCP)."""
+    k = chave_orgao(nome)
+    if not k:
+        return ""
+    achados = set(orgaos.get(k, set()))
+    if not achados:
+        for kk, cnpjs in orgaos.items():
+            if kk and (kk.startswith(k) or k.startswith(kk)):
+                achados |= set(cnpjs)
+    return next(iter(achados)) if len(achados) == 1 else ""
+
+
+def orgaos_do_pncp(con: _sqlite3.Connection) -> dict[str, set[str]]:
+    """Nome normalizado -> CNPJs dos órgãos do Município no PNCP (contratos e contratações)."""
+    out: dict[str, set[str]] = defaultdict(set)
+    for tabela in ("contratos_pncp", "contratacoes_pncp"):
+        if _tem_tabela(con, tabela):
+            for cnpj, nome in con.execute(f"select distinct orgao_cnpj, orgao from {tabela}"):
+                if cnpj and nome:
+                    out[chave_orgao(nome)].add(str(cnpj))
+    return dict(out)
 
 
 def _nome(texto: str) -> str:
@@ -318,6 +358,16 @@ def contratos_do_credor(ctx: ContextoTrilha, documento: str, credor: str = "") -
         return ctx.contratos[doc]
     pf = chave_pf(documento, credor)
     return ctx.contratos_pf.get(pf, []) if pf else []
+
+
+def contratos_do_orgao(ctx: ContextoTrilha, documento: str, credor: str, orgao: str) -> list:
+    """Os contratos do credor publicados pelo órgão do empenho, quando o nome do órgão do portal casa com
+    um CNPJ do PNCP; sem esse casamento (a Educação do portal, que paga pelo fundo), os do credor em
+    qualquer órgão. Até 28/11/2026 valia sempre qualquer órgão: um empenho da Finanças acendia o vínculo
+    com um contrato da Saúde do mesmo credor."""
+    contratos = contratos_do_credor(ctx, documento, credor)
+    cnpj = ctx.cnpj(orgao) if contratos else ""
+    return [c for c in contratos if getattr(c, "orgao_cnpj", "") == cnpj] if cnpj else contratos
 
 
 def cruzavel(documento: str, credor: str = "") -> bool:
@@ -368,6 +418,7 @@ def contexto_do_banco(con: _sqlite3.Connection) -> ContextoTrilha:
                 pf = chave_pf(forn, nome)
                 if pf:
                     ctx.contratos_pf.setdefault(pf, []).append(contrato)
+    ctx.orgaos_pncp = orgaos_do_pncp(con)
     if _tem_tabela(con, "siconfi_periodos"):
         for ex, per in con.execute("select exercicio, periodo from siconfi_periodos where demonstrativo = 'RREO' "
                                    "and situacao = 'entregue'"):
@@ -408,7 +459,7 @@ def percursos(eventos: Iterable[EventoDespesa], ctx: ContextoTrilha) -> list[Per
         if funcao and dest and (ano, funcao, dest) in ctx.dotacoes_fonte:
             p.eventos.append(Evento(Estacao.DOTACAO, Nivel.D, funcao=funcao, fonte_recurso=fonte))
         doc = base.documento
-        if doc and contratos_do_credor(ctx, doc, base.credor):
+        if doc and contratos_do_orgao(ctx, doc, base.credor, base.orgao):
             p.eventos.append(Evento(Estacao.VINCULO, Nivel.C, credor=doc))
         tem_pagamento = any(e.tipo == "pagamento" for e in evs)
         for e in evs:
@@ -508,6 +559,7 @@ def conferir_execucao(banco: _Path | _sqlite3.Connection, *, mapa: MapaLegal | N
                                      for t in ("empenho", "liquidacao", "ordem_pagamento", "pagamento", "anulacao")}
         out.cobertura["contratos_no_banco"] = sum(len(v) for v in ctx.contratos.values())
         _fim_de_ano_na_matriz(con, out, lim["fim_de_ano"])
+        meses_lidos = meses_lidos_do_portal(con)
         if not eventos:
             out.cobertura["sem_item_a_item"] = True
             return out
@@ -518,12 +570,22 @@ def conferir_execucao(banco: _Path | _sqlite3.Connection, *, mapa: MapaLegal | N
         pagos = _pagamentos(eventos)
         _concentracao_do_pago(pagos, out, lim["concentracao"])
         _sem_contrato(pagos, ctx, out, lim["recorrente_sem_contrato"])
-        _fim_de_ano_nos_empenhos(eventos, out, lim["fim_de_ano"])
+        _fim_de_ano_nos_empenhos(eventos, out, lim["fim_de_ano"], meses_lidos)
         out.achados.sort(key=lambda a: (a.mes, a.tipo, a.chave))
         return out
     finally:
         if not isinstance(banco, _sqlite3.Connection):
             con.close()
+
+
+def meses_lidos_do_portal(con: _sqlite3.Connection) -> set[str] | None:
+    """Os meses (AAAA-MM) que a coleta do portal leu inteiros (``despesa_consultas``, situação lida), ou
+    None quando o banco não registra as consultas (um banco montado só com eventos)."""
+    if not _tem_tabela(con, "despesa_consultas"):
+        return None
+    meses = {str(m)[:7] for (m,) in con.execute("select dia from despesa_consultas where situacao = 'lida'")
+             if m and re.fullmatch(r"\d{4}-\d{2}", str(m)[:7])}
+    return meses or None
 
 
 def _mes(d: date | None) -> str:
@@ -549,23 +611,53 @@ def _pagamentos(eventos: list[EventoDespesa]) -> list[EventoDespesa]:
 
 
 def _liquidado_x_contratado(eventos, ctx: ContextoTrilha, out: ConferenciasExecucao, lim: dict) -> None:
-    liq: dict[str, list[EventoDespesa]] = defaultdict(list)
+    """Liquidado do credor no órgão contra os contratos do credor publicados pelo mesmo órgão no PNCP.
+
+    O órgão do portal vem só pelo nome e casa com o CNPJ do PNCP pelo nome (``cnpj_do_orgao``). Até
+    28/11/2026 a soma juntava as liquidações do credor em todos os órgãos e os contratos dele em qualquer
+    órgão: no banco real, a energia paga pela Prefeitura inteira (1.142 liquidações da Equatorial) era
+    comparada com o contrato de energia da Câmara Municipal (R$ 950 mil), outro Poder. A liquidação de um
+    órgão sem CNPJ casado no PNCP fica fora e é contada na cobertura; a liquidação anterior ao primeiro
+    contrato publicado do credor no órgão também fica fora, porque não pode ser dele."""
+    liq: dict[tuple[str, str], list[EventoDespesa]] = defaultdict(list)
+    sem_orgao = 0
     for e in eventos:
-        if e.tipo == "liquidacao" and contratos_do_credor(ctx, e.documento, e.credor):
-            liq[chave_do_credor(e.documento, e.credor)].append(e)
-    for doc, lista in liq.items():
-        contratos = contratos_do_credor(ctx, lista[0].documento, lista[0].credor)
+        if e.tipo != "liquidacao":
+            continue
+        contratos = contratos_do_credor(ctx, e.documento, e.credor)
+        if not contratos:
+            continue
+        cnpj = ctx.cnpj(e.orgao)
+        if not cnpj:
+            sem_orgao += 1
+            continue
+        assinaturas = [c.assinatura for c in contratos if c.orgao_cnpj == cnpj]
+        primeira = min((d for d in assinaturas if d), default=None)
+        if assinaturas and not (primeira and e.data and e.data < primeira):
+            liq[(chave_do_credor(e.documento, e.credor), cnpj)].append(e)
+    out.cobertura["liquidacoes_de_orgao_sem_cnpj_no_pncp"] = sem_orgao
+    achados = []
+    for (doc, cnpj), lista in liq.items():
+        contratos = [c for c in contratos_do_credor(ctx, lista[0].documento, lista[0].credor) if c.orgao_cnpj == cnpj]
         contratado = sum(c.valor for c in contratos)
         excesso = liquidado_acima_do_contratado(contratado, [e.valor for e in lista],
                                                 tolerancia=float(lim["tolerancia_absoluta"]))
         if excesso is None:
             continue
         ultima = max((e.data for e in lista if e.data), default=None)
-        out.achados.append(AchadoExecucao(
+        achados.append(AchadoExecucao(
             "liquidado_acima", lista[0].orgao, doc, _mes(ultima),
-            f"{lista[0].credor or doc}: {len(lista)} liquidação(ões) somam {_moeda(sum(e.valor for e in lista))} "
-            f"para {len(contratos)} contrato(s) publicado(s) no PNCP que somam {_moeda(contratado)}, aditivos "
-            "incluídos", excesso, contratado, {"contratos": [c.id for c in contratos]}))
+            f"{lista[0].credor or doc}: {len(lista)} liquidação(ões) em {lista[0].orgao or 'órgão não informado'} "
+            f"somam {_moeda(sum(e.valor for e in lista))} para {len(contratos)} contrato(s) do mesmo órgão "
+            f"publicado(s) no PNCP que somam {_moeda(contratado)}, aditivos incluídos", excesso, contratado,
+            {"contratos": [c.id for c in contratos], "orgao_cnpj": cnpj}))
+    contagem: dict[str, int] = defaultdict(int)
+    for a in achados:
+        contagem[a.chave] += 1
+    for a in achados:
+        if contagem[a.chave] > 1:            # o mesmo credor acima do contratado em dois órgãos
+            a.chave = f"{a.chave}|{a.dados['orgao_cnpj']}"
+    out.achados.extend(achados)
 
 
 def _medicoes(eventos, out: ConferenciasExecucao, lim: dict) -> None:
@@ -587,8 +679,9 @@ def _medicoes(eventos, out: ConferenciasExecucao, lim: dict) -> None:
 def _concentracao_do_pago(pagos: list[EventoDespesa], out: ConferenciasExecucao, lim: dict) -> None:
     grupos: dict[tuple[str, int], dict[str, float]] = defaultdict(lambda: defaultdict(float))
     nomes: dict[str, str] = {}
+    fora = lim.get("elementos_fora") or []
     for e in pagos:
-        if e.data:
+        if e.data and not _sem_contrato_por_natureza(e.elemento, fora):
             grupos[(e.orgao, e.data.year)][e.documento or e.credor] += e.valor
             nomes[e.documento or e.credor] = e.credor or e.documento
     corte = float(lim["corte_pct"]) / 100.0
@@ -623,7 +716,7 @@ def _sem_contrato(pagos: list[EventoDespesa], ctx: ContextoTrilha, out: Conferen
     nomes = {}
     for e in pagos:
         doc = e.documento
-        if not e.data or not cruzavel(doc, e.credor) or contratos_do_credor(ctx, doc, e.credor):
+        if not e.data or not cruzavel(doc, e.credor) or contratos_do_orgao(ctx, doc, e.credor, e.orgao):
             continue          # documento sem os dígitos para cruzar: vira cobertura, não indício
         if _sem_contrato_por_natureza(e.elemento, lim["elementos_sem_contrato"]):
             continue
@@ -637,19 +730,31 @@ def _sem_contrato(pagos: list[EventoDespesa], ctx: ContextoTrilha, out: Conferen
                 "sem_contrato", orgao, f"{orgao}|{doc}", max(ms),
                 f"{nomes[doc]} ({doc.split('|')[0]}) recebeu {_moeda(valor[(orgao, doc)])} em {len(ms)} meses "
                 f"distintos "
-                f"({min(ms)} a {max(ms)}) sem contrato publicado no PNCP", valor[(orgao, doc)], 0.0,
+                f"({min(ms)} a {max(ms)}) sem contrato do órgão publicado no PNCP", valor[(orgao, doc)], 0.0,
                 {"meses": sorted(ms)}))
     out.cobertura["pagamentos_com_documento_mascarado"] = sum(1 for e in pagos
                                                               if e.documento and not cruzavel(e.documento, e.credor))
 
 
-def _fim_de_ano_nos_empenhos(eventos, out: ConferenciasExecucao, lim: dict) -> None:
+def _fim_de_ano_nos_empenhos(eventos, out: ConferenciasExecucao, lim: dict,
+                             meses_lidos: set[str] | None = None) -> None:
+    """Empenhos dos últimos dias de dezembro contra o empenhado do órgão no ano.
+
+    Só entram os exercícios que a coleta leu nos doze meses (``despesa_consultas``): num ano lido pela
+    metade (a coleta de 28/11/2026 começa em novembro de 2024), dezembro seria quase todo o empenhado e o
+    alerta mediria a coleta, não o Município. Sem o registro das consultas, conta todo exercício."""
     dias = int(lim["dias"])
     corte = float(lim["multiplo_da_parcela_uniforme"]) * dias / 365.0
     grupos: dict[tuple[str, int], list[EventoDespesa]] = defaultdict(list)
     for e in eventos:
         if e.tipo == "empenho" and e.data:
             grupos[(e.orgao, e.data.year)].append(e)
+    anos = sorted({ano for _, ano in grupos})
+    if meses_lidos is not None:
+        inteiros = [a for a in anos if all(f"{a:04d}-{m:02d}" in meses_lidos for m in range(1, 13))]
+        out.cobertura["fim_de_ano_exercicios_medidos"] = inteiros
+        out.cobertura["fim_de_ano_exercicios_incompletos"] = [a for a in anos if a not in inteiros]
+        grupos = {k: v for k, v in grupos.items() if k[1] in inteiros}
     for (orgao, ano), lista in grupos.items():
         total = sum(e.valor for e in lista)
         if total <= float(lim["empenhado_minimo"]) or total <= 0:
@@ -766,6 +871,10 @@ def contas_item_a_item(eventos: Iterable[EventoDespesa], filtro=None, *, maiores
     linhas = []
     for chave, evs in por_credor.items():
         estacoes = {t: round(sum(e.valor for e in evs if e.tipo == t), 2) for t in ESTACOES_LEGAIS}
+        if not any(e.tipo == "ordem_pagamento" for e in evs):
+            # A exportação do portal publica cada pagamento com o número da ordem, mas não o ato da ordem
+            # em separado: a estação fica sem valor (não lida), nunca zero (28/11/2026, banco real).
+            estacoes["ordem_pagamento"] = None
         cronologia = [{"data": e.data.isoformat() if e.data else "", "estacao": e.tipo, "valor": e.valor,
                        "empenho": e.empenho, "url": e.url} for e in sorted(evs, key=lambda e: (e.data or date.min))]
         linhas.append({"saida": evs[0].credor or chave, "documento": evs[0].documento,
@@ -773,6 +882,6 @@ def contas_item_a_item(eventos: Iterable[EventoDespesa], filtro=None, *, maiores
                        "origem": "portal da transparência, item a item"})
     # A maior saída é a que mais saiu do caixa: pago (ou a ordem, quando o pagamento não é publicado),
     # depois o liquidado, depois o empenhado.
-    linhas.sort(key=lambda r: (-(r["estacoes"]["pagamento"] or r["estacoes"]["ordem_pagamento"]),
+    linhas.sort(key=lambda r: (-(r["estacoes"]["pagamento"] or r["estacoes"]["ordem_pagamento"] or 0.0),
                                -r["estacoes"]["liquidacao"], -r["estacoes"]["empenho"]))
     return linhas[:maiores]

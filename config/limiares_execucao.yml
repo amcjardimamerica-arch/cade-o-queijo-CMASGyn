@@ -37,6 +37,16 @@ concentracao:
     valor: 0.0
     justificativa: Nenhum piso de valor. Todo órgão com pagamento entra na conta.
     base: escolha restritiva do dono
+  elementos_fora:
+    valor: ['31', '32', '46', '3390.08', '3390.46', '3390.48', '3390.49']
+    justificativa: >-
+      Ficam fora da conta só os pagamentos em que o credor do portal não é quem escolhe vender ao órgão:
+      pessoal e encargos (31), juros e amortização da dívida (32, 46) e benefícios pagos a pessoa física
+      (3390.08, .46, .48, .49). A folha sai num crédito só ao banco pagador, e no banco real de 28/11/2026
+      o Itaú aparecia com 83% do pago da Educação e 96% do da previdência em 2025, o que é a forma normal e
+      legal de pagar a folha, não concentração de fornecedor. Transferências a entidades, subvenções,
+      serviços e obras continuam na conta.
+    base: Portaria Interministerial STN/SOF 163/2001 (natureza da despesa); banco real de 28/11/2026 (despesa_eventos)
 
 fim_de_ano:
   dias:

@@ -241,6 +241,42 @@ _ESTACAO = {"empenho": "empenho", "liquidacao": "liquidacao", "ordem_pagamento":
             "pagamento": "pagamento", "anulacao": "anulacao"}
 
 
+def _contratos_por_credor(con: sqlite3.Connection) -> dict[str, list[tuple[str, str, str, str]]]:
+    """CNPJ do fornecedor -> [(assinatura, fim da vigência, id do contrato no PNCP, CNPJ do órgão)], por
+    assinatura."""
+    out: dict[str, list[tuple[str, str, str, str]]] = defaultdict(list)
+    if not _tabela(con, "contratos_pncp"):
+        return out
+    fim = {}
+    if _tabela(con, "pncp_contratos_detalhe"):
+        fim = {cid: str(vf or "")[:10] for cid, vf in con.execute(
+            "SELECT contrato_id, vigencia_fim FROM pncp_contratos_detalhe")}
+    for pid, ni, assinatura, orgao in con.execute(
+            "SELECT pncp_id, fornecedor_ni, data_assinatura, orgao_cnpj FROM contratos_pncp"):
+        doc = re.sub(r"\D", "", str(ni or ""))
+        if len(doc) == 14 and pid and assinatura:
+            out[doc].append((str(assinatura)[:10], fim.get(pid, ""), str(pid), str(orgao or "")))
+    for lista in out.values():
+        lista.sort()
+    return out
+
+
+def contrato_do_empenho(cnpj: str, dia: str, contratos: dict[str, list[tuple[str, str, str, str]]],
+                        orgao_cnpj: str = "") -> str:
+    """O contrato do PNCP do credor (CNPJ) em vigor na data do empenho: o de assinatura mais recente até
+    a data, sem vigência vencida antes dela, e do mesmo órgão quando o órgão do portal tem CNPJ no PNCP.
+    O portal não publica o número do contrato no empenho, então o vínculo é pelo credor, pela data e pelo
+    órgão; com o órgão sem CNPJ (a Educação paga pelo fundo, que tem outro nome no PNCP), só pelo credor e
+    pela data, como na estação Vínculo das conferências. Pessoa física fica sem."""
+    escolhido = ""
+    for assinatura, fim, pid, orgao in contratos.get(cnpj, []):
+        if orgao_cnpj and orgao != orgao_cnpj:
+            continue
+        if dia and assinatura <= dia and (not fim or fim >= dia):
+            escolhido = pid
+    return escolhido
+
+
 def execucao(con: sqlite3.Connection) -> dict:
     coleta = _ultima_coleta(con, ("execucao_goiania",))
     if not _tabela(con, "despesa_eventos") or not con.execute("SELECT 1 FROM despesa_eventos LIMIT 1").fetchone():
@@ -249,14 +285,21 @@ def execucao(con: sqlite3.Connection) -> dict:
                   + (f": {texto(coleta.get('erro'), 200)}" if coleta.get("erro") else ""))
         return {"situacao": COLETA_NAO_FEITA, "motivo": motivo, "empenhos": []}
     por_empenho: dict[str, dict] = {}
+    from ..conferencias.execucao import cnpj_do_orgao, orgaos_do_pncp
+    orgaos = orgaos_do_pncp(con)
+    contratos = _contratos_por_credor(con)
+    cnpj_de: dict[str, str] = {}
     for ev in _linhas(con, "SELECT * FROM despesa_eventos ORDER BY data, empenho"):
         num = (ev.get("empenho") or "").strip()
         if not num:
             continue
         doc = re.sub(r"\D", "", str(ev.get("documento") or ""))
         pessoa_fisica = len(doc) == 11 or "*" in str(ev.get("documento") or "")   # CPF inteiro ou mascarado
+        orgao = ev.get("orgao") or ""
+        if orgao not in cnpj_de:
+            cnpj_de[orgao] = cnpj_do_orgao(orgao, orgaos)
         e = por_empenho.setdefault(num, {
-            "numero": num, "data": ev.get("data") or "", "orgao_cnpj": "", "orgao": texto(ev.get("orgao"), 120),
+            "numero": num, "data": ev.get("data") or "", "orgao_cnpj": cnpj_de[orgao], "orgao": texto(orgao, 120),
             "credor": "Pessoa física" if pessoa_fisica else texto(ev.get("credor"), 160),
             "credor_cnpj": documento_publico(doc), "fonte": ev.get("fonte") or "", "funcao": ev.get("funcao") or "",
             "natureza": ev.get("elemento") or "", "valor": 0.0, "contrato": "", "eventos": [],
@@ -269,6 +312,9 @@ def execucao(con: sqlite3.Connection) -> dict:
         e["eventos"].append({"estacao": estacao, "data": ev.get("data") or "", "valor": valor,
                              "documento": texto(ev.get("ordem") or ev.get("tipo"), 60), "url": ev.get("url") or "",
                              "lido_em": ev.get("coletado_em") or "", "sha256": ev.get("sha256") or ""})
+    for e in por_empenho.values():
+        if len(e["credor_cnpj"]) == 14:
+            e["contrato"] = contrato_do_empenho(e["credor_cnpj"], e["data"], contratos, e["orgao_cnpj"])
     return {"situacao": DADO, "motivo": "", "empenhos": list(por_empenho.values())}
 
 

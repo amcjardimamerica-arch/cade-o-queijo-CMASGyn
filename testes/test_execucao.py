@@ -1894,3 +1894,205 @@ def test_sondagem_resume_os_tipos_e_as_linhas_que_nao_sao_do_tipo():
     assert liq["tipos"] == {"anulacao": 6, "liquidacao": 59} and pag["tipos"] == {"ordem_pagamento": 1, "pagamento": 59}
     assert [x["tipo"] for x in liq["outras_linhas"]] == ["anulacao"] * 6
     assert set(liq["outras_linhas"][0]) == {"tipo", "ordem", "data", "valor"}
+
+
+# --- Décima terceira rodada: as conferências medidas no banco real (22, 30, 31, 32, 33, 55, 56, 57, 61, 63,
+# 64, 66, 83, 132) -------------------------------------------------------------------------------------
+#
+# despesa_eventos_recorte_real.json é um recorte do banco de 28/11/2026 (155.879 eventos de 04/11/2024 a
+# 26/11/2026, 25 meses lidos em despesa_consultas): os eventos de cada caso que a conferência aponta no banco
+# inteiro, só credores pessoas jurídicas e sem o histórico do empenho, mais os contratos do PNCP desses
+# credores e os meses lidos. No banco inteiro, depois das correções desta rodada: 3 empenhos com pagamento
+# antes da liquidação, 60 credores com liquidado acima do contratado do órgão, 1.463 empenhos com três
+# liquidações seguidas iguais, 47 órgãos e anos com 80% do pago em até 5 credores e 43 com um credor de 40%
+# ou mais, 970 credores pagos em dois meses ou mais sem contrato do órgão, 10 órgãos com o fim de dezembro de
+# 2025 acima do ritmo; integridade da trilha 0,0 (nenhum dos 24.101 percursos acende origem, fonte e dotação:
+# a fonte do portal é o código antigo de três dígitos, como 100, e a matriz usa a destinação nova, como 500).
+
+def _banco_do_recorte_real():
+    import json
+    from onisciente import historico
+    r = json.loads((DADOS / "despesa_eventos_recorte_real.json").read_text(encoding="utf-8"))
+    con = sqlite3.connect(":memory:")
+    con.executescript(historico.ESQUEMA)
+    G.criar_tabelas(con)
+    G.gravar(con, r["eventos"], coletado_em="2026-11-28")
+    for tabela in ("contratos_pncp", "pncp_contratos_detalhe", "despesa_consultas"):
+        for linha in r[tabela]:
+            con.execute(f"insert into {tabela} ({', '.join(linha)}) values ({', '.join('?' * len(linha))})",
+                        list(linha.values()))
+    con.commit()
+    return con, r
+
+
+def test_recorte_real_nao_tem_pessoa_fisica_nem_historico():
+    import json
+    import re
+    _, r = _banco_do_recorte_real()
+    assert len(r["eventos"]) == 212 and len(r["despesa_consultas"]) == 25
+    assert all(len(re.sub(r"\D", "", e["documento"])) == 14 and "*" not in e["documento"] for e in r["eventos"])
+    assert all("historico" not in e for e in r["eventos"])
+    assert all(len(c["fornecedor_ni"]) == 14 for c in r["contratos_pncp"])
+    texto = json.dumps(r, ensure_ascii=False)
+    assert not re.search(r"\d{3}\.\d{3}\.\d{3}-\d{2}", texto)
+
+
+def test_recorte_real_reproduz_as_conferencias_do_banco_inteiro():
+    con, _ = _banco_do_recorte_real()
+    c = X.conferir_execucao(con)
+    achados = {(a.tipo, a.chave): a for a in c.achados}
+    # 32 e 57: os três empenhos do banco inteiro com pagamento antes da liquidação, e só eles.
+    ordem = sorted(k[1] for k in achados if k[0] == "ordem")
+    assert ordem == ["SECRETARIA MUNICIPAL DE ADMINISTRACAO|20265501007010002",
+                     "SECRETARIA MUNICIPAL DE EFICIENCIA|20267501000230004",
+                     "SECRETARIA MUNICIPAL DE FINANCAS|20261603003530022"]
+    assert all(achados[("ordem", k)].dados["problemas"] == ["pagamento antes da liquidação (Lei 4.320/1964, art. 62)"]
+               for k in ordem)
+    bndes = {e.tipo: e.data for e in X.ler_eventos(con) if e.empenho == "20261603003530022"}
+    assert bndes["pagamento"] == date(2026, 10, 15) and bndes["liquidacao"] == date(2026, 10, 16)
+    # 55: o liquidado do credor no órgão contra os contratos do mesmo órgão no PNCP.
+    hosp = achados[("liquidado_acima", "05743288000108")]
+    assert hosp.valor == pytest.approx(188_100.0) and hosp.limite == pytest.approx(63_000.0)
+    assert hosp.dados["orgao_cnpj"] == "25141524000123"
+    # A FLEXIBASE liquidou na Finanças e tem contrato na Saúde; a Equatorial e a Saneago têm contrato só com a
+    # Câmara Municipal, outro Poder: nenhum dos três vira achado (antes de 28/11/2026, a Equatorial virava).
+    assert [k for k in achados if k[0] == "liquidado_acima"] == [("liquidado_acima", "05743288000108")]
+    # 56: as três liquidações iguais ao centavo do mesmo empenho.
+    med = achados[("medicoes", "SECRETARIA MUNICIPAL DE POLITICAS PARA AS MULHERES, ASSISTENCIA SOCIAL E DIREITOS "
+                               "HUMANOS|20253650029330014")]
+    assert med.dados["valores"] == [138_490.0] * 3
+    # 63: o PROCON em 2024, sem a folha (31), que vai ao banco pagador e não é escolha de fornecedor.
+    conc = achados[("concentracao_pago", "PROGRAMA DE DEFESA DO CONSUMIDOR - PROCON|2024")]
+    assert conc.limite == pytest.approx(2_432_265.75) and conc.valor == pytest.approx(2_290_036.64)
+    unico = achados[("credor_unico", "PROGRAMA DE DEFESA DO CONSUMIDOR - PROCON|2024|12376894000106")]
+    assert unico.valor == pytest.approx(1_690_000.0) and "EDITORA RS" in unico.descricao
+    folha = sum(e.valor for e in X.ler_eventos(con) if e.tipo == "pagamento" and e.orgao.startswith("PROGRAMA DE DEFESA")
+                and e.elemento.startswith("31"))
+    assert folha == pytest.approx(904_235.26)
+    # 64: pagos em dois meses sem contrato do órgão no PNCP.
+    assert sorted(k[1] for k in achados if k[0] == "sem_contrato") == [
+        "AGENCIA MUNICIPAL DE TURISMO E EVENTOS|13146254000164", "PROGRAMA DE DEFESA DO CONSUMIDOR - PROCON|02371916000183"]
+    # 66: o corte de 15 dias de dezembro só nos exercícios lidos nos doze meses; 2024 (lido de novembro em
+    # diante) e 2026 (sem dezembro) ficam fora, e o PROCON de 2024 já não aparece.
+    fim = [a for a in c.achados if a.tipo == "fim_de_ano"]
+    assert [(a.chave, a.valor, a.limite) for a in fim] == [
+        ("SECRETARIA MUNICIPAL DE EFICIENCIA|2025", pytest.approx(13_499_600.61), pytest.approx(86_555_362.84))]
+    assert c.cobertura["fim_de_ano_exercicios_medidos"] == [2025]
+    assert c.cobertura["fim_de_ano_exercicios_incompletos"] == [2024, 2026]
+    # 30 e 31: um percurso por empenho; nenhum completo, porque a fonte antiga não acende origem, fonte e dotação.
+    assert len(c.percursos) == 124 and c.integridade == 0.0
+    assert len(c.achados) == 10
+
+
+def test_fonte_antiga_do_portal_nao_acende_origem_fonte_nem_dotacao():
+    """A falta que fica nos requisitos 30, 31 e 83: o portal publica a fonte no código antigo (100, 107, 102),
+    a matriz de saldos usa a destinação nova (500, 600). Com a receita e a dotação da destinação 500 no
+    banco, o empenho de fonte 100 continua sem origem, fonte e dotação; a previsão (pela função) acende."""
+    ctx = X.ContextoTrilha(receitas={(2025, "500")}, dotacoes={(2025, "08")}, dotacoes_fonte={(2025, "08", "500")})
+    evs = [X.EventoDespesa("empenho", "20253650029330014", date(2025, 6, 2), "SEMAS", "CUIABA", "11222333000181",
+                           138_490.0, "33903900", "100", "08", "244"),
+           X.EventoDespesa("pagamento", "20253650029330014", date(2025, 7, 2), "SEMAS", "CUIABA", "11222333000181",
+                           138_490.0, "33903900", "100", "08", "244")]
+    acesas = X.percursos(evs, ctx)[0].acesas()
+    assert not acesas & {Estacao.ORIGEM, Estacao.FONTE, Estacao.DOTACAO}
+    assert Estacao.PREVISAO in acesas
+    novo = [X.EventoDespesa(e.tipo, e.empenho, e.data, e.orgao, e.credor, e.documento, e.valor, e.elemento, "1500",
+                            e.funcao, e.subfuncao) for e in evs]
+    assert {Estacao.ORIGEM, Estacao.FONTE, Estacao.DOTACAO} <= X.percursos(novo, ctx)[0].acesas()
+
+
+def test_vinculo_e_do_mesmo_orgao_quando_o_orgao_casa_com_o_pncp():
+    con, _ = _banco_do_recorte_real()
+    ctx = X.contexto_do_banco(con)
+    assert X.cnpj_do_orgao("SECRETARIA MUNICIPAL DE SAUDE", ctx.orgaos_pncp) == "25141524000123"
+    assert X.cnpj_do_orgao("SECRETARIA MUNICIPAL DE ADMINISTRACAO", ctx.orgaos_pncp) == "17577524000142"
+    assert X.cnpj_do_orgao("SECRETARIA MUNICIPAL DE EFICIENCIA", ctx.orgaos_pncp) == ""
+    # O nome quebrado do portal casa com o do PNCP com a sigla no fim.
+    assert X.cnpj_do_orgao("INSTITUTO MUNICIPAL DE ASSISTENCIA A SAUDE DOS SERVIDO RES DE GOIANIA",
+                           {X.chave_orgao("INSTITUTO MUNICIPAL DE ASSISTENCIA A SAUDE DOS SERVIDORES DE GOIANIA - IMAS"):
+                            {"02371916000183"}}) == "02371916000183"
+    # A Equatorial (CELG) tem contrato só com a Câmara: no PROCON (sem CNPJ casado no recorte) o vínculo cai no
+    # contrato de qualquer órgão; num órgão casado com outro CNPJ, não.
+    assert X.contratos_do_orgao(ctx, "01543032000104", "", "SECRETARIA MUNICIPAL DE SAUDE") == []
+
+
+def test_trilha_da_secretaria_conta_so_o_pago_do_exercicio():
+    """Requisitos 22 e 83: o vínculo da pasta multiplica o pago do exercício no parecer, então a fração é a do
+    mesmo período. No recorte, a administração (função 04, subfunção 122) pagou em 2026 R$ 1.131,70 à CS Brasil
+    com contrato do órgão, R$ 63.844,00 à FLEXIBASE (vínculo pelo credor: a Finanças não tem CNPJ no recorte) e
+    R$ 313.669,27 ao INSS, sem contrato."""
+    from onisciente.config import carregar_alvo
+    from onisciente.rio import secretarias as S
+    con, _ = _banco_do_recorte_real()
+    c = X.conferir_execucao(con)
+    evs = X.ler_eventos(con)
+    adm = carregar_alvo().dominios["administracao"]
+    cob, vin = S.trilha_da_secretaria(c.percursos, evs, adm, exercicio=2026)
+    assert cob == 0.0 and vin == pytest.approx((1_131.70 + 63_844.0) / (1_131.70 + 63_844.0 + 313_669.27))
+    assert S.trilha_da_secretaria(c.percursos, evs, adm, exercicio=2025) == (None, None)
+    assert S.trilha_da_secretaria(c.percursos, evs, adm)[1] != pytest.approx(vin)   # sem o exercício, todos os anos
+
+
+def test_contas_uma_a_uma_com_credor_data_e_a_ordem_sem_valor():
+    """Requisito 132: credor, data e cronologia de cada saída vêm do portal; a exportação não publica o ato
+    da ordem de pagamento em separado, e a coluna fica sem valor, nunca zero."""
+    from onisciente.config import carregar_alvo
+    from onisciente.rio import parecer_dominio as PD
+    con, _ = _banco_do_recorte_real()
+    saude = carregar_alvo().dominios["saude"]
+    evs = [e for e in X.ler_eventos(con) if e.data and e.data.year == 2025 and saude.contem(e.funcao, e.subfuncao or None)]
+    linhas = X.contas_item_a_item(evs)
+    assert [x["saida"] for x in linhas] == ["HOSPCOM EQUIPAMENTOS HOSPITALARES LTDA"]
+    topo = linhas[0]
+    assert topo["estacoes"] == {"empenho": 314_100.0, "liquidacao": 63_000.0, "ordem_pagamento": None,
+                                "pagamento": 63_000.0}
+    passos = [(c["data"], c["estacao"]) for c in topo["cronologia"]]
+    assert passos == sorted(passos, key=lambda p: p[0])
+    assert ("2025-07-25", "liquidacao") in passos and ("2025-09-05", "pagamento") in passos
+
+    class Ex:          # o bastante da execução da pasta para a seção do parecer
+        rotulo = "Saúde"
+        valores = {}
+        inicial = None
+        notas = []
+        por_fonte = []
+    Ex.valores = {k: type("V", (), {"certificacao": type("C", (), {"vias": [], "divergencia": False})(),
+                                    "selo": None})() for k in ("autorizado", "empenhado", "liquidado", "pago")}
+    html = PD.secao_execucao(Ex, {"item_a_item": linhas, "matriz": [], "falta": ""}, None)
+    assert "HOSPCOM" in html and "sem valor" in html and "não o ato da ordem de pagamento em separado" in html
+
+
+def test_entrada_da_execucao_liga_o_orgao_e_o_contrato_e_o_triangulo_fecha_a_prestacao():
+    """Requisitos 33 e 61: com o banco cheio, cada empenho vai à tela Trilha com o CNPJ do órgão (para o recorte
+    da secretaria) e o contrato do PNCP do credor em vigor na data, do mesmo órgão; o vértice da prestação do
+    triângulo sai conferido, ausente ou aguardando. Antes de 28/11/2026 nenhum empenho levava o contrato e os
+    2.118 contratos do banco real saíam todos como ausentes."""
+    from onisciente.telas import dados as D
+    from onisciente.telas import entradas as E
+    con, r = _banco_do_recorte_real()
+    y = E.execucao(con)
+    por = {e["numero"]: e for e in y["empenhos"]}
+    hosp = por["20252150049510002"]
+    assert hosp["orgao_cnpj"] == "25141524000123" and hosp["contrato"] == "25141524000123-2-000038/2025"
+    assert por["20252150021810180"]["contrato"] == ""             # empenhado antes da assinatura (07/04/2025)
+    assert por["20265501007010002"]["orgao_cnpj"] == "17577524000142"
+    assert por["20265501007010002"]["contrato"] == ""             # empenho de 11/03, contrato de 23/03/2026
+    vertice = D.vertice_da_prestacao(y)
+    estados = {c["pncp_id"]: vertice(c["pncp_id"], c["orgao_cnpj"], c["data_assinatura"]) for c in r["contratos_pncp"]}
+    assert estados == {"25141524000123-2-000038/2025": "conferido",        # HOSPCOM: empenho ligado e liquidado
+                       "25141524000123-2-001009/2026": "ausente",          # FLEXIBASE: empenho ligado, sem liquidação
+                       "17577524000142-2-000005/2026": "ausente",          # CS Brasil: nenhum empenho depois dele
+                       "00001727000193-2-000010/2025": "aguardando",       # Câmara: fora do portal da Prefeitura
+                       "00001727000193-2-000012/2025": "aguardando",
+                       "01414440000158-2-000027/2026": "aguardando"}       # PGM: nenhum empenho do órgão no recorte
+    assert D.vertice_da_prestacao({})("x", "25141524000123", "2026-01-01") == "aguardando"
+
+    class Originais:
+        def externo(self, chave, *a, **k):
+            return chave
+
+    class Ctx:
+        originais = Originais()
+    lista, total = D._execucao_entrada(Ctx(), y)
+    assert total["2025-12"]["o:25141524000123:*"] == 1 and total["2025-12"]["o:25141524000123:10"] == 1
+    assert {x["orgao"] for x in lista if x["numero"] == "20252150049510002"} == {"25141524000123"}

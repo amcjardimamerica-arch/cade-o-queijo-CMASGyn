@@ -126,6 +126,9 @@ def secao_execucao(ex: S.ExecucaoSecretaria, contas: dict, q: S.QualidadeDoPlano
         if not item:
             s.append('<p class="omitido">A ordem de pagamento não é publicada na matriz de saldos contábeis: '
                      "a coluna fica sem valor até a execução item a item ser lida.</p>")
+        elif any(x["estacoes"].get("ordem_pagamento") is None for x in item):
+            s.append('<p class="omitido">A exportação do portal publica cada pagamento com o número da ordem, '
+                     "mas não o ato da ordem de pagamento em separado: a coluna fica sem valor, não zero.</p>")
         s.append("<h3>A cronologia</h3>")
         for x in saidas:
             if item:
@@ -206,7 +209,8 @@ def montar(alvo: Alvo, dominio: Dominio, banco: Path | str, ate: date, *, mapa=N
         ex = S.execucao(con, dominio, exercicio, bimestre)
         conf = conferencias if conferencias is not None else conferir_execucao(con)
         eventos = ler_eventos(con)
-        cobertura, vinculo = S.trilha_da_secretaria(conf.percursos, eventos, dominio)
+        cobertura, vinculo = S.trilha_da_secretaria(conf.percursos, eventos, dominio, exercicio=exercicio,
+                                                     ate_mes=2 * bimestre)
         integ = S.integridade_da_secretaria(con, dominio, exercicio, bimestre, ate,
                                             cobertura=cobertura, vinculo=vinculo)
         contas = S.contas_uma_a_uma(con, dominio, exercicio, 2 * bimestre)
