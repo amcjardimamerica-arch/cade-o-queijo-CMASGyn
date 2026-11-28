@@ -27,7 +27,7 @@ from .coletores.base import ler
 PASTA = RAIZ / "relatorios" / "onisciente" / "sondagem"
 LIMITE = 600_000
 LIMITE_GRANDE = 6_000_000   # a MSC vem em páginas de milhares de linhas: guarda a página inteira
-GRANDES = {"msc", "pncp_detalhe", "pncp_dados"}
+GRANDES = {"msc", "pncp_detalhe", "pncp_dados", "d2_transweb"}   # d2_transweb: a exportação CSV do mês (1,5 MB)
 DADOS = "https://dadosabertos.compras.gov.br/"
 
 OLINDA = "https://www.fnde.gov.br/olinda-ide/servico/"

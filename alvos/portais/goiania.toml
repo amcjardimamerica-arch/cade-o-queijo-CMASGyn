@@ -22,6 +22,16 @@
 #   * o portal novo (WordPress) em www.goiania.go.gov.br/transparencia/ responde; a categoria 49 é
 #     "Despesas e Receitas". A lista de itens da categoria é montada no navegador: o HTML não traz arquivos;
 #   * goiania.nucleogov.com.br dá 403.
+# O que a sondagem de 28/11/2026 (run 46087866124) leu, com os pedidos montados pelo coletor:
+#   * o Buscar por OsAjax (mês 10, ano 2026) deu HTTP 500, e o Buscar por postback comum deu 200 com a
+#     página "Erro Interno" do portal: a lista não foi lida para outro mês;
+#   * a exportação CSV por postback comum (o estado do GET, mês e ano, selExportar = CSV e o botão OK)
+#     deu 200 com a planilha: uma linha por liquidação e ordem de pagamento, separador ";", vírgula
+#     decimal, datas dd/mm/aaaa hh:mm:ss, só os empenhos do mês e ano escolhidos (outubro de 2026);
+#     as liquidações e os pagamentos vão até a data da leitura (novembro). A coluna CNPJ traz o CPF
+#     de pessoa física com "000" na frente (14 dígitos);
+#   * EmpenhoPopUp.aspx pedido com "&" trouxe os campos com valores (CNPJ, favorecido, função,
+#     subfunção, natureza, dotação, processo licitatório e modalidade).
 # As consultas do manual de 2010 (Empenho por Órgão, por Credor, Ordem de Pagamento) não existem no
 # portal atual: ficam abaixo como estavam, sem confirmação (confirmado = false), porque são a trava
 # dos testes do coletor genérico. A consulta real é a de [[transweb.despesas]], com "confirmado" em
@@ -114,8 +124,9 @@ valor = ["Valor", "Valor Pago", "Valor da OP", "Valor Líquido"]
 orgao = ["Órgão", "Orgao"]
 fonte = ["Fonte", "Fonte de Recurso"]
 
-# A página real (Portal_Despesas.aspx). Uma consulta por mês, com todos os órgãos; cada linha é um
-# empenho e os popups dela trazem as liquidações e os pagamentos.
+# A página real (Portal_Despesas.aspx). Uma consulta por mês, com todos os órgãos. O caminho principal
+# é a exportação CSV do mês (uma linha por liquidação e pagamento); a lista e os popups ficam como
+# conferência por amostra e como reserva, se a exportação falhar.
 [[transweb.despesas]]
 id = "despesas_favorecido"
 tipo = "empenho"
@@ -128,14 +139,44 @@ tabela = "wtCspTabauxA3AsgTable"
 botao = ["wt86", "Buscar"]
 [transweb.despesas.envio]
 # O Buscar e a paginação são OsAjax (__EVENTTARGET com o name do botão ou do link, __AJAX =
-# "__OSVSTATE,"; a resposta são blocos OsJSONUpdate). Lido no _osjs.js, não numa resposta real.
+# "__OSVSTATE,"; a resposta são blocos OsJSONUpdate). Lido no _osjs.js. Na sondagem de 28/11/2026
+# o portal recusou: OsAjax deu HTTP 500 e o postback comum do Buscar deu a página "Erro Interno".
 modo = "ajax"
 confirmado = false
+recusado = "OsAjax do Buscar: HTTP 500; postback do Buscar: página Erro Interno (sondagem de 28/11/2026, run 46087866124)"
 [transweb.despesas.exportar]
 # select selExportar (Exportar, XLS, CSV, JSON) e o botão OK escondido, sem OsAjax: postback comum.
 campo = ["wtselExportar"]
 botao = ["wtbtnExportar"]
-confirmado = false         # os nomes estão no HTML; a resposta (o arquivo) ainda não foi lida
+confirmado = true          # sondagem de 28/11/2026: 200, a planilha CSV de outubro de 2026
+formato = "CSV"
+amostra = 3                # empenhos conferidos nos popups a cada mês lido (os de maior valor pago)
+releitura = 12             # os meses mais recentes lidos de novo: liquidações e pagamentos chegam depois
+meses_por_rodada = 14
+# O cabeçalho real da planilha (campo do evento -> coluna).
+[transweb.despesas.exportar.colunas]
+empenho = "Empenho"
+data_empenho = "DataEmpenho"
+valor_empenhado = "VlEmpenhado"
+liquidacao = "Liquidacao"
+data_liquidacao = "DataLiquidacao"
+valor_liquidado = "VlLiquidado"        # o saldo: 0,00 numa liquidação anulada
+ordem = "OrdemPagamento"
+data_pagamento = "DataPagamento"
+valor_pago = "VlPago"
+elemento = "NaturezaDespesa"           # 33903900
+elemento_nome = "DsNaturezadaDespesa"
+documento = "CNPJ"                     # CPF de pessoa física vem com "000" na frente
+orgao = "NmOrgao"
+valor_anulado = "VlAnulado"            # o anulado do empenho
+unidade = "UnidadeOrcamentaria"
+funcao = "Funcao"                      # "ADMINISTRACAO - 04"
+subfuncao = "SubFuncao"                # "ADMINISTRACAO GERAL - 122"
+fonte = "FonteRecurso"                 # "RECURSOS ORDINARIOS - 100" (o código antigo de três dígitos)
+credor = "NmFavorecido"
+historico = "Objeto"
+modalidade = "Modalidade"
+licitacao = "NumeroLicitacao"          # 000000000000 quando não há
 [transweb.despesas.campos]
 mes = ["wtcboMes"]
 ano = ["wtcboAno"]
@@ -154,6 +195,7 @@ pago = ["Valor Pago"]
 [transweb.despesas.popups.liquidacao]
 pagina = "LiquidacaoPopUp.aspx"
 confirmado = true
+endereco = "https://www10.goiania.go.gov.br/DespesasWebBlocks/LiquidacaoPopUp.aspx?Empenho={empenho}"
 [transweb.despesas.popups.liquidacao.colunas]
 ordem = ["Liquidação"]                 # o número da liquidação
 data = ["Data"]
@@ -162,6 +204,7 @@ anulado = ["Valor Anulado"]
 [transweb.despesas.popups.pagamento]
 pagina = "PagamentoPopUp.aspx"
 confirmado = true
+endereco = "https://www10.goiania.go.gov.br/DespesasWebBlocks/PagamentoPopUp.aspx?Empenho={empenho}"
 [transweb.despesas.popups.pagamento.colunas]
 ordem = ["Ordem de Pagamento"]
 data = ["Data OP"]                     # o popup só traz a data da ordem de pagamento
@@ -172,7 +215,8 @@ valor_op = ["Valor OP"]
 fonte = ["Fonte Detalhada", "Fonte"]
 [transweb.despesas.popups.empenho]
 pagina = "EmpenhoPopUp.aspx"
-confirmado = false         # os nomes dos campos são reais; os valores vieram vazios na sondagem
+# Sondagem de 28/11/2026: pedido com "&", o popup trouxe os campos com valores.
+confirmado = true
 [transweb.despesas.popups.empenho.campos]
 documento = ["wtemp_CPF_CNPJ"]         # o rótulo é "CNPJ"
 credor = ["wtemp_FAVORECIDO"]
@@ -183,6 +227,9 @@ dotacao = ["wtemp_DOTACAO_COMPACTADA"]
 fonte = ["wtDESCRITOR_FONTE_DETALHADA_NOME_FONTE_DETALHADA", "wtDESCRITOR_FONTE_nome_fonte"]
 historico = ["wtemp_Historico"]        # o objeto
 data = ["wtemp_DATA_EMPENHO"]
+licitacao = ["wtemp_NUMR_PROC_LICIT"]  # 000000000000 quando não há
+# A modalidade (wtemp_NUMR_PROC_LICIT2) fica fora: o popup sem empenho também mostra "Não se aplica";
+# ela vem da exportação.
 
 # As tabelas do detalhe de um empenho: qual tipo de evento cada uma traz, pelo cabeçalho.
 [transweb.detalhe]
