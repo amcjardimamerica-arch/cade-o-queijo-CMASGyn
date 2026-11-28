@@ -30,6 +30,13 @@ vários meses (a "conciliação das distribuições" é acumulada no ano). O col
 formato das colunas ainda não foi visto: a leitura procura a linha do Município e as colunas de ICMS
 e IPVA pelo nome, e uma planilha lida sem isso fica ``formato``, nunca ausência); as ``.xls`` antigas
 ficam registradas como arquivo que o coletor não lê.
+
+Sondagem de 28/11/2026 (rodada 4): as planilhas reais foram lidas. A "conciliação das distribuições"
+(2025 e 2026, 15 MB, 46 folhas) traz na folha ``Agregado`` o Município, o mês ("Referência") e a cota
+bruta de ICMS, IPVA e IPI de cada mês do ano, já com os meses seguintes zerados; as outras folhas são
+as contas da distribuição (base diária, bolão mensal, conciliação). O demonstrativo antigo
+(``transf-municipios``, até 2024) tem uma folha por mês (``01-2024``...) com Bruto, FUNDEB e Creditado
+de cada tributo. O coletor guarda a cota bruta nas duas formas, para valerem a mesma coisa.
 """
 
 from __future__ import annotations
@@ -183,34 +190,147 @@ def arquivos_mensais(pagina: str, base: str) -> list[dict]:
     return saida
 
 
-def planilha(conteudo: bytes) -> list[list[list[str]]]:
-    """As folhas de uma planilha ``.xlsx`` como linhas de texto (células vazias como ""). Levanta
-    ``ValueError`` se não for xlsx."""
+def _livro(conteudo: bytes):
     import io
+    import warnings
     import zipfile
 
     import openpyxl
     try:
-        livro = openpyxl.load_workbook(io.BytesIO(conteudo), read_only=True, data_only=True)
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")           # "Unknown extension": irrelevante para os valores
+            return openpyxl.load_workbook(io.BytesIO(conteudo), read_only=True, data_only=True)
     except (zipfile.BadZipFile, KeyError, OSError, ValueError) as e:
         raise ValueError(f"não é uma planilha xlsx legível: {e}") from e
+
+
+def _texto_celula(v) -> str:
+    if v is None:
+        return ""
+    if hasattr(v, "strftime"):
+        return v.strftime("%Y-%m-%d")
+    return str(v).strip()
+
+
+def planilha(conteudo: bytes) -> list[list[list[str]]]:
+    """As folhas de uma planilha ``.xlsx`` como linhas de texto (células vazias como ""). Levanta
+    ``ValueError`` se não for xlsx."""
+    livro = _livro(conteudo)
     folhas = []
     try:
         for folha in livro.worksheets:
-            linhas = []
-            for r in folha.iter_rows(values_only=True):
-                linhas.append(["" if v is None else str(v).strip() for v in r])
-            folhas.append(linhas)
+            folhas.append([[_texto_celula(v) for v in r] for r in folha.iter_rows(values_only=True)])
     finally:
         livro.close()
     return folhas
 
 
+def _numero_celula(v) -> float | None:
+    if isinstance(v, (int, float)):
+        return float(v)
+    return cf.numero(_texto_celula(v))
+
+
+def _agregado(folha, municipio: str) -> list[dict]:
+    """A folha "Agregado" da conciliação das distribuições (2025 em diante): Município, Referência (o
+    mês), ICMS, IPVA, IPI e Total, a cota bruta de cada mês (antes da retenção do FUNDEB). Meses ainda
+    sem distribuição vêm com zero e ficam de fora."""
+    alvo = cf.norm(municipio)
+    cabeca: dict[str, int] | None = None
+    saida = []
+    for r in folha.iter_rows(values_only=True):
+        textos = [cf.norm(_texto_celula(v)) for v in r]
+        if cabeca is None:
+            if "MUNICIPIO" in textos and "REFERENCIA" in textos:
+                cabeca = {t: i for i, t in enumerate(textos) if t}
+            continue
+        i_mun = cabeca["MUNICIPIO"]
+        if i_mun >= len(r) or cf.norm(_texto_celula(r[i_mun])) != alvo:
+            continue
+        mes = cf.mes_de(_texto_celula(r[cabeca["REFERENCIA"]]))
+        if not mes:
+            continue
+        for tributo in TRIBUTOS:
+            i = cabeca.get(tributo)
+            valor = _numero_celula(r[i]) if i is not None and i < len(r) else None
+            if valor:
+                saida.append({"mes": mes, "tributo": tributo, "valor": round(valor, 2)})
+    if cabeca is None:
+        raise ValueError("folha Agregado sem o cabeçalho Município e Referência")
+    return saida
+
+
+_FOLHA_MES = re.compile(r"^(\d{2})-(\d{4})$")
+
+
+def _demonstrativo(folha, municipio: str, mes: str) -> list[dict]:
+    """Uma folha mensal do demonstrativo antigo (``transf-municipios``, até 2024): o cabeçalho tem o
+    grupo (IPVA, IPI-EXPORTAÇÃO, ICMS) numa linha e as colunas (Bruto, FUNDEB, Creditado) na seguinte.
+    Vale a coluna Bruto de cada tributo, a cota bruta, como na conciliação."""
+    alvo = cf.norm(municipio)
+    grupos: list[str] | None = None
+    colunas: dict[str, int] = {}
+    i_mun = None
+    saida = []
+    for r in folha.iter_rows(values_only=True):
+        textos = [cf.norm(_texto_celula(v)).replace(" ", "") for v in r]
+        if grupos is None:
+            if any(t.startswith("MUNICIPIO") for t in textos) and any(t.startswith("ICMS") for t in textos):
+                i_mun = next(i for i, t in enumerate(textos) if t.startswith("MUNICIPIO"))
+                grupos, atual = [], ""
+                for t in textos:
+                    if t.startswith(("IPVA", "IPI", "ICMS")):
+                        atual = "IPI" if t.startswith("IPI") else t[:4]
+                    elif t and not t.startswith(("IPVA", "IPI", "ICMS")):
+                        atual = ""
+                    grupos.append(atual)
+            continue
+        if not colunas:
+            for i, t in enumerate(textos):
+                if t.startswith("BRUTO") and i < len(grupos) and grupos[i] and grupos[i] not in colunas:
+                    colunas[grupos[i]] = i
+            if not colunas:
+                raise ValueError("demonstrativo sem a coluna Bruto sob IPVA, IPI e ICMS")
+            continue
+        if i_mun is None or i_mun >= len(r) or cf.norm(_texto_celula(r[i_mun])) != alvo:
+            continue
+        for tributo, i in colunas.items():
+            valor = _numero_celula(r[i]) if i < len(r) else None
+            if valor:
+                saida.append({"mes": mes, "tributo": tributo, "valor": round(valor, 2)})
+    return saida
+
+
 def ler_planilha(conteudo: bytes, municipio: str, ano: int | None = None, mes: str | None = None) -> list[dict]:
-    """Os repasses do Município numa planilha do Estado. O cabeçalho é a primeira linha com uma célula
-    de município e outra de ICMS ou IPVA; sem coluna de mês, vale o mês do link (``mes``)."""
-    saida: list[dict] = []
-    for linhas in planilha(conteudo):
+    import warnings
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")               # extensões do Excel que o openpyxl não usa
+        return _ler_planilha(conteudo, municipio, ano, mes)
+
+
+def _ler_planilha(conteudo: bytes, municipio: str, ano: int | None, mes: str | None) -> list[dict]:
+    """Os repasses do Município numa planilha do Estado. Três formas, nesta ordem:
+    - a conciliação das distribuições (2025 em diante): só a folha ``Agregado`` é lida (as outras são
+      as contas que levam a ela e somariam em dobro);
+    - o demonstrativo antigo: uma folha por mês, com o nome ``MM-AAAA``;
+    - qualquer outra: a primeira linha com município e ICMS ou IPVA é o cabeçalho; sem coluna de mês,
+      vale o mês do link (``mes``)."""
+    livro = _livro(conteudo)
+    try:
+        if "Agregado" in livro.sheetnames:
+            return _agregado(livro["Agregado"], municipio)
+        mensais = [(f"{m.group(2)}-{m.group(1)}", n) for n in livro.sheetnames if (m := _FOLHA_MES.match(n.strip()))]
+        if mensais:
+            saida: list[dict] = []
+            for mes_folha, nome in mensais:
+                if ano is None or mes_folha.startswith(str(ano)):
+                    saida.extend(_demonstrativo(livro[nome], municipio, mes_folha))
+            return saida
+        folhas = [[[_texto_celula(v) for v in r] for r in f.iter_rows(values_only=True)] for f in livro.worksheets]
+    finally:
+        livro.close()
+    saida = []
+    for linhas in folhas:
         for i, linha in enumerate(linhas):
             normal = [cf.norm(c) for c in linha]
             if any("MUNIC" in c for c in normal) and any(_tributo(c) for c in normal):

@@ -29,7 +29,9 @@ guarda; ``contas`` lê qualquer uma delas (JSON ou tabela HTML) e fica com as li
 
 from __future__ import annotations
 
+import csv
 import html as html_lib
+import io
 import re
 import urllib.parse
 
@@ -86,10 +88,53 @@ def links_das_listas(pagina: str) -> list[str]:
     return list(dict.fromkeys(saida))
 
 
+# Cabeçalho real dos dados abertos (sondagem de 28/11/2026): CSV com vírgula, uma linha por responsável
+# e processo; o CPF vem mascarado (só os dois primeiros dígitos) e o Município traz o órgão depois de " - ".
+COLUNAS_CSV = ("Município", "Nome", "CPF", "Assunto", "Mês/Ano", "Processo/Fase", "Dt. Trânsito Julgado",
+               "Data Julgamento", "Acórdão/Resolução", "Url", "TipoLista")
+
+
+def _sem_particulas(nome: str) -> str:
+    """O nome do Município sem "de", "do", "da"... (o CSV escreve APARECIDA GOIANIA)."""
+    return " ".join(p for p in cf.norm(nome).split() if p not in ("DE", "DO", "DA", "DOS", "DAS", "D"))
+
+
+def _csv_contas(texto: str, municipio: str) -> list[dict]:
+    """As linhas do Município no CSV dos dados abertos. O nome antes de " - " tem de ser o do Município
+    inteiro (GOIANIA, não APARECIDA GOIANIA nem GOIANIRA); o resto é o órgão (sem ele, a Prefeitura)."""
+    leitor = csv.DictReader(io.StringIO(texto.lstrip("\ufeff")))
+    faltam = [c for c in ("Município", "Nome", "Processo/Fase") if c not in (leitor.fieldnames or [])]
+    if faltam:
+        raise ValueError(f"CSV das contas irregulares sem as colunas {', '.join(faltam)}")
+    alvo = _sem_particulas(municipio)
+    saida = []
+    for r in leitor:
+        lugar = (r.get("Município") or "").strip()
+        nome, _, orgao = lugar.partition(" - ")
+        if _sem_particulas(nome) != alvo:
+            continue
+        cpf = (r.get("CPF") or "").strip()
+        saida.append({
+            "municipio": nome.strip(), "entidade": orgao.strip() or "Prefeitura (Município)",
+            "responsavel": (r.get("Nome") or "").strip(), "processo": (r.get("Processo/Fase") or "").strip(),
+            "exercicio": (r.get("Mês/Ano") or "").strip(), "transito": cf.data(r.get("Dt. Trânsito Julgado")),
+            "cpf_parcial": cpf or None, "assunto": (r.get("Assunto") or "").strip() or None,
+            "decisao": (r.get("Acórdão/Resolução") or "").strip() or None,
+            "data_julgamento": cf.data(r.get("Data Julgamento")),
+            "tipo_lista": (r.get("TipoLista") or "").strip() or None,
+            "url_processo": (r.get("Url") or "").strip() or None, "registro": dict(r)})
+    return saida
+
+
 def contas(conteudo: bytes, municipio: str = "Goiânia") -> list[dict]:
-    """As linhas do Município numa lista de contas (JSON ou tabela HTML). O Município é procurado nos
-    campos de município, ente, órgão ou entidade, com a mesma regra que separa Goiânia de Aparecida de
-    Goiânia. Levanta ``ValueError`` se a resposta não tiver lista nem tabela."""
+    """As linhas do Município numa lista de contas (CSV dos dados abertos, JSON ou tabela HTML). O
+    Município é procurado nos campos de município, ente, órgão ou entidade, com a mesma regra que separa
+    Goiânia de Aparecida de Goiânia. Levanta ``ValueError`` se a resposta não tiver lista nem tabela."""
+    texto = cf.decodificar(conteudo).lstrip("\ufeff")
+    primeira = texto.split("\n", 1)[0]
+    if (not primeira.lstrip().startswith(("[", "{", "<")) and primeira.count(",") >= 3
+            and "munic" in cf.chave(primeira)):
+        return _csv_contas(texto, municipio)
     obj = cf.json_ou_none(conteudo)
     if obj is not None:
         regs = cf.registros_json(obj)
@@ -115,6 +160,9 @@ def contas(conteudo: bytes, municipio: str = "Goiânia") -> list[dict]:
             "processo": cf.campo(r, "processo", "numero_processo", contem=("processo",)),
             "exercicio": cf.campo(r, "exercicio", "ano", contem=("exercicio",)),
             "transito": cf.campo(r, contem=("transito",)),
+            "cpf_parcial": None, "assunto": cf.campo(r, "assunto", contem=("assunto",)),
+            "decisao": cf.campo(r, contem=("acordao", "resolucao", "decisao")), "data_julgamento": None,
+            "tipo_lista": None, "url_processo": cf.campo(r, "url", "link"),
             "registro": r,
         })
     return saida

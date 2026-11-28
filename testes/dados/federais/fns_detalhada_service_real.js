@@ -1,0 +1,226 @@
+/**
+ * @desc Define um módulo anonimo dependente de app e
+ * cria o serviço DetalhadaService
+ */
+define([
+    'app'
+],
+    /**
+     *
+     * @param app
+     * @returns {*}
+     */
+    function (app) {
+
+        /**
+         *
+         * @type {string}
+         * @desc var privada que referencia a URL de acesso à API detalhada/api/v1/
+         */
+        var cGetUrl = 'recursos';
+        
+        this.nomeResourceDetalhada = 'consulta-detalhada';
+        
+        this.filtroParams = {};
+
+        /**
+         * @param Restangular, $log
+         * @constructor
+         */
+        var DetalhadaService = function (Restangular, $log) {
+            this.$log = $log;
+            this.Restangular = Restangular;
+        }
+
+        /**
+         * @desc Dependency Injection
+         */
+        DetalhadaService.$inject = ['Restangular', '$log'];
+
+        /**
+         * @method
+         * @desc Recuperaçao de collection para recurso detalhada
+         * @returns {*}
+         */
+        DetalhadaService.prototype.cGet = function (resource, params) {
+            resource = resource || 'detalhada';
+            return this.Restangular.all(cGetUrl).customGET(resource, params);
+        }
+
+        /**
+         * @method
+         * @desc Permite inserção de recurso detalhada
+         * @returns {*}
+         */
+        DetalhadaService.prototype.post = function (params) {
+            return this.Restangular.all(cGetUrl + 'detalhada').post(params);
+        }
+        /**
+         * @method
+         * @desc Recuperaçao de objeto único para recurso detalhada
+         * @returns {*}
+         */
+        DetalhadaService.prototype.get = function (params) {
+            return this.Restangular.one(cGetUrl + 'detalhada', params).get();
+        }
+        /**
+         * @method
+         * @desc Permite remoção de recurso detalhada
+         * @returns {*}
+         */
+        DetalhadaService.prototype.remove = function (params) {
+            return this.Restangular.one(cGetUrl + 'detalhada', params).remove();
+        }
+        /**
+         * @method
+         * @desc Permite edição de dados para recurso detalhada
+         * @returns {*}
+         */
+        DetalhadaService.prototype.put = function (params) {
+            return this.Restangular.all(cGetUrl).customPUT('detalhada', params);
+        }
+        
+        DetalhadaService.prototype.recuperarEntidades = function(parametros) {
+        	
+        	/*if(parametros.dataInicialOb!=undefined){
+        		try { 
+        			var dataInicialObDecode = decodeURIComponent(parametros.dataInicialOb);
+        			parametros.dataInicialOb = dataInicialObDecode;
+        		} catch(e) { 
+        			console.error(e); 
+        		}
+        	}
+        	if(parametros.dataFinalOb!=undefined){
+        		try { 
+        			var dataFinalObDecode = decodeURIComponent(parametros.dataFinalOb);
+        			parametros.dataFinalOb = dataFinalObDecode;
+        		} catch(e) { 
+        			console.error(e); 
+        		}
+        	}*/
+    		return this.Restangular.all(cGetUrl).customGET(
+    				nomeResourceDetalhada + '/entidades', parametros);
+    		
+    	}
+        
+        DetalhadaService.prototype.recuperarAcoes = function(parametros) {
+
+        	/*if(parametros.dataInicialOb!=undefined){
+        		try { 
+        			var dataInicialObDecode = decodeURIComponent(parametros.dataInicialOb);
+        			parametros.dataInicialOb = dataInicialObDecode;
+        		} catch(e) { 
+        			console.error(e); 
+        		}
+        	}
+        	if(parametros.dataFinalOb!=undefined){
+        		try { 
+        			var dataFinalObDecode = decodeURIComponent(parametros.dataFinalOb);
+        			parametros.dataFinalOb = dataFinalObDecode;
+        		} catch(e) { 
+        			console.error(e); 
+        		}
+        	}*/
+    		return this.Restangular.all(cGetUrl).customGET(
+    				nomeResourceDetalhada + '/detalhe-acao', parametros);
+    		
+    	}
+        
+        DetalhadaService.prototype.recuperarPagamentos = function(parametros) {
+
+        	/*if(parametros.dataInicialOb!=undefined){
+        		try { 
+        			var dataInicialObDecode = decodeURIComponent(parametros.dataInicialOb);
+        			parametros.dataInicialOb = dataInicialObDecode;
+        		} catch(e) { 
+        			console.error(e); 
+        		}
+        	}
+        	if(parametros.dataFinalOb!=undefined){
+        		try { 
+        			var dataFinalObDecode = decodeURIComponent(parametros.dataFinalOb);
+        			parametros.dataFinalOb = dataFinalObDecode;
+        		} catch(e) { 
+        			console.error(e); 
+        		}
+        	}*/
+    		return this.Restangular.all(cGetUrl).customGET(
+    				nomeResourceDetalhada + '/detalhe-pagamento', parametros);
+    		
+    	}
+        
+        DetalhadaService.prototype.recuperarContas = function(parametros) {
+        	/*if(parametros.dataInicialOb!=undefined){
+        		try { 
+        			var dataInicialObDecode = decodeURIComponent(parametros.dataInicialOb);
+        			parametros.dataInicialOb = dataInicialObDecode;
+        		} catch(e) { 
+        			console.error(e); 
+        		}
+        	}
+        	if(parametros.dataFinalOb!=undefined){
+        		try { 
+        			var dataFinalObDecode = decodeURIComponent(parametros.dataFinalOb);
+        			parametros.dataFinalOb = dataFinalObDecode;
+        		} catch(e) { 
+        			console.error(e); 
+        		}
+        	}*/
+    		return this.Restangular.all(cGetUrl).customGET(
+    				nomeResourceDetalhada + '/detalhe-conta', parametros);
+    		
+    	}
+        
+        DetalhadaService.prototype.recuperarOrdensBancaria = function(parametros) {
+        	try { 
+        		  var competenciaDecode = decodeURIComponent(parametros.competencia);
+        		  parametros.competencia = competenciaDecode;
+        		} catch(e) { 
+        		  console.error(e); 
+        		}
+    		return this.Restangular.all(cGetUrl).customGET(
+    				nomeResourceDetalhada + '/detalhe-ordem-bancaria', parametros);
+    		
+    	}
+        
+        DetalhadaService.prototype.recuperarSaldoContaCorrente = function(parametros) {
+    		return this.Restangular.all(cGetUrl).customGET(
+    				nomeResourceDetalhada + '/detalhe-saldo', parametros);
+    		
+    	}
+        
+        DetalhadaService.prototype.recuperarUltimoSaldoContaCorrente = function(parametros) {
+    		return this.Restangular.all(cGetUrl).customGET(
+    				nomeResourceDetalhada + '/ultimo-saldo', parametros);
+    		
+    	}
+        
+        DetalhadaService.prototype.recuperarUltimoSaldoContaCorrenteAnoAnterior = function(parametros) {
+    		return this.Restangular.all(cGetUrl).customGET(
+    				nomeResourceDetalhada + '/ultimo-saldo-ano-anterior', parametros);
+    		
+    	}
+        
+        DetalhadaService.prototype.gerarPlanilhaDetalhada = function (params) {
+            return this.Restangular.all(cGetUrl +'/'+ nomeResourceDetalhada + '/planilha-detalhada/').withHttpConfig({ responseType: 'arraybuffer' }).post(params);
+        }
+        
+        DetalhadaService.prototype.recuperarDescontoPagamanto = function (params) {
+            return this.Restangular.all(cGetUrl +'/'+ nomeResourceDetalhada + '/detalhe-desconto/').post(params);
+        }
+
+		DetalhadaService.prototype.gerarArquivoSGIF = function (params) {
+			return this.Restangular.all(cGetUrl +'/'+ nomeResourceDetalhada + '/gerar-arquivo-sgif/')
+				.withHttpConfig({ responseType: 'arraybuffer' })
+				.post(params);
+		}
+
+        /**
+         * @desc Criação do serviço angularJS
+         * @type {boolean}
+         */
+        app.service('detalhadaService', DetalhadaService);
+
+        return app;
+    }
+);
