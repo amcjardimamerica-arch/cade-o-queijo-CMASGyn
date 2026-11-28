@@ -232,7 +232,11 @@ def motor_fns_entidades(ctx, ibge, paginas_max: int = 20) -> None:
 # contagem e apareceram na soma: em 2025 a ação 68058 teve 1.309.828,83 a mais, exatamente duas ordens
 # repetidas; em 2026 a 67738 teve 921.567,18 a mais, uma ordem repetida. Por isso a linha que reaparece em
 # outra página não conta de novo, e a listagem que fica curta é relida até achar as que faltam.
-RELEITURAS_FNS = 2
+# Rodada 10: a sondagem de 06:50Z (a8761d9) leu as páginas 1, 2 e 7 de novo e veio byte a byte o mesmo da
+# coleta, 35 minutos antes (sha256 b773ee82..., dee7cb79..., f0bc6bcb...): a repetição é fixa, não do acaso.
+# Fica uma releitura só, para o caso de o servidor mudar; se ela não trouxer as que faltam, as ordens vêm
+# por ação (o filtro acoes=61659 respondeu na mesma sondagem: 166 ordens da ação, em 2 páginas).
+RELEITURAS_FNS = 1
 
 
 def _paginas_fns(ctx, alvo: str, mes: str, montar, ler) -> tuple[list[dict] | None, str | None, str | None]:
@@ -272,8 +276,9 @@ def _paginas_fns(ctx, alvo: str, mes: str, montar, ler) -> tuple[list[dict] | No
         if len(linhas) >= total or not repetidas:
             break
     if len(linhas) < total:
-        motivo = (f"; a paginação repetiu {repetidas} linhas em outra página e {RELEITURAS_FNS} releituras "
-                  "não trouxeram as que faltam") if repetidas else ""
+        releu = "a releitura não trouxe" if RELEITURAS_FNS == 1 else f"{RELEITURAS_FNS} releituras não trouxeram"
+        motivo = (f"; a paginação repetiu {repetidas} linhas em outra página e {releu} as que faltam"
+                  if repetidas else "")
         return None, "falha", f"{len(linhas)} de {total} linhas{motivo}"
     return linhas, None, None
 
@@ -863,7 +868,9 @@ def _guardar_decisoes(ctx, decisoes: list[dict], so_goiania: bool) -> int:
 
 def motor_tcu(ctx, termo: str = "Goiânia", paginas: int = 10) -> None:
     """Os acórdãos do TCU que citam Goiânia: pela pesquisa (termo) e pelos dados abertos (os
-    recentes, filtrados pelo texto), até a data mais antiga do intervalo."""
+    recentes, filtrados pelo texto), até a data mais antiga do intervalo. A pesquisa vai até o total que
+    ela declara (``quantidadeEncontrada``), salvo se passar antes do começo do intervalo, e diz o que
+    faltou quando uma página cai ou o teto de páginas para a leitura."""
     preparar(ctx.banco)
     desde = f"{min(ctx.meses)}-01" if ctx.meses else None
     for alvo, montar, so_goiania, por_pagina in (
@@ -872,8 +879,10 @@ def motor_tcu(ctx, termo: str = "Goiânia", paginas: int = 10) -> None:
         guardadas, situacao, erro = 0, "vazio", None
         total = max(1, paginas * tcu.QUANTIDADE // por_pagina)                # o mesmo alcance com 50 por vez
         if alvo == "pesquisa" and tcu.LIMITE_PESQUISA:
-            total = min(total, tcu.LIMITE_PESQUISA // por_pagina)             # a pesquisa para em 100
-        for p in range(total):
+            total = min(total, tcu.LIMITE_PESQUISA // por_pagina)             # o corte antigo, se religado
+        ate_o_total = alvo == "pesquisa" and not tcu.LIMITE_PESQUISA
+        declarados, lidos, completa, curta, p = None, 0, False, False, 0
+        while p < total:
             url = montar(p * por_pagina)
             leitura = ctx.ler("tcu", f"{alvo} {p}", url, tempo=90)
             if not leitura.ok:
@@ -885,14 +894,27 @@ def motor_tcu(ctx, termo: str = "Goiânia", paginas: int = 10) -> None:
                 _anotar(ctx, "tcu", f"{alvo} {p}", "", url, f"formato: {e}")
                 situacao, erro = "formato", str(e)
                 break
+            if ate_o_total and p == 0 and (declarados := tcu.encontrados(leitura.conteudo)) is not None:
+                total = max(1, min(-(-declarados // por_pagina), tcu.PAGINAS_MAX_PESQUISA))
+            lidos += len(decisoes)
             guardadas += _guardar_decisoes(ctx, decisoes, so_goiania)
             situacao = "lido" if guardadas else "vazio"
             datas = [d["data"] for d in decisoes if d.get("data")]
-            if len(decisoes) < por_pagina or (desde and datas and max(datas) < desde):
+            if desde and datas and max(datas) < desde:
+                completa = True                          # passou do começo do intervalo: nada mais serve
+                break
+            if len(decisoes) < por_pagina:
+                curta = True                             # a última página (ou uma que veio curta)
                 break
             if alvo == "pesquisa" and tcu.LIMITE_PESQUISA and p == total - 1 and erro is None:
                 erro = (f"a pesquisa do TCU não devolve além de {tcu.LIMITE_PESQUISA} resultados; os mais "
                         "relevantes foram guardados e os recentes vêm dos dados abertos")
+            p += 1
+        if ate_o_total and declarados and lidos < declarados and not completa:
+            falta = (f"lidos {lidos} de {declarados} resultados; faltam os de inicio={lidos} em diante"
+                     + ("" if erro else " (a página veio curta)" if curta
+                        else f" (teto de {tcu.PAGINAS_MAX_PESQUISA} páginas)"))
+            erro = f"{erro}; {falta}" if erro else falta
         if guardadas and situacao in ("falha", "formato", "nao_publicado"):
             situacao = "lido"                            # as páginas anteriores valem; o erro fica anotado
         _situacao(ctx, "tcu", alvo, situacao, via=alvo, registros=guardadas, erro=erro)
@@ -991,13 +1013,35 @@ def motor_tcm(ctx, termo: str = "Goiânia", paginas: int = 5) -> None:
 
 def _jurisprudencia_tcm(ctx, termo: str, paginas: int) -> str | None:
     """A pesquisa da jurisprudência do TCM-GO (``tcm.url_jurisprudencia``), da sessão mais nova para a mais
-    antiga, até passar do começo do intervalo (ou até ``paginas``): guarda as decisões sobre Goiânia e
-    devolve None quando a API respondeu; senão, o motivo, e ``motor_tcm`` tenta os candidatos."""
+    antiga, até passar do começo do intervalo (ou até ``paginas``): primeiro pelo filtro de município, sem
+    texto; se o filtro não valer, pelo texto. Guarda as decisões sobre Goiânia e devolve None quando a API
+    respondeu; senão, o motivo, e ``motor_tcm`` tenta os candidatos."""
+    municipio = tcm.valor_do_municipio(termo)
+    pelo_municipio = _paginas_jurisprudencia(ctx, "", municipio, paginas, f"jurisprudencia {municipio.lower()}")
+    if isinstance(pelo_municipio, str):
+        return pelo_municipio
+    guardadas, parcial, filtro_falhou = pelo_municipio
+    if filtro_falhou:
+        pelo_texto = _paginas_jurisprudencia(ctx, termo, None, paginas, "jurisprudencia")
+        if isinstance(pelo_texto, str):
+            return pelo_texto
+        guardadas, parcial, _ = pelo_texto
+        parcial = "; ".join(x for x in (filtro_falhou, parcial) if x)
+    _situacao(ctx, "tcm", "decisoes", "lido" if guardadas else "vazio", via=tcm.JURISPRUDENCIA, registros=guardadas,
+              erro=parcial)
+    return None
+
+
+def _paginas_jurisprudencia(ctx, texto: str, municipio: str | None, paginas: int, alvo: str):
+    """As páginas de uma busca da jurisprudência do TCM-GO: (guardadas, nota, filtro que não valeu) ou o
+    motivo (texto) se a primeira página não veio. Com ``municipio``, a primeira página é conferida antes
+    de guardar: se nem metade das decisões é sobre Goiânia (ou não vem nenhuma), o filtro não valeu e
+    nada é guardado."""
     desde = f"{min(ctx.meses)}-01" if ctx.meses else None
     guardadas, chaves, parcial, mais_antiga, mais = 0, set(), None, None, False
     for p in range(1, paginas + 1):
-        url = tcm.url_jurisprudencia(termo, p)
-        leitura = ctx.ler("tcm", f"jurisprudencia p{p}", url, tempo=90, cabecalhos=tcm.CABECALHOS_JURISPRUDENCIA)
+        url = tcm.url_jurisprudencia(texto, p, municipio=municipio)
+        leitura = ctx.ler("tcm", f"{alvo} p{p}", url, tempo=90, cabecalhos=tcm.CABECALHOS_JURISPRUDENCIA)
         if not leitura.ok:
             if p == 1:
                 return leitura.erro or f"HTTP {leitura.http}"
@@ -1006,11 +1050,16 @@ def _jurisprudencia_tcm(ctx, termo: str, paginas: int) -> str | None:
         try:
             decisoes, mais = tcm.jurisprudencia(leitura.conteudo)
         except ValueError as e:
-            _anotar(ctx, "tcm", f"jurisprudencia p{p}", "", url, f"formato: {e}")
+            _anotar(ctx, "tcm", f"{alvo} p{p}", "", url, f"formato: {e}")
             if p == 1:
                 return f"formato: {e}"
             parcial = f"página {p}: formato: {e}"
             break
+        if municipio and p == 1:
+            de_goiania = sum(1 for d in decisoes if d.get("sobre_goiania"))
+            if not decisoes or 2 * de_goiania < len(decisoes):
+                return 0, None, (f"o filtro municipio={municipio} não valeu ({de_goiania} de {len(decisoes)} "
+                                 "decisões da primeira página sobre Goiânia); a busca seguiu pelo texto")
         novas = [d for d in decisoes if d["chave"] not in chaves]
         chaves.update(d["chave"] for d in novas)
         guardadas += _guardar_decisoes(ctx, novas, True)
@@ -1023,9 +1072,7 @@ def _jurisprudencia_tcm(ctx, termo: str, paginas: int) -> str | None:
     if parcial is None and mais and desde and mais_antiga and mais_antiga >= desde:
         parcial = (f"{paginas} páginas lidas (o teto): as decisões chegam a {mais_antiga}, "
                    f"e o intervalo começa em {desde}")
-    _situacao(ctx, "tcm", "decisoes", "lido" if guardadas else "vazio", via=tcm.JURISPRUDENCIA, registros=guardadas,
-              erro=parcial)
-    return None
+    return guardadas, parcial, None
 
 
 # --- Ligação com o historico --------------------------------------------------------------

@@ -18,7 +18,7 @@ from pathlib import Path
 from types import SimpleNamespace
 
 from onisciente import historico
-from onisciente.coletores import base, fns, tcu
+from onisciente.coletores import base, fns
 from onisciente.coletores import motores_federais as mf
 
 DADOS = Path(__file__).parent / "dados" / "federais"
@@ -166,21 +166,11 @@ def test_motor_fns_detalhe_recusado_e_falta_da_fonte(tmp_path):
 
 # --- TCU: a pesquisa para em 100 resultados (requisito 154) ---------------------------------------
 
-def test_tcu_pesquisa_nao_pede_alem_de_100_e_diz_por_que(tmp_path):
-    pedidos = []
-
-    def leitor(url, **_):
-        pedidos.append(url)
-        if url.startswith(tcu.PESQUISA):
-            return _ok(url, _bytes("tcu_pesquisa_50_real.json"))      # páginas cheias
-        return _nao(url)
-
-    ctx = _ctx(tmp_path, leitor, meses=("2020-01", "2026-11"))
-    mf.motor_tcu(ctx, "Goiânia")
-    feitas = [u for u in pedidos if u.startswith(tcu.PESQUISA)]
-    assert len(feitas) == 2 and not any("inicio=100" in u for u in feitas)
-    situacao, erro = _situacoes(ctx, "tcu")["pesquisa"]
-    assert situacao == "lido" and "além de 100" in erro
+# 28/11/2026 (rodada 10): a trava test_tcu_pesquisa_nao_pede_alem_de_100_e_diz_por_que saiu daqui, com a
+# troca autorizada pelo coordenador. Ela exigia o corte da pesquisa do TCU em 100 resultados. A prova de que
+# a pesquisa passa de 100 é a sondagem de 06:50Z (commit a8761d9): inicio=150 e inicio=1300 responderam com
+# 50 acórdãos cada (quantidadeEncontrada 1374). A trava que a substitui exige ler até o total e dizer o que
+# faltou: testes/test_coletores_federais_decima.py::test_tcu_pesquisa_le_ate_o_total_e_diz_o_que_faltou.
 
 
 # --- Sondagem da sétima rodada ----------------------------------------------------------------------
