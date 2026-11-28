@@ -1,14 +1,17 @@
-# Coleta em andamento: boletim de 2026-11-28T00:53+00:00
+# Coleta em andamento: boletim de 2026-11-28T00:57+00:00
 
-Desde 2026-11-28T00:23:00+00:00: 1187 chamadas registradas.
-Última chamada: 2026-11-28T00:53:12+00:00 (57162288000118).
+Desde 2026-11-28T00:23:00+00:00: 1362 chamadas registradas.
+Última chamada: 2026-11-28T00:57:31+00:00 (tcu 0).
 
 ## Por fonte
 
 | fonte | situação | chamadas |
 |---|---|---|
 | arquivos.receitafederal.gov.br | URLError | 2 |
-| brasilapi.com.br/api/cnpj | ok | 1181 |
+| brasilapi.com.br/api/cnpj | ok | 1353 |
+| certidoes.apps.tcu.gov.br/api/publico | HTTP 405 ({"mensagem":"Método não suportado na requisição para o endpo) | 1 |
+| portaldatransparencia.gov.br | HTTP 403 (<?xml version="1.0" encoding="UTF-8"?> <Error><Code>AccessDe) | 1 |
+| portaldatransparencia.gov.br | ok | 1 |
 | www10.goiania.go.gov.br | HTTP 500 | 3 |
 | www10.goiania.go.gov.br | ok | 1 |
 
@@ -16,7 +19,8 @@ Desde 2026-11-28T00:23:00+00:00: 1187 chamadas registradas.
 
 | fonte | n | mediana | p90 | máximo |
 |---|---|---|---|---|
-| brasilapi.com.br/api/cnpj | 1181 | 0.2 | 0.9 | 1.4 |
+| brasilapi.com.br/api/cnpj | 1353 | 0.2 | 0.9 | 1.4 |
+| portaldatransparencia.gov.br | 1 | 0.3 | 0.3 | 0.3 |
 | www10.goiania.go.gov.br | 1 | 2.2 | 2.2 | 2.2 |
 
 ## O que o banco tem agora
