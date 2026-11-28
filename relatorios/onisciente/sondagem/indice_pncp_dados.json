@@ -1,5 +1,5 @@
 {
- "quando": "2026-11-28T01:48:52+00:00",
+ "quando": "2026-11-28T02:10:03+00:00",
  "leituras": [
   {
    "fonte": "pncp_dados",
@@ -10,7 +10,7 @@
    "erro": "",
    "bytes": 73,
    "arquivo": "pncp_dados__dadosabertos-compras-gov-br-modulo-contratacoes-1-consultarcontratacoe-bd9ee77f.txt",
-   "segundos": 0.8
+   "segundos": 0.9
   },
   {
    "fonte": "pncp_dados",
@@ -32,7 +32,7 @@
    "erro": "TimeoutError: The read operation timed out",
    "bytes": 0,
    "arquivo": "pncp_dados__dadosabertos-compras-gov-br-modulo-contratacoes-2-consultaritenscontra-aacd331b.txt",
-   "segundos": 90.2
+   "segundos": 90.4
   },
   {
    "fonte": "pncp_dados",
@@ -43,7 +43,7 @@
    "erro": "TimeoutError: The read operation timed out",
    "bytes": 0,
    "arquivo": "pncp_dados__dadosabertos-compras-gov-br-modulo-contratacoes-3-consultarresultadoit-b3d9016b.txt",
-   "segundos": 90.1
+   "segundos": 90.4
   },
   {
    "fonte": "pncp_dados",
@@ -54,7 +54,7 @@
    "erro": "",
    "bytes": 0,
    "arquivo": "pncp_dados__pncp-gov-br-api-pncp-v1-orgaos-25141524000123-contratos-2026-76-termos-01ebb35c.txt",
-   "segundos": 0.9
+   "segundos": 0.6
   },
   {
    "fonte": "pncp_dados",
@@ -76,7 +76,7 @@
    "erro": "",
    "bytes": 0,
    "arquivo": "pncp_dados__pncp-gov-br-api-pncp-v1-orgaos-17736850000155-contratos-2024-3-termos-4b4c4066.txt",
-   "segundos": 0.6
+   "segundos": 0.7
   },
   {
    "fonte": "pncp_dados",
@@ -98,18 +98,18 @@
    "erro": "HTTP 422",
    "bytes": 214,
    "arquivo": "pncp_dados__pncp-gov-br-api-consulta-v1-instrumentoscobranca-inclusao-datainicial-4521ed1b.txt",
-   "segundos": 1.0
+   "segundos": 0.9
   },
   {
    "fonte": "pncp_dados",
    "url": "https://pncp.gov.br/api/consulta/v1/instrumentoscobranca/inclusao?dataInicial=20260101&dataFinal=20260131&pagina=1&tamanhoPagina=10",
    "post": null,
    "ok": false,
-   "http": 504,
-   "erro": "HTTP 504",
-   "bytes": 92,
+   "http": 500,
+   "erro": "HTTP 500",
+   "bytes": 201,
    "arquivo": "pncp_dados__pncp-gov-br-api-consulta-v1-instrumentoscobranca-inclusao-datainicial-6061c9b0.txt",
-   "segundos": 70.6
+   "segundos": 67.1
   },
   {
    "fonte": "pncp_dados",
@@ -120,7 +120,7 @@
    "erro": "HTTP 504",
    "bytes": 92,
    "arquivo": "pncp_dados__pncp-gov-br-api-consulta-v1-contratos-datainicial-20250101-datafinal-2-7e72b0a9.txt",
-   "segundos": 70.6
+   "segundos": 70.7
   }
  ]
 }
