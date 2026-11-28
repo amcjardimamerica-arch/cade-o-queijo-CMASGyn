@@ -587,8 +587,9 @@ def trilha(ctx: Contexto) -> dict:
         for f in ["*"] + funcoes:
             exemplos[m][f] = _estacoes(ctx, m, f, exec_, tf, dot, emp_mes, contratos)
     execucao = ctx.entrada("execucao")
+    lista, total = _execucao_entrada(ctx, execucao) if execucao else (None, {})
     return {"estacoes": ESTACOES_TEXTO, "exemplos": exemplos, "funcoes": funcoes,
-            "execucao": _execucao_entrada(ctx, execucao) if execucao else None,
+            "execucao": lista, "execucao_total": total,
             "dominio": next((d.funcao for d in ctx.alvo.ativos()), None)}
 
 
@@ -661,23 +662,49 @@ def _estacoes(ctx, m, f, exec_, tf, dot, emp_mes, contratos) -> list:
     return {"linhas": linhas, "faltantes": [s.numero for s in p.faltantes()], "ordem": p.ordem_violada()}
 
 
-def _execucao_entrada(ctx: Contexto, dados: dict) -> list[dict]:
-    """Empenho a empenho, quando a frente da execução entrega ``execucao.json``."""
+# Empenhos por recorte (mês e função, e o mês inteiro) que entram na página: os de maior valor. A tela mostra
+# no máximo 200 por recorte; com a despesa inteira de Goiânia (24 mil empenhos, 155 mil eventos), a trilha
+# levava todos e passou de 48 MB (28/11/2026). A contagem completa de cada recorte vai em ``execucao_total``.
+EMPENHOS_POR_RECORTE = 50
+_ESTACOES_EXEC = ("empenho", "liquidacao", "pagamento")
+
+
+def _execucao_entrada(ctx: Contexto, dados: dict) -> tuple[list[dict], dict]:
+    """Empenho a empenho, quando a frente da execução entrega ``execucao.json``: os de maior valor de cada
+    recorte, com as estações somadas (uma prova por empenho, a resposta lida do portal), e quantos há."""
+    empenhos = dados.get("empenhos") or []
+    total: dict[str, dict[str, int]] = defaultdict(lambda: defaultdict(int))
+    grupos: dict[tuple[str, str], list[int]] = defaultdict(list)
+    for i, e in enumerate(empenhos):
+        mes, fun = str(e.get("data") or "")[:7], str(e.get("funcao") or "")
+        for f in ("*", fun):
+            total[mes][f] += 1
+            grupos[(mes, f)].append(i)
+    escolhidos: set[int] = set()
+    for idx in grupos.values():
+        idx.sort(key=lambda i: -float(empenhos[i].get("valor") or 0))
+        escolhidos.update(idx[:EMPENHOS_POR_RECORTE])
     out = []
-    for i, e in enumerate(dados.get("empenhos") or []):
-        chave = ctx.originais.externo(f"exec:{i}", f"Execução: empenho {e.get('numero', '')}", e.get("url", ""),
-                                      quando=e.get("lido_em", ""), sha256=e.get("sha256", ""))
-        eventos = []
-        for j, ev in enumerate(e.get("eventos") or []):
-            k = ctx.originais.externo(f"exec:{i}:{j}", f"{ev.get('documento') or ev.get('estacao')}",
-                                      ev.get("url", ""), quando=ev.get("lido_em", ""))
-            eventos.append({"estacao": ev.get("estacao"), "data": ev.get("data"), "valor": N(ev.get("valor"), k),
-                            "documento": ev.get("documento", "")})
+    for i in sorted(escolhidos, key=lambda i: (str(empenhos[i].get("data") or ""), str(empenhos[i].get("numero")))):
+        e = empenhos[i]
+        chave = ctx.originais.externo(f"exec:{e.get('numero', i)}", f"Execução: empenho {e.get('numero', '')}",
+                                      e.get("url", ""), quando=e.get("lido_em", ""), sha256=e.get("sha256", ""))
+        soma: dict[str, list] = {}
+        for ev in e.get("eventos") or []:
+            st = ev.get("estacao")
+            if st not in _ESTACOES_EXEC:
+                continue
+            x = soma.setdefault(st, [0.0, 0, ev.get("data") or ""])
+            x[0] += float(ev.get("valor") or 0)
+            x[1] += 1
+            x[2] = min(filter(None, [x[2], ev.get("data") or ""]), default="")
+        eventos = [{"estacao": st, "data": soma[st][2], "valor": N(soma[st][0], chave),
+                    "documento": f"{soma[st][1]} registro(s)"} for st in _ESTACOES_EXEC if st in soma]
         out.append({"numero": e.get("numero"), "data": e.get("data"), "mes": str(e.get("data") or "")[:7],
                     "orgao": e.get("orgao_cnpj"), "credor": e.get("credor"), "fonte": e.get("fonte"),
                     "funcao": e.get("funcao"), "valor": N(e.get("valor"), chave), "contrato": e.get("contrato"),
                     "eventos": eventos})
-    return out
+    return out, {m: dict(v) for m, v in total.items()}
 
 
 # =============================================================================================

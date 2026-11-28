@@ -804,7 +804,8 @@
         'Quando a frente da execução entregar os empenhos do portal da transparência do Município (número, credor, contrato, liquidação e pagamento), cada empenho aparece aqui com a sua trilha completa. Por enquanto a trilha acima é o agregado da matriz contábil, que é prova oficial do Tesouro.'));
     } else {
       var lista = exe.filter(function (e) { return e.mes === S.c && (!S.s || e.orgao === S.s) && (fun === '*' || e.funcao === fun); });
-      h += painel('empenhos', 'Empenho a empenho', lista.length + ' empenho(s) no recorte, cada um com as suas estações.',
+      var tot = ((D.execucao_total || {})[S.c] || {})[fun];
+      h += painel('empenhos', 'Empenho a empenho', (S.s || !tot || tot <= lista.length ? lista.length + ' empenho(s) no recorte' : L.int(tot) + ' empenhos no recorte; aqui os ' + L.int(lista.length) + ' de maior valor') + ', cada um com as suas estações somadas.',
         lista.length ? '<div class="rola"><table class="t cartoes"><thead><tr><th>Empenho</th><th>Credor</th><th class="num">Valor</th><th>Estações</th></tr></thead><tbody>' +
           lista.slice(0, 200).map(function (e) {
             return '<tr><td data-r="Empenho"><b class="mono">' + esc(e.numero) + '</b><br><span class="nota">' + esc(L.data(e.data)) + (e.contrato ? ', contrato ' + esc(e.contrato) : ', sem contrato informado') + '</span></td><td data-r="Credor">' + esc(e.credor) +
