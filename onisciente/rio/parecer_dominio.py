@@ -69,6 +69,8 @@ class ParecerDominio:
     def html(self, *, hoje: date | None = None) -> str:
         from ..parecer import html as parecer_html
         bruto = parecer_html.gerar(self.panorama, hoje=hoje)
+        if getattr(self.panorama, "execucao", None) is not None:
+            return bruto                   # o gerador do parecer já põe a seção da execução (Frente C)
         return inserir_execucao(bruto, secao_execucao(self.execucao, self.contas, self.qualidade))
 
     def como_dict(self) -> dict:
@@ -228,7 +230,7 @@ def montar(alvo: Alvo, dominio: Dominio, banco: Path | str, ate: date, *, mapa=N
                      "a item, com contratos, termos e folha.")
     pan = Panorama(competencia=competencia, alvo=alvo.nome, dominio=dominio.nome, rio=S.rio_da_secretaria(ex),
                    fichas=fichas, medidas=medidas, integridade=integ, margens=ex.margens, notas=notas,
-                   fiscal=fiscal)
+                   fiscal=fiscal, execucao=ex, contas=contas, qualidade=qualidade, banco=banco)
     return ParecerDominio(alvo, dominio, competencia, pan, ex, contas, qualidade)
 
 
