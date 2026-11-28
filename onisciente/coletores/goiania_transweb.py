@@ -8,6 +8,8 @@ Duas portas, as duas lidas pelo que a página mostra, sem adivinhar o que ela n�
   devolve o estado como veio, preenche data e órgão, aperta o botão (ou dispara o ``__doPostBack``
   do botão), lê a tabela de resultado, segue a paginação do GridView e, quando a consulta tem
   detalhe, escolhe cada empenho para ler as liquidações e os pagamentos dele;
+* a **página real** ``Portal_Despesas.aspx`` (OutSystems), lida pela sondagem: a lista do mês, uma
+  linha por empenho, com os popups de liquidação e de pagamento de cada linha (``consultar_lista``);
 * o **portal novo** (www.goiania.go.gov.br/transparencia/, WordPress): a lista de arquivos de cada
   categoria; quando há planilha (CSV), ela é lida com as mesmas colunas.
 
@@ -21,6 +23,7 @@ from __future__ import annotations
 
 import csv
 import io
+import json
 import re
 import tomllib
 import unicodedata
@@ -90,6 +93,10 @@ def documento(texto) -> str:
 
 _POSTBACK = re.compile(r"__doPostBack\(\s*['\"]([^'\"]*)['\"]\s*,\s*['\"]([^'\"]*)['\"]\s*\)")
 _WEBFORM = re.compile(r"WebForm_PostBackOptions\(\s*['\"]([^'\"]*)['\"]\s*,\s*['\"]([^'\"]*)['\"]")
+# OutSystems: OsAjax(evento, id de origem, alvo (o name, com $), evento do servidor, baldes, ...).
+_OSAJAX = re.compile(r"OsAjax\(\s*[^,]*,\s*'([^']*)'\s*,\s*'([^']*)'\s*,\s*'([^']*)'\s*,\s*'([^']*)'")
+_VAZIOS = ("area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr")
+_OCULTO = re.compile(r"display\s*:\s*none", re.I)
 
 
 @dataclass
@@ -128,6 +135,7 @@ class Formulario:
     opcoes: dict[str, list[tuple[str, str]]] = field(default_factory=dict)   # select -> (valor, texto)
     botoes: list[tuple[str, str]] = field(default_factory=list)   # submit: (name, value)
     postbacks: list[tuple[str, str]] = field(default_factory=list)  # __doPostBack achados na página
+    ajax: list[dict] = field(default_factory=list)                  # OsAjax achados (OutSystems)
 
     @property
     def aspnet(self) -> bool:
@@ -203,6 +211,37 @@ class Formulario:
                 corpo[botao[0]] = botao[1]
         return corpo
 
+    def envio_ajax(self, valores: dict[str, str], alvo: str, *, evento: str = "",
+                   baldes: str = "__OSVSTATE,") -> dict[str, str]:
+        """O corpo do pedido que o OsAjax do OutSystems monta (lido em _osjs.js): o formulário
+        serializado sem nenhum botão, ``__EVENTTARGET`` com o alvo, ``__AJAX`` com os baldes e,
+        quando há evento (``Change``, ``Notify``), ``__AJAXEVENT``."""
+        corpo = dict(self.campos)
+        for n, _ in self.botoes:
+            corpo.pop(n, None)
+        corpo.update(valores)
+        corpo["__EVENTTARGET"] = alvo
+        corpo["__AJAX"] = baldes
+        if evento:
+            corpo["__AJAXEVENT"] = evento
+        corpo.pop("__EVENTARGUMENT", None)
+        return corpo
+
+    def valor_de_opcao(self, nome: str, valor: str) -> str:
+        """O valor que o select aceita: o próprio, ou a opção do OutSystems (``__ossli_11``) cujo
+        fim é o valor pedido, ou a opção cujo texto é o valor pedido."""
+        ops = self.opcoes.get(nome)
+        if not ops or valor in (v for v, _ in ops):
+            return valor
+        alvo = str(valor).strip()
+        for v, _t in ops:
+            if v.startswith("__ossli_") and v[len("__ossli_"):] == alvo:
+                return v
+        for v, t in ops:
+            if norm(t) == norm(alvo):
+                return v
+        return valor
+
 
 class _Leitor(HTMLParser):
     """Lê formulários, tabelas e links numa passada, sem depender de HTML bem formado."""
@@ -219,11 +258,26 @@ class _Leitor(HTMLParser):
         self._pilha: list[dict] = []        # tabelas abertas (aninhadas)
         self._celula: dict | None = None
         self._link: list | None = None
+        self._script = 0                    # dentro de <script> ou <style>: o texto não é dado
+        self._ocultos: list[str] = []       # elementos com display:none abertos
+        self.ajax: list[dict] = []          # os OsAjax da página, com a classe e o texto do link
 
     # formulário -----------------------------------------------------------------------------
     def handle_starttag(self, tag, attrs):
         a = {k.lower(): (v if v is not None else "") for k, v in attrs}
+        if tag in ("script", "style"):
+            self._script += 1
+            return
+        if tag not in _VAZIOS and _OCULTO.search(a.get("style", "")):
+            self._ocultos.append(tag)
+        chamada = None
         for valor in a.values():
+            for origem, alvo, evento, baldes in _OSAJAX.findall(valor):
+                chamada = {"id": origem, "alvo": alvo, "evento": evento, "baldes": baldes, "tag": tag,
+                           "classe": a.get("class", ""), "texto": ""}
+                self.ajax.append(chamada)
+                if self._form is not None:
+                    self._form.ajax.append(chamada)
             for alvo, arg in _POSTBACK.findall(valor) + _WEBFORM.findall(valor):
                 if self._form is not None and (alvo, arg) not in self._form.postbacks:
                     self._form.postbacks.append((alvo, arg))
@@ -263,15 +317,21 @@ class _Leitor(HTMLParser):
         elif tag == "tr" and self._pilha:
             self._pilha[-1]["linha"] = []
         elif tag in ("td", "th") and self._pilha and self._pilha[-1]["linha"] is not None:
-            self._celula = {"texto": [], "postbacks": [], "links": [], "th": tag == "th"}
+            self._celula = {"texto": [], "postbacks": [], "links": [], "th": tag == "th",
+                            "ocultos": len(self._ocultos)}
         elif tag == "br" and self._celula is not None:
             self._celula["texto"].append(" ")
         if tag == "a":
-            self._link = [a.get("href", ""), []]
+            self._link = [a.get("href", ""), [], chamada]
             if self._celula is not None and a.get("href") and not a["href"].lower().startswith("javascript"):
                 self._celula["links"].append(a["href"])
 
     def handle_endtag(self, tag):
+        if tag in ("script", "style"):
+            self._script = max(0, self._script - 1)
+            return
+        if self._ocultos and self._ocultos[-1] == tag:
+            self._ocultos.pop()
         if tag == "form":
             self._form = None
         elif tag == "select":
@@ -288,6 +348,7 @@ class _Leitor(HTMLParser):
             self._textarea = None
         elif tag in ("td", "th") and self._celula is not None and self._pilha:
             c = self._celula
+            del self._ocultos[c["ocultos"]:]          # o que ficou aberto dentro da célula fecha com ela
             texto = re.sub(r"\s+", " ", "".join(c["texto"])).strip()
             linha = self._pilha[-1]["linha"]
             if linha is not None:
@@ -307,16 +368,20 @@ class _Leitor(HTMLParser):
             t = self._pilha.pop()
             self.tabelas.append(Tabela(t["id"], t["cab"], t["linhas"]))
         elif tag == "a" and self._link is not None:
-            href, texto = self._link
+            href, texto, chamada = self._link
             self.links.append((href, re.sub(r"\s+", " ", "".join(texto)).strip()))
+            if chamada is not None:
+                chamada["texto"] = self.links[-1][1]
             self._link = None
 
     def handle_data(self, data):
+        if self._script:
+            return
         if self._opcao is not None:
             self._opcao[1] += data
         if self._textarea and self._form is not None:
             self._form.campos[self._textarea] += data
-        if self._celula is not None:
+        if self._celula is not None and len(self._ocultos) <= self._celula["ocultos"]:
             self._celula["texto"].append(data)
         if self._link is not None:
             self._link[1].append(data)
@@ -383,6 +448,14 @@ class Consulta:
     detalhe: bool
     campos: dict[str, tuple[str, ...]]
     colunas: dict[str, tuple[str, ...]]
+    # Só nas consultas da página real (``[[transweb.despesas]]``): o que o HTML lido comprovou,
+    # como o pedido é enviado (``postback`` ou ``ajax``, como o OsAjax do OutSystems) e os popups
+    # de cada linha (liquidações, pagamentos e os dados do empenho).
+    confirmado: bool = False
+    envio: str = "postback"
+    envio_confirmado: bool = False
+    popups: dict = field(default_factory=dict)
+    tabela: str = ""                    # o fim do id da tabela de resultado
 
 
 @dataclass(frozen=True)
@@ -398,9 +471,12 @@ class Portal:
     dotacao: str = ""
     arquivo: str = ""
     menu_despesa: tuple[str, ...] = ()
+    # As consultas da página real Portal_Despesas.aspx, lida pela sondagem (as de cima são as do
+    # manual de 2010, que o portal atual não tem mais).
+    despesas: tuple[Consulta, ...] = ()
 
     def consulta(self, cid: str) -> Consulta:
-        for c in self.consultas:
+        for c in self.consultas + self.despesas:
             if c.id == cid:
                 return c
         raise KeyError(f"consulta {cid!r} não está em {self.arquivo}")
@@ -417,21 +493,32 @@ def carregar_portal(caminho: Path | str) -> Portal:
         caminho = RAIZ / caminho
     bruto = tomllib.loads(caminho.read_text(encoding="utf-8"))
     tw = bruto.get("transweb", {})
-    consultas = []
-    for c in tw.get("consultas", []):
-        consultas.append(Consulta(
+
+    def _consulta(c: dict) -> Consulta:
+        popups = {}
+        for tipo, p in (c.get("popups") or {}).items():
+            popups[tipo] = {"pagina": p["pagina"], "confirmado": bool(p.get("confirmado")),
+                            "colunas": {k: tuple(v) for k, v in (p.get("colunas") or {}).items()},
+                            "campos": {k: tuple(v) for k, v in (p.get("campos") or {}).items()}}
+        envio = c.get("envio") or {}
+        return Consulta(
             id=c["id"], tipo=c["tipo"], titulo=c.get("titulo", c["id"]),
             paginas=tuple(c.get("paginas", ())), granularidade=c.get("granularidade", "dia"),
             percorre_orgaos=bool(c.get("percorre_orgaos", False)), botao=tuple(c.get("botao", ("Consultar",))),
             detalhe=bool(c.get("detalhe", False)),
             campos={k: tuple(v) for k, v in (c.get("campos") or {}).items()},
-            colunas={k: tuple(v) for k, v in (c.get("colunas") or {}).items()}))
+            colunas={k: tuple(v) for k, v in (c.get("colunas") or {}).items()},
+            confirmado=bool(c.get("confirmado")), envio=str(envio.get("modo", "postback")),
+            envio_confirmado=bool(envio.get("confirmado")), popups=popups, tabela=str(c.get("tabela", "")))
+
+    consultas = [_consulta(c) for c in tw.get("consultas", [])]
+    despesas = [_consulta(c) for c in tw.get("despesas", [])]
     return Portal(
         base=tw.get("base", ""), entradas=tuple(tw.get("entradas", ())), confirmado=bool(tw.get("confirmado")),
         formato_data=tw.get("formato_data", "%d/%m/%Y"), paginas_maximas=int(tw.get("paginas_maximas", 200)),
         consultas=tuple(consultas), detalhe={k: tuple(v) for k, v in (tw.get("detalhe") or {}).items()},
         wordpress=dict(bruto.get("wordpress") or {}), dotacao=str(tw.get("dotacao", "") or DOTACAO_PADRAO),
-        arquivo=str(caminho), menu_despesa=tuple(tw.get("menu_despesa", ())))
+        arquivo=str(caminho), menu_despesa=tuple(tw.get("menu_despesa", ())), despesas=tuple(despesas))
 
 
 # --- Da tabela ao evento --------------------------------------------------------------------------
@@ -494,7 +581,7 @@ def eventos_da_tabela(tabela: Tabela, mapa: dict[str, int], tipo: str, *, consul
         ev = {"tipo": tipo, "empenho": cel("empenho").strip(), "ordem": cel("ordem").strip(),
               "data": dia.isoformat() if dia else "", "orgao": cel("orgao").strip(),
               "credor": cel("credor").strip(), "documento": documento(cel("documento")), "valor": round(valor, 2),
-              "elemento": re.sub(r"\D", "", cel("elemento")), "fonte": re.sub(r"\D", "", cel("fonte")),
+              "elemento": re.sub(r"\D", "", cel("elemento").split(" - ")[0]), "fonte": re.sub(r"\D", "", cel("fonte")),
               "funcao": "", "subfuncao": "", "dotacao": cel("dotacao").strip(), "historico": cel("historico").strip(),
               "consulta": consulta, "url": url}
         if ev["dotacao"]:
@@ -568,12 +655,16 @@ def paginas_do_menu(html, base: str, textos: Iterable[str]) -> list[str]:
     return out
 
 
+# Campos de filtro que a consulta pode deixar em branco: não decidem se a página é a certa.
+OPCIONAIS = ("orgao", "documento", "favorecido", "empenho")
+
+
 def abrir_consulta(ler: Ler, portal: Portal, c: Consulta) -> tuple[str, Formulario, Leitura] | str:
     """A primeira página candidata que responde com um formulário que tem os campos da consulta.
 
     Sem nenhuma candidata boa, procura no menu das páginas de entrada os links da despesa e tenta
     cada um deles (o TransWeb atual não tem mais os caminhos do manual de 2010)."""
-    obrigatorios = [k for k in c.campos if k not in ("orgao", "documento")]
+    obrigatorios = [k for k in c.campos if k not in OPCIONAIS]
     erros: list[str] = []
     candidatas = [urljoin(portal.base, p) for p in c.paginas]
     tentadas: set[str] = set()
@@ -632,7 +723,7 @@ def consultar(ler: Ler, portal: Portal, c: Consulta, valores: dict[str, str], *,
         nome = form.achar(c.campos.get(campo, ()))
         if nome is None:
             return Resultado(False, c.id, acao, erro=f"campo {campo} não achado no formulário")
-        preenchidos[nome] = valor
+        preenchidos[nome] = form.valor_de_opcao(nome, valor)
     botao = form.botao(c.botao)
     postback = None if botao else form.postback_de(c.botao)
     if botao is None and postback is None:
@@ -708,6 +799,349 @@ def _detalhe(ler: Ler, portal: Portal, c: Consulta, acao: str, form: Formulario,
     for ev in evs:
         ev["sha256"] = sha
     return evs
+
+
+# --- A página real: Portal_Despesas.aspx (OutSystems), a lista por mês e os popups --------------------
+#
+# Lida pela sondagem de 27/11/2026: um formulário OutSystems (mês, ano, órgão, favorecido, empenho e o
+# botão Buscar), a tabela com uma linha por empenho (Beneficiário, Nr. Empenho, Data, Orgão, Natureza
+# Despesa, Valor Empenhado, Valor Liquidado, Valor Pago), a tabela de totais, o contador "1 to 20 of
+# 822 records" e a paginação por OsAjax. Cada valor da linha é um link (GET) para um popup em
+# /DespesasWebBlocks/: EmpenhoPopUp (os dados do empenho), LiquidacaoPopUp (as liquidações) e
+# PagamentoPopUp (as ordens de pagamento e o valor pago); valor zero vem com link "#".
+
+_CONTADOR = re.compile(r"(\d+)\s*(?:to|a|até)\s*(\d+)\s*(?:of|de)\s*(\d+)\s*(?:records|registros)", re.I)
+_OS_JSON = "OsJSONUpdate("
+
+
+def contador(html) -> tuple[int, int, int] | None:
+    """O contador da lista do OutSystems: ``1 to 20 of 822 records`` vira (1, 20, 822)."""
+    texto = html if isinstance(html, str) else _decodificar(html)
+    texto = re.sub(r"<[^>]+>", " ", re.sub(r"<script.*?</script>", " ", texto, flags=re.S | re.I))
+    m = _CONTADOR.search(texto)
+    return (int(m.group(1)), int(m.group(2)), int(m.group(3))) if m else None
+
+
+def totais_da_lista(tabs: list[Tabela]) -> dict[str, float]:
+    """A tabela de totais (Total Empenhado, Total Liquidado, Total Pago), em qualquer arrumação."""
+    out: dict[str, float] = {}
+    for t in tabs:
+        textos = list(t.cabecalho) + [c.texto for ln in t.linhas for c in ln]
+        for tx in textos:
+            m = re.match(r"\s*Total\s+(Empenhado|Liquidado|Pago)\s*:?\s*(R\$\s*)?([\d.,()-]+)\s*$", tx, re.I)
+            if m and valor_br(m.group(3)) is not None:
+                out[m.group(1).lower()] = valor_br(m.group(3))
+    return out
+
+
+def resposta_outsystems(conteudo) -> tuple[str, dict[str, str]] | None:
+    """A resposta de um pedido OsAjax: blocos ``<script>OsJSONUpdate({...})</script>`` (o formato
+    que o _osjs.js processa). Devolve o HTML dos trechos trocados (cada um embrulhado com o seu id,
+    numa ``<table>`` quando o trecho são linhas) e os campos escondidos novos (o ``__OSVSTATE``).
+    Uma página inteira (postback comum) não é resposta OsAjax: devolve None."""
+    texto = conteudo if isinstance(conteudo, str) else _decodificar(conteudo)
+    if _OS_JSON not in texto:
+        return None
+    decod = json.JSONDecoder()
+    partes: list[str] = []
+    escondidos: dict[str, str] = {}
+    i = texto.find(_OS_JSON)
+    while i != -1:
+        try:
+            obj, _fim = decod.raw_decode(texto, i + len(_OS_JSON))
+        except ValueError:
+            i = texto.find(_OS_JSON, i + 1)
+            continue
+        if isinstance(obj, dict):
+            escondidos.update({k: str(v) for k, v in (obj.get("hidden") or {}).items()})
+            for ident, trecho in (obj.get("outers") or {}).items():
+                inner = trecho.get("inner", "") if isinstance(trecho, dict) else str(trecho)
+                if re.match(r"\s*<(thead|tbody|tr)\b", inner, re.I):
+                    partes.append(f'<table id="{ident}">{inner}</table>')
+                else:
+                    partes.append(f'<div id="{ident}">{inner}</div>')
+        i = texto.find(_OS_JSON, i + 1)
+    return "\n".join(partes), escondidos
+
+
+def proxima_pagina(ajax: list[dict], atual: int) -> dict | None:
+    """O link da página seguinte: o ``next`` do navegador (o alvo dele não muda de uma página para
+    outra), ou o número ``atual + 1``."""
+    for a in ajax:
+        if "ListNavigation_Next" in a.get("classe", ""):
+            return a
+    for a in ajax:
+        if "ListNavigation_PageNumber" in a.get("classe", "") and a.get("texto", "").strip() == str(atual + 1):
+            return a
+    return None
+
+
+def dados_do_empenho(html, campos: dict[str, tuple[str, ...]], *, padrao_dotacao: str = DOTACAO_PADRAO) -> dict:
+    """O EmpenhoPopUp: um formulário só de leitura (rótulo e campo). Vazio, " - " e "R$ 0,00" não
+    contam (a sondagem leu o popup sem o empenho, com todos os campos assim)."""
+    forms = formularios(html)
+    if not forms:
+        return {}
+    f = forms[0]
+    out: dict[str, str] = {}
+    for campo, cands in campos.items():
+        nome = f.achar(cands)
+        if not nome:
+            continue
+        v = re.sub(r"\s+", " ", f.campos.get(nome, "")).strip()
+        if not v or v.strip(" -") == "" or (v.startswith("R$") and valor_br(v) == 0):
+            continue
+        if campo == "documento":
+            v = documento(v)
+        elif campo in ("funcao", "subfuncao", "fonte"):
+            m = re.match(r"\s*(\d+)", v)
+            v = m.group(1) if m else ""
+        elif campo == "elemento":
+            v = re.sub(r"\D", "", v.split(" - ")[0])
+        elif campo == "data":
+            d = data_br(v)
+            v = d.isoformat() if d else ""
+        if v:
+            out[campo] = v
+    if out.get("dotacao"):
+        d = classificar_dotacao(out["dotacao"], padrao_dotacao)
+        for k in ("funcao", "subfuncao"):
+            out.setdefault(k, d.get(k, ""))
+    return {k: v for k, v in out.items() if v}
+
+
+def eventos_do_popup(html, tipo: str, colunas: dict[str, tuple[str, ...]], base: dict, *,
+                     url: str = "") -> list[dict]:
+    """As linhas de um popup de liquidação ou de pagamento, com o empenho, o credor e o órgão da lista.
+
+    Liquidação: o valor é o saldo liquidado; a parte anulada vira um evento ``anulacao`` e uma
+    liquidação anulada por inteiro não vira liquidação. Pagamento: o valor pago, com a data e o
+    número da ordem de pagamento; uma ordem sem valor pago vira ``ordem_pagamento``."""
+    achada = None
+    for t in tabelas(html):
+        m = mapear(t, colunas)
+        if "valor" in m:
+            achada = (t, m)
+            break
+    if achada is None:
+        return []
+    t, m = achada
+    fixos = {k: base.get(k, "") for k in ("empenho", "orgao", "credor", "documento", "elemento", "fonte",
+                                          "funcao", "subfuncao", "dotacao", "consulta")}
+    out = []
+    for linha in t.linhas:
+        def cel(campo: str) -> str:
+            i = m.get(campo)
+            return linha[i].texto if i is not None and i < len(linha) else ""
+        valor = valor_br(cel("valor"))
+        if valor is None:
+            continue
+        dia = data_br(cel("data"))
+        ev = {k: "" for k in CAMPOS_EVENTO}
+        ev.update(fixos)
+        ev.update({"tipo": tipo, "ordem": cel("ordem").strip(), "data": dia.isoformat() if dia else "",
+                   "valor": round(valor, 2), "url": url})
+        fonte = re.sub(r"\D", "", cel("fonte"))
+        if fonte:
+            ev["fonte"] = fonte
+        if tipo == "liquidacao":
+            anulado = valor_br(cel("anulado")) or 0.0
+            if anulado > 0:
+                out.append({**ev, "tipo": "anulacao", "valor": round(anulado, 2),
+                            "historico": "anulação de liquidação"})
+            if valor <= 0:
+                continue
+        elif tipo == "pagamento" and valor <= 0:
+            op = valor_br(cel("valor_op")) or 0.0
+            if op <= 0:
+                continue
+            ev.update({"tipo": "ordem_pagamento", "valor": round(op, 2)})
+        out.append(ev)
+    return out
+
+
+def _popups_da_linha(c: Consulta, links: list[str]) -> dict[str, str]:
+    """Os links da linha que são popups configurados: tipo -> URL (o "#" do valor zero fica fora)."""
+    out = {}
+    for href in links:
+        caminho = href.split("?", 1)[0].lower()
+        for tipo, p in c.popups.items():
+            if caminho.endswith("/" + p["pagina"].lower()) or caminho == p["pagina"].lower():
+                out.setdefault(tipo, href)
+    return out
+
+
+def consultar_lista(ler: Ler, portal: Portal, c: Consulta, valores: dict[str, str], *,
+                    aberta: tuple[str, Formulario, Leitura] | None = None,
+                    conhecidos: dict[str, dict] | None = None) -> Resultado:
+    """A lista de Portal_Despesas.aspx filtrada (mês, ano e o que mais vier), página a página.
+
+    Cada linha é um empenho. Os popups da linha (liquidações, pagamentos, dados do empenho) são
+    lidos quando o banco ainda não tem o que a linha mostra (``conhecidos``: empenho -> soma
+    liquidada, soma paga e documento já gravados). A soma das liquidações e dos pagamentos de
+    cada popup é conferida com o total da linha; a soma da lista, com a tabela de totais."""
+    if aberta is None:
+        aberta = abrir_consulta(ler, portal, c)
+    if isinstance(aberta, str):
+        return Resultado(False, c.id, erro=aberta)
+    acao, form, _primeira = aberta
+    conhecidos = conhecidos or {}
+    preenchidos = {}
+    for campo, valor in valores.items():
+        if campo.endswith("_nome"):
+            continue
+        nome = form.achar(c.campos.get(campo, ()))
+        if nome is None:
+            return Resultado(False, c.id, acao, erro=f"campo {campo} não achado no formulário")
+        preenchidos[nome] = form.valor_de_opcao(nome, valor)
+    botao = form.botao(c.botao)
+    if botao is None:
+        return Resultado(False, c.id, acao, erro="botão de consulta não achado")
+    ajax = c.envio == "ajax"
+    destino = acao
+
+    def enviar(corpo):
+        return ler(destino, formulario=corpo)
+
+    corpo = form.envio_ajax(preenchidos, botao[0]) if ajax else form.envio(preenchidos, botao=botao)
+    leitura = enviar(corpo)
+    if not leitura.ok:
+        return Resultado(False, c.id, acao, erro=leitura.erro or f"HTTP {leitura.http}")
+    res = Resultado(True, c.id, acao, originais=[leitura.original] if leitura.original else [])
+    estado = dict(corpo)                      # o que vai de volta no pedido seguinte
+    estado.pop("__AJAXEVENT", None)
+    for n, _ in form.botoes:
+        estado.pop(n, None)
+    ajax_da_pagina: list[dict] = list(form.ajax)
+    somas = {"empenhado": 0.0, "liquidado": 0.0, "pago": 0.0}
+    totais: dict[str, float] = {}
+    vistos: set[str] = set()
+    atual = leitura
+    while True:
+        res.paginas += 1
+        bruto = atual.conteudo
+        parcial = resposta_outsystems(bruto)
+        if parcial is not None:
+            html, escondidos = parcial
+            estado.update(escondidos)
+        else:
+            html = bruto
+        lido = ler_html(html)
+        if lido.formularios:                       # página inteira: o estado novo vem nela
+            estado = {**lido.formularios[0].campos}
+            for n, _ in lido.formularios[0].botoes:
+                estado.pop(n, None)
+        if lido.ajax:
+            ajax_da_pagina = lido.ajax
+        totais = totais_da_lista(lido.tabelas) or totais
+        tabs = [t for t in lido.tabelas if not c.tabela or t.id.endswith(c.tabela)] or lido.tabelas
+        achada = tabela_de_resultado(tabs, c.colunas)
+        if achada is None:
+            texto = norm(re.sub(r"<[^>]+>", " ", html if isinstance(html, str) else _decodificar(html)))
+            if res.paginas == 1 and any(s in texto for s in ("NO ITEMS TO SHOW", "NENHUM REGISTRO", "NAO HA REGISTRO",
+                                                             "NAO FORAM ENCONTRADOS", "SEM REGISTROS")):
+                res.vazio = True
+                return res
+            res.ok = False
+            res.erro = (f"página {res.paginas}: " if res.paginas > 1 else "") + \
+                "a resposta não traz a tabela de resultado com as colunas configuradas"
+            return res
+        tabela, mapa = achada
+        sha = atual.original.sha256 if atual.original else ""
+        novas = 0
+        for linha in tabela.linhas:
+            evs = eventos_da_tabela(Tabela(tabela.id, tabela.cabecalho, [linha]), mapa, c.tipo, consulta=c.id,
+                                    url=acao, padrao_dotacao=portal.dotacao,
+                                    fixos={"orgao": valores.get("orgao_nome", "")})
+            if not evs:
+                continue
+            ev = evs[0]
+            ev.pop("_selecao", None)
+            chave = ev["empenho"] or f"{ev['credor']}|{ev['data']}|{ev['valor']}"
+            if chave in vistos:
+                continue
+            vistos.add(chave)
+            novas += 1
+            ev["sha256"] = sha
+
+            def total(campo: str) -> float:
+                i = mapa.get(campo)
+                return (valor_br(linha[i].texto) or 0.0) if i is not None and i < len(linha) else 0.0
+            liq, pago = round(total("liquidado"), 2), round(total("pago"), 2)
+            somas["empenhado"] += ev["valor"]
+            somas["liquidado"] += liq
+            somas["pago"] += pago
+            ja = conhecidos.get(ev["empenho"], {})
+            popups = _popups_da_linha(c, [h for cel in linha for h in cel.links])
+            filhos: list[dict] = []
+            if "documento" in ja:                  # o empenho já está no banco: os dados do popup vêm de lá
+                for k in ("documento", "funcao", "subfuncao", "fonte", "dotacao", "historico"):
+                    if ja.get(k) and not ev.get(k):
+                        ev[k] = ja[k]
+            elif "empenho" in popups:
+                lida = ler(popups["empenho"])
+                if lida.ok:
+                    for k, v in dados_do_empenho(lida.conteudo, c.popups["empenho"]["campos"],
+                                                 padrao_dotacao=portal.dotacao).items():
+                        if k not in ("valor", "data") and not ev.get(k):
+                            ev[k] = v
+                else:
+                    filhos.append(_falha(ev, popups["empenho"], lida))
+            for tipo, alvo_total in (("liquidacao", liq), ("pagamento", pago)):
+                if tipo not in popups or alvo_total <= 0:
+                    continue
+                if round(ja.get(tipo, -1.0), 2) == alvo_total:
+                    continue                       # o banco já tem o que a linha mostra
+                lida = ler(popups[tipo])
+                if not lida.ok:
+                    filhos.append(_falha(ev, popups[tipo], lida))
+                    continue
+                cfg = c.popups[tipo]
+                evs_popup = eventos_do_popup(lida.conteudo, tipo, cfg["colunas"], ev, url=popups[tipo])
+                psha = lida.original.sha256 if lida.original else ""
+                for e in evs_popup:
+                    e["sha256"] = psha
+                soma = round(sum(e["valor"] for e in evs_popup
+                                 if e["tipo"] == ("liquidacao" if tipo == "liquidacao" else "pagamento")), 2)
+                if abs(soma - alvo_total) > 0.01:
+                    filhos.append({**_falha(ev, popups[tipo], None),
+                                   "historico": f"{tipo}: o popup soma {soma:.2f} e a lista mostra {alvo_total:.2f}"})
+                filhos.extend(evs_popup)
+            res.eventos.append(ev)
+            res.eventos.extend(filhos)
+        cont = contador(html)
+        fim = cont is not None and cont[1] >= cont[2]
+        prox = None if fim or novas == 0 else proxima_pagina(ajax_da_pagina, res.paginas)
+        if prox is None or res.paginas >= portal.paginas_maximas:
+            if cont is not None and not fim and res.paginas < portal.paginas_maximas:
+                res.ok = False
+                res.erro = f"a lista diz {cont[2]} registros e a página {res.paginas} não leva à seguinte"
+            elif totais and fim:
+                for k in ("empenhado", "liquidado", "pago"):
+                    if k in totais and abs(round(somas[k], 2) - totais[k]) > 0.01:
+                        res.eventos.append({**{x: "" for x in CAMPOS_EVENTO}, "tipo": "falha_detalhe",
+                                            "valor": 0.0, "consulta": c.id, "url": acao,
+                                            "historico": f"total {k}: a lista soma {somas[k]:.2f} e o "
+                                                         f"portal mostra {totais[k]:.2f}"})
+            if not res.eventos and res.paginas == 1:
+                res.vazio = True
+            return res
+        corpo = (Formulario(acao, "post", campos=estado).envio_ajax({}, prox["alvo"], evento=prox["evento"],
+                                                                    baldes=prox["baldes"] or "__OSVSTATE,")
+                 if ajax else {**estado, "__EVENTTARGET": prox["alvo"], "__EVENTARGUMENT": ""})
+        atual = enviar(corpo)
+        if not atual.ok:
+            res.ok = False
+            res.erro = f"página {res.paginas + 1}: {atual.erro or atual.http}"
+            return res
+        if atual.original:
+            res.originais.append(atual.original)
+
+
+def _falha(base: dict, url: str, leitura: Leitura | None) -> dict:
+    motivo = "" if leitura is None else f"detalhe não lido: {leitura.erro or leitura.http}"
+    return {**{k: base.get(k, "") for k in CAMPOS_EVENTO}, "tipo": "falha_detalhe", "valor": 0.0,
+            "historico": motivo, "url": url}
 
 
 # --- O portal novo (WordPress): os arquivos de uma categoria --------------------------------------
@@ -814,14 +1248,103 @@ def dias_a_ler(con, consulta: str, inicio: date, fim: date) -> list[date]:
     return out
 
 
-def motor(ctx, portal: Portal, *, consultas: Iterable[str] = ("empenho_orgao", "ordem_pagamento_orgao"),
-          limite_de_dias: int = 31) -> dict:
+def meses_a_ler(con, consulta: str, meses: Iterable[str], *, releitura: int = 2) -> list[str]:
+    """Os meses (AAAA-MM) sem leitura bem-sucedida da lista, mais os ``releitura`` meses mais recentes
+    de novo: a linha de um empenho mostra o liquidado e o pago acumulados, que crescem nos meses
+    seguintes ao do empenho. Do mais recente para o mais antigo."""
+    criar_tabelas(con)
+    ultima: dict[str, str] = {}
+    for mes, situacao in con.execute("select dia, situacao from despesa_consultas where consulta = ? and dia != '' "
+                                     "order by rowid", (consulta,)):
+        ultima[mes] = situacao
+    meses = sorted(set(meses), reverse=True)
+    recentes = meses[:releitura]
+    return [m for m in meses if m in recentes or ultima.get(m) not in ("lida", "vazia")]
+
+
+def conhecidos_do_banco(con) -> dict[str, dict]:
+    """Por empenho, o que o banco já tem: a soma das liquidações e dos pagamentos e os dados do
+    empenho (documento, função, subfunção, fonte, dotação e objeto)."""
+    criar_tabelas(con)
+    out: dict[str, dict] = {}
+    for emp, tipo, soma, doc, fun, sub, fonte, dot, hist in con.execute(
+            "select empenho, tipo, round(sum(valor), 2), max(documento), max(funcao), max(subfuncao), max(fonte), "
+            "max(dotacao), max(historico) from despesa_eventos "
+            "where empenho != '' and tipo in ('empenho', 'liquidacao', 'pagamento') group by empenho, tipo"):
+        d = out.setdefault(emp, {})
+        if tipo == "empenho":
+            d.update({"documento": doc or "", "funcao": fun or "", "subfuncao": sub or "", "fonte": fonte or "",
+                      "dotacao": dot or "", "historico": hist or ""})
+        else:
+            d[tipo] = soma or 0.0
+    return out
+
+
+FAMILIAS = {"empenho": ("empenho",), "liquidacao": ("liquidacao", "anulacao"),
+            "anulacao": ("liquidacao", "anulacao"), "pagamento": ("pagamento", "ordem_pagamento"),
+            "ordem_pagamento": ("pagamento", "ordem_pagamento")}
+
+
+def gravar_lista(con, eventos: list[dict], consulta: str, *, coletado_em: str | None = None) -> int:
+    """Grava o que a lista leu trocando, por empenho, o que a leitura anterior tinha gravado da mesma
+    família (o empenho; liquidações e anulações; pagamentos e ordens): a lista mostra valores
+    acumulados, e uma liquidação anulada depois não pode ficar contada duas vezes."""
+    criar_tabelas(con)
+    trocar = {(e["empenho"], fam) for e in eventos if e.get("empenho") and e["tipo"] in FAMILIAS
+              for fam in [FAMILIAS[e["tipo"]]]}
+    for emp, fam in trocar:
+        con.execute(f"DELETE FROM despesa_eventos WHERE consulta = ? AND empenho = ? AND tipo IN "
+                    f"({', '.join('?' for _ in fam)})", (consulta, emp, *fam))
+    return gravar(con, eventos, coletado_em=coletado_em)
+
+
+def _motor_mensal(ctx, portal: Portal, c: Consulta, resumo: dict, *, limite_de_meses: int) -> None:
+    """A lista de Portal_Despesas.aspx, mês a mês (mês e ano no formulário, todos os órgãos)."""
+    con = ctx.banco.con
+
+    def ler(url, formulario=None):
+        return ctx.ler("execucao_goiania", c.id, url, formulario=formulario, tempo=90)
+
+    aberta = abrir_consulta(ler, portal, c)
+    if isinstance(aberta, str):
+        con.execute("INSERT INTO despesa_consultas VALUES (?,?,?,?,?,?,?,?,?)",
+                    (c.id, "", "", "falha", 0, 0, portal.base, aberta, datetime.now().isoformat()))
+        resumo["falhas"] += 1
+        return
+    meses = [m for m in ctx.meses if m <= ctx.hoje.strftime("%Y-%m")]
+    for mes in meses_a_ler(con, c.id, meses)[:limite_de_meses]:
+        ano, mm = mes.split("-")
+        valores = {"mes": mm, "ano": ano}
+        res = consultar_lista(ler, portal, c, valores, aberta=aberta, conhecidos=conhecidos_do_banco(con))
+        novos = gravar_lista(con, [e for e in res.eventos if e["tipo"] != "falha_detalhe"], c.id)
+        notas = [e["historico"] for e in res.eventos if e["tipo"] == "falha_detalhe"]
+        situacao = "falha" if not res.ok else ("vazia" if res.vazio else "lida")
+        con.execute("INSERT INTO despesa_consultas VALUES (?,?,?,?,?,?,?,?,?)",
+                    (c.id, mes, "", situacao, len(res.eventos), res.paginas, res.url,
+                     res.erro or "; ".join(notas[:5]) + (f" (+{len(notas) - 5})" if len(notas) > 5 else ""),
+                     datetime.now().isoformat()))
+        resumo["eventos"] += novos
+        resumo["consultas"] += 1
+        resumo["falhas"] += situacao == "falha"
+        resumo["vazias"] += situacao == "vazia"
+        con.commit()
+        if not res.ok and "campo" in res.erro:
+            break
+
+
+def motor(ctx, portal: Portal, *, consultas: Iterable[str] | None = None, limite_de_dias: int = 31,
+          limite_de_meses: int = 3) -> dict:
     """Lê os dias que faltam (do começo do intervalo até ontem), consulta a consulta, órgão a órgão.
 
     ``ctx`` é o contexto do banco histórico: ``ctx.ler(motor, alvo, url, mes=, formulario=)``,
     ``ctx.banco.con``, ``ctx.meses`` e ``ctx.hoje``. Cada rodada lê no máximo ``limite_de_dias``
     dias por consulta, do mais recente para o mais antigo: o diário fica em dia primeiro, e o
-    passado se completa nas rodadas seguintes."""
+    passado se completa nas rodadas seguintes.
+
+    Sem ``consultas``, lê as da página real (``[[transweb.despesas]]``), que são por mês: cada rodada
+    lê no máximo ``limite_de_meses`` meses (os que faltam e os dois mais recentes de novo)."""
+    if consultas is None:
+        consultas = [c.id for c in portal.despesas] or ["empenho_orgao", "ordem_pagamento_orgao"]
     con = ctx.banco.con
     criar_tabelas(con)
     inicio = date.fromisoformat(ctx.meses[0] + "-01")
@@ -830,6 +1353,9 @@ def motor(ctx, portal: Portal, *, consultas: Iterable[str] = ("empenho_orgao", "
 
     for cid in consultas:
         c = portal.consulta(cid)
+        if c.granularidade == "mes":
+            _motor_mensal(ctx, portal, c, resumo, limite_de_meses=limite_de_meses)
+            continue
 
         def ler(url, formulario=None, _c=c):
             return ctx.ler("execucao_goiania", _c.id, url, formulario=formulario, tempo=90)

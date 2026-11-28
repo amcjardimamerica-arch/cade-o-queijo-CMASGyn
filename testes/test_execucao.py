@@ -389,3 +389,195 @@ def test_fim_de_ano_na_matriz_aponta_dezembro_concentrado(tmp_path):
     c = X.conferir_execucao(b.con)
     a = [x for x in c.achados if x.tipo == "fim_de_ano_funcao"]
     assert [x.chave for x in a] == ["10|2025"]
+
+
+# --- A página real Portal_Despesas.aspx e os popups (terceira rodada, 141) --------------------------
+#
+# portal_despesas_real.html, liquidacao_popup*_real.html, pagamento_popup*_real.html e
+# empenho_popup_real.html são recortes das páginas lidas pela sondagem de 27/11/2026 (só o <head>, os
+# scripts soltos e parte das linhas e das opções tirados; credores só pessoas jurídicas).
+# portal_despesas_pagina2_sintetico.txt é SINTÉTICO: a resposta OsAjax no formato do _osjs.js.
+
+LISTA = PORTAL.consulta("despesas_favorecido")
+EMP1, EMP2, EMP_INSS = "20261101002310011", "20261101002310012", "20261101002430005"
+
+
+class LeitorReal:
+    """Responde com os recortes reais: a página, os popups lidos e a página 2 sintética."""
+
+    POPUPS = {("LiquidacaoPopUp.aspx", EMP1): "liquidacao_popup_real.html",
+              ("PagamentoPopUp.aspx", EMP1): "pagamento_popup_real.html",
+              ("LiquidacaoPopUp.aspx", EMP_INSS): "liquidacao_popup_inss_real.html",
+              ("PagamentoPopUp.aspx", EMP_INSS): "pagamento_popup_inss_real.html"}
+
+    def __init__(self):
+        self.pedidos: list[tuple[str, dict | None]] = []
+
+    def __call__(self, url, formulario=None, **_):
+        self.pedidos.append((url, formulario))
+        pagina = url.split("?", 1)[0].rsplit("/", 1)[-1]
+        if formulario is not None:
+            alvo = formulario.get("__EVENTTARGET", "")
+            if alvo.endswith("$wt86"):                       # Buscar: a página como veio
+                return Leitura(True, url, _f("portal_despesas_real.html"), http=200)
+            if alvo.endswith("$RichWidgets_wt150$block$wt28"):  # next
+                return Leitura(True, url, _f("portal_despesas_pagina2_sintetico.txt"), http=200)
+            return Leitura(False, url, b"", erro="HTTP 500", http=500)
+        if pagina == "Portal_Despesas.aspx":
+            return Leitura(True, url, _f("portal_despesas_real.html"), http=200)
+        if pagina == "EmpenhoPopUp.aspx":
+            return Leitura(True, url, _f("empenho_popup_real.html"), http=200)
+        emp = url.rsplit("Empenho=", 1)[-1].split("&", 1)[0]
+        if (pagina, emp) in self.POPUPS:
+            return Leitura(True, url, _f(self.POPUPS[(pagina, emp)]), http=200)
+        return Leitura(False, url, b"", erro="HTTP 404", http=404)
+
+
+def test_leitor_ignora_script_e_texto_oculto_nas_celulas():
+    html = ("<table><tr><th>Valor<a style='display:none' href='#'>lnkSort</a><script>x('y')</script></th></tr>"
+            "<tr><td>1.234,56<span><div style='display:none'><input type='submit' value='z'/>oculto</div></span>"
+            "<script>outsystems.internal.$()</script></td></tr></table>")
+    t = G.tabelas(html)[0]
+    assert t.cabecalho == ["Valor"] and t.linhas[0][0].texto == "1.234,56"
+
+
+def test_portal_despesas_real_formulario_tabela_e_paginacao():
+    html = _f("portal_despesas_real.html")
+    assert LISTA.confirmado and LISTA.granularidade == "mes" and LISTA.paginas == ("Portal_Despesas.aspx",)
+    assert not LISTA.envio_confirmado and LISTA.envio == "ajax"
+    lido = G.ler_html(html)
+    f = lido.formularios[0]
+    assert f.outsystems and f.acao == "Portal_Despesas.aspx" and f.campos["__VIEWSTATE"] == ""
+    prefixo = "WebPatterns_wt2$block$wtMainContent$DespesasWebBlocks_wt1$block$"
+    for campo, fim in (("mes", "wtcboMes"), ("ano", "wtcboAno"), ("orgao", "wtcboOrgao"),
+                       ("favorecido", "wtNmFavorecido"), ("empenho", "wtNrEmpenho")):
+        assert f.achar(LISTA.campos[campo]) == prefixo + fim
+    mes = prefixo + "wtcboMes"
+    assert f.valor_de_opcao(mes, "11") == "__ossli_11" and f.valor_de_opcao(mes, "Março") == "__ossli_03"
+    assert f.valor_de_opcao(prefixo + "wtcboAno", "2025") == "2025"
+    assert ("1650", "SECRETARIA MUNICIPAL DE SAÚDE") not in f.opcoes[prefixo + "wtcboOrgao"]
+    assert len(f.opcoes[prefixo + "wtcboOrgao"]) == 38                 # "Selecione" e os 37 órgãos
+    assert f.botao(LISTA.botao) == (prefixo + "wt86", "Buscar")
+    corpo = f.envio_ajax({mes: "__ossli_11"}, prefixo + "wt86")
+    assert corpo["__EVENTTARGET"] == prefixo + "wt86" and corpo["__AJAX"] == "__OSVSTATE,"
+    assert corpo["__OSVSTATE"] == f.campos["__OSVSTATE"] and corpo[mes] == "__ossli_11"
+    assert "__AJAXEVENT" not in corpo and not any(n in corpo for n, _ in f.botoes)
+    # A tabela: uma linha por empenho, sem o texto dos scripts e dos links de ordenação.
+    t, mapa = G.tabela_de_resultado(lido.tabelas, LISTA.colunas)
+    assert t.id.endswith(LISTA.tabela) and len(t.linhas) == 6
+    assert t.cabecalho == ["Beneficiário", "Nr. Empenho", "Data", "Orgão", "Natureza Despesa", "Valor Empenhado",
+                           "Valor Liquidado", "Valor Pago"]
+    assert {"credor", "empenho", "data", "orgao", "elemento", "valor", "liquidado", "pago"} <= set(mapa)
+    primeira = t.linhas[0]
+    assert [c.texto for c in primeira][-3:] == ["1.170.877,06"] * 3
+    links = [h for c in primeira for h in c.links]
+    assert links[0].startswith("https://www10.goiania.go.gov.br/DespesasWebBlocks/EmpenhoPopUp.aspx?CdOrgao=1101"
+                               f"&Empenho={EMP1}&NmOrgao=SECRETARIA+MUNICIPAL+DE+GOVERNO++")
+    assert G._popups_da_linha(LISTA, links) == {
+        "empenho": links[0],
+        "liquidacao": f"https://www10.goiania.go.gov.br/DespesasWebBlocks/LiquidacaoPopUp.aspx?Empenho={EMP1}",
+        "pagamento": f"https://www10.goiania.go.gov.br/DespesasWebBlocks/PagamentoPopUp.aspx?Empenho={EMP1}"}
+    zerada = t.linhas[4]                                                # 0,00: os links são "#"
+    assert G._popups_da_linha(LISTA, [h for c in zerada for h in c.links]).keys() == {"empenho"}
+    evs = G.eventos_da_tabela(t, mapa, "empenho")
+    assert (evs[0]["credor"], evs[0]["empenho"], evs[0]["data"], evs[0]["elemento"], evs[0]["valor"]) == \
+        ("ITAU UNIBANCO S.A.", EMP1, "2026-11-24", "31901100", 1_170_877.06)
+    assert evs[0]["orgao"] == "SECRETARIA MUNICIPAL DE GOVERNO" and evs[0]["documento"] == ""
+    # Contador, totais e o "next" da paginação (OsAjax).
+    assert G.contador(html) == (1, 20, 822)
+    assert G.totais_da_lista(lido.tabelas) == {"empenhado": 477_509_816.05, "liquidado": 318_962_998.72,
+                                               "pago": 313_012_618.28}
+    prox = G.proxima_pagina(lido.ajax, 1)
+    assert prox["alvo"] == prefixo + "RichWidgets_wt150$block$wt28" and prox["baldes"] == "__OSVSTATE,"
+
+
+def test_popups_reais_de_liquidacao_e_pagamento_somam_a_linha():
+    base = {"empenho": EMP1, "credor": "ITAU UNIBANCO S.A.", "orgao": "SECRETARIA MUNICIPAL DE GOVERNO",
+            "elemento": "31901100", "consulta": LISTA.id}
+    liq = G.eventos_do_popup(_f("liquidacao_popup_real.html"), "liquidacao",
+                             LISTA.popups["liquidacao"]["colunas"], base)
+    assert [(e["tipo"], e["ordem"], e["data"], e["valor"]) for e in liq] == [
+        ("anulacao", "0316702026", "2026-11-24", 435_537.30),          # a primeira liquidação foi anulada
+        ("liquidacao", "0316862026", "2026-11-24", 735_537.30),
+        ("liquidacao", "0317092026", "2026-11-24", 435_339.76)]
+    assert round(sum(e["valor"] for e in liq if e["tipo"] == "liquidacao"), 2) == 1_170_877.06
+    pag = G.eventos_do_popup(_f("pagamento_popup_real.html"), "pagamento", LISTA.popups["pagamento"]["colunas"], base)
+    assert [(e["tipo"], e["ordem"], e["valor"], e["fonte"]) for e in pag] == [
+        ("pagamento", "202611010023100110001", 735_537.30, "501"),
+        ("pagamento", "202611010023100110002", 435_339.76, "501")]
+    assert all(e["empenho"] == EMP1 and e["credor"] == "ITAU UNIBANCO S.A." for e in liq + pag)
+    assert LISTA.popups["liquidacao"]["confirmado"] and LISTA.popups["pagamento"]["confirmado"]
+
+
+def test_empenho_popup_real_tem_os_campos_e_veio_vazio():
+    """A sondagem pediu o popup com "&amp;": os campos existem, os valores não vieram."""
+    cfg = LISTA.popups["empenho"]
+    assert not cfg["confirmado"]
+    f = G.formularios(_f("empenho_popup_real.html"))[0]
+    for campo, cands in cfg["campos"].items():
+        assert f.achar(cands), campo
+    assert f.achar(cfg["campos"]["funcao"]).endswith("wtemp_Funcao")
+    assert f.achar(cfg["campos"]["fonte"]).endswith("DETALHADA_NOME_FONTE_DETALHADA")
+    assert G.dados_do_empenho(_f("empenho_popup_real.html"), cfg["campos"]) == {}
+    cheio = (b'<form action="EmpenhoPopUp.aspx"><input name="a$wtemp_CPF_CNPJ" value="60.701.190/0001-04"/>'
+             b'<input name="a$wtemp_Funcao" value="04 - ADMINISTRACAO"/><input name="a$wtemp_SubFuncao" value=" - "/>'
+             b'<textarea name="a$wtemp_Historico">FOLHA DE NOVEMBRO</textarea></form>')
+    assert G.dados_do_empenho(cheio, cfg["campos"]) == {"documento": "60701190000104", "funcao": "04",
+                                                         "historico": "FOLHA DE NOVEMBRO"}
+
+
+def test_consulta_da_lista_real_com_popups_e_segunda_pagina():
+    ler = LeitorReal()
+    res = G.consultar_lista(ler, PORTAL, LISTA, {"mes": "11", "ano": "2026"})
+    assert res.ok and res.paginas == 2, res.erro
+    posts = [f for _u, f in ler.pedidos if f]
+    prefixo = "WebPatterns_wt2$block$wtMainContent$DespesasWebBlocks_wt1$block$"
+    assert posts[0][prefixo + "wtcboMes"] == "__ossli_11" and posts[0][prefixo + "wtcboAno"] == "2026"
+    assert posts[0]["__AJAX"] == "__OSVSTATE," and posts[0]["__EVENTTARGET"] == prefixo + "wt86"
+    assert posts[1]["__EVENTTARGET"] == prefixo + "RichWidgets_wt150$block$wt28"
+    assert posts[1]["__OSVSTATE"] == G.formularios(_f("portal_despesas_real.html"))[0].campos["__OSVSTATE"]
+    empenhos = [e["empenho"] for e in res.eventos if e["tipo"] == "empenho"]
+    assert len(empenhos) == 8 and empenhos[0] == EMP1 and empenhos[-1] == "20261101006010017"
+    liq = [e for e in res.eventos if e["tipo"] == "liquidacao"]
+    assert {e["empenho"] for e in liq} == {EMP1, EMP_INSS}
+    assert sum(e["valor"] for e in liq if e["empenho"] == EMP_INSS) == 238_394.59   # parcial: 424.304,55 empenhados
+    falhas = [e for e in res.eventos if e["tipo"] == "falha_detalhe"]
+    assert any(e["empenho"] == EMP2 and "404" in e["historico"] for e in falhas)     # popup não lido: falha descrita
+    assert any("total empenhado" in e["historico"] for e in falhas)                  # o recorte não soma o mês
+    # Os popups dos valores zero não são pedidos; o empenho já conhecido não pede popup de novo.
+    pedidos = [u for u, f in ler.pedidos if f is None]
+    assert not any("20261101004510011" in u and "PopUp" in u and "EmpenhoPopUp" not in u for u in pedidos)
+    ler2 = LeitorReal()
+    conhecidos = {EMP1: {"documento": "60701190000104", "liquidacao": 1_170_877.06, "pagamento": 1_170_877.06}}
+    res2 = G.consultar_lista(ler2, PORTAL, LISTA, {"mes": "11", "ano": "2026"}, conhecidos=conhecidos)
+    assert not any(EMP1 in u for u, f in ler2.pedidos if f is None)
+    assert next(e for e in res2.eventos if e["empenho"] == EMP1)["documento"] == "60701190000104"
+
+
+def test_motor_mensal_le_o_mes_e_regrava_sem_duplicar():
+    con = sqlite3.connect(":memory:")
+    ctx = _Ctx(_Banco(con), ["2026-11"], date(2026, 11, 27), LeitorFalso())
+    ctx.ler_falso = LeitorReal()
+    resumo = G.motor(ctx, PORTAL)
+    assert resumo["consultas"] == 1 and resumo["falhas"] == 0
+    assert con.execute("select consulta, dia, situacao from despesa_consultas").fetchall() == \
+        [("despesas_favorecido", "2026-11", "lida")]
+    n = con.execute("select count(*) from despesa_eventos").fetchone()[0]
+    assert n > 8
+    pedidos_antes = len(ctx.ler_falso.pedidos)
+    ctx.ler_falso = LeitorReal()
+    G.motor(ctx, PORTAL)                                   # o mês corrente é lido de novo
+    assert con.execute("select count(*) from despesa_eventos").fetchone()[0] == n
+    assert len(ctx.ler_falso.pedidos) < pedidos_antes      # os popups já gravados não são pedidos
+    assert G.meses_a_ler(con, "despesas_favorecido", ["2026-09", "2026-10", "2026-11"], releitura=1) == \
+        ["2026-11", "2026-10", "2026-09"]
+
+
+def test_sondagem_cobre_a_pagina_real_e_os_popups():
+    from onisciente.sondagem import CANDIDATOS
+    urls = CANDIDATOS["d2_transweb"]
+    for c in PORTAL.despesas:
+        for p in c.paginas:
+            assert PORTAL.base + p in urls
+    popups = [u for u in urls if "EmpenhoPopUp.aspx" in u]
+    assert popups and all("&amp;" not in u and "&Empenho=" in u for u in popups)
