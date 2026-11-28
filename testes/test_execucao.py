@@ -1446,3 +1446,128 @@ def test_sondagem_le_as_fontes_separadas_por_virgula_e_segue_as_paginas_do_popup
         ("liquidacao", 3, 120, True, 120), ("pagamento", 0, None, False, 0)]
     assert len(set(guardados)) == len(guardados) == 4               # três páginas e o pagamento, sem sobrescrever
     assert all("http" in r and "erro" in r for r in resumo)         # o __main__ imprime os dois
+
+
+# --- Rodada 10 (28/11/2026): a página 2 do popup voltou HTTP 500 (894 bytes) nos 8 casos -------------------
+# A sondagem de 06:50Z leu a página 1 dos popups (HTTP 200) e o pedido da página 2 voltou 500 em todos. O
+# mesmo 500 de 894 bytes veio em TODOS os OsAjax que o Onisciente já mandou (o Buscar e a página 2 da
+# lista em Portal_Despesas.aspx, com ``?_ts=``, e o buscar_antes do motor): a lista por OsAjax nunca
+# funcionou; o que funciona é a exportação por postback comum. Lendo o _osjs.js guardado, o ``__AJAX``
+# que o navegador manda é o CONTEXTO do evento, e não os baldes (``__OSVSTATE,``) que mandávamos.
+# Fixtures reais: liquidacao_popup_pagina1_real.html (a página 1, 4c444fbd), o pedido da página 2 com a
+# resposta 500 (4f7c1915) e os recortes do _osjs.js.
+
+_URL_POPUP_REAL = "https://www10.goiania.go.gov.br/DespesasWebBlocks/LiquidacaoPopUp.aspx?Empenho=20262150000230001"
+_NEXT_REAL = "WebPatterns_wt13$block$wtMainContent$RichWidgets_wt1$block$wt28"
+_CAIXA_REAL = "WebPatterns_wt13$block$wt5$wt4$wt43$wtCheckbox$wt37"
+
+
+def _pedido_500_real() -> dict:
+    import json
+    return json.loads(_f("liquidacao_popup_pagina2_pedido_500_real.json").decode("utf-8"))
+
+
+def test_osjs_real_poe_o_contexto_do_evento_no_ajax_e_nao_os_baldes():
+    import re
+    js = _f("osjs_osajax_recorte_real.js").decode("utf-8")
+    # OsAjax(e, origem, alvo, evento, baldes, f): o contexto é montado com (e, origem, f)...
+    assert "bucketIds:e,eventContext:OsBuildAjaxEventContext(a,b,f)" in js
+    # ...e vai como o quinto argumento até o PrepareFormForSubmit, que o põe no __AJAX.
+    assert "OsExecuteCallToServer(a.origin,a.eventTarget,a.ajaxEvent,a.bucketIds,a.eventContext," in js
+    assert "osAjaxBackend.CallToServer(j,b,c,d,e,f)" in js
+    assert "this.PrepareFormForSubmit(a,b,c,d,e);" in js
+    prep = re.search(r"this\.PrepareFormForSubmit=function\(a,b,c,d,e\)\{.*", js).group(0)
+    assert 'g.name="__AJAX"' in prep and prep.endswith("g.value=e,")          # e = o contexto, não d = os baldes
+    # O contexto: largura, altura, origem, topo, esquerda, rolagens, x, y e o sexto argumento.
+    assert "return d+o+e+o+f+o+g+o+h+o+k+o+l+o+m+o+n+o+c}" in js and 'var o=",";' in js
+    # O envio: POST com ?_ts=, o tipo do corpo com charset e o X-Requested-With do jQuery.
+    assert '"?_ts="+(new Date).getTime(),type:"POST",contentType:"application/x-www-form-urlencoded; charset=UTF-8"' in js
+    assert 'e["X-Requested-With"]="XMLHttpRequest"' in js
+
+
+def test_pedido_da_pagina_2_do_popup_real_leva_o_contexto_do_evento_e_os_cabecalhos_do_osajax():
+    pagina1 = _f("liquidacao_popup_pagina1_real.html")
+    antigo = _pedido_500_real()
+    assert antigo["http"] == 500 and antigo["bytes"] == 894 and not antigo["ok"]
+    form = G.formularios(pagina1)[0]
+    assert form.acao == "LiquidacaoPopUp.aspx" and G.contador_do_popup(pagina1) == (50, 65)
+    estado, links, _html, _lido = G.depois_da_resposta({}, [], pagina1)
+    prox = G.proxima_pagina(links, 1)
+    # O id do next do popup é o da página (não o da lista), e é o que o motor mandou.
+    assert prox["alvo"] == antigo["post"]["__EVENTTARGET"] == _NEXT_REAL
+    assert prox["id"] == "WebPatterns_wt13_block_wtMainContent_RichWidgets_wt1_block_wt28" and prox["extra"] == ""
+    # O recorte do 500 é o pedido que o motor montava: o mesmo corpo, campo a campo.
+    acao = "https://www10.goiania.go.gov.br/DespesasWebBlocks/LiquidacaoPopUp.aspx"
+    assert G.corpo_proxima(acao, estado, prox, ajax=True) == antigo["post"]
+    assert antigo["post"]["__AJAX"] == "__OSVSTATE," and antigo["post"][_CAIXA_REAL] == ""
+    assert "X-Requested-With" not in antigo["cabecalhos"]
+    # O pedido novo leva o que faltava: o contexto do evento no __AJAX, a caixa marcada como "on" e os
+    # cabeçalhos do OsAjax; o resto (o __OSVSTATE da página 1, o alvo, os campos) fica igual.
+    corpo, cab = G.pedido_da_pagina_seguinte_do_popup(form, _URL_POPUP_REAL, estado, prox)
+    assert corpo["__AJAX"] == "1280,900,WebPatterns_wt13_block_wtMainContent_RichWidgets_wt1_block_wt28,0,0,0,0,0,0,"
+    assert corpo[_CAIXA_REAL] == "on"
+    assert {k for k in corpo if corpo[k] != antigo["post"].get(k)} == {"__AJAX", _CAIXA_REAL}
+    assert set(corpo) == set(antigo["post"]) and "__AJAXEVENT" not in corpo
+    assert corpo["__OSVSTATE"] == form.campos["__OSVSTATE"]
+    assert cab == {"X-Requested-With": "XMLHttpRequest", "Accept": "text/plain, */*; q=0.01",
+                   "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                   "Referer": _URL_POPUP_REAL, "Origin": "https://www10.goiania.go.gov.br"}
+    # A lista fica como estava (as travas antigas a fixam): envio_ajax segue com os baldes no __AJAX.
+    assert G.Formulario(acao, "post", campos=estado).envio_ajax({}, _NEXT_REAL)["__AJAX"] == "__OSVSTATE,"
+
+
+def test_ler_popup_real_manda_o_pedido_novo_e_o_500_fica_como_pagina_incompleta():
+    pagina1 = _f("liquidacao_popup_pagina1_real.html")
+    antigo = _pedido_500_real()
+    pedidos = []
+
+    def ler(url, formulario=None, cabecalhos=None):
+        pedidos.append((url, formulario, cabecalhos))
+        if formulario is None:
+            return Leitura(True, url, pagina1, http=200)
+        return Leitura(False, url, antigo["corpo"].encode(), erro=antigo["erro"], http=antigo["http"])
+
+    cfg = LISTA.popups["liquidacao"]
+    pop = G.ler_popup(ler, _URL_POPUP_REAL, "liquidacao", cfg["colunas"], {"empenho": "20262150000230001"})
+    assert pop.paginas == 1 and pop.total == 65 and not pop.completo and len(pop.eventos) == 50
+    assert pop.erro == "página 2 do popup: HTTP 500"
+    (u1, f1, c1), (u2, f2, c2) = pedidos
+    assert u1 == _URL_POPUP_REAL and f1 is None and c1 is None
+    assert u2 == "https://www10.goiania.go.gov.br/DespesasWebBlocks/LiquidacaoPopUp.aspx"
+    assert f2["__AJAX"].startswith("1280,900,WebPatterns_wt13_block_wtMainContent_RichWidgets_wt1_block_wt28,")
+    assert f2["__EVENTTARGET"] == _NEXT_REAL and c2["X-Requested-With"] == "XMLHttpRequest"
+    assert c2["Referer"] == _URL_POPUP_REAL
+    # O leitor do motor (ctx.ler) recebe os cabeçalhos; um leitor sem o parâmetro recebe o pedido sem eles.
+    assert G._so_com_cabecalhos(lambda url, formulario=None: None, {"a": "b"}) == {}
+    assert G._so_com_cabecalhos(lambda url, formulario=None, **kw: None, {"a": "b"}) == {"cabecalhos": {"a": "b"}}
+
+
+def test_sondagem_guarda_o_pedido_inteiro_e_o_corpo_do_500_do_popup(monkeypatch, tmp_path):
+    from onisciente import sondagem
+    pagina1 = _f("liquidacao_popup_pagina1_real.html")
+    monkeypatch.setattr(sondagem, "PASTA", tmp_path)
+    vistos = []
+
+    def ler(destino, *, tempo=60, fonte="", formulario=None, cabecalhos=None):
+        vistos.append((destino, cabecalhos))
+        if formulario is None:
+            return Leitura(True, destino, pagina1, http=200)
+        return Leitura(False, destino, b"<html>Erro do servidor de teste</html>", erro="HTTP 500", http=500)
+
+    regs = sondagem._popups_paginados("d2_transweb_popup", [_URL_POPUP_REAL], ler_=ler)
+    pag2 = [r for r in regs if r.get("passo") == "pagina_2"][0]
+    assert vistos[1][1]["X-Requested-With"] == "XMLHttpRequest"
+    assert pag2["destino"] == "https://www10.goiania.go.gov.br/DespesasWebBlocks/LiquidacaoPopUp.aspx"
+    assert "X-Requested-With" in pag2["cabecalhos"] and "Referer" in pag2["cabecalhos"]
+    texto = (tmp_path / pag2["arquivo"]).read_text(encoding="utf-8")
+    assert "CABECALHOS: " in texto and '"X-Requested-With": "XMLHttpRequest"' in texto
+    assert "Erro do servidor de teste" in texto                      # o corpo do 500 agora fica guardado
+    assert '"__AJAX": "1280,900,' in texto
+    # O cookie vai só com o nome; o valor da sessão nunca entra no arquivo.
+    assert sondagem._sem_valor_de_cookie("ASP.NET_SessionId=abc123; osVisitor=zz") == \
+        "ASP.NET_SessionId=<valor omitido>; osVisitor=<valor omitido>"
+    guardado = sondagem._guardar("d2_transweb_popup", _URL_POPUP_REAL + "#pagina-2",
+                                 Leitura(False, _URL_POPUP_REAL, b"x", erro="HTTP 500", http=500), {"a": "1"},
+                                 cabecalhos={"Cookie": "ASP.NET_SessionId=segredo123", "Referer": _URL_POPUP_REAL})
+    texto = (tmp_path / guardado["arquivo"]).read_text(encoding="utf-8")
+    assert "segredo123" not in texto and "ASP.NET_SessionId=<valor omitido>" in texto
