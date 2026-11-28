@@ -1,7 +1,7 @@
-# Coleta em andamento: boletim de 2026-11-28T01:08+00:00
+# Coleta em andamento: boletim de 2026-11-28T01:40+00:00
 
-Desde 2026-11-28T00:58:15+00:00: 42 chamadas registradas.
-Última chamada: 2026-11-28T01:07:38+00:00 (despesas_favorecido).
+Desde 2026-11-28T01:30:19+00:00: 42 chamadas registradas.
+Última chamada: 2026-11-28T01:39:50+00:00 (despesas_favorecido).
 
 ## Por fonte
 
@@ -14,7 +14,7 @@ Desde 2026-11-28T00:58:15+00:00: 42 chamadas registradas.
 
 | fonte | n | mediana | p90 | máximo |
 |---|---|---|---|---|
-| www10.goiania.go.gov.br | 29 | 1.1 | 1.4 | 1.6 |
+| www10.goiania.go.gov.br | 29 | 1.3 | 2.0 | 3.8 |
 
 ## O que o banco tem agora
 

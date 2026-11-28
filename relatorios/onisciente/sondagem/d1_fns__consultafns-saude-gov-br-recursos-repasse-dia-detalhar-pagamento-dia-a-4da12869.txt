@@ -1,0 +1,7 @@
+URL: https://consultafns.saude.gov.br/recursos/repasse-dia/detalhar-pagamento-dia?ano=2025&mes=1&dia=15&codigoProgramaFundo=61861&tipoDetalhamento=PROGRAMA
+POST: {}
+OK: False
+HTTP: 500
+ERRO: HTTP 500
+BYTES: 10144
+
