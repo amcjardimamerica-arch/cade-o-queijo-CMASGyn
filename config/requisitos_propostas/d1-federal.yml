@@ -1,50 +1,50 @@
 # Propostas da Frente D1 (coletores federais) para config/requisitos_onisciente.yml.
-# Segunda rodada (27/11/2026): os coletores foram ajustados às respostas reais da sondagem, guardadas
-# reduzidas em testes/dados/federais/*_real.*. Só vai a cumprido o que tem trava com dado real; nenhuma
-# fonte desta frente trouxe ainda o dado completo (só a lista do FNDE e a pesquisa do TCU responderam
-# com dado), então tudo fica parcial, com a falta exata.
+# Terceira rodada (28/11/2026): os coletores foram ajustados às páginas reais da sondagem run 46085340244,
+# guardadas reduzidas em testes/dados/federais/*_real.*. Só vai a cumprido o que tem trava com dado real
+# comprovado: as liberações do FNDE (a soma das 68 liberações da Prefeitura bate com o total da página).
+# O resto continua parcial, com a falta exata.
 - id: 145
   situacao: parcial
-  evidencia: "A cota do ICMS, do IPVA e do IPI-exportação está tratada como receita do Estado entregue ao Município: a conferência _cota_estadual (onisciente/conferencias/federais.py) cruza a via do Município (matriz de saldos, naturezas 1.7.2.1.50, 1.7.2.1.51 e 1.7.2.1.52) com a via do Estado (coletor economia_go). Os repasses da União têm a segunda via no SIAFI e no RREO Anexo 12. Na rodada 1 eu tinha proposto cumprido; volto a parcial porque a segunda via do Estado ainda não foi lida de verdade."
-  falta: "Ler a segunda via do Estado. A sondagem achou, no menu real do portal da Economia, a página goias.gov.br/economia/repasse-aos-municipios/, que ainda não foi lida. Também falta saber se o CKAN do Estado libera o acesso: ele respondeu com o bloqueio do firewall."
-  trava: "testes/test_coletores_federais.py::test_transferencias_do_tesouro_e_do_estado_tem_cada_uma_a_sua_segunda_via"
+  evidencia: "A cota do ICMS, do IPVA e do IPI-exportação é conferida como receita do Estado entregue ao Município (_cota_estadual em onisciente/conferencias/federais.py), com a via do Município (matriz de saldos, naturezas 1.7.2.1.50, 1.7.2.1.51 e 1.7.2.1.52) e a via do Estado (coletor economia_go). A página real de repasses da Economia foi lida: ela publica uma planilha por mês, e o coletor agora segue essas planilhas."
+  falta: "Ler o conteúdo de uma planilha do Estado. A próxima sondagem (d1_economia_go) baixa as de 2025 e 2026 para confirmar as colunas."
+  trava: "testes/test_coletores_federais_terceira.py::test_motor_economia_go_pelas_planilhas_mensais"
 - id: 146
   situacao: parcial
-  evidencia: "Coletor onisciente/coletores/fns.py, motor_fns e a conferência FNS x SIAFI x RREO Anexo 12. A sondagem mostrou que apifns.saude.gov.br não existe no DNS, que /recursos/consolidado/municipio deu 404 e que /recursos/repasse-dia/detalhar-pagamento existe, porque deu 400 com ano. Os modelos novos mandam o período em datas; os descartados estão em fns.DESCARTADOS."
-  falta: "Achar o endereço e os parâmetros da API do consultafns. O app.js e o main.js não trazem os serviços; a próxima sondagem (d1_fns) lê o portalController.js, o utilService.js e as páginas da rota repasse-dia, e tenta o serviço do repasse dia com datas. Depois falta a primeira coleta real."
-  trava: "testes/test_coletores_federais_reais.py::test_fns_sem_os_enderecos_descartados_e_com_o_periodo_em_datas"
+  evidencia: "Coletor onisciente/coletores/fns.py e motor_fns. O repasseDiaService.js real mostra o serviço recursos/repasse-dia: consultar por ano, mês e dia, os detalhamentos, a data do último pagamento e as planilhas por POST. É um serviço nacional por dia, não por Município. servicos_do_js tira os endereços de qualquer serviço do aplicativo, e a lista real de municípios de Goiás (recursos/municipios/uf/GO) é lida."
+  falta: "Achar o serviço com filtro de Município, nas páginas detalhada e consolidada do aplicativo. A próxima sondagem (d1_fns) lê as rotas, os serviços e o menu, e prova recuperar-data-ultimo-pagamento e consultar. Depois falta a primeira coleta real."
+  trava: "testes/test_coletores_federais_terceira.py::test_fns_servico_real_do_repasse_dia_e_municipios_de_goias"
 - id: 147
-  situacao: parcial
-  evidencia: "O FNDE (SIMAD) respondeu com dado real: a lista de Goiânia em 2025 tem 406 entidades com CNPJ, incluída a PREF MUN DE GOIANIA (01612092000123), e centenas de pessoas físicas sem CNPJ, que ficam de fora. O leitor foi ajustado às chamadas enviarFormulario da página. As liberações de cada CNPJ saem do formulário oculto, no mesmo endereço liberacoes_result_pc com p_cgc, porque o endereço antigo liberacoes_01_result_pc deu 404. A conferência FNDE x SIAFI por programa está pronta."
-  falta: "Ler a página de liberações de uma entidade, que ainda não foi lida (d1_fnde pede a da Prefeitura e a de um conselho escolar), confirmar o formato presumido (programa, data, ordem bancária, banco, agência, conta, valor e a linha Total) e fazer a primeira coleta real."
-  trava: "testes/test_coletores_federais_reais.py::test_motor_fnde_com_a_lista_real_pede_cada_cnpj_pelo_formulario_oculto"
+  situacao: cumprido
+  evidencia: "FNDE (SIMAD) lido com dado real. A lista de entidades de Goiânia em 2025 e as liberações de cada CNPJ, pelo formulário oculto (liberacoes_result_pc com p_cgc), estão lidas no formato real: uma tabela por programa, com data (06/FEV/2025), ordem bancária, valor, parcela, programa, banco, agência e conta, e a linha Total. As 68 liberações da Prefeitura somam R$ 77.224.595,71, igual ao total da página. As 4 de um conselho escolar somam R$ 36.448,00. Uma tabela que não fecha com o total vira formato."
+  falta: ""
+  trava: "testes/test_coletores_federais_terceira.py::test_fnde_liberacoes_reais_fecham_com_o_total_da_pagina"
 - id: 149
   situacao: parcial
-  evidencia: "Coletor onisciente/coletores/economia_go.py ajustado ao portal real: acha no menu de goias.gov.br/economia/ o link Repasses de Recursos aos Municípios, segue os links do Estado sobre repasse, ICMS, IPVA ou índice de participação e reconhece a página Acesso Negado do firewall. Bloqueio vira falha, sem ofício; arquivo que o coletor não lê (PDF ou planilha) vira formato, sem ofício. Só quando nada foi achado a ausência vira alerta roxo com ofício à Secretaria da Economia (CF, art. 162)."
-  falta: "Ler a página goias.gov.br/economia/repasse-aos-municipios/ (d1_economia_go) e o arquivo que ela publicar. Se for PDF ou planilha, é preciso um leitor para esse formato."
-  trava: "testes/test_coletores_federais_reais.py::test_economia_go_bloqueio_nao_e_ausencia_e_pdf_nao_lido_e_falha_do_sistema"
+  evidencia: "Coletor onisciente/coletores/economia_go.py. A página real goias.gov.br/economia/repasse-aos-municipios/ foi lida: ela publica uma planilha por mês (.xlsx desde 2021, .xls até 2020), em links cujo texto é só o mês. arquivos_mensais tira o mês e o endereço, e o motor lê as .xlsx procurando a linha do Município e as colunas de ICMS e IPVA. Uma planilha lida sem isso fica formato, nunca ausência. A .xls antiga fica registrada como arquivo que o coletor não lê. O bloqueio do firewall continua separado da ausência."
+  falta: "Confirmar as colunas de uma planilha real (d1_economia_go baixa as de 2025 e 2026). Se a planilha não trouxer o Município numa linha, ajustar o leitor a ela."
+  trava: "testes/test_coletores_federais_terceira.py::test_motor_economia_go_planilha_sem_o_municipio_e_formato_nao_ausencia"
 - id: 150
   situacao: parcial
-  evidencia: "Coletor onisciente/coletores/transferegov.py (API PostgREST) e motor_transferegov. Na sondagem, todas as rotas da API deram 503 (fora do ar); o motor registra isso como falha, nunca como ausência."
-  falta: "A API voltar ao ar, ou uma via em arquivo. A próxima sondagem (d1_transferegov) repete a API e tenta a documentação, o repositório de dados da SEGES (repositorio.dados.gov.br/seges/detru/), o arquivo de emendas parlamentares do Portal da Transparência e o conjunto no dados.gov.br."
-  trava: "testes/test_coletores_federais.py::test_transferegov_raiz_planos_e_paginas"
+  evidencia: "Duas vias. A API PostgREST do Transferegov (transferegov.py) deu 503 de novo, e o motor registra isso como falha. O arquivo único de emendas do Portal da Transparência (47 MB, seis planilhas) agora é lido em fluxo, sem guardar o zip (onisciente/coletores/emendas.py). O motor lê os cabeçalhos locais do zip, descompacta aos pedaços e filtra Goiânia pelo código IBGE, pelo CNPJ ou pelo nome. Pessoas físicas ficam de fora. A tabela emendas_municipio só é trocada quando a leitura chega ao fim. No arquivo real de 28/11, isso deu 63 linhas de emendas, 34 convênios, 158 parcerias, 500 itens de plano de trabalho, 17 planos de transferência especial do Município e 6.823 favorecidos pessoa jurídica, em 4 segundos."
+  falta: "O fundo a fundo e os TED dependem da API, que segue fora do ar (d1_transferegov tenta de novo)."
+  trava: "testes/test_coletores_federais_terceira.py::test_emendas_reais_filtradas_por_goiania_em_fluxo"
 - id: 48
   situacao: parcial
-  evidencia: "Conferência _emendas em conferencias/federais.py: os 70% em capital (CF, art. 166-A, § 5º) são conferidos plano de ação a plano de ação e no total do ano, pela regra EMENDA-CAPITAL do mapa legal."
-  falta: "Depende dos planos de ação especiais do Transferegov (id 150), cuja API estava fora do ar na sondagem."
+  evidencia: "Conferência _emendas em conferencias/federais.py: os 70% em capital (CF, art. 166-A, § 5º) são conferidos plano de ação a plano de ação e no total do ano, pela regra EMENDA-CAPITAL do mapa legal. Os planos de transferência especial de Goiânia já são lidos do arquivo do Portal (id 150)."
+  falta: "A planilha de planos do Portal não separa custeio de investimento. A separação continua dependendo dos planos de ação da API do Transferegov, que está fora do ar."
   trava: "testes/test_coletores_federais.py::test_emendas_70_por_cento_em_capital_plano_a_plano_e_no_ano"
 - id: 153
   situacao: parcial
-  evidencia: "Coletor onisciente/coletores/sancoes.py, a tabela sancoes(cnpj_cpf, cadastro, inicio, fim, orgao, tipo, ...) e a conferência contratada x sancionada (qualquer dia do contrato, pelo CNPJ raiz). Os endereços com data deram 403. O motor agora lê as datas na página de download do cadastro e tenta cada data no portal e no repositório da CGU. Com 403 em todas as vias, a situação fica nao_publicado e a conferência aparece como não feita, nunca como nenhuma sanção."
-  falta: "Achar uma via que entregue o zip sem chave. A próxima sondagem (d1_sancoes) lê a página de download, o repositório dadosabertos-download.cgu.gov.br e o conjunto no dados.gov.br. Depois falta a primeira coleta diária real."
-  trava: "testes/test_coletores_federais_reais.py::test_sancoes_403_em_todas_as_vias_fica_nao_conferido"
+  evidencia: "O CEIS real de 27/11/2026 foi lido: 23.609 linhas, em latin-1, separadas por ';'. Ele veio do repositório da CGU, na data que a página de download anuncia (o dia anterior dá 403), e a tabela sancoes(cnpj_cpf, cadastro, inicio, fim, orgao, tipo, ...) fica cheia. O cabeçalho real escreve ABRAGÊNCIA, e o leitor aceita essa grafia. O alcance considera a esfera do órgão e a Lei 8.429. Sem a página, o motor recua de hoje, dia a dia."
+  falta: "O CNEP do mesmo dia ainda não foi tentado; a próxima sondagem (d1_sancoes) baixa o 20261127_CNEP.zip. Depois falta a primeira coleta diária pelo motor."
+  trava: "testes/test_coletores_federais_terceira.py::test_sancoes_ceis_real_pela_data_da_pagina_e_403_no_dia_anterior"
 - id: 154
   situacao: parcial
-  evidencia: "TCU com dado real: a pesquisa documentosResumidos foi lida, com o formato confirmado (quantidadeEncontrada 1374 para Goiânia). O leitor separa Goiânia de Aparecida de Goiânia pelos trechos, formata o processo (TC 016.497/2026-0), usa o PDF e transforma determinação e cautelar em alerta. TCM-GO: as páginas reais da primeira rodada não pesquisam (índice de ferramentas, busca de notícias, redirecionamento); o leitor devolve lista vazia, e o motor diz isso, sem fingir uma busca sem resultado."
-  falta: "TCM-GO: ler a pesquisa real (virtual.tcmgo.tc.br/jurisprudencia/), a busca em JSON do portal (wp-json), a lista de contas com parecer prévio pela rejeição e a de débitos e multas (d1_tcm). TCU: os dados abertos deram conexão recusada; tentar de novo."
-  trava: "testes/test_coletores_federais_reais.py::test_motor_tcu_com_a_pesquisa_real_e_os_dados_abertos_fora_do_ar"
+  evidencia: "TCU com as duas vias reais. A pesquisa documentosResumidos devolveu 100 acórdãos, 86 sobre Goiânia. Os dados abertos (recupera-acordaos) voltaram ao ar, e o leitor lê o formato real; acórdãos sem Goiânia não são guardados. TCM-GO: as duas páginas das listas só apontam as listas. links_das_listas tira os endereços: as três relações do acesso à informação, as contas de governo julgadas pelas câmaras, as encaminhadas ao TRE, os dados abertos em ws.tcm.go.gov.br e o painel das câmaras. motor_listas_tcm guarda as linhas de Goiânia em contas_irregulares_tcm."
+  falta: "TCM-GO: ler uma das listas de verdade (d1_tcm baixa os dados abertos, as relações e o painel) e a pesquisa de jurisprudência do virtual.tcmgo."
+  trava: "testes/test_coletores_federais_terceira.py::test_tcu_dados_abertos_reais_sem_goiania_ficam_vazios"
 - id: 164
   situacao: parcial
-  evidencia: "Parte FNS e FNDE: o FNDE leu a lista real de entidades. O FNS ainda procura o endereço da API (ids 146 e 147)."
-  falta: "A ativação dos domínios pela Frente D2, as liberações por entidade do FNDE e o endereço da API do FNS."
-  trava: "testes/test_coletores_federais_reais.py::test_fnde_lista_real_de_goiania_e_o_formulario_oculto_por_cnpj"
+  evidencia: "O FNDE está lido no formato real (id 147). O FNS ainda procura o serviço por Município (id 146)."
+  falta: "A ativação dos domínios pela Frente D2 e o serviço do FNS por Município."
+  trava: "testes/test_coletores_federais_terceira.py::test_motor_fnde_com_a_lista_e_as_liberacoes_reais"

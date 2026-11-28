@@ -22,11 +22,25 @@ Sondagem de 27/11/2026:
   10 minutos; ``main.js`` só carrega ``controllers/portalController``, ``services/utilService`` e as
   bibliotecas. Os serviços com os endereços da API estão nesses arquivos e nas páginas de cada rota,
   que a próxima sondagem lê (chave ``d1_fns``).
+
+Sondagem de 28/11/2026 (run 46085340244):
+- os três modelos do ``consultafns`` com o período em datas deram 400 ou 404, e o ``detalhe-acao`` deu
+  400 (o corpo é a página de erro padrão, sem dizer o parâmetro que falta);
+- o ``repasseDiaService.js`` diz o serviço de verdade: o recurso ``recursos/repasse-dia`` com
+  ``consultar`` (ano, mês e dia), ``detalhar-pagamento-dia``, ``detalhar-pagamento-dia-final``,
+  ``detalhar-pagamento``, ``detalhar-pagamento-emenda``, ``recuperar-data-ultimo-pagamento`` (sem
+  parâmetro) e três planilhas por POST. É um serviço nacional por dia, não por Município: o filtro do
+  Município fica nas páginas ``detalhada`` e ``consolidada`` do mesmo aplicativo, cujos serviços a
+  próxima sondagem lê. ``servicos_do_js`` tira os endereços de qualquer serviço desses;
+- ``recursos/municipios/uf/GO`` é JSON real (``coMunicipioIbge`` de 6 dígitos): ``municipios``.
 """
 
 from __future__ import annotations
 
+import json
 import math
+import re
+import urllib.parse
 
 from . import comum_federal as cf
 
@@ -40,7 +54,8 @@ MODELOS = (
     API + "repasses?municipio_ibge={ibge6}&ano={ano}&pagina={pagina}&tamanho=1000",
     API + "v1/pagamentos?municipio_ibge={ibge6}&ano={ano}&pagina={pagina}&tamanho=1000",
     API + "repasses-fundo-a-fundo?municipio_ibge={ibge6}&ano={ano}&page={pagina}&size=1000",
-    # consultafns: o serviço do "repasse dia" existe (400 com ano); o período vai em datas dd/mm/aaaa.
+    # consultafns: modelos da segunda rodada. Deram 400 ou 404 na sondagem de 28/11 (ver o topo);
+    # ficam enquanto a trava da segunda rodada os pede e falham sem custo.
     CONSULTA + "repasse-dia/detalhar-pagamento?codigoMunicipio={ibge6}&dataPagamentoInicial={inicio}"
                "&dataPagamentoFinal={fim}&page={pagina}&count=1000",
     CONSULTA + "repasse-dia/detalhar-pagamento?municipio={ibge6}&dataInicial={inicio}&dataFinal={fim}"
@@ -54,6 +69,52 @@ DESCARTADOS = (
     CONSULTA + "repasse-dia/detalhar-pagamento?codigoMunicipio={ibge6}&ano={ano}&page={pagina}&count=1000",
     CONSULTA + "consolidado/municipio?codigoMunicipio={ibge6}&ano={ano}",
 )
+
+
+# O serviço do "repasse dia" (repasseDiaService.js, lido em 28/11/2026).
+REPASSE_DIA = CONSULTA + "repasse-dia/"
+PAGINAS_DO_APP = ("detalhada", "consolidada", "entidade", "convenios", "detalhada-multisselecao", "saldo-mac")
+
+_RECURSO = re.compile(r"this\.resource\s*=\s*'([^']+)'")
+_METODO = re.compile(r"\.prototype\.(\w+)\s*=\s*function\s*\(([^)]*)\)\s*\{(.*?)\n\t\t\}", re.DOTALL)
+
+
+def servicos_do_js(js: str) -> dict[str, tuple[str, str]]:
+    """Os endereços que um serviço AngularJS do consultafns chama: {função: (método, caminho)}.
+
+    O caminho é o recurso (``this.resource``) mais o sufixo; métodos comentados não contam."""
+    js = re.sub(r"/\*.*?\*/", "", js, flags=re.DOTALL)
+    recurso = _RECURSO.search(js)
+    if not recurso:
+        return {}
+    saida = {}
+    for nome, _params, corpo in _METODO.findall(js):
+        sufixo = re.search(r"this\.resource\s*\+\s*'([^']+)'", corpo)
+        if not sufixo:
+            continue
+        metodo = "POST" if re.search(r"\.post\s*\(|customPOST", corpo) else "GET"
+        saida[nome] = (metodo, recurso.group(1) + sufixo.group(1))
+    return saida
+
+
+def url_repasse_dia(servico: str, **params) -> str:
+    """Um endereço do serviço do repasse dia (``consultar``, ``detalhar-pagamento-dia``...)."""
+    base = REPASSE_DIA + servico.strip("/")
+    limpos = {k: v for k, v in params.items() if v is not None}
+    return base + ("?" + urllib.parse.urlencode(limpos) if limpos else "")
+
+
+def municipios(conteudo: bytes) -> dict[str, str]:
+    """``recursos/municipios/uf/XX``: {código IBGE de 6 dígitos: nome}."""
+    try:
+        obj = json.loads(conteudo)
+    except ValueError as e:
+        raise ValueError(f"municípios do FNS não são JSON: {e}") from e
+    lista = obj.get("resultado") if isinstance(obj, dict) else None
+    if not isinstance(lista, list):
+        raise ValueError("municípios do FNS sem a lista 'resultado'")  # noqa: TRY004 (formato, como os outros leitores)
+    return {str(m["coMunicipioIbge"]): m.get("noMunicipio", "") for m in lista
+            if isinstance(m, dict) and m.get("coMunicipioIbge")}
 
 
 def url(modelo: str, ibge: int | str, ano: int, pagina: int = 1) -> str:
