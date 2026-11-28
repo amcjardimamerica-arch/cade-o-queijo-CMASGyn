@@ -1,27 +1,20 @@
-# Coleta em andamento: boletim de 2026-11-28T00:57+00:00
+# Coleta em andamento: boletim de 2026-11-28T01:08+00:00
 
-Desde 2026-11-28T00:23:00+00:00: 1362 chamadas registradas.
-Última chamada: 2026-11-28T00:57:31+00:00 (tcu 0).
+Desde 2026-11-28T00:58:15+00:00: 42 chamadas registradas.
+Última chamada: 2026-11-28T01:07:38+00:00 (despesas_favorecido).
 
 ## Por fonte
 
 | fonte | situação | chamadas |
 |---|---|---|
-| arquivos.receitafederal.gov.br | URLError | 2 |
-| brasilapi.com.br/api/cnpj | ok | 1353 |
-| certidoes.apps.tcu.gov.br/api/publico | HTTP 405 ({"mensagem":"Método não suportado na requisição para o endpo) | 1 |
-| portaldatransparencia.gov.br | HTTP 403 (<?xml version="1.0" encoding="UTF-8"?> <Error><Code>AccessDe) | 1 |
-| portaldatransparencia.gov.br | ok | 1 |
-| www10.goiania.go.gov.br | HTTP 500 | 3 |
-| www10.goiania.go.gov.br | ok | 1 |
+| www10.goiania.go.gov.br | ok | 29 |
+| www10.goiania.go.gov.br | HTTP 500 | 13 |
 
 ## Tempo das respostas boas (segundos)
 
 | fonte | n | mediana | p90 | máximo |
 |---|---|---|---|---|
-| brasilapi.com.br/api/cnpj | 1353 | 0.2 | 0.9 | 1.4 |
-| portaldatransparencia.gov.br | 1 | 0.3 | 0.3 | 0.3 |
-| www10.goiania.go.gov.br | 1 | 2.2 | 2.2 | 2.2 |
+| www10.goiania.go.gov.br | 29 | 1.1 | 1.4 | 1.6 |
 
 ## O que o banco tem agora
 
