@@ -235,6 +235,28 @@ existe número sem origem.
 * Quando um número não tem original guardado, o balão diz isso com todas as letras ("o original deste
   número não está guardado no banco").
 
+### Rastreio por hash (pedido da titular de 28/11/2026)
+
+"Ao coletar as informações gere um código hash para rastreio dos dados e validação de cada informação
+obtida." As telas mostram os hashes do rastreio (`onisciente/rastreio.py`) sem pedir nada à rede:
+
+* **Ícone próprio** de "verificado por hash": uma cerquilha dentro de um hexágono, no mesmo traço dos ícones
+  das condições e com forma diferente deles (o círculo, o triângulo e o quadrado são das condições). Verde
+  quando confere com o selo do rastreio, vermelho quando a cadeia não confere, cinza quando o rastreio ainda
+  não começou.
+* **Em cada ficha**: o hash do achado com 12 caracteres na linha de resumo e o hash completo no `title`; no
+  corpo, o hash do achado e o das provas (o próprio hash quando há uma prova, a raiz de Merkle quando há
+  várias), cada um com o botão "copiar", que copia o hash inteiro.
+* **No balão de origem de cada número**: o hash da resposta (o sha256 que a coleta guardou) e, quando o banco
+  já tem o rastreio, o hash do registro da coleta e se ele confere com o selo da rodada.
+* **Busca por hash** na tela de indícios (o rodapé de todas as telas leva a ela): o começo do hash, com 4
+  caracteres ou mais, acha a ficha (pelo hash do achado ou das provas) ou a fonte (pela resposta ou pelo
+  registro). O que não está nas telas fica para `python -m onisciente rastreio --hash`, que procura em todos
+  os registros do banco.
+* **No rodapé de todas as telas**: o topo da cadeia (a última rodada, o hash dela e a raiz de Merkle) e se a
+  cadeia confere. Sem o arquivo `rastreio.db` ao lado do banco (banco ainda não migrado), o rodapé diz, em
+  cinza e sem erro, que o rastreio começa na próxima coleta. As telas só leem: nunca criam o arquivo.
+
 ## 11. Estado vazio: aguardando a coleta
 
 As telas que dependem de dados ainda em construção pelas outras frentes leem um arquivo JSON simples em
