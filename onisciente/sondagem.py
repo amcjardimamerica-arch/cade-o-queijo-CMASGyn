@@ -258,21 +258,19 @@ CANDIDATOS: dict[str, list[str]] = {
     ],
     # Frente D1 (bloco 5), segunda rodada (27/11/2026): o que a primeira sondagem deixou em aberto.
     "d1_fns": [
-        # Quarta rodada (28/11): o repasse-dia nacional já é lido pelo motor. O que falta é o Município: a
-        # consulta detalhada (detalhadaController.js manda estado e municipio com o IBGE de 6 dígitos) e o
-        # detalhe do dia por programa (repasseDiaController.js manda codigoProgramaFundo e tipoDetalhamento).
+        # Quinta rodada (28/11): entidades com o Município respondeu (191 de Goiânia, filtro respeitado) e
+        # já é lida. Falta o valor por entidade: os controladores das telas de ação e pagamento dizem os
+        # parâmetros de detalhe-acao e detalhe-pagamento; o detalhe do dia de novo, agora com o corpo do erro.
         "https://consultafns.saude.gov.br/app/controllers/portalController.js",
-        "https://consultafns.saude.gov.br/recursos/consulta-detalhada/entidades?page=1&count=10&ano=2025&mes=&"
+        "https://consultafns.saude.gov.br/app/pages/detalhada/controllers/acaoController.js",
+        "https://consultafns.saude.gov.br/app/pages/detalhada/controllers/pagamentoController.js",
+        "https://consultafns.saude.gov.br/app/pages/detalhada/controllers/entidadeController.js",
+        "https://consultafns.saude.gov.br/app/pages/consolidada/controllers/consolidadaController.js",
+        "https://consultafns.saude.gov.br/recursos/consulta-detalhada/entidades?page=2&count=100&ano=2025&mes=&"
         "tipoConsulta=&blocos=&grupo=&componentes=&acoes=&estado=GO&municipio=520870&repasse=&dataInicialOb=&"
         "dataFinalOb=",
-        "https://consultafns.saude.gov.br/recursos/consulta-detalhada/entidades?page=1&count=10&ano=2025&"
-        "estado=GO&municipio=520870",
-        "https://consultafns.saude.gov.br/app/pages/consolidada/services/consolidadaService.js",
         "https://consultafns.saude.gov.br/recursos/repasse-dia/detalhar-pagamento-dia?ano=2025&mes=1&dia=15&"
         "codigoProgramaFundo=61861&tipoDetalhamento=PROGRAMA",
-        "https://consultafns.saude.gov.br/recursos/repasse-dia/detalhar-pagamento-dia-final?ano=2025&mes=1&dia=15&"
-        "codigoProgramaFundo=61861",
-        "https://consultafns.saude.gov.br/recursos/repasse-dia/consultar?ano=2026&mes=11&dia=26",
     ],
     "d1_fnde": [
         # As liberações por entidade já são lidas (terceira rodada): uma de prova, para a trava do formato.
@@ -287,10 +285,10 @@ CANDIDATOS: dict[str, list[str]] = {
         "https://api.transferegov.gestao.gov.br/fundoafundo/",
     ],
     "d1_sancoes": [
-        # CEIS de 27/11 e CNEP de 27/11 lidos; o CEIS de 28/11 deu 403 (ainda não saiu): o do dia seguinte.
+        # A página do CEIS (28/11) anuncia só 27/11 (arquivos.push), que o motor já lê; 28 e 29/11 deram 403
+        # porque ainda não saíram. De novo a página e o arquivo seguinte, para ver a defasagem de publicação.
         "https://dadosabertos-download.cgu.gov.br/PortalDaTransparencia/saida/cnep/20261127_CNEP.zip",
         "https://portaldatransparencia.gov.br/download-de-dados/ceis",
-        "https://dadosabertos-download.cgu.gov.br/PortalDaTransparencia/saida/ceis/20261128_CEIS.zip",
         "https://dadosabertos-download.cgu.gov.br/PortalDaTransparencia/saida/ceis/20261129_CEIS.zip",
     ],
     "d1_economia_go": [
@@ -299,18 +297,19 @@ CANDIDATOS: dict[str, list[str]] = {
         "https://goias.gov.br/economia/wp-content/uploads/sites/45/2026/05/Conciliacao_das_Distribuicoes-2025.xlsx",
     ],
     "d1_tcu": [
-        # A página 2 da pesquisa (inicio=100) falhou sem resposta na quarta rodada: de novo, e com 50 por página.
+        # A pesquisa agora vai de 50 em 50 (inicio=50 veio inteira); inicio=100 caiu duas vezes: a terceira
+        # página com 50 e a de 100 de novo, para saber se o problema é o tamanho ou o deslocamento.
         "https://pesquisa.apps.tcu.gov.br/rest/publico/base/acordao-completo/documentosResumidos?termo=%22Goi%C3%A2nia%22"
-        "&ordenacao=DTRELEVANCIA+desc%2C+NUMACORDAOINT+desc&quantidade=100&inicio=100&sinonimos=true",
+        "&ordenacao=DTRELEVANCIA+desc%2C+NUMACORDAOINT+desc&quantidade=50&inicio=100&sinonimos=true",
         "https://pesquisa.apps.tcu.gov.br/rest/publico/base/acordao-completo/documentosResumidos?termo=%22Goi%C3%A2nia%22"
         "&ordenacao=DTRELEVANCIA+desc%2C+NUMACORDAOINT+desc&quantidade=50&inicio=50&sinonimos=true",
     ],
     "d1_tcm": [
-        # Os dados abertos (CSV) já são lidos; o acesso à informação e o painel das câmaras deram 403.
+        # Contas irregulares já lidas; a raiz da API deu 404 e o contaseleicoes 403. A jurisprudência é um
+        # aplicativo React (div root vazia): o pacote JavaScript diz o endereço da API de pesquisa.
         "https://virtual.tcmgo.tc.br/jurisprudencia/",
         "https://ws.tcm.go.gov.br/api/rest/dados/contas-irregulares",
-        "https://ws.tcm.go.gov.br/api/rest/dados/",
-        "https://www.tcmgo.tc.br/contaseleicoes/",
+        "https://virtual.tcmgo.tc.br/jurisprudencia/assets/index-CXB0WfQ4.js",
     ],
     # Frente E (27/11): auditoria independente do Selo de Transparência (PNTP). As páginas que cada critério
     # da matriz (regras/pntp/matriz_2026.yml) manda olhar; onisciente/selo/coleta.py segue os links internos.
@@ -407,7 +406,8 @@ def _guardar(fonte: str, url: str, leitura, formulario: dict | None = None) -> d
         sufixo = ".pdf.b64" if bruto.startswith(b"%PDF") else ".zip.b64"
         arq.with_suffix(sufixo).write_text(base64.b64encode(leitura.conteudo).decode())
     try:
-        corpo = bruto.decode("utf-8") if leitura.ok else ""
+        # Frente D1: o corpo da recusa também (a mensagem do 400/500 diz o parâmetro que falta).
+        corpo = bruto.decode("utf-8") if leitura.ok or fonte.startswith("d1_") else ""
     except UnicodeDecodeError:
         corpo = bruto.decode("latin-1")
     arq.write_text(f"URL: {url}\nPOST: {json.dumps(formulario or {}, ensure_ascii=False)}\nOK: {leitura.ok}\nHTTP: {leitura.http}\nERRO: {leitura.erro}\n"

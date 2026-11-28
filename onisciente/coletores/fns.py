@@ -47,6 +47,15 @@ filtro por Município fica na consulta detalhada (``detalhadaService.js``: o rec
 dígitos), ``repasse``, ``dataInicialOb``, ``dataFinalOb``, ``page`` e ``count``). O modelo
 ``consulta-detalhada/entidades`` com o Município entrou em ``MODELOS``; a resposta dele ainda não foi
 vista.
+
+Sondagem da rodada 5 (28/11/2026): ``consulta-detalhada/entidades`` com ``estado=GO&municipio=520870``
+respondeu 200 com ``resultado.dados`` (uf, município, ``codigoMunicipioIBGE``, ``cpfCnpj``, razão social,
+esfera administrativa, ``entidadeSemRepasse``) e a paginação (``pagina`` a partir de 0, ``itensPorPagina``,
+``total``, ``totalPaginas``): 191 entidades de Goiânia em 2025, todas com o IBGE 520870 (o filtro do
+Município foi respeitado). É a lista de quem recebeu, sem valores: ``entidades`` a lê, e ela não serve
+de repasse (``MODELOS_DE_REPASSE`` a deixa de fora). Pessoa física fica só com o CPF mascarado que o
+próprio FNS mostra. ``detalhar-pagamento-dia`` deu 500 e o ``-final`` deu 400 com os parâmetros do
+controlador (o corpo do erro não foi guardado pela sondagem).
 """
 
 from __future__ import annotations
@@ -215,6 +224,33 @@ UF_DO_IBGE = {"11": "RO", "12": "AC", "13": "AM", "14": "RR", "15": "PA", "16": 
               "22": "PI", "23": "CE", "24": "RN", "25": "PB", "26": "PE", "27": "AL", "28": "SE", "29": "BA",
               "31": "MG", "32": "ES", "33": "RJ", "35": "SP", "41": "PR", "42": "SC", "43": "RS", "50": "MS",
               "51": "MT", "52": "GO", "53": "DF"}
+
+
+ENTIDADES = next(m for m in MODELOS if "consulta-detalhada/entidades" in m)
+# Os modelos que devolvem pagamentos (a lista de entidades não tem valor).
+MODELOS_DE_REPASSE = tuple(m for m in MODELOS if m != ENTIDADES)
+
+
+def entidades(conteudo: bytes, ibge6: str) -> tuple[list[dict], int, int]:
+    """Uma página de ``consulta-detalhada/entidades``: (entidades, total, total de páginas). Levanta
+    ``ValueError`` se o formato mudar ou se vier entidade de outro Município (filtro ignorado)."""
+    obj = cf.json_ou_none(conteudo)
+    res = obj.get("resultado") if isinstance(obj, dict) else None
+    if not isinstance(res, dict) or not isinstance(res.get("dados"), list):
+        raise ValueError("a lista de entidades do FNS não traz resultado.dados")  # noqa: TRY004
+    saida = []
+    for d in res["dados"]:
+        ibge = str(d.get("codigoMunicipioIBGE") or "")
+        if ibge[:6] != str(ibge6)[:6]:
+            raise ValueError(f"entidade de outro Município ({ibge}): o filtro do Município não foi aplicado")
+        doc = cf.digitos(d.get("cpfCnpj"))
+        pessoa_fisica = len(doc) == 11
+        saida.append({
+            "cpf_cnpj": (d.get("cpfCnpjFormatado") or "") if pessoa_fisica else doc,
+            "pessoa_fisica": int(pessoa_fisica), "nome": _texto(d.get("razaoSocial")),
+            "esfera": _texto(d.get("esferaAdministrativa")), "municipio_ibge": ibge,
+            "sem_repasse": int(bool(d.get("entidadeSemRepasse")))})
+    return saida, int(res.get("total") or len(saida)), int(res.get("totalPaginas") or 1)
 
 
 def url(modelo: str, ibge: int | str, ano: int, pagina: int = 1) -> str:
