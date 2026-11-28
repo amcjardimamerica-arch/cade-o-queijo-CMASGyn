@@ -49,17 +49,49 @@ jobs:
           path: ${{ runner.temp }}/brutos
           retention-days: 14
           if-no-files-found: ignore
-      - name: Publicar banco, relatórios e páginas
+      # Guarda de tamanho: o GitHub recusa arquivo acima de 100 MiB, e um push recusado perde a rodada
+      # inteira. Acima de 95 MB, os bancos sobem como artefato da execução e o fluxo falha sem enviar.
+      - name: Guarda de tamanho dos bancos
+        id: tamanho
         if: ${{ !cancelled() }}
+        run: |
+          LIMITE=95000000
+          GRANDES=""
+          for f in dados/onisciente/*.db; do
+            [ -f "$f" ] || continue
+            T=$(stat -c %s "$f"); echo "$f: $T bytes"
+            if [ "$T" -gt "$LIMITE" ]; then GRANDES="$GRANDES $f ($T bytes)"; fi
+          done
+          if [ -n "$GRANDES" ]; then
+            echo "grande=1" >> "$GITHUB_OUTPUT"
+            { echo "## Banco acima de 95 MB: nada foi enviado ao ramo"; echo
+              echo "Passou do limite:$GRANDES. O GitHub recusa arquivo acima de 100 MiB."
+              echo "Os bancos ficaram no artefato onisciente-bancos-${{ github.run_id }} desta execução."; } >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Guardar os bancos como artefato (grandes demais para o ramo)
+        if: ${{ !cancelled() && steps.tamanho.outputs.grande == '1' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: onisciente-bancos-${{ github.run_id }}
+          path: dados/onisciente/*.db
+          retention-days: 30
+      - name: Publicar banco, relatórios e páginas
+        if: ${{ !cancelled() && steps.tamanho.outputs.grande != '1' }}
         run: |
           git config user.name "vigilancia-bot"; git config user.email "bot@users.noreply.github.com"
           git add dados/onisciente/historico.db relatorios/onisciente docs/onisciente estado/onisciente_coleta.json
+          [ ! -f dados/onisciente/rastreio.db ] || git add dados/onisciente/rastreio.db
           git diff --staged --quiet && exit 0
           git commit -m "Onisciente: agenda diaria $(date -u +%F)"
           for n in 1 2 3; do
             git pull --rebase origin "$GITHUB_REF_NAME" && git push origin "HEAD:$GITHUB_REF_NAME" && exit 0
             sleep $((n * 10))
           done
+          exit 1
+      - name: Falhar sem enviar (banco acima de 95 MB)
+        if: ${{ !cancelled() && steps.tamanho.outputs.grande == '1' }}
+        run: |
+          echo "Banco acima de 95 MB: a coleta ficou no artefato da execução e não foi enviada ao ramo." >&2
           exit 1
       - name: Atualizar o painel publicado
         if: ${{ !cancelled() && github.ref == 'refs/heads/main' }}

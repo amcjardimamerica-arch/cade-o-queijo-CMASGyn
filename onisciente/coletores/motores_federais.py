@@ -374,7 +374,7 @@ def motor_emendas(ctx, municipio: str, uf: str, ibge, cnpjs=()) -> None:
     filtro = emendas.Filtro(municipio, uf, ibge, cnpjs)
     inicio = time.monotonic()
     linhas, contagem = [], {}
-    url, http, lidos, erro, situacao = emendas.URL, None, 0, None, "falha"
+    url, http, lidos, erro, situacao, impressao = emendas.URL, None, 0, None, "falha", None
     try:
         if ctx.ler_url is not base.ler:
             leitura = ctx.ler("transferegov", "emendas arquivo unico", url, tempo=300)
@@ -392,6 +392,7 @@ def motor_emendas(ctx, municipio: str, uf: str, ibge, cnpjs=()) -> None:
                 contagem[planilha] = contagem.get(planilha, 0) + 1
         finally:
             lidos = fonte.bytes
+            impressao = fonte.sha256 if (lidos or http is not None) else None
             fechar = getattr(fonte.fonte, "close", None)
             if fechar:
                 fechar()
@@ -406,7 +407,7 @@ def motor_emendas(ctx, municipio: str, uf: str, ibge, cnpjs=()) -> None:
         ctx.banco.inserir("coletas", {
             "motor": "transferegov", "alvo": "emendas arquivo unico (fluxo)", "mes": "", "url": url,
             "ok": int(situacao in ("lido", "vazio")), "http": http, "erro": erro, "tentativas": 1,
-            "segundos": round(time.monotonic() - inicio, 2), "bytes": lidos, "sha256": None,
+            "segundos": round(time.monotonic() - inicio, 2), "bytes": lidos, "sha256": impressao,
             "quando": datetime.now(UTC).isoformat(timespec="seconds")})
     if situacao in ("lido", "vazio"):
         with ctx.banco.con:

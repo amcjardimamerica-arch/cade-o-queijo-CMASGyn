@@ -16,7 +16,8 @@ from ..lai import Oficio
 from ..nucleo.ausencias import Ausencia
 from ..nucleo.indicios import Familia, Ficha, emitir
 from ..nucleo.provas import Nivel
-from ..parecer.html import CSS, _ficha
+from ..parecer.html import CSS, _ficha, _rastreio_da_ficha
+from ..rastreio import hash_achado
 from .avaliador import DECLARADO, DIMENSAO_O, Auditoria
 from .formula import itens_da_leitura
 from .matriz import ROTULO_CLASSE, ROTULO_ITEM
@@ -197,7 +198,9 @@ def _ficha_html(f: dict) -> str:
             f"<dt>Como deveria ser</dt><dd>{escape(f['como_deveria'])}</dd>"
             f"<dt>Norma</dt><dd>{escape(f['norma'])}</dd>"
             f"<dt>Como está</dt><dd>{escape(f['como_esta'])}</dd>"
-            f"<dt>Providência</dt><dd>{escape(f['providencia'])}</dd></dl></article>")
+            f"<dt>Providência</dt><dd>{escape(f['providencia'])}</dd>"
+            + _rastreio_da_ficha(f.get("rastreio") or {"hash_achado": hash_achado(f), "apoio": []})
+            + "</dl></article>")
 
 
 def _radar(aud: Auditoria) -> str:
