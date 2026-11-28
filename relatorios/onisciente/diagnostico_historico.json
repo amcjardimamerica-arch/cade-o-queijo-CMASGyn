@@ -1,6 +1,6 @@
 {
  "intervalo": "2024-11 a 2026-11",
- "rodada": "2026-11-28T00:23:01+00:00",
+ "rodada": "2026-11-28T01:30:19+00:00",
  "meses": [
   "2024-11",
   "2024-12",
@@ -54,16 +54,27 @@
    "erros": {}
   },
   {
+   "motor": "economia_go",
+   "nome": "Cota-parte do Estado (Secretaria da Economia de Goiás)",
+   "chamadas": 6,
+   "ok": 6,
+   "falhas": 0,
+   "tentativas": 6,
+   "http_429": 0,
+   "segundos": 48.1,
+   "erros": {}
+  },
+  {
    "motor": "execucao_goiania",
    "nome": "Execução item a item no portal de Goiânia (TransWeb)",
-   "chamadas": 4,
-   "ok": 1,
-   "falhas": 3,
-   "tentativas": 10,
+   "chamadas": 43,
+   "ok": 29,
+   "falhas": 14,
+   "tentativas": 71,
    "http_429": 0,
-   "segundos": 116.5,
+   "segundos": 567.7,
    "erros": {
-    "HTTP 500": 3
+    "HTTP 500": 14
    }
   },
   {
@@ -77,6 +88,33 @@
    "segundos": 98.2,
    "erros": {
     "planilha do ano não publicada na página do FNAS": 1
+   }
+  },
+  {
+   "motor": "fnde",
+   "nome": "FNDE (liberações da educação)",
+   "chamadas": 1231,
+   "ok": 1231,
+   "falhas": 0,
+   "tentativas": 1231,
+   "http_429": 0,
+   "segundos": 969.5,
+   "erros": {}
+  },
+  {
+   "motor": "fns",
+   "nome": "Fundo Nacional de Saúde (repasses fundo a fundo)",
+   "chamadas": 71,
+   "ok": 44,
+   "falhas": 27,
+   "tentativas": 92,
+   "http_429": 0,
+   "segundos": 528.5,
+   "erros": {
+    "URLError: [Errno -2] Name or service not known": 12,
+    "HTTP 400: <html><head><title>JBWEB000065: HTTP Status 400 - </title><style><!--H1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} H2 {font-family:Tahoma,Arial,sans-ser": 9,
+    "formato: os registros não têm data e valor reconhecíveis": 3,
+    "HTTP 404: <html><head><title>JBWEB000065: HTTP Status 404 - /recursos/repasse-dia/consolidado</title><style><!--H1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} H2 {": 3
    }
   },
   {
@@ -157,6 +195,17 @@
    }
   },
   {
+   "motor": "sancoes",
+   "nome": "Empresas punidas (CEIS e CNEP)",
+   "chamadas": 4,
+   "ok": 4,
+   "falhas": 0,
+   "tentativas": 4,
+   "http_429": 0,
+   "segundos": 3.2,
+   "erros": {}
+  },
+  {
    "motor": "siconfi",
    "nome": "SICONFI (Tesouro Nacional)",
    "chamadas": 23,
@@ -213,6 +262,30 @@
    "tentativas": 20,
    "http_429": 0,
    "segundos": 29.3,
+   "erros": {}
+  },
+  {
+   "motor": "tcm",
+   "nome": "Decisões do TCM-GO",
+   "chamadas": 12,
+   "ok": 6,
+   "falhas": 6,
+   "tentativas": 13,
+   "http_429": 0,
+   "segundos": 127.7,
+   "erros": {
+    "HTTP 403: <html>\r <head><title>403 Forbidden</title></head>\r <body>\r <center><h1>403 Forbidden</h1></center>\r </body>\r </html>": 6
+   }
+  },
+  {
+   "motor": "tcu",
+   "nome": "Decisões do TCU",
+   "chamadas": 12,
+   "ok": 12,
+   "falhas": 0,
+   "tentativas": 15,
+   "http_429": 0,
+   "segundos": 66.0,
    "erros": {}
   },
   {

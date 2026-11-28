@@ -62,6 +62,8 @@ CREATE TABLE IF NOT EXISTS repasse_dia_fns (data TEXT, nivel INTEGER, caminho TE
     valor_total REAL, valor_desconto REAL, valor_liquido REAL, competencia TEXT, tipo_competencia TEXT,
     tipo_transferencia TEXT, nivel_programa TEXT, processos INTEGER, folha INTEGER);
 CREATE TABLE IF NOT EXISTS repasse_dia_fns_dias (data TEXT PRIMARY KEY, registros INTEGER, quando TEXT);
+CREATE TABLE IF NOT EXISTS fns_entidades (ano INTEGER, cpf_cnpj TEXT, pessoa_fisica INTEGER, nome TEXT,
+    esfera TEXT, municipio_ibge TEXT, sem_repasse INTEGER, PRIMARY KEY (ano, cpf_cnpj, nome));
 CREATE TABLE IF NOT EXISTS decisoes_controle (tribunal TEXT, chave TEXT, numero TEXT, ano INTEGER,
     colegiado TEXT, data TEXT, relator TEXT, processo TEXT, tipo TEXT, titulo TEXT, sumario TEXT, url TEXT,
     sobre_goiania INTEGER, PRIMARY KEY (tribunal, chave));
@@ -71,7 +73,7 @@ MOTORES = ("fns", "fnde", "transferegov", "sancoes", "economia_go", "tcu", "tcm"
 
 TABELAS_DO_MOTOR = {
     "fns": [("coletas", "motor = 'fns'"), ("repasses_fns", ""), ("repasse_dia_fns", ""),
-            ("repasse_dia_fns_dias", ""), ("fontes_federais", "motor = 'fns'")],
+            ("repasse_dia_fns_dias", ""), ("fns_entidades", ""), ("fontes_federais", "motor = 'fns'")],
     "fnde": [("coletas", "motor = 'fnde'"), ("liberacoes_fnde", ""), ("fnde_entidades", ""),
              ("fontes_federais", "motor = 'fnde'")],
     "transferegov": [("coletas", "motor = 'transferegov'"), ("transferegov_planos_especiais", ""),
@@ -143,7 +145,7 @@ def motor_fns(ctx, ibge: int) -> None:
     preparar(ctx.banco)
     preferido: str | None = None
     for ano in _anos(ctx):
-        modelos = ([preferido] if preferido else []) + [m for m in fns.MODELOS if m != preferido]
+        modelos = ([preferido] if preferido else []) + [m for m in fns.MODELOS_DE_REPASSE if m != preferido]
         ultimo_erro, situacao = "nenhum modelo de endereço respondeu", "nao_publicado"
         for modelo in modelos:
             linhas: list[dict] = []
@@ -181,11 +183,48 @@ def motor_fns(ctx, ibge: int) -> None:
             _situacao(ctx, "fns", str(ano), situacao, erro=ultimo_erro)
 
 
+def motor_fns_entidades(ctx, ibge, paginas_max: int = 20) -> None:
+    """Quem recebeu do FNS no Município, ano a ano (``consulta-detalhada/entidades``, 100 por página).
+    O ano só é trocado na tabela quando todas as páginas vieram; entidade de outro Município é formato."""
+    preparar(ctx.banco)
+    ibge6 = str(ibge)[:6]
+    for ano in _anos(ctx):
+        alvo, linhas, total, situacao, erro = f"entidades {ano}", [], 0, None, None
+        pagina, paginas = 1, 1
+        while pagina <= min(paginas, paginas_max):
+            url = fns.url(fns.ENTIDADES, ibge, ano, pagina)
+            leitura = ctx.ler("fns", f"{alvo} p{pagina}", url, mes=f"{ano}-01", tempo=120)
+            if not leitura.ok:
+                situacao = "nao_publicado" if _ausente(leitura) else "falha"
+                erro = leitura.erro or f"HTTP {leitura.http}"
+                break
+            try:
+                novas, total, paginas = fns.entidades(leitura.conteudo, ibge6)
+            except ValueError as e:
+                _anotar(ctx, "fns", f"{alvo} p{pagina}", f"{ano}-01", url, f"formato: {e}")
+                situacao, erro = "formato", f"formato: {e}"
+                break
+            linhas.extend(novas)
+            if not novas:
+                break
+            pagina += 1
+        if situacao is None:
+            ctx.banco.con.execute("DELETE FROM fns_entidades WHERE ano = ?", (ano,))
+            for l in linhas:
+                ctx.banco.con.execute("INSERT OR REPLACE INTO fns_entidades VALUES (?, ?, ?, ?, ?, ?, ?)",
+                                      (ano, l["cpf_cnpj"], l["pessoa_fisica"], l["nome"], l["esfera"],
+                                       l["municipio_ibge"], l["sem_repasse"]))
+            situacao = "lido" if linhas else "vazio"
+            if total and len(linhas) < total:
+                erro = f"{len(linhas)} de {total} entidades (limite de {paginas_max} páginas)"
+        _situacao(ctx, "fns", alvo, situacao, via=fns.ENTIDADES, registros=len(linhas), erro=erro)
+
+
 def motor_fns_repasse_dia(ctx, dias_max: int = 40) -> None:
     """O repasse do dia do FNS (``repasse-dia/consultar``): o total nacional pago em cada dia, por bloco,
     grupo e programa. Lê a data do último pagamento e desce dia a dia, do mais novo, dentro do período
     da rodada; dia já lido não é lido de novo. Não traz o Município: é o calendário e o total dos
-    pagamentos, que a consulta detalhada (``consulta-detalhada/entidades``, em ``fns.MODELOS``) abre."""
+    pagamentos; quem recebeu no Município vem de ``motor_fns_entidades``."""
     preparar(ctx.banco)
     alvo = "repasse_dia"
     url = fns.url_repasse_dia("recuperar-data-ultimo-pagamento")
@@ -651,12 +690,12 @@ def motor_tcu(ctx, termo: str = "Goiânia", paginas: int = 10) -> None:
     recentes, filtrados pelo texto), até a data mais antiga do intervalo."""
     preparar(ctx.banco)
     desde = f"{min(ctx.meses)}-01" if ctx.meses else None
-    for alvo, montar, so_goiania in (
-            ("pesquisa", lambda i: tcu.url_pesquisa(termo, i), False),
-            ("dados_abertos", lambda i: tcu.url_dados_abertos(i), True)):
+    for alvo, montar, so_goiania, por_pagina in (
+            ("pesquisa", lambda i: tcu.url_pesquisa(termo, i), False, tcu.QUANTIDADE_PESQUISA),
+            ("dados_abertos", lambda i: tcu.url_dados_abertos(i), True, tcu.QUANTIDADE)):
         guardadas, situacao, erro = 0, "vazio", None
-        for p in range(paginas):
-            url = montar(p * tcu.QUANTIDADE)
+        for p in range(max(1, paginas * tcu.QUANTIDADE // por_pagina)):     # o mesmo alcance com 50 por vez
+            url = montar(p * por_pagina)
             leitura = ctx.ler("tcu", f"{alvo} {p}", url, tempo=90)
             if not leitura.ok:
                 situacao, erro = ("nao_publicado" if _ausente(leitura) else "falha"), leitura.erro
@@ -670,7 +709,7 @@ def motor_tcu(ctx, termo: str = "Goiânia", paginas: int = 10) -> None:
             guardadas += _guardar_decisoes(ctx, decisoes, so_goiania)
             situacao = "lido" if guardadas else "vazio"
             datas = [d["data"] for d in decisoes if d.get("data")]
-            if len(decisoes) < tcu.QUANTIDADE or (desde and datas and max(datas) < desde):
+            if len(decisoes) < por_pagina or (desde and datas and max(datas) < desde):
                 break
         if guardadas and situacao in ("falha", "formato", "nao_publicado"):
             situacao = "lido"                            # as páginas anteriores valem; o erro fica anotado
@@ -770,7 +809,7 @@ def motor_tcm(ctx, termo: str = "Goiânia", paginas: int = 5) -> None:
 def chamadas(ctx, alvo, cnpjs=None) -> dict:
     """As chamadas dos motores do bloco 5 para o ``rodar`` do historico."""
     return {
-        "fns": lambda: (motor_fns(ctx, alvo.ibge), motor_fns_repasse_dia(ctx)),
+        "fns": lambda: (motor_fns(ctx, alvo.ibge), motor_fns_entidades(ctx, alvo.ibge), motor_fns_repasse_dia(ctx)),
         "fnde": lambda: motor_fnde(ctx, alvo.uf, str(alvo.ibge)[:6]),
         "transferegov": lambda: motor_transferegov(
             ctx, cnpjs if cnpjs is not None else cnpjs_do_municipio(ctx.banco, ()),

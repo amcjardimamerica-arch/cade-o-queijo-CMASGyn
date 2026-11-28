@@ -1,0 +1,391 @@
+URL: https://consultafns.saude.gov.br/app/pages/consolidada/controllers/consolidadaController.js
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 12232
+
+/**
+ * @desc Define um módulo anonimo dependente de app e
+ * cria o controlador consolidadaController
+ */
+define([
+		'app',
+		'pages/consolidada/services/consolidadaService',
+		'pages/estado/services/estadoService',
+		'pages/municipio/services/municipioService',
+		'pages/tipoRepasse/services/tipoRepasseService',
+		'services/downloadService'
+],
+	/**
+	 * @param app
+	 * @returns {*}
+	 */
+	function (app) {
+
+		/**
+		 * @constructor
+		 */
+		var ConsolidadaController = function ($scope, $log, ngTableParams, $filter, consolidadaService, appRouteService,
+			appValidatorService, downloadService, tipoRepasseService, estadoService, municipioService) {
+
+			this.$scope = $scope;
+			this.$log = $log;
+			this.ngTableParams = ngTableParams;
+			this.$filter = $filter;
+			this.appRouteService = appRouteService;
+			this.consolidadaService = consolidadaService;
+			this.appValidatorService = appValidatorService;
+			this.downloadService = downloadService;
+			this.estadoService = estadoService;
+			this.municipioService = municipioService;
+			this.tipoRepasseService = tipoRepasseService;
+			this.$scope.columns = [];
+			this.$scope.columnsFoot = [];
+			this.$scope.showGrid = false;
+			this.boxGrid = false;
+			this.exibirPlanilhaDetalhada = false;
+			this.filtroData = {};
+
+			var $this = this;
+			$this.valorGeral = { valorParcela: 0.00};
+			$this.nrColunasFooter = 4;
+			$this.desabilitarComboMunicipio = false;
+			
+			$this.appValidatorService.register({
+				rule: 'validateEstadoConsultaConsolidada',
+				invoke: 'blur',
+				validator:  function (value) {
+		 
+					if (((null == value) || ("" == value) || (undefined == value)) && (true == $this.desabilitarComboEstado )) { 
+						 return true;
+					}  else if ((null == value) || ("" == value) || (undefined == value)) {
+						 return false;
+					} else {
+						 return true;
+					}
+				},
+				error: function (value, scope, element, attrs, $injector) {
+					$this.appValidatorService.showError(element, attrs, $this.$filter('translate')('app.validator.required'));
+				}
+			});
+
+			$this.appValidatorService.register({
+				rule: 'validateMunicipioConsultaConsolidada',
+				invoke: 'blur',
+				validator:  function (value) {
+		 
+					if (((null == value) || ("" == value) || (undefined == value)) && (true == $this.desabilitarComboMunicipio )) { 
+						 return true;
+					}  else if ((null == value) || ("" == value) || (undefined == value)) {
+						 return false;
+					} else {
+						 return true;
+					}
+				},
+				error: function (value, scope, element, attrs, $injector) {
+					$this.appValidatorService.showError(element, attrs, $this.$filter('translate')('app.validator.required'));
+				}
+			});
+
+			this.consolidadaService.cGet('anos').then(function(sucesso) {
+				$this.ano = sucesso.resultado;
+			}, function(erro) {
+				$this.$scope.$appNotify.error(erro.data.mensagens);
+			});
+
+			this.estadoService.listar().then(function(sucesso) {
+				$this.estados = sucesso.resultado;
+			}, function(erro) {
+				$this.$scope.$appNotify.error(erro.data.mensagens);
+			});
+
+			this.tipoRepasseService.listarTipoRepasseFaf().then(function(sucesso) {
+				$this.tiposRepasse = sucesso.resultado;
+			}, function(erro) {
+				$this.$scope.$appNotify.error(erro.data.mensagens);
+			});
+		}
+
+		ConsolidadaController.prototype.atualizarComboMunicipio = function() {  
+
+			var $this = this;
+
+			if (this.pesquisa.estado) {
+				this.municipioService.buscarMunicipiosPorSiglaUF(this.pesquisa.estado.sigla).then(function(sucesso) {
+					$this.municipios = sucesso.resultado;
+				}, function(erro) {
+					$this.$scope.$appNotify.error(erro.data.mensagens);
+				});
+			} else {
+				this.pesquisa.municipio = null;
+				this.municipios = [];
+			}
+		}
+
+		ConsolidadaController.prototype.grid = function() {
+			var $this = this;
+			return new this.ngTableParams(
+				{
+					page: 1,
+					count: 10,
+					ano:$this.pesquisa.ano.valor,
+					sgUf:  ($this.pesquisa.estado != undefined ) ? $this.pesquisa.estado.sigla : null,
+					coMunicipioIbge: ($this.pesquisa.municipio != undefined ) ? $this.pesquisa.municipio.coMunicipioIbge : null,
+					coTipoRepasse: ($this.pesquisa.tipoRepasse != undefined ) ? $this.pesquisa.tipoRepasse.valor : null 
+				},
+				{
+					getData: function($defer, params) {
+
+						var sucesso = function(response) {
+							params.total(response.resultado.total);
+
+							var dados = response.resultado.dados;
+
+							angular.forEach(dados, function (val, index) {
+								var stringObjeto =JSON.stringify(val).replace(/'/g, " ");
+								val['actions'] = "<button ng-click='consolidadaCtrl.detalhar(" + index + ","+ stringObjeto +")' class='btn btn-sm btn-primary' title="+$this.$filter('translate')('detalhar.btn.desc')+"><span class='app-icone-ver'></span></button> ";
+								val['cpfCnpj'] = val.cpfCnpjFormatado;
+								if ((val.codigoMunicipioIBGE == "260545") && ( val.esferaAdministrativa == "ESTADUAL" )){
+									val['valorTotalUF'] =   val.valorTotalUF;
+								} else {
+									val['valorTotalUF'] =  "{{ '"+val.valorTotalUFNumerico+"' | currency : 'R$ ':2}}";
+								}
+							});
+
+							var orderedData = params.sorting() && params.orderBy().length ?
+									$this.$filter('orderBy')(dados, params.orderBy()) :
+									dados;
+
+								orderedData = params.filter() ?
+									$this.$filter('filter')(orderedData, params.filter()) :
+									orderedData;
+
+							$defer.resolve(orderedData);
+						}
+
+						var erro = function(response) {
+							$this.$scope.$appNotify.error(response.data.mensagens);
+						}  
+
+						$this.consolidadaService.cGet('consulta-consolidada/entidades', params.url()).then(sucesso,erro);
+					}
+				});
+		}
+		
+		ConsolidadaController.prototype.pesquisar = function() {
+			var $this = this;
+
+			$this.appValidatorService.validate($this.$scope).success(function(sucesso) {
+
+				$this.$scope.showGrid = true;
+				$this.boxGrid = true;
+				$this.$scope.ngTable = $this.grid();
+
+				$this.resultado = angular.copy($this.pesquisa); 
+
+				$this.resultado.populacao = 0;
+				$this.resultado.anoCenso = 0;
+				$this.resultado.mensagem = "";
+				$this.$scope.columns = [];
+
+				$this.$scope.columns.push({
+						title: "{{ 'uf.label' | translate}}",
+						field: "uf",
+						visible: true,
+						order: 'sortable'
+					 },
+					 {
+						title: "{{ 'municipio.label' | translate}}",
+						field: "municipio",
+						ngClass: "text-left",
+						visible: true,
+						order: 'sortable'
+					 },
+					 {
+						 title: "{{ 'entidade.label' | translate}}",
+						 field: "razaoSocial",
+						 ngClass: "text-left",
+						 visible: true,
+						 order: 'sortable'
+					 },
+					 {
+						 title: "{{ 'cnpj.label' | translate}}",
+						 field: "cpfCnpj",
+						 visible: true,
+						 order: 'sortable'
+					 },
+					 {
+						 title: "{{ 'valorTotalBruto.label' | translate}}",
+						 field: "valorTotalUF",
+						 ngClass: "text-right",
+						 visible: true,
+						 order: 'sortable'
+					 },
+					 {
+						 title: "{{ 'default.grid.column.acoes.label' | translate}}",
+						 field: "actions",
+						 ngClass: "btn-table",
+						 visible: true
+					 }
+				);
+
+				$this.atualizarCensoPopulacao();
+
+				$this.consolidadaService.cGet('consulta-consolidada/repasse-bloco',{
+					page: 1,
+					count: 10,
+					ano:$this.pesquisa.ano.valor,
+					sgUf: ($this.pesquisa.estado != undefined ) ? $this.pesquisa.estado.sigla : null, 
+					coMunicipioIbge: ($this.pesquisa.municipio != undefined ) ? $this.pesquisa.municipio.coMunicipioIbge : null,
+					coTipoRepasse: ($this.pesquisa.tipoRepasse != undefined ) ? $this.pesquisa.tipoRepasse.valor : null 
+				}).then(function(sucesso) {
+
+					if ($this.resultado.ano.valor < 2018) {
+						$this.resultado.repasse = sucesso.resultado[0];
+					} else {
+						$this.resultado.repasse = sucesso.resultado;
+					}
+
+					$this.resultado.repasse.footer= {
+							valorTotal: 0.00, 
+							valorDescontoTotal: 0.00, 
+							valorLiquido: 0.00
+					}
+					angular.forEach(sucesso.resultado, function(value, key){
+						$this.resultado.repasse.footer.valorTotal += parseFloat(value.vlTotal);
+						$this.resultado.repasse.footer.valorDescontoTotal += parseFloat(value.vlDescontoTotal);
+						$this.resultado.repasse.footer.valorLiquido += parseFloat(value.vlLiquido);
+					});
+
+					$this.resultado.ano = $this.pesquisa.ano;
+					$this.resultado.total = sucesso.resultado.length;
+
+				}, function(erro) {
+					$this.$scope.$appNotify.error(erro.data.mensagens);
+				}).finally(function() {
+
+					$this.valorGeral.valorParcela = $this.resultado.repasse.footer.valorTotal;	
+
+					$this.$scope.columnsFoot = [{
+							title: "{{ 'totalGeralBruto.label' | translate}}",
+							ngColspan: 4,
+							visible: true
+					},
+					{
+						title: "{{ '"+ $this.resultado.repasse.footer.valorTotal +"' | currency : 'R$ ':2}}",
+						visible: true
+					},
+					{
+						title: "",
+						ngColspan: 1,
+						visible: true
+					}];
+				});
+
+			}).error(function(erro){
+				$this.$scope.$appNotify.error( $this.$filter('translate')('mensagem.obrigatorio.erro') );
+			});
+		}
+
+		ConsolidadaController.prototype.atualizarCensoPopulacao = function() {
+			if (this.pesquisa.municipio) {
+				var $this = this;
+				this.municipioService.buscarCensoPopulacao($this.resultado.municipio.coMunicipioIbge)
+					.then(function(sucesso) {
+						$this.resultado.populacao = sucesso.resultado.populacao;
+						$this.resultado.anoCenso = sucesso.resultado.anoCenso;
+					}, function(erro) {
+						$this.$scope.$appNotify.error(erro.data.mensagens);
+					});
+			}
+		}
+		
+		ConsolidadaController.prototype.entidade = function(id) {
+			this.appRouteService.goTo('.entidade');
+		}
+
+		ConsolidadaController.prototype.detalhar = function(id, obj) {
+			obj = (typeof obj === 'string' ? JSON.parse(obj) : obj) || {};
+
+			obj.ano = this.pesquisa.ano.valor;
+
+			obj.tipoRepasse = this.resultado.tipoRepasse; 
+
+			this.consolidadaService.entidadeSelecionada	 = obj;
+
+			this.appRouteService.goTo('.detalhar', {idEntidade: id});
+		}
+
+		ConsolidadaController.prototype.imprimir = function() {
+			window.print();
+		}
+
+		ConsolidadaController.prototype.limpar = function() {
+			this.appValidatorService.reset(this.$scope);
+			this.resultado = {}; 
+			this.pesquisa = {};
+			this.atualizarComboMunicipio(); 
+			this.boxGrid = false;
+			
+		}
+
+		ConsolidadaController.prototype.remover = function() {
+			var $this = this;
+			var options = {
+				title: $filter('translate')('consolidada.remover.modal.title'),
+				content: $filter('translate')('consolidada.remover.modal.content'),
+				buttons: [
+					{
+						name: $filter('translate')('default.btn.remover.label'),
+						style: "btn btn-danger",
+						ngClick: function() {
+							var sucesso = function(response) {
+								$this.$scope.$appNotify.success();
+								$this.appModalService.close();
+								$this.$scope.reloadNgTable($this.$scope.ngTable, $this.filtroData);
+							}
+							var erro = function(response) {
+								$this.$scope.$appNotify.error();
+							}
+							$this.consolidadaService.remove(id).then(sucesso, erro);
+						}
+					}
+				]
+			};
+		}
+
+		ConsolidadaController.prototype.planilhaDetalhada = function () {
+			var $this = this;
+
+			$this.consolidadaService.gerarPlanilhaConsolidada({
+				ano:$this.pesquisa.ano.valor,
+				sgUf:($this.pesquisa.estado != undefined ) ? $this.pesquisa.estado.sigla : null,
+				coMunicipioIbge: ($this.pesquisa.municipio != undefined ) ? $this.pesquisa.municipio.coMunicipioIbge : null,
+				coTipoRepasse: ($this.pesquisa.tipoRepasse != undefined ) ? $this.pesquisa.tipoRepasse.valor : null
+			}).then(function(response) {
+				 var blob = new Blob([response], {type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=UTF-8"});
+				 $this.downloadService.downloadXlsx(blob, 'consulta-consolidada-planilha');
+			}, function(error) {
+				$this.$scope.$appNotify.error(error.data.mensagens);
+			});
+		}
+
+
+		/**
+		 * @desc
+		 * Dependency Injection
+		 */
+		ConsolidadaController.$inject = [
+		    '$scope', '$log', 'ngTableParams', '$filter', 'consolidadaService', 'appRouteService',
+		    'appValidatorService','downloadService', 'tipoRepasseService', 'estadoService', 'municipioService'];
+
+		/**
+		 * @desc Criação do controlador
+		 * @type {boolean}
+		 */
+		app.controller('consolidadaController', ConsolidadaController);
+
+		return app;
+	}
+);

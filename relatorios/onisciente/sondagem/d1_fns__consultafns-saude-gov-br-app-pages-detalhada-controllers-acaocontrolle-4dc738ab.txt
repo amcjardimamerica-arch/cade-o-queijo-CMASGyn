@@ -1,0 +1,644 @@
+URL: https://consultafns.saude.gov.br/app/pages/detalhada/controllers/acaoController.js
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 20285
+
+/**
+ * @desc Define um módulo anonimo dependente de app e cria o controlador
+ *	   AcaoController
+ */
+define(
+		[ 'app', 'pages/detalhada/services/detalhadaService',
+				'pages/consolidada/services/consolidadaService',
+				'pages/dirigente/services/dirigenteService',
+				'services/downloadService'],
+		/**
+		 * @param app
+		 * @returns {*}
+		 */
+		function(app) {
+
+			/**
+			 * @constructor
+			 */
+			var AcaoController = function($scope, $log, ngTableParams, $filter,
+					detalhadaService, appRouteService, appValidatorService,
+					consolidadaService, dirigenteService, downloadService,
+					appModalService, utilService) {
+				this.$scope = $scope;
+				this.$log = $log;
+				this.ngTableParams = ngTableParams;
+				this.$filter = $filter;
+				this.appRouteService = appRouteService;
+				this.detalhadaService = detalhadaService;
+				this.appValidatorService = appValidatorService;
+				this.consolidadaService = consolidadaService;
+				this.dirigenteService = dirigenteService;
+				this.downloadService = downloadService;
+				this.appModalService = appModalService;
+
+				if (utilService.redirectEmptyParameters(this.detalhadaService.filtroParams, 'detalhada')) {return;}
+
+				this.$scope.showGrid = false;
+				this.boxGrid = false;
+				this.filtroData = this.detalhadaService.filtroParams;
+				this.dados = [];
+				this.totalGeral = {};
+				this.dirigente = {};
+				this.totalBloco = {};
+				this.totalGrupo = {};
+
+				if (this.filtroData.populacao == undefined
+						|| (this.filtroData.entidade.codigoMunicipioIBGE != this.filtroData.ibgePesquisado)) {
+					var $this = this;
+					if (this.filtroData.entidade != undefined) {
+						this.consolidadaService
+								.cGet(
+										'populacaoCenso/'
+												+ $this.filtroData.entidade.codigoMunicipioIBGE)
+								.then(
+										function(sucesso) {
+											$this.filtroData.populacao = sucesso.resultado.populacao;
+											$this.filtroData.anoCenso = sucesso.resultado.anoCenso;
+											$this.filtroData.ibgePesquisado = $this.filtroData.entidade.codigoMunicipioIBGE;
+										},
+										function(erro) {
+											$this.$scope.$appNotify.error(erro.data.mensagens);
+										});
+					}
+				}
+
+				if (this.filtroData.entidade != undefined
+						&& (this.filtroData.tipoConsulta != undefined && this.filtroData.tipoConsulta.valor == 2)) {
+					var $this = this;
+					parametros = {
+						esferaAdministrativa : $this.filtroData.entidade.esferaAdministrativa,
+						codigoIbge : $this.filtroData.entidade.codigoMunicipioIBGE
+					};
+
+					var dirigenteLocal = this.dirigenteService
+							.recuperarDirigenteLocal(
+									parametros.esferaAdministrativa,
+									parametros.codigoIbge);
+
+					if (dirigenteLocal) {
+						$this.dirigente = dirigenteLocal;
+					} else {
+						this.dirigenteService
+								.recuperarDirigente(
+										parametros.esferaAdministrativa,
+										parametros.codigoIbge)
+								.then(
+										function(sucesso) {
+											$this.dirigente = sucesso.resultado;
+											$this.dirigente.codigoIbge = parametros.codigoIbge;
+											$this.dirigente.esferaAdministrativa = parametros.esferaAdministrativa;
+											$this.dirigente.noPresidenteConselho = $this.$filter('uppercase')($this.dirigente.noPresidenteConselho);
+											$this.dirigenteService.dirigentes
+													.push($this.dirigente);
+										},
+										function(erro) {
+											$this.$scope.$appNotify.error(erro.data.mensagens);
+										});
+					}
+
+				}
+
+				this.pesquisar();
+
+			}
+
+			AcaoController.prototype.grid = function() {
+				var $this = this;
+				return new this.ngTableParams(
+						{
+							page : 1,
+							count : 10,
+
+							ano : $this.filtroData.ano.valor,
+							mes : ($this.filtroData.mes != null ? $this.filtroData.mes.valor
+									: ''),
+							tipoConsulta : $this.filtroData.tipoConsulta != undefined ? $this.filtroData.tipoConsulta.valor
+									: "",
+							blocos : ($this.filtroData.blocos != null ? $this.filtroData.blocos.id
+									: ''),
+							grupo : ($this.filtroData.grupo != null ? $this.filtroData.grupo.id
+									: ''),
+							planoOrcamentario : ($this.filtroData.planos != null ? $this.filtroData.planos.id
+									: ''),
+							componentes : ($this.filtroData.componentes != null ? $this.filtroData.componentes.id
+									: ''),
+							acoes : ($this.filtroData.acoes != null ? $this.filtroData.acoes.id
+									: ''),
+							estado : $this.filtroData.entidade.uf,
+							municipio : $this.filtroData.entidade.codigoMunicipioIBGE,
+							repasse : ($this.filtroData.repasse != null ? $this.filtroData.repasse.valor
+									: ''),
+							dataInicialOb : ($this.filtroData.dataInicialOb != null ? moment(
+									$this.filtroData.dataInicialOb).format(
+									'YYYY-MM-DD')
+									: ''),
+							dataFinalOb : ($this.filtroData.dataFinalOb != null ? moment(
+									$this.filtroData.dataFinalOb).format(
+									'YYYY-MM-DD')
+									: ''),
+						},
+						{
+							getData : function($defer, params) {
+
+								var filtro = Object
+										.assign(
+												{
+													nuAcaoJudicial : $this.filtroData.nuAcaoJudicial,
+													cpfCnpjUg : $this.filtroData.entidade.cpfCnpj,
+													processo : $this.filtroData.processo,
+													proposta : $this.filtroData.proposta,
+													portaria : $this.filtroData.portaria
+												}, params.url());
+
+								var sucesso = function(response) {
+									params.total(response.resultado.total);
+
+									$this.dados = response.resultado.dados;
+
+									if ($this.totalGeral.valorTotalGeral == undefined) {
+										$this.dados
+												.forEach(function(obj) {
+													if (obj.valorTotalGeral != null) {
+														$this.totalGeral = {
+															valorTotalGeral : obj.valorTotalGeral,
+															valorDescontoGeral : obj.valorDescontoTotalGeral,
+															valorLiquidoGeral : obj.valorLiquidoGeral
+														}
+
+														$this.totalBloco = obj.totalBloco;
+														$this.totalGrupo = obj.totalGrupo;
+													}
+												});
+									}
+
+									angular
+											.forEach(
+													$this.dados,
+													function(val, index) {
+														var saldoVisible = false;
+														var detalhaPagamento = true;
+														if (val.valorTotal <= 0) {
+															saldoVisible = true;
+															detalhaPagamento = false;
+														} else {
+															saldoVisible = false;
+															detalhaPagamento = true;
+														}
+
+
+														val['actions'] = "<button ng-if='"
+																+ detalhaPagamento
+																+ "'ng-click='acaoCtrl.detalhar("
+																+ val.id
+																+ ", "
+																+ detalhaPagamento
+																+ ")' class='btn btn-sm btn-primary' title='Detalhar Pagamento'><span class='app-icone-ver'></span></button> ";
+														val['actions'] += "<button ng-if='"
+																+ saldoVisible
+																+ "'ng-click='acaoCtrl.detalhar("
+																+ val.id
+																+ ","
+																+ detalhaPagamento
+																+ ")' class='btn btn-sm btn-primary' title='Detalhar Conta'><span class='app-icone-ver'></span></button> ";
+														if ($this.filtroData.ano.valor < 2018) {
+															val['bloco'] = "{{'"
+																+ val.blocoPacto.nome
+																+ "'}}";
+														} else {
+															val['bloco'] = val.blocoPacto.nome;
+															val['grupo'] = val.grupoAcao.nome;
+														}
+														if (val.valorTotal <= 0) {
+															val['componente'] = "";
+															val['acaoServicoEstrategia'] = "SEM REPASSE EM "
+																	+ $this.filtroData.ano.valor
+																	+ ". ACESSE O SALDO.";
+															val['valorTotal'] = "";
+															val['valorDesconto'] = "";
+															val['valorLiquido'] = "";
+														} else {
+															if (val.componenteBloco.nome) {
+																val['componente'] = "{{'"
+																	+ val.componenteBloco.nome
+																	+ "'}}";
+															} else {
+																val['componente'] = "";
+															}
+															val['acaoServicoEstrategia'] = "{{'"
+																	+ val.descricao
+																	+ "'}}";
+															val['valorTotal'] = "{{'"
+																	+ val.valorTotal
+																	+ "' | number:2}}";
+															val['valorDesconto'] = "{{'"
+																	+ val.valorDescontoTotal
+																	+ "' | number:2}}";
+															val['valorLiquido'] = "{{'"
+																	+ val.valorLiquido
+																	+ "' | number:2}}";
+														}
+
+													});
+
+									var tipoElemento = true;
+									if ($this.filtroData.tipoConsulta != undefined
+											&& $this.filtroData.tipoConsulta.valor == 4) {
+										tipoElemento = false;
+									}
+									$this.$scope.columnsFoot = [
+											{
+												title : "{{ 'totalGeral.label' | translate}}",
+												ngColspan : (tipoElemento) ? ($this.filtroData.ano.valor < 2018 ? 3 : 4) : 1,
+												visible : true
+											},
+											{
+												title : "{{ '"
+														+ $this.totalGeral.valorTotalGeral
+														+ "' | number:2}}",
+												visible : true
+											},
+											{
+												title : "{{ '"
+														+ $this.totalGeral.valorDescontoGeral
+														+ "' | number:2}}",
+												visible : true
+											},
+											{
+												title : "{{ '"
+														+ $this.totalGeral.valorLiquidoGeral
+														+ "' | number:2}}",
+												visible : true
+											}, {
+												title : "",
+												visible : true
+											} ];
+									$this.$scope.columnsFootModalTotalBloco = [
+										   {
+											   title : "{{ 'totalGeral.label' | translate}}",
+											   visible : true
+										   },
+											{
+												title : "",
+												visible : $this.filtroData.ano.valor >= 2018
+											},
+											{
+												title : "{{ '"
+														+ $this.totalGeral.valorTotalGeral
+														+ "' | number:2}}",
+												visible : true
+											},
+											{
+												title : "{{ '"
+														+ $this.totalGeral.valorDescontoGeral
+														+ "' | number:2}}",
+												visible : true
+											},
+											{
+												title : "{{ '"
+														+ $this.totalGeral.valorLiquidoGeral
+														+ "' | number:2}}",
+												visible : true
+											} ];
+
+									var orderedData = params.sorting()
+											&& params.orderBy().length ? $this
+											.$filter('orderBy')($this.dados,
+													params.orderBy())
+											: $this.dados;
+
+									orderedData = params.filter() ? $this
+											.$filter('filter')(orderedData,
+													params.filter())
+											: orderedData;
+
+									$defer.resolve(orderedData);
+								}
+
+								var erro = function(response) {
+									$this.$scope.$appNotify
+											.error(response.data.mensagens);
+								}
+
+								// $this.detalhadaService.cGet('json/detalhada-acao.json').then(sucesso,erro);
+								$this.detalhadaService.recuperarAcoes(filtro)
+										.then(sucesso, erro);
+							}
+						});
+			}
+
+			AcaoController.prototype.pesquisar = function() {
+				var $this = this;
+				var tipoElemento = true;
+				if ($this.filtroData.tipoConsulta != undefined
+						&& $this.filtroData.tipoConsulta.valor == 4) {
+					tipoElemento = false;
+				}
+
+				if($this.filtroData.ano.valor < 2018){
+
+					this.$scope.columns = [
+											{
+												title : "{{ 'bloco.label' | translate}}",
+												field : "bloco",
+												ngClass : "text-left",
+												visible : tipoElemento,
+												order : 'sortable'
+											},
+											{
+												title : "{{ 'componente.label' | translate}}",
+												field : "componente",
+												ngClass : "text-left",
+												visible : tipoElemento,
+												order : 'sortable'
+											},
+
+											{
+												title : "{{ 'acaoServicoEstrategia.label' | translate}}",
+												field : "acaoServicoEstrategia",
+												ngClass : "text-left",
+												visible : true,
+												order : 'sortable'
+											},
+											{
+												title : "{{ 'valorTotal.label' | translate}}",
+												field : "valorTotal",
+												ngClass : "text-right",
+												visible : true,
+												order : 'sortable'
+											},
+											{
+												title : "{{ 'valorDesconto.label' | translate}}",
+												field : "valorDesconto",
+												ngClass : "text-right",
+												visible : true,
+												order : 'sortable'
+											},
+											{
+												title : "{{ 'valorLiquido.label' | translate}}",
+												field : "valorLiquido",
+												ngClass : "text-right",
+												visible : true,
+												order : 'sortable'
+											},
+											{
+												title : "{{ 'default.grid.column.acoes.label' | translate}}",
+												field : "actions",
+												visible : true
+											} ];
+
+				}else{
+
+					this.$scope.columns = [
+					                       {
+											   title : "{{ 'bloco.label' | translate}}",
+											   field : "bloco",
+											   ngClass : "text-left",
+											   visible : tipoElemento,
+											   order : 'sortable'
+					                       },
+											{
+												title : "{{ 'grupo.label' | translate}}",
+												field : "grupo",
+												ngClass : "text-left",
+												visible : tipoElemento,
+												order : 'sortable'
+											},
+											{
+												title : "{{ 'acao.label' | translate}}",
+												field : "componente",
+												ngClass : "text-left",
+												visible : tipoElemento,
+												order : 'sortable'
+											},
+
+											{
+												title : "{{ 'estrategia.label' | translate}}",
+												field : "acaoServicoEstrategia",
+												ngClass : "text-left",
+												visible : true,
+												order : 'sortable'
+											},
+											{
+												title : "{{ 'valorTotal.label' | translate}}",
+												field : "valorTotal",
+												ngClass : "text-right",
+												visible : true,
+												order : 'sortable'
+											},
+											{
+												title : "{{ 'valorDesconto.label' | translate}}",
+												field : "valorDesconto",
+												ngClass : "text-right",
+												visible : true,
+												order : 'sortable'
+											},
+											{
+												title : "{{ 'valorLiquido.label' | translate}}",
+												field : "valorLiquido",
+												ngClass : "text-right",
+												visible : true,
+												order : 'sortable'
+											},
+											{
+												title : "{{ 'default.grid.column.acoes.label' | translate}}",
+												field : "actions",
+												visible : true
+											} ];
+
+				}
+
+				this.$scope.columnsModalTotalBloco = [
+						{
+							title : "{{ 'bloco.label' | translate}}",
+							field : "bloco",
+							visible : true,
+							order : 'sortable'
+						},
+						{
+							title : "{{ 'grupo.label' | translate}}",
+							field : "grupo",
+							visible : $this.filtroData.ano.valor >= 2018,
+							order : 'sortable'
+						},
+						{
+							title : "{{ 'valorTotal.label' | translate}}",
+							field : "valorTotal",
+							ngClass : "text-right",
+							visible : true,
+							order : 'sortable'
+						},
+						{
+							title : "{{ 'valorDesconto.label' | translate}}",
+							field : "valorDesconto",
+							ngClass : "text-right",
+							visible : true,
+							order : 'sortable'
+						},
+						{
+							title : "{{ 'valorLiquido.label' | translate}}",
+							field : "valorLiquido",
+							ngClass : "text-right",
+							visible : true,
+							order : 'sortable'
+						}];
+
+				$this.$scope.showGrid = true;
+				$this.$scope.ngTable = $this.grid();
+
+			}
+
+			AcaoController.prototype.entidade = function(id) {
+				this.appRouteService.goTo('.entidade')
+			}
+
+			AcaoController.prototype.detalhar = function(coProgramaFundo, detalhaPagamento) {
+
+				this.filtroData.programaFundo = this.getPagamentoByProgramaFundo(coProgramaFundo);
+
+				this.detalhadaService.filtroParams = this.filtroData;
+
+				if (detalhaPagamento) {
+					this.appRouteService.goTo('.pagamento')
+				} else {
+					this.appRouteService.goTo('.conta')
+				}
+			}
+
+			AcaoController.prototype.getPagamentoByProgramaFundo = function(
+					coProgramaFundo) {
+
+				var result = null;
+				this.dados.forEach(function(obj) {
+					if (obj.id == coProgramaFundo) {
+						result = obj;
+					}
+				});
+				return result;
+			}
+
+			AcaoController.prototype.voltar = function(id) {
+
+				if (this.filtroData.geral) {
+					this.appRouteService.goTo('detalhada-multisselecao');
+				} else {
+					this.appRouteService.goTo('detalhada');
+				}
+			}
+			AcaoController.prototype.imprimir = function() {
+				window.print();
+			}
+
+			AcaoController.prototype.gerarPlanilha = function() {
+				var $this = this;
+
+				$this.detalhadaService
+						.gerarPlanilhaDetalhada(
+								{
+									ano : $this.filtroData.ano.valor,
+									coMesAno : ($this.filtroData.mes != null ? $this.filtroData.mes.valor
+											: ''),
+									tipoConsulta : $this.filtroData.tipoConsulta != undefined ? $this.filtroData.tipoConsulta.valor
+											: "",
+									coBloco : ($this.filtroData.blocos != null ? $this.filtroData.blocos.id
+											: ''),
+									coComponente : ($this.filtroData.componentes != null ? $this.filtroData.componentes.id
+											: ''),
+									coGrupoAcao : ($this.filtroData.grupo != null ? $this.filtroData.grupo.id
+											: ''),
+									coPlanoOrcamentario : ($this.filtroData.planos != null ? $this.filtroData.planos.id
+											: ''),
+									coAcao : ($this.filtroData.acoes != null ? $this.filtroData.acoes.id
+											: ''),
+									sgUf : $this.filtroData.entidade.uf,
+									coMunicipioIbge : $this.filtroData.entidade.codigoMunicipioIBGE,
+									formaRepasse : ($this.filtroData.repasse != null ? $this.filtroData.repasse.valor
+											: ''),
+									dtInicioOb : ($this.filtroData.dataInicialOb != null ? moment(
+											$this.filtroData.dataInicialOb)
+											.format('YYYY-MM-DD')
+											: ''),
+									dtFinalOb : ($this.filtroData.dataFinalOb != null ? moment(
+											$this.filtroData.dataFinalOb)
+											.format('YYYY-MM-DD')
+											: ''),
+									nuAcaoJudicial : $this.filtroData.nuAcaoJudicial,
+									nuCpfCnpjUg : $this.filtroData.entidade.cpfCnpj,
+									nuProcesso : $this.filtroData.processo,
+									nuProposta : $this.filtroData.proposta,
+									nuPortaria : $this.filtroData.portaria,
+									noRazaoSocial : $this.filtroData.entidade.razaoSocial,
+									nuCnpj : $this.filtroData.entidade.cpfCnpjFormatado,
+									noMunicipio : $this.filtroData.entidade.municipio
+								})
+						.then(
+								function(response) {
+									var blob = new Blob(
+											[ response ],
+											{
+												type : "application/vnd.ms-excel; charset=UTF-8"
+											});
+									if(blob.size > 0){
+										$this.downloadService.downloadXls(blob,
+										'PlanilhaDetalhada');
+									}else{
+										$this.$scope.$appNotify.info("Nenhum detalhamento a ser apresentado.");
+									}
+
+								}, function(error) {
+									$this.$scope.$appNotify.error(error.data.mensagens);
+								});
+			}
+
+			AcaoController.prototype.modalTotalBloco = function(info) {
+				var $this = this;
+
+				$this.appModalService
+						.setOptions(
+								{
+									title : $this.$filter('translate')(
+											'totalBloco.title'),
+									size : "lg",
+									scope : $this.$scope,
+									backdrop : 'static',
+									keyboard : false,
+									templateUrl : 'app/pages/detalhada/views/modal-total.tpl.html',
+									// content:
+									// $this.$filter('translate')('remover.conteudo'),
+									buttons : {
+										"btn2" : {
+											ngClick : function() {
+												$this.appModalService.close();
+											},
+											name : $this.$filter('translate')(
+													'default.btn.fechar.label'),
+											style : 'btn btn-default'
+										}
+									}
+								}).open();
+
+			}
+
+			/**
+			 * @desc Dependency Injection
+			 */
+			AcaoController.$inject = [ '$scope', '$log', 'ngTableParams',
+					'$filter', 'detalhadaService', 'appRouteService',
+					'appValidatorService', 'consolidadaService',
+					'dirigenteService', 'downloadService', 'appModalService', 'utilService' ];
+
+			/**
+			 * @desc Criação do controlador
+			 * @type {boolean}
+			 */
+			app.controller('acaoController', AcaoController);
+
+			return app;
+		});

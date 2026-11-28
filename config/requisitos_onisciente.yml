@@ -1122,16 +1122,16 @@
   bloco: Fontes e cadência
   requisito: FNS
   situacao: parcial
-  evidencia: 'Coletor onisciente/coletores/fns.py, com motor_fns e motor_fns_repasse_dia. O repasse do dia real (recursos/repasse-dia/consultar)
-    e a data do último pagamento (26/11/2026) são lidos: arvore_repasse_dia achata bloco, grupo e programa e confere que os
-    filhos somam o pai; o motor desce do último pagamento, dia útil a dia útil, dentro do período, sem ler de novo um dia
-    já lido, e para depois de três falhas seguidas. Esse serviço é o total nacional do dia, sem Município. O serviço real
-    da consulta detalhada (detalhadaService.js) mostra o filtro por Município: recursos/consulta-detalhada/entidades com estado
-    e municipio (IBGE de 6 dígitos); esse modelo entrou em fns.MODELOS.'
-  falta: A resposta de consulta-detalhada/entidades com municipio=520870 ainda não foi vista (a próxima sondagem d1_fns a
-    pede, com o detalhe do dia por programa). Depois de ver o formato, ajustar fns.ler se for preciso e fazer a primeira coleta
-    real do Município.
-  trava: testes/test_coletores_federais_quarta.py::test_fns_servico_real_da_consulta_detalhada_e_o_modelo_do_municipio
+  evidencia: 'Coletor onisciente/coletores/fns.py, com motor_fns, motor_fns_entidades e motor_fns_repasse_dia. A consulta
+    detalhada real com estado=GO e municipio=520870 devolveu as entidades de Goiânia (191 em 2025, todas com o IBGE 520870:
+    o filtro foi respeitado); fns.entidades lê a página e a paginação, e entidade de outro Município vira formato. O motor
+    lê 100 por página e só troca o ano quando todas as páginas vieram; pessoa física fica só com o CPF mascarado do próprio
+    FNS. A lista de entidades não tem valor e não é tomada por repasse (MODELOS_DE_REPASSE). O repasse do dia real (nacional)
+    é lido dia a dia e fecha as somas (26/11/2026: 17 nós).'
+  falta: 'O valor pago a cada entidade: detalhe-acao e detalhe-pagamento pedem parâmetros que estão nos controladores das
+    telas de ação e pagamento (a próxima sondagem d1_fns os baixa); detalhar-pagamento-dia deu 500 e o -final 400, e agora
+    a sondagem guarda o corpo do erro.'
+  trava: testes/test_coletores_federais_quinta.py::test_motor_fns_entidades_le_as_paginas_e_troca_o_ano
 - id: 147
   bloco: Fontes e cadência
   requisito: FNDE
@@ -1205,16 +1205,17 @@
   bloco: Fontes e cadência
   requisito: TCM-GO e TCU
   situacao: parcial
-  evidencia: 'TCU com as duas vias reais (pesquisa documentosResumidos e dados abertos). TCM-GO: os dados abertos de contas
-    irregulares (ws.tcm.go.gov.br, CSV real com 1.395 linhas, 94 de Goiânia) são lidos por tcm.contas: o órgão sai do nome
-    do Município (GOIANIA - COMURG), Aparecida de Goiânia e Goianira não entram, e a tabela contas_irregulares_tcm ganhou
-    CPF parcial, assunto, decisão, data do julgamento, tipo de lista e endereço do processo (banco antigo recebe as colunas
-    sem perder linhas). A conferência transforma cada linha em alerta (com débito, alerta alto) e procura o mesmo nome entre
-    os sócios das contratadas, como indício de possível homônimo, porque o TCM mostra só os dois primeiros dígitos do CPF
-    e a Receita só os do meio.'
+  evidencia: 'TCU com as duas vias reais (pesquisa documentosResumidos e dados abertos). A pesquisa vai de 50 em 50: a página
+    com inicio=50 veio inteira (50 acórdãos, 42 sobre Goiânia) e a de inicio=100 com 100 por vez caiu duas vezes; uma página
+    que cai guarda as anteriores e anota o erro. TCM-GO: os dados abertos de contas irregulares (ws.tcm.go.gov.br, CSV real
+    com 1.395 linhas, 94 de Goiânia) são lidos por tcm.contas: o órgão sai do nome do Município (GOIANIA - COMURG), Aparecida
+    de Goiânia e Goianira não entram, e a tabela contas_irregulares_tcm ganhou CPF parcial, assunto, decisão, data do julgamento,
+    tipo de lista e endereço do processo (banco antigo recebe as colunas sem perder linhas). A conferência transforma cada
+    linha em alerta (com débito, alerta alto) e procura o mesmo nome entre os sócios das contratadas, como indício de possível
+    homônimo, porque o TCM mostra só os dois primeiros dígitos do CPF e a Receita só os do meio.'
   falta: 'A pesquisa de jurisprudência do TCM-GO (virtual.tcmgo) ainda não devolve decisões; o acesso à informação e o painel
-    das câmaras deram 403. No TCU, a página 2 da pesquisa (inicio=100) falhou sem resposta na quarta rodada: o motor guarda
-    a página 1 e anota o erro, e d1_tcu tenta de novo.'
+    das câmaras deram 403. A jurisprudência é um aplicativo React: a próxima sondagem (d1_tcm) baixa o pacote JavaScript para
+    achar a API de pesquisa.'
   trava: testes/test_coletores_federais_quarta.py::test_contas_irregulares_viram_alerta_e_o_socio_homonimo_e_indicio
 - id: 155
   bloco: Arquitetura
@@ -1282,11 +1283,10 @@
   bloco: Roteiro e portões
   requisito: 'Fase 4: integridade de Saúde e Educação medida'
   situacao: parcial
-  evidencia: O FNDE está lido no formato real (id 147). O FNS lê o repasse do dia real (nacional) e já tem o modelo da consulta
-    detalhada por Município (id 146).
-  falta: A ativação dos domínios pela Frente D2 e a primeira resposta real do FNS por Município.; FNS e FNDE na origem (Frente
-    D1).
-  trava: testes/test_coletores_federais_quarta.py::test_motor_fns_repasse_dia_le_os_dias_do_periodo_uma_vez
+  evidencia: O FNDE está lido no formato real (id 147). O FNS lê as entidades reais de Goiânia pela consulta detalhada e o
+    repasse do dia real (id 146).
+  falta: A ativação dos domínios pela Frente D2 e o valor por entidade do FNS.; FNS e FNDE na origem (Frente D1).
+  trava: testes/test_coletores_federais_quinta.py::test_chamada_do_fns_le_as_entidades_e_nao_as_toma_por_repasse
 - id: 165
   bloco: Roteiro e portões
   requisito: 'Fase 5: cada contrato com item de catálogo comparado à mediana'

@@ -1,0 +1,158 @@
+URL: https://consultafns.saude.gov.br/app/pages/detalhada/controllers/entidadeController.js
+POST: {}
+OK: True
+HTTP: 200
+ERRO: 
+BYTES: 5434
+
+/**
+ * @desc Define um módulo anonimo dependente de app e
+ * cria o controlador EntidadeController
+ */
+define([
+        'app',
+        'pages/detalhada/services/detalhadaService'
+],
+    /**
+     * @param app
+     * @returns {*}
+     */
+    function (app) {
+
+        /**
+         * @constructor
+         */
+        var EntidadeController = function ($scope, $log, ngTableParams, $filter, detalhadaService, appRouteService, appValidatorService) {
+            this.$scope = $scope;
+            this.$log = $log;
+            this.ngTableParams = ngTableParams;
+            this.$filter = $filter;
+            this.appRouteService = appRouteService;
+            this.detalhadaService = detalhadaService;
+            this.appValidatorService = appValidatorService;
+
+            this.$scope.columns = [
+                {
+                    title: "{{ 'acaoServicoEstrategia.label' | translate}}",
+                    field: "acaoServicoEstrategia",
+                    visible: true,
+                    order: 'sortable'
+                },
+                {
+                    title: "{{ 'valorTotal.label' | translate}}",
+                    field: "valorTotal",
+                    visible: true,
+                    order: 'sortable'
+                },
+                {
+                    title: "{{ 'valorDesconto.label' | translate}}",
+                    field: "valorDesconto",
+                    visible: true,
+                    order: 'sortable'
+                },
+                {
+                    title: "{{ 'valorLiquido.label' | translate}}",
+                    field: "valorLiquido",
+                    visible: true,
+                    order: 'sortable'
+                },
+                {
+                    title: "{{ 'default.grid.column.acoes.label' | translate}}",
+                    field: "actions",
+                    ngClass: "btn-table",
+                    visible: true
+                }
+            ];
+
+            this.$scope.showGrid = false;
+            this.boxGrid = false;
+            this.filtroData = {};
+
+            var $this = this;
+            $this.pesquisar();
+        }
+
+        EntidadeController.prototype.grid = function() {
+            var $this = this;
+            return new this.ngTableParams(
+                {
+                    page: 1,
+                    count: 10
+                },
+                {
+                    getData: function($defer, params) {
+
+                        var sucesso = function(response) {
+                            params.total(response.resultado.total);
+
+                            var dados = response.resultado.dados;
+
+                            angular.forEach(dados, function (val, index) {
+                                val['actions'] = "<button ng-click='detalhadaCtrl.detalhar(" + index + ")' class='btn btn-sm btn-primary' title="+$this.$filter('translate')('detalharEntidade.title')+"><span class='app-icone-ver'></span></button> ";
+
+                                // val['entidadeLink'] = "<button ng-click='detalhadaCtrl.detalhar(" + index + ")' class='btn btn-link'>"+val.entidade+"</button>";
+                                var valorCNPJ = val.cnpj.toString(),
+                                    maskCNPJ = valorCNPJ.slice(0, 2)+ "."+valorCNPJ.slice(2, 5)+ "."+valorCNPJ.slice(5, 8)+ "/"+valorCNPJ.slice(8, 12)+ "-"+valorCNPJ.slice(12, 14);
+                                val['documento'] = maskCNPJ;
+                                val['ufMunicipio'] = val.uf+"/"+val.municipio;
+                            });
+
+                            var orderedData = params.sorting() ?
+                                $this.$filter('orderBy')(dados, params.orderBy()) :
+                                dados;
+
+                            orderedData = params.filter() ?
+                                $this.$filter('filter')(orderedData, params.filter()) :
+                                orderedData;
+
+                            $defer.resolve(orderedData);
+                        }
+
+                        var erro = function(response) {
+                            $this.$scope.$appNotify.error(response.data.mensagens);
+                        }
+
+                        $this.detalhadaService.cGet('json/detalhada.json').then(sucesso,erro);
+                    }
+                });
+        }
+
+        EntidadeController.prototype.pesquisar = function() {
+            var $this = this;
+
+                $this.$scope.showGrid = true;
+                $this.$scope.ngTable = $this.grid();
+        }
+
+        EntidadeController.prototype.entidade = function(id) {
+            this.appRouteService.goTo('.entidade')
+        }
+
+        EntidadeController.prototype.detalhar = function(id) {
+            this.appRouteService.goTo('.detalhar')
+        }
+
+        EntidadeController.prototype.voltar = function(id) {
+
+        	if (this.filtroData.geral) {
+        		this.appRouteService.goTo('detalhada-multisselecao');
+        	} else {
+        		this.appRouteService.goTo('detalhada');
+        	}
+        }
+
+        /**
+         * @desc
+         * Dependency Injection
+         */
+        EntidadeController.$inject = ['$scope', '$log', 'ngTableParams', '$filter', 'detalhadaService', 'appRouteService', 'appValidatorService'];
+
+        /**
+         * @desc Criação do controlador
+         * @type {boolean}
+         */
+        app.controller('entidadeController', EntidadeController);
+
+        return app;
+    }
+);

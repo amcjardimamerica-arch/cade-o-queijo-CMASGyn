@@ -31,6 +31,9 @@ from . import comum_federal as cf
 DADOS_ABERTOS = "https://dados-abertos.apps.tcu.gov.br/api/acordao/recupera-acordaos"
 PESQUISA = "https://pesquisa.apps.tcu.gov.br/rest/publico/base/acordao-completo/documentosResumidos"
 QUANTIDADE = 100
+# A pesquisa responde 100 por vez na primeira página, mas a seguinte (inicio=100) caiu sem resposta duas
+# vezes na sondagem (conexão encerrada); com 50 por página, inicio=50 veio inteira (50 acórdãos, 70 KB).
+QUANTIDADE_PESQUISA = 50
 
 GOIANIA = re.compile(r"(?<!APARECIDA DE )\bGOIANIA\b")
 
@@ -39,7 +42,7 @@ def url_dados_abertos(inicio: int = 0, quantidade: int = QUANTIDADE) -> str:
     return f"{DADOS_ABERTOS}?inicio={inicio}&quantidade={quantidade}"
 
 
-def url_pesquisa(termo: str = "Goiânia", inicio: int = 0, quantidade: int = QUANTIDADE) -> str:
+def url_pesquisa(termo: str = "Goiânia", inicio: int = 0, quantidade: int = QUANTIDADE_PESQUISA) -> str:
     params = {"termo": f'"{termo}"', "ordenacao": "DTRELEVANCIA desc, NUMACORDAOINT desc",
               "quantidade": quantidade, "inicio": inicio, "sinonimos": "true"}
     return PESQUISA + "?" + urllib.parse.urlencode(params)
