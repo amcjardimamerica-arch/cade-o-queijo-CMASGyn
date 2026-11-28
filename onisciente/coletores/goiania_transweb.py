@@ -286,35 +286,31 @@ class Formulario:
         return corpo
 
     def envio_ajax(self, valores: dict[str, str], alvo: str, *, evento: str = "",
-                   baldes: str = "__OSVSTATE,") -> dict[str, str]:
-        """O corpo do OsAjax como foi lido nas primeiras rodadas: o formulário serializado sem nenhum
-        botão, ``__EVENTTARGET`` com o alvo, ``__AJAX`` com os baldes e, quando há evento (``Change``,
-        ``Notify``), ``__AJAXEVENT``. Rodada 10 (28/11/2026): o _osjs.js põe no ``__AJAX`` o contexto do
-        evento, e não os baldes (ver ``envio_osajax``); todo OsAjax mandado assim voltou HTTP 500 com
-        894 bytes. Fica como está porque as travas antigas da lista fixam este corpo."""
+                   baldes: str = "__OSVSTATE,", chamada: dict | None = None) -> dict[str, str]:
+        """O corpo que o navegador manda pelo OsAjax, conferido no _osjs.js guardado: o formulário
+        serializado sem nenhum botão, ``__EVENTTARGET`` com o alvo, ``__AJAX`` com o CONTEXTO do evento
+        (``contexto_osajax``) e, quando há evento (``Change``, ``Notify``), ``__AJAXEVENT``. Antes do
+        envio, ``OsPrepareCheckboxesForSubmit`` manda ``off`` para cada caixa desmarcada, e o jQuery
+        serializa a caixa marcada sem ``value`` como ``on``.
+
+        ``OsExecuteCallToServer(origem, alvo, evento, baldes, contexto, ...)`` chama
+        ``CallToServer(form, alvo, evento, baldes, contexto, ...)``, e o ``PrepareFormForSubmit`` põe no
+        ``__AJAX`` o quinto argumento (o contexto); os baldes não vão ao servidor. Até a rodada 10 o
+        coletor mandava os baldes (``__OSVSTATE,``) no ``__AJAX``, e todo OsAjax voltou HTTP 500 com 894
+        bytes; a sondagem de 28/11/2026 07:30Z abriu a página 2 dos popups (HTTP 200) com o contexto.
+        ``baldes`` fica no parâmetro só por compatibilidade. O id de origem vem da chamada OsAjax da
+        página com este alvo; sem ela, do alvo com ``$`` trocado por ``_`` (o id que o ASP.NET dá)."""
         corpo = dict(self.campos)
         for n, _ in self.botoes:
             corpo.pop(n, None)
         corpo.update(valores)
         corpo["__EVENTTARGET"] = alvo
-        corpo["__AJAX"] = baldes
+        chamada = chamada or next((a for a in self.ajax if a.get("alvo") == alvo), None) \
+            or {"id": alvo.replace("$", "_"), "extra": ""}
+        corpo["__AJAX"] = contexto_osajax(chamada)
         if evento:
             corpo["__AJAXEVENT"] = evento
         corpo.pop("__EVENTARGUMENT", None)
-        return corpo
-
-    def envio_osajax(self, valores: dict[str, str], chamada: dict) -> dict[str, str]:
-        """O corpo que o navegador manda de fato pelo OsAjax, conferido linha a linha no _osjs.js guardado
-        (sondagem de 28/11/2026): ``OsExecuteCallToServer(origem, alvo, evento, baldes, contexto, ...)``
-        chama ``CallToServer(form, alvo, evento, baldes, contexto, ...)``, e o ``PrepareFormForSubmit``
-        põe no ``__AJAX`` o quinto argumento, que é o CONTEXTO do evento (``OsBuildAjaxEventContext``),
-        e não os baldes. Antes do envio, ``OsPrepareCheckboxesForSubmit`` manda ``off`` para cada caixa
-        desmarcada, e o jQuery serializa a caixa marcada sem ``value`` como ``on``.
-
-        ``envio_ajax`` (os baldes no ``__AJAX``) fica como estava, porque as travas antigas da lista o
-        fixam; este é o envio que o popup usa."""
-        corpo = self.envio_ajax(valores, chamada["alvo"], evento=chamada.get("evento", ""))
-        corpo["__AJAX"] = contexto_osajax(chamada)
         for nome, tipo in self.tipos.items():
             if tipo != "checkbox" or nome in valores:
                 continue
@@ -323,6 +319,10 @@ class Formulario:
             elif corpo.get(nome, "") == "":
                 corpo[nome] = "on"
         return corpo
+
+    def envio_osajax(self, valores: dict[str, str], chamada: dict) -> dict[str, str]:
+        """``envio_ajax`` a partir da chamada OsAjax achada na página (o link ou o botão)."""
+        return self.envio_ajax(valores, chamada["alvo"], evento=chamada.get("evento", ""), chamada=chamada)
 
     def valor_de_opcao(self, nome: str, valor: str) -> str:
         """O valor que o select aceita: o próprio, ou a opção do OutSystems (``__ossli_11``) cujo
@@ -1216,11 +1216,11 @@ def pedido_da_pagina_seguinte_do_popup(form: "Formulario | None", url: str, esta
     return corpo, cabecalhos_osajax(url)
 
 
-def corpo_proxima(acao: str, estado: dict, prox: dict, *, ajax: bool) -> dict:
-    """O pedido da página seguinte pelo link do navegador (OsAjax ou postback com o alvo)."""
+def corpo_proxima(acao: str, estado: dict, prox: dict, *, ajax: bool, tipos: dict | None = None) -> dict:
+    """O pedido da página seguinte pelo link do navegador (OsAjax, com o contexto do evento, ou postback
+    com o alvo). ``tipos`` (os do formulário da página) diz quais campos são caixas de marcar."""
     if ajax:
-        return Formulario(acao, "post", campos=estado).envio_ajax({}, prox["alvo"], evento=prox["evento"],
-                                                                 baldes=prox["baldes"] or "__OSVSTATE,")
+        return Formulario(acao, "post", campos=estado, tipos=dict(tipos or {})).envio_osajax({}, prox)
     return {**estado, "__EVENTTARGET": prox["alvo"], "__EVENTARGUMENT": ""}
 
 
@@ -1246,7 +1246,9 @@ def consultar_lista(ler: Ler, portal: Portal, c: Consulta, valores: dict[str, st
     destino = acao
 
     def enviar(corpo):
-        return ler(destino, formulario=corpo)
+        # OsAjax: os cabeçalhos do jQuery, como no popup (rodada 11); postback comum: sem eles.
+        extra = _so_com_cabecalhos(ler, cabecalhos_osajax(acao)) if ajax and "__AJAX" in corpo else {}
+        return ler(destino, formulario=corpo, **extra)
 
     leitura = enviar(corpo)
     if not leitura.ok:
@@ -1354,7 +1356,7 @@ def consultar_lista(ler: Ler, portal: Portal, c: Consulta, valores: dict[str, st
             if not res.eventos and res.paginas == 1:
                 res.vazio = True
             return res
-        atual = enviar(corpo_proxima(acao, estado, prox, ajax=ajax))
+        atual = enviar(corpo_proxima(acao, estado, prox, ajax=ajax, tipos=form.tipos))
         if not atual.ok:
             res.ok = False
             res.erro = f"página {res.paginas + 1}: {atual.erro or atual.http}"
@@ -1666,7 +1668,11 @@ def ler_popup(ler: Ler, url: str, tipo: str, colunas: dict, base: dict, *, pagin
             out.completo = True                     # sem contador e sem página cheia: uma página só
             return out
         prox = proxima_pagina(links, out.paginas) if novas else None
-        if prox is None or out.paginas >= paginas_maximas:
+        if prox is not None and out.paginas >= paginas_maximas:
+            out.erro = (f"parou no teto de {paginas_maximas} página(s): {len(out.eventos)} de "
+                        f"{out.total or '?'} linha(s) lidas")
+            return out
+        if prox is None:
             out.erro = (f"o popup diz {out.total} linha(s) e a página {out.paginas} não leva à seguinte"
                         if out.total else f"a página {out.paginas} está cheia e não leva à seguinte")
             return out
