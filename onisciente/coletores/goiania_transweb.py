@@ -1474,8 +1474,8 @@ def somas_por_empenho(eventos: Iterable[dict]) -> dict[str, dict[str, float]]:
 # O popup de liquidação e o de pagamento mostram uma página de até 50 linhas (a lista do RichWidgets).
 # Achado offline em 28/11/2026, no banco da coleta 550c30b: as seis divergências da amostra (empenhos de
 # 52 a 1.693 liquidações) são exatamente a soma das primeiras linhas da exportação em ordem de data e de
-# número, até a 50a linha do popup. A soma inteira só sai lendo as páginas seguintes (sondagem
-# d2_transweb_popup); a primeira página é conferida linha a linha, pelo número da liquidação ou da ordem.
+# número, até a 50a linha do popup. A soma inteira sai lendo as páginas seguintes (``ler_popup``); se não
+# der, a parte lida é conferida linha a linha, pelo número da liquidação ou da ordem.
 LINHAS_POR_PAGINA_DO_POPUP = 50
 _CONTADOR_DO_POPUP = re.compile(r"Counter_Message[^>]*>\s*([^<]*)<", re.I)
 
@@ -1504,7 +1504,7 @@ def _linhas_da_tabela(html, colunas: dict) -> int:
 
 
 def _conferir_pagina(emp: str, tipo: str, html, do_popup: list[dict], eventos: list[dict], colunas: dict,
-                     total_exportacao: float) -> str | None:
+                     total_exportacao: float, *, paginas: int = 1) -> str | None:
     """A nota do popup que não somou como a exportação: paginado, confere a página linha a linha pela
     ordem; senão (ou com linha que não bate), a divergência."""
     na_exportacao: dict[str, float] = {}
@@ -1528,15 +1528,79 @@ def _conferir_pagina(emp: str, tipo: str, html, do_popup: list[dict], eventos: l
         e = erradas[0]
         return (f"{divergencia} (popup paginado: {len(erradas)} linha(s) da primeira página sem par na "
                 f"exportação, a primeira {e['ordem'] or 'sem número'} de {e['valor']:.2f})")
-    return (f"amostra {emp}: popup de {tipo} paginado ({len(do_popup)} de {total} linhas na primeira página): "
+    onde = "na primeira página" if paginas <= 1 else f"nas {paginas} primeiras páginas"
+    return (f"amostra {emp}: popup de {tipo} paginado ({len(do_popup)} de {total} linhas {onde}): "
             f"as {len(do_popup)} conferem com a exportação pelo número; a soma inteira não foi conferida")
+
+
+@dataclass
+class PopupLido:
+    eventos: list[dict]
+    paginas: int = 0
+    total: int | None = None           # o total do contador ("1 to 50 of 59 records" dá 59)
+    completo: bool = False             # todas as páginas lidas (ou uma página só)
+    erro: str = ""
+    primeira: bytes | str = b""        # a primeira página, para a conferência linha a linha
+
+
+def ler_popup(ler: Ler, url: str, tipo: str, colunas: dict, base: dict, *, paginas_maximas: int = 60,
+              ajax: bool = True) -> PopupLido:
+    """Um popup de liquidação ou de pagamento inteiro: a primeira página por GET e as seguintes pelo link
+    do navegador da lista (o mesmo RichWidgets da lista de Portal_Despesas.aspx, por OsAjax com o
+    __OSVSTATE da página), até o contador dizer que acabou. Sem contador e sem página cheia, a página
+    é a única. Sem o link da seguinte, devolve o que leu e ``completo`` falso."""
+    lida = ler(url)
+    if not lida.ok:
+        return PopupLido([], erro=f"popup de {tipo} não lido ({lida.erro or lida.http})")
+    out = PopupLido([], primeira=lida.conteudo)
+    form = next(iter(ler_html(lida.conteudo).formularios), None)
+    acao = urljoin(url, form.acao or url) if form is not None else url
+    estado: dict = {}
+    links: list[dict] = []
+    vistas: set[tuple] = set()
+    atual = lida
+    while True:
+        out.paginas += 1
+        estado, links, html, lido = depois_da_resposta(estado, links, atual.conteudo)
+        novas = 0
+        for e in eventos_do_popup(html, tipo, colunas, base, url=url):
+            chave = (e["tipo"], e["ordem"], e["data"], e["valor"])
+            if chave not in vistas:
+                vistas.add(chave)
+                out.eventos.append(e)
+                novas += 1
+        cont = contador(html)
+        simples = contador_do_popup(html)
+        if cont is not None:
+            out.total = cont[2]
+            if cont[1] >= cont[2]:
+                out.completo = True
+                return out
+        elif simples is not None:
+            out.total = simples[1]
+            if simples[0] >= simples[1]:
+                out.completo = True
+                return out
+        elif _linhas_da_tabela(html, colunas) < LINHAS_POR_PAGINA_DO_POPUP:
+            out.completo = True                     # sem contador e sem página cheia: uma página só
+            return out
+        prox = proxima_pagina(links, out.paginas) if novas else None
+        if prox is None or out.paginas >= paginas_maximas:
+            out.erro = (f"o popup diz {out.total} linha(s) e a página {out.paginas} não leva à seguinte"
+                        if out.total else f"a página {out.paginas} está cheia e não leva à seguinte")
+            return out
+        atual = ler(acao, formulario=corpo_proxima(acao, estado, prox, ajax=ajax))
+        if not atual.ok:
+            out.erro = f"página {out.paginas + 1} do popup: {atual.erro or atual.http}"
+            return out
 
 
 def conferir_amostra(ler: Ler, c: Consulta, eventos: list[dict], *, amostra: int | None = None) -> list[str]:
     """Confere nos popups de liquidação e de pagamento os empenhos de maior valor pago da exportação:
-    a soma dos saldos liquidados e dos valores pagos do popup tem de bater com a da planilha. Popup
-    paginado (até 50 linhas por página): a primeira página é conferida linha a linha, pelo número.
-    Devolve as notas (divergência, página conferida em parte ou popup não lido); vazio quando tudo bateu."""
+    a soma dos saldos liquidados e dos valores pagos do popup, todas as páginas lidas (até 50 linhas
+    por página), tem de bater com a da planilha. Se as páginas seguintes não puderem ser lidas, a parte
+    lida é conferida linha a linha, pelo número. Devolve as notas (divergência, conferência em parte ou
+    popup não lido); vazio quando tudo bateu."""
     n = c.exportar.get("amostra", 3) if amostra is None else amostra
     somas = somas_por_empenho(eventos)
     escolhidos = sorted((e for e in somas if somas[e]["pagamento"] > 0),
@@ -1548,17 +1612,22 @@ def conferir_amostra(ler: Ler, c: Consulta, eventos: list[dict], *, amostra: int
             if not p.get("endereco"):
                 continue
             url = p["endereco"].format(empenho=emp)
-            lida = ler(url)
-            if not lida.ok:
-                notas.append(f"amostra {emp}: popup de {tipo} não lido ({lida.erro or lida.http})")
+            popup = ler_popup(ler, url, tipo, p["colunas"], {"empenho": emp})
+            if not popup.paginas:
+                notas.append(f"amostra {emp}: {popup.erro}")
                 continue
-            evs = [e for e in eventos_do_popup(lida.conteudo, tipo, p["colunas"], {"empenho": emp}, url=url)
-                   if e["tipo"] == tipo]
+            evs = [e for e in popup.eventos if e["tipo"] == tipo]
             soma = round(sum(e["valor"] for e in evs), 2)
-            if abs(soma - somas[emp][tipo]) > 0.01:
-                nota = _conferir_pagina(emp, tipo, lida.conteudo, evs, eventos, p["colunas"], somas[emp][tipo])
-                if nota:
-                    notas.append(nota)
+            if abs(soma - somas[emp][tipo]) <= 0.01:
+                continue
+            if popup.completo:
+                notas.append(f"amostra {emp}: {tipo} soma {soma:.2f} no popup e {somas[emp][tipo]:.2f} na exportação"
+                             + (f" ({popup.paginas} páginas lidas)" if popup.paginas > 1 else ""))
+                continue
+            nota = _conferir_pagina(emp, tipo, popup.primeira, evs, eventos, p["colunas"], somas[emp][tipo],
+                                    paginas=popup.paginas)
+            if nota:
+                notas.append(nota)
     return notas
 
 

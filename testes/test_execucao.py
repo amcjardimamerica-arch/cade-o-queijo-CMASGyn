@@ -1314,3 +1314,135 @@ def test_sondagem_guarda_os_popups_paginados_sem_seguir_os_scripts():
     assert urls[0].endswith("LiquidacaoPopUp.aspx?Empenho=20262150000230001")
     lida = Leitura(True, urls[0], b'<html><script src="/x/a.js"></script><a href="B.aspx">b</a></html>', http=200)
     assert sondagem._seguir("d2_transweb_popup", urls[0], lida) == []
+
+
+# --- Nona rodada: as páginas seguintes dos popups ----------------------------------------------------
+# A sondagem d2_transweb_popup da integração (commit 1e36935) não leu nada: o fluxo passou as quatro
+# fontes numa palavra só ("d2_transweb_popup,d1_fns,d1_tcm,d1_tcu") e nenhuma fonte tem esse nome (o
+# índice veio com zero leituras). O recorte real da navegação do popup ainda não existe; o popup abaixo é
+# SINTÉTICO, montado com a navegação real da lista de Portal_Despesas.aspx (o mesmo RichWidgets: o link
+# ListNavigation_Next por OsAjax e o contador "1 to 20 of 822 records") e a resposta OsJSONUpdate no
+# formato de portal_despesas_pagina2_sintetico.txt.
+
+_NAV = ("WebPatterns_wt2_block_wtMainContent_DespesasWebBlocks_wt1_block_RichWidgets_wt9_block_wt28",
+        "WebPatterns_wt2$block$wtMainContent$DespesasWebBlocks_wt1$block$RichWidgets_wt9$block$wt28")
+_CAB_L = ["Liquidação", "Data", "Saldo Liquidado", "Valor Anulado"]
+
+
+def _linhas_liq(de, ate):
+    return "".join(f"<tr><td>{i:04d}2026</td><td>02/01/2026</td><td>{1000 + i},00</td><td>0,00</td></tr>"
+                   for i in range(de, ate + 1))
+
+
+def _popup_com_navegacao(empenho, de, ate, total):
+    th = "".join(f"<th>{c}</th>" for c in _CAB_L)
+    nav = (f'<a id="{_NAV[0]}" class="ListNavigation_Next" onclick="OsAjax(arguments[0] || window.event,'
+           f"&#39;{_NAV[0]}&#39;,&#39;{_NAV[1]}&#39;,&#39;&#39;,&#39;__OSVSTATE,&#39;,&#39;&#39;); return false;\" "
+           'href="#">next</a>') if ate < total else ""
+    return (f'<html><body><form name="WebForm1" method="post" action="LiquidacaoPopUp.aspx?Empenho={empenho}" '
+            f'id="WebForm1"><input type="hidden" name="__OSVSTATE" id="__OSVSTATE" value="ESTADO-1" />'
+            f'<table id="tabela"><thead><tr>{th}</tr></thead><tbody>{_linhas_liq(de, ate)}</tbody></table>'
+            f'<div id="rodape"><div class="Counter_Message">{de} to {ate} of {total} records</div>'
+            f'<nav class="ListNavigation_Wrapper">{nav}</nav></div></form></body></html>').encode()
+
+
+def _resposta_osajax(de, ate, total, estado):
+    import json
+    th = "".join(f"<th>{c}</th>" for c in _CAB_L)
+    nav = "" if ate >= total else (f'<a id="{_NAV[0]}" class="ListNavigation_Next" onclick="OsAjax(arguments[0] || '
+                                   f"window.event,&#39;{_NAV[0]}&#39;,&#39;{_NAV[1]}&#39;,&#39;&#39;,"
+                                   '&#39;__OSVSTATE,&#39;,&#39;&#39;); return false;" href="#">next</a>')
+    corpo = {"hidden": {"__OSVSTATE": estado},
+             "outers": {"tabela": {"inner": f"<thead><tr>{th}</tr></thead><tbody>{_linhas_liq(de, ate)}</tbody>"},
+                        "rodape": {"inner": f'<div class="Counter_Message">{de} to {ate} of {total} records</div>'
+                                            f'<nav class="ListNavigation_Wrapper">{nav}</nav>'}}}
+    return f'<script type="text/javascript">OsJSONUpdate({json.dumps(corpo)});</script>'.encode()
+
+
+class LeitorDePopupPaginado:
+    """O GET dá a primeira página (50 linhas); cada postback do next dá as 50 seguintes por OsAjax."""
+
+    def __init__(self, total, empenho="20265151000730001"):
+        self.total, self.empenho, self.pedidos = total, empenho, []
+
+    def __call__(self, url, formulario=None, **_):
+        self.pedidos.append((url, formulario))
+        if formulario is None:
+            return Leitura(True, url, _popup_com_navegacao(self.empenho, 1, min(50, self.total), self.total), http=200)
+        pagina = len([f for _u, f in self.pedidos if f])
+        assert formulario["__OSVSTATE"] == f"ESTADO-{pagina}"       # o estado da resposta anterior volta
+        assert formulario.get("__AJAX") and formulario["__EVENTTARGET"] == _NAV[1]
+        de = 50 * pagina + 1
+        return Leitura(True, url, _resposta_osajax(de, min(de + 49, self.total), self.total, f"ESTADO-{pagina + 1}"),
+                       http=200)
+
+
+def test_popup_paginado_e_lido_inteiro_pelo_next_e_a_soma_confere():
+    emp = "20265151000730001"
+    cfg = LISTA.popups["liquidacao"]
+    ler = LeitorDePopupPaginado(120, emp)
+    pop = G.ler_popup(ler, cfg["endereco"].format(empenho=emp), "liquidacao", cfg["colunas"], {"empenho": emp})
+    assert pop.completo and pop.paginas == 3 and pop.total == 120 and not pop.erro
+    assert [e["ordem"] for e in pop.eventos] == [f"{i:04d}2026" for i in range(1, 121)]
+    assert ler.pedidos[1][0] == f"https://www10.goiania.go.gov.br/DespesasWebBlocks/LiquidacaoPopUp.aspx?Empenho={emp}"
+    # Na amostra: a soma das três páginas bate com a exportação, e nenhuma nota sai.
+    eventos = [{"tipo": "empenho", "empenho": emp, "valor": 200_000.0, "ordem": "", "data": "2026-01-02"}]
+    for i in range(1, 121):
+        eventos.append({"tipo": "liquidacao", "empenho": emp, "ordem": f"{i:04d}2026", "data": "2026-01-02",
+                        "valor": 1000.0 + i})
+        eventos.append({"tipo": "pagamento", "empenho": emp, "ordem": f"{emp}{i:04d}", "data": "2026-01-02",
+                        "valor": 1000.0 + i})
+
+    def so_liquidacao(url, formulario=None):
+        if "PagamentoPopUp" in url:
+            return Leitura(False, url, b"", erro="HTTP 404", http=404)
+        return ler(url, formulario)
+    ler = LeitorDePopupPaginado(120, emp)
+    assert G.conferir_amostra(so_liquidacao, LISTA, eventos, amostra=1) == [
+        f"amostra {emp}: popup de pagamento não lido (HTTP 404)"]
+    # Uma linha a menos na exportação: a soma inteira não bate e a nota diz quantas páginas foram lidas.
+    ler = LeitorDePopupPaginado(120, emp)
+    menos = [e for e in eventos if not (e["tipo"] == "liquidacao" and e["ordem"] == "01202026")]
+    nota = G.conferir_amostra(so_liquidacao, LISTA, menos, amostra=1)[0]
+    assert nota == f"amostra {emp}: liquidacao soma 127260.00 no popup e 126140.00 na exportação (3 páginas lidas)"
+
+
+def test_popup_que_nao_leva_a_pagina_seguinte_fica_incompleto():
+    emp = "20265151000730001"
+    cfg = LISTA.popups["liquidacao"]
+
+    class SemSeguinte(LeitorDePopupPaginado):
+        def __call__(self, url, formulario=None, **kw):
+            if formulario is not None:
+                return Leitura(False, url, b"", erro="HTTP 500", http=500)
+            return super().__call__(url, formulario, **kw)
+    pop = G.ler_popup(SemSeguinte(120, emp), cfg["endereco"].format(empenho=emp), "liquidacao", cfg["colunas"],
+                      {"empenho": emp})
+    assert not pop.completo and pop.paginas == 1 and len(pop.eventos) == 50
+    assert pop.erro == "página 2 do popup: HTTP 500"
+
+
+def test_sondagem_le_as_fontes_separadas_por_virgula_e_segue_as_paginas_do_popup():
+    from onisciente import sondagem
+    assert sondagem.fontes_da_linha(["d2_transweb_popup,d1_fns,d1_tcm,d1_tcu"]) == \
+        ["d2_transweb_popup", "d1_fns", "d1_tcm", "d1_tcu"]
+    assert sondagem.fontes_da_linha(["d1_fns", " d1_tcm , ", ""]) == ["d1_fns", "d1_tcm"]
+    guardados = []
+    leitor = LeitorDePopupPaginado(120)
+
+    def ler(destino, *, tempo=60, fonte="", formulario=None):
+        if "PagamentoPopUp" in destino:
+            return Leitura(False, destino, b"", erro="HTTP 404", http=404)
+        return leitor(destino, formulario)
+
+    def guardar(fonte, destino, leitura, formulario):
+        guardados.append(destino)
+        return {"fonte": fonte, "url": destino, "ok": leitura.ok}
+
+    urls = [u for u in sondagem.CANDIDATOS["d2_transweb_popup"] if "20265151000730001" in u]
+    regs = sondagem._popups_paginados("d2_transweb_popup", urls, ler_=ler, guardar=guardar)
+    resumo = [r for r in regs if r.get("passo") == "resumo"]
+    assert [(r["tipo"], r["paginas"], r["total"], r["completo"], r["linhas"]) for r in resumo] == [
+        ("liquidacao", 3, 120, True, 120), ("pagamento", 0, None, False, 0)]
+    assert len(set(guardados)) == len(guardados) == 4               # três páginas e o pagamento, sem sobrescrever
+    assert all("http" in r and "erro" in r for r in resumo)         # o __main__ imprime os dois

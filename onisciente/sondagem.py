@@ -682,6 +682,49 @@ def _caminho_do_motor(fonte: str, *, ler_=None, guardar=None, meses=MESES_DO_MOT
     return out
 
 
+def _popups_paginados(fonte: str, urls: list[str], *, ler_=None, guardar=None, paginas_maximas: int = 3
+                      ) -> list[dict]:
+    """d2_transweb_popup: cada popup de liquidação e de pagamento lido como o motor lê
+    (goiania_transweb.ler_popup: a primeira página por GET e as seguintes pelo next do navegador da
+    lista, por OsAjax), até ``paginas_maximas`` páginas; o corpo de cada página fica guardado e um
+    registro ``resumo`` diz quantas páginas, linhas e o total do contador."""
+    from .coletores import goiania_transweb as G
+    ler_ = ler_ or ler
+    guardar = guardar or _guardar
+    portal = G.carregar_portal(RAIZ / "alvos" / "portais" / "goiania.toml")
+    c = portal.consulta("despesas_favorecido")
+    out: list[dict] = []
+    for url in urls:
+        tipo = "liquidacao" if "LiquidacaoPopUp" in url else "pagamento"
+        empenho = url.rsplit("Empenho=", 1)[-1]
+        paginas = [0]
+
+        def ler_pop(destino, formulario=None, _url=url):
+            paginas[0] += 1
+            inicio = time.monotonic()
+            lida = ler_(destino, tempo=90, fonte=fonte, formulario=formulario)
+            reg = guardar(fonte, destino if paginas[0] == 1 else f"{_url}#pagina-{paginas[0]}", lida, formulario)
+            reg.update({"passo": f"pagina_{paginas[0]}", "segundos": round(time.monotonic() - inicio, 1)})
+            out.append(reg)
+            return lida
+
+        pop = G.ler_popup(ler_pop, url, tipo, c.popups[tipo]["colunas"], {"empenho": empenho},
+                          paginas_maximas=paginas_maximas)
+        out.append({"fonte": fonte, "url": url, "ok": bool(pop.paginas), "http": None, "passo": "resumo",
+                    "tipo": tipo,
+                    "paginas": pop.paginas, "total": pop.total, "completo": pop.completo,
+                    "linhas": len([e for e in pop.eventos if e["tipo"] == tipo]),
+                    "soma": round(sum(e["valor"] for e in pop.eventos if e["tipo"] == tipo), 2), "erro": pop.erro})
+    return out
+
+
+def fontes_da_linha(argumentos: list[str]) -> list[str]:
+    """As fontes pedidas na linha de comando, separadas por espaço ou por vírgula: o fluxo da sondagem
+    passa o campo ``fontes`` como uma palavra só (``d2_transweb_popup,d1_fns``), e a sondagem do commit
+    1e36935 não leu nada por isso."""
+    return [f for a in argumentos for f in re.split(r"[\s,]+", a) if f]
+
+
 def sondar(fontes: list[str] | None = None) -> list[dict]:
     resultado = []
     install_opener(build_opener(HTTPCookieProcessor(CookieJar())))   # sessão, como num navegador
@@ -690,6 +733,9 @@ def sondar(fontes: list[str] | None = None) -> list[dict]:
             continue
         if fonte == "d2_transweb_motor":
             resultado.extend(_caminho_do_motor(fonte))
+            continue
+        if fonte == "d2_transweb_popup":
+            resultado.extend(_popups_paginados(fonte, urls))
             continue
         fila: list = list(urls)
         vistos: set[str] = set()
@@ -719,5 +765,5 @@ def sondar(fontes: list[str] | None = None) -> list[dict]:
 
 
 if __name__ == "__main__":
-    for r in sondar([f for f in sys.argv[1:] if f] or None):
+    for r in sondar(fontes_da_linha(sys.argv[1:]) or None):
         print(("OK " if r["ok"] else "FALHA ") + f"{r['fonte']}: {r['url']} {r['http'] or r['erro']}")
