@@ -25,6 +25,7 @@ import csv
 import io
 import json
 import re
+import time
 import tomllib
 import unicodedata
 import urllib.request
@@ -113,13 +114,49 @@ def cpf_valido(d: str) -> bool:
     return True
 
 
-def documento_do_credor(texto) -> str:
-    """O CNPJ, ou o CPF quando a coluna CNPJ da exportação traz o CPF com "000" na frente
-    (14 dígitos que não são um CNPJ válido e cujos 11 últimos são um CPF válido)."""
+def mascarar_cpf(texto) -> str:
+    """O CPF como o Portal da Transparência e o QSA da Receita publicam: ***.NNN.NNN-** (só os seis
+    dígitos do meio, posições 4 a 9). Aceita o CPF inteiro (11 dígitos) ou os seis do meio."""
     d = documento(texto)
+    if len(d) == 11:
+        d = d[3:9]
+    return f"***.{d[:3]}.{d[3:]}-**" if len(d) == 6 else ""
+
+
+def documento_gravavel(texto) -> str:
+    """O documento do credor que pode ser gravado (repositório público): o CNPJ inteiro; o CPF de
+    pessoa física nunca inteiro, só mascarado (***.NNN.NNN-**). Pessoa física é o documento de 11
+    dígitos, o de 14 que é "000" e um CPF válido sem ser CNPJ válido (a coluna CNPJ da exportação) e o
+    que já vem mascarado com asteriscos."""
+    bruto = str(texto or "").strip()
+    d = documento(bruto)
+    if "*" in bruto:
+        return mascarar_cpf(d) if len(d) == 6 else d
     if len(d) == 14 and d.startswith("000") and not cnpj_valido(d) and cpf_valido(d[3:]):
-        return d[3:]
+        return mascarar_cpf(d[3:])
+    if len(d) == 11:
+        return mascarar_cpf(d)
     return d
+
+
+def documento_do_credor(texto) -> str:
+    """O CNPJ, ou o CPF mascarado quando a coluna CNPJ da exportação traz o CPF com "000" na frente
+    (14 dígitos que não são um CNPJ válido e cujos 11 últimos são um CPF válido)."""
+    return documento_gravavel(texto)
+
+
+_CPF_NO_TEXTO = re.compile(r"(?<![\d*])(?:000)?(\d{11})(?!\d)")
+
+
+def mascarar_cpfs_no_texto(texto: str) -> str:
+    """Num texto guardado (a resposta crua de uma sondagem), o CPF válido de 11 dígitos e o "000" com
+    CPF da coluna CNPJ viram ***.NNN.NNN-**. Um CNPJ válido de 14 dígitos fica como está."""
+    def troca(m: re.Match) -> str:
+        inteiro, cpf = m.group(0), m.group(1)
+        if len(inteiro) == 14 and cnpj_valido(inteiro):
+            return inteiro
+        return mascarar_cpf(cpf) if cpf_valido(cpf) else inteiro
+    return _CPF_NO_TEXTO.sub(troca, texto)
 
 
 # --- O HTML: formulários ASP.NET, tabelas e links ------------------------------------------------
@@ -535,7 +572,7 @@ def carregar_portal(caminho: Path | str) -> Portal:
         return {"campo": tuple(e.get("campo", ())), "botao": tuple(e.get("botao", ())),
                 "confirmado": bool(e.get("confirmado")), "formato": str(e.get("formato", "CSV")),
                 "colunas": dict(e.get("colunas") or {}), "amostra": int(e.get("amostra", 3)),
-                "releitura": int(e.get("releitura", 12)), "meses_por_rodada": int(e.get("meses_por_rodada", 14))}
+                "releitura": int(e.get("releitura", 12)), "meses_por_rodada": int(e.get("meses_por_rodada", 40))}
 
     def _consulta(c: dict) -> Consulta:
         popups = {}
@@ -1473,7 +1510,8 @@ CREATE TABLE IF NOT EXISTS despesa_consultas (consulta TEXT, dia TEXT, orgao TEX
     linhas INTEGER, paginas INTEGER, url TEXT, erro TEXT, quando TEXT);
 """
 # Para o motor do banco histórico (onisciente/historico.py): o que refazer ao refazer o motor.
-TABELAS_DO_MOTOR = [("coletas", "motor = 'execucao_goiania'"), ("despesa_eventos", ""), ("despesa_consultas", "")]
+# Só as coletas: os eventos e as consultas ficam, e o motor continua dos meses que faltam (como o cnpj).
+TABELAS_DO_MOTOR = [("coletas", "motor = 'execucao_goiania'")]
 
 
 def criar_tabelas(con) -> None:
@@ -1485,6 +1523,48 @@ def criar_tabelas(con) -> None:
             con.execute(f"ALTER TABLE despesa_eventos ADD COLUMN {coluna} TEXT")
 
 
+def mascarar_cpfs(con) -> int:
+    """As linhas já gravadas com o CPF inteiro (11 dígitos, ou "000" e o CPF) passam a ***.NNN.NNN-**.
+    Devolve quantas linhas mudaram. Uma linha que, mascarada, fica igual a outra já mascarada a substitui."""
+    try:
+        linhas = con.execute("SELECT rowid, documento FROM despesa_eventos WHERE documento NOT LIKE '%*%' "
+                             "AND length(documento) IN (11, 14)").fetchall()
+    except Exception:  # noqa: BLE001 (sem a tabela: nada a mascarar)
+        return 0
+    n = 0
+    for rowid, doc in linhas:
+        novo = documento_gravavel(doc)
+        if novo != doc:
+            con.execute("UPDATE OR REPLACE despesa_eventos SET documento = ? WHERE rowid = ?", (novo, rowid))
+            n += 1
+    return n
+
+
+def precisa_mascarar(con) -> bool:
+    try:
+        linhas = con.execute("SELECT documento FROM despesa_eventos WHERE documento NOT LIKE '%*%' "
+                             "AND length(documento) IN (11, 14)")
+    except Exception:  # noqa: BLE001
+        return False
+    return any(documento_gravavel(d) != d for (d,) in linhas)
+
+
+def migrar_cpfs(con) -> int:
+    """Migração do banco (Banco.abrir): mascara o CPF das linhas antigas numa rodada própria do rastreio,
+    aberta antes e fechada depois, para que as linhas mudadas ganhem selo e o que saiu fique descartado
+    por ela. Sem CPF inteiro no banco, não abre rodada."""
+    if not precisa_mascarar(con):
+        return 0
+    from .. import rastreio
+    rid = rastreio.abrir_rodada(con, ("execucao_goiania",), "mascara_cpf",
+                                detalhe={"nota": "CPF de pessoa física em despesa_eventos mascarado como "
+                                                 "***.NNN.NNN-** (repositório público)"})
+    n = mascarar_cpfs(con)
+    con.commit()
+    rastreio.fechar_rodada(con, rid, nota=f"{n} linha(s) de despesa_eventos com o CPF mascarado")
+    return n
+
+
 def gravar(con, eventos: Iterable[dict], *, coletado_em: str | None = None) -> int:
     """Grava os eventos sem repetir (a chave é tipo, empenho, ordem, data, credor, valor e órgão)."""
     criar_tabelas(con)
@@ -1493,6 +1573,7 @@ def gravar(con, eventos: Iterable[dict], *, coletado_em: str | None = None) -> i
     for ev in eventos:
         linha = {k: ev.get(k, "") for k in CAMPOS_EVENTO}
         linha["valor"] = float(ev.get("valor") or 0.0)
+        linha["documento"] = documento_gravavel(linha["documento"])     # CPF nunca inteiro
         linha["coletado_em"] = linha["coletado_em"] or quando
         cur = con.execute(f"INSERT OR IGNORE INTO despesa_eventos ({', '.join(CAMPOS_EVENTO)}) VALUES "
                           f"({', '.join('?' for _ in CAMPOS_EVENTO)})", [linha[k] for k in CAMPOS_EVENTO])
@@ -1523,7 +1604,8 @@ def dias_a_ler(con, consulta: str, inicio: date, fim: date) -> list[date]:
     return out
 
 
-def meses_a_ler(con, consulta: str, meses: Iterable[str], *, releitura: int = 2) -> list[str]:
+def meses_a_ler(con, consulta: str, meses: Iterable[str], *, releitura: int = 2,
+                faltantes_primeiro: bool = False) -> list[str]:
     """Os meses (AAAA-MM) sem leitura bem-sucedida da lista, mais os ``releitura`` meses mais recentes
     de novo: a linha de um empenho mostra o liquidado e o pago acumulados, que crescem nos meses
     seguintes ao do empenho. Do mais recente para o mais antigo."""
@@ -1534,6 +1616,11 @@ def meses_a_ler(con, consulta: str, meses: Iterable[str], *, releitura: int = 2)
         ultima[mes] = situacao
     meses = sorted(set(meses), reverse=True)
     recentes = meses[:releitura]
+    if faltantes_primeiro:
+        # Os meses sem leitura completa antes das releituras: um limite por rodada nunca deixa o
+        # passado para trás enquanto relê os meses recentes que já estão inteiros.
+        faltam = [m for m in meses if ultima.get(m) not in ("lida", "vazia")]
+        return faltam + [m for m in recentes if m not in faltam]
     return [m for m in meses if m in recentes or ultima.get(m) not in ("lida", "vazia")]
 
 
@@ -1645,8 +1732,11 @@ def _meses_da_exportacao(ctx, portal: Portal, c: Consulta, resumo: dict, con) ->
     meses = [m for m in ctx.meses if m <= ctx.hoje.strftime("%Y-%m")]
     lista_aberta = None
     reserva_recusada = ""
-    for mes in meses_a_ler(con, c.id, meses, releitura=c.exportar.get("releitura", 12))[
-            :c.exportar.get("meses_por_rodada", 14)]:
+    fim = getattr(ctx, "fim_do_motor", None)
+    for mes in meses_a_ler(con, c.id, meses, releitura=c.exportar.get("releitura", 12), faltantes_primeiro=True)[
+            :c.exportar.get("meses_por_rodada", 40)]:
+        if fim is not None and time.monotonic() > fim - 120:
+            break         # sem tempo para mais um mês inteiro: o que falta fica para a rodada seguinte
 
         def ler(url, formulario=None, _mes=mes):
             return ctx.ler("execucao_goiania", c.id, url, mes=_mes, formulario=formulario, tempo=120)
@@ -1689,7 +1779,8 @@ def _meses_da_exportacao(ctx, portal: Portal, c: Consulta, resumo: dict, con) ->
             notas = conferir_amostra(ler, c, exp.eventos) if exp.eventos else []
             if exp.incompletas:
                 notas.insert(0, f"{exp.incompletas} linha(s) incompleta(s) pulada(s)")
-            situacao = "lida" if exp.eventos else "vazia"
+            # Mês com linha cortada não está inteiro: fica "incompleta" e é lido de novo na rodada seguinte.
+            situacao = "incompleta" if exp.incompletas else ("lida" if exp.eventos else "vazia")
             linhas, paginas, url_res = exp.linhas, 1, url
             nota = "exportação CSV" + (": " + "; ".join(notas) if notas else "")
         con.execute("INSERT INTO despesa_consultas VALUES (?,?,?,?,?,?,?,?,?)",

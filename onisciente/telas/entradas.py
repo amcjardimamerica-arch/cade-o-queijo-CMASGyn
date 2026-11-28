@@ -254,7 +254,7 @@ def execucao(con: sqlite3.Connection) -> dict:
         if not num:
             continue
         doc = re.sub(r"\D", "", str(ev.get("documento") or ""))
-        pessoa_fisica = len(doc) == 11
+        pessoa_fisica = len(doc) == 11 or "*" in str(ev.get("documento") or "")   # CPF inteiro ou mascarado
         e = por_empenho.setdefault(num, {
             "numero": num, "data": ev.get("data") or "", "orgao_cnpj": "", "orgao": texto(ev.get("orgao"), 120),
             "credor": "Pessoa física" if pessoa_fisica else texto(ev.get("credor"), 160),

@@ -284,7 +284,52 @@ class ContextoTrilha:
     dotacoes: set = field(default_factory=set)        # (ano, função) com dotação
     dotacoes_fonte: set = field(default_factory=set)  # (ano, função, destinação) com dotação
     contratos: dict = field(default_factory=dict)     # documento do fornecedor -> [Contrato]
+    # Pessoa física: os seis dígitos do meio do CPF e o nome -> [Contrato]. O CPF é gravado mascarado
+    # (***.NNN.NNN-**), então o cruzamento com o PNCP casa como o QSA da Receita: miolo e nome.
+    contratos_pf: dict = field(default_factory=dict)
     rreo: set = field(default_factory=set)            # (ano, bimestre) entregues
+
+
+def _nome(texto: str) -> str:
+    t = unicodedata.normalize("NFKD", str(texto or "")).encode("ascii", "ignore").decode()
+    return re.sub(r"\s+", " ", t).strip().upper()
+
+
+def chave_pf(documento: str, nome: str) -> tuple[str, str] | None:
+    """Pessoa física: (os seis dígitos do meio do CPF, o nome). Vale para o CPF inteiro (11 dígitos) e
+    para o mascarado (***.NNN.NNN-**); CNPJ e documento sem os seis dígitos não têm chave."""
+    bruto = str(documento or "")
+    d = re.sub(r"\D", "", bruto)
+    if "*" in bruto and len(d) == 6:
+        miolo = d
+    elif len(d) == 11 and "*" not in bruto:
+        miolo = d[3:9]
+    else:
+        return None
+    n = _nome(nome)
+    return (miolo, n) if n else None
+
+
+def contratos_do_credor(ctx: ContextoTrilha, documento: str, credor: str = "") -> list:
+    """Os contratos do PNCP do credor: pelo CNPJ (ou CPF inteiro) ou, para a pessoa física com o CPF
+    mascarado, pelos seis dígitos do meio e o nome, como o QSA."""
+    doc = re.sub(r"\D", "", documento or "")
+    if "*" not in str(documento or "") and len(doc) >= 11 and ctx.contratos.get(doc):
+        return ctx.contratos[doc]
+    pf = chave_pf(documento, credor)
+    return ctx.contratos_pf.get(pf, []) if pf else []
+
+
+def cruzavel(documento: str, credor: str = "") -> bool:
+    """O documento se cruza com o PNCP: CNPJ, CPF inteiro, ou CPF mascarado com nome."""
+    doc = re.sub(r"\D", "", documento or "")
+    return ("*" not in str(documento or "") and len(doc) >= 11) or chave_pf(documento, credor) is not None
+
+
+def chave_do_credor(documento: str, credor: str = "") -> str:
+    """O credor para agrupar: o documento; o CPF mascarado com o nome, porque os seis do meio não
+    bastam para separar duas pessoas."""
+    return f"{documento}|{_nome(credor)}" if "*" in str(documento or "") else documento
 
 
 def contexto_do_banco(con: _sqlite3.Connection) -> ContextoTrilha:
@@ -307,8 +352,9 @@ def contexto_do_banco(con: _sqlite3.Connection) -> ContextoTrilha:
         if _tem_tabela(con, "pncp_contratos_detalhe"):
             detalhe = {cid: (vi, vg, va) for cid, vi, vg, va in con.execute(
                 "select contrato_id, valor_inicial, valor_global, valor_acumulado from pncp_contratos_detalhe")}
-        for cid, cnpj, orgao, forn, valor, assinatura in con.execute(
-                "select pncp_id, orgao_cnpj, orgao, fornecedor_ni, valor_global, data_assinatura from contratos_pncp"):
+        for cid, cnpj, orgao, forn, valor, assinatura, nome in con.execute(
+                "select pncp_id, orgao_cnpj, orgao, fornecedor_ni, valor_global, data_assinatura, fornecedor "
+                "from contratos_pncp"):
             vi, vg, va = detalhe.get(cid, (None, None, None))
             contratado = max(float(x or 0.0) for x in (valor, vi, vg, va))
             try:
@@ -317,7 +363,11 @@ def contexto_do_banco(con: _sqlite3.Connection) -> ContextoTrilha:
                 d = None
             doc = re.sub(r"\D", "", forn or "")
             if doc:
-                ctx.contratos.setdefault(doc, []).append(Contrato(cid, cnpj or "", orgao or "", doc, contratado, d))
+                contrato = Contrato(cid, cnpj or "", orgao or "", doc, contratado, d)
+                ctx.contratos.setdefault(doc, []).append(contrato)
+                pf = chave_pf(forn, nome)
+                if pf:
+                    ctx.contratos_pf.setdefault(pf, []).append(contrato)
     if _tem_tabela(con, "siconfi_periodos"):
         for ex, per in con.execute("select exercicio, periodo from siconfi_periodos where demonstrativo = 'RREO' "
                                    "and situacao = 'entregue'"):
@@ -358,7 +408,7 @@ def percursos(eventos: Iterable[EventoDespesa], ctx: ContextoTrilha) -> list[Per
         if funcao and dest and (ano, funcao, dest) in ctx.dotacoes_fonte:
             p.eventos.append(Evento(Estacao.DOTACAO, Nivel.D, funcao=funcao, fonte_recurso=fonte))
         doc = base.documento
-        if doc and len(doc) >= 11 and ctx.contratos.get(doc):
+        if doc and contratos_do_credor(ctx, doc, base.credor):
             p.eventos.append(Evento(Estacao.VINCULO, Nivel.C, credor=doc))
         tem_pagamento = any(e.tipo == "pagamento" for e in evs)
         for e in evs:
@@ -501,10 +551,10 @@ def _pagamentos(eventos: list[EventoDespesa]) -> list[EventoDespesa]:
 def _liquidado_x_contratado(eventos, ctx: ContextoTrilha, out: ConferenciasExecucao, lim: dict) -> None:
     liq: dict[str, list[EventoDespesa]] = defaultdict(list)
     for e in eventos:
-        if e.tipo == "liquidacao" and e.documento in ctx.contratos:
-            liq[e.documento].append(e)
+        if e.tipo == "liquidacao" and contratos_do_credor(ctx, e.documento, e.credor):
+            liq[chave_do_credor(e.documento, e.credor)].append(e)
     for doc, lista in liq.items():
-        contratos = ctx.contratos[doc]
+        contratos = contratos_do_credor(ctx, lista[0].documento, lista[0].credor)
         contratado = sum(c.valor for c in contratos)
         excesso = liquidado_acima_do_contratado(contratado, [e.valor for e in lista],
                                                 tolerancia=float(lim["tolerancia_absoluta"]))
@@ -573,10 +623,11 @@ def _sem_contrato(pagos: list[EventoDespesa], ctx: ContextoTrilha, out: Conferen
     nomes = {}
     for e in pagos:
         doc = e.documento
-        if not e.data or len(doc) < 11 or ctx.contratos.get(doc):
-            continue          # documento mascarado não se cruza: vira cobertura, não indício
+        if not e.data or not cruzavel(doc, e.credor) or contratos_do_credor(ctx, doc, e.credor):
+            continue          # documento sem os dígitos para cruzar: vira cobertura, não indício
         if _sem_contrato_por_natureza(e.elemento, lim["elementos_sem_contrato"]):
             continue
+        doc = chave_do_credor(doc, e.credor)
         meses[(e.orgao, doc)].add(_mes(e.data))
         valor[(e.orgao, doc)] += e.valor
         nomes[doc] = e.credor or doc
@@ -584,10 +635,12 @@ def _sem_contrato(pagos: list[EventoDespesa], ctx: ContextoTrilha, out: Conferen
         if len(ms) >= int(lim["minimo_de_meses"]) and valor[(orgao, doc)] > float(lim["valor_minimo"]):
             out.achados.append(AchadoExecucao(
                 "sem_contrato", orgao, f"{orgao}|{doc}", max(ms),
-                f"{nomes[doc]} ({doc}) recebeu {_moeda(valor[(orgao, doc)])} em {len(ms)} meses distintos "
+                f"{nomes[doc]} ({doc.split('|')[0]}) recebeu {_moeda(valor[(orgao, doc)])} em {len(ms)} meses "
+                f"distintos "
                 f"({min(ms)} a {max(ms)}) sem contrato publicado no PNCP", valor[(orgao, doc)], 0.0,
                 {"meses": sorted(ms)}))
-    out.cobertura["pagamentos_com_documento_mascarado"] = sum(1 for e in pagos if 0 < len(e.documento) < 11)
+    out.cobertura["pagamentos_com_documento_mascarado"] = sum(1 for e in pagos
+                                                              if e.documento and not cruzavel(e.documento, e.credor))
 
 
 def _fim_de_ano_nos_empenhos(eventos, out: ConferenciasExecucao, lim: dict) -> None:
@@ -708,7 +761,8 @@ def contas_item_a_item(eventos: Iterable[EventoDespesa], filtro=None, *, maiores
     por_credor: dict[str, list[EventoDespesa]] = defaultdict(list)
     for e in eventos:
         if filtro is None or filtro(e):
-            por_credor[e.documento or e.credor].append(e)
+            # CPF mascarado: os seis do meio não bastam para separar duas pessoas; o nome entra na chave.
+            por_credor[chave_do_credor(e.documento, e.credor) or e.credor].append(e)
     linhas = []
     for chave, evs in por_credor.items():
         estacoes = {t: round(sum(e.valor for e in evs if e.tipo == t), 2) for t in ESTACOES_LEGAIS}
