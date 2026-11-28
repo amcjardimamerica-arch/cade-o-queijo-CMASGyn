@@ -28,8 +28,9 @@ from pathlib import Path
 from typing import Callable
 from urllib.parse import urlencode
 
-from . import RAIZ
+from . import RAIZ, rastreio
 from .coletores import base, goiania_transweb, msc, siope, siops, transparencia
+from .nucleo.custodia import impressao
 
 BANCO = RAIZ / "dados" / "onisciente" / "historico.db"
 SAIDA = RAIZ / "relatorios" / "onisciente"
@@ -241,24 +242,50 @@ TABELAS_DO_MOTOR = {
 
 
 class Banco:
+    """O banco da coleta. Toda linha gravada fica rastreada por hash (``onisciente.rastreio``): a
+    resposta e a requisição de cada coleta, o selo de cada registro e a cadeia das rodadas."""
+
     def __init__(self, caminho: Path | str):
         self.caminho = Path(caminho) if str(caminho) != ":memory:" else caminho
+        herdadas: list[dict] = []
         if isinstance(self.caminho, Path):
             self.caminho.parent.mkdir(parents=True, exist_ok=True)
             if self.caminho.exists():
+                herdadas = rastreio.cadeia_para_herdar(self.caminho)   # a cadeia continua no banco novo
                 self.caminho.unlink()          # cada rodada refaz o banco do zero
         self.con = sqlite3.connect(str(caminho))
         self.con.executescript(ESQUEMA)
+        self._iniciar_rastreio()
+        if herdadas:
+            rastreio.herdar(self.con, herdadas)
 
     @classmethod
     def abrir(cls, caminho: Path | str = BANCO) -> "Banco":
-        """Abre um banco já coletado, sem apagar nada."""
+        """Abre um banco já coletado, sem apagar nada. Um banco anterior ao rastreio ganha, aqui, o
+        selo de cada linha que já existe (migração; a origem fica "anterior ao rastreio")."""
         banco = cls.__new__(cls)
         banco.caminho = caminho
         banco.con = sqlite3.connect(str(caminho))
         banco.con.executescript(ESQUEMA)
         banco._atualizar_colunas()
+        banco._iniciar_rastreio()
+        rastreio.migrar(banco.con)
         return banco
+
+    def _iniciar_rastreio(self) -> None:
+        rastreio.preparar(self.con)
+        self._esquema = rastreio.versao_do_esquema(self.con)
+        self._colunas_coletas = {c[1] for c in self.con.execute("PRAGMA table_info(coletas)")}
+        self._respostas: dict[str, str] = {}
+
+    def _conferir_esquema(self) -> None:
+        """Um motor criou tabela nova: ela ganha os gatilhos do rastreio antes de receber linhas."""
+        if not hasattr(self, "_esquema"):
+            self._iniciar_rastreio()
+        elif rastreio.versao_do_esquema(self.con) != self._esquema:
+            rastreio.preparar(self.con)
+            self._esquema = rastreio.versao_do_esquema(self.con)
+            self._colunas_coletas = {c[1] for c in self.con.execute("PRAGMA table_info(coletas)")}
 
     def _atualizar_colunas(self) -> None:
         """Bancos de rodadas antigas ganham as colunas novas sem perder o que já têm."""
@@ -276,15 +303,26 @@ class Banco:
         self.con.execute("DELETE FROM meta WHERE chave = ?", (f"motor:{motor}",))
 
     def inserir(self, tabela: str, linha: dict) -> None:
+        coleta = tabela == "coletas"
+        if coleta:
+            # A coleta ganha o hash da requisição e a marca de ausência; a anotação sobre uma resposta
+            # já lida (falha de formato) herda o sha256 dela.
+            self._conferir_esquema()
+            linha = rastreio.completar_coleta(linha, self._colunas_coletas, self._respostas)
         colunas = ", ".join(linha)
         marcas = ", ".join("?" for _ in linha)
-        self.con.execute(f"INSERT OR REPLACE INTO {tabela} ({colunas}) VALUES ({marcas})",
-                         list(linha.values()))
+        cur = self.con.execute(f"INSERT OR REPLACE INTO {tabela} ({colunas}) VALUES ({marcas})",
+                               list(linha.values()))
+        if coleta:
+            if linha.get("sha256") and linha.get("url"):
+                self._respostas[linha["url"]] = linha["sha256"]
+            rastreio.registrar_origem(self.con, cur.lastrowid)
 
     def consultar(self, sql: str, *args) -> list[tuple]:
         return self.con.execute(sql, args).fetchall()
 
     def fechar(self) -> None:
+        rastreio.antes_de_compactar(self.con)   # o VACUUM pode renumerar as linhas pendentes
         self.con.commit()
         self.con.execute("VACUUM")
         self.con.close()
@@ -350,14 +388,14 @@ class Contexto:
             motivo = "não tentado: tempo do motor nesta rodada esgotado"
         if motivo:
             leitura = base.Leitura(False, url, erro=motivo)
-            self._registrar(motor, alvo, mes, leitura, 0, 0.0)
+            self._registrar(motor, alvo, mes, leitura, 0, 0.0, formulario=formulario)
             return leitura
         if antecipada is not None:
             leitura, feitas, segundos = antecipada
         else:
             leitura, feitas, segundos = self._buscar(motor, url, tentativas, cabecalhos, tempo, formulario)
         return self._depois(motor, alvo, mes, url, leitura, feitas, segundos,
-                            pausar=antecipada is None)
+                            pausar=antecipada is None, formulario=formulario)
 
     def _desligada(self, fonte: str) -> bool:
         """Se o disjuntor da fonte está aberto. Passada a pausa, libera uma leitura de prova."""
@@ -417,7 +455,7 @@ class Contexto:
                     continue                    # recusada por pressa: será lida de novo, uma a uma
                 self._antecipadas[(motor, url)] = resultado
 
-    def _depois(self, motor, alvo, mes, url, leitura, feitas, segundos, *, pausar=True):
+    def _depois(self, motor, alvo, mes, url, leitura, feitas, segundos, *, pausar=True, formulario=None):
         rede = (not leitura.ok and (leitura.http is None or leitura.http >= 500)
                 and not _ftp_sem_arquivo(url, leitura))
         fonte_url = _fonte_da_url(url)
@@ -429,7 +467,7 @@ class Contexto:
         if leitura.http is not None:
             fonte = _fonte_da_url(url)
             self.recusas_fonte[fonte] = self.recusas_fonte.get(fonte, 0) + 1 if leitura.http == 429 else 0
-        self._registrar(motor, alvo, mes, leitura, feitas, segundos)
+        self._registrar(motor, alvo, mes, leitura, feitas, segundos, formulario=formulario)
         if self.pausa and pausar:
             self.dormir(self.pausa)
         if leitura.ok and self.brutos is not None:
@@ -438,7 +476,7 @@ class Contexto:
             (self.brutos / nome).write_bytes(leitura.conteudo)
         return leitura
 
-    def _registrar(self, motor, alvo, mes, leitura, tentativas, segundos):
+    def _registrar(self, motor, alvo, mes, leitura, tentativas, segundos, *, formulario=None):
         erro = leitura.erro or None
         if erro and not leitura.ok and leitura.http and 400 <= leitura.http < 500 and leitura.conteudo:
             # O corpo da recusa diz o porquê (um 400 dos dados abertos sem ele não se explica).
@@ -448,8 +486,24 @@ class Contexto:
             "motor": motor, "alvo": alvo, "mes": mes, "url": leitura.url, "ok": int(leitura.ok),
             "http": leitura.http, "erro": erro, "tentativas": tentativas,
             "segundos": round(segundos, 2), "bytes": len(leitura.conteudo),
-            "sha256": leitura.original.sha256 if leitura.original else None,
-            "quando": datetime.now(timezone.utc).isoformat(timespec="seconds")})
+            "sha256": impressao_da_resposta(leitura),
+            "quando": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "metodo": "POST" if formulario else "GET", "parametros": formulario})
+
+
+def respondeu(leitura: base.Leitura) -> bool:
+    """Houve resposta: a leitura deu certo, a fonte devolveu um código (até uma recusa) ou mandou bytes."""
+    return bool(leitura.ok or leitura.http is not None or leitura.conteudo)
+
+
+def impressao_da_resposta(leitura: base.Leitura) -> str | None:
+    """O SHA-256 dos bytes recebidos (o da custódia, quando a leitura já o trouxe); None sem resposta.
+    Uma resposta vazia (204) ou uma recusa também têm impressão: a fonte respondeu."""
+    if not respondeu(leitura):
+        return None
+    if leitura.original is not None and leitura.original.sha256:
+        return leitura.original.sha256
+    return impressao(leitura.conteudo or b"")
 
 
 def _fonte_da_url(url: str) -> str:
@@ -1969,6 +2023,7 @@ def rodar(desde: str, ate: str, *, motores=MOTORES, caminho=BANCO, hoje: date | 
             # que já leu e tirando só as chamadas que falharam, que serão refeitas.
             pncp_anterior = {"janelas": json.loads(meta_anterior["pncp_janelas"]),
                              "procura": json.loads(meta_anterior.get("pncp_procura") or "[]")}
+        rodada = _abrir_rodada(banco, motores, "somar", desde, ate)
         for nome in motores:
             if nome == "pncp_detalhe":           # continua de onde parou; só as falhas são refeitas
                 banco.con.execute("DELETE FROM coletas WHERE motor = 'pncp_detalhe' AND ok = 0")
@@ -1980,6 +2035,7 @@ def rodar(desde: str, ate: str, *, motores=MOTORES, caminho=BANCO, hoje: date | 
                 banco.apagar_motor(nome)
     else:
         banco = Banco(caminho)
+        rodada = _abrir_rodada(banco, motores, "completa", desde, ate)
     kw.setdefault("paralelo", PARALELO)
     ctx = Contexto(banco, meses(desde, ate), hoje or date.today(), brutos=brutos, **kw)
     banco.inserir("meta", {"chave": "intervalo", "valor": f"{desde} a {ate}"})
@@ -2017,5 +2073,32 @@ def rodar(desde: str, ate: str, *, motores=MOTORES, caminho=BANCO, hoje: date | 
         banco.inserir("meta", {"chave": f"motor:{nome}", "valor": json.dumps(
             {"segundos": round(time.monotonic() - inicio, 1), "erro": erro}, ensure_ascii=False)})
         banco.con.commit()
+        _rastrear(banco, rastreio.selar, rodada)        # o que o motor gravou ganha o selo agora
+        banco.con.commit()
         print(f"motor {nome}: {'ok' if not erro else 'QUEBROU: ' + erro}", flush=True)
+    fechada = _rastrear(banco, rastreio.fechar_rodada, rodada)
+    if fechada:
+        print(f"rastreio: rodada {rodada}, hash {fechada['hash']}, raiz {fechada['raiz']}", flush=True)
     return banco
+
+
+def _abrir_rodada(banco: Banco, motores, modo: str, desde: str, ate: str) -> int | None:
+    """Abre a rodada do rastreio (o banco inteiro é conferido antes: o que mudou fora de rodada fica
+    registrado nela)."""
+    return _rastrear(banco, rastreio.abrir_rodada, list(motores), modo,
+                     detalhe={"intervalo": f"{desde} a {ate}"})
+
+
+def _rastrear(banco: Banco, funcao, *args, **kw):
+    """Uma falha do rastreio não derruba a coleta: fica anotada no meta (``rastreio_erro``) e a
+    verificação (``python -m onisciente rastreio``) aponta o que ficou sem selo."""
+    if args and args[0] is None and funcao is not rastreio.abrir_rodada:
+        return None
+    try:
+        return funcao(banco.con, *args, **kw)
+    except Exception as e:  # noqa: BLE001
+        banco.con.rollback()
+        banco.inserir("meta", {"chave": "rastreio_erro", "valor": f"{funcao.__name__}: {type(e).__name__}: {e}"[:500]})
+        banco.con.commit()
+        print(f"rastreio: FALHOU em {funcao.__name__}: {type(e).__name__}: {e}", flush=True)
+        return None

@@ -24,6 +24,7 @@ from ..nucleo.ausencias import Ausencia
 from ..nucleo.custodia import Original
 from ..nucleo.indicios import Ficha
 from ..nucleo.selos import Certificacao, Selo
+from ..rastreio import registro_da_coleta, resumo_da_cadeia
 
 if TYPE_CHECKING:
     from ..contas import Conta
@@ -103,6 +104,8 @@ class Auditoria:
     notas: list[str] = field(default_factory=list)
     parcerias: list = field(default_factory=list)
     exercicio_das_parcerias: int | None = None
+    # A cadeia do rastreio por hash no banco (última rodada, hash, raiz e se a cadeia confere).
+    rastreio: dict = field(default_factory=dict)
 
     def juntar(self, parte: Parte) -> None:
         self.quadros += parte.quadros
@@ -133,7 +136,7 @@ class Auditoria:
                 "ausencias": [a.como_dict() for a in self.ausencias],
                 "contas": [{"exercicio": c.exercicio, "orgao": c.orgao, "tipo": c.tipo,
                             "conferencia": c.conferencia, "atrasos": c.atrasos} for c in self.contas],
-                "custodia_por_motor": self.custodia_por_motor, "notas": self.notas}
+                "custodia_por_motor": self.custodia_por_motor, "notas": self.notas, "rastreio": self.rastreio}
 
 
 class Base:
@@ -161,10 +164,12 @@ class Base:
             "select mes from msc_meses where situacao = 'entregue' and mes <= ? order by mes", (self.mes_limite,))]
 
     def coleta(self, motor: str, alvo: str | None = None, mes: str | None = None) -> Original | None:
-        """O original de uma coleta (endereço, data e impressão digital), se o banco o registrou."""
+        """O original de uma coleta (endereço, data e impressão digital), se o banco o registrou, com o
+        hash da linha da coleta (o registro em que o achado se apoia) e o da requisição."""
         if not self.tem("coletas"):
             return None
-        sql = "select url, quando, sha256, alvo from coletas where motor = ? and ok = 1 and sha256 is not null"
+        sql = ("select url, quando, sha256, alvo, rowid from coletas where motor = ? and ok = 1 "
+               "and sha256 is not null")
         args: list = [motor]
         if alvo is not None:
             sql += " and alvo = ?"
@@ -175,8 +180,10 @@ class Base:
         linha = self.con.execute(sql + " order by quando desc limit 1", args).fetchone()
         if not linha:
             return None
-        url, quando, sha, nome = linha
-        return Original(url=url, coletado_em=(quando or "")[:10], sha256=sha, fonte=f"{motor}: {nome}")
+        url, quando, sha, nome, rowid = linha
+        registro, requisicao = registro_da_coleta(self.con, rowid)
+        return Original(url=url, coletado_em=(quando or "")[:10], sha256=sha, fonte=f"{motor}: {nome}",
+                        registro=registro or "", requisicao=requisicao or "")
 
     def original_do_periodo(self, demonstrativo: str, exercicio: int, periodo: int) -> Original | None:
         if demonstrativo == "RREO":
@@ -215,17 +222,20 @@ def custodia_do_banco(base: Base) -> tuple[list[Original], list[dict]]:
     motores = [m for (m,) in base.con.execute("select distinct motor from coletas order by motor")]
     for motor in motores:
         linhas = base.con.execute(
-            "select alvo, mes, url, quando, sha256 from coletas where motor = ? and ok = 1 and sha256 is not null "
-            "and (mes is null or mes = '' or mes <= ?) order by mes, alvo", (motor, base.mes_limite)).fetchall()
+            "select alvo, mes, url, quando, sha256, rowid from coletas where motor = ? and ok = 1 "
+            "and sha256 is not null and (mes is null or mes = '' or mes <= ?) order by mes, alvo",
+            (motor, base.mes_limite)).fetchall()
         if not linhas:
             continue
-        conjunto = impressao("\n".join(sorted(s for *_, s in linhas)))
+        conjunto = impressao("\n".join(sorted(s for *_, s, _r in linhas)))
         resumo.append({"motor": motor, "leituras": len(linhas), "impressao_do_conjunto": conjunto,
-                       "primeira": min((q or "")[:10] for *_, q, _s in linhas),
-                       "ultima": max((q or "")[:10] for *_, q, _s in linhas)})
+                       "primeira": min((q or "")[:10] for *_, q, _s, _r in linhas),
+                       "ultima": max((q or "")[:10] for *_, q, _s, _r in linhas)})
         if len(linhas) <= 60:
-            originais += [Original(url=u, coletado_em=(q or "")[:10], sha256=s, fonte=f"{motor}: {a}")
-                          for a, _m, u, q, s in linhas]
+            for a, _m, u, q, s, rowid in linhas:
+                registro, requisicao = registro_da_coleta(base.con, rowid)
+                originais.append(Original(url=u, coletado_em=(q or "")[:10], sha256=s, fonte=f"{motor}: {a}",
+                                          registro=registro or "", requisicao=requisicao or ""))
     return originais, resumo
 
 
@@ -243,4 +253,5 @@ def conferir(lt: "Leitor", ate: date, mapa: MapaLegal, *, raiz: Path = RAIZ) -> 
                         lei_organica.conferir, serie.conferir, heranca.conferir, *CONFERENCIAS):
         auditoria.juntar(conferencia(base))
     auditoria.custodia, auditoria.custodia_por_motor = custodia_do_banco(base)
+    auditoria.rastreio = resumo_da_cadeia(base.con)
     return auditoria

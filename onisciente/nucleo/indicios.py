@@ -130,12 +130,46 @@ class Ficha:
     competencia: str | None = None
     origem: str = "onisciente"
     observacao: str = ""
+    # Hashes dos registros do banco em que o achado se apoia, além dos da custódia (rastreio por hash).
+    apoio: list[str] = field(default_factory=list)
 
     @property
     def ordem(self) -> tuple:
         return (self.gravidade.ordem, self.familia.value, self.codigo)
 
+    @property
+    def hashes_de_apoio(self) -> list[str]:
+        """Os hashes dos registros em que o achado se apoia: os de ``apoio`` e os da custódia."""
+        vistos: dict[str, None] = {}
+        for h in [*self.apoio, *(o.rastreio for o in self.custodia)]:
+            if h:
+                vistos.setdefault(h, None)
+        return list(vistos)
+
+    @property
+    def hash_apoio(self) -> str:
+        """Um hash só para o conjunto de apoio: o próprio hash quando é um registro, a raiz de Merkle
+        dos hashes em ordem quando são vários, vazio quando o achado não se apoia em registro (a falta
+        é o achado)."""
+        from ..rastreio import raiz_de
+        hs = self.hashes_de_apoio
+        if not hs:
+            return ""
+        return hs[0] if len(hs) == 1 else raiz_de(hs)
+
+    @property
+    def hash_achado(self) -> str:
+        """O hash do próprio achado: o conteúdo da ficha (com os hashes de apoio)."""
+        from ..rastreio import hash_achado
+        return hash_achado(self._corpo())
+
+    def rastreio(self) -> dict:
+        return {"hash_achado": self.hash_achado, "hash_apoio": self.hash_apoio, "apoio": self.hashes_de_apoio}
+
     def como_dict(self) -> dict:
+        return {**self._corpo(), "rastreio": self.rastreio()}
+
+    def _corpo(self) -> dict:
         return {
             "codigo": self.codigo,
             "familia": self.familia.value,
@@ -157,6 +191,7 @@ class Ficha:
             "competencia": self.competencia,
             "origem": self.origem,
             "observacao": self.observacao,
+            "apoio": self.hashes_de_apoio,
         }
 
 

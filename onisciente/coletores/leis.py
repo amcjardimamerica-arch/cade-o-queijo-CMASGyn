@@ -19,7 +19,17 @@ from urllib.parse import urlencode
 import yaml
 
 from ..legal.mapa import MapaLegal, carregar
-from .base import ler
+from ..nucleo.custodia import impressao
+from .base import Leitura, ler
+
+
+def _impressao(leitura: Leitura) -> str | None:
+    """O SHA-256 da resposta (o da custódia, quando a leitura o trouxe); None quando não houve resposta."""
+    if leitura.original is not None and leitura.original.sha256:
+        return leitura.original.sha256
+    if leitura.ok or leitura.http is not None or leitura.conteudo:
+        return impressao(leitura.conteudo or b"")
+    return None
 
 RAW_CTRESB = "https://raw.githubusercontent.com/ctresb/leis/main/"
 
@@ -48,7 +58,7 @@ def conferir_ctresb(mapa: MapaLegal | None = None, *, ler_url=ler) -> list[dict]
             if leitura.ok:
                 cab = cabecalho(leitura.texto)
                 item.update(titulo=cab.get("titulo"), revogada=bool(cab.get("revogada", False)),
-                            sha256=leitura.original.sha256 if leitura.original else None)
+                            sha256=_impressao(leitura))
             else:
                 item["erro"] = leitura.erro
             saida.append(item)
@@ -71,8 +81,7 @@ def ler_sileg(url: str, *, ler_url=ler) -> dict:
     texto = texto_do_html(leitura.conteudo.decode("latin-1", errors="replace")
                           if b"charset=iso-8859-1" in leitura.conteudo[:2000].lower()
                           else leitura.texto)
-    return {"url": url, "ok": True, "sha256": leitura.original.sha256 if leitura.original else None,
-            "inicio": texto[:600]}
+    return {"url": url, "ok": True, "sha256": _impressao(leitura), "inicio": texto[:600]}
 
 
 # --- Normas de Goiânia no Sileg --------------------------------------------------------
@@ -120,12 +129,11 @@ def ler_norma_municipal(url: str, *, ler_url=ler) -> dict:
     """Baixa a norma do Sileg: HTML vira começo de texto; PDF fica só com o tamanho e a impressão."""
     leitura = ler_url(url, fonte="Sileg")
     item = {"url": url, "ok": int(leitura.ok), "http": leitura.http, "erro": leitura.erro or None,
-            "bytes": len(leitura.conteudo or b""), "sha256": None, "formato": None, "inicio": None,
-            "aviso_revogacao": 0}
+            "bytes": len(leitura.conteudo or b""), "sha256": _impressao(leitura), "formato": None,
+            "inicio": None, "aviso_revogacao": 0}
     if not leitura.ok:
         return item
     conteudo = leitura.conteudo or b""
-    item["sha256"] = leitura.original.sha256 if leitura.original else None
     if conteudo[:5] == b"%PDF-" or url.lower().endswith(".pdf"):
         item["formato"] = "pdf"
         return item

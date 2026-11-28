@@ -277,3 +277,18 @@
     cada contrato na página diz quais cadastros não foram conferidos.
   falta: ''
   trava: testes/test_empresas.py::test_sancoes_sem_linhas_sao_nao_conferidas_e_nunca_empresa_limpa
+- id: 226
+  bloco: 'H: rastreio por hash, 28/11/2026'
+  requisito: Ao coletar as informações, gerar um código hash para rastreio dos dados e validação de cada informação
+    obtida (pedido da titular, 28/11/2026).
+  situacao: cumprido
+  evidencia: onisciente/rastreio.py. Cada coleta de todos os motores guarda o SHA-256 dos bytes recebidos (inclusive
+    recusa e resposta vazia; a base da Receita e o arquivo de emendas pelo fluxo) e o hash da requisição (método, URL,
+    parâmetros, data e hora UTC), com sem_resposta = 1 quando não houve resposta; cada linha de cada tabela de dados
+    tem o hash do conteúdo canônico num selo (rastreio_selos) ligado à resposta de origem (rastreio_origens); cada
+    rodada (historico.rodar e a soma da janela da agenda) grava a raiz de Merkle e o hash da rodada anterior
+    (rastreio_rodadas); banco antigo é migrado sem perder linhas; python -m onisciente rastreio verifica a cadeia,
+    as raízes e cada registro e mostra o hash de um registro com a origem; as fichas e o parecer trazem o hash do
+    apoio e do achado.
+  falta: ''
+  trava: testes/test_rastreio.py::test_nenhum_motor_grava_sha256_nulo_quando_houve_resposta

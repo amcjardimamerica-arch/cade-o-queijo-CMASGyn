@@ -17,6 +17,7 @@ Para registrar no ``historico.py`` (dono: coordenador)::
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import tempfile
@@ -31,11 +32,30 @@ DIAS_PARA_RECONSULTAR = 31        # registro da via secundária mais velho que i
 PAGINAS_TCU = 200
 
 
-def _anotar(ctx, alvo: str, url: str, ok: bool, bytes_: int, erro: str, mes: str = "") -> None:
+def _anotar(ctx, alvo: str, url: str, ok: bool, bytes_: int, erro: str, mes: str = "",
+            sha256: str | None = None, metodo: str = "GET") -> None:
+    """Anota em ``coletas`` uma leitura que não passou pelo ``ctx.ler`` (a listagem e os arquivos da base
+    mensal), com o SHA-256 dos bytes recebidos (``sha256``) quando houve resposta."""
     ctx.banco.inserir("coletas", {
         "motor": "cnpj", "alvo": alvo[:80], "mes": mes, "url": url, "ok": int(ok), "http": None,
-        "erro": erro or None, "tentativas": 1, "segundos": 0, "bytes": bytes_, "sha256": None,
-        "quando": datetime.now(timezone.utc).isoformat(timespec="seconds")})
+        "erro": erro or None, "tentativas": 1, "segundos": 0, "bytes": bytes_, "sha256": sha256,
+        "quando": datetime.now(timezone.utc).isoformat(timespec="seconds"), "metodo": metodo})
+
+
+def impressao_do_texto(texto: str) -> str | None:
+    """SHA-256 da listagem recebida (o texto volta a bytes em UTF-8, a codificação da resposta)."""
+    return hashlib.sha256(texto.encode("utf-8")).hexdigest() if texto else None
+
+
+def impressao_do_arquivo(caminho: Path) -> str | None:
+    """SHA-256 do arquivo baixado (lido em blocos: os zips da Receita passam de 1 GB)."""
+    if not caminho.exists():
+        return None
+    h = hashlib.sha256()
+    with open(caminho, "rb") as f:
+        for bloco in iter(lambda: f.read(1 << 20), b""):
+            h.update(bloco)
+    return h.hexdigest()
 
 
 def mes_mais_novo(portas: list[rf.Porta], listar_url: Callable = rf.listar,
@@ -45,7 +65,8 @@ def mes_mais_novo(portas: list[rf.Porta], listar_url: Callable = rf.listar,
         texto, erro = listar_url(porta, "")
         meses = rf.meses_da_listagem(texto) if texto else []
         anotar(f"listagem {porta.nome}", porta.raiz, bool(meses), len(texto), erro or ("" if meses else
-                                                                                       "nenhuma pasta AAAA-MM"))
+                                                                                       "nenhuma pasta AAAA-MM"),
+               impressao_do_texto(texto), "PROPFIND" if porta.propfind else "GET")
         if meses:
             return porta, meses[-1]
     return None, None
@@ -71,7 +92,8 @@ def motor_cnpj(ctx, *, portas: list[rf.Porta] | None = None, listar_url: Callabl
         return resumo
     token = os.environ.get("RFB_SHARE_TOKEN") or rf.TOKEN_PADRAO
     porta, mes = mes_mais_novo(portas if portas is not None else rf.portas(token), listar_url,
-                               lambda alvo, url, ok, n, erro: _anotar(ctx, alvo, url, ok, n, erro))
+                               lambda alvo, url, ok, n, erro, sha=None, metodo="GET": _anotar(
+                                   ctx, alvo, url, ok, n, erro, sha256=sha, metodo=metodo))
     linha = con.execute("SELECT valor FROM meta WHERE chave = 'cnpj_base_lida'").fetchone()
     lida = linha[0] if linha else ""
     if porta and mes:
@@ -83,7 +105,8 @@ def motor_cnpj(ctx, *, portas: list[rf.Porta] | None = None, listar_url: Callabl
                 cad = rf.coletar_base(cnpjs, mes=mes, porta=porta, pasta=Path(tmp), baixar_url=baixar_url,
                                       listar_url=listar_url, hoje=hoje,
                                       registrar=lambda url, ok, n, erro: _anotar(
-                                          ctx, url.rsplit("/", 1)[-1], url, ok, n, erro, mes))
+                                          ctx, url.rsplit("/", 1)[-1], url, ok, n, erro, mes,
+                                          sha256=impressao_do_arquivo(Path(tmp) / url.rsplit("/", 1)[-1])))
             rf.gravar(con, cad)
             resumo["erros"] = cad.erros
             if cad.completa:      # base lida inteira: não se relê no mesmo mês
@@ -119,7 +142,8 @@ def _por_api(ctx, cnpj: str, hoje: str) -> bool:
             try:
                 reg, socios = rf.de_api(leitura.conteudo, fonte=fonte, hoje=hoje)
             except ValueError as e:
-                _anotar(ctx, cnpj, url, False, len(leitura.conteudo), f"formato: {e}")
+                _anotar(ctx, cnpj, url, False, len(leitura.conteudo), f"formato: {e}",
+                        sha256=_historico().impressao_da_resposta(leitura))
                 continue
             cad = rf.Cadastro(empresas={reg["cnpj"]: reg}, socios=socios, fonte=fonte, data_base=reg["data_base"])
             rf.gravar(con, cad)
@@ -177,6 +201,11 @@ def motor_impedimentos(ctx) -> dict:
     ctx.banco.inserir("meta", {"chave": "impedimentos", "valor": json.dumps(resumo, ensure_ascii=False)})
     con.commit()
     return resumo
+
+
+def _historico():
+    from .. import historico   # tarde: o historico importa este módulo
+    return historico
 
 
 def _anotar_imp(ctx, alvo: str, url: str, erro: str) -> None:

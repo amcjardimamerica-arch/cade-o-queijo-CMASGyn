@@ -11,6 +11,7 @@ não são guardadas: o que interessa ao parecer é o ente, a entidade e a empres
 from __future__ import annotations
 
 import csv
+import hashlib
 import io
 import json
 import struct
@@ -319,11 +320,19 @@ class Contador:
         self.fonte = fonte
         self.bytes = 0
         self.status = getattr(fonte, "status", None)
+        self._hash = hashlib.sha256()
 
     def read(self, n: int = -1) -> bytes:
         parte = self.fonte.read(n)
         self.bytes += len(parte or b"")
+        if parte:
+            self._hash.update(parte)
         return parte
+
+    @property
+    def sha256(self) -> str:
+        """SHA-256 dos bytes que passaram (o arquivo inteiro quando a leitura chega ao fim)."""
+        return self._hash.hexdigest()
 
 
 __all__ = [

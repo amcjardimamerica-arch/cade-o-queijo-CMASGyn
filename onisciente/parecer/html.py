@@ -102,9 +102,31 @@ def _numerico(v) -> bool:
 def _original(o) -> str:
     if o is None:
         return '<td class="sub">sem original no banco</td>'
+    registro = getattr(o, "registro", "")
+    dica = f"resposta {o.sha256}" + (f" · registro {registro}" if registro else "")
     return (f'<td><a href="{escape(o.url)}">{escape(o.fonte or o.url)}</a><br>'
             f'<span class="sub">{escape(o.coletado_em)}</span> '
-            f'<span class="hash" title="{escape(o.sha256)}">{escape(o.sha256[:16])}</span></td>')
+            f'<span class="hash" title="{escape(dica)}">{escape((registro or o.sha256)[:16])}</span></td>')
+
+
+def _hash_curto(h: str, rotulo: str, classe: str = "hash") -> str:
+    """O hash curto na linha e inteiro ao passar o mouse (e na tabela da custódia)."""
+    return f'<span class="{classe}" title="{escape(rotulo)} {escape(h)}">{escape(h[:12])}</span>'
+
+
+def _rastreio_da_ficha(r: dict) -> str:
+    """A linha de rastreio de um achado: o hash dos registros em que se apoia e o hash do achado."""
+    apoio = r.get("hash_apoio") or ""
+    n = len(r.get("apoio") or [])
+    partes = []
+    if apoio:
+        rot = "registro de apoio" if n == 1 else f"raiz dos {n} registros de apoio"
+        partes.append(f"apoio {_hash_curto(apoio, rot, 'hash hash-apoio')}"
+                      + (f" ({n} registros)" if n > 1 else ""))
+    else:
+        partes.append('<span class="sub">sem registro de apoio no banco (a falta é o achado)</span>')
+    partes.append(f"achado {_hash_curto(r.get('hash_achado') or '', 'hash do achado', 'hash hash-achado')}")
+    return "<dt>Rastreio</dt><dd>" + " · ".join(partes) + "</dd>"
 
 
 def _quadro(q) -> str:
@@ -174,7 +196,9 @@ def _ficha(f: Ficha) -> str:
     if f.custodia:
         custodia = "<dt>Custódia</dt><dd>" + "<br>".join(
             f'<a href="{escape(o.url)}">{escape(o.url)}</a> · {escape(o.coletado_em)} · '
-            f'<span class="hash">{escape(o.sha256)}</span>' for o in f.custodia) + "</dd>"
+            f'<span class="hash">{escape(o.sha256)}</span>'
+            + (f' · registro <span class="hash">{escape(o.registro)}</span>' if o.registro else "")
+            for o in f.custodia) + "</dd>"
     extras = ""
     if f.observacao:
         extras = f' <span class="etiqueta v">{escape(f.observacao)}</span>'
@@ -195,6 +219,7 @@ def _ficha(f: Ficha) -> str:
         + (f"<dt>Providência</dt><dd>{escape(f.providencia)}</dd>" if f.providencia else "")
         + (f"<dt>Caso semelhante</dt><dd>{escape(f.caso_semelhante)}</dd>" if f.caso_semelhante else "")
         + custodia
+        + _rastreio_da_ficha(f.rastreio())
         + "</dl></article>"
     )
 
@@ -447,6 +472,7 @@ def gerar(p: Panorama, *, hoje: date | None = None) -> str:
                      f'<td class="hash">{escape(o.sha256)}</td></tr>' for o in p.custodia)
                  + "</table></div>")
     s.extend(_custodia_do_banco(p))
+    s.extend(_rastreio(p, fichas))
     for fn in SECOES_EXTERNAS:
         trecho = fn(p, hoje)
         if trecho:
@@ -618,9 +644,10 @@ def _custodia_do_banco(p: Panorama) -> list[str]:
         if a.custodia:
             s.append(f"<details><summary>As {len(a.custodia)} leituras uma a uma (motores com até 60 "
                      "leituras)</summary><div class=\"tabela\"><table><tr><th>Original</th><th>Coletado</th>"
-                     "<th>Impressão digital</th></tr>" + "".join(
+                     "<th>Impressão digital</th><th>Registro (rastreio)</th></tr>" + "".join(
                          f'<tr><td><a href="{escape(o.url)}">{escape(o.fonte or o.url)}</a></td>'
-                         f"<td>{escape(o.coletado_em)}</td><td class=\"hash\">{escape(o.sha256)}</td></tr>"
+                         f"<td>{escape(o.coletado_em)}</td><td class=\"hash\">{escape(o.sha256)}</td>"
+                         f"<td class=\"hash\">{escape(o.registro)}</td></tr>"
                          for o in a.custodia) + "</table></div></details>")
     fed = p.federais
     if fed is not None:
@@ -628,4 +655,42 @@ def _custodia_do_banco(p: Panorama) -> list[str]:
         for motor, problema in problemas:
             s.append(f'<div class="vermelho">{_selo(Selo.VERMELHO)}Fonte federal ou estadual sem leitura '
                      f"({escape(motor)}): {escape(problema)}. Falha do sistema, não do Município.</div>")
+    return s
+
+
+def _rastreio(p: Panorama, fichas: list[Ficha]) -> list[str]:
+    """O rastreio por hash no fim do parecer: o hash de cada achado e dos registros em que se apoia,
+    inteiros, e a rodada de coleta e a cadeia do banco (python -m onisciente rastreio confere)."""
+    s = ["<h3>Rastreio por hash</h3>",
+         '<p class="sub">Cada achado traz o hash dos registros do banco em que se apoia (SHA-256 do conteúdo '
+         "canônico do registro; para uma coleta, o da linha que guarda a resposta e a requisição) e o hash do "
+         "próprio achado. A cadeia de rodadas liga cada coleta à anterior: qualquer alteração num registro, numa "
+         "rodada antiga ou no elo entre elas aparece em <code>python -m onisciente rastreio</code>.</p>"]
+    if fichas:
+        linhas = "".join(
+            f'<tr><td><a href="#{escape(f.codigo)}">{escape(f.codigo)}</a></td>'
+            f'<td class="hash">{escape(f.hash_achado)}</td>'
+            f'<td class="hash">{escape(f.hash_apoio) or "sem registro de apoio"}</td>'
+            f'<td class="hash">{"<br>".join(escape(h) for h in f.hashes_de_apoio) or ""}</td></tr>'
+            for f in fichas)
+        s.append('<div class="tabela"><table><tr><th>Achado</th><th>Hash do achado</th><th>Hash do apoio</th>'
+                 f"<th>Registros de apoio</th></tr>{linhas}</table></div>")
+    r = (p.auditoria.rastreio if p.auditoria is not None else None) or {}
+    u = r.get("ultima")
+    if not r.get("rastreado") or not u:
+        s.append('<p class="omitido">O banco desta competência ainda não tem a cadeia do rastreio (é criada na '
+                 "primeira abertura do banco depois da atualização e a cada rodada de coleta).</p>")
+        return s
+    situacao = ("a cadeia confere" if r.get("ok") else
+                "a cadeia NÃO confere: " + "; ".join(f"rodada {x['rodada']}: {x['motivo']}"
+                                                    for x in r.get("problemas", []) if x.get("grave")))
+    s.append('<div class="tabela"><table><tr><th>Rodada de coleta</th><th>Valor</th></tr>'
+             f"<tr><td>Rodadas na cadeia</td><td>{r.get('rodadas')} ({escape(situacao)})</td></tr>"
+             f"<tr><td>Última rodada</td><td>{u['id']} · {escape(u.get('modo') or '')} · "
+             f"{escape(u.get('inicio') or '')} a {escape(u.get('fim') or '')}</td></tr>"
+             f'<tr><td>Hash da rodada (topo da cadeia)</td><td class="hash">{escape(u.get("hash") or "")}</td></tr>'
+             f'<tr><td>Raiz de Merkle das respostas e registros da rodada</td><td class="hash">'
+             f'{escape(u.get("raiz") or "")}</td></tr>'
+             f'<tr><td>Hash da rodada anterior</td><td class="hash">{escape(u.get("anterior") or "")}</td></tr>'
+             "</table></div>")
     return s

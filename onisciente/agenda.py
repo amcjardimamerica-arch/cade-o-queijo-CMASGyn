@@ -39,7 +39,7 @@ from dataclasses import dataclass
 from datetime import date, datetime, timezone
 from pathlib import Path
 
-from . import RAIZ, historico
+from . import RAIZ, historico, rastreio
 from .coletores import base as coleta
 
 BANCO = historico.BANCO
@@ -231,8 +231,8 @@ def somar_janela(principal: historico.Banco, novo: Path, meses_da_janela: list[s
         existentes = {t for (t,) in con.execute(
             "SELECT name FROM main.sqlite_master WHERE type = 'table'")}
         for tabela in tabelas:
-            if tabela == "meta":
-                continue
+            if tabela == "meta" or tabela.startswith(rastreio.PREFIXO):
+                continue          # o rastreio da janela entra pelo importar_selos, na rodada da soma
             if not con.execute(f"SELECT 1 FROM novo.{tabela} LIMIT 1").fetchone():
                 continue          # a janela não trouxe nada para esta tabela: o principal fica como está
             if tabela not in existentes:
@@ -376,6 +376,21 @@ def _motores_quebrados(banco: historico.Banco, motores) -> dict[str, str]:
     return saida
 
 
+def _rodada_da_janela(principal: historico.Banco, grupo: Grupo, temporario: Path, janela_: str) -> int | None:
+    """Abre no banco principal a rodada da soma da janela, com o resumo da rodada da janela."""
+    try:
+        con = sqlite3.connect(f"file:{temporario}?mode=ro", uri=True)
+        try:
+            da_janela = rastreio.verificar_cadeia(con)["ultima"]
+        finally:
+            con.close()
+        return rastreio.abrir_rodada(principal.con, list(grupo.motores), "janela",
+                                     detalhe={"janela": janela_, "rodada_da_janela": da_janela})
+    except Exception as e:  # noqa: BLE001 (o rastreio não derruba a soma; a verificação aponta)
+        print(f"rastreio: rodada da janela não aberta: {type(e).__name__}: {e}", flush=True)
+        return None
+
+
 def coletar_grupo(grupo: Grupo, intervalo: tuple[str, str], *, caminho: Path = BANCO, hoje: date,
                   **kw) -> dict:
     """Roda um grupo de motores sobre ``intervalo`` e soma o resultado ao banco principal."""
@@ -392,9 +407,15 @@ def coletar_grupo(grupo: Grupo, intervalo: tuple[str, str], *, caminho: Path = B
             principal = _abrir_ou_criar(caminho, intervalo)
             try:
                 uniao = _uniao(intervalo_do_banco(principal), intervalo)
+                # A soma da janela é uma rodada do banco principal: os selos e as origens que a janela
+                # gravou vêm junto, e a raiz da rodada cobre o que entrou.
+                rodada = _rodada_da_janela(principal, grupo, temporario, f"{desde} a {ate}")
                 resultado["linhas"] = somar_janela(principal, temporario, meses_janela)
                 principal.inserir("meta", {"chave": "intervalo", "valor": f"{uniao[0]} a {uniao[1]}"})
                 principal.con.commit()
+                if rodada is not None:
+                    rastreio.importar_selos(principal.con, temporario, rodada)
+                    resultado["rastreio"] = rastreio.fechar_rodada(principal.con, rodada)["hash"]
             finally:
                 principal.fechar()
     else:
