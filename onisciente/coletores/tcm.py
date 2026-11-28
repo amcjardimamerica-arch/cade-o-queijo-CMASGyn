@@ -25,6 +25,17 @@ contas de governo julgadas pelas câmaras, e ``mp/id=45``, contas encaminhadas a
 contas-irregulares``; a de "julgamento das contas de governo pelas câmaras" aponta o painel
 ``tcmgo.tc.br/contaseleicoes/``. ``links_das_listas`` tira esses endereços da página e ``LISTAS`` os
 guarda; ``contas`` lê qualquer uma delas (JSON ou tabela HTML) e fica com as linhas do Município.
+
+Sondagem da rodada 7 (28/11/2026): a tela de pesquisa da jurisprudência (``jurisprudencia-page-*.js``)
+mostra a API: ``GET {JURISPRUDENCIA}buscar`` com ``texto``, ``page``, ``page_size`` (10 a 100),
+``sort_by=data_sessao`` e ``sort_order=desc`` (a ordem padrão da tela) e os filtros ``municipio``,
+``entidade``, ``ano_votacao``, ``conselheiro``, ``resultado`` e outros (os valores aceitos vêm de
+``filtros``); o cabeçalho ``X-Cliente: portal`` vai em todo pedido. A resposta traz ``data`` (as decisões,
+com ``numero_acordao``, ``ano_votacao``, ``data_sessao``, ``tipo_decisao``, ``numero_processo``,
+``assunto``, ``ementa``, ``resultado``, ``conselheiro_relator``, ``orgao_julgador``,
+``entidade_fiscalizada`` e ``document_id``, cujo PDF fica em ``pdf/{document_id}``) e ``pagination``
+(``page``, ``total_pages``, ``has_next``). O ``/v1/health`` respondeu ``healthy``. A resposta de
+``buscar`` ainda não foi vista: ``jurisprudencia`` lê os campos que a tela usa.
 """
 
 from __future__ import annotations
@@ -50,6 +61,9 @@ DESCARTADOS = (
     PORTAL + "pesquisaJurisprudencia/rest/pesquisa?termo={termo}&pagina={pagina}",
     PORTAL + "site/jurisprudencia/?pesquisa={termo}&pagina={pagina}",
 )
+
+JURISPRUDENCIA = "https://virtual.tcmgo.tc.br/jurisprudencia/api/v1/acordao/jurisprudencia/"
+CABECALHOS_JURISPRUDENCIA = {"X-Cliente": "portal"}
 
 ACESSO = "https://acessoainformacao.tcmgo.tc.br/"
 DADOS_ABERTOS = "https://ws.tcm.go.gov.br/api/rest/dados/contas-irregulares"
@@ -254,3 +268,48 @@ def ler(conteudo: bytes, base: str = PORTAL) -> list[dict]:
     if "<" not in texto[:2000]:
         raise ValueError("a resposta do TCM-GO não é JSON nem página")
     return _de_html(texto, base)
+
+
+def url_jurisprudencia(texto: str = "Goiânia", pagina: int = 1, por_pagina: int = 100) -> str:
+    """A pesquisa da jurisprudência do TCM-GO, da sessão mais nova para a mais antiga."""
+    return JURISPRUDENCIA + "buscar?" + urllib.parse.urlencode({
+        "texto": texto, "page": pagina, "page_size": por_pagina, "sort_by": "data_sessao", "sort_order": "desc"})
+
+
+def jurisprudencia(conteudo: bytes) -> tuple[list[dict], bool]:
+    """As decisões de uma página de ``buscar`` e se há página seguinte. Decisão sem número ou ano fica
+    de fora. Levanta ``ValueError`` se a resposta não traz ``data`` (formato mudado ou página de erro)."""
+    obj = cf.json_ou_none(conteudo)
+    if not isinstance(obj, dict) or not isinstance(obj.get("data"), list):
+        raise ValueError("a pesquisa da jurisprudência do TCM-GO não traz data")  # noqa: TRY004
+    saida = []
+    for r in obj["data"]:
+        if not isinstance(r, dict):
+            continue
+        bruto = str(r.get("numero_acordao") or "")
+        numero = re.match(r"\s*(\d[\d.]*)", bruto)
+        ano = str(r.get("ano_votacao") or "")
+        if not ano.isdigit() and (m := re.search(r"/\s*(\d{4})", bruto)):
+            ano = m.group(1)
+        if not numero or not ano.isdigit():
+            continue
+        trecho = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", str(
+            r.get("ementa") or r.get("assunto") or r.get("macro_assunto") or ""))).strip()
+        doc = str(r.get("document_id") or "")
+        d = _decisao(_tipo(str(r.get("tipo_decisao") or "Acórdão")), numero.group(1).replace(".", ""), ano,
+                     trecho, JURISPRUDENCIA + "pdf/" + urllib.parse.quote(doc) if doc else "")
+        d["data"] = cf.data(r.get("data_sessao"))
+        d["relator"] = str(r.get("conselheiro_relator") or "")
+        d["colegiado"] = str(r.get("orgao_julgador") or "")
+        d["processo"] = str(r.get("numero_processo") or "") or d["processo"]
+        onde = " ".join(str(r.get(k) or "") for k in ("entidade_fiscalizada", "entidade", "municipio"))
+        d["sobre_goiania"] = int(sobre(onde) if onde.strip() else sobre(trecho))
+        if r.get("resultado"):
+            d["sumario"] = f"{d['sumario']} Resultado: {r['resultado']}."[:4000].strip()
+        saida.append(d)
+    paginacao = obj.get("pagination") if isinstance(obj.get("pagination"), dict) else {}
+    if "has_next" in paginacao:
+        mais = bool(paginacao["has_next"])
+    else:
+        mais = int(paginacao.get("page") or 0) < int(paginacao.get("total_pages") or 0)
+    return saida, mais

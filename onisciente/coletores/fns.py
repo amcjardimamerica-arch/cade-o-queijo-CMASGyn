@@ -68,6 +68,17 @@ os parâmetros do valor por entidade: ``detalhe-acao`` com ano, filtros vazios, 
 ``valorTotal``, ``valorDescontoTotal``, ``valorLiquido``, ``numeroDocumentoSiafi`` (a ordem bancária),
 ``codigoBanco``, ``codigoAgencia``, ``contaCorrente``, ``nuPortaria`` e ``id.processo``. As respostas
 desses dois ainda não foram vistas: ``acoes`` e ``pagamentos`` leem os campos que os controladores usam.
+
+Sondagem da rodada 7 (28/11/2026), com o Fundo Municipal de Saúde de Goiânia em 2025: ``detalhe-acao``
+traz 40 ações numa página, com ``valorDescontoTotal`` (não ``valorDesconto``) e, na primeira linha, os
+totais gerais da entidade. ``detalhe-pagamento`` com ``acoes`` vazio traz todas as ordens do ano (676, em
+7 páginas de 100; ``pagina`` volta contada de 0). Cada ordem diz a ação em ``id.programaFundo.id`` (o
+mesmo ``id`` da ação), o mês do pagamento em ``anoPagamento`` e ``mesPagamento``, o documento em
+``tipoDocumentoPagamento`` e ``numeroDocumentoSiafi`` (vazios quando o valor inteiro foi descontado, e
+então a ``dataCriacaoSiafi`` é sempre 01/01) e a parcela em ``competencia`` (``01/12 em 2025``, ``NOV de
+2024``, ``Única em 2024``). As ordens com ``indicadorFundoAFundo`` = ``N`` (documento ``PF``, conta
+``UNICA``) não são repasse fundo a fundo à conta do Fundo. O total geral das ordens (R$ 1.036.219.851,35)
+passa o das ações (R$ 1.030.381.073,26): há ordens de programa que não está na lista de ações do ano.
 """
 
 from __future__ import annotations
@@ -310,14 +321,31 @@ def acoes(conteudo: bytes) -> tuple[list[dict], int]:
             "id": _texto(d.get("id")), "bloco": _nome(d.get("blocoPacto")), "grupo": _nome(d.get("grupoAcao")),
             "componente": _nome(d.get("componenteBloco")), "descricao": _texto(d.get("descricao")),
             "valor_total": round(cf.numero(d.get("valorTotal")) or 0.0, 2),
-            "valor_desconto": round(cf.numero(d.get("valorDesconto")) or 0.0, 2),
+            "valor_desconto": round(cf.numero(d.get("valorDescontoTotal", d.get("valorDesconto"))) or 0.0, 2),
             "valor_liquido": round(cf.numero(d.get("valorLiquido")) or 0.0, 2)})
     return saida, total
 
 
+_MESES = {m: n for n, m in enumerate(("JAN", "FEV", "MAR", "ABR", "MAI", "JUN", "JUL", "AGO", "SET", "OUT",
+                                        "NOV", "DEZ"), start=1)}
+
+
+def competencia(texto) -> str | None:
+    """AAAA-MM da competência de uma ordem (``NOV de 2024``, ``12 em 2024``). None para a parcela
+    (``01/12 em 2025``) e a parcela única, que não dizem o mês."""
+    t = _texto(texto).upper()
+    if m := re.match(r"^([A-Z]{3}) DE (\d{4})$", t):
+        return f"{m.group(2)}-{_MESES[m.group(1)]:02d}" if m.group(1) in _MESES else None
+    if m := re.match(r"^(\d{1,2}) EM (\d{4})$", t):
+        return f"{m.group(2)}-{int(m.group(1)):02d}" if 1 <= int(m.group(1)) <= 12 else None
+    return cf.mes_de(t)
+
+
 def pagamentos(conteudo: bytes) -> tuple[list[dict], int]:
-    """Uma página de ``detalhe-pagamento``: cada ordem bancária de uma ação, nas colunas de
-    ``repasses_fns`` (sem bloco e programa, que vêm da ação). Levanta ``ValueError`` se o formato mudar."""
+    """Uma página de ``detalhe-pagamento``: cada ordem nas colunas de ``repasses_fns`` e mais quatro
+    chaves que o motor tira antes de gravar: ``programa_id`` (o ``id`` da ação), ``programa`` e ``bloco``
+    da própria ordem e ``fundo_a_fundo``. O mês é o do pagamento; a data, a do documento no SIAFI (sem
+    documento, não há data). Levanta ``ValueError`` se o formato mudar."""
     dados, total = _resultado(conteudo, "o detalhe por pagamento")
     saida = []
     for d in dados:
@@ -327,17 +355,28 @@ def pagamentos(conteudo: bytes) -> tuple[list[dict], int]:
         desconto = cf.numero(d.get("valorDescontoTotal")) or 0.0
         liquido = cf.numero(d.get("valorLiquido"))
         chave = d.get("id") if isinstance(d.get("id"), dict) else {}
+        programa = chave.get("programaFundo") if isinstance(chave.get("programaFundo"), dict) else {}
+        numero, tipo = _texto(d.get("numeroDocumentoSiafi")), _texto(d.get("tipoDocumentoPagamento"))
+        ano_pg, mes_pg = _texto(d.get("anoPagamento")), _texto(d.get("mesPagamento"))
         data = cf.data(cf.campo(d, "dataPagamento", "dataOb", "dataOrdemBancaria", "dtPagamento", "data",
                                 contem=("datapag", "dataob", "dataordem", "dtpag", "dataemiss")))
+        if data is None and numero:
+            data = cf.data(d.get("dataCriacaoSiafi"))
+        mes = f"{ano_pg}-{int(mes_pg):02d}" if ano_pg.isdigit() and mes_pg.isdigit() else (data or "")[:7] or None
+        bruta = _texto(d.get("competencia"))
+        comp = competencia(bruta)
         saida.append({
-            "mes": (data or "")[:7] or None, "data": data,
-            "competencia": cf.mes_de(cf.campo(d, "competencia", contem=("competencia",))),
+            "mes": mes, "data": data, "competencia": comp,
             "valor_bruto": round(bruto, 2), "desconto": round(desconto, 2),
             "valor_liquido": round(liquido if liquido is not None else bruto - desconto, 2),
             "banco": _texto(d.get("codigoBanco")), "agencia": _texto(d.get("codigoAgencia")),
-            "conta": _texto(d.get("contaCorrente")), "ordem_bancaria": _texto(d.get("numeroDocumentoSiafi")),
+            "conta": _texto(d.get("contaCorrente")),
+            "ordem_bancaria": f"{ano_pg}{tipo}{numero}" if numero and tipo and ano_pg else numero,
             "situacao": " ".join(x for x in (f"processo {chave['processo']}" if chave.get("processo") else "",
-                                             f"portaria {d['nuPortaria']}" if d.get("nuPortaria") else "") if x)})
+                                             f"portaria {d['nuPortaria']}" if d.get("nuPortaria") else "",
+                                             f"parcela {bruta}" if bruta and comp is None else "") if x),
+            "programa_id": _texto(programa.get("id")), "programa": _texto(programa.get("descricao")),
+            "bloco": _texto(d.get("nomeBloco")), "fundo_a_fundo": chave.get("indicadorFundoAFundo") != "N"})
     return saida, total
 
 
