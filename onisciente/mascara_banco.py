@@ -11,7 +11,9 @@ Portal da Transparência e o QSA da Receita publicam (``onisciente.mascara_cpf.m
   telefone, um processo com dígito que não confere ficam como estão).
 * Nas linhas antigas: ``migrar`` (chamado na abertura do Banco) mascara o que já está gravado, numa rodada do
   rastreio só para isso (modo ``mascara_cpf``). Cada linha mascarada ganha selo novo com a mesma origem do
-  selo antigo, e o selo antigo fica descartado por essa rodada.
+  selo antigo; o selo antigo, descartado por essa rodada, tem o hash retirado na mesma rodada (o hash de uma
+  linha com CPF completo refaria o CPF por força bruta): fica só a marca "retirado por privacidade", com a
+  referência ao selo novo (``rastreio._retirar``).
 * A trava: ``varrer`` procura CPF completo válido em todas as tabelas do banco e das partes.
 
 ``despesa_eventos`` (a despesa de Goiânia) fica com o coletor dela (``goiania_transweb``), que mascara ao ler
@@ -35,6 +37,9 @@ COLUNAS: dict[str, dict[str, str]] = {
     "contratos_pncp": {"fornecedor_ni": DOCUMENTO, "fornecedor": TEXTO, "objeto": TEXTO},
     "contratacoes_pncp": {"objeto": TEXTO},
     "emendas_municipio": {"nome": TEXTO, "json": TEXTO},
+    # CEPIM e inidôneos do TCU: o coletor grava pela própria função (``impedimentos.gravar``), que passa
+    # cada linha por ``mascarar_linha``. A leitura (``impedimentos.documento``) já entende o mascarado.
+    "impedimentos": {"cnpj_cpf": DOCUMENTO, "nome": TEXTO, "processo": TEXTO},
 }
 
 MODO = "mascara_cpf"

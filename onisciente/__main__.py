@@ -290,6 +290,8 @@ def _imprimir_registro(a: dict) -> None:
           f"hash da rodada {r.get('hash')}")
     if selo.get("descartada_na_rodada"):
         print(f"  descartado na rodada {selo['descartada_na_rodada']} (refeito ou substituído)")
+    for x in selo.get("substituiu_retirados") or []:
+        print(f"  substituiu um selo da rodada {x['rodada']} retirado pela rodada {x['retirada_por']}: {x['motivo']}")
     o = selo["origem"]
     if o.get("resposta"):
         print(f"  origem: coleta {o.get('motor') or ''} {o.get('alvo') or ''} em {o.get('quando') or '?'}")
@@ -311,6 +313,18 @@ def _imprimir_verificacao(v: dict) -> None:
         print(f"  hash da rodada (topo da cadeia): {u.get('hash')}")
         print(f"  raiz de Merkle da rodada:        {u.get('raiz')}")
     print("  cadeia: " + ("confere" if c["ok"] else "NÃO CONFERE"))
+    ret = c.get("retiradas") or {}
+    if ret.get("total"):
+        print(f"  folhas retiradas por privacidade: {ret['total']} (o hash saiu, ficou a marca; a raiz da tabela "
+              "que perdeu folhas vale pelo hash da rodada)")
+        for rid, d in (ret.get("por_rodada_que_retirou") or {}).items():
+            tabelas = ", ".join(f"{t} {n}" for t, n in (d.get("por_tabela") or {}).items())
+            print(f"    retiradas pela rodada {rid}: {d.get('total')} ({tabelas})")
+            for motivo, n in (d.get("motivos") or {}).items():
+                print(f"      {n}: {motivo}")
+        perdas = "; ".join(f"rodada {r}: " + ", ".join(f"{t} {n}" for t, n in tabs.items())
+                           for r, tabs in (ret.get("por_rodada_do_selo") or {}).items())
+        print(f"    rodadas que perderam folhas: {perdas}")
     for p in c["problemas"]:
         print(f"    rodada {p['rodada']}: {p['motivo']}" + (f" (tabelas: {', '.join(p['tabelas'])})"
                                                           if p.get("tabelas") else ""))

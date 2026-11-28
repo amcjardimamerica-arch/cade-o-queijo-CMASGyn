@@ -3,7 +3,6 @@ como falha do sistema, a série desde 2019, o Diário Oficial, a tempestividade 
 
 import json
 import re
-import shutil
 import sqlite3
 import time
 from datetime import date
@@ -13,7 +12,7 @@ from urllib.parse import parse_qs, urlparse
 import pytest
 import yaml
 
-from onisciente import RAIZ, agenda, historico, tempo
+from onisciente import RAIZ, agenda, historico, partes, tempo
 from onisciente.coletores import base
 
 FLUXOS = RAIZ / ".github" / "workflows"
@@ -357,7 +356,8 @@ def test_prazo_legal_de_cada_documento():
 
 def test_tempestividade_medida_no_banco_real(tmp_path):
     copia = tmp_path / "historico.db"
-    shutil.copy(BANCO_REAL, copia)
+    # 28/11/2026, divisão do banco em partes: a cópia leva as partes (sem elas a abertura criaria partes vazias).
+    partes.copiar_banco(BANCO_REAL, copia)
     banco = historico.Banco.abrir(copia)
     itens = {i["rotulo"]: i for i in tempo.tempestividade_dos_documentos(banco, date(2026, 11, 27))}
     banco.con.close()
