@@ -288,14 +288,25 @@ def ler(conteudo: bytes, base: str = PORTAL) -> list[dict]:
 
 
 def url_jurisprudencia(texto: str = "Goiânia", pagina: int = 1, por_pagina: int = 100,
-                       municipio: str | None = None) -> str:
+                       municipio: str | None = None, ano: int | None = None) -> str:
     """A pesquisa da jurisprudência do TCM-GO, da sessão mais nova para a mais antiga; com ``municipio``
-    (o ``valor`` da lista de ``filtros``, como GOIANIA), só as decisões daquele município."""
+    (o ``valor`` da lista de ``filtros``, como GOIANIA), só as decisões daquele município; com ``ano``, só
+    as votadas naquele ano (``ano_votacao``, como a tela manda)."""
     params = {"texto": texto, "page": pagina, "page_size": por_pagina, "sort_by": "data_sessao",
               "sort_order": "desc"}
     if municipio:
         params["municipio"] = municipio
+    if ano:
+        params["ano_votacao"] = ano
     return JURISPRUDENCIA + "buscar?" + urllib.parse.urlencode(params)
+
+
+# Rodada 14 (28/11/2026, sondagem de 09:11Z, run 46129272224): a busca com municipio=GOIANIA e ano_votacao
+# declarou 747 decisões em 2024 (8 páginas) e 851 em 2026 (9 páginas), como as 918 de 2025: cada ano cabe
+# no limite de 1000 da busca sem chave. As 99 decisões de Goiânia da página 1 de 2024 e as 92 da de 2026
+# estão todas entre as 732 e 804 que a coleta 6c474b1 guardou pela exportação, e as outras (consórcios, o
+# próprio TCM, o MP) ficaram de fora. Quando a exportação de um ano não vem, a busca daquele ano o cobre
+# inteiro, sem cair na busca geral, que para no resultado 1000 e, depois das 851 de 2026, não chega a 2024.
 
 
 # Rodada 12 (28/11/2026, sondagem 079a72d): exportar com municipio=GOIANIA e ano_votacao=2025 (formato=csv, sem
