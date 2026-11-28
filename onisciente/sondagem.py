@@ -17,6 +17,7 @@ import time
 import re
 import sys
 import zipfile
+from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 from http.cookiejar import CookieJar
@@ -807,7 +808,12 @@ def _popups_paginados(fonte: str, urls: list[str], *, ler_=None, guardar=None,
                     "tipo": tipo,
                     "paginas": pop.paginas, "total": pop.total, "completo": pop.completo,
                     "linhas": len([e for e in pop.eventos if e["tipo"] == tipo]),
-                    "soma": round(sum(e["valor"] for e in pop.eventos if e["tipo"] == tipo), 2), "erro": pop.erro})
+                    "soma": round(sum(e["valor"] for e in pop.eventos if e["tipo"] == tipo), 2), "erro": pop.erro,
+                    # Rodada 12: as contas por tipo e as linhas que não são do tipo (anulação de liquidação,
+                    # ordem sem pagamento), para explicar a diferença entre o contador e a exportação.
+                    "tipos": dict(sorted(Counter(e["tipo"] for e in pop.eventos).items())),
+                    "outras_linhas": [{k: e[k] for k in ("tipo", "ordem", "data", "valor")}
+                                      for e in pop.eventos if e["tipo"] != tipo][:100]})
     return out
 
 

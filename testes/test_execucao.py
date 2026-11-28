@@ -926,20 +926,71 @@ def test_postback_da_exportacao_vai_com_o_cookie_da_sessao_do_get():
     assert cookies == [None, "ASP.NET_SessionId=sessao-de-teste", None]
 
 
+def _conversa_da_ultima_sondagem(pasta):
+    """Os passos da conversa com Portal_Despesas.aspx (GET, a_buscar_osajax, b_pagina_2_osajax e
+    c_exportar_csv) de UMA mesma sondagem: a mais nova cujo índice traz a exportação. O GET fica sempre
+    no mesmo arquivo (9cc968ae: URL sem corpo) e é regravado a cada sondagem; os POSTs têm o estado no
+    nome do arquivo e ficam de sondagens antigas. Por isso os quatro vêm do mesmo índice, e o GET só vale
+    se o arquivo tiver os bytes que o índice registrou."""
+    import json
+    indices = []
+    for arq in pasta.glob("indice_*.json"):
+        try:
+            d = json.loads(arq.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        indices.append((d.get("quando", ""), d.get("leituras", [])))
+    for _quando, leituras in sorted(indices, key=lambda x: x[0], reverse=True):
+        regs = [r for r in leituras if r.get("fonte") == "d2_transweb" and r.get("arquivo")]
+        passos = {r.get("passo"): r for r in regs if r.get("passo")}
+        get = next((r for r in regs if not r.get("passo") and not r.get("post")
+                    and r.get("url", "").endswith("/transweb/Portal_Despesas.aspx")), None)
+        if "c_exportar_csv" in passos and get is not None:
+            return get, passos
+    return None, {}
+
+
 def test_corpo_da_exportacao_do_motor_e_o_da_sondagem_que_funcionou():
     """O pedido do motor, montado da mesma página, é igual ao que a sondagem enviou (o POST guardado
-    no cabeçalho da resposta real d4b55a13): a diferença não está no corpo."""
+    no cabeçalho da resposta real da exportação): a diferença não está no corpo.
+
+    28/11/2026, rodada 12: esta trava comparava o GET 9cc968ae com o POST guardado em d4b55a13. Prova
+    do que mudou, com o que está guardado: o __OSVSTATE do GET foi o mesmo nas sondagens de 00:29Z,
+    03:34Z e 06:34Z (g6t2...) e outro na de 07:57Z (AoBn...); o GET é regravado a cada sondagem, mas o
+    d4b55a13 não (o nome do arquivo vem do corpo, e o corpo de 07:57Z é outro). Além disso, com a lista
+    por OsAjax funcionando (HTTP 200 desde 07:57Z), a exportação da sondagem parte do estado da resposta
+    da página 2 (o último __OSVSTATE dela, qEJL...), e não mais do GET: o POST de 07:57Z está em
+    9693dd3c. A trava agora segue a conversa de uma mesma sondagem, passo a passo, como a sondagem faz."""
     import json
     pasta = RAIZ / "relatorios" / "onisciente" / "sondagem"
-    resp = pasta / "d2_transweb__www10-goiania-go-gov-br-transweb-portal-despesas-aspx-d4b55a13.txt"
-    pag = pasta / "d2_transweb__www10-goiania-go-gov-br-transweb-portal-despesas-aspx-9cc968ae.txt"
-    if not (resp.exists() and pag.exists()):
+    get, passos = _conversa_da_ultima_sondagem(pasta)
+    if get is None:
         pytest.skip("respostas da sondagem ausentes")
-    cab = resp.read_bytes().split(b"\n\n", 1)[0].decode()
-    enviado = json.loads(next(ln[6:] for ln in cab.splitlines() if ln.startswith("POST: ")))
-    bruto = pag.read_bytes()
-    form = G.formularios(bruto[bruto.index(b"\n\n") + 2:])[0]
-    assert G.corpo_exportar(form, LISTA, {"mes": "10", "ano": "2026"}, "CSV") == enviado
+
+    def guardado(reg):
+        arq = pasta / reg["arquivo"]
+        if not arq.exists():
+            pytest.skip(f"resposta da sondagem ausente: {reg['arquivo']}")
+        bruto = arq.read_bytes()
+        cab, corpo = bruto.split(b"\n\n", 1)
+        linhas = cab.decode().splitlines()
+        post = json.loads(next(ln[6:] for ln in linhas if ln.startswith("POST: ")))
+        return post, corpo, next(ln[7:] for ln in linhas if ln.startswith("BYTES: "))
+
+    _p, pagina, bytes_get = guardado(get)
+    if int(bytes_get) != get.get("bytes"):
+        pytest.skip("o GET guardado já é de outra sondagem")
+    form = G.formularios(pagina)[0]
+    estado = dict(form.campos)
+    a, b = passos.get("a_buscar_osajax"), passos.get("b_pagina_2_osajax")
+    if a is not None and a.get("ok"):                 # como a sondagem: o estado vem da resposta que deu certo
+        corpo_a, resposta_a, _ = guardado(a)
+        estado, ajax, _h, _l = G.depois_da_resposta(G.estado_do_envio(corpo_a, form), list(form.ajax), resposta_a)
+        if b is not None and b.get("ok"):
+            _corpo_b, resposta_b, _ = guardado(b)
+            estado, ajax, _h, _l = G.depois_da_resposta(estado, ajax, resposta_b)
+    enviado, _resposta, _ = guardado(passos["c_exportar_csv"])
+    assert G.corpo_exportar(form, LISTA, {"mes": "10", "ano": "2026"}, "CSV", estado=estado) == enviado
 
 
 def test_motivo_legivel_da_resposta_que_nao_e_a_planilha():
@@ -1706,3 +1757,140 @@ def test_lista_osajax_leva_o_contexto_do_evento_e_os_cabecalhos_como_o_popup_abe
     f = G.Formulario("x.aspx", "post", campos={"__OSVSTATE": "E"}, tipos={"c": "checkbox"})
     corpo = f.envio_ajax({}, "a$b$wt9")
     assert corpo["__AJAX"] == "1280,900,a_b_wt9,0,0,0,0,0,0," and corpo["c"] == "off"
+
+
+# --- Rodada 12 (28/11/2026): a lista por OsAjax real e o popup de 1.695 linhas lido inteiro --------------
+# A sondagem de 28/11/2026 07:57Z, com o código da rodada 11, recebeu HTTP 200 no Buscar e na página 2 da
+# lista em Portal_Despesas.aspx por OsAjax (858 KB e 851 KB; antes, HTTP 500) e leu inteiros os 8 popups.
+# Recortes reais: lista_osajax_buscar_real.txt e lista_osajax_pagina2_real.txt (o bloco da tabela, o
+# contador, o navegador e o último __OSVSTATE; os credores pessoas físicas com o nome trocado).
+
+_ID_NEXT_DA_LISTA = "WebPatterns_wt2_block_wtMainContent_DespesasWebBlocks_wt1_block_RichWidgets_wt150_block_wt28"
+
+
+def _linhas_da_lista(html) -> list[dict]:
+    lido = G.ler_html(html)
+    tabs = [t for t in lido.tabelas if not LISTA.tabela or t.id.endswith(LISTA.tabela)] or lido.tabelas
+    tabela, mapa = G.tabela_de_resultado(tabs, LISTA.colunas)
+    out = []
+    for linha in tabela.linhas:
+        evs = G.eventos_da_tabela(G.Tabela(tabela.id, tabela.cabecalho, [linha]), mapa, LISTA.tipo,
+                                  consulta=LISTA.id, url="u", padrao_dotacao=PORTAL.dotacao, fixos={})
+        out.append({**evs[0], "popups": G._popups_da_linha(LISTA, [h for cel in linha for h in cel.links])})
+    return out
+
+
+def test_lista_osajax_real_buscar_e_pagina_2_leem_20_linhas_cada_sem_repetir():
+    buscar, pagina2 = _f("lista_osajax_buscar_real.txt"), _f("lista_osajax_pagina2_real.txt")
+    # O Buscar: a resposta OsAjax traz a tabela da página 1 e o estado novo.
+    estado, links, html1, _lido = G.depois_da_resposta({"__OSVSTATE": "DO-GET"}, [], buscar)
+    assert G.contador(html1) == (1, 20, 792)
+    linhas1 = _linhas_da_lista(html1)
+    assert len(linhas1) == 20 and linhas1[0]["empenho"] == "20261101002310009"
+    assert linhas1[0]["credor"] == "ITAU UNIBANCO S.A." and linhas1[0]["valor"] == 1_171_475.97
+    assert linhas1[0]["popups"]["liquidacao"].endswith("LiquidacaoPopUp.aspx?Empenho=20261101002310009")
+    # O pedido da página 2 sai do estado do Buscar, pelo next da lista, com o contexto do evento: o mesmo
+    # que a sondagem mandou e que voltou HTTP 200 (o __OSVSTATE é o último da resposta do Buscar).
+    prox = G.proxima_pagina(links, 1)
+    assert prox["id"] == _ID_NEXT_DA_LISTA
+    corpo = G.corpo_proxima(PORTAL.base + "Portal_Despesas.aspx", estado, prox, ajax=True)
+    assert corpo["__OSVSTATE"] == estado["__OSVSTATE"] != "DO-GET"
+    assert corpo["__AJAX"] == f"1280,900,{_ID_NEXT_DA_LISTA},0,0,0,0,0,0,"
+    # A página 2: linhas 21 a 40 de 792, nenhum empenho da página 1.
+    estado2, _links2, html2, _lido2 = G.depois_da_resposta(estado, links, pagina2)
+    assert G.contador(html2) == (21, 40, 792) and estado2["__OSVSTATE"] != estado["__OSVSTATE"]
+    linhas2 = _linhas_da_lista(html2)
+    assert len(linhas2) == 20 and linhas2[0]["empenho"] == "20261101006010015"
+    empenhos1, empenhos2 = [e["empenho"] for e in linhas1], [e["empenho"] for e in linhas2]
+    assert len(set(empenhos1)) == len(set(empenhos2)) == 20 and not set(empenhos1) & set(empenhos2)
+    assert all(e["data"].startswith("2026-10") for e in linhas1 + linhas2)
+    assert "PESSOA FISICA 1 (NOME RETIRADO DO RECORTE)" in [e["credor"] for e in linhas2]
+
+
+def test_lista_osajax_real_lida_pelo_motor_ate_onde_ha_pagina():
+    """consultar_lista com o GET real guardado nas fixtures, o Buscar e a página 2 reais da sondagem de
+    07:57Z: lê as duas páginas, as 40 linhas, sem repetir; a página 3 não está no recorte."""
+    buscar, pagina2 = _f("lista_osajax_buscar_real.txt"), _f("lista_osajax_pagina2_real.txt")
+    pedidos = []
+
+    def ler(url, formulario=None, cabecalhos=None):
+        pedidos.append((formulario, cabecalhos))
+        if formulario is None:
+            if "PopUp" in url:
+                return Leitura(False, url, b"", erro="fora do recorte", http=404)
+            return Leitura(True, url, _f("portal_despesas_real.html"), http=200)
+        n = len([f for f, _c in pedidos if f])
+        if n == 1:
+            return Leitura(True, url, buscar, http=200)
+        if n == 2:
+            return Leitura(True, url, pagina2, http=200)
+        return Leitura(False, url, b"", erro="página 3 fora do recorte", http=404)
+
+    conhecidos = {e: {"documento": "x", "liquidado": 0.0, "pago": 0.0}
+                  for e in [ln["empenho"] for ln in _linhas_da_lista(G.depois_da_resposta({}, [], buscar)[2])]
+                  + [ln["empenho"] for ln in _linhas_da_lista(G.depois_da_resposta({}, [], pagina2)[2])]}
+    res = G.consultar_lista(ler, PORTAL, LISTA, {"mes": "10", "ano": "2026"}, conhecidos=conhecidos)
+    empenhos = [e["empenho"] for e in res.eventos if e["tipo"] == "empenho"]
+    assert res.paginas == 2 and len(empenhos) == 40 == len(set(empenhos))
+    assert not res.ok and res.erro == "página 3: página 3 fora do recorte"
+    posts = [(f, c) for f, c in pedidos if f]
+    assert posts[1][0]["__AJAX"] == f"1280,900,{_ID_NEXT_DA_LISTA},0,0,0,0,0,0,"
+    assert posts[1][1]["X-Requested-With"] == "XMLHttpRequest"
+
+
+def test_popup_real_de_1695_linhas_fecha_com_a_exportacao():
+    """Empenho 20261201000430004 (credor pessoa jurídica: o Tribunal de Justiça de Goiás). A sondagem de
+    07:57Z leu o popup de liquidação inteiro (34 páginas, 1.695 linhas) e o de pagamento (35 páginas,
+    1.718 linhas): 1.693 liquidações e 1.693 pagamentos, iguais à exportação em número e em soma
+    (16.441.027,87). As 2 linhas a mais do popup de liquidação são linhas sem saldo liquidado e as 25 a
+    mais do de pagamento são linhas sem valor pago: o coletor não as conta como liquidação nem como
+    pagamento (eventos_do_popup), e a exportação também não. O corpo das páginas 4 em diante não foi
+    guardado; a próxima sondagem lista essas linhas no resumo (outras_linhas)."""
+    import json
+    conf = json.loads(_f("popup_20261201000430004_conferencia_real.json").decode("utf-8"))
+    exp = conf["exportacao"]["por_tipo"]
+    liq, pag = conf["sondagem"]
+    assert liq["completo"] and pag["completo"] and not liq["erro"] and not pag["erro"]
+    assert (liq["paginas"], liq["total"], pag["paginas"], pag["total"]) == (34, 1695, 35, 1718)
+    assert liq["linhas"] == pag["linhas"] == exp["liquidacao"]["linhas"] == exp["pagamento"]["linhas"] == 1693
+    assert liq["soma"] == pag["soma"] == exp["liquidacao"]["soma"] == exp["pagamento"]["soma"] == 16_441_027.87
+    assert liq["total"] - liq["linhas"] == 2 and pag["total"] - pag["linhas"] == 25 and exp["anulacao"]["linhas"] == 0
+    # As três primeiras páginas reais, lidas pelo motor, são as 150 primeiras liquidações da exportação em
+    # ordem de data e de número, linha a linha; ler_popup diz que parou no teto.
+    alvo = "20261201000430004"
+    paginas = [_f(f"liquidacao_popup_{alvo}_pagina1_real.html"), _f(f"liquidacao_popup_{alvo}_pagina2_real.txt"),
+               _f(f"liquidacao_popup_{alvo}_pagina3_real.txt")]
+    lidas = []
+
+    def ler(url, formulario=None, cabecalhos=None):
+        lidas.append(url)
+        return Leitura(True, url, paginas[len(lidas) - 1], http=200)
+
+    cfg = LISTA.popups["liquidacao"]
+    pop = G.ler_popup(ler, cfg["endereco"].format(empenho=alvo), "liquidacao", cfg["colunas"], {"empenho": alvo},
+                      paginas_maximas=3)
+    assert pop.total == 1695 and not pop.completo
+    assert pop.erro == "parou no teto de 3 página(s): 150 de 1695 linha(s) lidas"
+    do_popup = [[e["data"], e["ordem"], e["valor"]] for e in pop.eventos if e["tipo"] == "liquidacao"]
+    assert do_popup == conf["exportacao"]["primeiras_liquidacoes"]
+    assert len({e["ordem"] for e in pop.eventos}) == 150                 # nenhuma linha repetida entre as páginas
+
+
+def test_sondagem_resume_os_tipos_e_as_linhas_que_nao_sao_do_tipo():
+    from onisciente import sondagem
+    leitor = LeitorDosPopupsReais()
+
+    def ler(destino, *, tempo=60, fonte="", formulario=None, cabecalhos=None):
+        return leitor(destino, formulario, cabecalhos)
+
+    def guardar(fonte, destino, leitura, formulario, cabecalhos=None):
+        return {"fonte": fonte, "url": destino, "ok": leitura.ok}
+
+    urls = [u for u in sondagem.CANDIDATOS["d2_transweb_popup"] if _EMP_REAL in u]
+    resumo = [r for r in sondagem._popups_paginados("d2_transweb_popup", urls, ler_=ler, guardar=guardar)
+              if r.get("passo") == "resumo"]
+    liq = next(r for r in resumo if r["tipo"] == "liquidacao")
+    pag = next(r for r in resumo if r["tipo"] == "pagamento")
+    assert liq["tipos"] == {"anulacao": 6, "liquidacao": 59} and pag["tipos"] == {"ordem_pagamento": 1, "pagamento": 59}
+    assert [x["tipo"] for x in liq["outras_linhas"]] == ["anulacao"] * 6
+    assert set(liq["outras_linhas"][0]) == {"tipo", "ordem", "data", "valor"}
