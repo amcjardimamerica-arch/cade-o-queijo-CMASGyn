@@ -154,13 +154,16 @@
 - id: 22
   bloco: Origem do dinheiro
   requisito: As 4 diferenças da execução (previsto não empenhado, empenhado não liquidado, liquidado não pago, pago sem vínculo)
-  situacao: parcial
-  evidencia: As três primeiras margens de cada secretaria (previsto e não empenhado, empenhado e não liquidado, liquidado
-    e não pago) saem do RREO Anexo 2 conferido com a matriz de saldos contábeis (onisciente/rio/secretarias.py, ExecucaoSecretaria.margens)
-    e aparecem no parecer de cada pasta. A quarta (pago sem vínculo) é calculada com o item a item quando há (trilha_da_secretaria)
-    e, sem ele, fica sem medida (Margens.pago_com_vinculo = None), nunca zero.
-  falta: Rodar a coleta do portal (motor execucao_goiania) para medir o pago sem vínculo publicado com dados reais.
-  trava: testes/test_dominios.py::test_saude_2025_nos_numeros_do_rreo
+  situacao: cumprido
+  evidencia: 'As três primeiras margens de cada secretaria saem do RREO Anexo 2 conferido com a matriz (secretarias.py, ExecucaoSecretaria.margens).
+    Décima terceira rodada, banco real de 28/11/2026 (despesa_eventos com 155.879 eventos de 04/11/2024 a 26/11/2026; 24.101
+    empenhos, 62.207 liquidações, 62.129 pagamentos, 7.442 anulações; 2.118 contratos do PNCP): a quarta (pago sem vínculo)
+    é medida pela trilha item a item do exercício até o bimestre do parecer (trilha_da_secretaria passa a contar só o pago
+    do exercício). Pareceres de 2026, bimestre 4: Saúde paga R$ 1.473,11 mi, R$ 1.277,76 mi sem contrato do órgão no PNCP
+    (vínculo 13,3%); Educação 1.225,98 e 1.162,13 (5,2%); Infraestrutura 536,84 e 483,87 (9,9%); Comurg 626,00 e 245,52 (60,8%);
+    Assistência 11,86 e 8,32 (29,9%); Administração 1.013,07 e 780,13 (23,0%).'
+  falta: ''
+  trava: testes/test_execucao.py::test_trilha_da_secretaria_conta_so_o_pago_do_exercicio
 - id: 23
   bloco: Origem do dinheiro
   requisito: Receita realizada contra a prevista
@@ -218,42 +221,54 @@
   bloco: As 9 estações
   requisito: Percurso evento a evento de cada empenho
   situacao: parcial
-  evidencia: Coletor do TransWeb (onisciente/coletores/goiania_transweb.py) lê a execução da página real pela exportação CSV
-    comprovada na sondagem de 28/11/2026 (empenho, anulação, liquidação e pagamento por empenho); conferencias/execucao.py
-    monta um percurso por empenho pelas nove estações (origem, fonte, previsão, dotação, empenho, liquidação, pagamento, vínculo,
-    prestação). Com o recorte real da planilha de outubro de 2026, os dez percursos saem com empenho, liquidação e pagamento
-    acesos, e o empenho anulado por inteiro só com o empenho.
-  falta: Rodar o motor execucao_goiania no GitHub para ter a execução real inteira no banco; as estações de origem, previsão
-    e dotação dependem também da fonte do portal (o código antigo de três dígitos, como 100) casar com a destinação da MSC.
-  trava: testes/test_execucao.py::test_conferencias_rodam_no_recorte_real_da_exportacao
+  evidencia: 'Coletor do TransWeb lê a exportação do mês; conferencias/execucao.py monta um percurso por empenho pelas nove
+    estações. Décima terceira rodada, banco real de 28/11/2026 (despesa_eventos com 155.879 eventos de 04/11/2024 a 26/11/2026;
+    24.101 empenhos, 62.207 liquidações, 62.129 pagamentos, 7.442 anulações; 2.118 contratos do PNCP): 24.101 percursos, R$
+    19.351.827.348,10 pagos; pela fração do pago, previsão 99,92%, empenho, liquidação e pagamento 100%, vínculo 12,62% (6.369
+    percursos, com o contrato do mesmo órgão no PNCP quando o nome do órgão casa com o CNPJ: 17 dos 29 órgãos do portal),
+    prestação 67,52%; origem, fonte e dotação 0%.'
+  falta: 'Origem, fonte e dotação não acendem em nenhum percurso porque a fonte do portal é o código antigo de três dígitos
+    (100, 102, 107) e a matriz de saldos usa a destinação nova (500, 1500); só 543 dos 24.101 empenhos trazem a fonte nova
+    no histórico (STN: dddd), pouco para uma tabela de equivalência. Fecha quando houver a equivalência fonte antiga para
+    destinação nova (tabela da STN ou do Município) ou a exportação trouxer a fonte nova.'
+  trava: testes/test_execucao.py::test_fonte_antiga_do_portal_nao_acende_origem_fonte_nem_dotacao
 - id: 31
   bloco: As 9 estações
   requisito: Integridade da trilha = fração do pago que cruza as 9
   situacao: parcial
-  evidencia: ConferenciasExecucao.integridade é a fração do pago que cruza as nove estações; sem pagamento lido devolve None
-    (sem medida), nunca zero. Testado com percursos montados (0,25 num caso de um empenho completo em quatro).
-  falta: Pagamentos reais do portal no banco (motor execucao_goiania).
-  trava: testes/test_execucao.py::test_integridade_e_a_fracao_do_pago_completo
+  evidencia: 'ConferenciasExecucao.integridade é a fração do pago que cruza as nove estações; sem pagamento lido devolve None,
+    nunca zero. Décima terceira rodada, banco real de 28/11/2026 (despesa_eventos com 155.879 eventos de 04/11/2024 a 26/11/2026;
+    24.101 empenhos, 62.207 liquidações, 62.129 pagamentos, 7.442 anulações; 2.118 contratos do PNCP): integridade 0,0 sobre
+    R$ 19,35 bi pagos; sem as três estações da fonte, 9,37% do pago (3.460 percursos) estaria completo. A conferência inteira
+    roda em cerca de 2,7 s.'
+  falta: 'A integridade fica 0 enquanto origem, fonte e dotação não acendem: a fonte do portal é o código antigo de três dígitos
+    (100, 102, 107) e a matriz de saldos usa a destinação nova (500, 1500); só 543 dos 24.101 empenhos trazem a fonte nova
+    no histórico (STN: dddd), pouco para uma tabela de equivalência.'
+  trava: testes/test_execucao.py::test_recorte_real_reproduz_as_conferencias_do_banco_inteiro
 - id: 32
   bloco: As 9 estações
   requisito: Ordem violada (pagar antes de liquidar)
-  situacao: parcial
-  evidencia: 'A ordem violada de cada percurso vira achado e ficha (pagamento antes da liquidação, pagamento sem empenho ou
-    liquidação lidos), com tolerância de zero dias (config/limiares_execucao.yml). No recorte real da exportação de outubro
-    de 2026 a conferência aponta um empenho (20261603003530022, juros do contrato com o BNDES: pago em 15/10/2026 e liquidado
-    em 16/10/2026), que é indício a examinar, não acusação.'
-  falta: Execução real inteira do portal no banco (motor execucao_goiania rodando no GitHub).
-  trava: testes/test_execucao.py::test_conferencias_rodam_no_recorte_real_da_exportacao
+  situacao: cumprido
+  evidencia: 'A ordem violada de cada percurso vira achado e ficha, com tolerância de zero dias. Décima terceira rodada, banco
+    real de 28/11/2026 (despesa_eventos com 155.879 eventos de 04/11/2024 a 26/11/2026; 24.101 empenhos, 62.207 liquidações,
+    62.129 pagamentos, 7.442 anulações; 2.118 contratos do PNCP): 3 empenhos, todos de 2026 e todos com pagamento antes da
+    liquidação: 20261603003530022 (Finanças, juros do BNDES, pago em 15/10 e liquidado em 16/10/2026, R$ 214.217,85), 20267501000230004
+    (Eficiência, R$ 313.669,27) e 20265501007010002 (Administração, R$ 1.131,70); nenhum pagamento sem liquidação nem liquidação
+    antes do empenho. O recorte real tem os três e a trava confere que só eles saem.'
+  falta: ''
+  trava: testes/test_execucao.py::test_recorte_real_reproduz_as_conferencias_do_banco_inteiro
 - id: 33
   bloco: As 9 estações
   requisito: Exemplo de empenho na tela Trilha
-  situacao: parcial
-  evidencia: Tela Trilha (trilha.html) com as 9 estações por mês e por função, tiradas da matriz de saldos e do PNCP, com
-    as estações sem dado apagadas
-  falta: onisciente/telas/entradas.py já escreve execucao.json a partir de despesa_eventos, mas a tabela está vazia porque
-    o motor execucao_goiania ainda não rodou na coleta histórica; a tela mostra em cinza que a coleta não foi feita e desenha
-    empenho a empenho quando houver eventos
-  trava: testes/test_telas.py::test_trilha_tem_as_nove_estacoes_por_mes_e_funcao
+  situacao: cumprido
+  evidencia: 'Tela Trilha (trilha.html) com as 9 estações por mês e por função e, com o banco cheio, empenho a empenho. Frente
+    D2, décima terceira rodada, banco real de 28/11/2026: execucao.json com os 24.101 empenhos; 17.680 levam o CNPJ do órgão
+    (casado pelo nome com o PNCP) e 3.068 o contrato do PNCP em vigor na data, do mesmo órgão (795 contratos). Antes, todo
+    empenho ia com o órgão vazio e o filtro da secretaria esvaziava a lista; agora há o recorte de 20 por órgão e as contagens
+    por órgão e função (Saúde, outubro de 2026: 216 empenhos no recorte, os 50 maiores na tela). trilha.html fica com cerca
+    de 8,7 MB.'
+  falta: ''
+  trava: testes/test_execucao.py::test_entrada_da_execucao_liga_o_orgao_e_o_contrato_e_o_triangulo_fecha_a_prestacao
 - id: 34
   bloco: As 9 estações
   requisito: Estação Prestação (nível C)
@@ -421,26 +436,37 @@
 - id: 55
   bloco: Preço, entrega e prestação
   requisito: Liquidado × contratado
-  situacao: parcial
-  evidencia: Liquidações por fornecedor contra a soma dos contratos publicados no PNCP (o maior entre global, acumulado com
-    aditivos e inicial), tolerância de R$ 0,01.
-  falta: Liquidações reais do portal no banco.
-  trava: testes/test_execucao.py::test_liquidado_acima_do_contratado
+  situacao: cumprido
+  evidencia: 'Liquidações do credor no órgão contra a soma dos contratos do mesmo órgão publicados no PNCP (o maior entre
+    global, acumulado com aditivos e inicial), tolerância de R$ 0,01, só a partir da primeira assinatura. Décima terceira
+    rodada, banco real de 28/11/2026 (despesa_eventos com 155.879 eventos de 04/11/2024 a 26/11/2026; 24.101 empenhos, 62.207
+    liquidações, 62.129 pagamentos, 7.442 anulações; 2.118 contratos do PNCP): 60 credores acima do contratado, todos em 2026
+    (antes da correção desta rodada eram 145: a Equatorial era comparada com os contratos da Câmara, outro Poder, e a FLEXIBASE
+    liquidada na Finanças com o contrato da Saúde). 2.813 liquidações de órgãos sem CNPJ casado no PNCP (a Educação paga pelo
+    fundo) ficam fora e contadas na cobertura. Exemplo no recorte real: HOSPCOM, R$ 188.100,00 liquidados na Saúde para R$
+    63.000,00 contratados.'
+  falta: ''
+  trava: testes/test_execucao.py::test_recorte_real_reproduz_as_conferencias_do_banco_inteiro
 - id: 56
   bloco: Preço, entrega e prestação
   requisito: Medições repetidas
-  situacao: parcial
-  evidencia: Três liquidações seguidas iguais ao centavo no mesmo empenho viram achado (limiar justificado em config/limiares_execucao.yml).
-  falta: Liquidações reais do portal no banco.
-  trava: testes/test_execucao.py::test_medicoes_repetidas
+  situacao: cumprido
+  evidencia: 'Três liquidações seguidas iguais ao centavo no mesmo empenho viram achado (limiar em config/limiares_execucao.yml).
+    Décima terceira rodada, banco real de 28/11/2026 (despesa_eventos com 155.879 eventos de 04/11/2024 a 26/11/2026; 24.101
+    empenhos, 62.207 liquidações, 62.129 pagamentos, 7.442 anulações; 2.118 contratos do PNCP): 1.463 empenhos. No recorte
+    real, o empenho 20253650029330014 da Assistência (CUIABA COMERCIO DE ALARMES) tem três liquidações de R$ 138.490,00.'
+  falta: ''
+  trava: testes/test_execucao.py::test_recorte_real_reproduz_as_conferencias_do_banco_inteiro
 - id: 57
   bloco: Preço, entrega e prestação
   requisito: Pagamento antes da liquidação
-  situacao: parcial
+  situacao: cumprido
   evidencia: 'Mesma conferência do 32: pagamento antes da liquidação no percurso de cada empenho, ficha de ordem da despesa.
-    Medida no recorte real da exportação de outubro de 2026 (um empenho apontado, 20261603003530022).'
-  falta: Execução real inteira do portal no banco (motor execucao_goiania rodando no GitHub).
-  trava: testes/test_execucao.py::test_conferencias_rodam_no_recorte_real_da_exportacao
+    Décima terceira rodada, banco real de 28/11/2026 (despesa_eventos com 155.879 eventos de 04/11/2024 a 26/11/2026; 24.101
+    empenhos, 62.207 liquidações, 62.129 pagamentos, 7.442 anulações; 2.118 contratos do PNCP): 3 empenhos (20261603003530022,
+    20267501000230004 e 20265501007010002), todos de 2026, todos com o pagamento datado antes da liquidação.'
+  falta: ''
+  trava: testes/test_execucao.py::test_recorte_real_reproduz_as_conferencias_do_banco_inteiro
 - id: 58
   bloco: Preço, entrega e prestação
   requisito: Aditivo acima de 25%
@@ -468,11 +494,14 @@
 - id: 61
   bloco: Preço, entrega e prestação
   requisito: Triângulo preço × entrega × prestação na tela
-  situacao: parcial
-  evidencia: Tela Preço e entrega (precos.html) desenha o triângulo preço, entrega e prestação de cada contrato
-  falta: O vértice da prestação fica aguardando enquanto despesa_eventos (motor execucao_goiania) estiver vazia; com eventos,
-    entradas.py os leva à tela sem mudança de código
-  trava: testes/test_telas.py::test_preco_e_entrega_desenha_o_triangulo
+  situacao: cumprido
+  evidencia: 'Tela Preço e entrega (precos.html) desenha o triângulo preço, entrega e prestação de cada contrato. Frente D2,
+    décima terceira rodada, banco real de 28/11/2026: o vértice da prestação sai conferido quando um empenho ligado ao contrato
+    tem liquidação (609 contratos), ausente quando o órgão do contrato está no portal e ele foi assinado no período lido sem
+    empenho liquidado (1.229) e aguardando quando o órgão não está no portal da Prefeitura, como a Câmara (280). Antes desta
+    rodada os 2.118 saíam todos ausentes.'
+  falta: ''
+  trava: testes/test_execucao.py::test_entrada_da_execucao_liga_o_orgao_e_o_contrato_e_o_triangulo_fecha_a_prestacao
 - id: 62
   bloco: Padrões de gasto
   requisito: Série de 3 anos
@@ -484,19 +513,27 @@
 - id: 63
   bloco: Padrões de gasto
   requisito: Concentração de 80%
-  situacao: parcial
-  evidencia: 'Concentração do pago por órgão e exercício: até 5 credores com 80% do pago, a partir de 5 credores, e credor
-    único com 40% ou mais (config/limiares_execucao.yml, endurecidos sobre o mapa legal).'
-  falta: Pagamentos reais do portal no banco.
-  trava: testes/test_execucao.py::test_concentracao_e_credor_unico
+  situacao: cumprido
+  evidencia: 'Concentração do pago por órgão e exercício (até 5 credores com 80% do pago, a partir de 5 credores) e credor
+    único com 40% ou mais; a folha, a dívida e os benefícios a pessoa física saem da conta (concentracao.elementos_fora, porque
+    o Itaú aparecia com 83% do pago da Educação e 96% do da previdência em 2025 só por ser o banco da folha). Décima terceira
+    rodada, banco real de 28/11/2026 (despesa_eventos com 155.879 eventos de 04/11/2024 a 26/11/2026; 24.101 empenhos, 62.207
+    liquidações, 62.129 pagamentos, 7.442 anulações; 2.118 contratos do PNCP): 47 órgãos e anos com concentração e 43 com
+    credor único (antes, com a folha, 60 e 62). Exemplo no recorte real: PROCON em 2024, 2 de 6 credores com 94,2% do pago,
+    a EDITORA RS sozinha com R$ 1.690.000,00.'
+  falta: ''
+  trava: testes/test_execucao.py::test_recorte_real_reproduz_as_conferencias_do_banco_inteiro
 - id: 64
   bloco: Padrões de gasto
   requisito: Credor recorrente sem contrato
-  situacao: parcial
-  evidencia: Credor pago em dois meses distintos sem contrato no PNCP vira achado; ficam fora pessoal, dívida, benefícios
-    e transferências (elementos listados com a base no yml) e documentos mascarados (contados na cobertura).
-  falta: Pagamentos reais do portal no banco.
-  trava: testes/test_execucao.py::test_credor_recorrente_sem_contrato
+  situacao: cumprido
+  evidencia: 'Credor pago em dois meses distintos sem contrato do mesmo órgão no PNCP vira achado; ficam fora pessoal, dívida,
+    benefícios e transferências e documentos mascarados. Décima terceira rodada, banco real de 28/11/2026 (despesa_eventos
+    com 155.879 eventos de 04/11/2024 a 26/11/2026; 24.101 empenhos, 62.207 liquidações, 62.129 pagamentos, 7.442 anulações;
+    2.118 contratos do PNCP): 970 credores e órgãos. Exemplo no recorte real: TORRES E TORRES, R$ 50.199,87 pagos pela Agência
+    Municipal de Turismo e Eventos em novembro e dezembro de 2024 sem contrato publicado.'
+  falta: ''
+  trava: testes/test_execucao.py::test_recorte_real_reproduz_as_conferencias_do_banco_inteiro
 - id: 65
   bloco: Padrões de gasto
   requisito: Ação genérica
@@ -508,12 +545,16 @@
 - id: 66
   bloco: Padrões de gasto
   requisito: Empenhos de fim de ano
-  situacao: parcial
-  evidencia: 'Medido no banco real pela matriz de saldos contábeis: dezembro de cada função contra 1,5 vez a média do mês,
-    só exercícios completos (2025: nenhuma função acima de 12,5%). No item a item, empenhos dos últimos 15 dias de dezembro
-    acima de 1,5 vez a parcela uniforme, testado com fixture.'
-  falta: O corte de 15 dias por órgão precisa das datas dos empenhos do portal (motor execucao_goiania).
-  trava: testes/test_execucao.py::test_fim_de_ano_medido_na_matriz_real
+  situacao: cumprido
+  evidencia: 'Na matriz de saldos, dezembro de cada função contra 1,5 vez a média do mês (19 funções e anos medidos, nenhuma
+    acima). Décima terceira rodada, banco real de 28/11/2026 (despesa_eventos com 155.879 eventos de 04/11/2024 a 26/11/2026;
+    24.101 empenhos, 62.207 liquidações, 62.129 pagamentos, 7.442 anulações; 2.118 contratos do PNCP): no item a item, empenhos
+    dos últimos 15 dias de dezembro acima de 1,5 vez a parcela uniforme por órgão, só nos exercícios lidos nos doze meses
+    (despesa_consultas: só 2025; 2024 começa em novembro e 2026 ainda não tem dezembro): 10 órgãos em 2025 (antes, 34, com
+    24 falsos de 2024). Exemplo no recorte real: Secretaria de Eficiência, R$ 13.499.600,61 empenhados de 17 a 31/12/2025,
+    15,6% do ano.'
+  falta: ''
+  trava: testes/test_execucao.py::test_recorte_real_reproduz_as_conferencias_do_banco_inteiro
 - id: 67
   bloco: Padrões de gasto
   requisito: Restos a pagar nunca liquidados
@@ -632,13 +673,17 @@
   bloco: Ausências e integridade
   requisito: Integridade por secretaria
   situacao: parcial
-  evidencia: 'IndiceIntegridade por secretaria (secretarias.integridade_da_secretaria): coerência medida (RREO Anexo 2 contra
-    matriz, 12 de 12 valores iguais em cada pasta em 2026) e tempestividade medida (matriz mensal e RREO no prazo pela data
-    da versão em vigor no SICONFI); cobertura e vínculo saem da trilha item a item da pasta quando há; prestação sem medida,
-    com motivo.'
-  falta: Cobertura e vínculo dependem da coleta do portal; a prestação de contas das parcerias por pasta ainda não é lida.
-    A tempestividade usa a data da versão em vigor, então uma retificação conta como entrega tardia.
-  trava: testes/test_dominios.py::test_integridade_por_secretaria
+  evidencia: 'IndiceIntegridade por secretaria: coerência e tempestividade medidas; o vínculo sai da trilha item a item do
+    exercício. Décima terceira rodada, banco real de 28/11/2026 (despesa_eventos com 155.879 eventos de 04/11/2024 a 26/11/2026;
+    24.101 empenhos, 62.207 liquidações, 62.129 pagamentos, 7.442 anulações; 2.118 contratos do PNCP): vínculo medido nas
+    seis pastas em 2026 (Saúde 13,3%, Educação 5,2%, Infraestrutura 9,9%, Comurg 60,8%, Assistência 29,9%, Administração 23,0%
+    do pago); cobertura 0,0 em todas.'
+  falta: 'A cobertura fica 0 porque nenhum percurso acende origem, fonte e dotação: a fonte do portal é o código antigo de
+    três dígitos (100, 102, 107) e a matriz de saldos usa a destinação nova (500, 1500); só 543 dos 24.101 empenhos trazem
+    a fonte nova no histórico (STN: dddd), pouco para uma tabela de equivalência. A prestação do índice vem das parcerias
+    do Município (com_prestacao_por_parceria), não das de cada pasta. A tempestividade usa a data da versão em vigor, então
+    uma retificação conta como entrega tardia.'
+  trava: testes/test_execucao.py::test_trilha_da_secretaria_conta_so_o_pago_do_exercicio
 - id: 84
   bloco: Mapa legal
   requisito: 9 áreas do direito
@@ -1001,12 +1046,16 @@
   bloco: Parecer
   requisito: Contas uma a uma (9 maiores saídas, 4 estações, cronologia)
   situacao: parcial
-  evidencia: 'Contas uma a uma de cada pasta: as nove maiores saídas com as quatro estações legais e a cronologia, item a
-    item pelo portal quando há (contas_item_a_item) e pela matriz por natureza da despesa sempre (contas_pela_matriz); o bloco
-    entra no parecer no lugar do aviso da seção 4.'
-  falta: Credor, ordem de pagamento e data de cada evento dependem do portal; a Frente C precisa pôr a seção no parecer/html.py
-    (hoje inserida por onisciente/rio/parecer_dominio.py).
-  trava: testes/test_dominios.py::test_contas_uma_a_uma_nove_maiores_com_quatro_estacoes
+  evidencia: 'Contas uma a uma de cada pasta: as nove maiores saídas com as quatro estações e a cronologia, item a item pelo
+    portal e pela matriz sempre; o parecer/html.py da Frente C já chama parecer_dominio.secao_execucao. Décima terceira rodada,
+    banco real de 28/11/2026 (despesa_eventos com 155.879 eventos de 04/11/2024 a 26/11/2026; 24.101 empenhos, 62.207 liquidações,
+    62.129 pagamentos, 7.442 anulações; 2.118 contratos do PNCP): as seis pastas têm as nove contas com credor, empenho, liquidação,
+    pagamento e as datas de cada evento.'
+  falta: 'A exportação do portal publica cada pagamento com o número da ordem, mas não o ato da ordem de pagamento em separado
+    (0 eventos de ordem em 155.879): a estação ordem de pagamento fica sem valor, nunca zero, e o parecer diz isso abaixo
+    da tabela. Fecha quando a ordem vier com valor e data próprios (o popup de pagamento tem a coluna da ordem; falta lê-la
+    como evento).'
+  trava: testes/test_execucao.py::test_contas_uma_a_uma_com_credor_data_e_a_ordem_sem_valor
 - id: 133
   bloco: Parecer
   requisito: Preço e entrega
