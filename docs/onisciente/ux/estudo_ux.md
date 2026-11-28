@@ -267,6 +267,15 @@ nunca é publicado: só nome e qualificação, como a Receita divulga.
 }
 ```
 
+Os quatro arquivos são escritos por `onisciente/telas/entradas.py`, chamado pelo próprio
+`python -m onisciente telas`, a partir do que as outras frentes deixam no repositório e no banco: a auditoria
+do selo (`relatorios/onisciente/selo/auditoria.json`, com as leituras oficial e restritiva, comprovada e teto,
+e as obrigações F1 a F5 do Fundo e C1 a C4 do Conselho em `por_orgao`), a conferência das empresas (com a
+cobertura e os cadastros de sanção não conferidos), os eventos da execução (`despesa_eventos`) e os repasses
+federais (FNS, FNDE, FNAS e Transferegov, com a situação de cada origem). Cada arquivo traz `situacao`:
+`dado` ou `coleta_nao_feita`. A segunda, e também uma lista vazia, aparece em cinza com o motivo, como falha
+do próprio sistema, nunca em roxo.
+
 Com o arquivo presente, a seção correspondente troca o quadro de espera pelo dado, com os mesmos selos,
 filtros e recortes das demais telas. Basta rodar `python -m onisciente telas` de novo.
 

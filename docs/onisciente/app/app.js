@@ -283,6 +283,12 @@
       '</span>' + (det ? '<span class="det">' + det + '</span>' : '') + '</div>';
   }
   function nomeSec(id) { return SEC[id] ? SEC[id].nome : id; }
+  // A coleta do próprio sistema que ainda não trouxe nada: quadro cinza, nunca roxo, porque a falha é do sistema.
+  function coleta(nome) { var c = (C.coletas || {})[nome]; return c && c.situacao === 'coleta_nao_feita' ? c : null; }
+  function naoFeita(c, titulo, texto) {
+    return vazio('Coleta ainda não feita: ' + titulo, (c.motivo ? 'Motivo: ' + c.motivo + '. ' : '') +
+      'É uma falha do próprio sistema, não do Município. ' + texto, false);
+  }
   function nomeFuncao(f) { return (C.funcoes && C.funcoes[f]) || ('Função ' + f); }
 
   // --- a dica (balão da origem) ---------------------------------------------------------------
@@ -523,19 +529,27 @@
         return '<tr><td data-r="Transferência"><b>' + esc(o.titulo) + '</b><br><span class="nota">' + esc(o.norma || '') + '</span></td><td class="num" data-r="União">' + (a ? num(a.valor) : '') +
           '</td><td class="num" data-r="Município">' + (b ? num(b.valor) : '') + '</td><td class="num" data-r="Diferença">' + (dif ? num(dif) : '') + '</td><td data-r="Selo">' + seloVias(o) + '</td></tr>';
       }).join('') + '</tbody></table></div>');
-    var fed = D.federais;
+    var fed = D.federais, orig = D.federais_origens;
+    var origens = orig ? '<p class="nota" style="margin-top:10px">' + Object.keys(orig).sort().map(function (k) {
+      var o = orig[k];
+      return o.situacao === 'dado' ? selo('verde', k + ': ' + L.int(o.linhas) + ' linha(s) lida(s)')
+        : selo('cinza', k + ': coleta ainda não feita') + (o.motivo ? ' <span class="nota">(' + esc(o.motivo) + ')</span>' : '');
+    }).join(' ') + '</p>' : '';
     if (!fed) {
-      h += painel('federais', 'Os repasses federais, programa por programa', '', vazio('Aguardando a coleta das transferências federais',
-        'Quando a frente das transferências entregar os repasses do Fundo Nacional de Saúde, do FNDE, do FNAS e do Transferegov, programa por programa, cada repasse aparece aqui ao lado do que o Município registrou na fonte de destino. A conferência por transferência, acima, já usa o Portal da Transparência.'), { lamina: false });
+      var cf = coleta('federais');
+      h += painel('federais', 'Os repasses federais, programa por programa', '', (cf ? naoFeita(cf, 'transferências federais',
+        'Quando a coleta do FNS, do FNDE e do Transferegov trouxer as linhas, cada repasse aparece aqui, programa por programa. A conferência por transferência, acima, já usa o Portal da Transparência.')
+        : vazio('Aguardando a coleta das transferências federais',
+        'Quando a frente das transferências entregar os repasses do Fundo Nacional de Saúde, do FNDE, do FNAS e do Transferegov, programa por programa, cada repasse aparece aqui ao lado do que o Município registrou na fonte de destino. A conferência por transferência, acima, já usa o Portal da Transparência.')) + origens, { lamina: false });
     } else {
       var fl = fed.filter(function (r) { return r.mes.slice(0, 4) === S.c.slice(0, 4) && r.mes <= S.c; });
       h += painel('federais', 'Os repasses federais, programa por programa', fl.length + ' repasse(s) de janeiro a ' + esc(L.mes(S.c)) + '. O valor abre a leitura do órgão que repassou.',
-        fl.length ? '<div class="rola"><table class="t cartoes"><thead><tr><th>Origem e programa</th><th>Mês</th><th class="num">Repassado</th><th class="num">Registrado</th><th>Fonte de destino</th></tr></thead><tbody>' +
+        origens + (fl.length ? '<div class="rola"><table class="t cartoes"><thead><tr><th>Origem e programa</th><th>Mês</th><th class="num">Repassado</th><th class="num">Registrado</th><th>Fonte de destino</th></tr></thead><tbody>' +
           fl.map(function (r) {
             var dif = r.registrado && Math.abs(r.valor.v - r.registrado.v) > 0.5;
             return '<tr><td data-r="Programa"><b>' + esc(r.origem) + '</b> ' + esc(r.programa) + '</td><td data-r="Mês">' + esc(L.mesCurto(r.mes)) + '</td><td class="num" data-r="Repassado">' + num(r.valor) +
-              '</td><td class="num" data-r="Registrado">' + (r.registrado ? num(r.registrado) : selo('roxo', 'sem registro')) + (dif ? ' ' + selo('indicio', 'diverge') : '') + '</td><td data-r="Fonte">' + esc(r.fonte || '') + '</td></tr>';
-          }).join('') + '</tbody></table></div>' : '<p class="sub">Nenhum repasse no período.</p>', { lamina: false });
+              '</td><td class="num" data-r="Registrado">' + (r.registrado ? num(r.registrado) : selo('cinza', 'não cruzado por programa')) + (dif ? ' ' + selo('indicio', 'diverge') : '') + '</td><td data-r="Fonte">' + esc(r.fonte || '') + '</td></tr>';
+          }).join('') + '</tbody></table></div>' : '<p class="sub">Nenhum repasse no período.</p>'), { lamina: false });
     }
     h += painel('desvios', 'Água vinculada fora do leito', 'Dinheiro que a lei amarra a uma finalidade e foi empenhado em função de governo fora do leito dela. ' +
       'Indício, não acusação: a prova é a própria matriz contábil do Município.',
@@ -681,7 +695,11 @@
         }).join('') + '</tr>';
       }).join('') + '</tbody></table></div>');
     var exe = D.execucao;
-    if (!exe) {
+    var ce = coleta('execucao');
+    if (!exe && ce) {
+      h += painel('empenhos', 'Empenho a empenho', '', naoFeita(ce, 'execução, empenho a empenho',
+        'Quando a coleta do portal da transparência do Município trouxer os empenhos, cada um aparece aqui com a sua trilha completa. Por enquanto a trilha acima é o agregado da matriz contábil, que é prova oficial do Tesouro.'));
+    } else if (!exe) {
       h += painel('empenhos', 'Empenho a empenho', '', vazio('Aguardando a coleta da execução, empenho a empenho',
         'Quando a frente da execução entregar os empenhos do portal da transparência do Município (número, credor, contrato, liquidação e pagamento), cada empenho aparece aqui com a sua trilha completa. Por enquanto a trilha acima é o agregado da matriz contábil, que é prova oficial do Tesouro.'));
     } else {
@@ -719,7 +737,7 @@
           '</td><td data-r="Função">' + (x.s.funcao ? esc(nomeFuncao(x.s.funcao)) : '<span class="nota">não identificada</span>') + '</td><td class="num" data-r="Contratos">' + L.int(x.c[0]) +
           '</td><td class="num" data-r="Valor">' + (x.c[0] ? num(n2(x.chaveC, x.c[1])) : '') + '</td><td class="num" data-r="Indícios">' + (x.a[0] ? '<b style="color:var(--indicio)">' + L.int(x.a[0]) + '</b>' : '0') +
           '</td><td data-r="Notas fiscais">' + (x.semNota ? selo('roxo', 'nenhuma publicada') : selo('cinza', 'sem leitura')) + '</td><td data-r="Transparência">' +
-          (x.t ? num(x.t.nota, 'int') + ' ' + esc(x.t.nivel || '') : selo('cinza', 'aguardando o selo')) + '</td></tr>';
+          (x.t ? (x.t.nota ? num(x.t.nota, 'int') + ' ' : '') + (x.t.obrigacoes && x.t.obrigacoes.length ? selo(x.t.obrigacoes.some(function (o) { return o.alerta; }) ? 'roxo' : 'ok', x.t.nivel || '') : esc(x.t.nivel || '')) : selo('cinza', 'aguardando o selo')) + '</td></tr>';
       }).join('') + '</tbody></table></div>');
     if (S.s && SEC[S.s]) {
       var s = SEC[S.s], fun = s.funcao, ex = (D.execucao || {})[fun] || {};
@@ -906,12 +924,28 @@
     var h = painel('fornecedores', 'Quem recebeu', forn.length + ' fornecedor(es) com contrato assinado de ' + esc(L.mes(jan[0])) + ' a ' + esc(L.mes(jan[1])) + (S.s ? ' em ' + esc(nomeSec(S.s)) : '') + '. Pessoas físicas aparecem sem documento.',
       '<div class="rola"><table class="t cartoes"><thead><tr><th>Fornecedor</th><th class="num">Contratos</th><th class="num">Valor</th><th>Receita Federal</th></tr></thead><tbody>' +
       forn.slice(0, 80).map(function (x) {
-        var r = x.f.receita, alertas = r ? (r.alertas || []).map(function (a) { return selo(a.gravidade === 'critica' ? 'critica' : 'indicio', a.texto); }).join(' ') : '';
+        var r = x.f.receita, alertas = r ? (r.alertas || []).slice(0, 3).map(function (a) {
+          return '<br>' + selo(a.gravidade === 'critica' ? 'critica' : 'indicio', a.titulo || a.tipo || 'alerta') + (a.texto ? ' <span class="nota">' + esc(a.texto) + '</span>' : '');
+        }).join('') + ((r.alertas || []).length > 3 ? '<br><span class="nota">e mais ' + ((r.alertas || []).length - 3) + ' alerta(s)</span>' : '') : '';
         return '<tr><td data-r="Fornecedor"><b>' + esc(x.f.nome) + '</b><br><span class="nota mono">' + esc(x.f.ni) + '</span></td><td class="num" data-r="Contratos">' + x.cs.length + '</td><td class="num" data-r="Valor">' +
-          num({ v: x.v, f: x.cs[0][3].f }) + '</td><td data-r="Receita">' + (r ? (r.abertura ? 'Aberta em ' + esc(L.data(r.abertura)) + '. ' : '') + esc(r.situacao || '') + ' ' + alertas + (r.socios && r.socios.length ? '<br><span class="nota">Sócios e administradores: ' +
+          num({ v: x.v, f: x.cs[0][3].f }) + '</td><td data-r="Receita">' + (r && r.cadastro === false ? selo('cinza', 'cadastro não coletado') + ' ' + origem(r.fonte, 'por quê') + alertas : r ? (r.abertura ? 'Aberta em ' + esc(L.data(r.abertura)) + '. ' : '') + esc(r.situacao || '') + ' ' + alertas + (r.socios && r.socios.length ? '<br><span class="nota">Sócios e administradores: ' +
             r.socios.map(function (s) { return esc(s.nome) + (s.qualificacao ? ' (' + esc(s.qualificacao) + ')' : ''); }).join(', ') + '</span>' : '') + ' ' + origem(r.fonte, 'cartão do CNPJ') : selo('cinza', 'aguardando')) + '</td></tr>';
       }).join('') + '</tbody></table></div>' + (forn.length > 80 ? '<p class="nota">Os 80 maiores de ' + forn.length + '.</p>' : ''), { eyebrow: 'Foz' });
-    if (!D.receita) {
+    var cob = D.cobertura;
+    if (cob) {
+      var faltam = Object.keys(cob.sancoes_nao_conferidas || {});
+      h += painel('cobertura', 'O que a conferência das empresas já cobre', 'Ausência de dado nunca é atestado de empresa limpa: o que não foi conferido aparece em cinza, como falha do próprio sistema.',
+        '<div class="grade g3">' + kpi('CNPJs contratados', L.int(cob.cnpjs || 0), 'pessoas jurídicas com contrato no PNCP') +
+        kpi('Com o cadastro da Receita', L.int(cob.com_cadastro || 0) + ' de ' + L.int(cob.cnpjs || 0), cob.com_cadastro ? 'cartão do CNPJ no banco' : selo('cinza', 'coleta ainda não feita'), cob.com_cadastro ? '' : 'ruim') +
+        kpi('Cadastros de sanção conferidos', L.int(4 - faltam.length) + ' de 4', faltam.length ? faltam.map(function (k) { return selo('cinza', k + ' não conferido'); }).join(' ') : 'CEIS, CNEP, CEPIM e TCU', faltam.length ? 'ruim' : 'bom') + '</div>' +
+        (faltam.length ? '<ul class="lista">' + faltam.map(function (k) { return '<li>' + selo('cinza', k) + ' ' + esc(cob.sancoes_nao_conferidas[k]) + '</li>'; }).join('') + '</ul>' : '') +
+        (cob.lacunas || []).map(function (l) { return '<p class="nota">' + esc(l) + '.</p>'; }).join('') +
+        (cob.alertas_gerais || []).map(function (a) { return '<p>' + selo('cinza', a.titulo) + ' <span class="nota">' + esc(a.texto) + '</span></p>'; }).join(''));
+    }
+    var cem = coleta('empresas');
+    if (!D.receita && cem) {
+      h += painel('receita', 'A empresa por trás do contrato', '', naoFeita(cem, 'empresas na Receita Federal', 'Quando a coleta trouxer o cartão do CNPJ, o quadro de sócios e as sanções, cada fornecedor ganha a idade da empresa, quem a administra e os alertas. Nenhum CPF aparece.'));
+    } else if (!D.receita) {
       h += painel('receita', 'A empresa por trás do contrato', '', vazio('Aguardando a coleta das empresas na Receita Federal',
         'Quando a frente das empresas entregar o cartão do CNPJ, o quadro de sócios e administradores e as sanções (CEIS e CNEP), cada fornecedor acima ganha a idade da empresa, quem a administra, se podia contratar com o Município e os alertas de empresa recente e sem experiência. Nenhum CPF aparece.'));
     }
@@ -996,20 +1030,58 @@
   };
   function tog(lista, v) { var i = lista.indexOf(v); if (i >= 0) lista.splice(i, 1); else lista.push(v); }
 
+  var AUD = { cumpre: ['verde', 'atendido'], falha: ['roxo', 'não atendido'], sem_dado: ['cinza', 'não verificável'] };
+  function seloAud(x) { var a = AUD[x] || AUD.sem_dado; return selo(a[0], a[1]); }
+  var NOME_LEITURA = { oficial: 'Leitura oficial', restritiva: 'Leitura restritiva' };
+  var NOME_MODO = { comprovada: 'comprovada', teto: 'no teto' };
+  function telaSelo(sl) {
+    var dec = sl.declarado || {}, h = '';
+    var decVal = esc(dec.nivel || '') + (dec.nota ? ' · ' + num(dec.nota, 'int') : (dec.nota_texto ? ' · ' + esc(dec.nota_texto) : ''));
+    var leit = sl.leituras || [];
+    var oficial = leit.filter(function (x) { return x.leitura === 'oficial' && x.modo === 'comprovada'; })[0];
+    h += painel('selo', 'O selo declarado e o selo refeito', esc(sl.programa || '') + '. O Onisciente refaz a avaliação critério por critério, como auditor independente, em duas leituras: a oficial (a da cartilha) e a restritiva (a que exige a prova completa). Cada uma aparece comprovada (só o que as provas lidas mostram) e no teto (o máximo possível com o que falta provar).',
+      '<div class="grade g2">' + kpi('Declarado', decVal, 'ciclo ' + esc(dec.ciclo || '') + (dec.nota ? '' : ', sem a nota exata publicada') + ' ' + origem(dec.fonte, 'ver a notícia')) +
+      (oficial ? kpi('Refeito pelo Onisciente', esc(oficial.nivel || '') + ' · ' + num(oficial.indice, 'pct'), 'leitura oficial, só com as provas lidas', oficial.selo ? 'bom' : 'critico')
+        : kpi('Refeito pelo Onisciente', esc((sl.auditado || {}).nivel || 'sem cálculo') + ((sl.auditado || {}).nota ? ' · ' + num(sl.auditado.nota, 'int') : ''), 'com as provas abaixo',
+          sl.auditado && sl.auditado.nota && dec.nota && sl.auditado.nota.v < dec.nota.v ? 'critico' : 'bom')) + '</div>' +
+      (sl.veredito && sl.veredito.frase ? '<p class="destaque" style="margin:12px 0">' + esc(sl.veredito.frase) + '</p>' : '') +
+      (leit.length ? '<div class="rola"><table class="t cartoes"><thead><tr><th>Leitura</th><th>Modo</th><th class="num">Índice</th><th>Nível</th><th>Essenciais em falta</th></tr></thead><tbody>' +
+        leit.map(function (x) {
+          return '<tr><td data-r="Leitura"><b>' + esc(NOME_LEITURA[x.leitura] || x.leitura) + '</b></td><td data-r="Modo">' + esc(NOME_MODO[x.modo] || x.modo) + '</td><td class="num" data-r="Índice">' + num(x.indice, 'pct') +
+            '</td><td data-r="Nível">' + selo(x.selo ? 'ok' : 'indicio', x.nivel || '') + '</td><td data-r="Essenciais em falta">' + (x.essenciais_em_falta.length ? esc(x.essenciais_em_falta.join(', ')) : 'nenhum') + '</td></tr>';
+        }).join('') + '</tbody></table></div>' : '') +
+      (dec.ciclo_seguinte ? '<p class="nota">' + esc(dec.ciclo_seguinte) + '</p>' : '') +
+      (sl.radar && !sl.radar.lido && sl.radar.motivo ? '<p class="nota">' + selo('cinza', 'Radar não lido') + ' ' + esc(sl.radar.motivo) + '.</p>' : ''), { eyebrow: 'Margens' });
+    (sl.orgaos || []).forEach(function (o) {
+      if (S.s && o.cnpj && o.cnpj !== S.s) return;
+      h += painel('selo-' + esc(o.sigla.toLowerCase()), o.orgao, esc(o.nivel) + '. ' + esc(o.texto),
+        '<div class="rola"><table class="t cartoes"><thead><tr><th>Obrigação</th><th>Situação</th><th class="num">Dinheiro em jogo</th><th>O que se viu</th></tr></thead><tbody>' +
+        o.obrigacoes.map(function (x) {
+          return '<tr><td data-r="Obrigação"><b>' + esc(x.id) + '</b> ' + esc(x.texto) + '<br><span class="nota">' + esc(x.base) + (x.pntp ? '; PNTP ' + esc(x.pntp) : '') + '</span></td><td data-r="Situação">' +
+            (x.alerta ? selo('roxo', x.estado || 'em falta') : selo('ok', x.estado || 'cumprida')) + '</td><td class="num" data-r="Em jogo">' + (x.valor ? num(x.valor) : '') +
+            '</td><td data-r="O que se viu">' + x.provas.slice(0, 3).map(function (pv) { return '<span class="nota">' + esc(pv) + '</span>'; }).join('<br>') + '</td></tr>';
+        }).join('') + '</tbody></table></div>', { eyebrow: 'Fundo e Conselho' });
+    });
+    var crit = sl.criterios || [];
+    var cont = { cumpre: 0, falha: 0, sem_dado: 0 };
+    crit.forEach(function (c) { cont[c.auditado] = (cont[c.auditado] || 0) + 1; });
+    h += painel('criterios', 'Critério por critério', crit.length + ' critérios. Na leitura oficial: ' + cont.cumpre + ' atendido(s), ' + cont.falha + ' não atendido(s), ' + cont.sem_dado + ' não verificável(is). Não verificável é prova que o sistema ainda não leu (cinza), nunca culpa do Município.',
+      '<div class="rola"><table class="t cartoes"><thead><tr><th>Critério</th><th>Peso</th><th>Oficial</th><th>Restritiva</th><th>Prova</th></tr></thead><tbody>' +
+      crit.map(function (c) {
+        return '<tr><td data-r="Critério"><b>' + esc(c.id) + '</b> ' + esc(c.criterio) + (c.nota ? '<br><span class="nota">' + esc(c.nota) + '</span>' : '') + '</td><td data-r="Peso">' + esc(c.peso || '') + '</td><td data-r="Oficial">' + seloAud(c.auditado) +
+          '</td><td data-r="Restritiva">' + seloAud(c.auditado_restritiva || c.auditado) + '</td><td data-r="Prova">' + origem(c.fonte, 'abrir') + '</td></tr>';
+      }).join('') + '</tbody></table></div>');
+    if ((sl.pendencias || []).length) h += painel('pendencias', 'O que ainda falta na própria auditoria', '', sl.pendencias.map(function (pd) { return '<p class="nota">' + esc(pd) + '</p>'; }).join(''), { lamina: false });
+    return h;
+  }
+
   // --- Transparência ------------------------------------------------------------------------
   T.transparencia = function () {
     var h = '';
-    if (D.selo) {
-      var sl = D.selo;
-      h += painel('selo', 'O selo declarado e o selo refeito', esc(sl.programa || '') + ' ' + esc(sl.ciclo || '') + '. O Onisciente refaz a avaliação critério por critério, como auditor independente; cada critério abre a prova.',
-        '<div class="grade g2">' + kpi('Declarado', esc(sl.declarado.nivel || '') + ' · ' + num(sl.declarado.nota, 'int'), 'o que o Município apresenta') +
-        kpi('Refeito pelo Onisciente', esc(sl.auditado.nivel || '') + ' · ' + num(sl.auditado.nota, 'int'), 'com as provas abaixo', sl.auditado.nota && sl.declarado.nota && sl.auditado.nota.v < sl.declarado.nota.v ? 'critico' : 'bom') + '</div>' +
-        '<div class="rola" style="margin-top:12px"><table class="t cartoes"><thead><tr><th>Critério</th><th class="num">Peso</th><th>Declarado</th><th>Auditado</th><th>Prova</th></tr></thead><tbody>' +
-        sl.criterios.map(function (c) {
-          var a = { cumpre: selo('verde', 'cumpre'), falha: selo('critica', 'falha'), sem_dado: selo('roxo', 'sem dado') }[c.auditado] || esc(c.auditado);
-          return '<tr><td data-r="Critério"><b>' + esc(c.id) + '</b> ' + esc(c.criterio) + (c.nota ? '<br><span class="nota">' + esc(c.nota) + '</span>' : '') + '</td><td class="num" data-r="Peso">' + esc(c.peso) + '</td><td data-r="Declarado">' + esc(c.declarado) + '</td><td data-r="Auditado">' + a + '</td><td data-r="Prova">' + origem(c.fonte, 'abrir') + '</td></tr>';
-        }).join('') + '</tbody></table></div>', { eyebrow: 'Margens' });
-    } else {
+    var cs = coleta('selo_transparencia');
+    if (D.selo) h += telaSelo(D.selo);
+    else if (cs) h += painel('selo', 'O selo de transparência, auditado', '', naoFeita(cs, 'auditoria do selo de transparência', 'Quando a auditoria do selo for gerada, esta seção mostra o selo declarado ao lado do selo refeito, critério por critério.'), { eyebrow: 'Margens' });
+    else {
       h += painel('selo', 'O selo de transparência, auditado', '', vazio('Aguardando a coleta do selo de transparência',
         'O Município apresenta um selo de transparência. Quando a frente do selo entregar a metodologia replicada e as provas de cada critério, esta seção mostra o selo declarado ao lado do selo refeito pelo Onisciente, critério por critério, e a nota de cada secretaria. Enquanto isso, o que a lei manda publicar e não está publicado aparece logo abaixo.'), { eyebrow: 'Margens' });
     }
