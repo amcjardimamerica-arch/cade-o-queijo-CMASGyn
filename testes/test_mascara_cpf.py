@@ -52,6 +52,15 @@ def test_mascara_troca_o_cpf_de_pessoa_fisica_e_deixa_o_cnpj():
     assert mascara_cpf.cpfs_completos(novo) == 0 and mascara_cpf.cpfs_completos(texto) == 8
 
 
+def test_mascara_o_cpf_escrito_depois_de_n_ponto_e_deixa_o_meio_de_numero_maior():
+    # Trava de 28/11/2026: o histórico da despesa de Goiânia traz "INSCRITA NO CPF SOB O N.123.456.789-09";
+    # o ponto depois da letra escondia o CPF da máscara. Só "dígito e ponto" antes protege (número maior).
+    novo, n = mascara_cpf.mascarar_texto("PESSOA FICTICIA, INSCRITA NO CPF SOB O N.123.456.789-09, NOS TERMOS")
+    assert n == 1 and "N.***.456.789-**" in novo and "123.456.789-09" not in novo
+    assert mascara_cpf.mascarar_texto("CPF N.987.654.321-00 e CPF:111.222.333-96")[1] == 2
+    assert mascara_cpf.mascarar_texto("conta 7.123.456.789-09")[1] == 0     # meio de um número maior
+
+
 def test_mascara_o_cpf_com_000_na_coluna_cnpj_da_despesa_de_goiania():
     # A exportação do TransWeb põe o CPF do favorecido pessoa física na coluna CNPJ, com 000 na frente.
     texto = ("Empenho;VlPago;CNPJ;NmOrgao;NmFavorecido\n"
