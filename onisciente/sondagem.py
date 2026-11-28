@@ -4,6 +4,7 @@ Roda no GitHub, onde a rede é aberta. Para cada endereço candidato guarda o c�
 o tipo e o começo do corpo em ``relatorios/onisciente/sondagem/``. Quando a fonte é um catálogo
 CKAN ou um serviço OData, lista os recursos e lê uma amostra pequena de cada um. Só lê; não
 grava nada no banco. O resultado serve para escrever os coletores sem adivinhar endereço.
+O repositório é público: todo CPF de pessoa física é mascarado (``mascara_cpf``) antes de gravar.
 """
 
 from __future__ import annotations
@@ -14,6 +15,7 @@ import json
 import time
 import re
 import sys
+import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
 from http.cookiejar import CookieJar
@@ -21,7 +23,7 @@ from html import unescape
 from urllib.parse import quote, urljoin
 from urllib.request import HTTPCookieProcessor, build_opener, install_opener
 
-from . import RAIZ
+from . import RAIZ, mascara_cpf
 from .coletores.base import ler
 
 PASTA = RAIZ / "relatorios" / "onisciente" / "sondagem"
@@ -445,14 +447,21 @@ def _guardar(fonte: str, url: str, leitura, formulario: dict | None = None) -> d
     bruto = leitura.conteudo[:LIMITE_GRANDE if fonte in GRANDES else LIMITE]
     if leitura.ok and bruto.startswith((b"%PDF", b"PK\x03\x04")):   # binário: os bytes como vieram, em base64
         sufixo = ".pdf.b64" if bruto.startswith(b"%PDF") else ".zip.b64"
-        arq.with_suffix(sufixo).write_text(base64.b64encode(leitura.conteudo).decode())
+        dados = leitura.conteudo
+        if sufixo == ".zip.b64":
+            try:
+                dados = mascara_cpf.mascarar_zip(dados)[0]       # o repositório é público: CPF mascarado
+            except (zipfile.BadZipFile, RuntimeError, ValueError, EOFError):
+                pass                                            # ZIP que não abre não tem texto legível
+        arq.with_suffix(sufixo).write_text(base64.b64encode(dados).decode())
     try:
         # Frente D1: o corpo da recusa também (a mensagem do 400/500 diz o parâmetro que falta).
         corpo = bruto.decode("utf-8") if leitura.ok or fonte.startswith("d1_") else ""
     except UnicodeDecodeError:
         corpo = bruto.decode("latin-1")
-    arq.write_text(f"URL: {url}\nPOST: {json.dumps(formulario or {}, ensure_ascii=False)}\nOK: {leitura.ok}\nHTTP: {leitura.http}\nERRO: {leitura.erro}\n"
-                   f"BYTES: {len(leitura.conteudo)}\n\n{corpo}", encoding="utf-8")
+    texto = (f"URL: {url}\nPOST: {json.dumps(formulario or {}, ensure_ascii=False)}\nOK: {leitura.ok}\nHTTP: {leitura.http}\nERRO: {leitura.erro}\n"
+             f"BYTES: {len(leitura.conteudo)}\n\n{corpo}")
+    arq.write_text(mascara_cpf.mascarar_texto(texto)[0], encoding="utf-8")   # CPF de pessoa física mascarado
     return {"fonte": fonte, "url": url, "post": formulario, "ok": leitura.ok, "http": leitura.http, "erro": leitura.erro,
             "bytes": len(leitura.conteudo), "arquivo": arq.name}
 
@@ -690,9 +699,9 @@ def sondar(fontes: list[str] | None = None) -> list[dict]:
                     url.split("?", 1)[0].endswith("/Portal_Despesas.aspx"):
                 resultado.extend(_conversa_despesas(fonte, url, leitura))
     nome = "indice.json" if not fontes else f"indice_{'_'.join(fontes)}.json"
-    (PASTA / nome).write_text(json.dumps(
+    (PASTA / nome).write_text(mascara_cpf.mascarar_texto(json.dumps(
         {"quando": datetime.now(timezone.utc).isoformat(timespec="seconds"), "leituras": resultado},
-        ensure_ascii=False, indent=1), encoding="utf-8")
+        ensure_ascii=False, indent=1))[0], encoding="utf-8")
     return resultado
 
 

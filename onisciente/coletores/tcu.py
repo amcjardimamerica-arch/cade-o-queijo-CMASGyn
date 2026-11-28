@@ -36,7 +36,10 @@ QUANTIDADE = 100
 QUANTIDADE_PESQUISA = 50
 # Rodada 6: inicio=100 encerrou a conexão também com 50 por página, e inicio=50 veio de novo: a pesquisa
 # não passa dos 100 primeiros resultados.
-LIMITE_PESQUISA = 100
+# Rodada 7: inicio=100 com 50 por página respondeu (02/04/2024 a 26/10/2022), o que indica instabilidade e
+# não limite. O corte continua até a sondagem confirmar inicio=150 e inicio=1300 e o coordenador trocar a
+# trava da sexta rodada; para ler além, ``LIMITE_PESQUISA = None`` (o motor então vai até ``paginas``).
+LIMITE_PESQUISA: int | None = 100
 
 GOIANIA = re.compile(r"(?<!APARECIDA DE )\bGOIANIA\b")
 

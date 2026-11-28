@@ -834,7 +834,7 @@ def motor_tcu(ctx, termo: str = "Goiânia", paginas: int = 10) -> None:
             ("dados_abertos", lambda i: tcu.url_dados_abertos(i), True, tcu.QUANTIDADE)):
         guardadas, situacao, erro = 0, "vazio", None
         total = max(1, paginas * tcu.QUANTIDADE // por_pagina)                # o mesmo alcance com 50 por vez
-        if alvo == "pesquisa":
+        if alvo == "pesquisa" and tcu.LIMITE_PESQUISA:
             total = min(total, tcu.LIMITE_PESQUISA // por_pagina)             # a pesquisa para em 100
         for p in range(total):
             url = montar(p * por_pagina)
@@ -853,7 +853,7 @@ def motor_tcu(ctx, termo: str = "Goiânia", paginas: int = 10) -> None:
             datas = [d["data"] for d in decisoes if d.get("data")]
             if len(decisoes) < por_pagina or (desde and datas and max(datas) < desde):
                 break
-            if alvo == "pesquisa" and p == total - 1 and erro is None:
+            if alvo == "pesquisa" and tcu.LIMITE_PESQUISA and p == total - 1 and erro is None:
                 erro = (f"a pesquisa do TCU não devolve além de {tcu.LIMITE_PESQUISA} resultados; os mais "
                         "relevantes foram guardados e os recentes vêm dos dados abertos")
         if guardadas and situacao in ("falha", "formato", "nao_publicado"):
